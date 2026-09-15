@@ -31,6 +31,8 @@ namespace FlyBrain.UnityBridge.Editor
 
         static void EnsureAssets()
         {
+            // Albedo is color data; all surface-property maps must remain linear.
+            ConfigureTexture(DiffusePath, false, true);
             ConfigureTexture(NormalPath, true, false);
             ConfigureTexture(RoughnessPath, false, false);
             ConfigureTexture(HeightPath, false, false);
@@ -54,13 +56,9 @@ namespace FlyBrain.UnityBridge.Editor
 
             material.SetTexture("_BaseMap", AssetDatabase.LoadAssetAtPath<Texture2D>(DiffusePath));
             material.SetTexture("_BumpMap", AssetDatabase.LoadAssetAtPath<Texture2D>(NormalPath));
-            material.SetFloat("_BumpScale", 1f);
             material.SetTexture("_MetallicGlossMap", AssetDatabase.LoadAssetAtPath<Texture2D>(PackedPath));
-            material.SetFloat("_Smoothness", 1f);
-            material.SetFloat("_PrimaryTiling", 16f);
-            material.SetFloat("_SecondaryScale", .73f);
-            material.SetFloat("_VariationStrength", .055f);
-            material.SetFloat("_MacroVariationScale", 1.35f);
+            // Do not reset exposed material controls here. In particular, macro strength
+            // and the diagnostic rendering mode must remain editable across editor loads.
             EditorUtility.SetDirty(material);
             AssetDatabase.SaveAssets();
         }
