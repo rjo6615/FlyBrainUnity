@@ -1,0 +1,15 @@
+# Runtime dependencies for fly_embodied.py and two_flies.py.
+# Install with the same interpreter used to launch the simulation:
+#   python -m pip install -r requirements.txt
+flygym==1.2.1
+numpy==2.0.2
+pandas==2.3.3
+torch
+scipy
+pyarrow
+mujoco>=3.3
+glfw
+dm-control
+pygame
+matplotlib
+fpdf2

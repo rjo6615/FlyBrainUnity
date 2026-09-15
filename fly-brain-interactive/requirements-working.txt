@@ -1,0 +1,2 @@
+# Backward-compatible name retained for existing setup commands.
+-r requirements.txt
