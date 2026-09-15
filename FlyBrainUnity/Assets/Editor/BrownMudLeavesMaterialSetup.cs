@@ -42,21 +42,25 @@ namespace FlyBrain.UnityBridge.Editor
             var material = AssetDatabase.LoadAssetAtPath<Material>(MaterialPath);
             if (material == null)
             {
-                var shader = Shader.Find("Universal Render Pipeline/Lit");
+                var shader = Shader.Find("Fly Brain/Brown Mud Leaves Anti-Tile");
                 if (shader == null) return;
                 material = new Material(shader) { name = "Brown Mud Leaves Ground" };
                 AssetDatabase.CreateAsset(material, MaterialPath);
             }
 
+            var antiTileShader = Shader.Find("Fly Brain/Brown Mud Leaves Anti-Tile");
+            if (antiTileShader == null) return;
+            material.shader = antiTileShader;
+
             material.SetTexture("_BaseMap", AssetDatabase.LoadAssetAtPath<Texture2D>(DiffusePath));
             material.SetTexture("_BumpMap", AssetDatabase.LoadAssetAtPath<Texture2D>(NormalPath));
             material.SetFloat("_BumpScale", 1f);
             material.SetTexture("_MetallicGlossMap", AssetDatabase.LoadAssetAtPath<Texture2D>(PackedPath));
-            material.SetFloat("_Metallic", 0f);
             material.SetFloat("_Smoothness", 1f);
-            material.SetFloat("_SmoothnessTextureChannel", 0f);
-            material.EnableKeyword("_NORMALMAP");
-            material.EnableKeyword("_METALLICSPECGLOSSMAP");
+            material.SetFloat("_PrimaryTiling", 16f);
+            material.SetFloat("_SecondaryScale", .73f);
+            material.SetFloat("_VariationStrength", .055f);
+            material.SetFloat("_MacroVariationScale", 1.35f);
             EditorUtility.SetDirty(material);
             AssetDatabase.SaveAssets();
         }

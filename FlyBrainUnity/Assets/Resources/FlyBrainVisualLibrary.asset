@@ -95,7 +95,9 @@ MonoBehaviour:
   orbitSensitivity: 0.18
   zoomPercentagePerNotch: 20
   panSensitivity: 0.0025
-  minimumZoomDistance: 0.08
+  minimumOverviewDistance: 0.01
+  minimumFollowDistance: 0.008
+  minimumFocusDistance: 0.003
   maximumZoomDistance: 100
   minimumPitch: -15
   maximumPitch: 85

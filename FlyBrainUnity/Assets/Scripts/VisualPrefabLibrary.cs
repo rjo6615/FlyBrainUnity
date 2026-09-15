@@ -45,7 +45,12 @@ namespace FlyBrain.UnityBridge
         [Tooltip("Percentage of the current camera distance changed by one mouse-wheel notch.")]
         [Range(1f, 50f)] public float zoomPercentagePerNotch = 20f;
         [Min(.001f)] public float panSensitivity = .0025f;
-        [Min(.01f)] public float minimumZoomDistance = .08f;
+        [Tooltip("Closest distance while viewing the complete environment (Unity units).")]
+        [Min(.001f)] public float minimumOverviewDistance = .01f;
+        [Tooltip("Closest distance in Follow Fly mode (Unity units).")]
+        [Min(.001f)] public float minimumFollowDistance = .008f;
+        [Tooltip("Closest distance after focusing an object or the fly (Unity units).")]
+        [Min(.0005f)] public float minimumFocusDistance = .003f;
         [Min(.1f)] public float maximumZoomDistance = 100f;
         [Range(-89f, 89f)] public float minimumPitch = -15f;
         [Range(-89f, 89f)] public float maximumPitch = 85f;
