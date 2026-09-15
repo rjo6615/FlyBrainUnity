@@ -19,6 +19,7 @@ namespace FlyBrain.UnityBridge.Editor
         const string HeightPath = Root + "/textures/brown_mud_leaves_01_disp_4k.png";
         const string PackedPath = Root + "/textures/brown_mud_leaves_01_metallic_smoothness.png";
         const string MaterialPath = Root + "/Materials/Brown Mud Leaves Ground.mat";
+        const string LitShaderName = "Universal Render Pipeline/Lit";
 
         static BrownMudLeavesMaterialSetup() => EditorApplication.delayCall += EnsureAssets;
 
@@ -41,24 +42,34 @@ namespace FlyBrain.UnityBridge.Editor
                 PackSmoothness();
 
             Directory.CreateDirectory(Root + "/Materials");
+            var litShader = Shader.Find(LitShaderName);
+            if (litShader == null)
+            {
+                Debug.LogError($"Brown Mud Leaves setup could not find '{LitShaderName}'. " +
+                    "Confirm that the Universal Render Pipeline package is installed.");
+                return;
+            }
+
             var material = AssetDatabase.LoadAssetAtPath<Material>(MaterialPath);
             if (material == null)
             {
-                var shader = Shader.Find("Fly Brain/Brown Mud Leaves Anti-Tile");
-                if (shader == null) return;
-                material = new Material(shader) { name = "Brown Mud Leaves Ground" };
+                material = new Material(litShader) { name = "Brown Mud Leaves Ground" };
                 AssetDatabase.CreateAsset(material, MaterialPath);
             }
 
-            var antiTileShader = Shader.Find("Fly Brain/Brown Mud Leaves Anti-Tile");
-            if (antiTileShader == null) return;
-            material.shader = antiTileShader;
+            // Always restore the production material to the package-provided shader.
+            // This also repairs an existing asset left on a missing/custom shader.
+            material.shader = litShader;
 
             material.SetTexture("_BaseMap", AssetDatabase.LoadAssetAtPath<Texture2D>(DiffusePath));
             material.SetTexture("_BumpMap", AssetDatabase.LoadAssetAtPath<Texture2D>(NormalPath));
+            material.SetFloat("_BumpScale", 1f);
             material.SetTexture("_MetallicGlossMap", AssetDatabase.LoadAssetAtPath<Texture2D>(PackedPath));
-            // Do not reset exposed material controls here. In particular, macro strength
-            // and the diagnostic rendering mode must remain editable across editor loads.
+            material.SetFloat("_Metallic", 0f);
+            material.SetFloat("_Smoothness", 1f);
+            material.SetFloat("_SmoothnessTextureChannel", 0f);
+            material.EnableKeyword("_NORMALMAP");
+            material.EnableKeyword("_METALLICSPECGLOSSMAP");
             EditorUtility.SetDirty(material);
             AssetDatabase.SaveAssets();
         }
