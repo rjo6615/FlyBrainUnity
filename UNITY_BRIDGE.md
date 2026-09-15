@@ -62,7 +62,8 @@ retains its previous behavior, including the MuJoCo viewer by default.
 1. Open `/workspace/FlyBrainUnity/FlyBrainUnity` with Unity `6000.3.10f1`.
 2. Open `Assets/Scenes/SampleScene.unity`.
 3. Press **Play**. A runtime bootstrap automatically creates the TCP receiver
-   and primitive fly proxy; no scene editing is required.
+   primitive fly proxy, environment mirror, and automatic camera; no scene
+   editing is required. Press **F** to toggle Overview/Follow Fly.
 4. Start either side first. Unity retries once per second and its HUD changes
    from **Disconnected** to **Connected** after the Python server is available.
 
@@ -73,7 +74,9 @@ No additional Unity packages are needed; the implementation uses the standard
 
 Python listens only on `127.0.0.1:8765` using TCP. Each update is one compact
 UTF-8 JSON object followed by `\n` (newline-delimited JSON). Protocol version 1
-is output-only and supports one Unity client.
+is output-only and supports one Unity client. Python also sends an
+`environment_definition` on every connection and coalesced `environment_state`
+transforms while authoritative objects move.
 
 ```json
 {"type":"fly_state","protocol_version":1,"time":12.35,"position":[0.2,0.03,-0.4],"orientation":[1,0,0],"rotation":[0,0,0],"behavior":"walking","movement":{"left_drive":0.8,"right_drive":0.8,"speed_mm_s":9.4}}
@@ -89,11 +92,17 @@ Field semantics:
 * `behavior`: the authoritative `BrainBodyBridge.mode` string.
 * `movement`: current motor drives plus observation-derived linear speed.
 
-Coordinate conversion is explicit in `FlyGymCoordinates`: source millimetres,
-right-handed, Z-up `[x,y,z]` become Unity metres, left-handed, Y-up
-`[x,z,y]`. Orientation uses the same axis swap and `Quaternion.LookRotation`.
-Future calibration therefore changes one isolated class rather than networking
-or simulation code.
+Coordinate conversion is explicit in `WorldVisualScale`: source millimetres,
+right-handed, Z-up `[x,y,z]` become Unity visual units, left-handed, Y-up
+`[x,z,y]`, at **1 mm = 0.1 Unity unit**. Dimensions use the identical mapping;
+orientation uses the same axis swap and `Quaternion.LookRotation`. Scientific
+wire values remain millimetres and future calibration changes one class.
+
+The exact environment is flag-dependent. Plain `--unity` mirrors FlyGym's real
+flat substrate and does not invent objects absent from Python. For the existing
+full `LoomingArena` terrarium (physical 64 mm square shell and predator), add
+`--visual --terrarium`; add `--gustatory` and/or `--olfactory` to instantiate
+and mirror the real sugar, bitter, food, and danger sources.
 
 ## Runtime behavior and limitations
 
@@ -101,7 +110,7 @@ or simulation code.
   every five seconds while connected. Expensive neural updates can lower it.
 * Unity receives asynchronously, retains only recent snapshots, and renders at
   its own rate using exponential position/rotation interpolation.
-* The proxy is deliberately a capsule, not an articulated fly. Only yaw can be
+* The proxy is deliberately a high-contrast primitive marker, not an articulated fly. Only yaw can be
   reconstructed from the currently exposed forward vector; full body roll and
   pitch require exporting the MuJoCo free-joint quaternion in a later change.
 * TCP has no authentication or encryption because it binds to loopback only.

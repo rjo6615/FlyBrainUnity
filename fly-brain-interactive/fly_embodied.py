@@ -56,7 +56,8 @@ from terrarium_hud import TerrariumHUD, monitor_fields
 from mouse_interaction import MouseInteraction
 from terrarium_viewer import TerrariumViewer
 from wall_sensing import WallMechanosensor
-from unity_bridge import FlyStateAdapter, UnityStateServer
+from unity_bridge import (EnvironmentStateAdapter, FlyStateAdapter,
+                          UnityStateServer)
 
 try:
     from consciousness import ConsciousnessDetector
@@ -450,10 +451,14 @@ def main():
     print(f"Fly spawned at {obs['fly'][0]} mm")
     unity_server = None
     unity_adapter = None
+    unity_environment = None
     if args.unity_bridge:
         unity_server = UnityStateServer(port=args.unity_port,
                                         update_rate=args.unity_rate)
         unity_adapter = FlyStateAdapter()
+        unity_environment = EnvironmentStateAdapter(
+            arena_kwargs.get('arena'), taste_zones, odor_sources)
+        unity_server.set_environment(unity_environment.definition())
         unity_server.start()
 
     # ── Post-reset: initialize flight system with model data ──
@@ -1044,13 +1049,16 @@ def main():
             # Optional observer only: it reads the completed authoritative
             # state and never participates in sensory, neural, or motor logic.
             if unity_server is not None:
+                state_time = body_step * sim.timestep
                 unity_server.publish(unity_adapter.make_message(
-                    body_step * sim.timestep,
+                    state_time,
                     obs['fly'][0],
                     obs.get('fly_orientation', np.array([1.0, 0.0, 0.0])),
                     bridge.mode,
                     bridge.left_drive,
                     bridge.right_drive))
+                unity_server.publish_environment(
+                    unity_environment.state(state_time))
 
             # ── Sync viewer at wall-clock 60fps ──
             if viewer is not None and body_step % STEPS_PER_FRAME == 0:
