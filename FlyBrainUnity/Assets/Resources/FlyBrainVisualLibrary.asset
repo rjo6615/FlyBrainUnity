@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FlyBrainVisualLibrary
   m_EditorClassIdentifier: 
   fly:
-    prefab: {fileID: 0}
+    prefab: {fileID: 919132149155446097, guid: aeb328d0367e019468c6c4ec3964a9df, type: 3}
     material: {fileID: 0}
     modelScale: {x: 1, y: 1, z: 1}
     modelRotationOffset: {x: 0, y: 0, z: 0}
@@ -29,6 +29,9 @@ MonoBehaviour:
     modelRotationOffset: {x: 0, y: 0, z: 0}
     modelPositionOffset: {x: 0, y: 0, z: 0}
     materialTiling: {x: 16, y: 16}
+    autoGroundVisual: 0
+    groundingOffset: 0
+    maximumGroundingRootHeight: 0.25
   wall:
     prefab: {fileID: 0}
     material: {fileID: 0}
@@ -36,6 +39,9 @@ MonoBehaviour:
     modelRotationOffset: {x: 0, y: 0, z: 0}
     modelPositionOffset: {x: 0, y: 0, z: 0}
     materialTiling: {x: 1, y: 1}
+    autoGroundVisual: 0
+    groundingOffset: 0
+    maximumGroundingRootHeight: 0.25
   predator:
     prefab: {fileID: 0}
     material: {fileID: 0}
@@ -43,6 +49,9 @@ MonoBehaviour:
     modelRotationOffset: {x: 0, y: 0, z: 0}
     modelPositionOffset: {x: 0, y: 0, z: 0}
     materialTiling: {x: 1, y: 1}
+    autoGroundVisual: 0
+    groundingOffset: 0
+    maximumGroundingRootHeight: 0.25
   sugar:
     prefab: {fileID: 0}
     material: {fileID: 0}
@@ -50,6 +59,9 @@ MonoBehaviour:
     modelRotationOffset: {x: 0, y: 0, z: 0}
     modelPositionOffset: {x: 0, y: 0, z: 0}
     materialTiling: {x: 1, y: 1}
+    autoGroundVisual: 0
+    groundingOffset: 0
+    maximumGroundingRootHeight: 0.25
   bitter:
     prefab: {fileID: 0}
     material: {fileID: 0}
@@ -57,6 +69,9 @@ MonoBehaviour:
     modelRotationOffset: {x: 0, y: 0, z: 0}
     modelPositionOffset: {x: 0, y: 0, z: 0}
     materialTiling: {x: 1, y: 1}
+    autoGroundVisual: 0
+    groundingOffset: 0
+    maximumGroundingRootHeight: 0.25
   foodOdor:
     prefab: {fileID: 0}
     material: {fileID: 0}
@@ -64,6 +79,9 @@ MonoBehaviour:
     modelRotationOffset: {x: 0, y: 0, z: 0}
     modelPositionOffset: {x: 0, y: 0, z: 0}
     materialTiling: {x: 1, y: 1}
+    autoGroundVisual: 0
+    groundingOffset: 0
+    maximumGroundingRootHeight: 0.25
   dangerOdor:
     prefab: {fileID: 0}
     material: {fileID: 0}
@@ -71,7 +89,19 @@ MonoBehaviour:
     modelRotationOffset: {x: 0, y: 0, z: 0}
     modelPositionOffset: {x: 0, y: 0, z: 0}
     materialTiling: {x: 1, y: 1}
+    autoGroundVisual: 0
+    groundingOffset: 0
+    maximumGroundingRootHeight: 0.25
+  orbitSensitivity: 0.18
   zoomPercentagePerNotch: 20
+  panSensitivity: 0.0025
+  minimumZoomDistance: 0.08
+  maximumZoomDistance: 100
+  minimumPitch: -15
+  maximumPitch: 85
+  cameraSmoothTime: 0.08
+  focusTransitionTime: 0.25
+  showCameraHelp: 1
   followDistance: 1.15
   followHeight: 0.65
   lookAheadDistance: 0.35
