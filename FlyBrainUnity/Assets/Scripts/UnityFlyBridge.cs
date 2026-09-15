@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace FlyBrain.UnityBridge
 {
@@ -34,6 +35,7 @@ namespace FlyBrain.UnityBridge
         Vector3 viewportPosition;
         bool flyInFrustum;
         float flyFloorClearance;
+        bool runtimeHierarchyLogged;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Install()
@@ -80,7 +82,12 @@ namespace FlyBrain.UnityBridge
                 else if (header.type == "environment_definition")
                 {
                     var definition = JsonUtility.FromJson<EnvironmentDefinition>(json);
-                    if (definition.IsValid) { environment.ApplyDefinition(definition); cameraNeedsFrame = true; }
+                    if (definition.IsValid)
+                    {
+                        environment.ApplyDefinition(definition);
+                        cameraNeedsFrame = true;
+                        runtimeHierarchyLogged = false;
+                    }
                 }
                 else if (header.type == "environment_state")
                     environment.ApplyState(JsonUtility.FromJson<EnvironmentState>(json));
@@ -89,9 +96,10 @@ namespace FlyBrain.UnityBridge
             var blend = 1f - Mathf.Exp(-Time.unscaledDeltaTime / interpolationSeconds);
             flyProxy.SetPositionAndRotation(Vector3.Lerp(flyProxy.position, targetPosition, blend),
                 Quaternion.Slerp(flyProxy.rotation, targetRotation, blend));
-            if (Input.GetKeyDown(KeyCode.F)) cameraMode = cameraMode == CameraMode.Overview
+            var keyboard = Keyboard.current;
+            if (keyboard != null && keyboard.fKey.wasPressedThisFrame) cameraMode = cameraMode == CameraMode.Overview
                 ? CameraMode.FollowFly : CameraMode.Overview;
-            if (Input.GetKeyDown(KeyCode.L)) environment.ToggleLabels();
+            if (keyboard != null && keyboard.lKey.wasPressedThisFrame) environment.ToggleLabels();
             UpdateCamera(blend);
             environment.FaceLabels(sceneCamera);
             UpdateVisibilityDiagnostics();
@@ -112,20 +120,35 @@ namespace FlyBrain.UnityBridge
             else if (environment.IsSynchronized)
             {
                 var bounds = environment.Bounds;
+                // targetPosition is the newest authoritative pose; interpolation
+                // must not make initial framing depend on the proxy's old origin.
+                bounds.Encapsulate(latest == null ? flyProxy.position : targetPosition);
                 foreach (var renderer in flyRenderers) if (renderer != null) bounds.Encapsulate(renderer.bounds);
-                var radius = Mathf.Max(.5f, bounds.extents.magnitude);
-                var halfVertical = sceneCamera.fieldOfView * Mathf.Deg2Rad * .5f;
-                var halfHorizontal = Mathf.Atan(Mathf.Tan(halfVertical) * Mathf.Max(.1f, sceneCamera.aspect));
-                var limitingAngle = Mathf.Min(halfVertical, halfHorizontal);
-                var distance = radius / Mathf.Sin(limitingAngle) * 1.18f;
-                var direction = new Vector3(.82f, 1.05f, -1f).normalized;
-                var desired = bounds.center + direction * distance;
-                sceneCamera.transform.position = cameraNeedsFrame
-                    ? desired : Vector3.Lerp(sceneCamera.transform.position, desired, blend);
-                sceneCamera.transform.LookAt(bounds.center);
-                sceneCamera.nearClipPlane = Mathf.Max(.01f, radius / 1000f);
-                sceneCamera.farClipPlane = distance + radius * 3f;
-                cameraNeedsFrame = false;
+                if (cameraNeedsFrame)
+                {
+                    // Fit all eight authoritative AABB corners for this elevated
+                    // direction instead of approximating them with a sphere.
+                    var outward = new Vector3(.8f, 1.15f, -1f).normalized;
+                    var rotation = Quaternion.LookRotation(-outward, Vector3.up);
+                    var inverse = Quaternion.Inverse(rotation);
+                    var tanVertical = Mathf.Tan(sceneCamera.fieldOfView * Mathf.Deg2Rad * .5f);
+                    var tanHorizontal = tanVertical * Mathf.Max(.1f, sceneCamera.aspect);
+                    var distance = .1f;
+                    for (var x = -1; x <= 1; x += 2)
+                    for (var y = -1; y <= 1; y += 2)
+                    for (var z = -1; z <= 1; z += 2)
+                    {
+                        var corner = bounds.center + Vector3.Scale(bounds.extents, new Vector3(x, y, z));
+                        var local = inverse * (corner - bounds.center);
+                        distance = Mathf.Max(distance, Mathf.Abs(local.x) / tanHorizontal - local.z);
+                        distance = Mathf.Max(distance, Mathf.Abs(local.y) / tanVertical - local.z);
+                    }
+                    distance *= 1.15f;
+                    sceneCamera.transform.SetPositionAndRotation(bounds.center + outward * distance, rotation);
+                    sceneCamera.nearClipPlane = Mathf.Max(.01f, distance - bounds.extents.magnitude * 1.25f);
+                    sceneCamera.farClipPlane = distance + bounds.extents.magnitude * 2f;
+                    cameraNeedsFrame = false;
+                }
             }
         }
 
@@ -139,6 +162,23 @@ namespace FlyBrain.UnityBridge
             for (var i = 1; flyRenderers != null && i < flyRenderers.Length; i++) bounds.Encapsulate(flyRenderers[i].bounds);
             flyInFrustum = GeometryUtility.TestPlanesAABB(planes, bounds);
             flyFloorClearance = flyProxy.position.y - environment.GroundSurfaceY;
+            if (!runtimeHierarchyLogged && latest != null && environment.IsSynchronized)
+            {
+                var body = flyRenderers != null && flyRenderers.Length > 0 ? flyRenderers[0] : null;
+                Debug.Log("[Unity Fly Runtime]\n" +
+                    $"Root world position: {flyProxy.position}\n" +
+                    $"Body world position: {(body == null ? "--" : body.transform.position.ToString())}\n" +
+                    $"Root localScale: {flyProxy.localScale}\n" +
+                    $"Body localScale: {(body == null ? "--" : body.transform.localScale.ToString())}\n" +
+                    $"Renderer bounds center: {(body == null ? "--" : body.bounds.center.ToString())}\n" +
+                    $"Renderer bounds size: {(body == null ? "--" : body.bounds.size.ToString())}\n" +
+                    $"Camera world position: {sceneCamera.transform.position}\n" +
+                    $"Camera forward: {sceneCamera.transform.forward}\n" +
+                    $"Camera clip: {sceneCamera.nearClipPlane:F3} .. {sceneCamera.farClipPlane:F3}\n" +
+                    $"Camera distance to fly: {Vector3.Distance(sceneCamera.transform.position, flyProxy.position):F3}\n" +
+                    $"Fly viewport: {viewportPosition}");
+                runtimeHierarchyLogged = true;
+            }
         }
 
         async Task ReceiveLoop(CancellationToken token)
@@ -152,7 +192,9 @@ namespace FlyBrain.UnityBridge
                     while (!token.IsCancellationRequested)
                     {
                         var line = await reader.ReadLineAsync(); if (line == null) break;
-                        while (incoming.Count >= 8) incoming.TryDequeue(out _);
+                        // Definitions are ordered protocol messages. Dropping the
+                        // oldest entry here could discard the one definition while
+                        // retaining later fly states, so let the main thread drain.
                         incoming.Enqueue(line);
                     }
                 }
@@ -172,8 +214,8 @@ namespace FlyBrain.UnityBridge
             // in the floor while preserving every scientific coordinate exactly.
             Part(PrimitiveType.Sphere, "Orange body", flyProxy, new Vector3(0, .07f, 0),
                 new Vector3(.18f, .13f, .32f), new Color(1f, .32f, .015f));
-            Part(PrimitiveType.Sphere, "Contrasting head", flyProxy, new Vector3(0, .075f, .19f),
-                new Vector3(.15f, .14f, .15f), new Color(1f, .88f, .3f));
+            Part(PrimitiveType.Sphere, "Red head", flyProxy, new Vector3(0, .075f, .19f),
+                new Vector3(.15f, .14f, .15f), Color.red);
             Part(PrimitiveType.Cube, "Cyan forward indicator", flyProxy, new Vector3(0, .12f, .37f),
                 new Vector3(.045f, .045f, .34f), Color.cyan);
             flyRenderers = flyProxy.GetComponentsInChildren<Renderer>();
@@ -209,10 +251,14 @@ namespace FlyBrain.UnityBridge
                 $"Fly GameObject active: {(flyProxy != null && flyProxy.gameObject.activeInHierarchy ? "yes" : "no")}\n" +
                 $"Fly renderer active: {(rendererActive ? "yes" : "no")}\nEnvironment sync: {(environment?.IsSynchronized == true ? "yes" : "no")}\n" +
                 $"Environment object count: {environment?.ObjectCount ?? 0}/{environment?.DefinitionObjectCount ?? 0}\nCamera mode: {cameraMode} (F to switch)\n" +
+                $"Fly root/body world: {flyProxy?.position.ToString() ?? "--"} / {(flyRenderers != null && flyRenderers.Length > 0 ? flyRenderers[0].transform.position.ToString() : "--")}\n" +
+                $"Fly root/body scale: {flyProxy?.localScale.ToString() ?? "--"} / {(flyRenderers != null && flyRenderers.Length > 0 ? flyRenderers[0].transform.localScale.ToString() : "--")}\n" +
                 $"Fly viewport: [{viewportPosition.x:F2}, {viewportPosition.y:F2}, depth {viewportPosition.z:F2}] in frustum: {(flyInFrustum ? "yes" : "NO")}\n" +
+                $"Camera pos/fwd: {sceneCamera?.transform.position.ToString() ?? "--"} / {sceneCamera?.transform.forward.ToString() ?? "--"}\n" +
+                $"Camera clip/distance: {sceneCamera?.nearClipPlane:F3}..{sceneCamera?.farClipPlane:F3} / {(sceneCamera == null ? 0 : Vector3.Distance(sceneCamera.transform.position, flyProxy.position)):F3}\n" +
                 $"Fly vs floor surface: {flyFloorClearance:F3} units\nLabels: {(environment?.LabelsVisible == true ? "on" : "off")} (L to toggle)\n" +
                 $"Visual scale: 1 mm = {WorldVisualScale.UnityUnitsPerMillimetre:g} Unity units\nBehavior: {latest?.behavior ?? "--"}";
-            GUI.Box(new Rect(12, 12, 470, 330), text);
+            GUI.Box(new Rect(12, 12, 620, 410), text);
         }
 
         void OnDestroy() { cancellation?.Cancel(); cancellation?.Dispose(); environment?.Clear(); }

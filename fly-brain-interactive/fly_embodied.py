@@ -57,7 +57,7 @@ from mouse_interaction import MouseInteraction
 from terrarium_viewer import TerrariumViewer
 from wall_sensing import WallMechanosensor
 from unity_bridge import (EnvironmentStateAdapter, FlyStateAdapter,
-                          UnityStateServer)
+                          UnityStateServer, report_environment_definition)
 
 try:
     from consciousness import ConsciousnessDetector
@@ -458,7 +458,9 @@ def main():
         unity_adapter = FlyStateAdapter()
         unity_environment = EnvironmentStateAdapter(
             arena_kwargs.get('arena'), taste_zones, odor_sources)
-        unity_server.set_environment(unity_environment.definition())
+        environment_definition = unity_environment.definition()
+        report_environment_definition(environment_definition)
+        unity_server.set_environment(environment_definition)
         unity_server.start()
 
     # ── Post-reset: initialize flight system with model data ──

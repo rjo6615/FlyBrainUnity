@@ -38,7 +38,7 @@ class EnvironmentStateAdapter:
         # FlatTerrain is authoritative without --visual. It has no walls or
         # props, so do not make fictional sensory objects in the viewer.
         objects = [self._object("substrate", "substrate", [0, 0, -.35],
-                                [64, 64, .7], [.22, .16, .09, 1])]
+                                [64, 64, .7], [.68, .66, .60, 1])]
         arena = self.arena
         if arena is not None and hasattr(arena, "ball_pos"):
             half = 32.0  # TERRARIUM_HALF_SIZE used by LoomingArena
@@ -48,9 +48,9 @@ class EnvironmentStateAdapter:
                     ([half, 0, 5], [.36, half * 2, 10]),
                     ([-half, 0, 5], [.36, half * 2, 10]))):
                 objects.append(self._object(f"wall:{i}", "wall", position,
-                                            size, [.45, .7, .75, .3]))
+                                            size, [.72, .82, .84, 1]))
             objects.append(self._object("predator", "predator", arena.ball_pos,
-                [arena.ball_radius * 2] * 3, [.08, .025, .12, 1], True))
+                [arena.ball_radius * 2] * 3, [.35, .015, .015, 1], True))
         for i, zone in enumerate(self.taste_zones):
             color = [1, .9, .25, 1] if zone.taste == "sugar" else [.85, .03, .03, 1]
             objects.append(self._object(f"taste:{zone.label}:{i}",
@@ -62,6 +62,9 @@ class EnvironmentStateAdapter:
             objects.append(self._object(f"odor:{source.label}:{i}",
                 f"odor_{source.odor_type}", source.position, [4.5] * 3,
                 color, True))
+        stable_ids = [item["id"] for item in objects]
+        if len(stable_ids) != len(set(stable_ids)):
+            raise ValueError("environment object IDs must be unique")
         return {"type": "environment_definition",
                 "protocol_version": PROTOCOL_VERSION, "objects": objects}
 
@@ -78,6 +81,15 @@ class EnvironmentStateAdapter:
                                [float(v) for v in source.position]})
         return {"type": "environment_state", "protocol_version": PROTOCOL_VERSION,
                 "time": float(simulation_time), "objects": transforms}
+
+
+def report_environment_definition(definition):
+    """Print the exact, already-built snapshot that the server will cache."""
+    objects = definition["objects"]
+    print("[Unity Environment]", flush=True)
+    print(f"Objects discovered: {len(objects)}", flush=True)
+    for item in objects:
+        print(f"- {item['id']}", flush=True)
 
 
 class FlyStateAdapter:
@@ -157,7 +169,9 @@ class UnityStateServer:
 
     def set_environment(self, message):
         """Cache a definition so every reconnect receives a fresh mirror."""
-        self._environment_definition = message
+        # Round-trip now, before the listener starts, so the cached object is
+        # exactly the JSON-compatible authoritative snapshot sent to clients.
+        self._environment_definition = json.loads(json.dumps(message))
 
     def publish_environment(self, message):
         """Retain only the newest dynamic snapshot without blocking physics."""
