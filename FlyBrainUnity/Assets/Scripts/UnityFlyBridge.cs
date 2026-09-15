@@ -42,6 +42,16 @@ namespace FlyBrain.UnityBridge
         bool runtimeHierarchyLogged;
         bool debugVisualization = true;
         float overviewFieldOfView;
+        Vector3 overviewTarget, overviewTargetGoal, overviewTargetVelocity;
+        float overviewYaw, overviewPitch, overviewDistance;
+        float overviewYawGoal, overviewPitchGoal, overviewDistanceGoal;
+        float overviewYawVelocity, overviewPitchVelocity, overviewDistanceVelocity;
+        float followYaw, followPitch = 20f, followDistance;
+        float followYawGoal, followPitchGoal = 20f, followDistanceGoal;
+        float followYawVelocity, followPitchVelocity, followDistanceVelocity;
+        float targetSmoothTime;
+        float lastLeftClickTime = -10f;
+        bool cameraHelpVisible;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Install()
@@ -68,6 +78,10 @@ namespace FlyBrain.UnityBridge
             sceneCamera.clearFlags = CameraClearFlags.SolidColor;
             sceneCamera.backgroundColor = new Color(.16f, .18f, .17f);
             overviewFieldOfView = sceneCamera.fieldOfView;
+            followDistance = followDistanceGoal = Mathf.Sqrt(visuals.followDistance * visuals.followDistance +
+                visuals.followHeight * visuals.followHeight);
+            followPitch = followPitchGoal = Mathf.Atan2(visuals.followHeight, visuals.followDistance) * Mathf.Rad2Deg;
+            cameraHelpVisible = visuals.showCameraHelp;
             ConfigurePresentationLighting();
             rateWindowStarted = Time.unscaledTime;
             cancellation = new CancellationTokenSource();
@@ -108,64 +122,178 @@ namespace FlyBrain.UnityBridge
             flyProxy.SetPositionAndRotation(Vector3.Lerp(flyProxy.position, targetPosition, blend),
                 Quaternion.Slerp(flyProxy.rotation, targetRotation, blend));
             var keyboard = Keyboard.current;
-            if (keyboard != null && keyboard.fKey.wasPressedThisFrame) cameraMode = cameraMode == CameraMode.Overview
-                ? CameraMode.FollowFly : CameraMode.Overview;
+            if (keyboard != null && keyboard.fKey.wasPressedThisFrame) ToggleCameraMode();
             if (keyboard != null && keyboard.dKey.wasPressedThisFrame) SetDebugVisualization(!debugVisualization);
-            UpdateCamera(blend);
+            if (keyboard != null && keyboard.hKey.wasPressedThisFrame) cameraHelpVisible = !cameraHelpVisible;
+            if (keyboard != null && keyboard.homeKey.wasPressedThisFrame) ResetOverview();
+            if (keyboard != null && keyboard.spaceKey.wasPressedThisFrame && cameraMode == CameraMode.Overview) FocusOverview(flyProxy.position);
+            ReadCameraInput();
+            UpdateCamera();
             environment.FaceLabels(sceneCamera);
             UpdateVisibilityDiagnostics();
             var elapsed = Time.unscaledTime - rateWindowStarted;
             if (elapsed >= 1f) { updatesPerSecond = receivedThisWindow / elapsed; receivedThisWindow = 0; rateWindowStarted = Time.unscaledTime; }
         }
 
-        void UpdateCamera(float blend)
+        void ToggleCameraMode()
+        {
+            cameraMode = cameraMode == CameraMode.Overview ? CameraMode.FollowFly : CameraMode.Overview;
+        }
+
+        void ReadCameraInput()
+        {
+            var mouse = Mouse.current;
+            if (mouse == null || sceneCamera == null) return;
+            var delta = mouse.delta.ReadValue();
+            var scroll = mouse.scroll.ReadValue().y;
+            if (cameraMode == CameraMode.Overview)
+            {
+                if (mouse.rightButton.isPressed)
+                {
+                    overviewYawGoal += delta.x * visuals.orbitSensitivity;
+                    overviewPitchGoal = Mathf.Clamp(overviewPitchGoal - delta.y * visuals.orbitSensitivity,
+                        visuals.minimumPitch, visuals.maximumPitch);
+                }
+                if (mouse.middleButton.isPressed)
+                {
+                    var scale = overviewDistanceGoal * visuals.panSensitivity;
+                    overviewTargetGoal += (-sceneCamera.transform.right * delta.x - sceneCamera.transform.up * delta.y) * scale;
+                    targetSmoothTime = visuals.cameraSmoothTime;
+                }
+                if (scroll != 0f) overviewDistanceGoal = ClampDistance(overviewDistanceGoal * Mathf.Exp(-scroll * visuals.zoomSensitivity * .01f));
+                if (mouse.leftButton.wasPressedThisFrame)
+                {
+                    if (Time.unscaledTime - lastLeftClickTime <= .3f) FocusUnderPointer(mouse.position.ReadValue());
+                    lastLeftClickTime = Time.unscaledTime;
+                }
+            }
+            else
+            {
+                if (mouse.rightButton.isPressed)
+                {
+                    followYawGoal += delta.x * visuals.orbitSensitivity;
+                    followPitchGoal = Mathf.Clamp(followPitchGoal - delta.y * visuals.orbitSensitivity,
+                        visuals.minimumPitch, visuals.maximumPitch);
+                }
+                if (scroll != 0f) followDistanceGoal = ClampDistance(followDistanceGoal * Mathf.Exp(-scroll * visuals.zoomSensitivity * .01f));
+            }
+        }
+
+        float ClampDistance(float value) => Mathf.Clamp(value, visuals.minimumZoomDistance, visuals.maximumZoomDistance);
+
+        void FocusUnderPointer(Vector2 screenPoint)
+        {
+            var ray = sceneCamera.ScreenPointToRay(screenPoint);
+            var found = environment.Raycast(ray, out var point);
+            var closest = found ? Vector3.Distance(ray.origin, point) : float.PositiveInfinity;
+            foreach (var renderer in flyRenderers)
+                if (renderer != null && renderer.bounds.IntersectRay(ray, out var distance) && distance < closest)
+                { point = flyProxy.position; closest = distance; found = true; }
+            if (found) FocusOverview(point);
+        }
+
+        void FocusOverview(Vector3 point)
+        {
+            overviewTargetGoal = point;
+            targetSmoothTime = visuals.focusTransitionTime;
+        }
+
+        void ResetOverview()
+        {
+            if (!environment.IsSynchronized) return;
+            environment.RefreshBounds();
+            cameraMode = CameraMode.Overview;
+            FrameOverview(false);
+            targetSmoothTime = visuals.focusTransitionTime;
+        }
+
+        void UpdateCamera()
         {
             if (sceneCamera == null) return;
             if (cameraMode == CameraMode.FollowFly)
             {
-                var cameraBlend = 1f - Mathf.Exp(-Time.unscaledDeltaTime / visuals.followSmoothSeconds);
-                var desired = flyProxy.position - flyProxy.forward * visuals.followDistance + Vector3.up * visuals.followHeight;
-                sceneCamera.transform.position = Vector3.Lerp(sceneCamera.transform.position, desired, cameraBlend);
+                SmoothFollowState();
                 var lookTarget = flyProxy.position + flyProxy.forward * visuals.lookAheadDistance + Vector3.up * .06f;
-                var lookRotation = Quaternion.LookRotation(lookTarget - sceneCamera.transform.position, Vector3.up);
-                sceneCamera.transform.rotation = Quaternion.Slerp(sceneCamera.transform.rotation, lookRotation, cameraBlend);
+                ApplyCamera(lookTarget, flyProxy.eulerAngles.y + followYaw, followPitch, followDistance);
                 sceneCamera.fieldOfView = visuals.followFieldOfView;
-                sceneCamera.farClipPlane = 100f;
             }
             else if (environment.IsSynchronized)
             {
                 sceneCamera.fieldOfView = overviewFieldOfView;
-                var bounds = environment.Bounds;
-                // targetPosition is the newest authoritative pose; interpolation
-                // must not make initial framing depend on the proxy's old origin.
-                bounds.Encapsulate(latest == null ? flyProxy.position : targetPosition);
-                foreach (var renderer in flyRenderers) if (renderer != null) bounds.Encapsulate(renderer.bounds);
-                if (cameraNeedsFrame)
-                {
-                    // Fit all eight authoritative AABB corners for this elevated
-                    // direction instead of approximating them with a sphere.
-                    var outward = new Vector3(.8f, 1.15f, -1f).normalized;
-                    var rotation = Quaternion.LookRotation(-outward, Vector3.up);
-                    var inverse = Quaternion.Inverse(rotation);
-                    var tanVertical = Mathf.Tan(sceneCamera.fieldOfView * Mathf.Deg2Rad * .5f);
-                    var tanHorizontal = tanVertical * Mathf.Max(.1f, sceneCamera.aspect);
-                    var distance = .1f;
-                    for (var x = -1; x <= 1; x += 2)
-                    for (var y = -1; y <= 1; y += 2)
-                    for (var z = -1; z <= 1; z += 2)
-                    {
-                        var corner = bounds.center + Vector3.Scale(bounds.extents, new Vector3(x, y, z));
-                        var local = inverse * (corner - bounds.center);
-                        distance = Mathf.Max(distance, Mathf.Abs(local.x) / tanHorizontal - local.z);
-                        distance = Mathf.Max(distance, Mathf.Abs(local.y) / tanVertical - local.z);
-                    }
-                    distance *= 1.15f;
-                    sceneCamera.transform.SetPositionAndRotation(bounds.center + outward * distance, rotation);
-                    sceneCamera.nearClipPlane = Mathf.Max(.01f, distance - bounds.extents.magnitude * 1.25f);
-                    sceneCamera.farClipPlane = distance + bounds.extents.magnitude * 2f;
-                    cameraNeedsFrame = false;
-                }
+                if (cameraNeedsFrame) FrameOverview(true);
+                SmoothOverviewState();
+                ApplyCamera(overviewTarget, overviewYaw, overviewPitch, overviewDistance);
             }
+        }
+
+        void FrameOverview(bool immediate)
+        {
+            var bounds = environment.Bounds;
+            bounds.Encapsulate(latest == null ? flyProxy.position : targetPosition);
+            foreach (var renderer in flyRenderers) if (renderer != null) bounds.Encapsulate(renderer.bounds);
+            var outward = new Vector3(.8f, 1.15f, -1f).normalized;
+            var rotation = Quaternion.LookRotation(-outward, Vector3.up);
+            var inverse = Quaternion.Inverse(rotation);
+            var tanVertical = Mathf.Tan(sceneCamera.fieldOfView * Mathf.Deg2Rad * .5f);
+            var tanHorizontal = tanVertical * Mathf.Max(.1f, sceneCamera.aspect);
+            var distance = .1f;
+            for (var x = -1; x <= 1; x += 2)
+            for (var y = -1; y <= 1; y += 2)
+            for (var z = -1; z <= 1; z += 2)
+            {
+                var corner = bounds.center + Vector3.Scale(bounds.extents, new Vector3(x, y, z));
+                var local = inverse * (corner - bounds.center);
+                distance = Mathf.Max(distance, Mathf.Abs(local.x) / tanHorizontal - local.z);
+                distance = Mathf.Max(distance, Mathf.Abs(local.y) / tanVertical - local.z);
+            }
+            overviewTargetGoal = bounds.center;
+            overviewDistanceGoal = ClampDistance(distance * 1.15f);
+            overviewYawGoal = Mathf.Atan2(-outward.x, -outward.z) * Mathf.Rad2Deg;
+            overviewPitchGoal = Mathf.Asin(outward.y) * Mathf.Rad2Deg;
+            if (immediate)
+            {
+                overviewTarget = overviewTargetGoal;
+                overviewDistance = overviewDistanceGoal;
+                overviewYaw = overviewYawGoal;
+                overviewPitch = overviewPitchGoal;
+            }
+            cameraNeedsFrame = false;
+        }
+
+        void SmoothOverviewState()
+        {
+            var seconds = targetSmoothTime > 0f ? targetSmoothTime : visuals.cameraSmoothTime;
+            overviewTarget = Vector3.SmoothDamp(overviewTarget, overviewTargetGoal, ref overviewTargetVelocity,
+                seconds, Mathf.Infinity, Time.unscaledDeltaTime);
+            overviewYaw = Mathf.SmoothDampAngle(overviewYaw, overviewYawGoal, ref overviewYawVelocity,
+                visuals.cameraSmoothTime, Mathf.Infinity, Time.unscaledDeltaTime);
+            overviewPitch = Mathf.SmoothDampAngle(overviewPitch, overviewPitchGoal, ref overviewPitchVelocity,
+                visuals.cameraSmoothTime, Mathf.Infinity, Time.unscaledDeltaTime);
+            overviewDistance = Mathf.SmoothDamp(overviewDistance, overviewDistanceGoal, ref overviewDistanceVelocity,
+                visuals.cameraSmoothTime, Mathf.Infinity, Time.unscaledDeltaTime);
+            if ((overviewTarget - overviewTargetGoal).sqrMagnitude < .000001f) targetSmoothTime = 0f;
+        }
+
+        void SmoothFollowState()
+        {
+            followYaw = Mathf.SmoothDampAngle(followYaw, followYawGoal, ref followYawVelocity,
+                visuals.cameraSmoothTime, Mathf.Infinity, Time.unscaledDeltaTime);
+            followPitch = Mathf.SmoothDampAngle(followPitch, followPitchGoal, ref followPitchVelocity,
+                visuals.cameraSmoothTime, Mathf.Infinity, Time.unscaledDeltaTime);
+            followDistance = Mathf.SmoothDamp(followDistance, followDistanceGoal, ref followDistanceVelocity,
+                visuals.cameraSmoothTime, Mathf.Infinity, Time.unscaledDeltaTime);
+        }
+
+        void ApplyCamera(Vector3 target, float yaw, float pitch, float distance)
+        {
+            var orbit = Quaternion.Euler(pitch, yaw, 0f);
+            var desired = target + orbit * (Vector3.back * ClampDistance(distance));
+            // A small floor clearance avoids the most distracting substrate clipping.
+            if (environment.IsSynchronized) desired.y = Mathf.Max(desired.y, environment.GroundSurfaceY + .02f);
+            sceneCamera.transform.SetPositionAndRotation(desired,
+                Quaternion.LookRotation(target - desired, Vector3.up));
+            sceneCamera.nearClipPlane = Mathf.Clamp(distance * .01f, .005f, .05f);
+            sceneCamera.farClipPlane = Mathf.Max(100f, distance + environment.Bounds.extents.magnitude * 3f);
         }
 
         void UpdateVisibilityDiagnostics()
@@ -295,11 +423,12 @@ namespace FlyBrain.UnityBridge
 
         void OnGUI()
         {
-            if (!debugVisualization) return;
-            var raw = latest == null ? "--" : $"[{receivedPosition.x:F2}, {receivedPosition.y:F2}, {receivedPosition.z:F2}] mm";
-            var converted = latest == null ? "--" : $"[{targetPosition.x:F3}, {targetPosition.y:F3}, {targetPosition.z:F3}]";
-            var rendererActive = flyRenderers != null && Array.Exists(flyRenderers, r => r != null && r.enabled && r.gameObject.activeInHierarchy);
-            var text = $"Python: {(connected ? "Connected" : "Disconnected")}\n" +
+            if (debugVisualization)
+            {
+                var raw = latest == null ? "--" : $"[{receivedPosition.x:F2}, {receivedPosition.y:F2}, {receivedPosition.z:F2}] mm";
+                var converted = latest == null ? "--" : $"[{targetPosition.x:F3}, {targetPosition.y:F3}, {targetPosition.z:F3}]";
+                var rendererActive = flyRenderers != null && Array.Exists(flyRenderers, r => r != null && r.enabled && r.gameObject.activeInHierarchy);
+                var text = $"Python: {(connected ? "Connected" : "Disconnected")}\n" +
                 $"Simulation time: {(latest == null ? "--" : latest.time.ToString("F3"))} s\nState rate: {updatesPerSecond:F1} Hz\n" +
                 $"Raw Python fly position: {raw}\nConverted Unity fly position: {converted}\n" +
                 $"Fly GameObject active: {(flyProxy != null && flyProxy.gameObject.activeInHierarchy ? "yes" : "no")}\n" +
@@ -312,7 +441,13 @@ namespace FlyBrain.UnityBridge
                 $"Camera clip/distance: {sceneCamera?.nearClipPlane:F3}..{sceneCamera?.farClipPlane:F3} / {(sceneCamera == null ? 0 : Vector3.Distance(sceneCamera.transform.position, flyProxy.position)):F3}\n" +
                 $"Fly vs floor surface: {flyFloorClearance:F3} units\nScientific debug: on (D to toggle)\n" +
                 $"Visual scale: 1 mm = {WorldVisualScale.UnityUnitsPerMillimetre:g} Unity units\nBehavior: {latest?.behavior ?? "--"}";
-            GUI.Box(new Rect(12, 12, 620, 410), text);
+                GUI.Box(new Rect(12, 12, 620, 410), text);
+            }
+            if (cameraHelpVisible)
+            {
+                const string help = "CAMERA\nRight Drag     Orbit\nMiddle Drag    Pan\nScroll         Zoom\nDouble Click   Focus Object\nSpace          Focus Fly\nHome           Reset View\nF              Follow Fly\nD              Debug View\nH              Hide Help";
+                GUI.Box(new Rect(Screen.width - 225, 12, 213, 194), help);
+            }
         }
 
         void OnDestroy() { cancellation?.Cancel(); cancellation?.Dispose(); environment?.Clear(); }

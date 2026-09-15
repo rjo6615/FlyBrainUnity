@@ -28,6 +28,18 @@ namespace FlyBrain.UnityBridge
         public VisualPrefabSlot foodOdor = new();
         public VisualPrefabSlot dangerOdor = new();
 
+        [Header("Camera controls (presentation only)")]
+        [Min(.01f)] public float orbitSensitivity = .18f;
+        [Min(.001f)] public float zoomSensitivity = .12f;
+        [Min(.001f)] public float panSensitivity = .0025f;
+        [Min(.01f)] public float minimumZoomDistance = .08f;
+        [Min(.1f)] public float maximumZoomDistance = 100f;
+        [Range(-89f, 89f)] public float minimumPitch = -15f;
+        [Range(-89f, 89f)] public float maximumPitch = 85f;
+        [Min(.01f)] public float cameraSmoothTime = .08f;
+        [Min(.01f)] public float focusTransitionTime = .25f;
+        public bool showCameraHelp = true;
+
         [Header("Macro follow camera")]
         [Min(.05f)] public float followDistance = 1.15f;
         [Min(0f)] public float followHeight = .65f;
