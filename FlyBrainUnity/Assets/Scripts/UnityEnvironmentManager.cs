@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 namespace FlyBrain.UnityBridge
@@ -25,8 +26,11 @@ namespace FlyBrain.UnityBridge
         {
             var wanted = new HashSet<string>();
             DefinitionObjectCount = definition.objects.Length;
+            var diagnostic = new StringBuilder("[Unity Environment]\n")
+                .Append("Received definition with ").Append(DefinitionObjectCount).Append(" objects:");
             foreach (var item in definition.objects)
             {
+                diagnostic.Append("\n- ").Append(item.id);
                 if (string.IsNullOrEmpty(item.id) || item.position?.Length != 3 || item.size?.Length != 3) continue;
                 wanted.Add(item.id);
                 if (!objects.TryGetValue(item.id, out var go))
@@ -39,16 +43,11 @@ namespace FlyBrain.UnityBridge
                     if (item.dynamic) labels.Add(item.id, CreateLabel(item.id));
                 }
                 go.transform.position = WorldVisualScale.Position(item.position);
-                // The substrate is represented by its walkable top surface rather
-                // than a floating solid. Its X/Z footprint and authoritative top
-                // elevation are unchanged; only the presentation thickness is thin.
                 if (item.kind == "substrate")
                 {
                     var dimensions = WorldVisualScale.Dimensions(item.size);
-                    var top = go.transform.position.y + dimensions.y * .5f;
-                    GroundSurfaceY = top;
-                    go.transform.position = new Vector3(go.transform.position.x, top, go.transform.position.z);
-                    go.transform.localScale = new Vector3(dimensions.x, .018f, dimensions.z);
+                    GroundSurfaceY = go.transform.position.y + dimensions.y * .5f;
+                    go.transform.localScale = dimensions;
                 }
                 else go.transform.localScale = WorldVisualScale.Dimensions(item.size);
                 SetColor(go.GetComponent<Renderer>(), item.color);
@@ -63,6 +62,17 @@ namespace FlyBrain.UnityBridge
                 }
             RecalculateBounds();
             IsSynchronized = true;
+            Debug.Log(diagnostic.ToString());
+            if (objects.TryGetValue("substrate", out var substrate))
+            {
+                var renderer = substrate.GetComponent<Renderer>();
+                Debug.Log("[Unity Substrate]\n" +
+                    $"Position: {substrate.transform.position}\n" +
+                    $"Rotation: {substrate.transform.rotation.eulerAngles}\n" +
+                    $"Scale: {substrate.transform.localScale}\n" +
+                    $"Renderer bounds center: {renderer.bounds.center}\n" +
+                    $"Renderer bounds size: {renderer.bounds.size}");
+            }
         }
 
         public void ApplyState(EnvironmentState state)

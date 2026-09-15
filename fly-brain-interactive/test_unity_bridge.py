@@ -50,6 +50,16 @@ class FlyStateAdapterTests(unittest.TestCase):
             "predator", "taste:sugar:0", "taste:bitter:1",
             "odor:food:0", "odor:geosmin:1",
         })
+        self.assertEqual(len(objects), len({item["id"] for item in objects}))
+        payload = json.dumps(adapter.definition())
+        self.assertEqual(len(json.loads(payload)["objects"]), len(objects))
+
+    def test_substrate_maps_to_horizontal_unity_dimensions(self):
+        substrate = EnvironmentStateAdapter().definition()["objects"][0]
+        x, y, z = substrate["size"]
+        unity_dimensions = [x * .1, z * .1, y * .1]
+        for actual, expected in zip(unity_dimensions, [6.4, .07, 6.4]):
+            self.assertAlmostEqual(actual, expected)
 
     def test_tcp_server_emits_newline_delimited_json(self):
         server = UnityStateServer(port=0, update_rate=1000)
@@ -82,6 +92,38 @@ class FlyStateAdapterTests(unittest.TestCase):
             self.assertEqual(json.loads(payload)["type"], "environment_definition")
         finally:
             client.close(); server.close()
+
+    def test_tcp_server_resends_complete_environment_on_reconnect(self):
+        server = UnityStateServer(port=0, update_rate=1000)
+        probe = socket.socket(); probe.bind(("127.0.0.1", 0))
+        server.port = probe.getsockname()[1]; probe.close()
+        definition = EnvironmentStateAdapter().definition()
+        server.set_environment(definition); server.start()
+        try:
+            for _ in range(2):
+                deadline = time.monotonic() + 2
+                while True:
+                    try:
+                        client = socket.create_connection(
+                            ("127.0.0.1", server.port), timeout=2)
+                        break
+                    except ConnectionRefusedError:
+                        if time.monotonic() >= deadline:
+                            raise
+                        time.sleep(.01)
+                payload = client.makefile("r", encoding="utf-8").readline()
+                self.assertEqual(len(json.loads(payload)["objects"]),
+                                 len(definition["objects"]))
+                client.shutdown(socket.SHUT_RDWR)
+                client.close()
+                # Wake the connected-client loop so it observes the closed peer
+                # and returns to accept the reconnect.
+                for tick in range(3):
+                    server._last_publish = 0
+                    server.publish({"type": "fly_state", "time": tick})
+                    time.sleep(.03)
+        finally:
+            server.close()
 
 
 if __name__ == "__main__":
