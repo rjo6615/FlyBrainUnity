@@ -19,6 +19,67 @@ import time
 PROTOCOL_VERSION = 1
 
 
+class EnvironmentStateAdapter:
+    """Serialize the environment Python actually instantiated, in millimetres."""
+
+    def __init__(self, arena=None, taste_zones=(), odor_sources=()):
+        self.arena = arena
+        self.taste_zones = list(taste_zones)
+        self.odor_sources = list(odor_sources)
+
+    @staticmethod
+    def _object(stable_id, kind, position, size, color, dynamic=False):
+        return {"id": stable_id, "kind": kind,
+                "position": [float(v) for v in position],
+                "size": [float(v) for v in size],
+                "color": [float(v) for v in color], "dynamic": dynamic}
+
+    def definition(self):
+        # FlatTerrain is authoritative without --visual. It has no walls or
+        # props, so do not make fictional sensory objects in the viewer.
+        objects = [self._object("substrate", "substrate", [0, 0, -.35],
+                                [64, 64, .7], [.22, .16, .09, 1])]
+        arena = self.arena
+        if arena is not None and hasattr(arena, "ball_pos"):
+            half = 32.0  # TERRARIUM_HALF_SIZE used by LoomingArena
+            for i, (position, size) in enumerate((
+                    ([0, half, 5], [half * 2, .36, 10]),
+                    ([0, -half, 5], [half * 2, .36, 10]),
+                    ([half, 0, 5], [.36, half * 2, 10]),
+                    ([-half, 0, 5], [.36, half * 2, 10]))):
+                objects.append(self._object(f"wall:{i}", "wall", position,
+                                            size, [.45, .7, .75, .3]))
+            objects.append(self._object("predator", "predator", arena.ball_pos,
+                [arena.ball_radius * 2] * 3, [.08, .025, .12, 1], True))
+        for i, zone in enumerate(self.taste_zones):
+            color = [1, .9, .25, 1] if zone.taste == "sugar" else [.85, .03, .03, 1]
+            objects.append(self._object(f"taste:{zone.label}:{i}",
+                f"taste_{zone.taste}", [zone.center[0], zone.center[1], .08],
+                [zone.radius * 2, zone.radius * 2, .16], color, True))
+        for i, source in enumerate(self.odor_sources):
+            color = ([.9, .05, .02, 1] if source.odor_type == "attractive"
+                     else [.65, .04, .7, 1])
+            objects.append(self._object(f"odor:{source.label}:{i}",
+                f"odor_{source.odor_type}", source.position, [4.5] * 3,
+                color, True))
+        return {"type": "environment_definition",
+                "protocol_version": PROTOCOL_VERSION, "objects": objects}
+
+    def state(self, simulation_time):
+        transforms = []
+        if self.arena is not None and hasattr(self.arena, "ball_pos"):
+            transforms.append({"id": "predator", "position":
+                               [float(v) for v in self.arena.ball_pos]})
+        for i, zone in enumerate(self.taste_zones):
+            transforms.append({"id": f"taste:{zone.label}:{i}", "position":
+                               [float(zone.center[0]), float(zone.center[1]), .08]})
+        for i, source in enumerate(self.odor_sources):
+            transforms.append({"id": f"odor:{source.label}:{i}", "position":
+                               [float(v) for v in source.position]})
+        return {"type": "environment_state", "protocol_version": PROTOCOL_VERSION,
+                "time": float(simulation_time), "objects": transforms}
+
+
 class FlyStateAdapter:
     """Turn authoritative FlyGym observations into transport-only values."""
 
@@ -66,6 +127,8 @@ class UnityStateServer:
         self._stop = threading.Event()
         self._thread = None
         self._last_publish = 0.0
+        self._environment_definition = None
+        self._pending_environment = None
 
     def start(self):
         if self._thread is not None:
@@ -91,6 +154,14 @@ class UnityStateServer:
                 pass
             self._queue.put_nowait(message)
         return True
+
+    def set_environment(self, message):
+        """Cache a definition so every reconnect receives a fresh mirror."""
+        self._environment_definition = message
+
+    def publish_environment(self, message):
+        """Retain only the newest dynamic snapshot without blocking physics."""
+        self._pending_environment = message
 
     def close(self):
         self._stop.set()
@@ -121,11 +192,20 @@ class UnityStateServer:
         report_started = time.monotonic()
         with client:
             client.settimeout(1.0)
+            if self._environment_definition is not None:
+                payload = json.dumps(self._environment_definition,
+                                     separators=(",", ":")) + "\n"
+                client.sendall(payload.encode("utf-8"))
             while not self._stop.is_set():
                 try:
                     message = self._queue.get(timeout=0.25)
                     payload = json.dumps(message, separators=(",", ":")) + "\n"
                     client.sendall(payload.encode("utf-8"))
+                    environment = self._pending_environment
+                    self._pending_environment = None
+                    if environment is not None:
+                        payload = json.dumps(environment, separators=(",", ":")) + "\n"
+                        client.sendall(payload.encode("utf-8"))
                     sent += 1
                 except queue.Empty:
                     continue
