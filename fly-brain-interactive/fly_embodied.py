@@ -54,6 +54,7 @@ from terrarium_hud import TerrariumHUD, monitor_fields
 from mouse_interaction import MouseInteraction
 from terrarium_viewer import TerrariumViewer
 from wall_sensing import WallMechanosensor
+from unity_bridge import FlyStateAdapter, UnityStateServer
 
 try:
     from consciousness import ConsciousnessDetector
@@ -162,6 +163,12 @@ def main():
                         help='Log GLFW, native picking, and world drag events')
     parser.add_argument('--debug-mouse', action='store_true',
                         help='Log every mouse callback, pick, and drag update')
+    parser.add_argument('--unity-bridge', action='store_true',
+                        help='Stream fly state to the optional Unity frontend')
+    parser.add_argument('--unity-port', type=int, default=8765,
+                        help='Local TCP port for --unity-bridge (default: 8765)')
+    parser.add_argument('--unity-rate', type=float, default=30.0,
+                        help='Maximum Unity state updates/second (default: 30)')
     args = parser.parse_args()
     args.terrarium_input_debug |= args.debug_mouse
     print(f"[Versions] mujoco={mujoco.__version__} "
@@ -424,6 +431,13 @@ def main():
     # ── Reset simulation ──
     obs, info = sim.reset(seed=0)
     print(f"Fly spawned at {obs['fly'][0]} mm")
+    unity_server = None
+    unity_adapter = None
+    if args.unity_bridge:
+        unity_server = UnityStateServer(port=args.unity_port,
+                                        update_rate=args.unity_rate)
+        unity_adapter = FlyStateAdapter()
+        unity_server.start()
 
     # ── Post-reset: initialize flight system with model data ──
     if args.flight and brain is not None:
@@ -1007,6 +1021,17 @@ def main():
 
             body_step += 1
 
+            # Optional observer only: it reads the completed authoritative
+            # state and never participates in sensory, neural, or motor logic.
+            if unity_server is not None:
+                unity_server.publish(unity_adapter.make_message(
+                    body_step * sim.timestep,
+                    obs['fly'][0],
+                    obs.get('fly_orientation', np.array([1.0, 0.0, 0.0])),
+                    bridge.mode,
+                    bridge.left_drive,
+                    bridge.right_drive))
+
             # ── Sync viewer at wall-clock 60fps ──
             if viewer is not None and body_step % STEPS_PER_FRAME == 0:
                 _now = _time.perf_counter()
@@ -1233,6 +1258,8 @@ def main():
         print("\nStopped by user.")
 
     finally:
+        if unity_server is not None:
+            unity_server.close()
         if consciousness is not None:
             consciousness.save_session()
         if brain is not None:
