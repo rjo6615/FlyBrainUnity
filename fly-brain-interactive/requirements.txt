@@ -7,7 +7,7 @@ pandas==2.3.3
 torch
 scipy
 pyarrow
-mujoco>=3.3
+mujoco>=3.2.7
 glfw
 dm-control
 pygame
