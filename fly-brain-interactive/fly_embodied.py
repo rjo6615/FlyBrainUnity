@@ -8,6 +8,8 @@ from spike propagation through the real connectome — no hand-coded rules.
 
 Usage:
     python fly_embodied.py                  # Auto-demo: cycles through stimuli
+    python fly_embodied.py --unity          # Unity frontend (no MuJoCo window)
+    python fly_embodied.py --unity --mujoco-viewer  # Unity plus debug viewer
     python fly_embodied.py --stimulus p9    # Start with P9 forward walking
     python fly_embodied.py --no-auto        # Manual only (keyboard)
     python fly_embodied.py --visual         # REAL VISION: compound eye → connectome
@@ -122,6 +124,11 @@ def main():
     parser = argparse.ArgumentParser(description='Embodied Drosophila')
     parser.add_argument('--no-viewer', action='store_true',
                         help='Run headless (no MuJoCo viewer)')
+    parser.add_argument('--unity', action='store_true',
+                        help='Use Unity as the visual frontend: enable the TCP '
+                             'bridge and suppress the MuJoCo viewer')
+    parser.add_argument('--mujoco-viewer', action='store_true',
+                        help='Also show the MuJoCo viewer in Unity mode (debugging)')
     parser.add_argument('--no-brain', action='store_true',
                         help='Run body only with manual drive (no neural sim)')
     parser.add_argument('--no-auto', action='store_true',
@@ -164,12 +171,22 @@ def main():
     parser.add_argument('--debug-mouse', action='store_true',
                         help='Log every mouse callback, pick, and drag update')
     parser.add_argument('--unity-bridge', action='store_true',
-                        help='Stream fly state to the optional Unity frontend')
+                        help=argparse.SUPPRESS)
     parser.add_argument('--unity-port', type=int, default=8765,
                         help='Local TCP port for --unity-bridge (default: 8765)')
     parser.add_argument('--unity-rate', type=float, default=30.0,
                         help='Maximum Unity state updates/second (default: 30)')
     args = parser.parse_args()
+    if args.no_viewer and args.mujoco_viewer:
+        parser.error('--no-viewer and --mujoco-viewer cannot be used together')
+
+    # ``--unity`` changes presentation only. FlyGym remains the authoritative
+    # physics simulation and the neural, sensory, and behavioral loop below is
+    # untouched. Keep the legacy --unity-bridge switch working with its old
+    # viewer behavior for compatibility with existing launch scripts.
+    args.unity_bridge = args.unity_bridge or args.unity
+    if args.unity and not args.mujoco_viewer:
+        args.no_viewer = True
     args.terrarium_input_debug |= args.debug_mouse
     print(f"[Versions] mujoco={mujoco.__version__} "
           f"flygym={importlib.metadata.version('flygym')}")
@@ -678,7 +695,10 @@ def main():
         print("  VISION: Photoreceptors receive real visual input from flygym")
         print("  A dark sphere approaches — escape should emerge naturally!")
     print("  Keys: 1=sugar 2=P9 3=looming 4=grooming 5=bitter 6=olfactory")
-    print("  0=off  SPACE=toggle auto  |  Close viewer to exit")
+    if viewer is not None:
+        print("  0=off  SPACE=toggle auto  |  Close viewer to exit")
+    else:
+        print("  Running without MuJoCo viewer  |  Press Ctrl+C to exit")
     if args.terrarium:
         print("  " + InteractionController.HELP.replace("\n", "\n  "))
     print("=" * 70)
