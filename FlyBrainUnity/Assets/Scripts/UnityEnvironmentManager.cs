@@ -18,6 +18,26 @@ namespace FlyBrain.UnityBridge
         public float GroundSurfaceY { get; private set; }
         public Bounds Bounds { get; private set; } = new(Vector3.zero, Vector3.one);
 
+        /// <summary>Presentation-only picking against visible renderer bounds.</summary>
+        public bool Raycast(Ray ray, out Vector3 focusPoint)
+        {
+            var closest = float.PositiveInfinity;
+            focusPoint = default;
+            foreach (var go in objects.Values)
+            {
+                if (go == null || !go.activeInHierarchy) continue;
+                foreach (var renderer in go.GetComponentsInChildren<Renderer>())
+                    if (renderer.enabled && renderer.bounds.IntersectRay(ray, out var distance) && distance < closest)
+                    {
+                        closest = distance;
+                        focusPoint = renderer.bounds.center;
+                    }
+            }
+            return !float.IsPositiveInfinity(closest);
+        }
+
+        public void RefreshBounds() => RecalculateBounds();
+
         public UnityEnvironmentManager(Transform parent, VisualPrefabLibrary visualLibrary)
         {
             visuals = visualLibrary;
