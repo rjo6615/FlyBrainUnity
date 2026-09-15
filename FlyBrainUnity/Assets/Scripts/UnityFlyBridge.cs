@@ -58,6 +58,7 @@ namespace FlyBrain.UnityBridge
         float targetSmoothTime;
         float lastLeftClickTime = -10f;
         bool cameraHelpVisible;
+        bool overviewHasManualFocus;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Install()
@@ -133,7 +134,11 @@ namespace FlyBrain.UnityBridge
             if (keyboard != null && keyboard.dKey.wasPressedThisFrame) SetDebugVisualization(!debugVisualization);
             if (keyboard != null && keyboard.hKey.wasPressedThisFrame) cameraHelpVisible = !cameraHelpVisible;
             if (keyboard != null && keyboard.homeKey.wasPressedThisFrame) ResetOverview();
-            if (keyboard != null && keyboard.spaceKey.wasPressedThisFrame && cameraMode == CameraMode.Overview) FocusOverview(flyProxy.position);
+            if (keyboard != null && keyboard.spaceKey.wasPressedThisFrame)
+            {
+                cameraMode = CameraMode.Overview;
+                FocusOverview(flyProxy.position);
+            }
             ReadCameraInput();
             UpdateCamera();
             environment.FaceLabels(sceneCamera);
@@ -167,7 +172,7 @@ namespace FlyBrain.UnityBridge
                     overviewTargetGoal += (-sceneCamera.transform.right * delta.x - sceneCamera.transform.up * delta.y) * scale;
                     targetSmoothTime = visuals.cameraSmoothTime;
                 }
-                if (scroll != 0f) overviewDistanceGoal = ZoomDistance(overviewDistanceGoal, scroll);
+                if (scroll != 0f) overviewDistanceGoal = ZoomDistance(overviewDistanceGoal, scroll, OverviewMinimumDistance);
                 if (mouse.leftButton.wasPressedThisFrame)
                 {
                     if (Time.unscaledTime - lastLeftClickTime <= .3f) FocusUnderPointer(mouse.position.ReadValue());
@@ -182,20 +187,24 @@ namespace FlyBrain.UnityBridge
                     followPitchGoal = Mathf.Clamp(followPitchGoal - delta.y * visuals.orbitSensitivity,
                         visuals.minimumPitch, visuals.maximumPitch);
                 }
-                if (scroll != 0f) followDistanceGoal = ZoomDistance(followDistanceGoal, scroll);
+                if (scroll != 0f) followDistanceGoal = ZoomDistance(followDistanceGoal, scroll, visuals.minimumFollowDistance);
             }
         }
 
-        float ZoomDistance(float currentDistance, float scrollDelta)
+        float ZoomDistance(float currentDistance, float scrollDelta, float minimumDistance)
         {
             // Input System reports a notch as 120 on some platforms and 1 on
             // others. Preserve fractional high-resolution wheel/trackpad input.
             var notches = Mathf.Abs(scrollDelta) >= 10f ? scrollDelta / 120f : scrollDelta;
             var factorPerNotch = 1f + visuals.zoomPercentagePerNotch * .01f;
-            return ClampDistance(currentDistance * Mathf.Pow(factorPerNotch, -notches));
+            return ClampDistance(currentDistance * Mathf.Pow(factorPerNotch, -notches), minimumDistance);
         }
 
-        float ClampDistance(float value) => Mathf.Clamp(value, visuals.minimumZoomDistance, visuals.maximumZoomDistance);
+        float OverviewMinimumDistance => overviewHasManualFocus
+            ? visuals.minimumFocusDistance : visuals.minimumOverviewDistance;
+
+        float ClampDistance(float value, float minimumDistance) =>
+            Mathf.Clamp(value, minimumDistance, visuals.maximumZoomDistance);
 
         void FocusUnderPointer(Vector2 screenPoint)
         {
@@ -210,6 +219,7 @@ namespace FlyBrain.UnityBridge
 
         void FocusOverview(Vector3 point)
         {
+            overviewHasManualFocus = true;
             overviewTargetGoal = point;
             targetSmoothTime = visuals.focusTransitionTime;
         }
@@ -219,6 +229,7 @@ namespace FlyBrain.UnityBridge
             if (!environment.IsSynchronized) return;
             environment.RefreshBounds();
             cameraMode = CameraMode.Overview;
+            overviewHasManualFocus = false;
             FrameOverview(false);
             targetSmoothTime = visuals.focusTransitionTime;
         }
@@ -263,7 +274,7 @@ namespace FlyBrain.UnityBridge
                 distance = Mathf.Max(distance, Mathf.Abs(local.y) / tanVertical - local.z);
             }
             overviewTargetGoal = bounds.center;
-            overviewDistanceGoal = ClampDistance(distance * 1.15f);
+            overviewDistanceGoal = ClampDistance(distance * 1.15f, visuals.minimumOverviewDistance);
             overviewYawGoal = Mathf.Atan2(-outward.x, -outward.z) * Mathf.Rad2Deg;
             overviewPitchGoal = Mathf.Asin(outward.y) * Mathf.Rad2Deg;
             if (immediate)
@@ -302,13 +313,19 @@ namespace FlyBrain.UnityBridge
 
         void ApplyCamera(Vector3 target, float yaw, float pitch, float distance)
         {
+            var minimumDistance = cameraMode == CameraMode.FollowFly
+                ? visuals.minimumFollowDistance : OverviewMinimumDistance;
+            distance = ClampDistance(distance, minimumDistance);
             var orbit = Quaternion.Euler(pitch, yaw, 0f);
-            var desired = target + orbit * (Vector3.back * ClampDistance(distance));
-            // A small floor clearance avoids the most distracting substrate clipping.
-            if (environment.IsSynchronized) desired.y = Mathf.Max(desired.y, environment.GroundSurfaceY + .02f);
+            var desired = target + orbit * (Vector3.back * distance);
+            // Keep the lens just above the substrate without imposing a game-scale
+            // clearance that pushes a manually focused macro view away from the fly.
+            var nearClip = Mathf.Clamp(distance * .015f, .0001f, .05f);
+            if (environment.IsSynchronized)
+                desired.y = Mathf.Max(desired.y, environment.GroundSurfaceY + nearClip * 1.25f);
             sceneCamera.transform.SetPositionAndRotation(desired,
                 Quaternion.LookRotation(target - desired, Vector3.up));
-            sceneCamera.nearClipPlane = Mathf.Clamp(distance * .01f, .005f, .05f);
+            sceneCamera.nearClipPlane = nearClip;
             sceneCamera.farClipPlane = Mathf.Max(100f, distance + environment.Bounds.extents.magnitude * 3f);
         }
 
