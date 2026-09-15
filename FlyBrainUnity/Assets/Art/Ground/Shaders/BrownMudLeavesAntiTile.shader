@@ -8,9 +8,11 @@ Shader "Fly Brain/Brown Mud Leaves Anti-Tile"
         _OcclusionMap("Occlusion (G)", 2D) = "white" {}
         [MainColor] _BaseColor("Tint", Color) = (1,1,1,1)
         _PrimaryTiling("Primary Tiling", Range(1,64)) = 16
-        _SecondaryScale("Secondary Scale", Range(0.5,0.9)) = 0.73
-        _VariationStrength("Variation Strength", Range(0,0.2)) = 0.055
+        _SecondaryScale("Secondary UV Scale", Range(0.5,1.5)) = 0.83
+        _MacroVariationStrength("Macro Variation Strength", Range(0,0.07)) = 0.03
         _MacroVariationScale("Macro Variation Scale", Range(0.25,8)) = 1.35
+        [Enum(Base Color Only,0,Standard PBR,1,PBR + Anti-Tiling,2,PBR + Anti-Tiling + Macro Variation,3)]
+        _GroundRenderingMode("Ground Rendering Mode", Float) = 3
         _BumpScale("Normal Strength", Range(0,2)) = 1
         _Smoothness("Smoothness", Range(0,1)) = 1
         _OcclusionStrength("Occlusion Strength", Range(0,1)) = 1
@@ -29,7 +31,8 @@ Shader "Fly Brain/Brown Mud Leaves Anti-Tile"
             #pragma vertex Vert
             #pragma fragment Frag
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
-            #pragma multi_compile_fragment _ _ADDITIONAL_LIGHTS
+            #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
+            #pragma multi_compile _ _FORWARD_PLUS
             #pragma multi_compile_fragment _ _SHADOWS_SOFT
             #pragma multi_compile_fog
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
@@ -42,7 +45,8 @@ Shader "Fly Brain/Brown Mud Leaves Anti-Tile"
 
             CBUFFER_START(UnityPerMaterial)
                 float4 _BaseColor;
-                float _PrimaryTiling, _SecondaryScale, _VariationStrength, _MacroVariationScale;
+                float _PrimaryTiling, _SecondaryScale, _MacroVariationStrength, _MacroVariationScale;
+                float _GroundRenderingMode;
                 float _BumpScale, _Smoothness, _OcclusionStrength;
             CBUFFER_END
 
@@ -83,13 +87,24 @@ Shader "Fly Brain/Brown Mud Leaves Anti-Tile"
                 // Non-integer frequency, quarter-turn, and offset decorrelate recognizable leaves.
                 float2 uv2 = float2(-input.uv.y, input.uv.x) * (_PrimaryTiling * _SecondaryScale) + float2(0.37, 0.61);
                 float macro = ValueNoise(input.uv * _MacroVariationScale + float2(2.1, 5.7));
-                float blend = smoothstep(0.28, 0.72, macro) * 0.5;
+                // Noise selects between two valid texture samples. It never darkens either sample.
+                float blend = smoothstep(0.30, 0.70, macro);
+                bool antiTiling = _GroundRenderingMode >= 1.5;
+                blend = antiTiling ? blend : 0.0;
 
                 half3 base1 = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, uv1).rgb;
                 half3 base2 = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, uv2).rgb;
                 half3 albedo = lerp(base1, base2, blend) * _BaseColor.rgb;
-                half tint = (macro - 0.5h) * _VariationStrength;
-                albedo *= half3(1.0h + tint * 0.35h, 1.0h + tint * 0.12h, 1.0h - tint * 0.22h);
+                // At the default strength this is a brightness-only 0.97--1.03 multiplier.
+                // Strength zero is an exact no-op, preserving the normal PBR appearance.
+                if (_GroundRenderingMode >= 2.5)
+                    albedo *= lerp(1.0h - (half)_MacroVariationStrength,
+                                   1.0h + (half)_MacroVariationStrength, (half)macro);
+
+                // Mode zero deliberately bypasses lighting and all PBR maps. This is the imported,
+                // sRGB-decoded base color (plus the white material tint) for diagnosis.
+                if (_GroundRenderingMode < 0.5)
+                    return half4(albedo, 1.0h);
 
                 half3 normal1 = UnpackNormalScale(SAMPLE_TEXTURE2D(_BumpMap, sampler_BumpMap, uv1), _BumpScale);
                 half3 normal2 = UnpackNormalScale(SAMPLE_TEXTURE2D(_BumpMap, sampler_BumpMap, uv2), _BumpScale);
@@ -102,7 +117,10 @@ Shader "Fly Brain/Brown Mud Leaves Anti-Tile"
                 half4 mask1 = SAMPLE_TEXTURE2D(_MetallicGlossMap, sampler_MetallicGlossMap, uv1);
                 half4 mask2 = SAMPLE_TEXTURE2D(_MetallicGlossMap, sampler_MetallicGlossMap, uv2);
                 half smoothness = lerp(mask1.a, mask2.a, blend) * _Smoothness;
-                half occlusion = lerp(1.0h, SAMPLE_TEXTURE2D(_OcclusionMap, sampler_OcclusionMap, uv1).g, _OcclusionStrength);
+                half ao1 = SAMPLE_TEXTURE2D(_OcclusionMap, sampler_OcclusionMap, uv1).g;
+                half ao2 = SAMPLE_TEXTURE2D(_OcclusionMap, sampler_OcclusionMap, uv2).g;
+                // Occlusion is supplied only to URP lighting; it is never multiplied into albedo.
+                half occlusion = lerp(1.0h, lerp(ao1, ao2, blend), _OcclusionStrength);
 
                 InputData data = (InputData)0;
                 data.positionWS = input.positionWS; data.normalWS = normalWS;
@@ -110,6 +128,7 @@ Shader "Fly Brain/Brown Mud Leaves Anti-Tile"
                 data.shadowCoord = TransformWorldToShadowCoord(input.positionWS);
                 data.fogCoord = input.fogFactor;
                 data.bakedGI = SampleSH(normalWS);
+                data.vertexLighting = VertexLighting(input.positionWS, normalWS);
                 data.normalizedScreenSpaceUV = GetNormalizedScreenSpaceUV(input.positionCS);
                 data.shadowMask = half4(1, 1, 1, 1);
                 SurfaceData surface = (SurfaceData)0;
