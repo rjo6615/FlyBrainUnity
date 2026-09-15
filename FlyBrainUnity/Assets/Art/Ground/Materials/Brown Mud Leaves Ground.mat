@@ -114,7 +114,9 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _GroundRenderingMode: 3
     - _Metallic: 0
+    - _MacroVariationStrength: 0.03
     - _MacroVariationScale: 1.35
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -123,13 +125,12 @@ Material:
     - _ReceiveShadows: 1
     - _Smoothness: 1
     - _SmoothnessTextureChannel: 0
-    - _SecondaryScale: 0.73
+    - _SecondaryScale: 0.83
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _WorkflowMode: 1
-    - _VariationStrength: 0.055
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     m_Colors:

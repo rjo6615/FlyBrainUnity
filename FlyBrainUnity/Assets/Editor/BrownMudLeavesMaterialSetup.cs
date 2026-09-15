@@ -31,6 +31,8 @@ namespace FlyBrain.UnityBridge.Editor
 
         static void EnsureAssets()
         {
+            // Color data must be sampled as sRGB. All data maps remain linear.
+            ConfigureTexture(DiffusePath, false, true);
             ConfigureTexture(NormalPath, true, false);
             ConfigureTexture(RoughnessPath, false, false);
             ConfigureTexture(HeightPath, false, false);
@@ -58,9 +60,12 @@ namespace FlyBrain.UnityBridge.Editor
             material.SetTexture("_MetallicGlossMap", AssetDatabase.LoadAssetAtPath<Texture2D>(PackedPath));
             material.SetFloat("_Smoothness", 1f);
             material.SetFloat("_PrimaryTiling", 16f);
-            material.SetFloat("_SecondaryScale", .73f);
-            material.SetFloat("_VariationStrength", .055f);
+            material.SetFloat("_SecondaryScale", .83f);
+            material.SetFloat("_MacroVariationStrength", .03f);
             material.SetFloat("_MacroVariationScale", 1.35f);
+            material.SetFloat("_GroundRenderingMode", 3f);
+            material.SetColor("_BaseColor", Color.white);
+            material.SetFloat("_OcclusionStrength", 1f);
             EditorUtility.SetDirty(material);
             AssetDatabase.SaveAssets();
         }
