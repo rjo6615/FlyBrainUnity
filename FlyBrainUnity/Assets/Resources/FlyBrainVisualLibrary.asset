@@ -12,7 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4de601a683b14e03abecf26ed7893cd2, type: 3}
   m_Name: FlyBrainVisualLibrary
   m_EditorClassIdentifier: 
-  fly: {prefab: {fileID: 0}, modelScale: {x: 1, y: 1, z: 1}, modelRotationOffset: {x: 0, y: 0, z: 0}, modelPositionOffset: {x: 0, y: 0, z: 0}}
+  fly:
+    prefab: {fileID: 0}
+    modelScale: {x: 1, y: 1, z: 1}
+    modelRotationOffset: {x: 0, y: 0, z: 0}
+    modelPositionOffset: {x: 0, y: 0, z: 0}
+    autoGroundVisual: 1
+    groundingOffset: 0
+    maximumGroundingRootHeight: 0.25
   substrate: {prefab: {fileID: 0}, modelScale: {x: 1, y: 1, z: 1}, modelRotationOffset: {x: 0, y: 0, z: 0}, modelPositionOffset: {x: 0, y: 0, z: 0}}
   wall: {prefab: {fileID: 0}, modelScale: {x: 1, y: 1, z: 1}, modelRotationOffset: {x: 0, y: 0, z: 0}, modelPositionOffset: {x: 0, y: 0, z: 0}}
   predator: {prefab: {fileID: 0}, modelScale: {x: 1, y: 1, z: 1}, modelRotationOffset: {x: 0, y: 0, z: 0}, modelPositionOffset: {x: 0, y: 0, z: 0}}
@@ -20,6 +27,7 @@ MonoBehaviour:
   bitter: {prefab: {fileID: 0}, modelScale: {x: 1, y: 1, z: 1}, modelRotationOffset: {x: 0, y: 0, z: 0}, modelPositionOffset: {x: 0, y: 0, z: 0}}
   foodOdor: {prefab: {fileID: 0}, modelScale: {x: 1, y: 1, z: 1}, modelRotationOffset: {x: 0, y: 0, z: 0}, modelPositionOffset: {x: 0, y: 0, z: 0}}
   dangerOdor: {prefab: {fileID: 0}, modelScale: {x: 1, y: 1, z: 1}, modelRotationOffset: {x: 0, y: 0, z: 0}, modelPositionOffset: {x: 0, y: 0, z: 0}}
+  zoomPercentagePerNotch: 20
   followDistance: 1.15
   followHeight: 0.65
   lookAheadDistance: 0.35

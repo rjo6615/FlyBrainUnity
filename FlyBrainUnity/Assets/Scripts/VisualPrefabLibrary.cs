@@ -12,6 +12,14 @@ namespace FlyBrain.UnityBridge
         public Vector3 modelScale = Vector3.one;
         public Vector3 modelRotationOffset;
         public Vector3 modelPositionOffset;
+
+        [Header("Visual grounding (presentation only)")]
+        [Tooltip("Align this model's rendered bottom with the mirrored substrate without moving its authoritative parent.")]
+        public bool autoGroundVisual;
+        [Tooltip("Additional world-space height above the detected surface, after automatic grounding.")]
+        public float groundingOffset;
+        [Tooltip("Do not calibrate grounding when the authoritative root is farther above the surface than this. This preserves real flight/jump height.")]
+        [Min(0f)] public float maximumGroundingRootHeight = .25f;
     }
 
     /// <summary>Presentation-only assets and camera tuning. No value here changes wire/scientific state.</summary>
@@ -30,7 +38,8 @@ namespace FlyBrain.UnityBridge
 
         [Header("Camera controls (presentation only)")]
         [Min(.01f)] public float orbitSensitivity = .18f;
-        [Min(.001f)] public float zoomSensitivity = .12f;
+        [Tooltip("Percentage of the current camera distance changed by one mouse-wheel notch.")]
+        [Range(1f, 50f)] public float zoomPercentagePerNotch = 20f;
         [Min(.001f)] public float panSensitivity = .0025f;
         [Min(.01f)] public float minimumZoomDistance = .08f;
         [Min(.1f)] public float maximumZoomDistance = 100f;
