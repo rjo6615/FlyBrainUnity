@@ -1,4 +1,4 @@
-# Python–Unity fly-state bridge (proof of concept)
+# Python–Unity fly-state bridge
 
 This iteration keeps `fly_embodied.py`, FlyGym/MuJoCo, the PyTorch connectome,
 plasticity, sensory processing, and behavior selection authoritative. Unity is
@@ -35,21 +35,27 @@ dropped instead of accumulating.
 ### Python backend
 
 Use the same environment and options as the existing simulation, adding only
-`--unity-bridge`:
+`--unity`:
 
 ```bash
 cd /workspace/FlyBrainUnity/fly-brain-interactive
-python fly_embodied.py --unity-bridge
+python fly_embodied.py --unity
 ```
 
-The existing MuJoCo viewer remains enabled. To use Unity as the only viewer:
+This starts the complete neural, sensory, behavioral, and FlyGym/MuJoCo physics
+simulation, enables the TCP bridge, and runs until interrupted. Unity is the
+normal visual frontend, so no MuJoCo window is opened. To display the original
+MuJoCo viewer alongside Unity for debugging, use:
 
 ```bash
-python fly_embodied.py --unity-bridge --no-viewer --duration 60
+python fly_embodied.py --unity --mujoco-viewer
 ```
 
-Optional settings are `--unity-port 8765` and `--unity-rate 30`. Without
-`--unity-bridge`, startup and execution follow the original path.
+Optional settings are `--unity-port 8765` and `--unity-rate 30`. A duration can
+still be requested explicitly with `--duration`; its default of zero is
+unlimited. Without `--unity`, startup and execution follow the original path.
+The legacy `--unity-bridge` option remains accepted for existing scripts and
+retains its previous behavior, including the MuJoCo viewer by default.
 
 ### Unity frontend
 
