@@ -38,6 +38,25 @@ namespace FlyBrain.UnityBridge
 
         public void RefreshBounds() => RecalculateBounds();
 
+        /// <summary>
+        /// Presentation surface query kept behind one method so renderer bounds can
+        /// later be replaced by terrain raycasts without changing fly grounding.
+        /// </summary>
+        public bool TryGetSurfaceBelow(Vector3 worldPosition, out float surfaceY)
+        {
+            surfaceY = 0f;
+            var found = false;
+            foreach (var pair in objects)
+            {
+                if (kinds[pair.Key] != "substrate" || pair.Value == null) continue;
+                var bounds = RendererBounds(pair.Value);
+                if (worldPosition.x < bounds.min.x || worldPosition.x > bounds.max.x ||
+                    worldPosition.z < bounds.min.z || worldPosition.z > bounds.max.z) continue;
+                if (!found || bounds.max.y > surfaceY) { surfaceY = bounds.max.y; found = true; }
+            }
+            return found;
+        }
+
         public UnityEnvironmentManager(Transform parent, VisualPrefabLibrary visualLibrary)
         {
             visuals = visualLibrary;
@@ -67,7 +86,6 @@ namespace FlyBrain.UnityBridge
                 go.transform.position = WorldVisualScale.Position(item.position);
                 var dimensions = WorldVisualScale.Dimensions(item.size);
                 go.transform.localScale = dimensions;
-                if (item.kind == "substrate") GroundSurfaceY = go.transform.position.y + dimensions.y * .5f;
                 SetFallbackAppearance(go, item);
                 go.SetActive(true);
             }
@@ -78,7 +96,7 @@ namespace FlyBrain.UnityBridge
                     if (labels.TryGetValue(pair.Key, out var label)) Object.Destroy(label.gameObject);
                     labels.Remove(pair.Key);
                 }
-            ApplyDebugVisibility(); RecalculateBounds(); IsSynchronized = true;
+            ApplyDebugVisibility(); RecalculateBounds(); RefreshGroundSurface(); IsSynchronized = true;
             Debug.Log(diagnostic.ToString());
         }
 
@@ -102,7 +120,12 @@ namespace FlyBrain.UnityBridge
             foreach (var item in state.objects)
                 if (objects.TryGetValue(item.id, out var go) && item.position?.Length == 3)
                     go.transform.position = WorldVisualScale.Position(item.position);
-            RecalculateBounds();
+            RecalculateBounds(); RefreshGroundSurface();
+        }
+
+        void RefreshGroundSurface()
+        {
+            if (TryGetSurfaceBelow(Vector3.zero, out var surfaceY)) GroundSurfaceY = surfaceY;
         }
 
         public void SetDebugVisible(bool visible) { debugVisible = visible; ApplyDebugVisibility(); }

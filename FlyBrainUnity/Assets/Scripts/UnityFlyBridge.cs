@@ -39,6 +39,12 @@ namespace FlyBrain.UnityBridge
         Vector3 viewportPosition;
         bool flyInFrustum;
         float flyFloorClearance;
+        Bounds flyRendererBounds;
+        float substrateTopY;
+        float visualGroundGap;
+        Vector3 flyVisualBaseLocalPosition;
+        float visualGroundingCorrection;
+        bool visualGroundingCalibrated;
         bool runtimeHierarchyLogged;
         bool debugVisualization = true;
         float overviewFieldOfView;
@@ -121,6 +127,7 @@ namespace FlyBrain.UnityBridge
             var blend = 1f - Mathf.Exp(-Time.unscaledDeltaTime / interpolationSeconds);
             flyProxy.SetPositionAndRotation(Vector3.Lerp(flyProxy.position, targetPosition, blend),
                 Quaternion.Slerp(flyProxy.rotation, targetRotation, blend));
+            UpdateVisualGrounding();
             var keyboard = Keyboard.current;
             if (keyboard != null && keyboard.fKey.wasPressedThisFrame) ToggleCameraMode();
             if (keyboard != null && keyboard.dKey.wasPressedThisFrame) SetDebugVisualization(!debugVisualization);
@@ -160,7 +167,7 @@ namespace FlyBrain.UnityBridge
                     overviewTargetGoal += (-sceneCamera.transform.right * delta.x - sceneCamera.transform.up * delta.y) * scale;
                     targetSmoothTime = visuals.cameraSmoothTime;
                 }
-                if (scroll != 0f) overviewDistanceGoal = ClampDistance(overviewDistanceGoal * Mathf.Exp(-scroll * visuals.zoomSensitivity * .01f));
+                if (scroll != 0f) overviewDistanceGoal = ZoomDistance(overviewDistanceGoal, scroll);
                 if (mouse.leftButton.wasPressedThisFrame)
                 {
                     if (Time.unscaledTime - lastLeftClickTime <= .3f) FocusUnderPointer(mouse.position.ReadValue());
@@ -175,8 +182,17 @@ namespace FlyBrain.UnityBridge
                     followPitchGoal = Mathf.Clamp(followPitchGoal - delta.y * visuals.orbitSensitivity,
                         visuals.minimumPitch, visuals.maximumPitch);
                 }
-                if (scroll != 0f) followDistanceGoal = ClampDistance(followDistanceGoal * Mathf.Exp(-scroll * visuals.zoomSensitivity * .01f));
+                if (scroll != 0f) followDistanceGoal = ZoomDistance(followDistanceGoal, scroll);
             }
+        }
+
+        float ZoomDistance(float currentDistance, float scrollDelta)
+        {
+            // Input System reports a notch as 120 on some platforms and 1 on
+            // others. Preserve fractional high-resolution wheel/trackpad input.
+            var notches = Mathf.Abs(scrollDelta) >= 10f ? scrollDelta / 120f : scrollDelta;
+            var factorPerNotch = 1f + visuals.zoomPercentagePerNotch * .01f;
+            return ClampDistance(currentDistance * Mathf.Pow(factorPerNotch, -notches));
         }
 
         float ClampDistance(float value) => Mathf.Clamp(value, visuals.minimumZoomDistance, visuals.maximumZoomDistance);
@@ -301,11 +317,11 @@ namespace FlyBrain.UnityBridge
             if (sceneCamera == null || flyProxy == null) return;
             viewportPosition = sceneCamera.WorldToViewportPoint(flyProxy.position);
             var planes = GeometryUtility.CalculateFrustumPlanes(sceneCamera);
-            var bounds = flyRenderers != null && flyRenderers.Length > 0
-                ? flyRenderers[0].bounds : new Bounds(flyProxy.position, Vector3.zero);
-            for (var i = 1; flyRenderers != null && i < flyRenderers.Length; i++) bounds.Encapsulate(flyRenderers[i].bounds);
-            flyInFrustum = GeometryUtility.TestPlanesAABB(planes, bounds);
+            flyRendererBounds = CombinedRendererBounds();
+            flyInFrustum = GeometryUtility.TestPlanesAABB(planes, flyRendererBounds);
             flyFloorClearance = flyProxy.position.y - environment.GroundSurfaceY;
+            if (environment.TryGetSurfaceBelow(flyProxy.position, out var surfaceY)) substrateTopY = surfaceY;
+            visualGroundGap = flyRendererBounds.min.y - substrateTopY;
             if (!runtimeHierarchyLogged && latest != null && environment.IsSynchronized)
             {
                 var body = flyRenderers != null && flyRenderers.Length > 0 ? flyRenderers[0] : null;
@@ -356,6 +372,7 @@ namespace FlyBrain.UnityBridge
             flyVisual = new GameObject("Fly Visual (presentation offsets only)").transform;
             flyVisual.SetParent(flyProxy, false);
             flyVisual.localPosition = visuals.fly.modelPositionOffset;
+            flyVisualBaseLocalPosition = visuals.fly.modelPositionOffset;
             flyVisual.localRotation = Quaternion.Euler(visuals.fly.modelRotationOffset);
             flyVisual.localScale = visuals.fly.modelScale;
             if (visuals.fly.prefab != null)
@@ -376,6 +393,44 @@ namespace FlyBrain.UnityBridge
                 new Vector3(.045f, .045f, .34f), Color.cyan);
             }
             flyRenderers = flyProxy.GetComponentsInChildren<Renderer>();
+        }
+
+        Bounds CombinedRendererBounds()
+        {
+            var bounds = new Bounds(flyProxy == null ? Vector3.zero : flyProxy.position, Vector3.zero);
+            var initialized = false;
+            foreach (var renderer in flyRenderers ?? Array.Empty<Renderer>())
+                if (renderer != null && renderer.enabled)
+                {
+                    if (!initialized) { bounds = renderer.bounds; initialized = true; }
+                    else bounds.Encapsulate(renderer.bounds);
+                }
+            return bounds;
+        }
+
+        void UpdateVisualGrounding()
+        {
+            if (flyVisual == null) return;
+            // Rebuild the child presentation position in world-up space so a
+            // pitched authoritative root cannot tilt the grounding correction.
+            flyVisual.localPosition = flyVisualBaseLocalPosition;
+            if (!visuals.fly.autoGroundVisual || environment?.IsSynchronized != true) return;
+            if (!visualGroundingCalibrated && latest != null &&
+                (flyProxy.position - targetPosition).sqrMagnitude < .000001f &&
+                environment.TryGetSurfaceBelow(flyProxy.position, out var surfaceY) &&
+                flyProxy.position.y - surfaceY <= visuals.fly.maximumGroundingRootHeight)
+            {
+                var bottomY = CombinedRendererBounds().min.y;
+                visualGroundingCorrection = surfaceY + visuals.fly.groundingOffset - bottomY;
+                visualGroundingCalibrated = true;
+                Debug.Log($"[Fly Visual Grounding] child-only correction {visualGroundingCorrection:F4}; " +
+                    $"authoritative root Y {flyProxy.position.y:F4}, visual bottom Y {bottomY:F4}, substrate top Y {surfaceY:F4}");
+            }
+            if (visualGroundingCalibrated)
+            {
+                var baseWorldPosition = flyProxy.TransformPoint(flyVisualBaseLocalPosition);
+                flyVisual.position = baseWorldPosition + Vector3.up * visualGroundingCorrection;
+            }
         }
 
         static GameObject Part(PrimitiveType type, string name, Transform parent, Vector3 position,
@@ -405,6 +460,25 @@ namespace FlyBrain.UnityBridge
             environment?.SetDebugVisible(visible);
         }
 
+        void DrawGroundingDebug()
+        {
+            if (!debugVisualization || flyProxy == null || !environment.IsSynchronized) return;
+            const float size = .08f;
+            DrawCross(flyProxy.position, size, Color.magenta);
+            var bottom = new Vector3(flyRendererBounds.center.x, flyRendererBounds.min.y, flyRendererBounds.center.z);
+            DrawCross(bottom, size, Color.cyan);
+            var surface = new Vector3(flyProxy.position.x, substrateTopY, flyProxy.position.z);
+            Debug.DrawLine(surface - Vector3.right * size * 2f, surface + Vector3.right * size * 2f, Color.yellow);
+            Debug.DrawLine(surface - Vector3.forward * size * 2f, surface + Vector3.forward * size * 2f, Color.yellow);
+        }
+
+        static void DrawCross(Vector3 point, float size, Color color)
+        {
+            Debug.DrawLine(point - Vector3.right * size, point + Vector3.right * size, color);
+            Debug.DrawLine(point - Vector3.up * size, point + Vector3.up * size, color);
+            Debug.DrawLine(point - Vector3.forward * size, point + Vector3.forward * size, color);
+        }
+
         static void ConfigurePresentationLighting()
         {
             RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Trilight;
@@ -423,6 +497,7 @@ namespace FlyBrain.UnityBridge
 
         void OnGUI()
         {
+            DrawGroundingDebug();
             if (debugVisualization)
             {
                 var raw = latest == null ? "--" : $"[{receivedPosition.x:F2}, {receivedPosition.y:F2}, {receivedPosition.z:F2}] mm";
@@ -439,9 +514,15 @@ namespace FlyBrain.UnityBridge
                 $"Fly viewport: [{viewportPosition.x:F2}, {viewportPosition.y:F2}, depth {viewportPosition.z:F2}] in frustum: {(flyInFrustum ? "yes" : "NO")}\n" +
                 $"Camera pos/fwd: {sceneCamera?.transform.position.ToString() ?? "--"} / {sceneCamera?.transform.forward.ToString() ?? "--"}\n" +
                 $"Camera clip/distance: {sceneCamera?.nearClipPlane:F3}..{sceneCamera?.farClipPlane:F3} / {(sceneCamera == null ? 0 : Vector3.Distance(sceneCamera.transform.position, flyProxy.position)):F3}\n" +
-                $"Fly vs floor surface: {flyFloorClearance:F3} units\nScientific debug: on (D to toggle)\n" +
+                $"Fly root Y: {flyProxy.position.y:F4}\n" +
+                $"Fly visual root Y: {flyVisual.position.y:F4}\n" +
+                $"Fly visual bottom Y: {flyRendererBounds.min.y:F4}\n" +
+                $"Fly visual top Y: {flyRendererBounds.max.y:F4}\n" +
+                $"Substrate top Y: {substrateTopY:F4}\n" +
+                $"Visual ground gap: {visualGroundGap:F4} units\n" +
+                $"Fly root vs floor: {flyFloorClearance:F3} units\nScientific debug: on (D to toggle)\n" +
                 $"Visual scale: 1 mm = {WorldVisualScale.UnityUnitsPerMillimetre:g} Unity units\nBehavior: {latest?.behavior ?? "--"}";
-                GUI.Box(new Rect(12, 12, 620, 410), text);
+                GUI.Box(new Rect(12, 12, 620, 510), text);
             }
             if (cameraHelpVisible)
             {
