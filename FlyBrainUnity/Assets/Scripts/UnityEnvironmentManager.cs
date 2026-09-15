@@ -86,7 +86,6 @@ namespace FlyBrain.UnityBridge
                 go.transform.position = WorldVisualScale.Position(item.position);
                 var dimensions = WorldVisualScale.Dimensions(item.size);
                 go.transform.localScale = dimensions;
-                SetFallbackAppearance(go, item);
                 go.SetActive(true);
             }
             foreach (var pair in new List<KeyValuePair<string, GameObject>>(objects))
@@ -111,6 +110,7 @@ namespace FlyBrain.UnityBridge
             visual.transform.localRotation = Quaternion.Euler(slot?.modelRotationOffset ?? Vector3.zero);
             visual.transform.localScale = slot?.modelScale ?? Vector3.one;
             foreach (var collider in visual.GetComponentsInChildren<Collider>()) Object.Destroy(collider);
+            ConfigureAppearance(authoritativeRoot, item, slot, slot?.prefab == null);
             return authoritativeRoot;
         }
 
@@ -164,10 +164,23 @@ namespace FlyBrain.UnityBridge
             kind != null && (kind.StartsWith("odor_") || kind.StartsWith("odor:")) ? PrimitiveType.Sphere :
             kind != null && (kind.StartsWith("taste_") || kind.StartsWith("taste:")) ? PrimitiveType.Cylinder : PrimitiveType.Cube;
 
-        static void SetFallbackAppearance(GameObject rootObject, EnvironmentObject item)
+        static void ConfigureAppearance(GameObject rootObject, EnvironmentObject item, VisualPrefabSlot slot, bool isFallback)
         {
-            if (rootObject.transform.childCount == 0 || rootObject.transform.GetChild(0).name != "Fallback scientific primitive") return;
-            var renderer = rootObject.GetComponentInChildren<Renderer>(); if (renderer == null) return;
+            var renderers = rootObject.GetComponentsInChildren<Renderer>();
+            if (renderers.Length == 0) return;
+
+            if (slot?.material != null)
+            {
+                // Renderer.material creates presentation-only instances, so per-slot tiling never mutates the asset.
+                foreach (var renderer in renderers)
+                {
+                    renderer.material = slot.material;
+                    renderer.material.mainTextureScale = slot.materialTiling;
+                }
+                return;
+            }
+
+            if (!isFallback) return;
             var shader = Shader.Find("Universal Render Pipeline/Lit") ?? Shader.Find("Standard");
             var material = new Material(shader);
             var color = item.color?.Length >= 4 ? new Color(item.color[0], item.color[1], item.color[2], item.color[3]) : Color.gray;
@@ -178,7 +191,8 @@ namespace FlyBrain.UnityBridge
                 material.SetFloat("_Surface", 1); material.SetFloat("_Blend", 0); material.SetFloat("_ZWrite", 0);
                 material.EnableKeyword("_SURFACE_TYPE_TRANSPARENT"); material.renderQueue = 3000;
             }
-            material.color = color; renderer.material = material;
+            material.color = color;
+            foreach (var renderer in renderers) renderer.material = material;
         }
 
         static Bounds RendererBounds(GameObject go)
