@@ -30,6 +30,10 @@ namespace FlyBrain.UnityBridge
         int receivedThisWindow;
         CameraMode cameraMode = CameraMode.Overview;
         bool cameraNeedsFrame = true;
+        Vector3 receivedPosition;
+        Vector3 viewportPosition;
+        bool flyInFrustum;
+        float flyFloorClearance;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Install()
@@ -68,6 +72,7 @@ namespace FlyBrain.UnityBridge
                     var message = JsonUtility.FromJson<FlyStateMessage>(json);
                     if (!message.IsValid) continue;
                     latest = message;
+                    receivedPosition = new Vector3(message.position[0], message.position[1], message.position[2]);
                     targetPosition = WorldVisualScale.Position(message.position);
                     targetRotation = WorldVisualScale.Orientation(message.orientation);
                     receivedThisWindow++;
@@ -86,7 +91,10 @@ namespace FlyBrain.UnityBridge
                 Quaternion.Slerp(flyProxy.rotation, targetRotation, blend));
             if (Input.GetKeyDown(KeyCode.F)) cameraMode = cameraMode == CameraMode.Overview
                 ? CameraMode.FollowFly : CameraMode.Overview;
+            if (Input.GetKeyDown(KeyCode.L)) environment.ToggleLabels();
             UpdateCamera(blend);
+            environment.FaceLabels(sceneCamera);
+            UpdateVisibilityDiagnostics();
             var elapsed = Time.unscaledTime - rateWindowStarted;
             if (elapsed >= 1f) { updatesPerSecond = receivedThisWindow / elapsed; receivedThisWindow = 0; rateWindowStarted = Time.unscaledTime; }
         }
@@ -96,21 +104,41 @@ namespace FlyBrain.UnityBridge
             if (sceneCamera == null) return;
             if (cameraMode == CameraMode.FollowFly)
             {
-                var desired = flyProxy.position - flyProxy.forward * 2.4f + Vector3.up * 1.6f;
+                var desired = flyProxy.position - flyProxy.forward * 1.15f + Vector3.up * .85f;
                 sceneCamera.transform.position = Vector3.Lerp(sceneCamera.transform.position, desired, blend);
-                sceneCamera.transform.LookAt(flyProxy.position + Vector3.up * .15f);
+                sceneCamera.transform.LookAt(flyProxy.position + Vector3.up * .06f);
                 sceneCamera.farClipPlane = 100f;
             }
-            else if (cameraNeedsFrame && environment.IsSynchronized)
+            else if (environment.IsSynchronized)
             {
                 var bounds = environment.Bounds;
-                var radius = Mathf.Max(1f, bounds.extents.magnitude);
-                sceneCamera.transform.position = bounds.center + new Vector3(0, radius * 1.35f, -radius * 1.2f);
+                foreach (var renderer in flyRenderers) if (renderer != null) bounds.Encapsulate(renderer.bounds);
+                var radius = Mathf.Max(.5f, bounds.extents.magnitude);
+                var halfVertical = sceneCamera.fieldOfView * Mathf.Deg2Rad * .5f;
+                var halfHorizontal = Mathf.Atan(Mathf.Tan(halfVertical) * Mathf.Max(.1f, sceneCamera.aspect));
+                var limitingAngle = Mathf.Min(halfVertical, halfHorizontal);
+                var distance = radius / Mathf.Sin(limitingAngle) * 1.18f;
+                var direction = new Vector3(.82f, 1.05f, -1f).normalized;
+                var desired = bounds.center + direction * distance;
+                sceneCamera.transform.position = cameraNeedsFrame
+                    ? desired : Vector3.Lerp(sceneCamera.transform.position, desired, blend);
                 sceneCamera.transform.LookAt(bounds.center);
                 sceneCamera.nearClipPlane = Mathf.Max(.01f, radius / 1000f);
-                sceneCamera.farClipPlane = radius * 8f;
+                sceneCamera.farClipPlane = distance + radius * 3f;
                 cameraNeedsFrame = false;
             }
+        }
+
+        void UpdateVisibilityDiagnostics()
+        {
+            if (sceneCamera == null || flyProxy == null) return;
+            viewportPosition = sceneCamera.WorldToViewportPoint(flyProxy.position);
+            var planes = GeometryUtility.CalculateFrustumPlanes(sceneCamera);
+            var bounds = flyRenderers != null && flyRenderers.Length > 0
+                ? flyRenderers[0].bounds : new Bounds(flyProxy.position, Vector3.zero);
+            for (var i = 1; flyRenderers != null && i < flyRenderers.Length; i++) bounds.Encapsulate(flyRenderers[i].bounds);
+            flyInFrustum = GeometryUtility.TestPlanesAABB(planes, bounds);
+            flyFloorClearance = flyProxy.position.y - environment.GroundSurfaceY;
         }
 
         async Task ReceiveLoop(CancellationToken token)
@@ -139,14 +167,15 @@ namespace FlyBrain.UnityBridge
         {
             flyProxy = new GameObject("Authoritative Fly Proxy").transform;
             flyProxy.SetParent(transform, false);
-            var body = Part(PrimitiveType.Capsule, "Body", flyProxy, Vector3.zero,
-                new Vector3(.22f, .42f, .22f), new Color(.95f, .55f, .06f));
-            body.transform.localRotation = Quaternion.Euler(90, 0, 0);
-            Part(PrimitiveType.Sphere, "Head", flyProxy, new Vector3(0, .03f, .28f),
-                new Vector3(.25f, .22f, .22f), new Color(.15f, .04f, .02f));
-            // Bright forward cone-like pointer (a slender cube) along local +Z.
-            Part(PrimitiveType.Cube, "Forward indicator", flyProxy, new Vector3(0, .13f, .55f),
-                new Vector3(.06f, .06f, .55f), Color.cyan);
+            // Geometry is offset above the authoritative thorax transform, not the
+            // transform itself. This prevents a low-spawned fly from being buried
+            // in the floor while preserving every scientific coordinate exactly.
+            Part(PrimitiveType.Sphere, "Orange body", flyProxy, new Vector3(0, .07f, 0),
+                new Vector3(.18f, .13f, .32f), new Color(1f, .32f, .015f));
+            Part(PrimitiveType.Sphere, "Contrasting head", flyProxy, new Vector3(0, .075f, .19f),
+                new Vector3(.15f, .14f, .15f), new Color(1f, .88f, .3f));
+            Part(PrimitiveType.Cube, "Cyan forward indicator", flyProxy, new Vector3(0, .12f, .37f),
+                new Vector3(.045f, .045f, .34f), Color.cyan);
             flyRenderers = flyProxy.GetComponentsInChildren<Renderer>();
         }
 
@@ -171,7 +200,7 @@ namespace FlyBrain.UnityBridge
 
         void OnGUI()
         {
-            var raw = latest == null ? "--" : $"[{latest.position[0]:F2}, {latest.position[1]:F2}, {latest.position[2]:F2}] mm";
+            var raw = latest == null ? "--" : $"[{receivedPosition.x:F2}, {receivedPosition.y:F2}, {receivedPosition.z:F2}] mm";
             var converted = latest == null ? "--" : $"[{targetPosition.x:F3}, {targetPosition.y:F3}, {targetPosition.z:F3}]";
             var rendererActive = flyRenderers != null && Array.Exists(flyRenderers, r => r != null && r.enabled && r.gameObject.activeInHierarchy);
             var text = $"Python: {(connected ? "Connected" : "Disconnected")}\n" +
@@ -179,9 +208,11 @@ namespace FlyBrain.UnityBridge
                 $"Raw Python fly position: {raw}\nConverted Unity fly position: {converted}\n" +
                 $"Fly GameObject active: {(flyProxy != null && flyProxy.gameObject.activeInHierarchy ? "yes" : "no")}\n" +
                 $"Fly renderer active: {(rendererActive ? "yes" : "no")}\nEnvironment sync: {(environment?.IsSynchronized == true ? "yes" : "no")}\n" +
-                $"Environment object count: {environment?.ObjectCount ?? 0}\nCamera mode: {cameraMode} (F to switch)\n" +
+                $"Environment object count: {environment?.ObjectCount ?? 0}/{environment?.DefinitionObjectCount ?? 0}\nCamera mode: {cameraMode} (F to switch)\n" +
+                $"Fly viewport: [{viewportPosition.x:F2}, {viewportPosition.y:F2}, depth {viewportPosition.z:F2}] in frustum: {(flyInFrustum ? "yes" : "NO")}\n" +
+                $"Fly vs floor surface: {flyFloorClearance:F3} units\nLabels: {(environment?.LabelsVisible == true ? "on" : "off")} (L to toggle)\n" +
                 $"Visual scale: 1 mm = {WorldVisualScale.UnityUnitsPerMillimetre:g} Unity units\nBehavior: {latest?.behavior ?? "--"}";
-            GUI.Box(new Rect(12, 12, 430, 252), text);
+            GUI.Box(new Rect(12, 12, 470, 330), text);
         }
 
         void OnDestroy() { cancellation?.Cancel(); cancellation?.Dispose(); environment?.Clear(); }

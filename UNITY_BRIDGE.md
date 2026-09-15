@@ -63,7 +63,8 @@ retains its previous behavior, including the MuJoCo viewer by default.
 2. Open `Assets/Scenes/SampleScene.unity`.
 3. Press **Play**. A runtime bootstrap automatically creates the TCP receiver
    primitive fly proxy, environment mirror, and automatic camera; no scene
-   editing is required. Press **F** to toggle Overview/Follow Fly.
+   editing is required. Press **F** to toggle Overview/Follow Fly and **L** to
+   toggle stable-ID labels over dynamic mirrored objects.
 4. Start either side first. Unity retries once per second and its HUD changes
    from **Disconnected** to **Connected** after the Python server is available.
 
@@ -104,12 +105,22 @@ full `LoomingArena` terrarium (physical 64 mm square shell and predator), add
 `--visual --terrarium`; add `--gustatory` and/or `--olfactory` to instantiate
 and mirror the real sugar, bitter, food, and danger sources.
 
+With `--unity --visual --terrarium --gustatory --olfactory`, the current Python
+configuration instantiates and transmits ten objects: the substrate, four
+walls, predator, two taste zones, and two odor sources. The HUD displays the
+number of successfully mirrored objects beside the definition count (normally
+`10/10`) so a rejected protocol object is visible rather than silently replaced.
+
 ## Runtime behavior and limitations
 
 * Python targets at most 30 wall-clock updates/second and reports actual sends
   every five seconds while connected. Expensive neural updates can lower it.
 * Unity receives asynchronously, retains only recent snapshots, and renders at
   its own rate using exponential position/rotation interpolation.
+* Overview continuously fits the received environment renderer bounds plus the
+  fly using the camera's real vertical and horizontal field of view. The HUD
+  also reports the fly's converted pose, viewport/depth, frustum result, and
+  clearance from the mirrored floor surface for runtime coordinate diagnosis.
 * The proxy is deliberately a high-contrast primitive marker, not an articulated fly. Only yaw can be
   reconstructed from the currently exposed forward vector; full body roll and
   pitch require exporting the MuJoCo free-joint quaternion in a later change.

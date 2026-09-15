@@ -25,6 +25,32 @@ class FlyStateAdapterTests(unittest.TestCase):
         self.assertEqual(message["behavior"], "escape")
         self.assertAlmostEqual(message["movement"]["speed_mm_s"], 10.0)
 
+    def test_full_terrarium_definition_contains_only_instantiated_objects(self):
+        class Arena:
+            ball_pos = [10.0, 2.0, 1.5]
+            ball_radius = 6.0
+
+        class Taste:
+            def __init__(self, label, taste):
+                self.label, self.taste = label, taste
+                self.center, self.radius = [1.0, 2.0], 3.0
+
+        class Odor:
+            def __init__(self, label, odor_type):
+                self.label, self.odor_type = label, odor_type
+                self.position = [3.0, 4.0, 1.0]
+
+        adapter = EnvironmentStateAdapter(
+            Arena(), [Taste("sugar", "sugar"), Taste("bitter", "bitter")],
+            [Odor("food", "attractive"), Odor("geosmin", "repulsive")])
+        objects = adapter.definition()["objects"]
+        self.assertEqual(len(objects), 10)
+        self.assertEqual({item["id"] for item in objects}, {
+            "substrate", "wall:0", "wall:1", "wall:2", "wall:3",
+            "predator", "taste:sugar:0", "taste:bitter:1",
+            "odor:food:0", "odor:geosmin:1",
+        })
+
     def test_tcp_server_emits_newline_delimited_json(self):
         server = UnityStateServer(port=0, update_rate=1000)
         # Bind an ephemeral port explicitly because port=0 is not discoverable
