@@ -8,10 +8,14 @@ namespace FlyBrain.UnityBridge
     {
         [Tooltip("Optional replacement. Leave empty to use the built-in scientific primitive.")]
         public GameObject prefab;
+        [Tooltip("Optional presentation material. This can be used on either a custom prefab or the built-in scientific primitive.")]
+        public Material material;
         [Tooltip("Applied only below the authoritative transform.")]
         public Vector3 modelScale = Vector3.one;
         public Vector3 modelRotationOffset;
         public Vector3 modelPositionOffset;
+        [Tooltip("UV tiling applied to the optional material without changing any authoritative transform or geometry.")]
+        public Vector2 materialTiling = Vector2.one;
 
         [Header("Visual grounding (presentation only)")]
         [Tooltip("Align this model's rendered bottom with the mirrored substrate without moving its authoritative parent.")]
