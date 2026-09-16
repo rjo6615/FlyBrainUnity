@@ -15,7 +15,9 @@ public static class PresentationClutterLibraryBuilder
     const string Materials = Output + "/Materials";
     const string LibraryPath = "Assets/Resources/FlyBrainVisualLibrary.asset";
     static readonly string[] Categories = { "Rocks", "Leaves", "Twigs", "Organic" };
-    static readonly string[] ModelExtensions = { ".blend", ".fbx", ".obj", ".dae", ".3ds" };
+    // The order is significant.  In particular, never load a Blender source when an
+    // exported FBX with the same category/name is available.
+    static readonly string[] ModelExtensions = { ".fbx", ".obj", ".dae", ".3ds", ".blend" };
 
     static PresentationClutterLibraryBuilder()
     {
@@ -34,16 +36,15 @@ public static class PresentationClutterLibraryBuilder
     public static void Build()
     {
         EnsureFolder(Output); EnsureFolder(Materials);
-        var found = 0; var accepted = 0; var created = 0; var rejected = new List<string>();
+        var sources = DiscoverSources();
+        var fbxSources = sources.Where(s => s.Extension == ".fbx").ToArray();
+        var acceptedFbx = 0; var created = 0; var rejected = new List<string>();
         var result = Categories.ToDictionary(c => c, _ => new List<GameObject>());
         var vegetation = new List<GameObject>();
 
-        foreach (var category in Categories)
-        foreach (var guid in AssetDatabase.FindAssets("", new[] { $"{Root}/{category}" }))
+        foreach (var sourceInfo in sources)
         {
-            var path = AssetDatabase.GUIDToAssetPath(guid);
-            if (!ModelExtensions.Contains(Path.GetExtension(path).ToLowerInvariant())) continue;
-            found++;
+            var path = sourceInfo.Path;
             ConfigureImporter(path);
             var model = AssetDatabase.LoadAssetAtPath<GameObject>(path);
             if (model == null)
@@ -66,9 +67,10 @@ public static class PresentationClutterLibraryBuilder
                 Debug.LogException(exception);
             }
             if (prefab == null) { rejected.Add($"{path}: {reason}"); continue; }
-            accepted++; created++;
-            if (category == "Organic" && IsVegetation(path)) vegetation.Add(prefab);
-            else result[category].Add(prefab);
+            if (sourceInfo.Extension == ".fbx") acceptedFbx++;
+            created++;
+            if (sourceInfo.Category == "Organic" && IsVegetation(path)) vegetation.Add(prefab);
+            else result[sourceInfo.Category].Add(prefab);
         }
 
         var library = AssetDatabase.LoadAssetAtPath<VisualPrefabLibrary>(LibraryPath);
@@ -86,20 +88,25 @@ public static class PresentationClutterLibraryBuilder
         ApplyNaturalDefaults(library);
         EditorUtility.SetDirty(library); AssetDatabase.SaveAssets(); AssetDatabase.Refresh();
 
-        // Save once more after Refresh so the on-disk YAML and imported object agree.
-        EditorUtility.SetDirty(library); AssetDatabase.SaveAssets();
+        // Reload the serialized object rather than trusting the in-memory instance.
+        library = AssetDatabase.LoadAssetAtPath<VisualPrefabLibrary>(LibraryPath);
         var assigned = result.Values.Sum(list => list.Count) + vegetation.Count;
         var summary = "=== FlyBrain Clutter Build ===\n\n" +
-            $"Sources discovered: {found}\nSources accepted: {accepted}\nSources rejected: {rejected.Count}\n" +
+            $"FBX sources discovered: {fbxSources.Length}\nFBX sources accepted: {acceptedFbx}\n" +
+            $"FBX sources rejected: {fbxSources.Length - acceptedFbx}\n\n" +
+            $"Preferred sources discovered: {sources.Count}\nSources rejected: {rejected.Count}\n" +
             $"Generated prefabs: {created}\n\nRocks assigned: {result["Rocks"].Count}\n" +
             $"Leaves assigned: {result["Leaves"].Count}\nTwigs assigned: {result["Twigs"].Count}\n" +
             $"Organic assigned: {result["Organic"].Count}\nVegetation assigned: {vegetation.Count}\n\n" +
-            $"Saved library:\n{LibraryPath}" +
+            $"Saved library:\n{LibraryPath}\nSerialized prefab references verified: {library?.ClutterPrefabCount ?? 0}" +
+            (sources.SelectMany(s => s.Ignored).Any() ? "\n\nIgnored lower-priority duplicates:\n  " +
+                string.Join("\n  ", sources.SelectMany(s => s.Ignored)) : string.Empty) +
             (rejected.Count == 0 ? "\n\nRejected: none" : "\n\nRejected:\n  " + string.Join("\n  ", rejected));
         if (created == 0)
             Debug.LogError(summary + "\n\nERROR: Generated prefabs = 0. The library was not built; inspect the import failures above.");
-        else if (assigned == 0)
-            Debug.LogError(summary + "\n\nERROR: Assigned prefabs = 0. No generated prefab was persisted to the library.");
+        else if (assigned == 0 || library == null || library.ClutterPrefabCount != assigned)
+            Debug.LogError(summary + $"\n\nERROR: Expected {assigned} serialized prefab references, but reloaded " +
+                $"{library?.ClutterPrefabCount ?? 0} from the library asset.");
         else Debug.Log(summary);
         Validate();
     }
@@ -136,10 +143,21 @@ public static class PresentationClutterLibraryBuilder
         foreach (var renderer in clone.GetComponentsInChildren<Renderer>(true))
             if (IsPreview(renderer.gameObject.name)) UnityEngine.Object.DestroyImmediate(renderer.gameObject);
 
+        foreach (var renderer in clone.GetComponentsInChildren<Renderer>(true))
+            if (!HasRenderableMesh(renderer)) UnityEngine.Object.DestroyImmediate(renderer);
+
         foreach (var component in clone.GetComponentsInChildren<Component>(true).Reverse())
             if (component != null && component is not Transform && component is not Renderer && component is not MeshFilter)
                 UnityEngine.Object.DestroyImmediate(component);
-        RemoveEmptyBranches(clone.transform);
+        var requiredTransforms = new HashSet<Transform>();
+        foreach (var renderer in clone.GetComponentsInChildren<Renderer>(true))
+        {
+            AddAncestors(renderer.transform, clone.transform, requiredTransforms);
+            if (renderer is SkinnedMeshRenderer skinned)
+                foreach (var bone in skinned.bones.Where(bone => bone != null))
+                    AddAncestors(bone, clone.transform, requiredTransforms);
+        }
+        RemoveEmptyBranches(clone.transform, requiredTransforms);
         var renderers = clone.GetComponentsInChildren<Renderer>(true);
         if (renderers.Length == 0)
         {
@@ -157,9 +175,19 @@ public static class PresentationClutterLibraryBuilder
         }
         var prefabPath = $"{Output}/{Sanitize(clone.name)}.prefab";
         var prefab = PrefabUtility.SaveAsPrefabAsset(clone, prefabPath);
+        var meshes = renderers.Select(RendererMesh).Where(mesh => mesh != null).ToArray();
+        Debug.Log($"[FlyBrain Clutter Builder] Accepted {sourcePath}: {renderers.Length} renderer(s), " +
+            $"{meshes.Length} mesh(es), {meshes.Sum(mesh => mesh.vertexCount)} vertices; material {AssetDatabase.GetAssetPath(material)}.");
         UnityEngine.Object.DestroyImmediate(clone);
         reason = null;
         return prefab;
+    }
+
+    static bool HasRenderableMesh(Renderer renderer) => RendererMesh(renderer) != null;
+    static Mesh RendererMesh(Renderer renderer)
+    {
+        if (renderer is SkinnedMeshRenderer skinned) return skinned.sharedMesh;
+        return renderer is MeshRenderer && renderer.TryGetComponent<MeshFilter>(out var filter) ? filter.sharedMesh : null;
     }
 
     static Material BuildMaterial(string sourcePath, Renderer[] renderers)
@@ -168,6 +196,7 @@ public static class PresentationClutterLibraryBuilder
         var path = $"{Materials}/{Sanitize(name)}_URP.mat";
         var material = AssetDatabase.LoadAssetAtPath<Material>(path);
         var shader = Shader.Find("Universal Render Pipeline/Lit");
+        if (shader == null) throw new InvalidOperationException("Universal Render Pipeline/Lit shader was not found");
         if (material == null)
         {
             material = new Material(shader) { name = name + " URP" };
@@ -179,11 +208,26 @@ public static class PresentationClutterLibraryBuilder
         if (imported != null) material.SetColor("_BaseColor", imported.HasProperty("_Color") ? imported.color : Color.white);
         var stem = name.Replace("_4k", "");
         var diffuse = FindTexture(stem, "diff"); var normal = FindTexture(stem, "nor");
+        var roughness = FindTexture(stem, "rough"); var occlusion = FindTexture(stem, "ao");
         var opacity = FindTexture(stem, "opacity") ?? FindTexture(stem, "alpha");
         var baseMap = opacity != null && diffuse != null ? BuildCutoutTexture(name, diffuse, opacity) : diffuse;
         if (baseMap != null) material.SetTexture("_BaseMap", baseMap);
-        if (normal != null) { material.SetTexture("_BumpMap", normal); material.EnableKeyword("_NORMALMAP"); }
+        if (normal != null)
+        {
+            ConfigureNormalMap(normal); material.SetTexture("_BumpMap", normal); material.EnableKeyword("_NORMALMAP");
+        }
         material.SetFloat("_Metallic", 0f); material.SetFloat("_Smoothness", .22f);
+        if (roughness != null)
+        {
+            var metallicSmoothness = BuildMetallicSmoothnessTexture(name, roughness);
+            material.SetTexture("_MetallicGlossMap", metallicSmoothness);
+            material.EnableKeyword("_METALLICSPECGLOSSMAP");
+        }
+        if (occlusion != null)
+        {
+            material.SetTexture("_OcclusionMap", occlusion); material.SetFloat("_OcclusionStrength", 1f);
+            material.EnableKeyword("_OCCLUSIONMAP");
+        }
         if (opacity != null || IsVegetation(sourcePath))
         {
             // URP/Lit alpha clipping reads the combined base-color alpha generated above.
@@ -194,9 +238,27 @@ public static class PresentationClutterLibraryBuilder
         EditorUtility.SetDirty(material); return material;
     }
 
+    static Texture2D BuildMetallicSmoothnessTexture(string name, Texture2D roughness)
+    {
+        var path = $"{Materials}/{Sanitize(name)}_MetallicSmoothness.png";
+        var wasReadable = IsReadable(roughness); SetReadable(roughness, true);
+        var pixels = roughness.GetPixels32();
+        for (var i = 0; i < pixels.Length; i++)
+        {
+            var smoothness = (byte)(255 - pixels[i].r);
+            pixels[i] = new Color32(0, 0, 0, smoothness);
+        }
+        var packed = new Texture2D(roughness.width, roughness.height, TextureFormat.RGBA32, true);
+        packed.SetPixels32(pixels); packed.Apply(); File.WriteAllBytes(path, packed.EncodeToPNG());
+        UnityEngine.Object.DestroyImmediate(packed); SetReadable(roughness, wasReadable);
+        AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate);
+        return AssetDatabase.LoadAssetAtPath<Texture2D>(path);
+    }
+
     static Texture2D BuildCutoutTexture(string name, Texture2D color, Texture2D opacity)
     {
         var path = $"{Materials}/{Sanitize(name)}_BaseColorAlpha.png";
+        var colorWasReadable = IsReadable(color); var opacityWasReadable = IsReadable(opacity);
         SetReadable(color, true); SetReadable(opacity, true);
         var width = color.width; var height = color.height;
         var colors = color.GetPixels32();
@@ -210,6 +272,7 @@ public static class PresentationClutterLibraryBuilder
         var combined = new Texture2D(width, height, TextureFormat.RGBA32, true);
         combined.SetPixels32(colors); combined.Apply();
         File.WriteAllBytes(path, combined.EncodeToPNG()); UnityEngine.Object.DestroyImmediate(combined);
+        SetReadable(color, colorWasReadable); SetReadable(opacity, opacityWasReadable);
         AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate);
         return AssetDatabase.LoadAssetAtPath<Texture2D>(path);
     }
@@ -221,6 +284,16 @@ public static class PresentationClutterLibraryBuilder
         { importer.isReadable = value; importer.SaveAndReimport(); }
     }
 
+    static bool IsReadable(Texture2D texture) =>
+        AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(texture)) is TextureImporter importer && importer.isReadable;
+
+    static void ConfigureNormalMap(Texture2D texture)
+    {
+        if (AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(texture)) is not TextureImporter importer ||
+            importer.textureType == TextureImporterType.NormalMap) return;
+        importer.textureType = TextureImporterType.NormalMap; importer.SaveAndReimport();
+    }
+
     static Texture2D FindTexture(string stem, string token)
     {
         var normalized = stem.ToLowerInvariant();
@@ -229,6 +302,41 @@ public static class PresentationClutterLibraryBuilder
             .Where(p => Path.GetFileNameWithoutExtension(p).ToLowerInvariant().StartsWith(normalized) &&
                         Path.GetFileNameWithoutExtension(p).ToLowerInvariant().Contains(token))
             .Select(AssetDatabase.LoadAssetAtPath<Texture2D>).FirstOrDefault(t => t != null);
+    }
+
+    static List<SourceInfo> DiscoverSources()
+    {
+        var discovered = new List<SourceInfo>();
+        foreach (var category in Categories)
+        {
+            var candidates = AssetDatabase.FindAssets("", new[] { $"{Root}/{category}" })
+                .Select(AssetDatabase.GUIDToAssetPath)
+                .Where(path => ModelExtensions.Contains(Path.GetExtension(path).ToLowerInvariant()))
+                .GroupBy(path => Path.GetFileNameWithoutExtension(path), StringComparer.OrdinalIgnoreCase);
+            foreach (var group in candidates)
+            {
+                var ordered = group.OrderBy(path => Array.IndexOf(ModelExtensions,
+                    Path.GetExtension(path).ToLowerInvariant())).ThenBy(path => path, StringComparer.Ordinal).ToArray();
+                discovered.Add(new SourceInfo(category, ordered[0], ordered.Skip(1).ToArray()));
+            }
+        }
+        return discovered.OrderBy(source => Array.IndexOf(Categories, source.Category))
+            .ThenBy(source => source.Path, StringComparer.Ordinal).ToList();
+    }
+
+    sealed class SourceInfo
+    {
+        public readonly string Category;
+        public readonly string Path;
+        public readonly string Extension;
+        public readonly string[] Ignored;
+
+        public SourceInfo(string category, string path, string[] ignored)
+        {
+            Category = category; Path = path;
+            Extension = System.IO.Path.GetExtension(path).ToLowerInvariant();
+            Ignored = ignored;
+        }
     }
 
     static void ConfigureImporter(string path)
@@ -246,14 +354,20 @@ public static class PresentationClutterLibraryBuilder
         foreach (var prefab in prefabs)
         {
             if (prefab == null) { warnings.Add($"{name}: missing prefab or source asset"); continue; }
+            var prefabPath = AssetDatabase.GetAssetPath(prefab);
+            if (string.IsNullOrEmpty(prefabPath) || !prefabPath.StartsWith(Output + "/", StringComparison.Ordinal))
+                warnings.Add($"{name}/{prefab.name}: reference is not a generated prefab asset");
             if (!SourceExists(prefab.name)) warnings.Add($"{name}/{prefab.name}: missing source asset");
             var renderers = prefab.GetComponentsInChildren<Renderer>(true);
             if (renderers.Length == 0) { warnings.Add($"{name}/{prefab.name}: missing renderer"); continue; }
             foreach (var renderer in renderers)
+            {
+                if (!HasRenderableMesh(renderer)) warnings.Add($"{name}/{prefab.name}: renderer has no mesh");
                 foreach (var material in renderer.sharedMaterials)
                     if (material == null) warnings.Add($"{name}/{prefab.name}: missing material");
                     else if (material.shader == null || !material.shader.name.StartsWith("Universal Render Pipeline/"))
                         warnings.Add($"{name}/{prefab.name}: incompatible shader '{material.shader?.name ?? "missing"}'");
+            }
             var bounds = CombinedLocalBounds(prefab);
             if (bounds.size.sqrMagnitude < 1e-10f || bounds.size.magnitude > 100000f)
                 warnings.Add($"{name}/{prefab.name}: absurd native bounds {bounds.size}");
@@ -293,12 +407,21 @@ public static class PresentationClutterLibraryBuilder
                                                    Path.GetFileNameWithoutExtension(p) == prefabName);
     static bool IsPreview(string name) { var n = name.ToLowerInvariant(); return n == "plane" || n == "sphere" || n.Contains("preview") || n.Contains("material_ball") || n.Contains("uv_sphere"); }
     static string Sanitize(string value) => string.Concat(value.Select(c => char.IsLetterOrDigit(c) || c == '_' || c == '-' ? c : '_'));
-    static void RemoveEmptyBranches(Transform parent)
+    static void AddAncestors(Transform transform, Transform root, HashSet<Transform> required)
+    {
+        while (transform != null)
+        {
+            required.Add(transform);
+            if (transform == root) break;
+            transform = transform.parent;
+        }
+    }
+    static void RemoveEmptyBranches(Transform parent, HashSet<Transform> required)
     {
         for (var i = parent.childCount - 1; i >= 0; i--)
         {
-            var child = parent.GetChild(i); RemoveEmptyBranches(child);
-            if (child.GetComponentsInChildren<Renderer>(true).Length == 0) UnityEngine.Object.DestroyImmediate(child.gameObject);
+            var child = parent.GetChild(i); RemoveEmptyBranches(child, required);
+            if (!required.Contains(child)) UnityEngine.Object.DestroyImmediate(child.gameObject);
         }
     }
     static void EnsureFolder(string path)
