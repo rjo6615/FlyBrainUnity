@@ -60,6 +60,7 @@ namespace FlyBrain.UnityBridge
         float lastLeftClickTime = -10f;
         bool cameraHelpVisible;
         bool overviewHasManualFocus;
+        bool environmentDefinitionReceived;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Install()
@@ -119,7 +120,8 @@ namespace FlyBrain.UnityBridge
                     if (definition.IsValid)
                     {
                         environment.ApplyDefinition(definition);
-                        clutter.Regenerate();
+                        environmentDefinitionReceived = true;
+                        TryGenerateClutter();
                         cameraNeedsFrame = true;
                         runtimeHierarchyLogged = false;
                     }
@@ -149,6 +151,17 @@ namespace FlyBrain.UnityBridge
             UpdateVisibilityDiagnostics();
             var elapsed = Time.unscaledTime - rateWindowStarted;
             if (elapsed >= 1f) { updatesPerSecond = receivedThisWindow / elapsed; receivedThisWindow = 0; rateWindowStarted = Time.unscaledTime; }
+        }
+
+        void TryGenerateClutter()
+        {
+            if (!environmentDefinitionReceived) return;
+            if (visuals == null || visuals.ClutterPrefabCount == 0)
+            {
+                Debug.LogError("[FlyBrain Clutter] Environment is ready, but the loaded library has zero valid prefabs; generation is deferred.");
+                return;
+            }
+            clutter.Regenerate();
         }
 
         void ToggleCameraMode()
@@ -544,10 +557,13 @@ namespace FlyBrain.UnityBridge
                 $"Fly root vs floor: {flyFloorClearance:F3} units\nScientific debug: on (D to toggle)\n" +
                 $"Visual scale: 1 mm = {WorldVisualScale.UnityUnitsPerMillimetre:g} Unity units\n" +
                 $"Clutter: {(clutter?.Visible == true ? "ON" : "OFF")}\nClutter objects: {clutter?.ObjectCount ?? 0}\n" +
+                $"Clutter library loaded: {(clutter?.LibraryLoaded == true ? "YES" : "NO")}\nClutter prefab count: {clutter?.PrefabCount ?? 0}\n" +
+                $"Substrate ready: {(clutter?.SubstrateReady == true ? "YES" : "NO")}\nGeneration attempted: {(clutter?.GenerationAttempted == true ? "YES" : "NO")}\n" +
+                $"Generation result: {clutter?.ObjectCount ?? 0}\nLast clutter error: {clutter?.LastError ?? "not initialized"}\n" +
                 $"Rocks: {clutter?.Count("Rocks") ?? 0}  Leaves: {clutter?.Count("Leaves") ?? 0}  Twigs: {clutter?.Count("Twigs") ?? 0}\n" +
                 $"Organic: {clutter?.Count("Organic Debris") ?? 0}  Vegetation: {clutter?.Count("Vegetation") ?? 0}\n" +
                 $"Clutter seed: {visuals.clutterSeed}\nBehavior: {latest?.behavior ?? "--"}";
-                GUI.Box(new Rect(12, 12, 620, 620), text);
+                GUI.Box(new Rect(12, 12, 680, 735), text);
             }
             if (cameraHelpVisible)
             {
