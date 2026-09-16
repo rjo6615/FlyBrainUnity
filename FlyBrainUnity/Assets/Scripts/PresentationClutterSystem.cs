@@ -1,12 +1,10 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace FlyBrain.UnityBridge
 {
-    /// <summary>
-    /// Decorative, renderer-only scatter. It never writes to the mirrored environment and
-    /// deliberately creates no colliders, rigid bodies, or other simulation components.
-    /// </summary>
+    /// <summary>Renderer-only deterministic decoration. It never participates in authoritative state or physics.</summary>
     public sealed class PresentationClutterSystem
     {
         readonly Transform root;
@@ -14,9 +12,14 @@ namespace FlyBrain.UnityBridge
         readonly VisualPrefabLibrary settings;
         readonly List<PlacedDisc> placed = new();
         readonly Vector3 flyInitialPosition;
-        readonly Dictionary<string, int> counts = new();
+        readonly Dictionary<string, CategoryDiagnostics> diagnostics = new();
 
         struct PlacedDisc { public Vector2 center; public float radius; }
+        public sealed class CategoryDiagnostics
+        {
+            public int requested, candidates, attempts, boundaryRejected, exclusionRejected,
+                separationRejected, invalidBounds, spawned;
+        }
 
         public bool Visible { get; private set; } = true;
         public int ObjectCount { get; private set; }
@@ -25,216 +28,158 @@ namespace FlyBrain.UnityBridge
         public bool SubstrateReady { get; private set; }
         public bool GenerationAttempted { get; private set; }
         public string LastError { get; private set; } = "none";
-        public int Count(string category) => counts.TryGetValue(category, out var count) ? count : 0;
+        public int Count(string category) => diagnostics.TryGetValue(category, out var d) ? d.spawned : 0;
+        public bool ShouldWarn(string category) => diagnostics.TryGetValue(category, out var d) && d.requested > 0 && d.candidates > 0 && d.spawned == 0;
 
         public PresentationClutterSystem(Transform parent, UnityEnvironmentManager environment,
             VisualPrefabLibrary settings, Vector3 flyInitialPosition)
         {
-            this.environment = environment;
-            this.settings = settings;
-            this.flyInitialPosition = flyInitialPosition;
-            root = new GameObject("Presentation Clutter (visual only)").transform;
-            root.SetParent(parent, false);
+            this.environment = environment; this.settings = settings; this.flyInitialPosition = flyInitialPosition;
+            root = new GameObject("Presentation Clutter (visual only)").transform; root.SetParent(parent, false);
         }
 
         public void Regenerate()
         {
-            for (var i = root.childCount - 1; i >= 0; i--) Object.Destroy(root.GetChild(i).gameObject);
-            placed.Clear();
-            counts.Clear(); ObjectCount = 0;
-            GenerationAttempted = true;
-            LastError = "none";
+            for (var i = root.childCount - 1; i >= 0; i--) UnityEngine.Object.Destroy(root.GetChild(i).gameObject);
+            placed.Clear(); diagnostics.Clear(); ObjectCount = 0; GenerationAttempted = true; LastError = "none";
             SubstrateReady = environment.TryGetSubstrateBounds(out var substrate);
-            if (settings == null || settings.ClutterPrefabCount == 0)
-            {
-                LastError = "no valid clutter prefabs in Resources/FlyBrainVisualLibrary";
-                Debug.LogError("[FlyBrain Clutter] Generation stopped: " + LastError +
-                    ". Run Tools > FlyBrain > Build Clutter Library and resolve every reported import error.");
-                return;
-            }
-            if (!SubstrateReady)
-            {
-                LastError = "authoritative substrate renderer bounds are not available";
-                Debug.LogWarning("[FlyBrain Clutter] Generation stopped: " + LastError + ".");
-                return;
-            }
+            if (settings == null || settings.ClutterPrefabCount == 0) { Fail("no valid clutter prefabs in Resources/FlyBrainVisualLibrary"); return; }
+            if (!SubstrateReady) { Fail("authoritative substrate renderer bounds are not available"); return; }
 
-            Debug.Log($"[FlyBrain Clutter] Substrate bounds: {substrate.size.x:F3} x {substrate.size.z:F3} Unity units " +
-                $"({substrate.size.x / WorldVisualScale.UnityUnitsPerMillimetre:F1} x " +
-                $"{substrate.size.z / WorldVisualScale.UnityUnitsPerMillimetre:F1} mm); wall margin {settings.wallClearanceMm:F1} mm; " +
-                $"fly exclusion {settings.flyInitialClearanceMm:F1} mm; taste {settings.patchClearanceMm:F1} mm; " +
-                $"odor {settings.odorClearanceMm:F1} mm; predator {settings.predatorClearanceMm:F1} mm; " +
-                $"minimum separation {settings.clutterMinimumSeparationMm:F1} mm.");
+            Debug.Log($"[FlyBrain Clutter Clearances]\nFly clearance: {settings.flyInitialClearanceMm:F2} mm\n" +
+                $"Sugar/Bitter clearance: {settings.patchClearanceMm:F2} mm\nOdor clearance: {settings.odorClearanceMm:F2} mm\n" +
+                $"Predator clearance: {settings.predatorClearanceMm:F2} mm\nWall margin: {settings.wallClearanceMm:F2} mm\n" +
+                $"Substrate: {substrate.size.x / WorldVisualScale.UnityUnitsPerMillimetre:F1} x {substrate.size.z / WorldVisualScale.UnityUnitsPerMillimetre:F1} mm");
 
             var random = new System.Random(settings.clutterSeed);
             Scatter("Rocks", settings.rocks, substrate, random);
             Scatter("Leaves", settings.leaves, substrate, random);
             Scatter("Twigs", settings.twigs, substrate, random);
             Scatter("Organic Debris", settings.organicDebris, substrate, random);
-            Scatter("Vegetation", settings.largeVegetation, substrate, random);
+            Scatter("Large Vegetation", settings.largeVegetation, substrate, random);
+            Scatter("Micro Debris", settings.microDebris, substrate, random);
             root.gameObject.SetActive(Visible);
-            if (ObjectCount == 0)
-            {
-                LastError = "normal placement produced zero instances";
-                TryDiagnosticSpawn(substrate);
-            }
-            else Debug.Log($"[Presentation Clutter] Generated {ObjectCount} renderer-only objects (seed {settings.clutterSeed}).");
+            if (ObjectCount == 0) LastError = "placement produced zero instances; see per-category rejection diagnostics";
+            Debug.Log($"[Presentation Clutter] Generated {ObjectCount} renderer-only objects (seed {settings.clutterSeed}).");
         }
 
-        public void Toggle()
+        void Fail(string message) { LastError = message; Debug.LogError("[FlyBrain Clutter] Generation stopped: " + message); }
+        public void Toggle() { Visible = !Visible; root.gameObject.SetActive(Visible); }
+
+        void Scatter(string name, ClutterCategory category, Bounds substrate, System.Random random)
         {
-            Visible = !Visible;
-            root.gameObject.SetActive(Visible);
-        }
+            var d = new CategoryDiagnostics(); diagnostics[name] = d;
+            if (category == null || !category.enabled) { Log(name, d, category == null ? "settings null" : "disabled"); return; }
+            var valid = ValidPrefabs(category.prefabs); d.candidates = valid.Count;
+            var min = Mathf.Max(0, category.minimumCount); var max = Mathf.Max(min, category.maximumCount);
+            d.requested = random.Next(min, max + 1);
+            if (valid.Count == 0) { Log(name, d, "no prefab references with renderers"); return; }
+            var group = new GameObject(name).transform; group.SetParent(root, false);
+            var clusterCenters = BuildClusterCenters(substrate, name, random);
 
-        void Scatter(string categoryName, ClutterCategory category, Bounds substrate, System.Random random)
-        {
-            counts[categoryName] = 0;
-            if (category == null) { LogCategory(categoryName, false, 0, 0, 0, 0, 0, "category settings are null"); return; }
-            var serializedPrefabs = category.prefabs?.Length ?? 0;
-            if (!category.enabled) { LogCategory(categoryName, false, serializedPrefabs, 0, 0, 0, 0, "disabled"); return; }
-            if (serializedPrefabs == 0) { LogCategory(categoryName, true, 0, 0, 0, 0, 0, "prefab list is empty"); return; }
-            var valid = new List<GameObject>();
-            foreach (var prefab in category.prefabs)
-                if (prefab != null && prefab.GetComponentInChildren<Renderer>(true) != null) valid.Add(prefab);
-            if (valid.Count == 0) { LogCategory(categoryName, true, 0, 0, 0, 0, 0, "all prefab references are null or lack a Renderer"); return; }
-
-            var group = new GameObject(categoryName).transform;
-            group.SetParent(root, false);
-            var minimum = Mathf.Max(0, category.minimumCount);
-            var maximum = Mathf.Max(minimum, category.maximumCount);
-            var count = random.Next(minimum, maximum + 1);
-            var attempts = 0; var rejectedBounds = 0; var rejectedExclusion = 0; var rejectedSeparation = 0;
-            for (var i = 0; i < count; i++)
+            for (var i = 0; i < d.requested; i++)
             {
-                var sizeMm = Mathf.Lerp(category.minimumVisualSizeMm,
-                    Mathf.Max(category.minimumVisualSizeMm, category.maximumVisualSizeMm), NextFloat(random));
-                var radius = sizeMm * WorldVisualScale.UnityUnitsPerMillimetre * .5f;
-                if (!TryPosition(substrate, radius, random, out var position, ref attempts,
-                    ref rejectedBounds, ref rejectedExclusion, ref rejectedSeparation)) continue;
-
-                var instance = Object.Instantiate(valid[random.Next(valid.Count)], group);
-                instance.name = $"{categoryName} {i + 1} [visual only]";
-                StripNonPresentationComponents(instance);
-                instance.transform.SetPositionAndRotation(position, Quaternion.identity);
-                var yaw = category.randomRotation ? NextFloat(random) * 360f : 0f;
-                var tilt = category.randomTiltDegrees;
-                instance.transform.rotation = Quaternion.Euler(
-                    Mathf.Lerp(-tilt, tilt, NextFloat(random)), yaw,
-                    Mathf.Lerp(-tilt, tilt, NextFloat(random)));
-
-                if (!TryRendererBounds(instance, out var nativeBounds)) { Object.Destroy(instance); continue; }
-                var longest = Mathf.Max(nativeBounds.size.x, nativeBounds.size.y, nativeBounds.size.z);
-                if (longest <= Mathf.Epsilon) { Object.Destroy(instance); continue; }
-                instance.transform.localScale *= sizeMm * WorldVisualScale.UnityUnitsPerMillimetre / longest;
-
-                TryRendererBounds(instance, out var finalBounds);
-                instance.transform.position += Vector3.up * (substrate.max.y - finalBounds.min.y +
-                    category.groundingOffsetMm * WorldVisualScale.UnityUnitsPerMillimetre);
-                placed.Add(new PlacedDisc { center = new Vector2(position.x, position.z), radius = radius });
-                counts[categoryName]++; ObjectCount++;
+                var prefab = valid[random.Next(valid.Count)];
+                // Squared random strongly favours subtle small specimens but retains occasional large ones.
+                var t = Next(random); var sizeMm = Mathf.Lerp(category.minimumVisualSizeMm,
+                    Mathf.Max(category.minimumVisualSizeMm, category.maximumVisualSizeMm), t * t);
+                var accepted = false;
+                for (var attempt = 0; attempt < 60 && !accepted; attempt++)
+                {
+                    d.attempts++;
+                    var position = CandidatePosition(substrate, sizeMm, name, clusterCenters, random);
+                    var instance = UnityEngine.Object.Instantiate(prefab, group);
+                    instance.name = $"{name} {i + 1} [visual only]"; StripNonPresentationComponents(instance);
+                    instance.transform.SetPositionAndRotation(position, NativeCorrection(prefab, category, name));
+                    if (!TryRendererBounds(instance, out var native) || native.size.sqrMagnitude < 1e-10f)
+                    { d.invalidBounds++; UnityEngine.Object.Destroy(instance); break; }
+                    var longest = Mathf.Max(native.size.x, native.size.y, native.size.z);
+                    instance.transform.localScale *= sizeMm * WorldVisualScale.UnityUnitsPerMillimetre / longest;
+                    var yaw = category.randomRotation ? Next(random) * 360f : 0f;
+                    var tilt = category.randomTiltDegrees;
+                    instance.transform.rotation = Quaternion.Euler(LerpTilt(random, tilt), yaw, LerpTilt(random, tilt)) * instance.transform.rotation;
+                    instance.transform.hasChanged = true;
+                    if (!TryRendererBounds(instance, out var before)) { d.invalidBounds++; UnityEngine.Object.Destroy(instance); break; }
+                    var penetration = category.groundingPenetrationMm * WorldVisualScale.UnityUnitsPerMillimetre;
+                    instance.transform.position += Vector3.up * (substrate.max.y - penetration - before.min.y);
+                    if (!TryRendererBounds(instance, out var final)) { d.invalidBounds++; UnityEngine.Object.Destroy(instance); break; }
+                    var radius = Mathf.Max(final.extents.x, final.extents.z);
+                    if (!Inside(substrate, final)) { d.boundaryRejected++; UnityEngine.Object.Destroy(instance); continue; }
+                    if (environment.IntersectsClutterExclusion(final.center, radius, settings)) { d.exclusionRejected++; UnityEngine.Object.Destroy(instance); continue; }
+                    if (!IsSeparated(final.center, radius)) { d.separationRejected++; UnityEngine.Object.Destroy(instance); continue; }
+                    Debug.Log($"[Clutter Grounding] Category: {name}; Prefab: {prefab.name}; Substrate top Y: {substrate.max.y:F5}; " +
+                        $"Before min Y: {before.min.y:F5}; After min Y: {final.min.y:F5}; Penetration mm: {category.groundingPenetrationMm:F2}; " +
+                        $"Final difference: {final.min.y - (substrate.max.y - penetration):F6}");
+                    placed.Add(new PlacedDisc { center = new Vector2(final.center.x, final.center.z), radius = radius });
+                    d.spawned++; ObjectCount++; accepted = true;
+                }
             }
-            LogCategory(categoryName, true, valid.Count, count, attempts,
-                rejectedBounds + rejectedExclusion + rejectedSeparation, counts[categoryName],
-                $"rejected bounds {rejectedBounds}, exclusion {rejectedExclusion}, separation/fly {rejectedSeparation}");
+            Log(name, d, d.spawned == 0 ? "zero spawned; rejection counters above identify the cause" : "complete");
         }
 
-        bool TryPosition(Bounds substrate, float radius, System.Random random, out Vector3 position,
-            ref int attempts, ref int rejectedBounds, ref int rejectedExclusion, ref int rejectedSeparation)
+        Vector3 CandidatePosition(Bounds b, float sizeMm, string category, List<Vector2> centers, System.Random random)
         {
             var wall = settings.wallClearanceMm * WorldVisualScale.UnityUnitsPerMillimetre;
-            for (var attempt = 0; attempt < 50; attempt++)
+            var isolatedChance = category == "Twigs" || category == "Large Vegetation" ? .72f : .45f;
+            float x, z;
+            if (centers.Count > 0 && Next(random) > isolatedChance)
             {
-                attempts++;
-                float x, z;
-                if (placed.Count > 0 && NextFloat(random) < settings.clutterClusterChance)
-                {
-                    var anchor = placed[random.Next(placed.Count)].center;
-                    var angle = NextFloat(random) * Mathf.PI * 2f;
-                    var distance = Mathf.Sqrt(NextFloat(random)) * settings.clutterClusterRadiusMm * WorldVisualScale.UnityUnitsPerMillimetre;
-                    x = anchor.x + Mathf.Cos(angle) * distance; z = anchor.y + Mathf.Sin(angle) * distance;
-                }
-                else
-                {
-                    x = Mathf.Lerp(substrate.min.x + wall + radius, substrate.max.x - wall - radius, NextFloat(random));
-                    z = Mathf.Lerp(substrate.min.z + wall + radius, substrate.max.z - wall - radius, NextFloat(random));
-                }
-                if (x < substrate.min.x + wall + radius || x > substrate.max.x - wall - radius ||
-                    z < substrate.min.z + wall + radius || z > substrate.max.z - wall - radius)
-                { rejectedBounds++; continue; }
-                position = new Vector3(x, substrate.max.y, z);
-                if (!IsSeparated(position, radius)) { rejectedSeparation++; continue; }
-                if (environment.IntersectsClutterExclusion(position, radius, settings)) { rejectedExclusion++; continue; }
-                return true;
+                var center = centers[random.Next(centers.Count)];
+                var patch = Next(random) < .27f; // about 15% overall are broader patches.
+                var radiusMm = settings.clutterClusterRadiusMm * (patch ? 1.8f : .65f);
+                var angle = Next(random) * Mathf.PI * 2f; var distance = Mathf.Sqrt(Next(random)) * radiusMm * WorldVisualScale.UnityUnitsPerMillimetre;
+                x = center.x + Mathf.Cos(angle) * distance; z = center.y + Mathf.Sin(angle) * distance;
             }
-            position = default;
-            return false;
+            else { x = Mathf.Lerp(b.min.x + wall, b.max.x - wall, Next(random)); z = Mathf.Lerp(b.min.z + wall, b.max.z - wall, Next(random)); }
+            return new Vector3(x, b.max.y, z);
         }
 
-        bool IsSeparated(Vector3 position, float radius)
+        List<Vector2> BuildClusterCenters(Bounds b, string category, System.Random random)
         {
-            var point = new Vector2(position.x, position.z);
-            var separation = settings.clutterMinimumSeparationMm * WorldVisualScale.UnityUnitsPerMillimetre;
-            foreach (var item in placed)
-                if (Vector2.Distance(point, item.center) < radius + item.radius + separation) return false;
-            if (HorizontalDistance(position, flyInitialPosition) < radius + settings.flyInitialClearanceMm * WorldVisualScale.UnityUnitsPerMillimetre) return false;
-            return true;
+            var count = category == "Large Vegetation" ? 1 : category == "Twigs" ? 3 : 6;
+            var list = new List<Vector2>(count); var margin = settings.wallClearanceMm * WorldVisualScale.UnityUnitsPerMillimetre;
+            for (var i = 0; i < count; i++) list.Add(new Vector2(Mathf.Lerp(b.min.x + margin, b.max.x - margin, Next(random)), Mathf.Lerp(b.min.z + margin, b.max.z - margin, Next(random))));
+            return list;
         }
 
-        static void LogCategory(string name, bool enabled, int prefabs, int requested, int attempts,
-            int rejected, int spawned, string detail) => Debug.Log($"[Clutter:{name}]\nEnabled: {enabled}\nPrefabs: {prefabs}\n" +
-                $"Requested: {requested}\nSubstrate bounds available: true\nAttempts: {attempts}\nRejected: {rejected}\n" +
-                $"Spawned: {spawned}\nDetail: {detail}");
-
-        void TryDiagnosticSpawn(Bounds substrate)
+        bool Inside(Bounds substrate, Bounds rendered)
         {
-            GameObject prefab = null;
-            foreach (var category in new[] { settings.rocks, settings.leaves, settings.twigs, settings.organicDebris, settings.largeVegetation })
-                if (category?.prefabs != null)
-                    foreach (var candidate in category.prefabs)
-                        if (candidate != null && candidate.GetComponentInChildren<Renderer>(true) != null) { prefab = candidate; break; }
-            if (prefab == null) return;
-            try
-            {
-                var instance = Object.Instantiate(prefab, root);
-                instance.name = "Diagnostic clutter [visual only]";
-                StripNonPresentationComponents(instance);
-                instance.transform.position = new Vector3(substrate.center.x, substrate.max.y, substrate.center.z);
-                if (!TryRendererBounds(instance, out var bounds)) throw new System.InvalidOperationException("prefab has no renderer bounds after instantiation");
-                instance.transform.position += Vector3.up * (substrate.max.y - bounds.min.y);
-                ObjectCount = 1; counts["Diagnostic"] = 1;
-                LastError = "normal placement produced zero; diagnostic fallback spawned one instance";
-                Debug.LogWarning($"[FlyBrain Clutter] Diagnostic prefab spawned successfully at {instance.transform.position}. " +
-                    "This confirms prefab instantiation works; inspect the placement rejection diagnostics above.");
-            }
-            catch (System.Exception exception)
-            {
-                LastError = "diagnostic prefab instantiation failed: " + exception.Message;
-                Debug.LogError("[FlyBrain Clutter] " + LastError);
-            }
+            var wall = settings.wallClearanceMm * WorldVisualScale.UnityUnitsPerMillimetre;
+            return rendered.min.x >= substrate.min.x + wall && rendered.max.x <= substrate.max.x - wall &&
+                   rendered.min.z >= substrate.min.z + wall && rendered.max.z <= substrate.max.z - wall;
+        }
+        bool IsSeparated(Vector3 p, float radius)
+        {
+            var point = new Vector2(p.x, p.z); var sep = settings.clutterMinimumSeparationMm * WorldVisualScale.UnityUnitsPerMillimetre;
+            foreach (var q in placed) if (Vector2.Distance(point, q.center) < radius + q.radius + sep) return false;
+            return Vector2.Distance(point, new Vector2(flyInitialPosition.x, flyInitialPosition.z)) >= radius + settings.flyInitialClearanceMm * WorldVisualScale.UnityUnitsPerMillimetre;
         }
 
-        static float HorizontalDistance(Vector3 a, Vector3 b) =>
-            Vector2.Distance(new Vector2(a.x, a.z), new Vector2(b.x, b.z));
-
-        static float NextFloat(System.Random random) => (float)random.NextDouble();
-
+        static Quaternion NativeCorrection(GameObject prefab, ClutterCategory category, string name)
+        {
+            foreach (var c in category.orientationCorrections ?? Array.Empty<ClutterOrientationCorrection>())
+                if (c != null && c.prefab == prefab) return Quaternion.Euler(c.eulerAngles);
+            if (name != "Twigs") return Quaternion.identity;
+            // Imported branches whose long axis is Y are laid down before procedural yaw/tilt.
+            if (TryRendererBounds(prefab, out var b) && b.size.y > Mathf.Max(b.size.x, b.size.z)) return Quaternion.Euler(0f, 0f, 90f);
+            return Quaternion.identity;
+        }
+        static List<GameObject> ValidPrefabs(GameObject[] source)
+        { var result = new List<GameObject>(); foreach (var p in source ?? Array.Empty<GameObject>()) if (p != null && p.GetComponentInChildren<Renderer>(true) != null) result.Add(p); return result; }
+        static float Next(System.Random r) => (float)r.NextDouble();
+        static float LerpTilt(System.Random r, float tilt) => Mathf.Lerp(-tilt, tilt, Next(r));
+        static void Log(string name, CategoryDiagnostics d, string detail)
+        {
+            var message = $"[Clutter:{name}]\n{name} requested: {d.requested}\n{name} prefab candidates: {d.candidates}\n" +
+                $"{name} placement attempts: {d.attempts}\n{name} boundary rejected: {d.boundaryRejected}\n" +
+                $"{name} exclusion rejected: {d.exclusionRejected}\n{name} separation rejected: {d.separationRejected}\n" +
+                $"{name} invalid bounds: {d.invalidBounds}\n{name} successfully spawned: {d.spawned}\nDetail: {detail}";
+            if (d.requested > 0 && d.candidates > 0 && d.spawned == 0) Debug.LogWarning(message); else Debug.Log(message);
+        }
         static bool TryRendererBounds(GameObject go, out Bounds bounds)
-        {
-            var renderers = go.GetComponentsInChildren<Renderer>(true);
-            if (renderers.Length == 0) { bounds = default; return false; }
-            bounds = renderers[0].bounds;
-            for (var i = 1; i < renderers.Length; i++) bounds.Encapsulate(renderers[i].bounds);
-            return true;
-        }
-
+        { var rs = go.GetComponentsInChildren<Renderer>(true); if (rs.Length == 0) { bounds = default; return false; } bounds = rs[0].bounds; for (var i = 1; i < rs.Length; i++) bounds.Encapsulate(rs[i].bounds); return true; }
         static void StripNonPresentationComponents(GameObject instance)
-        {
-            foreach (var component in instance.GetComponentsInChildren<Component>(true))
-                if (component != null && component is not Transform && component is not Renderer && component is not MeshFilter)
-                    Object.Destroy(component);
-        }
-
-        public void Clear() => Object.Destroy(root.gameObject);
+        { foreach (var c in instance.GetComponentsInChildren<Component>(true)) if (c != null && c is not Transform && c is not Renderer && c is not MeshFilter) UnityEngine.Object.Destroy(c); }
+        public void Clear() => UnityEngine.Object.Destroy(root.gameObject);
     }
 }

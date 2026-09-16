@@ -37,10 +37,19 @@ namespace FlyBrain.UnityBridge
         [Tooltip("Approximate longest rendered dimension, in real-world millimetres.")]
         [Min(.01f)] public float minimumVisualSizeMm = 1f;
         [Min(.01f)] public float maximumVisualSizeMm = 4f;
-        [Tooltip("Millimetres above (positive) or below (negative) the substrate top.")]
-        public float groundingOffsetMm;
+        [Tooltip("Presentation-only depth in millimetres that visible geometry is embedded below the substrate.")]
+        [Min(0f)] public float groundingPenetrationMm = .05f;
         public bool randomRotation = true;
         [Range(0f, 45f)] public float randomTiltDegrees = 8f;
+        [Tooltip("Optional presentation rotation fixes, matched by prefab reference before random yaw/tilt.")]
+        public ClutterOrientationCorrection[] orientationCorrections = Array.Empty<ClutterOrientationCorrection>();
+    }
+
+    [Serializable]
+    public sealed class ClutterOrientationCorrection
+    {
+        public GameObject prefab;
+        public Vector3 eulerAngles;
     }
 
     /// <summary>Presentation-only assets and camera tuning. No value here changes wire/scientific state.</summary>
@@ -60,17 +69,20 @@ namespace FlyBrain.UnityBridge
         [Header("Procedural clutter (presentation only)")]
         [Tooltip("Changing this value produces a different deterministic layout on the next run.")]
         public int clutterSeed = 164;
-        public ClutterCategory rocks = new() { minimumCount = 8, maximumCount = 16,
-            minimumVisualSizeMm = 1f, maximumVisualSizeMm = 4f, randomTiltDegrees = 10f };
-        public ClutterCategory leaves = new() { minimumCount = 5, maximumCount = 10,
-            minimumVisualSizeMm = 3f, maximumVisualSizeMm = 12f, randomTiltDegrees = 12f };
-        public ClutterCategory twigs = new() { minimumCount = 0, maximumCount = 6,
-            minimumVisualSizeMm = 2f, maximumVisualSizeMm = 8f, randomTiltDegrees = 8f };
-        public ClutterCategory organicDebris = new() { minimumCount = 6, maximumCount = 14,
-            minimumVisualSizeMm = 1f, maximumVisualSizeMm = 6f, randomTiltDegrees = 10f };
+        public ClutterCategory rocks = new() { minimumCount = 20, maximumCount = 35,
+            minimumVisualSizeMm = 1f, maximumVisualSizeMm = 7f, groundingPenetrationMm = .15f, randomTiltDegrees = 20f };
+        public ClutterCategory leaves = new() { minimumCount = 20, maximumCount = 40,
+            minimumVisualSizeMm = 2f, maximumVisualSizeMm = 8f, groundingPenetrationMm = .03f, randomTiltDegrees = 15f };
+        public ClutterCategory twigs = new() { minimumCount = 10, maximumCount = 18,
+            minimumVisualSizeMm = 3f, maximumVisualSizeMm = 15f, groundingPenetrationMm = .10f, randomTiltDegrees = 12f };
+        public ClutterCategory organicDebris = new() { minimumCount = 15, maximumCount = 30,
+            minimumVisualSizeMm = 1f, maximumVisualSizeMm = 6f, groundingPenetrationMm = .05f, randomTiltDegrees = 15f };
         [Tooltip("Sparse, larger presentation-only plants discovered in the Organic source folder.")]
-        public ClutterCategory largeVegetation = new() { minimumCount = 1, maximumCount = 3,
-            minimumVisualSizeMm = 15f, maximumVisualSizeMm = 40f, randomTiltDegrees = 2f };
+        public ClutterCategory largeVegetation = new() { minimumCount = 4, maximumCount = 8,
+            minimumVisualSizeMm = 8f, maximumVisualSizeMm = 25f, groundingPenetrationMm = .10f, randomTiltDegrees = 3f };
+        [Tooltip("Tiny renderer-only gravel. The builder assigns reusable rock and organic-debris prefabs here.")]
+        public ClutterCategory microDebris = new() { minimumCount = 25, maximumCount = 60,
+            minimumVisualSizeMm = .3f, maximumVisualSizeMm = 1.5f, groundingPenetrationMm = .05f, randomTiltDegrees = 25f };
         [Range(0f, 1f), Tooltip("Chance that a debris item is positioned near an earlier item instead of uniformly.")]
         public float clutterClusterChance = .68f;
         [Min(.1f)] public float clutterClusterRadiusMm = 8f;
@@ -127,7 +139,7 @@ namespace FlyBrain.UnityBridge
                 Debug.Log($"[FlyBrain Clutter]\nLibrary: {configured.name} (Resources/FlyBrainVisualLibrary)\n" +
                     $"Rocks prefabs: {PrefabCount(configured.rocks)}\nLeaves prefabs: {PrefabCount(configured.leaves)}\n" +
                     $"Twigs prefabs: {PrefabCount(configured.twigs)}\nOrganic prefabs: {PrefabCount(configured.organicDebris)}\n" +
-                    $"Vegetation prefabs: {PrefabCount(configured.largeVegetation)}");
+                    $"Vegetation prefabs: {PrefabCount(configured.largeVegetation)}\nMicro debris prefabs: {PrefabCount(configured.microDebris)}");
                 return configured;
             }
 
@@ -136,8 +148,19 @@ namespace FlyBrain.UnityBridge
             return CreateInstance<VisualPrefabLibrary>();
         }
 
-        public int ClutterPrefabCount => PrefabCount(rocks) + PrefabCount(leaves) + PrefabCount(twigs) +
-            PrefabCount(organicDebris) + PrefabCount(largeVegetation);
+        public int ClutterPrefabCount
+        {
+            get
+            {
+                var unique = new System.Collections.Generic.HashSet<GameObject>();
+                foreach (var category in new[] { rocks, leaves, twigs, organicDebris, largeVegetation, microDebris })
+                    foreach (var prefab in category?.prefabs ?? Array.Empty<GameObject>())
+                        if (prefab != null && prefab.GetComponentInChildren<Renderer>(true) != null) unique.Add(prefab);
+                return unique.Count;
+            }
+        }
+
+        public int PrefabCountFor(ClutterCategory category) => PrefabCount(category);
 
         static int PrefabCount(ClutterCategory category)
         {

@@ -96,53 +96,69 @@ MonoBehaviour:
   rocks:
     enabled: 1
     prefabs: []
-    minimumCount: 7
-    maximumCount: 14
-    minimumVisualSizeMm: 3
-    maximumVisualSizeMm: 10
-    groundingOffsetMm: 0
+    minimumCount: 20
+    maximumCount: 35
+    minimumVisualSizeMm: 1
+    maximumVisualSizeMm: 7
+    groundingPenetrationMm: 0.15
     randomRotation: 1
-    randomTiltDegrees: 10
+    randomTiltDegrees: 20
+    orientationCorrections: []
   leaves:
     enabled: 1
     prefabs: []
-    minimumCount: 6
-    maximumCount: 12
+    minimumCount: 20
+    maximumCount: 40
     minimumVisualSizeMm: 2
     maximumVisualSizeMm: 8
-    groundingOffsetMm: 0
+    groundingPenetrationMm: 0.03
     randomRotation: 1
-    randomTiltDegrees: 12
+    randomTiltDegrees: 15
+    orientationCorrections: []
   twigs:
     enabled: 1
     prefabs: []
-    minimumCount: 2
-    maximumCount: 5
+    minimumCount: 10
+    maximumCount: 18
     minimumVisualSizeMm: 3
     maximumVisualSizeMm: 15
-    groundingOffsetMm: 0
+    groundingPenetrationMm: 0.1
     randomRotation: 1
-    randomTiltDegrees: 7
+    randomTiltDegrees: 12
+    orientationCorrections: []
   organicDebris:
     enabled: 1
     prefabs: []
-    minimumCount: 5
-    maximumCount: 10
+    minimumCount: 15
+    maximumCount: 30
     minimumVisualSizeMm: 1
     maximumVisualSizeMm: 6
-    groundingOffsetMm: 0
+    groundingPenetrationMm: 0.05
     randomRotation: 1
-    randomTiltDegrees: 10
+    randomTiltDegrees: 15
+    orientationCorrections: []
   largeVegetation:
     enabled: 1
     prefabs: []
-    minimumCount: 1
-    maximumCount: 2
-    minimumVisualSizeMm: 15
-    maximumVisualSizeMm: 40
-    groundingOffsetMm: 0
+    minimumCount: 4
+    maximumCount: 8
+    minimumVisualSizeMm: 8
+    maximumVisualSizeMm: 25
+    groundingPenetrationMm: 0.1
     randomRotation: 1
-    randomTiltDegrees: 2
+    randomTiltDegrees: 3
+    orientationCorrections: []
+  microDebris:
+    enabled: 1
+    prefabs: []
+    minimumCount: 25
+    maximumCount: 60
+    minimumVisualSizeMm: 0.3
+    maximumVisualSizeMm: 1.5
+    groundingPenetrationMm: 0.05
+    randomRotation: 1
+    randomTiltDegrees: 25
+    orientationCorrections: []
   clutterClusterChance: 0.68
   clutterClusterRadiusMm: 8
   clutterMinimumSeparationMm: 0.5

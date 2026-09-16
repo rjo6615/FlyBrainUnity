@@ -561,7 +561,9 @@ namespace FlyBrain.UnityBridge
                 $"Substrate ready: {(clutter?.SubstrateReady == true ? "YES" : "NO")}\nGeneration attempted: {(clutter?.GenerationAttempted == true ? "YES" : "NO")}\n" +
                 $"Generation result: {clutter?.ObjectCount ?? 0}\nLast clutter error: {clutter?.LastError ?? "not initialized"}\n" +
                 $"Rocks: {clutter?.Count("Rocks") ?? 0}  Leaves: {clutter?.Count("Leaves") ?? 0}  Twigs: {clutter?.Count("Twigs") ?? 0}\n" +
-                $"Organic: {clutter?.Count("Organic Debris") ?? 0}  Vegetation: {clutter?.Count("Vegetation") ?? 0}\n" +
+                $"Organic Debris: {clutter?.Count("Organic Debris") ?? 0}  Large Vegetation: {clutter?.Count("Large Vegetation") ?? 0}\n" +
+                $"Micro Debris: {clutter?.Count("Micro Debris") ?? 0}\n" +
+                ClutterWarnings() +
                 $"Clutter seed: {visuals.clutterSeed}\nBehavior: {latest?.behavior ?? "--"}";
                 GUI.Box(new Rect(12, 12, 680, 735), text);
             }
@@ -570,6 +572,15 @@ namespace FlyBrain.UnityBridge
                 const string help = "CAMERA / PRESENTATION\nRight Drag     Orbit\nMiddle Drag    Pan\nScroll         Zoom\nDouble Click   Focus Object\nSpace          Focus Fly\nHome           Reset View\nF              Follow Fly\nC              Toggle Clutter\nD              Debug View\nH              Hide Help";
                 GUI.Box(new Rect(Screen.width - 225, 12, 213, 216), help);
             }
+        }
+
+        string ClutterWarnings()
+        {
+            if (clutter == null) return string.Empty;
+            var result = string.Empty;
+            foreach (var category in new[] { "Rocks", "Leaves", "Twigs", "Organic Debris", "Large Vegetation", "Micro Debris" })
+                if (clutter.ShouldWarn(category)) result += $"WARNING: {category} generated 0\n";
+            return result;
         }
 
         /// <summary>Editor hook; rebuilds presentation instances without touching authoritative state.</summary>
