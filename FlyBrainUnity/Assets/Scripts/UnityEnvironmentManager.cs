@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace FlyBrain.UnityBridge
 {
+    public enum ClutterExclusionReason { None, Wall, Sugar, Bitter, Odor, Predator }
+
     public sealed class UnityEnvironmentManager
     {
         readonly Dictionary<string, GameObject> objects = new();
@@ -53,9 +55,41 @@ namespace FlyBrain.UnityBridge
         }
 
         /// <summary>Presentation-only clearance test; authoritative objects are never changed.</summary>
-        public bool IntersectsClutterExclusion(Vector3 point, float clutterRadius, VisualPrefabLibrary settings)
+        public bool IntersectsClutterExclusion(Vector3 point, float clutterRadius, VisualPrefabLibrary settings) =>
+            TryGetClutterExclusion(point, clutterRadius, settings, out _, out _, out _);
+
+        /// <summary>Returns the exact authoritative object footprint which rejected a clutter position.</summary>
+        public bool TryGetClutterExclusion(Vector3 point, float clutterRadius, VisualPrefabLibrary settings,
+            out ClutterExclusionReason reason, out string objectName, out float clearanceRadius)
         {
+            reason = ClutterExclusionReason.None; objectName = string.Empty; clearanceRadius = 0f;
             var point2 = new Vector2(point.x, point.z);
+            foreach (var pair in objects)
+            {
+                if (pair.Value == null || !kinds.TryGetValue(pair.Key, out var kind) || kind == "substrate") continue;
+                var key = (kind ?? string.Empty).ToLowerInvariant().Replace(':', '_');
+                float clearanceMm;
+                ClutterExclusionReason candidate;
+                if (key == "predator") { clearanceMm = settings.predatorClearanceMm; candidate = ClutterExclusionReason.Predator; }
+                else if (key.StartsWith("odor_")) { clearanceMm = settings.odorClearanceMm; candidate = ClutterExclusionReason.Odor; }
+                else if (key == "taste_sugar") { clearanceMm = settings.patchClearanceMm; candidate = ClutterExclusionReason.Sugar; }
+                else if (key == "taste_bitter") { clearanceMm = settings.patchClearanceMm; candidate = ClutterExclusionReason.Bitter; }
+                else if (key == "wall" || key.StartsWith("wall_")) { clearanceMm = settings.wallClearanceMm; candidate = ClutterExclusionReason.Wall; }
+                else continue;
+
+                var bounds = RendererBounds(pair.Value);
+                var closest = new Vector2(Mathf.Clamp(point2.x, bounds.min.x, bounds.max.x),
+                    Mathf.Clamp(point2.y, bounds.min.z, bounds.max.z));
+                clearanceRadius = clearanceMm * WorldVisualScale.UnityUnitsPerMillimetre;
+                if (Vector2.Distance(point2, closest) < clutterRadius + clearanceRadius)
+                { reason = candidate; objectName = pair.Key; return true; }
+            }
+            return false;
+        }
+
+        public string ClutterExclusionReport(VisualPrefabLibrary settings)
+        {
+            var report = new StringBuilder("=== SCIENTIFIC CLUTTER EXCLUSIONS ===");
             foreach (var pair in objects)
             {
                 if (pair.Value == null || !kinds.TryGetValue(pair.Key, out var kind) || kind == "substrate") continue;
@@ -66,14 +100,13 @@ namespace FlyBrain.UnityBridge
                 else if (key == "taste_sugar" || key == "taste_bitter") clearanceMm = settings.patchClearanceMm;
                 else if (key == "wall" || key.StartsWith("wall_")) clearanceMm = settings.wallClearanceMm;
                 else continue;
-
                 var bounds = RendererBounds(pair.Value);
-                var closest = new Vector2(Mathf.Clamp(point2.x, bounds.min.x, bounds.max.x),
-                    Mathf.Clamp(point2.y, bounds.min.z, bounds.max.z));
-                if (Vector2.Distance(point2, closest) < clutterRadius +
-                    clearanceMm * WorldVisualScale.UnityUnitsPerMillimetre) return true;
+                report.Append("\nObject: ").Append(pair.Key).Append("; kind: ").Append(kind)
+                    .Append("; actual XZ bounds: ").Append(bounds.min).Append(" to ").Append(bounds.max)
+                    .Append("; configured clearance: ").Append(clearanceMm.ToString("F2")).Append(" mm / ")
+                    .Append((clearanceMm * WorldVisualScale.UnityUnitsPerMillimetre).ToString("F4")).Append(" Unity units");
             }
-            return false;
+            return report.Append("\n=== END SCIENTIFIC EXCLUSIONS ===").ToString();
         }
 
         /// <summary>

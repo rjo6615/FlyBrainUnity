@@ -79,7 +79,7 @@ namespace FlyBrain.UnityBridge
             minimumVisualSizeMm = 1f, maximumVisualSizeMm = 6f, groundingPenetrationMm = .05f, randomTiltDegrees = 15f };
         [Tooltip("Sparse, larger presentation-only plants discovered in the Organic source folder.")]
         public ClutterCategory largeVegetation = new() { minimumCount = 4, maximumCount = 8,
-            minimumVisualSizeMm = 8f, maximumVisualSizeMm = 25f, groundingPenetrationMm = .10f, randomTiltDegrees = 3f };
+            minimumVisualSizeMm = 15f, maximumVisualSizeMm = 40f, groundingPenetrationMm = .10f, randomTiltDegrees = 3f };
         [Tooltip("Tiny renderer-only gravel. The builder assigns reusable rock and organic-debris prefabs here.")]
         public ClutterCategory microDebris = new() { minimumCount = 25, maximumCount = 60,
             minimumVisualSizeMm = .3f, maximumVisualSizeMm = 1.5f, groundingPenetrationMm = .05f, randomTiltDegrees = 25f };

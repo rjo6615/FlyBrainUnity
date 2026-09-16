@@ -417,7 +417,7 @@ public static class PresentationClutterLibraryBuilder
     {
         Set(l.rocks, 20, 35, 1, 7, 20, .15f); Set(l.leaves, 20, 40, 2, 8, 15, .03f);
         Set(l.twigs, 10, 18, 3, 15, 12, .10f); Set(l.organicDebris, 15, 30, 1, 6, 15, .05f);
-        Set(l.largeVegetation, 4, 8, 8, 25, 3, .10f); Set(l.microDebris, 25, 60, .3f, 1.5f, 25, .05f);
+        Set(l.largeVegetation, 4, 8, 15, 40, 3, .10f); Set(l.microDebris, 25, 60, .3f, 1.5f, 25, .05f);
         l.clutterClusterChance = .55f; l.clutterClusterRadiusMm = 8f;
     }
     static void Set(ClutterCategory c, int minCount, int maxCount, float minSize, float maxSize, float tilt, float penetration)
