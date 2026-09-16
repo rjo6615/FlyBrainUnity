@@ -96,9 +96,15 @@ MonoBehaviour:
   rocks:
     enabled: 1
     prefabs:
-    - {fileID: 2722127690772594777, guid: d004dc671b932fc40917bc6b6440e677, type: 3}
-    minimumCount: 20
-    maximumCount: 35
+    - {fileID: 1613416559856625134, guid: d9e22b7e7e4844c45b716e63355ef879, type: 3}
+    - {fileID: 3276205133118003870, guid: 8e1dce1036f211040bd1067c240a8ad6, type: 3}
+    - {fileID: 1826569620964699329, guid: 33e27437b8098e04d9f33bfdf3a880c3, type: 3}
+    - {fileID: 6530121352716079123, guid: fe3352484b1037940a0db19efed97196, type: 3}
+    - {fileID: 3298419401455780295, guid: ba2483f05e0a04a4cbcf7fe94338eb6f, type: 3}
+    - {fileID: 4655206910698806059, guid: 26d2c63ffec6fe04ebf44d43f2f1e751, type: 3}
+    - {fileID: 117645077182813357, guid: 0f48d2917daf9444a87ae461bf264f03, type: 3}
+    minimumCount: 25
+    maximumCount: 45
     minimumVisualSizeMm: 1
     maximumVisualSizeMm: 7
     groundingPenetrationMm: 0.15
@@ -119,9 +125,11 @@ MonoBehaviour:
   twigs:
     enabled: 1
     prefabs:
-    - {fileID: 4176635041300278764, guid: 5305cca7fb5d1574f8e756064ce8e519, type: 3}
-    minimumCount: 10
-    maximumCount: 18
+    - {fileID: 6186576727026588789, guid: ec6ffaa2cc99ad043a4d1a69cdc66b23, type: 3}
+    - {fileID: 3615509244601061837, guid: a032b4ab4c88fa740889bd87ebacdd72, type: 3}
+    - {fileID: 1388816198685026381, guid: bc7284be276ff9a4f81431131410c7ad, type: 3}
+    minimumCount: 12
+    maximumCount: 25
     minimumVisualSizeMm: 3
     maximumVisualSizeMm: 15
     groundingPenetrationMm: 0.1
@@ -142,9 +150,22 @@ MonoBehaviour:
   largeVegetation:
     enabled: 1
     prefabs:
-    - {fileID: 291725339066703103, guid: 9221f0bfb812d27418d08c2478e6d327, type: 3}
-    - {fileID: 5448451228465369094, guid: 134c3c649539bb64aa5edfc4f877f065, type: 3}
-    - {fileID: 8065842985978442449, guid: 266c2d4c87d23c94ca1a591820015e79, type: 3}
+    - {fileID: 6192844255110581808, guid: 32ffdbe0ade106645950e5ce3da37293, type: 3}
+    - {fileID: 2624979565758816180, guid: d2c15cc7ae3689f4f89434a1f489ba1e, type: 3}
+    - {fileID: 4551809549822641881, guid: 3bc481ecd8e0d1e4a83799cb475001fc, type: 3}
+    - {fileID: 3867637339458478431, guid: cb91246035b7b454a903430b57ffce1c, type: 3}
+    - {fileID: 8147520240154694232, guid: 0ccf0206d904ca24bbef021720675c31, type: 3}
+    - {fileID: 1413403789916652323, guid: a3d6bf660eb717643bb61563894637ac, type: 3}
+    - {fileID: 1044668897704075583, guid: c148879398aeb2f4ea13e615836ad5b2, type: 3}
+    - {fileID: 8034601801711956913, guid: 7904c2319e829c3438b6d83a3468f8d0, type: 3}
+    - {fileID: 4586756780381226269, guid: 51d3ea9c7ae10c445a7d2a800138ea65, type: 3}
+    - {fileID: 7988105712853710338, guid: 18a0677e40fbf2f4d9d6e44eb1eb2238, type: 3}
+    - {fileID: 2389331481277956470, guid: 035f138e9c5a30e4c867c776e99a6a25, type: 3}
+    - {fileID: 4537074040722518825, guid: 23dc08e3113158941a5a45767b88fd83, type: 3}
+    - {fileID: 521971450950576031, guid: cd4ee9bafadbb504d92c7c38c0d70dd0, type: 3}
+    - {fileID: 1126225351357943412, guid: 2cb707429f3c9e24bbe7da7984599efe, type: 3}
+    - {fileID: 4116203531665558990, guid: 70f7cba6002a1624b841f6c2ee427199, type: 3}
+    - {fileID: 513387999664395041, guid: f06752f2963efa2418c77a303e1754e5, type: 3}
     minimumCount: 4
     maximumCount: 8
     minimumVisualSizeMm: 15
@@ -156,16 +177,22 @@ MonoBehaviour:
   microDebris:
     enabled: 1
     prefabs:
-    - {fileID: 2722127690772594777, guid: d004dc671b932fc40917bc6b6440e677, type: 3}
-    minimumCount: 25
-    maximumCount: 60
+    - {fileID: 1613416559856625134, guid: d9e22b7e7e4844c45b716e63355ef879, type: 3}
+    - {fileID: 3276205133118003870, guid: 8e1dce1036f211040bd1067c240a8ad6, type: 3}
+    - {fileID: 1826569620964699329, guid: 33e27437b8098e04d9f33bfdf3a880c3, type: 3}
+    - {fileID: 6530121352716079123, guid: fe3352484b1037940a0db19efed97196, type: 3}
+    - {fileID: 3298419401455780295, guid: ba2483f05e0a04a4cbcf7fe94338eb6f, type: 3}
+    - {fileID: 4655206910698806059, guid: 26d2c63ffec6fe04ebf44d43f2f1e751, type: 3}
+    - {fileID: 117645077182813357, guid: 0f48d2917daf9444a87ae461bf264f03, type: 3}
+    minimumCount: 40
+    maximumCount: 80
     minimumVisualSizeMm: 0.3
     maximumVisualSizeMm: 1.5
     groundingPenetrationMm: 0.05
     randomRotation: 1
     randomTiltDegrees: 25
     orientationCorrections: []
-  clutterClusterChance: 0.68
+  clutterClusterChance: 0.55
   clutterClusterRadiusMm: 8
   clutterMinimumSeparationMm: 0.5
   wallClearanceMm: 1.5
