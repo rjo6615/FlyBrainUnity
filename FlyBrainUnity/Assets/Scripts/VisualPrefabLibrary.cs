@@ -122,7 +122,30 @@ namespace FlyBrain.UnityBridge
         public static VisualPrefabLibrary LoadOrDefault()
         {
             var configured = Resources.Load<VisualPrefabLibrary>("FlyBrainVisualLibrary");
-            return configured != null ? configured : CreateInstance<VisualPrefabLibrary>();
+            if (configured != null)
+            {
+                Debug.Log($"[FlyBrain Clutter]\nLibrary: {configured.name} (Resources/FlyBrainVisualLibrary)\n" +
+                    $"Rocks prefabs: {PrefabCount(configured.rocks)}\nLeaves prefabs: {PrefabCount(configured.leaves)}\n" +
+                    $"Twigs prefabs: {PrefabCount(configured.twigs)}\nOrganic prefabs: {PrefabCount(configured.organicDebris)}\n" +
+                    $"Vegetation prefabs: {PrefabCount(configured.largeVegetation)}");
+                return configured;
+            }
+
+            Debug.LogError("[FlyBrain Clutter] Resources/FlyBrainVisualLibrary could not be loaded. " +
+                "The transient defaults contain no clutter prefabs; run Tools > FlyBrain > Build Clutter Library.");
+            return CreateInstance<VisualPrefabLibrary>();
+        }
+
+        public int ClutterPrefabCount => PrefabCount(rocks) + PrefabCount(leaves) + PrefabCount(twigs) +
+            PrefabCount(organicDebris) + PrefabCount(largeVegetation);
+
+        static int PrefabCount(ClutterCategory category)
+        {
+            if (category?.prefabs == null) return 0;
+            var count = 0;
+            foreach (var prefab in category.prefabs)
+                if (prefab != null && prefab.GetComponentInChildren<Renderer>(true) != null) count++;
+            return count;
         }
     }
 }

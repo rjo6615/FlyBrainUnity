@@ -7,6 +7,7 @@ using UnityEditor;
 using UnityEngine;
 
 /// <summary>Build-time extraction of renderer-only decoration from imported model assets.</summary>
+[InitializeOnLoad]
 public static class PresentationClutterLibraryBuilder
 {
     const string Root = "Assets/Art/Clutter";
@@ -16,11 +17,24 @@ public static class PresentationClutterLibraryBuilder
     static readonly string[] Categories = { "Rocks", "Leaves", "Twigs", "Organic" };
     static readonly string[] ModelExtensions = { ".blend", ".fbx", ".obj", ".dae", ".3ds" };
 
+    static PresentationClutterLibraryBuilder()
+    {
+        EditorApplication.playModeStateChanged += state =>
+        {
+            if (state != PlayModeStateChange.ExitingEditMode) return;
+            var library = AssetDatabase.LoadAssetAtPath<VisualPrefabLibrary>(LibraryPath);
+            if (library != null && library.ClutterPrefabCount > 0) return;
+            Debug.LogWarning("[FlyBrain Clutter Builder] The serialized library has zero valid prefabs. " +
+                "Building it now before Play Mode so runtime cannot silently use empty lists.");
+            Build();
+        };
+    }
+
     [MenuItem("Tools/FlyBrain/Build Clutter Library")]
     public static void Build()
     {
         EnsureFolder(Output); EnsureFolder(Materials);
-        var found = 0; var created = 0; var rejected = new List<string>();
+        var found = 0; var accepted = 0; var created = 0; var rejected = new List<string>();
         var result = Categories.ToDictionary(c => c, _ => new List<GameObject>());
         var vegetation = new List<GameObject>();
 
@@ -32,10 +46,27 @@ public static class PresentationClutterLibraryBuilder
             found++;
             ConfigureImporter(path);
             var model = AssetDatabase.LoadAssetAtPath<GameObject>(path);
-            if (model == null) { rejected.Add($"{path}: Unity did not import a GameObject hierarchy"); continue; }
-            var prefab = Extract(path, model, out var reason);
+            if (model == null)
+            {
+                var blenderHint = Path.GetExtension(path).Equals(".blend", StringComparison.OrdinalIgnoreCase)
+                    ? " Unity cannot convert this .blend file. Install a Blender version supported by this Unity Editor, " +
+                      "restart Unity, and reimport the asset; alternatively export the source as FBX."
+                    : string.Empty;
+                rejected.Add($"{path}: Unity did not import a GameObject hierarchy.{blenderHint}");
+                Debug.LogError($"[FlyBrain Clutter Builder] Import failed: {path}.{blenderHint}");
+                continue;
+            }
+            GameObject prefab;
+            string reason;
+            try { prefab = Extract(path, model, out reason); }
+            catch (Exception exception)
+            {
+                prefab = null;
+                reason = $"prefab extraction threw {exception.GetType().Name}: {exception.Message}";
+                Debug.LogException(exception);
+            }
             if (prefab == null) { rejected.Add($"{path}: {reason}"); continue; }
-            created++;
+            accepted++; created++;
             if (category == "Organic" && IsVegetation(path)) vegetation.Add(prefab);
             else result[category].Add(prefab);
         }
@@ -55,8 +86,21 @@ public static class PresentationClutterLibraryBuilder
         ApplyNaturalDefaults(library);
         EditorUtility.SetDirty(library); AssetDatabase.SaveAssets(); AssetDatabase.Refresh();
 
-        Debug.Log($"[Presentation Clutter Builder] Found {found} source models; created/updated {created} prefabs.\n" +
-                  Report(library) + (rejected.Count == 0 ? "\nRejected: none" : "\nRejected:\n  " + string.Join("\n  ", rejected)));
+        // Save once more after Refresh so the on-disk YAML and imported object agree.
+        EditorUtility.SetDirty(library); AssetDatabase.SaveAssets();
+        var assigned = result.Values.Sum(list => list.Count) + vegetation.Count;
+        var summary = "=== FlyBrain Clutter Build ===\n\n" +
+            $"Sources discovered: {found}\nSources accepted: {accepted}\nSources rejected: {rejected.Count}\n" +
+            $"Generated prefabs: {created}\n\nRocks assigned: {result["Rocks"].Count}\n" +
+            $"Leaves assigned: {result["Leaves"].Count}\nTwigs assigned: {result["Twigs"].Count}\n" +
+            $"Organic assigned: {result["Organic"].Count}\nVegetation assigned: {vegetation.Count}\n\n" +
+            $"Saved library:\n{LibraryPath}" +
+            (rejected.Count == 0 ? "\n\nRejected: none" : "\n\nRejected:\n  " + string.Join("\n  ", rejected));
+        if (created == 0)
+            Debug.LogError(summary + "\n\nERROR: Generated prefabs = 0. The library was not built; inspect the import failures above.");
+        else if (assigned == 0)
+            Debug.LogError(summary + "\n\nERROR: Assigned prefabs = 0. No generated prefab was persisted to the library.");
+        else Debug.Log(summary);
         Validate();
     }
 
