@@ -1,6 +1,7 @@
 import json
 import subprocess
 import unittest
+import warnings
 from array import array
 from types import SimpleNamespace
 
@@ -32,7 +33,11 @@ class NeuralRuntimeTests(unittest.TestCase):
         b=MaleCNSBrain(fixture(),cfg(psp_scale=.3)); self.assertAlmostEqual(float(b.weights[0]),5); self.assertAlmostEqual(b.weight_examples(1)[0]['effective_weight'],1.5)
 
     def test_cutoff_orientation_sign_and_delay(self):
-        b=MaleCNSBrain(fixture(counts=(4,5)),cfg()); self.assertEqual(b.weights[0],0)
+        with warnings.catch_warnings():
+            warnings.simplefilter("error", RuntimeWarning)
+            b=MaleCNSBrain(fixture(counts=(4,5)),cfg())
+        self.assertEqual(b.weights[0],0)
+        np.testing.assert_array_equal(b.region_medians, [1, 1, 1])
         b=MaleCNSBrain(fixture(),cfg()); b.v[0]=-44; self.assertEqual(b.step().tolist(),[0])
         for _ in range(3): b.step(); self.assertEqual(b.g_exc[1],0)
         b.step(); self.assertGreater(b.g_exc[1],0); self.assertEqual(b.g_exc[2],0)
@@ -68,14 +73,24 @@ class NeuralRuntimeTests(unittest.TestCase):
         b=MaleCNSBrain(d,cfg()); self.assertEqual(len(b.v),165_122); self.assertEqual(b.step().size,0); self.assertEqual(b.diagnostics()['nonfinite'],0)
 
     def test_js_reference_parity_fixture(self):
-        # No random drive: this compares every state array and delayed spike timing to lif.js.
-        script='''import {LIFNetwork} from "./fly-brain-main/src/lif.js";
-let b=new LIFNetwork(3,new Uint32Array([0,1,2,2]),new Uint32Array([1,2]),new Uint16Array([5,5]),new Uint8Array([1,2,1]),{dt:.5,vRest:-52,vThresh:-45,vReset:-52,tauM:20,tauSyn:5,tRef:2.2,delay:1.8,wSyn:1,minSyn:5,adaptInc:0,depU:0}); b.v[0]=-44; let o=[]; for(let k=0;k<7;k++){let s=b.step();o.push({v:[...b.v],e:[...b.gE],i:[...b.gI],r:[...b.refr],s:[...s],c:[...b.spikeCount]})} console.log(JSON.stringify(o));'''
-        js=json.loads(subprocess.check_output(['node','--input-type=module','-e',script],text=True))
+        # Generated at test time by the actual lif.js class.  The runner documents
+        # the crucial awake-list setup and also exposes the delayed queue state.
+        js=json.loads(subprocess.check_output(
+            ['node', 'tests/js/lif_reference_fixture.mjs'], text=True))
         py=MaleCNSBrain(fixture(),cfg()); py.v[0]=-44
         for expected in js:
             spikes=py.step(); np.testing.assert_allclose(py.v,expected['v'],rtol=2e-6,atol=2e-6); np.testing.assert_allclose(py.g_exc,expected['e'],rtol=2e-6,atol=2e-6)
             np.testing.assert_allclose(py.g_inh,expected['i'],rtol=2e-6,atol=2e-6); np.testing.assert_allclose(py.refractory,expected['r'],atol=2e-6)
             self.assertEqual(spikes.tolist(),expected['s']); self.assertEqual(py.spike_counts.tolist(),expected['c'])
+            self.assertEqual(py._head,expected['head']); self.assertEqual(py._ring,expected['ring'])
+
+    def test_empty_region_groups_are_finite_without_warnings(self):
+        with warnings.catch_warnings(record=True) as caught:
+            warnings.simplefilter("always")
+            brain = MaleCNSBrain(fixture(), cfg())
+        self.assertFalse([w for w in caught if issubclass(w.category, RuntimeWarning)])
+        np.testing.assert_array_equal(brain.region_medians, [1, 1, 1])
+        self.assertTrue(np.isfinite(brain.region_medians).all())
+        self.assertEqual(brain.diagnostics()['nonfinite'], 0)
 
 if __name__ == '__main__': unittest.main()

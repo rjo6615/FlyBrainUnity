@@ -66,7 +66,14 @@ def region_scales(data, config):
                            else 2 if __import__('re').match(r"^(vnc_|descending|ascending|sensory_ascending|sensory_descending|efferent_)", names[x])
                            else 1 for x in data.superclass_ids), np.uint8, data.neuron_count)
     size = np.asarray(data.neuron_sizes, dtype=np.float32)
-    med = np.asarray([np.median(size[(regions == r) & (size > 0)]) for r in range(3)], np.float32)
+    # Some small fixtures (and potentially incomplete datasets) contain no cells
+    # from one or more regions.  An absent region has no effect on per-neuron
+    # scaling, but taking its median produces warnings and a NaN diagnostic.
+    # Use the neutral size reference for such regions explicitly.
+    med = np.asarray([
+        np.median(values) if (values := size[(regions == r) & (size > 0)]).size else 1.0
+        for r in range(3)
+    ], np.float32)
     ratio = np.where(size > 0, size / med[regions], 1)
     ratio = np.clip(ratio, 1 / config.max_size_scale, config.max_size_scale)
     return np.minimum(config.boost_cap, ratio ** -config.size_alpha).astype(np.float32), regions, med
