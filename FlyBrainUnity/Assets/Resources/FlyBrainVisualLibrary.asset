@@ -147,8 +147,8 @@ MonoBehaviour:
     - {fileID: 8065842985978442449, guid: 266c2d4c87d23c94ca1a591820015e79, type: 3}
     minimumCount: 4
     maximumCount: 8
-    minimumVisualSizeMm: 8
-    maximumVisualSizeMm: 25
+    minimumVisualSizeMm: 15
+    maximumVisualSizeMm: 40
     groundingPenetrationMm: 0.1
     randomRotation: 1
     randomTiltDegrees: 3
