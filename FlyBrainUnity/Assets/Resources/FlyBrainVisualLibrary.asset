@@ -27,6 +27,8 @@ MonoBehaviour:
   substrate:
     prefab: {fileID: 0}
     material: {fileID: 2100000, guid: 3f9111671c1141a4b72721a674da8edc, type: 2}
+    flyBodyMaterial: {fileID: 0}
+    flyWingMaterial: {fileID: 0}
     modelScale: {x: 1, y: 1, z: 1}
     modelRotationOffset: {x: 0, y: 0, z: 0}
     modelPositionOffset: {x: 0, y: 0, z: 0}
@@ -37,6 +39,8 @@ MonoBehaviour:
   wall:
     prefab: {fileID: 0}
     material: {fileID: 0}
+    flyBodyMaterial: {fileID: 0}
+    flyWingMaterial: {fileID: 0}
     modelScale: {x: 1, y: 1, z: 1}
     modelRotationOffset: {x: 0, y: 0, z: 0}
     modelPositionOffset: {x: 0, y: 0, z: 0}
@@ -47,6 +51,8 @@ MonoBehaviour:
   predator:
     prefab: {fileID: 0}
     material: {fileID: 0}
+    flyBodyMaterial: {fileID: 0}
+    flyWingMaterial: {fileID: 0}
     modelScale: {x: 1, y: 1, z: 1}
     modelRotationOffset: {x: 0, y: 0, z: 0}
     modelPositionOffset: {x: 0, y: 0, z: 0}
@@ -57,6 +63,8 @@ MonoBehaviour:
   sugar:
     prefab: {fileID: 0}
     material: {fileID: 0}
+    flyBodyMaterial: {fileID: 0}
+    flyWingMaterial: {fileID: 0}
     modelScale: {x: 1, y: 1, z: 1}
     modelRotationOffset: {x: 0, y: 0, z: 0}
     modelPositionOffset: {x: 0, y: 0, z: 0}
@@ -67,6 +75,8 @@ MonoBehaviour:
   bitter:
     prefab: {fileID: 0}
     material: {fileID: 0}
+    flyBodyMaterial: {fileID: 0}
+    flyWingMaterial: {fileID: 0}
     modelScale: {x: 1, y: 1, z: 1}
     modelRotationOffset: {x: 0, y: 0, z: 0}
     modelPositionOffset: {x: 0, y: 0, z: 0}
@@ -77,6 +87,8 @@ MonoBehaviour:
   foodOdor:
     prefab: {fileID: 0}
     material: {fileID: 0}
+    flyBodyMaterial: {fileID: 0}
+    flyWingMaterial: {fileID: 0}
     modelScale: {x: 1, y: 1, z: 1}
     modelRotationOffset: {x: 0, y: 0, z: 0}
     modelPositionOffset: {x: 0, y: 0, z: 0}
@@ -87,6 +99,8 @@ MonoBehaviour:
   dangerOdor:
     prefab: {fileID: 0}
     material: {fileID: 0}
+    flyBodyMaterial: {fileID: 0}
+    flyWingMaterial: {fileID: 0}
     modelScale: {x: 1, y: 1, z: 1}
     modelRotationOffset: {x: 0, y: 0, z: 0}
     modelPositionOffset: {x: 0, y: 0, z: 0}
