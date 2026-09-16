@@ -13,12 +13,18 @@ namespace FlyBrain.UnityBridge
         readonly List<PlacedDisc> placed = new();
         readonly Vector3 flyInitialPosition;
         readonly Dictionary<string, CategoryDiagnostics> diagnostics = new();
+        readonly List<GroundingRecord> grounded = new();
+        GroundingRecord debugGrounding;
 
         struct PlacedDisc { public Vector2 center; public float radius; }
         public sealed class CategoryDiagnostics
         {
             public int requested, candidates, attempts, boundaryRejected, exclusionRejected,
-                separationRejected, invalidBounds, spawned;
+                separationRejected, invalidBounds, instantiationExceptions, spawned;
+        }
+        sealed class GroundingRecord
+        {
+            public GameObject instance; public string prefabName; public float desiredMinY;
         }
 
         public bool Visible { get; private set; } = true;
@@ -41,10 +47,13 @@ namespace FlyBrain.UnityBridge
         public void Regenerate()
         {
             for (var i = root.childCount - 1; i >= 0; i--) UnityEngine.Object.Destroy(root.GetChild(i).gameObject);
-            placed.Clear(); diagnostics.Clear(); ObjectCount = 0; GenerationAttempted = true; LastError = "none";
+            placed.Clear(); grounded.Clear(); debugGrounding = null; diagnostics.Clear(); ObjectCount = 0; GenerationAttempted = true; LastError = "none";
             SubstrateReady = environment.TryGetSubstrateBounds(out var substrate);
             if (settings == null || settings.ClutterPrefabCount == 0) { Fail("no valid clutter prefabs in Resources/FlyBrainVisualLibrary"); return; }
             if (!SubstrateReady) { Fail("authoritative substrate renderer bounds are not available"); return; }
+
+            Debug.Log($"[Clutter Substrate]\nGameObject: mirrored substrate renderers\n" +
+                $"Renderer bounds: center={substrate.center}, size={substrate.size}\nSubstrate renderer bounds.max.y: {substrate.max.y:F6}");
 
             Debug.Log($"[FlyBrain Clutter Clearances]\nFly clearance: {settings.flyInitialClearanceMm:F2} mm\n" +
                 $"Sugar/Bitter clearance: {settings.patchClearanceMm:F2} mm\nOdor clearance: {settings.odorClearanceMm:F2} mm\n" +
@@ -59,6 +68,7 @@ namespace FlyBrain.UnityBridge
             Scatter("Large Vegetation", settings.largeVegetation, substrate, random);
             Scatter("Micro Debris", settings.microDebris, substrate, random);
             root.gameObject.SetActive(Visible);
+            VerifyGrounding();
             if (ObjectCount == 0) LastError = "placement produced zero instances; see per-category rejection diagnostics";
             Debug.Log($"[Presentation Clutter] Generated {ObjectCount} renderer-only objects (seed {settings.clutterSeed}).");
         }
@@ -71,6 +81,9 @@ namespace FlyBrain.UnityBridge
             var d = new CategoryDiagnostics(); diagnostics[name] = d;
             if (category == null || !category.enabled) { Log(name, d, category == null ? "settings null" : "disabled"); return; }
             var valid = ValidPrefabs(category.prefabs); d.candidates = valid.Count;
+            if (name == "Large Vegetation")
+                Debug.Log("[Clutter:Large Vegetation] Runtime prefab candidates (" + valid.Count + "): " +
+                    (valid.Count == 0 ? "<none>" : string.Join(", ", valid.ConvertAll(p => p.name))));
             var min = Mathf.Max(0, category.minimumCount); var max = Mathf.Max(min, category.maximumCount);
             d.requested = random.Next(min, max + 1);
             if (valid.Count == 0) { Log(name, d, "no prefab references with renderers"); return; }
@@ -88,7 +101,12 @@ namespace FlyBrain.UnityBridge
                 {
                     d.attempts++;
                     var position = CandidatePosition(substrate, sizeMm, name, clusterCenters, random);
-                    var instance = UnityEngine.Object.Instantiate(prefab, group);
+                    GameObject instance;
+                    try { instance = UnityEngine.Object.Instantiate(prefab, group); }
+                    catch (Exception exception)
+                    {
+                        d.instantiationExceptions++; Debug.LogException(exception); continue;
+                    }
                     instance.name = $"{name} {i + 1} [visual only]"; StripNonPresentationComponents(instance);
                     instance.transform.SetPositionAndRotation(position, NativeCorrection(prefab, category, name));
                     if (!TryRendererBounds(instance, out var native) || native.size.sqrMagnitude < 1e-10f)
@@ -98,23 +116,43 @@ namespace FlyBrain.UnityBridge
                     var yaw = category.randomRotation ? Next(random) * 360f : 0f;
                     var tilt = category.randomTiltDegrees;
                     instance.transform.rotation = Quaternion.Euler(LerpTilt(random, tilt), yaw, LerpTilt(random, tilt)) * instance.transform.rotation;
-                    instance.transform.hasChanged = true;
+                    SyncWorldBounds(instance);
                     if (!TryRendererBounds(instance, out var before)) { d.invalidBounds++; UnityEngine.Object.Destroy(instance); break; }
                     var penetration = category.groundingPenetrationMm * WorldVisualScale.UnityUnitsPerMillimetre;
-                    instance.transform.position += Vector3.up * (substrate.max.y - penetration - before.min.y);
+                    var desiredMinY = substrate.max.y - penetration;
+                    var correction = desiredMinY - before.min.y;
+                    var detailed = (name == "Rocks" || name == "Twigs") && !grounded.Exists(r => r.instance != null && r.instance.transform.parent.name == name);
+                    if (detailed) LogGroundingBefore(prefab, instance, before, substrate.max.y, penetration, correction);
+                    instance.transform.position += Vector3.up * correction;
+                    SyncWorldBounds(instance);
                     if (!TryRendererBounds(instance, out var final)) { d.invalidBounds++; UnityEngine.Object.Destroy(instance); break; }
                     var radius = Mathf.Max(final.extents.x, final.extents.z);
                     if (!Inside(substrate, final)) { d.boundaryRejected++; UnityEngine.Object.Destroy(instance); continue; }
                     if (environment.IntersectsClutterExclusion(final.center, radius, settings)) { d.exclusionRejected++; UnityEngine.Object.Destroy(instance); continue; }
                     if (!IsSeparated(final.center, radius)) { d.separationRejected++; UnityEngine.Object.Destroy(instance); continue; }
-                    Debug.Log($"[Clutter Grounding] Category: {name}; Prefab: {prefab.name}; Substrate top Y: {substrate.max.y:F5}; " +
-                        $"Before min Y: {before.min.y:F5}; After min Y: {final.min.y:F5}; Penetration mm: {category.groundingPenetrationMm:F2}; " +
-                        $"Final difference: {final.min.y - (substrate.max.y - penetration):F6}");
+                    if (detailed) Debug.Log($"[Clutter Grounding AFTER]\nRoot world position: {instance.transform.position}\n" +
+                        $"Combined renderer bounds min Y AFTER grounding: {final.min.y:F6}\nFinal error: {final.min.y - desiredMinY:F8}");
                     placed.Add(new PlacedDisc { center = new Vector2(final.center.x, final.center.z), radius = radius });
+                    var record = new GroundingRecord { instance = instance, prefabName = prefab.name, desiredMinY = desiredMinY };
+                    grounded.Add(record); if (debugGrounding == null) debugGrounding = record;
+                    if (!VisibleRenderers(instance).Exists(r => r.enabled && r.gameObject.activeInHierarchy))
+                        Debug.LogError($"[Clutter] Instantiated {prefab.name}, but all of its renderers are invisible/disabled.");
                     d.spawned++; ObjectCount++; accepted = true;
                 }
             }
             Log(name, d, d.spawned == 0 ? "zero spawned; rejection counters above identify the cause" : "complete");
+            if (name == "Large Vegetation")
+                foreach (var prefab in valid)
+                    Debug.Log("=== VEGETATION PIPELINE TRACE ===\n" +
+                        $"Source: Assets/Art/Clutter/Organic/{prefab.name}.fbx\nResolved category: Large Vegetation\n" +
+                        $"Generated prefab: {prefab.name}\nGenerated prefab exists: {prefab != null}\n" +
+                        $"Generated prefab renderer count: {VisibleRenderers(prefab).Count}\nAssigned library category: Large Vegetation\n" +
+                        $"Serialized library reference: {prefab.name}\nRuntime library loaded: {settings != null}\n" +
+                        $"Runtime LargeVegetation prefab count: {valid.Count}\nRequested vegetation instances: {d.requested}\n" +
+                        $"Placement attempts: {d.attempts}\nBoundary rejects: {d.boundaryRejected}\n" +
+                        $"Scientific exclusion rejects: {d.exclusionRejected}\nSeparation rejects: {d.separationRejected}\n" +
+                        $"Invalid bounds rejects: {d.invalidBounds}\nInstantiation exceptions: {d.instantiationExceptions}\n" +
+                        $"Successful vegetation instances: {d.spawned}\n=== END TRACE ===");
         }
 
         Vector3 CandidatePosition(Bounds b, float sizeMm, string category, List<Vector2> centers, System.Random random)
@@ -173,11 +211,69 @@ namespace FlyBrain.UnityBridge
             var message = $"[Clutter:{name}]\n{name} requested: {d.requested}\n{name} prefab candidates: {d.candidates}\n" +
                 $"{name} placement attempts: {d.attempts}\n{name} boundary rejected: {d.boundaryRejected}\n" +
                 $"{name} exclusion rejected: {d.exclusionRejected}\n{name} separation rejected: {d.separationRejected}\n" +
-                $"{name} invalid bounds: {d.invalidBounds}\n{name} successfully spawned: {d.spawned}\nDetail: {detail}";
+                $"{name} invalid bounds: {d.invalidBounds}\n{name} instantiation exceptions: {d.instantiationExceptions}\n" +
+                $"{name} successfully spawned: {d.spawned}\nDetail: {detail}";
             if (d.requested > 0 && d.candidates > 0 && d.spawned == 0) Debug.LogWarning(message); else Debug.Log(message);
         }
+        static List<Renderer> VisibleRenderers(GameObject go)
+        {
+            var result = new List<Renderer>();
+            foreach (var renderer in go.GetComponentsInChildren<Renderer>(true))
+                if (renderer != null && renderer.enabled && ActiveBelowRoot(renderer.transform, go.transform)) result.Add(renderer);
+            return result;
+        }
+        static bool ActiveBelowRoot(Transform transform, Transform rootTransform)
+        {
+            while (transform != null)
+            {
+                if (!transform.gameObject.activeSelf) return false;
+                if (transform == rootTransform) return true;
+                transform = transform.parent;
+            }
+            return false;
+        }
         static bool TryRendererBounds(GameObject go, out Bounds bounds)
-        { var rs = go.GetComponentsInChildren<Renderer>(true); if (rs.Length == 0) { bounds = default; return false; } bounds = rs[0].bounds; for (var i = 1; i < rs.Length; i++) bounds.Encapsulate(rs[i].bounds); return true; }
+        {
+            var rs = VisibleRenderers(go); if (rs.Count == 0) { bounds = default; return false; }
+            bounds = rs[0].bounds; for (var i = 1; i < rs.Count; i++) bounds.Encapsulate(rs[i].bounds); return true;
+        }
+        static void SyncWorldBounds(GameObject instance)
+        {
+            instance.transform.hasChanged = true;
+            Physics.SyncTransforms();
+            foreach (var renderer in instance.GetComponentsInChildren<SkinnedMeshRenderer>(true))
+                renderer.forceMatrixRecalculationPerRender = true;
+        }
+        static void LogGroundingBefore(GameObject prefab, GameObject instance, Bounds before, float substrateTop, float penetration, float correction)
+        {
+            var message = $"[Clutter Grounding BEFORE]\nPrefab name: {prefab.name}\nRoot world position: {instance.transform.position}\n" +
+                $"Root world rotation: {instance.transform.rotation.eulerAngles}\nRoot lossy scale: {instance.transform.lossyScale}\n";
+            foreach (var renderer in VisibleRenderers(instance))
+                message += $"Renderer: {renderer.name}; type={renderer.GetType().Name}; minY={renderer.bounds.min.y:F6}; " +
+                    $"maxY={renderer.bounds.max.y:F6}; center={renderer.bounds.center}; size={renderer.bounds.size}\n";
+            Debug.Log(message + $"Combined renderer bounds min Y BEFORE grounding: {before.min.y:F6}\n" +
+                $"Substrate top world Y: {substrateTop:F6}\nConfigured penetration in Unity units: {penetration:F6}\n" +
+                $"Calculated vertical correction: {correction:F6}");
+        }
+        void VerifyGrounding()
+        {
+            Physics.SyncTransforms(); float maximum = 0f, total = 0f; var checkedCount = 0; var outside = 0;
+            foreach (var record in grounded)
+            {
+                if (record.instance == null || !TryRendererBounds(record.instance, out var bounds)) continue;
+                var error = Mathf.Abs(bounds.min.y - record.desiredMinY); maximum = Mathf.Max(maximum, error); total += error; checkedCount++;
+                if (error > .002f) { outside++; Debug.LogError($"GROUNDING FAILURE: {record.prefabName} final error={error:F8}"); }
+            }
+            Debug.Log($"=== CLUTTER GROUNDING VERIFICATION ===\nMaximum grounding error: {maximum:F8}\n" +
+                $"Average grounding error: {(checkedCount == 0 ? 0f : total / checkedCount):F8}\nObjects outside tolerance: {outside}\n=== END GROUNDING VERIFICATION ===");
+        }
+        public void DrawGroundingDebug()
+        {
+            if (debugGrounding?.instance == null || !TryRendererBounds(debugGrounding.instance, out var bounds)) return;
+            const float length = .03f; var center = bounds.center;
+            Debug.DrawLine(new Vector3(center.x - length, debugGrounding.desiredMinY, center.z), new Vector3(center.x + length, debugGrounding.desiredMinY, center.z), Color.green);
+            Debug.DrawLine(new Vector3(center.x, bounds.min.y, center.z - length), new Vector3(center.x, bounds.min.y, center.z + length), Color.red);
+        }
         static void StripNonPresentationComponents(GameObject instance)
         { foreach (var c in instance.GetComponentsInChildren<Component>(true)) if (c != null && c is not Transform && c is not Renderer && c is not MeshFilter) UnityEngine.Object.Destroy(c); }
         public void Clear() => UnityEngine.Object.Destroy(root.gameObject);

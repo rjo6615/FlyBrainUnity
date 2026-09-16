@@ -95,7 +95,8 @@ MonoBehaviour:
   clutterSeed: 164
   rocks:
     enabled: 1
-    prefabs: []
+    prefabs:
+    - {fileID: 2722127690772594777, guid: d004dc671b932fc40917bc6b6440e677, type: 3}
     minimumCount: 20
     maximumCount: 35
     minimumVisualSizeMm: 1
@@ -117,7 +118,8 @@ MonoBehaviour:
     orientationCorrections: []
   twigs:
     enabled: 1
-    prefabs: []
+    prefabs:
+    - {fileID: 4176635041300278764, guid: 5305cca7fb5d1574f8e756064ce8e519, type: 3}
     minimumCount: 10
     maximumCount: 18
     minimumVisualSizeMm: 3
@@ -139,7 +141,10 @@ MonoBehaviour:
     orientationCorrections: []
   largeVegetation:
     enabled: 1
-    prefabs: []
+    prefabs:
+    - {fileID: 291725339066703103, guid: 9221f0bfb812d27418d08c2478e6d327, type: 3}
+    - {fileID: 5448451228465369094, guid: 134c3c649539bb64aa5edfc4f877f065, type: 3}
+    - {fileID: 8065842985978442449, guid: 266c2d4c87d23c94ca1a591820015e79, type: 3}
     minimumCount: 4
     maximumCount: 8
     minimumVisualSizeMm: 8
@@ -150,7 +155,8 @@ MonoBehaviour:
     orientationCorrections: []
   microDebris:
     enabled: 1
-    prefabs: []
+    prefabs:
+    - {fileID: 2722127690772594777, guid: d004dc671b932fc40917bc6b6440e677, type: 3}
     minimumCount: 25
     maximumCount: 60
     minimumVisualSizeMm: 0.3
