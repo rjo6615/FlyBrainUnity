@@ -68,6 +68,12 @@ namespace FlyBrain.UnityBridge
             minimumVisualSizeMm = 2f, maximumVisualSizeMm = 8f, randomTiltDegrees = 8f };
         public ClutterCategory organicDebris = new() { minimumCount = 6, maximumCount = 14,
             minimumVisualSizeMm = 1f, maximumVisualSizeMm = 6f, randomTiltDegrees = 10f };
+        [Tooltip("Sparse, larger presentation-only plants discovered in the Organic source folder.")]
+        public ClutterCategory largeVegetation = new() { minimumCount = 1, maximumCount = 3,
+            minimumVisualSizeMm = 15f, maximumVisualSizeMm = 40f, randomTiltDegrees = 2f };
+        [Range(0f, 1f), Tooltip("Chance that a debris item is positioned near an earlier item instead of uniformly.")]
+        public float clutterClusterChance = .68f;
+        [Min(.1f)] public float clutterClusterRadiusMm = 8f;
         [Min(0f)] public float clutterMinimumSeparationMm = .5f;
         [Min(0f)] public float wallClearanceMm = 1.5f;
         [Min(0f)] public float flyInitialClearanceMm = 4f;
