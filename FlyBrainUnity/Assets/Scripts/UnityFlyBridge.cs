@@ -61,6 +61,7 @@ namespace FlyBrain.UnityBridge
         bool cameraHelpVisible;
         bool overviewHasManualFocus;
         bool environmentDefinitionReceived;
+        bool flyMaterialsValid;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Install()
@@ -427,6 +428,8 @@ namespace FlyBrain.UnityBridge
                 new Vector3(.045f, .045f, .34f), Color.cyan);
             }
             flyRenderers = flyProxy.GetComponentsInChildren<Renderer>();
+            flyMaterialsValid = FlyMaterialValidation.Validate(flyRenderers, out var materialReason);
+            Debug.Log($"[Fly Materials] {(flyMaterialsValid ? "OK" : "MISSING/INVALID")}: {materialReason}");
         }
 
         Bounds CombinedRendererBounds()
@@ -542,7 +545,8 @@ namespace FlyBrain.UnityBridge
                 $"Simulation time: {(latest == null ? "--" : latest.time.ToString("F3"))} s\nState rate: {updatesPerSecond:F1} Hz\n" +
                 $"Raw Python fly position: {raw}\nConverted Unity fly position: {converted}\n" +
                 $"Fly GameObject active: {(flyProxy != null && flyProxy.gameObject.activeInHierarchy ? "yes" : "no")}\n" +
-                $"Fly renderer active: {(rendererActive ? "yes" : "no")}\nEnvironment sync: {(environment?.IsSynchronized == true ? "yes" : "no")}\n" +
+                $"Fly renderer active: {(rendererActive ? "yes" : "no")}\n" +
+                $"Fly materials: {(flyMaterialsValid ? "OK" : "MISSING/INVALID")}\nEnvironment sync: {(environment?.IsSynchronized == true ? "yes" : "no")}\n" +
                 $"Environment object count: {environment?.ObjectCount ?? 0}/{environment?.DefinitionObjectCount ?? 0}\nCamera mode: {cameraMode} (F to switch)\n" +
                 $"Fly root/body world: {flyProxy?.position.ToString() ?? "--"} / {(flyRenderers != null && flyRenderers.Length > 0 ? flyRenderers[0].transform.position.ToString() : "--")}\n" +
                 $"Fly root/body scale: {flyProxy?.localScale.ToString() ?? "--"} / {(flyRenderers != null && flyRenderers.Length > 0 ? flyRenderers[0].transform.localScale.ToString() : "--")}\n" +
