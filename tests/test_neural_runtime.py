@@ -8,6 +8,7 @@ from types import SimpleNamespace
 import numpy as np
 
 from malecns_backend.neural import MaleCNSBrain, ModelConfig, NT_NAMES, NT_SIGN
+from malecns_backend.neural_audit import controlled_propagation_audit
 
 
 def fixture(signs=(1, -1, 1), counts=(5, 5)):
@@ -46,6 +47,16 @@ class NeuralRuntimeTests(unittest.TestCase):
         b=MaleCNSBrain(fixture(signs=(-1,1,1)),cfg()); b.v[0]=-44; b.step()
         for _ in range(4): b.step()
         self.assertLess(b.g_inh[1],0); self.assertEqual(b.g_exc[1],0)
+
+    def test_controlled_propagation_audit(self):
+        d=fixture(); d.neuron_count=7; d.row_ptr=array('I',[0,6,6,6,6,6,6,6]); d.target_indices=array('I',range(1,7)); d.synapse_counts=array('H',[6]*6)
+        d.neuron_sizes=array('f',[1]*7); d.nt_signs=array('f',[1]*7); d.neurotransmitter_ids=array('B',[1]*7)
+        d.superclass_ids=array('B',[0]*7); d.class_ids=array('H',[0]*7); d.types=['x']*7; d.body_ids=array('q',range(10,80,10))
+        b=MaleCNSBrain(d,cfg(min_synapses=6)); report=controlled_propagation_audit(b,minimum_targets=6)
+        self.assertEqual(report['stimulated_body_ids'],[10]); self.assertEqual(report['stimulated_spikes'],1)
+        self.assertEqual(report['pre_delay_max_abs_delta'],{'excitatory_state':0.0,'inhibitory_state':0.0})
+        self.assertEqual(report['targets_receiving_nonzero_synaptic_response'],6)
+        self.assertGreater(report['maximum_excitatory_state_delta'],0); self.assertGreater(report['maximum_absolute_postsynaptic_voltage_delta'],0)
 
     def test_threshold_reset_refractory_and_reset(self):
         b=MaleCNSBrain(fixture(),cfg()); b.v[0]=-44; b.step(); self.assertEqual(b.v[0],-52); self.assertGreater(b.refractory[0],0)
