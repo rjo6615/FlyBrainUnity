@@ -32,7 +32,8 @@ public static class PresentationClutterLibraryBuilder
             var serializedVegetation = new HashSet<string>((library?.largeVegetation?.prefabs ?? Array.Empty<GameObject>())
                 .Where(prefab => prefab != null).Select(prefab => prefab.name), StringComparer.OrdinalIgnoreCase);
             var libraryIsCurrent = library != null && library.ClutterPrefabCount > 0 &&
-                vegetationSources.All(source => serializedVegetation.Contains(Path.GetFileNameWithoutExtension(source.Path)));
+                vegetationSources.All(source => serializedVegetation.Any(name =>
+                    name.StartsWith(Path.GetFileNameWithoutExtension(source.Path) + "_plant_", StringComparison.OrdinalIgnoreCase)));
             if (libraryIsCurrent) return;
             Debug.LogWarning("[FlyBrain Clutter Builder] The serialized library is empty or is missing a discovered vegetation FBX. " +
                 "Rebuilding it before Play Mode so an older non-empty library cannot hide new plant assets.");
@@ -44,6 +45,7 @@ public static class PresentationClutterLibraryBuilder
     public static void Build()
     {
         EnsureFolder(Output); EnsureFolder(Materials);
+        DeleteGeneratedPrefabs();
         var sources = DiscoverSources();
         var fbxSources = sources.Where(s => s.Extension == ".fbx").ToArray();
         var acceptedFbx = 0; var created = 0; var rejected = new List<string>();
@@ -65,23 +67,23 @@ public static class PresentationClutterLibraryBuilder
                 Debug.LogError($"[FlyBrain Clutter Builder] Import failed: {path}.{blenderHint}");
                 continue;
             }
-            GameObject prefab;
+            List<GameObject> prefabs;
             string reason;
-            try { prefab = Extract(path, model, out reason); }
+            try { prefabs = Extract(path, model, sourceInfo.RuntimeCategory, out reason); }
             catch (Exception exception)
             {
-                prefab = null;
+                prefabs = null;
                 reason = $"prefab extraction threw {exception.GetType().Name}: {exception.Message}";
                 Debug.LogException(exception);
             }
-            if (prefab == null) { rejected.Add($"{path}: {reason}"); continue; }
+            if (prefabs == null || prefabs.Count == 0) { rejected.Add($"{path}: {reason}"); continue; }
             if (sourceInfo.Extension == ".fbx") acceptedFbx++;
-            created++;
-            if (sourceInfo.RuntimeCategory == "Large Vegetation") vegetation.Add(prefab);
-            else result[sourceInfo.RuntimeCategory].Add(prefab);
-            var bounds = CombinedLocalBounds(prefab);
+            created += prefabs.Count;
+            if (sourceInfo.RuntimeCategory == "Large Vegetation") vegetation.AddRange(prefabs);
+            else result[sourceInfo.RuntimeCategory].AddRange(prefabs);
+            var bounds = CombinedLocalBounds(prefabs[0]);
             Debug.Log($"[FlyBrain Clutter Asset]\nSource: {path}\nSource folder: {sourceInfo.SourceFolder}\n" +
-                $"Resolved runtime category: {sourceInfo.RuntimeCategory}\nGenerated prefab: {AssetDatabase.GetAssetPath(prefab)}\n" +
+                $"Resolved runtime category: {sourceInfo.RuntimeCategory}\nGenerated variants: {prefabs.Count}\n" +
                 $"Valid renderers: YES\nNative renderer bounds: center {bounds.center}, size {bounds.size}\n" +
                 "Material conversion: succeeded (URP/Lit)\nResult: ACCEPTED");
         }
@@ -107,9 +109,9 @@ public static class PresentationClutterLibraryBuilder
         foreach (var source in sources.Where(source => source.RuntimeCategory == "Large Vegetation"))
         {
             var sourceName = Path.GetFileNameWithoutExtension(source.Path);
-            var generatedPath = $"{Output}/{Sanitize(sourceName)}.prefab";
-            var generated = AssetDatabase.LoadAssetAtPath<GameObject>(generatedPath);
-            var serialized = library?.largeVegetation?.prefabs?.FirstOrDefault(prefab => prefab != null && prefab.name == sourceName);
+            var serialized = library?.largeVegetation?.prefabs?.FirstOrDefault(prefab => prefab != null && prefab.name.StartsWith(sourceName + "_"));
+            var generatedPath = serialized == null ? "MISSING" : AssetDatabase.GetAssetPath(serialized);
+            var generated = serialized;
             var rendererCount = generated == null ? 0 : generated.GetComponentsInChildren<Renderer>(true).Length;
             Debug.Log("=== VEGETATION PIPELINE TRACE ===\n" +
                 $"Source: {source.Path}\nResolved category: {source.RuntimeCategory}\nGenerated prefab: {generatedPath}\n" +
@@ -164,51 +166,97 @@ public static class PresentationClutterLibraryBuilder
             bridge.RegeneratePresentationClutter();
     }
 
-    static GameObject Extract(string sourcePath, GameObject source, out string reason)
+    static List<GameObject> Extract(string sourcePath, GameObject source, string category, out string reason)
     {
-        var clone = UnityEngine.Object.Instantiate(source);
-        clone.name = Path.GetFileNameWithoutExtension(sourcePath);
-        foreach (var renderer in clone.GetComponentsInChildren<Renderer>(true))
-            if (IsPreview(renderer.gameObject.name)) UnityEngine.Object.DestroyImmediate(renderer.gameObject);
-
-        foreach (var renderer in clone.GetComponentsInChildren<Renderer>(true))
-            if (!HasRenderableMesh(renderer)) UnityEngine.Object.DestroyImmediate(renderer);
-
-        foreach (var component in clone.GetComponentsInChildren<Component>(true).Reverse())
-            if (component != null && component is not Transform && component is not Renderer && component is not MeshFilter)
-                UnityEngine.Object.DestroyImmediate(component);
-        var requiredTransforms = new HashSet<Transform>();
-        foreach (var renderer in clone.GetComponentsInChildren<Renderer>(true))
-        {
-            AddAncestors(renderer.transform, clone.transform, requiredTransforms);
-            if (renderer is SkinnedMeshRenderer skinned)
-                foreach (var bone in skinned.bones.Where(bone => bone != null))
-                    AddAncestors(bone, clone.transform, requiredTransforms);
-        }
-        RemoveEmptyBranches(clone.transform, requiredTransforms);
-        var renderers = clone.GetComponentsInChildren<Renderer>(true);
+        LogSourceHierarchy(sourcePath, source);
+        var groups = LogicalGroups(source).ToArray();
+        var renderers = groups.SelectMany(group => group.GetComponentsInChildren<Renderer>(true)).Where(HasRenderableMesh).ToArray();
         if (renderers.Length == 0)
         {
-            UnityEngine.Object.DestroyImmediate(clone); reason = "no usable renderers after cameras/lights/helpers/preview shapes were removed"; return null;
+            reason = "no usable renderers after cameras/lights/helpers/preview shapes were removed"; return null;
         }
         if (renderers.Any(r => r.sharedMaterials.Length == 0 || r.sharedMaterials.Any(m => m == null)))
             Debug.LogWarning($"[Presentation Clutter Builder] {sourcePath}: one or more mesh slots had no material; assigning a generated URP material.");
         var material = BuildMaterial(sourcePath, renderers);
+        var output = new List<GameObject>(); var stem = Path.GetFileNameWithoutExtension(sourcePath);
+        for (var index = 0; index < groups.Length; index++)
+        {
+            var suffix = category == "Rocks" ? "rock" : category == "Twigs" ? "branch" : "plant";
+            var root = new GameObject($"{stem}_{suffix}_{index + 1:00}");
+            var content = UnityEngine.Object.Instantiate(groups[index].gameObject, root.transform, false);
+            content.name = groups[index].name;
+            StripToPresentation(root);
+            var groupRenderers = root.GetComponentsInChildren<Renderer>(true).Where(HasRenderableMesh).ToArray();
+            if (groupRenderers.Length == 0) { UnityEngine.Object.DestroyImmediate(root); continue; }
+            foreach (var renderer in groupRenderers)
+            {
+                var count = Math.Max(1, renderer.sharedMaterials.Length);
+                renderer.sharedMaterials = Enumerable.Repeat(material, count).ToArray();
+                renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On; renderer.receiveShadows = true;
+            }
+            NormalizeVisibleGeometry(root, content.transform);
+            var prefabPath = $"{Output}/{Sanitize(root.name)}.prefab";
+            var prefab = PrefabUtility.SaveAsPrefabAsset(root, prefabPath); output.Add(prefab);
+            var meshes = groupRenderers.Select(RendererMesh).Where(mesh => mesh != null).ToArray();
+            var bounds = CombinedLocalBounds(prefab);
+            Debug.Log($"[FlyBrain Clutter Builder] Generated {prefab.name} from {sourcePath}: {groupRenderers.Length} renderer(s), " +
+                $"{meshes.Sum(mesh => mesh.vertexCount)} vertices; normalized bounds center={bounds.center}, minY={bounds.min.y:F8}.");
+            UnityEngine.Object.DestroyImmediate(root);
+        }
+        reason = output.Count == 0 ? "logical groups contained no renderable meshes" : null; return output;
+    }
+
+    static IEnumerable<Transform> LogicalGroups(GameObject source)
+    {
+        // Megascans set FBXs place each complete variant under a distinct top-level transform.
+        // All renderers below such a transform stay together, so multi-mesh plants are never split by renderer.
+        for (var i = 0; i < source.transform.childCount; i++)
+        {
+            var child = source.transform.GetChild(i);
+            if (!IsPreview(child.name) && child.GetComponentsInChildren<Renderer>(true).Any(HasRenderableMesh)) yield return child;
+        }
+        if (source.transform.childCount == 0 && source.GetComponents<Renderer>().Any(HasRenderableMesh)) yield return source.transform;
+    }
+
+    static void NormalizeVisibleGeometry(GameObject root, Transform content)
+    {
+        root.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity); root.transform.localScale = Vector3.one;
+        var bounds = CombinedWorldBounds(root);
+        content.position += new Vector3(-bounds.center.x, -bounds.min.y, -bounds.center.z);
+    }
+
+    static Bounds CombinedWorldBounds(GameObject go)
+    {
+        var renderers = go.GetComponentsInChildren<Renderer>(true).Where(HasRenderableMesh).ToArray();
+        var bounds = renderers[0].bounds; for (var i = 1; i < renderers.Length; i++) bounds.Encapsulate(renderers[i].bounds); return bounds;
+    }
+
+    static void StripToPresentation(GameObject root)
+    {
+        foreach (var component in root.GetComponentsInChildren<Component>(true).Reverse())
+            if (component != null && component is not Transform && component is not Renderer && component is not MeshFilter)
+                UnityEngine.Object.DestroyImmediate(component);
+    }
+
+    static void LogSourceHierarchy(string path, GameObject source)
+    {
+        var renderers = source.GetComponentsInChildren<Renderer>(true).Where(HasRenderableMesh).ToArray();
+        var message = $"=== CLUTTER SOURCE HIERARCHY ===\nSOURCE: {path}\nRenderable child count: {renderers.Length}";
         foreach (var renderer in renderers)
         {
-            var count = Math.Max(1, renderer.sharedMaterials.Length);
-            renderer.sharedMaterials = Enumerable.Repeat(material, count).ToArray();
-            renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
-            renderer.receiveShadows = true;
+            var mesh = RendererMesh(renderer); var hierarchy = renderer.name; var parent = renderer.transform.parent;
+            while (parent != null && parent != source.transform) { hierarchy = parent.name + "/" + hierarchy; parent = parent.parent; }
+            message += $"\n--- RENDERABLE ---\nHierarchy path: {source.name}/{hierarchy}\nMesh name: {mesh.name}\nRenderer name: {renderer.name}" +
+                $"\nLocal position: {renderer.transform.localPosition}\nWorld/source position: {renderer.transform.position}" +
+                $"\nLocal rotation: {renderer.transform.localRotation.eulerAngles}\nLocal scale: {renderer.transform.localScale}" +
+                $"\nRenderer bounds center: {renderer.bounds.center}\nRenderer bounds size: {renderer.bounds.size}\nVertex count: {mesh.vertexCount}";
         }
-        var prefabPath = $"{Output}/{Sanitize(clone.name)}.prefab";
-        var prefab = PrefabUtility.SaveAsPrefabAsset(clone, prefabPath);
-        var meshes = renderers.Select(RendererMesh).Where(mesh => mesh != null).ToArray();
-        Debug.Log($"[FlyBrain Clutter Builder] Accepted {sourcePath}: {renderers.Length} renderer(s), " +
-            $"{meshes.Length} mesh(es), {meshes.Sum(mesh => mesh.vertexCount)} vertices; material {AssetDatabase.GetAssetPath(material)}.");
-        UnityEngine.Object.DestroyImmediate(clone);
-        reason = null;
-        return prefab;
+        Debug.Log(message + "\n=== END CLUTTER SOURCE HIERARCHY ===");
+    }
+
+    static void DeleteGeneratedPrefabs()
+    {
+        foreach (var path in AssetDatabase.FindAssets("t:Prefab", new[] { Output }).Select(AssetDatabase.GUIDToAssetPath)) AssetDatabase.DeleteAsset(path);
     }
 
     static bool HasRenderableMesh(Renderer renderer) => RendererMesh(renderer) != null;
@@ -415,9 +463,9 @@ public static class PresentationClutterLibraryBuilder
 
     static void ApplyNaturalDefaults(VisualPrefabLibrary l)
     {
-        Set(l.rocks, 20, 35, 1, 7, 20, .15f); Set(l.leaves, 20, 40, 2, 8, 15, .03f);
-        Set(l.twigs, 10, 18, 3, 15, 12, .10f); Set(l.organicDebris, 15, 30, 1, 6, 15, .05f);
-        Set(l.largeVegetation, 4, 8, 15, 40, 3, .10f); Set(l.microDebris, 25, 60, .3f, 1.5f, 25, .05f);
+        Set(l.rocks, 25, 45, 1, 7, 20, .15f); Set(l.leaves, 20, 40, 2, 8, 15, .03f);
+        Set(l.twigs, 12, 25, 3, 15, 12, .10f); Set(l.organicDebris, 15, 30, 1, 6, 15, .05f);
+        Set(l.largeVegetation, 4, 8, 15, 40, 3, .10f); Set(l.microDebris, 40, 80, .3f, 1.5f, 25, .05f);
         l.clutterClusterChance = .55f; l.clutterClusterRadiusMm = 8f;
     }
     static void Set(ClutterCategory c, int minCount, int maxCount, float minSize, float maxSize, float tilt, float penetration)
@@ -437,26 +485,10 @@ public static class PresentationClutterLibraryBuilder
     }
     static bool IsVegetation(string path) => ResolveCategory(path) == "Large Vegetation";
     static bool SourceExists(string prefabName) => AssetDatabase.FindAssets("t:Model", new[] { Root })
-        .Select(AssetDatabase.GUIDToAssetPath).Any(p => Path.GetExtension(p).Equals(".fbx", StringComparison.OrdinalIgnoreCase) && Path.GetFileNameWithoutExtension(p) == prefabName);
+        .Select(AssetDatabase.GUIDToAssetPath).Any(p => Path.GetExtension(p).Equals(".fbx", StringComparison.OrdinalIgnoreCase) &&
+            prefabName.StartsWith(Path.GetFileNameWithoutExtension(p) + "_", StringComparison.OrdinalIgnoreCase));
     static bool IsPreview(string name) { var n = name.ToLowerInvariant(); return n.Contains("preview") || n.Contains("material_ball") || n.Contains("uv_sphere") || n.Contains("material preview"); }
     static string Sanitize(string value) => string.Concat(value.Select(c => char.IsLetterOrDigit(c) || c == '_' || c == '-' ? c : '_'));
-    static void AddAncestors(Transform transform, Transform root, HashSet<Transform> required)
-    {
-        while (transform != null)
-        {
-            required.Add(transform);
-            if (transform == root) break;
-            transform = transform.parent;
-        }
-    }
-    static void RemoveEmptyBranches(Transform parent, HashSet<Transform> required)
-    {
-        for (var i = parent.childCount - 1; i >= 0; i--)
-        {
-            var child = parent.GetChild(i); RemoveEmptyBranches(child, required);
-            if (!required.Contains(child)) UnityEngine.Object.DestroyImmediate(child.gameObject);
-        }
-    }
     static void EnsureFolder(string path)
     {
         var parts = path.Split('/'); var current = parts[0];
