@@ -96,38 +96,38 @@ MonoBehaviour:
   rocks:
     enabled: 1
     prefabs: []
-    minimumCount: 8
-    maximumCount: 16
-    minimumVisualSizeMm: 1
-    maximumVisualSizeMm: 4
+    minimumCount: 7
+    maximumCount: 14
+    minimumVisualSizeMm: 3
+    maximumVisualSizeMm: 10
     groundingOffsetMm: 0
     randomRotation: 1
     randomTiltDegrees: 10
   leaves:
     enabled: 1
     prefabs: []
-    minimumCount: 5
-    maximumCount: 10
-    minimumVisualSizeMm: 3
-    maximumVisualSizeMm: 12
+    minimumCount: 6
+    maximumCount: 12
+    minimumVisualSizeMm: 2
+    maximumVisualSizeMm: 8
     groundingOffsetMm: 0
     randomRotation: 1
     randomTiltDegrees: 12
   twigs:
     enabled: 1
     prefabs: []
-    minimumCount: 0
-    maximumCount: 6
-    minimumVisualSizeMm: 2
-    maximumVisualSizeMm: 8
+    minimumCount: 2
+    maximumCount: 5
+    minimumVisualSizeMm: 3
+    maximumVisualSizeMm: 15
     groundingOffsetMm: 0
     randomRotation: 1
-    randomTiltDegrees: 8
+    randomTiltDegrees: 7
   organicDebris:
     enabled: 1
     prefabs: []
-    minimumCount: 6
-    maximumCount: 14
+    minimumCount: 5
+    maximumCount: 10
     minimumVisualSizeMm: 1
     maximumVisualSizeMm: 6
     groundingOffsetMm: 0
