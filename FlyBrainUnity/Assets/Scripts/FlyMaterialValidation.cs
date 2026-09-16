@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -7,34 +9,50 @@ namespace FlyBrain.UnityBridge
     /// <summary>Runtime-safe material checks shared by the debug HUD and editor validator.</summary>
     public static class FlyMaterialValidation
     {
-        public const string BodyMaterialName = "TheFly URP";
-        public const string WingMaterialName = "Wings URP";
+        public const string BodyMaterialName = "TheFly_URP";
+        public const string WingMaterialName = "Wings_URP";
 
         public static bool Validate(Renderer[] renderers, out string reason)
         {
-            if (renderers == null || renderers.Length == 0) { reason = "no renderers"; return false; }
+            var failures = new List<string>();
+            if (renderers == null || renderers.Length == 0) failures.Add("renderer missing: live fly has no renderers");
             var body = false; var wings = false;
-            foreach (var renderer in renderers)
+            foreach (var renderer in renderers ?? Array.Empty<Renderer>())
             {
-                if (renderer == null) { reason = "null renderer"; return false; }
+                if (renderer == null) { failures.Add("renderer missing: null renderer entry"); continue; }
                 var mesh = MeshFor(renderer);
-                if (mesh == null || !mesh.HasVertexAttribute(VertexAttribute.TexCoord0)) { reason = $"{renderer.name}: missing UV0"; return false; }
+                if (mesh == null) failures.Add($"{renderer.name}: mesh missing");
+                else if (!mesh.HasVertexAttribute(VertexAttribute.TexCoord0) || mesh.uv == null || mesh.uv.Length != mesh.vertexCount)
+                    failures.Add($"{renderer.name}/{mesh.name}: UV0 missing or count {mesh.uv?.Length ?? 0} != vertex count {mesh.vertexCount}");
                 var materials = renderer.sharedMaterials;
-                if (materials.Length == 0) { reason = $"{renderer.name}: no material slots"; return false; }
-                foreach (var material in materials)
+                if (materials.Length == 0) failures.Add($"{renderer.name}: no material slots");
+                for (var slot = 0; slot < materials.Length; slot++)
                 {
-                    if (material == null || material.shader == null || !material.shader.isSupported) { reason = $"{renderer.name}: missing/unsupported material"; return false; }
-                    if (!material.shader.name.Equals("Universal Render Pipeline/Lit", StringComparison.Ordinal)) { reason = $"{material.name}: not URP/Lit"; return false; }
-                    if (!material.HasProperty("_BaseMap") || material.GetTexture("_BaseMap") == null) { reason = $"{material.name}: missing Base Map"; return false; }
-                    if (material.name.StartsWith(BodyMaterialName, StringComparison.Ordinal)) body = material.GetTexture("_BumpMap") != null;
-                    if (material.name.StartsWith(WingMaterialName, StringComparison.Ordinal))
-                        wings = material.HasProperty("_Surface") && material.GetFloat("_Surface") > .5f &&
-                            material.HasProperty("_Cull") && material.GetFloat("_Cull") == 0f;
+                    var material = materials[slot];
+                    if (material == null) { failures.Add($"{renderer.name} slot {slot}: material null"); continue; }
+                    if (material.shader == null || !material.shader.isSupported) failures.Add($"{renderer.name} slot {slot}/{material.name}: shader missing or unsupported");
+                    else if (!material.shader.name.Equals("Universal Render Pipeline/Lit", StringComparison.Ordinal)) failures.Add($"{renderer.name} slot {slot}/{material.name}: wrong shader '{material.shader.name}'");
+                    if (!material.HasProperty("_BaseMap") || material.GetTexture("_BaseMap") == null) failures.Add($"{renderer.name} slot {slot}/{material.name}: Base Map null");
+                    if (material.name.Equals(BodyMaterialName, StringComparison.Ordinal))
+                    {
+                        body = true;
+                        if (material.GetTexture("_BumpMap") == null) failures.Add($"{material.name}: Normal Map null");
+                        if (material.GetTexture("_MetallicGlossMap") == null || material.GetTexture("_OcclusionMap") == null) failures.Add($"{material.name}: metallic/smoothness or occlusion map null");
+                        if (material.GetColor("_BaseColor") != Color.white) failures.Add($"{material.name}: Base Color tint is not white ({material.GetColor("_BaseColor")})");
+                    }
+                    if (material.name.Equals(WingMaterialName, StringComparison.Ordinal))
+                    {
+                        wings = true;
+                        if (!material.HasProperty("_Surface") || material.GetFloat("_Surface") <= .5f) failures.Add($"{material.name}: wing material not transparent");
+                        if (!material.HasProperty("_Cull") || material.GetFloat("_Cull") != 0f) failures.Add($"{material.name}: wing material not double-sided");
+                        if (!material.HasProperty("_ZWrite") || material.GetFloat("_ZWrite") != 0f) failures.Add($"{material.name}: wing ZWrite must be off");
+                    }
                 }
             }
-            if (!body) { reason = "body material or normal map missing"; return false; }
-            if (!wings) { reason = "transparent double-sided wing material missing"; return false; }
-            reason = "OK"; return true;
+            if (!body) failures.Add($"body material mismatch: expected {BodyMaterialName}");
+            if (!wings) failures.Add($"wing material mismatch: expected {WingMaterialName}");
+            reason = failures.Count == 0 ? "OK" : string.Join("\n", failures);
+            return failures.Count == 0;
         }
 
         public static Mesh MeshFor(Renderer renderer)

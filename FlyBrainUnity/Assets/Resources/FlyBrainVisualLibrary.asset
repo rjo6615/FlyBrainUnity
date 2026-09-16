@@ -15,6 +15,8 @@ MonoBehaviour:
   fly:
     prefab: {fileID: 919132149155446097, guid: aeb328d0367e019468c6c4ec3964a9df, type: 3}
     material: {fileID: 0}
+    flyBodyMaterial: {fileID: 2100000, guid: c59464ca5825ced46b564ad3e9803121, type: 2}
+    flyWingMaterial: {fileID: 2100000, guid: 41e502be59be14342a58a5de942c96eb, type: 2}
     modelScale: {x: 1, y: 1, z: 1}
     modelRotationOffset: {x: 0, y: 0, z: 0}
     modelPositionOffset: {x: 0, y: 0, z: 0}
