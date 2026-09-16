@@ -95,59 +95,70 @@ MonoBehaviour:
   clutterSeed: 164
   rocks:
     enabled: 1
-    prefabs:
-    - {fileID: 2722127690772594777, guid: d004dc671b932fc40917bc6b6440e677, type: 3}
-    minimumCount: 7
-    maximumCount: 14
-    minimumVisualSizeMm: 3
-    maximumVisualSizeMm: 10
-    groundingOffsetMm: 0
+    prefabs: []
+    minimumCount: 20
+    maximumCount: 35
+    minimumVisualSizeMm: 1
+    maximumVisualSizeMm: 7
+    groundingPenetrationMm: 0.15
     randomRotation: 1
-    randomTiltDegrees: 10
+    randomTiltDegrees: 20
+    orientationCorrections: []
   leaves:
     enabled: 1
     prefabs: []
-    minimumCount: 6
-    maximumCount: 12
+    minimumCount: 20
+    maximumCount: 40
     minimumVisualSizeMm: 2
     maximumVisualSizeMm: 8
-    groundingOffsetMm: 0
+    groundingPenetrationMm: 0.03
     randomRotation: 1
-    randomTiltDegrees: 12
+    randomTiltDegrees: 15
+    orientationCorrections: []
   twigs:
     enabled: 1
-    prefabs:
-    - {fileID: 4176635041300278764, guid: 5305cca7fb5d1574f8e756064ce8e519, type: 3}
-    minimumCount: 2
-    maximumCount: 5
+    prefabs: []
+    minimumCount: 10
+    maximumCount: 18
     minimumVisualSizeMm: 3
     maximumVisualSizeMm: 15
-    groundingOffsetMm: 0
+    groundingPenetrationMm: 0.1
     randomRotation: 1
-    randomTiltDegrees: 7
+    randomTiltDegrees: 12
+    orientationCorrections: []
   organicDebris:
     enabled: 1
-    prefabs:
-    - {fileID: 291725339066703103, guid: 9221f0bfb812d27418d08c2478e6d327, type: 3}
-    - {fileID: 5448451228465369094, guid: 134c3c649539bb64aa5edfc4f877f065, type: 3}
-    minimumCount: 5
-    maximumCount: 10
+    prefabs: []
+    minimumCount: 15
+    maximumCount: 30
     minimumVisualSizeMm: 1
     maximumVisualSizeMm: 6
-    groundingOffsetMm: 0
+    groundingPenetrationMm: 0.05
     randomRotation: 1
-    randomTiltDegrees: 10
+    randomTiltDegrees: 15
+    orientationCorrections: []
   largeVegetation:
     enabled: 1
-    prefabs:
-    - {fileID: 8065842985978442449, guid: 266c2d4c87d23c94ca1a591820015e79, type: 3}
-    minimumCount: 1
-    maximumCount: 2
-    minimumVisualSizeMm: 15
-    maximumVisualSizeMm: 40
-    groundingOffsetMm: 0
+    prefabs: []
+    minimumCount: 4
+    maximumCount: 8
+    minimumVisualSizeMm: 8
+    maximumVisualSizeMm: 25
+    groundingPenetrationMm: 0.1
     randomRotation: 1
-    randomTiltDegrees: 2
+    randomTiltDegrees: 3
+    orientationCorrections: []
+  microDebris:
+    enabled: 1
+    prefabs: []
+    minimumCount: 25
+    maximumCount: 60
+    minimumVisualSizeMm: 0.3
+    maximumVisualSizeMm: 1.5
+    groundingPenetrationMm: 0.05
+    randomRotation: 1
+    randomTiltDegrees: 25
+    orientationCorrections: []
   clutterClusterChance: 0.68
   clutterClusterRadiusMm: 8
   clutterMinimumSeparationMm: 0.5

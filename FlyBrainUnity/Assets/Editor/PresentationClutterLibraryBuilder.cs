@@ -15,9 +15,12 @@ public static class PresentationClutterLibraryBuilder
     const string Materials = Output + "/Materials";
     const string LibraryPath = "Assets/Resources/FlyBrainVisualLibrary.asset";
     static readonly string[] Categories = { "Rocks", "Leaves", "Twigs", "Organic" };
-    // The order is significant.  In particular, never load a Blender source when an
-    // exported FBX with the same category/name is available.
-    static readonly string[] ModelExtensions = { ".fbx", ".obj", ".dae", ".3ds", ".blend" };
+    static readonly Dictionary<string, string> KnownCategories = new(StringComparer.OrdinalIgnoreCase)
+    {
+        { "periwinkle_plant_4k", "Large Vegetation" }, { "shrub_01_4k", "Large Vegetation" },
+        { "celandine_01_4k", "Large Vegetation" }, { "grass_medium_02_4k", "Large Vegetation" },
+        { "rock_moss_set_02_4k", "Rocks" }, { "dry_branches_medium_01_4k", "Twigs" }
+    };
 
     static PresentationClutterLibraryBuilder()
     {
@@ -69,8 +72,13 @@ public static class PresentationClutterLibraryBuilder
             if (prefab == null) { rejected.Add($"{path}: {reason}"); continue; }
             if (sourceInfo.Extension == ".fbx") acceptedFbx++;
             created++;
-            if (sourceInfo.Category == "Organic" && IsVegetation(path)) vegetation.Add(prefab);
-            else result[sourceInfo.Category].Add(prefab);
+            if (sourceInfo.RuntimeCategory == "Large Vegetation") vegetation.Add(prefab);
+            else result[sourceInfo.RuntimeCategory].Add(prefab);
+            var bounds = CombinedLocalBounds(prefab);
+            Debug.Log($"[FlyBrain Clutter Asset]\nSource: {path}\nSource folder: {sourceInfo.SourceFolder}\n" +
+                $"Resolved runtime category: {sourceInfo.RuntimeCategory}\nGenerated prefab: {AssetDatabase.GetAssetPath(prefab)}\n" +
+                $"Valid renderers: YES\nNative renderer bounds: center {bounds.center}, size {bounds.size}\n" +
+                "Material conversion: succeeded (URP/Lit)\nResult: ACCEPTED");
         }
 
         var library = AssetDatabase.LoadAssetAtPath<VisualPrefabLibrary>(LibraryPath);
@@ -85,6 +93,7 @@ public static class PresentationClutterLibraryBuilder
         library.twigs.prefabs = result["Twigs"].ToArray();
         library.organicDebris.prefabs = result["Organic"].ToArray();
         library.largeVegetation.prefabs = vegetation.ToArray();
+        library.microDebris.prefabs = result["Rocks"].Concat(result["Organic"]).Distinct().ToArray();
         ApplyNaturalDefaults(library);
         EditorUtility.SetDirty(library); AssetDatabase.SaveAssets(); AssetDatabase.Refresh();
 
@@ -122,6 +131,7 @@ public static class PresentationClutterLibraryBuilder
         ValidateCategory("Twigs", library.twigs, warnings);
         ValidateCategory("Organic", library.organicDebris, warnings);
         ValidateCategory("Large Vegetation", library.largeVegetation, warnings);
+        ValidateCategory("Micro Debris", library.microDebris, warnings);
         var report = "Presentation Clutter Library\n\n" + Report(library);
         if (warnings.Count == 0) Debug.Log(report + "\nValidation passed: renderer-only prefabs and URP materials are ready.");
         else Debug.LogWarning(report + "\nWarnings:\n  " + string.Join("\n  ", warnings));
@@ -306,36 +316,29 @@ public static class PresentationClutterLibraryBuilder
 
     static List<SourceInfo> DiscoverSources()
     {
-        var discovered = new List<SourceInfo>();
-        foreach (var category in Categories)
-        {
-            var candidates = AssetDatabase.FindAssets("", new[] { $"{Root}/{category}" })
-                .Select(AssetDatabase.GUIDToAssetPath)
-                .Where(path => ModelExtensions.Contains(Path.GetExtension(path).ToLowerInvariant()))
-                .GroupBy(path => Path.GetFileNameWithoutExtension(path), StringComparer.OrdinalIgnoreCase);
-            foreach (var group in candidates)
-            {
-                var ordered = group.OrderBy(path => Array.IndexOf(ModelExtensions,
-                    Path.GetExtension(path).ToLowerInvariant())).ThenBy(path => path, StringComparer.Ordinal).ToArray();
-                discovered.Add(new SourceInfo(category, ordered[0], ordered.Skip(1).ToArray()));
-            }
-        }
-        return discovered.OrderBy(source => Array.IndexOf(Categories, source.Category))
-            .ThenBy(source => source.Path, StringComparer.Ordinal).ToList();
+        // FBX is the authoritative presentation source. Search recursively but never consume output or textures.
+        return AssetDatabase.FindAssets("t:Model", new[] { Root }).Select(AssetDatabase.GUIDToAssetPath)
+            .Where(path => Path.GetExtension(path).Equals(".fbx", StringComparison.OrdinalIgnoreCase) &&
+                           !path.StartsWith(Output + "/", StringComparison.OrdinalIgnoreCase) &&
+                           !path.StartsWith(Root + "/textures/", StringComparison.OrdinalIgnoreCase))
+            .Select(path => new SourceInfo(path, ResolveCategory(path)))
+            .OrderBy(source => source.Path, StringComparer.Ordinal).ToList();
     }
 
     sealed class SourceInfo
     {
-        public readonly string Category;
+        public readonly string RuntimeCategory;
+        public readonly string SourceFolder;
         public readonly string Path;
         public readonly string Extension;
         public readonly string[] Ignored;
 
-        public SourceInfo(string category, string path, string[] ignored)
+        public SourceInfo(string path, string runtimeCategory)
         {
-            Category = category; Path = path;
+            RuntimeCategory = runtimeCategory; Path = path;
+            SourceFolder = Path.Substring(0, Path.LastIndexOf('/'));
             Extension = System.IO.Path.GetExtension(path).ToLowerInvariant();
-            Ignored = ignored;
+            Ignored = Array.Empty<string>();
         }
     }
 
@@ -386,6 +389,7 @@ public static class PresentationClutterLibraryBuilder
         CategoryReport("Rocks", library.rocks) + CategoryReport("Leaves", library.leaves) +
         CategoryReport("Twigs", library.twigs) + CategoryReport("Organic", library.organicDebris) +
         CategoryReport("Large Vegetation", library.largeVegetation) +
+        CategoryReport("Micro Debris", library.microDebris) +
         $"\nConfigured ranges: rocks {library.rocks.minimumCount}-{library.rocks.maximumCount}, leaves {library.leaves.minimumCount}-{library.leaves.maximumCount}, " +
         $"twigs {library.twigs.minimumCount}-{library.twigs.maximumCount}, organic {library.organicDebris.minimumCount}-{library.organicDebris.maximumCount}, vegetation {library.largeVegetation.minimumCount}-{library.largeVegetation.maximumCount}.";
     static string CategoryReport(string name, ClutterCategory c) =>
@@ -393,19 +397,30 @@ public static class PresentationClutterLibraryBuilder
 
     static void ApplyNaturalDefaults(VisualPrefabLibrary l)
     {
-        Set(l.rocks, 7, 14, 3, 10, 10); Set(l.leaves, 6, 12, 2, 8, 12);
-        Set(l.twigs, 2, 5, 3, 15, 7); Set(l.organicDebris, 5, 10, 1, 6, 10);
-        Set(l.largeVegetation, 1, 2, 15, 40, 2);
-        l.clutterClusterChance = .68f; l.clutterClusterRadiusMm = 8f;
+        Set(l.rocks, 20, 35, 1, 7, 20, .15f); Set(l.leaves, 20, 40, 2, 8, 15, .03f);
+        Set(l.twigs, 10, 18, 3, 15, 12, .10f); Set(l.organicDebris, 15, 30, 1, 6, 15, .05f);
+        Set(l.largeVegetation, 4, 8, 8, 25, 3, .10f); Set(l.microDebris, 25, 60, .3f, 1.5f, 25, .05f);
+        l.clutterClusterChance = .55f; l.clutterClusterRadiusMm = 8f;
     }
-    static void Set(ClutterCategory c, int minCount, int maxCount, float minSize, float maxSize, float tilt)
-    { c.enabled = true; c.minimumCount = minCount; c.maximumCount = maxCount; c.minimumVisualSizeMm = minSize; c.maximumVisualSizeMm = maxSize; c.randomTiltDegrees = tilt; }
+    static void Set(ClutterCategory c, int minCount, int maxCount, float minSize, float maxSize, float tilt, float penetration)
+    { c.enabled = true; c.minimumCount = minCount; c.maximumCount = maxCount; c.minimumVisualSizeMm = minSize; c.maximumVisualSizeMm = maxSize; c.randomTiltDegrees = tilt; c.groundingPenetrationMm = penetration; }
 
-    static bool IsVegetation(string path) { var s = path.ToLowerInvariant(); return s.Contains("plant") || s.Contains("shrub") || s.Contains("fern") || s.Contains("flower") || s.Contains("vegetation"); }
-    static bool SourceExists(string prefabName) => AssetDatabase.FindAssets("", Categories.Select(c => $"{Root}/{c}").ToArray())
-        .Select(AssetDatabase.GUIDToAssetPath).Any(p => ModelExtensions.Contains(Path.GetExtension(p).ToLowerInvariant()) &&
-                                                   Path.GetFileNameWithoutExtension(p) == prefabName);
-    static bool IsPreview(string name) { var n = name.ToLowerInvariant(); return n == "plane" || n == "sphere" || n.Contains("preview") || n.Contains("material_ball") || n.Contains("uv_sphere"); }
+    static string ResolveCategory(string path)
+    {
+        var name = Path.GetFileNameWithoutExtension(path);
+        if (KnownCategories.TryGetValue(name, out var known)) return known;
+        var n = name.ToLowerInvariant();
+        if (new[] { "periwinkle", "plant", "flower", "grass", "shrub", "fern", "standing_moss" }.Any(n.Contains)) return "Large Vegetation";
+        if (new[] { "leaf", "leaves" }.Any(n.Contains)) return "Leaves";
+        if (new[] { "twig", "branch", "stick" }.Any(n.Contains)) return "Twigs";
+        if (new[] { "rock", "stone", "pebble" }.Any(n.Contains)) return "Rocks";
+        var folder = new DirectoryInfo(Path.GetDirectoryName(path) ?? string.Empty).Name;
+        return Categories.Contains(folder) ? folder : "Organic";
+    }
+    static bool IsVegetation(string path) => ResolveCategory(path) == "Large Vegetation";
+    static bool SourceExists(string prefabName) => AssetDatabase.FindAssets("t:Model", new[] { Root })
+        .Select(AssetDatabase.GUIDToAssetPath).Any(p => Path.GetExtension(p).Equals(".fbx", StringComparison.OrdinalIgnoreCase) && Path.GetFileNameWithoutExtension(p) == prefabName);
+    static bool IsPreview(string name) { var n = name.ToLowerInvariant(); return n.Contains("preview") || n.Contains("material_ball") || n.Contains("uv_sphere") || n.Contains("material preview"); }
     static string Sanitize(string value) => string.Concat(value.Select(c => char.IsLetterOrDigit(c) || c == '_' || c == '-' ? c : '_'));
     static void AddAncestors(Transform transform, Transform root, HashSet<Transform> required)
     {

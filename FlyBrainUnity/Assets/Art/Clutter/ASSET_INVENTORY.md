@@ -1,20 +1,19 @@
-# Presentation clutter asset inventory
+# Presentation clutter FBX inventory
 
-Inspection date: 2026-09-16.
+Inspection date: 2026-09-16. FBX is the only authoritative presentation-model format consumed by the builder.
 
-The category folders currently contain these preferred object-model sources:
-
-| Category | Preferred source model | Intended generated prefab | Assignment | Matching lower-priority source |
+| FBX source | Source folder | Resolved runtime category | Generated prefab | Repository preflight |
 |---|---|---|---|---|
-| Rocks | `Rocks/rock_moss_set_02_4k.fbx` | `rock_moss_set_02_4k.prefab` | Rocks | `Rocks/rock_moss_set_02_4k.blend` (ignored) |
-| Twigs | `Twigs/dry_branches_medium_01_4k.fbx` | `dry_branches_medium_01_4k.prefab` | Twigs | `Twigs/dry_branches_medium_01_4k.blend` (ignored) |
-| Organic | `Organic/celandine_01_4k.fbx` | `celandine_01_4k.prefab` | Organic | none |
-| Organic | `Organic/grass_medium_02_4k.fbx` | `grass_medium_02_4k.prefab` | Organic | none |
-| Organic | `Organic/periwinkle_plant_4k.fbx` | `periwinkle_plant_4k.prefab` | Large Vegetation | `Organic/periwinkle_plant_4k.blend` (ignored) |
-| Organic | `Organic/shrub_01_4k.blend` | `shrub_01_4k.prefab` | Large Vegetation | no FBX is present; the Blender source remains a fallback |
+| `Assets/Art/Clutter/Organic/celandine_01_4k.fbx` | Organic | Large Vegetation | `Assets/Art/Clutter/GeneratedPrefabs/celandine_01_4k.prefab` | FBX and diffuse/alpha/normal/roughness maps present |
+| `Assets/Art/Clutter/Organic/grass_medium_02_4k.fbx` | Organic | Large Vegetation | `Assets/Art/Clutter/GeneratedPrefabs/grass_medium_02_4k.prefab` | FBX and diffuse/alpha/normal/roughness maps present |
+| `Assets/Art/Clutter/Organic/periwinkle_plant_4k.fbx` | Organic | Large Vegetation | `Assets/Art/Clutter/GeneratedPrefabs/periwinkle_plant_4k.prefab` | FBX and diffuse/opacity/normal/roughness maps present |
+| `Assets/Art/Clutter/Rocks/rock_moss_set_02_4k.fbx` | Rocks | Rocks | `Assets/Art/Clutter/GeneratedPrefabs/rock_moss_set_02_4k.prefab` | FBX and diffuse/normal/roughness maps present |
+| `Assets/Art/Clutter/Twigs/dry_branches_medium_01_4k.fbx` | Twigs | Twigs | `Assets/Art/Clutter/GeneratedPrefabs/dry_branches_medium_01_4k.prefab` | FBX and diffuse/normal/roughness maps present |
 
-No object model is currently present in `Leaves`. Despite the expected source list, there is currently no `shrub_01_4k.fbx` in the repository. Exporting that source to the same folder will automatically make FBX the preferred source on the next build.
+There is no FBX source in `Leaves`. There is also **no `shrub_01_4k.fbx` in this repository**: only the obsolete `.blend` and shrub textures are present. The FBX-only builder therefore deliberately does not discover or serialize shrub. Exporting `shrub_01_4k.fbx` into `Organic` will classify it as Large Vegetation on the next build without moving it or creating a Vegetation source folder.
 
-`Tools > FlyBrain > Build Clutter Library` groups sources by category and filename before importing them. It selects FBX first, so a matching `.blend` is never loaded or reported as an error. Other formats remain ordered fallbacks. The command performs the authoritative hierarchy inspection through Unity's model importer, retains valid `MeshRenderer` and `SkinnedMeshRenderer` geometry (including skin bones), disables imported cameras, lights, animation, and colliders, discards named preview planes/spheres and non-rendering helper branches, and rejects a source if no renderable mesh remains.
+## Unity import report
 
-The builder creates presentation-only prefabs under `GeneratedPrefabs`, creates asset-specific URP/Lit materials from available base-color, normal, roughness, ambient-occlusion, and opacity textures, and assigns every valid prefab to the serialized `FlyBrainVisualLibrary`. The Console reports FBX discovery/acceptance totals, every ignored duplicate, renderer/mesh/vertex evidence for each accepted source, every rejection with its exact reason, and the number of prefab references reloaded from the saved library asset.
+Run **Tools > FlyBrain > Build Clutter Library** in Unity. For every discovered FBX, the Console now emits source folder, resolved runtime category, generated prefab path, renderer validity, native combined renderer bounds, URP/Lit material-conversion status, and accepted/rejected status with an exact reason. Those native bounds and generated prefab references are Unity-import results and cannot be truthfully precomputed from the source files without Unity's model importer.
+
+The builder disables imported cameras, lights, animation, and colliders; strips every component except transforms, renderers, and mesh filters; preserves legitimate planar foliage; and only removes preview geometry identified by preview-specific names. Vegetation materials use URP/Lit, alpha clipping and double-sided rendering when foliage/opacity is detected.
