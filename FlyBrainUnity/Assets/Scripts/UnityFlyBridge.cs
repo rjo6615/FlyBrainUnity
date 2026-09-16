@@ -20,6 +20,7 @@ namespace FlyBrain.UnityBridge
         readonly ConcurrentQueue<string> incoming = new();
         CancellationTokenSource cancellation;
         UnityEnvironmentManager environment;
+        PresentationClutterSystem clutter;
         Transform flyProxy;
         Transform flyVisual;
         Transform originMarker;
@@ -74,6 +75,7 @@ namespace FlyBrain.UnityBridge
             BuildFly();
             BuildOriginMarker();
             environment = new UnityEnvironmentManager(transform, visuals);
+            clutter = new PresentationClutterSystem(transform, environment, visuals, targetPosition);
             sceneCamera = Camera.main;
             if (sceneCamera == null)
             {
@@ -117,6 +119,7 @@ namespace FlyBrain.UnityBridge
                     if (definition.IsValid)
                     {
                         environment.ApplyDefinition(definition);
+                        clutter.Regenerate();
                         cameraNeedsFrame = true;
                         runtimeHierarchyLogged = false;
                     }
@@ -133,6 +136,7 @@ namespace FlyBrain.UnityBridge
             if (keyboard != null && keyboard.fKey.wasPressedThisFrame) ToggleCameraMode();
             if (keyboard != null && keyboard.dKey.wasPressedThisFrame) SetDebugVisualization(!debugVisualization);
             if (keyboard != null && keyboard.hKey.wasPressedThisFrame) cameraHelpVisible = !cameraHelpVisible;
+            if (keyboard != null && keyboard.cKey.wasPressedThisFrame) clutter.Toggle();
             if (keyboard != null && keyboard.homeKey.wasPressedThisFrame) ResetOverview();
             if (keyboard != null && keyboard.spaceKey.wasPressedThisFrame)
             {
@@ -543,11 +547,11 @@ namespace FlyBrain.UnityBridge
             }
             if (cameraHelpVisible)
             {
-                const string help = "CAMERA\nRight Drag     Orbit\nMiddle Drag    Pan\nScroll         Zoom\nDouble Click   Focus Object\nSpace          Focus Fly\nHome           Reset View\nF              Follow Fly\nD              Debug View\nH              Hide Help";
-                GUI.Box(new Rect(Screen.width - 225, 12, 213, 194), help);
+                const string help = "CAMERA / PRESENTATION\nRight Drag     Orbit\nMiddle Drag    Pan\nScroll         Zoom\nDouble Click   Focus Object\nSpace          Focus Fly\nHome           Reset View\nF              Follow Fly\nC              Toggle Clutter\nD              Debug View\nH              Hide Help";
+                GUI.Box(new Rect(Screen.width - 225, 12, 213, 216), help);
             }
         }
 
-        void OnDestroy() { cancellation?.Cancel(); cancellation?.Dispose(); environment?.Clear(); }
+        void OnDestroy() { cancellation?.Cancel(); cancellation?.Dispose(); clutter?.Clear(); environment?.Clear(); }
     }
 }

@@ -26,6 +26,23 @@ namespace FlyBrain.UnityBridge
         [Min(0f)] public float maximumGroundingRootHeight = .25f;
     }
 
+    [Serializable]
+    public sealed class ClutterCategory
+    {
+        public bool enabled = true;
+        [Tooltip("Presentation-only prefabs. An empty list is valid and produces no clutter.")]
+        public GameObject[] prefabs = Array.Empty<GameObject>();
+        [Min(0)] public int minimumCount;
+        [Min(0)] public int maximumCount;
+        [Tooltip("Approximate longest rendered dimension, in real-world millimetres.")]
+        [Min(.01f)] public float minimumVisualSizeMm = 1f;
+        [Min(.01f)] public float maximumVisualSizeMm = 4f;
+        [Tooltip("Millimetres above (positive) or below (negative) the substrate top.")]
+        public float groundingOffsetMm;
+        public bool randomRotation = true;
+        [Range(0f, 45f)] public float randomTiltDegrees = 8f;
+    }
+
     /// <summary>Presentation-only assets and camera tuning. No value here changes wire/scientific state.</summary>
     [CreateAssetMenu(menuName = "Fly Brain/Visual Prefab Library", fileName = "FlyBrainVisualLibrary")]
     public sealed class VisualPrefabLibrary : ScriptableObject
@@ -39,6 +56,24 @@ namespace FlyBrain.UnityBridge
         public VisualPrefabSlot bitter = new();
         public VisualPrefabSlot foodOdor = new();
         public VisualPrefabSlot dangerOdor = new();
+
+        [Header("Procedural clutter (presentation only)")]
+        [Tooltip("Changing this value produces a different deterministic layout on the next run.")]
+        public int clutterSeed = 164;
+        public ClutterCategory rocks = new() { minimumCount = 8, maximumCount = 16,
+            minimumVisualSizeMm = 1f, maximumVisualSizeMm = 4f, randomTiltDegrees = 10f };
+        public ClutterCategory leaves = new() { minimumCount = 5, maximumCount = 10,
+            minimumVisualSizeMm = 3f, maximumVisualSizeMm = 12f, randomTiltDegrees = 12f };
+        public ClutterCategory twigs = new() { minimumCount = 0, maximumCount = 6,
+            minimumVisualSizeMm = 2f, maximumVisualSizeMm = 8f, randomTiltDegrees = 8f };
+        public ClutterCategory organicDebris = new() { minimumCount = 6, maximumCount = 14,
+            minimumVisualSizeMm = 1f, maximumVisualSizeMm = 6f, randomTiltDegrees = 10f };
+        [Min(0f)] public float clutterMinimumSeparationMm = .5f;
+        [Min(0f)] public float wallClearanceMm = 1.5f;
+        [Min(0f)] public float flyInitialClearanceMm = 4f;
+        [Min(0f)] public float patchClearanceMm = 3f;
+        [Min(0f)] public float odorClearanceMm = 2f;
+        [Min(0f)] public float predatorClearanceMm = 5f;
 
         [Header("Camera controls (presentation only)")]
         [Min(.01f)] public float orbitSensitivity = .18f;

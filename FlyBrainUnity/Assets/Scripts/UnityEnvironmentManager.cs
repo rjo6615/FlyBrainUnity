@@ -38,6 +38,44 @@ namespace FlyBrain.UnityBridge
 
         public void RefreshBounds() => RecalculateBounds();
 
+        public bool TryGetSubstrateBounds(out Bounds substrateBounds)
+        {
+            var found = false;
+            substrateBounds = default;
+            foreach (var pair in objects)
+            {
+                if (kinds[pair.Key] != "substrate" || pair.Value == null) continue;
+                var bounds = RendererBounds(pair.Value);
+                if (!found) { substrateBounds = bounds; found = true; }
+                else substrateBounds.Encapsulate(bounds);
+            }
+            return found;
+        }
+
+        /// <summary>Presentation-only clearance test; authoritative objects are never changed.</summary>
+        public bool IntersectsClutterExclusion(Vector3 point, float clutterRadius, VisualPrefabLibrary settings)
+        {
+            var point2 = new Vector2(point.x, point.z);
+            foreach (var pair in objects)
+            {
+                if (pair.Value == null || !kinds.TryGetValue(pair.Key, out var kind) || kind == "substrate") continue;
+                var key = (kind ?? string.Empty).ToLowerInvariant().Replace(':', '_');
+                float clearanceMm;
+                if (key == "predator") clearanceMm = settings.predatorClearanceMm;
+                else if (key.StartsWith("odor_")) clearanceMm = settings.odorClearanceMm;
+                else if (key == "taste_sugar" || key == "taste_bitter") clearanceMm = settings.patchClearanceMm;
+                else if (key == "wall" || key.StartsWith("wall_")) clearanceMm = settings.wallClearanceMm;
+                else continue;
+
+                var bounds = RendererBounds(pair.Value);
+                var closest = new Vector2(Mathf.Clamp(point2.x, bounds.min.x, bounds.max.x),
+                    Mathf.Clamp(point2.y, bounds.min.z, bounds.max.z));
+                if (Vector2.Distance(point2, closest) < clutterRadius +
+                    clearanceMm * WorldVisualScale.UnityUnitsPerMillimetre) return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// Presentation surface query kept behind one method so renderer bounds can
         /// later be replaced by terrain raycasts without changing fly grounding.
