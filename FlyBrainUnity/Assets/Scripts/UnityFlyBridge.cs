@@ -497,6 +497,7 @@ namespace FlyBrain.UnityBridge
         void DrawGroundingDebug()
         {
             if (!debugVisualization || flyProxy == null || !environment.IsSynchronized) return;
+            clutter?.DrawGroundingDebug();
             const float size = .08f;
             DrawCross(flyProxy.position, size, Color.magenta);
             var bottom = new Vector3(flyRendererBounds.center.x, flyRendererBounds.min.y, flyRendererBounds.center.z);

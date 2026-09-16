@@ -28,9 +28,14 @@ public static class PresentationClutterLibraryBuilder
         {
             if (state != PlayModeStateChange.ExitingEditMode) return;
             var library = AssetDatabase.LoadAssetAtPath<VisualPrefabLibrary>(LibraryPath);
-            if (library != null && library.ClutterPrefabCount > 0) return;
-            Debug.LogWarning("[FlyBrain Clutter Builder] The serialized library has zero valid prefabs. " +
-                "Building it now before Play Mode so runtime cannot silently use empty lists.");
+            var vegetationSources = DiscoverSources().Where(source => source.RuntimeCategory == "Large Vegetation").ToArray();
+            var serializedVegetation = new HashSet<string>((library?.largeVegetation?.prefabs ?? Array.Empty<GameObject>())
+                .Where(prefab => prefab != null).Select(prefab => prefab.name), StringComparer.OrdinalIgnoreCase);
+            var libraryIsCurrent = library != null && library.ClutterPrefabCount > 0 &&
+                vegetationSources.All(source => serializedVegetation.Contains(Path.GetFileNameWithoutExtension(source.Path)));
+            if (libraryIsCurrent) return;
+            Debug.LogWarning("[FlyBrain Clutter Builder] The serialized library is empty or is missing a discovered vegetation FBX. " +
+                "Rebuilding it before Play Mode so an older non-empty library cannot hide new plant assets.");
             Build();
         };
     }
@@ -99,6 +104,19 @@ public static class PresentationClutterLibraryBuilder
 
         // Reload the serialized object rather than trusting the in-memory instance.
         library = AssetDatabase.LoadAssetAtPath<VisualPrefabLibrary>(LibraryPath);
+        foreach (var source in sources.Where(source => source.RuntimeCategory == "Large Vegetation"))
+        {
+            var sourceName = Path.GetFileNameWithoutExtension(source.Path);
+            var generatedPath = $"{Output}/{Sanitize(sourceName)}.prefab";
+            var generated = AssetDatabase.LoadAssetAtPath<GameObject>(generatedPath);
+            var serialized = library?.largeVegetation?.prefabs?.FirstOrDefault(prefab => prefab != null && prefab.name == sourceName);
+            var rendererCount = generated == null ? 0 : generated.GetComponentsInChildren<Renderer>(true).Length;
+            Debug.Log("=== VEGETATION PIPELINE TRACE ===\n" +
+                $"Source: {source.Path}\nResolved category: {source.RuntimeCategory}\nGenerated prefab: {generatedPath}\n" +
+                $"Generated prefab exists: {generated != null}\nGenerated prefab renderer count: {rendererCount}\n" +
+                $"Assigned library category: Large Vegetation\nSerialized library reference: {(serialized == null ? "MISSING" : AssetDatabase.GetAssetPath(serialized))}\n" +
+                $"Serialized library saved: {serialized != null}\n=== END TRACE ===");
+        }
         var assigned = result.Values.Sum(list => list.Count) + vegetation.Count;
         var summary = "=== FlyBrain Clutter Build ===\n\n" +
             $"FBX sources discovered: {fbxSources.Length}\nFBX sources accepted: {acceptedFbx}\n" +
@@ -410,7 +428,7 @@ public static class PresentationClutterLibraryBuilder
         var name = Path.GetFileNameWithoutExtension(path);
         if (KnownCategories.TryGetValue(name, out var known)) return known;
         var n = name.ToLowerInvariant();
-        if (new[] { "periwinkle", "plant", "flower", "grass", "shrub", "fern", "standing_moss" }.Any(n.Contains)) return "Large Vegetation";
+        if (new[] { "periwinkle", "plant", "flower", "grass", "shrub", "fern", "vegetation", "standing_moss" }.Any(n.Contains)) return "Large Vegetation";
         if (new[] { "leaf", "leaves" }.Any(n.Contains)) return "Leaves";
         if (new[] { "twig", "branch", "stick" }.Any(n.Contains)) return "Twigs";
         if (new[] { "rock", "stone", "pebble" }.Any(n.Contains)) return "Rocks";
