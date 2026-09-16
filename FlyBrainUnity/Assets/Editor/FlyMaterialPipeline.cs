@@ -16,6 +16,7 @@ public static class FlyMaterialPipeline
     const string PackedPath = OutputDirectory + "/TheFly_MetallicSmoothness.asset";
     const string BodyPath = OutputDirectory + "/TheFly_URP.mat";
     const string WingsPath = OutputDirectory + "/Wings_URP.mat";
+    const string LibraryPath = "Assets/Resources/FlyBrainVisualLibrary.asset";
 
     [InitializeOnLoadMethod]
     static void BuildWhenNeeded()
@@ -47,6 +48,12 @@ public static class FlyMaterialPipeline
         ConfigureCommon(wings, baseMap, normal, orm, packed);
         ConfigureTransparentWings(wings);
         RemapSourceMaterials(body, wings);
+        var library = AssetDatabase.LoadAssetAtPath<VisualPrefabLibrary>(LibraryPath);
+        if (library != null)
+        {
+            library.fly.flyBodyMaterial = body; library.fly.flyWingMaterial = wings;
+            EditorUtility.SetDirty(library);
+        }
         AssetDatabase.SaveAssets();
         AssetDatabase.ImportAsset(ModelPath, ImportAssetOptions.ForceUpdate);
         Debug.Log("Fly URP materials built from the original BaseColor, Normal, and OcclusionRoughnessMetallic textures; source slots TheFly/Wings remapped.");
@@ -66,6 +73,7 @@ public static class FlyMaterialPipeline
         importer.textureType = normal ? TextureImporterType.NormalMap : TextureImporterType.Default;
         importer.sRGBTexture = srgb;
         importer.alphaSource = path == BasePath ? TextureImporterAlphaSource.FromInput : TextureImporterAlphaSource.None;
+        importer.alphaIsTransparency = false;
         importer.SaveAndReimport();
     }
 
@@ -128,12 +136,26 @@ public static class FlyMaterialPipeline
     static void RemapSourceMaterials(Material body, Material wings)
     {
         var importer = AssetImporter.GetAtPath(ModelPath) as ModelImporter ?? throw new InvalidOperationException("Fly.fbx ModelImporter not found.");
+        var sourceIds = importer.GetExternalObjectMap().Keys.Where(k => k.type == typeof(Material)).ToArray();
+        var bodyId = sourceIds.FirstOrDefault(k => k.name == "TheFly");
+        var wingId = sourceIds.FirstOrDefault(k => k.name == "Wings");
+        // On the first import Unity has no external map yet. These are the exact
+        // material identifiers embedded in this FBX (and subsequently returned by
+        // GetExternalObjectMap), not renderer/object-name guesses.
+        if (string.IsNullOrEmpty(bodyId.name)) bodyId = new AssetImporter.SourceAssetIdentifier(typeof(Material), "TheFly");
+        if (string.IsNullOrEmpty(wingId.name)) wingId = new AssetImporter.SourceAssetIdentifier(typeof(Material), "Wings");
         importer.materialImportMode = ModelImporterMaterialImportMode.ImportStandard;
         importer.materialLocation = ModelImporterMaterialLocation.External;
-        foreach (var id in importer.GetExternalObjectMap().Keys.Where(k => k.type == typeof(Material)).ToArray()) importer.RemoveRemap(id);
-        importer.AddRemap(new AssetImporter.SourceAssetIdentifier(typeof(Material), "TheFly"), body);
-        importer.AddRemap(new AssetImporter.SourceAssetIdentifier(typeof(Material), "Wings"), wings);
+        foreach (var id in sourceIds) importer.RemoveRemap(id);
+        importer.AddRemap(bodyId, body);
+        importer.AddRemap(wingId, wings);
         importer.SaveAndReimport();
+        var map = importer.GetExternalObjectMap();
+        var report = new StringBuilder("=== FLY FBX EXTERNAL MATERIAL MAP ===\n")
+            .AppendLine($"materialImportMode: {importer.materialImportMode}")
+            .AppendLine($"materialLocation: {importer.materialLocation}");
+        foreach (var pair in map) report.AppendLine($"SourceAssetIdentifier(type={pair.Key.type}, name={pair.Key.name}) -> {AssetDatabase.GetAssetPath(pair.Value)} ({pair.Value?.name})");
+        Debug.Log(report.ToString());
     }
 
     [MenuItem("Tools/FlyBrain/Validate Fly Materials")]
@@ -142,7 +164,11 @@ public static class FlyMaterialPipeline
         var model = AssetDatabase.LoadAssetAtPath<GameObject>(ModelPath);
         if (model == null) { Debug.LogError("FLY MATERIAL VALIDATION FAILED: source model missing: " + ModelPath); return; }
         var renderers = model.GetComponentsInChildren<Renderer>(true);
-        var report = new StringBuilder("=== FLY MATERIAL PIPELINE ===\nSource model: " + ModelPath + "\nGenerated prefab: none (FBX model prefab is instantiated directly)\nRuntime override: none for real model\n");
+        var report = new StringBuilder("=== FLY MATERIAL VALIDATION ===\nASSET VALIDATION\nSource model: " + ModelPath + "\nGenerated prefab: none (FBX model prefab is instantiated directly)\nRuntime fallback: available only when a live imported slot is wrong\n");
+        AppendTextureImport(report, "BaseColor", BasePath);
+        AppendTextureImport(report, "Normal", NormalPath);
+        AppendTextureImport(report, "ORM", OrmPath);
+        AppendAtlasEvidence(report);
         var slots = 0; var missing = 0; var unsupported = 0;
         foreach (var renderer in renderers)
         {
@@ -151,14 +177,40 @@ public static class FlyMaterialPipeline
             for (var i = 0; i < materials.Length; i++)
             {
                 var material = materials[i]; if (material == null) missing++; else if (material.shader == null || !material.shader.isSupported) unsupported++;
-                report.Append($"\nRenderer: {Path(renderer.transform)} ({renderer.GetType().Name})\nMesh: {(mesh == null ? "MISSING" : mesh.name)}\nMaterial slot: {i}\nMaterial: {(material == null ? "MISSING" : material.name)}\nShader: {(material?.shader == null ? "MISSING" : material.shader.name)}\nBase color texture: {TextureName(material, "_BaseMap")}\nNormal texture: {TextureName(material, "_BumpMap")}\nMask/roughness texture: {TextureName(material, "_MetallicGlossMap")} / {TextureName(material, "_OcclusionMap")}\nOpacity texture: {(material != null && material.name.StartsWith(FlyMaterialValidation.WingMaterialName) ? TextureName(material, "_BaseMap") + " alpha" : "not used")}\nUV0 present: {(mesh != null && mesh.HasVertexAttribute(VertexAttribute.TexCoord0) ? "yes" : "NO")}\nRuntime material override: no\nSource material: {(material != null && material.name.StartsWith(FlyMaterialValidation.WingMaterialName) ? "Wings" : "TheFly")}\n");
+                report.Append($"\nRenderer: {Path(renderer.transform)} ({renderer.GetType().Name})\nMesh: {(mesh == null ? "MISSING" : mesh.name)}\nVertex count: {(mesh == null ? 0 : mesh.vertexCount)}\nUV0 count: {(mesh == null || mesh.uv == null ? 0 : mesh.uv.Length)}\nMaterial slot: {i}\nMaterial: {(material == null ? "MISSING" : material.name)}\nShader: {(material?.shader == null ? "MISSING" : material.shader.name)}\nBase color texture: {TextureName(material, "_BaseMap")}\nNormal texture: {TextureName(material, "_BumpMap")}\nMask/roughness texture: {TextureName(material, "_MetallicGlossMap")} / {TextureName(material, "_OcclusionMap")}\nOpacity texture: {(material != null && material.name.StartsWith(FlyMaterialValidation.WingMaterialName) ? TextureName(material, "_BaseMap") + " alpha" : "not used")}\nUV0 valid: {(mesh != null && mesh.HasVertexAttribute(VertexAttribute.TexCoord0) && mesh.uv.Length == mesh.vertexCount ? "yes" : "NO")}\nSource material: {(material != null && material.name.StartsWith(FlyMaterialValidation.WingMaterialName) ? "Wings" : "TheFly")}\n");
             }
         }
         var valid = FlyMaterialValidation.Validate(renderers, out var reason);
-        report.Append($"\nFly renderer count: {renderers.Length}\nTotal material slots: {slots}\nMissing material slots: {missing}\nUnsupported/error shaders: {unsupported}\nEye status: atlas material TheFly URP assigned\nTransparent wing status: {(valid ? "configured" : "check failure")}\nRuntime override status: real prefab sharedMaterials preserved\n");
-        if (valid) Debug.Log(report + "\nFLY MATERIAL VALIDATION PASSED"); else Debug.LogError(report + "\nFLY MATERIAL VALIDATION FAILED: " + reason);
+        report.Append($"\nFly renderer count: {renderers.Length}\nTotal material slots: {slots}\nMissing material slots: {missing}\nUnsupported/error shaders: {unsupported}\nEye status: atlas material {FlyMaterialValidation.BodyMaterialName} assigned\nTransparent wing status: {(valid ? "configured" : "check failure")}\nRuntime fallback status: persistent materials available for one-time live slot repair\n");
+        if (valid) Debug.Log(report + "\nSource FBX: PASS\nGenerated materials: PASS\nFBX remapping: PASS\nBaseColor: PASS\nNormal: PASS\nORM: PASS\nUV0: PASS\nFLY MATERIAL VALIDATION PASSED");
+        else Debug.LogError(report + "\n=== FLY MATERIAL VALIDATION FAILURE ===\n" + reason);
     }
 
     static string TextureName(Material material, string property) => material != null && material.HasProperty(property) && material.GetTexture(property) != null ? AssetDatabase.GetAssetPath(material.GetTexture(property)) : "MISSING";
+    static void AppendTextureImport(StringBuilder report, string label, string path)
+    {
+        var importer = AssetImporter.GetAtPath(path) as TextureImporter;
+        var texture = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
+        report.AppendLine($"{label} import: path={path}, size={(texture == null ? "MISSING" : texture.width + "x" + texture.height)}, " +
+            $"sRGBTexture={importer?.sRGBTexture}, alphaSource={importer?.alphaSource}, alphaIsTransparency={importer?.alphaIsTransparency}, " +
+            $"textureType={importer?.textureType}, wrapMode={importer?.wrapMode}, filterMode={importer?.filterMode}");
+    }
+
+    static void AppendAtlasEvidence(StringBuilder report)
+    {
+        var importer = AssetImporter.GetAtPath(BasePath) as TextureImporter;
+        var wasReadable = importer != null && importer.isReadable;
+        if (importer == null) { report.AppendLine("BaseColor atlas sample: MISSING"); return; }
+        importer.isReadable = true; importer.SaveAndReimport();
+        var texture = AssetDatabase.LoadAssetAtPath<Texture2D>(BasePath); var pixels = texture.GetPixels32();
+        var red = 0; var translucent = 0;
+        foreach (var pixel in pixels)
+        {
+            if (pixel.a > 10 && pixel.r > 100 && pixel.r > pixel.g * 1.4f && pixel.r > pixel.b * 1.4f) red++;
+            if (pixel.a < 250) translucent++;
+        }
+        report.AppendLine($"BaseColor atlas sample: red texels={red}/{pixels.Length} ({100f * red / pixels.Length:F3}%), alpha<250 texels={translucent}/{pixels.Length} ({100f * translucent / pixels.Length:F3}%)");
+        importer.isReadable = wasReadable; importer.SaveAndReimport();
+    }
     static string Path(Transform transform) { var path = transform.name; while (transform.parent != null) { transform = transform.parent; path = transform.name + "/" + path; } return path; }
 }

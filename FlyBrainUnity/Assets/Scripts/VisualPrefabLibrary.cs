@@ -10,6 +10,10 @@ namespace FlyBrain.UnityBridge
         public GameObject prefab;
         [Tooltip("Optional presentation material. This can be used on either a custom prefab or the built-in scientific primitive.")]
         public Material material;
+        [Tooltip("Persistent textured body material used only to repair a missing FBX material remap at presentation instantiation.")]
+        public Material flyBodyMaterial;
+        [Tooltip("Persistent textured wing material used only to repair a missing FBX material remap at presentation instantiation.")]
+        public Material flyWingMaterial;
         [Tooltip("Applied only below the authoritative transform.")]
         public Vector3 modelScale = Vector3.one;
         public Vector3 modelRotationOffset;

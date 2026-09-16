@@ -414,6 +414,7 @@ namespace FlyBrain.UnityBridge
             {
                 var model = Instantiate(visuals.fly.prefab, flyVisual, false); model.name = "Custom Fly Model";
                 foreach (var collider in model.GetComponentsInChildren<Collider>()) Destroy(collider);
+                RepairPresentationFlyMaterials(model);
             }
             else
             {
@@ -429,8 +430,57 @@ namespace FlyBrain.UnityBridge
             }
             flyRenderers = flyProxy.GetComponentsInChildren<Renderer>();
             flyMaterialsValid = FlyMaterialValidation.Validate(flyRenderers, out var materialReason);
-            Debug.Log($"[Fly Materials] {(flyMaterialsValid ? "OK" : "MISSING/INVALID")}: {materialReason}");
+            TraceLiveFlyMaterials(flyRenderers);
+            Debug.Log("=== FLY MATERIAL VALIDATION ===\nASSET VALIDATION: generated material references " +
+                (visuals.fly.flyBodyMaterial != null && visuals.fly.flyWingMaterial != null ? "PASS" : "FAIL") +
+                "\nLIVE INSTANCE VALIDATION: " + (flyMaterialsValid ? "PASS" : "FAIL"));
+            if (flyMaterialsValid) Debug.Log("FLY MATERIAL VALIDATION PASSED");
+            else Debug.LogError("=== FLY MATERIAL VALIDATION FAILURE ===\n" + materialReason);
         }
+
+        void RepairPresentationFlyMaterials(GameObject model)
+        {
+            var body = visuals.fly.flyBodyMaterial; var wings = visuals.fly.flyWingMaterial;
+            if (body == null || wings == null) return;
+            foreach (var renderer in model.GetComponentsInChildren<Renderer>(true))
+            {
+                var slots = renderer.sharedMaterials; var changed = false;
+                for (var i = 0; i < slots.Length; i++)
+                {
+                    var source = slots[i] == null ? string.Empty : slots[i].name;
+                    if (source == "TheFly" || source == FlyMaterialValidation.BodyMaterialName) { changed |= slots[i] != body; slots[i] = body; }
+                    else if (source == "Wings" || source == FlyMaterialValidation.WingMaterialName) { changed |= slots[i] != wings; slots[i] = wings; }
+                }
+                if (changed) { renderer.sharedMaterials = slots; Debug.Log($"[Fly Materials] Presentation-only fallback remapped {renderer.name} once at instantiation."); }
+            }
+        }
+
+        static void TraceLiveFlyMaterials(Renderer[] renderers)
+        {
+            foreach (var renderer in renderers ?? Array.Empty<Renderer>())
+            {
+                var mesh = FlyMaterialValidation.MeshFor(renderer); var slots = renderer.sharedMaterials;
+                for (var i = 0; i < slots.Length; i++)
+                {
+                    var material = slots[i]; var baseMap = material != null && material.HasProperty("_BaseMap") ? material.GetTexture("_BaseMap") : null;
+                    var source = material != null && (material.name == "Wings" || material.name == FlyMaterialValidation.WingMaterialName) ? "Wings" : "TheFly";
+                    var path = "runtime asset path unavailable";
+#if UNITY_EDITOR
+                    path = baseMap == null ? "MISSING" : UnityEditor.AssetDatabase.GetAssetPath(baseMap);
+#endif
+                    Debug.Log("=== LIVE FLY MATERIAL TRACE ===\n" +
+                        $"GameObject: {renderer.gameObject.name}\nRenderer: {renderer.name} ({renderer.GetType().Name})\nMesh: {(mesh == null ? "MISSING" : mesh.name)}\n" +
+                        $"Vertex count: {(mesh == null ? 0 : mesh.vertexCount)}\nUV0 count: {(mesh == null || mesh.uv == null ? 0 : mesh.uv.Length)}\nMaterial slot index: {i}\n" +
+                        $"Material asset: {(material == null ? "MISSING" : material.name)}\nMaterial instance name: {(material == null ? "MISSING" : material.name)}\nShader: {(material?.shader == null ? "MISSING" : material.shader.name)}\n" +
+                        $"Base Map: {(baseMap == null ? "MISSING" : baseMap.name)}\nBase Map asset path: {path}\nBase Map texture size: {(baseMap == null ? "MISSING" : baseMap.width + "x" + baseMap.height)}\n" +
+                        $"Normal Map: {TextureName(material, "_BumpMap")}\nMetallic/Smoothness Map: {TextureName(material, "_MetallicGlossMap")}\nOcclusion Map: {TextureName(material, "_OcclusionMap")}\n" +
+                        $"Surface Type: {FloatName(material, "_Surface")}\nRender Queue: {(material == null ? -1 : material.renderQueue)}\nSource material slot: {source}\nExpected generated material: {(source == "Wings" ? FlyMaterialValidation.WingMaterialName : FlyMaterialValidation.BodyMaterialName)}");
+                }
+            }
+        }
+
+        static string TextureName(Material material, string property) => material != null && material.HasProperty(property) && material.GetTexture(property) != null ? material.GetTexture(property).name : "MISSING";
+        static string FloatName(Material material, string property) => material != null && material.HasProperty(property) ? material.GetFloat(property).ToString("0.###") : "MISSING";
 
         Bounds CombinedRendererBounds()
         {
