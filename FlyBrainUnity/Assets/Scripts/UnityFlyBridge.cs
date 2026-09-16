@@ -542,8 +542,12 @@ namespace FlyBrain.UnityBridge
                 $"Substrate top Y: {substrateTopY:F4}\n" +
                 $"Visual ground gap: {visualGroundGap:F4} units\n" +
                 $"Fly root vs floor: {flyFloorClearance:F3} units\nScientific debug: on (D to toggle)\n" +
-                $"Visual scale: 1 mm = {WorldVisualScale.UnityUnitsPerMillimetre:g} Unity units\nBehavior: {latest?.behavior ?? "--"}";
-                GUI.Box(new Rect(12, 12, 620, 510), text);
+                $"Visual scale: 1 mm = {WorldVisualScale.UnityUnitsPerMillimetre:g} Unity units\n" +
+                $"Clutter: {(clutter?.Visible == true ? "ON" : "OFF")}\nClutter objects: {clutter?.ObjectCount ?? 0}\n" +
+                $"Rocks: {clutter?.Count("Rocks") ?? 0}  Leaves: {clutter?.Count("Leaves") ?? 0}  Twigs: {clutter?.Count("Twigs") ?? 0}\n" +
+                $"Organic: {clutter?.Count("Organic Debris") ?? 0}  Vegetation: {clutter?.Count("Vegetation") ?? 0}\n" +
+                $"Clutter seed: {visuals.clutterSeed}\nBehavior: {latest?.behavior ?? "--"}";
+                GUI.Box(new Rect(12, 12, 620, 620), text);
             }
             if (cameraHelpVisible)
             {
@@ -551,6 +555,9 @@ namespace FlyBrain.UnityBridge
                 GUI.Box(new Rect(Screen.width - 225, 12, 213, 216), help);
             }
         }
+
+        /// <summary>Editor hook; rebuilds presentation instances without touching authoritative state.</summary>
+        public void RegeneratePresentationClutter() => clutter?.Regenerate();
 
         void OnDestroy() { cancellation?.Cancel(); cancellation?.Dispose(); clutter?.Clear(); environment?.Clear(); }
     }

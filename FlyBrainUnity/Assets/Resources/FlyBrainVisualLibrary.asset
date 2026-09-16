@@ -133,6 +133,18 @@ MonoBehaviour:
     groundingOffsetMm: 0
     randomRotation: 1
     randomTiltDegrees: 10
+  largeVegetation:
+    enabled: 1
+    prefabs: []
+    minimumCount: 1
+    maximumCount: 2
+    minimumVisualSizeMm: 15
+    maximumVisualSizeMm: 40
+    groundingOffsetMm: 0
+    randomRotation: 1
+    randomTiltDegrees: 2
+  clutterClusterChance: 0.68
+  clutterClusterRadiusMm: 8
   clutterMinimumSeparationMm: 0.5
   wallClearanceMm: 1.5
   flyInitialClearanceMm: 4
