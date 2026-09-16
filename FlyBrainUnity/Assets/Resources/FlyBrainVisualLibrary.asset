@@ -92,6 +92,53 @@ MonoBehaviour:
     autoGroundVisual: 0
     groundingOffset: 0
     maximumGroundingRootHeight: 0.25
+  clutterSeed: 164
+  rocks:
+    enabled: 1
+    prefabs: []
+    minimumCount: 8
+    maximumCount: 16
+    minimumVisualSizeMm: 1
+    maximumVisualSizeMm: 4
+    groundingOffsetMm: 0
+    randomRotation: 1
+    randomTiltDegrees: 10
+  leaves:
+    enabled: 1
+    prefabs: []
+    minimumCount: 5
+    maximumCount: 10
+    minimumVisualSizeMm: 3
+    maximumVisualSizeMm: 12
+    groundingOffsetMm: 0
+    randomRotation: 1
+    randomTiltDegrees: 12
+  twigs:
+    enabled: 1
+    prefabs: []
+    minimumCount: 0
+    maximumCount: 6
+    minimumVisualSizeMm: 2
+    maximumVisualSizeMm: 8
+    groundingOffsetMm: 0
+    randomRotation: 1
+    randomTiltDegrees: 8
+  organicDebris:
+    enabled: 1
+    prefabs: []
+    minimumCount: 6
+    maximumCount: 14
+    minimumVisualSizeMm: 1
+    maximumVisualSizeMm: 6
+    groundingOffsetMm: 0
+    randomRotation: 1
+    randomTiltDegrees: 10
+  clutterMinimumSeparationMm: 0.5
+  wallClearanceMm: 1.5
+  flyInitialClearanceMm: 4
+  patchClearanceMm: 3
+  odorClearanceMm: 2
+  predatorClearanceMm: 5
   orbitSensitivity: 0.18
   zoomPercentagePerNotch: 20
   panSensitivity: 0.0025
