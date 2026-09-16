@@ -69,11 +69,11 @@ namespace FlyBrain.UnityBridge
         [Header("Procedural clutter (presentation only)")]
         [Tooltip("Changing this value produces a different deterministic layout on the next run.")]
         public int clutterSeed = 164;
-        public ClutterCategory rocks = new() { minimumCount = 20, maximumCount = 35,
+        public ClutterCategory rocks = new() { minimumCount = 25, maximumCount = 45,
             minimumVisualSizeMm = 1f, maximumVisualSizeMm = 7f, groundingPenetrationMm = .15f, randomTiltDegrees = 20f };
         public ClutterCategory leaves = new() { minimumCount = 20, maximumCount = 40,
             minimumVisualSizeMm = 2f, maximumVisualSizeMm = 8f, groundingPenetrationMm = .03f, randomTiltDegrees = 15f };
-        public ClutterCategory twigs = new() { minimumCount = 10, maximumCount = 18,
+        public ClutterCategory twigs = new() { minimumCount = 12, maximumCount = 25,
             minimumVisualSizeMm = 3f, maximumVisualSizeMm = 15f, groundingPenetrationMm = .10f, randomTiltDegrees = 12f };
         public ClutterCategory organicDebris = new() { minimumCount = 15, maximumCount = 30,
             minimumVisualSizeMm = 1f, maximumVisualSizeMm = 6f, groundingPenetrationMm = .05f, randomTiltDegrees = 15f };
@@ -81,7 +81,7 @@ namespace FlyBrain.UnityBridge
         public ClutterCategory largeVegetation = new() { minimumCount = 4, maximumCount = 8,
             minimumVisualSizeMm = 15f, maximumVisualSizeMm = 40f, groundingPenetrationMm = .10f, randomTiltDegrees = 3f };
         [Tooltip("Tiny renderer-only gravel. The builder assigns reusable rock and organic-debris prefabs here.")]
-        public ClutterCategory microDebris = new() { minimumCount = 25, maximumCount = 60,
+        public ClutterCategory microDebris = new() { minimumCount = 40, maximumCount = 80,
             minimumVisualSizeMm = .3f, maximumVisualSizeMm = 1.5f, groundingPenetrationMm = .05f, randomTiltDegrees = 25f };
         [Range(0f, 1f), Tooltip("Chance that a debris item is positioned near an earlier item instead of uniformly.")]
         public float clutterClusterChance = .68f;

@@ -417,15 +417,41 @@ namespace FlyBrain.UnityBridge
         }
         void VerifyGrounding()
         {
-            Physics.SyncTransforms(); float maximum = 0f, total = 0f; var checkedCount = 0; var outside = 0;
+            Physics.SyncTransforms(); float maximum = 0f, total = 0f; var checkedCount = 0; var outside = 0; var floatingFailures = 0;
             foreach (var record in grounded)
             {
-                if (record.instance == null || !TryRendererBounds(record.instance, out var bounds)) continue;
-                var error = Mathf.Abs(bounds.min.y - record.desiredMinY); maximum = Mathf.Max(maximum, error); total += error; checkedCount++;
-                if (error > .002f) { outside++; Debug.LogError($"GROUNDING FAILURE: {record.prefabName} final error={error:F8}"); }
+                if (record.instance == null) continue;
+                var logicalObjects = LogicalRenderableObjects(record.instance);
+                foreach (var logical in logicalObjects)
+                {
+                    if (!TryRendererBounds(logical.gameObject, out var bounds)) continue;
+                    var difference = bounds.min.y - record.desiredMinY; var error = Mathf.Abs(difference);
+                    maximum = Mathf.Max(maximum, error); total += error; checkedCount++;
+                    Debug.Log($"=== CLUTTER CHILD GROUNDING VERIFICATION ===\nInstance: {record.instance.name}\n" +
+                        $"Prefab: {record.prefabName}\nChild/logical object: {logical.name}\nRenderer minimum Y: {bounds.min.y:F8}\n" +
+                        $"Substrate Y: {record.desiredMinY:F8}\nDifference: {difference:F8}\n=== END CLUTTER CHILD GROUNDING VERIFICATION ===");
+                    if (error > .002f)
+                    {
+                        outside++; floatingFailures++;
+                        Debug.LogError($"MULTI-OBJECT FLOATING FAILURE: instance={record.instance.name}, prefab={record.prefabName}, " +
+                            $"logical object={logical.name}, difference={difference:F8}");
+                    }
+                }
             }
             Debug.Log($"=== CLUTTER GROUNDING VERIFICATION ===\nMaximum grounding error: {maximum:F8}\n" +
                 $"Average grounding error: {(checkedCount == 0 ? 0f : total / checkedCount):F8}\nObjects outside tolerance: {outside}\n=== END GROUNDING VERIFICATION ===");
+            Debug.Log($"MULTI-OBJECT FLOATING FAILURE reports: {floatingFailures}");
+        }
+        static List<Transform> LogicalRenderableObjects(GameObject instance)
+        {
+            var result = new List<Transform>();
+            for (var i = 0; i < instance.transform.childCount; i++)
+            {
+                var child = instance.transform.GetChild(i);
+                if (VisibleRenderers(child.gameObject).Count > 0) result.Add(child);
+            }
+            if (result.Count == 0 && VisibleRenderers(instance).Count > 0) result.Add(instance.transform);
+            return result;
         }
         public void DrawGroundingDebug()
         {
