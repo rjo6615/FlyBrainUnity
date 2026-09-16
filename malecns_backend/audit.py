@@ -11,6 +11,10 @@ def _bytes(value):
     return f"{value / (1024 ** 2):,.2f} MiB ({value:,} bytes)"
 
 
+def _optional_bytes(value):
+    return "unavailable" if value is None else _bytes(value)
+
+
 def _categories(names, ids):
     counts = collections.Counter(ids)
     return ", ".join(f"{name or '<blank>'}={counts.get(i, 0):,}" for i, name in enumerate(names))
@@ -78,8 +82,8 @@ def main():
             print(f"Disk {name}: {_bytes(size)}")
         for name, size in data.memory_sizes.items():
             print(f"Memory {name}: {_bytes(size)}")
-        print(f"Peak process RAM: {_bytes(data.peak_ram_bytes)}")
-        print(f"Final process RAM: {_bytes(data.final_ram_bytes)}")
+        print(f"Peak process RSS: {_optional_bytes(data.peak_ram_bytes)}")
+        print(f"Current process RSS: {_optional_bytes(data.final_ram_bytes)}")
 
         print("\n[Performance]")
         for name in ("neuron_decode", "graph_decode", "metadata_decode", "validation", "total"):

@@ -3,12 +3,15 @@
 from dataclasses import dataclass, field
 from pathlib import Path
 from array import array
+import ctypes
+from ctypes import wintypes
 import json
+import importlib
+import importlib.util
 import math
 import mmap
 import os
 import random
-import resource
 import struct
 import sys
 import time
@@ -45,8 +48,8 @@ class MaleCNSData:
     artifact_sizes: dict
     timings: dict = field(default_factory=dict)
     memory_sizes: dict = field(default_factory=dict)
-    peak_ram_bytes: int = 0
-    final_ram_bytes: int = 0
+    peak_ram_bytes: int | None = None
+    final_ram_bytes: int | None = None
 
     @property
     def edge_count(self):
@@ -92,15 +95,78 @@ def bodymap_population_count(bodymap):
             int(bool(bodymap.get("jump"))) + int(bool(bodymap.get("feeding"))))
 
 
-def current_rss_bytes():
-    with open("/proc/self/statm", encoding="ascii") as handle:
-        resident_pages = int(handle.read().split()[1])
-    return resident_pages * os.sysconf("SC_PAGE_SIZE")
+def _psutil_memory_bytes():
+    """Return (current RSS, peak RSS), without making psutil a dependency."""
+    try:
+        if importlib.util.find_spec("psutil") is None:
+            return None, None
+        process = importlib.import_module("psutil").Process()
+        info = process.memory_info()
+        # peak_wset is exposed by psutil on Windows, but is absent on Unix.
+        return int(info.rss), int(info.peak_wset) if hasattr(info, "peak_wset") else None
+    except (ImportError, OSError, RuntimeError, AttributeError, ValueError):
+        return None, None
 
 
-def peak_rss_bytes():
-    # Linux ru_maxrss is KiB (unlike macOS, where it is bytes).
-    return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss * 1024
+def _windows_memory_bytes():
+    """Return Windows working-set and peak working-set sizes via Win32."""
+    if sys.platform != "win32":
+        return None, None
+    try:
+        class PROCESS_MEMORY_COUNTERS(ctypes.Structure):
+            _fields_ = [
+                ("cb", wintypes.DWORD),
+                ("PageFaultCount", wintypes.DWORD),
+                ("PeakWorkingSetSize", ctypes.c_size_t),
+                ("WorkingSetSize", ctypes.c_size_t),
+                ("QuotaPeakPagedPoolUsage", ctypes.c_size_t),
+                ("QuotaPagedPoolUsage", ctypes.c_size_t),
+                ("QuotaPeakNonPagedPoolUsage", ctypes.c_size_t),
+                ("QuotaNonPagedPoolUsage", ctypes.c_size_t),
+                ("PagefileUsage", ctypes.c_size_t),
+                ("PeakPagefileUsage", ctypes.c_size_t),
+            ]
+
+        counters = PROCESS_MEMORY_COUNTERS()
+        counters.cb = ctypes.sizeof(counters)
+        process = ctypes.windll.kernel32.GetCurrentProcess()
+        if not ctypes.windll.psapi.GetProcessMemoryInfo(
+                process, ctypes.byref(counters), counters.cb):
+            return None, None
+        return int(counters.WorkingSetSize), int(counters.PeakWorkingSetSize)
+    except (AttributeError, OSError, ValueError):
+        return None, None
+
+
+def _unix_memory_bytes():
+    """Return available Unix RSS metrics; /proc is used only when present."""
+    current = None
+    if sys.platform.startswith("linux"):
+        try:
+            with open("/proc/self/statm", encoding="ascii") as handle:
+                resident_pages = int(handle.read().split()[1])
+            current = resident_pages * os.sysconf("SC_PAGE_SIZE")
+        except (OSError, ValueError, IndexError, AttributeError):
+            pass
+
+    peak = None
+    if os.name == "posix" and importlib.util.find_spec("resource") is not None:
+        try:
+            resource_module = importlib.import_module("resource")
+            value = resource_module.getrusage(resource_module.RUSAGE_SELF).ru_maxrss
+            # macOS reports bytes; Linux and the other supported Unix variants
+            # report KiB. This metric is never substituted for current RSS.
+            peak = int(value if sys.platform == "darwin" else value * 1024)
+        except (ImportError, OSError, RuntimeError, AttributeError, ValueError):
+            pass
+    return current, peak
+
+
+def process_memory_bytes():
+    """Return best-effort (current RSS, peak RSS); either may be unavailable."""
+    current, peak = _psutil_memory_bytes()
+    fallback = _windows_memory_bytes() if sys.platform == "win32" else _unix_memory_bytes()
+    return current if current is not None else fallback[0], peak if peak is not None else fallback[1]
 
 
 def deep_size(value, seen=None):
@@ -165,8 +231,11 @@ def load_malecns(data_dir=DEFAULT_DATA_DIR, validate=True):
         "bodymap": deep_size(data.bodymap),
     }
     data.timings["total"] = time.perf_counter() - started
-    data.peak_ram_bytes = peak_rss_bytes()
-    data.final_ram_bytes = current_rss_bytes()
+    # Memory telemetry is diagnostic only and must never prevent artifact use.
+    try:
+        data.final_ram_bytes, data.peak_ram_bytes = process_memory_bytes()
+    except Exception:
+        data.final_ram_bytes, data.peak_ram_bytes = None, None
     return data
 
 
