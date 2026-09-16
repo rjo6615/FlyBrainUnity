@@ -1,9 +1,25 @@
 import math
 import struct
 import unittest
+from unittest import mock
 
+from malecns_backend import audit
 from malecns_backend.codec import decode_neurons
+from malecns_backend import loader
 from malecns_backend.loader import DEFAULT_DATA_DIR, load_malecns
+
+
+class MaleCNSMemoryTests(unittest.TestCase):
+    def test_optional_memory_format(self):
+        self.assertEqual(audit._optional_bytes(None), "unavailable")
+        self.assertEqual(audit._optional_bytes(1024), "0.00 MiB (1,024 bytes)")
+
+    def test_fallback_fills_only_unavailable_metrics(self):
+        with mock.patch.object(loader, "_psutil_memory_bytes", return_value=(123, None)), \
+                mock.patch.object(loader, "_unix_memory_bytes", return_value=(456, 789)), \
+                mock.patch.object(loader, "_windows_memory_bytes", return_value=(None, None)), \
+                mock.patch.object(loader.sys, "platform", "linux"):
+            self.assertEqual(loader.process_memory_bytes(), (123, 789))
 
 
 class MaleCNSArtifactTests(unittest.TestCase):
