@@ -1,0 +1,2 @@
+# CPU vectorization is required to avoid Python loops over 10.5 million edges.
+numpy>=1.26
