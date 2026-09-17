@@ -8,6 +8,7 @@ before CNS delivery.  No anatomical or physical object is removed.
 from __future__ import annotations
 
 import math
+import importlib
 import sys
 import time
 from collections import Counter
@@ -22,6 +23,15 @@ from .six_tibia_pathway_audit import CANONICAL
 CANONICAL_DURATION_MS = 500
 SAMPLE_TIMES_MS = (50, 100, 250, 500)
 TOLERANCE = 1e-12
+PHYSICS_INVALID_STATE = "PHYSICS_INVALID_STATE"
+
+
+def physics_error_types():
+    """Resolve dm_control's narrow physics exception without requiring it for unit tests."""
+    try:
+        return (importlib.import_module("dm_control.rl.control").PhysicsError,)
+    except ModuleNotFoundError:
+        return ()
 
 
 def _peak_rss():
@@ -40,9 +50,17 @@ def first_spike_delta(value, baseline):
     return None if value is None or baseline is None else float(value - baseline)
 
 
-def motor_influence_matrix(baseline_counts, intervention_counts):
+def motor_influence_matrix(baseline_counts, intervention_counts, run_metadata=None):
     """Return signed intervention-minus-control motor spike differences."""
-    return {source: {target: int(intervention_counts[source][target] - baseline_counts[target])
+    values = {source: {target: int(intervention_counts[source][target] - baseline_counts[source][target]
+                                      if isinstance(baseline_counts.get(source), dict)
+                                      else intervention_counts[source][target] - baseline_counts[target])
+                       for target in LEG_ORDER} for source in LEG_ORDER}
+    if run_metadata is None:
+        return values
+    return {source: {target: {"value": values[source][target],
+                              "complete": run_metadata[source]["completed"],
+                              "observation_duration_ms": run_metadata[source]["completed_duration_ms"]}
                      for target in LEG_ORDER} for source in LEG_ORDER}
 
 
@@ -85,12 +103,45 @@ def _motor_summary(rows, runtime, leg):
                                              for row in rows), default=0.)}
 
 
-def summarize_run(rows, runtime, wall_seconds):
+def _snapshot_dict(snapshot):
+    if snapshot is None: return None
+    values = ([*snapshot.angles_rad.values(), *snapshot.velocities_rad_s.values(),
+               *getattr(snapshot, "body_position_m", ()), *getattr(snapshot, "body_orientation", ())])
+    return {"simulation_time_ms": float(snapshot.time_s * 1000),
+            "tibia_angles_rad": {leg: float(snapshot.angles_rad[leg]) for leg in LEG_ORDER},
+            "tibia_velocities_rad_s": {leg: float(snapshot.velocities_rad_s[leg]) for leg in LEG_ORDER},
+            "body_position_m": list(getattr(snapshot, "body_position_m", ())),
+            "body_orientation": list(getattr(snapshot, "body_orientation", ())),
+            "all_values_finite": bool(np.isfinite(values).all())}
+
+
+def summarize_run(rows, runtime, wall_seconds, requested_duration_ms=CANONICAL_DURATION_MS,
+                  failure=None):
     sensors = set(i for leg in LEG_ORDER for i in runtime.interfaces[leg].sensor.dense_indices)
     fired = [set(map(int, row["spiking_neuron_indices"])) for row in rows]
     all_fired = set().union(*fired) if fired else set()
     nonsensory = [indices - sensors for indices in fired]
-    return {"withheld_sensory_population": runtime.withheld_sensory,
+    completed = failure is None
+    completed_ms = rows[-1]["time_ms"] if rows else 0
+    checkpoints = {}
+    for checkpoint in SAMPLE_TIMES_MS:
+        reached = next((row for row in rows if row["time_ms"] == checkpoint), None)
+        checkpoints[str(checkpoint)] = (None if reached is None else {
+            "cns_spikes": int(sum(row["cns_spike_increment"] for row in rows
+                                  if row["time_ms"] <= checkpoint)),
+            "motor_spikes": {leg: int(sum(sum(row["motor"][leg]["increments"].values())
+                                               for row in rows if row["time_ms"] <= checkpoint))
+                             for leg in LEG_ORDER}})
+    last = rows[-1] if rows else None
+    result = {"withheld_sensory_population": runtime.withheld_sensory,
+        "completed": completed, "physically_stable_through_requested_duration": completed,
+        "requested_duration_ms": requested_duration_ms, "completed_duration_ms": completed_ms,
+        "last_successful_control_step": completed_ms,
+        "last_successful_simulation_time_ms": (float(last["after"].time_s * 1000) if last else None),
+        "termination_reason": None if completed else PHYSICS_INVALID_STATE,
+        "run_status": "COMPLETE" if completed else "PHYSICS_UNSTABLE",
+        "metrics_scope": {"partial": not completed, "observation_duration_ms": completed_ms},
+        "checkpoints": checkpoints,
         "sensory": {leg: {
             "counterfactual_encoded_spikes": sum(row["counterfactual_sensory_increments"][leg] for row in rows),
             "intervention_delivered_spikes": sum(row["delivered_sensory_increments"][leg] for row in rows),
@@ -104,8 +155,27 @@ def summarize_run(rows, runtime, wall_seconds):
             "nonsensory_spikes": sum(len(x) for x in nonsensory),
             "distinct_nonsensory_spiking_neurons": len(set().union(*nonsensory) if nonsensory else set())},
         "performance": {"wall_seconds": wall_seconds,
-            "real_time_factor": (CANONICAL_DURATION_MS / 1000) / wall_seconds if wall_seconds else None,
-            "peak_rss_platform_units": _peak_rss()}}
+            "real_time_factor": (completed_ms / 1000) / wall_seconds if wall_seconds else None,
+            "peak_rss_platform_units": _peak_rss()},
+        "last_valid_physical_state": _snapshot_dict(last["after"] if last else None),
+        "last_valid_actuator_targets_rad": ({leg: float(last["actuation"][leg]["final_target_rad"])
+                                              for leg in LEG_ORDER} if last else None),
+        "last_valid_decoded_offsets_rad": ({leg: float(last["actuation"][leg]["decoded_offset_rad"])
+                                             for leg in LEG_ORDER} if last else None),
+        "failed_step_attempt": None,
+        "mujoco_dof_39_mapping": "UNRESOLVED"}
+    if failure is not None:
+        result.update({"exception_type": type(failure).__name__, "exception_message": str(failure),
+                       "mujoco_warning": ("mjWARN_BADQACC" if "mjWARN_BADQACC" in str(failure) else None)})
+        attempt = getattr(runtime, "last_step_attempt", None)
+        if attempt:
+            result["failed_step_attempt"] = {"control_time_ms": attempt["time_ms"],
+                "pre_step_physical_state": _snapshot_dict(attempt["before"]),
+                "actuator_targets_rad": {leg: float(attempt["actuation"][leg]["final_target_rad"]) for leg in LEG_ORDER},
+                "decoded_offsets_rad": {leg: float(attempt["actuation"][leg]["decoded_offset_rad"]) for leg in LEG_ORDER}}
+    else:
+        result.update({"exception_type": None, "exception_message": None, "mujoco_warning": None})
+    return result
 
 
 def validate_canonical_baseline(summary):
@@ -157,8 +227,8 @@ def compare_intervention(control, intervention, baseline, result, source, brain)
         result["cns"][f"delta_{field}"] = result["cns"][field] - baseline["cns"][field]
     by_time = {row["time_ms"]: vector for row, vector in zip(intervention, differences)}
     result["physical"] = {"first_divergence_ms": physical,
-        "angle_differences_rad": {str(t): {leg: float(by_time[t][i]) for i, leg in enumerate(LEG_ORDER)}
-                                  for t in SAMPLE_TIMES_MS},
+        "angle_differences_rad": {str(t): ({leg: float(by_time[t][i]) for i, leg in enumerate(LEG_ORDER)}
+                                             if t in by_time else None) for t in SAMPLE_TIMES_MS},
         "maximum_norm_rad": float(max(norms, default=0.)),
         "final_norm_rad": float(norms[-1]) if len(norms) else 0.,
         "rms_post_divergence_norm_rad": float(math.sqrt(np.mean(np.square(
@@ -188,9 +258,30 @@ def compare_intervention(control, intervention, baseline, result, source, brain)
     return motor_deltas
 
 
+def _run_condition(label, withheld, duration_ms, seed, interfaces, data, make_brain, make_body,
+                   physics_errors=None):
+    """Construct and run one fresh condition; never retries."""
+    brain = make_brain(data); body = make_body(interfaces); runtime = None; rows = []
+    started = time.perf_counter(); failure = None
+    errors = physics_error_types() if physics_errors is None else physics_errors
+    try:
+        runtime = SixTibiaRuntime(brain, body, interfaces, seed, True, withheld_sensory=withheld)
+        for t in range(1, duration_ms + 1):
+            try:
+                rows.append(runtime.step(t))
+            except errors as exc:
+                failure = exc
+                break
+    finally:
+        body.close()
+    summary = summarize_run(rows, runtime, time.perf_counter() - started, duration_ms, failure)
+    summary["condition"] = label
+    return rows, runtime, summary
+
+
 def run_perturbation_experiment(duration_ms=CANONICAL_DURATION_MS, seed=CANONICAL_SEED, *,
                                 interfaces=None, data=None, brain_factory=None, body_factory=None,
-                                progress=None):
+                                progress=None, condition=None, physics_errors=None):
     """Run one all-six baseline followed by six fresh leave-one-out runs."""
     if duration_ms != CANONICAL_DURATION_MS: raise ValueError("canonical duration is fixed at 500 ms")
     if seed != CANONICAL_SEED: raise ValueError("M4C-2 canonical seed is fixed at 1")
@@ -199,27 +290,40 @@ def run_perturbation_experiment(duration_ms=CANONICAL_DURATION_MS, seed=CANONICA
     make_brain = brain_factory or MaleCNSBrain; make_body = body_factory or SixTibiaFlyGymBody
     rows_by_run = {}; summaries = {}; runtimes = {}; total_start = time.perf_counter()
     conditions = (("ALL SIX", None),) + tuple((f"-{leg}", leg) for leg in LEG_ORDER)
+    if condition is not None:
+        normalized = "ALL SIX" if condition in ("ALL-SIX", "ALL SIX") else condition
+        matches = tuple(item for item in conditions if item[0] == normalized)
+        if not matches: raise ValueError(f"unknown condition: {condition}")
+        conditions = matches
     for ordinal, (label, withheld) in enumerate(conditions, 1):
-        if progress: progress(f"[{ordinal}/7] {label}")
-        brain = make_brain(data); body = make_body(interfaces); runtime = None
-        started = time.perf_counter()
-        try:
-            runtime = SixTibiaRuntime(brain, body, interfaces, seed, True, withheld_sensory=withheld)
-            rows = [runtime.step(t) for t in range(1, duration_ms + 1)]
-        finally: body.close()
+        if progress: progress(f"[{ordinal}/{len(conditions)}] {label}")
+        rows, runtime, summary = _run_condition(label, withheld, duration_ms, seed, interfaces,
+            data, make_brain, make_body, physics_errors)
         rows_by_run[label] = rows; runtimes[label] = runtime
-        summaries[label] = summarize_run(rows, runtime, time.perf_counter() - started)
+        summaries[label] = summary
         if withheld is None:
             checks, passed = validate_canonical_baseline(summaries[label])
             if not passed: raise RuntimeError("BASELINE REPRODUCTION: FAIL; interventions were not run")
+    if condition is not None:
+        return {"milestone": "4C-2", "condition": condition, "seed": seed,
+                "duration_ms": duration_ms, "runs": summaries,
+                "performance": {"total_wall_seconds": time.perf_counter() - total_start,
+                                "run_count": 1}, "single_condition_diagnostic": True}
     baseline = summaries["ALL SIX"]
     for leg in LEG_ORDER:
-        compare_intervention(rows_by_run["ALL SIX"], rows_by_run[f"-{leg}"], baseline,
+        observed = summaries[f"-{leg}"]["completed_duration_ms"]
+        matched_baseline = summarize_run(rows_by_run["ALL SIX"][:observed], runtimes["ALL SIX"], 0,
+                                         observed)
+        compare_intervention(rows_by_run["ALL SIX"][:observed], rows_by_run[f"-{leg}"], matched_baseline,
                              summaries[f"-{leg}"], leg, runtimes[f"-{leg}"].brain)
+        summaries[f"-{leg}"]["causal_trace"]["observed_before_termination"] = not summaries[f"-{leg}"]["completed"]
     matrix = motor_influence_matrix(
-        {leg: baseline["motor"][leg]["selected_mapped_motor_spikes"] for leg in LEG_ORDER},
+        {source: {leg: sum(sum(row["motor"][leg]["increments"].values())
+                           for row in rows_by_run["ALL SIX"][:summaries[f'-{source}']["completed_duration_ms"]])
+                  for leg in LEG_ORDER} for source in LEG_ORDER},
         {source: {target: summaries[f"-{source}"]["motor"][target]["selected_mapped_motor_spikes"]
-                  for target in LEG_ORDER} for source in LEG_ORDER})
+                  for target in LEG_ORDER} for source in LEG_ORDER},
+        {source: summaries[f"-{source}"] for source in LEG_ORDER})
     checks, _ = validate_canonical_baseline(baseline)
     return {"milestone": "4C-2", "condition": "500 ms seed-1 modeled embodiment",
         "seed": seed, "duration_ms": duration_ms, "baseline_reproduction": "PASS",

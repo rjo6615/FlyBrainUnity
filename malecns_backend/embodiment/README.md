@@ -126,6 +126,29 @@ parameter.
 See [EXPERIMENT_REPORT.md](EXPERIMENT_REPORT.md) for the experiment status and
 all unresolved assumptions.
 
+## M4C-2 physical-failure diagnostics
+
+The leave-one-out audit treats a `dm_control.rl.control.PhysicsError` as an
+incomplete physical result, not as a successful 500-ms result. It retains only
+completed control rows, marks cumulative metrics and influence cells partial,
+sets unreached 50/100/250/500-ms checkpoints to `null`, records the exception
+and last valid physical state, closes the body, and continues with later
+conditions. Other exceptions propagate. The harness does not retry, clamp,
+sanitize, or change any neural, sensory, motor, actuator, or physics setting.
+DOF 39 remains `UNRESOLVED` unless a safe model mapping is available; it is not
+assigned an anatomical identity by inference.
+
+After unit tests pass, diagnose the reported Windows condition from one fresh
+state with the same condition runner used by the full audit:
+
+```powershell
+.\fly-brain-interactive\.venv\Scripts\python.exe -m malecns_backend.embodiment.six_tibia_perturbation_audit --condition=-RH --json malecns_backend/embodiment/perturbation_output/six_tibia_minus_rh_diagnostic.json
+```
+
+This command tests reproducibility; it does not assume that the prior
+`mjWARN_BADQACC` near 496.4 ms will recur and does not scientifically interpret
+physical instability.
+
 ## Milestone 3D matched causal control
 
 The actuator calculation is explicitly decomposed without changing its
