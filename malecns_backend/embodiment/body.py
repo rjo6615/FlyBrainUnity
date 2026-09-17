@@ -1,0 +1,85 @@
+"""Optional headless FlyGym adapter; importing this module does not require FlyGym."""
+from dataclasses import dataclass
+import importlib
+
+import numpy as np
+
+from .sensory import LegSensoryFrame
+
+
+class FlyGymUnavailable(RuntimeError):
+    pass
+
+
+@dataclass(frozen=True)
+class BodySnapshot:
+    frame: LegSensoryFrame
+    body_position_m: tuple[float, float, float]
+    body_orientation: tuple[float, ...]
+    contact_force_n: float
+
+
+class FlyGymBody:
+    """NeuroMechFly/FlyGym position-control adapter for one LM tibia joint.
+
+    The adapter deliberately imports no locomotion example, CPG, steps, or old
+    behavior controller. A full 42-position action is required by FlyGym; all
+    nonselected entries are held at their latest measured positions.
+    """
+    behavior_controller_invoked = False
+
+    def __init__(self, timestep_s=0.0001, selected_joint_index=12):
+        try:
+            flygym = importlib.import_module("flygym")
+        except ImportError as exc:
+            raise FlyGymUnavailable(
+                "FlyGym is not installed. Install a Python-version-compatible "
+                "FlyGym/NeuroMechFly release to run the real closed-loop experiment."
+            ) from exc
+        Fly = getattr(flygym, "Fly")
+        Simulation = getattr(flygym, "SingleFlySimulation", None)
+        if Simulation is None:
+            try:
+                Simulation = importlib.import_module("flygym.simulation").SingleFlySimulation
+            except (ImportError, AttributeError) as exc:
+                raise FlyGymUnavailable("installed FlyGym has no SingleFlySimulation API") from exc
+        self.timestep_s = float(timestep_s)
+        self.selected_joint_index = int(selected_joint_index)
+        self.fly = Fly(enable_adhesion=False, control="position")
+        self.sim = Simulation(fly=self.fly, cameras=[], timestep=self.timestep_s)
+        self.observation, self.info = self.sim.reset()
+        self.physics_steps = 0
+
+    @staticmethod
+    def _joint_positions(observation):
+        value = np.asarray(observation["joints"], dtype=np.float64)
+        # FlyGym observations use row 0 for positions and row 1 for velocities.
+        return value[0] if value.ndim == 2 else value
+
+    def observe(self):
+        obs = self.observation
+        joints = self._joint_positions(obs)
+        pos = np.asarray(obs.get("fly", np.zeros((1, 3))), dtype=np.float64).reshape(-1, 3)[0]
+        orientation = tuple(np.asarray(obs.get("fly_orientation", ()), dtype=np.float64).ravel().tolist())
+        contact = np.asarray(obs.get("contact_forces", ()), dtype=np.float64)
+        load = float(np.linalg.norm(contact)) if contact.size else 0.0
+        return BodySnapshot(
+            LegSensoryFrame(self.physics_steps * self.timestep_s, float(joints[self.selected_joint_index])),
+            tuple(float(x) for x in pos), orientation, load,
+        )
+
+    def step(self, command, count=1):
+        joints = self._joint_positions(self.observation).copy()
+        joints[self.selected_joint_index] = command.target_position_rad
+        action = {"joints": joints, "adhesion": np.zeros(6, dtype=np.float64)}
+        for _ in range(count):
+            result = self.sim.step(action)
+            self.observation = result[0]
+            self.info = result[-1]
+            self.physics_steps += 1
+        return self.observe()
+
+    def close(self):
+        close = getattr(self.sim, "close", None)
+        if close is not None:
+            close()
