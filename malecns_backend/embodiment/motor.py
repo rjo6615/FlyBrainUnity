@@ -98,7 +98,7 @@ class MotorDecoder:
     def reset(self):
         self.previous_target = None
 
-    def decode(self, rates, current_position_rad, control_dt_s):
+    def decode(self, rates, current_position_rad, control_dt_s, apply_neural_offset=True):
         if not math.isfinite(current_position_rad) or control_dt_s <= 0:
             raise ValueError("invalid physical state or control interval")
         ext = float(rates[self.pathway.extensor.name])
@@ -111,7 +111,12 @@ class MotorDecoder:
         # explicit diagnostic stage without introducing a second clamp.
         raw_offset = self.safety.max_offset_rad * antagonist
         offset = raw_offset
-        raw = current_position_rad + offset
+        # Actuator decomposition (before safety constraints):
+        # candidate = base_target + applied_neural_offset, where base_target is
+        # the current measured joint position.  The control condition retains
+        # all range/slew/holding semantics and zeros only the latter term.
+        applied_offset = offset if apply_neural_offset else 0.0
+        raw = current_position_rad + applied_offset
         bounded = min(self.safety.joint_max_rad, max(self.safety.joint_min_rad, raw))
         prior = current_position_rad if self.previous_target is None else self.previous_target
         delta = self.safety.max_velocity_rad_s * control_dt_s

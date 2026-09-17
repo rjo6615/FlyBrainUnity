@@ -34,6 +34,7 @@ connectome fact.
 * `diagnostics.py`: the single source of truth for outcome criteria and the
   measured first-weak-link classification.
 * `experiment.py`: opt-in bounded real experiment and causal-funnel report.
+* `causal.py`: fresh-body matched neural-output application/control replay.
 * `audit.py`: engineering validation and dependency/status report.
 
 `MaleCNSBrain` remains body-independent. Its existing generic
@@ -124,6 +125,39 @@ parameter.
 
 See [EXPERIMENT_REPORT.md](EXPERIMENT_REPORT.md) for the experiment status and
 all unresolved assumptions.
+
+## Milestone 3D matched causal control
+
+The actuator calculation is explicitly decomposed without changing its
+existing decoder, gains, or safety parameters. Before safety constraints,
+
+```text
+base_target = current measured joint position
+decoded_neural_offset = 0.25 rad * (activation(extensor) - activation(flexor))
+candidate = base_target + (apply_neural_motor ? decoded_neural_offset : 0)
+final_target = joint_range_clamp(slew_clamp(previous_target, candidate,
+                                            4 rad/s * 0.001 s))
+```
+
+Thus the final target is not generally a simple sum after clamping. The
+motor-disabled replay still advances physics and sends the measured-position
+holding target; it only zeros the neural term at the candidate stage. MaleCNS,
+the sensory encoder, motor observer, and unmodified decoder signal continue to
+run and be reported.
+
+Run the fixed 500-ms, seed-1 pair with two fresh brains and bodies using:
+
+```bash
+python -m malecns_backend.embodiment.audit --causal-control
+```
+
+The command writes `causal_closed_loop.jsonl`,
+`causal_motor_disabled.jsonl`, `causal_difference.csv`, and
+`causal_summary.json` under `malecns_backend/embodiment/causal_output/`.
+Classification uses measured matched trajectories and a documented `1e-12`
+tolerance. D0 is emitted for pre-motor mismatch or contradictory causal
+ordering; D1 for no measurable physical effect; D2 for ordered physical
+divergence; and D3 only when later sensory/neural feedback also diverges.
 ## Milestone 3C temporal propagation
 
 The observation duration is the only experimental variable exposed by the
