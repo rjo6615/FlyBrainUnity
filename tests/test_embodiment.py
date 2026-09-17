@@ -40,6 +40,18 @@ class FakeBrain:
         self.time_ms += 0.5
         return np.flatnonzero(fired)
 
+    def diagnostics(self):
+        """Match the numerical-health portion of the real brain interface."""
+        return {
+            "time_ms": self.time_ms,
+            "spikes": int(self.spike_counts.sum()),
+            "mean_voltage": float(np.mean(self.v)),
+            "min_voltage": float(np.min(self.v)),
+            "max_voltage": float(np.max(self.v)),
+            "nonfinite": int((~np.isfinite(self.v)).sum()),
+            "active_fraction": float(np.count_nonzero(self.spike_counts) / len(self.spike_counts)),
+        }
+
 
 class FakeBody:
     """Encoder/decoder/scheduler fixture, not a closed-loop body result."""
@@ -165,13 +177,13 @@ class EmbodimentTests(unittest.TestCase):
             with JSONLTelemetry(path) as out:
                 brain,body,loop=self.components(telemetry=out); loop.run(2)
             rows=[json.loads(x) for x in path.read_text().splitlines()]
-        required={'simulation_time_s','physics_time_s','neural_time_ms','tibia_angle_rad','encoded_rate_mean_hz',
-                  'sensory_spike_count','total_cns_spike_count','extensor_spike_increment','extensor_filtered_hz',
-                  'actuator_target_rad','contact_force_n','body_position_m','body_orientation'}
-        self.assertEqual(len(rows),2); self.assertTrue(required<=rows[0].keys())
-        self.assertEqual([r['control_step'] for r in rows],[1,2])
-        self.assertLess(path.stat().st_size,100_000)
-        self.assertTrue(np.isfinite(brain.v).all()); self.assertTrue(math.isfinite(body.angle))
+            required={'simulation_time_s','physics_time_s','neural_time_ms','tibia_angle_rad','encoded_rate_mean_hz',
+                      'sensory_spike_count','total_cns_spike_count','extensor_spike_increment','extensor_filtered_hz',
+                      'actuator_target_rad','contact_force_n','body_position_m','body_orientation'}
+            self.assertEqual(len(rows),2); self.assertTrue(required<=rows[0].keys())
+            self.assertEqual([r['control_step'] for r in rows],[1,2])
+            self.assertLess(path.stat().st_size,100_000)
+            self.assertTrue(np.isfinite(brain.v).all()); self.assertTrue(math.isfinite(body.angle))
 
     def test_displacement_and_latency_metrics_are_measured(self):
         def snapshot(time, angle, velocity=0):
@@ -302,6 +314,44 @@ class EmbodimentTests(unittest.TestCase):
         self.assertEqual(result['causal_order'], [2, 3, 3, 4, 5])
         self.assertTrue(result['classification'].startswith('D3'))
         self.assertEqual(result['pre_motor_max_angle_difference_rad'], 0)
+
+    def test_causal_feedback_is_sensory_encoding_not_an_earlier_spike_event(self):
+        def sample(t, angle=0, rate=0, sensory_spikes=0, cns=0, motor=0,
+                   offset=0, applied=0):
+            return dict(time_ms=t, tibia_angle_rad=angle, tibia_velocity_rad_s=angle,
+                        decoded_neural_offset_rad=offset, applied_neural_offset_rad=applied,
+                        extensor_mn_spikes=motor, flexor_mn_spikes=0,
+                        sensory_rates_hz=[float(rate)], sensory_spikes=sensory_spikes,
+                        whole_cns_spikes=cns)
+        control = [sample(i) for i in range(1, 7)]
+        closed = [sample(1), sample(2, sensory_spikes=1, cns=1, motor=1),
+                  sample(3, offset=.1, applied=.1),
+                  sample(4, angle=.01, offset=.1, applied=.1),
+                  sample(5, angle=.02, offset=.1, applied=.1),
+                  sample(6, angle=.03, rate=1, offset=.1, applied=.1)]
+        result = analyze_matched(closed, control)
+        self.assertEqual(result['first_sensory_spike_divergence_ms'], 2)
+        self.assertEqual(result['first_cns_spike_divergence_ms'], 2)
+        self.assertEqual(result['first_sensory_encoding_divergence_ms'], 6)
+        self.assertEqual(result['causal_order'], [2, 3, 3, 4, 6])
+        self.assertTrue(result['classification'].startswith('D3'))
+
+    def test_causal_contradiction_is_invalid_not_d2_or_d3(self):
+        def sample(t, angle=0, rate=0, motor=0, offset=0, applied=0):
+            return dict(time_ms=t, tibia_angle_rad=angle, tibia_velocity_rad_s=angle,
+                        decoded_neural_offset_rad=offset, applied_neural_offset_rad=applied,
+                        extensor_mn_spikes=motor, flexor_mn_spikes=0,
+                        sensory_rates_hz=[float(rate)], sensory_spikes=0,
+                        whole_cns_spikes=0)
+        control = [sample(i) for i in range(1, 6)]
+        closed = [sample(1), sample(2, rate=1, motor=1),
+                  sample(3, rate=1, offset=.1, applied=.1),
+                  sample(4, angle=.01, rate=1, offset=.1, applied=.1),
+                  sample(5, angle=.02, rate=1, offset=.1, applied=.1)]
+        result = analyze_matched(closed, control)
+        self.assertEqual(result['causal_order'], [2, 3, 3, 4, 2])
+        self.assertFalse(result['causal_order_valid'])
+        self.assertTrue(result['classification'].startswith('D0'))
 
     def test_causal_invalid_when_premotor_trajectory_differs(self):
         base = dict(tibia_velocity_rad_s=0, decoded_neural_offset_rad=0,

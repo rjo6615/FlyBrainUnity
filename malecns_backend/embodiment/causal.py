@@ -77,15 +77,20 @@ def analyze_matched(closed, control, tolerance=TOLERANCE):
     post = [d for r, d in zip(closed, angle_d) if decoded is not None and r["time_ms"] >= decoded]
     pre_angle = max((abs(angle_d[i]) for i in prior), default=0.0)
     pre_velocity = max((abs(velocity_d[i]) for i in prior), default=0.0)
-    feedback = min((x for x in (sensory_encoding, sensory_spikes, cns, motor)
-                    if x is not None), default=None)
+    # The fifth Milestone 3D causal stage is specifically the first change in
+    # encoded sensory rates.  The downstream spike divergences are reported as
+    # separate observations, but are not substitutes for physical feedback.
+    feedback = sensory_encoding
     motor_order = (extensor is not None and decoded is not None and applied is not None and
                    physical is not None and extensor <= decoded <= applied <= physical)
-    if pre_angle > tolerance or pre_velocity > tolerance or (physical is not None and not motor_order):
+    feedback_order = feedback is None or (physical is not None and feedback >= physical)
+    causal_order_valid = motor_order and feedback_order
+    if (pre_angle > tolerance or pre_velocity > tolerance or
+            (physical is not None and not causal_order_valid)):
         classification = "D0 — INVALID CONTROL"
     elif physical is None:
         classification = "D1 — MOTOR SIGNAL GENERATED, NO MEASURABLE PHYSICAL EFFECT"
-    elif feedback is not None and feedback >= physical:
+    elif feedback is not None and causal_order_valid:
         classification = "D3 — PHYSICAL DIVERGENCE PRODUCES CLOSED-LOOP FEEDBACK DIVERGENCE"
     else:
         classification = "D2 — MOTOR SIGNAL CAUSES MEASURABLE PHYSICAL DIVERGENCE"
@@ -108,7 +113,7 @@ def analyze_matched(closed, control, tolerance=TOLERANCE):
         "first_cns_spike_divergence_ms": cns,
         "first_motor_population_divergence_ms": motor,
         "causal_order": [extensor, decoded, applied, physical, feedback],
-        "causal_order_valid": motor_order and (feedback is None or feedback >= physical),
+        "causal_order_valid": causal_order_valid,
         "classification": classification,
     }
 
