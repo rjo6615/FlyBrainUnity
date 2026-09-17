@@ -4,6 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
+from unittest.mock import patch
 
 import numpy as np
 
@@ -11,7 +12,8 @@ from malecns_backend.embodiment.body import BodySnapshot
 from malecns_backend.embodiment.diagnostics import OUTCOME_CRITERIA, classify_weak_link
 from malecns_backend.embodiment.temporal import (classify_temporal, directed_distances,
                                                  neuron_metadata)
-from malecns_backend.embodiment.experiment import calculate_physical_metrics
+from malecns_backend.embodiment.experiment import (calculate_physical_metrics,
+                                                   summarize_experiment)
 from malecns_backend.embodiment.loop import EmbodimentLoop, TimingConfig
 from malecns_backend.embodiment.mappings import INTERFACE_MAP, load_selected_pathway
 from malecns_backend.embodiment.motor import MotorActivityObserver, MotorDecoder, MotorSafety
@@ -235,6 +237,32 @@ class EmbodimentTests(unittest.TestCase):
         self.assertEqual(classify_temporal(motor(1,True),0,0,0),'T3')
         self.assertEqual(classify_temporal(motor(1,True),.1,.01,.01),'T4')
         self.assertEqual(classify_temporal(motor(1,True),.1,.02,.01),'T5')
+
+    def test_summary_passes_authoritative_selected_motors_to_activity_bins(self):
+        p = self.pathway
+        motor_indices = p.extensor.dense_indices + p.flexor.dense_indices
+        self.assertEqual(p.extensor.body_ids, (800911, 801234))
+        self.assertEqual(p.flexor.body_ids, (802295, 818295, 823739, 824041, 927808))
+        self.assertTrue(set(motor_indices).isdisjoint(p.sensor.dense_indices))
+        brain = FakeBrain()
+        loop = SimpleNamespace(first_times_s={}, performance=lambda: {})
+        snapshot = BodySnapshot(LegSensoryFrame(0, 0), (0, 0, 0), (), 0, 0, 0)
+        command = SimpleNamespace(target_position_rad=0, antagonist_signal=0,
+                                  raw_decoder_output_rad=0)
+        rows = [{"before": snapshot, "after": snapshot, "command": command,
+                 "motor": {"filtered_hz": {p.extensor.name: 0, p.flexor.name: 0}}}]
+        recorder = SimpleNamespace(motor_results=lambda: [], downstream_events=[])
+        with tempfile.TemporaryDirectory() as tmp:
+            telemetry = Path(tmp) / "telemetry.jsonl"
+            telemetry.write_text("{}\n", encoding="utf-8")
+            with patch("malecns_backend.embodiment.experiment.activity_bins",
+                       return_value=[]) as bins:
+                result = summarize_experiment(
+                    brain, p, loop, rows, snapshot, snapshot, telemetry,
+                    recorder=recorder, duration_ms=10,
+                    motor_indices=motor_indices)
+        bins.assert_called_once_with(recorder, 10, motor_indices)
+        self.assertEqual(result["activity_bins"], [])
 
     def test_actuator_latency_is_labeled_as_target_update(self):
         loop=self.components()[2]; loop.run(2)
