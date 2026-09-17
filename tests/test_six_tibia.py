@@ -1,5 +1,6 @@
 import json
 import unittest
+from types import SimpleNamespace
 
 import numpy as np
 
@@ -9,6 +10,50 @@ from malecns_backend.embodiment.sensory import LegSensoryFrame, SensoryEncoder
 from malecns_backend.embodiment.six_tibia import (LEG_ORDER, SIX_LEG_MAP,
                                                   IsolatedTibiaDecoder,
                                                   load_six_tibia_interfaces)
+from malecns_backend.embodiment.six_tibia_audit import (
+    lm_execution_configuration_preserved, run_isolated_experiments,
+    run_isolated_leg)
+from malecns_backend.embodiment.body import BodySnapshot
+
+
+class _AuditBrain:
+    def __init__(self, n=165200):
+        self.config = SimpleNamespace(dt=.5)
+        self.spike_counts = np.zeros(n, np.uint32)
+        self.external_drive = np.zeros(n)
+        self.diagnostic_observer = None
+
+    def reset(self, seed):
+        self.spike_counts.fill(0); self.external_drive.fill(0); self.time_ms = 0
+
+    def clear_external_drive(self): self.external_drive.fill(0)
+    def set_external_drive(self, indices, rates): self.external_drive[indices] = rates
+    def step(self):
+        fired = np.empty(0, np.int32)
+        self.time_ms += .5
+        if self.diagnostic_observer: self.diagnostic_observer.after_step(self, fired)
+        return fired
+
+
+class _AuditBody:
+    timestep_s = .0001
+    instances = []
+
+    def __init__(self, pathway):
+        self.pathway, self.physics_steps, self.angle, self.closed = pathway, 0, 0., False
+        self.commands = []
+        self.instances.append(self)
+
+    def observe(self):
+        return BodySnapshot(LegSensoryFrame(self.physics_steps * self.timestep_s, self.angle),
+                            (0., 0., 0.), (), 0.)
+
+    def step(self, command, count):
+        self.commands.append(command); self.angle = command.target_position_rad
+        self.physics_steps += count
+        return self.observe()
+
+    def close(self): self.closed = True
 
 
 class SixTibiaTests(unittest.TestCase):
@@ -104,6 +149,41 @@ class SixTibiaTests(unittest.TestCase):
         for forbidden in ("PreprogrammedSteps", "HybridTurningController", "CPG", "gait"):
             self.assertNotIn(forbidden, source)
         self.assertFalse(hasattr(IsolatedTibiaDecoder, "decode_all"))
+
+    def test_real_runner_fresh_reset_order_and_single_selection(self):
+        _AuditBody.instances.clear()
+        results = run_isolated_experiments(
+            1, interfaces=self.interfaces, data=object(),
+            brain_factory=lambda data: _AuditBrain(), body_factory=_AuditBody)
+        self.assertEqual([r["leg"] for r in results], list(LEG_ORDER))
+        self.assertEqual(len(_AuditBody.instances), 6)
+        self.assertTrue(all(x.closed for x in _AuditBody.instances))
+        for result, body in zip(results, _AuditBody.instances):
+            self.assertEqual(result["isolation"]["engineered_sensory_populations"],
+                             [self.interfaces[result["leg"]].sensor.name])
+            self.assertEqual(result["isolation"]["eligible_neural_actuators"],
+                             [self.interfaces[result["leg"]].actuator_name])
+            self.assertTrue(all(c.actuator == self.interfaces[result["leg"]].actuator_name
+                                for c in body.commands))
+            self.assertTrue(result["biological_silence_is_valid"])
+
+    def test_other_motor_activity_is_observed_not_decoded(self):
+        other_index = self.interfaces["RH"].motor_populations[0].dense_indices[0]
+
+        class NaturallyActive(_AuditBrain):
+            def reset(self, seed):
+                super().reset(seed); self.spike_counts[other_index] = 2
+
+        result = run_isolated_leg(
+            "LF", 1, interfaces=self.interfaces, data=object(),
+            brain_factory=lambda data: NaturallyActive(), body_factory=_AuditBody)
+        self.assertTrue(result["other_tibia_motor"]["naturally_spiked"])
+        self.assertFalse(result["other_tibia_motor"]["decoded_or_applied"])
+        self.assertTrue(any(key.startswith("RH:")
+                            for key in result["other_tibia_motor"]["populations"]))
+
+    def test_lm_execution_configuration_preserved(self):
+        self.assertTrue(lm_execution_configuration_preserved(self.interfaces["LM"]))
 
 
 if __name__ == "__main__":
