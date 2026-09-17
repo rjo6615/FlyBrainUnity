@@ -1,6 +1,7 @@
 import json
 import unittest
 from array import array
+from pathlib import Path
 from types import SimpleNamespace
 
 import numpy as np
@@ -52,13 +53,18 @@ class PerturbationTests(unittest.TestCase):
             encoder.encode = lambda frame, leg=leg, original=original: (calls.append(leg), original(frame))[1]
         row = runtime.step(1)
         self.assertEqual(tuple(calls), LEG_ORDER)
+        self.assertIn("LH", row["counterfactual_sensory_increments"])
         self.assertEqual(row["delivered_sensory_increments"]["LH"], 0)
+        self.assertEqual(row["sensory_provenance"]["LH"]["counterfactual_provenance"],
+                         "MODELED_TRANSDUCTION")
         self.assertEqual(row["sensory_provenance"]["LH"]["delivered_provenance"],
                          "ENGINEERED_SENSORY_WITHHOLDING")
         for leg in LEG_ORDER:
             if leg != "LH":
                 self.assertEqual(row["counterfactual_sensory_increments"][leg],
                                  row["delivered_sensory_increments"][leg])
+                self.assertEqual(row["sensory_provenance"][leg]["delivered_provenance"],
+                                 "MODELED_TRANSDUCTION")
 
     def test_common_random_numbers_and_later_population_draws(self):
         n = 12; plain = MaleCNSBrain(tiny_data(n), tiny_config()); withheld = MaleCNSBrain(tiny_data(n), tiny_config())
@@ -113,7 +119,8 @@ class PerturbationTests(unittest.TestCase):
         self.assertTrue(validate_canonical_baseline(summary)[1]); json.dumps(summary)
 
     def test_no_dense_graph_or_controller_logic(self):
-        source = open("malecns_backend/embodiment/six_tibia_perturbation.py", encoding="utf-8").read().lower()
+        source = Path("malecns_backend/embodiment/six_tibia_perturbation.py").read_text(
+            encoding="utf-8").lower()
         self.assertNotIn("np.zeros((brain.n, brain.n", source)
         for forbidden in ("descending_drive =", "class gait", "class cpg", "engineered_cross_leg"):
             self.assertNotIn(forbidden, source)

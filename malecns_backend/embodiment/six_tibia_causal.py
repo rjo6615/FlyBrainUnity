@@ -160,8 +160,8 @@ class SixTibiaRuntime:
         if not hasattr(self.brain, "_last_external_candidates"):
             counterfactual = dict(sensory_increments); delivered_external = dict(sensory_increments)
         return {"time_ms": time_ms, "before": before, "after": after, "encoded": encoded,
-                "sensory_provenance": {l: {"counterfactual_encoded": "MODELED_TRANSDUCTION",
-                    "intervention_delivered": "ENGINEERED_SENSORY_WITHHOLDING" if l == self.withheld_sensory else "MODELED_TRANSDUCTION"}
+                "sensory_provenance": {l: {"counterfactual_provenance": "MODELED_TRANSDUCTION",
+                    "delivered_provenance": "ENGINEERED_SENSORY_WITHHOLDING" if l == self.withheld_sensory else "MODELED_TRANSDUCTION"}
                     for l in LEG_ORDER},
                 "counterfactual_sensory_increments": counterfactual,
                 "delivered_sensory_increments": delivered_external,
