@@ -50,6 +50,39 @@ COMPATIBILITY = [
 ]
 
 
+def canonical_json(value):
+    """Serialize an interface map reproducibly on every supported platform."""
+    return json.dumps(value, indent=2, sort_keys=True, ensure_ascii=False) + "\n"
+
+
+def first_difference(committed, generated, path=""):
+    """Return the first semantic difference as (path, committed, generated)."""
+    if type(committed) is not type(generated):
+        return path or "<root>", committed, generated
+    if isinstance(committed, dict):
+        for key in sorted(set(committed) | set(generated), key=str):
+            child = f"{path}.{key}" if path else str(key)
+            if key not in committed:
+                return child, "<missing>", generated[key]
+            if key not in generated:
+                return child, committed[key], "<missing>"
+            difference = first_difference(committed[key], generated[key], child)
+            if difference:
+                return difference
+        return None
+    if isinstance(committed, list):
+        if len(committed) != len(generated):
+            return f"{path}.length", len(committed), len(generated)
+        for index, (old, new) in enumerate(zip(committed, generated)):
+            difference = first_difference(old, new, f"{path}[{index}]")
+            if difference:
+                return difference
+        return None
+    if committed != generated:
+        return path or "<root>", committed, generated
+    return None
+
+
 def _unique(values):
     return sorted({str(v) for v in values if str(v)})
 
@@ -89,7 +122,9 @@ def build_map(data_dir=DEFAULT_DATA_DIR):
             name = item.get("name", item.get("side", str(ordinal)))
             md = {k: v for k, v in item.items() if k != "idx"}
             pops.append(_population(category, name, item["idx"], md, decoded, meta))
-    for name, indices in bm["wing"].items():
+    # Wing object member order has no biological meaning.  Sort explicitly;
+    # unlike JSON object insertion order this is part of the population array.
+    for name, indices in sorted(bm["wing"].items()):
         pops.append(_population("wing", name, indices, {}, decoded, meta))
     pops.append(_population("jump", "TTMn", bm["jump"], {}, decoded, meta))
     pops.append(_population("feeding", "feeding motor neurons", bm["feeding"], {}, decoded, meta))
@@ -106,7 +141,10 @@ def build_map(data_dir=DEFAULT_DATA_DIR):
     super_counts = Counter(meta["superclasses"][x] for x in decoded[5])
     class_counts = Counter(meta["classes"][x] for x in decoded[3])
     reference_inventory = []
-    for path in sorted(REFERENCE.rglob("*")):
+    # Path ordering differs between PosixPath and WindowsPath (notably for
+    # uppercase names).  Compare a repository-relative POSIX string instead.
+    for path in sorted(REFERENCE.rglob("*"),
+                       key=lambda candidate: candidate.relative_to(ROOT).as_posix()):
         if path.suffix not in {".js", ".mjs", ".py", ".md"} or not path.is_file():
             continue
         try:
@@ -191,8 +229,14 @@ def main():
         if not OUTPUT.is_file():
             raise ValueError(f"missing generated artifact: {OUTPUT}")
         stored = json.loads(OUTPUT.read_text(encoding="utf-8"))
-        if stored != generated:
-            raise ValueError("interface_map.json is stale; regenerate with build_map()")
+        difference = first_difference(stored, generated)
+        if difference:
+            path, committed, current = difference
+            raise ValueError(
+                "interface_map.json is stale; regenerate with build_map(); "
+                f"first difference at {path}: committed value: {committed!r}; "
+                f"generated value: {current!r}"
+            )
         errors = validate(stored)
         if errors:
             raise ValueError("; ".join(errors))
