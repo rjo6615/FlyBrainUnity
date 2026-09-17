@@ -40,11 +40,18 @@ class MotorActivityObserver:
         self.filtered_hz += (interval_ms / self.tau_ms) * (instantaneous - self.filtered_hz)
         rates = {}
         inc = {}
+        detail = {}
         for name, indices in self.populations.items():
             positions = [self._positions[int(i)] for i in indices]
             rates[name] = float(np.mean(self.filtered_hz[positions])) if positions else 0.0
             inc[name] = int(np.sum(increments[positions])) if positions else 0
-        return {"increments": inc, "filtered_hz": rates}
+            detail[name] = {
+                "cumulative_counts": [int(x) for x in current[positions]],
+                "increments": [int(x) for x in increments[positions]],
+                "instantaneous_hz": [float(x) for x in instantaneous[positions]],
+                "filtered_hz": [float(x) for x in self.filtered_hz[positions]],
+            }
+        return {"increments": inc, "filtered_hz": rates, "neurons": detail}
 
 
 @dataclass(frozen=True)
@@ -63,6 +70,13 @@ class MotorCommand:
     unclamped_position_rad: float
     extensor_hz: float
     flexor_hz: float
+    extensor_activation: float = 0.0
+    flexor_activation: float = 0.0
+    antagonist_signal: float = 0.0
+    raw_decoder_output_rad: float = 0.0
+    magnitude_clamped_output_rad: float = 0.0
+    range_clamped_position_rad: float = 0.0
+    slew_clamped_position_rad: float = 0.0
     provenance: str = "MODELED_MOTOR_DECODING"
 
 
@@ -90,7 +104,13 @@ class MotorDecoder:
         ext = float(rates[self.pathway.extensor.name])
         flex = float(rates[self.pathway.flexor.name])
         # Directions +1/-1 come from the audited bodymap. Magnitude is modeled.
-        offset = self.safety.max_offset_rad * (self.activation(ext) - self.activation(flex))
+        ext_activation = self.activation(ext)
+        flex_activation = self.activation(flex)
+        antagonist = ext_activation - flex_activation
+        # The activation difference is mathematically in [-1, 1].  Keep the
+        # explicit diagnostic stage without introducing a second clamp.
+        raw_offset = self.safety.max_offset_rad * antagonist
+        offset = raw_offset
         raw = current_position_rad + offset
         bounded = min(self.safety.joint_max_rad, max(self.safety.joint_min_rad, raw))
         prior = current_position_rad if self.previous_target is None else self.previous_target
@@ -98,4 +118,6 @@ class MotorDecoder:
         target = min(prior + delta, max(prior - delta, bounded))
         target = min(self.safety.joint_max_rad, max(self.safety.joint_min_rad, target))
         self.previous_target = target
-        return MotorCommand(self.pathway.flygym_joint_name, target, raw, ext, flex)
+        return MotorCommand(self.pathway.flygym_joint_name, target, raw, ext, flex,
+                            ext_activation, flex_activation, antagonist, raw_offset,
+                            offset, bounded, target)
