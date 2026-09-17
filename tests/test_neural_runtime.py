@@ -77,6 +77,20 @@ class NeuralRuntimeTests(unittest.TestCase):
         np.testing.assert_array_equal(a.v,b.v); self.assertEqual(a.diagnostics()['nonfinite'],0)
         a.v[0]=np.nan; self.assertEqual(a.diagnostics()['nonfinite'],1)
 
+    def test_passive_diagnostic_hook_does_not_change_dynamics(self):
+        class Observer:
+            def __init__(self): self.events=[]
+            def before_delivery(self, brain, arriving): self.events.append(('delivery',tuple(arriving)))
+            def after_step(self, brain, fired): self.events.append(('spikes',tuple(fired)))
+        observer=Observer(); plain=MaleCNSBrain(fixture(),cfg())
+        watched=MaleCNSBrain(fixture(),cfg(),diagnostic_observer=observer)
+        plain.v[0]=watched.v[0]=-44
+        for _ in range(8):
+            np.testing.assert_array_equal(plain.step(),watched.step())
+        for name in ('v','g_exc','g_inh','refractory','spike_counts'):
+            np.testing.assert_array_equal(getattr(plain,name),getattr(watched,name))
+        self.assertTrue(observer.events)
+
     def test_whole_cns_sized_initialization(self):
         n=165_122; d=SimpleNamespace(neuron_count=n,row_ptr=np.zeros(n+1,np.uint32),target_indices=np.empty(0,np.uint32),synapse_counts=np.empty(0,np.uint16),
             neuron_sizes=np.ones(n,np.float32),nt_signs=np.ones(n,np.float32),neurotransmitter_ids=np.ones(n,np.uint8),superclass_ids=np.zeros(n,np.uint8),

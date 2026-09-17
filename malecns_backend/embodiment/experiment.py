@@ -1,6 +1,7 @@
 """Bounded real MaleCNS ↔ FlyGym experiment (never substitutes a fake body)."""
 import json
 from pathlib import Path
+import time
 
 from malecns_backend import MaleCNSBrain, load_malecns
 from malecns_backend.loader import process_memory_bytes
@@ -11,6 +12,8 @@ from .mappings import load_selected_pathway
 from .motor import MotorActivityObserver, MotorDecoder
 from .sensory import SensoryEncoder
 from .telemetry import JSONLTelemetry
+from .temporal import (TemporalRecorder, classify_temporal, directed_distances,
+                       motor_connectivity)
 
 
 def _peak(rows, value):
@@ -31,7 +34,8 @@ def calculate_physical_metrics(initial, final, rows):
     }
 
 
-def summarize_experiment(brain, pathway, loop, rows, initial, final, telemetry_path):
+def summarize_experiment(brain, pathway, loop, rows, initial, final, telemetry_path,
+                         recorder=None, duration_ms=None, event_trace_path=None):
     """Reduce bounded interval samples without modifying simulation state."""
     ext_name, flex_name = pathway.extensor.name, pathway.flexor.name
     sensor_counts = brain.spike_counts[list(pathway.sensor.dense_indices)]
@@ -66,7 +70,8 @@ def summarize_experiment(brain, pathway, loop, rows, initial, final, telemetry_p
         "peak_rss_bytes": peak_rss,
         "telemetry_file_size_bytes": Path(telemetry_path).stat().st_size,
     })
-    return {
+    result = {
+        "duration_ms": duration_ms,
         "scientific_outcome": outcome,
         "outcome_criteria": {
             "neural_propagation": "nonsensory_spikes > 0",
@@ -99,6 +104,66 @@ def summarize_experiment(brain, pathway, loop, rows, initial, final, telemetry_p
         "neural_health": brain.diagnostics(), "performance": performance,
         "telemetry": str(Path(telemetry_path).resolve()),
     }
+    if recorder is not None:
+        motor_inputs = recorder.motor_results()
+        # With an identically zero neural offset the measured trajectory is a
+        # direct passive/held-position baseline; no subtraction is performed.
+        passive = max_displacement if peak_raw == 0 else None
+        commanded = 0.0 if peak_raw == 0 else None
+        result.update({
+            "downstream_events": recorder.downstream_events,
+            "motor_input_diagnostics": motor_inputs,
+            "maximum_observed_propagation_hop": max(
+                (x["hop_distance_from_selected_sensory_population"]
+                 for x in recorder.downstream_events
+                 if x["hop_distance_from_selected_sensory_population"] is not None), default=None),
+            "temporal_classification": classify_temporal(
+                motor_inputs, peak_raw, max_displacement,
+                max_displacement if passive is None else passive),
+            "displacement_attribution": {
+                "passive_physics_displacement_rad": passive,
+                "neurally_commanded_displacement_rad": commanded,
+                "method": ("zero decoded neural offset makes this run its own passive baseline"
+                           if peak_raw == 0 else
+                           "not separable without a matched zero-command body replay"),
+            },
+            "activity_bins": activity_bins(recorder, duration_ms, motor_indices),
+            "event_trace": str(Path(event_trace_path).resolve()) if event_trace_path else None,
+            "actuator_target_update_explanation": (
+                "The target position follows the newly measured joint position when decoder offset is "
+                "zero. This is measured-state synchronization/held-position semantics, not nonzero "
+                "neural decoder output."),
+        })
+    return result
+
+
+def activity_bins(recorder, duration_ms, motor_indices,
+                  boundaries=(0, 10, 25, 50, 100, 250, 500)):
+    """Aggregate bounded event activity in non-overlapping milestone bins."""
+    sensor_seen, downstream_seen = set(), set()
+    motor_set = set(motor_indices)
+    bins = []
+    limits = [x for x in boundaries if x < duration_ms] + [duration_ms]
+    for start, end in zip(limits, limits[1:]):
+        events = [(t, i) for t, i in recorder.all_spike_events if start < t <= end]
+        sensors = {i for _, i in events if i in recorder.sensors}
+        downstream = {i for _, i in events if i not in recorder.sensors}
+        bins.append({
+            "start_ms": start, "end_ms": end,
+            "new_sensory_neurons": len(sensors - sensor_seen),
+            "new_downstream_neurons": len(downstream - downstream_seen),
+            "spikes": len(events),
+            "maximum_propagation_depth": max(
+                (int(recorder.distances[i]) for i in downstream
+                 if recorder.distances[i] >= 0), default=None),
+            "motor_pool_input_events": sum(
+                1 for _, pre in events for post in motor_set
+                if post in recorder.data.target_indices[
+                    recorder.data.row_ptr[pre]:recorder.data.row_ptr[pre + 1]]),
+            "motor_spikes": sum(i in motor_set for _, i in events),
+        })
+        sensor_seen.update(sensors); downstream_seen.update(downstream)
+    return bins
 
 
 def print_diagnostic_report(result):
@@ -146,8 +211,18 @@ def print_diagnostic_report(result):
 def run_real_experiment(duration_ms=10, seed=1,
                         telemetry_path=Path("malecns_backend/embodiment/closed_loop.jsonl")):
     """Run the unchanged Test 4 trajectory with passive causal observation."""
+    if not isinstance(duration_ms, (int, float)) or not 0 < duration_ms <= 60_000:
+        raise ValueError("duration_ms must be finite and in (0, 60000]")
+    if duration_ms % 1:
+        raise ValueError("duration_ms must be a whole 1 ms control interval")
     pathway = load_selected_pathway()
-    brain = MaleCNSBrain(load_malecns()); brain.reset(seed)
+    data = load_malecns()
+    brain = MaleCNSBrain(data); brain.reset(seed)
+    distances = directed_distances(data, pathway.sensor.dense_indices)
+    motor_indices = pathway.extensor.dense_indices + pathway.flexor.dense_indices
+    recorder = TemporalRecorder(data, pathway.sensor.dense_indices, motor_indices,
+                                pathway, distances)
+    brain.diagnostic_observer = recorder
     body = FlyGymBody(selected_joint_index=pathway.flygym_joint_index)
     observer = MotorActivityObserver({pathway.extensor.name: pathway.extensor.dense_indices,
                                       pathway.flexor.name: pathway.flexor.dense_indices})
@@ -158,8 +233,93 @@ def run_real_experiment(duration_ms=10, seed=1,
             initial = body.observe()
             rows = loop.run(duration_ms)
             final = body.observe()
-        result = summarize_experiment(brain, pathway, loop, rows, initial, final, telemetry_path)
+        event_path = Path(telemetry_path).with_name(Path(telemetry_path).stem + "_events.jsonl")
+        with event_path.open("w", encoding="utf-8") as out:
+            for event in recorder.downstream_events:
+                out.write(json.dumps(event, separators=(",", ":")) + "\n")
+        result = summarize_experiment(brain, pathway, loop, rows, initial, final, telemetry_path,
+                                      recorder, duration_ms, event_path)
+        result["motor_connectivity"] = motor_connectivity(
+            data, brain, pathway.sensor.dense_indices, motor_indices, distances)
     finally:
         body.close()
+    passive = run_passive_body_baseline(duration_ms, pathway)
+    result["displacement_attribution"] = {
+        "passive_physics_displacement_rad": passive["maximum_displacement_rad"],
+        "neurally_commanded_displacement_rad": (
+            max(0.0, result["physical"]["maximum_displacement_rad"] -
+                passive["maximum_displacement_rad"])),
+        "method": "independent fresh-body zero-neural-command replay; analysis-only difference",
+    }
+    result["temporal_classification"] = classify_temporal(
+        result["motor_input_diagnostics"], result["motor"]["peak_raw_command_rad"],
+        result["physical"]["maximum_displacement_rad"], passive["maximum_displacement_rad"])
     print_diagnostic_report(result)
     return result
+
+
+def run_passive_body_baseline(duration_ms, pathway):
+    """Replay physics with a zero decoder offset; never modifies the actual run."""
+    body = FlyGymBody(selected_joint_index=pathway.flygym_joint_index)
+    decoder = MotorDecoder(pathway)
+    rates = {pathway.extensor.name: 0.0, pathway.flexor.name: 0.0}
+    try:
+        initial = body.observe()
+        rows = []
+        for _ in range(int(duration_ms)):
+            before = body.observe()
+            command = decoder.decode(rates, before.frame.tibia_angle_rad, .001)
+            after = body.step(command, 10)
+            rows.append({"before": before, "after": after, "command": command})
+        return calculate_physical_metrics(initial, body.observe(), rows)
+    finally:
+        body.close()
+
+
+def run_duration_series(durations_ms=(10, 25, 50, 100, 250, 500), seed=1,
+                        output_dir=Path("malecns_backend/embodiment/temporal_output")):
+    """Run fresh, same-seed independent replays; never extend a prior simulation."""
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    results = []
+    for duration in durations_ms:
+        started = time.perf_counter()
+        result = run_real_experiment(
+            duration, seed, output_dir / f"temporal_{duration:g}ms.jsonl")
+        result["series_total_wall_clock_s"] = time.perf_counter() - started
+        (output_dir / f"temporal_{duration:g}ms_summary.json").write_text(
+            json.dumps(result, indent=2), encoding="utf-8")
+        print_temporal_funnel(result)
+        results.append(result)
+    return results
+
+
+def print_temporal_funnel(result):
+    """Print a compact temporal funnel rather than whole-CNS state."""
+    ext_ids = set(result["extensor"]["body_ids"])
+    inputs = result["motor_input_diagnostics"]
+    ext = [x for x in inputs if x["body_id"] in ext_ids]
+    flex = [x for x in inputs if x["body_id"] not in ext_ids]
+    def aggregate(items):
+        return (sum(x["presynaptic_spiking_neurons"] for x in items),
+                sum(x["excitatory_events"] + x["inhibitory_events"] for x in items),
+                max((x["peak_voltage"] for x in items), default=None),
+                min((x["closest_threshold_margin"] for x in items), default=None),
+                sum(x["threshold_crossed"] for x in items))
+    print(f"\n=== TEMPORAL PROPAGATION: {result['duration_ms']:g} ms ===")
+    print(f"Sensory neurons spiking: {result['sensory']['spiking_neurons']}")
+    print(f"Sensory spikes: {result['sensory']['total_spikes']}")
+    downstream_ids = {x["dense_index"] for x in result["downstream_events"]}
+    print(f"Non-sensory neurons spiking: {len(downstream_ids)}")
+    print(f"Non-sensory spikes: {len(result['downstream_events'])}")
+    print(f"Maximum observed propagation hop: {result['maximum_observed_propagation_hop']}")
+    for label, items in (("Extensor", ext), ("Flexor", flex)):
+        pre, events, voltage, margin, spikes = aggregate(items)
+        print(f"{label} presynaptic active neurons: {pre}")
+        print(f"{label} synaptic events: {events}")
+        print(f"{label} peak voltage: {voltage}")
+        print(f"{label} closest threshold margin: {margin}")
+        print(f"{label} spikes: {spikes}")
+    print(f"Decoded motor signal: {result['motor']['peak_raw_command_rad']}")
+    print(f"Maximum physical displacement: {result['physical']['maximum_displacement_rad']}")
+    print(f"Scientific outcome: {result['temporal_classification']}")

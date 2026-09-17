@@ -81,7 +81,8 @@ def region_scales(data, config):
 
 class MaleCNSBrain:
     """Contiguous-array, event-driven CPU reference runtime."""
-    def __init__(self, data, config=None, *, effective_weights=None, pre_sign=None):
+    def __init__(self, data, config=None, *, effective_weights=None, pre_sign=None,
+                 diagnostic_observer=None):
         self.data = data
         self.config = config or ModelConfig.calibrated()
         p = self.config; self.n = data.neuron_count
@@ -101,6 +102,10 @@ class MaleCNSBrain:
         if p.neuromodulation:
             sign[np.fromiter((str(t).startswith("OA-") for t in data.types), bool, self.n)] = 0
         self.pre_sign = sign
+        # A diagnostic observer receives read-only descriptions of events.  It
+        # is deliberately outside the numerical equations and is disabled by
+        # default.
+        self.diagnostic_observer = diagnostic_observer
         if p.inhibitory_gain != 1:
             for pre in np.flatnonzero(sign < 0):
                 w[self.indptr[pre]:self.indptr[pre+1]] *= p.inhibitory_gain
@@ -135,7 +140,10 @@ class MaleCNSBrain:
             np.add.at(self.g_exc if s > 0 else self.g_inh, targets, values)
 
     def step(self):
-        p = self.config; self._deliver(self._ring[self._head]); self._ring[self._head] = []
+        p = self.config; arriving = self._ring[self._head]
+        if self.diagnostic_observer is not None:
+            self.diagnostic_observer.before_delivery(self, tuple(arriving))
+        self._deliver(arriving); self._ring[self._head] = []
         refractory = self.refractory > 0
         self.refractory[refractory] -= p.dt; self.v[refractory] = p.v_reset
         available = ~refractory
@@ -156,7 +164,10 @@ class MaleCNSBrain:
         self.activity_trace *= np.float32(math.exp(-p.dt/p.trace_tau)); self.adaptation *= np.float32(math.exp(-p.dt/p.adaptation_tau))
         self.depression_resource += (1-self.depression_resource) * np.float32(p.dt/p.depression_tau)
         slot = (self._head + len(self._ring)-1) % len(self._ring); self._ring[slot] = fired.tolist(); self._head = (self._head+1) % len(self._ring)
-        self.time_ms += p.dt; self._last_spikes = fired; return fired
+        self.time_ms += p.dt; self._last_spikes = fired
+        if self.diagnostic_observer is not None:
+            self.diagnostic_observer.after_step(self, fired)
+        return fired
 
     def step_ms(self, duration_ms):
         if duration_ms < 0 or duration_ms % self.config.dt: raise ValueError("duration must be a nonnegative multiple of dt")
