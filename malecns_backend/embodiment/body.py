@@ -89,3 +89,54 @@ class FlyGymBody:
         close = getattr(self.sim, "close", None)
         if close is not None:
             close()
+
+
+@dataclass(frozen=True)
+class SixTibiaBodySnapshot:
+    """PHYSICS_MEASURED state used by the simultaneous tibia experiment."""
+    time_s: float
+    angles_rad: dict[str, float]
+    velocities_rad_s: dict[str, float]
+    body_position_m: tuple[float, ...] = ()
+    body_orientation: tuple[float, ...] = ()
+    body_linear_velocity_m_s: tuple[float, ...] = ()
+    body_angular_velocity_rad_s: tuple[float, ...] = ()
+    contact_force_n: float = 0.0
+
+
+class SixTibiaFlyGymBody(FlyGymBody):
+    """One FlyGym body exposing six tibiae; every other joint is held measured."""
+    def __init__(self, interfaces, timestep_s=0.0001):
+        self.interfaces = dict(interfaces)
+        super().__init__(timestep_s=timestep_s,
+                         selected_joint_index=next(iter(interfaces.values())).action_index)
+
+    def observe(self):
+        obs = self.observation
+        raw = np.asarray(obs["joints"], dtype=np.float64)
+        positions = raw[0] if raw.ndim == 2 else raw
+        velocities = raw[1] if raw.ndim == 2 and raw.shape[0] > 1 else np.zeros_like(positions)
+        pos = tuple(float(x) for x in np.asarray(
+            obs.get("fly", ()), dtype=np.float64).reshape(-1).tolist()[:3])
+        orientation = tuple(float(x) for x in np.asarray(
+            obs.get("fly_orientation", ()), dtype=np.float64).ravel())
+        contact = np.asarray(obs.get("contact_forces", ()), dtype=np.float64)
+        return SixTibiaBodySnapshot(
+            self.physics_steps * self.timestep_s,
+            {leg: float(positions[p.action_index]) for leg, p in self.interfaces.items()},
+            {leg: float(velocities[p.action_index]) for leg, p in self.interfaces.items()},
+            pos, orientation, contact_force_n=float(np.linalg.norm(contact)) if contact.size else 0.0)
+
+    def step(self, commands, count=1):
+        joints = self._joint_positions(self.observation).copy()
+        for leg, command in commands.items():
+            expected = self.interfaces[leg]
+            if command.actuator != expected.actuator_name:
+                raise ValueError(f"wrong actuator for {leg}: {command.actuator}")
+            joints[expected.action_index] = command.target_position_rad
+        action = {"joints": joints, "adhesion": np.zeros(6, dtype=np.float64)}
+        for _ in range(count):
+            result = self.sim.step(action)
+            self.observation, self.info = result[0], result[-1]
+            self.physics_steps += 1
+        return self.observe()
