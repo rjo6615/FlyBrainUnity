@@ -150,10 +150,14 @@ def analyze_matched(closed, control, events_closed=None, tolerance=TOLERANCE):
         sensory_activity = any(sum(r["sensory_increments"].values()) for r in closed)
         stage = 0 if not sensory_activity else 1 if not downstream else 2
         if motor_spike is not None and decoded is not None: stage = 3
-        if physical is not None and applied is not None and physical >= applied: stage = 4
-        if sensory is not None and physical is not None and sensory >= physical: stage = 5
-        if cns is not None and sensory is not None and cns >= sensory: stage = 6
-        if motor_div is not None and cns is not None and motor_div >= cns: stage = 7
+        reached_s4 = physical is not None and applied is not None and physical >= applied
+        reached_s5 = reached_s4 and sensory is not None and sensory >= physical
+        reached_s6 = reached_s5 and cns is not None and cns >= sensory
+        reached_s7 = reached_s6 and motor_div is not None and motor_div >= cns
+        if reached_s4: stage = 4
+        if reached_s5: stage = 5
+        if reached_s6: stage = 6
+        if reached_s7: stage = 7
         classification = f"S{stage}"
     per_leg = {}
     sample_times = (50,100,250,500)
@@ -171,7 +175,8 @@ def analyze_matched(closed, control, events_closed=None, tolerance=TOLERANCE):
           "first_sensory_encoding_divergence_ms":first_sens,
           "first_sensory_spike_divergence_ms":next((a["time_ms"] for a,b in zip(closed,control) if a["sensory_increments"][leg]!=b["sensory_increments"][leg]),None),
           "first_cns_spike_divergence_ms":cns,"first_motor_population_divergence_ms":first_mdiv,
-          "angle_differences_rad":{str(t):bytime.get(t)},"maximum_absolute_angle_difference_rad":float(np.max(np.abs(diffs))),
+          "angle_differences_rad":{str(t):bytime.get(t) for t in sample_times},
+          "maximum_absolute_angle_difference_rad":float(np.max(np.abs(diffs))),
           "rms_post_motor_angle_difference_rad":float(math.sqrt(np.mean(np.square(post)))) if post else 0.,
           "final_angle_difference_rad":float(diffs[-1]),"final_difference_sign":"positive" if diffs[-1]>0 else "negative" if diffs[-1]<0 else "zero"}
     norms=np.linalg.norm(angle_d,axis=1); postnorm=[n for r,n in zip(closed,norms) if applied is not None and r["time_ms"]>=applied]
