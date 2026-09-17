@@ -57,9 +57,24 @@ class EventObserver:
             self.first_downstream = brain.time_ms
 
 
+class _ObserverFanout:
+    """Forward read-only diagnostic callbacks without changing their order."""
+    def __init__(self, *observers):
+        self.observers = observers
+
+    def before_delivery(self, brain, arriving):
+        for observer in self.observers:
+            observer.before_delivery(brain, arriving)
+
+    def after_step(self, brain, fired):
+        for observer in self.observers:
+            observer.after_step(brain, fired)
+
+
 class SixTibiaRuntime:
     """One brain, six encoders, and six strictly independent observer/decoders."""
-    def __init__(self, brain, body, interfaces, seed, apply_neural_motor):
+    def __init__(self, brain, body, interfaces, seed, apply_neural_motor,
+                 diagnostic_observer=None):
         self.brain, self.body = brain, body
         self.interfaces = dict(interfaces)
         if tuple(self.interfaces) != LEG_ORDER: raise ValueError("exactly six ordered interfaces required")
@@ -70,7 +85,11 @@ class SixTibiaRuntime:
                          for l, p in self.interfaces.items()}
         self.apply_neural_motor = bool(apply_neural_motor)
         self.events = EventObserver(self.interfaces)
-        brain.reset(seed); brain.diagnostic_observer = self.events
+        brain.reset(seed)
+        # The optional observer is passive and receives the same callbacks as
+        # the compact canonical event observer.  The default path is unchanged.
+        brain.diagnostic_observer = (_ObserverFanout(self.events, diagnostic_observer)
+                                     if diagnostic_observer is not None else self.events)
         for observer in self.observers.values(): observer.reset(brain.spike_counts)
 
     def step(self, time_ms):
