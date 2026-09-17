@@ -129,7 +129,14 @@ def analyze_matched(closed, control, events_closed=None, tolerance=TOLERANCE):
     cns = next((a["time_ms"] for a,b in zip(closed,control)
                 if a["cns_spike_increment"] != b["cns_spike_increment"] or
                 a.get("spiking_neuron_indices") != b.get("spiking_neuron_indices")),None)
-    motor_div = next((a["time_ms"] for a,b in zip(closed,control) if any(
+    # A mapped-motor difference can be the cause of actuation, so it is not
+    # evidence that the feedback loop has returned to the motor population.
+    # Feedback motor divergence is specifically the first difference at or
+    # after downstream CNS divergence.  These values are telemetry-row times
+    # (control-step milliseconds), just like the other global stages; the
+    # observer's sub-step neural timestamps are only reported per leg.
+    motor_div = next((a["time_ms"] for a,b in zip(closed,control) if
+        cns is not None and a["time_ms"] >= cns and any(
         a["motor"][l]["increments"] != b["motor"][l]["increments"] for l in LEG_ORDER)),None)
     pre = [i for i,r in enumerate(closed) if applied is None or r["time_ms"] < applied]
     pre_ok = all(np.linalg.norm(angle_d[i]) <= tolerance and
@@ -164,7 +171,8 @@ def analyze_matched(closed, control, events_closed=None, tolerance=TOLERANCE):
     for j,leg in enumerate(LEG_ORDER):
         diffs=angle_d[:,j]; first_phys=next((r["time_ms"] for r,d in zip(closed,diffs) if abs(d)>tolerance),None)
         first_sens=next((r["time_ms"] for r,e in zip(closed,rate_equal) if not e[j]),None)
-        first_mdiv=next((a["time_ms"] for a,b in zip(closed,control) if a["motor"][leg]["increments"] != b["motor"][leg]["increments"]),None)
+        first_mdiv=next((a["time_ms"] for a,b in zip(closed,control) if cns is not None and
+            a["time_ms"] >= cns and a["motor"][leg]["increments"] != b["motor"][leg]["increments"]),None)
         first_apply=_first(closed,lambda r,l=leg: abs(r["actuation"][l]["applied_neural_contribution_rad"])>tolerance)
         post=[d for r,d in zip(closed,diffs) if first_apply is not None and r["time_ms"]>=first_apply]
         bytime={r["time_ms"]:float(d) for r,d in zip(closed,diffs)}

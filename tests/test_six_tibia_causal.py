@@ -78,7 +78,11 @@ class SixTibiaCausalTests(unittest.TestCase):
         closed=[row(1),row(2,motor=1,decoded=.1,applied=.1),row(3,angle=.01),row(4,angle=.01,rate=1),row(5,angle=.01,rate=1,cns=1),row(6,angle=.01,rate=1,cns=1,motor=1),row(7,angle=.01,rate=1,cns=1)]
         result=analyze_matched(closed,control)
         self.assertEqual(result["classification"],"S7")
-        self.assertEqual(list(result["global_causal_order_ms"].values()),[2,2,2,3,4,5,6])
+        self.assertEqual(result["global_causal_order_ms"],{
+            "motor_spike":2,"decoded_output":2,"applied_output":2,
+            "physical_divergence":3,"sensory_encoding_divergence":4,
+            "cns_divergence":5,"mapped_motor_divergence":6,
+        })
 
         # Later divergence signals cannot skip the physical and sensory prerequisites.
         no_sensory=[row(1,decoded=.1,applied=.1),row(2,angle=.01,cns=1)]
