@@ -26,6 +26,16 @@ __pycache__/
 *.pyc
 .pytest_cache/
 
+# MaleCNS generated runtime cache (scientific source data lives elsewhere)
+/.cache/malecns-*/
+
+# MaleCNS embodiment replay telemetry (compact milestone summaries stay tracked)
+/malecns_backend/embodiment/closed_loop.jsonl
+/malecns_backend/embodiment/closed_loop_events.jsonl
+/malecns_backend/embodiment/temporal_output/*.jsonl
+/malecns_backend/embodiment/causal_output/causal_closed_loop.jsonl
+/malecns_backend/embodiment/causal_output/causal_motor_disabled.jsonl
+
 # OS
 .DS_Store
 Thumbs.db
