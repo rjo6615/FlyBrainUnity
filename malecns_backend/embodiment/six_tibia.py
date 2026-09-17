@@ -148,7 +148,7 @@ class IsolatedTibiaDecoder:
             for population in interface.motor_populations
         })
         lo, hi = interface.joint_range_rad
-        self.decoder = MotorDecoder(interface, MotorSafety(lo, hi, 0.25, 4.0))
+        self.decoder = IsolatedMotorDecoder(interface, MotorSafety(lo, hi, 0.25, 4.0))
 
     def reset(self, spike_counts=None):
         self.observer.reset(spike_counts)
@@ -160,19 +160,30 @@ class IsolatedTibiaDecoder:
         # Preserve every named population in ``observed``.  The antagonist
         # input is the per-neuron mean for each explicit audited direction,
         # not an unweighted average of differently sized populations.
-        directional_rates = {}
-        for combined in (self.interface.extensor, self.interface.flexor):
-            members = [p for p in self.interface.motor_populations
+        command = self.decoder.decode(observed["filtered_hz"], current_position_rad,
+                                      control_dt_s, apply_neural_offset)
+        observed["directional_filtered_hz"] = self.decoder.directional_rates(
+            observed["filtered_hz"])
+        return observed, command
+
+
+class IsolatedMotorDecoder(MotorDecoder):
+    """Adapt explicit audited motor pools to the unchanged M3D decoder equation."""
+    def directional_rates(self, rates):
+        result = {}
+        for combined in (self.pathway.extensor, self.pathway.flexor):
+            members = [p for p in self.pathway.motor_populations
                        if p.direction == combined.direction]
             count = sum(len(p.dense_indices) for p in members)
-            directional_rates[combined.name] = sum(
-                observed["filtered_hz"][p.name] * len(p.dense_indices)
-                for p in members
+            result[combined.name] = sum(
+                rates[p.name] * len(p.dense_indices) for p in members
             ) / count
-        command = self.decoder.decode(directional_rates, current_position_rad,
-                                      control_dt_s, apply_neural_offset)
-        observed["directional_filtered_hz"] = directional_rates
-        return observed, command
+        return result
+
+    def decode(self, rates, current_position_rad, control_dt_s,
+               apply_neural_offset=True):
+        return super().decode(self.directional_rates(rates), current_position_rad,
+                              control_dt_s, apply_neural_offset)
 
 
 class SixTibiaIsolation:
