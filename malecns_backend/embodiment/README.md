@@ -29,8 +29,11 @@ connectome fact.
 * `body.py`: optional headless FlyGym adapter. It never imports a FlyGym CPG or
   preprogrammed step controller.
 * `loop.py`: explicit causal multi-rate scheduler.
-* `telemetry.py`: selected-signal JSONL, never whole-CNS state dumps.
-* `experiment.py`: opt-in bounded real experiment.
+* `telemetry.py`: one selected-signal JSONL record per control interval, never
+  a whole-CNS state dump.
+* `diagnostics.py`: the single source of truth for outcome criteria and the
+  measured first-weak-link classification.
+* `experiment.py`: opt-in bounded real experiment and causal-funnel report.
 * `audit.py`: engineering validation and dependency/status report.
 
 `MaleCNSBrain` remains body-independent. Its existing generic
@@ -110,6 +113,14 @@ The first command validates components and reports whether the real experiment
 ran. `--run-real` refuses to substitute a fake body if FlyGym is unavailable.
 Test fixtures exercise only isolated interfaces and never count as a
 NeuroMechFly result.
+
+The real command writes `malecns_backend/embodiment/closed_loop.jsonl` (one
+bounded row per 1-ms control interval) and prints the causal funnel, first-event
+latencies, the measured weak link, the unchanged outcome criteria, wall time,
+step counts, instrumentation time, peak RSS, and trace size. Instrumentation
+observes returned spike indices and cumulative counters; it does not write any
+neural, decoder, actuator, physics, mapping, seed, duration, or initial-state
+parameter.
 
 See [EXPERIMENT_REPORT.md](EXPERIMENT_REPORT.md) for the experiment status and
 all unresolved assumptions.

@@ -8,6 +8,8 @@ from types import SimpleNamespace
 import numpy as np
 
 from malecns_backend.embodiment.body import BodySnapshot
+from malecns_backend.embodiment.diagnostics import OUTCOME_CRITERIA, classify_weak_link
+from malecns_backend.embodiment.experiment import calculate_physical_metrics
 from malecns_backend.embodiment.loop import EmbodimentLoop, TimingConfig
 from malecns_backend.embodiment.mappings import INTERFACE_MAP, load_selected_pathway
 from malecns_backend.embodiment.motor import MotorActivityObserver, MotorDecoder, MotorSafety
@@ -105,6 +107,9 @@ class EmbodimentTests(unittest.TestCase):
         # instantaneous is 100 Hz/neuron; alpha=.25 => 25 Hz.
         self.assertEqual(result['increments']['p'],2); self.assertAlmostEqual(result['filtered_hz']['p'],25)
         result=o.update(counts,10); self.assertAlmostEqual(result['filtered_hz']['p'],18.75)
+        self.assertEqual(result['neurons']['p']['increments'],[0,0])
+        self.assertEqual(result['neurons']['p']['instantaneous_hz'],[0.0,0.0])
+        self.assertEqual(result['neurons']['p']['filtered_hz'],[18.75,18.75])
 
     def test_motor_decoder_sign_and_isolation(self):
         p=self.pathway; d=MotorDecoder(p,MotorSafety(max_velocity_rad_s=1000))
@@ -120,6 +125,10 @@ class EmbodimentTests(unittest.TestCase):
         self.assertLessEqual(command.target_position_rad,.0950000001)
         self.assertLessEqual(command.target_position_rad,.1)
         self.assertLessEqual(command.unclamped_position_rad-.09,.020000001)
+        self.assertAlmostEqual(command.raw_decoder_output_rad,.02)
+        self.assertAlmostEqual(command.magnitude_clamped_output_rad,.02)
+        self.assertAlmostEqual(command.range_clamped_position_rad,.1)
+        self.assertAlmostEqual(command.slew_clamped_position_rad,.095)
 
     def test_multirate_scheduler_counts_and_causal_order(self):
         brain,body,loop=self.components(); before=body.observe().frame.time_s
@@ -134,6 +143,17 @@ class EmbodimentTests(unittest.TestCase):
             np.testing.assert_array_equal(a.brain.spike_counts,b.brain.spike_counts)
             self.assertEqual(ra['command'],rb['command'])
 
+    def test_instrumentation_does_not_change_deterministic_results(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            with JSONLTelemetry(Path(tmp)/'trace.jsonl') as out:
+                instrumented=self.components(seed=11,telemetry=out)[2]
+                observed=instrumented.run(20)
+            plain=self.components(seed=11)[2]
+            expected=plain.run(20)
+        np.testing.assert_array_equal(instrumented.brain.spike_counts,plain.brain.spike_counts)
+        self.assertEqual([r['command'] for r in observed],[r['command'] for r in expected])
+        self.assertEqual([r['after'].frame for r in observed],[r['after'].frame for r in expected])
+
     def test_telemetry_required_fields_and_finite_state(self):
         with tempfile.TemporaryDirectory() as tmp:
             path=Path(tmp)/'run.jsonl'
@@ -144,7 +164,36 @@ class EmbodimentTests(unittest.TestCase):
                   'sensory_spike_count','total_cns_spike_count','extensor_spike_increment','extensor_filtered_hz',
                   'actuator_target_rad','contact_force_n','body_position_m','body_orientation'}
         self.assertEqual(len(rows),2); self.assertTrue(required<=rows[0].keys())
+        self.assertEqual([r['control_step'] for r in rows],[1,2])
+        self.assertLess(path.stat().st_size,100_000)
         self.assertTrue(np.isfinite(brain.v).all()); self.assertTrue(math.isfinite(body.angle))
+
+    def test_displacement_and_latency_metrics_are_measured(self):
+        def snapshot(time, angle, velocity=0):
+            return BodySnapshot(LegSensoryFrame(time,angle),(0,0,0),(),0,velocity,angle)
+        initial, middle, final=snapshot(0,.1),snapshot(.001,.15,2),snapshot(.002,.08,-1)
+        rows=[{'after':middle,'command':SimpleNamespace(target_position_rad=.16)},
+              {'after':final,'command':SimpleNamespace(target_position_rad=.09)}]
+        metrics=calculate_physical_metrics(initial,final,rows)
+        self.assertAlmostEqual(metrics['maximum_displacement_rad'],.05)
+        self.assertAlmostEqual(metrics['minimum_angle_rad'],.08)
+        self.assertAlmostEqual(metrics['maximum_angle_rad'],.15)
+        self.assertAlmostEqual(metrics['maximum_command_measured_error_rad'],.01)
+        self.assertEqual(metrics['peak_abs_velocity_rad_s'],2)
+
+    def test_weak_link_uses_measured_values_and_shared_outcome_criteria(self):
+        base={'sensory_spikes':0,'nonsensory_spikes':0,'motor_spikes':0,
+              'peak_antagonist_signal':0,'peak_raw_motor_command_rad':0,
+              'peak_final_motor_command_rad':0,'max_displacement_rad':0}
+        self.assertEqual(classify_weak_link(base)[0],'S0')
+        base.update(sensory_spikes=1); self.assertEqual(classify_weak_link(base)[0],'S1')
+        base.update(nonsensory_spikes=1); self.assertEqual(classify_weak_link(base)[0],'S2')
+        base.update(motor_spikes=1); self.assertEqual(classify_weak_link(base)[0],'S3')
+        base.update(peak_antagonist_signal=.2,peak_raw_motor_command_rad=.01,
+                    peak_final_motor_command_rad=.004)
+        self.assertEqual(classify_weak_link(base)[0],'S5')
+        self.assertEqual(OUTCOME_CRITERIA.classify(0,1,0),
+                         'B. NEURAL PROPAGATION WITHOUT MEANINGFUL BODY RESPONSE')
 
     def test_old_behavior_controller_is_not_invoked(self):
         _,body,loop=self.components(); loop.step()

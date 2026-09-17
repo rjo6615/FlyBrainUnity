@@ -17,6 +17,8 @@ class BodySnapshot:
     body_position_m: tuple[float, float, float]
     body_orientation: tuple[float, ...]
     contact_force_n: float
+    joint_velocity_rad_s: float = 0.0
+    actuator_position_rad: float | None = None
 
 
 class FlyGymBody:
@@ -59,6 +61,9 @@ class FlyGymBody:
     def observe(self):
         obs = self.observation
         joints = self._joint_positions(obs)
+        joint_observation = np.asarray(obs["joints"], dtype=np.float64)
+        velocity = (float(joint_observation[1, self.selected_joint_index])
+                    if joint_observation.ndim == 2 and joint_observation.shape[0] > 1 else 0.0)
         pos = np.asarray(obs.get("fly", np.zeros((1, 3))), dtype=np.float64).reshape(-1, 3)[0]
         orientation = tuple(np.asarray(obs.get("fly_orientation", ()), dtype=np.float64).ravel().tolist())
         contact = np.asarray(obs.get("contact_forces", ()), dtype=np.float64)
@@ -66,6 +71,7 @@ class FlyGymBody:
         return BodySnapshot(
             LegSensoryFrame(self.physics_steps * self.timestep_s, float(joints[self.selected_joint_index])),
             tuple(float(x) for x in pos), orientation, load,
+            velocity, float(joints[self.selected_joint_index]),
         )
 
     def step(self, command, count=1):

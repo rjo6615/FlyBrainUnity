@@ -23,6 +23,29 @@ class TelemetrySample:
     contact_force_n: float
     body_position_m: tuple[float, float, float]
     body_orientation: tuple[float, ...]
+    control_step: int
+    neural_step: int
+    physics_step: int
+    input_tibia_angle_rad: float
+    joint_velocity_rad_s: float
+    commanded_joint_position_rad: float
+    actuator_position_rad: float
+    encoded_rate_min_hz: float
+    encoded_nonzero_neurons: int
+    encoded_total_rate_hz: float
+    cumulative_sensory_spikes: int
+    distinct_sensory_neurons: int
+    cns_spike_increment: int
+    distinct_cns_neurons: int
+    motor_neurons: dict
+    extensor_activation: float
+    flexor_activation: float
+    antagonist_signal: float
+    raw_motor_output_rad: float
+    magnitude_clamped_output_rad: float
+    range_clamped_position_rad: float
+    slew_clamped_position_rad: float
+    prior_actuator_command_rad: float
 
     def validate(self):
         def numbers(value):
@@ -33,6 +56,8 @@ class TelemetrySample:
             if key.endswith("count") or key.endswith("increment"):
                 if value < 0:
                     raise ValueError(f"negative telemetry count: {key}")
+            elif isinstance(value, dict):
+                continue
             elif not all(math.isfinite(float(x)) for x in numbers(value)):
                 raise ValueError(f"nonfinite telemetry: {key}")
 
