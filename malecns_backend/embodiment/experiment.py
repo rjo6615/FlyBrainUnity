@@ -35,7 +35,8 @@ def calculate_physical_metrics(initial, final, rows):
 
 
 def summarize_experiment(brain, pathway, loop, rows, initial, final, telemetry_path,
-                         recorder=None, duration_ms=None, event_trace_path=None):
+                         recorder=None, duration_ms=None, event_trace_path=None,
+                         motor_indices=None):
     """Reduce bounded interval samples without modifying simulation state."""
     ext_name, flex_name = pathway.extensor.name, pathway.flexor.name
     sensor_counts = brain.spike_counts[list(pathway.sensor.dense_indices)]
@@ -105,6 +106,8 @@ def summarize_experiment(brain, pathway, loop, rows, initial, final, telemetry_p
         "telemetry": str(Path(telemetry_path).resolve()),
     }
     if recorder is not None:
+        if motor_indices is None:
+            raise ValueError("motor_indices are required with temporal recording")
         motor_inputs = recorder.motor_results()
         # With an identically zero neural offset the measured trajectory is a
         # direct passive/held-position baseline; no subtraction is performed.
@@ -238,7 +241,8 @@ def run_real_experiment(duration_ms=10, seed=1,
             for event in recorder.downstream_events:
                 out.write(json.dumps(event, separators=(",", ":")) + "\n")
         result = summarize_experiment(brain, pathway, loop, rows, initial, final, telemetry_path,
-                                      recorder, duration_ms, event_path)
+                                      recorder, duration_ms, event_path,
+                                      motor_indices=motor_indices)
         result["motor_connectivity"] = motor_connectivity(
             data, brain, pathway.sensor.dense_indices, motor_indices, distances)
     finally:
