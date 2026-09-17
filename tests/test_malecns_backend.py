@@ -1,3 +1,4 @@
+import copy
 import math
 import struct
 import unittest
@@ -6,6 +7,7 @@ from unittest import mock
 from malecns_backend import audit
 from malecns_backend.codec import decode_neurons
 from malecns_backend import loader
+from malecns_backend import interface_audit
 from malecns_backend.loader import DEFAULT_DATA_DIR, load_malecns
 
 
@@ -86,6 +88,32 @@ class MaleCNSArtifactTests(unittest.TestCase):
         for index in self.data.bodymap_dense_indices:
             body_id = self.data.body_id(index)
             self.assertEqual(self.data.dense_index(body_id), index)
+
+    def test_interface_map_generation_is_deterministic_and_staleness_is_detected(self):
+        first = interface_audit.build_map()
+        second = interface_audit.build_map()
+        self.assertEqual(first, second)
+        self.assertEqual(interface_audit.canonical_json(first),
+                         interface_audit.canonical_json(second))
+        self.assertEqual(len(first["populations"]), 617)
+        self.assertEqual(sum(bool(p["dense_indices"]) for p in first["populations"]), 332)
+        self.assertEqual(sum(p["category"] == "unmappedMotor"
+                             for p in first["populations"]), 285)
+        self.assertEqual(len({index for p in first["populations"]
+                              for index in p["dense_indices"]}), 12_317)
+        self.assertEqual(first["neuron_inventory"]["descending_neurons"], 1_314)
+        self.assertEqual(first["neuron_inventory"]["ascending_neurons"], 1_846)
+
+        references = first["bodymap_source_reference_inventory"]
+        reference_keys = [(row["source"], row["line"]) for row in references]
+        self.assertEqual(reference_keys, sorted(reference_keys))
+
+        modified = copy.deepcopy(first)
+        modified["schema_version"] += 1
+        self.assertEqual(
+            interface_audit.first_difference(modified, second),
+            ("schema_version", modified["schema_version"], second["schema_version"]),
+        )
 
 
 if __name__ == "__main__":
