@@ -23,6 +23,10 @@ from .six_tibia import LEG_ORDER, SIX_LEG_MAP, IsolatedMotorDecoder, load_six_ti
 CONTROL_DT_S = .001
 PHYSICS_DT_S = .0001
 TOLERANCE = 1e-12
+# The checked-in 4B-2 result and the production CLI were generated with the
+# historical default seed.  Keep this in one place so follow-on diagnostics
+# cannot silently select a different trajectory.
+CANONICAL_SEED = 1
 ISOLATED_BASELINE = {
     "LF": (0, None, 0.), "LM": (9, 34.5, .207284),
     "LH": (0, None, 0.), "RF": (0, None, 0.),
@@ -33,6 +37,12 @@ PROVENANCE = {
     "cns": "CONNECTOME_DERIVED", "motor_populations": "ANNOTATION_DERIVED",
     "offsets": "MODELED_MOTOR_DECODING", "actuator_limits": "ENGINEERING_CONSTRAINT",
 }
+
+
+def rng_state_digest(rng):
+    """Return a stable, non-advancing SHA-256 digest of a NumPy RNG state."""
+    state=json.dumps(rng.bit_generator.state,sort_keys=True,separators=(",", ":"))
+    return hashlib.sha256(state.encode("ascii")).hexdigest()
 
 
 class EventObserver:
@@ -67,8 +77,12 @@ class _ObserverFanout:
             observer.before_delivery(brain, arriving)
 
     def after_step(self, brain, fired):
-        for observer in self.observers:
-            observer.after_step(brain, fired)
+        # Preserve the canonical observer call first.  Diagnostics get their
+        # own event array: even a buggy callback cannot rewrite the array
+        # returned by Brain.step or seen by another observer.
+        self.observers[0].after_step(brain, fired)
+        for observer in self.observers[1:]:
+            observer.after_step(brain, fired.copy())
 
 
 class SixTibiaRuntime:
@@ -86,6 +100,7 @@ class SixTibiaRuntime:
         self.apply_neural_motor = bool(apply_neural_motor)
         self.events = EventObserver(self.interfaces)
         brain.reset(seed)
+        self.rng_after_reset = rng_state_digest(brain.rng) if hasattr(brain,"rng") else None
         # The optional observer is passive and receives the same callbacks as
         # the compact canonical event observer.  The default path is unchanged.
         brain.diagnostic_observer = (_ObserverFanout(self.events, diagnostic_observer)
@@ -94,6 +109,7 @@ class SixTibiaRuntime:
 
     def step(self, time_ms):
         before = self.body.observe()
+        rng_before = rng_state_digest(self.brain.rng) if hasattr(self.brain,"rng") else None
         encoded = {l: self.encoders[l].encode(LegSensoryFrame(before.time_s, before.angles_rad[l]))
                    for l in LEG_ORDER}
         self.brain.clear_external_drive()
@@ -102,6 +118,7 @@ class SixTibiaRuntime:
         distinct = set()
         neural_steps = int(round(CONTROL_DT_S * 1000 / self.brain.config.dt))
         for _ in range(neural_steps): distinct.update(map(int, self.brain.step()))
+        rng_after = rng_state_digest(self.brain.rng) if hasattr(self.brain,"rng") else None
         counts = self.brain.spike_counts
         motor, commands, actuation = {}, {}, {}
         for leg in LEG_ORDER:
@@ -125,7 +142,8 @@ class SixTibiaRuntime:
                 "sensory_increments": {l: int((counts-counts0)[encoded[l].indices].sum()) for l in LEG_ORDER},
                 "cns_spike_increment": int((counts-counts0).sum()),
                 "spiking_neuron_indices": tuple(sorted(distinct)),
-                "distinct_spiking_neurons": len(distinct), "motor": motor, "actuation": actuation}
+                "distinct_spiking_neurons": len(distinct), "motor": motor, "actuation": actuation,
+                "rng_before_sensory": rng_before, "rng_after_stochastic_drive": rng_after}
 
 
 def _first(rows, predicate):
@@ -222,18 +240,32 @@ def analyze_matched(closed, control, events_closed=None, tolerance=TOLERANCE):
           "contact_force_n":float(getattr(ca,"contact_force_n",0)-getattr(cb,"contact_force_n",0))}}
 
 
-def run_experiment(duration_ms=500, seed=1, *, interfaces=None, data=None, brain_factory=None, body_factory=None):
-    if duration_ms != 500: raise ValueError("primary experiment duration is fixed at 500 ms")
-    from malecns_backend import MaleCNSBrain, load_malecns
-    interfaces=interfaces or load_six_tibia_interfaces(); data=data if data is not None else load_malecns()
+def run_matched_closed_control(duration_ms, seed, interfaces, data, make_brain,
+                               make_body, closed_observer=None):
+    """Authoritative 4B-2 execution path, optionally observed on CLOSED.
+
+    Object construction and CLOSED-then-CONTROL ordering are intentionally
+    centralized here.  Callers must not duplicate this experimental loop.
+    """
     runs=[]; runtimes=[]
-    for apply in (True,False):
-        brain=brain_factory(data) if brain_factory else MaleCNSBrain(data)
-        body=body_factory(interfaces) if body_factory else SixTibiaFlyGymBody(interfaces)
-        runtime=SixTibiaRuntime(brain,body,interfaces,seed,apply); runtimes.append(runtime)
+    for apply in (True, False):
+        brain=make_brain(data)
+        body=make_body(interfaces)
+        observer=closed_observer if apply else None
+        runtime=SixTibiaRuntime(brain,body,interfaces,seed,apply,observer); runtimes.append(runtime)
         try: rows=[runtime.step(t) for t in range(1,duration_ms+1)]
         finally: body.close()
         runs.append(rows)
+    return runs, runtimes
+
+
+def run_experiment(duration_ms=500, seed=CANONICAL_SEED, *, interfaces=None, data=None, brain_factory=None, body_factory=None):
+    if duration_ms != 500: raise ValueError("primary experiment duration is fixed at 500 ms")
+    from malecns_backend import MaleCNSBrain, load_malecns
+    interfaces=interfaces or load_six_tibia_interfaces(); data=data if data is not None else load_malecns()
+    make_brain=brain_factory or MaleCNSBrain
+    make_body=body_factory or SixTibiaFlyGymBody
+    runs,runtimes=run_matched_closed_control(duration_ms,seed,interfaces,data,make_brain,make_body)
     result=analyze_matched(*runs,runtimes[0].events)
     for leg in LEG_ORDER:
         row=result["per_leg"][leg]; total=sum(sum(r["motor"][leg]["increments"].values()) for r in runs[0])
@@ -271,7 +303,7 @@ def print_report(r):
 
 
 def main(argv=None):
-    p=argparse.ArgumentParser(); p.add_argument("--json",type=Path); p.add_argument("--seed",type=int,default=1)
+    p=argparse.ArgumentParser(); p.add_argument("--json",type=Path); p.add_argument("--seed",type=int,default=CANONICAL_SEED)
     args=p.parse_args(argv); result=run_experiment(seed=args.seed); print_report(result)
     if args.json: args.json.parent.mkdir(parents=True,exist_ok=True); args.json.write_text(json.dumps(result,indent=2)+"\n")
 
