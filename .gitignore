@@ -36,6 +36,7 @@ __pycache__/
 /malecns_backend/embodiment/causal_output/causal_closed_loop.jsonl
 /malecns_backend/embodiment/causal_output/causal_motor_disabled.jsonl
 /malecns_backend/embodiment/pathway_output/*.json
+/malecns_backend/embodiment/perturbation_output/*.json
 
 # OS
 .DS_Store

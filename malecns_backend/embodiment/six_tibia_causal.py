@@ -88,7 +88,7 @@ class _ObserverFanout:
 class SixTibiaRuntime:
     """One brain, six encoders, and six strictly independent observer/decoders."""
     def __init__(self, brain, body, interfaces, seed, apply_neural_motor,
-                 diagnostic_observer=None):
+                 diagnostic_observer=None, withheld_sensory=None):
         self.brain, self.body = brain, body
         self.interfaces = dict(interfaces)
         if tuple(self.interfaces) != LEG_ORDER: raise ValueError("exactly six ordered interfaces required")
@@ -98,6 +98,9 @@ class SixTibiaRuntime:
         self.decoders = {l: IsolatedMotorDecoder(p, MotorSafety(*p.joint_range_rad, .25, 4.))
                          for l, p in self.interfaces.items()}
         self.apply_neural_motor = bool(apply_neural_motor)
+        if withheld_sensory is not None and withheld_sensory not in LEG_ORDER:
+            raise ValueError(f"unknown sensory population: {withheld_sensory}")
+        self.withheld_sensory = withheld_sensory
         self.events = EventObserver(self.interfaces)
         brain.reset(seed)
         self.rng_after_reset = rng_state_digest(brain.rng) if hasattr(brain,"rng") else None
@@ -114,10 +117,24 @@ class SixTibiaRuntime:
                    for l in LEG_ORDER}
         self.brain.clear_external_drive()
         for drive in encoded.values(): self.brain.set_external_drive(drive.indices, drive.rates_hz)
+        withheld_indices = (encoded[self.withheld_sensory].indices
+                            if self.withheld_sensory is not None else np.empty(0, np.intp))
+        # MaleCNS draws candidate external events for all six populations in
+        # canonical dense-index order, then removes only these events before
+        # CNS delivery.  Encoding and RNG consumption are therefore never
+        # skipped merely because a population is withheld.
+        self.brain.external_drive_withheld_indices = np.asarray(withheld_indices, dtype=np.intp)
         counts0 = self.brain.spike_counts.copy()
-        distinct = set()
+        distinct = set(); counterfactual = {l: 0 for l in LEG_ORDER}; delivered_external = {l: 0 for l in LEG_ORDER}
         neural_steps = int(round(CONTROL_DT_S * 1000 / self.brain.config.dt))
-        for _ in range(neural_steps): distinct.update(map(int, self.brain.step()))
+        sensor_sets = {l: set(map(int, encoded[l].indices)) for l in LEG_ORDER}
+        for _ in range(neural_steps):
+            distinct.update(map(int, self.brain.step()))
+            candidates = set(map(int, getattr(self.brain, "_last_external_candidates", ())))
+            delivered_candidates = set(map(int, getattr(self.brain, "_last_external_delivered", candidates)))
+            for leg in LEG_ORDER:
+                counterfactual[leg] += len(candidates & sensor_sets[leg])
+                delivered_external[leg] += len(delivered_candidates & sensor_sets[leg])
         rng_after = rng_state_digest(self.brain.rng) if hasattr(self.brain,"rng") else None
         counts = self.brain.spike_counts
         motor, commands, actuation = {}, {}, {}
@@ -138,8 +155,17 @@ class SixTibiaRuntime:
                 "range_clamped": command.range_clamped_position_rad != command.unclamped_position_rad,
                 "slew_clamped": command.target_position_rad != command.range_clamped_position_rad}
         after = self.body.step(commands, int(round(CONTROL_DT_S / self.body.timestep_s)))
+        sensory_increments = {l: int((counts-counts0)[encoded[l].indices].sum()) for l in LEG_ORDER}
+        # Fakes predating candidate telemetry still get useful all-six data.
+        if not hasattr(self.brain, "_last_external_candidates"):
+            counterfactual = dict(sensory_increments); delivered_external = dict(sensory_increments)
         return {"time_ms": time_ms, "before": before, "after": after, "encoded": encoded,
-                "sensory_increments": {l: int((counts-counts0)[encoded[l].indices].sum()) for l in LEG_ORDER},
+                "sensory_provenance": {l: {"counterfactual_encoded": "MODELED_TRANSDUCTION",
+                    "intervention_delivered": "ENGINEERED_SENSORY_WITHHOLDING" if l == self.withheld_sensory else "MODELED_TRANSDUCTION"}
+                    for l in LEG_ORDER},
+                "counterfactual_sensory_increments": counterfactual,
+                "delivered_sensory_increments": delivered_external,
+                "sensory_increments": sensory_increments,
                 "cns_spike_increment": int((counts-counts0).sum()),
                 "spiking_neuron_indices": tuple(sorted(distinct)),
                 "distinct_spiking_neurons": len(distinct), "motor": motor, "actuation": actuation,

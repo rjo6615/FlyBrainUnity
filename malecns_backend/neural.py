@@ -126,6 +126,13 @@ class MaleCNSBrain:
         self.v.fill(p.v_rest); self.g_exc.fill(0); self.g_inh.fill(0); self.refractory.fill(0)
         self.activity_trace.fill(0); self.adaptation.fill(0); self.depression_resource.fill(1); self.spike_counts.fill(0)
         self._ring = [[] for _ in range(self.delay_steps + 1)]; self._head = 0; self.time_ms = 0.; self._last_spikes = np.empty(0, np.int32)
+        # An embodiment experiment may withhold already-generated external
+        # events at the CNS boundary.  The default empty mask is exactly the
+        # historical runtime path.
+        self.external_drive_withheld_indices = np.empty(0, np.intp)
+        self._last_external_candidates = np.empty(0, np.int32)
+        self._last_external_delivered = np.empty(0, np.int32)
+        self._withheld_external_refractory = np.zeros(self.n, np.float32)
 
     def set_external_drive(self, indices, rates_or_drive): self.external_drive[np.asarray(indices, dtype=np.intp)] = rates_or_drive
     def clear_external_drive(self): self.external_drive.fill(0)
@@ -148,8 +155,23 @@ class MaleCNSBrain:
         self.refractory[refractory] -= p.dt; self.v[refractory] = p.v_reset
         available = ~refractory
         forced = np.zeros(self.n, dtype=bool)
-        driven = np.flatnonzero(available & (self.external_drive > 0))
+        candidate_available = available.copy()
+        withheld = self.external_drive_withheld_indices
+        if len(withheld):
+            shadow_active = self._withheld_external_refractory[withheld] > 0
+            self._withheld_external_refractory[withheld[shadow_active]] -= p.dt
+            candidate_available[withheld] = ~shadow_active
+        driven = np.flatnonzero(candidate_available & (self.external_drive > 0))
         forced[driven] = self.rng.random(len(driven)) < self.external_drive[driven] * (p.dt / 1000)
+        # Draw every canonical external event before applying an optional
+        # sensory-delivery intervention.  This retains common random numbers
+        # for later populations instead of changing RNG consumption/order.
+        self._last_external_candidates = np.flatnonzero(forced).astype(np.int32)
+        if len(withheld):
+            candidate_withheld = withheld[forced[withheld]]
+            self._withheld_external_refractory[candidate_withheld] = p.refractory_ms
+            forced[withheld] = False
+        self._last_external_delivered = np.flatnonzero(forced).astype(np.int32)
         self.v[forced] = p.v_reset; self.refractory[forced] = p.refractory_ms
         integrate = available & ~forced
         if p.conductance_based:
