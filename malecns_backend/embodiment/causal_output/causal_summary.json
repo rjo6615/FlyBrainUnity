@@ -1,0 +1,76 @@
+{
+  "tolerance": 1e-12,
+  "first_extensor_spike_ms": 35,
+  "first_decoded_signal_ms": 35,
+  "first_applied_contribution_ms": 35,
+  "pre_motor_max_angle_difference_rad": 0.0,
+  "pre_motor_max_velocity_difference_rad_s": 0.0,
+  "first_physical_divergence_ms": 35,
+  "angle_differences_rad": {
+    "50": 0.06731538847088814,
+    "100": 0.28568161418661475,
+    "250": 0.8821863532066345,
+    "500": 1.0994043909013271
+  },
+  "maximum_absolute_angle_difference_rad": 1.1518153361976147,
+  "rms_post_motor_angle_difference_rad": 0.8842751092215654,
+  "maximum_absolute_velocity_difference_rad_s": 4.222663789987564,
+  "final_angle_difference_rad": 1.0994043909013271,
+  "divergence_sign": "positive/extensor direction",
+  "first_sensory_encoding_divergence_ms": 36,
+  "first_sensory_spike_divergence_ms": 50,
+  "first_cns_spike_divergence_ms": 50,
+  "first_motor_population_divergence_ms": 67,
+  "causal_order": [
+    35,
+    35,
+    35,
+    35,
+    36
+  ],
+  "causal_order_valid": true,
+  "classification": "D3 \u2014 PHYSICAL DIVERGENCE PRODUCES CLOSED-LOOP FEEDBACK DIVERGENCE",
+  "seed": 1,
+  "duration_ms": 500,
+  "matched_fresh_instances": true,
+  "actuator_equation": "candidate=current_measured_position+(apply? decoded_offset:0); final=joint_range_clamp(slew_clamp(previous_target,candidate,4 rad/s * 0.001 s))",
+  "telemetry": [
+    "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\causal_output\\causal_closed_loop.jsonl",
+    "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\causal_output\\causal_motor_disabled.jsonl",
+    "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\causal_output\\causal_difference.csv"
+  ],
+  "performance": [
+    {
+      "wall_clock_s": 7.5569534999958705,
+      "simulated_s": 0.5,
+      "real_time_factor": 0.06616422874644831,
+      "neural_steps_per_s": 132.32845749289663,
+      "physics_steps_per_s": 661.6422874644832,
+      "neural_steps": 1000,
+      "physics_steps": 5000,
+      "control_steps": 500,
+      "average_neural_step_s": 0.0006489976997836493,
+      "neural_wall_clock_s": 0.6489976997836493,
+      "physics_wall_clock_s": 6.792602499510394,
+      "diagnostic_overhead_s": 0.009210700256517157,
+      "instrumentation_wall_clock_s": 0.009210700256517157,
+      "total_wall_clock_s": 7.571066500007873
+    },
+    {
+      "wall_clock_s": 8.224033900012728,
+      "simulated_s": 0.5,
+      "real_time_factor": 0.0607974147576442,
+      "neural_steps_per_s": 121.5948295152884,
+      "physics_steps_per_s": 607.974147576442,
+      "neural_steps": 1000,
+      "physics_steps": 5000,
+      "control_steps": 500,
+      "average_neural_step_s": 0.0007169633002195041,
+      "neural_wall_clock_s": 0.7169633002195042,
+      "physics_wall_clock_s": 7.37997169981827,
+      "diagnostic_overhead_s": 0.01050030009355396,
+      "instrumentation_wall_clock_s": 0.01050030009355396,
+      "total_wall_clock_s": 8.241580200003227
+    }
+  ]
+}
