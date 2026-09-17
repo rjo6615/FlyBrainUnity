@@ -47,6 +47,8 @@ def main(argv=None):
                         help="real experiment duration (positive whole control intervals; default: 10)")
     parser.add_argument("--duration-series", action="store_true",
                         help="run independent 10, 25, 50, 100, 250, and 500 ms replays")
+    parser.add_argument("--causal-control", action="store_true",
+                        help="run the fixed 500 ms Milestone 3D matched causal control")
     args = parser.parse_args(argv)
     started = time.perf_counter()
     pathway, drive, activity, command = component_audit()
@@ -68,7 +70,25 @@ def main(argv=None):
 
     real_status = "NOT RUN"
     block = None
-    if args.run_real:
+    if args.causal_control:
+        if not flygym_available:
+            block = ("FlyGym/NeuroMechFly and MuJoCo are not installed in this environment "
+                     f"(Python {platform.python_version()}); no fake body substitutes for Milestone 3D.")
+        else:
+            from .causal import run_causal_control
+            causal = run_causal_control()
+            for title, keys in (
+                ("ACTUATOR DECOMPOSITION", ("actuator_equation",)),
+                ("PRE-MOTOR EQUIVALENCE", ("pre_motor_max_angle_difference_rad", "pre_motor_max_velocity_difference_rad_s", "tolerance")),
+                ("MOTOR ONSET", ("first_extensor_spike_ms", "first_decoded_signal_ms", "first_applied_contribution_ms")),
+                ("PHYSICAL TRAJECTORY DIVERGENCE", ("first_physical_divergence_ms", "angle_differences_rad", "maximum_absolute_angle_difference_rad", "rms_post_motor_angle_difference_rad", "final_angle_difference_rad", "divergence_sign")),
+                ("FEEDBACK DIVERGENCE", ("first_sensory_encoding_divergence_ms", "first_sensory_spike_divergence_ms", "first_cns_spike_divergence_ms", "first_motor_population_divergence_ms")),
+                ("CAUSAL ORDER", ("causal_order",)),
+                ("CAUSAL RESULT", ("classification", "telemetry", "performance")),
+            ):
+                heading(title); print(json.dumps({key: causal[key] for key in keys}, indent=2))
+            return 0
+    elif args.run_real:
         if not flygym_available:
             block = ("FlyGym/NeuroMechFly and MuJoCo are not installed in this environment "
                      f"(Python {platform.python_version()}); no fake body substitutes for Test 4.")

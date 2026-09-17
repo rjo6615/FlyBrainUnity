@@ -68,7 +68,8 @@ class EmbodimentLoop:
         }
         self.observer.reset(self.brain.spike_counts)
 
-    def step(self, sensory_enabled=True, motor_enabled=True):
+    def step(self, sensory_enabled=True, motor_enabled=True,
+             apply_neural_motor=True):
         if self.wall_started is None:
             self.wall_started = time.perf_counter()
         before = self.body.observe()
@@ -106,7 +107,8 @@ class EmbodimentLoop:
         motor = self.observer.update(self.brain.spike_counts, self.timing.motor_interval_ms)
         rates, increments = motor["filtered_hz"], motor["increments"]
         command = self.decoder.decode(rates, before.frame.tibia_angle_rad,
-                                      self.timing.control_dt_ms / 1000)
+                                      self.timing.control_dt_ms / 1000,
+                                      apply_neural_offset=apply_neural_motor)
         prior_command_rad = self.last_command_rad
         diagnostic_started = time.perf_counter()
         if command.antagonist_signal != 0 and self.first_times_s["decoded_motor_signal"] is None:
@@ -167,6 +169,12 @@ class EmbodimentLoop:
             self.instrumentation_wall_s += time.perf_counter() - diagnostic_started
         return {"before": before, "after": after, "encoded": encoded,
                 "motor": motor, "command": command,
+                "decoded_neural_offset_rad": command.raw_decoder_output_rad,
+                "applied_neural_offset_rad": (command.raw_decoder_output_rad
+                                               if apply_neural_motor else 0.0),
+                "base_actuator_target_rad": before.frame.tibia_angle_rad,
+                "sensory_spike_increment": int(
+                    self.brain.spike_counts[encoded.indices].sum()) - sensor_before,
                 "cns_spike_increment": int(self.brain.spike_counts.sum()) - cns_before}
 
     def run(self, duration_ms, **step_options):

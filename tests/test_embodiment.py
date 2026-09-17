@@ -14,6 +14,7 @@ from malecns_backend.embodiment.temporal import (classify_temporal, directed_dis
                                                  neuron_metadata)
 from malecns_backend.embodiment.experiment import (calculate_physical_metrics,
                                                    summarize_experiment)
+from malecns_backend.embodiment.causal import analyze_matched, row_record
 from malecns_backend.embodiment.loop import EmbodimentLoop, TimingConfig
 from malecns_backend.embodiment.mappings import INTERFACE_MAP, load_selected_pathway
 from malecns_backend.embodiment.motor import MotorActivityObserver, MotorDecoder, MotorSafety
@@ -268,6 +269,55 @@ class EmbodimentTests(unittest.TestCase):
         loop=self.components()[2]; loop.run(2)
         self.assertIn('actuator_target_update',loop.first_times_s)
         self.assertNotIn('changed_actuator_command',loop.first_times_s)
+
+    def test_motor_disabled_computes_but_does_not_apply_neural_output(self):
+        brain, body, loop = self.components()
+        brain.spike_counts[list(self.pathway.extensor.dense_indices)] = 1
+        row = loop.step(apply_neural_motor=False)
+        self.assertGreater(row['decoded_neural_offset_rad'], 0)
+        self.assertEqual(row['applied_neural_offset_rad'], 0)
+        self.assertEqual(row['command'].target_position_rad, row['base_actuator_target_rad'])
+        self.assertEqual(body.physics_steps, 10)
+        self.assertGreater(brain.time_ms, 0)
+
+    def test_closed_loop_applies_neural_contribution(self):
+        brain, _, loop = self.components()
+        brain.spike_counts[list(self.pathway.extensor.dense_indices)] = 1
+        row = loop.step()
+        self.assertEqual(row['applied_neural_offset_rad'], row['decoded_neural_offset_rad'])
+        self.assertGreater(row['command'].target_position_rad, row['base_actuator_target_rad'])
+
+    def test_causal_metrics_order_and_classification(self):
+        def sample(t, angle=0, sensory=0, cns=0, motor=0, offset=0, applied=0):
+            return dict(time_ms=t, tibia_angle_rad=angle, tibia_velocity_rad_s=angle,
+                        decoded_neural_offset_rad=offset, applied_neural_offset_rad=applied,
+                        extensor_mn_spikes=motor, flexor_mn_spikes=0,
+                        sensory_rates_hz=[float(sensory)], sensory_spikes=sensory,
+                        whole_cns_spikes=cns)
+        control = [sample(i) for i in range(1, 6)]
+        closed = [sample(1), sample(2, motor=1), sample(3, offset=.1, applied=.1),
+                  sample(4, angle=.01, offset=.1, applied=.1),
+                  sample(5, angle=.02, sensory=1, cns=1, offset=.1, applied=.1)]
+        result = analyze_matched(closed, control)
+        self.assertEqual(result['causal_order'], [2, 3, 3, 4, 5])
+        self.assertTrue(result['classification'].startswith('D3'))
+        self.assertEqual(result['pre_motor_max_angle_difference_rad'], 0)
+
+    def test_causal_invalid_when_premotor_trajectory_differs(self):
+        base = dict(tibia_velocity_rad_s=0, decoded_neural_offset_rad=0,
+                    applied_neural_offset_rad=0, extensor_mn_spikes=0,
+                    flexor_mn_spikes=0, sensory_rates_hz=[0.], sensory_spikes=0,
+                    whole_cns_spikes=0)
+        control = [dict(base, time_ms=1, tibia_angle_rad=0),
+                   dict(base, time_ms=2, tibia_angle_rad=0)]
+        closed = [dict(base, time_ms=1, tibia_angle_rad=.01),
+                  dict(base, time_ms=2, tibia_angle_rad=0, decoded_neural_offset_rad=.1,
+                       applied_neural_offset_rad=.1)]
+        self.assertTrue(analyze_matched(closed, control)['classification'].startswith('D0'))
+
+    def test_matched_timestamp_validation(self):
+        with self.assertRaises(ValueError):
+            analyze_matched([{'time_ms': 1}], [{'time_ms': 2}])
 
 
 if __name__ == '__main__': unittest.main()
