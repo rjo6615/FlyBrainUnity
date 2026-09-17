@@ -154,6 +154,11 @@ class SixTibiaRuntime:
                 "applied_neural_contribution_rad": applied,
                 "range_clamped": command.range_clamped_position_rad != command.unclamped_position_rad,
                 "slew_clamped": command.target_position_rad != command.range_clamped_position_rad}
+        # Passive failure diagnostics: retain the inputs to the physics call so
+        # a PhysicsError can be reported without manufacturing a successful
+        # control row or modifying the state passed to MuJoCo.
+        self.last_step_attempt = {"time_ms": time_ms, "before": before,
+                                  "actuation": actuation}
         after = self.body.step(commands, int(round(CONTROL_DT_S / self.body.timestep_s)))
         sensory_increments = {l: int((counts-counts0)[encoded[l].indices].sum()) for l in LEG_ORDER}
         # Fakes predating candidate telemetry still get useful all-six data.

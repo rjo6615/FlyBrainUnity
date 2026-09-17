@@ -3,6 +3,7 @@ import unittest
 from array import array
 from pathlib import Path
 from types import SimpleNamespace
+from unittest.mock import patch
 
 import numpy as np
 
@@ -14,6 +15,7 @@ from malecns_backend.embodiment.six_tibia_pathway_audit import CANONICAL
 from malecns_backend.embodiment.six_tibia_perturbation import (
     classify_trace, first_spike_delta, motor_influence_matrix, split_own_cross,
     summarize_run, validate_canonical_baseline)
+from malecns_backend.embodiment.six_tibia_perturbation import _run_condition
 
 
 def tiny_data(n):
@@ -124,6 +126,66 @@ class PerturbationTests(unittest.TestCase):
         self.assertNotIn("np.zeros((brain.n, brain.n", source)
         for forbidden in ("descending_drive =", "class gait", "class cpg", "engineered_cross_leg"):
             self.assertNotIn(forbidden, source)
+
+    def test_physics_error_is_partial_preserves_rows_and_closes_without_retry(self):
+        class FakePhysicsError(Exception): pass
+        bodies = []
+        class FakeRuntime:
+            calls = 0
+            def __init__(self, brain, body, interfaces, seed, apply, withheld_sensory=None):
+                self.interfaces = interfaces; self.withheld_sensory = withheld_sensory
+                self.events = SimpleNamespace(first_motor={leg: None for leg in LEG_ORDER})
+                self.last_step_attempt = None
+            def step(self, t):
+                FakeRuntime.calls += 1
+                snap = SixTibiaBodySnapshot(t / 1000, {leg: 0. for leg in LEG_ORDER},
+                                            {leg: 0. for leg in LEG_ORDER})
+                act = {leg: {"decoded_offset_rad": 0., "final_target_rad": 0.} for leg in LEG_ORDER}
+                self.last_step_attempt = {"time_ms": t, "before": snap, "actuation": act}
+                if t == 101: raise FakePhysicsError("Physics state is invalid: mjWARN_BADQACC")
+                return {"time_ms": t, "after": snap, "actuation": act,
+                    "counterfactual_sensory_increments": {leg: 1 for leg in LEG_ORDER},
+                    "delivered_sensory_increments": {leg: 0 if leg == "RH" else 1 for leg in LEG_ORDER},
+                    "motor": {leg: {"increments": {}, "filtered_hz": {}} for leg in LEG_ORDER},
+                    "cns_spike_increment": 1, "spiking_neuron_indices": ()}
+        def body_factory(interfaces):
+            body = Body(interfaces); bodies.append(body); return body
+        with patch("malecns_backend.embodiment.six_tibia_perturbation.SixTibiaRuntime", FakeRuntime):
+            rows, _, summary = _run_condition("-RH", "RH", 500, 1, self.interfaces,
+                object(), lambda data: object(), body_factory, (FakePhysicsError,))
+        self.assertEqual(len(rows), 100); self.assertEqual(FakeRuntime.calls, 101)
+        self.assertFalse(summary["completed"]); self.assertEqual(summary["completed_duration_ms"], 100)
+        self.assertTrue(summary["metrics_scope"]["partial"])
+        self.assertIsNotNone(summary["checkpoints"]["50"])
+        self.assertIsNotNone(summary["checkpoints"]["100"])
+        self.assertIsNone(summary["checkpoints"]["250"])
+        self.assertEqual(summary["termination_reason"], "PHYSICS_INVALID_STATE")
+        self.assertEqual(summary["mujoco_warning"], "mjWARN_BADQACC")
+        self.assertTrue(bodies[0].closed)
+
+    def test_programming_exception_propagates_and_body_closes(self):
+        bodies = []
+        class BrokenRuntime:
+            def __init__(self, *args, **kwargs): pass
+            def step(self, t): raise ValueError("programmer bug")
+        def body_factory(interfaces):
+            body = Body(interfaces); bodies.append(body); return body
+        with patch("malecns_backend.embodiment.six_tibia_perturbation.SixTibiaRuntime", BrokenRuntime):
+            with self.assertRaisesRegex(ValueError, "programmer bug"):
+                _run_condition("-RH", "RH", 500, 1, self.interfaces, object(),
+                               lambda data: object(), body_factory, (RuntimeError,))
+        self.assertTrue(bodies[0].closed)
+
+    def test_partial_influence_cells_have_duration_and_completion_semantics(self):
+        baseline = {source: {target: 10 for target in LEG_ORDER} for source in LEG_ORDER}
+        interventions = {source: {target: 12 for target in LEG_ORDER} for source in LEG_ORDER}
+        metadata = {source: {"completed": source != "RH",
+                             "completed_duration_ms": 496 if source == "RH" else 500}
+                    for source in LEG_ORDER}
+        matrix = motor_influence_matrix(baseline, interventions, metadata)
+        self.assertEqual(matrix["RH"]["LF"],
+                         {"value": 2, "complete": False, "observation_duration_ms": 496})
+        self.assertTrue(matrix["LF"]["LF"]["complete"])
 
 
 if __name__ == "__main__": unittest.main()
