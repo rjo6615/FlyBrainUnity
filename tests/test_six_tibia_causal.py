@@ -1,3 +1,4 @@
+import math
 import unittest
 from types import SimpleNamespace
 import numpy as np
@@ -79,12 +80,52 @@ class SixTibiaCausalTests(unittest.TestCase):
         self.assertEqual(result["classification"],"S7")
         self.assertEqual(list(result["global_causal_order_ms"].values()),[2,2,2,3,4,5,6])
 
+        # Later divergence signals cannot skip the physical and sensory prerequisites.
+        no_sensory=[row(1,decoded=.1,applied=.1),row(2,angle=.01,cns=1)]
+        self.assertEqual(analyze_matched(no_sensory,control[:2])["classification"],"S4")
+
     def test_physics_or_encoding_before_cause_is_invalid(self):
         # Reuse a real zero-activity row and corrupt its closed physical state.
         b1,b2=Brain(),Brain(); x=SixTibiaRuntime(b1,Body(self.interfaces),self.interfaces,1,True).step(1)
         y=SixTibiaRuntime(b2,Body(self.interfaces),self.interfaces,1,False).step(1)
         x["after"]=SixTibiaBodySnapshot(.001,{**x["after"].angles_rad,"LF":.1},x["after"].velocities_rad_s)
         self.assertEqual(analyze_matched([x],[y])["classification"],"INVALID")
+
+    def test_angle_differences_include_all_tibiae_at_specified_checkpoints(self):
+        def row(t, differences=None, applied=False):
+            differences = differences or {leg: 0. for leg in LEG_ORDER}
+            snap=SixTibiaBodySnapshot(t/1000,differences,{leg:0. for leg in LEG_ORDER})
+            return {"time_ms":t,"after":snap,
+              "encoded":{leg:SimpleNamespace(rates_hz=np.array([0.])) for leg in LEG_ORDER},
+              "sensory_increments":{leg:0 for leg in LEG_ORDER},"cns_spike_increment":0,
+              "motor":{leg:{"increments":{"x":0}} for leg in LEG_ORDER},
+              "actuation":{leg:{"decoded_offset_rad":.01 if applied else 0.,
+                                 "applied_neural_contribution_rad":.01 if applied else 0.}
+                           for leg in LEG_ORDER}}
+
+        control=[row(t) for t in range(1,501)]
+        closed=[]
+        for t in range(1,501):
+            differences={leg:(index+1)*t/10000 for index,leg in enumerate(LEG_ORDER)}
+            closed.append(row(t,differences,applied=t == 1))
+        result=analyze_matched(closed,control)
+
+        for index,leg in enumerate(LEG_ORDER):
+            expected={str(t):(index+1)*t/10000 for t in (50,100,250,500)}
+            self.assertEqual(result["per_leg"][leg]["angle_differences_rad"],expected)
+            self.assertAlmostEqual(result["per_leg"][leg]["maximum_absolute_angle_difference_rad"],
+                                   expected["500"])
+            expected_rms=math.sqrt(sum(((index+1)*t/10000)**2 for t in range(1,501))/500)
+            self.assertAlmostEqual(result["per_leg"][leg]["rms_post_motor_angle_difference_rad"],
+                                   expected_rms)
+            self.assertAlmostEqual(result["per_leg"][leg]["final_angle_difference_rad"],
+                                   expected["500"])
+        scale=math.sqrt(sum((index+1)**2 for index in range(len(LEG_ORDER))))
+        expected_norms=[scale*t/10000 for t in range(1,501)]
+        self.assertAlmostEqual(result["trajectory"]["maximum_norm_rad"],expected_norms[-1])
+        self.assertAlmostEqual(result["trajectory"]["rms_post_motor_norm_rad"],
+                               math.sqrt(sum(x*x for x in expected_norms)/len(expected_norms)))
+        self.assertAlmostEqual(result["trajectory"]["final_norm_rad"],expected_norms[-1])
 
     def test_no_controller_vocabulary_or_changed_constants(self):
         from pathlib import Path
