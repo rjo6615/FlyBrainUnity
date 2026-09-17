@@ -13,7 +13,8 @@ if sys.platform != "win32":
 from .body import SixTibiaFlyGymBody
 from .pathway_diagnostics import PathwayObserver, pathway_graph_report
 from .six_tibia import LEG_ORDER, load_six_tibia_interfaces
-from .six_tibia_causal import SixTibiaRuntime, analyze_matched, ISOLATED_BASELINE
+from .six_tibia_causal import (CANONICAL_SEED, analyze_matched, ISOLATED_BASELINE,
+                               run_matched_closed_control)
 
 
 CANONICAL = {
@@ -28,21 +29,26 @@ CANONICAL_CAUSAL = {"motor_spike": 25, "decoded_output": 25,
     "mapped_motor_divergence": 49}
 
 
+def validate_baseline(legs, causal_summary):
+    """Strictly validate discrete outcomes and canonical causal timestamps."""
+    checks = {}
+    for leg, expected in CANONICAL.items():
+        actual = legs[leg]
+        checks[leg] = {"sensory_spikes": actual["sensory_spikes"] == expected[0],
+            "motor_spikes": actual["selected_motor_spikes"] == expected[1],
+            "first_motor": actual["first_motor_spike_ms"] == expected[2],
+            "peak_offset": abs(actual["peak_decoded_offset_rad"] - expected[3]) <= 1e-12,
+            "active_identity": actual["active"] == (expected[1] > 0)}
+    causal_match = causal_summary == CANONICAL_CAUSAL
+    return checks, causal_match, all(all(x.values()) for x in checks.values()) and causal_match
+
+
 def _peak_rss():
     return (resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
             if sys.platform != "win32" else None)
 
 
-def _run(brain, body, interfaces, seed, apply, observer=None, duration_ms=500):
-    runtime = SixTibiaRuntime(brain, body, interfaces, seed, apply, observer)
-    try:
-        rows = [runtime.step(t) for t in range(1, duration_ms + 1)]
-    finally:
-        body.close()
-    return rows, runtime
-
-
-def run_pathway_audit(duration_ms=500, seed=7, *, interfaces=None, data=None,
+def run_pathway_audit(duration_ms=500, seed=CANONICAL_SEED, *, interfaces=None, data=None,
                       brain_factory=None, body_factory=None, graph_analysis=True):
     """Re-run the canonical matched experiment with diagnostics on CLOSED only."""
     if duration_ms != 500: raise ValueError("canonical duration is fixed at 500 ms")
@@ -52,12 +58,13 @@ def run_pathway_audit(duration_ms=500, seed=7, *, interfaces=None, data=None,
     make_brain = brain_factory or (lambda d: MaleCNSBrain(d))
     make_body = body_factory or (lambda i: SixTibiaFlyGymBody(i))
     start = time.perf_counter()
-    closed_brain = make_brain(data); observer = PathwayObserver(interfaces)
-    closed, closed_runtime = _run(closed_brain, make_body(interfaces), interfaces,
-                                  seed, True, observer, duration_ms)
-    control_brain = make_brain(data)
-    control, _ = _run(control_brain, make_body(interfaces), interfaces,
-                      seed, False, None, duration_ms)
+    # Construct diagnostics before either runtime, then use the exact 4B-2
+    # CLOSED/CONTROL constructor and execution loop.
+    observer = PathwayObserver(interfaces)
+    runs, runtimes = run_matched_closed_control(
+        duration_ms, seed, interfaces, data, make_brain, make_body, observer)
+    (closed, control), (closed_runtime, _) = runs, runtimes
+    closed_brain = closed_runtime.brain
     causal = analyze_matched(closed, control, closed_runtime.events)
     neural = observer.report(closed_brain)
     graph = pathway_graph_report(closed_brain, interfaces, observer) if graph_analysis else {
@@ -99,16 +106,8 @@ def run_pathway_audit(duration_ms=500, seed=7, *, interfaces=None, data=None,
                 "isolated_first_motor_ms": ISOLATED_BASELINE[leg][1],
                 "isolated_peak_offset_rad": ISOLATED_BASELINE[leg][2]},
             "isolated_detailed_pathway_diagnostics": "unavailable"}
-    checks = {}
-    for leg, expected in CANONICAL.items():
-        actual = legs[leg]
-        checks[leg] = {"sensory_spikes": actual["sensory_spikes"] == expected[0],
-            "motor_spikes": actual["selected_motor_spikes"] == expected[1],
-            "first_motor": actual["first_motor_spike_ms"] == expected[2],
-            "peak_offset": abs(actual["peak_decoded_offset_rad"] - expected[3]) <= 1e-12,
-            "active_identity": actual["active"] == (expected[1] > 0)}
-    causal_match = causal["global_causal_order_ms"] == CANONICAL_CAUSAL
-    baseline_pass = all(all(x.values()) for x in checks.values()) and causal_match
+    checks, causal_match, baseline_pass = validate_baseline(
+        legs, causal["global_causal_order_ms"])
     return {"milestone": "4C-1", "classification": "OBSERVATIONAL_PATHWAY_DISSECTION",
         "seed": seed, "duration_ms": duration_ms, "baseline_reproduction": "PASS" if baseline_pass else "FAIL",
         "baseline_checks": checks, "causal_timestamps_match": causal_match,
@@ -135,7 +134,7 @@ def print_report(result):
 
 def main(argv=None):
     parser = argparse.ArgumentParser()
-    parser.add_argument("--json", type=Path); parser.add_argument("--seed", type=int, default=7)
+    parser.add_argument("--json", type=Path); parser.add_argument("--seed", type=int, default=CANONICAL_SEED)
     args = parser.parse_args(argv)
     result = run_pathway_audit(seed=args.seed); print_report(result)
     if args.json:

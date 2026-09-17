@@ -4,7 +4,7 @@
 
 This is a passive, observational rerun of the unchanged canonical M4B-2
 CLOSED/MOTOR-OUTPUT-DISABLED pair (500 ms, neural step 0.5 ms, physics step
-0.1 ms, control interval 1 ms, seed 7). It performs no ablation, stimulation,
+0.1 ms, control interval 1 ms, canonical production seed 1). It performs no ablation, stimulation,
 tuning, or pathway intervention. Anatomical reachability, observed activity,
 and temporal compatibility are reported separately and are **not** claims of
 causation. Detailed isolated pathway diagnostics are unavailable; only the
@@ -13,7 +13,8 @@ committed M4B-1 aggregate comparisons are included.
 ## Architecture and fidelity
 
 `PathwayObserver` is attached through an optional observer fan-out in the
-existing simultaneous runtime. The default runtime path is unchanged. The
+existing simultaneous runtime. Both commands call the same authoritative
+CLOSED-then-CONTROL execution function. The default runtime path is unchanged. The
 observer has no RNG and only reads/copies runtime arrays. Immediately before
 delivery it applies the runtime's exact presynaptic sign, PSP scale,
 depression resource, effective edge weight, and CSR orientation to account

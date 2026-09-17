@@ -11,6 +11,11 @@ from malecns_backend.embodiment.pathway_diagnostics import (
     PathwayObserver, directed_distances, pathway_graph_report,
     selected_motor_inventory, targeted_incoming)
 from malecns_backend.embodiment.six_tibia import LEG_ORDER, load_six_tibia_interfaces
+from malecns_backend.embodiment.six_tibia_causal import (
+    CANONICAL_SEED, EventObserver, _ObserverFanout, rng_state_digest)
+from malecns_backend.embodiment.six_tibia_differential import first_divergence
+from malecns_backend.embodiment.six_tibia_pathway_audit import (
+    CANONICAL, CANONICAL_CAUSAL, run_pathway_audit, validate_baseline)
 
 
 def data():
@@ -42,6 +47,70 @@ def interfaces():
 
 
 class SixTibiaPathwayTests(unittest.TestCase):
+    def test_a_b_c_observers_are_exactly_equivalent(self):
+        outcomes=[]
+        for observer_kind in ("none", "noop", "full"):
+            brain=MaleCNSBrain(data(),config()); brain.reset(CANONICAL_SEED)
+            events=EventObserver(interfaces())
+            passive=(SimpleNamespace(before_delivery=lambda *_: None, after_step=lambda *_: None)
+                     if observer_kind == "noop" else PathwayObserver(interfaces()))
+            brain.diagnostic_observer=(events if observer_kind == "none" else
+                                       _ObserverFanout(events,passive))
+            brain.v[0]=-44
+            sequence=[tuple(map(int,brain.step())) for _ in range(10)]
+            outcomes.append((sequence,brain.spike_counts.copy(),rng_state_digest(brain.rng),
+                             copy.deepcopy(events.first_sensory)))
+        for outcome in outcomes[1:]:
+            self.assertEqual(outcomes[0][0],outcome[0])
+            np.testing.assert_array_equal(outcomes[0][1],outcome[1])
+            self.assertEqual(outcomes[0][2:],outcome[2:])
+
+    def test_callback_cannot_mutate_fired_events_seen_by_canonical_observer(self):
+        class Mutator:
+            def before_delivery(self,*_): pass
+            def after_step(self,brain,fired): fired[:] = 3
+        brain=MaleCNSBrain(data(),config()); brain.reset(1); brain.v[0]=-44
+        events=EventObserver(interfaces()); brain.diagnostic_observer=_ObserverFanout(events,Mutator())
+        fired=brain.step()
+        self.assertEqual(tuple(fired),(0,))
+        self.assertEqual(events.first_sensory["LF"],.5)
+
+    def test_rng_digest_does_not_advance_generator(self):
+        left=np.random.default_rng(7); right=np.random.default_rng(7)
+        before=rng_state_digest(left); self.assertEqual(before,rng_state_digest(left))
+        np.testing.assert_array_equal(left.random(20),right.random(20))
+
+    def test_first_divergence_finds_injected_sensory_value(self):
+        snapshot=SimpleNamespace(angles_rad={x:0. for x in LEG_ORDER},
+                                 velocities_rad_s={x:0. for x in LEG_ORDER})
+        def row():
+            return {"time_ms":1,"before":snapshot,
+                "encoded":{x:SimpleNamespace(rates_hz=np.array([1.,2.])) for x in LEG_ORDER},
+                "sensory_increments":{x:0 for x in LEG_ORDER},"cns_spike_increment":0,
+                "spiking_neuron_indices":(),
+                "motor":{x:{"increments":{},"filtered_hz":{}} for x in LEG_ORDER},
+                "actuation":{x:{"decoded_offset_rad":0.,"final_target_rad":0.} for x in LEG_ORDER},
+                "rng_before_sensory":"same","rng_after_stochastic_drive":"same"}
+        a=row(); b=copy.deepcopy(a); b["encoded"]["LH"].rates_hz[1]=9
+        self.assertEqual(first_divergence([a],[b]),{
+            "first_divergence_time_ms":1,"first_divergence_stage":"sensory",
+            "first_divergence_leg":"LH","first_divergence_quantity":"encoded_rate[1]",
+            "canonical_value":2.0,"instrumented_value":9.0})
+
+    def test_strict_baseline_rejects_each_discrete_or_causal_change(self):
+        legs={leg:{"sensory_spikes":x[0],"selected_motor_spikes":x[1],
+              "first_motor_spike_ms":x[2],"peak_decoded_offset_rad":x[3],
+              "active":x[1]>0} for leg,x in CANONICAL.items()}
+        self.assertTrue(validate_baseline(legs,CANONICAL_CAUSAL)[2])
+        for field in ("sensory_spikes","selected_motor_spikes"):
+            changed=copy.deepcopy(legs); changed["LF"][field]+=1
+            self.assertFalse(validate_baseline(changed,CANONICAL_CAUSAL)[2])
+        causal=dict(CANONICAL_CAUSAL); causal["cns_divergence"]+=1
+        self.assertFalse(validate_baseline(legs,causal)[2])
+
+    def test_pathway_default_is_production_canonical_seed(self):
+        self.assertEqual(run_pathway_audit.__defaults__,(500,CANONICAL_SEED))
+
     def test_inventory_uses_exact_validated_mapping(self):
         real = load_six_tibia_interfaces(); inventory = selected_motor_inventory(real)
         self.assertEqual(tuple(inventory), LEG_ORDER)
