@@ -94,8 +94,10 @@ def summarize_run(rows, runtime, wall_seconds):
         "sensory": {leg: {
             "counterfactual_encoded_spikes": sum(row["counterfactual_sensory_increments"][leg] for row in rows),
             "intervention_delivered_spikes": sum(row["delivered_sensory_increments"][leg] for row in rows),
-            "counterfactual_provenance": "COUNTERFACTUAL_ENCODED",
-            "delivered_provenance": "INTERVENTION_DELIVERED"} for leg in LEG_ORDER},
+            "counterfactual_provenance": "MODELED_TRANSDUCTION",
+            "delivered_provenance": ("ENGINEERED_SENSORY_WITHHOLDING"
+                                     if leg == runtime.withheld_sensory else "MODELED_TRANSDUCTION")}
+            for leg in LEG_ORDER},
         "motor": {leg: _motor_summary(rows, runtime, leg) for leg in LEG_ORDER},
         "cns": {"total_spikes": sum(row["cns_spike_increment"] for row in rows),
             "distinct_spiking_neurons": len(all_fired),

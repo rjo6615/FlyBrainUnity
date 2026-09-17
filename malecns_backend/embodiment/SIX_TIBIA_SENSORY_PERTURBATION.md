@@ -12,13 +12,22 @@ and peak offsets. A mismatch stops execution before any intervention is run.
 The intervention is engineered sensory delivery withholding, not biological
 silence. All six unchanged encoders execute in canonical `LF LM LH RF RM RH`
 order. MaleCNS generates stochastic external-spike candidates for every
-population. It records those candidates as `COUNTERFACTUAL_ENCODED`, then
-removes candidates belonging to the selected population immediately before
-CNS delivery. `INTERVENTION_DELIVERED` is consequently zero for that external
-stream. A shadow external refractory state preserves the candidate process and
-RNG draw count/order when withheld candidate events would normally impose a
-refractory interval. Future rates are always encoded from the live physical
-state; baseline sensory sequences are never replayed after physical divergence.
+population. It records those candidates in `counterfactual_sensory_increments`,
+then removes candidates belonging to the selected population immediately before
+CNS delivery. `delivered_sensory_increments` is consequently zero for that
+external stream. A shadow external refractory state preserves the candidate
+process and RNG draw count/order when withheld candidate events would normally
+impose a refractory interval. Future rates are always encoded from the live
+physical state; baseline sensory sequences are never replayed after physical
+divergence.
+
+Each runtime telemetry row also contains `sensory_provenance`, keyed by leg.
+Every leg entry has `counterfactual_provenance: "MODELED_TRANSDUCTION"`.
+`delivered_provenance` is `"ENGINEERED_SENSORY_WITHHOLDING"` for the selected
+population and `"MODELED_TRANSDUCTION"` for every normally delivered
+population. Thus the counterfactual and delivered count fields identify the
+two event streams, while the provenance fields identify how each stream was
+produced.
 
 The physical leg, tibia joint, motor populations, connectome edges, body
 physics, motor decoder, and actuator remain present and operational. No neural,
@@ -28,7 +37,10 @@ controller, or engineered cross-leg coupling is introduced.
 
 ## Outputs and interpretation
 
-The JSON contains counterfactual and delivered sensory counts, CNS totals,
+The summarized JSON uses `counterfactual_encoded_spikes` and
+`intervention_delivered_spikes` for the two sensory counts and carries the
+same `counterfactual_provenance` and `delivered_provenance` labels. It also
+contains CNS totals,
 nonsensory totals, per-role and selected mapped motor outcomes, a signed 6-by-6
 motor influence matrix, physical trajectory differences, and direct versus
 returned-feedback timestamps. `P0` through `P7` are engineering trace stages,
