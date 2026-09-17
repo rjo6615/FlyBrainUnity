@@ -1,0 +1,265 @@
+{
+  "classification": "S7",
+  "pre_motor_equivalence": true,
+  "global_causal_order_ms": {
+    "motor_spike": 25,
+    "decoded_output": 25,
+    "applied_output": 25,
+    "physical_divergence": 25,
+    "sensory_encoding_divergence": 26,
+    "cns_divergence": 35,
+    "mapped_motor_divergence": 49
+  },
+  "per_leg": {
+    "LF": {
+      "first_sensory_spike_ms": 1.5,
+      "first_mapped_motor_spike_ms": null,
+      "first_decoded_offset_ms": null,
+      "first_applied_ms": null,
+      "first_physical_divergence_ms": 25,
+      "first_sensory_encoding_divergence_ms": 26,
+      "first_sensory_spike_divergence_ms": 35,
+      "first_cns_spike_divergence_ms": 35,
+      "first_motor_population_divergence_ms": null,
+      "angle_differences_rad": {
+        "50": 5.31952828168869e-05,
+        "100": 3.9599835872650146e-05,
+        "250": 0.0628992598503828,
+        "500": -0.0018588416278362274
+      },
+      "maximum_absolute_angle_difference_rad": 0.11967313289642334,
+      "rms_post_motor_angle_difference_rad": 0.0,
+      "final_angle_difference_rad": -0.0018588416278362274,
+      "final_difference_sign": "negative",
+      "sensory_spikes": 584,
+      "motor_spikes": 0,
+      "peak_decoded_offset_rad": 0.0,
+      "simultaneous_vs_isolated": {
+        "isolated_motor_spikes": 0,
+        "simultaneous_motor_spikes": 0,
+        "isolated_first_motor_ms": null,
+        "simultaneous_first_motor_ms": null,
+        "isolated_peak_offset_rad": 0.0,
+        "simultaneous_peak_offset_rad": 0.0,
+        "previously_silent_became_active": false,
+        "previously_active_became_silent": false
+      }
+    },
+    "LM": {
+      "first_sensory_spike_ms": 0.5,
+      "first_mapped_motor_spike_ms": 31.5,
+      "first_decoded_offset_ms": 32,
+      "first_applied_ms": 32,
+      "first_physical_divergence_ms": 25,
+      "first_sensory_encoding_divergence_ms": 26,
+      "first_sensory_spike_divergence_ms": 35,
+      "first_cns_spike_divergence_ms": 35,
+      "first_motor_population_divergence_ms": 49,
+      "angle_differences_rad": {
+        "50": 0.07679482828825712,
+        "100": 0.2948114578612149,
+        "250": 0.8935378480236977,
+        "500": 1.339743960648775
+      },
+      "maximum_absolute_angle_difference_rad": 1.343660607933998,
+      "rms_post_motor_angle_difference_rad": 0.9807737721415464,
+      "final_angle_difference_rad": 1.339743960648775,
+      "final_difference_sign": "positive",
+      "sensory_spikes": 1598,
+      "motor_spikes": 34,
+      "peak_decoded_offset_rad": 0.2396206263827794,
+      "simultaneous_vs_isolated": {
+        "isolated_motor_spikes": 9,
+        "simultaneous_motor_spikes": 34,
+        "isolated_first_motor_ms": 34.5,
+        "simultaneous_first_motor_ms": 31.5,
+        "isolated_peak_offset_rad": 0.207284,
+        "simultaneous_peak_offset_rad": 0.2396206263827794,
+        "previously_silent_became_active": false,
+        "previously_active_became_silent": false
+      }
+    },
+    "LH": {
+      "first_sensory_spike_ms": 0.5,
+      "first_mapped_motor_spike_ms": null,
+      "first_decoded_offset_ms": null,
+      "first_applied_ms": null,
+      "first_physical_divergence_ms": 25,
+      "first_sensory_encoding_divergence_ms": 26,
+      "first_sensory_spike_divergence_ms": 35,
+      "first_cns_spike_divergence_ms": 35,
+      "first_motor_population_divergence_ms": null,
+      "angle_differences_rad": {
+        "50": -0.0004900991916656494,
+        "100": -0.0007731914520263672,
+        "250": -0.0014399439096450806,
+        "500": -0.12431922927498817
+      },
+      "maximum_absolute_angle_difference_rad": 0.34867332875728607,
+      "rms_post_motor_angle_difference_rad": 0.0,
+      "final_angle_difference_rad": -0.12431922927498817,
+      "final_difference_sign": "negative",
+      "sensory_spikes": 2435,
+      "motor_spikes": 0,
+      "peak_decoded_offset_rad": 0.0,
+      "simultaneous_vs_isolated": {
+        "isolated_motor_spikes": 0,
+        "simultaneous_motor_spikes": 0,
+        "isolated_first_motor_ms": null,
+        "simultaneous_first_motor_ms": null,
+        "isolated_peak_offset_rad": 0.0,
+        "simultaneous_peak_offset_rad": 0.0,
+        "previously_silent_became_active": false,
+        "previously_active_became_silent": false
+      }
+    },
+    "RF": {
+      "first_sensory_spike_ms": 0.5,
+      "first_mapped_motor_spike_ms": null,
+      "first_decoded_offset_ms": null,
+      "first_applied_ms": null,
+      "first_physical_divergence_ms": 25,
+      "first_sensory_encoding_divergence_ms": 26,
+      "first_sensory_spike_divergence_ms": 35,
+      "first_cns_spike_divergence_ms": 35,
+      "first_motor_population_divergence_ms": null,
+      "angle_differences_rad": {
+        "50": 5.014054477214813e-05,
+        "100": -6.665661931037903e-05,
+        "250": 0.06126351095736027,
+        "500": -0.002614058554172516
+      },
+      "maximum_absolute_angle_difference_rad": 0.11909680813550949,
+      "rms_post_motor_angle_difference_rad": 0.0,
+      "final_angle_difference_rad": -0.002614058554172516,
+      "final_difference_sign": "negative",
+      "sensory_spikes": 351,
+      "motor_spikes": 0,
+      "peak_decoded_offset_rad": 0.0,
+      "simultaneous_vs_isolated": {
+        "isolated_motor_spikes": 0,
+        "simultaneous_motor_spikes": 0,
+        "isolated_first_motor_ms": null,
+        "simultaneous_first_motor_ms": null,
+        "isolated_peak_offset_rad": 0.0,
+        "simultaneous_peak_offset_rad": 0.0,
+        "previously_silent_became_active": false,
+        "previously_active_became_silent": false
+      }
+    },
+    "RM": {
+      "first_sensory_spike_ms": 0.5,
+      "first_mapped_motor_spike_ms": 49.0,
+      "first_decoded_offset_ms": 49,
+      "first_applied_ms": 49,
+      "first_physical_divergence_ms": 25,
+      "first_sensory_encoding_divergence_ms": 26,
+      "first_sensory_spike_divergence_ms": 36,
+      "first_cns_spike_divergence_ms": 35,
+      "first_motor_population_divergence_ms": 59,
+      "angle_differences_rad": {
+        "50": 0.00430365651845932,
+        "100": 0.22087828000076115,
+        "250": 0.8255991004407406,
+        "500": 1.3417488262057304
+      },
+      "maximum_absolute_angle_difference_rad": 1.349059097468853,
+      "rms_post_motor_angle_difference_rad": 0.9679257601144532,
+      "final_angle_difference_rad": 1.3417488262057304,
+      "final_difference_sign": "positive",
+      "sensory_spikes": 1690,
+      "motor_spikes": 12,
+      "peak_decoded_offset_rad": 0.1794759502657556,
+      "simultaneous_vs_isolated": {
+        "isolated_motor_spikes": 4,
+        "simultaneous_motor_spikes": 12,
+        "isolated_first_motor_ms": 48.5,
+        "simultaneous_first_motor_ms": 49.0,
+        "isolated_peak_offset_rad": 0.14041,
+        "simultaneous_peak_offset_rad": 0.1794759502657556,
+        "previously_silent_became_active": false,
+        "previously_active_became_silent": false
+      }
+    },
+    "RH": {
+      "first_sensory_spike_ms": 0.5,
+      "first_mapped_motor_spike_ms": 24.5,
+      "first_decoded_offset_ms": 25,
+      "first_applied_ms": 25,
+      "first_physical_divergence_ms": 25,
+      "first_sensory_encoding_divergence_ms": 26,
+      "first_sensory_spike_divergence_ms": 35,
+      "first_cns_spike_divergence_ms": 35,
+      "first_motor_population_divergence_ms": 58,
+      "angle_differences_rad": {
+        "50": 0.07895729690790176,
+        "100": 0.23432813584804535,
+        "250": 0.7012449502944946,
+        "500": 1.2782718539237976
+      },
+      "maximum_absolute_angle_difference_rad": 1.2782718539237976,
+      "rms_post_motor_angle_difference_rad": 0.7647691660868254,
+      "final_angle_difference_rad": 1.2782718539237976,
+      "final_difference_sign": "positive",
+      "sensory_spikes": 2029,
+      "motor_spikes": 10,
+      "peak_decoded_offset_rad": 0.20141031339759963,
+      "simultaneous_vs_isolated": {
+        "isolated_motor_spikes": 6,
+        "simultaneous_motor_spikes": 10,
+        "isolated_first_motor_ms": 24.5,
+        "simultaneous_first_motor_ms": 24.5,
+        "isolated_peak_offset_rad": 0.156191,
+        "simultaneous_peak_offset_rad": 0.20141031339759963,
+        "previously_silent_became_active": false,
+        "previously_active_became_silent": false
+      }
+    }
+  },
+  "trajectory": {
+    "first_divergence_ms": 25,
+    "maximum_norm_rad": 2.2901197096691153,
+    "rms_post_motor_norm_rad": 1.56879973585855,
+    "final_norm_rad": 2.2901197096691153
+  },
+  "body_level_final_differences": {
+    "position_m": [
+      0.061400651931762695,
+      0.5077127516269684,
+      -0.08144288510084152
+    ],
+    "orientation": [
+      0.027766764163970947,
+      0.44757862389087677,
+      -0.06643033027648926
+    ],
+    "linear_velocity_m_s": [],
+    "angular_velocity_rad_s": [],
+    "contact_force_n": 0.0
+  },
+  "seed": 1,
+  "duration_ms": 500,
+  "neural_timestep_ms": 0.5,
+  "physics_timestep_s": 0.0001,
+  "control_timestep_s": 0.001,
+  "provenance": {
+    "angles": "PHYSICS_MEASURED",
+    "sensory_rates": "MODELED_TRANSDUCTION",
+    "cns": "CONNECTOME_DERIVED",
+    "motor_populations": "ANNOTATION_DERIVED",
+    "offsets": "MODELED_MOTOR_DECODING",
+    "actuator_limits": "ENGINEERING_CONSTRAINT"
+  },
+  "mapping_sha256": "db34ebe84c34382126244b9d74ad560cb7b3867b4d1ed8f7b96789d601bbfd47",
+  "git_commit": "10e6e34b05da78e706260e904d2ae33b8a0526fe",
+  "shared_runtime_per_run": true,
+  "scientific_safeguards": [
+    "no gait",
+    "no CPG",
+    "no behavior controller",
+    "no engineered cross-leg coupling",
+    "no artificial/tonic descending drive",
+    "no tuning",
+    "model constants unchanged"
+  ]
+}
