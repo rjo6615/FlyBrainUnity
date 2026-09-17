@@ -9,6 +9,8 @@ import numpy as np
 
 from malecns_backend.embodiment.body import BodySnapshot
 from malecns_backend.embodiment.diagnostics import OUTCOME_CRITERIA, classify_weak_link
+from malecns_backend.embodiment.temporal import (classify_temporal, directed_distances,
+                                                 neuron_metadata)
 from malecns_backend.embodiment.experiment import calculate_physical_metrics
 from malecns_backend.embodiment.loop import EmbodimentLoop, TimingConfig
 from malecns_backend.embodiment.mappings import INTERFACE_MAP, load_selected_pathway
@@ -205,6 +207,39 @@ class EmbodimentTests(unittest.TestCase):
 
     def test_bad_timing_rejected(self):
         with self.assertRaises(ValueError): TimingConfig(control_dt_ms=.75)
+
+    def test_duration_changes_only_number_of_steps_and_replays_reset(self):
+        short=self.components(seed=19)[2]; long=self.components(seed=19)[2]
+        short.run(10); long.run(25)
+        self.assertEqual((short.control_steps,long.control_steps),(10,25))
+        replay=self.components(seed=19)[2]; replay.run(10)
+        np.testing.assert_array_equal(short.brain.spike_counts,replay.brain.spike_counts)
+
+    def test_deterministic_duration_prefix(self):
+        short=self.components(seed=23)[2]; long=self.components(seed=23)[2]
+        a=short.run(10); b=long.run(25)
+        self.assertEqual([x['cns_spike_increment'] for x in a],
+                         [x['cns_spike_increment'] for x in b[:10]])
+
+    def test_directed_graph_distance_respects_orientation(self):
+        graph=SimpleNamespace(neuron_count=4,row_ptr=np.array([0,1,2,3,3]),
+                              target_indices=np.array([1,2,3]))
+        np.testing.assert_array_equal(directed_distances(graph,(0,)),(0,1,2,3))
+        np.testing.assert_array_equal(directed_distances(graph,(3,)),(-1,-1,-1,0))
+
+    def test_temporal_classification_uses_measured_stages(self):
+        motor=lambda events,spike: [{'excitatory_events':events,'inhibitory_events':0,
+                                     'threshold_crossed':spike}]
+        self.assertEqual(classify_temporal(motor(0,False),0,0,0),'T1')
+        self.assertEqual(classify_temporal(motor(1,False),0,0,0),'T2')
+        self.assertEqual(classify_temporal(motor(1,True),0,0,0),'T3')
+        self.assertEqual(classify_temporal(motor(1,True),.1,.01,.01),'T4')
+        self.assertEqual(classify_temporal(motor(1,True),.1,.02,.01),'T5')
+
+    def test_actuator_latency_is_labeled_as_target_update(self):
+        loop=self.components()[2]; loop.run(2)
+        self.assertIn('actuator_target_update',loop.first_times_s)
+        self.assertNotIn('changed_actuator_command',loop.first_times_s)
 
 
 if __name__ == '__main__': unittest.main()

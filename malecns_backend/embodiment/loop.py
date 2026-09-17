@@ -56,12 +56,14 @@ class EmbodimentLoop:
         self.wall_started = None
         self.wall_finished = None
         self.instrumentation_wall_s = 0.0
+        self.neural_wall_s = 0.0
+        self.physics_wall_s = 0.0
         self.initial_angle_rad = None
         self.last_command_rad = None
         self.first_times_s = {
             "sensory_spike": None, "downstream_spike": None,
             "extensor_spike": None, "flexor_spike": None,
-            "decoded_motor_signal": None, "changed_actuator_command": None,
+            "decoded_motor_signal": None, "actuator_target_update": None,
             "physical_tibia_response": None,
         }
         self.observer.reset(self.brain.spike_counts)
@@ -86,7 +88,9 @@ class EmbodimentLoop:
         flexor_set = set(int(x) for x in self.pathway.flexor.dense_indices)
         self.instrumentation_wall_s += time.perf_counter() - diagnostic_started
         for _ in range(self.timing.neural_steps_per_control):
+            neural_started = time.perf_counter()
             fired = self.brain.step()
+            self.neural_wall_s += time.perf_counter() - neural_started
             diagnostic_started = time.perf_counter()
             fired_set = set(int(x) for x in fired)
             event_time_s = self.brain.time_ms / 1000.0
@@ -108,11 +112,13 @@ class EmbodimentLoop:
         if command.antagonist_signal != 0 and self.first_times_s["decoded_motor_signal"] is None:
             self.first_times_s["decoded_motor_signal"] = self.brain.time_ms / 1000.0
         if (command.target_position_rad != self.last_command_rad and
-                self.first_times_s["changed_actuator_command"] is None):
-            self.first_times_s["changed_actuator_command"] = self.brain.time_ms / 1000.0
+                self.first_times_s["actuator_target_update"] is None):
+            self.first_times_s["actuator_target_update"] = self.brain.time_ms / 1000.0
         self.last_command_rad = command.target_position_rad
         self.instrumentation_wall_s += time.perf_counter() - diagnostic_started
+        physics_started = time.perf_counter()
         after = self.body.step(command, self.timing.physics_steps_per_control) if motor_enabled else before
+        self.physics_wall_s += time.perf_counter() - physics_started
         diagnostic_started = time.perf_counter()
         if (abs(after.frame.tibia_angle_rad - self.initial_angle_rad) > 1e-12 and
                 self.first_times_s["physical_tibia_response"] is None):
@@ -183,7 +189,10 @@ class EmbodimentLoop:
             "neural_steps": self.control_steps * self.timing.neural_steps_per_control,
             "physics_steps": self.control_steps * self.timing.physics_steps_per_control,
             "control_steps": self.control_steps,
-            "average_neural_step_s": wall / (self.control_steps * self.timing.neural_steps_per_control)
+            "average_neural_step_s": self.neural_wall_s / (self.control_steps * self.timing.neural_steps_per_control)
                                      if self.control_steps else 0.0,
+            "neural_wall_clock_s": self.neural_wall_s,
+            "physics_wall_clock_s": self.physics_wall_s,
+            "diagnostic_overhead_s": self.instrumentation_wall_s,
             "instrumentation_wall_clock_s": self.instrumentation_wall_s,
         }

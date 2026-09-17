@@ -124,3 +124,28 @@ parameter.
 
 See [EXPERIMENT_REPORT.md](EXPERIMENT_REPORT.md) for the experiment status and
 all unresolved assumptions.
+## Milestone 3C temporal propagation
+
+The observation duration is the only experimental variable exposed by the
+temporal replay. A single fresh replay defaults to the original 10 ms:
+
+```bash
+python -m malecns_backend.embodiment.audit --run-real --duration-ms 10
+```
+
+Run the fixed independent replay series (10, 25, 50, 100, 250, and 500 ms)
+with the same seed using:
+
+```bash
+python -m malecns_backend.embodiment.audit --run-real --duration-series
+```
+
+Every replay constructs and resets a new brain and body. Compact control-step
+telemetry, downstream spike-event JSONL, and a JSON summary are written under
+`malecns_backend/embodiment/temporal_output/`. The event trace includes exact
+MaleCNS metadata and directed minimum-hop distance. Seven-neuron motor input
+diagnostics are passive observers; they do not inject state or alter equations.
+
+The reported passive displacement is obtained from a separate, fresh-body,
+zero-neural-command replay of equal duration. It is not subtracted from or used
+to correct the simulated trajectory.

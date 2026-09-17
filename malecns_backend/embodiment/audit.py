@@ -43,6 +43,10 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run-real", action="store_true",
                         help="require and run the real bounded FlyGym/MaleCNS experiment")
+    parser.add_argument("--duration-ms", type=float, default=10,
+                        help="real experiment duration (positive whole control intervals; default: 10)")
+    parser.add_argument("--duration-series", action="store_true",
+                        help="run independent 10, 25, 50, 100, 250, and 500 ms replays")
     args = parser.parse_args(argv)
     started = time.perf_counter()
     pathway, drive, activity, command = component_audit()
@@ -70,8 +74,9 @@ def main(argv=None):
                      f"(Python {platform.python_version()}); no fake body substitutes for Test 4.")
         else:
             # Import only on explicit request: a real run is intentionally expensive.
-            from .experiment import run_real_experiment
-            result = run_real_experiment()
+            from .experiment import run_real_experiment, run_duration_series
+            result = (run_duration_series()[-1] if args.duration_series
+                      else run_real_experiment(args.duration_ms))
             real_status = result["scientific_outcome"]
 
     for name, text in (
