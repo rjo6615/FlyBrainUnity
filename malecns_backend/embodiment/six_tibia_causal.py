@@ -159,6 +159,9 @@ class SixTibiaRuntime:
         # control row or modifying the state passed to MuJoCo.
         self.last_step_attempt = {"time_ms": time_ms, "before": before,
                                   "actuation": actuation}
+        physics_diagnostic = getattr(self.body, "physics_diagnostic", None)
+        if physics_diagnostic is not None:
+            physics_diagnostic.set_control_context(time_ms, actuation)
         after = self.body.step(commands, int(round(CONTROL_DT_S / self.body.timestep_s)))
         sensory_increments = {l: int((counts-counts0)[encoded[l].indices].sum()) for l in LEG_ORDER}
         # Fakes predating candidate telemetry still get useful all-six data.
