@@ -7,7 +7,11 @@
     "RH": 40,
     "RM": 33
   },
-  "applied_outputs": null,
+  "applied_outputs": {
+    "disabled": false,
+    "disabled_withholds_application_only": true,
+    "enabled": true
+  },
   "biological_tactile_population": {
     "body_ids": [
       804120,
@@ -773,9 +777,13 @@
     "size": 378,
     "subsampled": false
   },
-  "causal_classification": "NOT_RUN",
-  "contact_force_feedback": null,
-  "decoded_outputs": null,
+  "causal_classification": "PRE_MOTOR_EQUIVALENCE_FAILED",
+  "contact_force_feedback": {
+    "first_divergence_ms": 4.199999999999998
+  },
+  "decoded_outputs": {
+    "computed_in_both_conditions": true
+  },
   "decoder_parameters": {
     "activation": "1-exp(-Hz*ln(2)/17)",
     "antagonist": "extensor-flexor",
@@ -792,9 +800,19 @@
     ],
     "slew_limit_rad_s": 4.0
   },
-  "disabled_condition_summary": null,
-  "downstream_cns_feedback_divergence": null,
-  "enabled_condition_summary": null,
+  "disabled_condition_summary": {
+    "candidate_tactile_spikes": 388,
+    "delivered_tactile_spikes": 291,
+    "mapped_tibia_motor_spikes": 14
+  },
+  "downstream_cns_feedback_divergence": {
+    "first_divergence_ms": 8.500000000000004
+  },
+  "enabled_condition_summary": {
+    "candidate_tactile_spikes": 403,
+    "delivered_tactile_spikes": 299,
+    "mapped_tibia_motor_spikes": 12
+  },
   "excluded_actuation_joints": [
     "coxa",
     "coxa_roll",
@@ -803,7 +821,10 @@
     "femur_roll",
     "tarsus1"
   ],
-  "full_body_physical_divergence": null,
+  "full_body_physical_divergence": {
+    "direct_actuation_interpretation": false,
+    "maximum_absolute_qpos_difference": 0.27809809241102573
+  },
   "limitations": [
     "This is an engineering motor-causality protocol, not a gait, behavior, or reflex experiment.",
     "Tactile transduction and motor decoding are modeled interfaces, not measured biological transfer functions.",
@@ -811,28 +832,105 @@
     "No scientific result was generated in this environment."
   ],
   "locked_provenance": {
-    "m5d3_artifact_sha256": {
+    "m5d2c_live_result_semantically_validated": true,
+    "m5d3_live_result_semantically_validated": true,
+    "m5d3_locked_digest": {
       "malecns_backend/embodiment/M5D3_TACTILE_PROPAGATION.md": "da5df00493e4701ac188c0f41d73348dcb00c61a1ace8e567487fb7b31ef4721",
-      "malecns_backend/embodiment/interface_output/tactile_propagation.json": "bc6dc611897e804e4702a3558a655971dc0a34d8c62b86a8e69158430e7ae17c",
+      "malecns_backend/embodiment/interface_output/tactile_propagation.json": "6f01c2b4aa16d6b51dbfba31055970dc7dea114ef317b688595bb1c9355b25cf",
       "malecns_backend/embodiment/tactile_propagation.py": "a1e07293c1676e5406500a00355c6f31979412f93aeab63edc16ec94934be3a6",
       "malecns_backend/embodiment/tactile_propagation_audit.py": "9fe739a94644224a3e6757b4ffc30d02630e8348ca653372eb6fe673aeddd003"
     },
-    "m5d3_not_executed": true,
+    "post_run_m5d3_unchanged": {
+      "malecns_backend/embodiment/M5D3_TACTILE_PROPAGATION.md": "da5df00493e4701ac188c0f41d73348dcb00c61a1ace8e567487fb7b31ef4721",
+      "malecns_backend/embodiment/interface_output/tactile_propagation.json": "6f01c2b4aa16d6b51dbfba31055970dc7dea114ef317b688595bb1c9355b25cf",
+      "malecns_backend/embodiment/tactile_propagation.py": "a1e07293c1676e5406500a00355c6f31979412f93aeab63edc16ec94934be3a6",
+      "malecns_backend/embodiment/tactile_propagation_audit.py": "9fe739a94644224a3e6757b4ffc30d02630e8348ca653372eb6fe673aeddd003"
+    },
+    "post_run_prior_unchanged": {
+      "malecns_backend/embodiment/interface_output/tactile_targeted_contact_calibration.json": "3866d118f58dc1cf027cc36301e2881e34f8e98c18565b57d41f17653876f42c",
+      "malecns_backend/embodiment/six_leg_map.json": "575186602ac1e5a6e3b2c6d680309880266f5d80e18fff44f989440f6cd0a4bc",
+      "malecns_backend/embodiment/tactile_contact.py": "10fb5edb8c9d59036a703d4ebe1bfac9c67e986f0d42d1ea412666f7404011f9",
+      "malecns_backend/embodiment/tactile_targeted_contact_calibration.py": "2c5de5a3de6c37d1d7d27093051b4c8f61ce6374641cb33eadeb6ec1294afcae"
+    },
     "prior_milestone_sha256": {
-      "malecns_backend/embodiment/interface_output/tactile_targeted_contact_calibration.json": "486ba63cc444b54d1012cd310be949e4bc35e088b2375a3b135342316df393df",
+      "malecns_backend/embodiment/interface_output/tactile_targeted_contact_calibration.json": "3866d118f58dc1cf027cc36301e2881e34f8e98c18565b57d41f17653876f42c",
       "malecns_backend/embodiment/six_leg_map.json": "575186602ac1e5a6e3b2c6d680309880266f5d80e18fff44f989440f6cd0a4bc",
       "malecns_backend/embodiment/tactile_contact.py": "10fb5edb8c9d59036a703d4ebe1bfac9c67e986f0d42d1ea412666f7404011f9",
       "malecns_backend/embodiment/tactile_targeted_contact_calibration.py": "2c5de5a3de6c37d1d7d27093051b4c8f61ce6374641cb33eadeb6ec1294afcae"
     }
   },
-  "mapped_tibia_motor_activity": null,
+  "mapped_tibia_motor_activity": {
+    "TACTILE_MOTOR_DISABLED": 14,
+    "TACTILE_MOTOR_ENABLED": 12
+  },
   "motor_mapping_provenance": {
     "mapping": "existing validated M4A/M4B six-tibia mapping",
     "new_assignments_inferred": false,
-    "sha256": "575186602ac1e5a6e3b2c6d680309880266f5d80e18fff44f989440f6cd0a4bc",
-    "source": "malecns_backend/embodiment/six_leg_map.json"
+    "sha256": "cb0eb30db929264d5496c69465853d5c0d388ffcd8bf977a4c75be0e7598f359",
+    "source": "malecns_backend\\embodiment\\six_leg_map.json"
   },
-  "per_leg_physical_divergence": null,
+  "per_leg_physical_divergence": {
+    "LF": {
+      "difference_rad_at_ms": {
+        "100": null,
+        "25": null,
+        "50": null,
+        "75": null
+      },
+      "final_difference_rad": -0.005916353315114975,
+      "maximum_absolute_difference_rad": 0.00774427130818367
+    },
+    "LH": {
+      "difference_rad_at_ms": {
+        "100": null,
+        "25": null,
+        "50": null,
+        "75": null
+      },
+      "final_difference_rad": -0.2780980821698904,
+      "maximum_absolute_difference_rad": 0.2780980821698904
+    },
+    "LM": {
+      "difference_rad_at_ms": {
+        "100": null,
+        "25": null,
+        "50": null,
+        "75": null
+      },
+      "final_difference_rad": 0.26769223995506763,
+      "maximum_absolute_difference_rad": 0.26769223995506763
+    },
+    "RF": {
+      "difference_rad_at_ms": {
+        "100": null,
+        "25": null,
+        "50": null,
+        "75": null
+      },
+      "final_difference_rad": -0.006728149950504303,
+      "maximum_absolute_difference_rad": 0.008116193115711212
+    },
+    "RH": {
+      "difference_rad_at_ms": {
+        "100": null,
+        "25": null,
+        "50": null,
+        "75": null
+      },
+      "final_difference_rad": 0.004269524477422237,
+      "maximum_absolute_difference_rad": 0.036815508268773556
+    },
+    "RM": {
+      "difference_rad_at_ms": {
+        "100": null,
+        "25": null,
+        "50": null,
+        "75": null
+      },
+      "final_difference_rad": 0.03896673762938008,
+      "maximum_absolute_difference_rad": 0.0445030948612839
+    }
+  },
   "physical_contact_verification": {
     "contact_forces_row": 11,
     "exact_unordered_geom_pair_required": true,
@@ -841,7 +939,7 @@
     "segment": "Tarsus5",
     "surface": "m5d2c_calibration_surface",
     "threshold": 1e-12,
-    "verified": null
+    "verified": true
   },
   "physical_neural_actuation_targets": [
     {
@@ -884,10 +982,13 @@
   "physics_stability": {
     "failure": null,
     "retry_or_retuning_permitted": false,
-    "stable": null
+    "stable": true
   },
   "pre_motor_equivalence": {
-    "passed": null
+    "first_applied_output_ms": 14.499999999999968,
+    "passed": false,
+    "sample_count": 145,
+    "strict_equality": true
   },
   "protocol_configuration": {
     "conditions": [
@@ -900,13 +1001,25 @@
     "physical_timestep_s": 0.0001,
     "seed": 1
   },
-  "reason": "requires validated Windows FlyGym/MuJoCo/MaleCNS runtime; invoke with --live",
+  "reason": null,
   "rng_parity": {
-    "passed": null
+    "candidate_events_identical_before_feedback": true,
+    "delivered_events_identical_before_feedback": true,
+    "disabled_final_digest": "32273c360edda81cd5537bc8aefa9b201bd1fc877d9a16f097e3f9e208ac525e",
+    "enabled_final_digest": "75f937dca7ce2bde1c22f0e3db09b4ba8915237c856d870d2d5a5becf604b3a0",
+    "final_state_identical": false,
+    "passed_before_feedback": true
   },
-  "run_status": "NOT_RUN",
+  "run_status": "COMPLETE",
   "schema_version": "M5D-4.0",
-  "subsequent_mapped_motor_divergence": null,
+  "six_tibia_trajectory": {
+    "l2_norm": 6.418457147141346,
+    "maximum_sample_l2_norm_rad": 0.3880909498529676,
+    "rms_difference_rad": 0.08282052554869962
+  },
+  "subsequent_mapped_motor_divergence": {
+    "first_divergence_ms": 20.99999999999993
+  },
   "tactile_encoder_parameters": {
     "envelope": "linear decay",
     "maximum_modeled_rate_hz": 120.0,
@@ -914,22 +1027,23 @@
     "sustained_contact_retrigger": false,
     "transient_duration_ms": 20.0
   },
-  "tactile_feedback_divergence": null,
+  "tactile_feedback_divergence": {
+    "first_divergence_ms": 6.100000000000003
+  },
   "timing_milestones_ms": {
-    "first_applied_neural_output": null,
-    "first_candidate_tactile_spike": null,
-    "first_delivered_tactile_spike": null,
-    "first_exact_contact_state_divergence": null,
-    "first_lm_tarsus5_force_divergence": null,
-    "first_mapped_tibia_motor_spike": null,
-    "first_modeled_tactile_rate": null,
-    "first_non_tactile_cns_state_change": null,
-    "first_nonzero_decoded_tibia_output": null,
-    "first_nonzero_force": null,
-    "first_physical_qpos_divergence": null,
-    "first_sensory_feedback_divergence": null,
-    "first_subsequent_cns_divergence": null,
-    "first_subsequent_mapped_motor_divergence": null,
-    "first_verified_contact": null
+    "first_applied_neural_output": 14.499999999999968,
+    "first_candidate_tactile_spike": 2.799999999999999,
+    "first_delivered_tactile_spike": 3.0,
+    "first_exact_contact_state_divergence": 4.099999999999998,
+    "first_lm_tarsus5_force_divergence": 4.199999999999998,
+    "first_mapped_tibia_motor_spike": 14.499999999999968,
+    "first_modeled_tactile_rate": 2.799999999999999,
+    "first_nonzero_decoded_tibia_output": 14.499999999999968,
+    "first_nonzero_force": 2.799999999999999,
+    "first_physical_qpos_divergence": 4.099999999999998,
+    "first_sensory_feedback_divergence": 6.100000000000003,
+    "first_subsequent_cns_divergence": 8.500000000000004,
+    "first_subsequent_mapped_motor_divergence": 20.99999999999993,
+    "first_verified_contact": 2.799999999999999
   }
 }
