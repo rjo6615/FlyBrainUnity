@@ -1,42 +1,63 @@
 {
   "action_divergence": {
+    "absolute_difference": 0.0040000000000000036,
+    "difference_count": 1,
+    "disabled_value": -0.0446904633641243,
+    "enabled_value": -0.040690463364124296,
+    "exactly_equal": false,
+    "first_differing_index": "[12]",
     "leg": null,
+    "maximum_absolute_difference": 0.0040000000000000036,
     "neural_step": null,
-    "observed": false,
-    "physical_step": null,
-    "time_ms": null,
-    "value": null
+    "observed": true,
+    "physical_step": 145,
+    "time_ms": 14.499999999999968,
+    "value": null,
+    "variable": "action_joints"
   },
   "admitted_neural_contribution_evidence": {
-    "leg": null,
-    "neural_step": null,
-    "observed": false,
-    "physical_step": null,
-    "time_ms": null,
-    "value": null
+    "leg": "LM",
+    "neural_step": 29,
+    "observed": true,
+    "physical_step": 145,
+    "time_ms": 14.499999999999968,
+    "value": 0.09982611240267811
   },
   "causal_milestones": {
     "C0": null,
-    "C1": null,
+    "C1": 2.799999999999999,
     "C10": null,
     "C11": null,
     "C12": null,
     "C13": null,
     "C14": null,
-    "C2": null,
-    "C3": null,
-    "C4": null,
-    "C5": null,
-    "C6": null,
-    "C7": null,
-    "C8": null,
+    "C2": 2.9999999999999987,
+    "C3": 14.499999999999968,
+    "C4": 14.499999999999968,
+    "C5": 14.499999999999968,
+    "C6": 14.499999999999968,
+    "C7": 14.599999999999968,
+    "C8": 14.599999999999968,
     "C9": null
   },
   "causal_ordering": {
-    "established": false,
-    "sequence_ms": null
+    "established": true,
+    "sequence_ms": [
+      null,
+      2.799999999999999,
+      2.9999999999999987,
+      14.499999999999968,
+      14.499999999999968,
+      14.499999999999968,
+      14.499999999999968,
+      14.599999999999968,
+      14.599999999999968,
+      null,
+      null,
+      null
+    ]
   },
-  "classification": null,
+  "classification": "MOTOR_CAUSALITY_CONFIRMED_NO_FEEDBACK_WITHIN_WINDOW",
   "contact_evidence": {
     "leg": null,
     "neural_step": null,
@@ -64,12 +85,20 @@
     "reused_not_reimplemented": true
   },
   "ctrl_divergence": {
+    "absolute_difference": 0.0040000000000000036,
+    "difference_count": 1,
+    "disabled_value": -0.0446904633641243,
+    "enabled_value": -0.040690463364124296,
+    "exactly_equal": false,
+    "first_differing_index": "[12]",
     "leg": null,
+    "maximum_absolute_difference": 0.0040000000000000036,
     "neural_step": null,
-    "observed": false,
-    "physical_step": null,
-    "time_ms": null,
-    "value": null
+    "observed": true,
+    "physical_step": 146,
+    "time_ms": 14.599999999999968,
+    "value": null,
+    "variable": "ctrl"
   },
   "downstream_cns_evidence": {
     "leg": null,
@@ -89,16 +118,23 @@
     "Claims apply only to the modeled embodiment, not biological reflexes or natural gait."
   ],
   "m5d4c_prefix_validation": {
-    "observed": null,
-    "passed": null
+    "observed": {
+      "action": 14.499999999999968,
+      "admitted": 14.499999999999968,
+      "ctrl": 14.599999999999968,
+      "mapped": 14.499999999999968,
+      "physical": 14.599999999999968,
+      "raw": 14.499999999999968
+    },
+    "passed": true
   },
   "mapped_motor_evidence": {
-    "leg": null,
-    "neural_step": null,
-    "observed": false,
-    "physical_step": null,
-    "time_ms": null,
-    "value": null
+    "leg": "LM",
+    "neural_step": 29,
+    "observed": true,
+    "physical_step": 145,
+    "time_ms": 14.499999999999968,
+    "value": 1
   },
   "modeled_sensory_encoding_divergence": {
     "leg": null,
@@ -130,28 +166,52 @@
   },
   "physical_sensory_divergence": {
     "contact_force": {
+      "absolute_difference": 4.634261131286621e-05,
+      "difference_count": 13,
+      "disabled_value": -0.17869649827480316,
+      "enabled_value": -0.1786501556634903,
+      "exactly_equal": false,
+      "first_differing_index": "[24][0]",
       "leg": null,
+      "maximum_absolute_difference": 0.004590272903442383,
       "neural_step": null,
-      "observed": false,
-      "physical_step": null,
-      "time_ms": null,
-      "value": null
+      "observed": true,
+      "physical_step": 146,
+      "time_ms": 14.599999999999968,
+      "value": null,
+      "variable": "contact_forces"
     },
     "proprioceptive_physical": {
+      "absolute_difference": 0.0010873559025048607,
+      "difference_count": 93,
+      "disabled_value": 4.052821329461052,
+      "enabled_value": 4.051733973558547,
+      "exactly_equal": false,
+      "first_differing_index": "[0]",
       "leg": null,
+      "maximum_absolute_difference": 2.482035892176601,
       "neural_step": null,
-      "observed": false,
-      "physical_step": null,
-      "time_ms": null,
-      "value": null
+      "observed": true,
+      "physical_step": 146,
+      "time_ms": 14.599999999999968,
+      "value": null,
+      "variable": "qvel"
     },
     "semantic_contact": {
+      "absolute_difference": null,
+      "difference_count": 3,
+      "disabled_value": "RMTibia",
+      "enabled_value": "RMTarsus5",
+      "exactly_equal": false,
+      "first_differing_index": "all_contact_pairs[3].semantic_geometry_pair[0]",
       "leg": null,
+      "maximum_absolute_difference": 1.0,
       "neural_step": null,
-      "observed": false,
-      "physical_step": null,
-      "time_ms": null,
-      "value": null
+      "observed": true,
+      "physical_step": 170,
+      "time_ms": 16.999999999999954,
+      "value": null,
+      "variable": "contact_set"
     }
   },
   "post_feedback_cns_divergence": {
@@ -171,8 +231,20 @@
     "value": null
   },
   "pre_intervention_equivalence": {
-    "differences": null,
-    "passed": null
+    "before_ms": 14.499999999999968,
+    "differences": {
+      "action": null,
+      "baseline": null,
+      "contact": null,
+      "ctrl": null,
+      "decoder": null,
+      "force": null,
+      "qacc": null,
+      "qpos": null,
+      "qvel": null,
+      "sensory": null
+    },
+    "passed": true
   },
   "protocol": {
     "automatic_retries": 0,
@@ -186,15 +258,21 @@
     "seed": 1
   },
   "provenance": {
-    "earlier_locked_sha256": {
-      "malecns_backend/embodiment/M5D3_TACTILE_PROPAGATION.md": "da5df00493e4701ac188c0f41d73348dcb00c61a1ace8e567487fb7b31ef4721",
-      "malecns_backend/embodiment/interface_output/tactile_propagation.json": "6f01c2b4aa16d6b51dbfba31055970dc7dea114ef317b688595bb1c9355b25cf",
-      "malecns_backend/embodiment/interface_output/tactile_targeted_contact_calibration.json": "3866d118f58dc1cf027cc36301e2881e34f8e98c18565b57d41f17653876f42c",
-      "malecns_backend/embodiment/six_leg_map.json": "575186602ac1e5a6e3b2c6d680309880266f5d80e18fff44f989440f6cd0a4bc",
-      "malecns_backend/embodiment/tactile_contact.py": "10fb5edb8c9d59036a703d4ebe1bfac9c67e986f0d42d1ea412666f7404011f9",
-      "malecns_backend/embodiment/tactile_propagation.py": "a1e07293c1676e5406500a00355c6f31979412f93aeab63edc16ec94934be3a6",
-      "malecns_backend/embodiment/tactile_propagation_audit.py": "9fe739a94644224a3e6757b4ffc30d02630e8348ca653372eb6fe673aeddd003",
-      "malecns_backend/embodiment/tactile_targeted_contact_calibration.py": "2c5de5a3de6c37d1d7d27093051b4c8f61ce6374641cb33eadeb6ec1294afcae"
+    "earlier": {
+      "m5d2c_and_m5d3": {
+        "malecns_backend/embodiment/M5D3_TACTILE_PROPAGATION.md": "da5df00493e4701ac188c0f41d73348dcb00c61a1ace8e567487fb7b31ef4721",
+        "malecns_backend/embodiment/interface_output/tactile_propagation.json": "6f01c2b4aa16d6b51dbfba31055970dc7dea114ef317b688595bb1c9355b25cf",
+        "malecns_backend/embodiment/interface_output/tactile_targeted_contact_calibration.json": "3866d118f58dc1cf027cc36301e2881e34f8e98c18565b57d41f17653876f42c",
+        "malecns_backend/embodiment/six_leg_map.json": "575186602ac1e5a6e3b2c6d680309880266f5d80e18fff44f989440f6cd0a4bc",
+        "malecns_backend/embodiment/tactile_contact.py": "10fb5edb8c9d59036a703d4ebe1bfac9c67e986f0d42d1ea412666f7404011f9",
+        "malecns_backend/embodiment/tactile_propagation.py": "a1e07293c1676e5406500a00355c6f31979412f93aeab63edc16ec94934be3a6",
+        "malecns_backend/embodiment/tactile_propagation_audit.py": "9fe739a94644224a3e6757b4ffc30d02630e8348ca653372eb6fe673aeddd003",
+        "malecns_backend/embodiment/tactile_targeted_contact_calibration.py": "2c5de5a3de6c37d1d7d27093051b4c8f61ce6374641cb33eadeb6ec1294afcae"
+      },
+      "m5d4_semantic_digest": "9aaf7aa33d9978952155080562ba0831a118328aa9c172e306b932ddb2e3e21d",
+      "m5d4a_semantic_digest": "eee153e652e448b8b9ae9022def122e624bc6cd82d32ae1c206a6349bf73e2f3",
+      "m5d4b_semantic_digest": "6eda4744d33f65c8ec250e8d952cffcc4ba511b33d8b5c594d083d9b20d7de43",
+      "verified": true
     },
     "earlier_locks_verified": true,
     "m5d4c": {
@@ -208,58 +286,103 @@
     "verified": true
   },
   "qacc_divergence": {
+    "absolute_difference": 35.61496764025469,
+    "difference_count": 93,
+    "disabled_value": 526.7759305943148,
+    "enabled_value": 562.3908982345695,
+    "exactly_equal": false,
+    "first_differing_index": "[0]",
     "leg": null,
+    "maximum_absolute_difference": 154618.6354282482,
     "neural_step": null,
-    "observed": false,
-    "physical_step": null,
-    "time_ms": null,
-    "value": null
+    "observed": true,
+    "physical_step": 146,
+    "time_ms": 14.599999999999968,
+    "value": null,
+    "variable": "qacc"
   },
   "qpos_divergence": {
+    "absolute_difference": 1.0873559025056934e-07,
+    "difference_count": 94,
+    "disabled_value": 0.015065133204358502,
+    "enabled_value": 0.015065024468768251,
+    "exactly_equal": false,
+    "first_differing_index": "[0]",
     "leg": null,
+    "maximum_absolute_difference": 0.00024820358921766317,
     "neural_step": null,
-    "observed": false,
-    "physical_step": null,
-    "time_ms": null,
-    "value": null
+    "observed": true,
+    "physical_step": 146,
+    "time_ms": 14.599999999999968,
+    "value": null,
+    "variable": "qpos"
   },
   "qvel_divergence": {
+    "absolute_difference": 0.0010873559025048607,
+    "difference_count": 93,
+    "disabled_value": 4.052821329461052,
+    "enabled_value": 4.051733973558547,
+    "exactly_equal": false,
+    "first_differing_index": "[0]",
     "leg": null,
+    "maximum_absolute_difference": 2.482035892176601,
     "neural_step": null,
-    "observed": false,
-    "physical_step": null,
-    "time_ms": null,
-    "value": null
+    "observed": true,
+    "physical_step": 146,
+    "time_ms": 14.599999999999968,
+    "value": null,
+    "variable": "qvel"
   },
   "raw_neural_contribution_evidence": {
-    "leg": null,
-    "neural_step": null,
-    "observed": false,
-    "physical_step": null,
-    "time_ms": null,
-    "value": null
+    "leg": "LM",
+    "neural_step": 29,
+    "observed": true,
+    "physical_step": 145,
+    "time_ms": 14.499999999999968,
+    "value": 0.09982611240267811
   },
-  "reason": "Validated Windows FlyGym/MuJoCo live execution has not been performed",
+  "reason": null,
   "rng_parity": {
-    "pre_feedback_exact": null,
-    "random_stream_mismatch": null
+    "pre_feedback_exact": true,
+    "random_stream_mismatch": false
   },
-  "run_status": "NOT_RUN",
+  "run_status": "COMPLETE",
   "schema": "M5D-4D.0",
   "tactile_delivery_evidence": {
-    "leg": null,
-    "neural_step": null,
-    "observed": false,
-    "physical_step": null,
-    "time_ms": null,
-    "value": null
+    "leg": "LM",
+    "neural_step": 6,
+    "observed": true,
+    "physical_step": 30,
+    "time_ms": 2.9999999999999987,
+    "value": [
+      149607,
+      150360,
+      152195,
+      153403,
+      153702,
+      154229,
+      154510,
+      155212,
+      155247,
+      155252,
+      156884,
+      156987,
+      157377,
+      157569,
+      157612,
+      157667,
+      158437,
+      158541,
+      160087,
+      161517
+    ]
   },
   "tactile_transduction_evidence": {
-    "leg": null,
+    "leg": "LM",
     "neural_step": null,
-    "observed": false,
-    "physical_step": null,
-    "time_ms": null,
-    "value": null
+    "observed": true,
+    "physical_step": 28,
+    "time_ms": 2.799999999999999,
+    "value": 120.0
   }
 }
