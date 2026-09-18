@@ -1,0 +1,46 @@
+{
+  "confirmed_contact": {
+    "statistics": {
+      "count": 0,
+      "exact_zero_fraction": null,
+      "max": null,
+      "mean": null,
+      "median": null,
+      "min": null,
+      "nonzero_fraction": null,
+      "percentiles": {}
+    }
+  },
+  "duration_s": 0.05,
+  "lm_physical_contact_observability_validated": false,
+  "male_cns_used": false,
+  "method": "one deterministic -0.1 model-unit root-body z adjustment after reset; measured joints then held passively",
+  "neural_propagation": "NOT_RUN",
+  "no_contact": {
+    "statistics": {
+      "count": 0,
+      "exact_zero_fraction": null,
+      "max": null,
+      "mean": null,
+      "median": null,
+      "min": null,
+      "nonzero_fraction": null,
+      "percentiles": {}
+    }
+  },
+  "other_five_legs": "force magnitudes remain unvalidated",
+  "reason": "invoke with --live in the validated FlyGym/MuJoCo environment",
+  "run_status": "NOT_RUN",
+  "schema_version": "M5D-2B.0",
+  "selected_leg": "LM",
+  "selected_segment": "Tarsus5",
+  "threshold_evaluation": {
+    "classification": "CALIBRATION_INCONCLUSIVE",
+    "comparison": "magnitude > threshold",
+    "false_negatives": 0,
+    "false_positives": 0,
+    "threshold": 1e-12
+  },
+  "timestep_s": 0.0001,
+  "units": "model force units"
+}
