@@ -1,0 +1,39 @@
+{
+  "classification": null,
+  "comparisons": null,
+  "earliest_physical_divergence": null,
+  "initialization_audit": null,
+  "limitations": [
+    "Diagnostic only; no M5D-4 motor-causality claim.",
+    "The canonical M5D-4 result is not rerun or reinterpreted."
+  ],
+  "order_reversal": {
+    "outcome_follows": null,
+    "performed": false
+  },
+  "protocol": {
+    "conditions": [
+      "TACTILE_MOTOR_ENABLED_LIKE_MOTOR_OFF",
+      "TACTILE_MOTOR_DISABLED_LIKE_MOTOR_OFF"
+    ],
+    "duration_ms": 15.0,
+    "neural_motor_application": false,
+    "original_m5d4_result_preserved": true,
+    "physics_timestep_s": 0.0001,
+    "same_condition_repeats": [
+      "CONTROL_A",
+      "CONTROL_B"
+    ],
+    "seed": 1,
+    "zero_tolerance_exact_comparison": true
+  },
+  "reason": "Live M5D-4A diagnostic has not been run on validated Windows FlyGym/MuJoCo",
+  "run_status": "NOT_RUN",
+  "safety": {
+    "applied_neural_output_sample_count": 0,
+    "neural_output_applied": false,
+    "neural_output_decoded": true,
+    "neural_output_observed": true
+  },
+  "schema": "M5D-4A.0"
+}
