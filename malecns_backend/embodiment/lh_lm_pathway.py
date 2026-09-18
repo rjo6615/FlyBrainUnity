@@ -93,6 +93,21 @@ def _bounded_reverse_distances(indptr, indices, targets, max_depth=MAX_PATH_EDGE
     return distance
 
 
+def _candidate_sort_key(candidate):
+    """Return the documented M4C-3 candidate priority as an ascending key."""
+    complete_route_length = candidate.path_length_from_lh + min(
+        distance for distance in (
+            candidate.path_length_to_800911, candidate.path_length_to_801234)
+        if distance is not None)
+    observed_active = (candidate.first_canonical_spike_ms is not None and
+                       candidate.first_canonical_spike_ms < TEMPORAL_CUTOFF_MS)
+    direct_target_count = (candidate.directly_contacts_800911 +
+                           candidate.directly_contacts_801234)
+    return (not observed_active, complete_route_length, -direct_target_count,
+            -candidate.lh_input_synapses, -abs(candidate.effective_modeled_weight),
+            candidate.body_id)
+
+
 def discover_candidates(brain, lh_indices: Iterable[int], spike_times=None,
                         active_direct_contributors=(), max_path_edges=MAX_PATH_EDGES):
     """Return short-path intermediates, prioritized by explicit observational evidence."""
@@ -125,18 +140,15 @@ def discover_candidates(brain, lh_indices: Iterable[int], spike_times=None,
             (int(data.body_ids[index]) in active) or (bool(event_times) and any(direct))))
     # Active-before-35, shorter complete route, dual/direct target contact, and
     # stronger connectivity are deterministic non-causal prioritization keys.
-    candidates.sort(key=lambda c: (
-        not (c.first_canonical_spike_ms is not None and c.first_canonical_spike_ms < TEMPORAL_CUTOFF_MS),
-        c.path_length_from_lh + min(x for x in (c.path_length_to_800911, c.path_length_to_801234) if x is not None),
-        -(c.directly_contacts_800911 + c.directly_contacts_801234),
-        -c.lh_input_synapses, -abs(c.effective_modeled_weight), c.body_id))
+    candidates.sort(key=_candidate_sort_key)
     return candidates
 
 
 def make_groups(candidates, max_group_size=MAX_GROUP_SIZE):
+    """Group by cell type, serializing membership in numeric body-ID order."""
     grouped = defaultdict(list)
     for candidate in candidates: grouped[candidate.cell_type].append(candidate.body_id)
-    return [{"cell_type": kind, "body_ids": ids, "eligible": 1 < len(ids) <= max_group_size,
+    return [{"cell_type": kind, "body_ids": sorted(ids), "eligible": 1 < len(ids) <= max_group_size,
              "reason": "explicit short-path candidate body IDs" if len(ids) <= max_group_size else "OVERSIZED_NOT_INTERVENED"}
             for kind, ids in sorted(grouped.items()) if len(ids) > 1]
 

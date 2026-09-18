@@ -28,7 +28,9 @@ postsynaptic dense index.
 
 Candidate records separate connectome facts (annotations, paths and synapse
 counts) from modeled facts (E/I sign, effective weight and canonical activity).
-Type groups preserve explicit IDs and are eligible only at sizes 2–6.
+Type groups preserve explicit IDs and are eligible only at sizes 2–6. A group's
+serialized `body_ids` are always sorted in ascending numeric body-ID order;
+group membership is metadata and does not inherit candidate priority.
 
 ## Phase B semantics
 

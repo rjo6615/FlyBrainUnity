@@ -10,7 +10,7 @@ from malecns_backend.embodiment.lh_lm_pathway import (
     CANONICAL_DURATION_MS, CANONICAL_SEED, EARLY_WINDOW_END_MS,
     LH_WITHHELD_LM_DELTA, LM_BASELINE_SPIKES, LM_TARGET_BASELINE,
     MAX_GROUP_SIZE, MAX_PATH_EDGES, SOURCE_LEG, TARGET_BODY_IDS,
-    _bounded_distances, configure_transmission_withholding,
+    _bounded_distances, _candidate_sort_key, configure_transmission_withholding,
     discover_candidates, early_window_summary, make_groups)
 from malecns_backend.embodiment.lh_lm_pathway_audit import _run_condition
 
@@ -51,7 +51,13 @@ class PathwayTests(unittest.TestCase):
         distances = _bounded_distances(brain.indptr, brain.indices, [0])
         self.assertEqual(distances[5], 3); self.assertNotIn(6, distances)
         candidates = discover_candidates(brain, [0], {1: [10., 36.], 2: [35.]})
-        self.assertEqual([x.body_id for x in candidates], [200, 300, 400])
+        self.assertEqual([x.body_id for x in candidates], [200, 400, 300])
+        sort_keys = {x.body_id: _candidate_sort_key(x) for x in candidates}
+        self.assertEqual(sort_keys, {
+            200: (False, 2, -1, -10, -10.0, 200),
+            300: (True, 3, 0, -10, -10.0, 300),
+            400: (True, 3, -1, 0, -10.0, 400),
+        })
         first = candidates[0].to_dict()
         self.assertTrue(first['observed_active']); self.assertEqual(first['evidence_class'], 'OBSERVATIONAL_CANDIDATE_NOT_CAUSAL')
         with self.assertRaises(ValueError): discover_candidates(brain, [0], max_path_edges=4)
@@ -95,6 +101,7 @@ class PathwayTests(unittest.TestCase):
     def test_groups_are_explicit_and_oversized_groups_are_ineligible(self):
         brain = MaleCNSBrain(graph_fixture(), config())
         candidates = discover_candidates(brain, [0], {1: [1], 2: [1], 3: [1]})
+        self.assertEqual([x.body_id for x in candidates], [200, 400, 300])
         groups = make_groups(candidates, max_group_size=1)
         self.assertEqual(groups[0]['body_ids'], [300, 400]); self.assertFalse(groups[0]['eligible'])
         self.assertEqual(MAX_GROUP_SIZE, 6)
