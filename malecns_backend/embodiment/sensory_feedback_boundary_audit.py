@@ -25,12 +25,17 @@ def run_live(duration_ms=DURATION_MS, seed=SEED):
     # Invoke the exact locked M5D-4D runner.  Temporarily replace only its
     # post-run reducer so the same two complete condition traces are audited.
     from . import tactile_motor_closed_loop_audit as locked
-    old = locked.analyze
+    original_m5d4d_analyze = locked.analyze
+
+    def reduce_traces(enabled, disabled):
+        return analyze(enabled, disabled,
+            _m5d4d_analyze=original_m5d4d_analyze)
+
     try:
-        locked.analyze = analyze
+        locked.analyze = reduce_traces
         return locked.run_live(duration_ms, seed)
     finally:
-        locked.analyze = old
+        locked.analyze = original_m5d4d_analyze
 
 
 def main(argv=None):
@@ -42,12 +47,18 @@ def main(argv=None):
     args = parser.parse_args(argv); report = base_report()
     try:
         report["provenance"] = verify_provenance()
-        if args.live: report = run_live(args.duration_ms, args.seed)
-    except (ImportError, ModuleNotFoundError) as error:
-        report.update(run_status="UNAVAILABLE", reason=f"{type(error).__name__}: {error}")
     except Exception as error:
         report.update(run_status="FAILED", classification="PROVENANCE_FAILURE",
             reason=f"{type(error).__name__}: {error}", traceback=traceback.format_exc())
+    else:
+        try:
+            if args.live:
+                report = run_live(args.duration_ms, args.seed)
+        except (ImportError, ModuleNotFoundError) as error:
+            report.update(run_status="UNAVAILABLE", reason=f"{type(error).__name__}: {error}")
+        except Exception as error:
+            report.update(run_status="FAILED", classification="DIAGNOSTIC_IMPLEMENTATION_FAILURE",
+                reason=f"{type(error).__name__}: {error}", traceback=traceback.format_exc())
     atomic_write(args.json, report)
     print(f"M5D-4E {report['run_status']}: {report['classification']}")
     return 0 if report["run_status"] in ("COMPLETE", "NOT_RUN", "UNAVAILABLE") else 1

@@ -157,13 +157,19 @@ def base_report() -> dict[str, Any]:
     }
 
 
-def analyze(enabled: Sequence[Mapping[str, Any]], disabled: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
+def analyze(enabled: Sequence[Mapping[str, Any]], disabled: Sequence[Mapping[str, Any]],
+            *, _m5d4d_analyze=None) -> dict[str, Any]:
     """Audit complete locked-runner traces without changing their simulation."""
     import numpy as np
     from .sensory import LegSensoryFrame, SensoryEncoder
     from .six_tibia import load_six_tibia_interfaces
-    from .tactile_motor_closed_loop_audit import analyze as analyze_m5d4d
-    provenance = verify_provenance(); original = analyze_m5d4d(enabled, disabled)
+    # ``run_live`` supplies the function object captured before it substitutes
+    # the runner's reducer. The fallback supports ordinary, unpatched calls.
+    # Looking up the runner attribute from inside the substituted call would
+    # find this M5D-4E reducer and recurse indefinitely.
+    if _m5d4d_analyze is None:
+        from .tactile_motor_closed_loop_audit import analyze as _m5d4d_analyze
+    provenance = verify_provenance(); original = _m5d4d_analyze(enabled, disabled)
     report = base_report(); report.update(run_status="COMPLETE", reason=None, provenance=provenance)
     report["prefix_reproduction"] = original["m5d4c_prefix_validation"]
     physical = min((original[k]["time_ms"] for k in ("qacc_divergence", "qvel_divergence", "qpos_divergence")

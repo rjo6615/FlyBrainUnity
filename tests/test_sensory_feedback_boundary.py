@@ -1,10 +1,19 @@
 import hashlib
 import json
+import sys
+from types import SimpleNamespace
 
 import pytest
 
 from malecns_backend.embodiment import sensory_feedback_boundary as boundary
 from malecns_backend.embodiment import sensory_feedback_boundary_audit as audit
+
+
+def fake_locked_module(monkeypatch, analyze, run_live):
+    locked = SimpleNamespace(analyze=analyze, run_live=run_live)
+    monkeypatch.setitem(sys.modules,
+        "malecns_backend.embodiment.tactile_motor_closed_loop_audit", locked)
+    return locked
 
 
 def test_m5d4d_raw_artifact_and_sources_are_immutable_and_semantically_valid():
@@ -83,3 +92,86 @@ def test_rng_desynchronization_always_fails_closed():
     evidence = {"provenance": True, "prefix": True, "rng_parity": False,
         "sensor_source": True, "rate": True, "delivered": True, "cns": True, "motor": True}
     assert boundary.classify(evidence) == "RNG_PARITY_FAILURE"
+
+
+def test_first_recursion_failure_is_preserved_without_reclassification():
+    path = audit.DEFAULT_OUTPUT.with_name(
+        "sensory_feedback_boundary_100ms_first_attempt_recursion_failure.json")
+    artifact = json.loads(path.read_text(encoding="utf-8"))
+    assert artifact["run_status"] == "FAILED"
+    assert artifact["classification"] == "PROVENANCE_FAILURE"
+    assert artifact["reason"] == "RecursionError: maximum recursion depth exceeded"
+    assert artifact["provenance"]["verified"]
+    assert artifact["provenance"]["earlier_locks_verified"]
+    assert "Traceback" in artifact["traceback"]
+    assert "sensory_feedback_boundary.py" in artifact["traceback"]
+
+
+def test_live_uses_original_m5d4d_analyzer_once_and_restores(monkeypatch):
+    calls = []
+
+    def original(enabled, disabled):
+        calls.append((enabled, disabled))
+        return "original report"
+
+    def m5d4e(enabled, disabled, *, _m5d4d_analyze):
+        assert _m5d4d_analyze is original
+        return _m5d4d_analyze(enabled, disabled)
+
+    monkeypatch.setattr(audit, "verify_provenance", lambda: {"verified": True})
+    monkeypatch.setattr(audit, "analyze", m5d4e)
+    locked = fake_locked_module(monkeypatch, original,
+        lambda *_: locked.analyze([1], [2]))
+    assert audit.run_live() == "original report"
+    assert calls == [([1], [2])]
+    assert locked.analyze is original
+
+
+@pytest.mark.parametrize("failure_site", ["reducer", "runner"])
+def test_live_restores_original_after_diagnostic_failure(monkeypatch, failure_site):
+    def original(*_):
+        return {}
+
+    def reducer(*_, **__):
+        raise RuntimeError("reducer failed")
+
+    def runner(*_):
+        if failure_site == "reducer":
+            return locked.analyze([], [])
+        raise RuntimeError("runner failed")
+
+    monkeypatch.setattr(audit, "verify_provenance", lambda: {"verified": True})
+    monkeypatch.setattr(audit, "analyze", reducer)
+    locked = fake_locked_module(monkeypatch, original, runner)
+    with pytest.raises(RuntimeError, match=f"{failure_site} failed"):
+        audit.run_live()
+    assert locked.analyze is original
+
+
+def test_live_does_not_patch_on_provenance_failure(monkeypatch):
+    original = lambda *_: {}
+    locked = fake_locked_module(monkeypatch, original, lambda *_: {})
+    monkeypatch.setattr(audit, "verify_provenance",
+        lambda: (_ for _ in ()).throw(RuntimeError("bad provenance")))
+    with pytest.raises(RuntimeError, match="bad provenance"):
+        audit.run_live()
+    assert locked.analyze is original
+
+
+@pytest.mark.parametrize(("stage", "classification"), [
+    ("provenance", "PROVENANCE_FAILURE"),
+    ("diagnostic", "DIAGNOSTIC_IMPLEMENTATION_FAILURE"),
+])
+def test_main_classifies_only_provenance_stage_as_provenance_failure(
+        tmp_path, monkeypatch, stage, classification):
+    output = tmp_path / "report.json"
+    if stage == "provenance":
+        monkeypatch.setattr(audit, "verify_provenance",
+            lambda: (_ for _ in ()).throw(RuntimeError("provenance failed")))
+    else:
+        monkeypatch.setattr(audit, "verify_provenance", lambda: {"verified": True})
+        monkeypatch.setattr(audit, "run_live",
+            lambda *_: (_ for _ in ()).throw(RuntimeError("reducer failed")))
+    assert audit.main(["--live", "--json", str(output)]) == 1
+    report = json.loads(output.read_text(encoding="utf-8"))
+    assert report["classification"] == classification
