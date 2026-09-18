@@ -1,5 +1,6 @@
 """Deterministic and non-intervention contracts for Milestone 5A."""
 import ast
+import io
 import json
 from pathlib import Path
 import sys
@@ -241,6 +242,10 @@ class FullLegInterfaceTests(unittest.TestCase):
                 self.assertEqual([item["actuator_id"] for item in metadata], [0, 1, 2])
                 self.assertEqual(metadata[0]["actuator_name"], actuators[0])
                 self.assertEqual(metadata[0]["joint_name"], joints[0])
+                self.assertEqual(metadata[0]["source_actuator_name"],
+                                 "actuator_position_joint_LFCoxa")
+                self.assertEqual(metadata[0]["source_actuator_full_identifier"],
+                                 "actuator_position_joint_LFCoxa")
                 self.assertNotIn(metadata[0]["joint_name"], joints[1:])
 
     def test_attachment_qualified_contract_resolves_all_42_in_action_order(self):
@@ -303,12 +308,33 @@ class FullLegInterfaceTests(unittest.TestCase):
         self.assertIn('"transmission_ids": [0, -1]', message)
         self.assertIn('fly/joint_LFCoxa_roll', message)
 
-    def test_live_ordering_mismatch_still_fails_loudly(self):
+    def test_live_ordering_mismatch_prints_full_diagnostic_and_still_fails(self):
         live = [{"index": record["actuator_index"], "name": record["actuator_name"],
-                 "mujoco_metadata": record["mujoco_metadata"]} for record in self.records]
+                 "mujoco_metadata": {
+                     **record["mujoco_metadata"],
+                     "source_actuator_name": f"source-{record['actuator_index']}",
+                     "source_actuator_full_identifier": f"fly/source-{record['actuator_index']}",
+                     "actuator_id": record["actuator_index"],
+                     "actuator_name": f"fly/actuator-{record['actuator_index']}",
+                     "joint_id": record["actuator_index"] + 1,
+                     "joint_name": f"fly/{record['actuator_name']}",
+                 }} for record in self.records]
         live[0]["name"], live[1]["name"] = live[1]["name"], live[0]["name"]
-        with self.assertRaisesRegex(ValueError, "order disagrees"):
+        output = io.StringIO()
+        with patch("sys.stdout", output), self.assertRaisesRegex(ValueError, "order disagrees"):
             interface.build_audit(live)
+
+        diagnostic = output.getvalue()
+        self.assertIn("M4A IDX | M4A NAME | LIVE IDX | LIVE LOGICAL NAME", diagnostic)
+        self.assertIn("0 | joint_LFCoxa | 0 | joint_LFCoxa_yaw | source-0 | fly/source-0 | "
+                      "0/fly/actuator-0 | 1/fly/joint_LFCoxa | MISMATCH", diagnostic)
+        self.assertIn("2 | joint_LFCoxa_roll | 2 | joint_LFCoxa_roll | source-2 | "
+                      "fly/source-2 | 2/fly/actuator-2 | 3/fly/joint_LFCoxa_roll | MATCH",
+                      diagnostic)
+        self.assertEqual(sum(line.endswith(("MATCH", "MISMATCH"))
+                             for line in diagnostic.splitlines()), 42)
+        self.assertIn("TOTAL: 42\nMATCHES: 40\nMISMATCHES: 2\n"
+                      "MISMATCH INDICES:\n[0, 1]\n", diagnostic)
 
 
 if __name__ == "__main__":

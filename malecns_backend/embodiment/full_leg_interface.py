@@ -196,6 +196,12 @@ def enumerate_live_actuators() -> list[dict[str, Any]]:
         q1 = int(model.jnt_qposadr[jid + 1]) if jid + 1 < model.njnt else int(model.nq)
         d1 = int(model.jnt_dofadr[jid + 1]) if jid + 1 < model.njnt else int(model.nv)
         records.append({"index": index, "name": str(name), "mujoco_metadata": {
+            "source_actuator_name": (str(getattr(source, "name"))
+                                     if source is not None and getattr(source, "name", None) is not None
+                                     else None),
+            "source_actuator_full_identifier": (str(getattr(source, "full_identifier"))
+                                                if source is not None and getattr(source, "full_identifier", None) is not None
+                                                else None),
             "actuator_id": aid, "actuator_name": association["actuator_name"],
             "actuator_transmission_type": association["transmission_type"],
             "actuator_transmission_ids": association["transmission_ids"],
@@ -206,6 +212,49 @@ def enumerate_live_actuators() -> list[dict[str, Any]]:
             "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
         }})
     return records
+
+
+def _print_order_comparison(physical: list[dict[str, Any]],
+                            live_actuators: list[dict[str, Any]]) -> None:
+    """Print the complete, deterministic M4A/live ordering regression evidence."""
+    live_by_index = {item["index"]: item for item in live_actuators}
+    rows = []
+    for source in physical:
+        m4a_index = source["action_index"]
+        live = live_by_index.get(m4a_index)
+        metadata = live.get("mujoco_metadata", {}) if live is not None else {}
+        matches = live is not None and live.get("name") == source["name"]
+        rows.append((
+            m4a_index,
+            source["name"],
+            live.get("index") if live is not None else None,
+            live.get("name") if live is not None else None,
+            metadata.get("source_actuator_name"),
+            metadata.get("source_actuator_full_identifier"),
+            metadata.get("actuator_id"),
+            metadata.get("actuator_name"),
+            metadata.get("joint_id"),
+            metadata.get("joint_name"),
+            "MATCH" if matches else "MISMATCH",
+        ))
+
+    def shown(value: Any) -> str:
+        return "<unavailable>" if value is None else str(value)
+
+    print("LIVE FLYGYM / AUTHORITATIVE M4A ACTION ORDER COMPARISON")
+    print("M4A IDX | M4A NAME | LIVE IDX | LIVE LOGICAL NAME | "
+          "SOURCE NAME | SOURCE FULL_IDENTIFIER | COMPILED ACTUATOR ID/NAME | "
+          "TRANSMITTED JOINT ID/NAME | STATUS")
+    for row in rows:
+        print(f"{row[0]} | {row[1]} | {shown(row[2])} | {shown(row[3])} | "
+              f"{shown(row[4])} | {shown(row[5])} | {shown(row[6])}/{shown(row[7])} | "
+              f"{shown(row[8])}/{shown(row[9])} | {row[10]}")
+    mismatch_indices = [row[0] for row in rows if row[10] == "MISMATCH"]
+    print(f"TOTAL: {len(rows)}")
+    print(f"MATCHES: {len(rows) - len(mismatch_indices)}")
+    print(f"MISMATCHES: {len(mismatch_indices)}")
+    print("MISMATCH INDICES:")
+    print(json.dumps(mismatch_indices))
 
 
 def _tier(sensor: str, motor: str) -> tuple[int, bool, list[str]]:
@@ -233,10 +282,14 @@ def build_audit(live_actuators: list[dict[str, Any]] | None = None) -> dict[str,
     if live_actuators is not None:
         if len(live_actuators) != 42:
             raise ValueError(f"expected 42 live FlyGym leg actuators, found {len(live_actuators)}")
-        for source in physical:
-            live = live_by_index.get(source["action_index"])
-            if live is None or live["name"] != source["name"]:
-                raise ValueError("live FlyGym actuator order disagrees with authoritative M4A inventory")
+        order_disagrees = any(
+            (live := live_by_index.get(source["action_index"])) is None
+            or live["name"] != source["name"]
+            for source in physical
+        )
+        if order_disagrees:
+            _print_order_comparison(physical, live_actuators)
+            raise ValueError("live FlyGym actuator order disagrees with authoritative M4A inventory")
 
     joints = {j["actuator"]["action_index"]: j for leg in m4a["legs"] for j in leg["joints"]}
     records = []
