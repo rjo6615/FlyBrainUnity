@@ -124,6 +124,70 @@ def _authoritative_m5d3_result():
     return result
 
 
+def _authoritative_m5d2c_result():
+    return json.loads(Path(
+        "malecns_backend/embodiment/interface_output/tactile_targeted_contact_calibration.json"
+    ).read_text())
+
+
+def _set_nested(result, dotted, value):
+    target = result
+    parts = dotted.split(".")
+    for part in parts[:-1]:
+        target = target[part]
+    target[parts[-1]] = value
+
+
+def _nested_for_test(result, dotted):
+    target = result
+    for part in dotted.split("."):
+        target = target[part]
+    return target
+
+
+def test_authoritative_live_m5d2c_result_passes_semantic_validation():
+    assert loop.validate_m5d2c_live_result(_authoritative_m5d2c_result()) == (
+        loop.M5D2C_LIVE_RESULT_SHA256)
+
+
+@pytest.mark.parametrize("field,bad_value", [
+    ("run_status", "NOT_RUN"),
+    ("verified_contact_sample_count", 91),
+    ("threshold_evaluation.threshold", 1e-11),
+    ("contact.surface_geom.name", "wrong_surface"),
+    ("contact.placement.penetration", 0.0002),
+    ("contact.statistics.mean", 0.57),
+    ("threshold_evaluation.false_positives", 1),
+    ("threshold_evaluation.false_negatives", 1),
+    ("matched_pose_proof.control_and_contact_reset_qpos_exactly_equal", False),
+    ("matched_pose_proof.no_root_or_joint_displacement_by_intervention", False),
+])
+def test_altered_or_placeholder_m5d2c_result_fails(field, bad_value):
+    result = _authoritative_m5d2c_result()
+    _set_nested(result, field, bad_value)
+    with pytest.raises(RuntimeError, match=field):
+        loop.validate_m5d2c_live_result(result)
+
+
+@pytest.mark.parametrize("field", [
+    "matched_pose_proof.control_and_contact_reset_qpos_exactly_equal",
+    "matched_pose_proof.no_root_or_joint_displacement_by_intervention",
+    "male_cns_used",
+])
+def test_m5d2c_boolean_fields_require_boolean_type(field):
+    result = _authoritative_m5d2c_result()
+    _set_nested(result, field, 1 if _nested_for_test(result, field) else 0)
+    with pytest.raises(RuntimeError, match=field):
+        loop.validate_m5d2c_live_result(result)
+
+
+def test_wrong_m5d2c_selected_contact_geometry_fails():
+    result = _authoritative_m5d2c_result()
+    result["contact"]["tarsus_geom"]["name"] = "1/LFTarsus5"
+    with pytest.raises(RuntimeError, match="contact.tarsus_geom.basename"):
+        loop.validate_m5d2c_live_result(result)
+
+
 def test_canonical_complete_p7_result_passes_semantic_validation():
     assert loop.validate_m5d3_live_result(_authoritative_m5d3_result()) == (
         loop.M5D3_LIVE_RESULT_SHA256)
@@ -160,10 +224,35 @@ def test_expected_hash_manifest_is_static_and_not_built_from_current_files():
     source = Path(loop.__file__).read_text()
     assert isinstance(loop.EXPECTED_LOCKED_HASHES, type(loop.M5D3_LIVE_RESULT))
     assert "M5D3_LIVE_RESULT_SHA256 = \"6f01c2" in source
+    assert "M5D2C_LIVE_RESULT_SHA256 = \"3866d1" in source
     manifest_region = source[source.index("SOURCE_PROTOCOL_HASHES ="):source.index(
         "def _canonical_bytes")]
     assert "read_bytes" not in manifest_region
     assert "file_hashes(" not in manifest_region
+
+
+def test_m5d2c_expected_values_are_immutable_and_not_artifact_derived():
+    assert isinstance(loop.M5D2C_LIVE_RESULT, type(loop.M5D3_LIVE_RESULT))
+    assert loop.M5D2C_LIVE_RESULT["verified_contact_sample_count"] == 92
+    assert loop.M5D2C_LIVE_RESULT["contact.statistics.mean"] == 0.5697256124466332
+    source = Path(loop.__file__).read_text()
+    manifest_region = source[source.index("M5D2C_LIVE_RESULT ="):source.index(
+        "M5D3_LIVE_RESULT =")]
+    assert "read_text" not in manifest_region
+    assert "json.load" not in manifest_region
+
+
+def test_m5d3_manifest_and_static_source_locks_remain_unchanged():
+    assert loop.M5D3_LIVE_RESULT_SHA256 == (
+        "6f01c2b4aa16d6b51dbfba31055970dc7dea114ef317b688595bb1c9355b25cf")
+    assert dict(loop.SOURCE_PROTOCOL_HASHES) == {
+        "malecns_backend/embodiment/M5D3_TACTILE_PROPAGATION.md": "da5df00493e4701ac188c0f41d73348dcb00c61a1ace8e567487fb7b31ef4721",
+        "malecns_backend/embodiment/tactile_propagation.py": "a1e07293c1676e5406500a00355c6f31979412f93aeab63edc16ec94934be3a6",
+        "malecns_backend/embodiment/tactile_propagation_audit.py": "9fe739a94644224a3e6757b4ffc30d02630e8348ca653372eb6fe673aeddd003",
+        "malecns_backend/embodiment/tactile_contact.py": "10fb5edb8c9d59036a703d4ebe1bfac9c67e986f0d42d1ea412666f7404011f9",
+        "malecns_backend/embodiment/tactile_targeted_contact_calibration.py": "2c5de5a3de6c37d1d7d27093051b4c8f61ce6374641cb33eadeb6ec1294afcae",
+        "malecns_backend/embodiment/six_leg_map.json": "575186602ac1e5a6e3b2c6d680309880266f5d80e18fff44f989440f6cd0a4bc",
+    }
 
 
 def test_line_endings_are_not_mistaken_for_source_modification(tmp_path):

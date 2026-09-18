@@ -35,10 +35,9 @@ ACTUATOR_INDICES = {"LF": 5, "LM": 12, "LH": 19, "RF": 26, "RM": 33, "RH": 40}
 SAMPLE_TIMES_MS = (25, 50, 75, 100)
 TOLERANCE = 0.0
 
-# M5D-3 is read only. Source/protocol locks use the SHA-256 of canonical LF
-# bytes (rather than platform-dependent checkout bytes).  The M5D-3 result is
-# a live-result lock: its static digest covers the scientifically relevant
-# COMPLETE/P7 fields below and is accepted only after strict validation.
+# M5D-2C and M5D-3 are read-only live results. Source/protocol locks use the
+# SHA-256 of canonical LF bytes (rather than platform-dependent checkout
+# bytes). The live-result locks use immutable semantic manifests below.
 LOCKED_M5D3 = (
     "malecns_backend/embodiment/M5D3_TACTILE_PROPAGATION.md",
     "malecns_backend/embodiment/tactile_propagation.py",
@@ -57,9 +56,44 @@ SOURCE_PROTOCOL_HASHES = MappingProxyType({
     "malecns_backend/embodiment/tactile_propagation_audit.py": "9fe739a94644224a3e6757b4ffc30d02630e8348ca653372eb6fe673aeddd003",
     "malecns_backend/embodiment/tactile_contact.py": "10fb5edb8c9d59036a703d4ebe1bfac9c67e986f0d42d1ea412666f7404011f9",
     "malecns_backend/embodiment/tactile_targeted_contact_calibration.py": "2c5de5a3de6c37d1d7d27093051b4c8f61ce6374641cb33eadeb6ec1294afcae",
-    "malecns_backend/embodiment/interface_output/tactile_targeted_contact_calibration.json": "486ba63cc444b54d1012cd310be949e4bc35e088b2375a3b135342316df393df",
     "malecns_backend/embodiment/six_leg_map.json": "575186602ac1e5a6e3b2c6d680309880266f5d80e18fff44f989440f6cd0a4bc",
 })
+
+M5D2C_LIVE_RESULT = MappingProxyType({
+    "run_status": "COMPLETE",
+    "selected_leg": "LM",
+    "selected_segment": "Tarsus5",
+    "sensor_correspondence_classification": "SENSOR_CORRESPONDENCE_CONFIRMED",
+    "verified_contact_sample_count": 92,
+    "contact_force_nonzero_sample_count": 92,
+    "matched_pose_proof.control_and_contact_reset_qpos_exactly_equal": True,
+    "matched_pose_proof.no_root_or_joint_displacement_by_intervention": True,
+    "threshold_evaluation.classification": "THRESHOLD_ACCEPTED",
+    "threshold_evaluation.comparison": "magnitude > threshold",
+    "threshold_evaluation.threshold": 1e-12,
+    "threshold_evaluation.false_negatives": 0,
+    "threshold_evaluation.false_positives": 0,
+    "control.statistics.count": 409,
+    "control.statistics.exact_zero_fraction": 1.0,
+    "control.statistics.max": 0.0,
+    "contact.statistics.count": 92,
+    "contact.statistics.exact_zero_fraction": 0.0,
+    "contact.statistics.min": 0.07930827507581842,
+    "contact.statistics.mean": 0.5697256124466332,
+    "contact.statistics.median": 0.5629604809861908,
+    "contact.statistics.max": 0.8291988251712954,
+    "contact.surface_geom.id": 1,
+    "contact.surface_geom.name": "m5d2c_calibration_surface",
+    "contact.tarsus_geom.id": 35,
+    "contact.tarsus_geom.basename": "LMTarsus5",
+    "contact.placement.penetration": 0.0001,
+    "contact.first_verified_selected_contact.simulation_time_s": 0.002799999999999999,
+    "contact.first_verified_selected_contact.selected_pair_present": True,
+    "contact.first_verified_selected_contact.ground_truth_state": "KNOWN_CONTACT",
+    "male_cns_used": False,
+    "neural_propagation": "NOT_RUN",
+})
+M5D2C_LIVE_RESULT_SHA256 = "3866d118f58dc1cf027cc36301e2881e34f8e98c18565b57d41f17653876f42c"
 
 M5D3_LIVE_RESULT = MappingProxyType({
     "run_status": "COMPLETE",
@@ -96,6 +130,8 @@ M5D3_LIVE_RESULT = MappingProxyType({
 M5D3_LIVE_RESULT_SHA256 = "6f01c2b4aa16d6b51dbfba31055970dc7dea114ef317b688595bb1c9355b25cf"
 EXPECTED_LOCKED_HASHES = MappingProxyType({
     **SOURCE_PROTOCOL_HASHES,
+    "malecns_backend/embodiment/interface_output/tactile_targeted_contact_calibration.json":
+        M5D2C_LIVE_RESULT_SHA256,
     "malecns_backend/embodiment/interface_output/tactile_propagation.json":
         M5D3_LIVE_RESULT_SHA256,
 })
@@ -108,36 +144,65 @@ def _canonical_bytes(data: bytes) -> bytes:
 
 def _nested_value(report: Mapping[str, Any], dotted_name: str) -> Any:
     value: Any = report
-    for component in dotted_name.split("."):
+    components = dotted_name.split(".")
+    if components[:2] == ["contact", "first_verified_selected_contact"]:
+        samples = _nested_value(report, "contact.samples")
+        if not isinstance(samples, list):
+            raise KeyError("contact.samples")
+        value = next((sample for sample in samples
+                      if isinstance(sample, Mapping)
+                      and sample.get("selected_pair_present") is True), None)
+        if value is None:
+            raise KeyError("contact.first_verified_selected_contact")
+        components = components[2:]
+    for component in components:
+        if component == "basename" and isinstance(value, Mapping) and "name" in value:
+            name = value["name"]
+            if not isinstance(name, str):
+                raise KeyError(dotted_name)
+            value = name.rsplit("/", 1)[-1]
+            continue
         if not isinstance(value, Mapping) or component not in value:
             raise KeyError(dotted_name)
         value = value[component]
     return value
 
 
-def validate_m5d3_live_result(report: Mapping[str, Any]) -> str:
-    """Fail closed unless *report* is the authoritative M5D-3 COMPLETE/P7 run."""
+def _validate_live_result(report: Mapping[str, Any], manifest: Mapping[str, Any],
+                          expected_digest: str, milestone: str) -> str:
+    """Validate exact values and types, then verify the immutable manifest."""
     discrepancies = []
     observed = {}
-    for name, expected in M5D3_LIVE_RESULT.items():
+    for name, expected in manifest.items():
         try:
             actual = _nested_value(report, name)
         except KeyError:
             discrepancies.append(f"{name}: missing (expected {expected!r})")
             continue
-        # bool is an int subclass, so equality alone would accept 0/1 here.
         if type(actual) is not type(expected) or actual != expected:
             discrepancies.append(f"{name}: {actual!r} (expected {expected!r})")
         observed[name] = actual
     if discrepancies:
-        raise RuntimeError("M5D-3 live-result semantic validation failed: "
+        raise RuntimeError(f"{milestone} live-result semantic validation failed: "
                            + "; ".join(discrepancies))
     canonical = json.dumps(observed, sort_keys=True, separators=(",", ":"),
                            ensure_ascii=False, allow_nan=False).encode("utf-8")
     digest = hashlib.sha256(canonical).hexdigest()
-    if digest != M5D3_LIVE_RESULT_SHA256:
-        raise RuntimeError("M5D-3 live-result semantic manifest digest changed")
+    if digest != expected_digest:
+        raise RuntimeError(f"{milestone} live-result semantic manifest digest changed")
     return digest
+
+
+def validate_m5d2c_live_result(report: Mapping[str, Any]) -> str:
+    """Fail closed unless *report* is the authoritative live M5D-2C run."""
+    return _validate_live_result(report, M5D2C_LIVE_RESULT,
+                                 M5D2C_LIVE_RESULT_SHA256, "M5D-2C")
+
+
+def validate_m5d3_live_result(report: Mapping[str, Any]) -> str:
+    """Fail closed unless *report* is the authoritative M5D-3 COMPLETE/P7 run."""
+    return _validate_live_result(report, M5D3_LIVE_RESULT,
+                                 M5D3_LIVE_RESULT_SHA256, "M5D-3")
 
 
 def file_hashes(names: Sequence[str], root: Path | None = None) -> dict[str, str]:
@@ -154,12 +219,18 @@ def verify_locked_hashes(root: Path | None = None) -> dict[str, str]:
                      if SOURCE_PROTOCOL_HASHES.get(name) != digest)
     if changed:
         raise RuntimeError(f"locked milestone artifacts changed: {changed}")
-    result_name = "malecns_backend/embodiment/interface_output/tactile_propagation.json"
-    try:
-        report = json.loads((root / result_name).read_text(encoding="utf-8"))
-    except (OSError, UnicodeError, json.JSONDecodeError) as error:
-        raise RuntimeError(f"cannot read locked M5D-3 live result: {error}") from error
-    actual[result_name] = validate_m5d3_live_result(report)
+    validators = {
+        "malecns_backend/embodiment/interface_output/tactile_targeted_contact_calibration.json":
+            ("M5D-2C", validate_m5d2c_live_result),
+        "malecns_backend/embodiment/interface_output/tactile_propagation.json":
+            ("M5D-3", validate_m5d3_live_result),
+    }
+    for result_name, (milestone, validator) in validators.items():
+        try:
+            report = json.loads((root / result_name).read_text(encoding="utf-8"))
+        except (OSError, UnicodeError, json.JSONDecodeError) as error:
+            raise RuntimeError(f"cannot read locked {milestone} live result: {error}") from error
+        actual[result_name] = validator(report)
     return actual
 
 
@@ -306,7 +377,8 @@ def base_report(duration_ms=DEFAULT_DURATION_MS, seed=DEFAULT_SEED, *,
       "protocol_configuration": {"conditions": list(CONDITIONS), "duration_ms": duration_ms,
         "seed": seed, "physical_timestep_s": DEFAULT_TIMESTEP_S, "neural_timestep_ms": NEURAL_DT_MS,
         "only_intended_difference": "decoded tibia contribution applied to physical actuators"},
-      "locked_provenance": {"m5d3_live_result_semantically_validated": verify_provenance,
+      "locked_provenance": {"m5d2c_live_result_semantically_validated": verify_provenance,
+        "m5d3_live_result_semantically_validated": verify_provenance,
         "m5d3_locked_digest": {x: locked[x] for x in LOCKED_M5D3},
         "prior_milestone_sha256": {x: locked[x] for x in LOCKED_PRIOR}},
       "physical_contact_verification": {"leg": "LM", "segment": "Tarsus5",

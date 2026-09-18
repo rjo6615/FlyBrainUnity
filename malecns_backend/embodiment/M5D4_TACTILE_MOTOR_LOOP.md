@@ -15,13 +15,18 @@ lock types:
 * **Source/protocol locked:** canonical LF bytes are hashed, so Git's Windows
   CRLF checkout policy cannot masquerade as a scientific change. Any other
   byte change fails closed.
-* **Live-result locked:** `interface_output/tactile_propagation.json` must pass
-  an exact COMPLETE/P7 semantic manifest (including configuration, population,
-  physical matching, spike counts, and divergence times). The manifest has a
-  literal SHA-256 fingerprint; it is not generated from the current file.
+* **Live-result locked:** both M5D-2C
+  `interface_output/tactile_targeted_contact_calibration.json` and M5D-3
+  `interface_output/tactile_propagation.json` must pass exact semantic
+  manifests. M5D-2C locks its COMPLETE LM Tarsus5 contact calibration, pose
+  proof, threshold evaluation, geometry, and force distributions. M5D-3 locks
+  its COMPLETE/P7 configuration, population, physical matching, spike counts,
+  and divergence times. Each manifest has a literal SHA-256 fingerprint; none
+  is generated from the current runtime file.
 
-The obsolete checked-in NOT_RUN M5D-3 artifact is intentionally rejected. The
-authoritative Windows result must be present before `--live` can proceed.
+Obsolete checked-in/placeholder NOT_RUN artifacts for either milestone are
+intentionally rejected. The authoritative Windows results must be present
+before `--live` can proceed.
 Provenance validation runs before population, decoder, physics, or neural
 runtime construction and is repeated after the run.
 
