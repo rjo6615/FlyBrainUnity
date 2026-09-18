@@ -4,8 +4,26 @@
 
 The checked-in artifact is **`NOT_RUN`**. This development container does not
 provide NumPy, FlyGym, or MuJoCo, so no physical or causal outcome is claimed.
-M5D-3 is neither executed nor modified. Its four canonical artifacts and the
+M5D-3 is neither executed nor modified. Its source/protocol artifacts and the
 locked tactile/contact/motor-map inputs are SHA-256 checked before any run.
+
+### Provenance lock types
+
+The static manifest in `tactile_motor_loop.py` deliberately distinguishes two
+lock types:
+
+* **Source/protocol locked:** canonical LF bytes are hashed, so Git's Windows
+  CRLF checkout policy cannot masquerade as a scientific change. Any other
+  byte change fails closed.
+* **Live-result locked:** `interface_output/tactile_propagation.json` must pass
+  an exact COMPLETE/P7 semantic manifest (including configuration, population,
+  physical matching, spike counts, and divergence times). The manifest has a
+  literal SHA-256 fingerprint; it is not generated from the current file.
+
+The obsolete checked-in NOT_RUN M5D-3 artifact is intentionally rejected. The
+authoritative Windows result must be present before `--live` can proceed.
+Provenance validation runs before population, decoder, physics, or neural
+runtime construction and is repeated after the run.
 
 ## Locked interfaces
 
