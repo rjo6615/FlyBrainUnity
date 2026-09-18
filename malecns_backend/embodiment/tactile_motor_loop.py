@@ -128,6 +128,57 @@ M5D3_LIVE_RESULT = MappingProxyType({
 # SHA-256 of the sorted, compact JSON representation of M5D3_LIVE_RESULT.
 # This is deliberately a literal, not calculated from the file being checked.
 M5D3_LIVE_RESULT_SHA256 = "6f01c2b4aa16d6b51dbfba31055970dc7dea114ef317b688595bb1c9355b25cf"
+
+# Numeric fields have schema-level semantics which cannot be inferred from the
+# JSON spelling of their expected value.  In particular, bool is an int
+# subclass in Python, while JSON may encode the same continuous zero as either
+# 0 or 0.0.  Keep these classifications separate from the immutable value
+# manifests (and therefore separate from their fingerprints).
+M5D2C_INTEGER_FIELDS = frozenset({
+    "verified_contact_sample_count",
+    "contact_force_nonzero_sample_count",
+    "threshold_evaluation.false_negatives",
+    "threshold_evaluation.false_positives",
+    "control.statistics.count",
+    "contact.statistics.count",
+    "contact.surface_geom.id",
+    "contact.tarsus_geom.id",
+})
+M5D2C_CONTINUOUS_FIELDS = frozenset({
+    "threshold_evaluation.threshold",
+    "control.statistics.exact_zero_fraction",
+    "control.statistics.max",
+    "contact.statistics.exact_zero_fraction",
+    "contact.statistics.min",
+    "contact.statistics.mean",
+    "contact.statistics.median",
+    "contact.statistics.max",
+    "contact.placement.penetration",
+    "contact.first_verified_selected_contact.simulation_time_s",
+})
+M5D3_INTEGER_FIELDS = frozenset({
+    "protocol_configuration.seed",
+    "population.size",
+    "enabled_neural_summary.candidate_tactile_spikes",
+    "disabled_neural_summary.candidate_tactile_spikes",
+    "enabled_neural_summary.delivered_tactile_spikes",
+    "disabled_neural_summary.delivered_tactile_spikes",
+    "enabled_neural_summary.distinct_non_tactile_cns_neurons",
+    "enabled_neural_summary.non_tactile_cns_spikes",
+    "enabled_neural_summary.total_malecns_spikes",
+    "disabled_neural_summary.non_tactile_cns_spikes",
+    "disabled_neural_summary.total_malecns_spikes",
+})
+M5D3_CONTINUOUS_FIELDS = frozenset({
+    "protocol_configuration.duration_ms",
+    "protocol_configuration.neural_timestep_ms",
+    "protocol_configuration.physics_timestep_s",
+    "physical_match_verification.maximum_qpos_absolute_difference",
+    "physical_match_verification.maximum_force_magnitude_difference",
+    "non_tactile_cns_divergence_summary.first_state",
+    "non_tactile_cns_divergence_summary.first_spike",
+    "mapped_motor_observational_summary.first_divergence_ms",
+})
 EXPECTED_LOCKED_HASHES = MappingProxyType({
     **SOURCE_PROTOCOL_HASHES,
     "malecns_backend/embodiment/interface_output/tactile_targeted_contact_calibration.json":
@@ -169,8 +220,10 @@ def _nested_value(report: Mapping[str, Any], dotted_name: str) -> Any:
 
 
 def _validate_live_result(report: Mapping[str, Any], manifest: Mapping[str, Any],
-                          expected_digest: str, milestone: str) -> str:
-    """Validate exact values and types, then verify the immutable manifest."""
+                          expected_digest: str, milestone: str,
+                          integer_fields: frozenset[str],
+                          continuous_fields: frozenset[str]) -> str:
+    """Validate field-aware exact semantics and the immutable manifest."""
     discrepancies = []
     observed = {}
     for name, expected in manifest.items():
@@ -179,13 +232,23 @@ def _validate_live_result(report: Mapping[str, Any], manifest: Mapping[str, Any]
         except KeyError:
             discrepancies.append(f"{name}: missing (expected {expected!r})")
             continue
-        if type(actual) is not type(expected) or actual != expected:
+        if name in integer_fields:
+            matches = type(actual) is int and actual == expected
+        elif name in continuous_fields:
+            matches = type(actual) in (int, float) and actual == expected
+        else:
+            # Exact type identity is especially important for bool because it
+            # otherwise compares equal to the integers zero and one.
+            matches = type(actual) is type(expected) and actual == expected
+        if not matches:
             discrepancies.append(f"{name}: {actual!r} (expected {expected!r})")
         observed[name] = actual
     if discrepancies:
         raise RuntimeError(f"{milestone} live-result semantic validation failed: "
                            + "; ".join(discrepancies))
-    canonical = json.dumps(observed, sort_keys=True, separators=(",", ":"),
+    # Fingerprint the expected scientific semantics, never the artifact's
+    # incidental choice between equivalent JSON numeric representations.
+    canonical = json.dumps(dict(manifest), sort_keys=True, separators=(",", ":"),
                            ensure_ascii=False, allow_nan=False).encode("utf-8")
     digest = hashlib.sha256(canonical).hexdigest()
     if digest != expected_digest:
@@ -196,13 +259,15 @@ def _validate_live_result(report: Mapping[str, Any], manifest: Mapping[str, Any]
 def validate_m5d2c_live_result(report: Mapping[str, Any]) -> str:
     """Fail closed unless *report* is the authoritative live M5D-2C run."""
     return _validate_live_result(report, M5D2C_LIVE_RESULT,
-                                 M5D2C_LIVE_RESULT_SHA256, "M5D-2C")
+                                 M5D2C_LIVE_RESULT_SHA256, "M5D-2C",
+                                 M5D2C_INTEGER_FIELDS, M5D2C_CONTINUOUS_FIELDS)
 
 
 def validate_m5d3_live_result(report: Mapping[str, Any]) -> str:
     """Fail closed unless *report* is the authoritative M5D-3 COMPLETE/P7 run."""
     return _validate_live_result(report, M5D3_LIVE_RESULT,
-                                 M5D3_LIVE_RESULT_SHA256, "M5D-3")
+                                 M5D3_LIVE_RESULT_SHA256, "M5D-3",
+                                 M5D3_INTEGER_FIELDS, M5D3_CONTINUOUS_FIELDS)
 
 
 def file_hashes(names: Sequence[str], root: Path | None = None) -> dict[str, str]:

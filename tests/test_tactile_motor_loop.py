@@ -150,6 +150,12 @@ def test_authoritative_live_m5d2c_result_passes_semantic_validation():
         loop.M5D2C_LIVE_RESULT_SHA256)
 
 
+def test_m5d2c_continuous_float_expectation_accepts_integer_representation():
+    result = _authoritative_m5d2c_result()
+    _set_nested(result, "control.statistics.max", 0)
+    assert loop.validate_m5d2c_live_result(result) == loop.M5D2C_LIVE_RESULT_SHA256
+
+
 @pytest.mark.parametrize("field,bad_value", [
     ("run_status", "NOT_RUN"),
     ("verified_contact_sample_count", 91),
@@ -181,6 +187,21 @@ def test_m5d2c_boolean_fields_require_boolean_type(field):
         loop.validate_m5d2c_live_result(result)
 
 
+@pytest.mark.parametrize("value", [404.0, True])
+def test_m5d2c_integer_count_rejects_float_and_bool(value):
+    result = _authoritative_m5d2c_result()
+    _set_nested(result, "control.statistics.count", value)
+    with pytest.raises(RuntimeError, match="control.statistics.count"):
+        loop.validate_m5d2c_live_result(result)
+
+
+def test_m5d2c_continuous_field_rejects_bool():
+    result = _authoritative_m5d2c_result()
+    _set_nested(result, "control.statistics.max", False)
+    with pytest.raises(RuntimeError, match="control.statistics.max"):
+        loop.validate_m5d2c_live_result(result)
+
+
 def test_wrong_m5d2c_selected_contact_geometry_fails():
     result = _authoritative_m5d2c_result()
     result["contact"]["tarsus_geom"]["name"] = "1/LFTarsus5"
@@ -189,15 +210,56 @@ def test_wrong_m5d2c_selected_contact_geometry_fails():
 
 
 def test_canonical_complete_p7_result_passes_semantic_validation():
-    assert loop.validate_m5d3_live_result(_authoritative_m5d3_result()) == (
+    result = _authoritative_m5d3_result()
+    # This is how the authoritative Windows JSON spells these measurements.
+    _set_nested(result, "physical_match_verification.maximum_qpos_absolute_difference", 0.0)
+    _set_nested(result, "physical_match_verification.maximum_force_magnitude_difference", 0.0)
+    assert loop.validate_m5d3_live_result(result) == (
         loop.M5D3_LIVE_RESULT_SHA256)
 
 
+@pytest.mark.parametrize("field", [
+    "physical_match_verification.maximum_qpos_absolute_difference",
+    "physical_match_verification.maximum_force_magnitude_difference",
+])
+def test_m5d3_continuous_integer_expectation_accepts_float_representation(field):
+    result = _authoritative_m5d3_result()
+    _set_nested(result, field, 0.0)
+    assert loop.validate_m5d3_live_result(result) == loop.M5D3_LIVE_RESULT_SHA256
+
+
+def test_m5d3_continuous_field_rejects_bool():
+    result = _authoritative_m5d3_result()
+    _set_nested(result, "physical_match_verification.maximum_qpos_absolute_difference", False)
+    with pytest.raises(RuntimeError, match="maximum_qpos_absolute_difference"):
+        loop.validate_m5d3_live_result(result)
+
+
+@pytest.mark.parametrize("field,value", [
+    ("physical_contact_verification.verified", 1),
+    ("protocol_configuration.neural_motor_output", 0),
+])
+def test_m5d3_boolean_fields_reject_integer_equivalents(field, value):
+    result = _authoritative_m5d3_result()
+    _set_nested(result, field, value)
+    with pytest.raises(RuntimeError, match=field):
+        loop.validate_m5d3_live_result(result)
+
+
+@pytest.mark.parametrize("value,passes", [(404, True), (404.0, False), (True, False)])
+def test_m5d3_integer_count_semantics(value, passes):
+    result = _authoritative_m5d3_result()
+    _set_nested(result, "enabled_neural_summary.candidate_tactile_spikes", value)
+    if passes:
+        assert loop.validate_m5d3_live_result(result) == loop.M5D3_LIVE_RESULT_SHA256
+    else:
+        with pytest.raises(RuntimeError, match="candidate_tactile_spikes"):
+            loop.validate_m5d3_live_result(result)
+
+
 def test_obsolete_checked_in_not_run_result_fails_semantic_validation():
-    obsolete = json.loads(Path(
-        "malecns_backend/embodiment/interface_output/tactile_propagation.json"
-    ).read_text())
-    assert obsolete["run_status"] == "NOT_RUN"
+    obsolete = _authoritative_m5d3_result()
+    obsolete["run_status"] = "NOT_RUN"
     with pytest.raises(RuntimeError, match="run_status"):
         loop.validate_m5d3_live_result(obsolete)
 
@@ -243,6 +305,8 @@ def test_m5d2c_expected_values_are_immutable_and_not_artifact_derived():
 
 
 def test_m5d3_manifest_and_static_source_locks_remain_unchanged():
+    assert loop.M5D2C_LIVE_RESULT_SHA256 == (
+        "3866d118f58dc1cf027cc36301e2881e34f8e98c18565b57d41f17653876f42c")
     assert loop.M5D3_LIVE_RESULT_SHA256 == (
         "6f01c2b4aa16d6b51dbfba31055970dc7dea114ef317b688595bb1c9355b25cf")
     assert dict(loop.SOURCE_PROTOCOL_HASHES) == {
@@ -270,6 +334,7 @@ def test_unexplained_source_change_fails_closed(tmp_path):
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(Path(name).read_bytes())
     result_name = "malecns_backend/embodiment/interface_output/tactile_propagation.json"
+    (tmp_path / result_name).parent.mkdir(parents=True, exist_ok=True)
     (tmp_path / result_name).write_text(json.dumps(_authoritative_m5d3_result()))
     changed = next(iter(loop.SOURCE_PROTOCOL_HASHES))
     with (tmp_path / changed).open("ab") as stream:
