@@ -20,11 +20,15 @@ stack as the validated body adapter. It reads the compiled model through
 `simulation.physics.model` (including the existing `env`/`_env` compatibility
 paths), without resetting or stepping physics. Action-to-actuator association
 comes from FlyGym's ordered `_actuators` MJCF elements, the same sequence that
-FlyGym binds when applying an action. Their `full_identifier` values select
-compiled actuators; compiled `actuator_trntype`/`actuator_trnid` metadata then
-identifies physical joints. This matters because dm_control qualifies names
-when attaching the fly: a public name such as `joint_LFCoxa` can compile as
-`fly/joint_LFCoxa`. No prefix is guessed or stripped. If association fails,
+FlyGym binds when applying an action. In this construction the first element's
+`name` and pre-attachment `full_identifier` are both
+`actuator_position_joint_LFCoxa`. dm_control qualifies names when attaching the
+fly, so that element can appear in the compiled table as, for example,
+`0/actuator_position_joint_LFCoxa`, while its joint appears as
+`0/joint_LFCoxa`. The audit derives (rather than assumes) that slash-delimited
+qualification and requires the actuator and transmitted joint to have the same
+prefix and exact local identifiers. Compiled `actuator_trntype`/`actuator_trnid`
+metadata then identifies the physical joint. If association fails,
 the exception reports matching compiled actuator names and IDs, transmission
 types and IDs, and joint names and IDs. A mismatch with M4A actuator
 names/order fails. The live command also prints the seven discovered physical

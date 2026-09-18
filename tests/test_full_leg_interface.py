@@ -181,8 +181,13 @@ class FullLegInterfaceTests(unittest.TestCase):
         class Fly:
             def __init__(self, **kwargs):
                 self.actuated_joints = logical
-                self._actuators = [Element(name.removeprefix("joint_"), compiled)
-                                   for name, compiled in zip(logical, compiled_actuators)]
+                # In the real construction the source MJCF element remains
+                # unqualified: both fields report actuator_position_joint_LFCoxa
+                # for index zero.  dm_control adds/replaces the prefix only in
+                # the compiled name table during attachment.
+                self._actuators = [Element(f"actuator_position_{name}",
+                                           f"actuator_position_{name}")
+                                   for name in logical]
 
         fake_flygym = SimpleNamespace(Fly=Fly, SingleFlySimulation=lambda **kwargs:
             SimpleNamespace(physics=SimpleNamespace(model=Model())))
@@ -195,6 +200,86 @@ class FullLegInterfaceTests(unittest.TestCase):
         self.assertEqual([item["joint_name"] for item in metadata], list(compiled_joints))
         self.assertEqual([item["actuator_transmission_ids"] for item in metadata],
                          [[0, -1], [1, -1], [2, -1]])
+
+    def test_compiled_attachment_prefix_is_derived_and_coxa_is_exact(self):
+        logical = ("joint_LFCoxa", "joint_LFCoxa_roll", "joint_LFCoxa_yaw")
+
+        for namespace in ("0", "another_attachment"):
+            with self.subTest(namespace=namespace):
+                joints = tuple(f"{namespace}/{name}" for name in logical)
+                actuators = tuple(
+                    f"{namespace}/actuator_position_{name}" for name in logical)
+
+                class Element:
+                    def __init__(self, name):
+                        self.name = self.full_identifier = name
+
+                class Model:
+                    njnt = nq = nv = nu = 3
+                    jnt_qposadr = jnt_dofadr = [0, 1, 2]
+                    jnt_type = actuator_trntype = [0, 0, 0]
+                    actuator_trnid = [[0, -1], [1, -1], [2, -1]]
+                    actuator_ctrlrange = [[-1, 1]] * 3
+
+                    def id2name(self, object_id, kind):
+                        return joints[object_id] if kind == "joint" else actuators[object_id]
+
+                class Fly:
+                    def __init__(self, **kwargs):
+                        self.actuated_joints = logical
+                        self._actuators = [
+                            Element(f"actuator_position_{name}") for name in logical]
+
+                fake_flygym = SimpleNamespace(
+                    Fly=Fly, SingleFlySimulation=lambda **kwargs:
+                    SimpleNamespace(physics=SimpleNamespace(model=Model())))
+                fake_mujoco = SimpleNamespace(mjtTrn=SimpleNamespace(mjTRN_JOINT=0))
+                with patch.dict(sys.modules, {"flygym": fake_flygym, "mujoco": fake_mujoco}):
+                    records = interface.enumerate_live_actuators()
+
+                metadata = [record["mujoco_metadata"] for record in records]
+                self.assertEqual([item["actuator_id"] for item in metadata], [0, 1, 2])
+                self.assertEqual(metadata[0]["actuator_name"], actuators[0])
+                self.assertEqual(metadata[0]["joint_name"], joints[0])
+                self.assertNotIn(metadata[0]["joint_name"], joints[1:])
+
+    def test_attachment_qualified_contract_resolves_all_42_in_action_order(self):
+        names = tuple(record["actuator_name"] for record in self.records)
+        namespace = "installation_specific"
+
+        class Element:
+            def __init__(self, name):
+                self.name = self.full_identifier = name
+
+        class Model:
+            njnt = nq = nv = nu = 42
+            jnt_qposadr = jnt_dofadr = list(range(42))
+            jnt_type = actuator_trntype = [0] * 42
+            actuator_trnid = [[i, -1] for i in range(42)]
+            actuator_ctrlrange = [[-1, 1]] * 42
+
+            def id2name(self, object_id, kind):
+                stem = names[object_id]
+                if kind == "joint":
+                    return f"{namespace}/{stem}"
+                return f"{namespace}/actuator_position_{stem}"
+
+        class Fly:
+            def __init__(self, **kwargs):
+                self.actuated_joints = names
+                self._actuators = [Element(f"actuator_position_{name}") for name in names]
+
+        fake_flygym = SimpleNamespace(Fly=Fly, SingleFlySimulation=lambda **kwargs:
+            SimpleNamespace(physics=SimpleNamespace(model=Model())))
+        fake_mujoco = SimpleNamespace(mjtTrn=SimpleNamespace(mjTRN_JOINT=0))
+        with patch.dict(sys.modules, {"flygym": fake_flygym, "mujoco": fake_mujoco}):
+            records = interface.enumerate_live_actuators()
+
+        self.assertEqual([record["index"] for record in records], list(range(42)))
+        self.assertEqual([record["name"] for record in records], list(names))
+        self.assertEqual(
+            [record["mujoco_metadata"]["actuator_id"] for record in records],
+            list(range(42)))
 
     def test_unresolved_coxa_reports_related_compiled_inventory(self):
         class Model:

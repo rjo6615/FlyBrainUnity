@@ -138,11 +138,20 @@ def enumerate_live_actuators() -> list[dict[str, Any]]:
             "joint_name": model_name("joint", joint_id) if joint_id is not None else None,
         })
 
-    by_actuator_name = {item["actuator_name"]: item for item in compiled}
-    by_joint_name: dict[str, list[dict[str, Any]]] = {}
-    for item in compiled:
-        if item["joint_name"] is not None:
-            by_joint_name.setdefault(item["joint_name"], []).append(item)
+    def qualification(compiled_name: str, source_name: str) -> str | None:
+        """Return dm_control's attachment prefix for an exact identifier.
+
+        Attachment can replace an MJCF root's identifier (for example ``fly``)
+        with a numeric one.  The element's local ``name`` remains authoritative;
+        accepting it only as a complete slash-delimited component keeps Coxa,
+        Coxa_roll, and Coxa_yaw distinct.
+        """
+        if compiled_name == source_name:
+            return ""
+        suffix = f"/{source_name}"
+        if compiled_name.endswith(suffix):
+            return compiled_name[:-len(source_name)]
+        return None
 
     def diagnostic(index: int, logical_name: str) -> str:
         token = logical_name.removeprefix("joint_").casefold()
@@ -157,13 +166,25 @@ def enumerate_live_actuators() -> list[dict[str, Any]]:
         source = (source_actuators[index] if source_actuators is not None
                   and len(source_actuators) == len(names) else None)
         if source is not None:
-            matches = [by_actuator_name[value] for value in source_identifiers(source)
-                       if value in by_actuator_name]
+            identifiers = source_identifiers(source)
+            matches = []
+            for item in compiled:
+                actuator_prefixes = {
+                    prefix for value in identifiers
+                    if (prefix := qualification(item["actuator_name"], value)) is not None
+                }
+                joint_prefix = (qualification(item["joint_name"], str(name))
+                                if item["joint_name"] is not None else None)
+                # The ordered FlyGym actuator must transmit the exact logical
+                # joint in the same compiled attachment namespace.
+                if joint_prefix is not None and joint_prefix in actuator_prefixes:
+                    matches.append(item)
             if len({item["actuator_id"] for item in matches}) == 1:
                 association = matches[0]
         # Compatibility for versions without exposed ordered actuator elements.
         if association is None:
-            matches = by_joint_name.get(str(name), [])
+            matches = [item for item in compiled if item["joint_name"] is not None
+                       and qualification(item["joint_name"], str(name)) is not None]
             if len(matches) == 1:
                 association = matches[0]
         if association is None or association["transmission_type"] != joint_transmission:
