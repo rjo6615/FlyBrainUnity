@@ -3,7 +3,9 @@ from __future__ import annotations
 
 import argparse
 import importlib
+import os
 from pathlib import Path
+import tempfile
 
 import numpy as np
 
@@ -86,7 +88,17 @@ def _run_neural(samples, data, *, enabled, seed):
 
 def _analyze(enabled, disabled, data):
     tactile = set(tactile_population().dense_indices)
-    motors = motor_populations(); motor_union = set().union(*map(set, motors.values()))
+    try:
+        motors = motor_populations()
+        motor_observation = {"result": "AVAILABLE", "source":
+          "M4A six_leg_map.json population_inventory.leg_motor"}
+    except Exception as error:
+        # This observer is optional post-hoc evidence.  Fail closed for P7,
+        # while preserving independently valid non-tactile propagation/P6.
+        motors = {}
+        motor_observation = {"result": "ERROR", "error_type": type(error).__name__,
+                             "reason": str(error)}
+    motor_union = set().union(*map(set, motors.values())) if motors else set()
     first_state = first_non = first_spike = first_motor = None; differing = set()
     for a, b in zip(enabled["snapshots"], disabled["snapshots"]):
         state = ((a["v"] != b["v"]) | (a["g_exc"] != b["g_exc"]) |
@@ -115,7 +127,8 @@ def _analyze(enabled, disabled, data):
     return {"first_state": first_state, "first_non": first_non, "first_spike": first_spike,
             "first_motor": first_motor, "rows": rows, "motor_details": motor_details,
             "state_diverged": first_non is not None, "spikes_diverged": first_spike is not None,
-            "motor_diverged": first_motor is not None}
+            "motor_diverged": first_motor is not None,
+            "motor_observation": motor_observation}
 
 
 def run_live(duration_ms=DEFAULT_DURATION_MS, seed=1):
@@ -141,7 +154,8 @@ def run_live(duration_ms=DEFAULT_DURATION_MS, seed=1):
         candidate_count=len(enabled["candidates"]), delivered_count=len(enabled["delivered"]),
         non_tactile_state_diverged=analysis["state_diverged"],
         non_tactile_spikes_diverged=analysis["spikes_diverged"],
-        mapped_motor_diverged=analysis["motor_diverged"]))
+        mapped_motor_diverged=analysis["motor_diverged"],
+        mapped_motor_observation_valid=analysis["motor_observation"]["result"] == "AVAILABLE"))
     report = base_report(duration_ms, seed); report.update(run_status="COMPLETE")
     report["reason"] = None
     report["physical_contact_verification"]["verified"] = verified
@@ -160,7 +174,7 @@ def run_live(duration_ms=DEFAULT_DURATION_MS, seed=1):
       "warning": "directed paths are anatomical context, not proof of dynamic causality"}
     report["mapped_motor_observational_summary"] = {"motor_output_decoded": False,
       "motor_output_applied": False, "first_divergence_ms": analysis["first_motor"],
-      "differing_populations": analysis["motor_details"]}
+      "differing_populations": analysis["motor_details"], **analysis["motor_observation"]}
     report["causal_classification"] = classification
     milestones = report["timing_milestones_ms"]
     for key, predicate in (("first_mujoco_contact", lambda s:s["selected_pair_present"]),
@@ -173,6 +187,24 @@ def run_live(duration_ms=DEFAULT_DURATION_MS, seed=1):
     return report
 
 
+def _write_report_atomic(path: Path, report) -> None:
+    """Replace a report only after a complete strict-JSON file is durable."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile("w", encoding="utf-8", dir=path.parent,
+                                         prefix=f".{path.name}.", suffix=".tmp",
+                                         delete=False) as handle:
+            temporary = Path(handle.name)
+            handle.write(serialized_report(report))
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--live", action="store_true")
@@ -182,8 +214,7 @@ def main(argv=None):
     args = parser.parse_args(argv)
     if args.duration_ms <= 0: parser.error("--duration-ms must be positive")
     report = run_live(args.duration_ms, args.seed) if args.live else base_report(args.duration_ms, args.seed)
-    args.json.parent.mkdir(parents=True, exist_ok=True)
-    args.json.write_text(serialized_report(report), encoding="utf-8")
+    _write_report_atomic(args.json, report)
     print(args.json)
 
 

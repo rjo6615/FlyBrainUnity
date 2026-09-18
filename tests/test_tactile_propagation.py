@@ -105,6 +105,70 @@ def test_p4_p5_p6_p7_classification_boundaries():
     assert classify(non_tactile_state_diverged=True, non_tactile_spikes_diverged=True) == "P6"
     assert classify(non_tactile_state_diverged=True, non_tactile_spikes_diverged=True,
                     mapped_motor_diverged=True) == "P7"
+    assert classify(non_tactile_state_diverged=True, non_tactile_spikes_diverged=True,
+                    mapped_motor_diverged=True,
+                    mapped_motor_observation_valid=False) == "P6"
+
+
+def _empty_analysis_inputs():
+    condition = {"snapshots": [], "brain": type("Brain", (), {
+        "spike_counts": np.zeros(200000, dtype=np.int64)})()}
+    data = type("Data", (), {"row_ptr": np.zeros(200001, dtype=np.int64),
+                              "target_indices": np.array([], dtype=np.int64),
+                              "body_ids": np.arange(200000),
+                              "types": np.array([""] * 200000)})()
+    return condition, data
+
+
+def test_authoritative_m4a_motor_inventory_excludes_ambiguous_broad_records():
+    """Regression: the exact Windows-crashing duplicate is not role-inferred."""
+    source = json.loads((ROOT / "malecns_backend/interface_map.json").read_text())
+    antenna = [record for record in source["populations"]
+               if record["name"] == "GNG133 antenna"]
+    assert len(antenna) == 2 and antenna[0]["dense_indices"] != antenna[1]["dense_indices"]
+
+    motors = propagation.motor_populations()
+    assert "GNG133 antenna" not in motors
+    authoritative = json.loads((ROOT / "malecns_backend/embodiment/six_leg_map.json").read_text())
+    expected = {record["name"] for record in
+                authoritative["population_inventory"]["leg_motor"]}
+    assert set(motors) == expected
+    assert len(motors) == 102
+    condition, data = _empty_analysis_inputs()
+    assert audit._analyze(condition, condition, data)["motor_observation"]["result"] == "AVAILABLE"
+
+    source_text = inspect.getsource(propagation.motor_populations)
+    assert "startswith" not in source_text and "endswith" not in source_text
+    assert "population_inventory\"][\"leg_motor" in source_text
+
+
+def test_motor_observer_failure_is_fail_closed_but_p6_remains_evaluable(monkeypatch):
+    monkeypatch.setattr(audit, "motor_populations",
+                        lambda: (_ for _ in ()).throw(OSError("missing authoritative map")))
+    condition, data = _empty_analysis_inputs()
+    result = audit._analyze(condition, condition, data)
+    assert result["motor_observation"]["result"] == "ERROR"
+    assert result["motor_diverged"] is False
+    assert propagation.classify_causal(
+        physical_contact=True, sensor_correspondence=True, candidate_count=1,
+        delivered_count=1, non_tactile_state_diverged=True,
+        non_tactile_spikes_diverged=True, mapped_motor_diverged=True,
+        mapped_motor_observation_valid=False) == "P6"
+
+
+def test_report_write_is_atomic(tmp_path, monkeypatch):
+    output = tmp_path / "report.json"
+    output.write_text("old complete report", encoding="utf-8")
+    monkeypatch.setattr(audit.os, "replace",
+                        lambda source, destination: (_ for _ in ()).throw(OSError("stop")))
+    try:
+        audit._write_report_atomic(output, propagation.base_report())
+    except OSError:
+        pass
+    else:
+        raise AssertionError("simulated replacement failure did not propagate")
+    assert output.read_text(encoding="utf-8") == "old complete report"
+    assert not list(tmp_path.glob("*.tmp"))
 
 
 def test_deterministic_serialization_and_not_run_schema():
