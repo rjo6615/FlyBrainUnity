@@ -1,0 +1,101 @@
+{
+  "causal_ordering": {
+    "established": false,
+    "sequence": null
+  },
+  "classification": null,
+  "effective_physical_intervention": null,
+  "first_contact_divergence": null,
+  "first_ctrl_divergence": null,
+  "first_force_divergence": null,
+  "first_qacc_divergence": null,
+  "first_qpos_divergence": null,
+  "first_qvel_divergence": null,
+  "intervention_telemetry_audit": {
+    "answers": "B",
+    "first_applied_neural_output_ms": "first row with any telemetry applied_output != 0; applied_output is decoded output when apply_motor else zero",
+    "first_mapped_tibia_motor_spike_ms": "first row with any nonzero mapped motor increment",
+    "first_nonzero_decoded_output_ms": "first row with any decoded magnitude_clamped_output_rad != 0",
+    "is_any_condition_dependent_physical_value_boundary": false,
+    "warning": "The field does not inspect action arrays or MuJoCo ctrl and therefore cannot establish the effective physical intervention boundary.",
+    "zero_decoded_offset_is_nonzero_applied_output": false
+  },
+  "limitations": [
+    "NOT_RUN: static findings are not live causal findings.",
+    "The canonical M5D-4 artifact is preserved and is not interpreted as motor causality."
+  ],
+  "logical_condition_divergence": null,
+  "mutable_state_audit": {
+    "fresh_per_condition_required": [
+      "simulation",
+      "MuJoCo model/data",
+      "MaleCNS",
+      "decoder set",
+      "motor observers",
+      "tactile encoder/RNG",
+      "command array"
+    ],
+    "live_object_identity_checked": false,
+    "shared_mutable_state_found": null
+  },
+  "pipeline_comparisons": null,
+  "protocol": {
+    "canonical_100ms_run_permitted": false,
+    "conditions": [
+      "TACTILE_MOTOR_ENABLED",
+      "TACTILE_MOTOR_DISABLED"
+    ],
+    "duration_ms": 15.0,
+    "exact_comparison": true,
+    "neural_timestep_ms": 0.5,
+    "original_m5d4_branch_semantics": true,
+    "physics_timestep_s": 0.0001,
+    "seed": 1
+  },
+  "provenance": {
+    "m5d2c": null,
+    "m5d3": null,
+    "m5d4": null,
+    "m5d4a": null,
+    "verified": false
+  },
+  "reason": "Live M5D-4B diagnostic has not been run on validated Windows FlyGym/MuJoCo",
+  "resolved_actuator_or_dof": null,
+  "run_status": "NOT_RUN",
+  "schema": "M5D-4B.0",
+  "static_runner_audit": {
+    "actual_decoder_order": [
+      "base measured position + gated offset",
+      "joint-range clamp",
+      "slew from previous_target",
+      "final joint-range clamp",
+      "store previous_target"
+    ],
+    "base_hold_risk": "Between neural updates both retain the prior command. At later updates the enabled path can be slew-limited from decoder.previous_target while the disabled path bypasses that result and writes the newly measured position, even with a zero decoded offset.",
+    "first_logical_branch": {
+      "location": "tactile_motor_loop_audit._run_condition(..., apply_motor)",
+      "physically_relevant_by_itself": false,
+      "time_ms": 0.0,
+      "value": {
+        "disabled": false,
+        "enabled": true
+      }
+    },
+    "first_possible_command_branch": {
+      "cadence": "neural updates only (0.5 ms)",
+      "disabled": "measured[action_index]",
+      "enabled": "command.target_position_rad",
+      "location": "tactile_motor_loop_audit._run_condition command assignment"
+    },
+    "neural_update_order": [
+      "sample measured joints",
+      "update motor observer",
+      "decode with apply_neural_offset=apply_motor",
+      "update decoder previous_target",
+      "enabled writes decoder target; disabled writes measured position",
+      "copy full joints action",
+      "sim.step"
+    ],
+    "scientific_parameters_changed": false
+  }
+}
