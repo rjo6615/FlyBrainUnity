@@ -57,14 +57,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -0.2,
-          1.7
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_LFCoxa",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 0,
+        "actuator_name": "0/actuator_position_joint_LFCoxa",
+        "actuator_transmission_ids": [
+          2,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          7,
+          8
+        ],
+        "joint_id": 2,
+        "joint_name": "0/joint_LFCoxa",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          8,
+          9
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_AMBIGUOUS/MOTOR_SUPPORTED",
       "provenance": {
@@ -150,14 +166,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -1.0,
-          0.7
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_LFCoxa_roll",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 1,
+        "actuator_name": "0/actuator_position_joint_LFCoxa_roll",
+        "actuator_transmission_ids": [
+          3,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          8,
+          9
+        ],
+        "joint_id": 3,
+        "joint_name": "0/joint_LFCoxa_roll",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          9,
+          10
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_AMBIGUOUS/MOTOR_SUPPORTED",
       "provenance": {
@@ -246,14 +278,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -0.8,
-          0.8
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_LFCoxa_yaw",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 2,
+        "actuator_name": "0/actuator_position_joint_LFCoxa_yaw",
+        "actuator_transmission_ids": [
+          1,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          6,
+          7
+        ],
+        "joint_id": 1,
+        "joint_name": "0/joint_LFCoxa_yaw",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          7,
+          8
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_AMBIGUOUS/MOTOR_SUPPORTED",
       "provenance": {
@@ -409,14 +457,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -0.15,
-          2.0
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_LFFemur",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 3,
+        "actuator_name": "0/actuator_position_joint_LFFemur",
+        "actuator_transmission_ids": [
+          4,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          9,
+          10
+        ],
+        "joint_id": 4,
+        "joint_name": "0/joint_LFFemur",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          10,
+          11
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_MISSING/MOTOR_SUPPORTED",
       "provenance": {
@@ -465,14 +529,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -1.0,
-          1.0
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_LFFemur_roll",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 4,
+        "actuator_name": "0/actuator_position_joint_LFFemur_roll",
+        "actuator_transmission_ids": [
+          5,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          10,
+          11
+        ],
+        "joint_id": 5,
+        "joint_name": "0/joint_LFFemur_roll",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          11,
+          12
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_MISSING/MOTOR_SUPPORTED",
       "provenance": {
@@ -568,14 +648,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -1.35,
-          1.3
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_LFTibia",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 5,
+        "actuator_name": "0/actuator_position_joint_LFTibia",
+        "actuator_transmission_ids": [
+          6,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          11,
+          12
+        ],
+        "joint_id": 6,
+        "joint_name": "0/joint_LFTibia",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          12,
+          13
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_EXACT/MOTOR_SUPPORTED",
       "provenance": {
@@ -687,14 +783,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -0.7,
-          1.2
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_LFTarsus1",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 6,
+        "actuator_name": "0/actuator_position_joint_LFTarsus1",
+        "actuator_transmission_ids": [
+          7,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          12,
+          13
+        ],
+        "joint_id": 7,
+        "joint_name": "0/joint_LFTarsus1",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          13,
+          14
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_MISSING/MOTOR_SUPPORTED",
       "provenance": {
@@ -742,14 +854,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -0.2,
-          0.9
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_LMCoxa",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 7,
+        "actuator_name": "0/actuator_position_joint_LMCoxa",
+        "actuator_transmission_ids": [
+          24,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          29,
+          30
+        ],
+        "joint_id": 24,
+        "joint_name": "0/joint_LMCoxa",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          30,
+          31
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_AMBIGUOUS/MOTOR_SUPPORTED",
       "provenance": {
@@ -853,14 +981,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -0.5,
-          0.3
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_LMCoxa_roll",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 8,
+        "actuator_name": "0/actuator_position_joint_LMCoxa_roll",
+        "actuator_transmission_ids": [
+          25,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          30,
+          31
+        ],
+        "joint_id": 25,
+        "joint_name": "0/joint_LMCoxa_roll",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          31,
+          32
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_AMBIGUOUS/MOTOR_SUPPORTED",
       "provenance": {
@@ -966,14 +1110,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -0.75,
-          0.8
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_LMCoxa_yaw",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 9,
+        "actuator_name": "0/actuator_position_joint_LMCoxa_yaw",
+        "actuator_transmission_ids": [
+          23,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          28,
+          29
+        ],
+        "joint_id": 23,
+        "joint_name": "0/joint_LMCoxa_yaw",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          29,
+          30
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_AMBIGUOUS/MOTOR_SUPPORTED",
       "provenance": {
@@ -1141,14 +1301,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -0.15,
-          2.0
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_LMFemur",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 10,
+        "actuator_name": "0/actuator_position_joint_LMFemur",
+        "actuator_transmission_ids": [
+          26,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          31,
+          32
+        ],
+        "joint_id": 26,
+        "joint_name": "0/joint_LMFemur",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          32,
+          33
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_MISSING/MOTOR_SUPPORTED",
       "provenance": {
@@ -1196,14 +1372,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -1.0,
-          1.0
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_LMFemur_roll",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 11,
+        "actuator_name": "0/actuator_position_joint_LMFemur_roll",
+        "actuator_transmission_ids": [
+          27,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          32,
+          33
+        ],
+        "joint_id": 27,
+        "joint_name": "0/joint_LMFemur_roll",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          33,
+          34
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_MISSING/MOTOR_SUPPORTED",
       "provenance": {
@@ -1271,14 +1463,30 @@
       "motor_confidence": "EXACT",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -1.35,
-          1.3
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_LMTibia",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 12,
+        "actuator_name": "0/actuator_position_joint_LMTibia",
+        "actuator_transmission_ids": [
+          28,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          33,
+          34
+        ],
+        "joint_id": 28,
+        "joint_name": "0/joint_LMTibia",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          34,
+          35
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "EXACT",
       "provenance": {
@@ -1404,14 +1612,30 @@
       "motor_confidence": "MISSING",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -1.0,
-          1.8
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_LMTarsus1",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 13,
+        "actuator_name": "0/actuator_position_joint_LMTarsus1",
+        "actuator_transmission_ids": [
+          29,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          34,
+          35
+        ],
+        "joint_id": 29,
+        "joint_name": "0/joint_LMTarsus1",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          35,
+          36
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "MISSING",
       "provenance": {
@@ -1458,14 +1682,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -0.3,
-          1.3
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_LHCoxa",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 14,
+        "actuator_name": "0/actuator_position_joint_LHCoxa",
+        "actuator_transmission_ids": [
+          13,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          18,
+          19
+        ],
+        "joint_id": 13,
+        "joint_name": "0/joint_LHCoxa",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          19,
+          20
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_AMBIGUOUS/MOTOR_SUPPORTED",
       "provenance": {
@@ -1562,14 +1802,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -0.9,
-          0.25
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_LHCoxa_roll",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 15,
+        "actuator_name": "0/actuator_position_joint_LHCoxa_roll",
+        "actuator_transmission_ids": [
+          14,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          19,
+          20
+        ],
+        "joint_id": 14,
+        "joint_name": "0/joint_LHCoxa_roll",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          20,
+          21
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_AMBIGUOUS/MOTOR_SUPPORTED",
       "provenance": {
@@ -1669,14 +1925,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -0.15,
-          0.8
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_LHCoxa_yaw",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 16,
+        "actuator_name": "0/actuator_position_joint_LHCoxa_yaw",
+        "actuator_transmission_ids": [
+          12,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          17,
+          18
+        ],
+        "joint_id": 12,
+        "joint_name": "0/joint_LHCoxa_yaw",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          18,
+          19
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_AMBIGUOUS/MOTOR_SUPPORTED",
       "provenance": {
@@ -1838,14 +2110,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -0.7,
-          1.5
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_LHFemur",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 17,
+        "actuator_name": "0/actuator_position_joint_LHFemur",
+        "actuator_transmission_ids": [
+          15,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          20,
+          21
+        ],
+        "joint_id": 15,
+        "joint_name": "0/joint_LHFemur",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          21,
+          22
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_MISSING/MOTOR_SUPPORTED",
       "provenance": {
@@ -1892,14 +2180,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -1.0,
-          1.0
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_LHFemur_roll",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 18,
+        "actuator_name": "0/actuator_position_joint_LHFemur_roll",
+        "actuator_transmission_ids": [
+          16,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          21,
+          22
+        ],
+        "joint_id": 16,
+        "joint_name": "0/joint_LHFemur_roll",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          22,
+          23
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_MISSING/MOTOR_SUPPORTED",
       "provenance": {
@@ -1997,14 +2301,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -1.35,
-          1.3
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_LHTibia",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 19,
+        "actuator_name": "0/actuator_position_joint_LHTibia",
+        "actuator_transmission_ids": [
+          17,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          22,
+          23
+        ],
+        "joint_id": 17,
+        "joint_name": "0/joint_LHTibia",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          23,
+          24
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_EXACT/MOTOR_SUPPORTED",
       "provenance": {
@@ -2143,14 +2463,30 @@
       "motor_confidence": "MISSING",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -0.8,
-          1.2
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_LHTarsus1",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 20,
+        "actuator_name": "0/actuator_position_joint_LHTarsus1",
+        "actuator_transmission_ids": [
+          18,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          23,
+          24
+        ],
+        "joint_id": 18,
+        "joint_name": "0/joint_LHTarsus1",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          24,
+          25
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "MISSING",
       "provenance": {
@@ -2219,14 +2555,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -0.2,
-          1.7
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_RFCoxa",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 21,
+        "actuator_name": "0/actuator_position_joint_RFCoxa",
+        "actuator_transmission_ids": [
+          57,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          62,
+          63
+        ],
+        "joint_id": 57,
+        "joint_name": "0/joint_RFCoxa",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          63,
+          64
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_MISSING/MOTOR_SUPPORTED",
       "provenance": {
@@ -2292,14 +2644,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -1.0,
-          0.7
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_RFCoxa_roll",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 22,
+        "actuator_name": "0/actuator_position_joint_RFCoxa_roll",
+        "actuator_transmission_ids": [
+          58,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          63,
+          64
+        ],
+        "joint_id": 58,
+        "joint_name": "0/joint_RFCoxa_roll",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          64,
+          65
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_MISSING/MOTOR_SUPPORTED",
       "provenance": {
@@ -2366,14 +2734,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -0.8,
-          0.8
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_RFCoxa_yaw",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 23,
+        "actuator_name": "0/actuator_position_joint_RFCoxa_yaw",
+        "actuator_transmission_ids": [
+          56,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          61,
+          62
+        ],
+        "joint_id": 56,
+        "joint_name": "0/joint_RFCoxa_yaw",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          62,
+          63
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_MISSING/MOTOR_SUPPORTED",
       "provenance": {
@@ -2508,14 +2892,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -0.15,
-          2.0
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_RFFemur",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 24,
+        "actuator_name": "0/actuator_position_joint_RFFemur",
+        "actuator_transmission_ids": [
+          59,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          64,
+          65
+        ],
+        "joint_id": 59,
+        "joint_name": "0/joint_RFFemur",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          65,
+          66
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_MISSING/MOTOR_SUPPORTED",
       "provenance": {
@@ -2566,14 +2966,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -1.0,
-          1.0
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_RFFemur_roll",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 25,
+        "actuator_name": "0/actuator_position_joint_RFFemur_roll",
+        "actuator_transmission_ids": [
+          60,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          65,
+          66
+        ],
+        "joint_id": 60,
+        "joint_name": "0/joint_RFFemur_roll",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          66,
+          67
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_MISSING/MOTOR_SUPPORTED",
       "provenance": {
@@ -2668,14 +3084,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -1.35,
-          1.3
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_RFTibia",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 26,
+        "actuator_name": "0/actuator_position_joint_RFTibia",
+        "actuator_transmission_ids": [
+          61,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          66,
+          67
+        ],
+        "joint_id": 61,
+        "joint_name": "0/joint_RFTibia",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          67,
+          68
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_EXACT/MOTOR_SUPPORTED",
       "provenance": {
@@ -2777,14 +3209,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -0.7,
-          1.2
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_RFTarsus1",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 27,
+        "actuator_name": "0/actuator_position_joint_RFTarsus1",
+        "actuator_transmission_ids": [
+          62,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          67,
+          68
+        ],
+        "joint_id": 62,
+        "joint_name": "0/joint_RFTarsus1",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          68,
+          69
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_MISSING/MOTOR_SUPPORTED",
       "provenance": {
@@ -2832,14 +3280,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -0.2,
-          0.9
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_RMCoxa",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 28,
+        "actuator_name": "0/actuator_position_joint_RMCoxa",
+        "actuator_transmission_ids": [
+          46,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          51,
+          52
+        ],
+        "joint_id": 46,
+        "joint_name": "0/joint_RMCoxa",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          52,
+          53
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_AMBIGUOUS/MOTOR_SUPPORTED",
       "provenance": {
@@ -2940,14 +3404,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -0.5,
-          0.3
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_RMCoxa_roll",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 29,
+        "actuator_name": "0/actuator_position_joint_RMCoxa_roll",
+        "actuator_transmission_ids": [
+          47,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          52,
+          53
+        ],
+        "joint_id": 47,
+        "joint_name": "0/joint_RMCoxa_roll",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          53,
+          54
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_AMBIGUOUS/MOTOR_SUPPORTED",
       "provenance": {
@@ -3050,14 +3530,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -0.75,
-          0.8
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_RMCoxa_yaw",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 30,
+        "actuator_name": "0/actuator_position_joint_RMCoxa_yaw",
+        "actuator_transmission_ids": [
+          45,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          50,
+          51
+        ],
+        "joint_id": 45,
+        "joint_name": "0/joint_RMCoxa_yaw",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          51,
+          52
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_AMBIGUOUS/MOTOR_SUPPORTED",
       "provenance": {
@@ -3222,14 +3718,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -0.15,
-          2.0
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_RMFemur",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 31,
+        "actuator_name": "0/actuator_position_joint_RMFemur",
+        "actuator_transmission_ids": [
+          48,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          53,
+          54
+        ],
+        "joint_id": 48,
+        "joint_name": "0/joint_RMFemur",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          54,
+          55
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_MISSING/MOTOR_SUPPORTED",
       "provenance": {
@@ -3277,14 +3789,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -1.0,
-          1.0
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_RMFemur_roll",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 32,
+        "actuator_name": "0/actuator_position_joint_RMFemur_roll",
+        "actuator_transmission_ids": [
+          49,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          54,
+          55
+        ],
+        "joint_id": 49,
+        "joint_name": "0/joint_RMFemur_roll",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          55,
+          56
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_MISSING/MOTOR_SUPPORTED",
       "provenance": {
@@ -3376,14 +3904,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -1.35,
-          1.3
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_RMTibia",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 33,
+        "actuator_name": "0/actuator_position_joint_RMTibia",
+        "actuator_transmission_ids": [
+          50,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          55,
+          56
+        ],
+        "joint_id": 50,
+        "joint_name": "0/joint_RMTibia",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          56,
+          57
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_EXACT/MOTOR_SUPPORTED",
       "provenance": {
@@ -3512,14 +4056,30 @@
       "motor_confidence": "MISSING",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -1.0,
-          1.8
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_RMTarsus1",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 34,
+        "actuator_name": "0/actuator_position_joint_RMTarsus1",
+        "actuator_transmission_ids": [
+          51,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          56,
+          57
+        ],
+        "joint_id": 51,
+        "joint_name": "0/joint_RMTarsus1",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          57,
+          58
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "MISSING",
       "provenance": {
@@ -3566,14 +4126,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -0.3,
-          1.3
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_RHCoxa",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 35,
+        "actuator_name": "0/actuator_position_joint_RHCoxa",
+        "actuator_transmission_ids": [
+          35,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          40,
+          41
+        ],
+        "joint_id": 35,
+        "joint_name": "0/joint_RHCoxa",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          41,
+          42
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_AMBIGUOUS/MOTOR_SUPPORTED",
       "provenance": {
@@ -3672,14 +4248,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -0.9,
-          0.25
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_RHCoxa_roll",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 36,
+        "actuator_name": "0/actuator_position_joint_RHCoxa_roll",
+        "actuator_transmission_ids": [
+          36,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          41,
+          42
+        ],
+        "joint_id": 36,
+        "joint_name": "0/joint_RHCoxa_roll",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          42,
+          43
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_AMBIGUOUS/MOTOR_SUPPORTED",
       "provenance": {
@@ -3781,14 +4373,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -0.15,
-          0.8
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_RHCoxa_yaw",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 37,
+        "actuator_name": "0/actuator_position_joint_RHCoxa_yaw",
+        "actuator_transmission_ids": [
+          34,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          39,
+          40
+        ],
+        "joint_id": 34,
+        "joint_name": "0/joint_RHCoxa_yaw",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          40,
+          41
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_AMBIGUOUS/MOTOR_SUPPORTED",
       "provenance": {
@@ -3953,14 +4561,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -0.7,
-          1.5
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_RHFemur",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 38,
+        "actuator_name": "0/actuator_position_joint_RHFemur",
+        "actuator_transmission_ids": [
+          37,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          42,
+          43
+        ],
+        "joint_id": 37,
+        "joint_name": "0/joint_RHFemur",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          43,
+          44
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_MISSING/MOTOR_SUPPORTED",
       "provenance": {
@@ -4007,14 +4631,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -1.0,
-          1.0
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_RHFemur_roll",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 39,
+        "actuator_name": "0/actuator_position_joint_RHFemur_roll",
+        "actuator_transmission_ids": [
+          38,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          43,
+          44
+        ],
+        "joint_id": 38,
+        "joint_name": "0/joint_RHFemur_roll",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          44,
+          45
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_MISSING/MOTOR_SUPPORTED",
       "provenance": {
@@ -4111,14 +4751,30 @@
       "motor_confidence": "SUPPORTED",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -1.35,
-          1.3
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_RHTibia",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 40,
+        "actuator_name": "0/actuator_position_joint_RHTibia",
+        "actuator_transmission_ids": [
+          39,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          44,
+          45
+        ],
+        "joint_id": 39,
+        "joint_name": "0/joint_RHTibia",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          45,
+          46
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "SENSORY_EXACT/MOTOR_SUPPORTED",
       "provenance": {
@@ -4264,14 +4920,30 @@
       "motor_confidence": "MISSING",
       "mujoco_metadata": {
         "actuator_control_range": [
-          -0.8,
-          1.2
+          -1000000.0,
+          1000000.0
         ],
-        "dof_range": null,
-        "joint_name": "joint_RHTarsus1",
-        "joint_type": "unavailable_without_flygym",
-        "metadata_source": "M4A committed physical inventory; live MuJoCo introspection unavailable",
-        "qpos_range": null
+        "actuator_id": 41,
+        "actuator_name": "0/actuator_position_joint_RHTarsus1",
+        "actuator_transmission_ids": [
+          40,
+          -1
+        ],
+        "actuator_transmission_type": 0,
+        "dof_range": [
+          45,
+          46
+        ],
+        "joint_id": 40,
+        "joint_name": "0/joint_RHTarsus1",
+        "joint_type": 3,
+        "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+        "qpos_range": [
+          46,
+          47
+        ],
+        "source_actuator_full_identifier": null,
+        "source_actuator_name": null
       },
       "overall_interface_confidence": "MISSING",
       "provenance": {
