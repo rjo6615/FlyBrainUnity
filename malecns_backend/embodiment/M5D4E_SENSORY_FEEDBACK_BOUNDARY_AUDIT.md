@@ -7,6 +7,24 @@ authoring environment, so this milestone makes no new empirical claim and does
 not fabricate per-channel timings.  Run the command below on the validated
 Windows environment to populate those fields.
 
+The first Windows attempt is preserved as
+`interface_output/sensory_feedback_boundary_100ms_first_attempt_recursion_failure.json`.
+Its historical `PROVENANCE_FAILURE` classification is retained verbatim, but
+that label was misleading: both provenance flags are true, and the traceback
+shows that the post-run reducer failed with `RecursionError` after provenance
+verification succeeded. It is audit history, not a diagnostic result.
+
+The failure occurred because the reducer imported M5D-4D's `analyze` through
+the runner module *after* `run_live` had replaced that attribute with M5D-4E's
+`analyze`. Consequently the local `analyze_m5d4d` was the replacement M5D-4E
+function object, and its call at the old line 166 entered itself repeatedly.
+The runner now captures the original M5D-4D function object before substitution
+and passes that stable object explicitly to M5D-4E. The substitution remains
+inside `try`/`finally`, so success, provenance/reducer failures, and runner
+failures all restore the original module attribute. Provenance-stage failures
+remain `PROVENANCE_FAILURE`; later unexpected failures are now
+`DIAGNOSTIC_IMPLEMENTATION_FAILURE`.
+
 The audit invokes the exact locked M5D-4D `run_live` function and replaces only
 its post-run trace reducer.  Thus the condition runner, M5D-4C matched-control
 pipeline, seed, clocks, physics, encoder, CNS, decoder, actuator mapping, and
