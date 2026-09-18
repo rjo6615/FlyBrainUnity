@@ -108,6 +108,10 @@ class SixTibiaFlyGymBody(FlyGymBody):
     """One FlyGym body exposing six tibiae; every other joint is held measured."""
     def __init__(self, interfaces, timestep_s=0.0001):
         self.interfaces = dict(interfaces)
+        # Optional read-only observer used by the M4C-2A forensic command.
+        # Keeping the default at None leaves the scientific execution path
+        # byte-for-byte equivalent at the MuJoCo call boundary.
+        self.physics_diagnostic = None
         super().__init__(timestep_s=timestep_s,
                          selected_joint_index=next(iter(interfaces.values())).action_index)
 
@@ -136,7 +140,16 @@ class SixTibiaFlyGymBody(FlyGymBody):
             joints[expected.action_index] = command.target_position_rad
         action = {"joints": joints, "adhesion": np.zeros(6, dtype=np.float64)}
         for _ in range(count):
-            result = self.sim.step(action)
+            observer = self.physics_diagnostic
+            token = observer.before_physics_step(self, action) if observer is not None else None
+            try:
+                result = self.sim.step(action)
+            except Exception:
+                if observer is not None:
+                    observer.failed_physics_step(token)
+                raise
             self.observation, self.info = result[0], result[-1]
             self.physics_steps += 1
+            if observer is not None:
+                observer.successful_physics_step(self, action, token)
         return self.observe()
