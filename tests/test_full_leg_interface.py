@@ -2,7 +2,10 @@
 import ast
 import json
 from pathlib import Path
+import sys
+from types import SimpleNamespace
 import unittest
+from unittest.mock import patch
 
 from malecns_backend.embodiment import full_leg_interface as interface
 
@@ -67,6 +70,98 @@ class FullLegInterfaceTests(unittest.TestCase):
             self.assertFalse(any(word in module.lower() for word in forbidden_imports for module in imports))
             calls = {getattr(node.func, "attr", getattr(node.func, "id", "")) for node in ast.walk(tree) if isinstance(node, ast.Call)}
             self.assertTrue(forbidden_calls.isdisjoint(calls))
+
+    def test_live_uses_compiled_transmissions_and_never_native_name_lookup(self):
+        names = tuple(f"joint_{i}" for i in range(42))
+
+        class CompiledModel:
+            # A free root joint followed by 42 one-DOF joints.  Actuators are
+            # deliberately reversed and have unrelated names.
+            njnt, nq, nv, nu = 43, 49, 48, 42
+            jnt_qposadr = [0] + list(range(7, 49))
+            jnt_dofadr = [0] + list(range(6, 48))
+            jnt_type = [0] + [3] * 42
+            actuator_trntype = [0] * 42
+            actuator_trnid = [[42 - i, -1] for i in range(42)]
+            actuator_ctrlrange = [[-i - .5, i + .5] for i in range(42)]
+
+            def id2name(self, object_id, kind):
+                if kind == "joint":
+                    return "root" if object_id == 0 else names[object_id - 1]
+                if kind == "actuator":
+                    return f"motor-unrelated-{object_id}"
+                return None
+
+        model = CompiledModel()
+        physics = SimpleNamespace(model=model)
+        calls = {"reset": 0, "step": 0, "native_lookup": 0}
+
+        class Fly:
+            def __init__(self, **kwargs):
+                self.actuated_joints = names
+                # This is the regression-triggering MJCF source object.  It
+                # must never be sent to a native MuJoCo lookup.
+                self.model = SimpleNamespace(tag="mujoco")
+
+        class Simulation:
+            def __init__(self, **kwargs):
+                self.env = SimpleNamespace(physics=physics)
+
+            def reset(self):
+                calls["reset"] += 1
+
+            def step(self, action):
+                calls["step"] += 1
+
+        def forbidden_name_lookup(*args):
+            calls["native_lookup"] += 1
+            raise AssertionError("native name lookup must not receive an MJCF element")
+
+        fake_flygym = SimpleNamespace(Fly=Fly, SingleFlySimulation=Simulation)
+        fake_mujoco = SimpleNamespace(
+            mjtTrn=SimpleNamespace(mjTRN_JOINT=0), mj_name2id=forbidden_name_lookup)
+        with patch.dict(sys.modules, {"flygym": fake_flygym, "mujoco": fake_mujoco}):
+            records = interface.enumerate_live_actuators()
+
+        self.assertEqual(len(records), 42)
+        self.assertEqual(calls, {"reset": 0, "step": 0, "native_lookup": 0})
+        first = records[0]["mujoco_metadata"]
+        self.assertEqual(first["joint_id"], 1)
+        self.assertEqual(first["actuator_id"], 41)
+        self.assertEqual(first["actuator_name"], "motor-unrelated-41")
+        self.assertNotEqual(first["actuator_name"], first["joint_name"])
+        self.assertEqual(first["qpos_range"], [7, 8])
+        self.assertEqual(first["dof_range"], [6, 7])
+        last = records[-1]["mujoco_metadata"]
+        self.assertEqual(last["qpos_range"], [48, 49])
+        self.assertEqual(last["dof_range"], [47, 48])
+
+    def test_missing_compiled_actuator_association_fails_loudly(self):
+        class Model:
+            njnt, nq, nv, nu = 1, 1, 1, 0
+            actuator_trntype = []
+            actuator_trnid = []
+
+            def id2name(self, object_id, kind):
+                return "unused"
+
+        class Fly:
+            def __init__(self, **kwargs): self.actuated_joints = ("not-an-actuator-name",)
+
+        fake_flygym = SimpleNamespace(
+            Fly=Fly, SingleFlySimulation=lambda **kwargs: SimpleNamespace(
+                physics=SimpleNamespace(model=Model())))
+        fake_mujoco = SimpleNamespace(mjtTrn=SimpleNamespace(mjTRN_JOINT=0))
+        with patch.dict(sys.modules, {"flygym": fake_flygym, "mujoco": fake_mujoco}):
+            with self.assertRaisesRegex(RuntimeError, "no compiled joint actuator transmission"):
+                interface.enumerate_live_actuators()
+
+    def test_live_ordering_mismatch_still_fails_loudly(self):
+        live = [{"index": record["actuator_index"], "name": record["actuator_name"],
+                 "mujoco_metadata": record["mujoco_metadata"]} for record in self.records]
+        live[0]["name"], live[1]["name"] = live[1]["name"], live[0]["name"]
+        with self.assertRaisesRegex(ValueError, "order disagrees"):
+            interface.build_audit(live)
 
 
 if __name__ == "__main__":

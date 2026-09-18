@@ -15,9 +15,12 @@ annotation-supported association.
 
 The default dependency-free run uses M4A's physical inventory and marks live
 MuJoCo addresses unavailable. `--live` constructs the same
-`Fly(enable_adhesion=False, control="position")` object as the validated body
-adapter and reads its compiled model without constructing/resetting a
-simulation or stepping physics. A mismatch with M4A actuator names/order fails.
+`Fly(enable_adhesion=False, control="position")` and `SingleFlySimulation`
+stack as the validated body adapter. It reads the compiled model through
+`simulation.physics.model` (including the existing `env`/`_env` compatibility
+paths), without resetting or stepping physics. Actuator-to-joint association
+comes from compiled `actuator_trntype`/`actuator_trnid` metadata rather than a
+name substitution. A mismatch with M4A actuator names/order fails.
 
 ## Evidence tiers and eligibility
 

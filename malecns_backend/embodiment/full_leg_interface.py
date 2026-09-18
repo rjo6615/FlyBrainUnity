@@ -66,31 +66,75 @@ def _fallback_metadata(actuator: dict[str, Any]) -> dict[str, Any]:
 
 
 def enumerate_live_actuators() -> list[dict[str, Any]]:
-    """Instantiate the M4B Fly (not a simulation) and inspect its MuJoCo model.
+    """Construct the M4B FlyGym stack and inspect its compiled MuJoCo model.
 
-    FlyGym versions expose the compiled model through slightly different
-    attributes, so failure is explicit rather than silently manufacturing
-    addresses.  No reset, physics step, or action is performed.
+    ``Fly.model`` is an MJCF source element, not an ``MjModel``.  Compilation
+    happens in ``SingleFlySimulation``; this follows the same construction path
+    as :class:`FlyGymBody` but deliberately does not reset or step it.
     """
     flygym = importlib.import_module("flygym")
     fly = flygym.Fly(enable_adhesion=False, control="position")
     names = tuple(getattr(fly, "actuated_joints"))
-    model = getattr(fly, "model", None) or getattr(fly, "mj_model", None)
-    if model is None:
-        raise RuntimeError("installed FlyGym Fly does not expose a compiled MuJoCo model")
+    simulation = getattr(flygym, "SingleFlySimulation", None)
+    if simulation is None:
+        simulation = importlib.import_module("flygym.simulation").SingleFlySimulation
+    sim = simulation(fly=fly, cameras=[], timestep=.0001)
+    physics = None
+    for owner in (sim, getattr(sim, "env", None), getattr(sim, "_env", None)):
+        if owner is not None and getattr(owner, "physics", None) is not None:
+            physics = owner.physics
+            break
+    if physics is None or getattr(physics, "model", None) is None:
+        raise RuntimeError("installed FlyGym simulation exposes no compiled MuJoCo physics model")
+    model = physics.model
     mujoco = importlib.import_module("mujoco")
+    joint_transmission = int(mujoco.mjtTrn.mjTRN_JOINT)
+
+    def model_name(kind: str, object_id: int) -> str:
+        """Use dm_control's compiled-model name table, never the MJCF tree."""
+        method = getattr(model, "id2name", None)
+        if method is None:
+            raise RuntimeError("compiled MuJoCo model exposes no id2name API")
+        for args in ((object_id, kind), (kind, object_id)):
+            try:
+                value = method(*args)
+            except (TypeError, ValueError, KeyError):
+                continue
+            if value is not None:
+                return str(value)
+        raise RuntimeError(f"compiled MuJoCo {kind} id {object_id} has no name")
+
+    # The action list names joints.  Establish actuator -> joint identity from
+    # compiled transmission metadata; actuator and joint names need not match.
+    by_joint: dict[str, tuple[int, int, str]] = {}
+    for actuator_id in range(int(model.nu)):
+        if int(model.actuator_trntype[actuator_id]) != joint_transmission:
+            continue
+        joint_id = int(model.actuator_trnid[actuator_id][0])
+        if not 0 <= joint_id < int(model.njnt):
+            raise RuntimeError(f"actuator {actuator_id} has invalid joint transmission id {joint_id}")
+        joint_name = model_name("joint", joint_id)
+        if joint_name in names:
+            if joint_name in by_joint:
+                raise RuntimeError(f"multiple compiled actuators drive FlyGym joint {joint_name}")
+            by_joint[joint_name] = (actuator_id, joint_id, model_name("actuator", actuator_id))
+
     records = []
     for index, name in enumerate(names):
-        jid = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_JOINT, name)
-        aid = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_ACTUATOR, name)
+        association = by_joint.get(str(name))
+        if association is None:
+            raise RuntimeError(f"no compiled joint actuator transmission for FlyGym joint {name}")
+        aid, jid, actuator_name = association
         q0, d0 = int(model.jnt_qposadr[jid]), int(model.jnt_dofadr[jid])
         q1 = int(model.jnt_qposadr[jid + 1]) if jid + 1 < model.njnt else int(model.nq)
         d1 = int(model.jnt_dofadr[jid + 1]) if jid + 1 < model.njnt else int(model.nv)
         records.append({"index": index, "name": str(name), "mujoco_metadata": {
-            "joint_name": str(name), "joint_type": int(model.jnt_type[jid]),
+            "actuator_id": aid, "actuator_name": actuator_name,
+            "joint_id": jid, "joint_name": model_name("joint", jid),
+            "joint_type": int(model.jnt_type[jid]),
             "qpos_range": [q0, q1], "dof_range": [d0, d1],
-            "actuator_control_range": (list(map(float, model.actuator_ctrlrange[aid])) if aid >= 0 else None),
-            "metadata_source": "live FlyGym Fly compiled MuJoCo model",
+            "actuator_control_range": list(map(float, model.actuator_ctrlrange[aid])),
+            "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
         }})
     return records
 
