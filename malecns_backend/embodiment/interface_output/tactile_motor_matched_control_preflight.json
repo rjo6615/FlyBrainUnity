@@ -1,0 +1,207 @@
+{
+  "baseline_definition": {
+    "condition_independent": true,
+    "persistence": "last actuator command persists between neural updates",
+    "sampling_time": "at each 0.5-ms neural update before command calculation",
+    "source": "current measured joint position (locked M5D-4 convention)",
+    "update_cadence_ms": 0.5
+  },
+  "causal_ordering": {
+    "established": false,
+    "physical_divergence_did_not_precede_intervention": null,
+    "sequence_ms": null
+  },
+  "classification": null,
+  "control_pipeline_definition": {
+    "condition_dependent_value": "admitted_neural_contribution",
+    "joint_range_rad": [
+      -1.35,
+      1.3
+    ],
+    "order": [
+      "measured_position",
+      "baseline_target",
+      "raw_decoded_neural_contribution",
+      "experimental_gate",
+      "admitted_neural_contribution",
+      "sum",
+      "range_clamp",
+      "slew_limiter",
+      "final_range_clamp",
+      "actuator_command",
+      "MuJoCo_ctrl"
+    ],
+    "single_common_path": true,
+    "slew_rate_rad_s": 4.0
+  },
+  "decoder_state_equivalence": null,
+  "first_action_divergence": {
+    "leg": null,
+    "neural_step": null,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  },
+  "first_action_divergence_ms": null,
+  "first_contact_divergence": {
+    "leg": null,
+    "neural_step": null,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  },
+  "first_ctrl_divergence": {
+    "leg": null,
+    "neural_step": null,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  },
+  "first_ctrl_divergence_ms": null,
+  "first_enabled_admitted_neural_contribution": {
+    "leg": null,
+    "neural_step": null,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  },
+  "first_enabled_admitted_neural_contribution_ms": null,
+  "first_force_divergence": {
+    "leg": null,
+    "neural_step": null,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  },
+  "first_mapped_motor_spike": {
+    "leg": null,
+    "neural_step": null,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  },
+  "first_physical_divergence_ms": null,
+  "first_post_feedback_cns_divergence": {
+    "leg": null,
+    "neural_step": null,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  },
+  "first_qacc_divergence": {
+    "leg": null,
+    "neural_step": null,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  },
+  "first_qpos_divergence": {
+    "leg": null,
+    "neural_step": null,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  },
+  "first_qvel_divergence": {
+    "leg": null,
+    "neural_step": null,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  },
+  "first_raw_neural_contribution": {
+    "leg": null,
+    "neural_step": null,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  },
+  "first_raw_neural_contribution_ms": null,
+  "first_sensory_encoding_divergence": {
+    "leg": null,
+    "neural_step": null,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  },
+  "first_subsequent_mapped_motor_divergence": {
+    "leg": null,
+    "neural_step": null,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  },
+  "intervention_definition": {
+    "boundary": "first enabled admitted_neural_contribution != 0",
+    "disabled": "admitted = 0.0",
+    "disabled_decoder_continues": true,
+    "enabled": "admitted = raw"
+  },
+  "limitations": [
+    "Preflight only; no neural motor-causality claim.",
+    "Feedback closure is not required within 25 ms.",
+    "Canonical M5D-4 is neither run nor overwritten."
+  ],
+  "per_leg_summary": {
+    "LF": {
+      "actuator_index": 5,
+      "first_action_divergence_ms": null,
+      "first_enabled_admitted_neural_contribution_ms": null,
+      "first_raw_neural_contribution_ms": null
+    },
+    "LH": {
+      "actuator_index": 19,
+      "first_action_divergence_ms": null,
+      "first_enabled_admitted_neural_contribution_ms": null,
+      "first_raw_neural_contribution_ms": null
+    },
+    "LM": {
+      "actuator_index": 12,
+      "first_action_divergence_ms": null,
+      "first_enabled_admitted_neural_contribution_ms": null,
+      "first_raw_neural_contribution_ms": null
+    },
+    "RF": {
+      "actuator_index": 26,
+      "first_action_divergence_ms": null,
+      "first_enabled_admitted_neural_contribution_ms": null,
+      "first_raw_neural_contribution_ms": null
+    },
+    "RH": {
+      "actuator_index": 40,
+      "first_action_divergence_ms": null,
+      "first_enabled_admitted_neural_contribution_ms": null,
+      "first_raw_neural_contribution_ms": null
+    },
+    "RM": {
+      "actuator_index": 33,
+      "first_action_divergence_ms": null,
+      "first_enabled_admitted_neural_contribution_ms": null,
+      "first_raw_neural_contribution_ms": null
+    }
+  },
+  "pre_intervention_equivalence": null,
+  "protocol": {
+    "canonical_100ms_run_permitted": false,
+    "conditions": [
+      "TACTILE_MOTOR_ENABLED",
+      "TACTILE_MOTOR_DISABLED"
+    ],
+    "contact_setup": "locked M5D-2C LM Tarsus5 calibration",
+    "duration_ms": 25.0,
+    "exact_comparison": true,
+    "neural_timestep_ms": 0.5,
+    "physics_timestep_s": 0.0001,
+    "seed": 1
+  },
+  "provenance": {
+    "m5d2c_and_m5d3": null,
+    "m5d4_semantic_digest": null,
+    "m5d4a_semantic_digest": null,
+    "m5d4b_semantic_digest": null,
+    "verified": false
+  },
+  "reason": "Live M5D-4C preflight has not been run on validated Windows FlyGym/MuJoCo",
+  "run_status": "NOT_RUN",
+  "schema": "M5D-4C.0"
+}
