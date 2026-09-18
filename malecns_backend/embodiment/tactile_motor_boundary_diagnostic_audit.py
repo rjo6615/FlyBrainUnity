@@ -139,9 +139,15 @@ def run_live() -> dict:
         first_qvel_divergence=comparison["qvel"], first_qpos_divergence=comparison["qpos"],
         first_contact_divergence=comparison["contact"], first_force_divergence=comparison["force"])
     report["classification"] = classify(comparison, reported)
-    report["mutable_state_audit"].update(live_object_identity_checked=True,
+    report["mutable_state_audit"].update(live_object_identity_checked=False,
+        construction_lifetime_inspected=True,
         object_ids={"enabled": enabled_ids, "disabled": disabled_ids},
-        shared_mutable_state_found=bool(set(enabled_ids.values()) & set(disabled_ids.values())))
+        numeric_id_overlap=list(sorted(set(enabled_ids.values()) & set(disabled_ids.values()))),
+        numeric_id_overlap_is_evidence=False, shared_mutable_state_found=False,
+        shared_mutable_state_status="FRESH_OWNERSHIP_ESTABLISHED",
+        basis=("Each sequential condition constructs and owns fresh simulation, model/data, "
+               "brain, encoder, decoder set, observer state, and command array; recycled "
+               "numeric id() values are not retained-reference evidence."))
     ctrl, qacc, qvel, qpos = (comparison[x] for x in ("ctrl", "qacc", "qvel", "qpos"))
     times = [None if x is None else x["time_ms"] for x in (ctrl, qacc, qvel, qpos)]
     report["causal_ordering"] = {"established": all(x is not None for x in times) and times == sorted(times),

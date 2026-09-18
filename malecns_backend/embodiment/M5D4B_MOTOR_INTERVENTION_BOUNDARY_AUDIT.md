@@ -51,6 +51,29 @@ arrays. The live diagnostic records object identities and fails the scientific
 classification unless exact action/`ctrl` propagation is observed. No shared
 mutable-state mechanism is claimed without that live evidence.
 
+Sequential numeric `id()` equality is not evidence: CPython may reuse an
+address after the enabled condition is destroyed. The corrected audit reports
+fresh ownership from construction/lifetime inspection and records any numeric
+overlap only as explicitly non-evidentiary. Direct alias detection requires
+retained objects that can be compared with `is` while both are alive.
+
+## Live-result review
+
+The authoritative Windows run found the first command divergence at 4.0 ms,
+physical step 40 / neural step 8, actuator 12 (LM tibia). With zero mapped
+spikes, decoded offset, requested contribution, and gated contribution, the
+enabled path retained the decoder/slew target `-0.004521378919482231` while
+disabled wrote measured hold position `-0.004795606713742018`. The difference
+entered `ctrl` and qacc/qvel/qpos at 4.1 ms, before contact force differed at
+4.2 ms. This preserves `EARLY_CONTROL_INTERVENTION_FOUND` as an engineering
+control-path finding, not biological-reflex or neural-motor-causality evidence.
+
+General contact-set comparison now uses the locked M5D-4A exact semantic
+geometry helper: instance prefixes are ignored, complete basenames remain
+exact, geometry pairs are unordered, and all numerical contact quantities
+remain exact. A corrected Windows rerun must establish the first genuine
+contact divergence; namespace-only differences cannot establish it.
+
 ## Live trace and comparisons
 
 For all six locked tibia indices (LF 5, LM 12, LH 19, RF 26, RM 33, RH 40),

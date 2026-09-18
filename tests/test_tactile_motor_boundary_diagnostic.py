@@ -57,6 +57,45 @@ def test_namespace_only_names_have_same_identity():
         d.actuator_identity("fly/LMTibia", 12)["basename"]
 
 
+def contact(namespace="0", geom="LHCoxa", force=1.0):
+    return {"contact_count": 1, "selected_pair_present": True,
+        "selected_contact_pairs": [], "all_contact_pairs": [{
+            "geom1_id": 1, "geom1_name": "m5d2c_calibration_surface",
+            "geom2_id": 2, "geom2_name": f"{namespace}/{geom}", "force": force}]}
+
+
+def test_general_contact_comparison_reuses_m5d4a_semantic_identity():
+    left, right = row(0, contact_set=contact("0")), row(0, contact_set=contact("1"))
+    assert d.compare_traces([left], [right])["contact"] is None
+    assert d.mujoco_object_identity("0/LHCoxa") == d.mujoco_object_identity("1/LHCoxa")
+
+
+def test_general_contact_geometry_pair_is_unordered():
+    left, right = contact("0"), contact("1")
+    pair = right["all_contact_pairs"][0]
+    pair["geom1_id"], pair["geom2_id"] = pair["geom2_id"], pair["geom1_id"]
+    pair["geom1_name"], pair["geom2_name"] = pair["geom2_name"], pair["geom1_name"]
+    assert d.compare_contact_sets(left, right)["exactly_equal"]
+
+
+def test_genuine_geometry_and_numeric_contact_differences_remain_exact():
+    left = row(0, contact_set=contact("0"))
+    geometry = row(0, contact_set=contact("1", "RHCoxa"))
+    numeric = row(0, contact_set=contact("1", force=1.0000000000000002))
+    assert d.compare_traces([left], [geometry])["contact"] is not None
+    assert d.compare_traces([left], [numeric])["contact"] is not None
+
+
+def test_numeric_id_reuse_is_not_aliasing_but_simultaneous_aliasing_is_detected():
+    recycled_enabled_ids = {"decoder": 12345}
+    recycled_disabled_ids = {"brain": 12345}
+    assert set(recycled_enabled_ids.values()) & set(recycled_disabled_ids.values())
+    assert d.shared_mutable_aliases({"decoder": object()}, {"brain": object()}) == []
+    shared = []
+    assert d.shared_mutable_aliases({"decoder": shared}, {"brain": shared}) == [
+        {"enabled": "decoder", "disabled": "brain"}]
+
+
 def test_earliest_pipeline_stage_uses_declared_order():
     left, right = row(0), row(0)
     right["previous_target"] = 2.0
@@ -72,6 +111,19 @@ def test_evidence_based_classification():
                   "pipeline": {"variable": "previous_target"}}
     assert d.classify(comparison, 14.5) == "BASE_HOLD_STATE_DIVERGENCE"
     assert set(d.CLASSIFICATIONS)
+
+
+def test_index_12_zero_neural_offset_physical_target_is_early_intervention():
+    left, right = row(4.0), row(4.0)
+    left["action_joints"][12] = -0.004521378919482231
+    right["action_joints"][12] = -0.004795606713742018
+    left["ctrl"][12] = left["action_joints"][12]
+    right["ctrl"][12] = right["action_joints"][12]
+    # All neural contribution fields retain the row helper's exact zero.
+    comparison = d.compare_traces([left], [right])
+    assert comparison["all_42_position_actuator_commands"]["first_differing_index"] == "[12]"
+    assert d.classify(comparison, reported_applied_ms=14.5) == \
+        "EARLY_CONTROL_INTERVENTION_FOUND"
 
 
 def test_protocol_is_fixed_and_serialization_deterministic():

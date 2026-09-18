@@ -53,9 +53,10 @@ def base_report() -> dict[str, Any]:
             "m5d4": None, "m5d4a": None},
         "static_runner_audit": static_runner_audit(),
         "mutable_state_audit": {"live_object_identity_checked": False,
+            "construction_lifetime_inspected": False,
             "fresh_per_condition_required": ["simulation", "MuJoCo model/data", "MaleCNS",
                 "decoder set", "motor observers", "tactile encoder/RNG", "command array"],
-            "shared_mutable_state_found": None},
+            "shared_mutable_state_found": None, "shared_mutable_state_status": "NOT_RUN"},
         "logical_condition_divergence": None,
         "effective_physical_intervention": None,
         "pipeline_comparisons": None,
@@ -105,7 +106,7 @@ def telemetry_audit() -> dict[str, Any]:
 
 
 def first_difference(enabled: Sequence[Mapping[str, Any]], disabled: Sequence[Mapping[str, Any]],
-                     fields: Sequence[str]) -> dict[str, Any] | None:
+                     fields: Sequence[str], *, contact: bool = False) -> dict[str, Any] | None:
     """Select the first exact difference by step, then requested stage order."""
     if len(enabled) != len(disabled):
         raise ValueError("condition trace lengths differ")
@@ -113,11 +114,37 @@ def first_difference(enabled: Sequence[Mapping[str, Any]], disabled: Sequence[Ma
         if left.get("time_ms") != right.get("time_ms"):
             raise ValueError("condition sample schedules differ")
         for field in fields:
-            difference = compare_value(left.get(field), right.get(field))
+            comparator = compare_contact_sets if contact else compare_value
+            difference = comparator(left.get(field), right.get(field))
             if not difference["exactly_equal"]:
                 return {"time_ms": left["time_ms"], "physical_step_index": step,
                     "variable": field, **difference}
     return None
+
+
+def _semantic_contact_set(value: Any) -> Any:
+    """Canonicalize only construction-local contact identity and ordering."""
+    if isinstance(value, Mapping):
+        names = value.get("geom1_name"), value.get("geom2_name")
+        result = {_key: _semantic_contact_set(child) for _key, child in value.items()
+                  if not (all(name is not None for name in names) and _key in (
+                      "geom1", "geom2", "geom1_id", "geom2_id", "geom1_name", "geom2_name"))}
+        if all(name is not None for name in names):
+            result["semantic_geometry_pair"] = sorted(
+                (mujoco_object_identity(names[0]), mujoco_object_identity(names[1])), key=str)
+        for key in ("selected_contact_pairs", "all_contact_pairs"):
+            if isinstance(result.get(key), list):
+                result[key] = sorted(result[key],
+                    key=lambda item: json.dumps(item, sort_keys=True, allow_nan=False))
+        return result
+    if isinstance(value, (list, tuple)):
+        return [_semantic_contact_set(child) for child in value]
+    return value
+
+
+def compare_contact_sets(a: Any, b: Any) -> dict[str, Any]:
+    """Compare unordered contact pairs using M5D-4A's exact name identity."""
+    return compare_value(_semantic_contact_set(a), _semantic_contact_set(b))
 
 
 def compare_traces(enabled: Sequence[Mapping[str, Any]], disabled: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
@@ -130,7 +157,20 @@ def compare_traces(enabled: Sequence[Mapping[str, Any]], disabled: Sequence[Mapp
         "qacc": ("qacc",), "qvel": ("qvel",), "qpos": ("qpos",),
         "contact": ("contact_set",), "force": ("contact_forces",),
     }
-    return {name: first_difference(enabled, disabled, fields) for name, fields in groups.items()}
+    return {name: first_difference(enabled, disabled, fields, contact=name == "contact")
+            for name, fields in groups.items()}
+
+
+def shared_mutable_aliases(enabled: Mapping[str, Any],
+                           disabled: Mapping[str, Any]) -> list[dict[str, str]]:
+    """Return direct cross-condition aliases while both object sets are alive.
+
+    Numeric ``id`` values are deliberately not accepted: CPython may recycle
+    an address after a sequential condition has been destroyed.
+    """
+    return [{"enabled": left_name, "disabled": right_name}
+            for left_name, left in enabled.items()
+            for right_name, right in disabled.items() if left is right]
 
 
 def classify(comparison: Mapping[str, Any], reported_applied_ms: float | None = None) -> str:
