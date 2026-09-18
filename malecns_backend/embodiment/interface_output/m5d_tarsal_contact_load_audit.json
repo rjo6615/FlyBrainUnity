@@ -2639,9 +2639,1569 @@
   },
   "purpose": "read-only tarsal contact/load physical-interface audit",
   "runtime_observable_state": {
-    "reason": "use --live; non-live mode does not fabricate runtime metadata",
-    "requested": false,
-    "status": "NOT_RUN"
+    "controller_touched": false,
+    "mujoco_sensors": [
+      {
+        "data_address": 0,
+        "dimension": 1,
+        "name": "0/jointpos_joint_LFCoxa",
+        "object_id": 2,
+        "object_type": 3,
+        "sensor_id": 0,
+        "type": 9
+      },
+      {
+        "data_address": 1,
+        "dimension": 1,
+        "name": "0/jointvel_joint_LFCoxa",
+        "object_id": 2,
+        "object_type": 3,
+        "sensor_id": 1,
+        "type": 10
+      },
+      {
+        "data_address": 2,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_LFCoxa",
+        "object_id": 0,
+        "object_type": 19,
+        "sensor_id": 2,
+        "type": 15
+      },
+      {
+        "data_address": 3,
+        "dimension": 1,
+        "name": "0/jointpos_joint_LFCoxa_roll",
+        "object_id": 3,
+        "object_type": 3,
+        "sensor_id": 3,
+        "type": 9
+      },
+      {
+        "data_address": 4,
+        "dimension": 1,
+        "name": "0/jointvel_joint_LFCoxa_roll",
+        "object_id": 3,
+        "object_type": 3,
+        "sensor_id": 4,
+        "type": 10
+      },
+      {
+        "data_address": 5,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_LFCoxa_roll",
+        "object_id": 1,
+        "object_type": 19,
+        "sensor_id": 5,
+        "type": 15
+      },
+      {
+        "data_address": 6,
+        "dimension": 1,
+        "name": "0/jointpos_joint_LFCoxa_yaw",
+        "object_id": 1,
+        "object_type": 3,
+        "sensor_id": 6,
+        "type": 9
+      },
+      {
+        "data_address": 7,
+        "dimension": 1,
+        "name": "0/jointvel_joint_LFCoxa_yaw",
+        "object_id": 1,
+        "object_type": 3,
+        "sensor_id": 7,
+        "type": 10
+      },
+      {
+        "data_address": 8,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_LFCoxa_yaw",
+        "object_id": 2,
+        "object_type": 19,
+        "sensor_id": 8,
+        "type": 15
+      },
+      {
+        "data_address": 9,
+        "dimension": 1,
+        "name": "0/jointpos_joint_LFFemur",
+        "object_id": 4,
+        "object_type": 3,
+        "sensor_id": 9,
+        "type": 9
+      },
+      {
+        "data_address": 10,
+        "dimension": 1,
+        "name": "0/jointvel_joint_LFFemur",
+        "object_id": 4,
+        "object_type": 3,
+        "sensor_id": 10,
+        "type": 10
+      },
+      {
+        "data_address": 11,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_LFFemur",
+        "object_id": 3,
+        "object_type": 19,
+        "sensor_id": 11,
+        "type": 15
+      },
+      {
+        "data_address": 12,
+        "dimension": 1,
+        "name": "0/jointpos_joint_LFFemur_roll",
+        "object_id": 5,
+        "object_type": 3,
+        "sensor_id": 12,
+        "type": 9
+      },
+      {
+        "data_address": 13,
+        "dimension": 1,
+        "name": "0/jointvel_joint_LFFemur_roll",
+        "object_id": 5,
+        "object_type": 3,
+        "sensor_id": 13,
+        "type": 10
+      },
+      {
+        "data_address": 14,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_LFFemur_roll",
+        "object_id": 4,
+        "object_type": 19,
+        "sensor_id": 14,
+        "type": 15
+      },
+      {
+        "data_address": 15,
+        "dimension": 1,
+        "name": "0/jointpos_joint_LFTibia",
+        "object_id": 6,
+        "object_type": 3,
+        "sensor_id": 15,
+        "type": 9
+      },
+      {
+        "data_address": 16,
+        "dimension": 1,
+        "name": "0/jointvel_joint_LFTibia",
+        "object_id": 6,
+        "object_type": 3,
+        "sensor_id": 16,
+        "type": 10
+      },
+      {
+        "data_address": 17,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_LFTibia",
+        "object_id": 5,
+        "object_type": 19,
+        "sensor_id": 17,
+        "type": 15
+      },
+      {
+        "data_address": 18,
+        "dimension": 1,
+        "name": "0/jointpos_joint_LFTarsus1",
+        "object_id": 7,
+        "object_type": 3,
+        "sensor_id": 18,
+        "type": 9
+      },
+      {
+        "data_address": 19,
+        "dimension": 1,
+        "name": "0/jointvel_joint_LFTarsus1",
+        "object_id": 7,
+        "object_type": 3,
+        "sensor_id": 19,
+        "type": 10
+      },
+      {
+        "data_address": 20,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_LFTarsus1",
+        "object_id": 6,
+        "object_type": 19,
+        "sensor_id": 20,
+        "type": 15
+      },
+      {
+        "data_address": 21,
+        "dimension": 1,
+        "name": "0/jointpos_joint_LMCoxa",
+        "object_id": 24,
+        "object_type": 3,
+        "sensor_id": 21,
+        "type": 9
+      },
+      {
+        "data_address": 22,
+        "dimension": 1,
+        "name": "0/jointvel_joint_LMCoxa",
+        "object_id": 24,
+        "object_type": 3,
+        "sensor_id": 22,
+        "type": 10
+      },
+      {
+        "data_address": 23,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_LMCoxa",
+        "object_id": 7,
+        "object_type": 19,
+        "sensor_id": 23,
+        "type": 15
+      },
+      {
+        "data_address": 24,
+        "dimension": 1,
+        "name": "0/jointpos_joint_LMCoxa_roll",
+        "object_id": 25,
+        "object_type": 3,
+        "sensor_id": 24,
+        "type": 9
+      },
+      {
+        "data_address": 25,
+        "dimension": 1,
+        "name": "0/jointvel_joint_LMCoxa_roll",
+        "object_id": 25,
+        "object_type": 3,
+        "sensor_id": 25,
+        "type": 10
+      },
+      {
+        "data_address": 26,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_LMCoxa_roll",
+        "object_id": 8,
+        "object_type": 19,
+        "sensor_id": 26,
+        "type": 15
+      },
+      {
+        "data_address": 27,
+        "dimension": 1,
+        "name": "0/jointpos_joint_LMCoxa_yaw",
+        "object_id": 23,
+        "object_type": 3,
+        "sensor_id": 27,
+        "type": 9
+      },
+      {
+        "data_address": 28,
+        "dimension": 1,
+        "name": "0/jointvel_joint_LMCoxa_yaw",
+        "object_id": 23,
+        "object_type": 3,
+        "sensor_id": 28,
+        "type": 10
+      },
+      {
+        "data_address": 29,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_LMCoxa_yaw",
+        "object_id": 9,
+        "object_type": 19,
+        "sensor_id": 29,
+        "type": 15
+      },
+      {
+        "data_address": 30,
+        "dimension": 1,
+        "name": "0/jointpos_joint_LMFemur",
+        "object_id": 26,
+        "object_type": 3,
+        "sensor_id": 30,
+        "type": 9
+      },
+      {
+        "data_address": 31,
+        "dimension": 1,
+        "name": "0/jointvel_joint_LMFemur",
+        "object_id": 26,
+        "object_type": 3,
+        "sensor_id": 31,
+        "type": 10
+      },
+      {
+        "data_address": 32,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_LMFemur",
+        "object_id": 10,
+        "object_type": 19,
+        "sensor_id": 32,
+        "type": 15
+      },
+      {
+        "data_address": 33,
+        "dimension": 1,
+        "name": "0/jointpos_joint_LMFemur_roll",
+        "object_id": 27,
+        "object_type": 3,
+        "sensor_id": 33,
+        "type": 9
+      },
+      {
+        "data_address": 34,
+        "dimension": 1,
+        "name": "0/jointvel_joint_LMFemur_roll",
+        "object_id": 27,
+        "object_type": 3,
+        "sensor_id": 34,
+        "type": 10
+      },
+      {
+        "data_address": 35,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_LMFemur_roll",
+        "object_id": 11,
+        "object_type": 19,
+        "sensor_id": 35,
+        "type": 15
+      },
+      {
+        "data_address": 36,
+        "dimension": 1,
+        "name": "0/jointpos_joint_LMTibia",
+        "object_id": 28,
+        "object_type": 3,
+        "sensor_id": 36,
+        "type": 9
+      },
+      {
+        "data_address": 37,
+        "dimension": 1,
+        "name": "0/jointvel_joint_LMTibia",
+        "object_id": 28,
+        "object_type": 3,
+        "sensor_id": 37,
+        "type": 10
+      },
+      {
+        "data_address": 38,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_LMTibia",
+        "object_id": 12,
+        "object_type": 19,
+        "sensor_id": 38,
+        "type": 15
+      },
+      {
+        "data_address": 39,
+        "dimension": 1,
+        "name": "0/jointpos_joint_LMTarsus1",
+        "object_id": 29,
+        "object_type": 3,
+        "sensor_id": 39,
+        "type": 9
+      },
+      {
+        "data_address": 40,
+        "dimension": 1,
+        "name": "0/jointvel_joint_LMTarsus1",
+        "object_id": 29,
+        "object_type": 3,
+        "sensor_id": 40,
+        "type": 10
+      },
+      {
+        "data_address": 41,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_LMTarsus1",
+        "object_id": 13,
+        "object_type": 19,
+        "sensor_id": 41,
+        "type": 15
+      },
+      {
+        "data_address": 42,
+        "dimension": 1,
+        "name": "0/jointpos_joint_LHCoxa",
+        "object_id": 13,
+        "object_type": 3,
+        "sensor_id": 42,
+        "type": 9
+      },
+      {
+        "data_address": 43,
+        "dimension": 1,
+        "name": "0/jointvel_joint_LHCoxa",
+        "object_id": 13,
+        "object_type": 3,
+        "sensor_id": 43,
+        "type": 10
+      },
+      {
+        "data_address": 44,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_LHCoxa",
+        "object_id": 14,
+        "object_type": 19,
+        "sensor_id": 44,
+        "type": 15
+      },
+      {
+        "data_address": 45,
+        "dimension": 1,
+        "name": "0/jointpos_joint_LHCoxa_roll",
+        "object_id": 14,
+        "object_type": 3,
+        "sensor_id": 45,
+        "type": 9
+      },
+      {
+        "data_address": 46,
+        "dimension": 1,
+        "name": "0/jointvel_joint_LHCoxa_roll",
+        "object_id": 14,
+        "object_type": 3,
+        "sensor_id": 46,
+        "type": 10
+      },
+      {
+        "data_address": 47,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_LHCoxa_roll",
+        "object_id": 15,
+        "object_type": 19,
+        "sensor_id": 47,
+        "type": 15
+      },
+      {
+        "data_address": 48,
+        "dimension": 1,
+        "name": "0/jointpos_joint_LHCoxa_yaw",
+        "object_id": 12,
+        "object_type": 3,
+        "sensor_id": 48,
+        "type": 9
+      },
+      {
+        "data_address": 49,
+        "dimension": 1,
+        "name": "0/jointvel_joint_LHCoxa_yaw",
+        "object_id": 12,
+        "object_type": 3,
+        "sensor_id": 49,
+        "type": 10
+      },
+      {
+        "data_address": 50,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_LHCoxa_yaw",
+        "object_id": 16,
+        "object_type": 19,
+        "sensor_id": 50,
+        "type": 15
+      },
+      {
+        "data_address": 51,
+        "dimension": 1,
+        "name": "0/jointpos_joint_LHFemur",
+        "object_id": 15,
+        "object_type": 3,
+        "sensor_id": 51,
+        "type": 9
+      },
+      {
+        "data_address": 52,
+        "dimension": 1,
+        "name": "0/jointvel_joint_LHFemur",
+        "object_id": 15,
+        "object_type": 3,
+        "sensor_id": 52,
+        "type": 10
+      },
+      {
+        "data_address": 53,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_LHFemur",
+        "object_id": 17,
+        "object_type": 19,
+        "sensor_id": 53,
+        "type": 15
+      },
+      {
+        "data_address": 54,
+        "dimension": 1,
+        "name": "0/jointpos_joint_LHFemur_roll",
+        "object_id": 16,
+        "object_type": 3,
+        "sensor_id": 54,
+        "type": 9
+      },
+      {
+        "data_address": 55,
+        "dimension": 1,
+        "name": "0/jointvel_joint_LHFemur_roll",
+        "object_id": 16,
+        "object_type": 3,
+        "sensor_id": 55,
+        "type": 10
+      },
+      {
+        "data_address": 56,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_LHFemur_roll",
+        "object_id": 18,
+        "object_type": 19,
+        "sensor_id": 56,
+        "type": 15
+      },
+      {
+        "data_address": 57,
+        "dimension": 1,
+        "name": "0/jointpos_joint_LHTibia",
+        "object_id": 17,
+        "object_type": 3,
+        "sensor_id": 57,
+        "type": 9
+      },
+      {
+        "data_address": 58,
+        "dimension": 1,
+        "name": "0/jointvel_joint_LHTibia",
+        "object_id": 17,
+        "object_type": 3,
+        "sensor_id": 58,
+        "type": 10
+      },
+      {
+        "data_address": 59,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_LHTibia",
+        "object_id": 19,
+        "object_type": 19,
+        "sensor_id": 59,
+        "type": 15
+      },
+      {
+        "data_address": 60,
+        "dimension": 1,
+        "name": "0/jointpos_joint_LHTarsus1",
+        "object_id": 18,
+        "object_type": 3,
+        "sensor_id": 60,
+        "type": 9
+      },
+      {
+        "data_address": 61,
+        "dimension": 1,
+        "name": "0/jointvel_joint_LHTarsus1",
+        "object_id": 18,
+        "object_type": 3,
+        "sensor_id": 61,
+        "type": 10
+      },
+      {
+        "data_address": 62,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_LHTarsus1",
+        "object_id": 20,
+        "object_type": 19,
+        "sensor_id": 62,
+        "type": 15
+      },
+      {
+        "data_address": 63,
+        "dimension": 1,
+        "name": "0/jointpos_joint_RFCoxa",
+        "object_id": 57,
+        "object_type": 3,
+        "sensor_id": 63,
+        "type": 9
+      },
+      {
+        "data_address": 64,
+        "dimension": 1,
+        "name": "0/jointvel_joint_RFCoxa",
+        "object_id": 57,
+        "object_type": 3,
+        "sensor_id": 64,
+        "type": 10
+      },
+      {
+        "data_address": 65,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_RFCoxa",
+        "object_id": 21,
+        "object_type": 19,
+        "sensor_id": 65,
+        "type": 15
+      },
+      {
+        "data_address": 66,
+        "dimension": 1,
+        "name": "0/jointpos_joint_RFCoxa_roll",
+        "object_id": 58,
+        "object_type": 3,
+        "sensor_id": 66,
+        "type": 9
+      },
+      {
+        "data_address": 67,
+        "dimension": 1,
+        "name": "0/jointvel_joint_RFCoxa_roll",
+        "object_id": 58,
+        "object_type": 3,
+        "sensor_id": 67,
+        "type": 10
+      },
+      {
+        "data_address": 68,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_RFCoxa_roll",
+        "object_id": 22,
+        "object_type": 19,
+        "sensor_id": 68,
+        "type": 15
+      },
+      {
+        "data_address": 69,
+        "dimension": 1,
+        "name": "0/jointpos_joint_RFCoxa_yaw",
+        "object_id": 56,
+        "object_type": 3,
+        "sensor_id": 69,
+        "type": 9
+      },
+      {
+        "data_address": 70,
+        "dimension": 1,
+        "name": "0/jointvel_joint_RFCoxa_yaw",
+        "object_id": 56,
+        "object_type": 3,
+        "sensor_id": 70,
+        "type": 10
+      },
+      {
+        "data_address": 71,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_RFCoxa_yaw",
+        "object_id": 23,
+        "object_type": 19,
+        "sensor_id": 71,
+        "type": 15
+      },
+      {
+        "data_address": 72,
+        "dimension": 1,
+        "name": "0/jointpos_joint_RFFemur",
+        "object_id": 59,
+        "object_type": 3,
+        "sensor_id": 72,
+        "type": 9
+      },
+      {
+        "data_address": 73,
+        "dimension": 1,
+        "name": "0/jointvel_joint_RFFemur",
+        "object_id": 59,
+        "object_type": 3,
+        "sensor_id": 73,
+        "type": 10
+      },
+      {
+        "data_address": 74,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_RFFemur",
+        "object_id": 24,
+        "object_type": 19,
+        "sensor_id": 74,
+        "type": 15
+      },
+      {
+        "data_address": 75,
+        "dimension": 1,
+        "name": "0/jointpos_joint_RFFemur_roll",
+        "object_id": 60,
+        "object_type": 3,
+        "sensor_id": 75,
+        "type": 9
+      },
+      {
+        "data_address": 76,
+        "dimension": 1,
+        "name": "0/jointvel_joint_RFFemur_roll",
+        "object_id": 60,
+        "object_type": 3,
+        "sensor_id": 76,
+        "type": 10
+      },
+      {
+        "data_address": 77,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_RFFemur_roll",
+        "object_id": 25,
+        "object_type": 19,
+        "sensor_id": 77,
+        "type": 15
+      },
+      {
+        "data_address": 78,
+        "dimension": 1,
+        "name": "0/jointpos_joint_RFTibia",
+        "object_id": 61,
+        "object_type": 3,
+        "sensor_id": 78,
+        "type": 9
+      },
+      {
+        "data_address": 79,
+        "dimension": 1,
+        "name": "0/jointvel_joint_RFTibia",
+        "object_id": 61,
+        "object_type": 3,
+        "sensor_id": 79,
+        "type": 10
+      },
+      {
+        "data_address": 80,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_RFTibia",
+        "object_id": 26,
+        "object_type": 19,
+        "sensor_id": 80,
+        "type": 15
+      },
+      {
+        "data_address": 81,
+        "dimension": 1,
+        "name": "0/jointpos_joint_RFTarsus1",
+        "object_id": 62,
+        "object_type": 3,
+        "sensor_id": 81,
+        "type": 9
+      },
+      {
+        "data_address": 82,
+        "dimension": 1,
+        "name": "0/jointvel_joint_RFTarsus1",
+        "object_id": 62,
+        "object_type": 3,
+        "sensor_id": 82,
+        "type": 10
+      },
+      {
+        "data_address": 83,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_RFTarsus1",
+        "object_id": 27,
+        "object_type": 19,
+        "sensor_id": 83,
+        "type": 15
+      },
+      {
+        "data_address": 84,
+        "dimension": 1,
+        "name": "0/jointpos_joint_RMCoxa",
+        "object_id": 46,
+        "object_type": 3,
+        "sensor_id": 84,
+        "type": 9
+      },
+      {
+        "data_address": 85,
+        "dimension": 1,
+        "name": "0/jointvel_joint_RMCoxa",
+        "object_id": 46,
+        "object_type": 3,
+        "sensor_id": 85,
+        "type": 10
+      },
+      {
+        "data_address": 86,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_RMCoxa",
+        "object_id": 28,
+        "object_type": 19,
+        "sensor_id": 86,
+        "type": 15
+      },
+      {
+        "data_address": 87,
+        "dimension": 1,
+        "name": "0/jointpos_joint_RMCoxa_roll",
+        "object_id": 47,
+        "object_type": 3,
+        "sensor_id": 87,
+        "type": 9
+      },
+      {
+        "data_address": 88,
+        "dimension": 1,
+        "name": "0/jointvel_joint_RMCoxa_roll",
+        "object_id": 47,
+        "object_type": 3,
+        "sensor_id": 88,
+        "type": 10
+      },
+      {
+        "data_address": 89,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_RMCoxa_roll",
+        "object_id": 29,
+        "object_type": 19,
+        "sensor_id": 89,
+        "type": 15
+      },
+      {
+        "data_address": 90,
+        "dimension": 1,
+        "name": "0/jointpos_joint_RMCoxa_yaw",
+        "object_id": 45,
+        "object_type": 3,
+        "sensor_id": 90,
+        "type": 9
+      },
+      {
+        "data_address": 91,
+        "dimension": 1,
+        "name": "0/jointvel_joint_RMCoxa_yaw",
+        "object_id": 45,
+        "object_type": 3,
+        "sensor_id": 91,
+        "type": 10
+      },
+      {
+        "data_address": 92,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_RMCoxa_yaw",
+        "object_id": 30,
+        "object_type": 19,
+        "sensor_id": 92,
+        "type": 15
+      },
+      {
+        "data_address": 93,
+        "dimension": 1,
+        "name": "0/jointpos_joint_RMFemur",
+        "object_id": 48,
+        "object_type": 3,
+        "sensor_id": 93,
+        "type": 9
+      },
+      {
+        "data_address": 94,
+        "dimension": 1,
+        "name": "0/jointvel_joint_RMFemur",
+        "object_id": 48,
+        "object_type": 3,
+        "sensor_id": 94,
+        "type": 10
+      },
+      {
+        "data_address": 95,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_RMFemur",
+        "object_id": 31,
+        "object_type": 19,
+        "sensor_id": 95,
+        "type": 15
+      },
+      {
+        "data_address": 96,
+        "dimension": 1,
+        "name": "0/jointpos_joint_RMFemur_roll",
+        "object_id": 49,
+        "object_type": 3,
+        "sensor_id": 96,
+        "type": 9
+      },
+      {
+        "data_address": 97,
+        "dimension": 1,
+        "name": "0/jointvel_joint_RMFemur_roll",
+        "object_id": 49,
+        "object_type": 3,
+        "sensor_id": 97,
+        "type": 10
+      },
+      {
+        "data_address": 98,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_RMFemur_roll",
+        "object_id": 32,
+        "object_type": 19,
+        "sensor_id": 98,
+        "type": 15
+      },
+      {
+        "data_address": 99,
+        "dimension": 1,
+        "name": "0/jointpos_joint_RMTibia",
+        "object_id": 50,
+        "object_type": 3,
+        "sensor_id": 99,
+        "type": 9
+      },
+      {
+        "data_address": 100,
+        "dimension": 1,
+        "name": "0/jointvel_joint_RMTibia",
+        "object_id": 50,
+        "object_type": 3,
+        "sensor_id": 100,
+        "type": 10
+      },
+      {
+        "data_address": 101,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_RMTibia",
+        "object_id": 33,
+        "object_type": 19,
+        "sensor_id": 101,
+        "type": 15
+      },
+      {
+        "data_address": 102,
+        "dimension": 1,
+        "name": "0/jointpos_joint_RMTarsus1",
+        "object_id": 51,
+        "object_type": 3,
+        "sensor_id": 102,
+        "type": 9
+      },
+      {
+        "data_address": 103,
+        "dimension": 1,
+        "name": "0/jointvel_joint_RMTarsus1",
+        "object_id": 51,
+        "object_type": 3,
+        "sensor_id": 103,
+        "type": 10
+      },
+      {
+        "data_address": 104,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_RMTarsus1",
+        "object_id": 34,
+        "object_type": 19,
+        "sensor_id": 104,
+        "type": 15
+      },
+      {
+        "data_address": 105,
+        "dimension": 1,
+        "name": "0/jointpos_joint_RHCoxa",
+        "object_id": 35,
+        "object_type": 3,
+        "sensor_id": 105,
+        "type": 9
+      },
+      {
+        "data_address": 106,
+        "dimension": 1,
+        "name": "0/jointvel_joint_RHCoxa",
+        "object_id": 35,
+        "object_type": 3,
+        "sensor_id": 106,
+        "type": 10
+      },
+      {
+        "data_address": 107,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_RHCoxa",
+        "object_id": 35,
+        "object_type": 19,
+        "sensor_id": 107,
+        "type": 15
+      },
+      {
+        "data_address": 108,
+        "dimension": 1,
+        "name": "0/jointpos_joint_RHCoxa_roll",
+        "object_id": 36,
+        "object_type": 3,
+        "sensor_id": 108,
+        "type": 9
+      },
+      {
+        "data_address": 109,
+        "dimension": 1,
+        "name": "0/jointvel_joint_RHCoxa_roll",
+        "object_id": 36,
+        "object_type": 3,
+        "sensor_id": 109,
+        "type": 10
+      },
+      {
+        "data_address": 110,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_RHCoxa_roll",
+        "object_id": 36,
+        "object_type": 19,
+        "sensor_id": 110,
+        "type": 15
+      },
+      {
+        "data_address": 111,
+        "dimension": 1,
+        "name": "0/jointpos_joint_RHCoxa_yaw",
+        "object_id": 34,
+        "object_type": 3,
+        "sensor_id": 111,
+        "type": 9
+      },
+      {
+        "data_address": 112,
+        "dimension": 1,
+        "name": "0/jointvel_joint_RHCoxa_yaw",
+        "object_id": 34,
+        "object_type": 3,
+        "sensor_id": 112,
+        "type": 10
+      },
+      {
+        "data_address": 113,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_RHCoxa_yaw",
+        "object_id": 37,
+        "object_type": 19,
+        "sensor_id": 113,
+        "type": 15
+      },
+      {
+        "data_address": 114,
+        "dimension": 1,
+        "name": "0/jointpos_joint_RHFemur",
+        "object_id": 37,
+        "object_type": 3,
+        "sensor_id": 114,
+        "type": 9
+      },
+      {
+        "data_address": 115,
+        "dimension": 1,
+        "name": "0/jointvel_joint_RHFemur",
+        "object_id": 37,
+        "object_type": 3,
+        "sensor_id": 115,
+        "type": 10
+      },
+      {
+        "data_address": 116,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_RHFemur",
+        "object_id": 38,
+        "object_type": 19,
+        "sensor_id": 116,
+        "type": 15
+      },
+      {
+        "data_address": 117,
+        "dimension": 1,
+        "name": "0/jointpos_joint_RHFemur_roll",
+        "object_id": 38,
+        "object_type": 3,
+        "sensor_id": 117,
+        "type": 9
+      },
+      {
+        "data_address": 118,
+        "dimension": 1,
+        "name": "0/jointvel_joint_RHFemur_roll",
+        "object_id": 38,
+        "object_type": 3,
+        "sensor_id": 118,
+        "type": 10
+      },
+      {
+        "data_address": 119,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_RHFemur_roll",
+        "object_id": 39,
+        "object_type": 19,
+        "sensor_id": 119,
+        "type": 15
+      },
+      {
+        "data_address": 120,
+        "dimension": 1,
+        "name": "0/jointpos_joint_RHTibia",
+        "object_id": 39,
+        "object_type": 3,
+        "sensor_id": 120,
+        "type": 9
+      },
+      {
+        "data_address": 121,
+        "dimension": 1,
+        "name": "0/jointvel_joint_RHTibia",
+        "object_id": 39,
+        "object_type": 3,
+        "sensor_id": 121,
+        "type": 10
+      },
+      {
+        "data_address": 122,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_RHTibia",
+        "object_id": 40,
+        "object_type": 19,
+        "sensor_id": 122,
+        "type": 15
+      },
+      {
+        "data_address": 123,
+        "dimension": 1,
+        "name": "0/jointpos_joint_RHTarsus1",
+        "object_id": 40,
+        "object_type": 3,
+        "sensor_id": 123,
+        "type": 9
+      },
+      {
+        "data_address": 124,
+        "dimension": 1,
+        "name": "0/jointvel_joint_RHTarsus1",
+        "object_id": 40,
+        "object_type": 3,
+        "sensor_id": 124,
+        "type": 10
+      },
+      {
+        "data_address": 125,
+        "dimension": 1,
+        "name": "0/actuatorfrc_position_joint_RHTarsus1",
+        "object_id": 41,
+        "object_type": 19,
+        "sensor_id": 125,
+        "type": 15
+      },
+      {
+        "data_address": 126,
+        "dimension": 3,
+        "name": "0/thorax_pos",
+        "object_id": 3,
+        "object_type": 1,
+        "sensor_id": 126,
+        "type": 25
+      },
+      {
+        "data_address": 129,
+        "dimension": 3,
+        "name": "0/thorax_linvel",
+        "object_id": 3,
+        "object_type": 1,
+        "sensor_id": 127,
+        "type": 30
+      },
+      {
+        "data_address": 132,
+        "dimension": 4,
+        "name": "0/thorax_quat",
+        "object_id": 3,
+        "object_type": 1,
+        "sensor_id": 128,
+        "type": 26
+      },
+      {
+        "data_address": 136,
+        "dimension": 3,
+        "name": "0/thorax_angvel",
+        "object_id": 3,
+        "object_type": 1,
+        "sensor_id": 129,
+        "type": 31
+      },
+      {
+        "data_address": 139,
+        "dimension": 3,
+        "name": "0/thorax_orientx",
+        "object_id": 2,
+        "object_type": 1,
+        "sensor_id": 130,
+        "type": 27
+      },
+      {
+        "data_address": 142,
+        "dimension": 3,
+        "name": "0/thorax_orienty",
+        "object_id": 2,
+        "object_type": 1,
+        "sensor_id": 131,
+        "type": 28
+      },
+      {
+        "data_address": 145,
+        "dimension": 3,
+        "name": "0/thorax_orientz",
+        "object_id": 2,
+        "object_type": 1,
+        "sensor_id": 132,
+        "type": 29
+      },
+      {
+        "data_address": 148,
+        "dimension": 3,
+        "name": "0/LFTarsus5_pos",
+        "object_id": 20,
+        "object_type": 1,
+        "sensor_id": 133,
+        "type": 25
+      },
+      {
+        "data_address": 151,
+        "dimension": 3,
+        "name": "0/LMTarsus5_pos",
+        "object_id": 36,
+        "object_type": 1,
+        "sensor_id": 134,
+        "type": 25
+      },
+      {
+        "data_address": 154,
+        "dimension": 3,
+        "name": "0/LHTarsus5_pos",
+        "object_id": 28,
+        "object_type": 1,
+        "sensor_id": 135,
+        "type": 25
+      },
+      {
+        "data_address": 157,
+        "dimension": 3,
+        "name": "0/RFTarsus5_pos",
+        "object_id": 60,
+        "object_type": 1,
+        "sensor_id": 136,
+        "type": 25
+      },
+      {
+        "data_address": 160,
+        "dimension": 3,
+        "name": "0/RMTarsus5_pos",
+        "object_id": 52,
+        "object_type": 1,
+        "sensor_id": 137,
+        "type": 25
+      },
+      {
+        "data_address": 163,
+        "dimension": 3,
+        "name": "0/RHTarsus5_pos",
+        "object_id": 44,
+        "object_type": 1,
+        "sensor_id": 138,
+        "type": 25
+      },
+      {
+        "data_address": 166,
+        "dimension": 3,
+        "name": "0/force_LFTarsus1",
+        "object_id": 1,
+        "object_type": 6,
+        "sensor_id": 139,
+        "type": 4
+      },
+      {
+        "data_address": 169,
+        "dimension": 3,
+        "name": "0/force_LFTarsus2",
+        "object_id": 2,
+        "object_type": 6,
+        "sensor_id": 140,
+        "type": 4
+      },
+      {
+        "data_address": 172,
+        "dimension": 3,
+        "name": "0/force_LFTarsus3",
+        "object_id": 3,
+        "object_type": 6,
+        "sensor_id": 141,
+        "type": 4
+      },
+      {
+        "data_address": 175,
+        "dimension": 3,
+        "name": "0/force_LFTarsus4",
+        "object_id": 4,
+        "object_type": 6,
+        "sensor_id": 142,
+        "type": 4
+      },
+      {
+        "data_address": 178,
+        "dimension": 3,
+        "name": "0/force_LFTarsus5",
+        "object_id": 5,
+        "object_type": 6,
+        "sensor_id": 143,
+        "type": 4
+      },
+      {
+        "data_address": 181,
+        "dimension": 3,
+        "name": "0/force_LMTarsus1",
+        "object_id": 11,
+        "object_type": 6,
+        "sensor_id": 144,
+        "type": 4
+      },
+      {
+        "data_address": 184,
+        "dimension": 3,
+        "name": "0/force_LMTarsus2",
+        "object_id": 12,
+        "object_type": 6,
+        "sensor_id": 145,
+        "type": 4
+      },
+      {
+        "data_address": 187,
+        "dimension": 3,
+        "name": "0/force_LMTarsus3",
+        "object_id": 13,
+        "object_type": 6,
+        "sensor_id": 146,
+        "type": 4
+      },
+      {
+        "data_address": 190,
+        "dimension": 3,
+        "name": "0/force_LMTarsus4",
+        "object_id": 14,
+        "object_type": 6,
+        "sensor_id": 147,
+        "type": 4
+      },
+      {
+        "data_address": 193,
+        "dimension": 3,
+        "name": "0/force_LMTarsus5",
+        "object_id": 15,
+        "object_type": 6,
+        "sensor_id": 148,
+        "type": 4
+      },
+      {
+        "data_address": 196,
+        "dimension": 3,
+        "name": "0/force_LHTarsus1",
+        "object_id": 6,
+        "object_type": 6,
+        "sensor_id": 149,
+        "type": 4
+      },
+      {
+        "data_address": 199,
+        "dimension": 3,
+        "name": "0/force_LHTarsus2",
+        "object_id": 7,
+        "object_type": 6,
+        "sensor_id": 150,
+        "type": 4
+      },
+      {
+        "data_address": 202,
+        "dimension": 3,
+        "name": "0/force_LHTarsus3",
+        "object_id": 8,
+        "object_type": 6,
+        "sensor_id": 151,
+        "type": 4
+      },
+      {
+        "data_address": 205,
+        "dimension": 3,
+        "name": "0/force_LHTarsus4",
+        "object_id": 9,
+        "object_type": 6,
+        "sensor_id": 152,
+        "type": 4
+      },
+      {
+        "data_address": 208,
+        "dimension": 3,
+        "name": "0/force_LHTarsus5",
+        "object_id": 10,
+        "object_type": 6,
+        "sensor_id": 153,
+        "type": 4
+      },
+      {
+        "data_address": 211,
+        "dimension": 3,
+        "name": "0/force_RFTarsus1",
+        "object_id": 26,
+        "object_type": 6,
+        "sensor_id": 154,
+        "type": 4
+      },
+      {
+        "data_address": 214,
+        "dimension": 3,
+        "name": "0/force_RFTarsus2",
+        "object_id": 27,
+        "object_type": 6,
+        "sensor_id": 155,
+        "type": 4
+      },
+      {
+        "data_address": 217,
+        "dimension": 3,
+        "name": "0/force_RFTarsus3",
+        "object_id": 28,
+        "object_type": 6,
+        "sensor_id": 156,
+        "type": 4
+      },
+      {
+        "data_address": 220,
+        "dimension": 3,
+        "name": "0/force_RFTarsus4",
+        "object_id": 29,
+        "object_type": 6,
+        "sensor_id": 157,
+        "type": 4
+      },
+      {
+        "data_address": 223,
+        "dimension": 3,
+        "name": "0/force_RFTarsus5",
+        "object_id": 30,
+        "object_type": 6,
+        "sensor_id": 158,
+        "type": 4
+      },
+      {
+        "data_address": 226,
+        "dimension": 3,
+        "name": "0/force_RMTarsus1",
+        "object_id": 21,
+        "object_type": 6,
+        "sensor_id": 159,
+        "type": 4
+      },
+      {
+        "data_address": 229,
+        "dimension": 3,
+        "name": "0/force_RMTarsus2",
+        "object_id": 22,
+        "object_type": 6,
+        "sensor_id": 160,
+        "type": 4
+      },
+      {
+        "data_address": 232,
+        "dimension": 3,
+        "name": "0/force_RMTarsus3",
+        "object_id": 23,
+        "object_type": 6,
+        "sensor_id": 161,
+        "type": 4
+      },
+      {
+        "data_address": 235,
+        "dimension": 3,
+        "name": "0/force_RMTarsus4",
+        "object_id": 24,
+        "object_type": 6,
+        "sensor_id": 162,
+        "type": 4
+      },
+      {
+        "data_address": 238,
+        "dimension": 3,
+        "name": "0/force_RMTarsus5",
+        "object_id": 25,
+        "object_type": 6,
+        "sensor_id": 163,
+        "type": 4
+      },
+      {
+        "data_address": 241,
+        "dimension": 3,
+        "name": "0/force_RHTarsus1",
+        "object_id": 16,
+        "object_type": 6,
+        "sensor_id": 164,
+        "type": 4
+      },
+      {
+        "data_address": 244,
+        "dimension": 3,
+        "name": "0/force_RHTarsus2",
+        "object_id": 17,
+        "object_type": 6,
+        "sensor_id": 165,
+        "type": 4
+      },
+      {
+        "data_address": 247,
+        "dimension": 3,
+        "name": "0/force_RHTarsus3",
+        "object_id": 18,
+        "object_type": 6,
+        "sensor_id": 166,
+        "type": 4
+      },
+      {
+        "data_address": 250,
+        "dimension": 3,
+        "name": "0/force_RHTarsus4",
+        "object_id": 19,
+        "object_type": 6,
+        "sensor_id": 167,
+        "type": 4
+      },
+      {
+        "data_address": 253,
+        "dimension": 3,
+        "name": "0/force_RHTarsus5",
+        "object_id": 20,
+        "object_type": 6,
+        "sensor_id": 168,
+        "type": 4
+      }
+    ],
+    "neural_runtime_touched": false,
+    "observation_keys": [
+      "cardinal_vectors",
+      "contact_forces",
+      "end_effectors",
+      "fly",
+      "fly_orientation",
+      "joints"
+    ],
+    "observation_shapes": {
+      "cardinal_vectors": [
+        3,
+        3
+      ],
+      "contact_forces": [
+        30,
+        3
+      ],
+      "end_effectors": [
+        6,
+        3
+      ],
+      "fly": [
+        4,
+        3
+      ],
+      "fly_orientation": [
+        3
+      ],
+      "joints": [
+        3,
+        42
+      ]
+    },
+    "observation_space": "Dict('cardinal_vectors': Box(-1.0, 1.0, (3, 3), float32), 'contact_forces': Box(-inf, inf, (30, 3), float32), 'end_effectors': Box(-inf, inf, (6, 3), float32), 'fly': Box(-inf, inf, (4, 3), float32), 'fly_orientation': Box(-inf, inf, (3,), float32), 'joints': Box(-inf, inf, (3, 42), float32))",
+    "physics_steps": 0,
+    "requested": true,
+    "runtime_observable_state": "INITIAL_OBSERVATION",
+    "status": "RESET_ONLY"
   },
   "schema_version": "M5D-1.0",
   "static_model_metadata": {

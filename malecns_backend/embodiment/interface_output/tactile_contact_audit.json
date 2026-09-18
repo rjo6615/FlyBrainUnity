@@ -1948,9 +1948,156 @@
     }
   ],
   "real_flygym_calibration": {
-    "reason": "run with --live in the validated Windows environment",
+    "last_raw_vectors": {
+      "LF": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "LH": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "LM": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "RF": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "RH": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "RM": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "method": "reset observation plus bounded passive hold of measured joints; no gait/walking controller",
+    "physics_steps": 500,
     "requested_duration_s": 0.05,
-    "status": "NOT_RUN"
+    "selected_segment": "Tarsus5",
+    "statistics": {
+      "LF": {
+        "count": 501,
+        "exact_zero_fraction": 1.0,
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "nonzero_fraction": 0.0,
+        "percentiles": {
+          "1": 0.0,
+          "25": 0.0,
+          "5": 0.0,
+          "50": 0.0,
+          "75": 0.0,
+          "95": 0.0,
+          "99": 0.0
+        }
+      },
+      "LH": {
+        "count": 501,
+        "exact_zero_fraction": 1.0,
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "nonzero_fraction": 0.0,
+        "percentiles": {
+          "1": 0.0,
+          "25": 0.0,
+          "5": 0.0,
+          "50": 0.0,
+          "75": 0.0,
+          "95": 0.0,
+          "99": 0.0
+        }
+      },
+      "LM": {
+        "count": 501,
+        "exact_zero_fraction": 1.0,
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "nonzero_fraction": 0.0,
+        "percentiles": {
+          "1": 0.0,
+          "25": 0.0,
+          "5": 0.0,
+          "50": 0.0,
+          "75": 0.0,
+          "95": 0.0,
+          "99": 0.0
+        }
+      },
+      "RF": {
+        "count": 501,
+        "exact_zero_fraction": 1.0,
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "nonzero_fraction": 0.0,
+        "percentiles": {
+          "1": 0.0,
+          "25": 0.0,
+          "5": 0.0,
+          "50": 0.0,
+          "75": 0.0,
+          "95": 0.0,
+          "99": 0.0
+        }
+      },
+      "RH": {
+        "count": 501,
+        "exact_zero_fraction": 1.0,
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "nonzero_fraction": 0.0,
+        "percentiles": {
+          "1": 0.0,
+          "25": 0.0,
+          "5": 0.0,
+          "50": 0.0,
+          "75": 0.0,
+          "95": 0.0,
+          "99": 0.0
+        }
+      },
+      "RM": {
+        "count": 501,
+        "exact_zero_fraction": 1.0,
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "nonzero_fraction": 0.0,
+        "percentiles": {
+          "1": 0.0,
+          "25": 0.0,
+          "5": 0.0,
+          "50": 0.0,
+          "75": 0.0,
+          "95": 0.0,
+          "99": 0.0
+        }
+      }
+    },
+    "status": "PASSIVE_HOLD_COMPLETE",
+    "threshold_decision": "Review separation statistics; default 1e-12 is provisional and is not a biological threshold.",
+    "timestep_s": 0.0001,
+    "units": "model force units"
   },
   "regression": {
     "locked_artifacts_modified": false,
