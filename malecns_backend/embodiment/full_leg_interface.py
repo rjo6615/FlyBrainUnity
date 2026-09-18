@@ -104,32 +104,80 @@ def enumerate_live_actuators() -> list[dict[str, Any]]:
                 return str(value)
         raise RuntimeError(f"compiled MuJoCo {kind} id {object_id} has no name")
 
-    # The action list names joints.  Establish actuator -> joint identity from
-    # compiled transmission metadata; actuator and joint names need not match.
-    by_joint: dict[str, tuple[int, int, str]] = {}
+    # FlyGym builds one ordered MJCF actuator for every entry in
+    # ``actuated_joints`` and applies the action with physics.bind(_actuators).
+    # Once the fly is attached, dm_control qualifies both joint and actuator
+    # names, so the unqualified public name need not be in the compiled table.
+    source_actuators = getattr(fly, "_actuators", None)
+    if isinstance(source_actuators, dict):
+        source_actuators = tuple(source_actuators.values())
+    elif source_actuators is not None:
+        source_actuators = tuple(source_actuators)
+
+    def source_identifiers(element: Any) -> tuple[str, ...]:
+        values = []
+        for attribute in ("full_identifier", "name"):
+            value = getattr(element, attribute, None)
+            if value is not None and str(value) not in values:
+                values.append(str(value))
+        return tuple(values)
+
+    compiled = []
     for actuator_id in range(int(model.nu)):
-        if int(model.actuator_trntype[actuator_id]) != joint_transmission:
-            continue
-        joint_id = int(model.actuator_trnid[actuator_id][0])
-        if not 0 <= joint_id < int(model.njnt):
+        transmission_type = int(model.actuator_trntype[actuator_id])
+        transmission_ids = [int(value) for value in model.actuator_trnid[actuator_id]]
+        joint_id = transmission_ids[0] if transmission_type == joint_transmission else None
+        if joint_id is not None and not 0 <= joint_id < int(model.njnt):
             raise RuntimeError(f"actuator {actuator_id} has invalid joint transmission id {joint_id}")
-        joint_name = model_name("joint", joint_id)
-        if joint_name in names:
-            if joint_name in by_joint:
-                raise RuntimeError(f"multiple compiled actuators drive FlyGym joint {joint_name}")
-            by_joint[joint_name] = (actuator_id, joint_id, model_name("actuator", actuator_id))
+        compiled.append({
+            "actuator_id": actuator_id,
+            "actuator_name": model_name("actuator", actuator_id),
+            "transmission_type": transmission_type,
+            "transmission_ids": transmission_ids,
+            "joint_id": joint_id,
+            "joint_name": model_name("joint", joint_id) if joint_id is not None else None,
+        })
+
+    by_actuator_name = {item["actuator_name"]: item for item in compiled}
+    by_joint_name: dict[str, list[dict[str, Any]]] = {}
+    for item in compiled:
+        if item["joint_name"] is not None:
+            by_joint_name.setdefault(item["joint_name"], []).append(item)
+
+    def diagnostic(index: int, logical_name: str) -> str:
+        token = logical_name.removeprefix("joint_").casefold()
+        plausible = [item for item in compiled if token in item["actuator_name"].casefold()
+                     or (item["joint_name"] is not None and token in item["joint_name"].casefold())]
+        return json.dumps({"logical_action_index": index, "logical_name": logical_name,
+                           "plausible_compiled_associations": plausible}, sort_keys=True)
 
     records = []
     for index, name in enumerate(names):
-        association = by_joint.get(str(name))
+        association = None
+        source = (source_actuators[index] if source_actuators is not None
+                  and len(source_actuators) == len(names) else None)
+        if source is not None:
+            matches = [by_actuator_name[value] for value in source_identifiers(source)
+                       if value in by_actuator_name]
+            if len({item["actuator_id"] for item in matches}) == 1:
+                association = matches[0]
+        # Compatibility for versions without exposed ordered actuator elements.
         if association is None:
-            raise RuntimeError(f"no compiled joint actuator transmission for FlyGym joint {name}")
-        aid, jid, actuator_name = association
+            matches = by_joint_name.get(str(name), [])
+            if len(matches) == 1:
+                association = matches[0]
+        if association is None or association["transmission_type"] != joint_transmission:
+            raise RuntimeError(
+                f"no compiled joint actuator transmission for FlyGym joint {name}; "
+                f"compiled inventory diagnostic: {diagnostic(index, str(name))}")
+        aid, jid = association["actuator_id"], association["joint_id"]
         q0, d0 = int(model.jnt_qposadr[jid]), int(model.jnt_dofadr[jid])
         q1 = int(model.jnt_qposadr[jid + 1]) if jid + 1 < model.njnt else int(model.nq)
         d1 = int(model.jnt_dofadr[jid + 1]) if jid + 1 < model.njnt else int(model.nv)
         records.append({"index": index, "name": str(name), "mujoco_metadata": {
-            "actuator_id": aid, "actuator_name": actuator_name,
+            "actuator_id": aid, "actuator_name": association["actuator_name"],
+            "actuator_transmission_type": association["transmission_type"],
+            "actuator_transmission_ids": association["transmission_ids"],
             "joint_id": jid, "joint_name": model_name("joint", jid),
             "joint_type": int(model.jnt_type[jid]),
             "qpos_range": [q0, q1], "dof_range": [d0, d1],

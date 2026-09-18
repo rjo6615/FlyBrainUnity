@@ -153,8 +153,70 @@ class FullLegInterfaceTests(unittest.TestCase):
                 physics=SimpleNamespace(model=Model())))
         fake_mujoco = SimpleNamespace(mjtTrn=SimpleNamespace(mjTRN_JOINT=0))
         with patch.dict(sys.modules, {"flygym": fake_flygym, "mujoco": fake_mujoco}):
-            with self.assertRaisesRegex(RuntimeError, "no compiled joint actuator transmission"):
+            with self.assertRaisesRegex(RuntimeError, "logical_action_index.*logical_name"):
                 interface.enumerate_live_actuators()
+
+    def test_namespaced_coxa_axes_use_flygym_ordered_actuator_contract(self):
+        logical = ("joint_LFCoxa", "joint_LFCoxa_yaw", "joint_LFCoxa_roll")
+        compiled_joints = tuple(f"fly/{name}" for name in logical)
+        compiled_actuators = tuple(f"fly/actuator_position_{name}" for name in logical)
+
+        class Element:
+            def __init__(self, name, full_identifier):
+                self.name, self.full_identifier = name, full_identifier
+
+        class Model:
+            njnt, nq, nv, nu = 3, 3, 3, 3
+            jnt_qposadr = jnt_dofadr = [0, 1, 2]
+            jnt_type = [3, 3, 3]
+            actuator_trntype = [0, 0, 0]
+            actuator_trnid = [[2, -1], [0, -1], [1, -1]]
+            actuator_ctrlrange = [[-1, 1]] * 3
+
+            def id2name(self, object_id, kind):
+                if kind == "joint": return compiled_joints[object_id]
+                if kind == "actuator":
+                    return (compiled_actuators[2], compiled_actuators[0], compiled_actuators[1])[object_id]
+
+        class Fly:
+            def __init__(self, **kwargs):
+                self.actuated_joints = logical
+                self._actuators = [Element(name.removeprefix("joint_"), compiled)
+                                   for name, compiled in zip(logical, compiled_actuators)]
+
+        fake_flygym = SimpleNamespace(Fly=Fly, SingleFlySimulation=lambda **kwargs:
+            SimpleNamespace(physics=SimpleNamespace(model=Model())))
+        fake_mujoco = SimpleNamespace(mjtTrn=SimpleNamespace(mjTRN_JOINT=0))
+        with patch.dict(sys.modules, {"flygym": fake_flygym, "mujoco": fake_mujoco}):
+            records = interface.enumerate_live_actuators()
+
+        metadata = [record["mujoco_metadata"] for record in records]
+        self.assertEqual([item["actuator_id"] for item in metadata], [1, 2, 0])
+        self.assertEqual([item["joint_name"] for item in metadata], list(compiled_joints))
+        self.assertEqual([item["actuator_transmission_ids"] for item in metadata],
+                         [[0, -1], [1, -1], [2, -1]])
+
+    def test_unresolved_coxa_reports_related_compiled_inventory(self):
+        class Model:
+            njnt = nq = nv = nu = 1
+            jnt_qposadr = jnt_dofadr = jnt_type = [0]
+            actuator_trntype, actuator_trnid = [0], [[0, -1]]
+            actuator_ctrlrange = [[-1, 1]]
+            def id2name(self, object_id, kind):
+                return "fly/joint_LFCoxa_roll" if kind == "joint" else "fly/LFCoxa_roll_motor"
+        class Fly:
+            def __init__(self, **kwargs): self.actuated_joints = ("joint_LFCoxa",)
+        fake_flygym = SimpleNamespace(Fly=Fly, SingleFlySimulation=lambda **kwargs:
+            SimpleNamespace(physics=SimpleNamespace(model=Model())))
+        fake_mujoco = SimpleNamespace(mjtTrn=SimpleNamespace(mjTRN_JOINT=0))
+        with patch.dict(sys.modules, {"flygym": fake_flygym, "mujoco": fake_mujoco}):
+            with self.assertRaises(RuntimeError) as caught:
+                interface.enumerate_live_actuators()
+        message = str(caught.exception)
+        self.assertIn('"logical_action_index": 0', message)
+        self.assertIn('"actuator_id": 0', message)
+        self.assertIn('"transmission_ids": [0, -1]', message)
+        self.assertIn('fly/joint_LFCoxa_roll', message)
 
     def test_live_ordering_mismatch_still_fails_loudly(self):
         live = [{"index": record["actuator_index"], "name": record["actuator_name"],
