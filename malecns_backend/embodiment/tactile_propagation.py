@@ -16,6 +16,7 @@ from typing import Any, Iterable, Mapping
 import numpy as np
 
 from .mappings import INTERFACE_MAP
+from .six_leg_audit import OUTPUT as AUTHORITATIVE_MOTOR_MAP
 from .tactile_contact import TactileContactConfig, TactileContactEncoder, load_tactile_populations
 from .tactile_targeted_contact_calibration import (
     CONTACT_PENETRATION, DEFAULT_TIMESTEP_S, ENGINEERING_THRESHOLD, SURFACE_NAME,
@@ -64,16 +65,38 @@ def tactile_population():
     return population
 
 
-def motor_populations(path=INTERFACE_MAP) -> dict[str, tuple[int, ...]]:
-    """Return complete annotation-backed motor populations, for observation only."""
-    records = json.loads(Path(path).read_text(encoding="utf-8"))["populations"]
+def motor_populations(map_path=AUTHORITATIVE_MOTOR_MAP,
+                      interface_path=INTERFACE_MAP) -> dict[str, tuple[int, ...]]:
+    """Load the mapped leg-motor observer set established by M4A/M4B.
+
+    The M4A inventory, rather than every broad ``muscles`` record, determines
+    membership.  Names are retained only as authoritative identifiers; they
+    are never parsed to infer a leg, joint, or motor role.
+    """
+    audit = json.loads(Path(map_path).read_text(encoding="utf-8"))
+    if audit.get("schema") != "flybrain.six_leg_anatomical_map":
+        raise ValueError("authoritative M4A motor map has an unexpected schema")
+    mapped = audit["population_inventory"]["leg_motor"]
+
+    interface = json.loads(Path(interface_path).read_text(encoding="utf-8"))
+    dense_by_body_id: dict[int, int] = {}
+    for record in interface["populations"]:
+        for body_id, dense_index in zip(record["body_ids"], record["dense_indices"]):
+            body_id, dense_index = int(body_id), int(dense_index)
+            previous = dense_by_body_id.setdefault(body_id, dense_index)
+            if previous != dense_index:
+                raise ValueError(f"body ID {body_id} has conflicting dense indices")
+
     result: dict[str, tuple[int, ...]] = {}
-    for record in records:
-        if record["category"] == "muscles":
-            values = tuple(map(int, record["dense_indices"]))
-            if record["name"] in result and result[record["name"]] != values:
-                raise ValueError(f"ambiguous motor population {record['name']!r}")
-            result[record["name"]] = values
+    for record in mapped:
+        name = record["name"]
+        if name in result:
+            raise ValueError(f"duplicate mapped M4A motor population {name!r}")
+        try:
+            result[name] = tuple(dense_by_body_id[int(value)]
+                                 for value in record["body_ids"])
+        except KeyError as error:
+            raise ValueError(f"mapped motor body ID {error.args[0]} does not resolve") from error
     return result
 
 
@@ -113,14 +136,15 @@ def classify_causal(*, physical_contact: bool, sensor_correspondence: bool,
                     candidate_count: int, delivered_count: int,
                     non_tactile_state_diverged: bool,
                     non_tactile_spikes_diverged: bool,
-                    mapped_motor_diverged: bool) -> str:
+                    mapped_motor_diverged: bool,
+                    mapped_motor_observation_valid: bool = True) -> str:
     if not physical_contact: return "P0"
     if not sensor_correspondence: return "P1"
     if not candidate_count: return "P2"
     if not delivered_count: return "P3"
     if not non_tactile_state_diverged: return "P4"
     if not non_tactile_spikes_diverged: return "P5"
-    if mapped_motor_diverged: return "P7"
+    if mapped_motor_observation_valid and mapped_motor_diverged: return "P7"
     return "P6"
 
 
