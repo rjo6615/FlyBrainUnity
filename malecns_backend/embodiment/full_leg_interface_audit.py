@@ -26,6 +26,12 @@ def main(argv=None) -> int:
     for item in audit["six_tibia_regression"]["interfaces"]:
         print(f"  {item['leg']} tibia ({item['actuator']}): {'PASS' if item['passed'] else 'FAIL'}")
     print("SIX-TIBIA REGRESSION: " + ("PASS" if audit["six_tibia_regression"]["passed"] else "FAIL"))
+    if args.live:
+        print("\nDiscovered physical action DOFs by leg:")
+        for leg in ("LF", "LM", "LH", "RF", "RM", "RH"):
+            dofs = [item["mujoco_metadata"]["joint_name"] for item in audit["actuator_records"]
+                    if item["leg"] == leg]
+            print(f"  {leg}: " + ", ".join(dofs))
     return 0
 
 

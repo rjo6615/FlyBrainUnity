@@ -18,9 +18,23 @@ MuJoCo addresses unavailable. `--live` constructs the same
 `Fly(enable_adhesion=False, control="position")` and `SingleFlySimulation`
 stack as the validated body adapter. It reads the compiled model through
 `simulation.physics.model` (including the existing `env`/`_env` compatibility
-paths), without resetting or stepping physics. Actuator-to-joint association
-comes from compiled `actuator_trntype`/`actuator_trnid` metadata rather than a
-name substitution. A mismatch with M4A actuator names/order fails.
+paths), without resetting or stepping physics. Action-to-actuator association
+comes from FlyGym's ordered `_actuators` MJCF elements, the same sequence that
+FlyGym binds when applying an action. Their `full_identifier` values select
+compiled actuators; compiled `actuator_trntype`/`actuator_trnid` metadata then
+identifies physical joints. This matters because dm_control qualifies names
+when attaching the fly: a public name such as `joint_LFCoxa` can compile as
+`fly/joint_LFCoxa`. No prefix is guessed or stripped. If association fails,
+the exception reports matching compiled actuator names and IDs, transmission
+types and IDs, and joint names and IDs. A mismatch with M4A actuator
+names/order fails. The live command also prints the seven discovered physical
+joint names for each leg.
+
+The 42 position-control dimensions are six legs times seven distinct physical
+hinge DOFs in FlyGym's public order: `Coxa`, `Coxa_yaw`, `Coxa_roll`, `Femur`,
+`Femur_roll`, `Tibia`, and `Tarsus1`. In particular, `joint_LFCoxa` is the
+first LF coxa hinge; it is not a group containing the separately actuated
+`joint_LFCoxa_yaw` and `joint_LFCoxa_roll` hinges.
 
 ## Evidence tiers and eligibility
 
