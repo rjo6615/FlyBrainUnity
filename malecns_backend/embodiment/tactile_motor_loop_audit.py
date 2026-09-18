@@ -14,7 +14,8 @@ from .tactile_contact import TactileContactConfig, TactileContactEncoder
 from .tactile_motor_loop import (
     ACTUATOR_INDICES, CONDITIONS, CONTACT_FORCE_ROW, DEFAULT_DURATION_MS,
     DEFAULT_SEED, NEURAL_DT_MS, analyze, atomic_write_report, base_report,
-    classify, file_hashes, LOCKED_M5D3, LOCKED_PRIOR, validated_interfaces,
+    classify, LOCKED_M5D3, LOCKED_PRIOR, validated_interfaces,
+    verify_locked_hashes,
 )
 from .tactile_propagation import rng_digest
 from . import tactile_targeted_contact_calibration as contact
@@ -215,8 +216,11 @@ def run_live(duration_ms=DEFAULT_DURATION_MS, seed=DEFAULT_SEED):
     report["decoded_outputs"] = {"computed_in_both_conditions": True}
     report["applied_outputs"] = {"enabled": True, "disabled": False,
                                   "disabled_withholds_application_only": True}
-    report["locked_provenance"]["post_run_m5d3_unchanged"] = file_hashes(LOCKED_M5D3)
-    report["locked_provenance"]["post_run_prior_unchanged"] = file_hashes(LOCKED_PRIOR)
+    post_run = verify_locked_hashes()
+    report["locked_provenance"]["post_run_m5d3_unchanged"] = {
+        name: post_run[name] for name in LOCKED_M5D3}
+    report["locked_provenance"]["post_run_prior_unchanged"] = {
+        name: post_run[name] for name in LOCKED_PRIOR}
     return report
 
 

@@ -8,7 +8,7 @@ from malecns_backend.embodiment.tactile_contact import TactileContactConfig
 
 
 def test_locked_tactile_and_contact_protocol():
-    report = loop.base_report()
+    report = loop.base_report(verify_provenance=False)
     population = report["biological_tactile_population"]
     physical = report["physical_contact_verification"]
     encoder = report["tactile_encoder_parameters"]
@@ -22,7 +22,7 @@ def test_locked_tactile_and_contact_protocol():
 
 
 def test_six_and_only_six_locked_tibia_targets_and_existing_decoder():
-    report = loop.base_report()
+    report = loop.base_report(verify_provenance=False)
     assert report["actuator_indices"] == {"LF": 5, "LM": 12, "LH": 19,
                                            "RF": 26, "RM": 33, "RH": 40}
     targets = report["physical_neural_actuation_targets"]
@@ -35,7 +35,7 @@ def test_six_and_only_six_locked_tibia_targets_and_existing_decoder():
 
 
 def test_matched_design_computes_both_and_withholds_application_only():
-    report = loop.base_report()
+    report = loop.base_report(verify_provenance=False)
     assert report["protocol_configuration"]["conditions"] == list(loop.CONDITIONS)
     assert report["protocol_configuration"]["only_intended_difference"] == (
         "decoded tibia contribution applied to physical actuators")
@@ -97,17 +97,103 @@ def test_pre_motor_failure_and_physics_failure_override_claims():
 
 
 def test_deterministic_atomic_report_and_locked_hashes(tmp_path):
-    report = loop.base_report(); path = tmp_path / "result.json"
+    report = loop.base_report(verify_provenance=False); path = tmp_path / "result.json"
     loop.atomic_write_report(path, report); first = path.read_bytes()
     loop.atomic_write_report(path, report)
     assert path.read_bytes() == first
     assert json.loads(first) == report
-    assert loop.verify_locked_hashes() == loop.EXPECTED_LOCKED_HASHES
+    assert report["locked_provenance"]["m5d3_live_result_semantically_validated"] is False
 
 
 def test_no_behavior_gait_reflex_or_parameter_tuning():
-    report = loop.base_report()
+    report = loop.base_report(verify_provenance=False)
     limitations = " ".join(report["limitations"]).lower()
     assert all(word in limitations for word in ("gait", "behavior", "reflex"))
     assert report["physics_stability"]["retry_or_retuning_permitted"] is False
     assert TactileContactConfig().maximum_modeled_rate_hz == 120
+
+
+def _authoritative_m5d3_result():
+    result = {}
+    for dotted, value in loop.M5D3_LIVE_RESULT.items():
+        target = result
+        parts = dotted.split(".")
+        for part in parts[:-1]:
+            target = target.setdefault(part, {})
+        target[parts[-1]] = value
+    return result
+
+
+def test_canonical_complete_p7_result_passes_semantic_validation():
+    assert loop.validate_m5d3_live_result(_authoritative_m5d3_result()) == (
+        loop.M5D3_LIVE_RESULT_SHA256)
+
+
+def test_obsolete_checked_in_not_run_result_fails_semantic_validation():
+    obsolete = json.loads(Path(
+        "malecns_backend/embodiment/interface_output/tactile_propagation.json"
+    ).read_text())
+    assert obsolete["run_status"] == "NOT_RUN"
+    with pytest.raises(RuntimeError, match="run_status"):
+        loop.validate_m5d3_live_result(obsolete)
+
+
+@pytest.mark.parametrize("field,bad_value", [
+    ("protocol_configuration.seed", 2),
+    ("enabled_neural_summary.delivered_tactile_spikes", 295),
+    ("physical_match_verification.matched", False),
+    ("mapped_motor_observational_summary.first_divergence_ms", 11.5),
+])
+def test_changed_scientific_field_fails_even_when_json_is_valid(field, bad_value):
+    result = _authoritative_m5d3_result()
+    target = result
+    parts = field.split(".")
+    for part in parts[:-1]:
+        target = target[part]
+    target[parts[-1]] = bad_value
+    json.dumps(result)  # It remains syntactically valid JSON.
+    with pytest.raises(RuntimeError, match=field):
+        loop.validate_m5d3_live_result(result)
+
+
+def test_expected_hash_manifest_is_static_and_not_built_from_current_files():
+    source = Path(loop.__file__).read_text()
+    assert isinstance(loop.EXPECTED_LOCKED_HASHES, type(loop.M5D3_LIVE_RESULT))
+    assert "M5D3_LIVE_RESULT_SHA256 = \"6f01c2" in source
+    manifest_region = source[source.index("SOURCE_PROTOCOL_HASHES ="):source.index(
+        "def _canonical_bytes")]
+    assert "read_bytes" not in manifest_region
+    assert "file_hashes(" not in manifest_region
+
+
+def test_line_endings_are_not_mistaken_for_source_modification(tmp_path):
+    name = next(iter(loop.SOURCE_PROTOCOL_HASHES))
+    original = Path(name).read_bytes()
+    target = tmp_path / name
+    target.parent.mkdir(parents=True)
+    target.write_bytes(original.replace(b"\n", b"\r\n"))
+    assert loop.file_hashes((name,), tmp_path)[name] == loop.SOURCE_PROTOCOL_HASHES[name]
+
+
+def test_unexplained_source_change_fails_closed(tmp_path):
+    for name in loop.SOURCE_PROTOCOL_HASHES:
+        target = tmp_path / name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(Path(name).read_bytes())
+    result_name = "malecns_backend/embodiment/interface_output/tactile_propagation.json"
+    (tmp_path / result_name).write_text(json.dumps(_authoritative_m5d3_result()))
+    changed = next(iter(loop.SOURCE_PROTOCOL_HASHES))
+    with (tmp_path / changed).open("ab") as stream:
+        stream.write(b"unexpected")
+    with pytest.raises(RuntimeError, match="locked milestone artifacts changed"):
+        loop.verify_locked_hashes(tmp_path)
+
+
+def test_provenance_failure_precedes_protocol_or_scientific_setup(monkeypatch):
+    def fail():
+        raise RuntimeError("provenance rejected")
+    monkeypatch.setattr(loop, "verify_locked_hashes", fail)
+    monkeypatch.setattr(loop, "tactile_population",
+                        lambda: pytest.fail("scientific setup started"))
+    with pytest.raises(RuntimeError, match="provenance rejected"):
+        loop.base_report()

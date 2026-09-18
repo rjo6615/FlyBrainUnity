@@ -13,6 +13,7 @@ import math
 import os
 from pathlib import Path
 import tempfile
+from types import MappingProxyType
 from typing import Any, Mapping, Sequence
 
 import numpy as np
@@ -34,8 +35,10 @@ ACTUATOR_INDICES = {"LF": 5, "LM": 12, "LH": 19, "RF": 26, "RM": 33, "RH": 40}
 SAMPLE_TIMES_MS = (25, 50, 75, 100)
 TOLERANCE = 0.0
 
-# M5D-3 is read only.  These hashes name every canonical M5D-3 artifact, so a
-# live report proves which locked result was used as provenance without replay.
+# M5D-3 is read only. Source/protocol locks use the SHA-256 of canonical LF
+# bytes (rather than platform-dependent checkout bytes).  The M5D-3 result is
+# a live-result lock: its static digest covers the scientifically relevant
+# COMPLETE/P7 fields below and is accepted only after strict validation.
 LOCKED_M5D3 = (
     "malecns_backend/embodiment/M5D3_TACTILE_PROPAGATION.md",
     "malecns_backend/embodiment/tactile_propagation.py",
@@ -48,29 +51,115 @@ LOCKED_PRIOR = (
     "malecns_backend/embodiment/interface_output/tactile_targeted_contact_calibration.json",
     "malecns_backend/embodiment/six_leg_map.json",
 )
-EXPECTED_LOCKED_HASHES = {
+SOURCE_PROTOCOL_HASHES = MappingProxyType({
     "malecns_backend/embodiment/M5D3_TACTILE_PROPAGATION.md": "da5df00493e4701ac188c0f41d73348dcb00c61a1ace8e567487fb7b31ef4721",
     "malecns_backend/embodiment/tactile_propagation.py": "a1e07293c1676e5406500a00355c6f31979412f93aeab63edc16ec94934be3a6",
     "malecns_backend/embodiment/tactile_propagation_audit.py": "9fe739a94644224a3e6757b4ffc30d02630e8348ca653372eb6fe673aeddd003",
-    "malecns_backend/embodiment/interface_output/tactile_propagation.json": "bc6dc611897e804e4702a3558a655971dc0a34d8c62b86a8e69158430e7ae17c",
     "malecns_backend/embodiment/tactile_contact.py": "10fb5edb8c9d59036a703d4ebe1bfac9c67e986f0d42d1ea412666f7404011f9",
     "malecns_backend/embodiment/tactile_targeted_contact_calibration.py": "2c5de5a3de6c37d1d7d27093051b4c8f61ce6374641cb33eadeb6ec1294afcae",
     "malecns_backend/embodiment/interface_output/tactile_targeted_contact_calibration.json": "486ba63cc444b54d1012cd310be949e4bc35e088b2375a3b135342316df393df",
     "malecns_backend/embodiment/six_leg_map.json": "575186602ac1e5a6e3b2c6d680309880266f5d80e18fff44f989440f6cd0a4bc",
-}
+})
+
+M5D3_LIVE_RESULT = MappingProxyType({
+    "run_status": "COMPLETE",
+    "causal_classification": "P7",
+    "protocol_configuration.seed": 1,
+    "protocol_configuration.duration_ms": 100,
+    "protocol_configuration.neural_timestep_ms": 0.5,
+    "protocol_configuration.physics_timestep_s": 0.0001,
+    "protocol_configuration.neural_motor_output": False,
+    "population.name": "tactile T2 left",
+    "population.size": 378,
+    "population.subsampled": False,
+    "physical_contact_verification.verified": True,
+    "physical_match_verification.matched": True,
+    "physical_match_verification.maximum_qpos_absolute_difference": 0,
+    "physical_match_verification.maximum_force_magnitude_difference": 0,
+    "enabled_neural_summary.candidate_tactile_spikes": 404,
+    "disabled_neural_summary.candidate_tactile_spikes": 404,
+    "enabled_neural_summary.delivered_tactile_spikes": 296,
+    "disabled_neural_summary.delivered_tactile_spikes": 0,
+    "enabled_neural_summary.distinct_non_tactile_cns_neurons": 1474,
+    "enabled_neural_summary.non_tactile_cns_spikes": 3128,
+    "enabled_neural_summary.total_malecns_spikes": 3424,
+    "disabled_neural_summary.non_tactile_cns_spikes": 0,
+    "disabled_neural_summary.total_malecns_spikes": 0,
+    "non_tactile_cns_divergence_summary.first_state": 5.0,
+    "non_tactile_cns_divergence_summary.first_spike": 6.0,
+    "mapped_motor_observational_summary.first_divergence_ms": 12.0,
+    "mapped_motor_observational_summary.motor_output_decoded": False,
+    "mapped_motor_observational_summary.motor_output_applied": False,
+})
+# SHA-256 of the sorted, compact JSON representation of M5D3_LIVE_RESULT.
+# This is deliberately a literal, not calculated from the file being checked.
+M5D3_LIVE_RESULT_SHA256 = "6f01c2b4aa16d6b51dbfba31055970dc7dea114ef317b688595bb1c9355b25cf"
+EXPECTED_LOCKED_HASHES = MappingProxyType({
+    **SOURCE_PROTOCOL_HASHES,
+    "malecns_backend/embodiment/interface_output/tactile_propagation.json":
+        M5D3_LIVE_RESULT_SHA256,
+})
+
+
+def _canonical_bytes(data: bytes) -> bytes:
+    """Make text checkout hashes invariant under Git's Windows CRLF policy."""
+    return data.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+
+
+def _nested_value(report: Mapping[str, Any], dotted_name: str) -> Any:
+    value: Any = report
+    for component in dotted_name.split("."):
+        if not isinstance(value, Mapping) or component not in value:
+            raise KeyError(dotted_name)
+        value = value[component]
+    return value
+
+
+def validate_m5d3_live_result(report: Mapping[str, Any]) -> str:
+    """Fail closed unless *report* is the authoritative M5D-3 COMPLETE/P7 run."""
+    discrepancies = []
+    observed = {}
+    for name, expected in M5D3_LIVE_RESULT.items():
+        try:
+            actual = _nested_value(report, name)
+        except KeyError:
+            discrepancies.append(f"{name}: missing (expected {expected!r})")
+            continue
+        # bool is an int subclass, so equality alone would accept 0/1 here.
+        if type(actual) is not type(expected) or actual != expected:
+            discrepancies.append(f"{name}: {actual!r} (expected {expected!r})")
+        observed[name] = actual
+    if discrepancies:
+        raise RuntimeError("M5D-3 live-result semantic validation failed: "
+                           + "; ".join(discrepancies))
+    canonical = json.dumps(observed, sort_keys=True, separators=(",", ":"),
+                           ensure_ascii=False, allow_nan=False).encode("utf-8")
+    digest = hashlib.sha256(canonical).hexdigest()
+    if digest != M5D3_LIVE_RESULT_SHA256:
+        raise RuntimeError("M5D-3 live-result semantic manifest digest changed")
+    return digest
 
 
 def file_hashes(names: Sequence[str], root: Path | None = None) -> dict[str, str]:
     root = root or Path(__file__).resolve().parents[2]
-    return {name: hashlib.sha256((root / name).read_bytes()).hexdigest() for name in names}
+    return {name: hashlib.sha256(_canonical_bytes((root / name).read_bytes())).hexdigest()
+            for name in names}
 
 
 def verify_locked_hashes(root: Path | None = None) -> dict[str, str]:
-    actual = file_hashes((*LOCKED_M5D3, *LOCKED_PRIOR), root)
-    if actual != EXPECTED_LOCKED_HASHES:
-        changed = sorted(name for name, digest in actual.items()
-                         if EXPECTED_LOCKED_HASHES.get(name) != digest)
+    root = root or Path(__file__).resolve().parents[2]
+    source_names = tuple(SOURCE_PROTOCOL_HASHES)
+    actual = file_hashes(source_names, root)
+    changed = sorted(name for name, digest in actual.items()
+                     if SOURCE_PROTOCOL_HASHES.get(name) != digest)
+    if changed:
         raise RuntimeError(f"locked milestone artifacts changed: {changed}")
+    result_name = "malecns_backend/embodiment/interface_output/tactile_propagation.json"
+    try:
+        report = json.loads((root / result_name).read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as error:
+        raise RuntimeError(f"cannot read locked M5D-3 live result: {error}") from error
+    actual[result_name] = validate_m5d3_live_result(report)
     return actual
 
 
@@ -200,8 +289,15 @@ def analyze(enabled: Sequence[Mapping], disabled: Sequence[Mapping], *, toleranc
       "subsequent_mapped_motor_divergence": {"first_divergence_ms": motor_fb}}
 
 
-def base_report(duration_ms=DEFAULT_DURATION_MS, seed=DEFAULT_SEED) -> dict:
-    locked = verify_locked_hashes()
+def base_report(duration_ms=DEFAULT_DURATION_MS, seed=DEFAULT_SEED, *,
+                verify_provenance: bool = True) -> dict:
+    """Build the protocol report, validating provenance before other setup.
+
+    ``verify_provenance=False`` exists only for static configuration tests; the
+    audit entry point never uses it.
+    """
+    locked = (verify_locked_hashes() if verify_provenance else
+              dict(EXPECTED_LOCKED_HASHES))
     population = tactile_population(); interfaces = validated_interfaces()
     tactile = TactileContactConfig(seed=seed)
     mapping_hash = hashlib.sha256(SIX_LEG_MAP.read_bytes()).hexdigest()
@@ -210,8 +306,8 @@ def base_report(duration_ms=DEFAULT_DURATION_MS, seed=DEFAULT_SEED) -> dict:
       "protocol_configuration": {"conditions": list(CONDITIONS), "duration_ms": duration_ms,
         "seed": seed, "physical_timestep_s": DEFAULT_TIMESTEP_S, "neural_timestep_ms": NEURAL_DT_MS,
         "only_intended_difference": "decoded tibia contribution applied to physical actuators"},
-      "locked_provenance": {"m5d3_not_executed": True,
-        "m5d3_artifact_sha256": {x: locked[x] for x in LOCKED_M5D3},
+      "locked_provenance": {"m5d3_live_result_semantically_validated": verify_provenance,
+        "m5d3_locked_digest": {x: locked[x] for x in LOCKED_M5D3},
         "prior_milestone_sha256": {x: locked[x] for x in LOCKED_PRIOR}},
       "physical_contact_verification": {"leg": "LM", "segment": "Tarsus5",
         "contact_forces_row": CONTACT_FORCE_ROW, "surface": SURFACE_NAME,
