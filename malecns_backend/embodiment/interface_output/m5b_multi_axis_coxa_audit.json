@@ -1,0 +1,803 @@
+{
+  "conclusion": {
+    "finding": "Biological association supported; transduction geometry unresolved.",
+    "future_encoder_would_require_explicit_engineering_assumptions": [
+      "coordinate normalization and neutral/reference pose",
+      "position versus velocity/strain dependence",
+      "scalar combination or vector representation",
+      "sign, gain, range, saturation, and temporal dynamics",
+      "neuron tuning/allocation (which must not be called biological without new evidence)"
+    ],
+    "scientifically_explicit_modeled_multi_axis_encoder_defensible_now": false
+  },
+  "engineering_model_evaluations": [
+    {
+      "biological_assumptions_required": "Assumes every labeled neuron responds independently to every modeled coxa coordinate.",
+      "compatibility_existing_malecns_interface": "Poor: one body-ID population would be written three times.",
+      "engineering_assumptions_required": "Three scalar encoders and an unspecified aggregation/scheduling rule.",
+      "existing_evidence_supports_implementation": false,
+      "model": "A_DUPLICATED_SCALAR",
+      "risk_duplicate_sensory_drive": "HIGH",
+      "risk_inventing_axis_specificity": "HIGH"
+    },
+    {
+      "biological_assumptions_required": "Assumes a scalar summary is an adequate biological stimulus.",
+      "compatibility_existing_malecns_interface": "Structurally compatible with one population, not calibrated.",
+      "engineering_assumptions_required": "Choose normalization and a scalar function; no such geometry is sourced.",
+      "existing_evidence_supports_implementation": false,
+      "model": "B_COMBINED_JOINT_STATE",
+      "risk_duplicate_sensory_drive": "LOW",
+      "risk_inventing_axis_specificity": "MEDIUM"
+    },
+    {
+      "biological_assumptions_required": "A vector input need not imply neuron tuning, but assigning components to neurons would require missing evidence.",
+      "compatibility_existing_malecns_interface": "Requires an extension; current population drive is scalar per neuron.",
+      "engineering_assumptions_required": "Define vector features and an interface capable of consuming them.",
+      "existing_evidence_supports_implementation": false,
+      "model": "C_VECTOR_OR_SUBPOPULATION",
+      "risk_duplicate_sensory_drive": "LOW if encoded once",
+      "risk_inventing_axis_specificity": "HIGH if neurons are partitioned"
+    },
+    {
+      "biological_assumptions_required": "None beyond the annotated broad association.",
+      "compatibility_existing_malecns_interface": "Fully compatible with retaining ambiguity and making no runtime change.",
+      "engineering_assumptions_required": "None.",
+      "existing_evidence_supports_implementation": true,
+      "model": "D_UNSPECIFIED_DO_NOT_MODEL",
+      "risk_duplicate_sensory_drive": "NONE",
+      "risk_inventing_axis_specificity": "NONE"
+    }
+  ],
+  "female_flywire_flygym_precedent": {
+    "biological_annotations_justified_assignments": "The broad coxa joint-angle annotation supports coxa association, but local annotations do not justify choosing that single axis, those bounds, or neuron-wise directional tuning.",
+    "coxa_population_received_multiple_joint_signals": false,
+    "historical_only_do_not_copy": true,
+    "joint_axes_separated_for_hair_plate": false,
+    "physical_inputs_used": [
+      "st.joint[tibia_<T#_side>]",
+      "st.joint[coxa_<T#_side>]",
+      "st.load[T#_side]"
+    ],
+    "source": "fly-brain-main/src/sim/senses.js",
+    "tuning_or_direction_engineered": "Yes. Only the coxa promotion/remotion coordinate was passed to a Gaussian population code with engineered bounds -0.3 to 1.7 and preferred values distributed by neuron index."
+  },
+  "implementability_classification": [
+    {
+      "basis": "Biological association supported; transduction geometry unresolved.",
+      "classification": "BROAD_JOINT_SUPPORTED",
+      "leg": "LF",
+      "population_name": "hair plate T1 left"
+    },
+    {
+      "basis": "Biological association supported; transduction geometry unresolved.",
+      "classification": "BROAD_JOINT_SUPPORTED",
+      "leg": "LM",
+      "population_name": "hair plate T2 left"
+    },
+    {
+      "basis": "Biological association supported; transduction geometry unresolved.",
+      "classification": "BROAD_JOINT_SUPPORTED",
+      "leg": "LH",
+      "population_name": "hair plate T3 left"
+    },
+    {
+      "basis": "Biological association supported; transduction geometry unresolved.",
+      "classification": "BROAD_JOINT_SUPPORTED",
+      "leg": "RM",
+      "population_name": "hair plate T2 right"
+    },
+    {
+      "basis": "Biological association supported; transduction geometry unresolved.",
+      "classification": "BROAD_JOINT_SUPPORTED",
+      "leg": "RH",
+      "population_name": "hair plate T3 right"
+    }
+  ],
+  "non_intervention": {
+    "activation_eligibility_modified": false,
+    "encoder_implemented": false,
+    "m4a_m5a_m5b1_modified": false,
+    "neural_or_physics_runtime_modified": false,
+    "simulation_initialized": false
+  },
+  "physical_dof_relationship": [
+    {
+      "coordinate_frame_note": "Axes are inherited MJCF joint axes in the coxa body's local frame (the omitted abduction axis uses MuJoCo's default 0 0 1); body pose/quaternion orients that frame. Mechanical structure does not establish biological axis specificity.",
+      "demonstrated_structure": "Three separately named hinge coordinates are declared on the same coxa body; the coxa body is attached beneath the thorax and contains the femur child body. They form a co-located compound rotational articulation in this MJCF, not three separately nested anatomical body segments.",
+      "leg": "LF",
+      "physical_dofs": [
+        {
+          "axis_in_body_local_frame": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "child_body": "femur_T1_left",
+          "flygym_axis": "Coxa",
+          "joint_class": "extend_coxa_T1",
+          "live_action_index": 0,
+          "logical_joint": "joint_LFCoxa",
+          "mjcf_joint": "coxa_T1_left",
+          "mjcf_type": "hinge",
+          "owning_body": "coxa_T1_left",
+          "parent_body": "thorax",
+          "range_rad": [
+            -0.2,
+            1.7
+          ]
+        },
+        {
+          "axis_in_body_local_frame": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "child_body": "femur_T1_left",
+          "flygym_axis": "Coxa_roll",
+          "joint_class": "abduct_coxa_T1",
+          "live_action_index": 1,
+          "logical_joint": "joint_LFCoxa_roll",
+          "mjcf_joint": "coxa_abduct_T1_left",
+          "mjcf_type": "hinge",
+          "owning_body": "coxa_T1_left",
+          "parent_body": "thorax",
+          "range_rad": [
+            -1.0,
+            0.7
+          ]
+        },
+        {
+          "axis_in_body_local_frame": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "child_body": "femur_T1_left",
+          "flygym_axis": "Coxa_yaw",
+          "joint_class": "twist_coxa_T1",
+          "live_action_index": 2,
+          "logical_joint": "joint_LFCoxa_yaw",
+          "mjcf_joint": "coxa_twist_T1_left",
+          "mjcf_type": "hinge",
+          "owning_body": "coxa_T1_left",
+          "parent_body": "thorax",
+          "range_rad": [
+            -0.8,
+            0.8
+          ]
+        }
+      ],
+      "population_name": "hair plate T1 left"
+    },
+    {
+      "coordinate_frame_note": "Axes are inherited MJCF joint axes in the coxa body's local frame (the omitted abduction axis uses MuJoCo's default 0 0 1); body pose/quaternion orients that frame. Mechanical structure does not establish biological axis specificity.",
+      "demonstrated_structure": "Three separately named hinge coordinates are declared on the same coxa body; the coxa body is attached beneath the thorax and contains the femur child body. They form a co-located compound rotational articulation in this MJCF, not three separately nested anatomical body segments.",
+      "leg": "LM",
+      "physical_dofs": [
+        {
+          "axis_in_body_local_frame": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "child_body": "femur_T2_left",
+          "flygym_axis": "Coxa",
+          "joint_class": "extend_coxa_T2",
+          "live_action_index": 7,
+          "logical_joint": "joint_LMCoxa",
+          "mjcf_joint": "coxa_T2_left",
+          "mjcf_type": "hinge",
+          "owning_body": "coxa_T2_left",
+          "parent_body": "thorax",
+          "range_rad": [
+            -0.2,
+            0.9
+          ]
+        },
+        {
+          "axis_in_body_local_frame": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "child_body": "femur_T2_left",
+          "flygym_axis": "Coxa_roll",
+          "joint_class": "abduct_coxa_T2",
+          "live_action_index": 8,
+          "logical_joint": "joint_LMCoxa_roll",
+          "mjcf_joint": "coxa_abduct_T2_left",
+          "mjcf_type": "hinge",
+          "owning_body": "coxa_T2_left",
+          "parent_body": "thorax",
+          "range_rad": [
+            -0.5,
+            0.3
+          ]
+        },
+        {
+          "axis_in_body_local_frame": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "child_body": "femur_T2_left",
+          "flygym_axis": "Coxa_yaw",
+          "joint_class": "twist_coxa_T2",
+          "live_action_index": 9,
+          "logical_joint": "joint_LMCoxa_yaw",
+          "mjcf_joint": "coxa_twist_T2_left",
+          "mjcf_type": "hinge",
+          "owning_body": "coxa_T2_left",
+          "parent_body": "thorax",
+          "range_rad": [
+            -0.75,
+            0.8
+          ]
+        }
+      ],
+      "population_name": "hair plate T2 left"
+    },
+    {
+      "coordinate_frame_note": "Axes are inherited MJCF joint axes in the coxa body's local frame (the omitted abduction axis uses MuJoCo's default 0 0 1); body pose/quaternion orients that frame. Mechanical structure does not establish biological axis specificity.",
+      "demonstrated_structure": "Three separately named hinge coordinates are declared on the same coxa body; the coxa body is attached beneath the thorax and contains the femur child body. They form a co-located compound rotational articulation in this MJCF, not three separately nested anatomical body segments.",
+      "leg": "LH",
+      "physical_dofs": [
+        {
+          "axis_in_body_local_frame": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "child_body": "femur_T3_left",
+          "flygym_axis": "Coxa",
+          "joint_class": "extend_coxa_T3",
+          "live_action_index": 14,
+          "logical_joint": "joint_LHCoxa",
+          "mjcf_joint": "coxa_T3_left",
+          "mjcf_type": "hinge",
+          "owning_body": "coxa_T3_left",
+          "parent_body": "thorax",
+          "range_rad": [
+            -0.3,
+            1.3
+          ]
+        },
+        {
+          "axis_in_body_local_frame": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "child_body": "femur_T3_left",
+          "flygym_axis": "Coxa_roll",
+          "joint_class": "abduct_coxa_T3",
+          "live_action_index": 15,
+          "logical_joint": "joint_LHCoxa_roll",
+          "mjcf_joint": "coxa_abduct_T3_left",
+          "mjcf_type": "hinge",
+          "owning_body": "coxa_T3_left",
+          "parent_body": "thorax",
+          "range_rad": [
+            -0.9,
+            0.25
+          ]
+        },
+        {
+          "axis_in_body_local_frame": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "child_body": "femur_T3_left",
+          "flygym_axis": "Coxa_yaw",
+          "joint_class": "twist_coxa_T3",
+          "live_action_index": 16,
+          "logical_joint": "joint_LHCoxa_yaw",
+          "mjcf_joint": "coxa_twist_T3_left",
+          "mjcf_type": "hinge",
+          "owning_body": "coxa_T3_left",
+          "parent_body": "thorax",
+          "range_rad": [
+            -0.15,
+            0.8
+          ]
+        }
+      ],
+      "population_name": "hair plate T3 left"
+    },
+    {
+      "coordinate_frame_note": "Axes are inherited MJCF joint axes in the coxa body's local frame (the omitted abduction axis uses MuJoCo's default 0 0 1); body pose/quaternion orients that frame. Mechanical structure does not establish biological axis specificity.",
+      "demonstrated_structure": "Three separately named hinge coordinates are declared on the same coxa body; the coxa body is attached beneath the thorax and contains the femur child body. They form a co-located compound rotational articulation in this MJCF, not three separately nested anatomical body segments.",
+      "leg": "RM",
+      "physical_dofs": [
+        {
+          "axis_in_body_local_frame": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "child_body": "femur_T2_right",
+          "flygym_axis": "Coxa",
+          "joint_class": "extend_coxa_T2",
+          "live_action_index": 28,
+          "logical_joint": "joint_RMCoxa",
+          "mjcf_joint": "coxa_T2_right",
+          "mjcf_type": "hinge",
+          "owning_body": "coxa_T2_right",
+          "parent_body": "thorax",
+          "range_rad": [
+            -0.2,
+            0.9
+          ]
+        },
+        {
+          "axis_in_body_local_frame": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "child_body": "femur_T2_right",
+          "flygym_axis": "Coxa_roll",
+          "joint_class": "abduct_coxa_T2",
+          "live_action_index": 29,
+          "logical_joint": "joint_RMCoxa_roll",
+          "mjcf_joint": "coxa_abduct_T2_right",
+          "mjcf_type": "hinge",
+          "owning_body": "coxa_T2_right",
+          "parent_body": "thorax",
+          "range_rad": [
+            -0.5,
+            0.3
+          ]
+        },
+        {
+          "axis_in_body_local_frame": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "child_body": "femur_T2_right",
+          "flygym_axis": "Coxa_yaw",
+          "joint_class": "twist_coxa_T2",
+          "live_action_index": 30,
+          "logical_joint": "joint_RMCoxa_yaw",
+          "mjcf_joint": "coxa_twist_T2_right",
+          "mjcf_type": "hinge",
+          "owning_body": "coxa_T2_right",
+          "parent_body": "thorax",
+          "range_rad": [
+            -0.75,
+            0.8
+          ]
+        }
+      ],
+      "population_name": "hair plate T2 right"
+    },
+    {
+      "coordinate_frame_note": "Axes are inherited MJCF joint axes in the coxa body's local frame (the omitted abduction axis uses MuJoCo's default 0 0 1); body pose/quaternion orients that frame. Mechanical structure does not establish biological axis specificity.",
+      "demonstrated_structure": "Three separately named hinge coordinates are declared on the same coxa body; the coxa body is attached beneath the thorax and contains the femur child body. They form a co-located compound rotational articulation in this MJCF, not three separately nested anatomical body segments.",
+      "leg": "RH",
+      "physical_dofs": [
+        {
+          "axis_in_body_local_frame": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "child_body": "femur_T3_right",
+          "flygym_axis": "Coxa",
+          "joint_class": "extend_coxa_T3",
+          "live_action_index": 35,
+          "logical_joint": "joint_RHCoxa",
+          "mjcf_joint": "coxa_T3_right",
+          "mjcf_type": "hinge",
+          "owning_body": "coxa_T3_right",
+          "parent_body": "thorax",
+          "range_rad": [
+            -0.3,
+            1.3
+          ]
+        },
+        {
+          "axis_in_body_local_frame": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "child_body": "femur_T3_right",
+          "flygym_axis": "Coxa_roll",
+          "joint_class": "abduct_coxa_T3",
+          "live_action_index": 36,
+          "logical_joint": "joint_RHCoxa_roll",
+          "mjcf_joint": "coxa_abduct_T3_right",
+          "mjcf_type": "hinge",
+          "owning_body": "coxa_T3_right",
+          "parent_body": "thorax",
+          "range_rad": [
+            -0.9,
+            0.25
+          ]
+        },
+        {
+          "axis_in_body_local_frame": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "child_body": "femur_T3_right",
+          "flygym_axis": "Coxa_yaw",
+          "joint_class": "twist_coxa_T3",
+          "live_action_index": 37,
+          "logical_joint": "joint_RHCoxa_yaw",
+          "mjcf_joint": "coxa_twist_T3_right",
+          "mjcf_type": "hinge",
+          "owning_body": "coxa_T3_right",
+          "parent_body": "thorax",
+          "range_rad": [
+            -0.15,
+            0.8
+          ]
+        }
+      ],
+      "population_name": "hair plate T3 right"
+    }
+  ],
+  "purpose": "read-only interface-model audit",
+  "schema_version": "M5B-2.0",
+  "source_evidence": [
+    {
+      "additional_relevant_fields": {
+        "bodymap_metadata_complete": {
+          "joint": "coxa_T1_left",
+          "kind": "joint_angle",
+          "name": "hair plate T1 left"
+        },
+        "category": "sensors",
+        "instances": [],
+        "neurotransmitters": [
+          "acetylcholine"
+        ],
+        "sides": [
+          "unknown"
+        ],
+        "source_consumers": [
+          "fly-brain-main/src/sim/senses.js::Senses.constructor/bindTypes/update",
+          "fly-brain-main/scripts/prep_bodymap.py::module body-map compiler",
+          "fly-brain-main/src/sim/groups.js::buildGroups"
+        ],
+        "superclasses": [
+          "vnc_sensory"
+        ]
+      },
+      "body_ids": [
+        821165
+      ],
+      "classes": [
+        "mechanosensory_proprioceptive"
+      ],
+      "direction_or_axis_fields": {
+        "axis": null,
+        "dir": null
+      },
+      "explicit_source_evidence": "The annotation identifies this population as mechanosensory/proprioceptive, kind joint_angle, at the named coxa segment and side.",
+      "joint": "coxa_T1_left",
+      "kind": "joint_angle",
+      "member_count": 1,
+      "modality": "proprioception",
+      "modeling_possibility_not_biological_fact": "One broad population could be driven by a modeled function of several coxa coordinates, but neither that dependency nor its geometry is annotated.",
+      "not_specified": [
+        "which FlyGym coxa axis",
+        "directional tuning",
+        "response range",
+        "velocity sensitivity",
+        "strain/contact sensitivity",
+        "a transformation from three coordinates to neural activity"
+      ],
+      "population_name": "hair plate T1 left",
+      "provenance": {
+        "m5b_1": "malecns_backend/interface_map.json",
+        "mapping": "ANNOTATION_DERIVED"
+      },
+      "source": "malecns_backend/interface_map.json",
+      "subclass_or_types": [
+        "SNpp45"
+      ],
+      "tuning_information": null
+    },
+    {
+      "additional_relevant_fields": {
+        "bodymap_metadata_complete": {
+          "joint": "coxa_T2_left",
+          "kind": "joint_angle",
+          "name": "hair plate T2 left"
+        },
+        "category": "sensors",
+        "instances": [],
+        "neurotransmitters": [
+          "acetylcholine"
+        ],
+        "sides": [
+          "unknown"
+        ],
+        "source_consumers": [
+          "fly-brain-main/src/sim/senses.js::Senses.constructor/bindTypes/update",
+          "fly-brain-main/scripts/prep_bodymap.py::module body-map compiler",
+          "fly-brain-main/src/sim/groups.js::buildGroups"
+        ],
+        "superclasses": [
+          "vnc_sensory"
+        ]
+      },
+      "body_ids": [
+        804460,
+        806080,
+        806226,
+        806918,
+        809024,
+        811747,
+        812090,
+        815449,
+        821047,
+        827735,
+        828976,
+        829377,
+        842203,
+        857165,
+        909393,
+        1050496206,
+        1083604933,
+        1387178136
+      ],
+      "classes": [
+        "mechanosensory_proprioceptive"
+      ],
+      "direction_or_axis_fields": {
+        "axis": null,
+        "dir": null
+      },
+      "explicit_source_evidence": "The annotation identifies this population as mechanosensory/proprioceptive, kind joint_angle, at the named coxa segment and side.",
+      "joint": "coxa_T2_left",
+      "kind": "joint_angle",
+      "member_count": 18,
+      "modality": "proprioception",
+      "modeling_possibility_not_biological_fact": "One broad population could be driven by a modeled function of several coxa coordinates, but neither that dependency nor its geometry is annotated.",
+      "not_specified": [
+        "which FlyGym coxa axis",
+        "directional tuning",
+        "response range",
+        "velocity sensitivity",
+        "strain/contact sensitivity",
+        "a transformation from three coordinates to neural activity"
+      ],
+      "population_name": "hair plate T2 left",
+      "provenance": {
+        "m5b_1": "malecns_backend/interface_map.json",
+        "mapping": "ANNOTATION_DERIVED"
+      },
+      "source": "malecns_backend/interface_map.json",
+      "subclass_or_types": [
+        "SNpp45",
+        "SNpp52"
+      ],
+      "tuning_information": null
+    },
+    {
+      "additional_relevant_fields": {
+        "bodymap_metadata_complete": {
+          "joint": "coxa_T3_left",
+          "kind": "joint_angle",
+          "name": "hair plate T3 left"
+        },
+        "category": "sensors",
+        "instances": [],
+        "neurotransmitters": [
+          "acetylcholine"
+        ],
+        "sides": [
+          "unknown"
+        ],
+        "source_consumers": [
+          "fly-brain-main/src/sim/senses.js::Senses.constructor/bindTypes/update",
+          "fly-brain-main/scripts/prep_bodymap.py::module body-map compiler",
+          "fly-brain-main/src/sim/groups.js::buildGroups"
+        ],
+        "superclasses": [
+          "vnc_sensory"
+        ]
+      },
+      "body_ids": [
+        804317,
+        808380,
+        812908,
+        819326,
+        820056,
+        821064,
+        829860,
+        836247,
+        856036,
+        908831,
+        1074160161,
+        1177500143
+      ],
+      "classes": [
+        "mechanosensory_proprioceptive"
+      ],
+      "direction_or_axis_fields": {
+        "axis": null,
+        "dir": null
+      },
+      "explicit_source_evidence": "The annotation identifies this population as mechanosensory/proprioceptive, kind joint_angle, at the named coxa segment and side.",
+      "joint": "coxa_T3_left",
+      "kind": "joint_angle",
+      "member_count": 12,
+      "modality": "proprioception",
+      "modeling_possibility_not_biological_fact": "One broad population could be driven by a modeled function of several coxa coordinates, but neither that dependency nor its geometry is annotated.",
+      "not_specified": [
+        "which FlyGym coxa axis",
+        "directional tuning",
+        "response range",
+        "velocity sensitivity",
+        "strain/contact sensitivity",
+        "a transformation from three coordinates to neural activity"
+      ],
+      "population_name": "hair plate T3 left",
+      "provenance": {
+        "m5b_1": "malecns_backend/interface_map.json",
+        "mapping": "ANNOTATION_DERIVED"
+      },
+      "source": "malecns_backend/interface_map.json",
+      "subclass_or_types": [
+        "SNpp45",
+        "SNpp52"
+      ],
+      "tuning_information": null
+    },
+    {
+      "additional_relevant_fields": {
+        "bodymap_metadata_complete": {
+          "joint": "coxa_T2_right",
+          "kind": "joint_angle",
+          "name": "hair plate T2 right"
+        },
+        "category": "sensors",
+        "instances": [],
+        "neurotransmitters": [
+          "acetylcholine"
+        ],
+        "sides": [
+          "unknown"
+        ],
+        "source_consumers": [
+          "fly-brain-main/src/sim/senses.js::Senses.constructor/bindTypes/update",
+          "fly-brain-main/scripts/prep_bodymap.py::module body-map compiler",
+          "fly-brain-main/src/sim/groups.js::buildGroups"
+        ],
+        "superclasses": [
+          "vnc_sensory"
+        ]
+      },
+      "body_ids": [
+        804352,
+        806962,
+        807933,
+        808641,
+        810052,
+        811145,
+        812847,
+        814188,
+        817320,
+        818516,
+        820418,
+        828689,
+        860479,
+        875125,
+        1471062202
+      ],
+      "classes": [
+        "mechanosensory_proprioceptive"
+      ],
+      "direction_or_axis_fields": {
+        "axis": null,
+        "dir": null
+      },
+      "explicit_source_evidence": "The annotation identifies this population as mechanosensory/proprioceptive, kind joint_angle, at the named coxa segment and side.",
+      "joint": "coxa_T2_right",
+      "kind": "joint_angle",
+      "member_count": 15,
+      "modality": "proprioception",
+      "modeling_possibility_not_biological_fact": "One broad population could be driven by a modeled function of several coxa coordinates, but neither that dependency nor its geometry is annotated.",
+      "not_specified": [
+        "which FlyGym coxa axis",
+        "directional tuning",
+        "response range",
+        "velocity sensitivity",
+        "strain/contact sensitivity",
+        "a transformation from three coordinates to neural activity"
+      ],
+      "population_name": "hair plate T2 right",
+      "provenance": {
+        "m5b_1": "malecns_backend/interface_map.json",
+        "mapping": "ANNOTATION_DERIVED"
+      },
+      "source": "malecns_backend/interface_map.json",
+      "subclass_or_types": [
+        "SNpp45",
+        "SNpp52"
+      ],
+      "tuning_information": null
+    },
+    {
+      "additional_relevant_fields": {
+        "bodymap_metadata_complete": {
+          "joint": "coxa_T3_right",
+          "kind": "joint_angle",
+          "name": "hair plate T3 right"
+        },
+        "category": "sensors",
+        "instances": [],
+        "neurotransmitters": [
+          "acetylcholine"
+        ],
+        "sides": [
+          "unknown"
+        ],
+        "source_consumers": [
+          "fly-brain-main/src/sim/senses.js::Senses.constructor/bindTypes/update",
+          "fly-brain-main/scripts/prep_bodymap.py::module body-map compiler",
+          "fly-brain-main/src/sim/groups.js::buildGroups"
+        ],
+        "superclasses": [
+          "vnc_sensory"
+        ]
+      },
+      "body_ids": [
+        806572,
+        809505,
+        810973,
+        813983,
+        814980,
+        816134,
+        818438,
+        824273,
+        830804,
+        833354,
+        908258,
+        908739,
+        1055052133,
+        1071635070
+      ],
+      "classes": [
+        "mechanosensory_proprioceptive"
+      ],
+      "direction_or_axis_fields": {
+        "axis": null,
+        "dir": null
+      },
+      "explicit_source_evidence": "The annotation identifies this population as mechanosensory/proprioceptive, kind joint_angle, at the named coxa segment and side.",
+      "joint": "coxa_T3_right",
+      "kind": "joint_angle",
+      "member_count": 14,
+      "modality": "proprioception",
+      "modeling_possibility_not_biological_fact": "One broad population could be driven by a modeled function of several coxa coordinates, but neither that dependency nor its geometry is annotated.",
+      "not_specified": [
+        "which FlyGym coxa axis",
+        "directional tuning",
+        "response range",
+        "velocity sensitivity",
+        "strain/contact sensitivity",
+        "a transformation from three coordinates to neural activity"
+      ],
+      "population_name": "hair plate T3 right",
+      "provenance": {
+        "m5b_1": "malecns_backend/interface_map.json",
+        "mapping": "ANNOTATION_DERIVED"
+      },
+      "source": "malecns_backend/interface_map.json",
+      "subclass_or_types": [
+        "SNpp45",
+        "SNpp52"
+      ],
+      "tuning_information": null
+    }
+  ]
+}
