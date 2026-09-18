@@ -8,6 +8,7 @@ It never resets or steps a simulation and contains no command path.
 from __future__ import annotations
 
 from collections import Counter
+import hashlib
 import importlib
 import json
 from pathlib import Path
@@ -19,6 +20,22 @@ HERE = Path(__file__).resolve().parent
 DEFAULT_OUTPUT = HERE / "interface_output" / "full_leg_interface_audit.json"
 CONFIDENCE = tuple(ALLOWED_STATUS)
 LEG_ORDER = ("LF", "LM", "LH", "RF", "RM", "RH")
+TIBIA_BASELINE = {
+    "LF": (5, "EXACT", "SUPPORTED", ("chordotonal T1 left",), ("Acc. ti flexor MN T1 left", "Ti extensor MN T1 left", "Ti flexor MN T1 left")),
+    "LM": (12, "EXACT", "EXACT", ("chordotonal T2 left",), ("Ti extensor MN T2 left", "Ti flexor MN T2 left")),
+    "LH": (19, "EXACT", "SUPPORTED", ("chordotonal T3 left",), ("Acc. ti flexor MN T3 left", "Ti extensor MN T3 left", "Ti flexor MN T3 left")),
+    "RF": (26, "EXACT", "SUPPORTED", ("chordotonal T1 right",), ("Acc. ti flexor MN T1 right", "Ti extensor MN T1 right", "Ti flexor MN T1 right")),
+    "RM": (33, "EXACT", "SUPPORTED", ("chordotonal T2 right",), ("Acc. ti flexor MN T2 right", "Ti extensor MN T2 right", "Ti flexor MN T2 right")),
+    "RH": (40, "EXACT", "SUPPORTED", ("chordotonal T3 right",), ("Acc. ti flexor MN T3 right", "Ti extensor MN T3 right", "Ti flexor MN T3 right")),
+}
+TIBIA_ASSOCIATION_DIGESTS = {
+    "LF": "a9a71ca013ac4832f1ae72695e97afc1fe49eb8e1145b7e9d2d003a4f6f54789",
+    "LM": "838abe4c022c6082c18e0c54e6f6a63c41434c28af01ffda5c66d0003e99a14d",
+    "LH": "09a6a65a8e82e86b9ef5e3ffbf6aeab027a0362bb7eee27e0b794c1dc4bfdf0d",
+    "RF": "afd5b05afb3c535185f58dd4546a67ed708e53b6d96eb97eaae7cc86985d6f37",
+    "RM": "f62f26c58c74b3c3f90abb17347c963acc3dc665aea66d7585cb06d02009f09c",
+    "RH": "fcc41d1c5daedb742ad752fb041fdbc33bda18037a6cf7d7edd053464a2c5c48",
+}
 
 
 def _ordered_population(population: dict[str, Any]) -> dict[str, Any]:
@@ -287,8 +304,8 @@ def build_audit(live_actuators: list[dict[str, Any]] | None = None) -> dict[str,
             or live["name"] != source["name"]
             for source in physical
         )
+        _print_order_comparison(physical, live_actuators)
         if order_disagrees:
-            _print_order_comparison(physical, live_actuators)
             raise ValueError("live FlyGym actuator order disagrees with authoritative M4A inventory")
 
     joints = {j["actuator"]["action_index"]: j for leg in m4a["legs"] for j in leg["joints"]}
@@ -321,20 +338,41 @@ def build_audit(live_actuators: list[dict[str, Any]] | None = None) -> dict[str,
     for leg in LEG_ORDER:
         current = next(r for r in records if r["leg"] == leg and r["segment_or_joint"] == "tibia")
         source = next(j for l in m4a["legs"] if l["leg"] == leg for j in l["joints"] if j["actuator"]["anatomical_joint"] == "tibia")
+        sensory_names = tuple(p["population_name"] for p in current["sensory_candidates"])
+        motor_names = tuple(p["population_name"] for p in current["motor_candidates"])
+        biological_projection = {
+            key: {"status": source[key]["status"],
+                  "populations": [{"name": p["name"], "body_ids": p["body_ids"]}
+                                  for p in source[key]["populations"]]}
+            for key in ("sensory", "motor")
+        }
+        association_digest = hashlib.sha256(json.dumps(
+            biological_projection, sort_keys=True, separators=(",", ":")
+        ).encode("utf-8")).hexdigest()
         passed = (current["actuator_name"] == source["actuator"]["name"]
                   and current["actuator_index"] == source["actuator"]["action_index"]
-                  and [p["population_name"] for p in current["sensory_candidates"]] == sorted(p["name"] for p in source["sensory"]["populations"])
-                  and [p["population_name"] for p in current["motor_candidates"]] == sorted(p["name"] for p in source["motor"]["populations"])
+                  and sensory_names == tuple(sorted(p["name"] for p in source["sensory"]["populations"]))
+                  and motor_names == tuple(sorted(p["name"] for p in source["motor"]["populations"]))
                   and current["sensory_confidence"] == source["sensory"]["status"]
-                  and current["motor_confidence"] == source["motor"]["status"])
-        regression.append({"leg": leg, "actuator": current["actuator_name"], "passed": passed})
+                  and current["motor_confidence"] == source["motor"]["status"]
+                  and (current["actuator_index"], current["sensory_confidence"],
+                       current["motor_confidence"], sensory_names, motor_names)
+                  == TIBIA_BASELINE[leg]
+                  and association_digest == TIBIA_ASSOCIATION_DIGESTS[leg])
+        regression.append({"leg": leg, "actuator": current["actuator_name"],
+                           "action_index": current["actuator_index"],
+                           "sensory_populations": list(sensory_names),
+                           "motor_populations": list(motor_names),
+                           "biological_association_sha256": association_digest,
+                           "sensory_confidence": current["sensory_confidence"],
+                           "motor_confidence": current["motor_confidence"], "passed": passed})
     if not all(item["passed"] for item in regression):
         raise ValueError("M5A disagrees with an established six-tibia interface")
 
     unresolved = sorted((_ordered_population(p) for p in m4a["population_inventory"]["unmapped_motor"]), key=lambda p: (p["population_name"], p["body_ids"]))
     counts = Counter(record["activation_tier"] for record in records)
     return {
-        "schema": "flybrain.full_leg_interface_audit", "version": "5A.1",
+        "schema": "flybrain.full_leg_interface_audit", "version": "5A.2",
         "purpose": "Read-only interface evidence inventory; not a controller.",
         "actuator_records": records,
         "unassociated_unmapped_motor_evidence": unresolved,

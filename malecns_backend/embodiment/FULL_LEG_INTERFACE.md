@@ -35,10 +35,22 @@ names/order fails. The live command also prints the seven discovered physical
 joint names for each leg.
 
 The 42 position-control dimensions are six legs times seven distinct physical
-hinge DOFs in FlyGym's public order: `Coxa`, `Coxa_yaw`, `Coxa_roll`, `Femur`,
+hinge DOFs in FlyGym's public order: `Coxa`, `Coxa_roll`, `Coxa_yaw`, `Femur`,
 `Femur_roll`, `Tibia`, and `Tarsus1`. In particular, `joint_LFCoxa` is the
 first LF coxa hinge; it is not a group containing the separately actuated
 `joint_LFCoxa_yaw` and `joint_LFCoxa_roll` hinges.
+
+## M4A action-order correction
+
+The original M4A physical inventory used a manually declared DOF order. M5A
+live introspection on the authoritative Windows FlyGym/MuJoCo runtime found 12
+mismatches: every leg had `Coxa_yaw` and `Coxa_roll` exchanged. The other 30
+action dimensions matched, including all six tibias at LF 5, LM 12, LH 19, RF
+26, RM 33, and RH 40. The compiled actuator/transmitted-joint metadata
+independently agreed with `fly.actuated_joints`, so M4A now follows that live
+contract. This is an inventory/mapping correction made before expanding
+actuator activation, not a change to MaleCNS neural dynamics or the existing
+six-tibia scientific outputs.
 
 ## Evidence tiers and eligibility
 
@@ -55,7 +67,11 @@ inventory flag, not activation and not a biological confidence score.
 M4B loads its six tibia definitions from the committed M4A map. M5A requires
 the regenerated M4A serialization to equal that committed source, then checks
 LF, LM, LH, RF, RM, and RH tibia actuator identity, index, candidate names, and
-confidence. A discrepancy raises an error instead of emitting an audit.
+confidence against an explicit preserved baseline. A discrepancy raises an
+error instead of emitting an audit. Regeneration leaves the aggregate at tier
+1: 1, tier 2: 5, tier 3: 15, tier 4: 21, with 6 activation-eligible joints;
+the counts do not change because biological evidence remains attached to the
+named joint while only the two physical coxa action indices move.
 
 ## Commands
 

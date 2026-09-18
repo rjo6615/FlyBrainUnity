@@ -42,6 +42,12 @@ class FullLegInterfaceTests(unittest.TestCase):
             if {sensor, motor} & {"MISSING", "UNMAPPED"}:
                 self.assertFalse(record["activation_eligible"])
 
+        self.assertEqual(self.audit["summary"], {
+            "total_actuators": 42, "tier_1": 1, "tier_2": 5,
+            "tier_3": 15, "tier_4": 21, "activation_eligible": 6,
+            "sensory_mapped": 6, "motor_mapped": 38, "both_mapped": 6,
+        })
+
     def test_body_ids_are_sorted_unique_and_serialization_is_deterministic(self):
         first = interface.serialized_audit(self.audit)
         self.assertEqual(first, interface.serialized_audit(interface.build_audit()))
@@ -55,6 +61,16 @@ class FullLegInterfaceTests(unittest.TestCase):
         self.assertTrue(regression["passed"])
         self.assertEqual([item["leg"] for item in regression["interfaces"]], list(interface.LEG_ORDER))
         self.assertTrue(all(item["passed"] for item in regression["interfaces"]))
+        self.assertEqual({item["leg"]: item["action_index"]
+                          for item in regression["interfaces"]},
+                         {"LF": 5, "LM": 12, "LH": 19,
+                          "RF": 26, "RM": 33, "RH": 40})
+        for item in regression["interfaces"]:
+            expected = interface.TIBIA_BASELINE[item["leg"]]
+            actual = (item["action_index"], item["sensory_confidence"],
+                      item["motor_confidence"], tuple(item["sensory_populations"]),
+                      tuple(item["motor_populations"]))
+            self.assertEqual(actual, expected)
 
     def test_read_only_and_no_controller_logic(self):
         self.assertEqual(self.audit["non_intervention"], {
@@ -158,7 +174,7 @@ class FullLegInterfaceTests(unittest.TestCase):
                 interface.enumerate_live_actuators()
 
     def test_namespaced_coxa_axes_use_flygym_ordered_actuator_contract(self):
-        logical = ("joint_LFCoxa", "joint_LFCoxa_yaw", "joint_LFCoxa_roll")
+        logical = ("joint_LFCoxa", "joint_LFCoxa_roll", "joint_LFCoxa_yaw")
         compiled_joints = tuple(f"fly/{name}" for name in logical)
         compiled_actuators = tuple(f"fly/actuator_position_{name}" for name in logical)
 
@@ -319,22 +335,31 @@ class FullLegInterfaceTests(unittest.TestCase):
                      "joint_id": record["actuator_index"] + 1,
                      "joint_name": f"fly/{record['actuator_name']}",
                  }} for record in self.records]
-        live[0]["name"], live[1]["name"] = live[1]["name"], live[0]["name"]
+        for offset in range(0, 42, 7):
+            live[offset + 1]["name"], live[offset + 2]["name"] = (
+                live[offset + 2]["name"], live[offset + 1]["name"])
         output = io.StringIO()
         with patch("sys.stdout", output), self.assertRaisesRegex(ValueError, "order disagrees"):
             interface.build_audit(live)
 
         diagnostic = output.getvalue()
         self.assertIn("M4A IDX | M4A NAME | LIVE IDX | LIVE LOGICAL NAME", diagnostic)
-        self.assertIn("0 | joint_LFCoxa | 0 | joint_LFCoxa_yaw | source-0 | fly/source-0 | "
-                      "0/fly/actuator-0 | 1/fly/joint_LFCoxa | MISMATCH", diagnostic)
-        self.assertIn("2 | joint_LFCoxa_roll | 2 | joint_LFCoxa_roll | source-2 | "
-                      "fly/source-2 | 2/fly/actuator-2 | 3/fly/joint_LFCoxa_roll | MATCH",
-                      diagnostic)
+        self.assertIn("1 | joint_LFCoxa_roll | 1 | joint_LFCoxa_yaw", diagnostic)
+        self.assertIn("2 | joint_LFCoxa_yaw | 2 | joint_LFCoxa_roll", diagnostic)
         self.assertEqual(sum(line.endswith(("MATCH", "MISMATCH"))
                              for line in diagnostic.splitlines()), 42)
-        self.assertIn("TOTAL: 42\nMATCHES: 40\nMISMATCHES: 2\n"
-                      "MISMATCH INDICES:\n[0, 1]\n", diagnostic)
+        self.assertIn("TOTAL: 42\nMATCHES: 30\nMISMATCHES: 12\n"
+                      "MISMATCH INDICES:\n[1, 2, 8, 9, 15, 16, 22, 23, 29, 30, 36, 37]\n",
+                      diagnostic)
+
+    def test_corrected_live_order_reports_all_42_matches(self):
+        live = [{"index": record["actuator_index"], "name": record["actuator_name"],
+                 "mujoco_metadata": record["mujoco_metadata"]} for record in self.records]
+        output = io.StringIO()
+        with patch("sys.stdout", output):
+            interface.build_audit(live)
+        self.assertIn("TOTAL: 42\nMATCHES: 42\nMISMATCHES: 0\n"
+                      "MISMATCH INDICES:\n[]\n", output.getvalue())
 
 
 if __name__ == "__main__":
