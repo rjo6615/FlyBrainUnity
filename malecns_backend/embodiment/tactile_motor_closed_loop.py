@@ -8,7 +8,7 @@ from typing import Any, Mapping, Sequence
 
 from .tactile_motor_matched_control import (MatchedControlPipeline, atomic_write,
     decode_raw, serialize, _first_difference, FIELDS)
-from .tactile_motor_loop import ACTUATOR_INDICES, NEURAL_DT_MS
+from .tactile_motor_loop import ACTUATOR_INDICES, NEURAL_DT_MS, _canonical_bytes
 from .tactile_targeted_contact_calibration import DEFAULT_TIMESTEP_S
 from .six_tibia import LEG_ORDER
 
@@ -30,7 +30,11 @@ def _event() -> dict[str, Any]:
 
 def verify_m5d4c_lock() -> dict[str, Any]:
     observed = {"artifact_sha256": hashlib.sha256(M5D4C_ARTIFACT.read_bytes()).hexdigest(),
-        "implementation_sha256": hashlib.sha256(M5D4C_IMPLEMENTATION.read_bytes()).hexdigest()}
+        # Source locks elsewhere in the M5D provenance chain use canonical LF
+        # bytes.  Keep this source lock fail-closed without making it depend on
+        # Git's platform-specific checkout line endings.
+        "implementation_sha256": hashlib.sha256(
+            _canonical_bytes(M5D4C_IMPLEMENTATION.read_bytes())).hexdigest()}
     if observed != M5D4C_LOCKS:
         raise RuntimeError(f"M5D-4C provenance mismatch: {observed!r}")
     document = json.loads(M5D4C_ARTIFACT.read_text(encoding="utf-8"))
