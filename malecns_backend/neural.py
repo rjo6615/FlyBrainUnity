@@ -133,6 +133,10 @@ class MaleCNSBrain:
         self._last_external_candidates = np.empty(0, np.int32)
         self._last_external_delivered = np.empty(0, np.int32)
         self._withheld_external_refractory = np.zeros(self.n, np.float32)
+        # Engineering intervention: neurons still integrate and spike, but
+        # their newly generated events are not placed on the delivery ring.
+        self.transmission_withheld_indices = np.empty(0, np.intp)
+        self._last_transmission_withheld = np.empty(0, np.int32)
 
     def set_external_drive(self, indices, rates_or_drive): self.external_drive[np.asarray(indices, dtype=np.intp)] = rates_or_drive
     def clear_external_drive(self): self.external_drive.fill(0)
@@ -185,7 +189,15 @@ class MaleCNSBrain:
         self.g_exc *= np.float32(math.exp(-p.dt/p.tau_syn)); self.g_inh *= np.float32(math.exp(-p.dt/p.tau_syn))
         self.activity_trace *= np.float32(math.exp(-p.dt/p.trace_tau)); self.adaptation *= np.float32(math.exp(-p.dt/p.adaptation_tau))
         self.depression_resource += (1-self.depression_resource) * np.float32(p.dt/p.depression_tau)
-        slot = (self._head + len(self._ring)-1) % len(self._ring); self._ring[slot] = fired.tolist(); self._head = (self._head+1) % len(self._ring)
+        withheld_transmission = np.asarray(self.transmission_withheld_indices, dtype=np.intp)
+        if len(withheld_transmission):
+            suppress = np.isin(fired, withheld_transmission, assume_unique=False)
+            propagated = fired[~suppress]
+            self._last_transmission_withheld = fired[suppress].copy()
+        else:
+            propagated = fired
+            self._last_transmission_withheld = np.empty(0, np.int32)
+        slot = (self._head + len(self._ring)-1) % len(self._ring); self._ring[slot] = propagated.tolist(); self._head = (self._head+1) % len(self._ring)
         self.time_ms += p.dt; self._last_spikes = fired
         if self.diagnostic_observer is not None:
             self.diagnostic_observer.after_step(self, fired)
