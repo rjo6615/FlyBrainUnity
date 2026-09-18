@@ -8,6 +8,14 @@ action. No equation, gain, timing parameter, joint limit, seed, pose, M3D causal
 implementation, or Unity asset was changed. The committed JSON is generated
 only from the audited `interface_map.json` plus an explicit physical inventory.
 
+The physical inventory now uses FlyGym's empirically verified per-leg order:
+`Coxa`, `Coxa_roll`, `Coxa_yaw`, `Femur`, `Femur_roll`, `Tibia`, `Tarsus1`.
+The earlier manual declaration exchanged the two secondary coxa axes. Windows
+live introspection reported 12 such mismatches and 30 matches; compiled
+actuator/transmitted-joint metadata agreed with the logical order. All tibia
+indices (5, 12, 19, 26, 33, 40) already matched. This correction changes only
+physical inventory indices, not annotation-backed biology or neural dynamics.
+
 ## Sources and method
 
 * **Primary biology:** `malecns_backend/interface_map.json`, including all 170
@@ -32,7 +40,7 @@ Each cell is `sensory / motor`. `EXACT` means the source explicitly identifies
 the required anatomy. `SUPPORTED` records a documented body-model
 interpretation. Ambiguity was never promoted by symmetry.
 
-| Leg | Coxa | Coxa yaw | Coxa roll | Femur | Femur roll | Tibia | Tarsus1 |
+| Leg | Coxa | Coxa roll | Coxa yaw | Femur | Femur roll | Tibia | Tarsus1 |
 |---|---|---|---|---|---|---|---|
 | LF (T1 left) | AMBIGUOUS / SUPPORTED | AMBIGUOUS / SUPPORTED | AMBIGUOUS / SUPPORTED | MISSING / SUPPORTED | MISSING / SUPPORTED | EXACT / SUPPORTED | MISSING / SUPPORTED |
 | LM (T2 left) | AMBIGUOUS / SUPPORTED | AMBIGUOUS / SUPPORTED | AMBIGUOUS / SUPPORTED | MISSING / SUPPORTED | MISSING / SUPPORTED | **EXACT / EXACT** | MISSING / MISSING |

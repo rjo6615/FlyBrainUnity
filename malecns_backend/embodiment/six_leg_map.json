@@ -17,12 +17,12 @@
     },
     {
       "action_index": 1,
-      "anatomical_joint": "coxa_twist",
+      "anatomical_joint": "coxa_abduct",
       "leg": "LF",
-      "name": "joint_LFCoxa_yaw",
+      "name": "joint_LFCoxa_roll",
       "position_range_rad": [
-        -0.8,
-        0.8
+        -1.0,
+        0.7
       ],
       "provenance": "PHYSICS_MEASURED",
       "range_note": "Exact inherited MJCF joint/control range for this segment class.",
@@ -32,12 +32,12 @@
     },
     {
       "action_index": 2,
-      "anatomical_joint": "coxa_abduct",
+      "anatomical_joint": "coxa_twist",
       "leg": "LF",
-      "name": "joint_LFCoxa_roll",
+      "name": "joint_LFCoxa_yaw",
       "position_range_rad": [
-        -1.0,
-        0.7
+        -0.8,
+        0.8
       ],
       "provenance": "PHYSICS_MEASURED",
       "range_note": "Exact inherited MJCF joint/control range for this segment class.",
@@ -122,12 +122,12 @@
     },
     {
       "action_index": 8,
-      "anatomical_joint": "coxa_twist",
+      "anatomical_joint": "coxa_abduct",
       "leg": "LM",
-      "name": "joint_LMCoxa_yaw",
+      "name": "joint_LMCoxa_roll",
       "position_range_rad": [
-        -0.75,
-        0.8
+        -0.5,
+        0.3
       ],
       "provenance": "PHYSICS_MEASURED",
       "range_note": "Exact inherited MJCF joint/control range for this segment class.",
@@ -137,12 +137,12 @@
     },
     {
       "action_index": 9,
-      "anatomical_joint": "coxa_abduct",
+      "anatomical_joint": "coxa_twist",
       "leg": "LM",
-      "name": "joint_LMCoxa_roll",
+      "name": "joint_LMCoxa_yaw",
       "position_range_rad": [
-        -0.5,
-        0.3
+        -0.75,
+        0.8
       ],
       "provenance": "PHYSICS_MEASURED",
       "range_note": "Exact inherited MJCF joint/control range for this segment class.",
@@ -227,12 +227,12 @@
     },
     {
       "action_index": 15,
-      "anatomical_joint": "coxa_twist",
+      "anatomical_joint": "coxa_abduct",
       "leg": "LH",
-      "name": "joint_LHCoxa_yaw",
+      "name": "joint_LHCoxa_roll",
       "position_range_rad": [
-        -0.15,
-        0.8
+        -0.9,
+        0.25
       ],
       "provenance": "PHYSICS_MEASURED",
       "range_note": "Exact inherited MJCF joint/control range for this segment class.",
@@ -242,12 +242,12 @@
     },
     {
       "action_index": 16,
-      "anatomical_joint": "coxa_abduct",
+      "anatomical_joint": "coxa_twist",
       "leg": "LH",
-      "name": "joint_LHCoxa_roll",
+      "name": "joint_LHCoxa_yaw",
       "position_range_rad": [
-        -0.9,
-        0.25
+        -0.15,
+        0.8
       ],
       "provenance": "PHYSICS_MEASURED",
       "range_note": "Exact inherited MJCF joint/control range for this segment class.",
@@ -332,12 +332,12 @@
     },
     {
       "action_index": 22,
-      "anatomical_joint": "coxa_twist",
+      "anatomical_joint": "coxa_abduct",
       "leg": "RF",
-      "name": "joint_RFCoxa_yaw",
+      "name": "joint_RFCoxa_roll",
       "position_range_rad": [
-        -0.8,
-        0.8
+        -1.0,
+        0.7
       ],
       "provenance": "PHYSICS_MEASURED",
       "range_note": "Exact inherited MJCF joint/control range for this segment class.",
@@ -347,12 +347,12 @@
     },
     {
       "action_index": 23,
-      "anatomical_joint": "coxa_abduct",
+      "anatomical_joint": "coxa_twist",
       "leg": "RF",
-      "name": "joint_RFCoxa_roll",
+      "name": "joint_RFCoxa_yaw",
       "position_range_rad": [
-        -1.0,
-        0.7
+        -0.8,
+        0.8
       ],
       "provenance": "PHYSICS_MEASURED",
       "range_note": "Exact inherited MJCF joint/control range for this segment class.",
@@ -437,12 +437,12 @@
     },
     {
       "action_index": 29,
-      "anatomical_joint": "coxa_twist",
+      "anatomical_joint": "coxa_abduct",
       "leg": "RM",
-      "name": "joint_RMCoxa_yaw",
+      "name": "joint_RMCoxa_roll",
       "position_range_rad": [
-        -0.75,
-        0.8
+        -0.5,
+        0.3
       ],
       "provenance": "PHYSICS_MEASURED",
       "range_note": "Exact inherited MJCF joint/control range for this segment class.",
@@ -452,12 +452,12 @@
     },
     {
       "action_index": 30,
-      "anatomical_joint": "coxa_abduct",
+      "anatomical_joint": "coxa_twist",
       "leg": "RM",
-      "name": "joint_RMCoxa_roll",
+      "name": "joint_RMCoxa_yaw",
       "position_range_rad": [
-        -0.5,
-        0.3
+        -0.75,
+        0.8
       ],
       "provenance": "PHYSICS_MEASURED",
       "range_note": "Exact inherited MJCF joint/control range for this segment class.",
@@ -542,12 +542,12 @@
     },
     {
       "action_index": 36,
-      "anatomical_joint": "coxa_twist",
+      "anatomical_joint": "coxa_abduct",
       "leg": "RH",
-      "name": "joint_RHCoxa_yaw",
+      "name": "joint_RHCoxa_roll",
       "position_range_rad": [
-        -0.15,
-        0.8
+        -0.9,
+        0.25
       ],
       "provenance": "PHYSICS_MEASURED",
       "range_note": "Exact inherited MJCF joint/control range for this segment class.",
@@ -557,12 +557,12 @@
     },
     {
       "action_index": 37,
-      "anatomical_joint": "coxa_abduct",
+      "anatomical_joint": "coxa_twist",
       "leg": "RH",
-      "name": "joint_RHCoxa_roll",
+      "name": "joint_RHCoxa_yaw",
       "position_range_rad": [
-        -0.9,
-        0.25
+        -0.15,
+        0.8
       ],
       "provenance": "PHYSICS_MEASURED",
       "range_note": "Exact inherited MJCF joint/control range for this segment class.",
@@ -762,6 +762,116 @@
         {
           "actuator": {
             "action_index": 1,
+            "anatomical_joint": "coxa_abduct",
+            "leg": "LF",
+            "name": "joint_LFCoxa_roll",
+            "position_range_rad": [
+              -1.0,
+              0.7
+            ],
+            "provenance": "PHYSICS_MEASURED",
+            "range_note": "Exact inherited MJCF joint/control range for this segment class.",
+            "segment": "T1",
+            "side": "left",
+            "source": "FlyGym NeuroMechFly 42-DOF order; fly-brain-main/body/flybody/fruitfly.xml joint classes"
+          },
+          "motor": {
+            "populations": [
+              {
+                "biological_type": "motor neuron",
+                "body_ids": [
+                  802509,
+                  803803
+                ],
+                "category": "muscles",
+                "direction": -1,
+                "evidence": {
+                  "bodymap_metadata": {
+                    "actuator": "coxa_abduct_T1_left",
+                    "dir": -1,
+                    "name": "Pleural remotor/abductor MN T1 left"
+                  },
+                  "types": [
+                    "Pleural remotor/abductor MN"
+                  ]
+                },
+                "function": "Pleural remotor/abductor MN T1 left",
+                "member_count": 2,
+                "name": "Pleural remotor/abductor MN T1 left",
+                "provenance": "ANNOTATION_DERIVED",
+                "resolved_neuron_count": 2,
+                "segment": "T1",
+                "side": "left",
+                "source_artifact": "malecns_backend/interface_map.json"
+              },
+              {
+                "biological_type": "motor neuron",
+                "body_ids": [
+                  813480
+                ],
+                "category": "muscles",
+                "direction": 1,
+                "evidence": {
+                  "bodymap_metadata": {
+                    "actuator": "coxa_abduct_T1_left",
+                    "dir": 1,
+                    "name": "Sternal adductor MN T1 left"
+                  },
+                  "types": [
+                    "Sternal adductor MN"
+                  ]
+                },
+                "function": "Sternal adductor MN T1 left",
+                "member_count": 1,
+                "name": "Sternal adductor MN T1 left",
+                "provenance": "ANNOTATION_DERIVED",
+                "resolved_neuron_count": 1,
+                "segment": "T1",
+                "side": "left",
+                "source_artifact": "malecns_backend/interface_map.json"
+              }
+            ],
+            "provenance": "ANNOTATION_DERIVED",
+            "reason": "Bodymap gives side, segment, actuator and signed biological action; correspondence to FlyGym axis is an anatomical interpretation.",
+            "status": "SUPPORTED"
+          },
+          "sensory": {
+            "populations": [
+              {
+                "biological_type": "joint_angle",
+                "body_ids": [
+                  821165
+                ],
+                "category": "sensors",
+                "direction": null,
+                "evidence": {
+                  "bodymap_metadata": {
+                    "joint": "coxa_T1_left",
+                    "kind": "joint_angle",
+                    "name": "hair plate T1 left"
+                  },
+                  "types": [
+                    "SNpp45"
+                  ]
+                },
+                "function": "hair plate T1 left",
+                "member_count": 1,
+                "name": "hair plate T1 left",
+                "provenance": "ANNOTATION_DERIVED",
+                "resolved_neuron_count": 1,
+                "segment": "T1",
+                "side": "left",
+                "source_artifact": "malecns_backend/interface_map.json"
+              }
+            ],
+            "provenance": "ANNOTATION_DERIVED",
+            "reason": "Hair-plate annotation names coxa angle but does not distinguish the three FlyGym coxa axes.",
+            "status": "AMBIGUOUS"
+          }
+        },
+        {
+          "actuator": {
+            "action_index": 2,
             "anatomical_joint": "coxa_twist",
             "leg": "LF",
             "name": "joint_LFCoxa_yaw",
@@ -829,116 +939,6 @@
                 "name": "Sternal posterior rotator MN T1 left",
                 "provenance": "ANNOTATION_DERIVED",
                 "resolved_neuron_count": 4,
-                "segment": "T1",
-                "side": "left",
-                "source_artifact": "malecns_backend/interface_map.json"
-              }
-            ],
-            "provenance": "ANNOTATION_DERIVED",
-            "reason": "Bodymap gives side, segment, actuator and signed biological action; correspondence to FlyGym axis is an anatomical interpretation.",
-            "status": "SUPPORTED"
-          },
-          "sensory": {
-            "populations": [
-              {
-                "biological_type": "joint_angle",
-                "body_ids": [
-                  821165
-                ],
-                "category": "sensors",
-                "direction": null,
-                "evidence": {
-                  "bodymap_metadata": {
-                    "joint": "coxa_T1_left",
-                    "kind": "joint_angle",
-                    "name": "hair plate T1 left"
-                  },
-                  "types": [
-                    "SNpp45"
-                  ]
-                },
-                "function": "hair plate T1 left",
-                "member_count": 1,
-                "name": "hair plate T1 left",
-                "provenance": "ANNOTATION_DERIVED",
-                "resolved_neuron_count": 1,
-                "segment": "T1",
-                "side": "left",
-                "source_artifact": "malecns_backend/interface_map.json"
-              }
-            ],
-            "provenance": "ANNOTATION_DERIVED",
-            "reason": "Hair-plate annotation names coxa angle but does not distinguish the three FlyGym coxa axes.",
-            "status": "AMBIGUOUS"
-          }
-        },
-        {
-          "actuator": {
-            "action_index": 2,
-            "anatomical_joint": "coxa_abduct",
-            "leg": "LF",
-            "name": "joint_LFCoxa_roll",
-            "position_range_rad": [
-              -1.0,
-              0.7
-            ],
-            "provenance": "PHYSICS_MEASURED",
-            "range_note": "Exact inherited MJCF joint/control range for this segment class.",
-            "segment": "T1",
-            "side": "left",
-            "source": "FlyGym NeuroMechFly 42-DOF order; fly-brain-main/body/flybody/fruitfly.xml joint classes"
-          },
-          "motor": {
-            "populations": [
-              {
-                "biological_type": "motor neuron",
-                "body_ids": [
-                  802509,
-                  803803
-                ],
-                "category": "muscles",
-                "direction": -1,
-                "evidence": {
-                  "bodymap_metadata": {
-                    "actuator": "coxa_abduct_T1_left",
-                    "dir": -1,
-                    "name": "Pleural remotor/abductor MN T1 left"
-                  },
-                  "types": [
-                    "Pleural remotor/abductor MN"
-                  ]
-                },
-                "function": "Pleural remotor/abductor MN T1 left",
-                "member_count": 2,
-                "name": "Pleural remotor/abductor MN T1 left",
-                "provenance": "ANNOTATION_DERIVED",
-                "resolved_neuron_count": 2,
-                "segment": "T1",
-                "side": "left",
-                "source_artifact": "malecns_backend/interface_map.json"
-              },
-              {
-                "biological_type": "motor neuron",
-                "body_ids": [
-                  813480
-                ],
-                "category": "muscles",
-                "direction": 1,
-                "evidence": {
-                  "bodymap_metadata": {
-                    "actuator": "coxa_abduct_T1_left",
-                    "dir": 1,
-                    "name": "Sternal adductor MN T1 left"
-                  },
-                  "types": [
-                    "Sternal adductor MN"
-                  ]
-                },
-                "function": "Sternal adductor MN T1 left",
-                "member_count": 1,
-                "name": "Sternal adductor MN T1 left",
-                "provenance": "ANNOTATION_DERIVED",
-                "resolved_neuron_count": 1,
                 "segment": "T1",
                 "side": "left",
                 "source_artifact": "malecns_backend/interface_map.json"
@@ -1597,6 +1597,135 @@
         {
           "actuator": {
             "action_index": 8,
+            "anatomical_joint": "coxa_abduct",
+            "leg": "LM",
+            "name": "joint_LMCoxa_roll",
+            "position_range_rad": [
+              -0.5,
+              0.3
+            ],
+            "provenance": "PHYSICS_MEASURED",
+            "range_note": "Exact inherited MJCF joint/control range for this segment class.",
+            "segment": "T2",
+            "side": "left",
+            "source": "FlyGym NeuroMechFly 42-DOF order; fly-brain-main/body/flybody/fruitfly.xml joint classes"
+          },
+          "motor": {
+            "populations": [
+              {
+                "biological_type": "motor neuron",
+                "body_ids": [
+                  800541,
+                  902492,
+                  905421
+                ],
+                "category": "muscles",
+                "direction": -1,
+                "evidence": {
+                  "bodymap_metadata": {
+                    "actuator": "coxa_abduct_T2_left",
+                    "dir": -1,
+                    "name": "Pleural remotor/abductor MN T2 left"
+                  },
+                  "types": [
+                    "Pleural remotor/abductor MN"
+                  ]
+                },
+                "function": "Pleural remotor/abductor MN T2 left",
+                "member_count": 3,
+                "name": "Pleural remotor/abductor MN T2 left",
+                "provenance": "ANNOTATION_DERIVED",
+                "resolved_neuron_count": 3,
+                "segment": "T2",
+                "side": "left",
+                "source_artifact": "malecns_backend/interface_map.json"
+              },
+              {
+                "biological_type": "motor neuron",
+                "body_ids": [
+                  816018
+                ],
+                "category": "muscles",
+                "direction": 1,
+                "evidence": {
+                  "bodymap_metadata": {
+                    "actuator": "coxa_abduct_T2_left",
+                    "dir": 1,
+                    "name": "Sternal adductor MN T2 left"
+                  },
+                  "types": [
+                    "Sternal adductor MN"
+                  ]
+                },
+                "function": "Sternal adductor MN T2 left",
+                "member_count": 1,
+                "name": "Sternal adductor MN T2 left",
+                "provenance": "ANNOTATION_DERIVED",
+                "resolved_neuron_count": 1,
+                "segment": "T2",
+                "side": "left",
+                "source_artifact": "malecns_backend/interface_map.json"
+              }
+            ],
+            "provenance": "ANNOTATION_DERIVED",
+            "reason": "Bodymap gives side, segment, actuator and signed biological action; correspondence to FlyGym axis is an anatomical interpretation.",
+            "status": "SUPPORTED"
+          },
+          "sensory": {
+            "populations": [
+              {
+                "biological_type": "joint_angle",
+                "body_ids": [
+                  804460,
+                  806080,
+                  806226,
+                  806918,
+                  809024,
+                  811747,
+                  812090,
+                  815449,
+                  821047,
+                  827735,
+                  828976,
+                  829377,
+                  842203,
+                  857165,
+                  909393,
+                  1050496206,
+                  1083604933,
+                  1387178136
+                ],
+                "category": "sensors",
+                "direction": null,
+                "evidence": {
+                  "bodymap_metadata": {
+                    "joint": "coxa_T2_left",
+                    "kind": "joint_angle",
+                    "name": "hair plate T2 left"
+                  },
+                  "types": [
+                    "SNpp45",
+                    "SNpp52"
+                  ]
+                },
+                "function": "hair plate T2 left",
+                "member_count": 18,
+                "name": "hair plate T2 left",
+                "provenance": "ANNOTATION_DERIVED",
+                "resolved_neuron_count": 18,
+                "segment": "T2",
+                "side": "left",
+                "source_artifact": "malecns_backend/interface_map.json"
+              }
+            ],
+            "provenance": "ANNOTATION_DERIVED",
+            "reason": "Hair-plate annotation names coxa angle but does not distinguish the three FlyGym coxa axes.",
+            "status": "AMBIGUOUS"
+          }
+        },
+        {
+          "actuator": {
+            "action_index": 9,
             "anatomical_joint": "coxa_twist",
             "leg": "LM",
             "name": "joint_LMCoxa_yaw",
@@ -1664,135 +1793,6 @@
                 "name": "Sternal posterior rotator MN T2 left",
                 "provenance": "ANNOTATION_DERIVED",
                 "resolved_neuron_count": 4,
-                "segment": "T2",
-                "side": "left",
-                "source_artifact": "malecns_backend/interface_map.json"
-              }
-            ],
-            "provenance": "ANNOTATION_DERIVED",
-            "reason": "Bodymap gives side, segment, actuator and signed biological action; correspondence to FlyGym axis is an anatomical interpretation.",
-            "status": "SUPPORTED"
-          },
-          "sensory": {
-            "populations": [
-              {
-                "biological_type": "joint_angle",
-                "body_ids": [
-                  804460,
-                  806080,
-                  806226,
-                  806918,
-                  809024,
-                  811747,
-                  812090,
-                  815449,
-                  821047,
-                  827735,
-                  828976,
-                  829377,
-                  842203,
-                  857165,
-                  909393,
-                  1050496206,
-                  1083604933,
-                  1387178136
-                ],
-                "category": "sensors",
-                "direction": null,
-                "evidence": {
-                  "bodymap_metadata": {
-                    "joint": "coxa_T2_left",
-                    "kind": "joint_angle",
-                    "name": "hair plate T2 left"
-                  },
-                  "types": [
-                    "SNpp45",
-                    "SNpp52"
-                  ]
-                },
-                "function": "hair plate T2 left",
-                "member_count": 18,
-                "name": "hair plate T2 left",
-                "provenance": "ANNOTATION_DERIVED",
-                "resolved_neuron_count": 18,
-                "segment": "T2",
-                "side": "left",
-                "source_artifact": "malecns_backend/interface_map.json"
-              }
-            ],
-            "provenance": "ANNOTATION_DERIVED",
-            "reason": "Hair-plate annotation names coxa angle but does not distinguish the three FlyGym coxa axes.",
-            "status": "AMBIGUOUS"
-          }
-        },
-        {
-          "actuator": {
-            "action_index": 9,
-            "anatomical_joint": "coxa_abduct",
-            "leg": "LM",
-            "name": "joint_LMCoxa_roll",
-            "position_range_rad": [
-              -0.5,
-              0.3
-            ],
-            "provenance": "PHYSICS_MEASURED",
-            "range_note": "Exact inherited MJCF joint/control range for this segment class.",
-            "segment": "T2",
-            "side": "left",
-            "source": "FlyGym NeuroMechFly 42-DOF order; fly-brain-main/body/flybody/fruitfly.xml joint classes"
-          },
-          "motor": {
-            "populations": [
-              {
-                "biological_type": "motor neuron",
-                "body_ids": [
-                  800541,
-                  902492,
-                  905421
-                ],
-                "category": "muscles",
-                "direction": -1,
-                "evidence": {
-                  "bodymap_metadata": {
-                    "actuator": "coxa_abduct_T2_left",
-                    "dir": -1,
-                    "name": "Pleural remotor/abductor MN T2 left"
-                  },
-                  "types": [
-                    "Pleural remotor/abductor MN"
-                  ]
-                },
-                "function": "Pleural remotor/abductor MN T2 left",
-                "member_count": 3,
-                "name": "Pleural remotor/abductor MN T2 left",
-                "provenance": "ANNOTATION_DERIVED",
-                "resolved_neuron_count": 3,
-                "segment": "T2",
-                "side": "left",
-                "source_artifact": "malecns_backend/interface_map.json"
-              },
-              {
-                "biological_type": "motor neuron",
-                "body_ids": [
-                  816018
-                ],
-                "category": "muscles",
-                "direction": 1,
-                "evidence": {
-                  "bodymap_metadata": {
-                    "actuator": "coxa_abduct_T2_left",
-                    "dir": 1,
-                    "name": "Sternal adductor MN T2 left"
-                  },
-                  "types": [
-                    "Sternal adductor MN"
-                  ]
-                },
-                "function": "Sternal adductor MN T2 left",
-                "member_count": 1,
-                "name": "Sternal adductor MN T2 left",
-                "provenance": "ANNOTATION_DERIVED",
-                "resolved_neuron_count": 1,
                 "segment": "T2",
                 "side": "left",
                 "source_artifact": "malecns_backend/interface_map.json"
@@ -2425,6 +2425,128 @@
         {
           "actuator": {
             "action_index": 15,
+            "anatomical_joint": "coxa_abduct",
+            "leg": "LH",
+            "name": "joint_LHCoxa_roll",
+            "position_range_rad": [
+              -0.9,
+              0.25
+            ],
+            "provenance": "PHYSICS_MEASURED",
+            "range_note": "Exact inherited MJCF joint/control range for this segment class.",
+            "segment": "T3",
+            "side": "left",
+            "source": "FlyGym NeuroMechFly 42-DOF order; fly-brain-main/body/flybody/fruitfly.xml joint classes"
+          },
+          "motor": {
+            "populations": [
+              {
+                "biological_type": "motor neuron",
+                "body_ids": [
+                  800175,
+                  902310
+                ],
+                "category": "muscles",
+                "direction": -1,
+                "evidence": {
+                  "bodymap_metadata": {
+                    "actuator": "coxa_abduct_T3_left",
+                    "dir": -1,
+                    "name": "Pleural remotor/abductor MN T3 left"
+                  },
+                  "types": [
+                    "Pleural remotor/abductor MN"
+                  ]
+                },
+                "function": "Pleural remotor/abductor MN T3 left",
+                "member_count": 2,
+                "name": "Pleural remotor/abductor MN T3 left",
+                "provenance": "ANNOTATION_DERIVED",
+                "resolved_neuron_count": 2,
+                "segment": "T3",
+                "side": "left",
+                "source_artifact": "malecns_backend/interface_map.json"
+              },
+              {
+                "biological_type": "motor neuron",
+                "body_ids": [
+                  904184
+                ],
+                "category": "muscles",
+                "direction": 1,
+                "evidence": {
+                  "bodymap_metadata": {
+                    "actuator": "coxa_abduct_T3_left",
+                    "dir": 1,
+                    "name": "Sternal adductor MN T3 left"
+                  },
+                  "types": [
+                    "Sternal adductor MN"
+                  ]
+                },
+                "function": "Sternal adductor MN T3 left",
+                "member_count": 1,
+                "name": "Sternal adductor MN T3 left",
+                "provenance": "ANNOTATION_DERIVED",
+                "resolved_neuron_count": 1,
+                "segment": "T3",
+                "side": "left",
+                "source_artifact": "malecns_backend/interface_map.json"
+              }
+            ],
+            "provenance": "ANNOTATION_DERIVED",
+            "reason": "Bodymap gives side, segment, actuator and signed biological action; correspondence to FlyGym axis is an anatomical interpretation.",
+            "status": "SUPPORTED"
+          },
+          "sensory": {
+            "populations": [
+              {
+                "biological_type": "joint_angle",
+                "body_ids": [
+                  804317,
+                  808380,
+                  812908,
+                  819326,
+                  820056,
+                  821064,
+                  829860,
+                  836247,
+                  856036,
+                  908831,
+                  1074160161,
+                  1177500143
+                ],
+                "category": "sensors",
+                "direction": null,
+                "evidence": {
+                  "bodymap_metadata": {
+                    "joint": "coxa_T3_left",
+                    "kind": "joint_angle",
+                    "name": "hair plate T3 left"
+                  },
+                  "types": [
+                    "SNpp45",
+                    "SNpp52"
+                  ]
+                },
+                "function": "hair plate T3 left",
+                "member_count": 12,
+                "name": "hair plate T3 left",
+                "provenance": "ANNOTATION_DERIVED",
+                "resolved_neuron_count": 12,
+                "segment": "T3",
+                "side": "left",
+                "source_artifact": "malecns_backend/interface_map.json"
+              }
+            ],
+            "provenance": "ANNOTATION_DERIVED",
+            "reason": "Hair-plate annotation names coxa angle but does not distinguish the three FlyGym coxa axes.",
+            "status": "AMBIGUOUS"
+          }
+        },
+        {
+          "actuator": {
+            "action_index": 16,
             "anatomical_joint": "coxa_twist",
             "leg": "LH",
             "name": "joint_LHCoxa_yaw",
@@ -2492,128 +2614,6 @@
                 "name": "Sternal posterior rotator MN T3 left",
                 "provenance": "ANNOTATION_DERIVED",
                 "resolved_neuron_count": 4,
-                "segment": "T3",
-                "side": "left",
-                "source_artifact": "malecns_backend/interface_map.json"
-              }
-            ],
-            "provenance": "ANNOTATION_DERIVED",
-            "reason": "Bodymap gives side, segment, actuator and signed biological action; correspondence to FlyGym axis is an anatomical interpretation.",
-            "status": "SUPPORTED"
-          },
-          "sensory": {
-            "populations": [
-              {
-                "biological_type": "joint_angle",
-                "body_ids": [
-                  804317,
-                  808380,
-                  812908,
-                  819326,
-                  820056,
-                  821064,
-                  829860,
-                  836247,
-                  856036,
-                  908831,
-                  1074160161,
-                  1177500143
-                ],
-                "category": "sensors",
-                "direction": null,
-                "evidence": {
-                  "bodymap_metadata": {
-                    "joint": "coxa_T3_left",
-                    "kind": "joint_angle",
-                    "name": "hair plate T3 left"
-                  },
-                  "types": [
-                    "SNpp45",
-                    "SNpp52"
-                  ]
-                },
-                "function": "hair plate T3 left",
-                "member_count": 12,
-                "name": "hair plate T3 left",
-                "provenance": "ANNOTATION_DERIVED",
-                "resolved_neuron_count": 12,
-                "segment": "T3",
-                "side": "left",
-                "source_artifact": "malecns_backend/interface_map.json"
-              }
-            ],
-            "provenance": "ANNOTATION_DERIVED",
-            "reason": "Hair-plate annotation names coxa angle but does not distinguish the three FlyGym coxa axes.",
-            "status": "AMBIGUOUS"
-          }
-        },
-        {
-          "actuator": {
-            "action_index": 16,
-            "anatomical_joint": "coxa_abduct",
-            "leg": "LH",
-            "name": "joint_LHCoxa_roll",
-            "position_range_rad": [
-              -0.9,
-              0.25
-            ],
-            "provenance": "PHYSICS_MEASURED",
-            "range_note": "Exact inherited MJCF joint/control range for this segment class.",
-            "segment": "T3",
-            "side": "left",
-            "source": "FlyGym NeuroMechFly 42-DOF order; fly-brain-main/body/flybody/fruitfly.xml joint classes"
-          },
-          "motor": {
-            "populations": [
-              {
-                "biological_type": "motor neuron",
-                "body_ids": [
-                  800175,
-                  902310
-                ],
-                "category": "muscles",
-                "direction": -1,
-                "evidence": {
-                  "bodymap_metadata": {
-                    "actuator": "coxa_abduct_T3_left",
-                    "dir": -1,
-                    "name": "Pleural remotor/abductor MN T3 left"
-                  },
-                  "types": [
-                    "Pleural remotor/abductor MN"
-                  ]
-                },
-                "function": "Pleural remotor/abductor MN T3 left",
-                "member_count": 2,
-                "name": "Pleural remotor/abductor MN T3 left",
-                "provenance": "ANNOTATION_DERIVED",
-                "resolved_neuron_count": 2,
-                "segment": "T3",
-                "side": "left",
-                "source_artifact": "malecns_backend/interface_map.json"
-              },
-              {
-                "biological_type": "motor neuron",
-                "body_ids": [
-                  904184
-                ],
-                "category": "muscles",
-                "direction": 1,
-                "evidence": {
-                  "bodymap_metadata": {
-                    "actuator": "coxa_abduct_T3_left",
-                    "dir": 1,
-                    "name": "Sternal adductor MN T3 left"
-                  },
-                  "types": [
-                    "Sternal adductor MN"
-                  ]
-                },
-                "function": "Sternal adductor MN T3 left",
-                "member_count": 1,
-                "name": "Sternal adductor MN T3 left",
-                "provenance": "ANNOTATION_DERIVED",
-                "resolved_neuron_count": 1,
                 "segment": "T3",
                 "side": "left",
                 "source_artifact": "malecns_backend/interface_map.json"
@@ -3281,6 +3281,89 @@
         {
           "actuator": {
             "action_index": 22,
+            "anatomical_joint": "coxa_abduct",
+            "leg": "RF",
+            "name": "joint_RFCoxa_roll",
+            "position_range_rad": [
+              -1.0,
+              0.7
+            ],
+            "provenance": "PHYSICS_MEASURED",
+            "range_note": "Exact inherited MJCF joint/control range for this segment class.",
+            "segment": "T1",
+            "side": "right",
+            "source": "FlyGym NeuroMechFly 42-DOF order; fly-brain-main/body/flybody/fruitfly.xml joint classes"
+          },
+          "motor": {
+            "populations": [
+              {
+                "biological_type": "motor neuron",
+                "body_ids": [
+                  803314,
+                  805313
+                ],
+                "category": "muscles",
+                "direction": -1,
+                "evidence": {
+                  "bodymap_metadata": {
+                    "actuator": "coxa_abduct_T1_right",
+                    "dir": -1,
+                    "name": "Pleural remotor/abductor MN T1 right"
+                  },
+                  "types": [
+                    "Pleural remotor/abductor MN"
+                  ]
+                },
+                "function": "Pleural remotor/abductor MN T1 right",
+                "member_count": 2,
+                "name": "Pleural remotor/abductor MN T1 right",
+                "provenance": "ANNOTATION_DERIVED",
+                "resolved_neuron_count": 2,
+                "segment": "T1",
+                "side": "right",
+                "source_artifact": "malecns_backend/interface_map.json"
+              },
+              {
+                "biological_type": "motor neuron",
+                "body_ids": [
+                  815854
+                ],
+                "category": "muscles",
+                "direction": 1,
+                "evidence": {
+                  "bodymap_metadata": {
+                    "actuator": "coxa_abduct_T1_right",
+                    "dir": 1,
+                    "name": "Sternal adductor MN T1 right"
+                  },
+                  "types": [
+                    "Sternal adductor MN"
+                  ]
+                },
+                "function": "Sternal adductor MN T1 right",
+                "member_count": 1,
+                "name": "Sternal adductor MN T1 right",
+                "provenance": "ANNOTATION_DERIVED",
+                "resolved_neuron_count": 1,
+                "segment": "T1",
+                "side": "right",
+                "source_artifact": "malecns_backend/interface_map.json"
+              }
+            ],
+            "provenance": "ANNOTATION_DERIVED",
+            "reason": "Bodymap gives side, segment, actuator and signed biological action; correspondence to FlyGym axis is an anatomical interpretation.",
+            "status": "SUPPORTED"
+          },
+          "sensory": {
+            "populations": [],
+            "provenance": "ANNOTATION_DERIVED",
+            "reason": "No side/segment hair-plate population is present (notably T1 right).",
+            "status": "MISSING"
+          }
+        },
+        {
+          "actuator": {
+            "action_index": 23,
             "anatomical_joint": "coxa_twist",
             "leg": "RF",
             "name": "joint_RFCoxa_yaw",
@@ -3346,89 +3429,6 @@
                 "name": "Sternal posterior rotator MN T1 right",
                 "provenance": "ANNOTATION_DERIVED",
                 "resolved_neuron_count": 2,
-                "segment": "T1",
-                "side": "right",
-                "source_artifact": "malecns_backend/interface_map.json"
-              }
-            ],
-            "provenance": "ANNOTATION_DERIVED",
-            "reason": "Bodymap gives side, segment, actuator and signed biological action; correspondence to FlyGym axis is an anatomical interpretation.",
-            "status": "SUPPORTED"
-          },
-          "sensory": {
-            "populations": [],
-            "provenance": "ANNOTATION_DERIVED",
-            "reason": "No side/segment hair-plate population is present (notably T1 right).",
-            "status": "MISSING"
-          }
-        },
-        {
-          "actuator": {
-            "action_index": 23,
-            "anatomical_joint": "coxa_abduct",
-            "leg": "RF",
-            "name": "joint_RFCoxa_roll",
-            "position_range_rad": [
-              -1.0,
-              0.7
-            ],
-            "provenance": "PHYSICS_MEASURED",
-            "range_note": "Exact inherited MJCF joint/control range for this segment class.",
-            "segment": "T1",
-            "side": "right",
-            "source": "FlyGym NeuroMechFly 42-DOF order; fly-brain-main/body/flybody/fruitfly.xml joint classes"
-          },
-          "motor": {
-            "populations": [
-              {
-                "biological_type": "motor neuron",
-                "body_ids": [
-                  803314,
-                  805313
-                ],
-                "category": "muscles",
-                "direction": -1,
-                "evidence": {
-                  "bodymap_metadata": {
-                    "actuator": "coxa_abduct_T1_right",
-                    "dir": -1,
-                    "name": "Pleural remotor/abductor MN T1 right"
-                  },
-                  "types": [
-                    "Pleural remotor/abductor MN"
-                  ]
-                },
-                "function": "Pleural remotor/abductor MN T1 right",
-                "member_count": 2,
-                "name": "Pleural remotor/abductor MN T1 right",
-                "provenance": "ANNOTATION_DERIVED",
-                "resolved_neuron_count": 2,
-                "segment": "T1",
-                "side": "right",
-                "source_artifact": "malecns_backend/interface_map.json"
-              },
-              {
-                "biological_type": "motor neuron",
-                "body_ids": [
-                  815854
-                ],
-                "category": "muscles",
-                "direction": 1,
-                "evidence": {
-                  "bodymap_metadata": {
-                    "actuator": "coxa_abduct_T1_right",
-                    "dir": 1,
-                    "name": "Sternal adductor MN T1 right"
-                  },
-                  "types": [
-                    "Sternal adductor MN"
-                  ]
-                },
-                "function": "Sternal adductor MN T1 right",
-                "member_count": 1,
-                "name": "Sternal adductor MN T1 right",
-                "provenance": "ANNOTATION_DERIVED",
-                "resolved_neuron_count": 1,
                 "segment": "T1",
                 "side": "right",
                 "source_artifact": "malecns_backend/interface_map.json"
@@ -4042,6 +4042,132 @@
         {
           "actuator": {
             "action_index": 29,
+            "anatomical_joint": "coxa_abduct",
+            "leg": "RM",
+            "name": "joint_RMCoxa_roll",
+            "position_range_rad": [
+              -0.5,
+              0.3
+            ],
+            "provenance": "PHYSICS_MEASURED",
+            "range_note": "Exact inherited MJCF joint/control range for this segment class.",
+            "segment": "T2",
+            "side": "right",
+            "source": "FlyGym NeuroMechFly 42-DOF order; fly-brain-main/body/flybody/fruitfly.xml joint classes"
+          },
+          "motor": {
+            "populations": [
+              {
+                "biological_type": "motor neuron",
+                "body_ids": [
+                  800776,
+                  803499,
+                  902719
+                ],
+                "category": "muscles",
+                "direction": -1,
+                "evidence": {
+                  "bodymap_metadata": {
+                    "actuator": "coxa_abduct_T2_right",
+                    "dir": -1,
+                    "name": "Pleural remotor/abductor MN T2 right"
+                  },
+                  "types": [
+                    "Pleural remotor/abductor MN"
+                  ]
+                },
+                "function": "Pleural remotor/abductor MN T2 right",
+                "member_count": 3,
+                "name": "Pleural remotor/abductor MN T2 right",
+                "provenance": "ANNOTATION_DERIVED",
+                "resolved_neuron_count": 3,
+                "segment": "T2",
+                "side": "right",
+                "source_artifact": "malecns_backend/interface_map.json"
+              },
+              {
+                "biological_type": "motor neuron",
+                "body_ids": [
+                  909371
+                ],
+                "category": "muscles",
+                "direction": 1,
+                "evidence": {
+                  "bodymap_metadata": {
+                    "actuator": "coxa_abduct_T2_right",
+                    "dir": 1,
+                    "name": "Sternal adductor MN T2 right"
+                  },
+                  "types": [
+                    "Sternal adductor MN"
+                  ]
+                },
+                "function": "Sternal adductor MN T2 right",
+                "member_count": 1,
+                "name": "Sternal adductor MN T2 right",
+                "provenance": "ANNOTATION_DERIVED",
+                "resolved_neuron_count": 1,
+                "segment": "T2",
+                "side": "right",
+                "source_artifact": "malecns_backend/interface_map.json"
+              }
+            ],
+            "provenance": "ANNOTATION_DERIVED",
+            "reason": "Bodymap gives side, segment, actuator and signed biological action; correspondence to FlyGym axis is an anatomical interpretation.",
+            "status": "SUPPORTED"
+          },
+          "sensory": {
+            "populations": [
+              {
+                "biological_type": "joint_angle",
+                "body_ids": [
+                  804352,
+                  806962,
+                  807933,
+                  808641,
+                  810052,
+                  811145,
+                  812847,
+                  814188,
+                  817320,
+                  818516,
+                  820418,
+                  828689,
+                  860479,
+                  875125,
+                  1471062202
+                ],
+                "category": "sensors",
+                "direction": null,
+                "evidence": {
+                  "bodymap_metadata": {
+                    "joint": "coxa_T2_right",
+                    "kind": "joint_angle",
+                    "name": "hair plate T2 right"
+                  },
+                  "types": [
+                    "SNpp45",
+                    "SNpp52"
+                  ]
+                },
+                "function": "hair plate T2 right",
+                "member_count": 15,
+                "name": "hair plate T2 right",
+                "provenance": "ANNOTATION_DERIVED",
+                "resolved_neuron_count": 15,
+                "segment": "T2",
+                "side": "right",
+                "source_artifact": "malecns_backend/interface_map.json"
+              }
+            ],
+            "provenance": "ANNOTATION_DERIVED",
+            "reason": "Hair-plate annotation names coxa angle but does not distinguish the three FlyGym coxa axes.",
+            "status": "AMBIGUOUS"
+          }
+        },
+        {
+          "actuator": {
+            "action_index": 30,
             "anatomical_joint": "coxa_twist",
             "leg": "RM",
             "name": "joint_RMCoxa_yaw",
@@ -4109,132 +4235,6 @@
                 "name": "Sternal posterior rotator MN T2 right",
                 "provenance": "ANNOTATION_DERIVED",
                 "resolved_neuron_count": 4,
-                "segment": "T2",
-                "side": "right",
-                "source_artifact": "malecns_backend/interface_map.json"
-              }
-            ],
-            "provenance": "ANNOTATION_DERIVED",
-            "reason": "Bodymap gives side, segment, actuator and signed biological action; correspondence to FlyGym axis is an anatomical interpretation.",
-            "status": "SUPPORTED"
-          },
-          "sensory": {
-            "populations": [
-              {
-                "biological_type": "joint_angle",
-                "body_ids": [
-                  804352,
-                  806962,
-                  807933,
-                  808641,
-                  810052,
-                  811145,
-                  812847,
-                  814188,
-                  817320,
-                  818516,
-                  820418,
-                  828689,
-                  860479,
-                  875125,
-                  1471062202
-                ],
-                "category": "sensors",
-                "direction": null,
-                "evidence": {
-                  "bodymap_metadata": {
-                    "joint": "coxa_T2_right",
-                    "kind": "joint_angle",
-                    "name": "hair plate T2 right"
-                  },
-                  "types": [
-                    "SNpp45",
-                    "SNpp52"
-                  ]
-                },
-                "function": "hair plate T2 right",
-                "member_count": 15,
-                "name": "hair plate T2 right",
-                "provenance": "ANNOTATION_DERIVED",
-                "resolved_neuron_count": 15,
-                "segment": "T2",
-                "side": "right",
-                "source_artifact": "malecns_backend/interface_map.json"
-              }
-            ],
-            "provenance": "ANNOTATION_DERIVED",
-            "reason": "Hair-plate annotation names coxa angle but does not distinguish the three FlyGym coxa axes.",
-            "status": "AMBIGUOUS"
-          }
-        },
-        {
-          "actuator": {
-            "action_index": 30,
-            "anatomical_joint": "coxa_abduct",
-            "leg": "RM",
-            "name": "joint_RMCoxa_roll",
-            "position_range_rad": [
-              -0.5,
-              0.3
-            ],
-            "provenance": "PHYSICS_MEASURED",
-            "range_note": "Exact inherited MJCF joint/control range for this segment class.",
-            "segment": "T2",
-            "side": "right",
-            "source": "FlyGym NeuroMechFly 42-DOF order; fly-brain-main/body/flybody/fruitfly.xml joint classes"
-          },
-          "motor": {
-            "populations": [
-              {
-                "biological_type": "motor neuron",
-                "body_ids": [
-                  800776,
-                  803499,
-                  902719
-                ],
-                "category": "muscles",
-                "direction": -1,
-                "evidence": {
-                  "bodymap_metadata": {
-                    "actuator": "coxa_abduct_T2_right",
-                    "dir": -1,
-                    "name": "Pleural remotor/abductor MN T2 right"
-                  },
-                  "types": [
-                    "Pleural remotor/abductor MN"
-                  ]
-                },
-                "function": "Pleural remotor/abductor MN T2 right",
-                "member_count": 3,
-                "name": "Pleural remotor/abductor MN T2 right",
-                "provenance": "ANNOTATION_DERIVED",
-                "resolved_neuron_count": 3,
-                "segment": "T2",
-                "side": "right",
-                "source_artifact": "malecns_backend/interface_map.json"
-              },
-              {
-                "biological_type": "motor neuron",
-                "body_ids": [
-                  909371
-                ],
-                "category": "muscles",
-                "direction": 1,
-                "evidence": {
-                  "bodymap_metadata": {
-                    "actuator": "coxa_abduct_T2_right",
-                    "dir": 1,
-                    "name": "Sternal adductor MN T2 right"
-                  },
-                  "types": [
-                    "Sternal adductor MN"
-                  ]
-                },
-                "function": "Sternal adductor MN T2 right",
-                "member_count": 1,
-                "name": "Sternal adductor MN T2 right",
-                "provenance": "ANNOTATION_DERIVED",
-                "resolved_neuron_count": 1,
                 "segment": "T2",
                 "side": "right",
                 "source_artifact": "malecns_backend/interface_map.json"
@@ -4900,6 +4900,130 @@
         {
           "actuator": {
             "action_index": 36,
+            "anatomical_joint": "coxa_abduct",
+            "leg": "RH",
+            "name": "joint_RHCoxa_roll",
+            "position_range_rad": [
+              -0.9,
+              0.25
+            ],
+            "provenance": "PHYSICS_MEASURED",
+            "range_note": "Exact inherited MJCF joint/control range for this segment class.",
+            "segment": "T3",
+            "side": "right",
+            "source": "FlyGym NeuroMechFly 42-DOF order; fly-brain-main/body/flybody/fruitfly.xml joint classes"
+          },
+          "motor": {
+            "populations": [
+              {
+                "biological_type": "motor neuron",
+                "body_ids": [
+                  800290,
+                  800553
+                ],
+                "category": "muscles",
+                "direction": -1,
+                "evidence": {
+                  "bodymap_metadata": {
+                    "actuator": "coxa_abduct_T3_right",
+                    "dir": -1,
+                    "name": "Pleural remotor/abductor MN T3 right"
+                  },
+                  "types": [
+                    "Pleural remotor/abductor MN"
+                  ]
+                },
+                "function": "Pleural remotor/abductor MN T3 right",
+                "member_count": 2,
+                "name": "Pleural remotor/abductor MN T3 right",
+                "provenance": "ANNOTATION_DERIVED",
+                "resolved_neuron_count": 2,
+                "segment": "T3",
+                "side": "right",
+                "source_artifact": "malecns_backend/interface_map.json"
+              },
+              {
+                "biological_type": "motor neuron",
+                "body_ids": [
+                  807854
+                ],
+                "category": "muscles",
+                "direction": 1,
+                "evidence": {
+                  "bodymap_metadata": {
+                    "actuator": "coxa_abduct_T3_right",
+                    "dir": 1,
+                    "name": "Sternal adductor MN T3 right"
+                  },
+                  "types": [
+                    "Sternal adductor MN"
+                  ]
+                },
+                "function": "Sternal adductor MN T3 right",
+                "member_count": 1,
+                "name": "Sternal adductor MN T3 right",
+                "provenance": "ANNOTATION_DERIVED",
+                "resolved_neuron_count": 1,
+                "segment": "T3",
+                "side": "right",
+                "source_artifact": "malecns_backend/interface_map.json"
+              }
+            ],
+            "provenance": "ANNOTATION_DERIVED",
+            "reason": "Bodymap gives side, segment, actuator and signed biological action; correspondence to FlyGym axis is an anatomical interpretation.",
+            "status": "SUPPORTED"
+          },
+          "sensory": {
+            "populations": [
+              {
+                "biological_type": "joint_angle",
+                "body_ids": [
+                  806572,
+                  809505,
+                  810973,
+                  813983,
+                  814980,
+                  816134,
+                  818438,
+                  824273,
+                  830804,
+                  833354,
+                  908258,
+                  908739,
+                  1055052133,
+                  1071635070
+                ],
+                "category": "sensors",
+                "direction": null,
+                "evidence": {
+                  "bodymap_metadata": {
+                    "joint": "coxa_T3_right",
+                    "kind": "joint_angle",
+                    "name": "hair plate T3 right"
+                  },
+                  "types": [
+                    "SNpp45",
+                    "SNpp52"
+                  ]
+                },
+                "function": "hair plate T3 right",
+                "member_count": 14,
+                "name": "hair plate T3 right",
+                "provenance": "ANNOTATION_DERIVED",
+                "resolved_neuron_count": 14,
+                "segment": "T3",
+                "side": "right",
+                "source_artifact": "malecns_backend/interface_map.json"
+              }
+            ],
+            "provenance": "ANNOTATION_DERIVED",
+            "reason": "Hair-plate annotation names coxa angle but does not distinguish the three FlyGym coxa axes.",
+            "status": "AMBIGUOUS"
+          }
+        },
+        {
+          "actuator": {
+            "action_index": 37,
             "anatomical_joint": "coxa_twist",
             "leg": "RH",
             "name": "joint_RHCoxa_yaw",
@@ -4967,130 +5091,6 @@
                 "name": "Sternal posterior rotator MN T3 right",
                 "provenance": "ANNOTATION_DERIVED",
                 "resolved_neuron_count": 4,
-                "segment": "T3",
-                "side": "right",
-                "source_artifact": "malecns_backend/interface_map.json"
-              }
-            ],
-            "provenance": "ANNOTATION_DERIVED",
-            "reason": "Bodymap gives side, segment, actuator and signed biological action; correspondence to FlyGym axis is an anatomical interpretation.",
-            "status": "SUPPORTED"
-          },
-          "sensory": {
-            "populations": [
-              {
-                "biological_type": "joint_angle",
-                "body_ids": [
-                  806572,
-                  809505,
-                  810973,
-                  813983,
-                  814980,
-                  816134,
-                  818438,
-                  824273,
-                  830804,
-                  833354,
-                  908258,
-                  908739,
-                  1055052133,
-                  1071635070
-                ],
-                "category": "sensors",
-                "direction": null,
-                "evidence": {
-                  "bodymap_metadata": {
-                    "joint": "coxa_T3_right",
-                    "kind": "joint_angle",
-                    "name": "hair plate T3 right"
-                  },
-                  "types": [
-                    "SNpp45",
-                    "SNpp52"
-                  ]
-                },
-                "function": "hair plate T3 right",
-                "member_count": 14,
-                "name": "hair plate T3 right",
-                "provenance": "ANNOTATION_DERIVED",
-                "resolved_neuron_count": 14,
-                "segment": "T3",
-                "side": "right",
-                "source_artifact": "malecns_backend/interface_map.json"
-              }
-            ],
-            "provenance": "ANNOTATION_DERIVED",
-            "reason": "Hair-plate annotation names coxa angle but does not distinguish the three FlyGym coxa axes.",
-            "status": "AMBIGUOUS"
-          }
-        },
-        {
-          "actuator": {
-            "action_index": 37,
-            "anatomical_joint": "coxa_abduct",
-            "leg": "RH",
-            "name": "joint_RHCoxa_roll",
-            "position_range_rad": [
-              -0.9,
-              0.25
-            ],
-            "provenance": "PHYSICS_MEASURED",
-            "range_note": "Exact inherited MJCF joint/control range for this segment class.",
-            "segment": "T3",
-            "side": "right",
-            "source": "FlyGym NeuroMechFly 42-DOF order; fly-brain-main/body/flybody/fruitfly.xml joint classes"
-          },
-          "motor": {
-            "populations": [
-              {
-                "biological_type": "motor neuron",
-                "body_ids": [
-                  800290,
-                  800553
-                ],
-                "category": "muscles",
-                "direction": -1,
-                "evidence": {
-                  "bodymap_metadata": {
-                    "actuator": "coxa_abduct_T3_right",
-                    "dir": -1,
-                    "name": "Pleural remotor/abductor MN T3 right"
-                  },
-                  "types": [
-                    "Pleural remotor/abductor MN"
-                  ]
-                },
-                "function": "Pleural remotor/abductor MN T3 right",
-                "member_count": 2,
-                "name": "Pleural remotor/abductor MN T3 right",
-                "provenance": "ANNOTATION_DERIVED",
-                "resolved_neuron_count": 2,
-                "segment": "T3",
-                "side": "right",
-                "source_artifact": "malecns_backend/interface_map.json"
-              },
-              {
-                "biological_type": "motor neuron",
-                "body_ids": [
-                  807854
-                ],
-                "category": "muscles",
-                "direction": 1,
-                "evidence": {
-                  "bodymap_metadata": {
-                    "actuator": "coxa_abduct_T3_right",
-                    "dir": 1,
-                    "name": "Sternal adductor MN T3 right"
-                  },
-                  "types": [
-                    "Sternal adductor MN"
-                  ]
-                },
-                "function": "Sternal adductor MN T3 right",
-                "member_count": 1,
-                "name": "Sternal adductor MN T3 right",
-                "provenance": "ANNOTATION_DERIVED",
-                "resolved_neuron_count": 1,
                 "segment": "T3",
                 "side": "right",
                 "source_artifact": "malecns_backend/interface_map.json"
@@ -23654,6 +23654,19 @@
     ]
   },
   "provenance": {
+    "physical_inventory_correction": {
+      "finding": "Authoritative Windows FlyGym live introspection found 12 of 42 entries mismatched: Coxa_yaw and Coxa_roll were swapped for all six legs; the other 30 entries matched.",
+      "resolution": "The manually declared M4A order was corrected to follow fly.actuated_joints and independently agreeing compiled actuator/transmitted-joint metadata before actuator activation expansion.",
+      "scientific_scope": "Mapping/inventory correction only; MaleCNS neural dynamics and existing six-tibia scientific outputs are unchanged.",
+      "tibia_indices_verified_unchanged": {
+        "LF": 5,
+        "LH": 19,
+        "LM": 12,
+        "RF": 26,
+        "RH": 40,
+        "RM": 33
+      }
+    },
     "physical_reference": "FlyGym NeuroMechFly 42-position action ordering and fly-brain-main/body/flybody/fruitfly.xml",
     "primary": "malecns_backend/interface_map.json (audited MaleCNS annotations)",
     "scientific_reference": "fly-brain-main/public/data/bodymap.json and docs/09-bodymap.md",
@@ -24053,5 +24066,5 @@
     "sensor": "chordotonal T2 left",
     "sensor_count": 80
   },
-  "version": "4A.1"
+  "version": "4A.2"
 }

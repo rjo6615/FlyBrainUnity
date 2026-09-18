@@ -23,8 +23,8 @@ LEGS = (
 )
 DOFS = (
     ("Coxa", "coxa", None),
-    ("Coxa_yaw", "coxa_twist", None),
     ("Coxa_roll", "coxa_abduct", None),
+    ("Coxa_yaw", "coxa_twist", None),
     ("Femur", "femur", None),
     ("Femur_roll", "femur_twist", (-1.0, 1.0)),
     ("Tibia", "tibia", (-1.35, 1.3)),
@@ -157,12 +157,18 @@ def generate_map(interface_path: Path = INTERFACE_MAP) -> dict:
                          "note": "Symmetry is audit evidence only and never promotes confidence."})
 
     result = {
-        "schema": "flybrain.six_leg_anatomical_map", "version": "4A.1",
+        "schema": "flybrain.six_leg_anatomical_map", "version": "4A.2",
         "purpose": "Read-only anatomical inventory; not a controller.",
         "provenance": {
             "primary": "malecns_backend/interface_map.json (audited MaleCNS annotations)",
             "scientific_reference": "fly-brain-main/public/data/bodymap.json and docs/09-bodymap.md",
             "physical_reference": "FlyGym NeuroMechFly 42-position action ordering and fly-brain-main/body/flybody/fruitfly.xml",
+            "physical_inventory_correction": {
+                "finding": "Authoritative Windows FlyGym live introspection found 12 of 42 entries mismatched: Coxa_yaw and Coxa_roll were swapped for all six legs; the other 30 entries matched.",
+                "resolution": "The manually declared M4A order was corrected to follow fly.actuated_joints and independently agreeing compiled actuator/transmitted-joint metadata before actuator activation expansion.",
+                "scientific_scope": "Mapping/inventory correction only; MaleCNS neural dynamics and existing six-tibia scientific outputs are unchanged.",
+                "tibia_indices_verified_unchanged": {"LF": 5, "LM": 12, "LH": 19, "RF": 26, "RM": 33, "RH": 40},
+            },
             "vocabulary": ["CONNECTOME_DERIVED", "ANNOTATION_DERIVED", "PHYSICS_MEASURED", "MODELED_TRANSDUCTION", "MODELED_MOTOR_DECODING", "ENGINEERING_CONSTRAINT"],
         },
         "confidence_enum": list(ALLOWED_STATUS), "actuator_inventory": actuators, "legs": legs,

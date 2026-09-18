@@ -59,6 +59,19 @@ class SixLegMappingTests(unittest.TestCase):
                         self.assertEqual(pop["side"], leg["side"])
                         self.assertEqual(pop["segment"], leg["segment"])
 
+    def test_authoritative_flygym_order_and_preserved_tibias(self):
+        expected_dofs = ("Coxa", "Coxa_roll", "Coxa_yaw", "Femur",
+                         "Femur_roll", "Tibia", "Tarsus1")
+        expected_tibias = {"LF": 5, "LM": 12, "LH": 19,
+                           "RF": 26, "RM": 33, "RH": 40}
+        for leg in self.data["legs"]:
+            self.assertEqual(
+                tuple(joint["actuator"]["name"].removeprefix(f"joint_{leg['leg']}")
+                      for joint in leg["joints"]), expected_dofs)
+            tibia = next(j for j in leg["joints"]
+                         if j["actuator"]["anatomical_joint"] == "tibia")
+            self.assertEqual(tibia["actuator"]["action_index"], expected_tibias[leg["leg"]])
+
     def test_ambiguity_and_asymmetry_are_preserved(self):
         coxa = self.data["legs"][0]["joints"][0]
         self.assertEqual(coxa["sensory"]["status"], "AMBIGUOUS")
