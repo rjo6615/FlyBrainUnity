@@ -38,6 +38,14 @@ available without stepping—the MuJoCo contact wrench. Joint state indices are
 resolved to joint, body, component/DOF; controls are resolved to actuator, leg,
 and six-tibia membership.
 
+Cross-instance MuJoCo object identity uses the exact slash-delimited basename:
+`0/LMTarsus5` and `1/LMTarsus5` both identify `LMTarsus5`. This is not substring
+matching; distinct basenames remain distinct, and an unqualified name such as
+`m5d2c_calibration_surface` remains unchanged. Raw geom IDs are
+model-construction-local and do not establish divergence when both IDs resolve
+to the same exact semantic names. Contact ordering and all numerical contact
+metadata (distance, position, frame, friction, and wrench) remain exact.
+
 First divergence is searched independently for ctrl, contact set, selected
 contact metadata, qacc, qvel, qpos, and contact-force observations. Control
 rows also identify whether the base came from the current measured position,

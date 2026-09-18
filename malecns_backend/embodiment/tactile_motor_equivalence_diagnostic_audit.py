@@ -21,7 +21,8 @@ from .tactile_propagation import rng_digest
 from . import tactile_targeted_contact_calibration as contact
 from .tactile_motor_equivalence_diagnostic import (
     DURATION_MS, SEED, TIMESTEP_S, atomic_write_report, base_report, classify,
-    compare_initialization, compare_trajectories,
+    compare_initialization, compare_trajectories, earliest_physical_divergence,
+    mujoco_object_identity,
 )
 
 DEFAULT_OUTPUT = Path(__file__).resolve().parent / "interface_output" / "tactile_motor_equivalence_diagnostic.json"
@@ -139,7 +140,13 @@ def _contacts(physics, tarsus_id, surface_id):
                 getattr(data, "ptr", data), index, wrench)
             entry["mujoco_contact_wrench"] = wrench.tolist(); selected.append(entry)
         all_contacts.append(entry)
-    pair_set = sorted((min(x["geom1"], x["geom2"]), max(x["geom1"], x["geom2"])) for x in all_contacts)
+    # Geom IDs are local to a compiled model. A cross-instance contact set is
+    # therefore the unordered pair of exact resolved semantic identities.
+    def identity(entry, endpoint):
+        name = mujoco_object_identity(entry[f"geom{endpoint}_name"])
+        return name if name is not None else f"__geom_id__:{entry[f'geom{endpoint}']}"
+    pair_set = sorted(tuple(sorted((identity(x, 1), identity(x, 2))))
+                      for x in all_contacts)
     return pair_set, {"pair_present": bool(selected), "contacts": selected}, all_contacts
 
 
@@ -223,14 +230,10 @@ def run_live():
                    "run_order" if forward_signature == swapped_reverse else "unresolved")
         order = {"performed": True, "outcome_follows": follows, "comparison": reversed_comparison}
         classification = classify(initial, repeat, wrapper, follows)
-    divergent = [(value["first_differing_time_ms"], key) for key, value in wrapper.items()
-                 if key != "ctrl"
-                 if value["first_differing_time_ms"] is not None]
     report = base_report(); report.update(run_status="COMPLETE", reason=None, classification=classification,
         initialization_audit=initial, comparisons={"condition_wrappers": wrapper,
         "same_condition_repeat": repeat}, order_reversal=order,
-        earliest_physical_divergence=(None if not divergent else
-            {"time_ms": min(divergent)[0], "quantity": min(divergent)[1]}))
+        earliest_physical_divergence=earliest_physical_divergence(wrapper))
     report["safety"]["applied_neural_output_sample_count"] = sum(
         row["applied_neural_output"] != 0 for run in (enabled, disabled, control_a, control_b) for row in run["rows"])
     report["control_command_audit"] = {"base_target_source": "current measured joint position at neural updates",

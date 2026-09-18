@@ -27,6 +27,18 @@ QUANTITIES = ("ctrl", "contact_set", "selected_contact_metadata", "qacc",
               "qvel", "qpos", "contact_forces")
 
 
+def mujoco_object_identity(name: str | None) -> str | None:
+    """Return the exact slash-delimited basename of a MuJoCo object name.
+
+    FlyGym prefixes objects belonging to a compiled fly instance (for example,
+    ``0/LMTarsus5``). Independently instantiated equivalent models may use a
+    different prefix, so physical identity is the complete component after the
+    final slash, never a substring match. Unqualified names, including the
+    calibration surface, are returned unchanged.
+    """
+    return None if name is None else name.rsplit("/", 1)[-1]
+
+
 def base_report() -> dict[str, Any]:
     """Return a truthful, deterministic not-yet-run artifact."""
     return {
@@ -98,6 +110,35 @@ def compare_value(a: Any, b: Any) -> dict[str, Any]:
             "difference_count": len(differences)}
 
 
+def _semantic_contact_value(value: Any) -> Any:
+    """Canonicalize only object identity fields in recorded contact metadata.
+
+    Raw geom IDs are construction-local bookkeeping. They are omitted only
+    when both resolved names are present; those exact semantic identities then
+    decide equality. Contact order and every other field (including all
+    numerical metadata) remain untouched.
+    """
+    if isinstance(value, Mapping):
+        resolved_pair = value.get("geom1_name") is not None and value.get("geom2_name") is not None
+        result = {}
+        for key, child in value.items():
+            if resolved_pair and key in ("geom1", "geom2"):
+                continue
+            if key in ("geom1_name", "geom2_name"):
+                result[key] = mujoco_object_identity(child)
+            else:
+                result[key] = _semantic_contact_value(child)
+        return result
+    if isinstance(value, (list, tuple)):
+        return [_semantic_contact_value(child) for child in value]
+    return value
+
+
+def compare_contact_metadata(a: Any, b: Any) -> dict[str, Any]:
+    """Compare contacts by resolved geometry identity and exact physics data."""
+    return compare_value(_semantic_contact_value(a), _semantic_contact_value(b))
+
+
 def compare_initialization(a: Mapping[str, Any], b: Mapping[str, Any]) -> dict[str, Any]:
     comparison = compare_value(a, b)
     comparison["model_exactly_equal"] = not _difference(a.get("model"), b.get("model"))
@@ -113,7 +154,9 @@ def compare_trajectories(a: Sequence[Mapping[str, Any]],
     for quantity in QUANTITIES:
         found = None
         for row_a, row_b in zip(a, b):
-            difference = compare_value(row_a[quantity], row_b[quantity])
+            comparator = (compare_contact_metadata
+                          if quantity == "selected_contact_metadata" else compare_value)
+            difference = comparator(row_a[quantity], row_b[quantity])
             if not difference["exactly_equal"]:
                 found = {"first_differing_time_ms": row_a["time_ms"], **difference}
                 resolution = row_a.get("resolution", {}).get(quantity)
@@ -149,6 +192,17 @@ def classify(initial: Mapping[str, Any], repeat: Mapping[str, Any],
     if any(wrappers[q]["first_differing_time_ms"] is not None for q in QUANTITIES):
         return "CONDITION_WRAPPER_MISMATCH"
     return "EXACT_REPEATABILITY_CONFIRMED"
+
+
+def earliest_physical_divergence(comparison: Mapping[str, Mapping[str, Any]]) -> dict[str, Any] | None:
+    """Return the earliest non-control physical difference, if one exists."""
+    divergent = [(value["first_differing_time_ms"], key)
+                 for key, value in comparison.items() if key != "ctrl"
+                 if value["first_differing_time_ms"] is not None]
+    if not divergent:
+        return None
+    time_ms, quantity = min(divergent)
+    return {"time_ms": time_ms, "quantity": quantity}
 
 
 def atomic_write_report(path: Path, report: Mapping[str, Any]) -> None:
