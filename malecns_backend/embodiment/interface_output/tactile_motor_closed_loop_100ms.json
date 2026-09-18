@@ -1,0 +1,265 @@
+{
+  "action_divergence": {
+    "leg": null,
+    "neural_step": null,
+    "observed": false,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  },
+  "admitted_neural_contribution_evidence": {
+    "leg": null,
+    "neural_step": null,
+    "observed": false,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  },
+  "causal_milestones": {
+    "C0": null,
+    "C1": null,
+    "C10": null,
+    "C11": null,
+    "C12": null,
+    "C13": null,
+    "C14": null,
+    "C2": null,
+    "C3": null,
+    "C4": null,
+    "C5": null,
+    "C6": null,
+    "C7": null,
+    "C8": null,
+    "C9": null
+  },
+  "causal_ordering": {
+    "established": false,
+    "sequence_ms": null
+  },
+  "classification": null,
+  "contact_evidence": {
+    "leg": null,
+    "neural_step": null,
+    "observed": false,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  },
+  "control_pipeline_definition": {
+    "condition_dependent_value": "admitted_neural_contribution",
+    "implementation": "tactile_motor_matched_control.MatchedControlPipeline",
+    "order": [
+      "measured_position",
+      "baseline_target",
+      "raw_decoded_neural_contribution",
+      "experimental_gate",
+      "admitted_neural_contribution",
+      "sum",
+      "range_clamp",
+      "slew_limiter",
+      "final_range_clamp",
+      "actuator_command",
+      "MuJoCo_ctrl"
+    ],
+    "reused_not_reimplemented": true
+  },
+  "ctrl_divergence": {
+    "leg": null,
+    "neural_step": null,
+    "observed": false,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  },
+  "downstream_cns_evidence": {
+    "leg": null,
+    "neural_step": null,
+    "observed": false,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  },
+  "intervention_definition": {
+    "disabled": "admitted = 0.0",
+    "disabled_decoder_continues": true,
+    "enabled": "admitted = raw"
+  },
+  "limitations": [
+    "This artifact contains no fabricated live result.",
+    "Claims apply only to the modeled embodiment, not biological reflexes or natural gait."
+  ],
+  "m5d4c_prefix_validation": {
+    "observed": null,
+    "passed": null
+  },
+  "mapped_motor_evidence": {
+    "leg": null,
+    "neural_step": null,
+    "observed": false,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  },
+  "modeled_sensory_encoding_divergence": {
+    "leg": null,
+    "neural_step": null,
+    "observed": false,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  },
+  "per_leg_summary": {
+    "LF": {
+      "actuator_index": 5
+    },
+    "LH": {
+      "actuator_index": 19
+    },
+    "LM": {
+      "actuator_index": 12
+    },
+    "RF": {
+      "actuator_index": 26
+    },
+    "RH": {
+      "actuator_index": 40
+    },
+    "RM": {
+      "actuator_index": 33
+    }
+  },
+  "physical_sensory_divergence": {
+    "contact_force": {
+      "leg": null,
+      "neural_step": null,
+      "observed": false,
+      "physical_step": null,
+      "time_ms": null,
+      "value": null
+    },
+    "proprioceptive_physical": {
+      "leg": null,
+      "neural_step": null,
+      "observed": false,
+      "physical_step": null,
+      "time_ms": null,
+      "value": null
+    },
+    "semantic_contact": {
+      "leg": null,
+      "neural_step": null,
+      "observed": false,
+      "physical_step": null,
+      "time_ms": null,
+      "value": null
+    }
+  },
+  "post_feedback_cns_divergence": {
+    "leg": null,
+    "neural_step": null,
+    "observed": false,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  },
+  "post_feedback_mapped_motor_divergence": {
+    "leg": null,
+    "neural_step": null,
+    "observed": false,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  },
+  "pre_intervention_equivalence": {
+    "differences": null,
+    "passed": null
+  },
+  "protocol": {
+    "automatic_retries": 0,
+    "conditions": [
+      "TACTILE_MOTOR_ENABLED",
+      "TACTILE_MOTOR_DISABLED"
+    ],
+    "duration_ms": 100.0,
+    "neural_timestep_ms": 0.5,
+    "physics_timestep_s": 0.0001,
+    "seed": 1
+  },
+  "provenance": {
+    "earlier_locked_sha256": {
+      "malecns_backend/embodiment/M5D3_TACTILE_PROPAGATION.md": "da5df00493e4701ac188c0f41d73348dcb00c61a1ace8e567487fb7b31ef4721",
+      "malecns_backend/embodiment/interface_output/tactile_propagation.json": "6f01c2b4aa16d6b51dbfba31055970dc7dea114ef317b688595bb1c9355b25cf",
+      "malecns_backend/embodiment/interface_output/tactile_targeted_contact_calibration.json": "3866d118f58dc1cf027cc36301e2881e34f8e98c18565b57d41f17653876f42c",
+      "malecns_backend/embodiment/six_leg_map.json": "575186602ac1e5a6e3b2c6d680309880266f5d80e18fff44f989440f6cd0a4bc",
+      "malecns_backend/embodiment/tactile_contact.py": "10fb5edb8c9d59036a703d4ebe1bfac9c67e986f0d42d1ea412666f7404011f9",
+      "malecns_backend/embodiment/tactile_propagation.py": "a1e07293c1676e5406500a00355c6f31979412f93aeab63edc16ec94934be3a6",
+      "malecns_backend/embodiment/tactile_propagation_audit.py": "9fe739a94644224a3e6757b4ffc30d02630e8348ca653372eb6fe673aeddd003",
+      "malecns_backend/embodiment/tactile_targeted_contact_calibration.py": "2c5de5a3de6c37d1d7d27093051b4c8f61ce6374641cb33eadeb6ec1294afcae"
+    },
+    "earlier_locks_verified": true,
+    "m5d4c": {
+      "artifact_sha256": "15e83fa88aa3e7a6206ea7bb736cd1ec446874dcf44079e0b79bcbf39c594901",
+      "implementation_sha256": "0d75267b0203d9ad97e69bf9f75d57fdc5057beec682d925176479c00e8a2bc8"
+    },
+    "m5d4c_semantics": {
+      "classification": "PREFLIGHT_PASS",
+      "run_status": "COMPLETE"
+    },
+    "verified": true
+  },
+  "qacc_divergence": {
+    "leg": null,
+    "neural_step": null,
+    "observed": false,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  },
+  "qpos_divergence": {
+    "leg": null,
+    "neural_step": null,
+    "observed": false,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  },
+  "qvel_divergence": {
+    "leg": null,
+    "neural_step": null,
+    "observed": false,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  },
+  "raw_neural_contribution_evidence": {
+    "leg": null,
+    "neural_step": null,
+    "observed": false,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  },
+  "reason": "Validated Windows FlyGym/MuJoCo live execution has not been performed",
+  "rng_parity": {
+    "pre_feedback_exact": null,
+    "random_stream_mismatch": null
+  },
+  "run_status": "NOT_RUN",
+  "schema": "M5D-4D.0",
+  "tactile_delivery_evidence": {
+    "leg": null,
+    "neural_step": null,
+    "observed": false,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  },
+  "tactile_transduction_evidence": {
+    "leg": null,
+    "neural_step": null,
+    "observed": false,
+    "physical_step": null,
+    "time_ms": null,
+    "value": null
+  }
+}
