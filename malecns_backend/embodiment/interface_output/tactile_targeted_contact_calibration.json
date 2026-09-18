@@ -1,0 +1,47 @@
+{
+  "contact": {
+    "statistics": {
+      "count": 0,
+      "exact_zero_fraction": null,
+      "max": null,
+      "mean": null,
+      "median": null,
+      "min": null,
+      "percentiles": {}
+    }
+  },
+  "contact_force_nonzero_sample_count": 0,
+  "control": {
+    "statistics": {
+      "count": 0,
+      "exact_zero_fraction": null,
+      "max": null,
+      "mean": null,
+      "median": null,
+      "min": null,
+      "percentiles": {}
+    }
+  },
+  "duration_s": 0.05,
+  "environmental_intervention_only": true,
+  "male_cns_used": false,
+  "neural_propagation": "NOT_RUN",
+  "reason": "invoke with --live in the validated FlyGym/MuJoCo environment",
+  "run_status": "NOT_RUN",
+  "schema_version": "M5D-2C.0",
+  "selected_leg": "LM",
+  "selected_segment": "Tarsus5",
+  "sensor_correspondence_classification": "NO_VERIFIED_CONTACT",
+  "surface_placement_method": "Tarsus5 geom_xpos z minus geom_rbound; box top has fixed 0.01 control gap or fixed 0.0001 penetration",
+  "threshold_evaluation": {
+    "classification": "CALIBRATION_INCONCLUSIVE",
+    "comparison": "magnitude > threshold",
+    "evaluated": false,
+    "false_negatives": null,
+    "false_positives": null,
+    "threshold": 1e-12
+  },
+  "timestep_s": 0.0001,
+  "units": "model force units",
+  "verified_contact_sample_count": 0
+}
