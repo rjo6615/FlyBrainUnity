@@ -49,9 +49,46 @@ is observational only. The implementation locks the raw M5D-4E and M5D-4D
 artifacts and canonical-LF hashes of both implementation pairs, then invokes the
 existing M5D-4E verifier to revalidate M5D-4C and the earlier chain.
 
-The checked-in artifact is intentionally `NOT_RUN`; it contains no fabricated
-scientific result. On the validated Windows installation, run exactly:
+Before the first invocation, the checked-in artifact was intentionally
+`NOT_RUN`; it contained no fabricated scientific result. The current primary
+artifact truthfully records the pre-simulation provenance failure described
+below. On the validated Windows installation, rerun exactly:
 
 ```powershell
 python -m malecns_backend.embodiment.proprioceptive_activation_audit --live --duration-ms 100 --seed 1
 ```
+
+## M5D-4E provenance-lock correction
+
+The first Windows M5D-5A invocation stopped in `verify_provenance` before either
+live condition began. It is **not** a scientific experimental run: no trajectory
+was generated, so there is no seed-shopping or result-selection issue. Its
+unaltered failure report is preserved as
+`interface_output/proprioceptive_activation_100ms_first_attempt_provenance_failure.json`.
+After this bookkeeping correction, the next successful Windows execution is
+M5D-5A Scientific Run #1.
+
+The former M5D-4E artifact lock, `318217af36f326b31464bc5373f9b1956fb49cf4bb433f26fe4ce82182d3b38c`,
+is the raw LF hash of the `FAILED / PROVENANCE_FAILURE` recursion-failure
+artifact committed at `759615a` (and still present when M5D-5A was introduced at
+`041693b`). It is neither the initial `NOT_RUN` artifact nor a serialization of
+the completed result. The initial `NOT_RUN` artifact at `18277d9` hashes to
+`135213fab6441456b585fb49f9b307fdd628153c02407b254575f85218c06749`.
+
+The authoritative Windows M5D-4E result is the later, scientifically different
+`COMPLETE / NO_SENSOR_RELEVANT_PHYSICAL_DIVERGENCE` artifact. Its exact Windows
+raw bytes (one CRLF record terminator) hash to
+`151eb07263b4c7d5e5af8668f8405738e320faac451742a1eecc765dd3fa20f9`.
+The repository marks this file `-text`, preserving those authoritative bytes
+without checkout newline conversion. The old and new artifacts differ in
+scientific content (`FAILED` versus `COMPLETE`, null evidence versus measured
+evidence), not merely JSON serialization or line endings. The defect was
+therefore a stale lock to a failed pre-success artifact (`STALE_LOCK` and
+`SCIENTIFIC_CONTENT_DIFFERENCE`), not a reason to weaken raw-byte validation.
+
+M5D-5A continues to require the exact raw hash and now additionally fail-closes
+on the completed artifact's schema, status, classification, verified
+provenance, exact M5D-4D runner reuse, prefix reproduction, blocked boundary,
+and both telemetry-validation booleans. No simulation, encoder, mapping, RNG,
+physics, seed, duration, motor-output, delivery-gate, or external-drive logic
+was changed.

@@ -1,3 +1,5 @@
+import copy
+import hashlib
 import json
 from pathlib import Path
 
@@ -67,12 +69,84 @@ def test_classification_is_fail_closed_and_evidence_driven():
 
 
 def test_provenance_and_locked_artifacts_are_unchanged():
-    assert activation.verify_provenance()["verified"]
+    result = activation.verify_provenance()
+    assert result["verified"]
+    assert result["locks"]["sensory_feedback_boundary_100ms.json"] == (
+        "151eb07263b4c7d5e5af8668f8405738e320faac451742a1eecc765dd3fa20f9")
 
 
-def test_not_run_artifact_truthful_null_and_deterministic():
+def test_authoritative_m5d4e_result_and_critical_findings():
+    path = activation._lock_paths()["sensory_feedback_boundary_100ms.json"]
+    assert hashlib.sha256(path.read_bytes()).hexdigest() == activation.LOCKS[path.name]
+    artifact = json.loads(path.read_text(encoding="utf-8"))
+    activation._validate_m5d4e_artifact(artifact)
+    channel = artifact["channels"]["LM_Tarsus5_tactile"]
+    assert artifact["run_status"] == "COMPLETE"
+    assert artifact["classification"] == "NO_SENSOR_RELEVANT_PHYSICAL_DIVERGENCE"
+    assert artifact["full_body_physics"]["first_contact_force"]["first_differing_index"] == "[24][0]"
+    assert artifact["full_body_physics"]["first_divergence_ms"] == pytest.approx(14.6)
+    assert channel["source_row"] == 11
+    assert channel["global_first_force_is_encoder_source"] is False
+    assert channel["maximum_force_magnitude_difference"]["value"] == 0
+    assert artifact["sensor_relevant_physics"]["first_divergence_ms"] is None
+    assert artifact["active_sensory_channels"][0]["mapped_neuron_count"] == 378
+    assert len(artifact["available_but_inactive_proprioception"]) == 6
+
+
+def test_modified_m5d4e_raw_artifact_fails_provenance(tmp_path, monkeypatch):
+    paths = activation._lock_paths()
+    copies = {}
+    for name, source in paths.items():
+        destination = tmp_path / name
+        destination.write_bytes(source.read_bytes())
+        copies[name] = destination
+    copies["sensory_feedback_boundary_100ms.json"].write_bytes(
+        copies["sensory_feedback_boundary_100ms.json"].read_bytes() + b" ")
+    monkeypatch.setattr(activation, "_lock_paths", lambda: copies)
+    with pytest.raises(RuntimeError, match="provenance mismatch"):
+        activation.verify_provenance()
+
+
+@pytest.mark.parametrize(("path", "value"), [
+    (("run_status",), "NOT_RUN"),
+    (("classification",), "SOME_OTHER_RESULT"),
+    (("first_blocked_boundary",), "another boundary"),
+    (("prefix_reproduction", "passed"), False),
+    (("provenance", "verified"), False),
+])
+def test_m5d4e_semantic_lock_fails_closed(path, value):
+    artifact_path = activation._lock_paths()["sensory_feedback_boundary_100ms.json"]
+    artifact = json.loads(artifact_path.read_text(encoding="utf-8"))
+    altered = copy.deepcopy(artifact)
+    target = altered
+    for key in path[:-1]:
+        target = target[key]
+    target[path[-1]] = value
+    with pytest.raises(RuntimeError, match="semantic provenance mismatch"):
+        activation._validate_m5d4e_artifact(altered)
+
+
+def test_earlier_and_implementation_locks_remain_unchanged():
+    assert activation.LOCKS == {
+        "sensory_feedback_boundary_100ms.json": "151eb07263b4c7d5e5af8668f8405738e320faac451742a1eecc765dd3fa20f9",
+        "sensory_feedback_boundary.py": "71f8dabb2cca77670a32e493dc028619ec5f070097b5bf3aac04ad0432388585",
+        "sensory_feedback_boundary_audit.py": "e61d501d856895519f320739a79ef17e8eef376f18cef1df5960496366e10732",
+        "tactile_motor_closed_loop_100ms.json": "d684f38cd50edf6f494f00678d33a67c8cd89b50a34fd4815d5af90f05611e09",
+        "tactile_motor_closed_loop.py": "8434a6a8e946c2405a1a2271956a9aa88e8f4ba412b0861c55e109b33637d1d6",
+        "tactile_motor_closed_loop_audit.py": "450a98112047a4a271d01a29caafff76b960a9bf79b22af68fbc25106cb653c8",
+    }
+
+
+def test_failed_first_invocation_is_preserved_and_base_report_is_deterministic():
     artifact = json.loads(audit.DEFAULT_OUTPUT.read_text(encoding="utf-8"))
-    assert artifact["run_status"] == "NOT_RUN" and artifact["classification"] is None
+    preserved = audit.DEFAULT_OUTPUT.with_name(
+        "proprioceptive_activation_100ms_first_attempt_provenance_failure.json")
+    assert preserved.read_bytes() == audit.DEFAULT_OUTPUT.read_bytes()
+    assert artifact["run_status"] == "FAILED"
+    assert artifact["classification"] == "PROVENANCE_FAILURE"
+    assert artifact["traceback"]
+    assert artifact["provenance"]["expected"]["sensory_feedback_boundary_100ms.json"] == (
+        "318217af36f326b31464bc5373f9b1956fb49cf4bb433f26fe4ce82182d3b38c")
     assert all(x["first_candidate_spike_ms"] is None for x in artifact["per_leg"].values())
     encode = lambda x: json.dumps(x, sort_keys=True, separators=(",", ":"))
     assert encode(activation.base_report()) == encode(activation.base_report())
