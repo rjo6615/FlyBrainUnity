@@ -41,3 +41,4 @@ __pycache__/
 # OS
 .DS_Store
 Thumbs.db
+malecns_backend/embodiment/interface_output/instrumented_proprioceptive_closed_loop_telemetry.npz
