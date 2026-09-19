@@ -6,3 +6,6 @@ malecns_backend/embodiment/interface_output/post_feedback_motor_pathway_audit.js
 # M6A is authoritative generated JSON raw-byte locked by M6B. Preserve the
 # indexed bytes on every platform; never allow core.autocrlf to transform it.
 malecns_backend/embodiment/interface_output/whole_leg_motor_mapping_audit.json -text
+# M6B-P2/P3 are raw-byte provenance inputs to the canonical P4 protocol.
+malecns_backend/embodiment/interface_output/m6b_live_limit_diagnostic.json -text
+malecns_backend/embodiment/interface_output/m6b_coxa_yaw_sign_diagnostic.json -text

@@ -127,8 +127,9 @@ also remains failed closed.
 * Canonical seed: **1**; no seed sweep.
 * Duration: **500 ms per condition per joint**, frozen before the first run.
 * Every actuator and condition receives a fresh simulation.
-* Exactly one selected Tier-B contribution can be admitted. Tier A and all
-  other Tier-B neural contributions remain zero.
+* Exactly one selected canonical Tier-B contribution can be admitted. Tier A,
+  Tier C/D, the six excluded Coxa-yaw interfaces, and all other eligible
+  Tier-B neural contributions remain exactly zero.
 * Both `ENABLED` and `MOTOR_OUTPUT_DISABLED` calculate identical neural
   activity, 40 ms observer state, bounded activation (17 Hz half-activation),
   signed raw decoder output, baseline, range clamp, and 4 rad/s slew path. The
@@ -139,12 +140,10 @@ also remains failed closed.
 ## Sign calibration
 
 M6A's `+1/-1` describes annotation-backed anatomical opposition; it is not
-silently treated as NMF coordinate sign. All 14 interfaces therefore begin as
-`PHYSICAL_SIGN_CALIBRATION_REQUIRED`. Before neural admission, the Windows
-adapter must inspect MuJoCo joint-axis metadata and apply deterministic
-positive/negative kinematic epsilon perturbations, using endpoint geometry—not
-neural behavior—to associate anatomical and NMF directions. An indefensible
-association is `SIGN_UNRESOLVED`, and that interface is not admitted.
+silently treated as NMF coordinate sign. P4 freezes the eight independently
+resolved signs from the non-neural P2 kinematic evidence (all are `-1`) and
+never recalculates them from scientific output or bilateral symmetry. The six
+Coxa-yaw signs remain `SIGN_UNRESOLVED` and cannot be admitted.
 
 ### Coxa-yaw anatomical sign audit (M6B-P3)
 
@@ -175,15 +174,28 @@ values by assumption.
 Consequently all six Coxa-yaw interfaces remain `SIGN_UNRESOLVED`; no sign was
 guessed from a nonzero Y component, apparent movement, or bilateral symmetry.
 The independently resolved Femur interfaces and LF/RF Tarsus1 interfaces are
-unchanged.  The **proposed, not canonicalized** M6B set is therefore:
+unchanged.  The **canonical** M6B eligibility set is therefore exactly:
 
 * `joint_LFFemur`, `joint_LFTarsus1`, `joint_LMFemur`, `joint_LHFemur`
 * `joint_RFFemur`, `joint_RFTarsus1`, `joint_RMFemur`, `joint_RHFemur`
 
-This does not downgrade the experiment: unresolved Coxa-yaw interfaces are
-excluded while the eight defensible interfaces remain proposed for review.
-The canonical eligible set has not been modified.  M6B-P3 called no scientific
+The unresolved interfaces retain their annotation-backed motor mappings; they
+are not reclassified as unsupported. Their physical sign is insufficient for
+actuation and canonical neural actuation is `WITHHELD`. P4 called no scientific
 condition runner, and Scientific Run #1 remains `NOT_RUN` and unconsumed.
+
+The frozen eligible locks are:
+
+| interface | action index | coordinate sign |
+|---|---:|---:|
+| `joint_LFFemur` | 3 | -1 |
+| `joint_LFTarsus1` | 6 | -1 |
+| `joint_LMFemur` | 10 | -1 |
+| `joint_LHFemur` | 17 | -1 |
+| `joint_RFFemur` | 24 | -1 |
+| `joint_RFTarsus1` | 27 | -1 |
+| `joint_RMFemur` | 31 | -1 |
+| `joint_RHFemur` | 38 | -1 |
 
 The historical sequence is preserved: Attempt #1 failed on the M6A raw-byte
 provenance mismatch; Attempt #2 reported no valid joint/actuator limit
@@ -216,11 +228,7 @@ Run the non-scientific engineering preflight first:
 .\fly-brain-interactive\.venv\Scripts\python.exe -m malecns_backend.embodiment.isolated_tier_b_motor_validation --preflight-windows
 ```
 
-Only after it prints `M6B WINDOWS PREFLIGHT PASS`, invoke Scientific Run #1:
-
-```powershell
-.\fly-brain-interactive\.venv\Scripts\python.exe -m malecns_backend.embodiment.isolated_tier_b_motor_validation --run-windows
-```
-
-The adapter must preserve each first-run artifact and populate per-joint and
-aggregate results without changing this frozen protocol.
+It must print `M6B WINDOWS FINAL PREFLIGHT PASS`. Do **not** invoke
+`--run-windows` until Scientific Run #1 is separately authorized. The adapter
+will preserve each first-run artifact and populate per-joint and aggregate
+results without changing this frozen protocol.

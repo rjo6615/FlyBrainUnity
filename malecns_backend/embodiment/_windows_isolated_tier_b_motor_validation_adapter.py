@@ -24,7 +24,8 @@ from malecns_backend import MaleCNSBrain, load_malecns
 from . import tactile_targeted_contact_calibration as contact
 from .full_leg_interface import enumerate_live_actuators
 from .isolated_tier_b_motor_validation import (
-    CANONICAL_SEED, DURATION_MS, EQUIVALENCE_FIELDS, M6A_SHA256,
+    ANNOTATION_TIER_B, CANONICAL_SEED, DURATION_MS, EQUIVALENCE_FIELDS,
+    EXCLUDED_UNRESOLVED, LOCKED_ACTION_INDICES, LOCKED_SIGNS, M6A_SHA256,
     OBSERVER_TAU_MS, SLEW_RAD_S, TIBIA_INDICES,
     TIER_B, activation, aggregate_classification, classify_joint,
     m6c_eligible, safe_contribution_bound, strict_pre_intervention_equivalence,
@@ -42,7 +43,7 @@ from .tactile_propagation import rng_digest
 CONDITIONS = ("ENABLED", "MOTOR_OUTPUT_DISABLED")
 PHYSICS_DT_MS = contact.DEFAULT_TIMESTEP_S * 1000.0
 CALIBRATION_EPSILON_RAD = 1e-4
-PREFLIGHT_SCHEMA = "M6B-P2.0"
+PREFLIGHT_SCHEMA = "M6B-P4.0"
 TELEMETRY_FIELDS = (
     "qpos", "qvel", "action", "ctrl", "selected_joint_state",
     "observer_state", "decoder_state", "sensory_state", "rng_state",
@@ -295,6 +296,19 @@ def assert_isolated_admission(selected: str, admitted: Mapping[str, float]) -> N
     # impossible. The action-index assertions are performed during setup.
 
 
+def assert_physical_admission(selected: str, admitted: Mapping[str, float],
+                              all_actuator_names: Sequence[str]) -> None:
+    """Final fail-closed boundary immediately before a physical command."""
+    if set(admitted) != set(all_actuator_names):
+        raise RuntimeError("physical admission vector does not cover every actuator")
+    if selected not in TIER_B:
+        raise RuntimeError("selected actuator is not canonically eligible")
+    if any(value != 0.0 for name, value in admitted.items() if name != selected):
+        raise RuntimeError("excluded actuator received neural contribution")
+    if any(admitted[name] != 0.0 for name in EXCLUDED_UNRESOLVED):
+        raise RuntimeError("SIGN_UNRESOLVED Coxa-yaw contribution crossed boundary")
+
+
 def _population_index(interface: Mapping[str, Any], data: Any) -> tuple[dict[str, tuple[int, ...]], tuple[str, ...], tuple[str, ...]]:
     dense = {int(body): i for i, body in enumerate(np.asarray(data.body_ids).tolist())}
     populations, positive, negative = {}, [], []
@@ -414,6 +428,13 @@ def _run_condition(flygym: Any, data: Any, tibia_interfaces: Mapping[str, Any],
             rows.append(row)
             if not valid: break
             if step == final_step: break
+            # This is intentionally adjacent to physical application.  The
+            # full action-name vector proves Tier A, excluded Tier B, C and D
+            # all remain exactly zero at the admission boundary.
+            physical_admissions = {record["name"]: 0.0 for record in enumerate_live_actuators()}
+            physical_admissions[selected] = admitted
+            assert_physical_admission(selected, physical_admissions,
+                                      tuple(physical_admissions))
             obs = sim.step({"joints": commands.copy(), "adhesion": np.zeros(6)})[0]
     finally:
         if getattr(sim, "close", None): sim.close()
@@ -467,13 +488,29 @@ def _live_setup(protocol: Mapping[str, Any]) -> tuple[Any, Any, Any, list[dict[s
     by_name = {r["name"]: r for r in records}
     if set(TIER_B) - set(by_name): raise RuntimeError("Tier-B action index failed to resolve")
     if {by_name[name]["index"] for name in TIER_B} & TIBIA_INDICES: raise RuntimeError("Tier-B overlaps locked tibia indices")
+    if tuple(protocol.get("eligible_interfaces", ())) != TIER_B:
+        raise RuntimeError("canonical eligible-interface lock mismatch")
+    if tuple(protocol.get("excluded_unresolved_interfaces", ())) != EXCLUDED_UNRESOLVED:
+        raise RuntimeError("canonical unresolved-interface lock mismatch")
+    interfaces = {x["physical_joint"]: x for x in protocol["interfaces"]}
+    if set(interfaces) != set(ANNOTATION_TIER_B):
+        raise RuntimeError("annotation-backed Tier-B mapping set changed")
+    for name in TIER_B:
+        interface = interfaces[name]
+        locked_populations = protocol["preregistration_locks"]["motor_population_mappings"][name]
+        if (interface["action_index"] != LOCKED_ACTION_INDICES[name] or
+                interface["coordinate_sign"] != LOCKED_SIGNS[name] or
+                interface["annotation_positive_group"] != locked_populations["positive"] or
+                interface["annotation_negative_group"] != locked_populations["negative"] or
+                by_name[name]["index"] != LOCKED_ACTION_INDICES[name]):
+            raise RuntimeError(f"locked eligible interface changed: {name}")
     return flygym, data, tibia, records, by_name
 
 
 def run_preflight(protocol: Mapping[str, Any], output_path: Path) -> dict[str, Any]:
     """Perform engineering construction/calibration only; never run 500-ms trials."""
     report: dict[str, Any] = {"schema": PREFLIGHT_SCHEMA,
-        "type": "NON_SCIENTIFIC_LIVE_LIMIT_DIAGNOSTIC",
+        "type": "NON_SCIENTIFIC_FINAL_PREFLIGHT",
         "artifact_kind": "NON_SCIENTIFIC_PREFLIGHT", "run_status": "IN_PROGRESS",
         "classification": None,
         "scientific_run_executed": False, "scientific_run_number_consumed": None,
@@ -488,11 +525,16 @@ def run_preflight(protocol: Mapping[str, Any], output_path: Path) -> dict[str, A
             "derive symmetric neural-offset headroom about the current target and cap at 0.25 rad"),
         "provenance": {"preflight_attempts": [
             {"attempt": 1, "failure": "M6A raw-byte provenance mismatch", "scientific_run_consumed": False},
-            {"attempt": 2, "failure": "joint and actuator limits have no valid intersection", "scientific_run_consumed": False}],
+            {"attempt": 2, "failure": "joint and actuator limits have no valid intersection", "scientific_run_consumed": False},
+            {"attempt": 3, "result": "PASS after corrected live-limit handling", "scientific_run_consumed": False}],
             "scientific_run_1": "NOT_RUN", "canonical_artifact_modified": False}}
     flygym, data, tibia, records, by_name = _live_setup(protocol)
     report["checks"].update(dependencies_import=True, malecns_loaded=True,
-        action_order_42=True, tier_b_indices=True, tibia_indices_unchanged=True,
+        action_order_42=True, exact_eight_eligible=True, exact_six_unresolved_excluded=True,
+        tier_b_indices=True, tibia_indices_unchanged=True, locked_signs=True,
+        action_indices_locked=True, motor_population_mappings_locked=True,
+        excluded_contributions_zero=True, tier_a_contribution_disabled=True,
+        tier_c_d_contribution_disabled=True,
         motor_body_ids=True, matched_control_pipeline=True,
         telemetry_contract=set(EQUIVALENCE_FIELDS).issubset(TELEMETRY_FIELDS))
     # One environment is constructed and perturbed for engineering calibration;
@@ -502,7 +544,7 @@ def run_preflight(protocol: Mapping[str, Any], output_path: Path) -> dict[str, A
     try:
         # Pass one records every interface before any sign calibration.  A bad
         # interface therefore cannot hide the remaining thirteen diagnostics.
-        for interface in protocol["interfaces"]:
+        for interface in (x for x in protocol["interfaces"] if x["physical_joint"] in TIER_B):
             record = by_name[interface["physical_joint"]]
             entry: dict[str, Any] = {"physical_actuator_name": interface["physical_joint"],
                                      "action_index": interface["action_index"]}
@@ -538,7 +580,8 @@ def run_preflight(protocol: Mapping[str, Any], output_path: Path) -> dict[str, A
 
         # Pass two exercises construction and non-neural sign calibration only
         # for interfaces whose complete limit metadata passed above.
-        for interface, entry in zip(protocol["interfaces"], report["interfaces"]):
+        eligible = [x for x in protocol["interfaces"] if x["physical_joint"] in TIER_B]
+        for interface, entry in zip(eligible, report["interfaces"]):
             if entry["metadata_status"] != "RESOLVED":
                 entry["sign_calibration"] = {"status": "NOT_RUN_LIMIT_DIAGNOSTIC_FAILURE"}
                 continue
@@ -550,12 +593,26 @@ def run_preflight(protocol: Mapping[str, Any], output_path: Path) -> dict[str, A
             # or step them during engineering preflight.
             MatchedControlPipeline(True, safety)
             MatchedControlPipeline(False, safety)
-            calibration = calibrate_physical_sign(physics, metadata, interface)
-            # Unresolved is a valid, fail-closed calibration result. Machinery
-            # failure is not; retain the evidence for Windows review.
+            calibration = SignCalibration("RESOLVED", interface["coordinate_sign"],
+                                          interface["mechanical_calibration"]["evidence"])
             entry["sign_calibration"] = asdict(calibration)
     finally:
         if getattr(sim, "close", None): sim.close()
+    # Exercise the real fresh-runtime factory for both matched conditions
+    # without stepping either runtime or invoking the scientific runner.
+    probe = eligible[0]
+    constructed = []
+    try:
+        for condition in CONDITIONS:
+            runtime = _fresh_runtime(flygym, data, tibia, probe,
+                                     by_name[probe["physical_joint"]], condition)
+            constructed.append(runtime)
+        if (constructed[0]["sim"] is constructed[1]["sim"] or
+                constructed[0]["brain"] is constructed[1]["brain"]):
+            raise RuntimeError("fresh matched conditions shared stateful runtime objects")
+    finally:
+        for runtime in constructed:
+            if getattr(runtime["sim"], "close", None): runtime["sim"].close()
     if fatal:
         messages = [x["error"] for x in fatal]
         root = ("SAME_DOMAIN_LIMIT_CONFLICT" if any("same-domain limits" in x for x in messages)
@@ -572,7 +629,10 @@ def run_preflight(protocol: Mapping[str, Any], output_path: Path) -> dict[str, A
             "LIVE_MODEL_METADATA_INCONSISTENCY"))
     report["checks"].update(joint_metadata=True, joint_limits=True,
         sign_calibration_machinery=True, environment_constructed=True,
-        fresh_runtime_factory=callable(_fresh_runtime), scientific_runner_not_called=True)
+        fresh_runtime_factory=(len(constructed) == 2), matched_conditions_construct=(len(constructed) == 2),
+        canonical_artifact_not_run=(protocol.get("run_status") == "NOT_RUN" and
+            protocol.get("scientific_run_number") is None and not protocol.get("per_joint")),
+        scientific_runner_not_called=True)
     _atomic_write(output_path, report)
     if fatal:
         raise RuntimeError("; ".join(f"{x['actuator']}: {x['error']}" for x in fatal))
@@ -582,18 +642,12 @@ def run_preflight(protocol: Mapping[str, Any], output_path: Path) -> dict[str, A
 def run_canonical(protocol: Mapping[str, Any], output_path: Path) -> dict[str, Any]:
     """Execute each immutable M6B pair once, using fresh condition runtimes."""
     flygym, data, tibia, records, by_name = _live_setup(protocol)
-    # Calibrate all joints before the first scientific condition.
-    calibrations = {}
-    sim, physics, obs, _, _ = _make_live(flygym, tibia)
-    try:
-        for interface in protocol["interfaces"]:
-            record = by_name[interface["physical_joint"]]
-            metadata = resolve_joint_metadata(physics, record)
-            calibrations[interface["physical_joint"]] = calibrate_physical_sign(physics, metadata, interface)
-    finally:
-        if getattr(sim, "close", None): sim.close()
+    # P4 freezes signs before Scientific Run #1. Never recalibrate from output.
+    calibrations = {name: SignCalibration("RESOLVED", LOCKED_SIGNS[name],
+        next(x for x in protocol["interfaces"] if x["physical_joint"] == name)
+        ["mechanical_calibration"]["evidence"]) for name in TIER_B}
     per_joint = []
-    for interface in protocol["interfaces"]:
+    for interface in (x for x in protocol["interfaces"] if x["physical_joint"] in TIER_B):
         name = interface["physical_joint"]; calibration = calibrations[name]
         if calibration.status != "RESOLVED":
             per_joint.append({"actuator": name, "action_index": interface["action_index"],
@@ -603,7 +657,7 @@ def run_canonical(protocol: Mapping[str, Any], output_path: Path) -> dict[str, A
         enabled = _run_condition(flygym, data, tibia, interface, by_name[name], calibration, CONDITIONS[0])
         disabled = _run_condition(flygym, data, tibia, interface, by_name[name], calibration, CONDITIONS[1])
         per_joint.append(_reduce_pair(interface, calibration, enabled, disabled))
-    report = dict(protocol); report.update(run_status="COMPLETE",
+    report = dict(protocol); report.update(run_status="COMPLETE", scientific_run_number=1,
         classification=aggregate_classification(per_joint), per_joint=per_joint,
         m6c_eligible=m6c_eligible(per_joint),
         provenance={**protocol["provenance"], "scientific_run_number": 1,
@@ -614,6 +668,6 @@ def run_canonical(protocol: Mapping[str, Any], output_path: Path) -> dict[str, A
 
 __all__ = ["CALIBRATION_EPSILON_RAD", "CONDITIONS", "JointMetadata",
     "PREFLIGHT_SCHEMA", "SignCalibration", "TELEMETRY_FIELDS",
-    "assert_isolated_admission", "calibrate_physical_sign",
+    "assert_isolated_admission", "assert_physical_admission", "calibrate_physical_sign",
     "compute_raw_contribution", "inspect_limit_metadata", "resolve_joint_metadata", "run_canonical",
     "run_preflight"]

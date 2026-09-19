@@ -8,23 +8,49 @@
     "decoder_active": 0,
     "failed_equivalence": 0,
     "mapped_motor_active": 0,
-    "sign_resolved": 0,
-    "sign_unresolved": 14,
+    "sign_resolved": 8,
+    "sign_unresolved": 6,
     "silent": 0,
-    "total_tier_b_planned": 14,
+    "total_tier_b_planned": 8,
     "total_tier_b_tested": 0,
     "unstable": 0
   },
+  "canonical_seed": 1,
   "classification": null,
+  "conditions_per_interface": 2,
+  "duration_ms": 500,
+  "eligible_interface_count": 8,
+  "eligible_interfaces": [
+    "joint_LFFemur",
+    "joint_LFTarsus1",
+    "joint_LMFemur",
+    "joint_LHFemur",
+    "joint_RFFemur",
+    "joint_RFTarsus1",
+    "joint_RMFemur",
+    "joint_RHFemur"
+  ],
+  "excluded_unresolved_count": 6,
+  "excluded_unresolved_interfaces": [
+    "joint_LFCoxa_yaw",
+    "joint_LMCoxa_yaw",
+    "joint_LHCoxa_yaw",
+    "joint_RFCoxa_yaw",
+    "joint_RMCoxa_yaw",
+    "joint_RHCoxa_yaw"
+  ],
   "interfaces": [
     {
       "action_index": 2,
+      "annotation_backed_motor_mapping": true,
       "annotation_negative_group": [
         "Sternal posterior rotator MN T1 left"
       ],
       "annotation_positive_group": [
         "Sternal anterior rotator MN T1 left"
       ],
+      "canonical_m6b_neural_actuation": "WITHHELD",
+      "coordinate_sign": null,
       "directional_motor_populations": [
         {
           "anatomical_direction": "extensor",
@@ -59,25 +85,64 @@
           "population_size": 4
         }
       ],
+      "exclusion_reason": "SIGN_UNRESOLVED",
       "joint_class": "Coxa_yaw",
       "leg": "LF",
       "m6a_directional_classification": "EXPLICIT_ANTAGONIST_PAIR",
       "mechanical_calibration": {
-        "method": "deterministic ±epsilon qpos perturbation with MuJoCo joint-axis metadata and geometric endpoint displacement",
-        "status": "NOT_RUN",
-        "uses_neural_behavior": false
+        "coordinate_sign": null,
+        "evidence": {
+          "actuator_id": 2,
+          "anatomical_projection": "body_forward_x",
+          "endpoint_geom_ids": [
+            18,
+            19
+          ],
+          "epsilon_rad": 0.0001,
+          "joint_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "joint_id": 1,
+          "method": "deterministic_non_neural_kinematic_perturbation",
+          "negative_endpoint": [
+            1.9014050969129945,
+            0.18565621987688874,
+            1.8771560532456248
+          ],
+          "positive_endpoint": [
+            1.9014050969129945,
+            0.18559407414140067,
+            1.8771588606743086
+          ],
+          "positive_minus_negative_displacement": [
+            0.0,
+            -6.214573548807278e-05,
+            2.807428683748725e-06
+          ],
+          "projection_value": 0.0,
+          "qpos_index": 7,
+          "qvel_index": 6,
+          "reason": "anatomical projection is zero or ambiguous",
+          "uses_neural_behavior": false,
+          "uses_walking_performance": false
+        },
+        "status": "SIGN_UNRESOLVED"
       },
       "nmf_negative_group": null,
       "nmf_positive_group": null,
       "physical_joint": "joint_LFCoxa_yaw",
-      "physical_sign_status": "PHYSICAL_SIGN_CALIBRATION_REQUIRED",
+      "physical_sign_status": "SIGN_UNRESOLVED",
+      "physical_sign_sufficiently_resolved_for_actuation": false,
       "safe_contribution_bound_rad": null,
       "side": "left",
-      "sign_assignment_justification": "M6A establishes anatomical opposition only; deterministic MuJoCo-axis perturbation and geometric inspection must establish the NMF coordinate sign before admission.",
+      "sign_assignment_justification": "Annotation-backed anterior/posterior opposition does not establish handed NMF Coxa-yaw rotation.",
       "thoracic_segment": "T1"
     },
     {
       "action_index": 3,
+      "annotation_backed_motor_mapping": true,
       "annotation_negative_group": [
         "Acc. tr flexor MN T1 left",
         "Tr flexor MN T1 left"
@@ -87,6 +152,8 @@
         "Tergotr. MN T1 left",
         "Tr extensor MN T1 left"
       ],
+      "canonical_m6b_neural_actuation": "ELIGIBLE",
+      "coordinate_sign": -1,
       "directional_motor_populations": [
         {
           "anatomical_direction": "flexor",
@@ -173,31 +240,73 @@
           "population_size": 8
         }
       ],
+      "exclusion_reason": null,
       "joint_class": "Femur",
       "leg": "LF",
       "m6a_directional_classification": "MULTIPLE_DIRECTIONAL_GROUPS",
       "mechanical_calibration": {
-        "method": "deterministic ±epsilon qpos perturbation with MuJoCo joint-axis metadata and geometric endpoint displacement",
-        "status": "NOT_RUN",
-        "uses_neural_behavior": false
+        "coordinate_sign": -1,
+        "evidence": {
+          "actuator_id": 3,
+          "anatomical_projection": "body_vertical_z",
+          "endpoint_geom_ids": [
+            18,
+            19
+          ],
+          "epsilon_rad": 0.0001,
+          "joint_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "joint_id": 4,
+          "method": "deterministic_non_neural_kinematic_perturbation",
+          "negative_endpoint": [
+            1.901339520031097,
+            0.1856251470793304,
+            1.877326160195313
+          ],
+          "nmf_coordinate_sign_for_annotation_positive": -1,
+          "positive_endpoint": [
+            1.9014706569243964,
+            0.1856251470793304,
+            1.876988750275063
+          ],
+          "positive_minus_negative_displacement": [
+            0.0001311368932994661,
+            0.0,
+            -0.00033740992024999805
+          ],
+          "projection_value": -0.00033740992024999805,
+          "qpos_index": 10,
+          "qvel_index": 9,
+          "reason": "signed distal displacement agrees with the preregistered annotation direction",
+          "uses_neural_behavior": false,
+          "uses_walking_performance": false
+        },
+        "status": "RESOLVED"
       },
       "nmf_negative_group": null,
       "nmf_positive_group": null,
       "physical_joint": "joint_LFFemur",
-      "physical_sign_status": "PHYSICAL_SIGN_CALIBRATION_REQUIRED",
+      "physical_sign_status": "RESOLVED",
+      "physical_sign_sufficiently_resolved_for_actuation": true,
       "safe_contribution_bound_rad": null,
       "side": "left",
-      "sign_assignment_justification": "M6A establishes anatomical opposition only; deterministic MuJoCo-axis perturbation and geometric inspection must establish the NMF coordinate sign before admission.",
+      "sign_assignment_justification": "Frozen from M6B-P2 deterministic non-neural kinematic calibration; not inferred from behavior or bilateral symmetry.",
       "thoracic_segment": "T1"
     },
     {
       "action_index": 6,
+      "annotation_backed_motor_mapping": true,
       "annotation_negative_group": [
         "Ta depressor MN T1 left"
       ],
       "annotation_positive_group": [
         "Ta levator MN T1 left"
       ],
+      "canonical_m6b_neural_actuation": "ELIGIBLE",
+      "coordinate_sign": -1,
       "directional_motor_populations": [
         {
           "anatomical_direction": "flexor",
@@ -233,31 +342,73 @@
           "population_size": 2
         }
       ],
+      "exclusion_reason": null,
       "joint_class": "Tarsus1",
       "leg": "LF",
       "m6a_directional_classification": "EXPLICIT_ANTAGONIST_PAIR",
       "mechanical_calibration": {
-        "method": "deterministic ±epsilon qpos perturbation with MuJoCo joint-axis metadata and geometric endpoint displacement",
-        "status": "NOT_RUN",
-        "uses_neural_behavior": false
+        "coordinate_sign": -1,
+        "evidence": {
+          "actuator_id": 6,
+          "anatomical_projection": "body_vertical_z",
+          "endpoint_geom_ids": [
+            18,
+            19
+          ],
+          "epsilon_rad": 0.0001,
+          "joint_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "joint_id": 7,
+          "method": "deterministic_non_neural_kinematic_perturbation",
+          "negative_endpoint": [
+            1.9013829283490322,
+            0.1856251470793304,
+            1.8772117556791166
+          ],
+          "nmf_coordinate_sign_for_annotation_positive": -1,
+          "positive_endpoint": [
+            1.90142726004713,
+            0.1856251470793304,
+            1.87710315913152
+          ],
+          "positive_minus_negative_displacement": [
+            4.4331698097810346e-05,
+            0.0,
+            -0.00010859654759665105
+          ],
+          "projection_value": -0.00010859654759665105,
+          "qpos_index": 13,
+          "qvel_index": 12,
+          "reason": "signed distal displacement agrees with the preregistered annotation direction",
+          "uses_neural_behavior": false,
+          "uses_walking_performance": false
+        },
+        "status": "RESOLVED"
       },
       "nmf_negative_group": null,
       "nmf_positive_group": null,
       "physical_joint": "joint_LFTarsus1",
-      "physical_sign_status": "PHYSICAL_SIGN_CALIBRATION_REQUIRED",
+      "physical_sign_status": "RESOLVED",
+      "physical_sign_sufficiently_resolved_for_actuation": true,
       "safe_contribution_bound_rad": null,
       "side": "left",
-      "sign_assignment_justification": "M6A establishes anatomical opposition only; deterministic MuJoCo-axis perturbation and geometric inspection must establish the NMF coordinate sign before admission.",
+      "sign_assignment_justification": "Frozen from M6B-P2 deterministic non-neural kinematic calibration; not inferred from behavior or bilateral symmetry.",
       "thoracic_segment": "T1"
     },
     {
       "action_index": 9,
+      "annotation_backed_motor_mapping": true,
       "annotation_negative_group": [
         "Sternal posterior rotator MN T2 left"
       ],
       "annotation_positive_group": [
         "Sternal anterior rotator MN T2 left"
       ],
+      "canonical_m6b_neural_actuation": "WITHHELD",
+      "coordinate_sign": null,
       "directional_motor_populations": [
         {
           "anatomical_direction": "extensor",
@@ -292,25 +443,64 @@
           "population_size": 4
         }
       ],
+      "exclusion_reason": "SIGN_UNRESOLVED",
       "joint_class": "Coxa_yaw",
       "leg": "LM",
       "m6a_directional_classification": "EXPLICIT_ANTAGONIST_PAIR",
       "mechanical_calibration": {
-        "method": "deterministic ±epsilon qpos perturbation with MuJoCo joint-axis metadata and geometric endpoint displacement",
-        "status": "NOT_RUN",
-        "uses_neural_behavior": false
+        "coordinate_sign": null,
+        "evidence": {
+          "actuator_id": 9,
+          "anatomical_projection": "body_forward_x",
+          "endpoint_geom_ids": [
+            34,
+            35
+          ],
+          "epsilon_rad": 0.0001,
+          "joint_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "joint_id": 23,
+          "method": "deterministic_non_neural_kinematic_perturbation",
+          "negative_endpoint": [
+            -0.053514604670096985,
+            2.193265427512686,
+            1.4829450830950113
+          ],
+          "positive_endpoint": [
+            -0.053514604670096985,
+            2.193231684189647,
+            1.4833587525888516
+          ],
+          "positive_minus_negative_displacement": [
+            0.0,
+            -3.3743323038848416e-05,
+            0.0004136694938403629
+          ],
+          "projection_value": 0.0,
+          "qpos_index": 29,
+          "qvel_index": 28,
+          "reason": "anatomical projection is zero or ambiguous",
+          "uses_neural_behavior": false,
+          "uses_walking_performance": false
+        },
+        "status": "SIGN_UNRESOLVED"
       },
       "nmf_negative_group": null,
       "nmf_positive_group": null,
       "physical_joint": "joint_LMCoxa_yaw",
-      "physical_sign_status": "PHYSICAL_SIGN_CALIBRATION_REQUIRED",
+      "physical_sign_status": "SIGN_UNRESOLVED",
+      "physical_sign_sufficiently_resolved_for_actuation": false,
       "safe_contribution_bound_rad": null,
       "side": "left",
-      "sign_assignment_justification": "M6A establishes anatomical opposition only; deterministic MuJoCo-axis perturbation and geometric inspection must establish the NMF coordinate sign before admission.",
+      "sign_assignment_justification": "Annotation-backed anterior/posterior opposition does not establish handed NMF Coxa-yaw rotation.",
       "thoracic_segment": "T2"
     },
     {
       "action_index": 10,
+      "annotation_backed_motor_mapping": true,
       "annotation_negative_group": [
         "Acc. tr flexor MN T2 left",
         "Tr flexor MN T2 left"
@@ -320,6 +510,8 @@
         "Tergotr. MN T2 left",
         "Tr extensor MN T2 left"
       ],
+      "canonical_m6b_neural_actuation": "ELIGIBLE",
+      "coordinate_sign": -1,
       "directional_motor_populations": [
         {
           "anatomical_direction": "flexor",
@@ -401,31 +593,73 @@
           "population_size": 7
         }
       ],
+      "exclusion_reason": null,
       "joint_class": "Femur",
       "leg": "LM",
       "m6a_directional_classification": "MULTIPLE_DIRECTIONAL_GROUPS",
       "mechanical_calibration": {
-        "method": "deterministic ±epsilon qpos perturbation with MuJoCo joint-axis metadata and geometric endpoint displacement",
-        "status": "NOT_RUN",
-        "uses_neural_behavior": false
+        "coordinate_sign": -1,
+        "evidence": {
+          "actuator_id": 10,
+          "anatomical_projection": "body_vertical_z",
+          "endpoint_geom_ids": [
+            34,
+            35
+          ],
+          "epsilon_rad": 0.0001,
+          "joint_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "joint_id": 26,
+          "method": "deterministic_non_neural_kinematic_perturbation",
+          "negative_endpoint": [
+            -0.053514604670096985,
+            2.193213539518471,
+            1.4833587732534705
+          ],
+          "nmf_coordinate_sign_for_annotation_positive": -1,
+          "positive_endpoint": [
+            -0.053514604670096985,
+            2.1932835721817066,
+            1.4829450606159251
+          ],
+          "positive_minus_negative_displacement": [
+            0.0,
+            7.003266323568624e-05,
+            -0.0004137126375454159
+          ],
+          "projection_value": -0.0004137126375454159,
+          "qpos_index": 32,
+          "qvel_index": 31,
+          "reason": "signed distal displacement agrees with the preregistered annotation direction",
+          "uses_neural_behavior": false,
+          "uses_walking_performance": false
+        },
+        "status": "RESOLVED"
       },
       "nmf_negative_group": null,
       "nmf_positive_group": null,
       "physical_joint": "joint_LMFemur",
-      "physical_sign_status": "PHYSICAL_SIGN_CALIBRATION_REQUIRED",
+      "physical_sign_status": "RESOLVED",
+      "physical_sign_sufficiently_resolved_for_actuation": true,
       "safe_contribution_bound_rad": null,
       "side": "left",
-      "sign_assignment_justification": "M6A establishes anatomical opposition only; deterministic MuJoCo-axis perturbation and geometric inspection must establish the NMF coordinate sign before admission.",
+      "sign_assignment_justification": "Frozen from M6B-P2 deterministic non-neural kinematic calibration; not inferred from behavior or bilateral symmetry.",
       "thoracic_segment": "T2"
     },
     {
       "action_index": 16,
+      "annotation_backed_motor_mapping": true,
       "annotation_negative_group": [
         "Sternal posterior rotator MN T3 left"
       ],
       "annotation_positive_group": [
         "Sternal anterior rotator MN T3 left"
       ],
+      "canonical_m6b_neural_actuation": "WITHHELD",
+      "coordinate_sign": null,
       "directional_motor_populations": [
         {
           "anatomical_direction": "extensor",
@@ -460,25 +694,64 @@
           "population_size": 4
         }
       ],
+      "exclusion_reason": "SIGN_UNRESOLVED",
       "joint_class": "Coxa_yaw",
       "leg": "LH",
       "m6a_directional_classification": "EXPLICIT_ANTAGONIST_PAIR",
       "mechanical_calibration": {
-        "method": "deterministic ±epsilon qpos perturbation with MuJoCo joint-axis metadata and geometric endpoint displacement",
-        "status": "NOT_RUN",
-        "uses_neural_behavior": false
+        "coordinate_sign": null,
+        "evidence": {
+          "actuator_id": 16,
+          "anatomical_projection": "body_forward_x",
+          "endpoint_geom_ids": [
+            26,
+            27
+          ],
+          "epsilon_rad": 0.0001,
+          "joint_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "joint_id": 12,
+          "method": "deterministic_non_neural_kinematic_perturbation",
+          "negative_endpoint": [
+            -2.1927546993205462,
+            1.1950159339469941,
+            1.4771285289723965
+          ],
+          "positive_endpoint": [
+            -2.1927546993205462,
+            1.1949804925504741,
+            1.4773501299260983
+          ],
+          "positive_minus_negative_displacement": [
+            0.0,
+            -3.544139652000844e-05,
+            0.00022160095370171717
+          ],
+          "projection_value": 0.0,
+          "qpos_index": 18,
+          "qvel_index": 17,
+          "reason": "anatomical projection is zero or ambiguous",
+          "uses_neural_behavior": false,
+          "uses_walking_performance": false
+        },
+        "status": "SIGN_UNRESOLVED"
       },
       "nmf_negative_group": null,
       "nmf_positive_group": null,
       "physical_joint": "joint_LHCoxa_yaw",
-      "physical_sign_status": "PHYSICAL_SIGN_CALIBRATION_REQUIRED",
+      "physical_sign_status": "SIGN_UNRESOLVED",
+      "physical_sign_sufficiently_resolved_for_actuation": false,
       "safe_contribution_bound_rad": null,
       "side": "left",
-      "sign_assignment_justification": "M6A establishes anatomical opposition only; deterministic MuJoCo-axis perturbation and geometric inspection must establish the NMF coordinate sign before admission.",
+      "sign_assignment_justification": "Annotation-backed anterior/posterior opposition does not establish handed NMF Coxa-yaw rotation.",
       "thoracic_segment": "T3"
     },
     {
       "action_index": 17,
+      "annotation_backed_motor_mapping": true,
       "annotation_negative_group": [
         "Acc. tr flexor MN T3 left",
         "Tr flexor MN T3 left"
@@ -488,6 +761,8 @@
         "Tergotr. MN T3 left",
         "Tr extensor MN T3 left"
       ],
+      "canonical_m6b_neural_actuation": "ELIGIBLE",
+      "coordinate_sign": -1,
       "directional_motor_populations": [
         {
           "anatomical_direction": "flexor",
@@ -569,31 +844,73 @@
           "population_size": 1
         }
       ],
+      "exclusion_reason": null,
       "joint_class": "Femur",
       "leg": "LH",
       "m6a_directional_classification": "MULTIPLE_DIRECTIONAL_GROUPS",
       "mechanical_calibration": {
-        "method": "deterministic ±epsilon qpos perturbation with MuJoCo joint-axis metadata and geometric endpoint displacement",
-        "status": "NOT_RUN",
-        "uses_neural_behavior": false
+        "coordinate_sign": -1,
+        "evidence": {
+          "actuator_id": 17,
+          "anatomical_projection": "body_vertical_z",
+          "endpoint_geom_ids": [
+            26,
+            27
+          ],
+          "epsilon_rad": 0.0001,
+          "joint_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "joint_id": 15,
+          "method": "deterministic_non_neural_kinematic_perturbation",
+          "negative_endpoint": [
+            -2.1927220731748105,
+            1.194979382074735,
+            1.4774596963309197
+          ],
+          "nmf_coordinate_sign_for_annotation_positive": -1,
+          "positive_endpoint": [
+            -2.192787306381863,
+            1.1950170444843873,
+            1.477018960573404
+          ],
+          "positive_minus_negative_displacement": [
+            -6.523320705253965e-05,
+            3.766240965230594e-05,
+            -0.0004407357575155757
+          ],
+          "projection_value": -0.0004407357575155757,
+          "qpos_index": 21,
+          "qvel_index": 20,
+          "reason": "signed distal displacement agrees with the preregistered annotation direction",
+          "uses_neural_behavior": false,
+          "uses_walking_performance": false
+        },
+        "status": "RESOLVED"
       },
       "nmf_negative_group": null,
       "nmf_positive_group": null,
       "physical_joint": "joint_LHFemur",
-      "physical_sign_status": "PHYSICAL_SIGN_CALIBRATION_REQUIRED",
+      "physical_sign_status": "RESOLVED",
+      "physical_sign_sufficiently_resolved_for_actuation": true,
       "safe_contribution_bound_rad": null,
       "side": "left",
-      "sign_assignment_justification": "M6A establishes anatomical opposition only; deterministic MuJoCo-axis perturbation and geometric inspection must establish the NMF coordinate sign before admission.",
+      "sign_assignment_justification": "Frozen from M6B-P2 deterministic non-neural kinematic calibration; not inferred from behavior or bilateral symmetry.",
       "thoracic_segment": "T3"
     },
     {
       "action_index": 23,
+      "annotation_backed_motor_mapping": true,
       "annotation_negative_group": [
         "Sternal posterior rotator MN T1 right"
       ],
       "annotation_positive_group": [
         "Sternal anterior rotator MN T1 right"
       ],
+      "canonical_m6b_neural_actuation": "WITHHELD",
+      "coordinate_sign": null,
       "directional_motor_populations": [
         {
           "anatomical_direction": "extensor",
@@ -626,25 +943,64 @@
           "population_size": 2
         }
       ],
+      "exclusion_reason": "SIGN_UNRESOLVED",
       "joint_class": "Coxa_yaw",
       "leg": "RF",
       "m6a_directional_classification": "EXPLICIT_ANTAGONIST_PAIR",
       "mechanical_calibration": {
-        "method": "deterministic ±epsilon qpos perturbation with MuJoCo joint-axis metadata and geometric endpoint displacement",
-        "status": "NOT_RUN",
-        "uses_neural_behavior": false
+        "coordinate_sign": null,
+        "evidence": {
+          "actuator_id": 23,
+          "anatomical_projection": "body_forward_x",
+          "endpoint_geom_ids": [
+            58,
+            59
+          ],
+          "epsilon_rad": 0.0001,
+          "joint_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "joint_id": 56,
+          "method": "deterministic_non_neural_kinematic_perturbation",
+          "negative_endpoint": [
+            1.9014050968925256,
+            -0.18559407411852422,
+            1.8771588606830656
+          ],
+          "positive_endpoint": [
+            1.9014050968925256,
+            -0.18565621985401404,
+            1.8771560532543863
+          ],
+          "positive_minus_negative_displacement": [
+            0.0,
+            -6.214573548982139e-05,
+            -2.807428679307833e-06
+          ],
+          "projection_value": 0.0,
+          "qpos_index": 62,
+          "qvel_index": 61,
+          "reason": "anatomical projection is zero or ambiguous",
+          "uses_neural_behavior": false,
+          "uses_walking_performance": false
+        },
+        "status": "SIGN_UNRESOLVED"
       },
       "nmf_negative_group": null,
       "nmf_positive_group": null,
       "physical_joint": "joint_RFCoxa_yaw",
-      "physical_sign_status": "PHYSICAL_SIGN_CALIBRATION_REQUIRED",
+      "physical_sign_status": "SIGN_UNRESOLVED",
+      "physical_sign_sufficiently_resolved_for_actuation": false,
       "safe_contribution_bound_rad": null,
       "side": "right",
-      "sign_assignment_justification": "M6A establishes anatomical opposition only; deterministic MuJoCo-axis perturbation and geometric inspection must establish the NMF coordinate sign before admission.",
+      "sign_assignment_justification": "Annotation-backed anterior/posterior opposition does not establish handed NMF Coxa-yaw rotation.",
       "thoracic_segment": "T1"
     },
     {
       "action_index": 24,
+      "annotation_backed_motor_mapping": true,
       "annotation_negative_group": [
         "Acc. tr flexor MN T1 right",
         "Tr flexor MN T1 right"
@@ -654,6 +1010,8 @@
         "Tergotr. MN T1 right",
         "Tr extensor MN T1 right"
       ],
+      "canonical_m6b_neural_actuation": "ELIGIBLE",
+      "coordinate_sign": -1,
       "directional_motor_populations": [
         {
           "anatomical_direction": "flexor",
@@ -739,31 +1097,73 @@
           "population_size": 7
         }
       ],
+      "exclusion_reason": null,
       "joint_class": "Femur",
       "leg": "RF",
       "m6a_directional_classification": "MULTIPLE_DIRECTIONAL_GROUPS",
       "mechanical_calibration": {
-        "method": "deterministic ±epsilon qpos perturbation with MuJoCo joint-axis metadata and geometric endpoint displacement",
-        "status": "NOT_RUN",
-        "uses_neural_behavior": false
+        "coordinate_sign": -1,
+        "evidence": {
+          "actuator_id": 24,
+          "anatomical_projection": "body_vertical_z",
+          "endpoint_geom_ids": [
+            58,
+            59
+          ],
+          "epsilon_rad": 0.0001,
+          "joint_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "joint_id": 59,
+          "method": "deterministic_non_neural_kinematic_perturbation",
+          "negative_endpoint": [
+            1.9013395200106271,
+            -0.18562514705645483,
+            1.8773261602040703
+          ],
+          "nmf_coordinate_sign_for_annotation_positive": -1,
+          "positive_endpoint": [
+            1.9014706569039286,
+            -0.18562514705645483,
+            1.8769887502838243
+          ],
+          "positive_minus_negative_displacement": [
+            0.0001311368933014645,
+            0.0,
+            -0.00033740992024600125
+          ],
+          "projection_value": -0.00033740992024600125,
+          "qpos_index": 65,
+          "qvel_index": 64,
+          "reason": "signed distal displacement agrees with the preregistered annotation direction",
+          "uses_neural_behavior": false,
+          "uses_walking_performance": false
+        },
+        "status": "RESOLVED"
       },
       "nmf_negative_group": null,
       "nmf_positive_group": null,
       "physical_joint": "joint_RFFemur",
-      "physical_sign_status": "PHYSICAL_SIGN_CALIBRATION_REQUIRED",
+      "physical_sign_status": "RESOLVED",
+      "physical_sign_sufficiently_resolved_for_actuation": true,
       "safe_contribution_bound_rad": null,
       "side": "right",
-      "sign_assignment_justification": "M6A establishes anatomical opposition only; deterministic MuJoCo-axis perturbation and geometric inspection must establish the NMF coordinate sign before admission.",
+      "sign_assignment_justification": "Frozen from M6B-P2 deterministic non-neural kinematic calibration; not inferred from behavior or bilateral symmetry.",
       "thoracic_segment": "T1"
     },
     {
       "action_index": 27,
+      "annotation_backed_motor_mapping": true,
       "annotation_negative_group": [
         "Ta depressor MN T1 right"
       ],
       "annotation_positive_group": [
         "Ta levator MN T1 right"
       ],
+      "canonical_m6b_neural_actuation": "ELIGIBLE",
+      "coordinate_sign": -1,
       "directional_motor_populations": [
         {
           "anatomical_direction": "flexor",
@@ -799,31 +1199,73 @@
           "population_size": 3
         }
       ],
+      "exclusion_reason": null,
       "joint_class": "Tarsus1",
       "leg": "RF",
       "m6a_directional_classification": "EXPLICIT_ANTAGONIST_PAIR",
       "mechanical_calibration": {
-        "method": "deterministic ±epsilon qpos perturbation with MuJoCo joint-axis metadata and geometric endpoint displacement",
-        "status": "NOT_RUN",
-        "uses_neural_behavior": false
+        "coordinate_sign": -1,
+        "evidence": {
+          "actuator_id": 27,
+          "anatomical_projection": "body_vertical_z",
+          "endpoint_geom_ids": [
+            58,
+            59
+          ],
+          "epsilon_rad": 0.0001,
+          "joint_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "joint_id": 62,
+          "method": "deterministic_non_neural_kinematic_perturbation",
+          "negative_endpoint": [
+            1.9013829283285624,
+            -0.18562514705645483,
+            1.8772117556878736
+          ],
+          "nmf_coordinate_sign_for_annotation_positive": -1,
+          "positive_endpoint": [
+            1.9014272600266622,
+            -0.18562514705645483,
+            1.877103159140281
+          ],
+          "positive_minus_negative_displacement": [
+            4.433169809980875e-05,
+            0.0,
+            -0.00010859654759265425
+          ],
+          "projection_value": -0.00010859654759265425,
+          "qpos_index": 68,
+          "qvel_index": 67,
+          "reason": "signed distal displacement agrees with the preregistered annotation direction",
+          "uses_neural_behavior": false,
+          "uses_walking_performance": false
+        },
+        "status": "RESOLVED"
       },
       "nmf_negative_group": null,
       "nmf_positive_group": null,
       "physical_joint": "joint_RFTarsus1",
-      "physical_sign_status": "PHYSICAL_SIGN_CALIBRATION_REQUIRED",
+      "physical_sign_status": "RESOLVED",
+      "physical_sign_sufficiently_resolved_for_actuation": true,
       "safe_contribution_bound_rad": null,
       "side": "right",
-      "sign_assignment_justification": "M6A establishes anatomical opposition only; deterministic MuJoCo-axis perturbation and geometric inspection must establish the NMF coordinate sign before admission.",
+      "sign_assignment_justification": "Frozen from M6B-P2 deterministic non-neural kinematic calibration; not inferred from behavior or bilateral symmetry.",
       "thoracic_segment": "T1"
     },
     {
       "action_index": 30,
+      "annotation_backed_motor_mapping": true,
       "annotation_negative_group": [
         "Sternal posterior rotator MN T2 right"
       ],
       "annotation_positive_group": [
         "Sternal anterior rotator MN T2 right"
       ],
+      "canonical_m6b_neural_actuation": "WITHHELD",
+      "coordinate_sign": null,
       "directional_motor_populations": [
         {
           "anatomical_direction": "extensor",
@@ -858,25 +1300,64 @@
           "population_size": 4
         }
       ],
+      "exclusion_reason": "SIGN_UNRESOLVED",
       "joint_class": "Coxa_yaw",
       "leg": "RM",
       "m6a_directional_classification": "EXPLICIT_ANTAGONIST_PAIR",
       "mechanical_calibration": {
-        "method": "deterministic ±epsilon qpos perturbation with MuJoCo joint-axis metadata and geometric endpoint displacement",
-        "status": "NOT_RUN",
-        "uses_neural_behavior": false
+        "coordinate_sign": null,
+        "evidence": {
+          "actuator_id": 30,
+          "anatomical_projection": "body_forward_x",
+          "endpoint_geom_ids": [
+            50,
+            51
+          ],
+          "epsilon_rad": 0.0001,
+          "joint_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "joint_id": 45,
+          "method": "deterministic_non_neural_kinematic_perturbation",
+          "negative_endpoint": [
+            -0.05351460464538914,
+            -2.1932316842147253,
+            1.4833587526188468
+          ],
+          "positive_endpoint": [
+            -0.05351460464538914,
+            -2.19326542753777,
+            1.4829450831250015
+          ],
+          "positive_minus_negative_displacement": [
+            0.0,
+            -3.3743323044621576e-05,
+            -0.00041366949384524787
+          ],
+          "projection_value": 0.0,
+          "qpos_index": 51,
+          "qvel_index": 50,
+          "reason": "anatomical projection is zero or ambiguous",
+          "uses_neural_behavior": false,
+          "uses_walking_performance": false
+        },
+        "status": "SIGN_UNRESOLVED"
       },
       "nmf_negative_group": null,
       "nmf_positive_group": null,
       "physical_joint": "joint_RMCoxa_yaw",
-      "physical_sign_status": "PHYSICAL_SIGN_CALIBRATION_REQUIRED",
+      "physical_sign_status": "SIGN_UNRESOLVED",
+      "physical_sign_sufficiently_resolved_for_actuation": false,
       "safe_contribution_bound_rad": null,
       "side": "right",
-      "sign_assignment_justification": "M6A establishes anatomical opposition only; deterministic MuJoCo-axis perturbation and geometric inspection must establish the NMF coordinate sign before admission.",
+      "sign_assignment_justification": "Annotation-backed anterior/posterior opposition does not establish handed NMF Coxa-yaw rotation.",
       "thoracic_segment": "T2"
     },
     {
       "action_index": 31,
+      "annotation_backed_motor_mapping": true,
       "annotation_negative_group": [
         "Acc. tr flexor MN T2 right",
         "Tr flexor MN T2 right"
@@ -886,6 +1367,8 @@
         "Tergotr. MN T2 right",
         "Tr extensor MN T2 right"
       ],
+      "canonical_m6b_neural_actuation": "ELIGIBLE",
+      "coordinate_sign": -1,
       "directional_motor_populations": [
         {
           "anatomical_direction": "flexor",
@@ -967,31 +1450,73 @@
           "population_size": 7
         }
       ],
+      "exclusion_reason": null,
       "joint_class": "Femur",
       "leg": "RM",
       "m6a_directional_classification": "MULTIPLE_DIRECTIONAL_GROUPS",
       "mechanical_calibration": {
-        "method": "deterministic ±epsilon qpos perturbation with MuJoCo joint-axis metadata and geometric endpoint displacement",
-        "status": "NOT_RUN",
-        "uses_neural_behavior": false
+        "coordinate_sign": -1,
+        "evidence": {
+          "actuator_id": 31,
+          "anatomical_projection": "body_vertical_z",
+          "endpoint_geom_ids": [
+            50,
+            51
+          ],
+          "epsilon_rad": 0.0001,
+          "joint_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "joint_id": 48,
+          "method": "deterministic_non_neural_kinematic_perturbation",
+          "negative_endpoint": [
+            -0.05351460464538914,
+            -2.1932135395435486,
+            1.4833587732834657
+          ],
+          "nmf_coordinate_sign_for_annotation_positive": -1,
+          "positive_endpoint": [
+            -0.05351460464538914,
+            -2.1932835722067905,
+            1.482945060645915
+          ],
+          "positive_minus_negative_displacement": [
+            0.0,
+            -7.003266324190349e-05,
+            -0.00041371263755074494
+          ],
+          "projection_value": -0.00041371263755074494,
+          "qpos_index": 54,
+          "qvel_index": 53,
+          "reason": "signed distal displacement agrees with the preregistered annotation direction",
+          "uses_neural_behavior": false,
+          "uses_walking_performance": false
+        },
+        "status": "RESOLVED"
       },
       "nmf_negative_group": null,
       "nmf_positive_group": null,
       "physical_joint": "joint_RMFemur",
-      "physical_sign_status": "PHYSICAL_SIGN_CALIBRATION_REQUIRED",
+      "physical_sign_status": "RESOLVED",
+      "physical_sign_sufficiently_resolved_for_actuation": true,
       "safe_contribution_bound_rad": null,
       "side": "right",
-      "sign_assignment_justification": "M6A establishes anatomical opposition only; deterministic MuJoCo-axis perturbation and geometric inspection must establish the NMF coordinate sign before admission.",
+      "sign_assignment_justification": "Frozen from M6B-P2 deterministic non-neural kinematic calibration; not inferred from behavior or bilateral symmetry.",
       "thoracic_segment": "T2"
     },
     {
       "action_index": 37,
+      "annotation_backed_motor_mapping": true,
       "annotation_negative_group": [
         "Sternal posterior rotator MN T3 right"
       ],
       "annotation_positive_group": [
         "Sternal anterior rotator MN T3 right"
       ],
+      "canonical_m6b_neural_actuation": "WITHHELD",
+      "coordinate_sign": null,
       "directional_motor_populations": [
         {
           "anatomical_direction": "extensor",
@@ -1026,25 +1551,64 @@
           "population_size": 4
         }
       ],
+      "exclusion_reason": "SIGN_UNRESOLVED",
       "joint_class": "Coxa_yaw",
       "leg": "RH",
       "m6a_directional_classification": "EXPLICIT_ANTAGONIST_PAIR",
       "mechanical_calibration": {
-        "method": "deterministic ±epsilon qpos perturbation with MuJoCo joint-axis metadata and geometric endpoint displacement",
-        "status": "NOT_RUN",
-        "uses_neural_behavior": false
+        "coordinate_sign": null,
+        "evidence": {
+          "actuator_id": 37,
+          "anatomical_projection": "body_forward_x",
+          "endpoint_geom_ids": [
+            42,
+            43
+          ],
+          "epsilon_rad": 0.0001,
+          "joint_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "joint_id": 34,
+          "method": "deterministic_non_neural_kinematic_perturbation",
+          "negative_endpoint": [
+            -2.192754699357274,
+            -1.1949804925597203,
+            1.4773501299062708
+          ],
+          "positive_endpoint": [
+            -2.192754699357274,
+            -1.1950159339562365,
+            1.4771285289525675
+          ],
+          "positive_minus_negative_displacement": [
+            0.0,
+            -3.544139651623368e-05,
+            -0.00022160095370327149
+          ],
+          "projection_value": 0.0,
+          "qpos_index": 40,
+          "qvel_index": 39,
+          "reason": "anatomical projection is zero or ambiguous",
+          "uses_neural_behavior": false,
+          "uses_walking_performance": false
+        },
+        "status": "SIGN_UNRESOLVED"
       },
       "nmf_negative_group": null,
       "nmf_positive_group": null,
       "physical_joint": "joint_RHCoxa_yaw",
-      "physical_sign_status": "PHYSICAL_SIGN_CALIBRATION_REQUIRED",
+      "physical_sign_status": "SIGN_UNRESOLVED",
+      "physical_sign_sufficiently_resolved_for_actuation": false,
       "safe_contribution_bound_rad": null,
       "side": "right",
-      "sign_assignment_justification": "M6A establishes anatomical opposition only; deterministic MuJoCo-axis perturbation and geometric inspection must establish the NMF coordinate sign before admission.",
+      "sign_assignment_justification": "Annotation-backed anterior/posterior opposition does not establish handed NMF Coxa-yaw rotation.",
       "thoracic_segment": "T3"
     },
     {
       "action_index": 38,
+      "annotation_backed_motor_mapping": true,
       "annotation_negative_group": [
         "Acc. tr flexor MN T3 right",
         "Tr flexor MN T3 right"
@@ -1054,6 +1618,8 @@
         "Tergotr. MN T3 right",
         "Tr extensor MN T3 right"
       ],
+      "canonical_m6b_neural_actuation": "ELIGIBLE",
+      "coordinate_sign": -1,
       "directional_motor_populations": [
         {
           "anatomical_direction": "flexor",
@@ -1136,21 +1702,60 @@
           "population_size": 5
         }
       ],
+      "exclusion_reason": null,
       "joint_class": "Femur",
       "leg": "RH",
       "m6a_directional_classification": "MULTIPLE_DIRECTIONAL_GROUPS",
       "mechanical_calibration": {
-        "method": "deterministic ±epsilon qpos perturbation with MuJoCo joint-axis metadata and geometric endpoint displacement",
-        "status": "NOT_RUN",
-        "uses_neural_behavior": false
+        "coordinate_sign": -1,
+        "evidence": {
+          "actuator_id": 38,
+          "anatomical_projection": "body_vertical_z",
+          "endpoint_geom_ids": [
+            42,
+            43
+          ],
+          "epsilon_rad": 0.0001,
+          "joint_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "joint_id": 37,
+          "method": "deterministic_non_neural_kinematic_perturbation",
+          "negative_endpoint": [
+            -2.19272207321154,
+            -1.1949793820839805,
+            1.477459696311095
+          ],
+          "nmf_coordinate_sign_for_annotation_positive": -1,
+          "positive_endpoint": [
+            -2.1927873064185897,
+            -1.1950170444936306,
+            1.4770189605535724
+          ],
+          "positive_minus_negative_displacement": [
+            -6.523320704987512e-05,
+            -3.766240965008549e-05,
+            -0.0004407357575226811
+          ],
+          "projection_value": -0.0004407357575226811,
+          "qpos_index": 43,
+          "qvel_index": 42,
+          "reason": "signed distal displacement agrees with the preregistered annotation direction",
+          "uses_neural_behavior": false,
+          "uses_walking_performance": false
+        },
+        "status": "RESOLVED"
       },
       "nmf_negative_group": null,
       "nmf_positive_group": null,
       "physical_joint": "joint_RHFemur",
-      "physical_sign_status": "PHYSICAL_SIGN_CALIBRATION_REQUIRED",
+      "physical_sign_status": "RESOLVED",
+      "physical_sign_sufficiently_resolved_for_actuation": true,
       "safe_contribution_bound_rad": null,
       "side": "right",
-      "sign_assignment_justification": "M6A establishes anatomical opposition only; deterministic MuJoCo-axis perturbation and geometric inspection must establish the NMF coordinate sign before admission.",
+      "sign_assignment_justification": "Frozen from M6B-P2 deterministic non-neural kinematic calibration; not inferred from behavior or bilateral symmetry.",
       "thoracic_segment": "T3"
     }
   ],
@@ -1166,7 +1771,7 @@
     "relative_path": "malecns_backend/embodiment/interface_output/whole_leg_motor_mapping_audit.json",
     "semantic_requirements": {
       "classification": "WHOLE_LEG_MOTOR_AUDIT_COMPLETE",
-      "exact_m6b_eligible": [
+      "exact_m6a_annotation_tier_b": [
         "joint_LFCoxa_yaw",
         "joint_LFFemur",
         "joint_LFTarsus1",
@@ -1196,6 +1801,150 @@
   },
   "m6c_eligible": [],
   "per_joint": [],
+  "preregistration_locks": {
+    "action_indices": {
+      "joint_LFFemur": 3,
+      "joint_LFTarsus1": 6,
+      "joint_LHFemur": 17,
+      "joint_LMFemur": 10,
+      "joint_RFFemur": 24,
+      "joint_RFTarsus1": 27,
+      "joint_RHFemur": 38,
+      "joint_RMFemur": 31
+    },
+    "canonical_seed": 1,
+    "coordinate_signs": {
+      "joint_LFFemur": -1,
+      "joint_LFTarsus1": -1,
+      "joint_LHFemur": -1,
+      "joint_LMFemur": -1,
+      "joint_RFFemur": -1,
+      "joint_RFTarsus1": -1,
+      "joint_RHFemur": -1,
+      "joint_RMFemur": -1
+    },
+    "decoder_constants": {
+      "decoder_max_rad": 0.25,
+      "half_activation_hz": 17.0,
+      "observer_tau_ms": 40.0,
+      "slew_rad_s": 4.0
+    },
+    "duration_ms": 500,
+    "eligible_interfaces": [
+      "joint_LFFemur",
+      "joint_LFTarsus1",
+      "joint_LMFemur",
+      "joint_LHFemur",
+      "joint_RFFemur",
+      "joint_RFTarsus1",
+      "joint_RMFemur",
+      "joint_RHFemur"
+    ],
+    "excluded_unresolved_interfaces": [
+      "joint_LFCoxa_yaw",
+      "joint_LMCoxa_yaw",
+      "joint_LHCoxa_yaw",
+      "joint_RFCoxa_yaw",
+      "joint_RMCoxa_yaw",
+      "joint_RHCoxa_yaw"
+    ],
+    "m6b_p2": {
+      "hash_policy": "raw-bytes",
+      "relative_path": "malecns_backend/embodiment/interface_output/m6b_live_limit_diagnostic.json",
+      "sha256": "7bcd5e0fd9525f45423955e01b85ee27f707aa20dad10fe2a9a40bc505dbe0fd"
+    },
+    "m6b_p3": {
+      "hash_policy": "raw-bytes",
+      "relative_path": "malecns_backend/embodiment/interface_output/m6b_coxa_yaw_sign_diagnostic.json",
+      "sha256": "1fd87116e2b6434007ae55ace9f91f4590e1cfd66d684ebd6fd72a2fcf688d28"
+    },
+    "motor_population_mappings": {
+      "joint_LFFemur": {
+        "negative": [
+          "Acc. tr flexor MN T1 left",
+          "Tr flexor MN T1 left"
+        ],
+        "positive": [
+          "Sternotrochanter MN T1 left",
+          "Tergotr. MN T1 left",
+          "Tr extensor MN T1 left"
+        ]
+      },
+      "joint_LFTarsus1": {
+        "negative": [
+          "Ta depressor MN T1 left"
+        ],
+        "positive": [
+          "Ta levator MN T1 left"
+        ]
+      },
+      "joint_LHFemur": {
+        "negative": [
+          "Acc. tr flexor MN T3 left",
+          "Tr flexor MN T3 left"
+        ],
+        "positive": [
+          "Sternotrochanter MN T3 left",
+          "Tergotr. MN T3 left",
+          "Tr extensor MN T3 left"
+        ]
+      },
+      "joint_LMFemur": {
+        "negative": [
+          "Acc. tr flexor MN T2 left",
+          "Tr flexor MN T2 left"
+        ],
+        "positive": [
+          "Sternotrochanter MN T2 left",
+          "Tergotr. MN T2 left",
+          "Tr extensor MN T2 left"
+        ]
+      },
+      "joint_RFFemur": {
+        "negative": [
+          "Acc. tr flexor MN T1 right",
+          "Tr flexor MN T1 right"
+        ],
+        "positive": [
+          "Sternotrochanter MN T1 right",
+          "Tergotr. MN T1 right",
+          "Tr extensor MN T1 right"
+        ]
+      },
+      "joint_RFTarsus1": {
+        "negative": [
+          "Ta depressor MN T1 right"
+        ],
+        "positive": [
+          "Ta levator MN T1 right"
+        ]
+      },
+      "joint_RHFemur": {
+        "negative": [
+          "Acc. tr flexor MN T3 right",
+          "Tr flexor MN T3 right"
+        ],
+        "positive": [
+          "Sternotrochanter MN T3 right",
+          "Tergotr. MN T3 right",
+          "Tr extensor MN T3 right"
+        ]
+      },
+      "joint_RMFemur": {
+        "negative": [
+          "Acc. tr flexor MN T2 right",
+          "Tr flexor MN T2 right"
+        ],
+        "positive": [
+          "Sternotrochanter MN T2 right",
+          "Tergotr. MN T2 right",
+          "Tr extensor MN T2 right"
+        ]
+      }
+    },
+    "run_status": "NOT_RUN",
+    "scientific_run_number": null
+  },
   "protocol": {
     "canonical_seed": 1,
     "conditions": [
@@ -1205,6 +1954,7 @@
     "decoder_max_contribution_rad": 0.25,
     "duration_frozen_before_live_run": true,
     "duration_ms_per_condition": 500.0,
+    "excluded_unresolved_neural_contribution": false,
     "fresh_simulation_per_joint_and_condition": true,
     "half_activation_hz": 17.0,
     "matched_control_condition_dependent_value": "admitted_neural_contribution",
@@ -1216,7 +1966,9 @@
       "classification": "SYNTHETIC_INTERFACE_DIAGNOSTIC_ONLY",
       "part_of_scientific_result": false
     },
-    "tier_a_neural_contribution": false
+    "tier_a_neural_contribution": false,
+    "tier_c_neural_contribution": false,
+    "tier_d_neural_contribution": false
   },
   "provenance": {
     "artifact_kind": "PRE_REGISTERED_NOT_RUN_PROTOCOL",
@@ -1226,5 +1978,6 @@
     "verified": true
   },
   "run_status": "NOT_RUN",
-  "schema": "M6B.0"
+  "schema": "M6B.0",
+  "scientific_run_number": null
 }
