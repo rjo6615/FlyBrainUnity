@@ -23,14 +23,48 @@ SEED, DURATION_MS, PHYSICS_DT_MS, NEURAL_DT_MS, AUTOMATIC_RETRIES = 1, 100.0, 0.
 CONDITIONS = ("CLOSED_LOOP_ENABLED", "MOTOR_OUTPUT_DISABLED")
 ROOT = Path(__file__).resolve().parents[2]
 M5D5A_LOCKS = {
-    "interface_output/proprioceptive_activation_100ms.json": "c52be9d9b1989c4631d6f7907f13465cebf645492b8114654e0a3dc898f3833d",
+    "interface_output/proprioceptive_activation_100ms.json": "3e0131be35d7b00004e1e014e5007ff7455b422b7fd67a2cd25a67eadead5ca9",
     "proprioceptive_activation.py": "0d6117d668e62d23de08c8148240c770785cabb8a6148669349c4f258b7c0a92",
     "proprioceptive_activation_audit.py": "468ecbfaef9e2c7b31236efe835e7fafc1673a899f851541b9086132d16a75b2",
+}
+
+M5D5A_AUTHORITATIVE_SEMANTICS = {
+    "schema": "M5D-5A.0",
+    "run_status": "COMPLETE",
+    "classification": "SIX_TIBIA_PROPRIOCEPTIVE_PROPAGATION_CONFIRMED",
+    "provenance.verified": True,
+    "candidate_parity": True,
+    "physics_identical": True,
+    "aggregate.directly_driven_proprioceptive_neurons": 392,
+    "protocol.seed": SEED,
+    "protocol.duration_ms": DURATION_MS,
+    "protocol.physics_dt_ms": PHYSICS_DT_MS,
+    "protocol.neural_dt_ms": NEURAL_DT_MS,
+    "protocol.automatic_retries": AUTOMATIC_RETRIES,
 }
 
 
 def _canonical_lf(raw: bytes) -> bytes:
     return raw.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+
+
+def _field(artifact: Mapping[str, Any], path: str) -> Any:
+    value: Any = artifact
+    for component in path.split("."):
+        if not isinstance(value, Mapping):
+            return None
+        value = value.get(component)
+    return value
+
+
+def validate_m5d5a_authoritative_semantics(artifact: Mapping[str, Any]) -> None:
+    """Fail closed unless *artifact* is the locked scientific run and protocol."""
+    mismatches = {path: _field(artifact, path)
+        for path, expected in M5D5A_AUTHORITATIVE_SEMANTICS.items()
+        if _field(artifact, path) != expected}
+    if mismatches:
+        raise RuntimeError(
+            f"M5D-5A authoritative artifact semantic provenance mismatch: {mismatches!r}")
 
 
 def verify_provenance() -> dict[str, Any]:
@@ -43,13 +77,7 @@ def verify_provenance() -> dict[str, Any]:
         if digest != expected:
             raise RuntimeError(f"M5D-5A provenance mismatch for {name}: {digest}")
     artifact = json.loads((base / next(iter(M5D5A_LOCKS))).read_text(encoding="utf-8"))
-    semantic = (artifact.get("schema") == "M5D-5A.0" and artifact.get("run_status") == "COMPLETE"
-        and artifact.get("classification") == "SIX_TIBIA_PROPRIOCEPTIVE_PROPAGATION_CONFIRMED"
-        and artifact.get("candidate_parity") is True and artifact.get("physics_identical") is True
-        and artifact.get("provenance", {}).get("verified") is True
-        and artifact.get("aggregate", {}).get("directly_driven_proprioceptive_neurons") == 392)
-    if not semantic:
-        raise RuntimeError("M5D-5A authoritative artifact semantic provenance mismatch")
+    validate_m5d5a_authoritative_semantics(artifact)
     verify_m5d5a_chain()
     return {"verified": True, "m5d5a_authoritative_complete": True,
         "raw_artifact_and_canonical_lf_source_locks": observed, "earlier_chain_verified": True}
@@ -143,4 +171,3 @@ def validate_order(m: Mapping[str, float | None]) -> None:
 
 def serialize(report: Mapping[str, Any]) -> str:
     return json.dumps(report, indent=2, sort_keys=True, ensure_ascii=False, allow_nan=False) + "\n"
-

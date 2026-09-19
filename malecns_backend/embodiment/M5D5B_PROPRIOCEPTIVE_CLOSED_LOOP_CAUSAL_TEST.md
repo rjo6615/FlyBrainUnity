@@ -2,10 +2,14 @@
 
 ## Status and scope
 
-This is a **locked protocol**, not a scientific result. The checked-in primary
-artifact is truthfully `NOT_RUN`. The first successful canonical Windows run
-is Scientific Run #1; it is run once with seed 1 for 100 ms (0.1-ms physics,
-0.5-ms neural updates), with no retry, sweep, or tuning.
+This is a **locked protocol**, not a scientific result. The first Windows
+invocation aborted in `verify_provenance()` before either live condition began.
+It produced no scientific trajectory: all C0-C13 milestones are null and all
+RNG draw counters are zero. The failure is preserved verbatim as
+`interface_output/proprioceptive_closed_loop_100ms_first_attempt_provenance_failure.json`.
+It is **not** Scientific Run #1. The next successfully executing canonical
+Windows run remains Scientific Run #1; it is run once with seed 1 for 100 ms
+(0.1-ms physics, 0.5-ms neural updates), with no retry, sweep, or tuning.
 
 ## Architecture
 
@@ -61,6 +65,27 @@ The authoritative COMPLETE M5D-5A JSON is raw-byte SHA-256 locked and checked
 semantically. Its two implementation files are canonical-LF SHA-256 locked.
 M5D-5A's verifier recursively checks the established M5D-4E/4D/4C chain.
 Failure is closed and historical artifacts are not modified.
+
+### M5D-5A artifact-lock diagnostic
+
+The former artifact lock, `c52be9d9b1989c4631d6f7907f13465cebf645492b8114654e0a3dc898f3833d`,
+is the LF checkout/blob of the authoritative COMPLETE result introduced at
+commit `6797480a33a6cb0f7952784c661e1ca0e0f7eaf5`. It is not the earlier `NOT_RUN`
+or `FAILED` artifact. The Windows file has the same JSON and scientific content
+but one CRLF record terminator; its raw SHA-256 is
+`3e0131be35d7b00004e1e014e5007ff7455b422b7fd67a2cd25a67eadead5ca9`.
+The mismatch is therefore `STALE_LOCK`, `LINE_ENDING_ONLY`, and
+`JSON_SERIALIZATION_ONLY`, not a scientific-content difference. The raw lock
+now names the authoritative Windows bytes, and `.gitattributes` marks only this
+artifact `-text` so Git cannot normalize those bytes while the JSON remains
+viewable and diffable.
+
+In addition to the exact byte lock, validation requires the real artifact paths
+`schema`, `run_status`, `classification`, `provenance.verified`,
+`candidate_parity`, `physics_identical`,
+`aggregate.directly_driven_proprioceptive_neurons`, and the five fields under
+`protocol` (`seed`, `duration_ms`, `physics_dt_ms`, `neural_dt_ms`, and
+`automatic_retries`). Any mismatch fails closed.
 
 Canonical Windows command (from repository root):
 
