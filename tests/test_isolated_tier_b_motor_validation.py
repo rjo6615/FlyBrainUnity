@@ -1,4 +1,5 @@
 """M6B preregistration, isolation, decoder, and classification contracts."""
+import hashlib
 import json
 from pathlib import Path
 import pytest
@@ -85,6 +86,59 @@ def test_provenance_fail_closed(tmp_path):
     p=tmp_path/"m6a.json"; p.write_text("{}")
     with pytest.raises(m6b.ValidationFailure) as e: m6b.load_locked_m6a(p)
     assert e.value.classification == "PROVENANCE_FAILURE"
+
+def test_m6a_raw_lock_is_cross_platform_lf_and_rejects_crlf(tmp_path):
+    """Git supplies LF bytes; an unprotected CRLF checkout must not weaken the lock."""
+    authoritative = m6b.M6A_PATH.read_bytes()
+    assert b"\r\n" not in authoritative
+    assert hashlib.sha256(authoritative).hexdigest() == m6b.M6A_SHA256
+    assert m6b.load_locked_m6a(m6b.M6A_PATH)["schema"] == "M6A.0"
+
+    crlf = tmp_path / "m6a-crlf.json"
+    crlf.write_bytes(authoritative.replace(b"\n", b"\r\n"))
+    assert json.loads(crlf.read_bytes()) == json.loads(authoritative)
+    with pytest.raises(m6b.ValidationFailure, match="raw-byte provenance mismatch"):
+        m6b.load_locked_m6a(crlf)
+
+    # This models Git's `-text` byte-preserving checkout behavior, not loader-side
+    # normalization: provenance remains a strict raw-byte lock.
+    canonical = tmp_path / "m6a-canonical-lf.json"
+    canonical.write_bytes(crlf.read_bytes().replace(b"\r\n", b"\n"))
+    assert m6b.load_locked_m6a(canonical)["classification"] == "WHOLE_LEG_MOTOR_AUDIT_COMPLETE"
+    attributes = (m6b.ROOT / ".gitattributes").read_text(encoding="utf-8")
+    assert "whole_leg_motor_mapping_audit.json -text" in attributes
+
+def test_m6a_one_byte_content_change_and_malformed_json_fail_closed(tmp_path):
+    authoritative = m6b.M6A_PATH.read_bytes()
+    changed = tmp_path / "changed.json"
+    changed.write_bytes(authoritative.replace(b'M6A.0', b'M6A.1', 1))
+    with pytest.raises(m6b.ValidationFailure, match="raw-byte provenance mismatch"):
+        m6b.load_locked_m6a(changed)
+
+    malformed = tmp_path / "malformed.json"
+    malformed.write_bytes(b"{")
+    malformed_hash = hashlib.sha256(malformed.read_bytes()).hexdigest()
+    with pytest.raises(json.JSONDecodeError):
+        m6b.load_locked_m6a(malformed, malformed_hash)
+
+@pytest.mark.parametrize("mutation", [
+    lambda data: data.update(schema="M6A.1"),
+    lambda data: data.update(run_status="FAILED"),
+    lambda data: data.update(classification="OTHER"),
+    lambda data: data["summary"].update(tier_counts={"A": 5, "B": 15, "C": 18, "D": 4}),
+    lambda data: data.update(m6b_eligible=data["m6b_eligible"][:-1]),
+    lambda data: data["six_tibia_regression"].update(passed=False),
+    lambda data: next(r for r in data["per_actuator"]
+                      if r["motor_embodiment_tier"] == "A").update(motor_embodiment_tier="C"),
+])
+def test_m6a_semantic_constraints_fail_even_with_matching_raw_lock(tmp_path, mutation):
+    data = json.loads(m6b.M6A_PATH.read_text(encoding="utf-8"))
+    mutation(data)
+    candidate = tmp_path / "semantic-change.json"
+    candidate.write_text(json.dumps(data), encoding="utf-8", newline="\n")
+    candidate_hash = hashlib.sha256(candidate.read_bytes()).hexdigest()
+    with pytest.raises(m6b.ValidationFailure, match="M6A .* differs|M6A semantic lock mismatch"):
+        m6b.load_locked_m6a(candidate, candidate_hash)
 
 def test_not_run_artifact_is_current(report):
     committed=json.loads(m6b.OUTPUT.read_text(encoding="utf-8"))

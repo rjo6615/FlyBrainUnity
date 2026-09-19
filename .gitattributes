@@ -3,3 +3,6 @@ malecns_backend/embodiment/interface_output/sensory_feedback_boundary_100ms.json
 malecns_backend/embodiment/interface_output/proprioceptive_activation_100ms.json -text
 malecns_backend/embodiment/interface_output/proprioceptive_closed_loop_100ms.json -text
 malecns_backend/embodiment/interface_output/post_feedback_motor_pathway_audit.json -text
+# M6A is authoritative generated JSON raw-byte locked by M6B. Preserve the
+# indexed bytes on every platform; never allow core.autocrlf to transform it.
+malecns_backend/embodiment/interface_output/whole_leg_motor_mapping_audit.json -text
