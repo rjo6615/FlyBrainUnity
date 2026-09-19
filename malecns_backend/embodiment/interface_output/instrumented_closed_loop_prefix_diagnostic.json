@@ -1,0 +1,25 @@
+{
+  "c13_preserved": {},
+  "c1_timeline": {},
+  "classification": "OTHER_DIAGNOSTIC_FAILURE",
+  "first_failed_predicate": null,
+  "guard_predicates": [],
+  "m5d5b_vs_m5d5d": {},
+  "pre_intervention_equivalence": {
+    "verified": false
+  },
+  "provenance": {
+    "failure": "AUTHORITATIVE_JSON_SEMANTICS_MISMATCH",
+    "json_path": "/workspace/FlyBrainUnity/malecns_backend/embodiment/interface_output/instrumented_proprioceptive_closed_loop_100ms.json",
+    "json_sha256": "329d8ee576f6ce9bf3689bc0ff508764a2b21dda52476d9f30f0a71634bf230f",
+    "read_only": true,
+    "telemetry_path": "/workspace/FlyBrainUnity/malecns_backend/embodiment/interface_output/instrumented_proprioceptive_closed_loop_telemetry.npz",
+    "verified": false
+  },
+  "run_status": "FAILED",
+  "schema": "M5D-5D1.0",
+  "scientific_interpretation": {
+    "permitted": false,
+    "reason": "AUTHORITATIVE_JSON_SEMANTICS_MISMATCH"
+  }
+}
