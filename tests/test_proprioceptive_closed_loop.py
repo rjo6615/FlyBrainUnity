@@ -1,4 +1,6 @@
 import hashlib
+import ast
+import importlib.util
 import json
 from copy import deepcopy
 
@@ -131,6 +133,58 @@ def test_first_attempt_provenance_failure_is_preserved_without_science():
         "interface_output/proprioceptive_activation_100ms.json"] == (
             "c52be9d9b1989c4631d6f7907f13465cebf645492b8114654e0a3dc898f3833d")
     assert "3e0131be35d7b00004e1e014e5007ff7455b422b7fd67a2cd25a67eadead5ca9" in artifact["reason"]
+
+
+def test_missing_runner_invocation_is_preserved_without_science():
+    path = subject.ROOT / (
+        "malecns_backend/embodiment/interface_output/"
+        "proprioceptive_closed_loop_100ms_first_attempt_unavailable.json")
+    artifact = json.loads(path.read_text(encoding="utf-8"))
+    assert (artifact["run_status"], artifact["classification"]) == ("UNAVAILABLE", None)
+    assert "_windows_proprioceptive_closed_loop_adapter" in artifact["reason"]
+    assert all(value is None for value in artifact["milestones"].values())
+    assert all(draws == 0 for condition in artifact["rng"]["draw_counters"].values()
+               for draws in condition.values())
+    assert artifact["physics_safety"]["stable"] is None
+    assert artifact["pre_intervention_equivalence"]["passed"] is None
+
+
+def test_live_adapter_exists_and_audit_resolves_repository_module():
+    name = "malecns_backend.embodiment._windows_proprioceptive_closed_loop_adapter"
+    spec = importlib.util.find_spec(name)
+    assert spec is not None and spec.origin.endswith("_windows_proprioceptive_closed_loop_adapter.py")
+    audit = (subject.ROOT / "malecns_backend/embodiment/proprioceptive_closed_loop_audit.py").read_text()
+    assert "from ._windows_proprioceptive_closed_loop_adapter import run_canonical_pair" in audit
+
+
+def test_live_adapter_is_real_composition_not_placeholder():
+    path = subject.ROOT / (
+        "malecns_backend/embodiment/_windows_proprioceptive_closed_loop_adapter.py")
+    source = path.read_text(encoding="utf-8")
+    tree = ast.parse(source)
+    calls = {node.func.id for node in ast.walk(tree)
+             if isinstance(node, ast.Call) and isinstance(node.func, ast.Name)}
+    assert {"MaleCNSBrain", "SensoryEncoder", "MatchedControlPipeline",
+            "sample_candidates", "analyze"} <= calls
+    assert 'importlib.import_module("flygym")' in source
+    assert "for condition in CONDITIONS" not in source  # no opaque placeholder loop
+    assert "enabled = _run_condition" in source and "disabled = _run_condition" in source
+    for forbidden in ("gait", "CPG", "tripod", "scripted coordination"):
+        assert forbidden not in source
+
+
+def test_adapter_locked_timing_rng_and_single_condition_gate():
+    path = subject.ROOT / (
+        "malecns_backend/embodiment/_windows_proprioceptive_closed_loop_adapter.py")
+    source = path.read_text(encoding="utf-8")
+    assert "proprio_rngs(SEED)" in source
+    assert "sample_candidates(encoded.rates_hz, sensory_rngs[leg])" in source
+    assert "MatchedControlPipeline(enabled" in source
+    # Admission is delegated once to the reviewed common pipeline; the adapter
+    # contains no second enabled/disabled command algorithm.
+    assert source.count("if condition") == 1
+    assert "DURATION_MS / PHYSICS_DT_MS" in source
+    assert "NEURAL_DT_MS / PHYSICS_DT_MS" in source
 
 
 @pytest.mark.parametrize("broken,expected", [

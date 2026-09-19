@@ -26,12 +26,7 @@ def atomic_write(path: Path, report) -> None:
 
 
 def run_live(duration_ms: float = DURATION_MS, seed: int = SEED):
-    """Execute exactly once through the installed canonical Windows adapter.
-
-    The separately installed adapter is intentional: it is the same reviewed
-    FlyGym/MaleCNS integration used for the locked 5A/4C runs, rather than a
-    second physics constructor hidden in this audit module.
-    """
+    """Execute exactly once through the repository's live Windows adapter."""
     if (duration_ms, seed, AUTOMATIC_RETRIES) != (100.0, 1, 0):
         raise ValueError("M5D-5B protocol is fixed at 100 ms, seed 1, no retries")
     provenance = verify_provenance()
@@ -50,13 +45,20 @@ def main(argv=None) -> int:
         try:
             report = run_live(args.duration_ms, args.seed)
         except (ImportError, ModuleNotFoundError) as error:
-            report.update(run_status="UNAVAILABLE", reason=f"{type(error).__name__}: {error}")
+            report.update(run_status="UNAVAILABLE", classification="LIVE_RUNNER_UNAVAILABLE",
+                reason=f"LIVE_RUNNER_UNAVAILABLE: {type(error).__name__}: {error}",
+                traceback=traceback.format_exc())
         except Exception as error:
-            category = "PROVENANCE_FAILURE" if "provenance" in str(error).lower() else "PHYSICS_FAILURE"
+            category = ("PROVENANCE_FAILURE" if "provenance" in str(error).lower() else
+                "PHYSICS_FAILURE" if type(error).__name__ == "PhysicsFailure" else
+                "LIVE_RUNNER_IMPLEMENTATION_FAILURE")
             report.update(run_status="FAILED", classification=category,
-                reason=f"{type(error).__name__}: {error}", traceback=traceback.format_exc())
+                reason=f"{category}: {type(error).__name__}: {error}",
+                traceback=traceback.format_exc())
     atomic_write(args.json, report)
-    print(f"M5D-5B {report['run_status']}: {report['classification']}")
+    detail = (report.get("reason") if report["run_status"] in ("UNAVAILABLE", "FAILED")
+        else report.get("classification")) or "unspecified failure"
+    print(f"M5D-5B {report['run_status']}: {detail}")
     return 0 if report["run_status"] in ("COMPLETE", "NOT_RUN", "UNAVAILABLE") else 1
 
 
