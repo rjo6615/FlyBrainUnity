@@ -2,3 +2,4 @@
 malecns_backend/embodiment/interface_output/sensory_feedback_boundary_100ms.json -text
 malecns_backend/embodiment/interface_output/proprioceptive_activation_100ms.json -text
 malecns_backend/embodiment/interface_output/proprioceptive_closed_loop_100ms.json -text
+malecns_backend/embodiment/interface_output/post_feedback_motor_pathway_audit.json -text

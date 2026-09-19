@@ -18,14 +18,25 @@ CONDITIONS = ("CLOSED_LOOP_ENABLED", "MOTOR_OUTPUT_DISABLED")
 ROOT = Path(__file__).resolve().parents[2]
 BASE = ROOT / "malecns_backend/embodiment"
 TELEMETRY_SCHEMA = "M5D-5D-TELEMETRY.0"
-LOCKS = {
+RAW_ARTIFACT_LOCKS = {
     "interface_output/proprioceptive_closed_loop_100ms.json": "2dc15d8b3a3820823358f73673e45920f18a4e3bb9dd504dbeb35aa677982a10",
+    # M5D-5C was generated on Windows.  Its authoritative CRLF bytes are
+    # preserved by .gitattributes and deliberately receive no normalization.
+    "interface_output/post_feedback_motor_pathway_audit.json": "7dd802b893c7c94f498a6742d1d3f6538019f5ec6fba54ac68c67714d5e32d48",
+}
+CANONICAL_SOURCE_LOCKS = {
     "proprioceptive_closed_loop.py": "2f95c6b38d373d7026272c538b37437b400d92fd6168306a87dc0ca14c6480e9",
     "proprioceptive_closed_loop_audit.py": "01601e7008c948eb2b92c46105288550682ceecea62d7b4bec69d3c54669f30e",
     "_windows_proprioceptive_closed_loop_adapter.py": "487c83bdbbba663f0aba8ed0600e225d5d51cfcb3831f4d3a4e4cdb6ecb804e9",
-    "interface_output/post_feedback_motor_pathway_audit.json": "dc6f2b5ac77df4bd1fba05c64945b3418c45763eaaea9b82a5a0eb9ae6e46cc7",
     "post_feedback_motor_pathway_audit.py": "ac067dd0c1d21a33e93ba9573e5a41233530eb6af7d01e9f17bbed87a6b8cb6c",
 }
+LOCKS = {**RAW_ARTIFACT_LOCKS, **CANONICAL_SOURCE_LOCKS}
+M5D5C_LIMITATIONS = [
+    "No experiment was rerun and no parameter, decoder, sensory interface, physics, duration, drive, noise, or behavior logic was changed.",
+    "CONNECTOME-DERIVED means MaleCNS anatomy/simulated dynamics; MODELED means transduction, decoding, and embodiment; OBSERVED means recorded condition differences.",
+    "An anatomical path would not establish functional recruitment.",
+    "The audit makes no claim of natural walking, biological proprioception or reflexes, emergent gait, CPG discovery, natural coordination, or biological muscle control.",
+]
 
 
 def _field(value: Mapping[str, Any], path: str) -> Any:
@@ -38,9 +49,14 @@ def _field(value: Mapping[str, Any], path: str) -> Any:
 def verify_provenance() -> dict[str, Any]:
     """Lock bytes, historical semantics, and the complete M5D-5B chain."""
     observed = {}
-    for relative, expected in LOCKS.items():
+    for relative, expected in RAW_ARTIFACT_LOCKS.items():
         raw = (BASE / relative).read_bytes()
-        digest = hashlib.sha256(raw if relative.endswith(".json") else canonical_lf(raw)).hexdigest()
+        digest = hashlib.sha256(raw).hexdigest()
+        observed[relative] = digest
+        if digest != expected:
+            raise RuntimeError(f"M5D-5D provenance mismatch for {relative}: {digest}")
+    for relative, expected in CANONICAL_SOURCE_LOCKS.items():
+        digest = hashlib.sha256(canonical_lf((BASE / relative).read_bytes())).hexdigest()
         observed[relative] = digest
         if digest != expected:
             raise RuntimeError(f"M5D-5D provenance mismatch for {relative}: {digest}")
@@ -48,13 +64,28 @@ def verify_provenance() -> dict[str, Any]:
     c = json.loads((BASE / "interface_output/post_feedback_motor_pathway_audit.json").read_text())
     required_b = {"run_status": "COMPLETE", "classification": "CLOSED_LOOP_TO_CNS_CONFIRMED",
         "provenance.verified": True, "physics_safety.stable": True, "rng.aligned": True}
-    required_c = {"run_status": "COMPLETE", "classification": "MIXED_OR_UNRESOLVED",
-        "provenance.verified": True}
+    required_c = {"schema": "M5D-5C.0", "run_status": "COMPLETE",
+        "classification": "MIXED_OR_UNRESOLVED", "provenance.verified": True,
+        "authoritative_m5d5b_result.artifact_modified": False,
+        "feedback_population.status": "PARTIAL_AGGREGATE_ONLY",
+        "feedback_population.directly_driven_proprioceptive_neurons_counted_as_downstream": False,
+        "sensory_attribution.classification": "INSUFFICIENT_TELEMETRY",
+        "anatomical_reachability.status": "INSUFFICIENT_TELEMETRY",
+        "anatomical_reachability.functional_connectivity_claimed": False,
+        "dynamic_propagation.status": "INSUFFICIENT_TELEMETRY",
+        "mapped_motor_subthreshold.status": "INSUFFICIENT_TELEMETRY",
+        "mapped_motor_subthreshold.c13_observed": False,
+        "decoder_analysis.status": "INSUFFICIENT_TELEMETRY"}
     bad = {f"M5D-5B.{k}": _field(b, k) for k, v in required_b.items() if _field(b, k) != v}
     bad.update({f"M5D-5C.{k}": _field(c, k) for k, v in required_c.items() if _field(c, k) != v})
+    if c.get("limitations") != M5D5C_LIMITATIONS:
+        bad["M5D-5C.limitations"] = c.get("limitations")
     if bad: raise RuntimeError(f"M5D-5D authoritative semantics mismatch: {bad!r}")
     return {"verified": True, "historical_artifacts_modified": False,
-        "m5d5b_scientific_run": 2, "m5d5c_audit": "authoritative", "observed_locks": observed}
+        "m5d5b_scientific_run": 2, "m5d5c_audit": "authoritative",
+        "lock_method": {"authoritative_artifacts": "raw-byte SHA-256",
+            "implementation_sources": "canonical-LF SHA-256"},
+        "observed_locks": observed}
 
 
 def base_report() -> dict[str, Any]:

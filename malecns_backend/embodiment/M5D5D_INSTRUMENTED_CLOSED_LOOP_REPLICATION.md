@@ -2,8 +2,11 @@
 
 ## Status
 
-**NOT RUN.** The checked-in artifact is intentionally not scientific evidence.
-The first successful canonical Windows execution is Scientific Run #1.
+**FAILED BEFORE SIMULATION.** The checked-in artifact preserves the first
+Windows invocation's provenance failure as historical evidence. It is not
+scientific evidence, did not enter simulation, and did not consume Scientific
+Run #1. The first successful canonical Windows execution remains Scientific
+Run #1.
 
 ## Frozen protocol and provenance
 
@@ -19,6 +22,14 @@ M5D-5C JSON artifacts and canonical-LF hashes of the M5D-5B runner, reducer,
 audit and M5D-5C implementation. It also verifies `COMPLETE`, the authoritative
 classifications, provenance, physics stability and RNG alignment semantics.
 Historical artifacts are never rewritten.
+
+The M5D-5C artifact was generated with CRLF on Windows. Its former lock was the
+SHA-256 of the LF checkout representation (`dc6f2b5a…`), while Windows observed
+the authoritative CRLF bytes (`7dd802b8…`). Canonical-LF normalization of both
+representations is identical, and parsing both produces the same JSON value.
+The artifact is therefore retained with its authoritative Windows bytes and a
+raw-byte lock; `.gitattributes` prevents Git from rewriting it. Implementation
+sources continue to use canonical-LF locks.
 
 ## Shared update path
 
