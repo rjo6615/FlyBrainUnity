@@ -8,6 +8,32 @@ only modeled isolated motor-interface causality between an annotation-backed
 mapped motor population and one physical actuator. It cannot validate
 biological motor function.
 
+The first Windows invocation terminated during interface setup because
+`_windows_isolated_tier_b_motor_validation_adapter` did not exist.  It ran no
+simulation, is recorded as `INTERFACE_SETUP_FAILURE`, and **does not consume
+Scientific Run #1**.  The committed canonical artifact remains the original
+`NOT_RUN` preregistration; engineering preflight output is kept separately.
+
+## Canonical adapter and reused live path
+
+The Windows adapter is intentionally an integration layer.  It reuses:
+
+* `load_malecns` and `MaleCNSBrain` for connectome loading and neural runtime;
+* `full_leg_interface.enumerate_live_actuators` for compiled action,
+  actuator, joint, qpos, and qvel associations;
+* `tactile_motor_loop_audit._make_live`, `_joint_positions`, `_forces`, and
+  `_state_tuple` for the validated M5D-4 environment/state path;
+* `validated_interfaces`, `SensoryEncoder`, `proprio_rngs`,
+  `sample_candidates`, and `TactileContactEncoder` for the M5D-5B sensory and
+  RNG path;
+* `MotorActivityObserver` for the locked 40-ms motor observation; and
+* `tactile_motor_matched_control.MatchedControlPipeline` for the corrected
+  M5D-4C baseline, gate, clamp, slew, and command path.
+
+The adapter's public contract is `run_preflight(protocol, output_path)` and
+`run_canonical(protocol, output_path)`, plus independently testable joint
+metadata, physical-sign calibration, decoding, and admission guards.
+
 ## Immutable M6A input
 
 `interface_output/whole_leg_motor_mapping_audit.json` is locked as raw bytes
@@ -61,8 +87,16 @@ labeled `SYNTHETIC_INTERFACE_DIAGNOSTIC_ONLY` and are not scientific evidence.
 From the repository root in PowerShell, after installing the project's
 validated MaleCNS/FlyGym/MuJoCo environment and Windows adapter:
 
+Run the non-scientific engineering preflight first:
+
 ```powershell
-python -m malecns_backend.embodiment.isolated_tier_b_motor_validation --run-windows
+.\fly-brain-interactive\.venv\Scripts\python.exe -m malecns_backend.embodiment.isolated_tier_b_motor_validation --preflight-windows
+```
+
+Only after it prints `M6B WINDOWS PREFLIGHT PASS`, invoke Scientific Run #1:
+
+```powershell
+.\fly-brain-interactive\.venv\Scripts\python.exe -m malecns_backend.embodiment.isolated_tier_b_motor_validation --run-windows
 ```
 
 The adapter must preserve each first-run artifact and populate per-joint and

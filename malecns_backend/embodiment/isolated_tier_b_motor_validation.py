@@ -17,6 +17,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 M6A_PATH = HERE / "interface_output" / "whole_leg_motor_mapping_audit.json"
 OUTPUT = HERE / "interface_output" / "isolated_tier_b_motor_validation.json"
+PREFLIGHT_OUTPUT = HERE / "interface_output" / "m6b_windows_preflight.json"
 M6A_SHA256 = "722ee9b3b1d6a0fad2bf8ef0f02fc63f49277c5f44e3bccf27898e6c4ea673d9"
 SCHEMA = "M6B.0"
 CANONICAL_SEED = 1
@@ -105,6 +106,22 @@ EQUIVALENCE_FIELDS = ("qpos", "qvel", "action", "ctrl", "selected_joint_state",
 def strict_pre_intervention_equivalence(enabled: Sequence[Mapping[str, Any]],
                                         disabled: Sequence[Mapping[str, Any]],
                                         first_admitted_step: int | None) -> bool:
+    def exactly_equal(left: Any, right: Any) -> bool:
+        """Exact nested comparison, including live NumPy telemetry arrays."""
+        if isinstance(left, Mapping) and isinstance(right, Mapping):
+            return (left.keys() == right.keys() and
+                    all(exactly_equal(left[key], right[key]) for key in left))
+        if (isinstance(left, Sequence) and not isinstance(left, (str, bytes)) and
+                isinstance(right, Sequence) and not isinstance(right, (str, bytes))):
+            return len(left) == len(right) and all(
+                exactly_equal(a, b) for a, b in zip(left, right))
+        try:
+            comparison = left == right
+            all_method = getattr(comparison, "all", None)
+            return bool(all_method() if all_method is not None else comparison)
+        except (TypeError, ValueError):
+            return False
+
     if len(enabled) != len(disabled): return False
     stop = len(enabled) if first_admitted_step is None else first_admitted_step + 1
     for i, (left, right) in enumerate(zip(enabled[:stop], disabled[:stop])):
@@ -112,7 +129,8 @@ def strict_pre_intervention_equivalence(enabled: Sequence[Mapping[str, Any]],
             # At the boundary observer/decoder remain equal; action/ctrl may
             # diverge only after the admitted contribution is formed.
             if i == first_admitted_step and field in ("action", "ctrl"): continue
-            if field not in left or field not in right or left[field] != right[field]: return False
+            if (field not in left or field not in right or
+                    not exactly_equal(left[field], right[field])): return False
     return True
 
 
@@ -228,7 +246,19 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--write-not-run", action="store_true")
     parser.add_argument("--run-windows", action="store_true")
+    parser.add_argument("--preflight-windows", action="store_true")
     args = parser.parse_args(argv)
+    if args.run_windows and args.preflight_windows:
+        parser.error("--run-windows and --preflight-windows are mutually exclusive")
+    if args.preflight_windows:
+        try:
+            from ._windows_isolated_tier_b_motor_validation_adapter import run_preflight
+            run_preflight(build_not_run_artifact(), PREFLIGHT_OUTPUT)
+        except Exception as exc:
+            print(f"M6B WINDOWS PREFLIGHT FAIL: {exc}")
+            return 1
+        print("M6B WINDOWS PREFLIGHT PASS")
+        return 0
     if args.run_windows:
         # Fail before simulation rather than silently substituting a noncanonical runtime.
         try:
