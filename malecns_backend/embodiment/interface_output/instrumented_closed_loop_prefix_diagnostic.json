@@ -1,25 +1,415 @@
 {
-  "c13_preserved": {},
-  "c1_timeline": {},
-  "classification": "OTHER_DIAGNOSTIC_FAILURE",
-  "first_failed_predicate": null,
-  "guard_predicates": [],
-  "m5d5b_vs_m5d5d": {},
+  "c13_preserved": {
+    "classification": "MAPPED_MOTOR_SUBTHRESHOLD_DIVERGENCE",
+    "decoder_state_divergence_ms": 39.50000000000011,
+    "mapped_motor_spike_divergence_ms": null,
+    "mapped_motor_state_divergence_ms": 24.499999999999908
+  },
+  "c1_timeline": {
+    "admitted_contribution": 0.09982611240267811,
+    "classification": "DECODER_CARRYOVER_WITHOUT_NEW_SPIKE",
+    "decoder_filtered_state": {
+      "antagonist_signal": 0.39930444961071243,
+      "extensor_activation": 0.39930444961071243,
+      "extensor_hz": 12.5,
+      "flexor_activation": 0.0,
+      "flexor_hz": 0.0,
+      "raw_neural_contribution": 0.09982611240267811
+    },
+    "leg": "LM",
+    "mapped_extensor_population": "Ti extensor MN T2 left",
+    "mapped_flexor_population": "Ti flexor MN T2 left",
+    "new_extensor_spikes": 0,
+    "new_flexor_spikes": 0,
+    "observer_state_after": {
+      "filtered_hz": {
+        "Ti extensor MN T2 left": 12.5,
+        "Ti flexor MN T2 left": 0.0
+      },
+      "neurons": {
+        "Ti extensor MN T2 left": {
+          "cumulative_counts": [
+            1,
+            0
+          ],
+          "filtered_hz": [
+            25.0,
+            0.0
+          ],
+          "increments": [
+            1,
+            0
+          ],
+          "instantaneous_hz": [
+            2000.0,
+            0.0
+          ]
+        },
+        "Ti flexor MN T2 left": {
+          "cumulative_counts": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "filtered_hz": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "increments": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "instantaneous_hz": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    "observer_state_before": {
+      "filtered_hz": {
+        "Ti extensor MN T2 left": 0.0,
+        "Ti flexor MN T2 left": 0.0
+      },
+      "neurons": {
+        "Ti extensor MN T2 left": {
+          "cumulative_counts": [
+            0,
+            0
+          ],
+          "filtered_hz": [
+            0.0,
+            0.0
+          ],
+          "increments": [
+            0,
+            0
+          ],
+          "instantaneous_hz": [
+            0.0,
+            0.0
+          ]
+        },
+        "Ti flexor MN T2 left": {
+          "cumulative_counts": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "filtered_hz": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "increments": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "instantaneous_hz": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    "raw_contribution": 0.09982611240267811,
+    "time_ms": 13.499999999999973
+  },
+  "classification": "GUARD_SEMANTIC_MISMATCH",
+  "first_failed_predicate": {
+    "left": 13.499999999999973,
+    "name": "C3 < C4",
+    "operator": "<",
+    "result": false,
+    "right": 13.499999999999973,
+    "status": "FAIL"
+  },
+  "guard_predicates": [
+    {
+      "left": 13.499999999999973,
+      "name": "C3_is_not_None",
+      "operator": "is not",
+      "result": true,
+      "right": null,
+      "status": "PASS"
+    },
+    {
+      "left": 13.499999999999973,
+      "name": "C4_is_not_None",
+      "operator": "is not",
+      "result": true,
+      "right": null,
+      "status": "PASS"
+    },
+    {
+      "left": 13.599999999999973,
+      "name": "C6_is_not_None",
+      "operator": "is not",
+      "result": true,
+      "right": null,
+      "status": "PASS"
+    },
+    {
+      "left": 13.599999999999973,
+      "name": "C7_is_not_None",
+      "operator": "is not",
+      "result": true,
+      "right": null,
+      "status": "PASS"
+    },
+    {
+      "left": 13.999999999999972,
+      "name": "C8_is_not_None",
+      "operator": "is not",
+      "result": true,
+      "right": null,
+      "status": "PASS"
+    },
+    {
+      "left": 21.999999999999922,
+      "name": "C10_is_not_None",
+      "operator": "is not",
+      "result": true,
+      "right": null,
+      "status": "PASS"
+    },
+    {
+      "left": 23.99999999999991,
+      "name": "C11_is_not_None",
+      "operator": "is not",
+      "result": true,
+      "right": null,
+      "status": "PASS"
+    },
+    {
+      "left": 13.499999999999973,
+      "name": "C3 < C4",
+      "operator": "<",
+      "result": false,
+      "right": 13.499999999999973,
+      "status": "FAIL"
+    },
+    {
+      "left": 13.499999999999973,
+      "name": "C4 <= C6",
+      "operator": "<=",
+      "result": true,
+      "right": 13.599999999999973,
+      "status": "PASS"
+    },
+    {
+      "left": 13.599999999999973,
+      "name": "C6 <= C7",
+      "operator": "<=",
+      "result": true,
+      "right": 13.599999999999973,
+      "status": "PASS"
+    },
+    {
+      "left": 13.599999999999973,
+      "name": "C7 <= C8",
+      "operator": "<=",
+      "result": true,
+      "right": 13.999999999999972,
+      "status": "PASS"
+    },
+    {
+      "left": 13.999999999999972,
+      "name": "C8 <= C10",
+      "operator": "<=",
+      "result": true,
+      "right": 21.999999999999922,
+      "status": "PASS"
+    },
+    {
+      "left": 21.999999999999922,
+      "name": "C10 < C11",
+      "operator": "<",
+      "result": true,
+      "right": 23.99999999999991,
+      "status": "PASS"
+    },
+    {
+      "left": true,
+      "name": "exact_pre_intervention_equivalence",
+      "operator": "==",
+      "result": true,
+      "right": true,
+      "status": "PASS"
+    },
+    {
+      "left": false,
+      "name": "causal_prefix_ordered",
+      "operator": "==",
+      "result": false,
+      "right": true,
+      "status": "FAIL"
+    },
+    {
+      "left": false,
+      "name": "replication_guard_passed",
+      "operator": "==",
+      "result": false,
+      "right": true,
+      "status": "FAIL"
+    }
+  ],
+  "m5d5b_vs_m5d5d": {
+    "milestones": {
+      "C0": {
+        "delta_ms": 0.0,
+        "m5d5b_value_ms": 0.5,
+        "m5d5d_value_ms": 0.5,
+        "relation": "exact",
+        "scientifically_meaningful": false
+      },
+      "C1": {
+        "delta_ms": null,
+        "m5d5b_value_ms": null,
+        "m5d5d_value_ms": null,
+        "relation": "exact",
+        "scientifically_meaningful": false
+      },
+      "C10": {
+        "delta_ms": 0.0,
+        "m5d5b_value_ms": 21.999999999999922,
+        "m5d5d_value_ms": 21.999999999999922,
+        "relation": "exact",
+        "scientifically_meaningful": false
+      },
+      "C11": {
+        "delta_ms": 0.0,
+        "m5d5b_value_ms": 23.99999999999991,
+        "m5d5d_value_ms": 23.99999999999991,
+        "relation": "exact",
+        "scientifically_meaningful": false
+      },
+      "C12": {
+        "delta_ms": 0.0,
+        "m5d5b_value_ms": 25.999999999999897,
+        "m5d5d_value_ms": 25.999999999999897,
+        "relation": "exact",
+        "scientifically_meaningful": false
+      },
+      "C13": {
+        "delta_ms": null,
+        "m5d5b_value_ms": null,
+        "m5d5d_value_ms": null,
+        "relation": "exact",
+        "scientifically_meaningful": false
+      },
+      "C2": {
+        "delta_ms": 0.0,
+        "m5d5b_value_ms": 13.499999999999973,
+        "m5d5d_value_ms": 13.499999999999973,
+        "relation": "exact",
+        "scientifically_meaningful": false
+      },
+      "C3": {
+        "delta_ms": 0.0,
+        "m5d5b_value_ms": 13.499999999999973,
+        "m5d5d_value_ms": 13.499999999999973,
+        "relation": "exact",
+        "scientifically_meaningful": false
+      },
+      "C4": {
+        "delta_ms": 0.0,
+        "m5d5b_value_ms": 13.499999999999973,
+        "m5d5d_value_ms": 13.499999999999973,
+        "relation": "exact",
+        "scientifically_meaningful": false
+      },
+      "C5": {
+        "delta_ms": 0.0,
+        "m5d5b_value_ms": 13.599999999999973,
+        "m5d5d_value_ms": 13.599999999999973,
+        "relation": "exact",
+        "scientifically_meaningful": false
+      },
+      "C6": {
+        "delta_ms": 0.0,
+        "m5d5b_value_ms": 13.599999999999973,
+        "m5d5d_value_ms": 13.599999999999973,
+        "relation": "exact",
+        "scientifically_meaningful": false
+      },
+      "C7": {
+        "delta_ms": 0.0,
+        "m5d5b_value_ms": 13.599999999999973,
+        "m5d5d_value_ms": 13.599999999999973,
+        "relation": "exact",
+        "scientifically_meaningful": false
+      },
+      "C8": {
+        "delta_ms": 0.0,
+        "m5d5b_value_ms": 13.999999999999972,
+        "m5d5d_value_ms": 13.999999999999972,
+        "relation": "exact",
+        "scientifically_meaningful": false
+      },
+      "C9": {
+        "delta_ms": 0.0,
+        "m5d5b_value_ms": 21.999999999999922,
+        "m5d5d_value_ms": 21.999999999999922,
+        "relation": "exact",
+        "scientifically_meaningful": false
+      }
+    }
+  },
   "pre_intervention_equivalence": {
-    "verified": false
+    "first_difference": null,
+    "passed": true
   },
   "provenance": {
-    "failure": "AUTHORITATIVE_JSON_SEMANTICS_MISMATCH",
-    "json_path": "/workspace/FlyBrainUnity/malecns_backend/embodiment/interface_output/instrumented_proprioceptive_closed_loop_100ms.json",
-    "json_sha256": "329d8ee576f6ce9bf3689bc0ff508764a2b21dda52476d9f30f0a71634bf230f",
+    "json_path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\instrumented_proprioceptive_closed_loop_100ms.json",
+    "json_sha256": "78f0e32facca6ae02106dcdc6d7ab546d412108bc99859dfedb47c3827ea72df",
     "read_only": true,
-    "telemetry_path": "/workspace/FlyBrainUnity/malecns_backend/embodiment/interface_output/instrumented_proprioceptive_closed_loop_telemetry.npz",
-    "verified": false
+    "telemetry_keys": [
+      "body_ids",
+      "conditions",
+      "disabled_neural_state",
+      "disabled_spike_events",
+      "disabled_tactile_source_magnitude",
+      "disabled_time_ms",
+      "disabled_trace_json",
+      "enabled_neural_state",
+      "enabled_spike_events",
+      "enabled_tactile_source_magnitude",
+      "enabled_time_ms",
+      "enabled_trace_json",
+      "schema"
+    ],
+    "telemetry_path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\instrumented_proprioceptive_closed_loop_telemetry.npz",
+    "telemetry_schema": "M5D-5D-TELEMETRY.0",
+    "telemetry_sha256": "967ffc19fd345e29e18827d34ca931910ab6390cc7b1eabf15266db7b69b4d9f",
+    "verified": true
   },
-  "run_status": "FAILED",
+  "run_status": "COMPLETE",
   "schema": "M5D-5D1.0",
   "scientific_interpretation": {
-    "permitted": false,
-    "reason": "AUTHORITATIVE_JSON_SEMANTICS_MISMATCH"
+    "causal_prefix_reproduced": true,
+    "cause": "The guard requires C3 < C4 although raw and admitted contributions may occur in the same update; C1 is not a guard term.",
+    "permitted": true
   }
 }
