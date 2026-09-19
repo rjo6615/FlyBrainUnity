@@ -8,13 +8,21 @@ from malecns_backend.embodiment import isolated_tier_b_motor_validation as m6b
 @pytest.fixture(scope="module")
 def report(): return m6b.build_not_run_artifact()
 
-def test_exact_14_m6a_eligible_actuators(report):
-    assert tuple(x["physical_joint"] for x in report["interfaces"]) == m6b.TIER_B
-    assert len(report["interfaces"]) == 14
+def test_exact_eight_canonical_and_six_unresolved_excluded(report):
+    assert tuple(report["eligible_interfaces"]) == m6b.TIER_B
+    assert tuple(report["excluded_unresolved_interfaces"]) == m6b.EXCLUDED_UNRESOLVED
+    assert report["eligible_interface_count"] == 8
+    assert report["excluded_unresolved_count"] == 6
+    assert tuple(x["physical_joint"] for x in report["interfaces"]) == m6b.ANNOTATION_TIER_B
+    excluded = [x for x in report["interfaces"] if x["physical_joint"] in m6b.EXCLUDED_UNRESOLVED]
+    assert all(x["annotation_backed_motor_mapping"] is True for x in excluded)
+    assert all(x["physical_sign_status"] == "SIGN_UNRESOLVED" and
+               x["canonical_m6b_neural_actuation"] == "WITHHELD" for x in excluded)
 
 def test_no_tier_c_d_or_tier_a_admitted(report):
-    assert all(x["physical_joint"] in m6b.TIER_B for x in report["interfaces"])
-    assert not ({x["action_index"] for x in report["interfaces"]} & m6b.TIBIA_INDICES)
+    eligible = [x for x in report["interfaces"] if x["canonical_m6b_neural_actuation"] == "ELIGIBLE"]
+    assert all(x["physical_joint"] in m6b.TIER_B for x in eligible)
+    assert not ({x["action_index"] for x in eligible} & m6b.TIBIA_INDICES)
     with pytest.raises(ValueError): m6b.admitted_tier_b(m6b.TIER_B[0], {"joint_LFCoxa": 1.0}, "ENABLED")
 
 def test_six_tibia_unchanged_and_inactive(report):
@@ -32,8 +40,10 @@ def test_exact_matched_control_gate():
     with pytest.raises(ValueError): m6b.matched_control_gate(.1, "OTHER")
 
 def test_sign_evidence_required(report):
-    assert all(x["physical_sign_status"] == "PHYSICAL_SIGN_CALIBRATION_REQUIRED" for x in report["interfaces"])
-    assert all(x["nmf_positive_group"] is None and x["nmf_negative_group"] is None for x in report["interfaces"])
+    eligible = [x for x in report["interfaces"] if x["physical_joint"] in m6b.TIER_B]
+    assert {x["physical_joint"]: x["coordinate_sign"] for x in eligible} == m6b.LOCKED_SIGNS
+    assert all(x["mechanical_calibration"]["evidence"]["uses_neural_behavior"] is False
+               for x in eligible)
     assert m6b.classify_joint(provenance=True, sign_resolved=False, equivalent=True, mapped_activity=True,
         decoder_output=True, admitted=True, joint_diverged=True, divergence_before_admission=False,
         physics_valid=True) == "SIGN_UNRESOLVED"
@@ -63,6 +73,22 @@ def test_deterministic_single_seed_fixed_duration(report):
     assert p["seed_sweep"] is False
     assert p["duration_ms_per_condition"] == m6b.DURATION_MS == 500.0
     assert p["duration_frozen_before_live_run"] is True
+    assert report["canonical_seed"] == 1 and report["duration_ms"] == 500
+    assert report["conditions_per_interface"] == 2
+
+def test_frozen_actions_populations_and_constants(report):
+    locks = report["preregistration_locks"]
+    assert locks["action_indices"] == m6b.LOCKED_ACTION_INDICES
+    assert locks["coordinate_signs"] == m6b.LOCKED_SIGNS
+    assert locks["decoder_constants"] == {"observer_tau_ms": 40.0,
+        "half_activation_hz": 17.0, "decoder_max_rad": .25, "slew_rad_s": 4.0}
+    assert all(locks["motor_population_mappings"][name]["positive"] and
+               locks["motor_population_mappings"][name]["negative"] for name in m6b.TIER_B)
+
+def test_unresolved_and_other_tiers_cannot_be_admitted():
+    for name in (*m6b.EXCLUDED_UNRESOLVED, "joint_LFTibia", "joint_LFCoxa", "joint_LFTarsus2"):
+        with pytest.raises(ValueError):
+            m6b.admitted_tier_b(name, {name: .1}, "ENABLED")
 
 def test_synthetic_diagnostic_separated(report):
     d=report["protocol"]["synthetic_diagnostic"]
@@ -86,6 +112,18 @@ def test_provenance_fail_closed(tmp_path):
     p=tmp_path/"m6a.json"; p.write_text("{}")
     with pytest.raises(m6b.ValidationFailure) as e: m6b.load_locked_m6a(p)
     assert e.value.classification == "PROVENANCE_FAILURE"
+
+@pytest.mark.parametrize("field,value", [("action_index", 99), ("coordinate_sign", 1)])
+def test_p2_resolved_action_and_sign_locks_fail_closed(tmp_path, monkeypatch, field, value):
+    data = json.loads(m6b.P2_PATH.read_text(encoding="utf-8"))
+    row = next(x for x in data["interfaces"] if x["physical_actuator_name"] == m6b.TIER_B[0])
+    (row if field == "action_index" else row["sign_calibration"])[field] = value
+    candidate = tmp_path / "p2.json"
+    candidate.write_text(json.dumps(data), encoding="utf-8", newline="\n")
+    monkeypatch.setattr(m6b, "P2_PATH", candidate)
+    monkeypatch.setattr(m6b, "P2_SHA256", hashlib.sha256(candidate.read_bytes()).hexdigest())
+    with pytest.raises(m6b.ValidationFailure, match="resolved sign/action lock mismatch"):
+        m6b.load_preregistration_locks()
 
 def test_m6a_raw_lock_is_cross_platform_lf_and_rejects_crlf(tmp_path):
     """Git supplies LF bytes; an unprotected CRLF checkout must not weaken the lock."""
@@ -144,4 +182,5 @@ def test_not_run_artifact_is_current(report):
     committed=json.loads(m6b.OUTPUT.read_text(encoding="utf-8"))
     assert committed == report
     assert committed["run_status"] == "NOT_RUN" and committed["per_joint"] == []
+    assert committed["scientific_run_number"] is None
     assert committed["m6c_eligible"] == []

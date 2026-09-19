@@ -17,8 +17,12 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 M6A_PATH = HERE / "interface_output" / "whole_leg_motor_mapping_audit.json"
 OUTPUT = HERE / "interface_output" / "isolated_tier_b_motor_validation.json"
-PREFLIGHT_OUTPUT = HERE / "interface_output" / "m6b_live_limit_diagnostic.json"
+PREFLIGHT_OUTPUT = HERE / "interface_output" / "m6b_final_preflight.json"
+P2_PATH = HERE / "interface_output" / "m6b_live_limit_diagnostic.json"
+P3_PATH = HERE / "interface_output" / "m6b_coxa_yaw_sign_diagnostic.json"
 M6A_SHA256 = "722ee9b3b1d6a0fad2bf8ef0f02fc63f49277c5f44e3bccf27898e6c4ea673d9"
+P2_SHA256 = "7bcd5e0fd9525f45423955e01b85ee27f707aa20dad10fe2a9a40bc505dbe0fd"
+P3_SHA256 = "1fd87116e2b6434007ae55ace9f91f4590e1cfd66d684ebd6fd72a2fcf688d28"
 SCHEMA = "M6B.0"
 CANONICAL_SEED = 1
 DURATION_MS = 500.0
@@ -26,12 +30,22 @@ OBSERVER_TAU_MS = 40.0
 HALF_ACTIVATION_HZ = 17.0
 DECODER_MAX_RAD = 0.25
 SLEW_RAD_S = 4.0
-TIER_B = (
+ANNOTATION_TIER_B = (
     "joint_LFCoxa_yaw", "joint_LFFemur", "joint_LFTarsus1",
     "joint_LMCoxa_yaw", "joint_LMFemur", "joint_LHCoxa_yaw", "joint_LHFemur",
     "joint_RFCoxa_yaw", "joint_RFFemur", "joint_RFTarsus1",
     "joint_RMCoxa_yaw", "joint_RMFemur", "joint_RHCoxa_yaw", "joint_RHFemur",
 )
+TIER_B = (
+    "joint_LFFemur", "joint_LFTarsus1", "joint_LMFemur", "joint_LHFemur",
+    "joint_RFFemur", "joint_RFTarsus1", "joint_RMFemur", "joint_RHFemur",
+)
+EXCLUDED_UNRESOLVED = (
+    "joint_LFCoxa_yaw", "joint_LMCoxa_yaw", "joint_LHCoxa_yaw",
+    "joint_RFCoxa_yaw", "joint_RMCoxa_yaw", "joint_RHCoxa_yaw",
+)
+LOCKED_SIGNS = {name: -1 for name in TIER_B}
+LOCKED_ACTION_INDICES = dict(zip(TIER_B, (3, 6, 10, 17, 24, 27, 31, 38)))
 TIBIA_INDICES = {5, 12, 19, 26, 33, 40}
 PER_JOINT_CLASSIFICATIONS = (
     "ISOLATED_MOTOR_CAUSALITY_CONFIRMED", "NO_MAPPED_MOTOR_ACTIVITY",
@@ -57,16 +71,40 @@ def load_locked_m6a(path: Path = M6A_PATH, expected_sha256: str = M6A_SHA256) ->
     required = (data.get("schema") == "M6A.0" and data.get("run_status") == "COMPLETE" and
                 data.get("classification") == "WHOLE_LEG_MOTOR_AUDIT_COMPLETE" and
                 data.get("summary", {}).get("tier_counts") == {"A": 6, "B": 14, "C": 18, "D": 4} and
-                tuple(data.get("m6b_eligible", ())) == TIER_B and
+                tuple(data.get("m6b_eligible", ())) == ANNOTATION_TIER_B and
                 data.get("six_tibia_regression", {}).get("passed") is True)
     if not required:
         raise ValidationFailure("PROVENANCE_FAILURE", "M6A semantic lock mismatch")
     records = data.get("per_actuator", [])
-    if [r["actuator"] for r in records if r.get("motor_embodiment_tier") == "B"] != list(TIER_B):
+    if [r["actuator"] for r in records if r.get("motor_embodiment_tier") == "B"] != list(ANNOTATION_TIER_B):
         raise ValidationFailure("PROVENANCE_FAILURE", "M6A Tier-B records differ")
     if sum(r.get("motor_embodiment_tier") == "A" for r in records) != 6:
         raise ValidationFailure("PROVENANCE_FAILURE", "M6A Tier-A regression differs")
     return data
+
+
+def load_preregistration_locks() -> tuple[dict[str, Any], dict[str, Any]]:
+    """Load immutable P2/P3 evidence and verify the frozen P4 decisions."""
+    for path, digest, label in ((P2_PATH, P2_SHA256, "M6B-P2"),
+                                (P3_PATH, P3_SHA256, "M6B-P3")):
+        if not path.is_file() or _sha256(path) != digest:
+            raise ValidationFailure("PROVENANCE_FAILURE", f"{label} raw-byte provenance mismatch")
+    p2 = json.loads(P2_PATH.read_text(encoding="utf-8"))
+    p3 = json.loads(P3_PATH.read_text(encoding="utf-8"))
+    p2_by_name = {x["physical_actuator_name"]: x for x in p2["interfaces"]}
+    if p2.get("schema") != "M6B-P2.0" or any(
+            p2_by_name[name]["action_index"] != LOCKED_ACTION_INDICES[name] or
+            p2_by_name[name]["sign_calibration"] != {
+                **p2_by_name[name]["sign_calibration"], "status": "RESOLVED",
+                "coordinate_sign": LOCKED_SIGNS[name]}
+            for name in TIER_B):
+        raise ValidationFailure("PROVENANCE_FAILURE", "M6B-P2 resolved sign/action lock mismatch")
+    p3_names = tuple(x["actuator"] for x in p3["interfaces"])
+    if (p3.get("schema") != "M6B-P3.0" or p3_names != EXCLUDED_UNRESOLVED or
+            any(x.get("status") != "SIGN_UNRESOLVED" or x.get("coordinate_sign") is not None
+                for x in p3["interfaces"])):
+        raise ValidationFailure("PROVENANCE_FAILURE", "M6B-P3 unresolved-set lock mismatch")
+    return p2, p3
 
 
 def safe_contribution_bound(joint_min: float, joint_max: float, baseline: float,
@@ -161,23 +199,23 @@ def m6c_eligible(per_joint: Sequence[Mapping[str, Any]]) -> list[str]:
 
 
 def aggregate_classification(per_joint: Sequence[Mapping[str, Any]]) -> str:
-    """Classify a complete 14-result set from observations, never intent."""
+    """Classify a complete eight-result set from observations, never intent."""
     if len(per_joint) != len(TIER_B) or {r.get("actuator") for r in per_joint} != set(TIER_B):
         raise ValueError("aggregate requires exactly one result for each Tier-B actuator")
     classes = [r.get("classification") for r in per_joint]
     if any(value == "PROVENANCE_FAILURE" for value in classes): return "PROVENANCE_FAILURE"
     if any(value == "INTERFACE_FAILURE" for value in classes): return "INTERFACE_SETUP_FAILURE"
     causal = classes.count("ISOLATED_MOTOR_CAUSALITY_CONFIRMED")
-    if causal == 14: return "ISOLATED_TIER_B_VALIDATION_COMPLETE"
+    if causal == len(TIER_B): return "ISOLATED_TIER_B_VALIDATION_COMPLETE"
     if causal: return "ISOLATED_TIER_B_VALIDATION_COMPLETE_WITH_PARTIAL_CAUSALITY"
     return "ISOLATED_TIER_B_VALIDATION_COMPLETE_NO_CAUSAL_RESPONSES"
 
 
-def _interfaces(m6a: Mapping[str, Any]) -> list[dict[str, Any]]:
+def _interfaces(m6a: Mapping[str, Any], p2: Mapping[str, Any]) -> list[dict[str, Any]]:
     populations = {p["population_name"]: p for p in m6a["motor_populations"]}
     output = []
     for source in m6a["per_actuator"]:
-        if source["actuator"] not in TIER_B: continue
+        if source["actuator"] not in ANNOTATION_TIER_B: continue
         directional = []
         for candidate in source["candidates"]:
             p = populations[candidate["population"]]
@@ -188,6 +226,10 @@ def _interfaces(m6a: Mapping[str, Any]) -> list[dict[str, Any]]:
                 "annotation_direction": p["explicit_direction"],
                 "anatomical_direction": p["directional_label"],
             })
+        name = source["actuator"]
+        eligible = name in TIER_B
+        calibration = next((x["sign_calibration"] for x in p2["interfaces"]
+                            if x["physical_actuator_name"] == name), None)
         output.append({
             "action_index": source["global_action_index"], "physical_joint": source["actuator"],
             "leg": source["leg"], "side": source["side"], "thoracic_segment": source["segment"],
@@ -196,9 +238,14 @@ def _interfaces(m6a: Mapping[str, Any]) -> list[dict[str, Any]]:
             "annotation_positive_group": [p["population"] for p in directional if p["annotation_direction"] == 1],
             "annotation_negative_group": [p["population"] for p in directional if p["annotation_direction"] == -1],
             "nmf_positive_group": None, "nmf_negative_group": None,
-            "physical_sign_status": "PHYSICAL_SIGN_CALIBRATION_REQUIRED",
-            "sign_assignment_justification": "M6A establishes anatomical opposition only; deterministic MuJoCo-axis perturbation and geometric inspection must establish the NMF coordinate sign before admission.",
-            "mechanical_calibration": {"method": "deterministic ±epsilon qpos perturbation with MuJoCo joint-axis metadata and geometric endpoint displacement", "uses_neural_behavior": False, "status": "NOT_RUN"},
+            "annotation_backed_motor_mapping": True,
+            "physical_sign_sufficiently_resolved_for_actuation": eligible,
+            "canonical_m6b_neural_actuation": "ELIGIBLE" if eligible else "WITHHELD",
+            "exclusion_reason": None if eligible else "SIGN_UNRESOLVED",
+            "physical_sign_status": "RESOLVED" if eligible else "SIGN_UNRESOLVED",
+            "coordinate_sign": LOCKED_SIGNS.get(name),
+            "sign_assignment_justification": ("Frozen from M6B-P2 deterministic non-neural kinematic calibration; not inferred from behavior or bilateral symmetry." if eligible else "Annotation-backed anterior/posterior opposition does not establish handed NMF Coxa-yaw rotation."),
+            "mechanical_calibration": calibration,
             "safe_contribution_bound_rad": None,
         })
     return output
@@ -206,25 +253,42 @@ def _interfaces(m6a: Mapping[str, Any]) -> list[dict[str, Any]]:
 
 def build_not_run_artifact() -> dict[str, Any]:
     m6a = load_locked_m6a()
-    interfaces = _interfaces(m6a)
+    p2, _ = load_preregistration_locks()
+    interfaces = _interfaces(m6a, p2)
+    eligible_interfaces = [x for x in interfaces if x["physical_joint"] in TIER_B]
     return {
-        "schema": SCHEMA, "run_status": "NOT_RUN", "classification": None,
+        "schema": SCHEMA, "run_status": "NOT_RUN", "scientific_run_number": None,
+        "classification": None, "eligible_interface_count": 8,
+        "excluded_unresolved_count": 6, "eligible_interfaces": list(TIER_B),
+        "excluded_unresolved_interfaces": list(EXCLUDED_UNRESOLVED),
+        "canonical_seed": CANONICAL_SEED, "duration_ms": int(DURATION_MS),
+        "conditions_per_interface": 2,
         "protocol": {"canonical_seed": CANONICAL_SEED, "seed_sweep": False,
             "duration_ms_per_condition": DURATION_MS, "duration_frozen_before_live_run": True,
             "fresh_simulation_per_joint_and_condition": True, "conditions": ["ENABLED", "MOTOR_OUTPUT_DISABLED"],
             "observer_tau_ms": OBSERVER_TAU_MS, "half_activation_hz": HALF_ACTIVATION_HZ,
             "decoder_max_contribution_rad": DECODER_MAX_RAD, "slew_limit_rad_s": SLEW_RAD_S,
             "only_selected_tier_b_admitted": True, "tier_a_neural_contribution": False,
+            "tier_c_neural_contribution": False, "tier_d_neural_contribution": False,
+            "excluded_unresolved_neural_contribution": False,
             "matched_control_condition_dependent_value": "admitted_neural_contribution",
             "synthetic_diagnostic": {"classification": "SYNTHETIC_INTERFACE_DIAGNOSTIC_ONLY", "part_of_scientific_result": False}},
         "m6a_lock": {"relative_path": str(M6A_PATH.relative_to(ROOT)), "hash_policy": "raw-bytes",
             "expected_sha256": M6A_SHA256, "actual_sha256": _sha256(M6A_PATH), "verified": True,
             "semantic_requirements": {"schema": "M6A.0", "run_status": "COMPLETE",
                 "classification": "WHOLE_LEG_MOTOR_AUDIT_COMPLETE", "tier_counts": {"A": 6, "B": 14, "C": 18, "D": 4},
-                "six_tibia_regression": "PASS", "exact_m6b_eligible": list(TIER_B)}},
+                "six_tibia_regression": "PASS", "exact_m6a_annotation_tier_b": list(ANNOTATION_TIER_B)}},
+        "preregistration_locks": {
+            "m6b_p2": {"relative_path": str(P2_PATH.relative_to(ROOT)), "hash_policy": "raw-bytes", "sha256": P2_SHA256},
+            "m6b_p3": {"relative_path": str(P3_PATH.relative_to(ROOT)), "hash_policy": "raw-bytes", "sha256": P3_SHA256},
+            "eligible_interfaces": list(TIER_B), "excluded_unresolved_interfaces": list(EXCLUDED_UNRESOLVED),
+            "action_indices": LOCKED_ACTION_INDICES, "coordinate_signs": LOCKED_SIGNS,
+            "motor_population_mappings": {x["physical_joint"]: {"positive": x["annotation_positive_group"], "negative": x["annotation_negative_group"]} for x in eligible_interfaces},
+            "decoder_constants": {"observer_tau_ms": OBSERVER_TAU_MS, "half_activation_hz": HALF_ACTIVATION_HZ, "decoder_max_rad": DECODER_MAX_RAD, "slew_rad_s": SLEW_RAD_S},
+            "canonical_seed": CANONICAL_SEED, "duration_ms": int(DURATION_MS), "run_status": "NOT_RUN", "scientific_run_number": None},
         "interfaces": interfaces, "per_joint": [],
-        "aggregate": {"total_tier_b_planned": 14, "total_tier_b_tested": 0, "sign_resolved": 0,
-            "sign_unresolved": 14, "mapped_motor_active": 0, "decoder_active": 0,
+        "aggregate": {"total_tier_b_planned": 8, "total_tier_b_tested": 0, "sign_resolved": 8,
+            "sign_unresolved": 6, "mapped_motor_active": 0, "decoder_active": 0,
             "causal_physical_response_confirmed": 0, "silent": 0, "failed_equivalence": 0, "unstable": 0,
             "by_joint_class": {}, "by_leg": {}, "by_left_right": {}, "by_thoracic_segment": {}},
         "m6c_eligible": [],
@@ -257,7 +321,7 @@ def main(argv: list[str] | None = None) -> int:
         except Exception as exc:
             print(f"M6B WINDOWS PREFLIGHT FAIL: {exc}")
             return 1
-        print("M6B WINDOWS PREFLIGHT PASS")
+        print("M6B WINDOWS FINAL PREFLIGHT PASS")
         return 0
     if args.run_windows:
         # Fail before simulation rather than silently substituting a noncanonical runtime.

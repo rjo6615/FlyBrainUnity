@@ -13,7 +13,7 @@ from malecns_backend.embodiment import _windows_isolated_tier_b_motor_validation
 def test_adapter_contract_and_signatures():
     expected = {"run_canonical", "run_preflight", "resolve_joint_metadata",
         "calibrate_physical_sign", "compute_raw_contribution",
-        "assert_isolated_admission", "TELEMETRY_FIELDS"}
+        "assert_isolated_admission", "assert_physical_admission", "TELEMETRY_FIELDS"}
     assert expected <= set(adapter.__all__)
     assert tuple(inspect.signature(adapter.run_canonical).parameters) == ("protocol", "output_path")
     assert tuple(inspect.signature(adapter.run_preflight).parameters) == ("protocol", "output_path")
@@ -35,7 +35,14 @@ def test_single_tier_b_admission_and_other_tiers_impossible():
     with pytest.raises(RuntimeError):
         adapter.assert_isolated_admission(m6b.TIER_B[0], {**values, "joint_LFTibia": 0.0})
     assert not set(m6b.TIBIA_INDICES) & {
-        item["action_index"] for item in m6b.build_not_run_artifact()["interfaces"]}
+        item["action_index"] for item in m6b.build_not_run_artifact()["interfaces"]
+        if item["physical_joint"] in m6b.TIER_B}
+    all_names = list(m6b.ANNOTATION_TIER_B) + ["joint_LFTibia", "joint_LFCoxa", "joint_LFTarsus2"]
+    full = {name: 0.0 for name in all_names}; full[m6b.TIER_B[0]] = .1
+    adapter.assert_physical_admission(m6b.TIER_B[0], full, all_names)
+    full["joint_LFTibia"] = .1
+    with pytest.raises(RuntimeError, match="excluded actuator"):
+        adapter.assert_physical_admission(m6b.TIER_B[0], full, all_names)
 
 
 def test_matched_gate_is_the_only_pipeline_condition(monkeypatch):
@@ -132,17 +139,21 @@ def test_telemetry_completeness_and_same_update_milestones():
 
 
 def test_preflight_never_calls_scientific_runner(monkeypatch, tmp_path):
-    protocol = {"interfaces": [{"physical_joint": "joint_LFCoxa_yaw",
-        "action_index": 2, "leg": "LF", "joint_class": "Coxa_yaw",
+    protocol = {"interfaces": [{"physical_joint": "joint_LFFemur",
+        "action_index": 3, "leg": "LF", "joint_class": "Femur", "coordinate_sign": -1,
+        "mechanical_calibration": {"evidence": {}},
         "directional_motor_populations": [{"population": "p", "body_ids": [1], "annotation_direction": 1},
             {"population": "n", "body_ids": [2], "annotation_direction": -1}]}]}
-    record = {"index": 2, "name": "joint_LFCoxa_yaw", "mujoco_metadata": {
+    record = {"index": 3, "name": "joint_LFFemur", "mujoco_metadata": {
         "actuator_id": 0, "joint_id": 0, "qpos_range": [0, 1], "dof_range": [0, 1]}}
     physics = FakePhysics(); obs = {"joints": np.zeros(42)}
     monkeypatch.setattr(adapter, "_live_setup", lambda p: (object(),
         SimpleNamespace(body_ids=np.array([1, 2])), {}, [record], {record["name"]: record}))
     monkeypatch.setattr(adapter, "_make_live", lambda *a: (SimpleNamespace(close=lambda: None), physics, obs, 0, 0))
     monkeypatch.setattr(adapter, "_run_condition", lambda *a, **k: pytest.fail("scientific run launched"))
+    counter = iter(range(2))
+    monkeypatch.setattr(adapter, "_fresh_runtime", lambda *a, **k: {
+        "sim": SimpleNamespace(close=lambda: None), "brain": object(), "serial": next(counter)})
     output = tmp_path / "preflight.json"
     report = adapter.run_preflight(protocol, output)
     assert report["scientific_run_executed"] is False
@@ -151,12 +162,12 @@ def test_preflight_never_calls_scientific_runner(monkeypatch, tmp_path):
 
 
 def test_preflight_inspects_all_fourteen_before_sign_calibration(monkeypatch, tmp_path):
-    interfaces = [{"physical_joint": name, "action_index": i, "leg": name[6:8],
-        "joint_class": "Femur", "directional_motor_populations": [
+    interfaces = [{"physical_joint": name, "action_index": m6b.LOCKED_ACTION_INDICES[name], "leg": name[6:8],
+        "joint_class": "Femur", "coordinate_sign": -1, "mechanical_calibration": {"evidence": {}}, "directional_motor_populations": [
             {"population": "p", "body_ids": [1], "annotation_direction": 1},
             {"population": "n", "body_ids": [2], "annotation_direction": -1}]}
-        for i, name in enumerate(m6b.TIER_B)]
-    records = [{"index": i, "name": item["physical_joint"], "mujoco_metadata": {
+        for name in m6b.TIER_B]
+    records = [{"index": item["action_index"], "name": item["physical_joint"], "mujoco_metadata": {
         "actuator_id": 0, "joint_id": 0, "qpos_range": [0, 1], "dof_range": [0, 1]}}
         for i, item in enumerate(interfaces)]
     physics = FakePhysics(); obs = {"joints": np.zeros(42)}
@@ -167,10 +178,12 @@ def test_preflight_inspects_all_fourteen_before_sign_calibration(monkeypatch, tm
         SimpleNamespace(close=lambda: None), physics, obs, 0, 0))
     monkeypatch.setattr(adapter, "_run_condition", lambda *a, **k:
                         pytest.fail("scientific run launched"))
+    monkeypatch.setattr(adapter, "_fresh_runtime", lambda *a, **k: {
+        "sim": SimpleNamespace(close=lambda: None), "brain": object()})
     report = adapter.run_preflight({"interfaces": interfaces}, tmp_path / "limits.json")
-    assert report["schema"] == "M6B-P2.0"
+    assert report["schema"] == "M6B-P4.0"
     assert [x["physical_actuator_name"] for x in report["interfaces"]] == list(m6b.TIER_B)
-    assert len(report["interfaces"]) == 14
+    assert len(report["interfaces"]) == 8
 
 
 def test_setup_failure_does_not_consume_run_one(monkeypatch, capsys):
