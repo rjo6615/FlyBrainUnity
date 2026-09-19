@@ -42,7 +42,7 @@ from .tactile_propagation import rng_digest
 CONDITIONS = ("ENABLED", "MOTOR_OUTPUT_DISABLED")
 PHYSICS_DT_MS = contact.DEFAULT_TIMESTEP_S * 1000.0
 CALIBRATION_EPSILON_RAD = 1e-4
-PREFLIGHT_SCHEMA = "M6B-WINDOWS-PREFLIGHT.0"
+PREFLIGHT_SCHEMA = "M6B-P2.0"
 TELEMETRY_FIELDS = (
     "qpos", "qvel", "action", "ctrl", "selected_joint_state",
     "observer_state", "decoder_state", "sensory_state", "rng_state",
@@ -64,6 +64,9 @@ class JointMetadata:
     joint_max: float
     actuator_min: float
     actuator_max: float
+    joint_limited: bool = True
+    actuator_control_limited: bool = True
+    limit_classification: str = "VALID_SAME_DOMAIN_INTERSECTION"
 
 
 @dataclass(frozen=True)
@@ -93,8 +96,26 @@ def _atomic_write(path: Path, value: Mapping[str, Any]) -> None:
         if os.path.exists(temporary): os.unlink(temporary)
 
 
-def resolve_joint_metadata(physics: Any, record: Mapping[str, Any]) -> JointMetadata:
-    """Resolve and validate the selected 1-DoF joint from compiled MuJoCo data."""
+def _model_name(model: Any, kind: str, object_id: int) -> str | None:
+    for args in ((object_id, kind), (kind, object_id)):
+        try:
+            value = model.id2name(*args)
+        except (AttributeError, TypeError, ValueError, KeyError):
+            continue
+        if value is not None:
+            return str(value)
+    return None
+
+
+def inspect_limit_metadata(physics: Any, record: Mapping[str, Any],
+                           current_action: float | None = None) -> dict[str, Any]:
+    """Describe raw MuJoCo limits and their domains without conflating them.
+
+    MuJoCo stores placeholder ``[0, 0]`` ranges even when the corresponding
+    ``*_limited`` flag is false.  Such a pair is not a zero-width limit.  A
+    position servo's ctrl is an absolute transmission-length target; it is a
+    joint-angle target only for a scalar joint transmission with unit gear.
+    """
     source = record.get("mujoco_metadata", record)
     model = physics.model
     try:
@@ -106,16 +127,79 @@ def resolve_joint_metadata(physics: Any, record: Mapping[str, Any]) -> JointMeta
         axis = tuple(float(x) for x in np.asarray(model.jnt_axis[jid]).reshape(3))
         joint_range = tuple(float(x) for x in np.asarray(model.jnt_range[jid]).reshape(2))
         ctrl_range = tuple(float(x) for x in np.asarray(model.actuator_ctrlrange[aid]).reshape(2))
-    except (KeyError, IndexError, TypeError, ValueError) as exc:
+        joint_limited = bool(np.asarray(model.jnt_limited)[jid])
+        ctrl_limited = bool(np.asarray(model.actuator_ctrllimited)[aid])
+        force_limited = bool(np.asarray(model.actuator_forcelimited)[aid])
+        force_range = tuple(float(x) for x in np.asarray(model.actuator_forcerange[aid]).reshape(2))
+        transmission_type = int(np.asarray(model.actuator_trntype)[aid])
+        transmission_ids = tuple(int(x) for x in np.asarray(model.actuator_trnid[aid]).reshape(-1))
+        gear = tuple(float(x) for x in np.asarray(model.actuator_gear[aid]).reshape(-1))
+        gain = tuple(float(x) for x in np.asarray(model.actuator_gainprm[aid]).reshape(-1))
+        bias = tuple(float(x) for x in np.asarray(model.actuator_biasprm[aid]).reshape(-1))
+        actuator_name = _model_name(model, "actuator", aid) or source.get("actuator_name")
+        joint_name = _model_name(model, "joint", jid) or source.get("joint_name")
+    except (AttributeError, KeyError, IndexError, TypeError, ValueError) as exc:
         raise RuntimeError(f"invalid MuJoCo metadata for {record.get('name')}: {exc}") from exc
-    values = (*axis, *joint_range, *ctrl_range)
+    values = (*axis, *joint_range, *ctrl_range, *force_range, *gear, *gain, *bias)
     if not all(math.isfinite(x) for x in values) or np.linalg.norm(axis) == 0:
         raise RuntimeError("non-finite or zero-axis joint metadata")
-    lo, hi = max(joint_range[0], ctrl_range[0]), min(joint_range[1], ctrl_range[1])
+    # FlyGym creates these through Fly(control="position").  Check the live
+    # compiled servo signature too, rather than trusting only that constructor.
+    unit_joint_transmission = (transmission_type == 0 and transmission_ids[0] == jid
+                               and len(gear) and math.isclose(gear[0], 1.0))
+    position_servo = ("position" in str(actuator_name).casefold() and
+                      len(gain) > 0 and gain[0] > 0 and len(bias) > 1 and
+                      math.isclose(bias[1], -gain[0]))
+    same_domain = unit_joint_transmission and position_servo
+    classification = ("VALID_SAME_DOMAIN_INTERSECTION" if same_domain and joint_limited and ctrl_limited
+                      else "VALID_BUT_DIFFERENT_DOMAINS" if ctrl_limited and not same_domain
+                      else "JOINT_RANGE_UNAVAILABLE" if not joint_limited
+                      else "ACTUATOR_RANGE_UNAVAILABLE")
+    qpos = float(np.asarray(physics.data.qpos)[qidx])
+    ctrl = float(np.asarray(physics.data.ctrl)[aid])
+    return {"physical_actuator_name": record.get("name"), "action_index": int(record["index"]),
+        "mujoco_actuator_id": aid, "mujoco_actuator_name": actuator_name,
+        "mujoco_joint_id": jid, "mujoco_joint_name": joint_name,
+        "qpos_address": qidx, "qvel_address": vidx,
+        "joint_type": int(np.asarray(model.jnt_type)[jid]), "joint_axis": list(axis),
+        "joint_limited": joint_limited, "raw_joint_range": list(joint_range),
+        "joint_range_domain": "joint generalized position (radians for this hinge)" if joint_limited else "inactive placeholder; jnt_limited=false",
+        "actuator_control_limited": ctrl_limited, "raw_actuator_ctrlrange": list(ctrl_range),
+        "actuator_ctrlrange_domain": ("absolute joint-position target (radians; unit joint transmission)" if same_domain else "actuator control / transmission-length domain"),
+        "actuator_force_limited": force_limited, "raw_actuator_forcerange": list(force_range),
+        "actuator_forcerange_domain": "actuator scalar force" if force_limited else "inactive placeholder; actuator_forcelimited=false",
+        "actuator_transmission_type": transmission_type,
+        "actuator_transmission_ids": list(transmission_ids), "actuator_gear": list(gear),
+        "actuator_gain_parameters": list(gain), "actuator_bias_parameters": list(bias),
+        "position_servo_signature": position_servo, "ctrl_and_joint_same_domain": same_domain,
+        "current_qpos": qpos, "current_ctrl": ctrl,
+        "current_action_value": qpos if current_action is None else float(current_action),
+        "classification": classification}
+
+
+def resolve_joint_metadata(physics: Any, record: Mapping[str, Any],
+                           current_action: float | None = None) -> JointMetadata:
+    """Resolve applicable position-target bounds, respecting limit flags/domains."""
+    diagnostic = inspect_limit_metadata(physics, record, current_action)
+    if not diagnostic["ctrl_and_joint_same_domain"]:
+        raise RuntimeError(f"actuator ctrl is not an absolute unit-gear joint-position target for {record.get('name')}")
+    ranges = []
+    if diagnostic["joint_limited"]:
+        ranges.append(tuple(diagnostic["raw_joint_range"]))
+    if diagnostic["actuator_control_limited"] and diagnostic["ctrl_and_joint_same_domain"]:
+        ranges.append(tuple(diagnostic["raw_actuator_ctrlrange"]))
+    if not ranges:
+        raise RuntimeError(f"no applicable finite position-target limit for {record.get('name')}")
+    lo, hi = max(x[0] for x in ranges), min(x[1] for x in ranges)
     if lo >= hi:
-        raise RuntimeError("joint and actuator limits have no valid intersection")
-    return JointMetadata(int(record["index"]), aid, jid, qidx, vidx, axis,
-                         lo, hi, ctrl_range[0], ctrl_range[1])
+        raise RuntimeError(f"same-domain limits have no valid intersection for {record.get('name')}: "
+                           f"joint={diagnostic['raw_joint_range']}, ctrl={diagnostic['raw_actuator_ctrlrange']}")
+    return JointMetadata(diagnostic["action_index"], diagnostic["mujoco_actuator_id"],
+        diagnostic["mujoco_joint_id"], diagnostic["qpos_address"], diagnostic["qvel_address"],
+        tuple(diagnostic["joint_axis"]), lo, hi,
+        diagnostic["raw_actuator_ctrlrange"][0], diagnostic["raw_actuator_ctrlrange"][1],
+        diagnostic["joint_limited"], diagnostic["actuator_control_limited"],
+        diagnostic["classification"])
 
 
 def _endpoint_geom_ids(model: Any, interface: Mapping[str, Any]) -> tuple[int, ...]:
@@ -388,9 +472,24 @@ def _live_setup(protocol: Mapping[str, Any]) -> tuple[Any, Any, Any, list[dict[s
 
 def run_preflight(protocol: Mapping[str, Any], output_path: Path) -> dict[str, Any]:
     """Perform engineering construction/calibration only; never run 500-ms trials."""
-    report: dict[str, Any] = {"schema": PREFLIGHT_SCHEMA, "artifact_kind": "NON_SCIENTIFIC_PREFLIGHT",
+    report: dict[str, Any] = {"schema": PREFLIGHT_SCHEMA,
+        "type": "NON_SCIENTIFIC_LIVE_LIMIT_DIAGNOSTIC",
+        "artifact_kind": "NON_SCIENTIFIC_PREFLIGHT", "run_status": "IN_PROGRESS",
+        "classification": None,
         "scientific_run_executed": False, "scientific_run_number_consumed": None,
-        "m6a_sha256": M6A_SHA256, "checks": {}, "interfaces": []}
+        "m6a_sha256": M6A_SHA256, "checks": {}, "interfaces": [],
+        "first_failure": None, "all_failures": [],
+        "validated_control_semantics": {
+            "pipeline_value": "absolute joint-position target = current measured position + admitted neural offset",
+            "pipeline_units": "radians", "mechanical_clamp": "MatchedControlPipeline MotorSafety joint bounds",
+            "actuator_clamp": "included only when live ctrl is an absolute unit-gear position target",
+            "flygym_control_mode": "position", "slew_limit_rad_s": SLEW_RAD_S},
+        "safe_bound_rule": ("intersect only active bounds expressed as absolute joint-position targets; "
+            "derive symmetric neural-offset headroom about the current target and cap at 0.25 rad"),
+        "provenance": {"preflight_attempts": [
+            {"attempt": 1, "failure": "M6A raw-byte provenance mismatch", "scientific_run_consumed": False},
+            {"attempt": 2, "failure": "joint and actuator limits have no valid intersection", "scientific_run_consumed": False}],
+            "scientific_run_1": "NOT_RUN", "canonical_artifact_modified": False}}
     flygym, data, tibia, records, by_name = _live_setup(protocol)
     report["checks"].update(dependencies_import=True, malecns_loaded=True,
         action_order_42=True, tier_b_indices=True, tibia_indices_unchanged=True,
@@ -399,16 +498,54 @@ def run_preflight(protocol: Mapping[str, Any], output_path: Path) -> dict[str, A
     # One environment is constructed and perturbed for engineering calibration;
     # _run_condition is deliberately never called here.
     sim, physics, obs, _, _ = _make_live(flygym, tibia)
+    fatal = []
     try:
+        # Pass one records every interface before any sign calibration.  A bad
+        # interface therefore cannot hide the remaining thirteen diagnostics.
         for interface in protocol["interfaces"]:
             record = by_name[interface["physical_joint"]]
-            if record["index"] != interface["action_index"]: raise RuntimeError("M6A/live action index mismatch")
-            _population_index(interface, data)
-            metadata = resolve_joint_metadata(physics, record)
-            baseline = float(_joint_positions(obs)[record["index"]])
-            bound = safe_contribution_bound(metadata.joint_min, metadata.joint_max, baseline)
-            safety = MotorSafety(metadata.joint_min, metadata.joint_max,
-                                 bound, SLEW_RAD_S)
+            entry: dict[str, Any] = {"physical_actuator_name": interface["physical_joint"],
+                                     "action_index": interface["action_index"]}
+            try:
+                if record["index"] != interface["action_index"]: raise RuntimeError("M6A/live action index mismatch")
+                _population_index(interface, data)
+                action = float(_joint_positions(obs)[record["index"]])
+                entry.update(inspect_limit_metadata(physics, record, action))
+                metadata = resolve_joint_metadata(physics, record, action)
+                bound = safe_contribution_bound(metadata.joint_min, metadata.joint_max, action)
+                entry.update({"effective_position_target_range": [metadata.joint_min, metadata.joint_max],
+                              "proposed_safe_decoder_contribution_bound_rad": bound,
+                              "slew_limit_rad_s": SLEW_RAD_S})
+                # Diagnose exactly what the pre-P2 implementation did, even
+                # when the corrected active-bound rule is valid.
+                jr, cr = entry["raw_joint_range"], entry["raw_actuator_ctrlrange"]
+                if max(jr[0], cr[0]) >= min(jr[1], cr[1]):
+                    legacy = {"actuator": interface["physical_joint"],
+                        "action_index": record["index"], "joint_range": jr,
+                        "actuator_ctrlrange": cr,
+                        "reason": ("inactive joint-range placeholder was numerically intersected"
+                                   if not entry["joint_limited"] else
+                                   "active raw ranges have an empty numeric intersection")}
+                    report["all_failures"].append(legacy)
+                    if report["first_failure"] is None: report["first_failure"] = legacy
+                entry["metadata_status"] = "RESOLVED"
+            except Exception as exc:
+                entry.update(classification="OTHER_LIMIT_DIAGNOSTIC_FAILURE",
+                             metadata_status="FAILED", error=str(exc),
+                             proposed_safe_decoder_contribution_bound_rad=None)
+                fatal.append({"actuator": interface["physical_joint"], "error": str(exc)})
+            report["interfaces"].append(entry)
+
+        # Pass two exercises construction and non-neural sign calibration only
+        # for interfaces whose complete limit metadata passed above.
+        for interface, entry in zip(protocol["interfaces"], report["interfaces"]):
+            if entry["metadata_status"] != "RESOLVED":
+                entry["sign_calibration"] = {"status": "NOT_RUN_LIMIT_DIAGNOSTIC_FAILURE"}
+                continue
+            record = by_name[interface["physical_joint"]]
+            metadata = resolve_joint_metadata(physics, record, entry["current_action_value"])
+            bound = entry["proposed_safe_decoder_contribution_bound_rad"]
+            safety = MotorSafety(metadata.joint_min, metadata.joint_max, bound, SLEW_RAD_S)
             # Construct both sides of the exact M5D-4C path, but do not update
             # or step them during engineering preflight.
             MatchedControlPipeline(True, safety)
@@ -416,15 +553,29 @@ def run_preflight(protocol: Mapping[str, Any], output_path: Path) -> dict[str, A
             calibration = calibrate_physical_sign(physics, metadata, interface)
             # Unresolved is a valid, fail-closed calibration result. Machinery
             # failure is not; retain the evidence for Windows review.
-            report["interfaces"].append({"actuator": interface["physical_joint"],
-                "metadata": asdict(metadata), "safe_contribution_bound_rad": bound,
-                "sign_calibration": asdict(calibration)})
+            entry["sign_calibration"] = asdict(calibration)
     finally:
         if getattr(sim, "close", None): sim.close()
+    if fatal:
+        messages = [x["error"] for x in fatal]
+        root = ("SAME_DOMAIN_LIMIT_CONFLICT" if any("same-domain limits" in x for x in messages)
+                else "CROSS_DOMAIN_LIMIT_INTERSECTION_BUG" if any("not an absolute unit-gear" in x for x in messages)
+                else "MISSING_LIMIT_METADATA" if any("no applicable finite" in x for x in messages)
+                else "OTHER_LIMIT_IMPLEMENTATION_FAILURE")
+        report.update(run_status="FAIL", classification=root)
+    else:
+        # A reproduced legacy failure with a valid active-bound result
+        # establishes the limit-enable implementation defect.  If the current
+        # model does not reproduce it, retain that discrepancy explicitly.
+        report.update(run_status="PASS", classification=(
+            "OTHER_LIMIT_IMPLEMENTATION_FAILURE" if report["all_failures"] else
+            "LIVE_MODEL_METADATA_INCONSISTENCY"))
     report["checks"].update(joint_metadata=True, joint_limits=True,
         sign_calibration_machinery=True, environment_constructed=True,
         fresh_runtime_factory=callable(_fresh_runtime), scientific_runner_not_called=True)
     _atomic_write(output_path, report)
+    if fatal:
+        raise RuntimeError("; ".join(f"{x['actuator']}: {x['error']}" for x in fatal))
     return report
 
 
@@ -464,5 +615,5 @@ def run_canonical(protocol: Mapping[str, Any], output_path: Path) -> dict[str, A
 __all__ = ["CALIBRATION_EPSILON_RAD", "CONDITIONS", "JointMetadata",
     "PREFLIGHT_SCHEMA", "SignCalibration", "TELEMETRY_FIELDS",
     "assert_isolated_admission", "calibrate_physical_sign",
-    "compute_raw_contribution", "resolve_joint_metadata", "run_canonical",
+    "compute_raw_contribution", "inspect_limit_metadata", "resolve_joint_metadata", "run_canonical",
     "run_preflight"]
