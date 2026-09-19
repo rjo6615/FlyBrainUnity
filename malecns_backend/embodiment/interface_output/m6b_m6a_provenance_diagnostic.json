@@ -1,0 +1,48 @@
+{
+  "artifact_kind": "NON_SCIENTIFIC_PROVENANCE_DIAGNOSTIC",
+  "authoritative_constraints": {
+    "classification": "WHOLE_LEG_MOTOR_AUDIT_COMPLETE",
+    "m6b_eligible_count": 14,
+    "run_status": "COMPLETE",
+    "schema": "M6A.0",
+    "six_tibia_regression": "PASS",
+    "tier_a_record_count": 6,
+    "tier_counts": {
+      "A": 6,
+      "B": 14,
+      "C": 18,
+      "D": 4
+    }
+  },
+  "cause": "Git had no path-specific line-ending policy, so core.autocrlf could expand all 14,486 LF line endings to CRLF on Windows; the inferred 445,939-byte CRLF representation changes only those newline bytes.",
+  "classification": "REPRESENTATION_ONLY_PROVENANCE_MISMATCH",
+  "correction": {
+    "gitattributes_rule": "malecns_backend/embodiment/interface_output/whole_leg_motor_mapping_audit.json -text",
+    "policy": "RAW_BYTES_WITH_GIT_NO_TEXT_TRANSFORMATION",
+    "reason": "Git disables text conversion and checks out the repository’s indexed LF bytes unchanged, so the existing raw-byte lock is stable across platforms and still detects every content-byte change."
+  },
+  "m6a_artifact": {
+    "canonical_lf_sha256": "722ee9b3b1d6a0fad2bf8ef0f02fc63f49277c5f44e3bccf27898e6c4ea673d9",
+    "current_checkout_crlf_count": 0,
+    "current_checkout_file_size_bytes": 431453,
+    "current_checkout_lf_count": 14486,
+    "current_checkout_raw_sha256": "722ee9b3b1d6a0fad2bf8ef0f02fc63f49277c5f44e3bccf27898e6c4ea673d9",
+    "expected_raw_sha256": "722ee9b3b1d6a0fad2bf8ef0f02fc63f49277c5f44e3bccf27898e6c4ea673d9",
+    "git_source_commit": "7c497d5d27a93d69d931e7322b6adeaea89f71be",
+    "inferred_windows_crlf_count": 14486,
+    "inferred_windows_crlf_file_size_bytes": 445939,
+    "inferred_windows_crlf_sha256": "07e5395689bd2c9c055aa384d0c8536dede7311b7400bf1767dae0772d442c98",
+    "json_parses": true,
+    "relative_path": "malecns_backend/embodiment/interface_output/whole_leg_motor_mapping_audit.json",
+    "semantic_identity_with_git_source_commit": true,
+    "terminal_newline": true,
+    "utf8_bom": false
+  },
+  "preflight_attempt_1": {
+    "kind": "ENGINEERING_PREFLIGHT_FAILURE",
+    "result": "M6B WINDOWS PREFLIGHT FAIL: M6A raw-byte provenance mismatch",
+    "scientific_run_number_consumed": null
+  },
+  "scientific_run_1_status": "NOT_RUN",
+  "scientific_run_executed": false
+}

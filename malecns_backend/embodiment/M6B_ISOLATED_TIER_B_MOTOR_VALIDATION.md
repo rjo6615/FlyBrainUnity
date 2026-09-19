@@ -43,6 +43,32 @@ The loader also requires schema `M6A.0`, `COMPLETE`,
 exact ordered eligible list, and a passing six-tibia regression. Any mismatch
 fails closed before simulation and does not consume Scientific Run #1.
 
+### M6A byte-provenance diagnostic (M6B-P1)
+
+Preflight Attempt #1 ended with `M6B WINDOWS PREFLIGHT FAIL: M6A raw-byte
+provenance mismatch`. This was an engineering/preflight failure: no scientific
+simulation ran, and Scientific Run #1 remains unconsumed (`NOT_RUN`).
+
+The investigation classified the event as
+`REPRESENTATION_ONLY_PROVENANCE_MISMATCH`. The source commit and current LF
+checkout are 431,453 bytes with 14,486 LF bytes, no CRLF sequences, no UTF-8
+BOM, a terminal newline, and SHA-256
+`722ee9b3b1d6a0fad2bf8ef0f02fc63f49277c5f44e3bccf27898e6c4ea673d9`.
+Expanding only those line endings produces the 445,939-byte Windows CRLF
+representation (14,486 CRLF sequences), SHA-256
+`07e5395689bd2c9c055aa384d0c8536dede7311b7400bf1767dae0772d442c98`.
+Both parse to identical JSON, including every required M6A constraint. There
+was no BOM or terminal-newline difference.
+
+The repository previously had no path-specific `.gitattributes` policy, so
+`core.autocrlf` could change this raw-byte-locked artifact during Windows
+checkout. The path is now declared `-text`, matching the project’s established
+raw-byte artifact policy. Git therefore disables line-ending conversion and
+materializes the indexed LF bytes unchanged on every platform. M6B deliberately retains the stronger raw-byte hash (rather than accepting arbitrary platform hashes or relying on
+semantic checks), so any content-byte change still fails provenance. The
+machine-readable non-scientific investigation is recorded in
+`interface_output/m6b_m6a_provenance_diagnostic.json`.
+
 ## Frozen protocol
 
 * Canonical seed: **1**; no seed sweep.

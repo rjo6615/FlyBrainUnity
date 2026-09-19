@@ -119,3 +119,19 @@ def test_setup_failure_does_not_consume_run_one(monkeypatch, capsys):
     report = m6b.build_not_run_artifact()
     assert report["provenance"]["scientific_run_number"] is None
     assert report["run_status"] == "NOT_RUN"
+
+
+def test_provenance_failure_cannot_launch_preflight_or_science(monkeypatch, capsys):
+    def provenance_failure():
+        raise m6b.ValidationFailure("PROVENANCE_FAILURE", "M6A raw-byte provenance mismatch")
+    monkeypatch.setattr(m6b, "load_locked_m6a", provenance_failure)
+    monkeypatch.setattr(adapter, "run_preflight",
+                        lambda *a: pytest.fail("preflight adapter launched after provenance failure"))
+    monkeypatch.setattr(adapter, "run_canonical",
+                        lambda *a: pytest.fail("scientific conditions launched"))
+    assert m6b.main(["--preflight-windows"]) == 1
+    assert "M6B WINDOWS PREFLIGHT FAIL: M6A raw-byte provenance mismatch" in capsys.readouterr().out
+
+    committed = json.loads(m6b.OUTPUT.read_text(encoding="utf-8"))
+    assert committed["run_status"] == "NOT_RUN"
+    assert committed["provenance"]["scientific_run_number"] is None
