@@ -17,6 +17,7 @@ from .proprioceptive_activation import (encoder_parameters, mapping_inventory,
 from .six_tibia import LEG_ORDER
 from .tactile_motor_loop import ACTUATOR_INDICES
 from .tactile_motor_matched_control import MatchedControlPipeline
+from .tactile_motor_boundary_diagnostic import compare_contact_sets
 
 SCHEMA = "M5D-5B.0"
 SEED, DURATION_MS, PHYSICS_DT_MS, NEURAL_DT_MS, AUTOMATIC_RETRIES = 1, 100.0, 0.1, 0.5, 0
@@ -265,7 +266,9 @@ def analyze(enabled: Sequence[Mapping[str, Any]], disabled: Sequence[Mapping[str
     for a, b in zip(enabled, disabled):
         if intervention is not None and a["time_ms"] >= intervention: break
         for field in pre_fields:
-            if not _equal(a[field], b[field]):
+            equal = (compare_contact_sets(a[field], b[field])["exactly_equal"]
+                     if field == "contact_set" else _equal(a[field], b[field]))
+            if not equal:
                 first_pre = {"time_ms": a["time_ms"], "field": field}; break
         if first_pre: break
     report["pre_intervention_equivalence"] = {
