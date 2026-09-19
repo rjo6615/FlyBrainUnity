@@ -1,9 +1,87 @@
 {
+  "anatomical_reachability": {
+    "depths": {},
+    "orientation": "presynaptic_to_postsynaptic"
+  },
+  "architecture": {
+    "only_intervention": "admitted_neural_contribution: raw versus zero",
+    "recorder": "post-step observational snapshot; no RNG calls",
+    "scientific_update_path": "locked M5D-5B _run_condition"
+  },
+  "c13_resolution": {
+    "classification": "NO_POST_FEEDBACK_MOTOR_DIVERGENCE_WITHIN_WINDOW"
+  },
+  "c1_resolution": {
+    "classification": "C1_STILL_UNRESOLVED"
+  },
+  "classification": "PROVENANCE_FAILURE",
+  "dynamic_path_analysis": {
+    "depths": {}
+  },
+  "limitations": [
+    "CONNECTOME-DERIVED anatomy/dynamics, MODELED transduction/decoding/embodiment, and OBSERVED paired differences remain distinct.",
+    "No claim of natural walking, biological proprioception or reflex, emergent gait, CPG, natural coordination, or biological muscle control."
+  ],
+  "milestones": {
+    "C0": null,
+    "C1": null,
+    "C10": null,
+    "C11": null,
+    "C12": null,
+    "C13": null,
+    "C2": null,
+    "C3": null,
+    "C4": null,
+    "C5": null,
+    "C6": null,
+    "C7": null,
+    "C8": null,
+    "C9": null
+  },
+  "post_feedback_source_set": {
+    "spike_divergent": [],
+    "state_divergent": []
+  },
+  "protocol": {
+    "automatic_retries": 0,
+    "conditions": [
+      "CLOSED_LOOP_ENABLED",
+      "MOTOR_OUTPUT_DISABLED"
+    ],
+    "duration_ms": 100.0,
+    "neural_dt_ms": 0.5,
+    "physics_dt_ms": 0.1,
+    "seed": 1
+  },
+  "provenance": {
+    "expected_locks": {
+      "_windows_proprioceptive_closed_loop_adapter.py": "487c83bdbbba663f0aba8ed0600e225d5d51cfcb3831f4d3a4e4cdb6ecb804e9",
+      "interface_output/post_feedback_motor_pathway_audit.json": "dc6f2b5ac77df4bd1fba05c64945b3418c45763eaaea9b82a5a0eb9ae6e46cc7",
+      "interface_output/proprioceptive_closed_loop_100ms.json": "2dc15d8b3a3820823358f73673e45920f18a4e3bb9dd504dbeb35aa677982a10",
+      "post_feedback_motor_pathway_audit.py": "ac067dd0c1d21a33e93ba9573e5a41233530eb6af7d01e9f17bbed87a6b8cb6c",
+      "proprioceptive_closed_loop.py": "2f95c6b38d373d7026272c538b37437b400d92fd6168306a87dc0ca14c6480e9",
+      "proprioceptive_closed_loop_audit.py": "01601e7008c948eb2b92c46105288550682ceecea62d7b4bec69d3c54669f30e"
+    },
+    "verified": false
+  },
+  "reason": "PROVENANCE_FAILURE: RuntimeError: M5D-5D provenance mismatch for interface_output/post_feedback_motor_pathway_audit.json: 7dd802b893c7c94f498a6742d1d3f6538019f5ec6fba54ac68c67714d5e32d48",
+  "replication_guard": {
+    "causal_prefix_ordered": null,
+    "comparison": "M5D-5B Scientific Run #2",
+    "exact_pre_intervention_equivalence": null,
+    "passed": null
+  },
+  "run_status": "FAILED",
   "schema": "M5D-5D.0",
-  "run_status": "NOT_RUN",
-  "classification": null,
-  "reason": "Canonical Windows Scientific Run #1 has not been executed",
-  "protocol": {"seed": 1, "duration_ms": 100.0, "physics_dt_ms": 0.1, "neural_dt_ms": 0.5, "automatic_retries": 0},
-  "telemetry": {"format": "NPZ", "path": "instrumented_proprioceptive_closed_loop_telemetry.npz", "sha256": null},
-  "provenance": {"verified": false}
+  "sensory_attribution": {
+    "classification": null
+  },
+  "telemetry": {
+    "format": "NumPy compressed NPZ (lossless arrays) plus JSON manifest",
+    "path": "instrumented_proprioceptive_closed_loop_telemetry.npz",
+    "sample_counts": null,
+    "schema": "M5D-5D-TELEMETRY.0",
+    "sha256": null
+  },
+  "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\instrumented_proprioceptive_closed_loop_audit.py\", line 44, in main\n    try: report = run_live(args.duration_ms, args.seed, args.telemetry)\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\instrumented_proprioceptive_closed_loop_audit.py\", line 30, in run_live\n    provenance = verify_provenance()\n                 ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\instrumented_proprioceptive_closed_loop.py\", line 46, in verify_provenance\n    raise RuntimeError(f\"M5D-5D provenance mismatch for {relative}: {digest}\")\nRuntimeError: M5D-5D provenance mismatch for interface_output/post_feedback_motor_pathway_audit.json: 7dd802b893c7c94f498a6742d1d3f6538019f5ec6fba54ac68c67714d5e32d48\n"
 }
