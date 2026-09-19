@@ -1,0 +1,648 @@
+{
+  "artifact_kind": "NON_SCIENTIFIC_ANATOMICAL_SIGN_DIAGNOSTIC",
+  "history": [
+    "Preflight Attempt #1: M6A raw-byte provenance mismatch",
+    "Preflight Attempt #2: joint and actuator limits have no valid intersection",
+    "Preflight Attempt #3: PASS after corrected live-limit handling",
+    "M6B Scientific Run #1 remains NOT_RUN and unconsumed."
+  ],
+  "interfaces": [
+    {
+      "action_index": 2,
+      "actuator": "joint_LFCoxa_yaw",
+      "annotation_evidence": {
+        "directional_structure": "EXPLICIT_ANTAGONIST_PAIR",
+        "directionality_explicit_in_m6a": true,
+        "qualification": "M6A labels the pair anterior/posterior and assigns extensor/flexor signs, but supplies no handed anatomical rotation about the NMF Coxa-yaw axis.",
+        "source": "locked M6A whole-leg motor mapping audit/bodymap"
+      },
+      "annotation_populations": [
+        {
+          "annotation_direction": 1,
+          "annotation_terminology": [
+            "Sternal anterior rotator MN T1 left",
+            "Sternal anterior rotator MN T1 left",
+            "coxa_twist_T1_left"
+          ],
+          "body_ids": [
+            806923,
+            919509
+          ],
+          "population": "Sternal anterior rotator MN T1 left",
+          "source_anatomical_direction": "extensor"
+        },
+        {
+          "annotation_direction": -1,
+          "annotation_terminology": [
+            "Sternal posterior rotator MN T1 left",
+            "Sternal posterior rotator MN T1 left",
+            "coxa_twist_T1_left"
+          ],
+          "body_ids": [
+            801915,
+            804851,
+            808640,
+            1050335829
+          ],
+          "population": "Sternal posterior rotator MN T1 left",
+          "source_anatomical_direction": "flexor"
+        }
+      ],
+      "annotation_positive_action": "Sternal anterior rotator MN T1 left",
+      "annotation_positive_anatomical_direction": null,
+      "coordinate_sign": null,
+      "displacement_magnitude": 6.22091158526453e-05,
+      "epsilon": 0.0001,
+      "frame_definitions": {
+        "body_lateral_axis": "body +Y",
+        "body_longitudinal_axis": "body +X (forward)",
+        "body_vertical_axis": "body +Z",
+        "coxa_hinge_axis": "live jnt_axis is body-local; owning-body xmat was not retained by P2",
+        "coxa_joint_origin": null,
+        "distal_reference_geom_ids": [
+          18,
+          19
+        ],
+        "note": "P2 retained endpoints but not joint anchor/body xmat; unavailable transforms are not reconstructed or guessed.",
+        "proximal_to_distal_vector": "joint anchor to mean exact selected-leg Tarsus5/4/claw geom"
+      },
+      "joint_axis_local": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "joint_axis_transformed": null,
+      "minus_endpoint": [
+        1.9014050969129945,
+        0.18565621987688874,
+        1.8771560532456248
+      ],
+      "minus_vector": null,
+      "mujoco_joint": "1/joint_LFCoxa_yaw",
+      "neutral_endpoint": null,
+      "neutral_vector": null,
+      "plus_endpoint": [
+        1.9014050969129945,
+        0.18559407414140067,
+        1.8771588606743086
+      ],
+      "plus_vector": null,
+      "positive_minus_negative_displacement": [
+        0.0,
+        -6.214573548807278e-05,
+        2.807428683748725e-06
+      ],
+      "qpos": {
+        "minus": -0.0001,
+        "neutral": 0.0,
+        "plus": 0.0001
+      },
+      "reason": "Annotation-to-anatomical axis rotation is ambiguous; additionally P2 did not retain joint-anchor/body-frame transforms required for a defensible rotational metric. Endpoint motion proves a response but cannot bridge the annotation to NMF handedness.",
+      "rotational_metric_minus": null,
+      "rotational_metric_plus": null,
+      "segment": "T1",
+      "side": "left",
+      "status": "SIGN_UNRESOLVED",
+      "tolerance": 1e-10,
+      "uses_bilateral_assumption": false,
+      "uses_neural_behavior": false,
+      "uses_walking_performance": false
+    },
+    {
+      "action_index": 9,
+      "actuator": "joint_LMCoxa_yaw",
+      "annotation_evidence": {
+        "directional_structure": "EXPLICIT_ANTAGONIST_PAIR",
+        "directionality_explicit_in_m6a": true,
+        "qualification": "M6A labels the pair anterior/posterior and assigns extensor/flexor signs, but supplies no handed anatomical rotation about the NMF Coxa-yaw axis.",
+        "source": "locked M6A whole-leg motor mapping audit/bodymap"
+      },
+      "annotation_populations": [
+        {
+          "annotation_direction": 1,
+          "annotation_terminology": [
+            "Sternal anterior rotator MN T2 left",
+            "Sternal anterior rotator MN T2 left",
+            "coxa_twist_T2_left"
+          ],
+          "body_ids": [
+            832490,
+            903689
+          ],
+          "population": "Sternal anterior rotator MN T2 left",
+          "source_anatomical_direction": "extensor"
+        },
+        {
+          "annotation_direction": -1,
+          "annotation_terminology": [
+            "Sternal posterior rotator MN T2 left",
+            "Sternal posterior rotator MN T2 left",
+            "coxa_twist_T2_left"
+          ],
+          "body_ids": [
+            801768,
+            803226,
+            803704,
+            1051054875
+          ],
+          "population": "Sternal posterior rotator MN T2 left",
+          "source_anatomical_direction": "flexor"
+        }
+      ],
+      "annotation_positive_action": "Sternal anterior rotator MN T2 left",
+      "annotation_positive_anatomical_direction": null,
+      "coordinate_sign": null,
+      "displacement_magnitude": 0.00041504344589915655,
+      "epsilon": 0.0001,
+      "frame_definitions": {
+        "body_lateral_axis": "body +Y",
+        "body_longitudinal_axis": "body +X (forward)",
+        "body_vertical_axis": "body +Z",
+        "coxa_hinge_axis": "live jnt_axis is body-local; owning-body xmat was not retained by P2",
+        "coxa_joint_origin": null,
+        "distal_reference_geom_ids": [
+          34,
+          35
+        ],
+        "note": "P2 retained endpoints but not joint anchor/body xmat; unavailable transforms are not reconstructed or guessed.",
+        "proximal_to_distal_vector": "joint anchor to mean exact selected-leg Tarsus5/4/claw geom"
+      },
+      "joint_axis_local": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "joint_axis_transformed": null,
+      "minus_endpoint": [
+        -0.053514604670096985,
+        2.193265427512686,
+        1.4829450830950113
+      ],
+      "minus_vector": null,
+      "mujoco_joint": "1/joint_LMCoxa_yaw",
+      "neutral_endpoint": null,
+      "neutral_vector": null,
+      "plus_endpoint": [
+        -0.053514604670096985,
+        2.193231684189647,
+        1.4833587525888516
+      ],
+      "plus_vector": null,
+      "positive_minus_negative_displacement": [
+        0.0,
+        -3.3743323038848416e-05,
+        0.0004136694938403629
+      ],
+      "qpos": {
+        "minus": -0.0001,
+        "neutral": 0.0,
+        "plus": 0.0001
+      },
+      "reason": "Annotation-to-anatomical axis rotation is ambiguous; additionally P2 did not retain joint-anchor/body-frame transforms required for a defensible rotational metric. Endpoint motion proves a response but cannot bridge the annotation to NMF handedness.",
+      "rotational_metric_minus": null,
+      "rotational_metric_plus": null,
+      "segment": "T2",
+      "side": "left",
+      "status": "SIGN_UNRESOLVED",
+      "tolerance": 1e-10,
+      "uses_bilateral_assumption": false,
+      "uses_neural_behavior": false,
+      "uses_walking_performance": false
+    },
+    {
+      "action_index": 16,
+      "actuator": "joint_LHCoxa_yaw",
+      "annotation_evidence": {
+        "directional_structure": "EXPLICIT_ANTAGONIST_PAIR",
+        "directionality_explicit_in_m6a": true,
+        "qualification": "M6A labels the pair anterior/posterior and assigns extensor/flexor signs, but supplies no handed anatomical rotation about the NMF Coxa-yaw axis.",
+        "source": "locked M6A whole-leg motor mapping audit/bodymap"
+      },
+      "annotation_populations": [
+        {
+          "annotation_direction": 1,
+          "annotation_terminology": [
+            "Sternal anterior rotator MN T3 left",
+            "Sternal anterior rotator MN T3 left",
+            "coxa_twist_T3_left"
+          ],
+          "body_ids": [
+            801548,
+            802215
+          ],
+          "population": "Sternal anterior rotator MN T3 left",
+          "source_anatomical_direction": "extensor"
+        },
+        {
+          "annotation_direction": -1,
+          "annotation_terminology": [
+            "Sternal posterior rotator MN T3 left",
+            "Sternal posterior rotator MN T3 left",
+            "coxa_twist_T3_left"
+          ],
+          "body_ids": [
+            801492,
+            801715,
+            802964,
+            818399
+          ],
+          "population": "Sternal posterior rotator MN T3 left",
+          "source_anatomical_direction": "flexor"
+        }
+      ],
+      "annotation_positive_action": "Sternal anterior rotator MN T3 left",
+      "annotation_positive_anatomical_direction": null,
+      "coordinate_sign": null,
+      "displacement_magnitude": 0.00022441719022570233,
+      "epsilon": 0.0001,
+      "frame_definitions": {
+        "body_lateral_axis": "body +Y",
+        "body_longitudinal_axis": "body +X (forward)",
+        "body_vertical_axis": "body +Z",
+        "coxa_hinge_axis": "live jnt_axis is body-local; owning-body xmat was not retained by P2",
+        "coxa_joint_origin": null,
+        "distal_reference_geom_ids": [
+          26,
+          27
+        ],
+        "note": "P2 retained endpoints but not joint anchor/body xmat; unavailable transforms are not reconstructed or guessed.",
+        "proximal_to_distal_vector": "joint anchor to mean exact selected-leg Tarsus5/4/claw geom"
+      },
+      "joint_axis_local": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "joint_axis_transformed": null,
+      "minus_endpoint": [
+        -2.1927546993205462,
+        1.1950159339469941,
+        1.4771285289723965
+      ],
+      "minus_vector": null,
+      "mujoco_joint": "1/joint_LHCoxa_yaw",
+      "neutral_endpoint": null,
+      "neutral_vector": null,
+      "plus_endpoint": [
+        -2.1927546993205462,
+        1.1949804925504741,
+        1.4773501299260983
+      ],
+      "plus_vector": null,
+      "positive_minus_negative_displacement": [
+        0.0,
+        -3.544139652000844e-05,
+        0.00022160095370171717
+      ],
+      "qpos": {
+        "minus": -0.0001,
+        "neutral": 0.0,
+        "plus": 0.0001
+      },
+      "reason": "Annotation-to-anatomical axis rotation is ambiguous; additionally P2 did not retain joint-anchor/body-frame transforms required for a defensible rotational metric. Endpoint motion proves a response but cannot bridge the annotation to NMF handedness.",
+      "rotational_metric_minus": null,
+      "rotational_metric_plus": null,
+      "segment": "T3",
+      "side": "left",
+      "status": "SIGN_UNRESOLVED",
+      "tolerance": 1e-10,
+      "uses_bilateral_assumption": false,
+      "uses_neural_behavior": false,
+      "uses_walking_performance": false
+    },
+    {
+      "action_index": 23,
+      "actuator": "joint_RFCoxa_yaw",
+      "annotation_evidence": {
+        "directional_structure": "EXPLICIT_ANTAGONIST_PAIR",
+        "directionality_explicit_in_m6a": true,
+        "qualification": "M6A labels the pair anterior/posterior and assigns extensor/flexor signs, but supplies no handed anatomical rotation about the NMF Coxa-yaw axis.",
+        "source": "locked M6A whole-leg motor mapping audit/bodymap"
+      },
+      "annotation_populations": [
+        {
+          "annotation_direction": 1,
+          "annotation_terminology": [
+            "Sternal anterior rotator MN T1 right",
+            "Sternal anterior rotator MN T1 right",
+            "coxa_twist_T1_right"
+          ],
+          "body_ids": [
+            801469,
+            801918
+          ],
+          "population": "Sternal anterior rotator MN T1 right",
+          "source_anatomical_direction": "extensor"
+        },
+        {
+          "annotation_direction": -1,
+          "annotation_terminology": [
+            "Sternal posterior rotator MN T1 right",
+            "Sternal posterior rotator MN T1 right",
+            "coxa_twist_T1_right"
+          ],
+          "body_ids": [
+            805410,
+            808011
+          ],
+          "population": "Sternal posterior rotator MN T1 right",
+          "source_anatomical_direction": "flexor"
+        }
+      ],
+      "annotation_positive_action": "Sternal anterior rotator MN T1 right",
+      "annotation_positive_anatomical_direction": null,
+      "coordinate_sign": null,
+      "displacement_magnitude": 6.22091158541917e-05,
+      "epsilon": 0.0001,
+      "frame_definitions": {
+        "body_lateral_axis": "body +Y",
+        "body_longitudinal_axis": "body +X (forward)",
+        "body_vertical_axis": "body +Z",
+        "coxa_hinge_axis": "live jnt_axis is body-local; owning-body xmat was not retained by P2",
+        "coxa_joint_origin": null,
+        "distal_reference_geom_ids": [
+          58,
+          59
+        ],
+        "note": "P2 retained endpoints but not joint anchor/body xmat; unavailable transforms are not reconstructed or guessed.",
+        "proximal_to_distal_vector": "joint anchor to mean exact selected-leg Tarsus5/4/claw geom"
+      },
+      "joint_axis_local": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "joint_axis_transformed": null,
+      "minus_endpoint": [
+        1.9014050968925256,
+        -0.18559407411852422,
+        1.8771588606830656
+      ],
+      "minus_vector": null,
+      "mujoco_joint": "1/joint_RFCoxa_yaw",
+      "neutral_endpoint": null,
+      "neutral_vector": null,
+      "plus_endpoint": [
+        1.9014050968925256,
+        -0.18565621985401404,
+        1.8771560532543863
+      ],
+      "plus_vector": null,
+      "positive_minus_negative_displacement": [
+        0.0,
+        -6.214573548982139e-05,
+        -2.807428679307833e-06
+      ],
+      "qpos": {
+        "minus": -0.0001,
+        "neutral": 0.0,
+        "plus": 0.0001
+      },
+      "reason": "Annotation-to-anatomical axis rotation is ambiguous; additionally P2 did not retain joint-anchor/body-frame transforms required for a defensible rotational metric. Endpoint motion proves a response but cannot bridge the annotation to NMF handedness.",
+      "rotational_metric_minus": null,
+      "rotational_metric_plus": null,
+      "segment": "T1",
+      "side": "right",
+      "status": "SIGN_UNRESOLVED",
+      "tolerance": 1e-10,
+      "uses_bilateral_assumption": false,
+      "uses_neural_behavior": false,
+      "uses_walking_performance": false
+    },
+    {
+      "action_index": 30,
+      "actuator": "joint_RMCoxa_yaw",
+      "annotation_evidence": {
+        "directional_structure": "EXPLICIT_ANTAGONIST_PAIR",
+        "directionality_explicit_in_m6a": true,
+        "qualification": "M6A labels the pair anterior/posterior and assigns extensor/flexor signs, but supplies no handed anatomical rotation about the NMF Coxa-yaw axis.",
+        "source": "locked M6A whole-leg motor mapping audit/bodymap"
+      },
+      "annotation_populations": [
+        {
+          "annotation_direction": 1,
+          "annotation_terminology": [
+            "Sternal anterior rotator MN T2 right",
+            "Sternal anterior rotator MN T2 right",
+            "coxa_twist_T2_right"
+          ],
+          "body_ids": [
+            801813,
+            801946
+          ],
+          "population": "Sternal anterior rotator MN T2 right",
+          "source_anatomical_direction": "extensor"
+        },
+        {
+          "annotation_direction": -1,
+          "annotation_terminology": [
+            "Sternal posterior rotator MN T2 right",
+            "Sternal posterior rotator MN T2 right",
+            "coxa_twist_T2_right"
+          ],
+          "body_ids": [
+            800962,
+            801761,
+            802521,
+            818996
+          ],
+          "population": "Sternal posterior rotator MN T2 right",
+          "source_anatomical_direction": "flexor"
+        }
+      ],
+      "annotation_positive_action": "Sternal anterior rotator MN T2 right",
+      "annotation_positive_anatomical_direction": null,
+      "coordinate_sign": null,
+      "displacement_magnitude": 0.00041504344590449473,
+      "epsilon": 0.0001,
+      "frame_definitions": {
+        "body_lateral_axis": "body +Y",
+        "body_longitudinal_axis": "body +X (forward)",
+        "body_vertical_axis": "body +Z",
+        "coxa_hinge_axis": "live jnt_axis is body-local; owning-body xmat was not retained by P2",
+        "coxa_joint_origin": null,
+        "distal_reference_geom_ids": [
+          50,
+          51
+        ],
+        "note": "P2 retained endpoints but not joint anchor/body xmat; unavailable transforms are not reconstructed or guessed.",
+        "proximal_to_distal_vector": "joint anchor to mean exact selected-leg Tarsus5/4/claw geom"
+      },
+      "joint_axis_local": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "joint_axis_transformed": null,
+      "minus_endpoint": [
+        -0.05351460464538914,
+        -2.1932316842147253,
+        1.4833587526188468
+      ],
+      "minus_vector": null,
+      "mujoco_joint": "1/joint_RMCoxa_yaw",
+      "neutral_endpoint": null,
+      "neutral_vector": null,
+      "plus_endpoint": [
+        -0.05351460464538914,
+        -2.19326542753777,
+        1.4829450831250015
+      ],
+      "plus_vector": null,
+      "positive_minus_negative_displacement": [
+        0.0,
+        -3.3743323044621576e-05,
+        -0.00041366949384524787
+      ],
+      "qpos": {
+        "minus": -0.0001,
+        "neutral": 0.0,
+        "plus": 0.0001
+      },
+      "reason": "Annotation-to-anatomical axis rotation is ambiguous; additionally P2 did not retain joint-anchor/body-frame transforms required for a defensible rotational metric. Endpoint motion proves a response but cannot bridge the annotation to NMF handedness.",
+      "rotational_metric_minus": null,
+      "rotational_metric_plus": null,
+      "segment": "T2",
+      "side": "right",
+      "status": "SIGN_UNRESOLVED",
+      "tolerance": 1e-10,
+      "uses_bilateral_assumption": false,
+      "uses_neural_behavior": false,
+      "uses_walking_performance": false
+    },
+    {
+      "action_index": 37,
+      "actuator": "joint_RHCoxa_yaw",
+      "annotation_evidence": {
+        "directional_structure": "EXPLICIT_ANTAGONIST_PAIR",
+        "directionality_explicit_in_m6a": true,
+        "qualification": "M6A labels the pair anterior/posterior and assigns extensor/flexor signs, but supplies no handed anatomical rotation about the NMF Coxa-yaw axis.",
+        "source": "locked M6A whole-leg motor mapping audit/bodymap"
+      },
+      "annotation_populations": [
+        {
+          "annotation_direction": 1,
+          "annotation_terminology": [
+            "Sternal anterior rotator MN T3 right",
+            "Sternal anterior rotator MN T3 right",
+            "coxa_twist_T3_right"
+          ],
+          "body_ids": [
+            800316,
+            906235
+          ],
+          "population": "Sternal anterior rotator MN T3 right",
+          "source_anatomical_direction": "extensor"
+        },
+        {
+          "annotation_direction": -1,
+          "annotation_terminology": [
+            "Sternal posterior rotator MN T3 right",
+            "Sternal posterior rotator MN T3 right",
+            "coxa_twist_T3_right"
+          ],
+          "body_ids": [
+            903642,
+            903643,
+            907256,
+            1050493413
+          ],
+          "population": "Sternal posterior rotator MN T3 right",
+          "source_anatomical_direction": "flexor"
+        }
+      ],
+      "annotation_positive_action": "Sternal anterior rotator MN T3 right",
+      "annotation_positive_anatomical_direction": null,
+      "coordinate_sign": null,
+      "displacement_magnitude": 0.000224417190226641,
+      "epsilon": 0.0001,
+      "frame_definitions": {
+        "body_lateral_axis": "body +Y",
+        "body_longitudinal_axis": "body +X (forward)",
+        "body_vertical_axis": "body +Z",
+        "coxa_hinge_axis": "live jnt_axis is body-local; owning-body xmat was not retained by P2",
+        "coxa_joint_origin": null,
+        "distal_reference_geom_ids": [
+          42,
+          43
+        ],
+        "note": "P2 retained endpoints but not joint anchor/body xmat; unavailable transforms are not reconstructed or guessed.",
+        "proximal_to_distal_vector": "joint anchor to mean exact selected-leg Tarsus5/4/claw geom"
+      },
+      "joint_axis_local": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "joint_axis_transformed": null,
+      "minus_endpoint": [
+        -2.192754699357274,
+        -1.1949804925597203,
+        1.4773501299062708
+      ],
+      "minus_vector": null,
+      "mujoco_joint": "1/joint_RHCoxa_yaw",
+      "neutral_endpoint": null,
+      "neutral_vector": null,
+      "plus_endpoint": [
+        -2.192754699357274,
+        -1.1950159339562365,
+        1.4771285289525675
+      ],
+      "plus_vector": null,
+      "positive_minus_negative_displacement": [
+        0.0,
+        -3.544139651623368e-05,
+        -0.00022160095370327149
+      ],
+      "qpos": {
+        "minus": -0.0001,
+        "neutral": 0.0,
+        "plus": 0.0001
+      },
+      "reason": "Annotation-to-anatomical axis rotation is ambiguous; additionally P2 did not retain joint-anchor/body-frame transforms required for a defensible rotational metric. Endpoint motion proves a response but cannot bridge the annotation to NMF handedness.",
+      "rotational_metric_minus": null,
+      "rotational_metric_plus": null,
+      "segment": "T3",
+      "side": "right",
+      "status": "SIGN_UNRESOLVED",
+      "tolerance": 1e-10,
+      "uses_bilateral_assumption": false,
+      "uses_neural_behavior": false,
+      "uses_walking_performance": false
+    }
+  ],
+  "method": "deterministic_non_neural_rotational_kinematic_calibration",
+  "method_outcome": "Existing P2 perturbations establish nonzero motion. The evidence cannot establish annotation-positive axis handedness, so no Coxa-yaw sign is assigned.",
+  "run_status": "COMPLETE_FAIL_CLOSED",
+  "schema": "M6B-P3.0",
+  "scientific_run_number": null,
+  "scientific_runner_called": false,
+  "summary": {
+    "bilateral_consistency_observations": "Not evaluated as sign evidence; all six records were assessed independently and symmetry cannot supply the missing annotation-to-axis correspondence.",
+    "canonical_eligible_set_modified": false,
+    "eligibility_is_proposed_only": true,
+    "existing_eight_resolved_interfaces_unchanged": true,
+    "m6b_eligible_after_sign_calibration": [
+      "joint_LFFemur",
+      "joint_LFTarsus1",
+      "joint_LMFemur",
+      "joint_LHFemur",
+      "joint_RFFemur",
+      "joint_RFTarsus1",
+      "joint_RMFemur",
+      "joint_RHFemur"
+    ],
+    "resolved_actuators": [],
+    "resolved_count": 0,
+    "unresolved_actuators": [
+      "joint_LFCoxa_yaw",
+      "joint_LMCoxa_yaw",
+      "joint_LHCoxa_yaw",
+      "joint_RFCoxa_yaw",
+      "joint_RMCoxa_yaw",
+      "joint_RHCoxa_yaw"
+    ],
+    "unresolved_count": 6
+  }
+}
