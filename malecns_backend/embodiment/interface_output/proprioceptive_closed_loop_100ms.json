@@ -20,7 +20,7 @@
     "motor": "M5D-4C common MatchedControlPipeline",
     "sensory": "unchanged M5D-5A SensoryEncoder"
   },
-  "classification": "PROVENANCE_FAILURE",
+  "classification": null,
   "decoder": {
     "antagonist": "extensor_activation - flexor_activation",
     "half_activation_hz": 17.0,
@@ -739,13 +739,13 @@
   },
   "provenance": {
     "expected_m5d5a_locks": {
-      "interface_output/proprioceptive_activation_100ms.json": "c52be9d9b1989c4631d6f7907f13465cebf645492b8114654e0a3dc898f3833d",
+      "interface_output/proprioceptive_activation_100ms.json": "3e0131be35d7b00004e1e014e5007ff7455b422b7fd67a2cd25a67eadead5ca9",
       "proprioceptive_activation.py": "0d6117d668e62d23de08c8148240c770785cabb8a6148669349c4f258b7c0a92",
       "proprioceptive_activation_audit.py": "468ecbfaef9e2c7b31236efe835e7fafc1673a899f851541b9086132d16a75b2"
     },
     "verified": false
   },
-  "reason": "RuntimeError: M5D-5A provenance mismatch for interface_output/proprioceptive_activation_100ms.json: 3e0131be35d7b00004e1e014e5007ff7455b422b7fd67a2cd25a67eadead5ca9",
+  "reason": "ModuleNotFoundError: No module named 'malecns_backend.embodiment._windows_proprioceptive_closed_loop_adapter'",
   "rng": {
     "algorithm": "PCG64",
     "aligned": null,
@@ -771,7 +771,7 @@
       }
     }
   },
-  "run_status": "FAILED",
+  "run_status": "UNAVAILABLE",
   "schema": "M5D-5B.0",
   "science_controls": {
     "cpg": false,
@@ -785,6 +785,5 @@
     "channel": "LM Tarsus5",
     "rng_modified": false,
     "transduction_modified": false
-  },
-  "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\proprioceptive_closed_loop_audit.py\", line 51, in main\n    report = run_live(args.duration_ms, args.seed)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\proprioceptive_closed_loop_audit.py\", line 37, in run_live\n    provenance = verify_provenance()\n                 ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\proprioceptive_closed_loop.py\", line 44, in verify_provenance\n    raise RuntimeError(f\"M5D-5A provenance mismatch for {name}: {digest}\")\nRuntimeError: M5D-5A provenance mismatch for interface_output/proprioceptive_activation_100ms.json: 3e0131be35d7b00004e1e014e5007ff7455b422b7fd67a2cd25a67eadead5ca9\n"
+  }
 }
