@@ -169,5 +169,172 @@ def validate_order(m: Mapping[str, float | None]) -> None:
         raise ValueError("C13 must be after qualified feedback CNS divergence")
 
 
+def _equal(left: Any, right: Any) -> bool:
+    """Exact equality for trace values, including NumPy arrays."""
+    try:
+        import numpy as np
+        if isinstance(left, np.ndarray) or isinstance(right, np.ndarray):
+            return bool(np.array_equal(left, right))
+    except ImportError:  # The pure contract remains importable without NumPy.
+        pass
+    return left == right
+
+
+def _first_difference(enabled, disabled, field, after=None):
+    for left, right in zip(enabled, disabled):
+        if after is not None and left["time_ms"] < after:
+            continue
+        if not _equal(left[field], right[field]):
+            return left["time_ms"]
+    return None
+
+
+def analyze(enabled: Sequence[Mapping[str, Any]], disabled: Sequence[Mapping[str, Any]],
+            provenance: Mapping[str, Any]) -> dict[str, Any]:
+    """Reduce the two raw live traces without manufacturing observations."""
+    if not enabled or len(enabled) != len(disabled):
+        raise ValueError("paired, nonempty, equally sized condition traces required")
+    if any(a["time_ms"] != b["time_ms"] for a, b in zip(enabled, disabled)):
+        raise ValueError("condition sample schedules differ")
+    report = base_report()
+    report.update(run_status="COMPLETE", reason=None, provenance=dict(provenance))
+
+    def first(predicate, after=None):
+        for a, b in zip(enabled, disabled):
+            if after is None or a["time_ms"] >= after:
+                if predicate(a, b):
+                    return a["time_ms"]
+        return None
+
+    milestones = {
+        "C0": first(lambda a, b: any(a["proprio"][leg]["delivered"] for leg in LEG_ORDER)),
+        "C1": first(lambda a, b: any(sum(v.values()) for v in a["motor_spikes"].values())),
+        "C2": first(lambda a, b: any(v != 0.0 for v in a["raw_neural_contributions"].values())),
+        "C3": first(lambda a, b: any(v != 0.0 for v in a["admitted_neural_contributions"].values())),
+        "C4": _first_difference(enabled, disabled, "action_joints"),
+        "C5": _first_difference(enabled, disabled, "ctrl"),
+    }
+    milestones["C6"] = min((value for value in (
+        _first_difference(enabled, disabled, "qacc"),
+        _first_difference(enabled, disabled, "qvel"),
+        _first_difference(enabled, disabled, "qpos")) if value is not None), default=None)
+    milestones["C7"] = _first_difference(enabled, disabled, "physical_tibia_angles")
+    milestones["C8"] = first(lambda a, b: any(
+        a["proprio"][leg]["rates_hz"] != b["proprio"][leg]["rates_hz"] for leg in LEG_ORDER))
+    milestones["C9"] = first(lambda a, b: any(
+        a["proprio"][leg]["candidate"] != b["proprio"][leg]["candidate"] and
+        a["proprio"][leg]["rng_before"] == b["proprio"][leg]["rng_before"]
+        for leg in LEG_ORDER), milestones["C8"])
+    milestones["C10"] = first(lambda a, b: any(
+        a["proprio"][leg]["delivered"] != b["proprio"][leg]["delivered"]
+        for leg in LEG_ORDER), milestones["C8"])
+
+    direct = set(enabled[0]["direct_proprio_indices"])
+    direct_tactile = set(enabled[0]["direct_tactile_indices"])
+    feedback_boundary = milestones["C10"]
+    downstream_state_indices = set()
+    downstream_spike_indices = set()
+    first_state = first_spike = None
+    if feedback_boundary is not None:
+        for a, b in zip(enabled, disabled):
+            if a["time_ms"] <= feedback_boundary or a["neural_state"] is None:
+                continue
+            changed = ({int(i) for i in
+                (a["neural_state"] != b["neural_state"]).nonzero()[0]}
+                - direct - direct_tactile)
+            spike_delta = ((set(a["cns_spikes"]) ^ set(b["cns_spikes"]))
+                - direct - direct_tactile)
+            if changed and first_state is None: first_state = a["time_ms"]
+            if spike_delta and first_spike is None: first_spike = a["time_ms"]
+            downstream_state_indices.update(changed)
+            downstream_spike_indices.update(spike_delta)
+    milestones["C11"], milestones["C12"] = first_state, first_spike
+    qualified = min((x for x in (first_state, first_spike) if x is not None), default=None)
+    milestones["C13"] = (first(lambda a, b: a["time_ms"] > qualified and
+        a["motor_spikes"] != b["motor_spikes"], qualified) if qualified is not None else None)
+    validate_order(milestones)
+    report["milestones"] = milestones
+
+    intervention = milestones["C3"]
+    pre_fields = ("qpos", "qvel", "qacc", "contact_forces", "contact_set",
+        "physical_tibia_angles", "proprio", "tactile", "sensory_delivered",
+        "cns_state_digest", "cns_spikes", "motor_spikes", "observer_states",
+        "decoder_states", "raw_neural_contributions", "baseline_targets",
+        "previous_physical_targets", "action_joints", "ctrl")
+    first_pre = None
+    for a, b in zip(enabled, disabled):
+        if intervention is not None and a["time_ms"] >= intervention: break
+        for field in pre_fields:
+            if not _equal(a[field], b[field]):
+                first_pre = {"time_ms": a["time_ms"], "field": field}; break
+        if first_pre: break
+    report["pre_intervention_equivalence"] = {
+        "passed": first_pre is None, "first_difference": first_pre}
+
+    rng_aligned = all(a["rng_draw_counts"] == b["rng_draw_counts"] and all(
+        a["proprio"][leg]["rng_before"] == b["proprio"][leg]["rng_before"] and
+        a["proprio"][leg]["rng_after"] == b["proprio"][leg]["rng_after"]
+        for leg in LEG_ORDER) for a, b in zip(enabled, disabled))
+    report["rng"].update(aligned=rng_aligned,
+        draw_counters={CONDITIONS[0]: enabled[-1]["rng_draw_counts"],
+            CONDITIONS[1]: disabled[-1]["rng_draw_counts"]},
+        divergence_explanation=(None if rng_aligned else "random stream state or draw count diverged"))
+    physics_stable = all(all(__import__("numpy").all(__import__("numpy").isfinite(r[field]))
+        for field in ("qpos", "qvel", "qacc", "ctrl", "contact_forces"))
+        for r in (*enabled, *disabled))
+    report["physics_safety"]["stable"] = bool(physics_stable)
+
+    report["global"].update(first_full_body_physical_divergence_ms=milestones["C6"],
+        first_six_tibia_source_divergence_ms=milestones["C7"],
+        first_proprioceptive_encoding_divergence_ms=milestones["C8"],
+        first_sensory_delivered_divergence_ms=milestones["C10"],
+        first_feedback_cns_state_divergence_ms=milestones["C11"],
+        first_feedback_cns_spike_divergence_ms=milestones["C12"],
+        first_subsequent_mapped_motor_divergence_ms=milestones["C13"],
+        downstream_nonproprioceptive_neurons_affected=len(downstream_state_indices),
+        downstream_nonproprioceptive_spiking_neurons=len(downstream_spike_indices),
+        downstream_spikes_after_feedback=sum(len((set(a["cns_spikes"]) ^
+            set(b["cns_spikes"])) - direct - direct_tactile)
+            for a, b in zip(enabled, disabled)
+            if feedback_boundary is not None and a["time_ms"] > feedback_boundary),
+        mapped_motor_populations_affected_after_feedback=sorted({leg
+            for a, b in zip(enabled, disabled)
+            for leg in LEG_ORDER if qualified is not None and a["time_ms"] > qualified
+            and a["motor_spikes"][leg] != b["motor_spikes"][leg]}))
+    for leg in LEG_ORDER:
+        left = [r["proprio"][leg] for r in enabled]
+        right = [r["proprio"][leg] for r in disabled]
+        angles_a = [r["physical_tibia_angles"][leg] for r in enabled]
+        angles_b = [r["physical_tibia_angles"][leg] for r in disabled]
+        rates_a = [x for row in left for x in row["rates_hz"]]
+        rates_b = [x for row in right for x in row["rates_hz"]]
+        target = report["per_leg"][leg]
+        target.update(physical_tibia_angle_rad={CONDITIONS[0]: angles_a,
+                CONDITIONS[1]: angles_b},
+            maximum_angle_difference_rad=max(abs(a-b) for a, b in zip(angles_a, angles_b)),
+            modeled_proprioceptive_rate_hz={CONDITIONS[0]: rates_a,
+                CONDITIONS[1]: rates_b},
+            maximum_rate_difference_hz=max((abs(a-b) for a, b in zip(rates_a, rates_b)), default=0.0),
+            candidate_spike_count={CONDITIONS[0]: sum(len(x["candidate"]) for x in left),
+                CONDITIONS[1]: sum(len(x["candidate"]) for x in right)},
+            delivered_spike_count={CONDITIONS[0]: sum(len(x["delivered"]) for x in left),
+                CONDITIONS[1]: sum(len(x["delivered"]) for x in right)},
+            first_physical_source_divergence_ms=first(lambda a,b,l=leg:
+                a["physical_tibia_angles"][l] != b["physical_tibia_angles"][l]),
+            first_rate_divergence_ms=first(lambda a,b,l=leg:
+                a["proprio"][l]["rates_hz"] != b["proprio"][l]["rates_hz"]),
+            first_candidate_divergence_ms=first(lambda a,b,l=leg:
+                a["proprio"][l]["candidate"] != b["proprio"][l]["candidate"]),
+            first_delivered_divergence_ms=first(lambda a,b,l=leg:
+                a["proprio"][l]["delivered"] != b["proprio"][l]["delivered"]),
+            first_actuator_command_divergence_ms=first(lambda a,b,l=leg:
+                a["final_tibia_targets"][l] != b["final_tibia_targets"][l]))
+    evidence = {"provenance": provenance.get("verified"), "physics_stable": physics_stable,
+        "rng_aligned": rng_aligned, "pre_equal": first_pre is None,
+        **{key: value is not None for key, value in milestones.items()}}
+    report["classification"] = classify(evidence)
+    return report
+
+
 def serialize(report: Mapping[str, Any]) -> str:
     return json.dumps(report, indent=2, sort_keys=True, ensure_ascii=False, allow_nan=False) + "\n"
