@@ -52,11 +52,22 @@ def test_matched_gate_is_the_only_pipeline_condition(monkeypatch):
 
 class FakePhysics:
     def __init__(self):
+        def id2name(*args):
+            kind = next((x for x in args if isinstance(x, str)), "")
+            return {"actuator": "fly/actuator_position_joint_LFTarsus1",
+                    "joint": "fly/joint_LFTarsus1",
+                    "geom": "fly/LFTarsus5"}.get(kind)
         self.model = SimpleNamespace(jnt_axis=np.array([[0., 0., 1.]]),
             jnt_range=np.array([[-.5, .5]]), actuator_ctrlrange=np.array([[-.4, .4]]),
-            ngeom=1, id2name=lambda *args: "fly/LFTarsus5")
+            jnt_limited=np.array([1]), actuator_ctrllimited=np.array([1]),
+            actuator_forcelimited=np.array([0]), actuator_forcerange=np.array([[0., 0.]]),
+            actuator_trntype=np.array([0]), actuator_trnid=np.array([[0, -1]]),
+            actuator_gear=np.array([[1., 0., 0., 0., 0., 0.]]),
+            actuator_gainprm=np.array([[10., 0., 0.]]),
+            actuator_biasprm=np.array([[0., -10., 0.]]), jnt_type=np.array([3]),
+            ngeom=1, id2name=id2name)
         self.data = SimpleNamespace(qpos=np.array([0.]), qvel=np.array([0.]),
-                                    geom_xpos=np.zeros((1, 3)))
+                                    ctrl=np.array([0.]), geom_xpos=np.zeros((1, 3)))
     def forward(self):
         self.data.geom_xpos[0] = [0., 0., self.data.qpos[0]]
 
@@ -73,6 +84,33 @@ def test_joint_metadata_safe_bounds_and_non_neural_sign_calibration():
     assert result.status == "RESOLVED" and result.coordinate_sign == 1
     assert result.evidence["uses_neural_behavior"] is False
     assert result.evidence["uses_walking_performance"] is False
+
+
+def test_limit_domains_and_enable_flags_are_respected():
+    record = {"index": 6, "name": "joint_LFTarsus1", "mujoco_metadata": {
+        "actuator_id": 0, "joint_id": 0, "qpos_range": [0, 1], "dof_range": [0, 1]}}
+    physics = FakePhysics()
+    # Same-domain active ranges really are intersected.
+    assert adapter.resolve_joint_metadata(physics, record).joint_min == -.4
+    physics.model.actuator_ctrlrange[0] = [2., 3.]
+    with pytest.raises(RuntimeError, match="same-domain limits.*joint_LFTarsus1"):
+        adapter.resolve_joint_metadata(physics, record)
+
+    # A non-position ctrl range is not an angle and must not be intersected.
+    physics.model.id2name = lambda *args: "fly/actuator_torque_joint_LFTarsus1"
+    diagnostic = adapter.inspect_limit_metadata(physics, record)
+    assert diagnostic["classification"] == "VALID_BUT_DIFFERENT_DOMAINS"
+    with pytest.raises(RuntimeError, match="not an absolute unit-gear"):
+        adapter.resolve_joint_metadata(physics, record)
+
+    # MuJoCo's [0, 0] for an unlimited joint is an inactive placeholder, not
+    # an empty mechanical range.  The active position-control range remains.
+    physics = FakePhysics()
+    physics.model.jnt_limited[0] = 0
+    physics.model.jnt_range[0] = [0., 0.]
+    metadata = adapter.resolve_joint_metadata(physics, record)
+    assert (metadata.joint_min, metadata.joint_max) == (-.4, .4)
+    assert metadata.limit_classification == "JOINT_RANGE_UNAVAILABLE"
 
 
 def test_invalid_joint_metadata_and_unresolved_sign_fail_closed():
@@ -110,6 +148,29 @@ def test_preflight_never_calls_scientific_runner(monkeypatch, tmp_path):
     assert report["scientific_run_executed"] is False
     assert report["scientific_run_number_consumed"] is None
     assert json.loads(output.read_text())["artifact_kind"] == "NON_SCIENTIFIC_PREFLIGHT"
+
+
+def test_preflight_inspects_all_fourteen_before_sign_calibration(monkeypatch, tmp_path):
+    interfaces = [{"physical_joint": name, "action_index": i, "leg": name[6:8],
+        "joint_class": "Femur", "directional_motor_populations": [
+            {"population": "p", "body_ids": [1], "annotation_direction": 1},
+            {"population": "n", "body_ids": [2], "annotation_direction": -1}]}
+        for i, name in enumerate(m6b.TIER_B)]
+    records = [{"index": i, "name": item["physical_joint"], "mujoco_metadata": {
+        "actuator_id": 0, "joint_id": 0, "qpos_range": [0, 1], "dof_range": [0, 1]}}
+        for i, item in enumerate(interfaces)]
+    physics = FakePhysics(); obs = {"joints": np.zeros(42)}
+    monkeypatch.setattr(adapter, "_live_setup", lambda p: (object(),
+        SimpleNamespace(body_ids=np.array([1, 2])), {}, records,
+        {record["name"]: record for record in records}))
+    monkeypatch.setattr(adapter, "_make_live", lambda *a: (
+        SimpleNamespace(close=lambda: None), physics, obs, 0, 0))
+    monkeypatch.setattr(adapter, "_run_condition", lambda *a, **k:
+                        pytest.fail("scientific run launched"))
+    report = adapter.run_preflight({"interfaces": interfaces}, tmp_path / "limits.json")
+    assert report["schema"] == "M6B-P2.0"
+    assert [x["physical_actuator_name"] for x in report["interfaces"]] == list(m6b.TIER_B)
+    assert len(report["interfaces"]) == 14
 
 
 def test_setup_failure_does_not_consume_run_one(monkeypatch, capsys):

@@ -69,6 +69,59 @@ semantic checks), so any content-byte change still fails provenance. The
 machine-readable non-scientific investigation is recorded in
 `interface_output/m6b_m6a_provenance_diagnostic.json`.
 
+
+### Limit-domain diagnostic (M6B-P2)
+
+Preflight Attempt #2 ended with `joint and actuator limits have no valid
+intersection`. It too was an engineering/preflight failure: no 500-ms
+condition ran, Scientific Run #1 remains unconsumed, and the canonical M6B
+artifact remains `NOT_RUN`.
+
+The failing implementation unconditionally intersected `model.jnt_range` and
+`model.actuator_ctrlrange`. MuJoCo makes each raw pair applicable only when its
+corresponding `jnt_limited` or `actuator_ctrllimited` flag is true. An inactive
+`[0, 0]` slot is metadata storage, not a zero-width allowable range. M6B-P2 now
+records both flags and both raw ranges for all fourteen interfaces before sign
+calibration and uses only active, same-domain bounds. A genuine empty
+intersection of two active same-domain ranges still fails closed.
+
+The live stack uses `Fly(control="position")`, but the diagnostic also verifies
+the compiled position-servo gain/bias signature, scalar joint transmission,
+and unit gear. Only then does `ctrlrange` represent the same absolute
+joint-position target (rad) as a hinge `jnt_range`. A torque, velocity, muscle,
+general, non-joint, or non-unit-gear control range is classified
+`VALID_BUT_DIFFERENT_DOMAINS` and is not intersected with joint angle.
+
+M5D-4C computes an absolute target (`current measured position + admitted
+neural offset`), applies its target clamp, then the unchanged 4 rad/s slew and
+final target clamp. M5 did not perform M6B's unconditional raw-range
+intersection. P2 intersects only active bounds verified as absolute position
+targets, derives symmetric offset headroom about the current target, and caps
+the contribution at 0.25 rad.
+
+The next Windows preflight writes
+`interface_output/m6b_live_limit_diagnostic.json` (`M6B-P2.0`), including all
+live IDs/names, addresses, axes, flags and raw ranges, transmission/gear/servo
+parameters, current qpos/ctrl/action, domain labels, safe bound, first legacy
+failure, and all legacy failures. Earlier locked live evidence contains:
+
+| Tier-B interface | position range (rad) | prior live ctrlrange |
+|---|---:|---:|
+| joint_LFCoxa_yaw / joint_RFCoxa_yaw | [-0.8, 0.8] | [-1000000, 1000000] |
+| joint_LFFemur / joint_RFFemur | [-0.15, 2.0] | [-1000000, 1000000] |
+| joint_LFTarsus1 / joint_RFTarsus1 | [-0.7, 1.2] | [-1000000, 1000000] |
+| joint_LMCoxa_yaw / joint_RMCoxa_yaw | [-0.75, 0.8] | [-1000000, 1000000] |
+| joint_LMFemur / joint_RMFemur | [-0.15, 2.0] | [-1000000, 1000000] |
+| joint_LHCoxa_yaw / joint_RHCoxa_yaw | [-0.15, 0.8] | [-1000000, 1000000] |
+| joint_LHFemur / joint_RHFemur | [-0.7, 1.5] | [-1000000, 1000000] |
+
+Those previously recorded pairs overlap and cannot themselves reproduce
+Attempt #2. The exact first/affected actuator and current raw Windows values
+must come from the P2 live artifact, not inference from symmetry. If it finds
+two active same-domain non-overlapping ranges, classification remains
+`SAME_DOMAIN_LIMIT_CONFLICT`; if no applicable target bound exists, preflight
+also remains failed closed.
+
 ## Frozen protocol
 
 * Canonical seed: **1**; no seed sweep.
