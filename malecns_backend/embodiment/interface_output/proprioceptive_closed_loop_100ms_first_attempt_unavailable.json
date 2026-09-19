@@ -745,7 +745,7 @@
     },
     "verified": false
   },
-  "reason": "Live runner implemented; canonical Windows FlyGym/MuJoCo run has not been executed",
+  "reason": "ModuleNotFoundError: No module named 'malecns_backend.embodiment._windows_proprioceptive_closed_loop_adapter'",
   "rng": {
     "algorithm": "PCG64",
     "aligned": null,
@@ -771,7 +771,7 @@
       }
     }
   },
-  "run_status": "NOT_RUN",
+  "run_status": "UNAVAILABLE",
   "schema": "M5D-5B.0",
   "science_controls": {
     "cpg": false,

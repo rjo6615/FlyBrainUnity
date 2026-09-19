@@ -11,6 +11,14 @@ It is **not** Scientific Run #1. The next successfully executing canonical
 Windows run remains Scientific Run #1; it is run once with seed 1 for 100 ms
 (0.1-ms physics, 0.5-ms neural updates), with no retry, sweep, or tuning.
 
+The next invocation passed that corrected provenance check but found that the
+documented repository-local Windows adapter had accidentally been omitted from
+the M5D-5B implementation commit. It likewise entered neither condition. Its
+verbatim no-trajectory report is preserved as
+`interface_output/proprioceptive_closed_loop_100ms_first_attempt_unavailable.json`.
+Neither failed invocation is Scientific Run #1. The next successfully
+executing canonical Windows run is Scientific Run #1.
+
 ## Architecture
 
 Both conditions run full FlyGym physics, full MaleCNS, the unchanged M5D-5A
@@ -23,6 +31,14 @@ is `admitted_neural_contribution = raw_neural_contribution` in
 history, limits, slew, final clamp, action construction, and MuJoCo control are
 common code. In particular, the disabled path never directly writes a freshly
 measured position in place of target history.
+
+The omitted module is now the repository-local
+`_windows_proprioceptive_closed_loop_adapter`. It is integration code rather
+than a placeholder or alternate simulator: it calls the established M5D-4C
+FlyGym arena constructor, constructs the actual `MaleCNSBrain`, and returns two
+raw traces to the M5D-5B reducer. Thus the original import name and separation
+between live acquisition and evidence reduction were correct; the file was the
+missing implementation.
 
 The six locked channels/actuators are LF/5/T1-left/23, LM/12/T2-left/80,
 LH/19/T3-left/93, RF/26/T1-right/13, RM/33/T2-right/83, and
