@@ -1,0 +1,926 @@
+{
+  "anatomical_reachability": {
+    "connectome_available": true,
+    "functional_connectivity_claimed": false,
+    "orientation": "presynaptic_to_postsynaptic",
+    "reason": "Aggregate M5D-5B evidence does not identify feedback-responsive source neurons; graph traversal from invented sources is prohibited.",
+    "status": "INSUFFICIENT_TELEMETRY",
+    "targets": [
+      {
+        "body_ids": [
+          800636,
+          815344
+        ],
+        "dense_indices": [
+          143259,
+          154980
+        ],
+        "neuron_count": 2,
+        "population": "Ti extensor MN T1 left",
+        "provenance": "ANNOTATION_DERIVED"
+      },
+      {
+        "body_ids": [
+          804257,
+          815678
+        ],
+        "dense_indices": [
+          146023,
+          155213
+        ],
+        "neuron_count": 2,
+        "population": "Ti extensor MN T1 right",
+        "provenance": "ANNOTATION_DERIVED"
+      },
+      {
+        "body_ids": [
+          800911,
+          801234
+        ],
+        "dense_indices": [
+          143464,
+          143700
+        ],
+        "neuron_count": 2,
+        "population": "Ti extensor MN T2 left",
+        "provenance": "ANNOTATION_DERIVED"
+      },
+      {
+        "body_ids": [
+          830514,
+          928579
+        ],
+        "dense_indices": [
+          158546,
+          162677
+        ],
+        "neuron_count": 2,
+        "population": "Ti extensor MN T2 right",
+        "provenance": "ANNOTATION_DERIVED"
+      },
+      {
+        "body_ids": [
+          800621,
+          812953
+        ],
+        "dense_indices": [
+          143252,
+          153153
+        ],
+        "neuron_count": 2,
+        "population": "Ti extensor MN T3 left",
+        "provenance": "ANNOTATION_DERIVED"
+      },
+      {
+        "body_ids": [
+          800158,
+          809935
+        ],
+        "dense_indices": [
+          142911,
+          150738
+        ],
+        "neuron_count": 2,
+        "population": "Ti extensor MN T3 right",
+        "provenance": "ANNOTATION_DERIVED"
+      },
+      {
+        "body_ids": [
+          807165,
+          809912,
+          818057,
+          819384,
+          909831
+        ],
+        "dense_indices": [
+          148412,
+          150721,
+          156725,
+          157314,
+          161464
+        ],
+        "neuron_count": 5,
+        "population": "Ti flexor MN T1 left",
+        "provenance": "ANNOTATION_DERIVED"
+      },
+      {
+        "body_ids": [
+          810098,
+          821635,
+          827188,
+          1050031705,
+          1050189039
+        ],
+        "dense_indices": [
+          150873,
+          157906,
+          158392,
+          164610,
+          164654
+        ],
+        "neuron_count": 5,
+        "population": "Ti flexor MN T1 right",
+        "provenance": "ANNOTATION_DERIVED"
+      },
+      {
+        "body_ids": [
+          802295,
+          818295,
+          823739,
+          824041,
+          927808
+        ],
+        "dense_indices": [
+          144494,
+          156836,
+          158153,
+          158175,
+          162657
+        ],
+        "neuron_count": 5,
+        "population": "Ti flexor MN T2 left",
+        "provenance": "ANNOTATION_DERIVED"
+      },
+      {
+        "body_ids": [
+          804405,
+          805010,
+          816222,
+          822013,
+          903363
+        ],
+        "dense_indices": [
+          146137,
+          146627,
+          155608,
+          157955,
+          159349
+        ],
+        "neuron_count": 5,
+        "population": "Ti flexor MN T2 right",
+        "provenance": "ANNOTATION_DERIVED"
+      },
+      {
+        "body_ids": [
+          803147,
+          804919,
+          819112,
+          822945,
+          908762,
+          929376,
+          1050088257,
+          1050100010,
+          1050166426
+        ],
+        "dense_indices": [
+          145142,
+          146556,
+          157209,
+          158075,
+          161059,
+          162703,
+          164620,
+          164624,
+          164647
+        ],
+        "neuron_count": 9,
+        "population": "Ti flexor MN T3 left",
+        "provenance": "ANNOTATION_DERIVED"
+      },
+      {
+        "body_ids": [
+          803072,
+          808685,
+          823665,
+          827968,
+          840740,
+          910178,
+          1050013311,
+          1050303231
+        ],
+        "dense_indices": [
+          145083,
+          149691,
+          158148,
+          158427,
+          158696,
+          161547,
+          164604,
+          164682
+        ],
+        "neuron_count": 8,
+        "population": "Ti flexor MN T3 right",
+        "provenance": "ANNOTATION_DERIVED"
+      }
+    ]
+  },
+  "authoritative_m5d5b_result": {
+    "artifact_modified": false,
+    "classification": "CLOSED_LOOP_TO_CNS_CONFIRMED",
+    "milestones": {
+      "C0": 0.5,
+      "C1": null,
+      "C10": 21.999999999999922,
+      "C11": 23.99999999999991,
+      "C12": 25.999999999999897,
+      "C13": null,
+      "C2": 13.499999999999973,
+      "C3": 13.499999999999973,
+      "C4": 13.499999999999973,
+      "C5": 13.599999999999973,
+      "C6": 13.599999999999973,
+      "C7": 13.599999999999973,
+      "C8": 13.999999999999972,
+      "C9": 21.999999999999922
+    },
+    "physics_stable": true,
+    "rng_aligned": true,
+    "run_status": "COMPLETE",
+    "schema": "M5D-5B.0"
+  },
+  "c1_telemetry": {
+    "C1_ms": null,
+    "already_nonzero_filter_state": null,
+    "antagonist_signal": null,
+    "classification": "C1_TELEMETRY_INSUFFICIENT",
+    "extensor_activation": null,
+    "filtered_state_at_contribution": null,
+    "filtered_state_before": null,
+    "first_raw_contribution_ms": 13.499999999999973,
+    "flexor_activation": null,
+    "new_motor_spike_at_update": null,
+    "originating_population": null
+  },
+  "classification": "MIXED_OR_UNRESOLVED",
+  "decoder_analysis": {
+    "reason": "Per-leg decoder observer, filter, activation, and raw contribution trajectories are null in the authoritative artifact.",
+    "status": "INSUFFICIENT_TELEMETRY"
+  },
+  "dynamic_propagation": {
+    "disappearance_location": "INSUFFICIENT_TELEMETRY",
+    "layers": {
+      "1": {
+        "anatomically_eligible_neurons": null,
+        "earliest_spike_divergence_ms": null,
+        "earliest_state_divergence_ms": null,
+        "spike_count_difference": null,
+        "spike_divergent_after_C10": null,
+        "state_divergent_after_C10": null,
+        "status": "INSUFFICIENT_TELEMETRY"
+      },
+      "2": {
+        "anatomically_eligible_neurons": null,
+        "earliest_spike_divergence_ms": null,
+        "earliest_state_divergence_ms": null,
+        "spike_count_difference": null,
+        "spike_divergent_after_C10": null,
+        "state_divergent_after_C10": null,
+        "status": "INSUFFICIENT_TELEMETRY"
+      },
+      "3": {
+        "anatomically_eligible_neurons": null,
+        "earliest_spike_divergence_ms": null,
+        "earliest_state_divergence_ms": null,
+        "spike_count_difference": null,
+        "spike_divergent_after_C10": null,
+        "state_divergent_after_C10": null,
+        "status": "INSUFFICIENT_TELEMETRY"
+      },
+      "4": {
+        "anatomically_eligible_neurons": null,
+        "earliest_spike_divergence_ms": null,
+        "earliest_state_divergence_ms": null,
+        "spike_count_difference": null,
+        "spike_divergent_after_C10": null,
+        "state_divergent_after_C10": null,
+        "status": "INSUFFICIENT_TELEMETRY"
+      },
+      "5": {
+        "anatomically_eligible_neurons": null,
+        "earliest_spike_divergence_ms": null,
+        "earliest_state_divergence_ms": null,
+        "spike_count_difference": null,
+        "spike_divergent_after_C10": null,
+        "state_divergent_after_C10": null,
+        "status": "INSUFFICIENT_TELEMETRY"
+      }
+    },
+    "reason": "M5D-5B did not persist paired per-neuron traces or feedback-responsive identities.",
+    "status": "INSUFFICIENT_TELEMETRY"
+  },
+  "feedback_population": {
+    "after_delivered_proprio_divergence_ms": 21.999999999999922,
+    "aggregate_spike_difference_events": 4564,
+    "directly_driven_proprioceptive_neurons": 392,
+    "directly_driven_proprioceptive_neurons_counted_as_downstream": false,
+    "directly_driven_tactile_neurons": "INSUFFICIENT_TELEMETRY",
+    "first_spike_divergence_ms": 25.999999999999897,
+    "first_state_divergence_ms": 23.99999999999991,
+    "mapped_tibia_motor_neurons": [
+      {
+        "body_ids": [
+          800636,
+          815344
+        ],
+        "dense_indices": [
+          143259,
+          154980
+        ],
+        "neuron_count": 2,
+        "population": "Ti extensor MN T1 left",
+        "provenance": "ANNOTATION_DERIVED"
+      },
+      {
+        "body_ids": [
+          804257,
+          815678
+        ],
+        "dense_indices": [
+          146023,
+          155213
+        ],
+        "neuron_count": 2,
+        "population": "Ti extensor MN T1 right",
+        "provenance": "ANNOTATION_DERIVED"
+      },
+      {
+        "body_ids": [
+          800911,
+          801234
+        ],
+        "dense_indices": [
+          143464,
+          143700
+        ],
+        "neuron_count": 2,
+        "population": "Ti extensor MN T2 left",
+        "provenance": "ANNOTATION_DERIVED"
+      },
+      {
+        "body_ids": [
+          830514,
+          928579
+        ],
+        "dense_indices": [
+          158546,
+          162677
+        ],
+        "neuron_count": 2,
+        "population": "Ti extensor MN T2 right",
+        "provenance": "ANNOTATION_DERIVED"
+      },
+      {
+        "body_ids": [
+          800621,
+          812953
+        ],
+        "dense_indices": [
+          143252,
+          153153
+        ],
+        "neuron_count": 2,
+        "population": "Ti extensor MN T3 left",
+        "provenance": "ANNOTATION_DERIVED"
+      },
+      {
+        "body_ids": [
+          800158,
+          809935
+        ],
+        "dense_indices": [
+          142911,
+          150738
+        ],
+        "neuron_count": 2,
+        "population": "Ti extensor MN T3 right",
+        "provenance": "ANNOTATION_DERIVED"
+      },
+      {
+        "body_ids": [
+          807165,
+          809912,
+          818057,
+          819384,
+          909831
+        ],
+        "dense_indices": [
+          148412,
+          150721,
+          156725,
+          157314,
+          161464
+        ],
+        "neuron_count": 5,
+        "population": "Ti flexor MN T1 left",
+        "provenance": "ANNOTATION_DERIVED"
+      },
+      {
+        "body_ids": [
+          810098,
+          821635,
+          827188,
+          1050031705,
+          1050189039
+        ],
+        "dense_indices": [
+          150873,
+          157906,
+          158392,
+          164610,
+          164654
+        ],
+        "neuron_count": 5,
+        "population": "Ti flexor MN T1 right",
+        "provenance": "ANNOTATION_DERIVED"
+      },
+      {
+        "body_ids": [
+          802295,
+          818295,
+          823739,
+          824041,
+          927808
+        ],
+        "dense_indices": [
+          144494,
+          156836,
+          158153,
+          158175,
+          162657
+        ],
+        "neuron_count": 5,
+        "population": "Ti flexor MN T2 left",
+        "provenance": "ANNOTATION_DERIVED"
+      },
+      {
+        "body_ids": [
+          804405,
+          805010,
+          816222,
+          822013,
+          903363
+        ],
+        "dense_indices": [
+          146137,
+          146627,
+          155608,
+          157955,
+          159349
+        ],
+        "neuron_count": 5,
+        "population": "Ti flexor MN T2 right",
+        "provenance": "ANNOTATION_DERIVED"
+      },
+      {
+        "body_ids": [
+          803147,
+          804919,
+          819112,
+          822945,
+          908762,
+          929376,
+          1050088257,
+          1050100010,
+          1050166426
+        ],
+        "dense_indices": [
+          145142,
+          146556,
+          157209,
+          158075,
+          161059,
+          162703,
+          164620,
+          164624,
+          164647
+        ],
+        "neuron_count": 9,
+        "population": "Ti flexor MN T3 left",
+        "provenance": "ANNOTATION_DERIVED"
+      },
+      {
+        "body_ids": [
+          803072,
+          808685,
+          823665,
+          827968,
+          840740,
+          910178,
+          1050013311,
+          1050303231
+        ],
+        "dense_indices": [
+          145083,
+          149691,
+          158148,
+          158427,
+          158696,
+          161547,
+          164604,
+          164682
+        ],
+        "neuron_count": 8,
+        "population": "Ti flexor MN T3 right",
+        "provenance": "ANNOTATION_DERIVED"
+      }
+    ],
+    "per_neuron_body_ids_annotations_and_spike_differences": "INSUFFICIENT_TELEMETRY",
+    "spike_divergent_downstream_neuron_count": 1274,
+    "state_divergent_downstream_neuron_count": 14212,
+    "status": "PARTIAL_AGGREGATE_ONLY"
+  },
+  "limitations": [
+    "No experiment was rerun and no parameter, decoder, sensory interface, physics, duration, drive, noise, or behavior logic was changed.",
+    "CONNECTOME-DERIVED means MaleCNS anatomy/simulated dynamics; MODELED means transduction, decoding, and embodiment; OBSERVED means recorded condition differences.",
+    "An anatomical path would not establish functional recruitment.",
+    "The audit makes no claim of natural walking, biological proprioception or reflexes, emergent gait, CPG discovery, natural coordination, or biological muscle control."
+  ],
+  "mapped_motor_subthreshold": {
+    "c13_observed": false,
+    "mapped_motor_populations_affected_after_feedback": [],
+    "populations": [
+      {
+        "body_ids": [
+          800636,
+          815344
+        ],
+        "decoder_filtered_state_difference": "INSUFFICIENT_TELEMETRY",
+        "decoder_observer_difference": "INSUFFICIENT_TELEMETRY",
+        "dense_indices": [
+          143259,
+          154980
+        ],
+        "earliest_spike_difference_ms": null,
+        "earliest_state_difference_ms": null,
+        "extensor_or_flexor_activation_difference": "INSUFFICIENT_TELEMETRY",
+        "membrane_state_difference": "INSUFFICIENT_TELEMETRY",
+        "neuron_count": 2,
+        "population": "Ti extensor MN T1 left",
+        "provenance": "ANNOTATION_DERIVED",
+        "raw_decoded_contribution_difference": "INSUFFICIENT_TELEMETRY",
+        "spike_count_difference": "INSUFFICIENT_TELEMETRY"
+      },
+      {
+        "body_ids": [
+          804257,
+          815678
+        ],
+        "decoder_filtered_state_difference": "INSUFFICIENT_TELEMETRY",
+        "decoder_observer_difference": "INSUFFICIENT_TELEMETRY",
+        "dense_indices": [
+          146023,
+          155213
+        ],
+        "earliest_spike_difference_ms": null,
+        "earliest_state_difference_ms": null,
+        "extensor_or_flexor_activation_difference": "INSUFFICIENT_TELEMETRY",
+        "membrane_state_difference": "INSUFFICIENT_TELEMETRY",
+        "neuron_count": 2,
+        "population": "Ti extensor MN T1 right",
+        "provenance": "ANNOTATION_DERIVED",
+        "raw_decoded_contribution_difference": "INSUFFICIENT_TELEMETRY",
+        "spike_count_difference": "INSUFFICIENT_TELEMETRY"
+      },
+      {
+        "body_ids": [
+          800911,
+          801234
+        ],
+        "decoder_filtered_state_difference": "INSUFFICIENT_TELEMETRY",
+        "decoder_observer_difference": "INSUFFICIENT_TELEMETRY",
+        "dense_indices": [
+          143464,
+          143700
+        ],
+        "earliest_spike_difference_ms": null,
+        "earliest_state_difference_ms": null,
+        "extensor_or_flexor_activation_difference": "INSUFFICIENT_TELEMETRY",
+        "membrane_state_difference": "INSUFFICIENT_TELEMETRY",
+        "neuron_count": 2,
+        "population": "Ti extensor MN T2 left",
+        "provenance": "ANNOTATION_DERIVED",
+        "raw_decoded_contribution_difference": "INSUFFICIENT_TELEMETRY",
+        "spike_count_difference": "INSUFFICIENT_TELEMETRY"
+      },
+      {
+        "body_ids": [
+          830514,
+          928579
+        ],
+        "decoder_filtered_state_difference": "INSUFFICIENT_TELEMETRY",
+        "decoder_observer_difference": "INSUFFICIENT_TELEMETRY",
+        "dense_indices": [
+          158546,
+          162677
+        ],
+        "earliest_spike_difference_ms": null,
+        "earliest_state_difference_ms": null,
+        "extensor_or_flexor_activation_difference": "INSUFFICIENT_TELEMETRY",
+        "membrane_state_difference": "INSUFFICIENT_TELEMETRY",
+        "neuron_count": 2,
+        "population": "Ti extensor MN T2 right",
+        "provenance": "ANNOTATION_DERIVED",
+        "raw_decoded_contribution_difference": "INSUFFICIENT_TELEMETRY",
+        "spike_count_difference": "INSUFFICIENT_TELEMETRY"
+      },
+      {
+        "body_ids": [
+          800621,
+          812953
+        ],
+        "decoder_filtered_state_difference": "INSUFFICIENT_TELEMETRY",
+        "decoder_observer_difference": "INSUFFICIENT_TELEMETRY",
+        "dense_indices": [
+          143252,
+          153153
+        ],
+        "earliest_spike_difference_ms": null,
+        "earliest_state_difference_ms": null,
+        "extensor_or_flexor_activation_difference": "INSUFFICIENT_TELEMETRY",
+        "membrane_state_difference": "INSUFFICIENT_TELEMETRY",
+        "neuron_count": 2,
+        "population": "Ti extensor MN T3 left",
+        "provenance": "ANNOTATION_DERIVED",
+        "raw_decoded_contribution_difference": "INSUFFICIENT_TELEMETRY",
+        "spike_count_difference": "INSUFFICIENT_TELEMETRY"
+      },
+      {
+        "body_ids": [
+          800158,
+          809935
+        ],
+        "decoder_filtered_state_difference": "INSUFFICIENT_TELEMETRY",
+        "decoder_observer_difference": "INSUFFICIENT_TELEMETRY",
+        "dense_indices": [
+          142911,
+          150738
+        ],
+        "earliest_spike_difference_ms": null,
+        "earliest_state_difference_ms": null,
+        "extensor_or_flexor_activation_difference": "INSUFFICIENT_TELEMETRY",
+        "membrane_state_difference": "INSUFFICIENT_TELEMETRY",
+        "neuron_count": 2,
+        "population": "Ti extensor MN T3 right",
+        "provenance": "ANNOTATION_DERIVED",
+        "raw_decoded_contribution_difference": "INSUFFICIENT_TELEMETRY",
+        "spike_count_difference": "INSUFFICIENT_TELEMETRY"
+      },
+      {
+        "body_ids": [
+          807165,
+          809912,
+          818057,
+          819384,
+          909831
+        ],
+        "decoder_filtered_state_difference": "INSUFFICIENT_TELEMETRY",
+        "decoder_observer_difference": "INSUFFICIENT_TELEMETRY",
+        "dense_indices": [
+          148412,
+          150721,
+          156725,
+          157314,
+          161464
+        ],
+        "earliest_spike_difference_ms": null,
+        "earliest_state_difference_ms": null,
+        "extensor_or_flexor_activation_difference": "INSUFFICIENT_TELEMETRY",
+        "membrane_state_difference": "INSUFFICIENT_TELEMETRY",
+        "neuron_count": 5,
+        "population": "Ti flexor MN T1 left",
+        "provenance": "ANNOTATION_DERIVED",
+        "raw_decoded_contribution_difference": "INSUFFICIENT_TELEMETRY",
+        "spike_count_difference": "INSUFFICIENT_TELEMETRY"
+      },
+      {
+        "body_ids": [
+          810098,
+          821635,
+          827188,
+          1050031705,
+          1050189039
+        ],
+        "decoder_filtered_state_difference": "INSUFFICIENT_TELEMETRY",
+        "decoder_observer_difference": "INSUFFICIENT_TELEMETRY",
+        "dense_indices": [
+          150873,
+          157906,
+          158392,
+          164610,
+          164654
+        ],
+        "earliest_spike_difference_ms": null,
+        "earliest_state_difference_ms": null,
+        "extensor_or_flexor_activation_difference": "INSUFFICIENT_TELEMETRY",
+        "membrane_state_difference": "INSUFFICIENT_TELEMETRY",
+        "neuron_count": 5,
+        "population": "Ti flexor MN T1 right",
+        "provenance": "ANNOTATION_DERIVED",
+        "raw_decoded_contribution_difference": "INSUFFICIENT_TELEMETRY",
+        "spike_count_difference": "INSUFFICIENT_TELEMETRY"
+      },
+      {
+        "body_ids": [
+          802295,
+          818295,
+          823739,
+          824041,
+          927808
+        ],
+        "decoder_filtered_state_difference": "INSUFFICIENT_TELEMETRY",
+        "decoder_observer_difference": "INSUFFICIENT_TELEMETRY",
+        "dense_indices": [
+          144494,
+          156836,
+          158153,
+          158175,
+          162657
+        ],
+        "earliest_spike_difference_ms": null,
+        "earliest_state_difference_ms": null,
+        "extensor_or_flexor_activation_difference": "INSUFFICIENT_TELEMETRY",
+        "membrane_state_difference": "INSUFFICIENT_TELEMETRY",
+        "neuron_count": 5,
+        "population": "Ti flexor MN T2 left",
+        "provenance": "ANNOTATION_DERIVED",
+        "raw_decoded_contribution_difference": "INSUFFICIENT_TELEMETRY",
+        "spike_count_difference": "INSUFFICIENT_TELEMETRY"
+      },
+      {
+        "body_ids": [
+          804405,
+          805010,
+          816222,
+          822013,
+          903363
+        ],
+        "decoder_filtered_state_difference": "INSUFFICIENT_TELEMETRY",
+        "decoder_observer_difference": "INSUFFICIENT_TELEMETRY",
+        "dense_indices": [
+          146137,
+          146627,
+          155608,
+          157955,
+          159349
+        ],
+        "earliest_spike_difference_ms": null,
+        "earliest_state_difference_ms": null,
+        "extensor_or_flexor_activation_difference": "INSUFFICIENT_TELEMETRY",
+        "membrane_state_difference": "INSUFFICIENT_TELEMETRY",
+        "neuron_count": 5,
+        "population": "Ti flexor MN T2 right",
+        "provenance": "ANNOTATION_DERIVED",
+        "raw_decoded_contribution_difference": "INSUFFICIENT_TELEMETRY",
+        "spike_count_difference": "INSUFFICIENT_TELEMETRY"
+      },
+      {
+        "body_ids": [
+          803147,
+          804919,
+          819112,
+          822945,
+          908762,
+          929376,
+          1050088257,
+          1050100010,
+          1050166426
+        ],
+        "decoder_filtered_state_difference": "INSUFFICIENT_TELEMETRY",
+        "decoder_observer_difference": "INSUFFICIENT_TELEMETRY",
+        "dense_indices": [
+          145142,
+          146556,
+          157209,
+          158075,
+          161059,
+          162703,
+          164620,
+          164624,
+          164647
+        ],
+        "earliest_spike_difference_ms": null,
+        "earliest_state_difference_ms": null,
+        "extensor_or_flexor_activation_difference": "INSUFFICIENT_TELEMETRY",
+        "membrane_state_difference": "INSUFFICIENT_TELEMETRY",
+        "neuron_count": 9,
+        "population": "Ti flexor MN T3 left",
+        "provenance": "ANNOTATION_DERIVED",
+        "raw_decoded_contribution_difference": "INSUFFICIENT_TELEMETRY",
+        "spike_count_difference": "INSUFFICIENT_TELEMETRY"
+      },
+      {
+        "body_ids": [
+          803072,
+          808685,
+          823665,
+          827968,
+          840740,
+          910178,
+          1050013311,
+          1050303231
+        ],
+        "decoder_filtered_state_difference": "INSUFFICIENT_TELEMETRY",
+        "decoder_observer_difference": "INSUFFICIENT_TELEMETRY",
+        "dense_indices": [
+          145083,
+          149691,
+          158148,
+          158427,
+          158696,
+          161547,
+          164604,
+          164682
+        ],
+        "earliest_spike_difference_ms": null,
+        "earliest_state_difference_ms": null,
+        "extensor_or_flexor_activation_difference": "INSUFFICIENT_TELEMETRY",
+        "membrane_state_difference": "INSUFFICIENT_TELEMETRY",
+        "neuron_count": 8,
+        "population": "Ti flexor MN T3 right",
+        "provenance": "ANNOTATION_DERIVED",
+        "raw_decoded_contribution_difference": "INSUFFICIENT_TELEMETRY",
+        "spike_count_difference": "INSUFFICIENT_TELEMETRY"
+      }
+    ],
+    "status": "INSUFFICIENT_TELEMETRY"
+  },
+  "path_depth_summary": {
+    "1": {
+      "anatomically_eligible_neurons": null,
+      "earliest_spike_divergence_ms": null,
+      "earliest_state_divergence_ms": null,
+      "spike_count_difference": null,
+      "spike_divergent_after_C10": null,
+      "state_divergent_after_C10": null,
+      "status": "INSUFFICIENT_TELEMETRY"
+    },
+    "2": {
+      "anatomically_eligible_neurons": null,
+      "earliest_spike_divergence_ms": null,
+      "earliest_state_divergence_ms": null,
+      "spike_count_difference": null,
+      "spike_divergent_after_C10": null,
+      "state_divergent_after_C10": null,
+      "status": "INSUFFICIENT_TELEMETRY"
+    },
+    "3": {
+      "anatomically_eligible_neurons": null,
+      "earliest_spike_divergence_ms": null,
+      "earliest_state_divergence_ms": null,
+      "spike_count_difference": null,
+      "spike_divergent_after_C10": null,
+      "state_divergent_after_C10": null,
+      "status": "INSUFFICIENT_TELEMETRY"
+    },
+    "4": {
+      "anatomically_eligible_neurons": null,
+      "earliest_spike_divergence_ms": null,
+      "earliest_state_divergence_ms": null,
+      "spike_count_difference": null,
+      "spike_divergent_after_C10": null,
+      "state_divergent_after_C10": null,
+      "status": "INSUFFICIENT_TELEMETRY"
+    },
+    "5": {
+      "anatomically_eligible_neurons": null,
+      "earliest_spike_divergence_ms": null,
+      "earliest_state_divergence_ms": null,
+      "spike_count_difference": null,
+      "spike_divergent_after_C10": null,
+      "state_divergent_after_C10": null,
+      "status": "INSUFFICIENT_TELEMETRY"
+    }
+  },
+  "provenance": {
+    "lock_method": {
+      "authoritative_artifact": "raw-byte SHA-256",
+      "implementation_sources": "canonical-LF SHA-256"
+    },
+    "observed_locks": {
+      "_windows_proprioceptive_closed_loop_adapter.py": "487c83bdbbba663f0aba8ed0600e225d5d51cfcb3831f4d3a4e4cdb6ecb804e9",
+      "interface_output/proprioceptive_closed_loop_100ms.json": "2dc15d8b3a3820823358f73673e45920f18a4e3bb9dd504dbeb35aa677982a10",
+      "proprioceptive_closed_loop.py": "2f95c6b38d373d7026272c538b37437b400d92fd6168306a87dc0ca14c6480e9",
+      "proprioceptive_closed_loop_audit.py": "01601e7008c948eb2b92c46105288550682ceecea62d7b4bec69d3c54669f30e"
+    },
+    "verified": true
+  },
+  "reason": "M5D-5B retained aggregate downstream counts and mapped-motor non-divergence, but not paired neuron identities/state trajectories, motor observer/filter trajectories, or tactile trajectories required to localize the pathway failure.",
+  "run_status": "COMPLETE",
+  "schema": "M5D-5C.0",
+  "sensory_attribution": {
+    "classification": "INSUFFICIENT_TELEMETRY",
+    "proprioceptive_timing_ms": {
+      "C10": 21.999999999999922,
+      "C11": 23.99999999999991,
+      "C12": 25.999999999999897,
+      "C7": 13.599999999999973,
+      "C8": 13.999999999999972,
+      "C9": 21.999999999999922
+    },
+    "reason": "The artifact records that tactile was enabled but persists no paired tactile trace.",
+    "tactile_candidate_first_divergence_ms": null,
+    "tactile_delivered_first_divergence_ms": null,
+    "tactile_physical_source_first_divergence_ms": null,
+    "tactile_rate_first_divergence_ms": null
+  }
+}

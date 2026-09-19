@@ -1,3 +1,4 @@
 # Scientific result artifacts locked by raw-byte SHA-256 must not be transformed.
 malecns_backend/embodiment/interface_output/sensory_feedback_boundary_100ms.json -text
 malecns_backend/embodiment/interface_output/proprioceptive_activation_100ms.json -text
+malecns_backend/embodiment/interface_output/proprioceptive_closed_loop_100ms.json -text
