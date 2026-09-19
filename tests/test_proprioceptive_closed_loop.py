@@ -1,5 +1,6 @@
 import hashlib
 import json
+from copy import deepcopy
 
 import pytest
 
@@ -58,6 +59,78 @@ def test_provenance_locks_authoritative_complete_artifact():
     assert result["verified"] and result["m5d5a_authoritative_complete"]
     path = subject.ROOT / "malecns_backend/embodiment/interface_output/proprioceptive_activation_100ms.json"
     assert hashlib.sha256(path.read_bytes()).hexdigest() == subject.M5D5A_LOCKS["interface_output/proprioceptive_activation_100ms.json"]
+
+
+def _authoritative_artifact():
+    path = subject.ROOT / "malecns_backend/embodiment/interface_output/proprioceptive_activation_100ms.json"
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def test_authoritative_m5d5a_semantics_protocol_and_observations():
+    artifact = _authoritative_artifact()
+    subject.validate_m5d5a_authoritative_semantics(artifact)
+    assert artifact["aggregate"] == {
+        "candidate_spike_count": 2823, "delivered_spike_count": 2120,
+        "directly_driven_proprioceptive_neurons": 392,
+        "distinct_downstream_spiking_neurons": 2472,
+        "distinct_downstream_state_divergent_neurons": 64,
+        "downstream_spike_count": 50670,
+        "mapped_motor_populations_that_differ": [
+            "Ti extensor MN T2 left", "Ti extensor MN T2 right",
+            "Ti extensor MN T3 right", "Ti flexor MN T3 left",
+            "Ti flexor MN T3 right"]}
+    assert artifact["protocol"] == {
+        "automatic_retries": 0, "conditions": ["PROPRIO_ENABLED", "PROPRIO_DISABLED"],
+        "duration_ms": 100.0, "neural_dt_ms": 0.5, "parameter_mutations": [],
+        "physics_dt_ms": 0.1, "seed": 1}
+
+
+@pytest.mark.parametrize("path,value", [
+    (("run_status",), "NOT_RUN"),
+    (("run_status",), "FAILED"),
+    (("classification",), "WRONG"),
+    (("provenance", "verified"), False),
+    (("protocol", "seed"), 2),
+    (("protocol", "duration_ms"), 99.0),
+    (("protocol", "physics_dt_ms"), 0.2),
+    (("protocol", "neural_dt_ms"), 1.0),
+    (("protocol", "automatic_retries"), 1),
+])
+def test_authoritative_semantics_fail_closed(path, value):
+    artifact = deepcopy(_authoritative_artifact())
+    target = artifact
+    for component in path[:-1]:
+        target = target[component]
+    target[path[-1]] = value
+    with pytest.raises(RuntimeError, match="semantic provenance mismatch"):
+        subject.validate_m5d5a_authoritative_semantics(artifact)
+
+
+def test_modified_authoritative_bytes_fail_raw_provenance(tmp_path, monkeypatch):
+    source = subject.ROOT / "malecns_backend/embodiment/interface_output/proprioceptive_activation_100ms.json"
+    target = tmp_path / "artifact.json"
+    target.write_bytes(source.read_bytes() + b" ")
+    monkeypatch.setattr(subject, "ROOT", tmp_path)
+    monkeypatch.setattr(subject, "M5D5A_LOCKS", {"artifact.json": hashlib.sha256(source.read_bytes()).hexdigest()})
+    with pytest.raises(RuntimeError, match="M5D-5A provenance mismatch"):
+        subject.verify_provenance()
+
+
+def test_first_attempt_provenance_failure_is_preserved_without_science():
+    path = subject.ROOT / (
+        "malecns_backend/embodiment/interface_output/"
+        "proprioceptive_closed_loop_100ms_first_attempt_provenance_failure.json")
+    artifact = json.loads(path.read_text(encoding="utf-8"))
+    assert (artifact["schema"], artifact["run_status"], artifact["classification"]) == (
+        "M5D-5B.0", "FAILED", "PROVENANCE_FAILURE")
+    assert artifact["traceback"]
+    assert all(value is None for value in artifact["milestones"].values())
+    assert all(draws == 0 for condition in artifact["rng"]["draw_counters"].values()
+               for draws in condition.values())
+    assert artifact["provenance"]["expected_m5d5a_locks"][
+        "interface_output/proprioceptive_activation_100ms.json"] == (
+            "c52be9d9b1989c4631d6f7907f13465cebf645492b8114654e0a3dc898f3833d")
+    assert "3e0131be35d7b00004e1e014e5007ff7455b422b7fd67a2cd25a67eadead5ca9" in artifact["reason"]
 
 
 @pytest.mark.parametrize("broken,expected", [
