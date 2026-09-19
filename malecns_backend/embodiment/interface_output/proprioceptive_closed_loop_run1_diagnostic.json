@@ -1,0 +1,230 @@
+{
+  "C1_audit": {
+    "C1_definition": "first enabled row with a nonzero mapped extensor/flexor increment count",
+    "C2_definition": "first enabled row with any nonzero decoder raw neural contribution",
+    "explanation": "The reduced artifact retained neither observer/decoder samples nor per-update motor counts. Carryover is mathematically possible, but C1=null does not establish it without rows. No telemetry or reducer bug is claimed or repaired.",
+    "first_motor_producing_leg_inference": "LM (inferred from C4 and per-leg first command divergence at 13.5 ms; raw row was not retained)",
+    "result": "UNRESOLVED_INITIAL_DIFFERENCE",
+    "telemetry": null
+  },
+  "comparator_defect": {
+    "corrected": true,
+    "mechanism": "M5D-5B used generic _equal on contact_set, retaining instance-qualified names. M5D-4B compare_contact_sets removes resolved raw IDs, normalizes exact final slash components, canonicalizes each pair as unordered, sorts contacts, and retains numeric metadata.",
+    "proven": true
+  },
+  "diagnostic_classification": "CONTACT_NAMESPACE_ONLY",
+  "diagnostic_only": true,
+  "initial_state": {
+    "baseline_targets": {
+      "difference_count": 0,
+      "exactly_equal": true,
+      "maximum_absolute_difference": 0.0
+    },
+    "contact_force_arrays": {
+      "difference_count": 0,
+      "exactly_equal": true,
+      "maximum_absolute_difference": 0.0
+    },
+    "ctrl": {
+      "difference_count": 0,
+      "exactly_equal": true,
+      "maximum_absolute_difference": 0.0
+    },
+    "full_42_action_vector": {
+      "difference_count": 0,
+      "exactly_equal": true,
+      "maximum_absolute_difference": 0.0
+    },
+    "previous_target_histories": {
+      "difference_count": 0,
+      "exactly_equal": true,
+      "maximum_absolute_difference": 0.0
+    },
+    "qacc": {
+      "difference_count": 0,
+      "exactly_equal": true,
+      "maximum_absolute_difference": 0.0
+    },
+    "qpos": {
+      "difference_count": 0,
+      "exactly_equal": true,
+      "maximum_absolute_difference": 0.0
+    },
+    "qvel": {
+      "difference_count": 0,
+      "exactly_equal": true,
+      "maximum_absolute_difference": 0.0
+    },
+    "six_tibia_angles": {
+      "difference_count": 0,
+      "exactly_equal": true,
+      "maximum_absolute_difference": 0.0
+    }
+  },
+  "initial_state_evidence_limit": "qpos, qvel, qacc, and contact_force arrays precede contact_set in the fail-fast reducer and are proven equal at t=0. C4/C5 prove action/ctrl first diverge at 13.5/13.6 ms. Run #1 did not retain rows needed to independently enumerate baseline/history values.",
+  "qualification": "Run #2 is justified solely because a comparator defect was proven and corrected; tactile attribution remains unresolved and Run #1 remains non-causal.",
+  "raw_trace_availability": {
+    "available": false,
+    "reason": "M5D-5B reducer returned only its reduced report; run_canonical_pair did not serialize condition rows. No canonical rerun was performed. Exact per-row claims that are not retained are marked unresolved."
+  },
+  "schema": "M5D-5B1-DIAGNOSTIC.0",
+  "science_changes": false,
+  "scientific_run_1": {
+    "classification": "PRE_INTERVENTION_DIVERGENCE",
+    "modified": false,
+    "path": "malecns_backend/embodiment/interface_output/proprioceptive_closed_loop_100ms_scientific_run_1.json",
+    "raw_sha256": "a219b17a2796067513e5b250deabf62c0e7c96cc44176d0efa29b1183c0425c8",
+    "run_status": "COMPLETE"
+  },
+  "scientific_run_2_justified": true,
+  "t0_contacts": {
+    "disabled": [
+      {
+        "contact_index": 0,
+        "distance": -0.02453605937522539,
+        "frame": [
+          -8.231241277713994e-09,
+          -0.9999999999999999,
+          1.5119539473633614e-08,
+          1.2445257741539914e-16,
+          1.5119539473633614e-08,
+          1.0,
+          -1.0000000000000002,
+          8.231241277713996e-09,
+          0.0
+        ],
+        "friction": [
+          1.0,
+          1.0,
+          0.005,
+          0.0001,
+          0.0001
+        ],
+        "geom1": 20,
+        "geom1_name": "1/LHCoxa",
+        "geom2": 36,
+        "geom2_name": "1/RHCoxa",
+        "position": [
+          -0.2916761852081384,
+          -2.498731083155903e-11,
+          1.158427759226986
+        ],
+        "semantic_geom1": "LHCoxa",
+        "semantic_geom2": "RHCoxa"
+      },
+      {
+        "contact_index": 1,
+        "distance": -0.02453605937522539,
+        "frame": [
+          -8.231241277713994e-09,
+          -0.9999999999999999,
+          1.5119539473633614e-08,
+          1.2445257741539914e-16,
+          1.5119539473633614e-08,
+          1.0,
+          -1.0000000000000002,
+          8.231241277713996e-09,
+          0.0
+        ],
+        "friction": [
+          1.0,
+          1.0,
+          0.005,
+          0.0001,
+          0.0001
+        ],
+        "geom1": 20,
+        "geom1_name": "1/LHCoxa",
+        "geom2": 36,
+        "geom2_name": "1/RHCoxa",
+        "position": [
+          -0.2916761852081384,
+          -2.498731083155903e-11,
+          1.158427759226986
+        ],
+        "semantic_geom1": "LHCoxa",
+        "semantic_geom2": "RHCoxa"
+      }
+    ],
+    "enabled": [
+      {
+        "contact_index": 0,
+        "distance": -0.02453605937522539,
+        "frame": [
+          -8.231241277713994e-09,
+          -0.9999999999999999,
+          1.5119539473633614e-08,
+          1.2445257741539914e-16,
+          1.5119539473633614e-08,
+          1.0,
+          -1.0000000000000002,
+          8.231241277713996e-09,
+          0.0
+        ],
+        "friction": [
+          1.0,
+          1.0,
+          0.005,
+          0.0001,
+          0.0001
+        ],
+        "geom1": 20,
+        "geom1_name": "0/LHCoxa",
+        "geom2": 36,
+        "geom2_name": "0/RHCoxa",
+        "position": [
+          -0.2916761852081384,
+          -2.498731083155903e-11,
+          1.158427759226986
+        ],
+        "semantic_geom1": "LHCoxa",
+        "semantic_geom2": "RHCoxa"
+      },
+      {
+        "contact_index": 1,
+        "distance": -0.02453605937522539,
+        "frame": [
+          -8.231241277713994e-09,
+          -0.9999999999999999,
+          1.5119539473633614e-08,
+          1.2445257741539914e-16,
+          1.5119539473633614e-08,
+          1.0,
+          -1.0000000000000002,
+          8.231241277713996e-09,
+          0.0
+        ],
+        "friction": [
+          1.0,
+          1.0,
+          0.005,
+          0.0001,
+          0.0001
+        ],
+        "geom1": 20,
+        "geom1_name": "0/LHCoxa",
+        "geom2": 36,
+        "geom2_name": "0/RHCoxa",
+        "position": [
+          -0.2916761852081384,
+          -2.498731083155903e-11,
+          1.158427759226986
+        ],
+        "semantic_geom1": "LHCoxa",
+        "semantic_geom2": "RHCoxa"
+      }
+    ],
+    "evidence_source": "The byte-preserved Run #1 records only contact_set as its t=0 first difference. Contact details shown are corroborating t=0 rows from the separately preserved, same _make_live/contact_metadata path M5D-4A artifact; they are not misrepresented as serialized Run #1 rows.",
+    "per_contact_force_recorded": false,
+    "raw_difference": "instance-qualified names 0/* versus 1/* only",
+    "semantic_exactly_equal": true
+  },
+  "tactile_attribution": {
+    "candidate_events": null,
+    "delivered_events": null,
+    "first_feedback_channel": "UNRESOLVED",
+    "modeled_rate": null,
+    "physical_source": null,
+    "reason": "Raw tactile traces were discarded and the reduced tactile section has no divergence timings."
+  }
+}
