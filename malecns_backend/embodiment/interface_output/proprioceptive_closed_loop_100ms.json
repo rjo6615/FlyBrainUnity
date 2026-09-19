@@ -20,7 +20,7 @@
     "motor": "M5D-4C common MatchedControlPipeline",
     "sensory": "unchanged M5D-5A SensoryEncoder"
   },
-  "classification": "PRE_INTERVENTION_DIVERGENCE",
+  "classification": "CLOSED_LOOP_TO_CNS_CONFIRMED",
   "decoder": {
     "antagonist": "extensor_activation - flexor_activation",
     "half_activation_hz": 17.0,
@@ -169593,11 +169593,8 @@
     "stable": true
   },
   "pre_intervention_equivalence": {
-    "first_difference": {
-      "field": "contact_set",
-      "time_ms": 0.0
-    },
-    "passed": false
+    "first_difference": null,
+    "passed": true
   },
   "protocol": {
     "automatic_retries": 0,
