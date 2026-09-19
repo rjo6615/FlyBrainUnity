@@ -1,0 +1,9 @@
+{
+  "schema": "M5D-5D.0",
+  "run_status": "NOT_RUN",
+  "classification": null,
+  "reason": "Canonical Windows Scientific Run #1 has not been executed",
+  "protocol": {"seed": 1, "duration_ms": 100.0, "physics_dt_ms": 0.1, "neural_dt_ms": 0.5, "automatic_retries": 0},
+  "telemetry": {"format": "NPZ", "path": "instrumented_proprioceptive_closed_loop_telemetry.npz", "sha256": null},
+  "provenance": {"verified": false}
+}

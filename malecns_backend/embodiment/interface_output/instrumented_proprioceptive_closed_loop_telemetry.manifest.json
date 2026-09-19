@@ -1,0 +1,7 @@
+{
+  "schema": "M5D-5D-TELEMETRY.0",
+  "status": "NOT_RUN",
+  "sidecar": "instrumented_proprioceptive_closed_loop_telemetry.npz",
+  "lossless": true,
+  "description": "The canonical run atomically creates the compressed NumPy sidecar; no observations exist before that run."
+}
