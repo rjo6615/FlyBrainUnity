@@ -146,6 +146,50 @@ positive/negative kinematic epsilon perturbations, using endpoint geometry—not
 neural behavior—to associate anatomical and NMF directions. An indefensible
 association is `SIGN_UNRESOLVED`, and that interface is not admitted.
 
+### Coxa-yaw anatomical sign audit (M6B-P3)
+
+M6B-P3 is a non-scientific, non-neural audit recorded in
+`interface_output/m6b_coxa_yaw_sign_diagnostic.json`.  The old
+`body_forward_x` endpoint projection is inappropriate for Coxa yaw: all six
+hinges produce real distal motion under the fixed `0.0001 rad` perturbation,
+but rotation about the live hinge need not have a nonzero component along one
+global Cartesian axis.  A defensible kinematic measurement is instead the
+oriented rotational metric
+`dot(axis_world, cross(v_neutral, v_perturbed))`, normalized by the vector
+lengths.  MuJoCo's `jnt_axis` is in the owning body's local frame, so the audit
+requires `data.xmat[model.jnt_bodyid[jid]] @ model.jnt_axis[jid]`; vectors run
+from the live joint anchor to the mean of exact selected-leg distal geoms.
+
+The locked M6A annotations for every side and segment are explicit antagonist
+pairs named **Sternal anterior rotator MN T1/T2/T3 left/right** and **Sternal
+posterior rotator MN T1/T2/T3 left/right**.  M6A assigned the former `+1`
+(`extensor`) and latter `-1` (`flexor`) and interpreted the pair as
+`coxa_twist`.  That establishes population opposition, but the evidence does
+not define “anterior” or “posterior” as positive or negative handed rotation
+about the actual NMF hinge axis.  Thus the annotation-positive action cannot
+independently be mapped to the geometric rotation.  Moreover, the retained P2
+capture contains local axes and +/- endpoints but not owning-body transforms,
+joint anchors, or neutral endpoints.  M6B-P3 does not reconstruct those absent
+values by assumption.
+
+Consequently all six Coxa-yaw interfaces remain `SIGN_UNRESOLVED`; no sign was
+guessed from a nonzero Y component, apparent movement, or bilateral symmetry.
+The independently resolved Femur interfaces and LF/RF Tarsus1 interfaces are
+unchanged.  The **proposed, not canonicalized** M6B set is therefore:
+
+* `joint_LFFemur`, `joint_LFTarsus1`, `joint_LMFemur`, `joint_LHFemur`
+* `joint_RFFemur`, `joint_RFTarsus1`, `joint_RMFemur`, `joint_RHFemur`
+
+This does not downgrade the experiment: unresolved Coxa-yaw interfaces are
+excluded while the eight defensible interfaces remain proposed for review.
+The canonical eligible set has not been modified.  M6B-P3 called no scientific
+condition runner, and Scientific Run #1 remains `NOT_RUN` and unconsumed.
+
+The historical sequence is preserved: Attempt #1 failed on the M6A raw-byte
+provenance mismatch; Attempt #2 reported no valid joint/actuator limit
+intersection; Attempt #3 passed after inactive `jnt_range=[0,0]` placeholders
+were correctly ignored when `jnt_limited=false`.
+
 ## Isolation, equivalence, and milestones
 
 Before the first nonzero admitted contribution, enabled and disabled traces
