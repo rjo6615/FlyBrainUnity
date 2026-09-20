@@ -127,6 +127,18 @@ def geometry_gate(contacts: Sequence[Mapping[str, Any]], *, state_finite: bool,
             "proximal_penetrations": proximal, "distal_contacts": distal}
 
 
+def candidate_eligible(gate: Mapping[str, Any]) -> bool:
+    """Return the final, fail-closed geometry eligibility decision.
+
+    Keeping this decision next to the gate prevents callers from accidentally
+    re-implementing only a permissive subset of the final criteria.
+    """
+    labels = gate.get("classifications", {})
+    return bool(gate.get("valid", False) and
+                labels.get("VALID_SUPPORT_CONTACT", False) and
+                not labels.get("NO_SUPPORT_CONTACT", True))
+
+
 def derive_vertical_translation(geom_minima: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
     """Derive one translation from actual Tarsus5 collision geometry, never sweep."""
     distal = [float(g["minimum_z"]) for g in geom_minima if _part(g["name"]) == "Tarsus5"]
@@ -265,7 +277,7 @@ def windows_audit() -> dict[str, Any]:
             gate = geometry_gate(contact_rows, state_finite=is_finite, calibration_surface_unchanged=unchanged)
             feet = [g for g in geoms if _part(g["name"]) == "Tarsus5"]
             derivation = None if gate["support_surfaces"] else derive_vertical_translation(geoms)
-            eligible = is_finite and not gate["classifications"]["BODY_GROUND_PENETRATION"] and not gate["classifications"]["PROXIMAL_LEG_GROUND_PENETRATION"]
+            eligible = candidate_eligible(gate)
             results.append({"pose": dict(pose), "state": state, "finite_state": is_finite,
                             "collision_enabled_fly_geometries": geoms, "distal_tarsus5": feet,
                             "contacts": contact_rows, "geometry_gate": gate,

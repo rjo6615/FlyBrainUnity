@@ -1,0 +1,28 @@
+{
+  "schema": "M7C-B3-TRIPOD-SUPPORT-HEIGHT.1",
+  "status": "WINDOWS_ZERO_TRANSITION_AUDIT_REQUIRED",
+  "source_m7c_b2": {
+    "path": "malecns_backend/embodiment/interface_output/m7c_initial_stability/m7c_b2_pose_geometry_audit.json",
+    "sha256": "f3066cfab26fc00e2f1cf192b8cf9af89b06e8b0afca4df5603167ff730a72b1"
+  },
+  "tripod_pose_sha256": "8d71c1536c2a0fc55bfb574999eab5bff3568c3f38fe032a4b594a0bcb59a640",
+  "original_spawn_z": 0.5,
+  "analytic_dz": null,
+  "corrected_spawn_z": null,
+  "feasible_dz_intervals": null,
+  "zero_step_reconstruction": null,
+  "future_physics_eligibility": false,
+  "classification": "GEOMETRY_INVALID_UNTIL_WINDOWS_AUDIT",
+  "protocol": {
+    "physics_transitions": 0,
+    "neural_transitions": 0,
+    "brain_constructed": false,
+    "sim_step_prohibited": true,
+    "height_sweep": false,
+    "optimizer": false,
+    "adhesion_enabled": false,
+    "controller": false,
+    "reward_rl_ai": false,
+    "calibration_surface_changed": false
+  }
+}

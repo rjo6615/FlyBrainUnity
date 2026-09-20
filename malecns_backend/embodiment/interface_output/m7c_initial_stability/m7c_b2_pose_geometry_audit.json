@@ -302,7 +302,7 @@
         "reason": "missing distal or non-distal collision geometry",
         "status": "INCOMPATIBLE"
       },
-      "candidate_eligible": true,
+      "candidate_eligible": false,
       "collision_enabled_fly_geometries": [],
       "contacts": [
         {
