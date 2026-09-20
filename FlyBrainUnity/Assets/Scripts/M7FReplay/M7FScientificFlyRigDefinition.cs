@@ -85,7 +85,7 @@ namespace FlyBrain.M7FReplay
         public static Vector3 SourceAxialToUnity(Vector3 axis) => -SourcePositionToUnity(axis);
         public static Quaternion SourceQuaternionToUnity(Quaternion source)
         {
-            if (!IsFinite(source) || source.sqrMagnitude < 1e-12f) throw new ArgumentException("Source quaternion must be finite and non-zero.");
+            if (!IsFinite(source) || source.x * source.x + source.y * source.y + source.z * source.z + source.w * source.w < 1e-12f) throw new ArgumentException("Source quaternion must be finite and non-zero.");
             source = Quaternion.Normalize(source);
             return Quaternion.LookRotation(SourcePositionToUnity(source * Vector3.forward), SourcePositionToUnity(source * Vector3.up));
         }
