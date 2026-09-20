@@ -9,6 +9,7 @@ import pytest
 from malecns_backend.embodiment import integrated_whole_leg_readiness as m6c
 from malecns_backend.embodiment import isolated_tier_b_motor_validation as m6b
 from malecns_backend.embodiment import _windows_integrated_whole_leg_readiness_adapter as adapter
+from malecns_backend.embodiment import _windows_m6c_live_condition as live_condition
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -179,3 +180,70 @@ def test_hidden_assistance_audit_and_provenance_fail_closed():
     assert audit["hidden_locomotion_assistance_executed"] is False
     with pytest.raises(m6c.ProvenanceFailure): m6c.validate_m6b(m6b.build_not_run_artifact())
     with pytest.raises(m6c.ProvenanceFailure): m6c.load_provenance()
+
+
+def test_m6c_digest_reuses_authoritative_state_tuple_without_u(monkeypatch):
+    np = pytest.importorskip("numpy")
+    from malecns_backend.embodiment.tactile_motor_loop_audit import _state_tuple
+
+    class RepresentativeMaleCNSBrain:
+        v = np.array([-52.0], dtype=np.float32)
+        g_exc = np.array([0.0], dtype=np.float32)
+        g_inh = np.array([0.0], dtype=np.float32)
+        spike_counts = np.array([0], dtype=np.uint32)
+
+    brain = RepresentativeMaleCNSBrain()
+    assert not hasattr(brain, "u")
+    assert live_condition._digest(brain) == _state_tuple(brain)
+
+
+def test_m6c_live_path_has_no_direct_u_state_access():
+    import ast, inspect
+    tree = ast.parse(inspect.getsource(live_condition))
+    assert not [node for node in ast.walk(tree)
+                if isinstance(node, ast.Attribute) and node.attr == "u"]
+
+
+def test_preflight_uses_canonical_snapshot_initialization_without_steps(
+        protocol, tmp_path, monkeypatch):
+    import sys, types
+    records = [{"index": row["action_index"], "name": row["actuator"]}
+               for row in protocol["actuator_admission_table"]]
+    calls = []
+    monkeypatch.setitem(sys.modules, "flygym", types.ModuleType("flygym"))
+    monkeypatch.setattr(adapter, "enumerate_live_actuators", lambda: records)
+
+    def initialize(**kwargs):
+        calls.append(kwargs)
+        return {"pre_intervention_state": {"malecns_state": "real-digest"},
+            "telemetry_initialized": True, "admission_vector_length": 42,
+            "neural_steps": 0, "physics_steps": 0}
+
+    monkeypatch.setattr(adapter, "_run_live_condition", initialize)
+    report = adapter.run_preflight(protocol, tmp_path / "preflight.json")
+    assert [call["condition"] for call in calls] == list(m6c.CONDITIONS)
+    assert all(call["initialize_only"] is True for call in calls)
+    assert report["checks"]["canonical_snapshot_helper"]
+    assert report["checks"]["zero_neural_steps"]
+    assert report["checks"]["zero_physics_steps"]
+
+
+def test_state_access_initialization_failure_is_never_complete(protocol, tmp_path, monkeypatch):
+    records = [{"index": row["action_index"], "name": row["actuator"]}
+               for row in protocol["actuator_admission_table"]]
+    monkeypatch.setattr(adapter, "enumerate_live_actuators", lambda: records)
+
+    def fail(**kwargs):
+        raise AttributeError("'MaleCNSBrain' object has no attribute 'u'")
+
+    output = tmp_path / "result.json"
+    with pytest.raises(AttributeError):
+        adapter.run_canonical(protocol, output, fail)
+    assert not output.exists()
+    attempt = json.loads((tmp_path / "result.progress.json").read_text())
+    assert attempt["run_status"] == "ABORTED_IMPLEMENTATION_STATE_ACCESS_FAILURE"
+    assert attempt["canonical_result_complete"] is False
+    assert attempt["completed_condition_count"] == 0
+    assert attempt["neural_steps_before_failure"] == 0
+    assert attempt["physics_steps_before_failure"] == 0
+    assert attempt["motor_intervention_occurred"] is False

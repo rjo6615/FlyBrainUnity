@@ -14,17 +14,39 @@ from typing import Any, Mapping, Sequence
 
 
 def _digest(brain: Any) -> str:
+    """Return the validated MaleCNS state digest used by M5/M6."""
+    from .tactile_motor_loop_audit import _state_tuple
+    return _state_tuple(brain)
+
+
+def _pre_intervention_snapshot(*, brain: Any, physics: Any, commands: Any,
+                               encoders: Mapping[str, Any], channels: Mapping[str, Any],
+                               rngs: Mapping[str, Any], cached_table: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
+    """Snapshot real runtime state before any sensory, neural, or physics step."""
     import numpy as np
-    digest = hashlib.sha256()
-    for name in ("v", "u", "spike_counts", "last_spike_step"):
-        digest.update(np.asarray(getattr(brain, name)).tobytes())
-    return digest.hexdigest()
+    from .six_tibia import LEG_ORDER
+
+    return {"qpos": np.asarray(physics.data.qpos).tolist(),
+        "qvel": np.asarray(physics.data.qvel).tolist(), "action": np.asarray(commands).tolist(),
+        "ctrl": np.asarray(physics.data.ctrl).tolist(),
+        "sensory_encoder_state": {leg: {"actuator": encoders[leg].pathway.actuator_name,
+            "sensor_body_ids": list(encoders[leg].pathway.sensor.body_ids)} for leg in LEG_ORDER},
+        "malecns_state": _digest(brain), "spike_counts": np.asarray(brain.spike_counts).tolist(),
+        "observer_state": {name: {"filtered_hz": x["observer"].filtered_hz.tolist(),
+            "last_counts": x["observer"].last_counts.tolist()} for name, x in channels.items()},
+        "decoder_state": {name: x["pipeline"].previous_physical_target for name, x in channels.items()},
+        "rng_state": {leg: hashlib.sha256(repr(rngs[leg].bit_generator.state).encode()).hexdigest()
+                      for leg in LEG_ORDER},
+        "baseline_action": np.asarray(commands).tolist(),
+        "admitted_actuator_metadata": [(x["actuator"], x["action_index"], x["coordinate_sign"])
+                                         for x in cached_table if x["neural_motor_admission"]]}
 
 
 def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_number: int,
                   progress: Any, cached_admission_assertion: Any,
                   cached_records: Sequence[Mapping[str, Any]],
-                  cached_table: Sequence[Mapping[str, Any]]) -> Mapping[str, Any]:
+                  cached_table: Sequence[Mapping[str, Any]],
+                  initialize_only: bool = False) -> Mapping[str, Any]:
     """Create, run, close, and summarize one fresh 500-ms runtime."""
     import numpy as np
     import flygym
@@ -86,19 +108,21 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
         commands = _joint_positions(obs); pending = set(); stride = int(round(NEURAL_DT_MS / (DEFAULT_TIMESTEP_S * 1000)))
         final_step = int(round(DURATION_MS / (DEFAULT_TIMESTEP_S * 1000))); contributions = dict.fromkeys(admitted_names, 0.)
         trajectory = []; aggregate_spikes = 0; instability = False; unauthorized = 0
-        pre_intervention_state = {"qpos": np.asarray(physics.data.qpos).tolist(),
-            "qvel": np.asarray(physics.data.qvel).tolist(), "action": np.asarray(commands).tolist(),
-            "ctrl": np.asarray(physics.data.ctrl).tolist(),
-            "sensory_encoder_state": {leg: {"actuator": encoders[leg].pathway.actuator_name,
-                "sensor_body_ids": list(encoders[leg].pathway.sensor.body_ids)} for leg in LEG_ORDER},
-            "malecns_state": _digest(brain), "spike_counts": np.asarray(brain.spike_counts).tolist(),
-            "observer_state": {name: {"filtered_hz": x["observer"].filtered_hz.tolist(),
-                "last_counts": x["observer"].last_counts.tolist()} for name, x in channels.items()},
-            "decoder_state": {name: x["pipeline"].previous_physical_target for name, x in channels.items()},
-            "rng_state": {leg: hashlib.sha256(repr(rngs[leg].bit_generator.state).encode()).hexdigest() for leg in LEG_ORDER},
-            "baseline_action": np.asarray(commands).tolist(),
-            "admitted_actuator_metadata": [(x["actuator"], x["action_index"], x["coordinate_sign"])
-                                             for x in cached_table if x["neural_motor_admission"]]}
+        pre_intervention_state = _pre_intervention_snapshot(brain=brain, physics=physics,
+            commands=commands, encoders=encoders, channels=channels, rngs=rngs,
+            cached_table=cached_table)
+        # Construct and validate the exact admitted command shape during both
+        # preflight and science initialization.  This is deliberately before
+        # every sensory, decoder, neural, and physics transition.
+        initialization_vector = [0.] * 42
+        cached_admission_assertion(initialization_vector, cached_table)
+        if initialize_only:
+            return {"pre_intervention_state": pre_intervention_state,
+                "telemetry_initialized": isinstance(trajectory, list),
+                "admission_vector_length": len(initialization_vector),
+                "neural_steps": 0, "physics_steps": 0,
+                "sensory_updates": 0, "decoder_updates": 0,
+                "motor_interventions": 0}
         phase["initialization"] = time.perf_counter() - started
         condition_started = time.perf_counter()
         for step in range(final_step + 1):

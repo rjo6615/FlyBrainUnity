@@ -4,17 +4,26 @@
   "checks": {
     "action_indices": true,
     "actuator_order_42": true,
+    "admission_vector_construction": false,
     "canonical_artifact_not_run": true,
+    "canonical_snapshot_helper": false,
     "cleanup": true,
     "condition_plan": true,
     "coordinate_signs": true,
     "dependencies": true,
     "exact_11_admissions": true,
     "fresh_runtime_construction": true,
+    "observer_decoder_snapshot": false,
     "per_step_environment_construction": false,
     "progress_instrumentation": true,
     "provenance": true,
-    "sensory_provenance": true
+    "rng_snapshot": false,
+    "sensory_provenance": true,
+    "sensory_snapshot": false,
+    "state_digest_generation": false,
+    "telemetry_initialization": false,
+    "zero_neural_steps": true,
+    "zero_physics_steps": true
   },
   "duration_ms": 500,
   "environment_construction_count": 4,
@@ -27,7 +36,8 @@
     "hidden_locomotion_assistance_executed": false,
     "method": "allowlisted M6C execution-path call graph; historical/unused modules excluded"
   },
-  "run_status": "PASS",
+  "invalidation_reason": "Historical preflight did not invoke canonical condition initialization or its neural-state snapshot helper; the subsequent run aborted on nonexistent MaleCNSBrain.u before stepping.",
+  "run_status": "INVALIDATED_INCOMPLETE_COVERAGE",
   "schema": "M6C-PREFLIGHT.0",
   "scientific_run_executed": false,
   "seed": 1

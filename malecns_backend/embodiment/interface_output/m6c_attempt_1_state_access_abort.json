@@ -1,0 +1,19 @@
+{
+  "active_condition": "INTEGRATED_NEURAL_MOTOR_ENABLED",
+  "artifact_kind": "NON_SCIENTIFIC_ATTEMPT_PROVENANCE",
+  "canonical_classification": null,
+  "canonical_result_complete": false,
+  "command": ".\\fly-brain-interactive\\.venv\\Scripts\\python.exe -m malecns_backend.embodiment.integrated_whole_leg_readiness --m6b-sha256 02a4bbb7ec79ccf0967e9b8499c5a68d0ed8133a56688592ba13cfb2785285a2 --run-windows",
+  "completed_condition_count": 0,
+  "exception": "AttributeError: 'MaleCNSBrain' object has no attribute 'u'",
+  "failure": "M6C attempted to digest a nonexistent MaleCNSBrain.u field during pre-intervention state snapshot initialization.",
+  "motor_intervention_occurred": false,
+  "neural_steps_before_failure": 0,
+  "physics_steps_before_failure": 0,
+  "run_status": "ABORTED_IMPLEMENTATION_STATE_ACCESS_FAILURE",
+  "schema": "M6C-ATTEMPT.0",
+  "scientific_comparison_completed": false,
+  "scientific_run_completed": false,
+  "timestamp": null,
+  "timestamp_note": "The observed invocation timestamp was not available."
+}
