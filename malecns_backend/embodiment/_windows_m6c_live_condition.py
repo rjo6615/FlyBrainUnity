@@ -49,7 +49,10 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
                   initialize_only: bool = False, duration_ms: float | None = None,
                   condition_names: Sequence[str] | None = None,
                   contribution_gate: Any | None = None,
-                  compact_telemetry: bool = False) -> Mapping[str, Any]:
+                  compact_telemetry: bool = False,
+                  runtime_factory: Any | None = None,
+                  proprioception_only: bool = False,
+                  fixed_initial_baseline: bool = False) -> Mapping[str, Any]:
     """Create, run, close, and summarize one fresh frozen runtime.
 
     The optional arguments are used by M7 to reuse this exact M6C embodiment.
@@ -79,7 +82,7 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
     run_duration_ms = float(DURATION_MS if duration_ms is None else duration_ms)
     gate = contribution_gate or gate_contributions
     started = time.perf_counter(); data = load_malecns(); tibia = load_six_tibia_interfaces()
-    sim, physics, obs, _, _ = _make_live(flygym, tibia)
+    sim, physics, obs, _, _ = (runtime_factory or _make_live)(flygym, tibia)
     phase = {"initialization": 0., "neural_stepping": 0., "mujoco_stepping": 0.,
         "sensory": 0., "observer_decoder": 0., "telemetry_hash": 0.,
         "admission_assertion": 0., "reduction_analysis": 0.}
@@ -117,7 +120,8 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
                 "first_admitted_contribution_ms": None, "saturation": False, "slew_limited": False}
         tactile = TactileContactEncoder(config=TactileContactConfig(seed=SEED))
         encoders = {leg: SensoryEncoder(tibia[leg]) for leg in LEG_ORDER}; rngs = proprio_rngs(SEED)
-        commands = _joint_positions(obs); pending = set(); stride = int(round(NEURAL_DT_MS / (DEFAULT_TIMESTEP_S * 1000)))
+        commands = _joint_positions(obs); baseline_commands = commands.copy()
+        pending = set(); stride = int(round(NEURAL_DT_MS / (DEFAULT_TIMESTEP_S * 1000)))
         final_step = int(round(run_duration_ms / (DEFAULT_TIMESTEP_S * 1000))); contributions = dict.fromkeys(admitted_names, 0.)
         trajectory = []
         aggregate_spikes = 0; instability = False; unauthorized = 0
@@ -130,7 +134,8 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
         initialization_vector = [0.] * 42
         cached_admission_assertion(initialization_vector, cached_table)
         model = physics.model
-        initial_audit = {"initial_pose_source": "FlyGym default pose (no pose override)",
+        initial_audit = {"initial_pose_source": ("FlyGym default pose (no pose override)" if runtime_factory is None
+                                                else "caller-supplied frozen physical runtime"),
                 "body_position": np.asarray(physics.data.qpos[:3]).tolist(),
                 "body_orientation_quaternion": np.asarray(physics.data.qpos[3:7]).tolist(),
                 "joint_configuration": np.asarray(commands).tolist(),
@@ -172,8 +177,10 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
         for step in range(final_step + 1):
             now_ms = float(physics.data.time * 1000); measured = _joint_positions(obs)
             sensory_started = time.perf_counter()
-            contact = tactile.encode(_forces(obs), now_ms, DEFAULT_TIMESTEP_S * 1000)["LM"]
-            pending.update(map(int, contact.generated_dense_indices)); delivered = ()
+            if not proprioception_only:
+                contact = tactile.encode(_forces(obs), now_ms, DEFAULT_TIMESTEP_S * 1000)["LM"]
+                pending.update(map(int, contact.generated_dense_indices))
+            delivered = ()
             phase["sensory"] += time.perf_counter() - sensory_started
             if step and step % stride == 0:
                 neural_started = time.perf_counter(); brain.clear_external_drive(); candidates = set(pending); pending.clear()
@@ -200,7 +207,9 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
                 contributions = gate(raw_values, condition, admitted_names)
                 neural_vector = [0.] * 42
                 for name, channel in channels.items():
-                    result = channel["pipeline"].update(float(measured[channel["index"]]), contributions[name], NEURAL_DT_MS / 1000)
+                    baseline = (baseline_commands[channel["index"]] if fixed_initial_baseline
+                                else measured[channel["index"]])
+                    result = channel["pipeline"].update(float(baseline), contributions[name], NEURAL_DT_MS / 1000)
                     commands[channel["index"]] = result.actuator_command; neural_vector[channel["index"]] = result.admitted_neural_contribution
                     channel["peak_admitted"] = max(channel["peak_admitted"], abs(result.admitted_neural_contribution))
                     channel["saturation"] |= result.range_clamped_target != result.candidate_target
