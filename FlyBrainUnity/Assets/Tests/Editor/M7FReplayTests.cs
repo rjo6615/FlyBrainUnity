@@ -3,6 +3,7 @@ using FlyBrain.M7FReplay;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.TestTools;
 
 namespace FlyBrain.Tests
 {
@@ -64,10 +65,13 @@ namespace FlyBrain.Tests
             try
             {
                 var builder = go.AddComponent<M7FScientificFlyBuilder>(); builder.Rebuild(); var rig = go.GetComponent<M7FFlyRig>();
-                Object.DestroyImmediate(rig.Joints[0].transform.gameObject); rig.AutoBindCanonicalJoints();
+                Object.DestroyImmediate(rig.Joints[0].transform.gameObject);
+                LogAssert.Expect(LogType.Error, "M7F REQUIRED JOINT MISSING: joint_LFCoxa");
+                rig.AutoBindCanonicalJoints();
                 StringAssert.Contains("MISSING", rig.LastMappingError);
                 builder.Rebuild(); rig = go.GetComponent<M7FFlyRig>();
                 var duplicate = new GameObject(M7FScientificFlyRigDefinition.CanonicalNames[0]); duplicate.transform.SetParent(go.transform);
+                LogAssert.Expect(LogType.Error, "M7F AMBIGUOUS RECURSIVE JOINT NAME: joint_LFCoxa");
                 rig.AutoBindCanonicalJoints(); StringAssert.Contains("AMBIGUOUS", rig.LastMappingError);
             }
             finally { Object.DestroyImmediate(go); }
@@ -80,16 +84,33 @@ namespace FlyBrain.Tests
         public void AxialVectorConversionIncludesReflectionSign(string name, float x, float y, float z)
         { Assert.That(M7FScientificFlyRigDefinition.UnityAxis(name), Is.EqualTo(new Vector3(x, y, z))); }
 
-        [Test] public void RootQuaternionBasisConversionIsFiniteOrthonormalAndPreservesIdentity()
+        [Test] public void RootQuaternionBasisConversionPreservesMappedForwardAndUp()
         {
-            var cases = new[] { Quaternion.identity, Quaternion.AngleAxis(90, Vector3.right), Quaternion.AngleAxis(90, Vector3.up), Quaternion.AngleAxis(90, Vector3.forward), Quaternion.Normalize(new Quaternion(.2f, -.3f, .4f, .8f)) };
+            var cases = new[] {
+                Quaternion.identity,
+                Quaternion.AngleAxis(90, Vector3.right), Quaternion.AngleAxis(-90, Vector3.right),
+                Quaternion.AngleAxis(90, Vector3.up), Quaternion.AngleAxis(-90, Vector3.up),
+                Quaternion.AngleAxis(90, Vector3.forward), Quaternion.AngleAxis(-90, Vector3.forward),
+                Quaternion.Normalize(new Quaternion(.2f, -.3f, .4f, .8f))
+            };
             foreach (var source in cases)
             {
-                var q = M7FCoordinates.SourceQuaternionToUnity(source); var right = q * Vector3.right; var up = q * Vector3.up; var forward = q * Vector3.forward;
-                Assert.That(M7FCoordinates.IsFinite(q), Is.True); Assert.That(Mathf.Abs(Vector3.Dot(right, up)), Is.LessThan(1e-5f));
-                Assert.That(Mathf.Abs(Vector3.Dot(up, forward)), Is.LessThan(1e-5f)); Assert.That(Vector3.Dot(Vector3.Cross(right, up), forward), Is.GreaterThan(.9999f));
+                var expectedForward = M7FCoordinates.SourcePositionToUnity(source * Vector3.forward);
+                var expectedUp = M7FCoordinates.SourcePositionToUnity(source * Vector3.up);
+                var unityQ = M7FCoordinates.SourceQuaternionToUnity(source);
+                var right = unityQ * Vector3.right; var up = unityQ * Vector3.up; var forward = unityQ * Vector3.forward;
+                var magnitudeSquared = unityQ.x * unityQ.x + unityQ.y * unityQ.y + unityQ.z * unityQ.z + unityQ.w * unityQ.w;
+
+                Assert.That(M7FCoordinates.IsFinite(unityQ), Is.True);
+                Assert.That(magnitudeSquared, Is.EqualTo(1f).Within(1e-5f));
+                Assert.That((forward - expectedForward).magnitude, Is.LessThan(1e-5f));
+                Assert.That((up - expectedUp).magnitude, Is.LessThan(1e-5f));
+                Assert.That(forward.magnitude, Is.EqualTo(1f).Within(1e-5f));
+                Assert.That(up.magnitude, Is.EqualTo(1f).Within(1e-5f));
+                Assert.That(Mathf.Abs(Vector3.Dot(up, forward)), Is.LessThan(1e-5f));
+                Assert.That(Vector3.Dot(Vector3.Cross(right, up), forward), Is.GreaterThan(.9999f));
+                Assert.That(Mathf.Abs(Quaternion.Dot(unityQ, M7FCoordinates.SourceQuaternionToUnity(source))), Is.EqualTo(1f).Within(1e-6f));
             }
-            Assert.That(Quaternion.Angle(Quaternion.identity, M7FCoordinates.SourceQuaternionToUnity(Quaternion.identity)), Is.LessThan(1e-4f));
         }
 
         [Test] public void JointApplicationIsAbsoluteSoDirectSeekEqualsNonSequentialSeek()
