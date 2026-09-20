@@ -71,6 +71,8 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
     from .tactile_motor_loop_audit import _forces, _joint_positions, _make_live
     from .tactile_motor_matched_control import MatchedControlPipeline
     from .tactile_targeted_contact_calibration import DEFAULT_TIMESTEP_S
+    from .m7_telemetry import (CompactTelemetry, build_schema, roundtrip_minimal,
+                               sensory_channel_peaks)
 
     allowed_conditions = tuple(condition_names or CONDITIONS)
     if condition not in allowed_conditions: raise ValueError("unknown canonical condition")
@@ -117,10 +119,7 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
         encoders = {leg: SensoryEncoder(tibia[leg]) for leg in LEG_ORDER}; rngs = proprio_rngs(SEED)
         commands = _joint_positions(obs); pending = set(); stride = int(round(NEURAL_DT_MS / (DEFAULT_TIMESTEP_S * 1000)))
         final_step = int(round(run_duration_ms / (DEFAULT_TIMESTEP_S * 1000))); contributions = dict.fromkeys(admitted_names, 0.)
-        trajectory = []; compact = {key: [] for key in ("time_ms", "qpos", "qvel", "joint_position", "action", "ctrl",
-            "body_position", "body_orientation", "contact_forces", "finite")}
-        neural = {key: [] for key in ("time_ms", "sensory_encoded", "delivered_drive_count",
-            "aggregate_spikes", "observer_outputs", "decoder_outputs", "admitted_contributions")}
+        trajectory = []
         aggregate_spikes = 0; instability = False; unauthorized = 0
         pre_intervention_state = _pre_intervention_snapshot(brain=brain, physics=physics,
             commands=commands, encoders=encoders, channels=channels, rngs=rngs,
@@ -142,10 +141,28 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
                 "adhesion_enabled": False, "adhesion_command": [0.0] * 6,
                 "adhesion_policy": "constant zero baseline; no schedule or controller",
                 "control": "position", "locomotion_or_reference_controller": False}
+        telemetry = None; schema_report = {}
+        if compact_telemetry:
+            telemetry_schema = build_schema(qpos_shape=np.asarray(physics.data.qpos).shape,
+                qvel_shape=np.asarray(physics.data.qvel).shape, ctrl_shape=np.asarray(physics.data.ctrl).shape,
+                contact_forces_shape=np.asarray(_forces(obs)).shape,
+                joint_shape=np.asarray(commands).shape, action_shape=np.asarray(commands).shape)
+            # Preflight uses a one-sample payload; science allocates the frozen
+            # full capacities. Both paths validate the identical field schema.
+            roundtrip_minimal(telemetry_schema)
+            telemetry = CompactTelemetry(telemetry_schema,
+                physics_capacity=(1 if initialize_only else final_step + 1),
+                neural_capacity=(1 if initialize_only else final_step // stride))
+            schema_report = {name: {"sample_shape": list(field.sample_shape),
+                "dtype": str(field.dtype), "cadence": field.cadence, "meaning": field.meaning}
+                for name, field in telemetry_schema.items()}
         if initialize_only:
             return {"pre_intervention_state": pre_intervention_state,
                 "initial_physical_state_audit": initial_audit,
                 "telemetry_initialized": isinstance(trajectory, list),
+                "telemetry_schema": schema_report,
+                "telemetry_npz_roundtrip": bool(compact_telemetry),
+                "telemetry_object_dtype": False if compact_telemetry else None,
                 "admission_vector_length": len(initialization_vector),
                 "neural_steps": 0, "physics_steps": 0,
                 "sensory_updates": 0, "decoder_updates": 0,
@@ -193,22 +210,25 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
                 phase["admission_assertion"] += time.perf_counter() - assert_started
                 phase["observer_decoder"] += time.perf_counter() - decode_started
                 if compact_telemetry:
-                    neural["time_ms"].append(now_ms)
-                    neural["sensory_encoded"].append([sensory_values[leg] for leg in LEG_ORDER])
-                    neural["delivered_drive_count"].append(len(delivered))
-                    neural["aggregate_spikes"].append(aggregate_spikes)
-                    neural["observer_outputs"].append([channels[n]["peak_observer"] for n in admitted_names])
-                    neural["decoder_outputs"].append([raw_values[n] for n in admitted_names])
-                    neural["admitted_contributions"].append([contributions[n] for n in admitted_names])
+                    telemetry.record("neural", {
+                        "neural_time_ms": now_ms,
+                        "neural_sensory_encoded": sensory_channel_peaks(
+                            [sensory_values[leg] for leg in LEG_ORDER]),
+                        "neural_delivered_drive_count": len(delivered),
+                        "neural_aggregate_spikes": aggregate_spikes,
+                        "neural_observer_outputs": [channels[n]["peak_observer"] for n in admitted_names],
+                        "neural_decoder_outputs": [raw_values[n] for n in admitted_names],
+                        "neural_admitted_contributions": [contributions[n] for n in admitted_names],
+                    }, now_ms)
             telemetry_started = time.perf_counter(); arrays = (physics.data.qpos, physics.data.qvel, physics.data.ctrl)
             finite = all(np.all(np.isfinite(a)) for a in arrays); instability |= not finite
             if compact_telemetry:
-                compact["time_ms"].append(now_ms); compact["qpos"].append(np.asarray(physics.data.qpos).copy())
-                compact["qvel"].append(np.asarray(physics.data.qvel).copy()); compact["joint_position"].append(np.asarray(measured).copy())
-                compact["action"].append(np.asarray(commands).copy())
-                compact["ctrl"].append(np.asarray(physics.data.ctrl).copy()); compact["body_position"].append(np.asarray(physics.data.qpos[:3]).copy())
-                compact["body_orientation"].append(np.asarray(physics.data.qpos[3:7]).copy())
-                compact["contact_forces"].append(np.asarray(_forces(obs)).copy()); compact["finite"].append(finite)
+                telemetry.record("physics", {"physics_time_ms": now_ms,
+                    "physics_qpos": physics.data.qpos, "physics_qvel": physics.data.qvel,
+                    "physics_joint_position": measured, "physics_action": commands,
+                    "physics_ctrl": physics.data.ctrl, "physics_body_position": physics.data.qpos[:3],
+                    "physics_body_orientation": physics.data.qpos[3:7],
+                    "physics_contact_forces": _forces(obs), "physics_finite": finite}, now_ms)
             else:
                 trajectory.append({"time_ms": now_ms, "qpos": np.asarray(physics.data.qpos).tolist(),
                 "qvel": np.asarray(physics.data.qvel).tolist(), "action": np.asarray(commands).tolist(),
@@ -237,15 +257,15 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
             summaries.append({"actuator": name, "status": status, **{k: v for k, v in x.items()
                 if k in ("spikes", "peak_observer", "peak_raw", "peak_admitted", "first_activity_ms",
                          "first_decoder_output_ms", "first_admitted_contribution_ms", "saturation", "slew_limited")}})
-        raw_arrays = ({**{"physics_" + key: np.asarray(value) for key, value in compact.items()},
-            **{"neural_" + key: np.asarray(value) for key, value in neural.items()}} if compact_telemetry else {})
+        raw_arrays = telemetry.export() if compact_telemetry else {}
         return {"pre_intervention_equivalence": True, "pre_intervention_state": pre_intervention_state,
             "initial_physical_state_audit": initial_audit,
             "local_milestones": local,
             "unauthorized_contribution_count": unauthorized, "physics_instability": instability,
             "per_channel": summaries, "trajectory": trajectory, "raw_arrays": raw_arrays,
-            "physics_steps": final_step if not instability else len(compact["time_ms"]) - 1,
-            "neural_steps": len(neural["time_ms"]) if compact_telemetry else final_step // stride,
+            "physics_steps": final_step if not instability else (
+                telemetry.counts["physics"] - 1 if compact_telemetry else len(trajectory) - 1),
+            "neural_steps": telemetry.counts["neural"] if compact_telemetry else final_step // stride,
             "feedback_milestones": {}, "performance": phase}
     finally:
         close = getattr(sim, "close", None)
