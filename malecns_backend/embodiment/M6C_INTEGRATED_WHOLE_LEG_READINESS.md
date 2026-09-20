@@ -120,11 +120,31 @@ spontaneous-locomotion experiment may be attempted; it predicts no movement.
 
 ## Commands (PowerShell, repository root)
 
-Non-scientific Windows preflight, after installing the reviewed completed M6B
-artifact and replacing `<REVIEWED_M6B_SHA256>`:
+### Rematerialize and verify the Tier-A artifact
+
+After pulling the provenance repair, an existing Windows working tree may
+still contain the earlier CRLF materialization. From the repository root,
+rematerialize only the immutable Tier-A artifact from the committed bytes and
+verify its authoritative raw-byte hash:
 
 ```powershell
-.\fly-brain-interactive\.venv\Scripts\python.exe -m malecns_backend.embodiment.integrated_whole_leg_readiness --m6b-sha256 <REVIEWED_M6B_SHA256> --preflight-windows
+git restore --source=HEAD --worktree -- .\six_tibia_causal_result.json
+(Get-FileHash .\six_tibia_causal_result.json -Algorithm SHA256).Hash.ToLower()
+```
+
+The expected result is
+`18aaafd51360e0a60b56f98c0b93e156e4cba2a27efd653111b04a5b8c329271`.
+The restore is deliberately path-limited: it neither regenerates scientific
+data nor modifies or discards changes to any other path. The raw-byte hash is
+authoritative; parsing the JSON is only a secondary semantic check.
+
+### Preflight
+
+Non-scientific Windows preflight, after installing the reviewed completed M6B
+artifact, is:
+
+```powershell
+.\fly-brain-interactive\.venv\Scripts\python.exe -m malecns_backend.embodiment.integrated_whole_leg_readiness --m6b-sha256 02a4bbb7ec79ccf0967e9b8499c5a68d0ed8133a56688592ba13cfb2785285a2 --preflight-windows
 ```
 
 The terminal success line is `M6C WINDOWS PREFLIGHT PASS`. Preflight may inspect
