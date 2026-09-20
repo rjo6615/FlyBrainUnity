@@ -67,9 +67,8 @@ def _accumulation_tolerance(expected: np.ndarray, dt_ms: float) -> np.ndarray:
 
 
 def _validate_time_vector(time: np.ndarray, *, sample_count: int, dt_ms: float,
-                          first_step: int, label: str,
-                          accumulated_tol: np.ndarray | None = None) -> np.ndarray:
-    """Validate the count, representation, origin, endpoint, and cadence."""
+                          first_step: int, label: str) -> np.ndarray:
+    """Validate a primitive clock formed by repeated binary64 advancement."""
     if time.dtype != np.dtype("float64"):
         raise EvidenceError(f"{label} time dtype mismatch")
     if time.shape != (sample_count,):
@@ -83,10 +82,7 @@ def _validate_time_vector(time: np.ndarray, *, sample_count: int, dt_ms: float,
     # post-update and therefore starts after the first 0.5-ms update (step=1).
     steps = np.arange(first_step, first_step + sample_count, dtype=np.float64)
     expected = steps * dt_ms
-    if accumulated_tol is None:
-        accumulated_tol = _accumulation_tolerance(expected, dt_ms)
-    elif accumulated_tol.shape != time.shape:
-        raise EvidenceError(f"{label} accumulated-tolerance shape mismatch")
+    accumulated_tol = _accumulation_tolerance(expected, dt_ms)
     if abs(time[0] - expected[0]) > accumulated_tol[0]:
         raise EvidenceError(f"{label} time origin mismatch")
     if abs(time[-1] - expected[-1]) > accumulated_tol[-1]:
@@ -102,6 +98,36 @@ def _validate_time_vector(time: np.ndarray, *, sample_count: int, dt_ms: float,
     if np.any(np.abs(np.diff(time) - dt_ms) > cadence_tol):
         raise EvidenceError(f"{label} cadence mismatch")
     return accumulated_tol
+
+
+def _validate_neural_time(time: np.ndarray, *, sample_count: int,
+                          sampled_physics: np.ndarray,
+                          endpoint_tol: np.ndarray, label: str) -> None:
+    """Validate neural timestamp semantics without inventing a neural clock.
+
+    Cadence and accumulated drift are deliberately absent here: the exact
+    physics-clock subsampling invariant in ``validate_evidence`` establishes
+    both more strongly than an independent 0.5-ms accumulator could.
+    """
+    if time.dtype != np.dtype("float64"):
+        raise EvidenceError(f"{label} time dtype mismatch")
+    if time.shape != (sample_count,):
+        raise EvidenceError(f"{label} time sample-count mismatch")
+    if not np.all(np.isfinite(time)):
+        raise EvidenceError(f"{label} time contains NaN/Inf")
+    if not np.all(np.diff(time) > 0):
+        raise EvidenceError(f"{label} time is not strictly increasing")
+    # This exact source relationship, rather than nominal 0.5-ms arithmetic,
+    # is the primary neural timing validation.
+    if not np.array_equal(time, sampled_physics):
+        raise EvidenceError(f"{label} clock provenance mismatch")
+    if endpoint_tol.shape != time.shape:
+        raise EvidenceError(f"{label} endpoint-tolerance shape mismatch")
+    if abs(time[0] - NEURAL_DT_MS) > endpoint_tol[0]:
+        raise EvidenceError(f"{label} time origin mismatch")
+    nominal_endpoint = sample_count * NEURAL_DT_MS
+    if abs(time[-1] - nominal_endpoint) > endpoint_tol[-1]:
+        raise EvidenceError(f"{label} time endpoint mismatch")
 
 
 def _sha(path: Path) -> str:
@@ -201,17 +227,15 @@ def validate_evidence(raw: Path, manifest_path: Path, summary_path: Path,
         if neural_stride * PHYSICS_DT_MS != NEURAL_DT_MS:
             raise EvidenceError("neural/physics cadence ratio is not integral")
         sampled_physics = pt[neural_stride::neural_stride]
-        if sampled_physics.shape != nt.shape:
-            raise EvidenceError(f"{condition} neural/physics sample-count mismatch")
+        _validate_neural_time(
+            nt, sample_count=n_count,
+            sampled_physics=sampled_physics,
+            endpoint_tol=physics_tol[neural_stride::neural_stride],
+            label=f"{condition} neural")
         # The frozen recorder reads MuJoCo's clock once at the start of each
         # loop iteration.  On every fifth post-transition iteration that same
         # scalar is written first to neural telemetry and then to physics
         # telemetry.  It is not an independently accumulated 0.5-ms clock.
-        if not np.array_equal(nt, sampled_physics):
-            raise EvidenceError(f"{condition} neural clock provenance mismatch")
-        _validate_time_vector(nt, sample_count=n_count, dt_ms=NEURAL_DT_MS,
-                              first_step=1, label=f"{condition} neural",
-                              accumulated_tol=physics_tol[neural_stride::neural_stride])
         for field in PHYSICS_FIELDS:
             if arrays[f"{condition}__{field}"].shape[0] != len(pt):
                 raise EvidenceError(f"physics cadence mismatch: {field}")
@@ -234,7 +258,7 @@ def validate_evidence(raw: Path, manifest_path: Path, summary_path: Path,
                   "time_semantics": {
                       "physics": "initial state plus post-transition states; t[i] = i * 0.1 ms",
                       "neural": "post-neural-update states sampled exactly from physics_time_ms[5::5]; t[i] is nominally (i + 1) * 0.5 ms"},
-                  "time_tolerance_policy": "physics uses cumulative half-ULP per repeated 0.1-ms float64 addition plus one reference ULP; neural uses the corresponding sampled physics bounds and must exactly equal physics_time_ms[5::5]; cadence is bounded by adjacent-value ULPs",
+                  "time_tolerance_policy": "physics uses cumulative half-ULP per repeated 0.1-ms float64 advancement plus one reference ULP and adjacent-value cadence ULPs; neural has only nominal boundary checks using sampled physics bounds and must exactly equal physics_time_ms[5::5]",
                   "cross_condition_clock_comparison": "exact float64 sample equality",
                   "cross_condition_clocks_equivalent": True}
     return arrays, manifest, summary, validation

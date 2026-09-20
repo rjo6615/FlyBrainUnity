@@ -67,12 +67,13 @@ def replace_arrays(paths, mutate):
 
 
 def accumulated_clock(count, dt, first_step):
-    """Model the runtime clock: one binary64 addition for every transition."""
+    """Model physics.data.time in seconds, converted to ms when recorded."""
     result = np.empty(count, dtype=np.float64)
-    current = np.float64(first_step * dt)
+    dt_seconds = np.float64(dt / 1000)
+    current = np.float64(first_step) * dt_seconds
     for index in range(count):
-        result[index] = current
-        current = np.float64(current + dt)
+        result[index] = current * 1000
+        current = np.float64(current + dt_seconds)
     return result
 
 
@@ -81,15 +82,18 @@ def test_timestamp_semantics_and_realistic_accumulated_drift():
     neural = physics[5::5]
     physics_tol = post._validate_time_vector(physics, sample_count=50_001, dt_ms=.1,
                                              first_step=0, label="physics")
-    post._validate_time_vector(neural, sample_count=10_000, dt_ms=.5,
-                               first_step=1, label="neural",
-                               accumulated_tol=physics_tol[5::5])
+    post._validate_neural_time(neural, sample_count=10_000,
+                               sampled_physics=physics[5::5],
+                               endpoint_tol=physics_tol[5::5], label="neural")
     assert physics.shape == (50_001,)  # initial state + 50,000 post-transition states
     assert neural.shape == (10_000,)   # 10,000 post-neural-update states; no t=0 sample
     assert neural[0] == .5 and neural[-1] == physics[-1]
     assert np.array_equal(neural, physics[5::5])
+    assert np.max(np.abs(np.diff(physics) - .1)) == pytest.approx(5.457023721788801e-13)
+    assert np.max(np.abs(np.diff(neural) - .5)) == pytest.approx(1.8189894035458565e-12)
     ideal_neural = (np.arange(post.NEURAL_SAMPLE_COUNT, dtype=np.float64) + 1) * .5
     assert np.max(np.abs(neural - ideal_neural)) == pytest.approx(4.016328603029251e-9)
+    assert physics[-1] == pytest.approx(5000.000000001686, rel=0, abs=1e-12)
 
 
 def test_canonical_observed_physics_drift_is_accepted():
@@ -107,7 +111,6 @@ def test_canonical_observed_physics_drift_is_accepted():
     ("physics", lambda x: np.concatenate((x[:3], x[2:3], x[4:])), "strictly increasing"),
     ("physics", lambda x: np.concatenate((x[:3], x[3:4] - .2, x[4:])), "strictly increasing"),
     ("physics", lambda x: np.arange(x.size, dtype=np.float64) * .10001, "endpoint|accumulated|cadence"),
-    ("neural", lambda x: np.concatenate((x[:3], [x[3] + .01], x[4:])), "accumulated|cadence"),
     ("neural", lambda x: np.concatenate((x[:3], x[2:3], x[4:])), "strictly increasing"),
     ("neural", lambda x: x[::-1], "strictly increasing"),
     ("physics", lambda x: np.concatenate((x[:-1], [x[-1] + .01])), "endpoint"),
@@ -118,8 +121,15 @@ def test_bad_timestamp_vectors_are_rejected(clock, mutation, match):
     count, dt, first = ((21, .1, 0) if clock == "physics" else (5, .5, 1))
     value = np.arange(first, first + count, dtype=np.float64) * dt
     with pytest.raises(post.EvidenceError, match=match):
-        post._validate_time_vector(mutation(value), sample_count=count, dt_ms=dt,
-                                   first_step=first, label=clock)
+        if clock == "physics":
+            post._validate_time_vector(mutation(value), sample_count=count, dt_ms=dt,
+                                       first_step=first, label=clock)
+        else:
+            tolerance = post._accumulation_tolerance(value, dt)
+            changed = mutation(value)
+            post._validate_neural_time(changed, sample_count=count,
+                                       sampled_physics=changed,
+                                       endpoint_tol=tolerance, label=clock)
 
 
 def test_mismatched_condition_clocks_rejected(tmp_path):
@@ -146,6 +156,24 @@ def test_neural_clock_not_exact_physics_subset_is_rejected(tmp_path, mutation):
                            mutation(values[f"{enabled}__neural_time_ms"])))
     with pytest.raises(post.EvidenceError, match="provenance|strictly increasing"):
         validate(paths)
+
+
+def test_ideal_independent_neural_clock_is_rejected(tmp_path):
+    enabled = post.CONDITIONS[0]
+    paths = replace_arrays(fixture(tmp_path), lambda values:
+        values.__setitem__(f"{enabled}__neural_time_ms",
+                           np.arange(1, 10_001, dtype=np.float64) * .5))
+    with pytest.raises(post.EvidenceError, match="provenance"):
+        validate(paths)
+
+
+def test_neural_clock_from_wrong_physics_indices_is_rejected(tmp_path):
+    enabled = post.CONDITIONS[0]
+    def mutate(values):
+        physics = values[f"{enabled}__physics_time_ms"]
+        values[f"{enabled}__neural_time_ms"] = physics[4:-1:5].copy()
+    with pytest.raises(post.EvidenceError, match="provenance"):
+        validate(replace_arrays(fixture(tmp_path), mutate))
 
 
 @pytest.mark.parametrize("delta", [-1, 1])
