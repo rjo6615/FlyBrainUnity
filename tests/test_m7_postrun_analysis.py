@@ -159,13 +159,50 @@ def test_neural_clock_not_exact_physics_subset_is_rejected(tmp_path, mutation):
         validate(paths)
 
 
-def test_ideal_independent_neural_clock_is_rejected(tmp_path):
-    enabled = post.CONDITIONS[0]
-    paths = replace_arrays(fixture(tmp_path), lambda values:
-        values.__setitem__(f"{enabled}__neural_time_ms",
-                           np.arange(1, 10_001, dtype=np.float64) * .5))
+def test_ideal_independent_neural_clock_is_rejected():
+    physics = accumulated_clock(post.PHYSICS_SAMPLE_COUNT, post.PHYSICS_DT_MS, 0)
+    expected_neural_clock = physics[5::5]
+    physics_tol = post._validate_time_vector(
+        physics, sample_count=post.PHYSICS_SAMPLE_COUNT,
+        dt_ms=post.PHYSICS_DT_MS, first_step=0, label="physics")
+    ideal_independent = np.arange(1, 10_001, dtype=np.float64) * .5
+
+    assert len(physics) == 50_001
+    assert len(expected_neural_clock) == len(ideal_independent) == 10_000
     with pytest.raises(post.EvidenceError, match="provenance"):
-        validate(paths)
+        post._validate_neural_time(
+            ideal_independent, sample_count=len(expected_neural_clock),
+            sampled_physics=expected_neural_clock, endpoint_tol=physics_tol[5::5],
+            label="neural")
+
+
+@pytest.mark.parametrize("sample_count", [9_999, 10_001])
+def test_wrong_neural_clock_length_is_rejected_before_provenance(sample_count):
+    physics = accumulated_clock(post.PHYSICS_SAMPLE_COUNT, post.PHYSICS_DT_MS, 0)
+    expected_neural_clock = physics[5::5]
+    physics_tol = post._validate_time_vector(
+        physics, sample_count=post.PHYSICS_SAMPLE_COUNT,
+        dt_ms=post.PHYSICS_DT_MS, first_step=0, label="physics")
+    neural = np.arange(1, sample_count + 1, dtype=np.float64) * .5
+
+    with pytest.raises(post.EvidenceError, match="sample-count"):
+        post._validate_neural_time(
+            neural, sample_count=len(expected_neural_clock),
+            sampled_physics=expected_neural_clock, endpoint_tol=physics_tol[5::5],
+            label="neural")
+
+
+def test_exact_physics_neural_subset_is_accepted():
+    physics = accumulated_clock(post.PHYSICS_SAMPLE_COUNT, post.PHYSICS_DT_MS, 0)
+    expected_neural_clock = physics[5::5]
+    physics_tol = post._validate_time_vector(
+        physics, sample_count=post.PHYSICS_SAMPLE_COUNT,
+        dt_ms=post.PHYSICS_DT_MS, first_step=0, label="physics")
+
+    post._validate_neural_time(
+        expected_neural_clock.copy(), sample_count=len(expected_neural_clock),
+        sampled_physics=expected_neural_clock, endpoint_tol=physics_tol[5::5],
+        label="neural")
 
 
 def test_neural_clock_from_wrong_physics_indices_is_rejected(tmp_path):
