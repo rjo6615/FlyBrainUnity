@@ -1,10 +1,15 @@
 # M6C-D canonical-result audit and evidence-lock record
 
-## Audit disposition: blocked on absent raw evidence
+## Audit disposition: canonical bytes reported externally; absent from this checkout
 
 The canonical path
 `malecns_backend/embodiment/interface_output/integrated_whole_leg_readiness.json`
-was absent from this checkout before any change was made. It is intentionally
+remains absent from this checkout. The human reports that it is materialized on
+the Windows execution machine with independent SHA256
+`eca51d5ab644f9826eaeeDFC521952c1b9def5ef9cf30d846dfa82df95fbc69b`.
+That value is now the locker's required raw-byte identity, but this checkout
+cannot independently recompute its digest, byte size, or inspect its fields.
+The file is intentionally
 ignored by Git because the canonical telemetry is approximately 184 MB. The
 only surviving checkpoint says three conditions completed but remains
 `IN_PROGRESS`; it is not a substitute for raw telemetry. Therefore this audit
@@ -13,7 +18,8 @@ the result, or an observation-level conclusion. The handoff's classification,
 milestones, and indices are recorded below as *reported, not independently
 verified*. The raw artifact was not rewritten, normalized, regenerated, or run.
 
-The tracked lock placeholder has status `EVIDENCE_NOT_MATERIALIZED`. Once the
+The tracked lock placeholder remains an immutable record of the earlier audit
+and has status `EVIDENCE_NOT_MATERIALIZED`. Once the
 unchanged external file is restored at its canonical path, run the read-only
 streaming locker exactly once:
 
@@ -21,7 +27,12 @@ streaming locker exactly once:
 .\fly-brain-interactive\.venv\Scripts\python.exe -m malecns_backend.embodiment.m6c_result_lock
 ```
 
-It validates the identity fields and three ordered conditions, records raw
+It exclusively creates `interface_output/m6c_canonical_result_lock.final.json`;
+it never overwrites either the placeholder or a finalized lock. It validates
+the exact three-condition membership (dictionary serialization order is not
+execution order), per-condition equivalence and stability, admitted motor and
+sensory interfaces, hidden-assistance result, provenance, and top-level
+identity fields. It records raw
 SHA256, exact bytes, schema, seed, duration, classification, status, execution
 flag, M7 readiness, and M6A/M6B/Tier-A hashes, and exclusively creates (never
 overwrites) the lock. Preserve the 184-MB JSON externally as immutable raw
@@ -33,6 +44,30 @@ These are repository-file hashes, not a claim that the absent result embeds
 them. Failed engineering Attempt 1 remains separately preserved in
 `interface_output/m6c_attempt_1_state_access_abort.json`; its status must never
 be merged with the canonical result.
+
+## Condition ordering trace
+
+`run_canonical` executes `CONDITIONS` in preregistered tuple order and inserts
+each returned result into a dictionary in that order. Before writing, however,
+`_atomic_write` calls `json.dump(..., sort_keys=True)`, recursively sorting the
+dictionary keys. Thus `condition_results` is serialized alphabetically as
+all-disabled, integrated-enabled, then Tier-B-disabled. The old locker read
+`condition_results` and compared `tuple(condition_results)` with `CONDITIONS`,
+incorrectly treating that sorted key order as execution order. The retained
+top-level `conditions` list records the preregistered plan in execution order,
+and the console output and loop establish actual orchestration, but no ordinal
+or timestamp is stored in each condition result. Collection order has no
+scientific role: reduction addresses results by condition name and explicitly
+binds those names in preregistered order before comparisons. The locker now
+checks exact membership and does not manufacture an execution-order claim.
+
+## Evidence levels
+
+A finalized lock establishes raw-byte identity and the canonical top-level and
+per-condition identity predicates listed above. It does **not** independently
+recompute every trajectory, channel summary, milestone, or reduction from the
+approximately 184 MB of telemetry. Complete telemetry audit remains a separate
+level of evidence and must not be inferred from `LOCKED`.
 
 ## What can and cannot be audited
 

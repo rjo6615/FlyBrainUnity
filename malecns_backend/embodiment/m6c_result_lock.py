@@ -13,10 +13,28 @@ import os
 from pathlib import Path
 from typing import Any
 
-from .integrated_whole_leg_readiness import CONDITIONS, DURATION_MS, SCHEMA, SEED
+from .integrated_whole_leg_readiness import (
+    CONDITIONS, DURATION_MS, EXPECTED_TIER_B, M6A_SHA256, SCHEMA, SEED,
+    TIER_A, TIER_A_SHA256,
+)
 
 CANONICAL = Path(__file__).resolve().parent / "interface_output" / "integrated_whole_leg_readiness.json"
-LOCK = Path(__file__).resolve().parent / "interface_output" / "m6c_canonical_result_lock.json"
+LOCK = Path(__file__).resolve().parent / "interface_output" / "m6c_canonical_result_lock.final.json"
+CANONICAL_SHA256 = "eca51d5ab644f9826eaeeDFC521952c1b9def5ef9cf30d846dfa82df95fbc69b".lower()
+M6B_SHA256 = "02a4bbb7ec79ccf0967e9b8499c5a68d0ed8133a56688592ba13cfb2785285a2"
+
+
+class DuplicateJSONKeyError(ValueError):
+    """A JSON object cannot represent canonical identity with repeated keys."""
+
+
+def _unique_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    result: dict[str, Any] = {}
+    for key, value in pairs:
+        if key in result:
+            raise DuplicateJSONKeyError(f"duplicate JSON object key: {key!r}")
+        result[key] = value
+    return result
 
 
 def raw_identity(path: Path) -> tuple[str, int]:
@@ -29,9 +47,11 @@ def raw_identity(path: Path) -> tuple[str, int]:
     return digest.hexdigest(), size
 
 
-def build_lock(path: Path) -> dict[str, Any]:
+def build_lock(path: Path, *, expected_sha256: str = CANONICAL_SHA256) -> dict[str, Any]:
     digest, size = raw_identity(path)
-    data = json.loads(path.read_bytes())
+    if digest != expected_sha256.lower():
+        raise ValueError(f"canonical raw SHA256 mismatch: expected {expected_sha256.lower()}, observed {digest}")
+    data = json.loads(path.read_bytes(), object_pairs_hook=_unique_object)
     conditions = data.get("condition_results", {})
     required = {
         "schema": SCHEMA, "seed": SEED, "duration_ms": DURATION_MS,
@@ -41,11 +61,41 @@ def build_lock(path: Path) -> dict[str, Any]:
     }
     mismatches = {key: {"expected": value, "observed": data.get(key)}
                   for key, value in required.items() if data.get(key) != value}
-    if tuple(conditions) != CONDITIONS:
-        mismatches["condition_order"] = {"expected": list(CONDITIONS), "observed": list(conditions)}
+    if not isinstance(conditions, dict) or set(conditions) != set(CONDITIONS) or len(conditions) != len(CONDITIONS):
+        mismatches["condition_membership"] = {
+            "expected": sorted(CONDITIONS),
+            "observed": sorted(conditions) if isinstance(conditions, dict) else conditions,
+        }
+    else:
+        incomplete = {name: {
+            "pre_intervention_equivalence": conditions[name].get("pre_intervention_equivalence"),
+            "physics_instability": conditions[name].get("physics_instability"),
+        } for name in CONDITIONS if (
+            conditions[name].get("pre_intervention_equivalence") is not True
+            or conditions[name].get("physics_instability") is not False
+        )}
+        if incomplete:
+            mismatches["condition_completion"] = incomplete
+    expected_provenance = {"verified": True, "hash_policy": "raw-bytes",
+        "m6a_sha256": M6A_SHA256, "m6b_sha256": M6B_SHA256,
+        "tier_a_sha256": TIER_A_SHA256}
+    provenance = data.get("provenance", {})
+    if any(provenance.get(key) != value for key, value in expected_provenance.items()):
+        mismatches["provenance"] = {"expected": expected_provenance, "observed": provenance}
+    expected_motor = TIER_A + EXPECTED_TIER_B
+    if tuple(data.get("admitted_motor_interfaces", ())) != expected_motor:
+        mismatches["admitted_motor_interfaces"] = {"expected": list(expected_motor),
+            "observed": data.get("admitted_motor_interfaces")}
+    sensory = data.get("sensory_interfaces", ())
+    if (not isinstance(sensory, list) or tuple(row.get("actuator") for row in sensory
+            if isinstance(row, dict)) != TIER_A):
+        mismatches["sensory_interfaces"] = {"expected_actuators": list(TIER_A), "observed": sensory}
+    hidden = data.get("hidden_locomotion_audit", {})
+    if hidden.get("hidden_locomotion_assistance_executed") is not False:
+        mismatches["hidden_locomotion_assistance_executed"] = {
+            "expected": False, "observed": hidden.get("hidden_locomotion_assistance_executed")}
     if mismatches:
         raise ValueError(f"canonical identity checks failed: {mismatches}")
-    provenance = data.get("provenance", {})
     root = Path(__file__).resolve().parents[2]
     try:
         recorded_path = path.resolve().relative_to(root)
@@ -60,6 +110,8 @@ def build_lock(path: Path) -> dict[str, Any]:
         "byte_size": size,
         **required,
         "condition_count": len(conditions),
+        "condition_membership": sorted(conditions),
+        "serialized_condition_order_is_semantic": False,
         "provenance": {key: provenance.get(key) for key in
                        ("m6a_sha256", "m6b_sha256", "tier_a_sha256")},
         "preservation_policy": "Never rewrite, normalize, regenerate, or overwrite the canonical JSON.",
