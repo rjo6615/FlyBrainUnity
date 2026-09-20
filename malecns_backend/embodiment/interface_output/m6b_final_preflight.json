@@ -109,6 +109,7 @@
   "checks": {
     "action_indices_locked": true,
     "action_order_42": true,
+    "attempt_1_not_complete": true,
     "canonical_artifact_not_run": true,
     "dependencies_import": true,
     "environment_constructed": true,
@@ -124,6 +125,7 @@
     "matched_control_pipeline": true,
     "motor_body_ids": true,
     "motor_population_mappings_locked": true,
+    "per_step_environment_construction": false,
     "scientific_runner_not_called": true,
     "sign_calibration_machinery": true,
     "telemetry_contract": true,
@@ -1157,7 +1159,14 @@
     }
   ],
   "m6a_sha256": "722ee9b3b1d6a0fad2bf8ef0f02fc63f49277c5f44e3bccf27898e6c4ea673d9",
+  "performance_guards": {
+    "PER_STEP_ENVIRONMENT_CONSTRUCTION": false,
+    "expected_canonical_environment_construction_count": 17,
+    "expected_neural_steps": 16000,
+    "expected_physics_steps": 80000
+  },
   "provenance": {
+    "attempt_1_scientific_result_available": false,
     "canonical_artifact_modified": false,
     "preflight_attempts": [
       {
@@ -1176,11 +1185,11 @@
         "scientific_run_consumed": false
       }
     ],
-    "scientific_run_1": "NOT_RUN"
+    "scientific_attempt_1": "ABORTED_IMPLEMENTATION_PERFORMANCE_DEFECT"
   },
   "run_status": "PASS",
   "safe_bound_rule": "intersect only active bounds expressed as absolute joint-position targets; derive symmetric neural-offset headroom about the current target and cap at 0.25 rad",
-  "schema": "M6B-P4.0",
+  "schema": "M6B-P5.0",
   "scientific_run_executed": false,
   "scientific_run_number_consumed": null,
   "type": "NON_SCIENTIFIC_FINAL_PREFLIGHT",
