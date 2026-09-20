@@ -73,6 +73,17 @@ def test_nonfinite_state_fails_closed():
     assert not result["valid"]
 
 
+def test_candidate_eligibility_cannot_bypass_final_gate():
+    no_support = gate([])
+    assert no_support["classifications"]["NO_SUPPORT_CONTACT"]
+    assert not m.candidate_eligible(no_support)
+    invalid_support = gate([contact("LFTarsus5", -2 * m.DISTAL_PENETRATION_TOLERANCE)])
+    assert not invalid_support["valid"]
+    assert not invalid_support["classifications"]["VALID_SUPPORT_CONTACT"]
+    assert not m.candidate_eligible(invalid_support)
+    assert m.candidate_eligible(gate([contact("LFTarsus5", 0)]))
+
+
 def test_single_analytic_translation_or_incompatibility():
     good = m.derive_vertical_translation([
         {"name": "0/LFTarsus5", "minimum_z": .2}, {"name": "0/Thorax", "minimum_z": .8}])
