@@ -1,30 +1,48 @@
 {
   "arbitrary_height_sweep": false,
+  "audit_sha256": "25d06758f50068b762689e6c0159bbcde4e855ea7cde1aef45ccac4923691bf3",
   "brain_constructed": false,
+  "candidate_c": null,
+  "candidate_c_reason": "not admitted: installed FlyGym 1.2.1 source has not yet established an explicit supported/standing initialization; preflight fails if it finds one",
   "candidate_count": 2,
-  "candidate_definition_sha256": "1c59b984bdcfd93558732255ee5fe9d8409f397dd01848c7e2e564db1ed9ac28",
+  "candidate_definition_sha256": "2aa2e860dae3ab4ae116618470592eba4f72aaae6ebbaad117087fe352e97f8a",
   "candidates": [
     {
-      "derivation": "exact canonical M7 initialization",
+      "derivation": "exact canonical M7 / FlyGym constructor-default initialization",
+      "differences_from_canonical": [],
       "id": "canonical_control",
-      "joint_pose": "FlyGym default pose (no override)",
+      "init_pose": "stretch",
       "root_position": [
         0.0,
         0.0,
         0.5
       ],
+      "spawn_orientation": [
+        0.0,
+        0.0,
+        0.0
+      ],
       "vertical_translation": 0.0
     },
     {
-      "derivation": "single vertical translation placing the lowest conservative Tarsus5 bound at ground z=0",
+      "derivation": "one vertical root translation: ground z=0 minus the minimum Tarsus5 center-z-minus-enclosing-radius support bound",
+      "differences_from_canonical": [
+        "spawn_pos.z only"
+      ],
       "id": "distal_tarsus_support_translation",
-      "joint_pose": "FlyGym default pose (no override)",
+      "init_pose": "stretch",
       "root_position": [
         0.0,
         0.0,
-        -0.9259575251353929
+        -0.9035507742524747
       ],
-      "vertical_translation": -1.4259575251353929
+      "source_provenance": "M7C-A zero-step geom_xpos and mesh AABB half-extents; enclosing radius = Euclidean norm(half-extents)",
+      "spawn_orientation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "vertical_translation": -1.4035507742524747
     }
   ],
   "controls": {
@@ -38,20 +56,27 @@
     ],
     "adhesion_enabled": false,
     "balance_controller": false,
-    "calibration_surface": "canonical present and fixed",
+    "calibration_surface": "canonical world pose and dimensions, present and fixed",
     "gait_controller": false,
-    "position_targets": "post-reset measured 42-joint positions",
+    "mode": "baseline position control only",
+    "position_targets": "each candidate's post-reset measured 42-joint positions",
     "reference_trajectory": false,
-    "reward_rl_ai": false
+    "reward_rl_ai": false,
+    "sensory_driven_control": false
   },
-  "execution_environment": "validated Windows FlyGym/MuJoCo environment only",
+  "correction_notice": {
+    "candidate_definition_sha256": "1c59b984bdcfd93558732255ee5fe9d8409f397dd01848c7e2e564db1ed9ac28",
+    "correction": "max(geom_size) was not a rotation-invariant mesh support bound; never executed",
+    "schema": "M7C-B-PREREGISTRATION.1"
+  },
+  "execution_environment": "validated Windows FlyGym 1.2.1/MuJoCo environment only",
   "gate": {
     "fail_closed_nonfinite": true,
     "flag_self_collision": true,
     "reject_body_penetration": true,
     "reject_mixed_support_surfaces": true,
     "reject_severe_foot_penetration": true,
-    "reject_unsupported_feet": true
+    "require_distal_ground_support_for_translated_candidate": true
   },
   "neural_transitions": 0,
   "optimizer": false,
@@ -63,6 +88,6 @@
     "timestep_s": 0.0001,
     "transitions": 1000
   },
-  "schema": "M7C-B-PREREGISTRATION.1",
+  "schema": "M7C-B-PREREGISTRATION.2",
   "status": "FROZEN_BEFORE_EXECUTION"
 }
