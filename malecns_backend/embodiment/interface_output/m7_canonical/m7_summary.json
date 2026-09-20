@@ -1,0 +1,151 @@
+{
+  "conditions": [
+    "SPONTANEOUS_NEURAL_EMBODIMENT",
+    "ALL_NEURAL_MOTOR_DISABLED"
+  ],
+  "control_relative": {
+    "maximum_joint_divergence_rad": 3.9021942242980003,
+    "maximum_orientation_component_divergence": 0.725403744046216,
+    "net_com_divergence_m": 3.115133241036173,
+    "oscillation_extrema_count": 6782
+  },
+  "duration_ms": 5000,
+  "interpretation_policy": "descriptive observational categories only; no walking claim",
+  "movement_categories": [
+    "MULTI_LEG_MOVEMENT",
+    "BODY_POSTURAL_CHANGE",
+    "NET_BODY_DISPLACEMENT",
+    "REPEATED_OR_OSCILLATORY_LIMB_ACTIVITY"
+  ],
+  "neural_updates_per_condition": 10000,
+  "per_condition": {
+    "ALL_NEURAL_MOTOR_DISABLED": {
+      "admitted_channel_peak_abs": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "body_height_range": [
+        -0.49399230066573396,
+        0.5
+      ],
+      "cns_final_aggregate_spikes": 371680,
+      "contact_nonzero_samples": 992644,
+      "fall": true,
+      "forward_displacement": 0.388588665312132,
+      "lateral_displacement": -0.08515867751005063,
+      "mean_body_velocity": 0.6445559884238831,
+      "net_com_displacement": [
+        0.388588665312132,
+        -0.08515867751005063,
+        -0.06726465816115523
+      ],
+      "orientation_component_change": [
+        -0.3498112685963134,
+        -0.1808153225459573,
+        -0.7227608131641212,
+        -0.14892024591238442
+      ],
+      "peak_body_velocity": 148.73847464703266,
+      "per_joint_range_of_motion": [
+        2.3023348301649094,
+        0.4256901998742251,
+        1.343155324459076,
+        0.15324034541845322,
+        1.4981681108474731,
+        0.10693280398845673,
+        1.016681656241417,
+        1.791197631508112,
+        0.09191295132040977,
+        1.4242231845855713,
+        0.1262486856430769
+      ],
+      "rollover": true,
+      "validated_sensory_peak_hz": [
+        119.99999998274829,
+        119.99999999980791,
+        119.99999998328022,
+        119.99999995896006,
+        119.99999999961514,
+        119.99999999966317
+      ],
+      "vertical_displacement": -0.06726465816115523,
+      "yaw_change_rad": -3.791378244309968
+    },
+    "SPONTANEOUS_NEURAL_EMBODIMENT": {
+      "admitted_channel_peak_abs": [
+        0.13023332757190692,
+        0.24935662349115245,
+        0.21509006135833772,
+        0.0,
+        0.2278997668867324,
+        0.1939527071618059,
+        0.196892193118546,
+        0.2373761933194001,
+        0.22985313900213483,
+        0.20920602204588748,
+        0.1672710568670429
+      ],
+      "body_height_range": [
+        -0.4938934145019767,
+        1.4405437188911496
+      ],
+      "cns_final_aggregate_spikes": 193719,
+      "contact_nonzero_samples": 908808,
+      "fall": true,
+      "forward_displacement": -2.669303165070216,
+      "lateral_displacement": 0.34358508933973014,
+      "mean_body_velocity": 2.942040896459687,
+      "net_com_displacement": [
+        -2.669303165070216,
+        0.34358508933973014,
+        0.3444773065168264
+      ],
+      "orientation_component_change": [
+        -0.7272967137616029,
+        -0.7373496791908667,
+        -0.4682138931067213,
+        -0.4033907765105101
+      ],
+      "peak_body_velocity": 148.75667848585326,
+      "per_joint_range_of_motion": [
+        3.3562066555023193,
+        3.103412166237831,
+        3.5529472827911377,
+        2.9004981741309166,
+        1.7168530225753784,
+        3.1538010835647583,
+        1.0226957574486732,
+        3.0095276832580566,
+        1.9278624206781387,
+        2.2523616552352905,
+        3.021874250844121
+      ],
+      "rollover": true,
+      "validated_sensory_peak_hz": [
+        119.99999909381062,
+        119.99999996541868,
+        119.99999995131283,
+        119.99999996584442,
+        119.99999999503174,
+        119.9999999672859
+      ],
+      "vertical_displacement": 0.3444773065168264,
+      "yaw_change_rad": 1.105667208815567
+    }
+  },
+  "physics_transitions_per_condition": 50000,
+  "run_status": "COMPLETE",
+  "schema": "M7-RESULT.1",
+  "scientific_run_executed": true,
+  "seed": 1,
+  "walking": null
+}

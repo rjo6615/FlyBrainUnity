@@ -1,0 +1,283 @@
+{
+  "arrays": {
+    "ALL_NEURAL_MOTOR_DISABLED__neural_admitted_contributions": {
+      "dtype": "float64",
+      "shape": [
+        10000,
+        11
+      ],
+      "units": "MuJoCo native/rad or m"
+    },
+    "ALL_NEURAL_MOTOR_DISABLED__neural_aggregate_spikes": {
+      "dtype": "int64",
+      "shape": [
+        10000
+      ],
+      "units": "count/dimensionless"
+    },
+    "ALL_NEURAL_MOTOR_DISABLED__neural_decoder_outputs": {
+      "dtype": "float64",
+      "shape": [
+        10000,
+        11
+      ],
+      "units": "count/dimensionless"
+    },
+    "ALL_NEURAL_MOTOR_DISABLED__neural_delivered_drive_count": {
+      "dtype": "int64",
+      "shape": [
+        10000
+      ],
+      "units": "count/dimensionless"
+    },
+    "ALL_NEURAL_MOTOR_DISABLED__neural_observer_outputs": {
+      "dtype": "float64",
+      "shape": [
+        10000,
+        11
+      ],
+      "units": "Hz"
+    },
+    "ALL_NEURAL_MOTOR_DISABLED__neural_sensory_encoded": {
+      "dtype": "float64",
+      "shape": [
+        10000,
+        6
+      ],
+      "units": "Hz"
+    },
+    "ALL_NEURAL_MOTOR_DISABLED__neural_time_ms": {
+      "dtype": "float64",
+      "shape": [
+        10000
+      ],
+      "units": "ms"
+    },
+    "ALL_NEURAL_MOTOR_DISABLED__physics_action": {
+      "dtype": "float64",
+      "shape": [
+        50001,
+        42
+      ],
+      "units": "MuJoCo native/rad or m"
+    },
+    "ALL_NEURAL_MOTOR_DISABLED__physics_body_orientation": {
+      "dtype": "float64",
+      "shape": [
+        50001,
+        4
+      ],
+      "units": "count/dimensionless"
+    },
+    "ALL_NEURAL_MOTOR_DISABLED__physics_body_position": {
+      "dtype": "float64",
+      "shape": [
+        50001,
+        3
+      ],
+      "units": "MuJoCo native/rad or m"
+    },
+    "ALL_NEURAL_MOTOR_DISABLED__physics_contact_forces": {
+      "dtype": "float64",
+      "shape": [
+        50001,
+        36,
+        3
+      ],
+      "units": "N"
+    },
+    "ALL_NEURAL_MOTOR_DISABLED__physics_ctrl": {
+      "dtype": "float64",
+      "shape": [
+        50001,
+        48
+      ],
+      "units": "MuJoCo native/rad or m"
+    },
+    "ALL_NEURAL_MOTOR_DISABLED__physics_finite": {
+      "dtype": "bool",
+      "shape": [
+        50001
+      ],
+      "units": "count/dimensionless"
+    },
+    "ALL_NEURAL_MOTOR_DISABLED__physics_joint_position": {
+      "dtype": "float64",
+      "shape": [
+        50001,
+        42
+      ],
+      "units": "MuJoCo native/rad or m"
+    },
+    "ALL_NEURAL_MOTOR_DISABLED__physics_qpos": {
+      "dtype": "float64",
+      "shape": [
+        50001,
+        94
+      ],
+      "units": "MuJoCo native/rad or m"
+    },
+    "ALL_NEURAL_MOTOR_DISABLED__physics_qvel": {
+      "dtype": "float64",
+      "shape": [
+        50001,
+        93
+      ],
+      "units": "MuJoCo generalized units/s"
+    },
+    "ALL_NEURAL_MOTOR_DISABLED__physics_time_ms": {
+      "dtype": "float64",
+      "shape": [
+        50001
+      ],
+      "units": "ms"
+    },
+    "SPONTANEOUS_NEURAL_EMBODIMENT__neural_admitted_contributions": {
+      "dtype": "float64",
+      "shape": [
+        10000,
+        11
+      ],
+      "units": "MuJoCo native/rad or m"
+    },
+    "SPONTANEOUS_NEURAL_EMBODIMENT__neural_aggregate_spikes": {
+      "dtype": "int64",
+      "shape": [
+        10000
+      ],
+      "units": "count/dimensionless"
+    },
+    "SPONTANEOUS_NEURAL_EMBODIMENT__neural_decoder_outputs": {
+      "dtype": "float64",
+      "shape": [
+        10000,
+        11
+      ],
+      "units": "count/dimensionless"
+    },
+    "SPONTANEOUS_NEURAL_EMBODIMENT__neural_delivered_drive_count": {
+      "dtype": "int64",
+      "shape": [
+        10000
+      ],
+      "units": "count/dimensionless"
+    },
+    "SPONTANEOUS_NEURAL_EMBODIMENT__neural_observer_outputs": {
+      "dtype": "float64",
+      "shape": [
+        10000,
+        11
+      ],
+      "units": "Hz"
+    },
+    "SPONTANEOUS_NEURAL_EMBODIMENT__neural_sensory_encoded": {
+      "dtype": "float64",
+      "shape": [
+        10000,
+        6
+      ],
+      "units": "Hz"
+    },
+    "SPONTANEOUS_NEURAL_EMBODIMENT__neural_time_ms": {
+      "dtype": "float64",
+      "shape": [
+        10000
+      ],
+      "units": "ms"
+    },
+    "SPONTANEOUS_NEURAL_EMBODIMENT__physics_action": {
+      "dtype": "float64",
+      "shape": [
+        50001,
+        42
+      ],
+      "units": "MuJoCo native/rad or m"
+    },
+    "SPONTANEOUS_NEURAL_EMBODIMENT__physics_body_orientation": {
+      "dtype": "float64",
+      "shape": [
+        50001,
+        4
+      ],
+      "units": "count/dimensionless"
+    },
+    "SPONTANEOUS_NEURAL_EMBODIMENT__physics_body_position": {
+      "dtype": "float64",
+      "shape": [
+        50001,
+        3
+      ],
+      "units": "MuJoCo native/rad or m"
+    },
+    "SPONTANEOUS_NEURAL_EMBODIMENT__physics_contact_forces": {
+      "dtype": "float64",
+      "shape": [
+        50001,
+        36,
+        3
+      ],
+      "units": "N"
+    },
+    "SPONTANEOUS_NEURAL_EMBODIMENT__physics_ctrl": {
+      "dtype": "float64",
+      "shape": [
+        50001,
+        48
+      ],
+      "units": "MuJoCo native/rad or m"
+    },
+    "SPONTANEOUS_NEURAL_EMBODIMENT__physics_finite": {
+      "dtype": "bool",
+      "shape": [
+        50001
+      ],
+      "units": "count/dimensionless"
+    },
+    "SPONTANEOUS_NEURAL_EMBODIMENT__physics_joint_position": {
+      "dtype": "float64",
+      "shape": [
+        50001,
+        42
+      ],
+      "units": "MuJoCo native/rad or m"
+    },
+    "SPONTANEOUS_NEURAL_EMBODIMENT__physics_qpos": {
+      "dtype": "float64",
+      "shape": [
+        50001,
+        94
+      ],
+      "units": "MuJoCo native/rad or m"
+    },
+    "SPONTANEOUS_NEURAL_EMBODIMENT__physics_qvel": {
+      "dtype": "float64",
+      "shape": [
+        50001,
+        93
+      ],
+      "units": "MuJoCo generalized units/s"
+    },
+    "SPONTANEOUS_NEURAL_EMBODIMENT__physics_time_ms": {
+      "dtype": "float64",
+      "shape": [
+        50001
+      ],
+      "units": "ms"
+    }
+  },
+  "conditions": [
+    "SPONTANEOUS_NEURAL_EMBODIMENT",
+    "ALL_NEURAL_MOTOR_DISABLED"
+  ],
+  "duration_ms": 5000,
+  "elapsed_wall_seconds": 736.1072125000064,
+  "provenance": {
+    "m6c_lock": "m6c_canonical_result_lock.final.json"
+  },
+  "raw_byte_size": 175792136,
+  "raw_file": "m7_raw.npz",
+  "raw_sha256": "155ef633a319711d44fc471c1f46c24cec0b36ea6e7326556c5b987e912fed47",
+  "render_policy": "offline replay only; never participates in control",
+  "schema": "M7-MANIFEST.1",
+  "seed": 1
+}

@@ -43,3 +43,6 @@ __pycache__/
 Thumbs.db
 malecns_backend/embodiment/interface_output/instrumented_proprioceptive_closed_loop_telemetry.npz
 malecns_backend/embodiment/interface_output/integrated_whole_leg_readiness.json
+
+# M7 canonical raw telemetry - stored locally due to size
+malecns_backend/embodiment/interface_output/m7_canonical/m7_raw.npz
