@@ -13,7 +13,8 @@ from malecns_backend.embodiment import m7_postrun_analysis as post
 from malecns_backend.embodiment import m7_replay
 
 
-def fixture(tmp_path: Path, *, p: int = 21, n: int = 5):
+def fixture(tmp_path: Path, *, p: int = 26, n: int | None = None):
+    n = (p - 1) // 5 if n is None else n
     arrays = {}
     shapes = {"physics_time_ms": (p,), "physics_qpos": (p,94), "physics_qvel": (p,93),
         "physics_joint_position": (p,42), "physics_action": (p,42), "physics_ctrl": (p,48),
@@ -27,8 +28,9 @@ def fixture(tmp_path: Path, *, p: int = 21, n: int = 5):
             dtype = bool if field == "physics_finite" else (np.int64 if field in ("neural_delivered_drive_count","neural_aggregate_spikes") else np.float64)
             value = np.ones(shape,dtype=dtype) if field == "physics_finite" else np.zeros(shape,dtype=dtype)
             arrays[f"{condition}__{field}"] = value
-        arrays[f"{condition}__physics_time_ms"] = np.arange(p,dtype=float)*.1
-        arrays[f"{condition}__neural_time_ms"] = (np.arange(n,dtype=float)+1)*.5
+        clock = accumulated_clock(p, .1, 0)
+        arrays[f"{condition}__physics_time_ms"] = clock
+        arrays[f"{condition}__neural_time_ms"] = clock[5::5][:n]
         arrays[f"{condition}__physics_body_position"][:,2] = 1
         arrays[f"{condition}__physics_body_orientation"][:,0] = 1
     raw=tmp_path/"raw.npz"; np.savez(raw,**arrays); digest=hashlib.sha256(raw.read_bytes()).hexdigest()
@@ -76,14 +78,18 @@ def accumulated_clock(count, dt, first_step):
 
 def test_timestamp_semantics_and_realistic_accumulated_drift():
     physics = accumulated_clock(post.PHYSICS_SAMPLE_COUNT, post.PHYSICS_DT_MS, 0)
-    neural = accumulated_clock(post.NEURAL_SAMPLE_COUNT, post.NEURAL_DT_MS, 1)
-    post._validate_time_vector(physics, sample_count=50_001, dt_ms=.1,
-                               first_step=0, label="physics")
+    neural = physics[5::5]
+    physics_tol = post._validate_time_vector(physics, sample_count=50_001, dt_ms=.1,
+                                             first_step=0, label="physics")
     post._validate_time_vector(neural, sample_count=10_000, dt_ms=.5,
-                               first_step=1, label="neural")
+                               first_step=1, label="neural",
+                               accumulated_tol=physics_tol[5::5])
     assert physics.shape == (50_001,)  # initial state + 50,000 post-transition states
     assert neural.shape == (10_000,)   # 10,000 post-neural-update states; no t=0 sample
-    assert neural[0] == .5 and neural[-1] == 5000
+    assert neural[0] == .5 and neural[-1] == physics[-1]
+    assert np.array_equal(neural, physics[5::5])
+    ideal_neural = (np.arange(post.NEURAL_SAMPLE_COUNT, dtype=np.float64) + 1) * .5
+    assert np.max(np.abs(neural - ideal_neural)) == pytest.approx(4.016328603029251e-9)
 
 
 def test_canonical_observed_physics_drift_is_accepted():
@@ -101,6 +107,9 @@ def test_canonical_observed_physics_drift_is_accepted():
     ("physics", lambda x: np.concatenate((x[:3], x[2:3], x[4:])), "strictly increasing"),
     ("physics", lambda x: np.concatenate((x[:3], x[3:4] - .2, x[4:])), "strictly increasing"),
     ("physics", lambda x: np.arange(x.size, dtype=np.float64) * .10001, "endpoint|accumulated|cadence"),
+    ("neural", lambda x: np.concatenate((x[:3], [x[3] + .01], x[4:])), "accumulated|cadence"),
+    ("neural", lambda x: np.concatenate((x[:3], x[2:3], x[4:])), "strictly increasing"),
+    ("neural", lambda x: x[::-1], "strictly increasing"),
     ("physics", lambda x: np.concatenate((x[:-1], [x[-1] + .01])), "endpoint"),
     ("physics", lambda x: np.where(np.arange(x.size) == 3, np.nan, x), "NaN/Inf"),
     ("neural", lambda x: np.where(np.arange(x.size) == 3, np.inf, x), "NaN/Inf"),
@@ -115,10 +124,38 @@ def test_bad_timestamp_vectors_are_rejected(clock, mutation, match):
 
 def test_mismatched_condition_clocks_rejected(tmp_path):
     enabled = post.CONDITIONS[0]
-    paths = replace_arrays(fixture(tmp_path), lambda values:
-        values.__setitem__(f"{enabled}__physics_time_ms", accumulated_clock(21, .1, 0)))
+    def mutate(values):
+        physics_key = f"{enabled}__physics_time_ms"
+        neural_key = f"{enabled}__neural_time_ms"
+        values[physics_key] = values[physics_key].copy()
+        values[physics_key][-1] += 1e-15
+        values[neural_key] = values[physics_key][5::5].copy()
+    paths = replace_arrays(fixture(tmp_path), mutate)
     with pytest.raises(post.EvidenceError, match="cross-condition clock mismatch"):
         validate(paths)
+
+
+@pytest.mark.parametrize("mutation", [
+    lambda x: x + 1e-12,
+    lambda x: np.roll(x, 1),
+])
+def test_neural_clock_not_exact_physics_subset_is_rejected(tmp_path, mutation):
+    enabled = post.CONDITIONS[0]
+    paths = replace_arrays(fixture(tmp_path), lambda values:
+        values.__setitem__(f"{enabled}__neural_time_ms",
+                           mutation(values[f"{enabled}__neural_time_ms"])))
+    with pytest.raises(post.EvidenceError, match="provenance|strictly increasing"):
+        validate(paths)
+
+
+@pytest.mark.parametrize("delta", [-1, 1])
+def test_missing_or_extra_neural_timestamp_is_rejected(tmp_path, delta):
+    enabled = post.CONDITIONS[0]
+    def mutate(values):
+        key = f"{enabled}__neural_time_ms"
+        values[key] = values[key][:-1] if delta < 0 else np.r_[values[key], values[key][-1] + .5]
+    with pytest.raises(post.EvidenceError, match="sample-count"):
+        validate(replace_arrays(fixture(tmp_path), mutate))
 
 
 def test_sha_mismatch_rejected(tmp_path):
@@ -176,7 +213,7 @@ def test_frozen_fall_rollover_detection(tmp_path):
 
 
 def test_analysis_deterministic_and_compact(tmp_path):
-    x=fixture(tmp_path,p=101,n=21); arrays,_,_,validation=validate(x)
+    x=fixture(tmp_path,p=101); arrays,_,_,validation=validate(x)
     a=post.analyze(arrays,validation,validation["manifest_sha256"],"test")
     b=post.analyze(arrays,validation,validation["manifest_sha256"],"test")
     payload=json.dumps(a,sort_keys=True,allow_nan=False)

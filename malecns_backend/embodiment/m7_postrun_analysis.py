@@ -67,7 +67,8 @@ def _accumulation_tolerance(expected: np.ndarray, dt_ms: float) -> np.ndarray:
 
 
 def _validate_time_vector(time: np.ndarray, *, sample_count: int, dt_ms: float,
-                          first_step: int, label: str) -> np.ndarray:
+                          first_step: int, label: str,
+                          accumulated_tol: np.ndarray | None = None) -> np.ndarray:
     """Validate the count, representation, origin, endpoint, and cadence."""
     if time.dtype != np.dtype("float64"):
         raise EvidenceError(f"{label} time dtype mismatch")
@@ -82,7 +83,10 @@ def _validate_time_vector(time: np.ndarray, *, sample_count: int, dt_ms: float,
     # post-update and therefore starts after the first 0.5-ms update (step=1).
     steps = np.arange(first_step, first_step + sample_count, dtype=np.float64)
     expected = steps * dt_ms
-    accumulated_tol = _accumulation_tolerance(expected, dt_ms)
+    if accumulated_tol is None:
+        accumulated_tol = _accumulation_tolerance(expected, dt_ms)
+    elif accumulated_tol.shape != time.shape:
+        raise EvidenceError(f"{label} accumulated-tolerance shape mismatch")
     if abs(time[0] - expected[0]) > accumulated_tol[0]:
         raise EvidenceError(f"{label} time origin mismatch")
     if abs(time[-1] - expected[-1]) > accumulated_tol[-1]:
@@ -190,10 +194,24 @@ def validate_evidence(raw: Path, manifest_path: Path, summary_path: Path,
     for condition in CONDITIONS:
         pt = arrays[f"{condition}__physics_time_ms"]
         nt = arrays[f"{condition}__neural_time_ms"]
-        _validate_time_vector(pt, sample_count=p_count, dt_ms=PHYSICS_DT_MS,
-                              first_step=0, label=f"{condition} physics")
+        physics_tol = _validate_time_vector(
+            pt, sample_count=p_count, dt_ms=PHYSICS_DT_MS,
+            first_step=0, label=f"{condition} physics")
+        neural_stride = int(NEURAL_DT_MS / PHYSICS_DT_MS)
+        if neural_stride * PHYSICS_DT_MS != NEURAL_DT_MS:
+            raise EvidenceError("neural/physics cadence ratio is not integral")
+        sampled_physics = pt[neural_stride::neural_stride]
+        if sampled_physics.shape != nt.shape:
+            raise EvidenceError(f"{condition} neural/physics sample-count mismatch")
+        # The frozen recorder reads MuJoCo's clock once at the start of each
+        # loop iteration.  On every fifth post-transition iteration that same
+        # scalar is written first to neural telemetry and then to physics
+        # telemetry.  It is not an independently accumulated 0.5-ms clock.
+        if not np.array_equal(nt, sampled_physics):
+            raise EvidenceError(f"{condition} neural clock provenance mismatch")
         _validate_time_vector(nt, sample_count=n_count, dt_ms=NEURAL_DT_MS,
-                              first_step=1, label=f"{condition} neural")
+                              first_step=1, label=f"{condition} neural",
+                              accumulated_tol=physics_tol[neural_stride::neural_stride])
         for field in PHYSICS_FIELDS:
             if arrays[f"{condition}__{field}"].shape[0] != len(pt):
                 raise EvidenceError(f"physics cadence mismatch: {field}")
@@ -215,8 +233,8 @@ def validate_evidence(raw: Path, manifest_path: Path, summary_path: Path,
                   "neural_samples_per_condition": len(nt), "conditions": expected_conditions,
                   "time_semantics": {
                       "physics": "initial state plus post-transition states; t[i] = i * 0.1 ms",
-                      "neural": "post-neural-update states; t[i] = (i + 1) * 0.5 ms"},
-                  "time_tolerance_policy": "cumulative half-ULP per repeated float64 addition plus one reference ULP; cadence bounded by adjacent-value ULPs",
+                      "neural": "post-neural-update states sampled exactly from physics_time_ms[5::5]; t[i] is nominally (i + 1) * 0.5 ms"},
+                  "time_tolerance_policy": "physics uses cumulative half-ULP per repeated 0.1-ms float64 addition plus one reference ULP; neural uses the corresponding sampled physics bounds and must exactly equal physics_time_ms[5::5]; cadence is bounded by adjacent-value ULPs",
                   "cross_condition_clock_comparison": "exact float64 sample equality",
                   "cross_condition_clocks_equivalent": True}
     return arrays, manifest, summary, validation
