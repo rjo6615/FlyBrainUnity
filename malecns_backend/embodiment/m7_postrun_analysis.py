@@ -225,13 +225,13 @@ def validate_evidence(raw: Path, manifest_path: Path, summary_path: Path,
         neural_stride = int(NEURAL_DT_MS / PHYSICS_DT_MS)
         if neural_stride * PHYSICS_DT_MS != NEURAL_DT_MS:
             raise EvidenceError("neural/physics cadence ratio is not integral")
-        sampled_physics = pt[neural_stride::neural_stride]
+        expected_neural_clock = pt[neural_stride::neural_stride]
         # Derive the structural neural count from the validated primitive
         # physics clock, never from the possibly malformed neural vector.
-        n_count = NEURAL_SAMPLE_COUNT if canonical else len(sampled_physics)
+        expected_neural_count = len(expected_neural_clock)
         _validate_neural_time(
-            nt, sample_count=n_count,
-            sampled_physics=sampled_physics,
+            nt, sample_count=expected_neural_count,
+            sampled_physics=expected_neural_clock,
             endpoint_tol=physics_tol[neural_stride::neural_stride],
             label=f"{condition} neural")
         # The frozen recorder reads MuJoCo's clock once at the start of each
