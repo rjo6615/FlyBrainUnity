@@ -1,0 +1,89 @@
+{
+  "canonical_result_complete": true,
+  "completed_condition_count": 16,
+  "completed_conditions": [
+    {
+      "condition": "ENABLED",
+      "condition_number": 1,
+      "interface": "joint_LFFemur"
+    },
+    {
+      "condition": "MOTOR_OUTPUT_DISABLED",
+      "condition_number": 2,
+      "interface": "joint_LFFemur"
+    },
+    {
+      "condition": "ENABLED",
+      "condition_number": 3,
+      "interface": "joint_LFTarsus1"
+    },
+    {
+      "condition": "MOTOR_OUTPUT_DISABLED",
+      "condition_number": 4,
+      "interface": "joint_LFTarsus1"
+    },
+    {
+      "condition": "ENABLED",
+      "condition_number": 5,
+      "interface": "joint_LMFemur"
+    },
+    {
+      "condition": "MOTOR_OUTPUT_DISABLED",
+      "condition_number": 6,
+      "interface": "joint_LMFemur"
+    },
+    {
+      "condition": "ENABLED",
+      "condition_number": 7,
+      "interface": "joint_LHFemur"
+    },
+    {
+      "condition": "MOTOR_OUTPUT_DISABLED",
+      "condition_number": 8,
+      "interface": "joint_LHFemur"
+    },
+    {
+      "condition": "ENABLED",
+      "condition_number": 9,
+      "interface": "joint_RFFemur"
+    },
+    {
+      "condition": "MOTOR_OUTPUT_DISABLED",
+      "condition_number": 10,
+      "interface": "joint_RFFemur"
+    },
+    {
+      "condition": "ENABLED",
+      "condition_number": 11,
+      "interface": "joint_RFTarsus1"
+    },
+    {
+      "condition": "MOTOR_OUTPUT_DISABLED",
+      "condition_number": 12,
+      "interface": "joint_RFTarsus1"
+    },
+    {
+      "condition": "ENABLED",
+      "condition_number": 13,
+      "interface": "joint_RMFemur"
+    },
+    {
+      "condition": "MOTOR_OUTPUT_DISABLED",
+      "condition_number": 14,
+      "interface": "joint_RMFemur"
+    },
+    {
+      "condition": "ENABLED",
+      "condition_number": 15,
+      "interface": "joint_RHFemur"
+    },
+    {
+      "condition": "MOTOR_OUTPUT_DISABLED",
+      "condition_number": 16,
+      "interface": "joint_RHFemur"
+    }
+  ],
+  "elapsed_wall_seconds": 272.6157198000001,
+  "run_status": "COMPLETE",
+  "schema": "M6B-P5.0-CHECKPOINT"
+}
