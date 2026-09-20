@@ -1,55 +1,5169 @@
 {
-  "schema": "M7C-B2-POSE-GEOMETRY-AUDIT.1",
-  "status": "AWAITING_VALIDATED_WINDOWS_ZERO_TRANSITION_AUDIT",
-  "flygym_version": "1.2.1 (from frozen M7C-B Windows preflight)",
-  "mujoco_version": "3.2.7 (from frozen M7C-B Windows preflight)",
+  "flygym_version": "1.2.1",
   "installed_source": {
-    "authority": "validated installed Windows package; not online/newer behavior",
-    "pose_resources": {
-      "stretch": {"relative_path": "data/pose/pose_stretch.yaml", "sha256": "99207214c9b98a376deefb960546f3030e37fc22788e83e5be23e8c4024dff1a", "definition": null},
-      "tripod": {"relative_path": "data/pose/pose_tripod.yaml", "sha256": "8d71c1536c2a0fc55bfb574999eab5bff3568c3f38fe032a4b594a0bcb59a640", "definition": null},
-      "zero": {"relative_path": "data/pose/pose_zero.yaml", "sha256": "339b4ca89a5c727872505812c55ccc5411d858ee2b40aa466aeb5c18018093b2", "definition": null}
+    "finding": "tripod is named static pose data; loading it supplies no controller or dynamic assistance",
+    "kinematic_pose_source": {
+      "path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\fly-brain-interactive\\.venv\\Lib\\site-packages\\flygym\\state\\kinematic_pose.py",
+      "sha256": "40d275c91bd2f32cfd792ac934100ba6ad457d31cf901069832e79d967879fec"
     },
-    "kinematic_pose": {"relative_path": "state/kinematic_pose.py", "sha256": "40d275c91bd2f32cfd792ac934100ba6ad457d31cf901069832e79d967879fec"},
-    "finding": "The Windows audit will record exact definitions and local source evidence; tripod is inspected only as static KinematicPose data."
+    "package_root": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\fly-brain-interactive\\.venv\\Lib\\site-packages\\flygym",
+    "pose_resources": {
+      "stretch": {
+        "definition": {
+          "joints": {
+            "joint_LFCoxa": 19,
+            "joint_LFCoxa_roll": 0,
+            "joint_LFCoxa_yaw": 0,
+            "joint_LFFemur": -130,
+            "joint_LFFemur_roll": 0,
+            "joint_LFTarsus1": 0,
+            "joint_LFTibia": 0,
+            "joint_LHCoxa": 0,
+            "joint_LHCoxa_roll": 150,
+            "joint_LHCoxa_yaw": 0,
+            "joint_LHFemur": -100,
+            "joint_LHFemur_roll": 0,
+            "joint_LHTarsus1": 0,
+            "joint_LHTibia": 0,
+            "joint_LMCoxa": 0,
+            "joint_LMCoxa_roll": 90,
+            "joint_LMCoxa_yaw": 0,
+            "joint_LMFemur": -100,
+            "joint_LMFemur_roll": 0,
+            "joint_LMTarsus1": 0,
+            "joint_LMTibia": 0,
+            "joint_RFCoxa": 19,
+            "joint_RFCoxa_roll": 0,
+            "joint_RFCoxa_yaw": 0,
+            "joint_RFFemur": -130,
+            "joint_RFFemur_roll": 0,
+            "joint_RFTarsus1": 0,
+            "joint_RFTibia": 0,
+            "joint_RHCoxa": 0,
+            "joint_RHCoxa_roll": -150,
+            "joint_RHCoxa_yaw": 0,
+            "joint_RHFemur": -100,
+            "joint_RHFemur_roll": 0,
+            "joint_RHTarsus1": 0,
+            "joint_RHTibia": 0,
+            "joint_RMCoxa": 0,
+            "joint_RMCoxa_roll": -90,
+            "joint_RMCoxa_yaw": 0,
+            "joint_RMFemur": -100,
+            "joint_RMFemur_roll": 0,
+            "joint_RMTarsus1": 0,
+            "joint_RMTibia": 0
+          }
+        },
+        "path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\fly-brain-interactive\\.venv\\Lib\\site-packages\\flygym\\data\\pose\\pose_stretch.yaml",
+        "relative_path": "data/pose/pose_stretch.yaml",
+        "sha256": "99207214c9b98a376deefb960546f3030e37fc22788e83e5be23e8c4024dff1a"
+      },
+      "tripod": {
+        "definition": {
+          "joints": {
+            "joint_A1A2": 0.21846014367186156,
+            "joint_A3": -0.8069737300274114,
+            "joint_A4": -0.1650736529743767,
+            "joint_A5": -0.08908878107360028,
+            "joint_A6": 0.029519803564770058,
+            "joint_Haustellum": -0.008943727172967032,
+            "joint_Head": 0.5723155574085291,
+            "joint_Head_roll": 0.00026173427764161197,
+            "joint_Head_yaw": 0.0013135272686562638,
+            "joint_LAntenna": -0.002453728960324633,
+            "joint_LEye": -0.004643254915867528,
+            "joint_LFCoxa": -0.789880258643274,
+            "joint_LFCoxa_roll": -0.014459294441199725,
+            "joint_LFCoxa_yaw": 0.1506763651856406,
+            "joint_LFFemur": -67.57373506986399,
+            "joint_LFFemur_roll": -0.10095926849385913,
+            "joint_LFTarsus1": -8.149394415284323,
+            "joint_LFTarsus2": -36.402722797423515,
+            "joint_LFTarsus3": 10.369788970568194,
+            "joint_LFTarsus4": -14.127686885522392,
+            "joint_LFTarsus5": -1.0001463375908914,
+            "joint_LFTibia": 43.41127909530307,
+            "joint_LHCoxa": 1.2104426354333568,
+            "joint_LHCoxa_roll": 137.6147129043548,
+            "joint_LHCoxa_yaw": 10.69658678149118,
+            "joint_LHFemur": -89.38329525236054,
+            "joint_LHFemur_roll": -8.097307769798867,
+            "joint_LHTarsus1": -6.055704595492672,
+            "joint_LHTarsus2": -33.61131174359785,
+            "joint_LHTarsus3": 2.9823782076557506,
+            "joint_LHTarsus4": -29.13891634723032,
+            "joint_LHTarsus5": -32.66680123551217,
+            "joint_LHTibia": 65.7965836898687,
+            "joint_LHaltere": 0.37692474022375355,
+            "joint_LHaltere_roll": 0.1600892466660107,
+            "joint_LHaltere_yaw": 0.5451379001713288,
+            "joint_LMCoxa": 2.0615638403776515,
+            "joint_LMCoxa_roll": 101.88137481370443,
+            "joint_LMCoxa_yaw": 12.534912657408768,
+            "joint_LMFemur": -95.95693707631287,
+            "joint_LMFemur_roll": -0.19534080978081847,
+            "joint_LMTarsus1": -6.891833221136733,
+            "joint_LMTarsus2": -49.00679531729788,
+            "joint_LMTarsus3": -39.29125406688511,
+            "joint_LMTarsus4": 22.9605340951932,
+            "joint_LMTarsus5": -36.71301711192874,
+            "joint_LMTibia": 101.0596642359161,
+            "joint_LWing": 0.13107426328818048,
+            "joint_LWing_roll": -0.0009181363728491571,
+            "joint_LWing_yaw": 0.007666345451130245,
+            "joint_RAntenna": 0.002653956767393574,
+            "joint_REye": -0.0004564965851049248,
+            "joint_RFCoxa": -0.07589164341686852,
+            "joint_RFCoxa_roll": 0.06824252381150342,
+            "joint_RFCoxa_yaw": -0.027652522761576103,
+            "joint_RFFemur": -75.10638587459752,
+            "joint_RFFemur_roll": 0.021435915390630007,
+            "joint_RFTarsus1": -9.86956643659287,
+            "joint_RFTarsus2": -3.15527623162139,
+            "joint_RFTarsus3": -23.59796914090528,
+            "joint_RFTarsus4": -15.320505647515853,
+            "joint_RFTarsus5": -0.29617299839121086,
+            "joint_RFTibia": 51.350331169288935,
+            "joint_RHCoxa": 16.020107700341416,
+            "joint_RHCoxa_roll": -139.89327262013938,
+            "joint_RHCoxa_yaw": -7.917740753826325,
+            "joint_RHFemur": -75.37435088662505,
+            "joint_RHFemur_roll": -15.287777298628123,
+            "joint_RHTarsus1": -21.98272090882326,
+            "joint_RHTarsus2": -22.135257965892627,
+            "joint_RHTarsus3": 2.047810366464948,
+            "joint_RHTarsus4": -46.99014487263748,
+            "joint_RHTarsus5": 44.51076094078212,
+            "joint_RHTibia": 65.58923263208715,
+            "joint_RHaltere": 0.14756148784530043,
+            "joint_RHaltere_roll": -0.15051986173758183,
+            "joint_RHaltere_yaw": -0.16634345859583768,
+            "joint_RMCoxa": 0.6602396437628356,
+            "joint_RMCoxa_roll": -104.6230995031921,
+            "joint_RMCoxa_yaw": -6.046050062746582,
+            "joint_RMFemur": -105.21451777392465,
+            "joint_RMFemur_roll": 0.11446637542072276,
+            "joint_RMTarsus1": -1.9125087120067328,
+            "joint_RMTarsus2": -46.17387106345222,
+            "joint_RMTarsus3": -21.165569982947073,
+            "joint_RMTarsus4": 6.077448095636238,
+            "joint_RMTarsus5": 9.85933692286725,
+            "joint_RMTibia": 98.99614155554471,
+            "joint_RWing": 0.1297395296771384,
+            "joint_RWing_roll": 0.003199068466914467,
+            "joint_RWing_yaw": -0.009758275213023679,
+            "joint_Rostrum": -0.10363284957436733
+          }
+        },
+        "path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\fly-brain-interactive\\.venv\\Lib\\site-packages\\flygym\\data\\pose\\pose_tripod.yaml",
+        "relative_path": "data/pose/pose_tripod.yaml",
+        "sha256": "8d71c1536c2a0fc55bfb574999eab5bff3568c3f38fe032a4b594a0bcb59a640"
+      },
+      "zero": {
+        "definition": {
+          "joints": {
+            "joint_LFCoxa": 0,
+            "joint_LFCoxa_roll": 0,
+            "joint_LFCoxa_yaw": 0,
+            "joint_LFFemur": 0,
+            "joint_LFFemur_roll": 0,
+            "joint_LFTarsus1": 0,
+            "joint_LFTibia": 0,
+            "joint_LHCoxa": 0,
+            "joint_LHCoxa_roll": 0,
+            "joint_LHCoxa_yaw": 0,
+            "joint_LHFemur": 0,
+            "joint_LHFemur_roll": 0,
+            "joint_LHTarsus1": 0,
+            "joint_LHTibia": 0,
+            "joint_LMCoxa": 0,
+            "joint_LMCoxa_roll": 0,
+            "joint_LMCoxa_yaw": 0,
+            "joint_LMFemur": 0,
+            "joint_LMFemur_roll": 0,
+            "joint_LMTarsus1": 0,
+            "joint_LMTibia": 0,
+            "joint_RFCoxa": 0,
+            "joint_RFCoxa_roll": 0,
+            "joint_RFCoxa_yaw": 0,
+            "joint_RFFemur": 0,
+            "joint_RFFemur_roll": 0,
+            "joint_RFTarsus1": 0,
+            "joint_RFTibia": 0,
+            "joint_RHCoxa": 0,
+            "joint_RHCoxa_roll": 0,
+            "joint_RHCoxa_yaw": 0,
+            "joint_RHFemur": 0,
+            "joint_RHFemur_roll": 0,
+            "joint_RHTarsus1": 0,
+            "joint_RHTibia": 0,
+            "joint_RMCoxa": 0,
+            "joint_RMCoxa_roll": 0,
+            "joint_RMCoxa_yaw": 0,
+            "joint_RMFemur": 0,
+            "joint_RMFemur_roll": 0,
+            "joint_RMTarsus1": 0,
+            "joint_RMTibia": 0
+          }
+        },
+        "path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\fly-brain-interactive\\.venv\\Lib\\site-packages\\flygym\\data\\pose\\pose_zero.yaml",
+        "relative_path": "data/pose/pose_zero.yaml",
+        "sha256": "339b4ca89a5c727872505812c55ccc5411d858ee2b40aa466aeb5c18018093b2"
+      }
+    },
+    "source_evidence": [
+      {
+        "line": 283,
+        "path": "camera.py",
+        "text": "from the default, all-stretched position. By default 0.02s"
+      },
+      {
+        "line": 299,
+        "path": "core.py",
+        "text": "\"stretch\" kinematic pose with all legs fully stretched."
+      },
+      {
+        "line": 330,
+        "path": "core.py",
+        "text": "init_pose: Union[str, state.KinematicPose] = \"stretch\","
+      },
+      {
+        "line": 179,
+        "path": "fly.py",
+        "text": "\"stretch\" kinematic pose with all legs fully stretched."
+      },
+      {
+        "line": 314,
+        "path": "fly.py",
+        "text": "init_pose: Union[str, state.KinematicPose] = \"stretch\","
+      },
+      {
+        "line": 44,
+        "path": "preprogrammed.py",
+        "text": "- \"stretch\": all legs are fully extended sideways to ensure that the"
+      },
+      {
+        "line": 10,
+        "path": "tests/test_pose.py",
+        "text": "def test_stretched_pose():"
+      },
+      {
+        "line": 15,
+        "path": "tests/test_pose.py",
+        "text": "fly = Fly(init_pose=\"stretch\")"
+      },
+      {
+        "line": 32,
+        "path": "tests/test_pose.py",
+        "text": "out_dir = temp_base_dir / \"mujoco_stretched_pose\""
+      },
+      {
+        "line": 69,
+        "path": "tests/test_pose.py",
+        "text": "fly = Fly(init_pose=\"tripod\")"
+      },
+      {
+        "line": 117,
+        "path": "vision/visualize.py",
+        "text": "from the default, all-stretched position. By default 0.02s"
+      },
+      {
+        "line": 390,
+        "path": "examples/locomotion/controller_comparison.py",
+        "text": "init_pose=\"stretch\","
+      },
+      {
+        "line": 171,
+        "path": "examples/locomotion/cpg_controller.py",
+        "text": "init_pose=\"stretch\","
+      },
+      {
+        "line": 213,
+        "path": "examples/locomotion/hybrid_controller.py",
+        "text": "init_pose=\"stretch\","
+      },
+      {
+        "line": 288,
+        "path": "examples/locomotion/rule_based_controller.py",
+        "text": "init_pose=\"stretch\","
+      },
+      {
+        "line": 92,
+        "path": "examples/locomotion/tests/test_rules.py",
+        "text": "init_pose=\"stretch\","
+      }
+    ]
   },
+  "mujoco_version": "3.2.7",
   "pose_audits": [
-    {"id": "canonical_stretch", "init_pose": "stretch", "spawn_pos": [0.0, 0.0, 0.5], "result": null},
-    {"id": "default_tripod", "init_pose": "tripod", "spawn_pos": "FlyGym 1.2.1 constructor default", "result": null},
-    {"id": "default_zero", "init_pose": "zero", "spawn_pos": "FlyGym 1.2.1 constructor default", "result": null}
+    {
+      "analytic_spawn_height_correction": {
+        "reason": "missing distal or non-distal collision geometry",
+        "status": "INCOMPATIBLE"
+      },
+      "candidate_eligible": true,
+      "collision_enabled_fly_geometries": [],
+      "contacts": [
+        {
+          "distance": -0.02453605937522539,
+          "geom1": "0/LHCoxa",
+          "geom2": "0/RHCoxa",
+          "penetration_depth": 0.02453605937522539,
+          "position": [
+            -0.2916761852081384,
+            -2.498731083155903e-11,
+            1.158427759226986
+          ]
+        },
+        {
+          "distance": -0.02453605937522539,
+          "geom1": "0/LHCoxa",
+          "geom2": "0/RHCoxa",
+          "penetration_depth": 0.02453605937522539,
+          "position": [
+            -0.2916761852081384,
+            -2.498731083155903e-11,
+            1.158427759226986
+          ]
+        }
+      ],
+      "distal_tarsus5": [],
+      "finite_state": true,
+      "geometry_gate": {
+        "body_penetrations": [],
+        "calibration_surface_contacts": [],
+        "calibration_surface_unchanged": true,
+        "classifications": {
+          "BODY_GROUND_PENETRATION": false,
+          "CALIBRATION_SURFACE_CONTACT": false,
+          "EXCESSIVE_DISTAL_PENETRATION": false,
+          "MIXED_SUPPORT_SURFACES": false,
+          "NO_SUPPORT_CONTACT": true,
+          "PROXIMAL_LEG_GROUND_PENETRATION": false,
+          "SELF_COLLISION_PRESENT": true,
+          "VALID_SUPPORT_CONTACT": false
+        },
+        "distal_contacts": [],
+        "ground_contacts": [],
+        "proximal_penetrations": [],
+        "self_contacts": [
+          {
+            "distance": -0.02453605937522539,
+            "geom1": "0/LHCoxa",
+            "geom2": "0/RHCoxa",
+            "penetration_depth": 0.02453605937522539,
+            "position": [
+              -0.2916761852081384,
+              -2.498731083155903e-11,
+              1.158427759226986
+            ]
+          },
+          {
+            "distance": -0.02453605937522539,
+            "geom1": "0/LHCoxa",
+            "geom2": "0/RHCoxa",
+            "penetration_depth": 0.02453605937522539,
+            "position": [
+              -0.2916761852081384,
+              -2.498731083155903e-11,
+              1.158427759226986
+            ]
+          }
+        ],
+        "state_finite": true,
+        "support_surfaces": [],
+        "tolerances": {
+          "contact": 1e-06,
+          "distal_penetration": 0.001,
+          "material_penetration": 1e-06
+        },
+        "valid": false
+      },
+      "pose": {
+        "id": "canonical_stretch",
+        "init_pose": "stretch",
+        "spawn_pos": [
+          0.0,
+          0.0,
+          0.5
+        ]
+      },
+      "state": {
+        "controlled_joint_positions": [
+          0.33161255717277527,
+          0.0,
+          0.0,
+          -2.268928050994873,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.5707963705062866,
+          0.0,
+          -1.7453292608261108,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          2.6179938316345215,
+          0.0,
+          -1.7453292608261108,
+          0.0,
+          0.0,
+          0.0,
+          0.33161255717277527,
+          0.0,
+          0.0,
+          -2.268928050994873,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -1.5707963705062866,
+          0.0,
+          -1.7453292608261108,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -2.6179938316345215,
+          0.0,
+          -1.7453292608261108,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "qpos": [
+          0.0,
+          0.0,
+          0.5,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.33161255787892263,
+          0.0,
+          -2.2689280275926285,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          2.6179938779914944,
+          -1.7453292519943295,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.5707963267948966,
+          -1.7453292519943295,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -2.6179938779914944,
+          -1.7453292519943295,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -1.5707963267948966,
+          -1.7453292519943295,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.33161255787892263,
+          0.0,
+          -2.2689280275926285,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "qvel": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "root_orientation_wxyz": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "root_xyz": [
+          0.0,
+          0.0,
+          0.5
+        ]
+      },
+      "usable_distal_support_geometry": "collision-enabled Tarsus5 mesh vertices/contact pairs, not its bounding sphere"
+    },
+    {
+      "analytic_spawn_height_correction": null,
+      "candidate_eligible": false,
+      "collision_enabled_fly_geometries": [],
+      "contacts": [
+        {
+          "distance": -0.028959265297266938,
+          "geom1": "ground",
+          "geom2": "1/LFTarsus4",
+          "penetration_depth": 0.028959265297266938,
+          "position": [
+            1.5242880930678326,
+            0.19790405469397512,
+            -0.014479632648633469
+          ]
+        },
+        {
+          "distance": -0.001779331717176716,
+          "geom1": "ground",
+          "geom2": "1/LFTarsus4",
+          "penetration_depth": 0.001779331717176716,
+          "position": [
+            1.5098640946999413,
+            0.20538116661976005,
+            -0.000889665858588358
+          ]
+        },
+        {
+          "distance": -0.0010640407667238533,
+          "geom1": "ground",
+          "geom2": "1/LFTarsus4",
+          "penetration_depth": 0.0010640407667238533,
+          "position": [
+            1.5074241245962667,
+            0.20214951918190568,
+            -0.0005320203833619266
+          ]
+        },
+        {
+          "distance": -0.10457622322663132,
+          "geom1": "ground",
+          "geom2": "1/LFTarsus5",
+          "penetration_depth": 0.10457622322663132,
+          "position": [
+            1.574488506930325,
+            0.17418144661750118,
+            -0.05228811161331566
+          ]
+        },
+        {
+          "distance": -0.07787583101656817,
+          "geom1": "ground",
+          "geom2": "1/LFTarsus5",
+          "penetration_depth": 0.07787583101656817,
+          "position": [
+            1.5665995655559761,
+            0.20795526019968558,
+            -0.038937915508284085
+          ]
+        },
+        {
+          "distance": -0.07401630232545083,
+          "geom1": "ground",
+          "geom2": "1/LFTarsus5",
+          "penetration_depth": 0.07401630232545083,
+          "position": [
+            1.5655185674721745,
+            0.20858549390464307,
+            -0.03700815116272541
+          ]
+        },
+        {
+          "distance": -0.01791410739038215,
+          "geom1": "ground",
+          "geom2": "1/LHTarsus5",
+          "penetration_depth": 0.01791410739038215,
+          "position": [
+            -1.5383414902102677,
+            1.2006231616739953,
+            -0.008957053695191074
+          ]
+        },
+        {
+          "distance": -0.003107882864176837,
+          "geom1": "ground",
+          "geom2": "1/LHTarsus5",
+          "penetration_depth": 0.003107882864176837,
+          "position": [
+            -1.5579404107981425,
+            1.220905910816082,
+            -0.0015539414320884185
+          ]
+        },
+        {
+          "distance": -0.004083304660189663,
+          "geom1": "ground",
+          "geom2": "1/LHTarsus5",
+          "penetration_depth": 0.004083304660189663,
+          "position": [
+            -1.5583905984514523,
+            1.2184010509761227,
+            -0.0020416523300948314
+          ]
+        },
+        {
+          "distance": -0.025438385929282048,
+          "geom1": "ground",
+          "geom2": "1/RFTarsus5",
+          "penetration_depth": 0.025438385929282048,
+          "position": [
+            1.5934180450295141,
+            -0.16835379311108012,
+            -0.012719192964641024
+          ]
+        },
+        {
+          "distance": -0.013717594310329484,
+          "geom1": "ground",
+          "geom2": "1/RFTarsus5",
+          "penetration_depth": 0.013717594310329484,
+          "position": [
+            1.578114766405715,
+            -0.20176548013947754,
+            -0.006858797155164742
+          ]
+        },
+        {
+          "distance": -0.013106964139405215,
+          "geom1": "ground",
+          "geom2": "1/RFTarsus5",
+          "penetration_depth": 0.013106964139405215,
+          "position": [
+            1.5823114691180897,
+            -0.20179822839703207,
+            -0.006553482069702608
+          ]
+        },
+        {
+          "distance": -0.0008327005648158468,
+          "geom1": "1/LHCoxa",
+          "geom2": "1/RHCoxa",
+          "penetration_depth": 0.0008327005648158468,
+          "position": [
+            -0.25410661920431654,
+            -0.0007019535074030249,
+            1.2682062161297223
+          ]
+        },
+        {
+          "distance": -0.0008327005648158468,
+          "geom1": "1/LHCoxa",
+          "geom2": "1/RHCoxa",
+          "penetration_depth": 0.0008327005648158468,
+          "position": [
+            -0.25410661920431654,
+            -0.0007019535074030249,
+            1.2682062161297223
+          ]
+        }
+      ],
+      "distal_tarsus5": [],
+      "finite_state": true,
+      "geometry_gate": {
+        "body_penetrations": [],
+        "calibration_surface_contacts": [],
+        "calibration_surface_unchanged": true,
+        "classifications": {
+          "BODY_GROUND_PENETRATION": false,
+          "CALIBRATION_SURFACE_CONTACT": false,
+          "EXCESSIVE_DISTAL_PENETRATION": true,
+          "MIXED_SUPPORT_SURFACES": false,
+          "NO_SUPPORT_CONTACT": false,
+          "PROXIMAL_LEG_GROUND_PENETRATION": true,
+          "SELF_COLLISION_PRESENT": true,
+          "VALID_SUPPORT_CONTACT": false
+        },
+        "distal_contacts": [
+          {
+            "distance": -0.10457622322663132,
+            "geom1": "ground",
+            "geom2": "1/LFTarsus5",
+            "penetration_depth": 0.10457622322663132,
+            "position": [
+              1.574488506930325,
+              0.17418144661750118,
+              -0.05228811161331566
+            ]
+          },
+          {
+            "distance": -0.07787583101656817,
+            "geom1": "ground",
+            "geom2": "1/LFTarsus5",
+            "penetration_depth": 0.07787583101656817,
+            "position": [
+              1.5665995655559761,
+              0.20795526019968558,
+              -0.038937915508284085
+            ]
+          },
+          {
+            "distance": -0.07401630232545083,
+            "geom1": "ground",
+            "geom2": "1/LFTarsus5",
+            "penetration_depth": 0.07401630232545083,
+            "position": [
+              1.5655185674721745,
+              0.20858549390464307,
+              -0.03700815116272541
+            ]
+          },
+          {
+            "distance": -0.01791410739038215,
+            "geom1": "ground",
+            "geom2": "1/LHTarsus5",
+            "penetration_depth": 0.01791410739038215,
+            "position": [
+              -1.5383414902102677,
+              1.2006231616739953,
+              -0.008957053695191074
+            ]
+          },
+          {
+            "distance": -0.003107882864176837,
+            "geom1": "ground",
+            "geom2": "1/LHTarsus5",
+            "penetration_depth": 0.003107882864176837,
+            "position": [
+              -1.5579404107981425,
+              1.220905910816082,
+              -0.0015539414320884185
+            ]
+          },
+          {
+            "distance": -0.004083304660189663,
+            "geom1": "ground",
+            "geom2": "1/LHTarsus5",
+            "penetration_depth": 0.004083304660189663,
+            "position": [
+              -1.5583905984514523,
+              1.2184010509761227,
+              -0.0020416523300948314
+            ]
+          },
+          {
+            "distance": -0.025438385929282048,
+            "geom1": "ground",
+            "geom2": "1/RFTarsus5",
+            "penetration_depth": 0.025438385929282048,
+            "position": [
+              1.5934180450295141,
+              -0.16835379311108012,
+              -0.012719192964641024
+            ]
+          },
+          {
+            "distance": -0.013717594310329484,
+            "geom1": "ground",
+            "geom2": "1/RFTarsus5",
+            "penetration_depth": 0.013717594310329484,
+            "position": [
+              1.578114766405715,
+              -0.20176548013947754,
+              -0.006858797155164742
+            ]
+          },
+          {
+            "distance": -0.013106964139405215,
+            "geom1": "ground",
+            "geom2": "1/RFTarsus5",
+            "penetration_depth": 0.013106964139405215,
+            "position": [
+              1.5823114691180897,
+              -0.20179822839703207,
+              -0.006553482069702608
+            ]
+          }
+        ],
+        "ground_contacts": [
+          {
+            "distance": -0.028959265297266938,
+            "geom1": "ground",
+            "geom2": "1/LFTarsus4",
+            "penetration_depth": 0.028959265297266938,
+            "position": [
+              1.5242880930678326,
+              0.19790405469397512,
+              -0.014479632648633469
+            ]
+          },
+          {
+            "distance": -0.001779331717176716,
+            "geom1": "ground",
+            "geom2": "1/LFTarsus4",
+            "penetration_depth": 0.001779331717176716,
+            "position": [
+              1.5098640946999413,
+              0.20538116661976005,
+              -0.000889665858588358
+            ]
+          },
+          {
+            "distance": -0.0010640407667238533,
+            "geom1": "ground",
+            "geom2": "1/LFTarsus4",
+            "penetration_depth": 0.0010640407667238533,
+            "position": [
+              1.5074241245962667,
+              0.20214951918190568,
+              -0.0005320203833619266
+            ]
+          },
+          {
+            "distance": -0.10457622322663132,
+            "geom1": "ground",
+            "geom2": "1/LFTarsus5",
+            "penetration_depth": 0.10457622322663132,
+            "position": [
+              1.574488506930325,
+              0.17418144661750118,
+              -0.05228811161331566
+            ]
+          },
+          {
+            "distance": -0.07787583101656817,
+            "geom1": "ground",
+            "geom2": "1/LFTarsus5",
+            "penetration_depth": 0.07787583101656817,
+            "position": [
+              1.5665995655559761,
+              0.20795526019968558,
+              -0.038937915508284085
+            ]
+          },
+          {
+            "distance": -0.07401630232545083,
+            "geom1": "ground",
+            "geom2": "1/LFTarsus5",
+            "penetration_depth": 0.07401630232545083,
+            "position": [
+              1.5655185674721745,
+              0.20858549390464307,
+              -0.03700815116272541
+            ]
+          },
+          {
+            "distance": -0.01791410739038215,
+            "geom1": "ground",
+            "geom2": "1/LHTarsus5",
+            "penetration_depth": 0.01791410739038215,
+            "position": [
+              -1.5383414902102677,
+              1.2006231616739953,
+              -0.008957053695191074
+            ]
+          },
+          {
+            "distance": -0.003107882864176837,
+            "geom1": "ground",
+            "geom2": "1/LHTarsus5",
+            "penetration_depth": 0.003107882864176837,
+            "position": [
+              -1.5579404107981425,
+              1.220905910816082,
+              -0.0015539414320884185
+            ]
+          },
+          {
+            "distance": -0.004083304660189663,
+            "geom1": "ground",
+            "geom2": "1/LHTarsus5",
+            "penetration_depth": 0.004083304660189663,
+            "position": [
+              -1.5583905984514523,
+              1.2184010509761227,
+              -0.0020416523300948314
+            ]
+          },
+          {
+            "distance": -0.025438385929282048,
+            "geom1": "ground",
+            "geom2": "1/RFTarsus5",
+            "penetration_depth": 0.025438385929282048,
+            "position": [
+              1.5934180450295141,
+              -0.16835379311108012,
+              -0.012719192964641024
+            ]
+          },
+          {
+            "distance": -0.013717594310329484,
+            "geom1": "ground",
+            "geom2": "1/RFTarsus5",
+            "penetration_depth": 0.013717594310329484,
+            "position": [
+              1.578114766405715,
+              -0.20176548013947754,
+              -0.006858797155164742
+            ]
+          },
+          {
+            "distance": -0.013106964139405215,
+            "geom1": "ground",
+            "geom2": "1/RFTarsus5",
+            "penetration_depth": 0.013106964139405215,
+            "position": [
+              1.5823114691180897,
+              -0.20179822839703207,
+              -0.006553482069702608
+            ]
+          }
+        ],
+        "proximal_penetrations": [
+          {
+            "distance": -0.028959265297266938,
+            "geom1": "ground",
+            "geom2": "1/LFTarsus4",
+            "penetration_depth": 0.028959265297266938,
+            "position": [
+              1.5242880930678326,
+              0.19790405469397512,
+              -0.014479632648633469
+            ]
+          },
+          {
+            "distance": -0.001779331717176716,
+            "geom1": "ground",
+            "geom2": "1/LFTarsus4",
+            "penetration_depth": 0.001779331717176716,
+            "position": [
+              1.5098640946999413,
+              0.20538116661976005,
+              -0.000889665858588358
+            ]
+          },
+          {
+            "distance": -0.0010640407667238533,
+            "geom1": "ground",
+            "geom2": "1/LFTarsus4",
+            "penetration_depth": 0.0010640407667238533,
+            "position": [
+              1.5074241245962667,
+              0.20214951918190568,
+              -0.0005320203833619266
+            ]
+          }
+        ],
+        "self_contacts": [
+          {
+            "distance": -0.0008327005648158468,
+            "geom1": "1/LHCoxa",
+            "geom2": "1/RHCoxa",
+            "penetration_depth": 0.0008327005648158468,
+            "position": [
+              -0.25410661920431654,
+              -0.0007019535074030249,
+              1.2682062161297223
+            ]
+          },
+          {
+            "distance": -0.0008327005648158468,
+            "geom1": "1/LHCoxa",
+            "geom2": "1/RHCoxa",
+            "penetration_depth": 0.0008327005648158468,
+            "position": [
+              -0.25410661920431654,
+              -0.0007019535074030249,
+              1.2682062161297223
+            ]
+          }
+        ],
+        "state_finite": true,
+        "support_surfaces": [
+          "ground"
+        ],
+        "tolerances": {
+          "contact": 1e-06,
+          "distal_penetration": 0.001,
+          "material_penetration": 1e-06
+        },
+        "valid": false
+      },
+      "pose": {
+        "id": "default_tripod",
+        "init_pose": "tripod",
+        "spawn_pos": null
+      },
+      "state": {
+        "controlled_joint_positions": [
+          -0.01378601137548685,
+          -0.00025236228248104453,
+          0.0026297986041754484,
+          -1.1793841123580933,
+          -0.0017620716243982315,
+          0.7576697468757629,
+          -0.14223375916481018,
+          0.03598107770085335,
+          1.7781654596328735,
+          0.21877549588680267,
+          -1.6747645139694214,
+          -0.0034093402791768312,
+          1.7638238668441772,
+          -0.12028518319129944,
+          0.02112620882689953,
+          2.401829957962036,
+          0.18669065833091736,
+          -1.560032844543457,
+          -0.14132468402385712,
+          1.1483670473098755,
+          -0.10569198429584503,
+          -0.0013245590962469578,
+          0.001191056682728231,
+          -0.00048262756899930537,
+          -1.3108537197113037,
+          0.0003741272957995534,
+          0.8962323665618896,
+          -0.17225642502307892,
+          0.011523355729877949,
+          -1.8260176181793213,
+          -0.105523481965065,
+          -1.8363397121429443,
+          0.0019978152122348547,
+          1.7278085947036743,
+          -0.03337957337498665,
+          0.27960363030433655,
+          -2.4415981769561768,
+          -0.1381906419992447,
+          -1.31553053855896,
+          -0.26682204008102417,
+          1.1447480916976929,
+          -0.3836708664894104
+        ],
+        "qpos": [
+          0.0,
+          0.0,
+          0.5,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0026297986774267853,
+          -0.013786011209829531,
+          -0.0002523622955142488,
+          -1.179384164839487,
+          -0.0017620716456228183,
+          0.7576697527152239,
+          -0.14223376459034956,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.18669065806232432,
+          0.021126209394829457,
+          2.40182983936772,
+          -1.5600327984359073,
+          -0.1413246811303093,
+          1.1483670219522084,
+          -0.10569198371949849,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.218775497321695,
+          0.03598107675464884,
+          1.7781654369575668,
+          -1.6747644921106808,
+          -0.003409340294187225,
+          1.7638238818766956,
+          -0.12028518120716244,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.13819064547360718,
+          0.27960362589505483,
+          -2.441598208611467,
+          -1.3155305945251143,
+          -0.26682204917270513,
+          1.1447480632864273,
+          -0.3836708584059661,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.10552348033533762,
+          0.011523355635855924,
+          -1.8260175599723456,
+          -1.83633975605308,
+          0.0019978151339155215,
+          1.727808616914636,
+          -0.0333795739975935,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.00048262756867217794,
+          -0.0013245590523738352,
+          0.0011910567303813648,
+          -1.3108537227850876,
+          0.0003741273017454201,
+          0.8962323508935617,
+          -0.17225643006286973,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "qvel": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "root_orientation_wxyz": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "root_xyz": [
+          0.0,
+          0.0,
+          0.5
+        ]
+      },
+      "usable_distal_support_geometry": "collision-enabled Tarsus5 mesh vertices/contact pairs, not its bounding sphere"
+    },
+    {
+      "analytic_spawn_height_correction": null,
+      "candidate_eligible": false,
+      "collision_enabled_fly_geometries": [],
+      "contacts": [
+        {
+          "distance": -0.06671713315245742,
+          "geom1": "ground",
+          "geom2": "2/LFTibia",
+          "penetration_depth": 0.06671713315245742,
+          "position": [
+            0.34583711050121846,
+            0.15725069846568734,
+            -0.03335856657622871
+          ]
+        },
+        {
+          "distance": -0.2836984072773403,
+          "geom1": "ground",
+          "geom2": "2/LFTarsus1",
+          "penetration_depth": 0.2836984072773403,
+          "position": [
+            0.3343898271826885,
+            0.17589526452964263,
+            -0.14184920363867015
+          ]
+        },
+        {
+          "distance": -0.04904120403739552,
+          "geom1": "ground",
+          "geom2": "2/LFTarsus1",
+          "penetration_depth": 0.04904120403739552,
+          "position": [
+            0.33754619403039354,
+            0.20482575580229348,
+            -0.02452060201869776
+          ]
+        },
+        {
+          "distance": -0.05002385216547654,
+          "geom1": "ground",
+          "geom2": "2/LFTarsus1",
+          "penetration_depth": 0.05002385216547654,
+          "position": [
+            0.33736829176885635,
+            0.2041501522001094,
+            -0.02501192608273827
+          ]
+        },
+        {
+          "distance": -0.4295321438609223,
+          "geom1": "ground",
+          "geom2": "2/LFTarsus2",
+          "penetration_depth": 0.4295321438609223,
+          "position": [
+            0.3307126044828842,
+            0.1766783968316034,
+            -0.21476607193046116
+          ]
+        },
+        {
+          "distance": -0.2730887741267683,
+          "geom1": "ground",
+          "geom2": "2/LFTarsus2",
+          "penetration_depth": 0.2730887741267683,
+          "position": [
+            0.35512392698379136,
+            0.1835713683465878,
+            -0.13654438706338415
+          ]
+        },
+        {
+          "distance": -0.2731724252760194,
+          "geom1": "ground",
+          "geom2": "2/LFTarsus2",
+          "penetration_depth": 0.2731724252760194,
+          "position": [
+            0.3552821247900995,
+            0.18538109011310852,
+            -0.1365862126380097
+          ]
+        },
+        {
+          "distance": -0.5297072987174539,
+          "geom1": "ground",
+          "geom2": "2/LFTarsus3",
+          "penetration_depth": 0.5297072987174539,
+          "position": [
+            0.3270042408882672,
+            0.1874500160611778,
+            -0.26485364935872696
+          ]
+        },
+        {
+          "distance": -0.4332486721892335,
+          "geom1": "ground",
+          "geom2": "2/LFTarsus3",
+          "penetration_depth": 0.4332486721892335,
+          "position": [
+            0.33660943272149696,
+            0.20417665719525027,
+            -0.21662433609461676
+          ]
+        },
+        {
+          "distance": -0.4349823167333201,
+          "geom1": "ground",
+          "geom2": "2/LFTarsus3",
+          "penetration_depth": 0.4349823167333201,
+          "position": [
+            0.3377118287737456,
+            0.20360819647917675,
+            -0.21749115836666005
+          ]
+        },
+        {
+          "distance": -0.612739366394162,
+          "geom1": "ground",
+          "geom2": "2/LFTarsus4",
+          "penetration_depth": 0.612739366394162,
+          "position": [
+            0.3321350764809117,
+            0.19307902253885795,
+            -0.306369683197081
+          ]
+        },
+        {
+          "distance": -0.5714598744630406,
+          "geom1": "ground",
+          "geom2": "2/LFTarsus4",
+          "penetration_depth": 0.5714598744630406,
+          "position": [
+            0.329201840482529,
+            0.20538751801545868,
+            -0.2857299372315203
+          ]
+        },
+        {
+          "distance": -0.5759690180636767,
+          "geom1": "ground",
+          "geom2": "2/LFTarsus4",
+          "penetration_depth": 0.5759690180636767,
+          "position": [
+            0.32891185956402286,
+            0.20497766160648695,
+            -0.28798450903183836
+          ]
+        },
+        {
+          "distance": -0.7039346471773755,
+          "geom1": "ground",
+          "geom2": "2/LFTarsus5",
+          "penetration_depth": 0.7039346471773755,
+          "position": [
+            0.33302654384087643,
+            0.20390753412288795,
+            -0.35196732358868776
+          ]
+        },
+        {
+          "distance": -0.673216783654373,
+          "geom1": "ground",
+          "geom2": "2/LFTarsus5",
+          "penetration_depth": 0.673216783654373,
+          "position": [
+            0.3291782284588125,
+            0.20263916633831525,
+            -0.3366083918271865
+          ]
+        },
+        {
+          "distance": -0.6693952526138631,
+          "geom1": "ground",
+          "geom2": "2/LFTarsus5",
+          "penetration_depth": 0.6693952526138631,
+          "position": [
+            0.33037849379357764,
+            0.20328490369218705,
+            -0.33469762630693156
+          ]
+        },
+        {
+          "distance": -0.4645410662584909,
+          "geom1": "ground",
+          "geom2": "2/LHTibia",
+          "penetration_depth": 0.4645410662584909,
+          "position": [
+            -0.31341800464155195,
+            0.1064402073205106,
+            -0.23227053312924545
+          ]
+        },
+        {
+          "distance": -0.4559158169707742,
+          "geom1": "ground",
+          "geom2": "2/LHTibia",
+          "penetration_depth": 0.4559158169707742,
+          "position": [
+            -0.28525972937382765,
+            0.05134113317742865,
+            -0.2279579084853871
+          ]
+        },
+        {
+          "distance": -0.4503949363349114,
+          "geom1": "ground",
+          "geom2": "2/LHTibia",
+          "penetration_depth": 0.4503949363349114,
+          "position": [
+            -0.27263766723270044,
+            0.05577708426796926,
+            -0.2251974681674557
+          ]
+        },
+        {
+          "distance": -0.7939470692166255,
+          "geom1": "ground",
+          "geom2": "2/LHTarsus1",
+          "penetration_depth": 0.7939470692166255,
+          "position": [
+            -0.32408653261447284,
+            0.10018173053756248,
+            -0.39697353460831275
+          ]
+        },
+        {
+          "distance": -0.790763085103261,
+          "geom1": "ground",
+          "geom2": "2/LHTarsus1",
+          "penetration_depth": 0.790763085103261,
+          "position": [
+            -0.2995680812662826,
+            0.1008888452082749,
+            -0.3953815425516305
+          ]
+        },
+        {
+          "distance": -0.7929499477016481,
+          "geom1": "ground",
+          "geom2": "2/LHTarsus1",
+          "penetration_depth": 0.7929499477016481,
+          "position": [
+            -0.30064788311234025,
+            0.11088954262539824,
+            -0.39647497385082403
+          ]
+        },
+        {
+          "distance": -0.970186215152487,
+          "geom1": "ground",
+          "geom2": "2/LHTarsus2",
+          "penetration_depth": 0.970186215152487,
+          "position": [
+            -0.3266809616729376,
+            0.10079242883743154,
+            -0.4850931075762435
+          ]
+        },
+        {
+          "distance": -0.9600249947652969,
+          "geom1": "ground",
+          "geom2": "2/LHTarsus2",
+          "penetration_depth": 0.9600249947652969,
+          "position": [
+            -0.30127354409639956,
+            0.07421867733025923,
+            -0.48001249738264845
+          ]
+        },
+        {
+          "distance": -0.9596599959997364,
+          "geom1": "ground",
+          "geom2": "2/LHTarsus2",
+          "penetration_depth": 0.9596599959997364,
+          "position": [
+            -0.30023240117992883,
+            0.07108477164598533,
+            -0.4798299979998682
+          ]
+        },
+        {
+          "distance": -1.057953851920284,
+          "geom1": "ground",
+          "geom2": "2/LHTarsus3",
+          "penetration_depth": 1.057953851920284,
+          "position": [
+            -0.3035413424838626,
+            0.06118126528079626,
+            -0.528976925960142
+          ]
+        },
+        {
+          "distance": -1.0500510881326868,
+          "geom1": "ground",
+          "geom2": "2/LHTarsus3",
+          "penetration_depth": 1.0500510881326868,
+          "position": [
+            -0.2900796398443113,
+            0.09589327411718314,
+            -0.5250255440663434
+          ]
+        },
+        {
+          "distance": -1.0496225669820471,
+          "geom1": "ground",
+          "geom2": "2/LHTarsus3",
+          "penetration_depth": 1.0496225669820471,
+          "position": [
+            -0.2898133760385919,
+            0.09603297874458794,
+            -0.5248112834910236
+          ]
+        },
+        {
+          "distance": -1.133084976451331,
+          "geom1": "ground",
+          "geom2": "2/LHTarsus4",
+          "penetration_depth": 1.133084976451331,
+          "position": [
+            -0.32273154272686166,
+            0.08578764804016334,
+            -0.5665424882256656
+          ]
+        },
+        {
+          "distance": -1.1275303123348521,
+          "geom1": "ground",
+          "geom2": "2/LHTarsus4",
+          "penetration_depth": 1.1275303123348521,
+          "position": [
+            -0.2916908855495272,
+            0.0837578075517351,
+            -0.5637651561674261
+          ]
+        },
+        {
+          "distance": -1.1270859304532996,
+          "geom1": "ground",
+          "geom2": "2/LHTarsus4",
+          "penetration_depth": 1.1270859304532996,
+          "position": [
+            -0.287732619099217,
+            0.08511221874040842,
+            -0.5635429652266498
+          ]
+        },
+        {
+          "distance": -1.224976010368321,
+          "geom1": "ground",
+          "geom2": "2/LHTarsus5",
+          "penetration_depth": 1.224976010368321,
+          "position": [
+            -0.30074889027821267,
+            0.08210328231477648,
+            -0.6124880051841605
+          ]
+        },
+        {
+          "distance": -1.2165275611184656,
+          "geom1": "ground",
+          "geom2": "2/LHTarsus5",
+          "penetration_depth": 1.2165275611184656,
+          "position": [
+            -0.28237188973447735,
+            0.0817176991899593,
+            -0.6082637805592328
+          ]
+        },
+        {
+          "distance": -1.212768807704122,
+          "geom1": "ground",
+          "geom2": "2/LHTarsus5",
+          "penetration_depth": 1.212768807704122,
+          "position": [
+            -0.2779543672478372,
+            0.08169748925684754,
+            -0.606384403852061
+          ]
+        },
+        {
+          "distance": -0.3937208169269007,
+          "geom1": "ground",
+          "geom2": "2/LMTibia",
+          "penetration_depth": 0.3937208169269007,
+          "position": [
+            -0.08136723827460288,
+            0.10519804376140039,
+            -0.19686040846345035
+          ]
+        },
+        {
+          "distance": -0.05412993512977728,
+          "geom1": "ground",
+          "geom2": "2/LMTibia",
+          "penetration_depth": 0.05412993512977728,
+          "position": [
+            -0.07919293260527045,
+            0.1410382599765056,
+            -0.02706496756488864
+          ]
+        },
+        {
+          "distance": -0.03320894387649643,
+          "geom1": "ground",
+          "geom2": "2/LMTibia",
+          "penetration_depth": 0.03320894387649643,
+          "position": [
+            -0.08192291065273992,
+            0.12887833718650502,
+            -0.016604471938248214
+          ]
+        },
+        {
+          "distance": -0.6527102259881917,
+          "geom1": "ground",
+          "geom2": "2/LMTarsus1",
+          "penetration_depth": 0.6527102259881917,
+          "position": [
+            -0.060726312529800125,
+            0.10056038504131798,
+            -0.32635511299409586
+          ]
+        },
+        {
+          "distance": -0.5561856199155553,
+          "geom1": "ground",
+          "geom2": "2/LMTarsus1",
+          "penetration_depth": 0.5561856199155553,
+          "position": [
+            -0.09918833435652567,
+            0.12801368766676413,
+            -0.27809280995777763
+          ]
+        },
+        {
+          "distance": -0.5399168448391943,
+          "geom1": "ground",
+          "geom2": "2/LMTarsus1",
+          "penetration_depth": 0.5399168448391943,
+          "position": [
+            -0.09787844113699007,
+            0.1353878770687857,
+            -0.26995842241959717
+          ]
+        },
+        {
+          "distance": -0.8097296771048303,
+          "geom1": "ground",
+          "geom2": "2/LMTarsus2",
+          "penetration_depth": 0.8097296771048303,
+          "position": [
+            -0.07548041346262643,
+            0.10003753038594593,
+            -0.4048648385524152
+          ]
+        },
+        {
+          "distance": -0.7987230095884448,
+          "geom1": "ground",
+          "geom2": "2/LMTarsus2",
+          "penetration_depth": 0.7987230095884448,
+          "position": [
+            -0.10043396583956507,
+            0.13110348785954085,
+            -0.3993615047942224
+          ]
+        },
+        {
+          "distance": -0.8007455923699148,
+          "geom1": "ground",
+          "geom2": "2/LMTarsus2",
+          "penetration_depth": 0.8007455923699148,
+          "position": [
+            -0.1017071308913007,
+            0.1336746753689835,
+            -0.4003727961849574
+          ]
+        },
+        {
+          "distance": -0.906186489915751,
+          "geom1": "ground",
+          "geom2": "2/LMTarsus3",
+          "penetration_depth": 0.906186489915751,
+          "position": [
+            -0.10309801998863294,
+            0.09801480779501509,
+            -0.4530932449578755
+          ]
+        },
+        {
+          "distance": -0.9023663113753077,
+          "geom1": "ground",
+          "geom2": "2/LMTarsus3",
+          "penetration_depth": 0.9023663113753077,
+          "position": [
+            -0.10393732493754801,
+            0.14161681354276306,
+            -0.4511831556876538
+          ]
+        },
+        {
+          "distance": -0.9007539900627813,
+          "geom1": "ground",
+          "geom2": "2/LMTarsus3",
+          "penetration_depth": 0.9007539900627813,
+          "position": [
+            -0.10411378900392247,
+            0.14163420344784428,
+            -0.45037699503139067
+          ]
+        },
+        {
+          "distance": -0.9604620853897812,
+          "geom1": "ground",
+          "geom2": "2/LMTarsus4",
+          "penetration_depth": 0.9604620853897812,
+          "position": [
+            -0.09635064550574234,
+            0.10485238186212074,
+            -0.4802310426948906
+          ]
+        },
+        {
+          "distance": -0.9584304532515001,
+          "geom1": "ground",
+          "geom2": "2/LMTarsus4",
+          "penetration_depth": 0.9584304532515001,
+          "position": [
+            -0.09567951973897368,
+            0.11559008520938405,
+            -0.47921522662575006
+          ]
+        },
+        {
+          "distance": -0.9573798096188489,
+          "geom1": "ground",
+          "geom2": "2/LMTarsus4",
+          "penetration_depth": 0.9573798096188489,
+          "position": [
+            -0.09327433488512932,
+            0.11995443025091639,
+            -0.47868990480942447
+          ]
+        },
+        {
+          "distance": -1.051830634100026,
+          "geom1": "ground",
+          "geom2": "2/LMTarsus5",
+          "penetration_depth": 1.051830634100026,
+          "position": [
+            -0.08073514345250662,
+            0.1307049575231591,
+            -0.525915317050013
+          ]
+        },
+        {
+          "distance": -1.0392562492954645,
+          "geom1": "ground",
+          "geom2": "2/LMTarsus5",
+          "penetration_depth": 1.0392562492954645,
+          "position": [
+            -0.09546653315825254,
+            0.14961241992747482,
+            -0.5196281246477322
+          ]
+        },
+        {
+          "distance": -1.0411608213236796,
+          "geom1": "ground",
+          "geom2": "2/LMTarsus5",
+          "penetration_depth": 1.0411608213236796,
+          "position": [
+            -0.0991659103559362,
+            0.14841693789189986,
+            -0.5205804106618398
+          ]
+        },
+        {
+          "distance": -0.46454106081134433,
+          "geom1": "ground",
+          "geom2": "2/RHTibia",
+          "penetration_depth": 0.46454106081134433,
+          "position": [
+            -0.3134180076266011,
+            -0.10644020869249735,
+            -0.23227053040567217
+          ]
+        },
+        {
+          "distance": -0.4559158116157461,
+          "geom1": "ground",
+          "geom2": "2/RHTibia",
+          "penetration_depth": 0.4559158116157461,
+          "position": [
+            -0.28525973043507785,
+            -0.05134113142185441,
+            -0.22795790580787306
+          ]
+        },
+        {
+          "distance": -0.45039493100786393,
+          "geom1": "ground",
+          "geom2": "2/RHTibia",
+          "penetration_depth": 0.45039493100786393,
+          "position": [
+            -0.272637667570059,
+            -0.055777084034858565,
+            -0.22519746550393197
+          ]
+        },
+        {
+          "distance": -0.7939470691842908,
+          "geom1": "ground",
+          "geom2": "2/RHTarsus1",
+          "penetration_depth": 0.7939470691842908,
+          "position": [
+            -0.32408653242975094,
+            -0.10018173029919525,
+            -0.3969735345921454
+          ]
+        },
+        {
+          "distance": -0.7907630850522926,
+          "geom1": "ground",
+          "geom2": "2/RHTarsus1",
+          "penetration_depth": 0.7907630850522926,
+          "position": [
+            -0.2995680811444127,
+            -0.10088884574849871,
+            -0.3953815425261463
+          ]
+        },
+        {
+          "distance": -0.792949947644841,
+          "geom1": "ground",
+          "geom2": "2/RHTarsus1",
+          "penetration_depth": 0.792949947644841,
+          "position": [
+            -0.30064788262311887,
+            -0.11088954320656272,
+            -0.3964749738224205
+          ]
+        },
+        {
+          "distance": -0.9701862153886763,
+          "geom1": "ground",
+          "geom2": "2/RHTarsus2",
+          "penetration_depth": 0.9701862153886763,
+          "position": [
+            -0.3266809616823625,
+            -0.10079242884342322,
+            -0.48509310769433817
+          ]
+        },
+        {
+          "distance": -0.9600249950089835,
+          "geom1": "ground",
+          "geom2": "2/RHTarsus2",
+          "penetration_depth": 0.9600249950089835,
+          "position": [
+            -0.30127354424858416,
+            -0.07421867700131153,
+            -0.48001249750449176
+          ]
+        },
+        {
+          "distance": -0.9596599962477399,
+          "geom1": "ground",
+          "geom2": "2/RHTarsus2",
+          "penetration_depth": 0.9596599962477399,
+          "position": [
+            -0.3002324010017245,
+            -0.07108477170283528,
+            -0.47982999812386995
+          ]
+        },
+        {
+          "distance": -1.0579538518115672,
+          "geom1": "ground",
+          "geom2": "2/RHTarsus3",
+          "penetration_depth": 1.0579538518115672,
+          "position": [
+            -0.30354134241078295,
+            -0.06118126526869107,
+            -0.5289769259057836
+          ]
+        },
+        {
+          "distance": -1.0500510880136107,
+          "geom1": "ground",
+          "geom2": "2/RHTarsus3",
+          "penetration_depth": 1.0500510880136107,
+          "position": [
+            -0.29007963977801976,
+            -0.095893274105352,
+            -0.5250255440068053
+          ]
+        },
+        {
+          "distance": -1.0496225668627168,
+          "geom1": "ground",
+          "geom2": "2/RHTarsus3",
+          "penetration_depth": 1.0496225668627168,
+          "position": [
+            -0.2898133759727259,
+            -0.09603297873278693,
+            -0.5248112834313584
+          ]
+        },
+        {
+          "distance": -1.1330849764523014,
+          "geom1": "ground",
+          "geom2": "2/RHTarsus4",
+          "penetration_depth": 1.1330849764523014,
+          "position": [
+            -0.3227315427866706,
+            -0.0857876480182582,
+            -0.5665424882261507
+          ]
+        },
+        {
+          "distance": -1.1275303123682356,
+          "geom1": "ground",
+          "geom2": "2/RHTarsus4",
+          "penetration_depth": 1.1275303123682356,
+          "position": [
+            -0.29169088560961753,
+            -0.0837578074368275,
+            -0.5637651561841178
+          ]
+        },
+        {
+          "distance": -1.1270859304937828,
+          "geom1": "ground",
+          "geom2": "2/RHTarsus4",
+          "penetration_depth": 1.1270859304937828,
+          "position": [
+            -0.2877326191542862,
+            -0.08511221861315592,
+            -0.5635429652468914
+          ]
+        },
+        {
+          "distance": -1.2249760104140268,
+          "geom1": "ground",
+          "geom2": "2/RHTarsus5",
+          "penetration_depth": 1.2249760104140268,
+          "position": [
+            -0.3007488902056401,
+            -0.0821032822097915,
+            -0.6124880052070134
+          ]
+        },
+        {
+          "distance": -1.2165275611740032,
+          "geom1": "ground",
+          "geom2": "2/RHTarsus5",
+          "penetration_depth": 1.2165275611740032,
+          "position": [
+            -0.28237188979286004,
+            -0.08171769933140113,
+            -0.6082637805870016
+          ]
+        },
+        {
+          "distance": -1.2127688077625147,
+          "geom1": "ground",
+          "geom2": "2/RHTarsus5",
+          "penetration_depth": 1.2127688077625147,
+          "position": [
+            -0.27795436730373474,
+            -0.08169748941051064,
+            -0.6063844038812574
+          ]
+        },
+        {
+          "distance": -0.3937208173164478,
+          "geom1": "ground",
+          "geom2": "2/RMTibia",
+          "penetration_depth": 0.3937208173164478,
+          "position": [
+            -0.08136723796972614,
+            -0.10519804440291512,
+            -0.1968604086582239
+          ]
+        },
+        {
+          "distance": -0.05412993552981941,
+          "geom1": "ground",
+          "geom2": "2/RMTibia",
+          "penetration_depth": 0.05412993552981941,
+          "position": [
+            -0.07919293241320566,
+            -0.14103826027804242,
+            -0.027064967764909704
+          ]
+        },
+        {
+          "distance": -0.03320894425347045,
+          "geom1": "ground",
+          "geom2": "2/RMTibia",
+          "penetration_depth": 0.03320894425347045,
+          "position": [
+            -0.08192291066946321,
+            -0.12887833709703964,
+            -0.016604472126735225
+          ]
+        },
+        {
+          "distance": -0.6527102244511066,
+          "geom1": "ground",
+          "geom2": "2/RMTarsus1",
+          "penetration_depth": 0.6527102244511066,
+          "position": [
+            -0.06072631224728073,
+            -0.1005603856401394,
+            -0.3263551122255533
+          ]
+        },
+        {
+          "distance": -0.5561856182775573,
+          "geom1": "ground",
+          "geom2": "2/RMTarsus1",
+          "penetration_depth": 0.5561856182775573,
+          "position": [
+            -0.09918833429483234,
+            -0.12801368783017184,
+            -0.27809280913877865
+          ]
+        },
+        {
+          "distance": -0.5399168431676042,
+          "geom1": "ground",
+          "geom2": "2/RMTarsus1",
+          "penetration_depth": 0.5399168431676042,
+          "position": [
+            -0.09787844076528407,
+            -0.13538787710301486,
+            -0.2699584215838021
+          ]
+        },
+        {
+          "distance": -0.8097296772846253,
+          "geom1": "ground",
+          "geom2": "2/RMTarsus2",
+          "penetration_depth": 0.8097296772846253,
+          "position": [
+            -0.07548041363422393,
+            -0.10003753033157078,
+            -0.40486483864231265
+          ]
+        },
+        {
+          "distance": -0.798723009775363,
+          "geom1": "ground",
+          "geom2": "2/RMTarsus2",
+          "penetration_depth": 0.798723009775363,
+          "position": [
+            -0.10043396565771359,
+            -0.13110348809159533,
+            -0.3993615048876815
+          ]
+        },
+        {
+          "distance": -0.8007455925571099,
+          "geom1": "ground",
+          "geom2": "2/RMTarsus2",
+          "penetration_depth": 0.8007455925571099,
+          "position": [
+            -0.10170713067903775,
+            -0.13367467561587892,
+            -0.40037279627855493
+          ]
+        },
+        {
+          "distance": -0.906186490021731,
+          "geom1": "ground",
+          "geom2": "2/RMTarsus3",
+          "penetration_depth": 0.906186490021731,
+          "position": [
+            -0.1030980199406154,
+            -0.09801480773396865,
+            -0.4530932450108655
+          ]
+        },
+        {
+          "distance": -0.9023663078488506,
+          "geom1": "ground",
+          "geom2": "2/RMTarsus3",
+          "penetration_depth": 0.9023663078488506,
+          "position": [
+            -0.10393732444393271,
+            -0.14161681340308563,
+            -0.4511831539244253
+          ]
+        },
+        {
+          "distance": -0.900753990241611,
+          "geom1": "ground",
+          "geom2": "2/RMTarsus3",
+          "penetration_depth": 0.900753990241611,
+          "position": [
+            -0.10411378888986854,
+            -0.14163420339740856,
+            -0.4503769951208055
+          ]
+        },
+        {
+          "distance": -0.9604620851808808,
+          "geom1": "ground",
+          "geom2": "2/RMTarsus4",
+          "penetration_depth": 0.9604620851808808,
+          "position": [
+            -0.09635064543415328,
+            -0.10485238194013334,
+            -0.4802310425904404
+          ]
+        },
+        {
+          "distance": -0.958430453071616,
+          "geom1": "ground",
+          "geom2": "2/RMTarsus4",
+          "penetration_depth": 0.958430453071616,
+          "position": [
+            -0.09567951961802296,
+            -0.1155900852898015,
+            -0.479215226535808
+          ]
+        },
+        {
+          "distance": -0.9573798094221386,
+          "geom1": "ground",
+          "geom2": "2/RMTarsus4",
+          "penetration_depth": 0.9573798094221386,
+          "position": [
+            -0.0932743346751416,
+            -0.11995442986160332,
+            -0.4786899047110693
+          ]
+        },
+        {
+          "distance": -1.0518306343929609,
+          "geom1": "ground",
+          "geom2": "2/RMTarsus5",
+          "penetration_depth": 1.0518306343929609,
+          "position": [
+            -0.08073514345629192,
+            -0.1307049574189215,
+            -0.5259153171964804
+          ]
+        },
+        {
+          "distance": -1.039256253371117,
+          "geom1": "ground",
+          "geom2": "2/RMTarsus5",
+          "penetration_depth": 1.039256253371117,
+          "position": [
+            -0.0954665319508514,
+            -0.14961242123388782,
+            -0.5196281266855585
+          ]
+        },
+        {
+          "distance": -1.0411608216771822,
+          "geom1": "ground",
+          "geom2": "2/RMTarsus5",
+          "penetration_depth": 1.0411608216771822,
+          "position": [
+            -0.09916590902604393,
+            -0.14841693727097563,
+            -0.5205804108385911
+          ]
+        },
+        {
+          "distance": -0.06671713139005464,
+          "geom1": "ground",
+          "geom2": "2/RFTibia",
+          "penetration_depth": 0.06671713139005464,
+          "position": [
+            0.34583711087245816,
+            -0.15725069856601448,
+            -0.03335856569502732
+          ]
+        },
+        {
+          "distance": -0.2836984070540762,
+          "geom1": "ground",
+          "geom2": "2/RFTarsus1",
+          "penetration_depth": 0.2836984070540762,
+          "position": [
+            0.3343898271813803,
+            -0.1758952643591152,
+            -0.1418492035270381
+          ]
+        },
+        {
+          "distance": -0.04904121136968714,
+          "geom1": "ground",
+          "geom2": "2/RFTarsus1",
+          "penetration_depth": 0.04904121136968714,
+          "position": [
+            0.3375461938368513,
+            -0.20482575625429192,
+            -0.02452060568484357
+          ]
+        },
+        {
+          "distance": -0.050023852032975186,
+          "geom1": "ground",
+          "geom2": "2/RFTarsus1",
+          "penetration_depth": 0.050023852032975186,
+          "position": [
+            0.3373682917477794,
+            -0.20415015255697977,
+            -0.025011926016487593
+          ]
+        },
+        {
+          "distance": -0.4295321440014703,
+          "geom1": "ground",
+          "geom2": "2/RFTarsus2",
+          "penetration_depth": 0.4295321440014703,
+          "position": [
+            0.3307126044572992,
+            -0.17667839685259185,
+            -0.21476607200073514
+          ]
+        },
+        {
+          "distance": -0.27308877426927675,
+          "geom1": "ground",
+          "geom2": "2/RFTarsus2",
+          "penetration_depth": 0.27308877426927675,
+          "position": [
+            0.35512392698660666,
+            -0.18357136831149323,
+            -0.13654438713463837
+          ]
+        },
+        {
+          "distance": -0.27317242541887393,
+          "geom1": "ground",
+          "geom2": "2/RFTarsus2",
+          "penetration_depth": 0.27317242541887393,
+          "position": [
+            0.3552821247992604,
+            -0.18538109007744322,
+            -0.13658621270943697
+          ]
+        },
+        {
+          "distance": -0.5297072987503599,
+          "geom1": "ground",
+          "geom2": "2/RFTarsus3",
+          "penetration_depth": 0.5297072987503599,
+          "position": [
+            0.32700424085690605,
+            -0.1874500160956676,
+            -0.26485364937517997
+          ]
+        },
+        {
+          "distance": -0.4332486722634139,
+          "geom1": "ground",
+          "geom2": "2/RFTarsus3",
+          "penetration_depth": 0.4332486722634139,
+          "position": [
+            0.3366094329742793,
+            -0.20417665730459142,
+            -0.21662433613170695
+          ]
+        },
+        {
+          "distance": -0.4349823168076622,
+          "geom1": "ground",
+          "geom2": "2/RFTarsus3",
+          "penetration_depth": 0.4349823168076622,
+          "position": [
+            0.33771182901856234,
+            -0.20360819657356347,
+            -0.2174911584038311
+          ]
+        },
+        {
+          "distance": -0.6127393664856792,
+          "geom1": "ground",
+          "geom2": "2/RFTarsus4",
+          "penetration_depth": 0.6127393664856792,
+          "position": [
+            0.3321350764618227,
+            -0.1930790224416986,
+            -0.3063696832428396
+          ]
+        },
+        {
+          "distance": -0.5714598745692292,
+          "geom1": "ground",
+          "geom2": "2/RFTarsus4",
+          "penetration_depth": 0.5714598745692292,
+          "position": [
+            0.32920184066502184,
+            -0.20538751807201622,
+            -0.2857299372846146
+          ]
+        },
+        {
+          "distance": -0.575969018156061,
+          "geom1": "ground",
+          "geom2": "2/RFTarsus4",
+          "penetration_depth": 0.575969018156061,
+          "position": [
+            0.3289118594283047,
+            -0.2049776613160154,
+            -0.2879845090780305
+          ]
+        },
+        {
+          "distance": -0.7039346470350808,
+          "geom1": "ground",
+          "geom2": "2/RFTarsus5",
+          "penetration_depth": 0.7039346470350808,
+          "position": [
+            0.33302654363315476,
+            -0.20390753410819115,
+            -0.3519673235175404
+          ]
+        },
+        {
+          "distance": -0.6732167835409274,
+          "geom1": "ground",
+          "geom2": "2/RFTarsus5",
+          "penetration_depth": 0.6732167835409274,
+          "position": [
+            0.3291782284651196,
+            -0.2026391663054807,
+            -0.3366083917704637
+          ]
+        },
+        {
+          "distance": -0.6693952524997885,
+          "geom1": "ground",
+          "geom2": "2/RFTarsus5",
+          "penetration_depth": 0.6693952524997885,
+          "position": [
+            0.33037849379690015,
+            -0.20328490366117788,
+            -0.33469762624989424
+          ]
+        },
+        {
+          "distance": -0.04243259073493696,
+          "geom1": "2/LHFemur",
+          "geom2": "2/RHFemur",
+          "penetration_depth": 0.04243259073493696,
+          "position": [
+            -0.2680202014434544,
+            -1.3750845219429042e-09,
+            0.5269136761305722
+          ]
+        },
+        {
+          "distance": -0.04243259073493696,
+          "geom1": "2/LHFemur",
+          "geom2": "2/RHFemur",
+          "penetration_depth": 0.04243259073493696,
+          "position": [
+            -0.2680202014434544,
+            -1.3750845219429042e-09,
+            0.5269136761305722
+          ]
+        }
+      ],
+      "distal_tarsus5": [],
+      "finite_state": true,
+      "geometry_gate": {
+        "body_penetrations": [],
+        "calibration_surface_contacts": [],
+        "calibration_surface_unchanged": true,
+        "classifications": {
+          "BODY_GROUND_PENETRATION": false,
+          "CALIBRATION_SURFACE_CONTACT": false,
+          "EXCESSIVE_DISTAL_PENETRATION": true,
+          "MIXED_SUPPORT_SURFACES": false,
+          "NO_SUPPORT_CONTACT": false,
+          "PROXIMAL_LEG_GROUND_PENETRATION": true,
+          "SELF_COLLISION_PRESENT": true,
+          "VALID_SUPPORT_CONTACT": false
+        },
+        "distal_contacts": [
+          {
+            "distance": -0.7039346471773755,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus5",
+            "penetration_depth": 0.7039346471773755,
+            "position": [
+              0.33302654384087643,
+              0.20390753412288795,
+              -0.35196732358868776
+            ]
+          },
+          {
+            "distance": -0.673216783654373,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus5",
+            "penetration_depth": 0.673216783654373,
+            "position": [
+              0.3291782284588125,
+              0.20263916633831525,
+              -0.3366083918271865
+            ]
+          },
+          {
+            "distance": -0.6693952526138631,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus5",
+            "penetration_depth": 0.6693952526138631,
+            "position": [
+              0.33037849379357764,
+              0.20328490369218705,
+              -0.33469762630693156
+            ]
+          },
+          {
+            "distance": -1.224976010368321,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus5",
+            "penetration_depth": 1.224976010368321,
+            "position": [
+              -0.30074889027821267,
+              0.08210328231477648,
+              -0.6124880051841605
+            ]
+          },
+          {
+            "distance": -1.2165275611184656,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus5",
+            "penetration_depth": 1.2165275611184656,
+            "position": [
+              -0.28237188973447735,
+              0.0817176991899593,
+              -0.6082637805592328
+            ]
+          },
+          {
+            "distance": -1.212768807704122,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus5",
+            "penetration_depth": 1.212768807704122,
+            "position": [
+              -0.2779543672478372,
+              0.08169748925684754,
+              -0.606384403852061
+            ]
+          },
+          {
+            "distance": -1.051830634100026,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus5",
+            "penetration_depth": 1.051830634100026,
+            "position": [
+              -0.08073514345250662,
+              0.1307049575231591,
+              -0.525915317050013
+            ]
+          },
+          {
+            "distance": -1.0392562492954645,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus5",
+            "penetration_depth": 1.0392562492954645,
+            "position": [
+              -0.09546653315825254,
+              0.14961241992747482,
+              -0.5196281246477322
+            ]
+          },
+          {
+            "distance": -1.0411608213236796,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus5",
+            "penetration_depth": 1.0411608213236796,
+            "position": [
+              -0.0991659103559362,
+              0.14841693789189986,
+              -0.5205804106618398
+            ]
+          },
+          {
+            "distance": -1.2249760104140268,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus5",
+            "penetration_depth": 1.2249760104140268,
+            "position": [
+              -0.3007488902056401,
+              -0.0821032822097915,
+              -0.6124880052070134
+            ]
+          },
+          {
+            "distance": -1.2165275611740032,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus5",
+            "penetration_depth": 1.2165275611740032,
+            "position": [
+              -0.28237188979286004,
+              -0.08171769933140113,
+              -0.6082637805870016
+            ]
+          },
+          {
+            "distance": -1.2127688077625147,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus5",
+            "penetration_depth": 1.2127688077625147,
+            "position": [
+              -0.27795436730373474,
+              -0.08169748941051064,
+              -0.6063844038812574
+            ]
+          },
+          {
+            "distance": -1.0518306343929609,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus5",
+            "penetration_depth": 1.0518306343929609,
+            "position": [
+              -0.08073514345629192,
+              -0.1307049574189215,
+              -0.5259153171964804
+            ]
+          },
+          {
+            "distance": -1.039256253371117,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus5",
+            "penetration_depth": 1.039256253371117,
+            "position": [
+              -0.0954665319508514,
+              -0.14961242123388782,
+              -0.5196281266855585
+            ]
+          },
+          {
+            "distance": -1.0411608216771822,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus5",
+            "penetration_depth": 1.0411608216771822,
+            "position": [
+              -0.09916590902604393,
+              -0.14841693727097563,
+              -0.5205804108385911
+            ]
+          },
+          {
+            "distance": -0.7039346470350808,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus5",
+            "penetration_depth": 0.7039346470350808,
+            "position": [
+              0.33302654363315476,
+              -0.20390753410819115,
+              -0.3519673235175404
+            ]
+          },
+          {
+            "distance": -0.6732167835409274,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus5",
+            "penetration_depth": 0.6732167835409274,
+            "position": [
+              0.3291782284651196,
+              -0.2026391663054807,
+              -0.3366083917704637
+            ]
+          },
+          {
+            "distance": -0.6693952524997885,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus5",
+            "penetration_depth": 0.6693952524997885,
+            "position": [
+              0.33037849379690015,
+              -0.20328490366117788,
+              -0.33469762624989424
+            ]
+          }
+        ],
+        "ground_contacts": [
+          {
+            "distance": -0.06671713315245742,
+            "geom1": "ground",
+            "geom2": "2/LFTibia",
+            "penetration_depth": 0.06671713315245742,
+            "position": [
+              0.34583711050121846,
+              0.15725069846568734,
+              -0.03335856657622871
+            ]
+          },
+          {
+            "distance": -0.2836984072773403,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus1",
+            "penetration_depth": 0.2836984072773403,
+            "position": [
+              0.3343898271826885,
+              0.17589526452964263,
+              -0.14184920363867015
+            ]
+          },
+          {
+            "distance": -0.04904120403739552,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus1",
+            "penetration_depth": 0.04904120403739552,
+            "position": [
+              0.33754619403039354,
+              0.20482575580229348,
+              -0.02452060201869776
+            ]
+          },
+          {
+            "distance": -0.05002385216547654,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus1",
+            "penetration_depth": 0.05002385216547654,
+            "position": [
+              0.33736829176885635,
+              0.2041501522001094,
+              -0.02501192608273827
+            ]
+          },
+          {
+            "distance": -0.4295321438609223,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus2",
+            "penetration_depth": 0.4295321438609223,
+            "position": [
+              0.3307126044828842,
+              0.1766783968316034,
+              -0.21476607193046116
+            ]
+          },
+          {
+            "distance": -0.2730887741267683,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus2",
+            "penetration_depth": 0.2730887741267683,
+            "position": [
+              0.35512392698379136,
+              0.1835713683465878,
+              -0.13654438706338415
+            ]
+          },
+          {
+            "distance": -0.2731724252760194,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus2",
+            "penetration_depth": 0.2731724252760194,
+            "position": [
+              0.3552821247900995,
+              0.18538109011310852,
+              -0.1365862126380097
+            ]
+          },
+          {
+            "distance": -0.5297072987174539,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus3",
+            "penetration_depth": 0.5297072987174539,
+            "position": [
+              0.3270042408882672,
+              0.1874500160611778,
+              -0.26485364935872696
+            ]
+          },
+          {
+            "distance": -0.4332486721892335,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus3",
+            "penetration_depth": 0.4332486721892335,
+            "position": [
+              0.33660943272149696,
+              0.20417665719525027,
+              -0.21662433609461676
+            ]
+          },
+          {
+            "distance": -0.4349823167333201,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus3",
+            "penetration_depth": 0.4349823167333201,
+            "position": [
+              0.3377118287737456,
+              0.20360819647917675,
+              -0.21749115836666005
+            ]
+          },
+          {
+            "distance": -0.612739366394162,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus4",
+            "penetration_depth": 0.612739366394162,
+            "position": [
+              0.3321350764809117,
+              0.19307902253885795,
+              -0.306369683197081
+            ]
+          },
+          {
+            "distance": -0.5714598744630406,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus4",
+            "penetration_depth": 0.5714598744630406,
+            "position": [
+              0.329201840482529,
+              0.20538751801545868,
+              -0.2857299372315203
+            ]
+          },
+          {
+            "distance": -0.5759690180636767,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus4",
+            "penetration_depth": 0.5759690180636767,
+            "position": [
+              0.32891185956402286,
+              0.20497766160648695,
+              -0.28798450903183836
+            ]
+          },
+          {
+            "distance": -0.7039346471773755,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus5",
+            "penetration_depth": 0.7039346471773755,
+            "position": [
+              0.33302654384087643,
+              0.20390753412288795,
+              -0.35196732358868776
+            ]
+          },
+          {
+            "distance": -0.673216783654373,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus5",
+            "penetration_depth": 0.673216783654373,
+            "position": [
+              0.3291782284588125,
+              0.20263916633831525,
+              -0.3366083918271865
+            ]
+          },
+          {
+            "distance": -0.6693952526138631,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus5",
+            "penetration_depth": 0.6693952526138631,
+            "position": [
+              0.33037849379357764,
+              0.20328490369218705,
+              -0.33469762630693156
+            ]
+          },
+          {
+            "distance": -0.4645410662584909,
+            "geom1": "ground",
+            "geom2": "2/LHTibia",
+            "penetration_depth": 0.4645410662584909,
+            "position": [
+              -0.31341800464155195,
+              0.1064402073205106,
+              -0.23227053312924545
+            ]
+          },
+          {
+            "distance": -0.4559158169707742,
+            "geom1": "ground",
+            "geom2": "2/LHTibia",
+            "penetration_depth": 0.4559158169707742,
+            "position": [
+              -0.28525972937382765,
+              0.05134113317742865,
+              -0.2279579084853871
+            ]
+          },
+          {
+            "distance": -0.4503949363349114,
+            "geom1": "ground",
+            "geom2": "2/LHTibia",
+            "penetration_depth": 0.4503949363349114,
+            "position": [
+              -0.27263766723270044,
+              0.05577708426796926,
+              -0.2251974681674557
+            ]
+          },
+          {
+            "distance": -0.7939470692166255,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus1",
+            "penetration_depth": 0.7939470692166255,
+            "position": [
+              -0.32408653261447284,
+              0.10018173053756248,
+              -0.39697353460831275
+            ]
+          },
+          {
+            "distance": -0.790763085103261,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus1",
+            "penetration_depth": 0.790763085103261,
+            "position": [
+              -0.2995680812662826,
+              0.1008888452082749,
+              -0.3953815425516305
+            ]
+          },
+          {
+            "distance": -0.7929499477016481,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus1",
+            "penetration_depth": 0.7929499477016481,
+            "position": [
+              -0.30064788311234025,
+              0.11088954262539824,
+              -0.39647497385082403
+            ]
+          },
+          {
+            "distance": -0.970186215152487,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus2",
+            "penetration_depth": 0.970186215152487,
+            "position": [
+              -0.3266809616729376,
+              0.10079242883743154,
+              -0.4850931075762435
+            ]
+          },
+          {
+            "distance": -0.9600249947652969,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus2",
+            "penetration_depth": 0.9600249947652969,
+            "position": [
+              -0.30127354409639956,
+              0.07421867733025923,
+              -0.48001249738264845
+            ]
+          },
+          {
+            "distance": -0.9596599959997364,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus2",
+            "penetration_depth": 0.9596599959997364,
+            "position": [
+              -0.30023240117992883,
+              0.07108477164598533,
+              -0.4798299979998682
+            ]
+          },
+          {
+            "distance": -1.057953851920284,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus3",
+            "penetration_depth": 1.057953851920284,
+            "position": [
+              -0.3035413424838626,
+              0.06118126528079626,
+              -0.528976925960142
+            ]
+          },
+          {
+            "distance": -1.0500510881326868,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus3",
+            "penetration_depth": 1.0500510881326868,
+            "position": [
+              -0.2900796398443113,
+              0.09589327411718314,
+              -0.5250255440663434
+            ]
+          },
+          {
+            "distance": -1.0496225669820471,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus3",
+            "penetration_depth": 1.0496225669820471,
+            "position": [
+              -0.2898133760385919,
+              0.09603297874458794,
+              -0.5248112834910236
+            ]
+          },
+          {
+            "distance": -1.133084976451331,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus4",
+            "penetration_depth": 1.133084976451331,
+            "position": [
+              -0.32273154272686166,
+              0.08578764804016334,
+              -0.5665424882256656
+            ]
+          },
+          {
+            "distance": -1.1275303123348521,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus4",
+            "penetration_depth": 1.1275303123348521,
+            "position": [
+              -0.2916908855495272,
+              0.0837578075517351,
+              -0.5637651561674261
+            ]
+          },
+          {
+            "distance": -1.1270859304532996,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus4",
+            "penetration_depth": 1.1270859304532996,
+            "position": [
+              -0.287732619099217,
+              0.08511221874040842,
+              -0.5635429652266498
+            ]
+          },
+          {
+            "distance": -1.224976010368321,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus5",
+            "penetration_depth": 1.224976010368321,
+            "position": [
+              -0.30074889027821267,
+              0.08210328231477648,
+              -0.6124880051841605
+            ]
+          },
+          {
+            "distance": -1.2165275611184656,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus5",
+            "penetration_depth": 1.2165275611184656,
+            "position": [
+              -0.28237188973447735,
+              0.0817176991899593,
+              -0.6082637805592328
+            ]
+          },
+          {
+            "distance": -1.212768807704122,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus5",
+            "penetration_depth": 1.212768807704122,
+            "position": [
+              -0.2779543672478372,
+              0.08169748925684754,
+              -0.606384403852061
+            ]
+          },
+          {
+            "distance": -0.3937208169269007,
+            "geom1": "ground",
+            "geom2": "2/LMTibia",
+            "penetration_depth": 0.3937208169269007,
+            "position": [
+              -0.08136723827460288,
+              0.10519804376140039,
+              -0.19686040846345035
+            ]
+          },
+          {
+            "distance": -0.05412993512977728,
+            "geom1": "ground",
+            "geom2": "2/LMTibia",
+            "penetration_depth": 0.05412993512977728,
+            "position": [
+              -0.07919293260527045,
+              0.1410382599765056,
+              -0.02706496756488864
+            ]
+          },
+          {
+            "distance": -0.03320894387649643,
+            "geom1": "ground",
+            "geom2": "2/LMTibia",
+            "penetration_depth": 0.03320894387649643,
+            "position": [
+              -0.08192291065273992,
+              0.12887833718650502,
+              -0.016604471938248214
+            ]
+          },
+          {
+            "distance": -0.6527102259881917,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus1",
+            "penetration_depth": 0.6527102259881917,
+            "position": [
+              -0.060726312529800125,
+              0.10056038504131798,
+              -0.32635511299409586
+            ]
+          },
+          {
+            "distance": -0.5561856199155553,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus1",
+            "penetration_depth": 0.5561856199155553,
+            "position": [
+              -0.09918833435652567,
+              0.12801368766676413,
+              -0.27809280995777763
+            ]
+          },
+          {
+            "distance": -0.5399168448391943,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus1",
+            "penetration_depth": 0.5399168448391943,
+            "position": [
+              -0.09787844113699007,
+              0.1353878770687857,
+              -0.26995842241959717
+            ]
+          },
+          {
+            "distance": -0.8097296771048303,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus2",
+            "penetration_depth": 0.8097296771048303,
+            "position": [
+              -0.07548041346262643,
+              0.10003753038594593,
+              -0.4048648385524152
+            ]
+          },
+          {
+            "distance": -0.7987230095884448,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus2",
+            "penetration_depth": 0.7987230095884448,
+            "position": [
+              -0.10043396583956507,
+              0.13110348785954085,
+              -0.3993615047942224
+            ]
+          },
+          {
+            "distance": -0.8007455923699148,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus2",
+            "penetration_depth": 0.8007455923699148,
+            "position": [
+              -0.1017071308913007,
+              0.1336746753689835,
+              -0.4003727961849574
+            ]
+          },
+          {
+            "distance": -0.906186489915751,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus3",
+            "penetration_depth": 0.906186489915751,
+            "position": [
+              -0.10309801998863294,
+              0.09801480779501509,
+              -0.4530932449578755
+            ]
+          },
+          {
+            "distance": -0.9023663113753077,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus3",
+            "penetration_depth": 0.9023663113753077,
+            "position": [
+              -0.10393732493754801,
+              0.14161681354276306,
+              -0.4511831556876538
+            ]
+          },
+          {
+            "distance": -0.9007539900627813,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus3",
+            "penetration_depth": 0.9007539900627813,
+            "position": [
+              -0.10411378900392247,
+              0.14163420344784428,
+              -0.45037699503139067
+            ]
+          },
+          {
+            "distance": -0.9604620853897812,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus4",
+            "penetration_depth": 0.9604620853897812,
+            "position": [
+              -0.09635064550574234,
+              0.10485238186212074,
+              -0.4802310426948906
+            ]
+          },
+          {
+            "distance": -0.9584304532515001,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus4",
+            "penetration_depth": 0.9584304532515001,
+            "position": [
+              -0.09567951973897368,
+              0.11559008520938405,
+              -0.47921522662575006
+            ]
+          },
+          {
+            "distance": -0.9573798096188489,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus4",
+            "penetration_depth": 0.9573798096188489,
+            "position": [
+              -0.09327433488512932,
+              0.11995443025091639,
+              -0.47868990480942447
+            ]
+          },
+          {
+            "distance": -1.051830634100026,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus5",
+            "penetration_depth": 1.051830634100026,
+            "position": [
+              -0.08073514345250662,
+              0.1307049575231591,
+              -0.525915317050013
+            ]
+          },
+          {
+            "distance": -1.0392562492954645,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus5",
+            "penetration_depth": 1.0392562492954645,
+            "position": [
+              -0.09546653315825254,
+              0.14961241992747482,
+              -0.5196281246477322
+            ]
+          },
+          {
+            "distance": -1.0411608213236796,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus5",
+            "penetration_depth": 1.0411608213236796,
+            "position": [
+              -0.0991659103559362,
+              0.14841693789189986,
+              -0.5205804106618398
+            ]
+          },
+          {
+            "distance": -0.46454106081134433,
+            "geom1": "ground",
+            "geom2": "2/RHTibia",
+            "penetration_depth": 0.46454106081134433,
+            "position": [
+              -0.3134180076266011,
+              -0.10644020869249735,
+              -0.23227053040567217
+            ]
+          },
+          {
+            "distance": -0.4559158116157461,
+            "geom1": "ground",
+            "geom2": "2/RHTibia",
+            "penetration_depth": 0.4559158116157461,
+            "position": [
+              -0.28525973043507785,
+              -0.05134113142185441,
+              -0.22795790580787306
+            ]
+          },
+          {
+            "distance": -0.45039493100786393,
+            "geom1": "ground",
+            "geom2": "2/RHTibia",
+            "penetration_depth": 0.45039493100786393,
+            "position": [
+              -0.272637667570059,
+              -0.055777084034858565,
+              -0.22519746550393197
+            ]
+          },
+          {
+            "distance": -0.7939470691842908,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus1",
+            "penetration_depth": 0.7939470691842908,
+            "position": [
+              -0.32408653242975094,
+              -0.10018173029919525,
+              -0.3969735345921454
+            ]
+          },
+          {
+            "distance": -0.7907630850522926,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus1",
+            "penetration_depth": 0.7907630850522926,
+            "position": [
+              -0.2995680811444127,
+              -0.10088884574849871,
+              -0.3953815425261463
+            ]
+          },
+          {
+            "distance": -0.792949947644841,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus1",
+            "penetration_depth": 0.792949947644841,
+            "position": [
+              -0.30064788262311887,
+              -0.11088954320656272,
+              -0.3964749738224205
+            ]
+          },
+          {
+            "distance": -0.9701862153886763,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus2",
+            "penetration_depth": 0.9701862153886763,
+            "position": [
+              -0.3266809616823625,
+              -0.10079242884342322,
+              -0.48509310769433817
+            ]
+          },
+          {
+            "distance": -0.9600249950089835,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus2",
+            "penetration_depth": 0.9600249950089835,
+            "position": [
+              -0.30127354424858416,
+              -0.07421867700131153,
+              -0.48001249750449176
+            ]
+          },
+          {
+            "distance": -0.9596599962477399,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus2",
+            "penetration_depth": 0.9596599962477399,
+            "position": [
+              -0.3002324010017245,
+              -0.07108477170283528,
+              -0.47982999812386995
+            ]
+          },
+          {
+            "distance": -1.0579538518115672,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus3",
+            "penetration_depth": 1.0579538518115672,
+            "position": [
+              -0.30354134241078295,
+              -0.06118126526869107,
+              -0.5289769259057836
+            ]
+          },
+          {
+            "distance": -1.0500510880136107,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus3",
+            "penetration_depth": 1.0500510880136107,
+            "position": [
+              -0.29007963977801976,
+              -0.095893274105352,
+              -0.5250255440068053
+            ]
+          },
+          {
+            "distance": -1.0496225668627168,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus3",
+            "penetration_depth": 1.0496225668627168,
+            "position": [
+              -0.2898133759727259,
+              -0.09603297873278693,
+              -0.5248112834313584
+            ]
+          },
+          {
+            "distance": -1.1330849764523014,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus4",
+            "penetration_depth": 1.1330849764523014,
+            "position": [
+              -0.3227315427866706,
+              -0.0857876480182582,
+              -0.5665424882261507
+            ]
+          },
+          {
+            "distance": -1.1275303123682356,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus4",
+            "penetration_depth": 1.1275303123682356,
+            "position": [
+              -0.29169088560961753,
+              -0.0837578074368275,
+              -0.5637651561841178
+            ]
+          },
+          {
+            "distance": -1.1270859304937828,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus4",
+            "penetration_depth": 1.1270859304937828,
+            "position": [
+              -0.2877326191542862,
+              -0.08511221861315592,
+              -0.5635429652468914
+            ]
+          },
+          {
+            "distance": -1.2249760104140268,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus5",
+            "penetration_depth": 1.2249760104140268,
+            "position": [
+              -0.3007488902056401,
+              -0.0821032822097915,
+              -0.6124880052070134
+            ]
+          },
+          {
+            "distance": -1.2165275611740032,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus5",
+            "penetration_depth": 1.2165275611740032,
+            "position": [
+              -0.28237188979286004,
+              -0.08171769933140113,
+              -0.6082637805870016
+            ]
+          },
+          {
+            "distance": -1.2127688077625147,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus5",
+            "penetration_depth": 1.2127688077625147,
+            "position": [
+              -0.27795436730373474,
+              -0.08169748941051064,
+              -0.6063844038812574
+            ]
+          },
+          {
+            "distance": -0.3937208173164478,
+            "geom1": "ground",
+            "geom2": "2/RMTibia",
+            "penetration_depth": 0.3937208173164478,
+            "position": [
+              -0.08136723796972614,
+              -0.10519804440291512,
+              -0.1968604086582239
+            ]
+          },
+          {
+            "distance": -0.05412993552981941,
+            "geom1": "ground",
+            "geom2": "2/RMTibia",
+            "penetration_depth": 0.05412993552981941,
+            "position": [
+              -0.07919293241320566,
+              -0.14103826027804242,
+              -0.027064967764909704
+            ]
+          },
+          {
+            "distance": -0.03320894425347045,
+            "geom1": "ground",
+            "geom2": "2/RMTibia",
+            "penetration_depth": 0.03320894425347045,
+            "position": [
+              -0.08192291066946321,
+              -0.12887833709703964,
+              -0.016604472126735225
+            ]
+          },
+          {
+            "distance": -0.6527102244511066,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus1",
+            "penetration_depth": 0.6527102244511066,
+            "position": [
+              -0.06072631224728073,
+              -0.1005603856401394,
+              -0.3263551122255533
+            ]
+          },
+          {
+            "distance": -0.5561856182775573,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus1",
+            "penetration_depth": 0.5561856182775573,
+            "position": [
+              -0.09918833429483234,
+              -0.12801368783017184,
+              -0.27809280913877865
+            ]
+          },
+          {
+            "distance": -0.5399168431676042,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus1",
+            "penetration_depth": 0.5399168431676042,
+            "position": [
+              -0.09787844076528407,
+              -0.13538787710301486,
+              -0.2699584215838021
+            ]
+          },
+          {
+            "distance": -0.8097296772846253,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus2",
+            "penetration_depth": 0.8097296772846253,
+            "position": [
+              -0.07548041363422393,
+              -0.10003753033157078,
+              -0.40486483864231265
+            ]
+          },
+          {
+            "distance": -0.798723009775363,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus2",
+            "penetration_depth": 0.798723009775363,
+            "position": [
+              -0.10043396565771359,
+              -0.13110348809159533,
+              -0.3993615048876815
+            ]
+          },
+          {
+            "distance": -0.8007455925571099,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus2",
+            "penetration_depth": 0.8007455925571099,
+            "position": [
+              -0.10170713067903775,
+              -0.13367467561587892,
+              -0.40037279627855493
+            ]
+          },
+          {
+            "distance": -0.906186490021731,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus3",
+            "penetration_depth": 0.906186490021731,
+            "position": [
+              -0.1030980199406154,
+              -0.09801480773396865,
+              -0.4530932450108655
+            ]
+          },
+          {
+            "distance": -0.9023663078488506,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus3",
+            "penetration_depth": 0.9023663078488506,
+            "position": [
+              -0.10393732444393271,
+              -0.14161681340308563,
+              -0.4511831539244253
+            ]
+          },
+          {
+            "distance": -0.900753990241611,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus3",
+            "penetration_depth": 0.900753990241611,
+            "position": [
+              -0.10411378888986854,
+              -0.14163420339740856,
+              -0.4503769951208055
+            ]
+          },
+          {
+            "distance": -0.9604620851808808,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus4",
+            "penetration_depth": 0.9604620851808808,
+            "position": [
+              -0.09635064543415328,
+              -0.10485238194013334,
+              -0.4802310425904404
+            ]
+          },
+          {
+            "distance": -0.958430453071616,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus4",
+            "penetration_depth": 0.958430453071616,
+            "position": [
+              -0.09567951961802296,
+              -0.1155900852898015,
+              -0.479215226535808
+            ]
+          },
+          {
+            "distance": -0.9573798094221386,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus4",
+            "penetration_depth": 0.9573798094221386,
+            "position": [
+              -0.0932743346751416,
+              -0.11995442986160332,
+              -0.4786899047110693
+            ]
+          },
+          {
+            "distance": -1.0518306343929609,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus5",
+            "penetration_depth": 1.0518306343929609,
+            "position": [
+              -0.08073514345629192,
+              -0.1307049574189215,
+              -0.5259153171964804
+            ]
+          },
+          {
+            "distance": -1.039256253371117,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus5",
+            "penetration_depth": 1.039256253371117,
+            "position": [
+              -0.0954665319508514,
+              -0.14961242123388782,
+              -0.5196281266855585
+            ]
+          },
+          {
+            "distance": -1.0411608216771822,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus5",
+            "penetration_depth": 1.0411608216771822,
+            "position": [
+              -0.09916590902604393,
+              -0.14841693727097563,
+              -0.5205804108385911
+            ]
+          },
+          {
+            "distance": -0.06671713139005464,
+            "geom1": "ground",
+            "geom2": "2/RFTibia",
+            "penetration_depth": 0.06671713139005464,
+            "position": [
+              0.34583711087245816,
+              -0.15725069856601448,
+              -0.03335856569502732
+            ]
+          },
+          {
+            "distance": -0.2836984070540762,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus1",
+            "penetration_depth": 0.2836984070540762,
+            "position": [
+              0.3343898271813803,
+              -0.1758952643591152,
+              -0.1418492035270381
+            ]
+          },
+          {
+            "distance": -0.04904121136968714,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus1",
+            "penetration_depth": 0.04904121136968714,
+            "position": [
+              0.3375461938368513,
+              -0.20482575625429192,
+              -0.02452060568484357
+            ]
+          },
+          {
+            "distance": -0.050023852032975186,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus1",
+            "penetration_depth": 0.050023852032975186,
+            "position": [
+              0.3373682917477794,
+              -0.20415015255697977,
+              -0.025011926016487593
+            ]
+          },
+          {
+            "distance": -0.4295321440014703,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus2",
+            "penetration_depth": 0.4295321440014703,
+            "position": [
+              0.3307126044572992,
+              -0.17667839685259185,
+              -0.21476607200073514
+            ]
+          },
+          {
+            "distance": -0.27308877426927675,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus2",
+            "penetration_depth": 0.27308877426927675,
+            "position": [
+              0.35512392698660666,
+              -0.18357136831149323,
+              -0.13654438713463837
+            ]
+          },
+          {
+            "distance": -0.27317242541887393,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus2",
+            "penetration_depth": 0.27317242541887393,
+            "position": [
+              0.3552821247992604,
+              -0.18538109007744322,
+              -0.13658621270943697
+            ]
+          },
+          {
+            "distance": -0.5297072987503599,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus3",
+            "penetration_depth": 0.5297072987503599,
+            "position": [
+              0.32700424085690605,
+              -0.1874500160956676,
+              -0.26485364937517997
+            ]
+          },
+          {
+            "distance": -0.4332486722634139,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus3",
+            "penetration_depth": 0.4332486722634139,
+            "position": [
+              0.3366094329742793,
+              -0.20417665730459142,
+              -0.21662433613170695
+            ]
+          },
+          {
+            "distance": -0.4349823168076622,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus3",
+            "penetration_depth": 0.4349823168076622,
+            "position": [
+              0.33771182901856234,
+              -0.20360819657356347,
+              -0.2174911584038311
+            ]
+          },
+          {
+            "distance": -0.6127393664856792,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus4",
+            "penetration_depth": 0.6127393664856792,
+            "position": [
+              0.3321350764618227,
+              -0.1930790224416986,
+              -0.3063696832428396
+            ]
+          },
+          {
+            "distance": -0.5714598745692292,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus4",
+            "penetration_depth": 0.5714598745692292,
+            "position": [
+              0.32920184066502184,
+              -0.20538751807201622,
+              -0.2857299372846146
+            ]
+          },
+          {
+            "distance": -0.575969018156061,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus4",
+            "penetration_depth": 0.575969018156061,
+            "position": [
+              0.3289118594283047,
+              -0.2049776613160154,
+              -0.2879845090780305
+            ]
+          },
+          {
+            "distance": -0.7039346470350808,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus5",
+            "penetration_depth": 0.7039346470350808,
+            "position": [
+              0.33302654363315476,
+              -0.20390753410819115,
+              -0.3519673235175404
+            ]
+          },
+          {
+            "distance": -0.6732167835409274,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus5",
+            "penetration_depth": 0.6732167835409274,
+            "position": [
+              0.3291782284651196,
+              -0.2026391663054807,
+              -0.3366083917704637
+            ]
+          },
+          {
+            "distance": -0.6693952524997885,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus5",
+            "penetration_depth": 0.6693952524997885,
+            "position": [
+              0.33037849379690015,
+              -0.20328490366117788,
+              -0.33469762624989424
+            ]
+          }
+        ],
+        "proximal_penetrations": [
+          {
+            "distance": -0.06671713315245742,
+            "geom1": "ground",
+            "geom2": "2/LFTibia",
+            "penetration_depth": 0.06671713315245742,
+            "position": [
+              0.34583711050121846,
+              0.15725069846568734,
+              -0.03335856657622871
+            ]
+          },
+          {
+            "distance": -0.2836984072773403,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus1",
+            "penetration_depth": 0.2836984072773403,
+            "position": [
+              0.3343898271826885,
+              0.17589526452964263,
+              -0.14184920363867015
+            ]
+          },
+          {
+            "distance": -0.04904120403739552,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus1",
+            "penetration_depth": 0.04904120403739552,
+            "position": [
+              0.33754619403039354,
+              0.20482575580229348,
+              -0.02452060201869776
+            ]
+          },
+          {
+            "distance": -0.05002385216547654,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus1",
+            "penetration_depth": 0.05002385216547654,
+            "position": [
+              0.33736829176885635,
+              0.2041501522001094,
+              -0.02501192608273827
+            ]
+          },
+          {
+            "distance": -0.4295321438609223,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus2",
+            "penetration_depth": 0.4295321438609223,
+            "position": [
+              0.3307126044828842,
+              0.1766783968316034,
+              -0.21476607193046116
+            ]
+          },
+          {
+            "distance": -0.2730887741267683,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus2",
+            "penetration_depth": 0.2730887741267683,
+            "position": [
+              0.35512392698379136,
+              0.1835713683465878,
+              -0.13654438706338415
+            ]
+          },
+          {
+            "distance": -0.2731724252760194,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus2",
+            "penetration_depth": 0.2731724252760194,
+            "position": [
+              0.3552821247900995,
+              0.18538109011310852,
+              -0.1365862126380097
+            ]
+          },
+          {
+            "distance": -0.5297072987174539,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus3",
+            "penetration_depth": 0.5297072987174539,
+            "position": [
+              0.3270042408882672,
+              0.1874500160611778,
+              -0.26485364935872696
+            ]
+          },
+          {
+            "distance": -0.4332486721892335,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus3",
+            "penetration_depth": 0.4332486721892335,
+            "position": [
+              0.33660943272149696,
+              0.20417665719525027,
+              -0.21662433609461676
+            ]
+          },
+          {
+            "distance": -0.4349823167333201,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus3",
+            "penetration_depth": 0.4349823167333201,
+            "position": [
+              0.3377118287737456,
+              0.20360819647917675,
+              -0.21749115836666005
+            ]
+          },
+          {
+            "distance": -0.612739366394162,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus4",
+            "penetration_depth": 0.612739366394162,
+            "position": [
+              0.3321350764809117,
+              0.19307902253885795,
+              -0.306369683197081
+            ]
+          },
+          {
+            "distance": -0.5714598744630406,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus4",
+            "penetration_depth": 0.5714598744630406,
+            "position": [
+              0.329201840482529,
+              0.20538751801545868,
+              -0.2857299372315203
+            ]
+          },
+          {
+            "distance": -0.5759690180636767,
+            "geom1": "ground",
+            "geom2": "2/LFTarsus4",
+            "penetration_depth": 0.5759690180636767,
+            "position": [
+              0.32891185956402286,
+              0.20497766160648695,
+              -0.28798450903183836
+            ]
+          },
+          {
+            "distance": -0.4645410662584909,
+            "geom1": "ground",
+            "geom2": "2/LHTibia",
+            "penetration_depth": 0.4645410662584909,
+            "position": [
+              -0.31341800464155195,
+              0.1064402073205106,
+              -0.23227053312924545
+            ]
+          },
+          {
+            "distance": -0.4559158169707742,
+            "geom1": "ground",
+            "geom2": "2/LHTibia",
+            "penetration_depth": 0.4559158169707742,
+            "position": [
+              -0.28525972937382765,
+              0.05134113317742865,
+              -0.2279579084853871
+            ]
+          },
+          {
+            "distance": -0.4503949363349114,
+            "geom1": "ground",
+            "geom2": "2/LHTibia",
+            "penetration_depth": 0.4503949363349114,
+            "position": [
+              -0.27263766723270044,
+              0.05577708426796926,
+              -0.2251974681674557
+            ]
+          },
+          {
+            "distance": -0.7939470692166255,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus1",
+            "penetration_depth": 0.7939470692166255,
+            "position": [
+              -0.32408653261447284,
+              0.10018173053756248,
+              -0.39697353460831275
+            ]
+          },
+          {
+            "distance": -0.790763085103261,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus1",
+            "penetration_depth": 0.790763085103261,
+            "position": [
+              -0.2995680812662826,
+              0.1008888452082749,
+              -0.3953815425516305
+            ]
+          },
+          {
+            "distance": -0.7929499477016481,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus1",
+            "penetration_depth": 0.7929499477016481,
+            "position": [
+              -0.30064788311234025,
+              0.11088954262539824,
+              -0.39647497385082403
+            ]
+          },
+          {
+            "distance": -0.970186215152487,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus2",
+            "penetration_depth": 0.970186215152487,
+            "position": [
+              -0.3266809616729376,
+              0.10079242883743154,
+              -0.4850931075762435
+            ]
+          },
+          {
+            "distance": -0.9600249947652969,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus2",
+            "penetration_depth": 0.9600249947652969,
+            "position": [
+              -0.30127354409639956,
+              0.07421867733025923,
+              -0.48001249738264845
+            ]
+          },
+          {
+            "distance": -0.9596599959997364,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus2",
+            "penetration_depth": 0.9596599959997364,
+            "position": [
+              -0.30023240117992883,
+              0.07108477164598533,
+              -0.4798299979998682
+            ]
+          },
+          {
+            "distance": -1.057953851920284,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus3",
+            "penetration_depth": 1.057953851920284,
+            "position": [
+              -0.3035413424838626,
+              0.06118126528079626,
+              -0.528976925960142
+            ]
+          },
+          {
+            "distance": -1.0500510881326868,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus3",
+            "penetration_depth": 1.0500510881326868,
+            "position": [
+              -0.2900796398443113,
+              0.09589327411718314,
+              -0.5250255440663434
+            ]
+          },
+          {
+            "distance": -1.0496225669820471,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus3",
+            "penetration_depth": 1.0496225669820471,
+            "position": [
+              -0.2898133760385919,
+              0.09603297874458794,
+              -0.5248112834910236
+            ]
+          },
+          {
+            "distance": -1.133084976451331,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus4",
+            "penetration_depth": 1.133084976451331,
+            "position": [
+              -0.32273154272686166,
+              0.08578764804016334,
+              -0.5665424882256656
+            ]
+          },
+          {
+            "distance": -1.1275303123348521,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus4",
+            "penetration_depth": 1.1275303123348521,
+            "position": [
+              -0.2916908855495272,
+              0.0837578075517351,
+              -0.5637651561674261
+            ]
+          },
+          {
+            "distance": -1.1270859304532996,
+            "geom1": "ground",
+            "geom2": "2/LHTarsus4",
+            "penetration_depth": 1.1270859304532996,
+            "position": [
+              -0.287732619099217,
+              0.08511221874040842,
+              -0.5635429652266498
+            ]
+          },
+          {
+            "distance": -0.3937208169269007,
+            "geom1": "ground",
+            "geom2": "2/LMTibia",
+            "penetration_depth": 0.3937208169269007,
+            "position": [
+              -0.08136723827460288,
+              0.10519804376140039,
+              -0.19686040846345035
+            ]
+          },
+          {
+            "distance": -0.05412993512977728,
+            "geom1": "ground",
+            "geom2": "2/LMTibia",
+            "penetration_depth": 0.05412993512977728,
+            "position": [
+              -0.07919293260527045,
+              0.1410382599765056,
+              -0.02706496756488864
+            ]
+          },
+          {
+            "distance": -0.03320894387649643,
+            "geom1": "ground",
+            "geom2": "2/LMTibia",
+            "penetration_depth": 0.03320894387649643,
+            "position": [
+              -0.08192291065273992,
+              0.12887833718650502,
+              -0.016604471938248214
+            ]
+          },
+          {
+            "distance": -0.6527102259881917,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus1",
+            "penetration_depth": 0.6527102259881917,
+            "position": [
+              -0.060726312529800125,
+              0.10056038504131798,
+              -0.32635511299409586
+            ]
+          },
+          {
+            "distance": -0.5561856199155553,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus1",
+            "penetration_depth": 0.5561856199155553,
+            "position": [
+              -0.09918833435652567,
+              0.12801368766676413,
+              -0.27809280995777763
+            ]
+          },
+          {
+            "distance": -0.5399168448391943,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus1",
+            "penetration_depth": 0.5399168448391943,
+            "position": [
+              -0.09787844113699007,
+              0.1353878770687857,
+              -0.26995842241959717
+            ]
+          },
+          {
+            "distance": -0.8097296771048303,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus2",
+            "penetration_depth": 0.8097296771048303,
+            "position": [
+              -0.07548041346262643,
+              0.10003753038594593,
+              -0.4048648385524152
+            ]
+          },
+          {
+            "distance": -0.7987230095884448,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus2",
+            "penetration_depth": 0.7987230095884448,
+            "position": [
+              -0.10043396583956507,
+              0.13110348785954085,
+              -0.3993615047942224
+            ]
+          },
+          {
+            "distance": -0.8007455923699148,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus2",
+            "penetration_depth": 0.8007455923699148,
+            "position": [
+              -0.1017071308913007,
+              0.1336746753689835,
+              -0.4003727961849574
+            ]
+          },
+          {
+            "distance": -0.906186489915751,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus3",
+            "penetration_depth": 0.906186489915751,
+            "position": [
+              -0.10309801998863294,
+              0.09801480779501509,
+              -0.4530932449578755
+            ]
+          },
+          {
+            "distance": -0.9023663113753077,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus3",
+            "penetration_depth": 0.9023663113753077,
+            "position": [
+              -0.10393732493754801,
+              0.14161681354276306,
+              -0.4511831556876538
+            ]
+          },
+          {
+            "distance": -0.9007539900627813,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus3",
+            "penetration_depth": 0.9007539900627813,
+            "position": [
+              -0.10411378900392247,
+              0.14163420344784428,
+              -0.45037699503139067
+            ]
+          },
+          {
+            "distance": -0.9604620853897812,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus4",
+            "penetration_depth": 0.9604620853897812,
+            "position": [
+              -0.09635064550574234,
+              0.10485238186212074,
+              -0.4802310426948906
+            ]
+          },
+          {
+            "distance": -0.9584304532515001,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus4",
+            "penetration_depth": 0.9584304532515001,
+            "position": [
+              -0.09567951973897368,
+              0.11559008520938405,
+              -0.47921522662575006
+            ]
+          },
+          {
+            "distance": -0.9573798096188489,
+            "geom1": "ground",
+            "geom2": "2/LMTarsus4",
+            "penetration_depth": 0.9573798096188489,
+            "position": [
+              -0.09327433488512932,
+              0.11995443025091639,
+              -0.47868990480942447
+            ]
+          },
+          {
+            "distance": -0.46454106081134433,
+            "geom1": "ground",
+            "geom2": "2/RHTibia",
+            "penetration_depth": 0.46454106081134433,
+            "position": [
+              -0.3134180076266011,
+              -0.10644020869249735,
+              -0.23227053040567217
+            ]
+          },
+          {
+            "distance": -0.4559158116157461,
+            "geom1": "ground",
+            "geom2": "2/RHTibia",
+            "penetration_depth": 0.4559158116157461,
+            "position": [
+              -0.28525973043507785,
+              -0.05134113142185441,
+              -0.22795790580787306
+            ]
+          },
+          {
+            "distance": -0.45039493100786393,
+            "geom1": "ground",
+            "geom2": "2/RHTibia",
+            "penetration_depth": 0.45039493100786393,
+            "position": [
+              -0.272637667570059,
+              -0.055777084034858565,
+              -0.22519746550393197
+            ]
+          },
+          {
+            "distance": -0.7939470691842908,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus1",
+            "penetration_depth": 0.7939470691842908,
+            "position": [
+              -0.32408653242975094,
+              -0.10018173029919525,
+              -0.3969735345921454
+            ]
+          },
+          {
+            "distance": -0.7907630850522926,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus1",
+            "penetration_depth": 0.7907630850522926,
+            "position": [
+              -0.2995680811444127,
+              -0.10088884574849871,
+              -0.3953815425261463
+            ]
+          },
+          {
+            "distance": -0.792949947644841,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus1",
+            "penetration_depth": 0.792949947644841,
+            "position": [
+              -0.30064788262311887,
+              -0.11088954320656272,
+              -0.3964749738224205
+            ]
+          },
+          {
+            "distance": -0.9701862153886763,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus2",
+            "penetration_depth": 0.9701862153886763,
+            "position": [
+              -0.3266809616823625,
+              -0.10079242884342322,
+              -0.48509310769433817
+            ]
+          },
+          {
+            "distance": -0.9600249950089835,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus2",
+            "penetration_depth": 0.9600249950089835,
+            "position": [
+              -0.30127354424858416,
+              -0.07421867700131153,
+              -0.48001249750449176
+            ]
+          },
+          {
+            "distance": -0.9596599962477399,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus2",
+            "penetration_depth": 0.9596599962477399,
+            "position": [
+              -0.3002324010017245,
+              -0.07108477170283528,
+              -0.47982999812386995
+            ]
+          },
+          {
+            "distance": -1.0579538518115672,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus3",
+            "penetration_depth": 1.0579538518115672,
+            "position": [
+              -0.30354134241078295,
+              -0.06118126526869107,
+              -0.5289769259057836
+            ]
+          },
+          {
+            "distance": -1.0500510880136107,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus3",
+            "penetration_depth": 1.0500510880136107,
+            "position": [
+              -0.29007963977801976,
+              -0.095893274105352,
+              -0.5250255440068053
+            ]
+          },
+          {
+            "distance": -1.0496225668627168,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus3",
+            "penetration_depth": 1.0496225668627168,
+            "position": [
+              -0.2898133759727259,
+              -0.09603297873278693,
+              -0.5248112834313584
+            ]
+          },
+          {
+            "distance": -1.1330849764523014,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus4",
+            "penetration_depth": 1.1330849764523014,
+            "position": [
+              -0.3227315427866706,
+              -0.0857876480182582,
+              -0.5665424882261507
+            ]
+          },
+          {
+            "distance": -1.1275303123682356,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus4",
+            "penetration_depth": 1.1275303123682356,
+            "position": [
+              -0.29169088560961753,
+              -0.0837578074368275,
+              -0.5637651561841178
+            ]
+          },
+          {
+            "distance": -1.1270859304937828,
+            "geom1": "ground",
+            "geom2": "2/RHTarsus4",
+            "penetration_depth": 1.1270859304937828,
+            "position": [
+              -0.2877326191542862,
+              -0.08511221861315592,
+              -0.5635429652468914
+            ]
+          },
+          {
+            "distance": -0.3937208173164478,
+            "geom1": "ground",
+            "geom2": "2/RMTibia",
+            "penetration_depth": 0.3937208173164478,
+            "position": [
+              -0.08136723796972614,
+              -0.10519804440291512,
+              -0.1968604086582239
+            ]
+          },
+          {
+            "distance": -0.05412993552981941,
+            "geom1": "ground",
+            "geom2": "2/RMTibia",
+            "penetration_depth": 0.05412993552981941,
+            "position": [
+              -0.07919293241320566,
+              -0.14103826027804242,
+              -0.027064967764909704
+            ]
+          },
+          {
+            "distance": -0.03320894425347045,
+            "geom1": "ground",
+            "geom2": "2/RMTibia",
+            "penetration_depth": 0.03320894425347045,
+            "position": [
+              -0.08192291066946321,
+              -0.12887833709703964,
+              -0.016604472126735225
+            ]
+          },
+          {
+            "distance": -0.6527102244511066,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus1",
+            "penetration_depth": 0.6527102244511066,
+            "position": [
+              -0.06072631224728073,
+              -0.1005603856401394,
+              -0.3263551122255533
+            ]
+          },
+          {
+            "distance": -0.5561856182775573,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus1",
+            "penetration_depth": 0.5561856182775573,
+            "position": [
+              -0.09918833429483234,
+              -0.12801368783017184,
+              -0.27809280913877865
+            ]
+          },
+          {
+            "distance": -0.5399168431676042,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus1",
+            "penetration_depth": 0.5399168431676042,
+            "position": [
+              -0.09787844076528407,
+              -0.13538787710301486,
+              -0.2699584215838021
+            ]
+          },
+          {
+            "distance": -0.8097296772846253,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus2",
+            "penetration_depth": 0.8097296772846253,
+            "position": [
+              -0.07548041363422393,
+              -0.10003753033157078,
+              -0.40486483864231265
+            ]
+          },
+          {
+            "distance": -0.798723009775363,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus2",
+            "penetration_depth": 0.798723009775363,
+            "position": [
+              -0.10043396565771359,
+              -0.13110348809159533,
+              -0.3993615048876815
+            ]
+          },
+          {
+            "distance": -0.8007455925571099,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus2",
+            "penetration_depth": 0.8007455925571099,
+            "position": [
+              -0.10170713067903775,
+              -0.13367467561587892,
+              -0.40037279627855493
+            ]
+          },
+          {
+            "distance": -0.906186490021731,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus3",
+            "penetration_depth": 0.906186490021731,
+            "position": [
+              -0.1030980199406154,
+              -0.09801480773396865,
+              -0.4530932450108655
+            ]
+          },
+          {
+            "distance": -0.9023663078488506,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus3",
+            "penetration_depth": 0.9023663078488506,
+            "position": [
+              -0.10393732444393271,
+              -0.14161681340308563,
+              -0.4511831539244253
+            ]
+          },
+          {
+            "distance": -0.900753990241611,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus3",
+            "penetration_depth": 0.900753990241611,
+            "position": [
+              -0.10411378888986854,
+              -0.14163420339740856,
+              -0.4503769951208055
+            ]
+          },
+          {
+            "distance": -0.9604620851808808,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus4",
+            "penetration_depth": 0.9604620851808808,
+            "position": [
+              -0.09635064543415328,
+              -0.10485238194013334,
+              -0.4802310425904404
+            ]
+          },
+          {
+            "distance": -0.958430453071616,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus4",
+            "penetration_depth": 0.958430453071616,
+            "position": [
+              -0.09567951961802296,
+              -0.1155900852898015,
+              -0.479215226535808
+            ]
+          },
+          {
+            "distance": -0.9573798094221386,
+            "geom1": "ground",
+            "geom2": "2/RMTarsus4",
+            "penetration_depth": 0.9573798094221386,
+            "position": [
+              -0.0932743346751416,
+              -0.11995442986160332,
+              -0.4786899047110693
+            ]
+          },
+          {
+            "distance": -0.06671713139005464,
+            "geom1": "ground",
+            "geom2": "2/RFTibia",
+            "penetration_depth": 0.06671713139005464,
+            "position": [
+              0.34583711087245816,
+              -0.15725069856601448,
+              -0.03335856569502732
+            ]
+          },
+          {
+            "distance": -0.2836984070540762,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus1",
+            "penetration_depth": 0.2836984070540762,
+            "position": [
+              0.3343898271813803,
+              -0.1758952643591152,
+              -0.1418492035270381
+            ]
+          },
+          {
+            "distance": -0.04904121136968714,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus1",
+            "penetration_depth": 0.04904121136968714,
+            "position": [
+              0.3375461938368513,
+              -0.20482575625429192,
+              -0.02452060568484357
+            ]
+          },
+          {
+            "distance": -0.050023852032975186,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus1",
+            "penetration_depth": 0.050023852032975186,
+            "position": [
+              0.3373682917477794,
+              -0.20415015255697977,
+              -0.025011926016487593
+            ]
+          },
+          {
+            "distance": -0.4295321440014703,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus2",
+            "penetration_depth": 0.4295321440014703,
+            "position": [
+              0.3307126044572992,
+              -0.17667839685259185,
+              -0.21476607200073514
+            ]
+          },
+          {
+            "distance": -0.27308877426927675,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus2",
+            "penetration_depth": 0.27308877426927675,
+            "position": [
+              0.35512392698660666,
+              -0.18357136831149323,
+              -0.13654438713463837
+            ]
+          },
+          {
+            "distance": -0.27317242541887393,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus2",
+            "penetration_depth": 0.27317242541887393,
+            "position": [
+              0.3552821247992604,
+              -0.18538109007744322,
+              -0.13658621270943697
+            ]
+          },
+          {
+            "distance": -0.5297072987503599,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus3",
+            "penetration_depth": 0.5297072987503599,
+            "position": [
+              0.32700424085690605,
+              -0.1874500160956676,
+              -0.26485364937517997
+            ]
+          },
+          {
+            "distance": -0.4332486722634139,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus3",
+            "penetration_depth": 0.4332486722634139,
+            "position": [
+              0.3366094329742793,
+              -0.20417665730459142,
+              -0.21662433613170695
+            ]
+          },
+          {
+            "distance": -0.4349823168076622,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus3",
+            "penetration_depth": 0.4349823168076622,
+            "position": [
+              0.33771182901856234,
+              -0.20360819657356347,
+              -0.2174911584038311
+            ]
+          },
+          {
+            "distance": -0.6127393664856792,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus4",
+            "penetration_depth": 0.6127393664856792,
+            "position": [
+              0.3321350764618227,
+              -0.1930790224416986,
+              -0.3063696832428396
+            ]
+          },
+          {
+            "distance": -0.5714598745692292,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus4",
+            "penetration_depth": 0.5714598745692292,
+            "position": [
+              0.32920184066502184,
+              -0.20538751807201622,
+              -0.2857299372846146
+            ]
+          },
+          {
+            "distance": -0.575969018156061,
+            "geom1": "ground",
+            "geom2": "2/RFTarsus4",
+            "penetration_depth": 0.575969018156061,
+            "position": [
+              0.3289118594283047,
+              -0.2049776613160154,
+              -0.2879845090780305
+            ]
+          }
+        ],
+        "self_contacts": [
+          {
+            "distance": -0.04243259073493696,
+            "geom1": "2/LHFemur",
+            "geom2": "2/RHFemur",
+            "penetration_depth": 0.04243259073493696,
+            "position": [
+              -0.2680202014434544,
+              -1.3750845219429042e-09,
+              0.5269136761305722
+            ]
+          },
+          {
+            "distance": -0.04243259073493696,
+            "geom1": "2/LHFemur",
+            "geom2": "2/RHFemur",
+            "penetration_depth": 0.04243259073493696,
+            "position": [
+              -0.2680202014434544,
+              -1.3750845219429042e-09,
+              0.5269136761305722
+            ]
+          }
+        ],
+        "state_finite": true,
+        "support_surfaces": [
+          "ground"
+        ],
+        "tolerances": {
+          "contact": 1e-06,
+          "distal_penetration": 0.001,
+          "material_penetration": 1e-06
+        },
+        "valid": false
+      },
+      "pose": {
+        "id": "default_zero",
+        "init_pose": "zero",
+        "spawn_pos": null
+      },
+      "state": {
+        "controlled_joint_positions": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "qpos": [
+          0.0,
+          0.0,
+          0.5,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "qvel": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "root_orientation_wxyz": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "root_xyz": [
+          0.0,
+          0.0,
+          0.5
+        ]
+      },
+      "usable_distal_support_geometry": "collision-enabled Tarsus5 mesh vertices/contact pairs, not its bounding sphere"
+    }
   ],
-  "established_findings": {
-    "canonical_stretch_distal_conservative_lower_z": {"LF": 1.8254, "LM": 1.4191, "LH": 1.40355, "RF": 1.8254, "RM": 1.4191, "RH": 1.40355},
-    "canonical_support": "NO_SUPPORT_CONTACT",
-    "canonical_self_collision": "LHCoxa/RHCoxa",
-    "rejected_old_translation_z": -1.4035507742524747,
-    "rejected_old_spawn_z": -0.9035507742524747,
-    "rejection": "substantial ground penetration by proximal coxa/femur/tibia geometry"
-  },
-  "geometry_gate": {
-    "status_labels": ["VALID_SUPPORT_CONTACT", "NO_SUPPORT_CONTACT", "BODY_GROUND_PENETRATION", "PROXIMAL_LEG_GROUND_PENETRATION", "EXCESSIVE_DISTAL_PENETRATION", "SELF_COLLISION_PRESENT", "CALIBRATION_SURFACE_CONTACT", "MIXED_SUPPORT_SURFACES"],
-    "material_penetration_tolerance": 1e-6,
-    "distal_penetration_tolerance": 0.001,
-    "contact_tolerance": 1e-6,
-    "fail_closed_nonfinite": true
-  },
-  "calibration_surface": {"name": "m5d2c_calibration_surface", "position": [-0.05264855858702331, 2.2303476629745846, 1.4171913587929754], "half_size": [0.025, 0.025, 0.002], "changed": false},
-  "candidate_eligibility": "UNDETERMINED_UNTIL_WINDOWS_AUDIT",
-  "analytic_spawn_height_correction": null,
   "protocol": {
-    "brain_constructed": false,
-    "neural_transitions": 0,
-    "physics_transitions": 0,
-    "sim_step_prohibited": true,
-    "adhesion_enabled": false,
-    "gait_controller": false,
-    "balance_controller": false,
-    "walking_reference_trajectory": false,
-    "reward_rl_ai": false,
-    "height_sweep": false,
-    "optimizer": false,
     "adaptive_candidate_generation": false,
-    "calibration_surface_changed": false
+    "adhesion_enabled": false,
+    "balance_controller": false,
+    "brain_constructed": false,
+    "calibration_surface_changed": false,
+    "gait_controller": false,
+    "height_sweep": false,
+    "neural_transitions": 0,
+    "optimizer": false,
+    "physics_transitions": 0,
+    "reward_rl_ai": false,
+    "sim_step_prohibited": true,
+    "walking_reference_trajectory": false
   },
-  "statement": "No dynamics were executed; this repository host lacks FlyGym and MuJoCo, so exact geometry remains intentionally null until the validated Windows command is run."
+  "schema": "M7C-B2-POSE-GEOMETRY-AUDIT.1",
+  "statement": "No dynamics were executed.",
+  "status": "COMPLETE"
 }
