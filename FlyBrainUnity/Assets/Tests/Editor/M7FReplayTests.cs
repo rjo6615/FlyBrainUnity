@@ -9,6 +9,8 @@ namespace FlyBrain.Tests
 {
     public sealed class M7FReplayTests
     {
+        static Transform Descendant(Transform root, string name)
+        { foreach (var value in root.GetComponentsInChildren<Transform>(true)) if (value.name == name) return value; return null; }
         static byte[] Fixture()
         {
             using var stream = new MemoryStream(); using var writer = new BinaryWriter(stream);
@@ -122,6 +124,54 @@ namespace FlyBrain.Tests
                 rig.Apply(replay, 3, 3, 0); var direct = rig.Joints[0].transform.localRotation;
                 rig.Apply(replay, 1, 1, 0); rig.Apply(replay, 2, 2, 0); rig.Apply(replay, 3, 3, 0);
                 Assert.That(Quaternion.Angle(direct, rig.Joints[0].transform.localRotation), Is.LessThan(1e-5f));
+            }
+            finally { Object.DestroyImmediate(go); }
+        }
+
+        [Test] public void ScientificSegmentsJoinExactModelDerivedPivotsAndMarkersAreDebugOnly()
+        {
+            var go = new GameObject("kinematic geometry test");
+            try
+            {
+                go.AddComponent<M7FScientificFlyBuilder>().Rebuild(); var rig = go.GetComponent<M7FFlyRig>();
+                foreach (var leg in M7FScientificFlyRigDefinition.Legs)
+                {
+                    var segments = new[] { "Coxa", "Femur", "Tibia", "Tarsus" };
+                    var next = new[] { "Femur_roll", "Tibia", "Tarsus1" };
+                    for (var i = 0; i < 4; i++)
+                    {
+                        var distal = Descendant(rig.ScientificRoot, leg + "_" + segments[i] + "Visual_DistalReference");
+                        Assert.That(distal, Is.Not.Null);
+                        Assert.That(distal.localPosition, Is.EqualTo(M7FScientificFlyRigDefinition.SegmentEndpoint(leg, i)));
+                        if (i < 3) Assert.That((distal.position - Descendant(rig.ScientificRoot, "joint_" + leg + next[i]).position).magnitude, Is.LessThan(1e-6f));
+                    }
+                }
+                foreach (var binding in rig.Joints)
+                {
+                    var marker = Descendant(binding.transform, binding.jointName + "_JointMarker");
+                    Assert.That(marker, Is.Not.Null); Assert.That(marker.gameObject.activeSelf, Is.False);
+                    Assert.That(marker.localPosition, Is.EqualTo(Vector3.zero));
+                }
+            }
+            finally { Object.DestroyImmediate(go); }
+        }
+
+        [Test] public void SelectedCanonicalFramesKeepEveryScientificChainConnected()
+        {
+            var go = new GameObject("multi frame kinematic test");
+            try
+            {
+                var loader = go.AddComponent<M7FReplayLoader>(); loader.Load();
+                go.AddComponent<M7FScientificFlyBuilder>().Rebuild(); var rig = go.GetComponent<M7FFlyRig>();
+                foreach (var frame in new[] { 0, 540, 541, 785, 1210, 1570, 2500, 3980, 5000 })
+                {
+                    rig.Apply(loader.Enabled, frame, frame, 0);
+                    foreach (var leg in M7FScientificFlyRigDefinition.Legs)
+                    {
+                        var visuals = new[] { "Coxa", "Femur", "Tibia" }; var next = new[] { "Femur_roll", "Tibia", "Tarsus1" };
+                        for (var i = 0; i < 3; i++) Assert.That((Descendant(rig.ScientificRoot, leg + "_" + visuals[i] + "Visual_DistalReference").position - Descendant(rig.ScientificRoot, "joint_" + leg + next[i]).position).magnitude, Is.LessThan(1e-6f), leg + " frame " + frame);
+                    }
+                }
             }
             finally { Object.DestroyImmediate(go); }
         }
