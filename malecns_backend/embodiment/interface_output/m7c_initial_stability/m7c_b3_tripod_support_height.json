@@ -1,28 +1,1274 @@
 {
-  "schema": "M7C-B3-TRIPOD-SUPPORT-HEIGHT.1",
-  "status": "WINDOWS_ZERO_TRANSITION_AUDIT_REQUIRED",
-  "source_m7c_b2": {
-    "path": "malecns_backend/embodiment/interface_output/m7c_initial_stability/m7c_b2_pose_geometry_audit.json",
-    "sha256": "f3066cfab26fc00e2f1cf192b8cf9af89b06e8b0afca4df5603167ff730a72b1"
+  "allowed_floor_contact_geometry": [
+    "LFTarsus1",
+    "LFTarsus2",
+    "LFTarsus3",
+    "LFTarsus4",
+    "LFTarsus5",
+    "LMTarsus1",
+    "LMTarsus2",
+    "LMTarsus3",
+    "LMTarsus4",
+    "LMTarsus5",
+    "LHTarsus1",
+    "LHTarsus2",
+    "LHTarsus3",
+    "LHTarsus4",
+    "LHTarsus5",
+    "RFTarsus1",
+    "RFTarsus2",
+    "RFTarsus3",
+    "RFTarsus4",
+    "RFTarsus5",
+    "RMTarsus1",
+    "RMTarsus2",
+    "RMTarsus3",
+    "RMTarsus4",
+    "RMTarsus5",
+    "RHTarsus1",
+    "RHTarsus2",
+    "RHTarsus3",
+    "RHTarsus4",
+    "RHTarsus5"
+  ],
+  "analytic_solution": {
+    "analytic_dz": 0.10457522322663132,
+    "classification": "TRIPOD_ANALYTIC_SUPPORT_HEIGHT_FOUND",
+    "corrected_spawn_z": 0.6045752232266313,
+    "distal_contact_dz_intervals": [
+      {
+        "geometry": "0/LFTarsus4",
+        "interval": [
+          0.028958265297266944,
+          0.028960265297266946
+        ]
+      },
+      {
+        "geometry": "0/LFTarsus5",
+        "interval": [
+          0.10457522322663132,
+          0.10457722322663132
+        ]
+      },
+      {
+        "geometry": "0/LHTarsus5",
+        "interval": [
+          0.017913107390382148,
+          0.01791510739038215
+        ]
+      },
+      {
+        "geometry": "0/RFTarsus5",
+        "interval": [
+          0.025437385929282047,
+          0.02543938592928205
+        ]
+      }
+    ],
+    "distal_penetration_required_dz": 0.10357622322663132,
+    "feasible_dz_intervals": [
+      {
+        "interval": [
+          0.10457522322663132,
+          0.10457722322663132
+        ],
+        "support_geometry": "0/LFTarsus5"
+      }
+    ],
+    "forbidden_required_dz": 0.0,
+    "selection_rule": "minimum upward boundary satisfying forbidden, distal-penetration, and contact constraints"
   },
-  "tripod_pose_sha256": "8d71c1536c2a0fc55bfb574999eab5bff3568c3f38fe032a4b594a0bcb59a640",
+  "classifications": [
+    "TRIPOD_ANALYTIC_SUPPORT_HEIGHT_FOUND"
+  ],
+  "forbidden_geometry": "all fly collision geometry other than configured Tarsus1-Tarsus5 geoms",
   "original_spawn_z": 0.5,
-  "analytic_dz": null,
-  "corrected_spawn_z": null,
-  "feasible_dz_intervals": null,
-  "zero_step_reconstruction": null,
-  "future_physics_eligibility": false,
-  "classification": "GEOMETRY_INVALID_UNTIL_WINDOWS_AUDIT",
   "protocol": {
-    "physics_transitions": 0,
-    "neural_transitions": 0,
-    "brain_constructed": false,
-    "sim_step_prohibited": true,
-    "height_sweep": false,
-    "optimizer": false,
     "adhesion_enabled": false,
+    "brain_constructed": false,
+    "calibration_surface_changed": false,
     "controller": false,
+    "height_sweep": false,
+    "neural_transitions": 0,
+    "optimizer": false,
+    "physics_transitions": 0,
     "reward_rl_ai": false,
-    "calibration_surface_changed": false
+    "sim_step_prohibited": true
+  },
+  "schema": "M7C-B3-TRIPOD-SUPPORT-HEIGHT.1",
+  "self_collision_assessment": "SELF_COLLISION_REQUIRES_DYNAMICS_VALIDATION",
+  "source_m7c_b2": {
+    "path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m7c_initial_stability\\m7c_b2_pose_geometry_audit.json",
+    "sha256": "b200ba9f3eba0f25ca8d31998df13573980c84cbf04425804421ffc103d85f60"
+  },
+  "source_zero_step": {
+    "all_42_tripod_joints_unchanged": true,
+    "collision_geometries": [
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 1.1593772952469434,
+        "name": "0/Thorax"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 1.139254286337313,
+        "name": "0/LFCoxa"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.9029176852982653,
+        "name": "0/LFFemur"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.4331644532942304,
+        "name": "0/LFTibia"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.24605173451600917,
+        "name": "0/LFTarsus1"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.12037986163370722,
+        "name": "0/LFTarsus2"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.036255306329689284,
+        "name": "0/LFTarsus3"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": -0.028959265297266945,
+        "name": "0/LFTarsus4"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": -0.10457622322663132,
+        "name": "0/LFTarsus5"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 1.0658284439054655,
+        "name": "0/LHCoxa"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 1.0582546345776156,
+        "name": "0/LHFemur"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.57891813141954,
+        "name": "0/LHTibia"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.31296069783317915,
+        "name": "0/LHTarsus1"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.17073415728403735,
+        "name": "0/LHTarsus2"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.10673173186818234,
+        "name": "0/LHTarsus3"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.04511412752179486,
+        "name": "0/LHTarsus4"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": -0.01791410739038215,
+        "name": "0/LHTarsus5"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 1.0987351327311168,
+        "name": "0/LMCoxa"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 1.0835886723514025,
+        "name": "0/LMFemur"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.6480930391219546,
+        "name": "0/LMTibia"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.3934276764479564,
+        "name": "0/LMTarsus1"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.2463060413383334,
+        "name": "0/LMTarsus2"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.14598349947015896,
+        "name": "0/LMTarsus3"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.0947836761523809,
+        "name": "0/LMTarsus4"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.007656472947098057,
+        "name": "0/LMTarsus5"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 1.0621693003843389,
+        "name": "0/RHCoxa"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 1.0610193140760702,
+        "name": "0/RHFemur"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.49782265911013995,
+        "name": "0/RHTibia"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.2835002462670952,
+        "name": "0/RHTarsus1"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.1671502182442169,
+        "name": "0/RHTarsus2"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.12057550971455874,
+        "name": "0/RHTarsus3"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.07024552606383105,
+        "name": "0/RHTarsus4"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.016804788914262347,
+        "name": "0/RHTarsus5"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 1.1002625331953886,
+        "name": "0/RMCoxa"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 1.081173434549697,
+        "name": "0/RMFemur"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.686998837947393,
+        "name": "0/RMTibia"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.4324428929739294,
+        "name": "0/RMTarsus1"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.2851122233402402,
+        "name": "0/RMTarsus2"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.18482927978243321,
+        "name": "0/RMTarsus3"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.1334708296588015,
+        "name": "0/RMTarsus4"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.046276689717746795,
+        "name": "0/RMTarsus5"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 1.1391513399015476,
+        "name": "0/RFCoxa"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.9818325674667099,
+        "name": "0/RFFemur"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.5079557299208964,
+        "name": "0/RFTibia"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.32277349398024,
+        "name": "0/RFTarsus1"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.19774627207224538,
+        "name": "0/RFTarsus2"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.11426675972025191,
+        "name": "0/RFTarsus3"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.04956705233447811,
+        "name": "0/RFTarsus4"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": -0.025438385929282048,
+        "name": "0/RFTarsus5"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 1.45320896554113,
+        "name": "0/Head"
+      }
+    ],
+    "contacts": [
+      {
+        "distance": -0.028959265297266938,
+        "geom1": "ground",
+        "geom2": "0/LFTarsus4",
+        "penetration_depth": 0.028959265297266938,
+        "position": [
+          1.5242880930678326,
+          0.19790405469397512,
+          -0.014479632648633469
+        ]
+      },
+      {
+        "distance": -0.001779331717176716,
+        "geom1": "ground",
+        "geom2": "0/LFTarsus4",
+        "penetration_depth": 0.001779331717176716,
+        "position": [
+          1.5098640946999413,
+          0.20538116661976005,
+          -0.000889665858588358
+        ]
+      },
+      {
+        "distance": -0.0010640407667238533,
+        "geom1": "ground",
+        "geom2": "0/LFTarsus4",
+        "penetration_depth": 0.0010640407667238533,
+        "position": [
+          1.5074241245962667,
+          0.20214951918190568,
+          -0.0005320203833619266
+        ]
+      },
+      {
+        "distance": -0.10457622322663132,
+        "geom1": "ground",
+        "geom2": "0/LFTarsus5",
+        "penetration_depth": 0.10457622322663132,
+        "position": [
+          1.574488506930325,
+          0.17418144661750118,
+          -0.05228811161331566
+        ]
+      },
+      {
+        "distance": -0.07787583101656817,
+        "geom1": "ground",
+        "geom2": "0/LFTarsus5",
+        "penetration_depth": 0.07787583101656817,
+        "position": [
+          1.5665995655559761,
+          0.20795526019968558,
+          -0.038937915508284085
+        ]
+      },
+      {
+        "distance": -0.07401630232545083,
+        "geom1": "ground",
+        "geom2": "0/LFTarsus5",
+        "penetration_depth": 0.07401630232545083,
+        "position": [
+          1.5655185674721745,
+          0.20858549390464307,
+          -0.03700815116272541
+        ]
+      },
+      {
+        "distance": -0.01791410739038215,
+        "geom1": "ground",
+        "geom2": "0/LHTarsus5",
+        "penetration_depth": 0.01791410739038215,
+        "position": [
+          -1.5383414902102677,
+          1.2006231616739953,
+          -0.008957053695191074
+        ]
+      },
+      {
+        "distance": -0.003107882864176837,
+        "geom1": "ground",
+        "geom2": "0/LHTarsus5",
+        "penetration_depth": 0.003107882864176837,
+        "position": [
+          -1.5579404107981425,
+          1.220905910816082,
+          -0.0015539414320884185
+        ]
+      },
+      {
+        "distance": -0.004083304660189663,
+        "geom1": "ground",
+        "geom2": "0/LHTarsus5",
+        "penetration_depth": 0.004083304660189663,
+        "position": [
+          -1.5583905984514523,
+          1.2184010509761227,
+          -0.0020416523300948314
+        ]
+      },
+      {
+        "distance": -0.025438385929282048,
+        "geom1": "ground",
+        "geom2": "0/RFTarsus5",
+        "penetration_depth": 0.025438385929282048,
+        "position": [
+          1.5934180450295141,
+          -0.16835379311108012,
+          -0.012719192964641024
+        ]
+      },
+      {
+        "distance": -0.013717594310329484,
+        "geom1": "ground",
+        "geom2": "0/RFTarsus5",
+        "penetration_depth": 0.013717594310329484,
+        "position": [
+          1.578114766405715,
+          -0.20176548013947754,
+          -0.006858797155164742
+        ]
+      },
+      {
+        "distance": -0.013106964139405215,
+        "geom1": "ground",
+        "geom2": "0/RFTarsus5",
+        "penetration_depth": 0.013106964139405215,
+        "position": [
+          1.5823114691180897,
+          -0.20179822839703207,
+          -0.006553482069702608
+        ]
+      },
+      {
+        "distance": -0.0008327005648158468,
+        "geom1": "0/LHCoxa",
+        "geom2": "0/RHCoxa",
+        "penetration_depth": 0.0008327005648158468,
+        "position": [
+          -0.25410661920431654,
+          -0.0007019535074030249,
+          1.2682062161297223
+        ]
+      },
+      {
+        "distance": -0.0008327005648158468,
+        "geom1": "0/LHCoxa",
+        "geom2": "0/RHCoxa",
+        "penetration_depth": 0.0008327005648158468,
+        "position": [
+          -0.25410661920431654,
+          -0.0007019535074030249,
+          1.2682062161297223
+        ]
+      }
+    ],
+    "controlled_joint_positions": [
+      -0.01378601137548685,
+      -0.00025236228248104453,
+      0.0026297986041754484,
+      -1.1793841123580933,
+      -0.0017620716243982315,
+      0.7576697468757629,
+      -0.14223375916481018,
+      0.03598107770085335,
+      1.7781654596328735,
+      0.21877549588680267,
+      -1.6747645139694214,
+      -0.0034093402791768312,
+      1.7638238668441772,
+      -0.12028518319129944,
+      0.02112620882689953,
+      2.401829957962036,
+      0.18669065833091736,
+      -1.560032844543457,
+      -0.14132468402385712,
+      1.1483670473098755,
+      -0.10569198429584503,
+      -0.0013245590962469578,
+      0.001191056682728231,
+      -0.00048262756899930537,
+      -1.3108537197113037,
+      0.0003741272957995534,
+      0.8962323665618896,
+      -0.17225642502307892,
+      0.011523355729877949,
+      -1.8260176181793213,
+      -0.105523481965065,
+      -1.8363397121429443,
+      0.0019978152122348547,
+      1.7278085947036743,
+      -0.03337957337498665,
+      0.27960363030433655,
+      -2.4415981769561768,
+      -0.1381906419992447,
+      -1.31553053855896,
+      -0.26682204008102417,
+      1.1447480916976929,
+      -0.3836708664894104
+    ],
+    "finite_state": true,
+    "root_xyz": [
+      0.0,
+      0.0,
+      0.5
+    ]
+  },
+  "status": "COMPLETE",
+  "tripod_pose": {
+    "definition": {
+      "joints": {
+        "joint_A1A2": 0.21846014367186156,
+        "joint_A3": -0.8069737300274114,
+        "joint_A4": -0.1650736529743767,
+        "joint_A5": -0.08908878107360028,
+        "joint_A6": 0.029519803564770058,
+        "joint_Haustellum": -0.008943727172967032,
+        "joint_Head": 0.5723155574085291,
+        "joint_Head_roll": 0.00026173427764161197,
+        "joint_Head_yaw": 0.0013135272686562638,
+        "joint_LAntenna": -0.002453728960324633,
+        "joint_LEye": -0.004643254915867528,
+        "joint_LFCoxa": -0.789880258643274,
+        "joint_LFCoxa_roll": -0.014459294441199725,
+        "joint_LFCoxa_yaw": 0.1506763651856406,
+        "joint_LFFemur": -67.57373506986399,
+        "joint_LFFemur_roll": -0.10095926849385913,
+        "joint_LFTarsus1": -8.149394415284323,
+        "joint_LFTarsus2": -36.402722797423515,
+        "joint_LFTarsus3": 10.369788970568194,
+        "joint_LFTarsus4": -14.127686885522392,
+        "joint_LFTarsus5": -1.0001463375908914,
+        "joint_LFTibia": 43.41127909530307,
+        "joint_LHCoxa": 1.2104426354333568,
+        "joint_LHCoxa_roll": 137.6147129043548,
+        "joint_LHCoxa_yaw": 10.69658678149118,
+        "joint_LHFemur": -89.38329525236054,
+        "joint_LHFemur_roll": -8.097307769798867,
+        "joint_LHTarsus1": -6.055704595492672,
+        "joint_LHTarsus2": -33.61131174359785,
+        "joint_LHTarsus3": 2.9823782076557506,
+        "joint_LHTarsus4": -29.13891634723032,
+        "joint_LHTarsus5": -32.66680123551217,
+        "joint_LHTibia": 65.7965836898687,
+        "joint_LHaltere": 0.37692474022375355,
+        "joint_LHaltere_roll": 0.1600892466660107,
+        "joint_LHaltere_yaw": 0.5451379001713288,
+        "joint_LMCoxa": 2.0615638403776515,
+        "joint_LMCoxa_roll": 101.88137481370443,
+        "joint_LMCoxa_yaw": 12.534912657408768,
+        "joint_LMFemur": -95.95693707631287,
+        "joint_LMFemur_roll": -0.19534080978081847,
+        "joint_LMTarsus1": -6.891833221136733,
+        "joint_LMTarsus2": -49.00679531729788,
+        "joint_LMTarsus3": -39.29125406688511,
+        "joint_LMTarsus4": 22.9605340951932,
+        "joint_LMTarsus5": -36.71301711192874,
+        "joint_LMTibia": 101.0596642359161,
+        "joint_LWing": 0.13107426328818048,
+        "joint_LWing_roll": -0.0009181363728491571,
+        "joint_LWing_yaw": 0.007666345451130245,
+        "joint_RAntenna": 0.002653956767393574,
+        "joint_REye": -0.0004564965851049248,
+        "joint_RFCoxa": -0.07589164341686852,
+        "joint_RFCoxa_roll": 0.06824252381150342,
+        "joint_RFCoxa_yaw": -0.027652522761576103,
+        "joint_RFFemur": -75.10638587459752,
+        "joint_RFFemur_roll": 0.021435915390630007,
+        "joint_RFTarsus1": -9.86956643659287,
+        "joint_RFTarsus2": -3.15527623162139,
+        "joint_RFTarsus3": -23.59796914090528,
+        "joint_RFTarsus4": -15.320505647515853,
+        "joint_RFTarsus5": -0.29617299839121086,
+        "joint_RFTibia": 51.350331169288935,
+        "joint_RHCoxa": 16.020107700341416,
+        "joint_RHCoxa_roll": -139.89327262013938,
+        "joint_RHCoxa_yaw": -7.917740753826325,
+        "joint_RHFemur": -75.37435088662505,
+        "joint_RHFemur_roll": -15.287777298628123,
+        "joint_RHTarsus1": -21.98272090882326,
+        "joint_RHTarsus2": -22.135257965892627,
+        "joint_RHTarsus3": 2.047810366464948,
+        "joint_RHTarsus4": -46.99014487263748,
+        "joint_RHTarsus5": 44.51076094078212,
+        "joint_RHTibia": 65.58923263208715,
+        "joint_RHaltere": 0.14756148784530043,
+        "joint_RHaltere_roll": -0.15051986173758183,
+        "joint_RHaltere_yaw": -0.16634345859583768,
+        "joint_RMCoxa": 0.6602396437628356,
+        "joint_RMCoxa_roll": -104.6230995031921,
+        "joint_RMCoxa_yaw": -6.046050062746582,
+        "joint_RMFemur": -105.21451777392465,
+        "joint_RMFemur_roll": 0.11446637542072276,
+        "joint_RMTarsus1": -1.9125087120067328,
+        "joint_RMTarsus2": -46.17387106345222,
+        "joint_RMTarsus3": -21.165569982947073,
+        "joint_RMTarsus4": 6.077448095636238,
+        "joint_RMTarsus5": 9.85933692286725,
+        "joint_RMTibia": 98.99614155554471,
+        "joint_RWing": 0.1297395296771384,
+        "joint_RWing_roll": 0.003199068466914467,
+        "joint_RWing_yaw": -0.009758275213023679,
+        "joint_Rostrum": -0.10363284957436733
+      }
+    },
+    "path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\fly-brain-interactive\\.venv\\Lib\\site-packages\\flygym\\data\\pose\\pose_tripod.yaml",
+    "relative_path": "data/pose/pose_tripod.yaml",
+    "sha256": "8d71c1536c2a0fc55bfb574999eab5bff3568c3f38fe032a4b594a0bcb59a640"
+  },
+  "zero_step_reconstruction": {
+    "all_42_tripod_joints_unchanged": true,
+    "collision_geometries": [
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 1.2639525184735745,
+        "name": "1/Thorax"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 1.2438295095639442,
+        "name": "1/LFCoxa"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 1.0074929085248965,
+        "name": "1/LFFemur"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.5377396765208617,
+        "name": "1/LFTibia"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.3506269577426405,
+        "name": "1/LFTarsus1"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.2249550848603385,
+        "name": "1/LFTarsus2"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.1408305295563206,
+        "name": "1/LFTarsus3"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.07561595792936435,
+        "name": "1/LFTarsus4"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": -1.0000000000218168e-06,
+        "name": "1/LFTarsus5"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 1.1704036671320968,
+        "name": "1/LHCoxa"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 1.1628298578042469,
+        "name": "1/LHFemur"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.6834933546461712,
+        "name": "1/LHTibia"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.4175359210598104,
+        "name": "1/LHTarsus1"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.2753093805106686,
+        "name": "1/LHTarsus2"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.21130695509481362,
+        "name": "1/LHTarsus3"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.14968935074842613,
+        "name": "1/LHTarsus4"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.08666111583624911,
+        "name": "1/LHTarsus5"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 1.203310355957748,
+        "name": "1/LMCoxa"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 1.1881638955780338,
+        "name": "1/LMFemur"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.7526682623485857,
+        "name": "1/LMTibia"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.49800289967458766,
+        "name": "1/LMTarsus1"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.35088126456496466,
+        "name": "1/LMTarsus2"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.2505587226967902,
+        "name": "1/LMTarsus3"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.19935889937901216,
+        "name": "1/LMTarsus4"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.11223169617372933,
+        "name": "1/LMTarsus5"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 1.1667445236109701,
+        "name": "1/RHCoxa"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 1.1655945373027012,
+        "name": "1/RHFemur"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.602397882336771,
+        "name": "1/RHTibia"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.3880754694937262,
+        "name": "1/RHTarsus1"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.271725441470848,
+        "name": "1/RHTarsus2"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.22515073294118979,
+        "name": "1/RHTarsus3"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.1748207492904621,
+        "name": "1/RHTarsus4"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.12138001214089339,
+        "name": "1/RHTarsus5"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 1.2048377564220198,
+        "name": "1/RMCoxa"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 1.1857486577763283,
+        "name": "1/RMFemur"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.7915740611740243,
+        "name": "1/RMTibia"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.5370181162005607,
+        "name": "1/RMTarsus1"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.3896874465668714,
+        "name": "1/RMTarsus2"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.2894045030090644,
+        "name": "1/RMTarsus3"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.23804605288543274,
+        "name": "1/RMTarsus4"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.15085191294437805,
+        "name": "1/RMTarsus5"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 1.2437265631281789,
+        "name": "1/RFCoxa"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 1.0864077906933411,
+        "name": "1/RFFemur"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.6125309531475277,
+        "name": "1/RFTibia"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.42734871720687134,
+        "name": "1/RFTarsus1"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.30232149529887664,
+        "name": "1/RFTarsus2"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.21884198294688317,
+        "name": "1/RFTarsus3"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.15414227556110938,
+        "name": "1/RFTarsus4"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 0.0791368372973492,
+        "name": "1/RFTarsus5"
+      },
+      {
+        "conaffinity": 0,
+        "contype": 0,
+        "minimum_method": "transformed_mesh_vertices",
+        "minimum_z": 1.5577841887677613,
+        "name": "1/Head"
+      }
+    ],
+    "contacts": [
+      {
+        "distance": -1.0000000000218168e-06,
+        "geom1": "ground",
+        "geom2": "1/LFTarsus5",
+        "penetration_depth": 1.0000000000218168e-06,
+        "position": [
+          1.574488506930325,
+          0.17418144661750118,
+          -5.000000000109084e-07
+        ]
+      },
+      {
+        "distance": -0.0008327005648158416,
+        "geom1": "1/LHCoxa",
+        "geom2": "1/RHCoxa",
+        "penetration_depth": 0.0008327005648158416,
+        "position": [
+          -0.25410661920431654,
+          -0.0007019535074030275,
+          1.3727814393563538
+        ]
+      },
+      {
+        "distance": -0.0008327005648158416,
+        "geom1": "1/LHCoxa",
+        "geom2": "1/RHCoxa",
+        "penetration_depth": 0.0008327005648158416,
+        "position": [
+          -0.25410661920431654,
+          -0.0007019535074030275,
+          1.3727814393563538
+        ]
+      }
+    ],
+    "controlled_joint_positions": [
+      -0.01378601137548685,
+      -0.00025236228248104453,
+      0.0026297986041754484,
+      -1.1793841123580933,
+      -0.0017620716243982315,
+      0.7576697468757629,
+      -0.14223375916481018,
+      0.03598107770085335,
+      1.7781654596328735,
+      0.21877549588680267,
+      -1.6747645139694214,
+      -0.0034093402791768312,
+      1.7638238668441772,
+      -0.12028518319129944,
+      0.02112620882689953,
+      2.401829957962036,
+      0.18669065833091736,
+      -1.560032844543457,
+      -0.14132468402385712,
+      1.1483670473098755,
+      -0.10569198429584503,
+      -0.0013245590962469578,
+      0.001191056682728231,
+      -0.00048262756899930537,
+      -1.3108537197113037,
+      0.0003741272957995534,
+      0.8962323665618896,
+      -0.17225642502307892,
+      0.011523355729877949,
+      -1.8260176181793213,
+      -0.105523481965065,
+      -1.8363397121429443,
+      0.0019978152122348547,
+      1.7278085947036743,
+      -0.03337957337498665,
+      0.27960363030433655,
+      -2.4415981769561768,
+      -0.1381906419992447,
+      -1.31553053855896,
+      -0.26682204008102417,
+      1.1447480916976929,
+      -0.3836708664894104
+    ],
+    "finite_state": true,
+    "future_physics_eligible": true,
+    "geometry_gate": {
+      "calibration_surface_contacts": [],
+      "calibration_surface_unchanged": true,
+      "classifications": {
+        "CALIBRATION_SURFACE_CONTACT": false,
+        "EXCESSIVE_DISTAL_PENETRATION": false,
+        "FORBIDDEN_GROUND_PENETRATION": false,
+        "NO_SUPPORT_CONTACT": false,
+        "SELF_COLLISION_PRESENT": true,
+        "VALID_SUPPORT_CONTACT": true
+      },
+      "distal_ground_contacts": [
+        {
+          "distance": -1.0000000000218168e-06,
+          "geom1": "ground",
+          "geom2": "1/LFTarsus5",
+          "penetration_depth": 1.0000000000218168e-06,
+          "position": [
+            1.574488506930325,
+            0.17418144661750118,
+            -5.000000000109084e-07
+          ]
+        }
+      ],
+      "excessive_distal_penetrations": [],
+      "forbidden_ground_penetrations": [],
+      "ground_contacts": [
+        {
+          "distance": -1.0000000000218168e-06,
+          "geom1": "ground",
+          "geom2": "1/LFTarsus5",
+          "penetration_depth": 1.0000000000218168e-06,
+          "position": [
+            1.574488506930325,
+            0.17418144661750118,
+            -5.000000000109084e-07
+          ]
+        }
+      ],
+      "self_contacts": [
+        {
+          "distance": -0.0008327005648158416,
+          "geom1": "1/LHCoxa",
+          "geom2": "1/RHCoxa",
+          "penetration_depth": 0.0008327005648158416,
+          "position": [
+            -0.25410661920431654,
+            -0.0007019535074030275,
+            1.3727814393563538
+          ]
+        },
+        {
+          "distance": -0.0008327005648158416,
+          "geom1": "1/LHCoxa",
+          "geom2": "1/RHCoxa",
+          "penetration_depth": 0.0008327005648158416,
+          "position": [
+            -0.25410661920431654,
+            -0.0007019535074030275,
+            1.3727814393563538
+          ]
+        }
+      ],
+      "state_finite": true,
+      "valid": true
+    },
+    "root_xyz": [
+      0.0,
+      0.0,
+      0.6045752232266313
+    ]
   }
 }
