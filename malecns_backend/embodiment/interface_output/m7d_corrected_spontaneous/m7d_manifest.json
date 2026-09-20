@@ -1,6 +1,278 @@
 {
-  "raw": null,
+  "arrays": {
+    "CORRECTED_ALL_NEURAL_MOTOR_DISABLED__neural_admitted_contributions": {
+      "dtype": "float64",
+      "shape": [
+        1000,
+        11
+      ]
+    },
+    "CORRECTED_ALL_NEURAL_MOTOR_DISABLED__neural_aggregate_spikes": {
+      "dtype": "int64",
+      "shape": [
+        1000
+      ]
+    },
+    "CORRECTED_ALL_NEURAL_MOTOR_DISABLED__neural_decoder_outputs": {
+      "dtype": "float64",
+      "shape": [
+        1000,
+        11
+      ]
+    },
+    "CORRECTED_ALL_NEURAL_MOTOR_DISABLED__neural_delivered_drive_count": {
+      "dtype": "int64",
+      "shape": [
+        1000
+      ]
+    },
+    "CORRECTED_ALL_NEURAL_MOTOR_DISABLED__neural_observer_outputs": {
+      "dtype": "float64",
+      "shape": [
+        1000,
+        11
+      ]
+    },
+    "CORRECTED_ALL_NEURAL_MOTOR_DISABLED__neural_sensory_encoded": {
+      "dtype": "float64",
+      "shape": [
+        1000,
+        6
+      ]
+    },
+    "CORRECTED_ALL_NEURAL_MOTOR_DISABLED__neural_time_ms": {
+      "dtype": "float64",
+      "shape": [
+        1000
+      ]
+    },
+    "CORRECTED_ALL_NEURAL_MOTOR_DISABLED__physics_action": {
+      "dtype": "float64",
+      "shape": [
+        5001,
+        42
+      ]
+    },
+    "CORRECTED_ALL_NEURAL_MOTOR_DISABLED__physics_body_orientation": {
+      "dtype": "float64",
+      "shape": [
+        5001,
+        4
+      ]
+    },
+    "CORRECTED_ALL_NEURAL_MOTOR_DISABLED__physics_body_position": {
+      "dtype": "float64",
+      "shape": [
+        5001,
+        3
+      ]
+    },
+    "CORRECTED_ALL_NEURAL_MOTOR_DISABLED__physics_contact_forces": {
+      "dtype": "float64",
+      "shape": [
+        5001,
+        36,
+        3
+      ]
+    },
+    "CORRECTED_ALL_NEURAL_MOTOR_DISABLED__physics_ctrl": {
+      "dtype": "float64",
+      "shape": [
+        5001,
+        48
+      ]
+    },
+    "CORRECTED_ALL_NEURAL_MOTOR_DISABLED__physics_finite": {
+      "dtype": "bool",
+      "shape": [
+        5001
+      ]
+    },
+    "CORRECTED_ALL_NEURAL_MOTOR_DISABLED__physics_joint_position": {
+      "dtype": "float64",
+      "shape": [
+        5001,
+        42
+      ]
+    },
+    "CORRECTED_ALL_NEURAL_MOTOR_DISABLED__physics_qpos": {
+      "dtype": "float64",
+      "shape": [
+        5001,
+        94
+      ]
+    },
+    "CORRECTED_ALL_NEURAL_MOTOR_DISABLED__physics_qvel": {
+      "dtype": "float64",
+      "shape": [
+        5001,
+        93
+      ]
+    },
+    "CORRECTED_ALL_NEURAL_MOTOR_DISABLED__physics_time_ms": {
+      "dtype": "float64",
+      "shape": [
+        5001
+      ]
+    },
+    "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT__neural_admitted_contributions": {
+      "dtype": "float64",
+      "shape": [
+        1000,
+        11
+      ]
+    },
+    "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT__neural_aggregate_spikes": {
+      "dtype": "int64",
+      "shape": [
+        1000
+      ]
+    },
+    "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT__neural_decoder_outputs": {
+      "dtype": "float64",
+      "shape": [
+        1000,
+        11
+      ]
+    },
+    "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT__neural_delivered_drive_count": {
+      "dtype": "int64",
+      "shape": [
+        1000
+      ]
+    },
+    "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT__neural_observer_outputs": {
+      "dtype": "float64",
+      "shape": [
+        1000,
+        11
+      ]
+    },
+    "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT__neural_sensory_encoded": {
+      "dtype": "float64",
+      "shape": [
+        1000,
+        6
+      ]
+    },
+    "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT__neural_time_ms": {
+      "dtype": "float64",
+      "shape": [
+        1000
+      ]
+    },
+    "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT__physics_action": {
+      "dtype": "float64",
+      "shape": [
+        5001,
+        42
+      ]
+    },
+    "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT__physics_body_orientation": {
+      "dtype": "float64",
+      "shape": [
+        5001,
+        4
+      ]
+    },
+    "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT__physics_body_position": {
+      "dtype": "float64",
+      "shape": [
+        5001,
+        3
+      ]
+    },
+    "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT__physics_contact_forces": {
+      "dtype": "float64",
+      "shape": [
+        5001,
+        36,
+        3
+      ]
+    },
+    "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT__physics_ctrl": {
+      "dtype": "float64",
+      "shape": [
+        5001,
+        48
+      ]
+    },
+    "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT__physics_finite": {
+      "dtype": "bool",
+      "shape": [
+        5001
+      ]
+    },
+    "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT__physics_joint_position": {
+      "dtype": "float64",
+      "shape": [
+        5001,
+        42
+      ]
+    },
+    "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT__physics_qpos": {
+      "dtype": "float64",
+      "shape": [
+        5001,
+        94
+      ]
+    },
+    "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT__physics_qvel": {
+      "dtype": "float64",
+      "shape": [
+        5001,
+        93
+      ]
+    },
+    "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT__physics_time_ms": {
+      "dtype": "float64",
+      "shape": [
+        5001
+      ]
+    }
+  },
+  "b4": {
+    "b4": {
+      "manifest": {
+        "path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m7c_initial_stability\\m7c_b4_stability_manifest.json",
+        "sha256": "7d7a59bfa51c769801526f1758f632e7f8cff07ac1bddb76fc28ffd5be96a27e"
+      },
+      "raw": {
+        "byte_size": 4770477,
+        "path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m7c_initial_stability\\m7c_b4_stability_raw.npz",
+        "sha256": "966996caa3504b592c603b349c1ebb905f18e687f2d99f3c0be5d06fe83a4109"
+      },
+      "summary": {
+        "path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m7c_initial_stability\\m7c_b4_stability_summary.json",
+        "sha256": "5a76aee889168e996ee15b90d09dfd54f1a35f7734ed2ad9885eb8eae077fa9a"
+      }
+    },
+    "m7": {
+      "manifest": {
+        "path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m7_canonical\\m7_manifest.json",
+        "sha256": "86201abdc8507f71a3215f98dbe5eb6e7ce4c8da0f207b95ecc12ac587b764b9"
+      },
+      "raw": {
+        "byte_size": 175792136,
+        "path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m7_canonical\\m7_raw.npz",
+        "sha256": "155ef633a319711d44fc471c1f46c24cec0b36ea6e7326556c5b987e912fed47"
+      },
+      "summary": {
+        "path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m7_canonical\\m7_summary.json",
+        "sha256": "5f8fde6cd14ca57df16d759fa3f655b6195ec8b8493f8cd2c30162f486521364"
+      }
+    }
+  },
+  "environment": {
+    "flygym": "1.2.1",
+    "mujoco": "3.2.7"
+  },
+  "raw": {
+    "byte_size": 16737088,
+    "path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m7d_corrected_spontaneous\\m7d_raw.npz",
+    "sha256": "92b5c645a88fe74e5d6aa0988478c374e8fde3a0e923d42cc13974a3e60d8444"
+  },
   "schema": "M7D-CORRECTED-SPONTANEOUS.1",
-  "scientific_run_executed": false,
-  "status": "NOT_RUN"
+  "source_commit": "6ce20ef6c496345ad348784188bb9e948bdef42d",
+  "status": "COMPLETE"
 }

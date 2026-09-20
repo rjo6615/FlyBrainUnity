@@ -1,8 +1,81 @@
 {
-  "classification": null,
+  "b4_first_100ms_comparison": {
+    "control_survival_consistent": true,
+    "diagnostic_only": true
+  },
+  "causal_milestones": {
+    "D0_pre_intervention_equivalent": true,
+    "D10_first_later_motor_divergence_ms": 156.99999999999903,
+    "D1_first_mapped_motor_activity_ms": 54.00000000000052,
+    "D2_first_observer_divergence_ms": 156.99999999999903,
+    "D3_first_decoder_or_admitted_divergence_ms": 54.00000000000052,
+    "D4_first_action_divergence_ms": 54.00000000000052,
+    "D5_first_admitted_joint_divergence_ms": 54.10000000000052,
+    "D6_first_whole_body_divergence_ms": 54.10000000000052,
+    "D7_first_tibial_sensory_divergence_ms": 54.50000000000053,
+    "D8_first_delivered_sensory_drive_divergence_ms": 78.50000000000122,
+    "D9_first_downstream_cns_divergence_ms": 78.50000000000122
+  },
+  "classification": [
+    "CORRECTED_EMBODIMENT_SPONTANEOUS_EXPERIMENT_COMPLETE",
+    "CORRECTED_EMBODIMENT_NEURAL_MOTOR_CAUSALITY_CONFIRMED"
+  ],
+  "condition_completion": {
+    "CORRECTED_ALL_NEURAL_MOTOR_DISABLED": true,
+    "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT": true
+  },
+  "movement_categories": [
+    "NET_BODY_DISPLACEMENT"
+  ],
+  "neural_updates_per_condition": 1000,
+  "per_condition": {
+    "CORRECTED_ALL_NEURAL_MOTOR_DISABLED": {
+      "body_path_length": 0.38263313389118825,
+      "first_fall_time_ms": null,
+      "first_rollover_time_ms": null,
+      "minimum_body_height": 0.36496912459789654,
+      "minimum_body_up_z": 0.9950113082079953,
+      "net_body_displacement": [
+        0.005077232544874687,
+        0.020209632424512045,
+        -0.21788553566314356
+      ],
+      "survival": {
+        "100.0": true,
+        "13.0": true,
+        "500.0": true,
+        "7.2": true
+      }
+    },
+    "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT": {
+      "body_path_length": 0.640338865989498,
+      "first_fall_time_ms": null,
+      "first_rollover_time_ms": null,
+      "minimum_body_height": 0.36496912459789654,
+      "minimum_body_up_z": 0.9950113082079953,
+      "net_body_displacement": [
+        0.010230189443236597,
+        0.018202116836231054,
+        -0.20041863743752042
+      ],
+      "survival": {
+        "100.0": true,
+        "13.0": true,
+        "500.0": true,
+        "7.2": true
+      }
+    }
+  },
+  "physics_states_per_condition": 5001,
+  "physics_transitions_per_condition": 5000,
+  "pre_intervention_equivalence": true,
+  "raw_telemetry": {
+    "byte_size": 16737088,
+    "path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m7d_corrected_spontaneous\\m7d_raw.npz",
+    "sha256": "92b5c645a88fe74e5d6aa0988478c374e8fde3a0e923d42cc13974a3e60d8444"
+  },
   "schema": "M7D-CORRECTED-SPONTANEOUS.1",
-  "scientific_run_executed": false,
-  "status": "NOT_RUN",
+  "status": "COMPLETE",
   "tripod_gait_classification": null,
   "walking": null
 }
