@@ -46,8 +46,15 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
                   progress: Any, cached_admission_assertion: Any,
                   cached_records: Sequence[Mapping[str, Any]],
                   cached_table: Sequence[Mapping[str, Any]],
-                  initialize_only: bool = False) -> Mapping[str, Any]:
-    """Create, run, close, and summarize one fresh 500-ms runtime."""
+                  initialize_only: bool = False, duration_ms: float | None = None,
+                  condition_names: Sequence[str] | None = None,
+                  contribution_gate: Any | None = None,
+                  compact_telemetry: bool = False) -> Mapping[str, Any]:
+    """Create, run, close, and summarize one fresh frozen runtime.
+
+    The optional arguments are used by M7 to reuse this exact M6C embodiment.
+    M6C callers receive the original behaviour by default.
+    """
     import numpy as np
     import flygym
     from malecns_backend import MaleCNSBrain, load_malecns
@@ -65,7 +72,10 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
     from .tactile_motor_matched_control import MatchedControlPipeline
     from .tactile_targeted_contact_calibration import DEFAULT_TIMESTEP_S
 
-    if condition not in CONDITIONS: raise ValueError("unknown canonical M6C condition")
+    allowed_conditions = tuple(condition_names or CONDITIONS)
+    if condition not in allowed_conditions: raise ValueError("unknown canonical condition")
+    run_duration_ms = float(DURATION_MS if duration_ms is None else duration_ms)
+    gate = contribution_gate or gate_contributions
     started = time.perf_counter(); data = load_malecns(); tibia = load_six_tibia_interfaces()
     sim, physics, obs, _, _ = _make_live(flygym, tibia)
     phase = {"initialization": 0., "neural_stepping": 0., "mujoco_stepping": 0.,
@@ -106,8 +116,12 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
         tactile = TactileContactEncoder(config=TactileContactConfig(seed=SEED))
         encoders = {leg: SensoryEncoder(tibia[leg]) for leg in LEG_ORDER}; rngs = proprio_rngs(SEED)
         commands = _joint_positions(obs); pending = set(); stride = int(round(NEURAL_DT_MS / (DEFAULT_TIMESTEP_S * 1000)))
-        final_step = int(round(DURATION_MS / (DEFAULT_TIMESTEP_S * 1000))); contributions = dict.fromkeys(admitted_names, 0.)
-        trajectory = []; aggregate_spikes = 0; instability = False; unauthorized = 0
+        final_step = int(round(run_duration_ms / (DEFAULT_TIMESTEP_S * 1000))); contributions = dict.fromkeys(admitted_names, 0.)
+        trajectory = []; compact = {key: [] for key in ("time_ms", "qpos", "qvel", "joint_position", "action", "ctrl",
+            "body_position", "body_orientation", "contact_forces", "finite")}
+        neural = {key: [] for key in ("time_ms", "sensory_encoded", "delivered_drive_count",
+            "aggregate_spikes", "observer_outputs", "decoder_outputs", "admitted_contributions")}
+        aggregate_spikes = 0; instability = False; unauthorized = 0
         pre_intervention_state = _pre_intervention_snapshot(brain=brain, physics=physics,
             commands=commands, encoders=encoders, channels=channels, rngs=rngs,
             cached_table=cached_table)
@@ -116,8 +130,21 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
         # every sensory, decoder, neural, and physics transition.
         initialization_vector = [0.] * 42
         cached_admission_assertion(initialization_vector, cached_table)
+        model = physics.model
+        initial_audit = {"initial_pose_source": "FlyGym default pose (no pose override)",
+                "body_position": np.asarray(physics.data.qpos[:3]).tolist(),
+                "body_orientation_quaternion": np.asarray(physics.data.qpos[3:7]).tolist(),
+                "joint_configuration": np.asarray(commands).tolist(),
+                "qpos": np.asarray(physics.data.qpos).tolist(), "qvel": np.asarray(physics.data.qvel).tolist(),
+                "ground": "FlyGym FlatTerrain plus static m5d2c_calibration_surface positioned once at reset under LMTarsus5",
+                "ground_dynamic_after_reset": False,
+                "gravity": np.asarray(model.opt.gravity).tolist(),
+                "adhesion_enabled": False, "adhesion_command": [0.0] * 6,
+                "adhesion_policy": "constant zero baseline; no schedule or controller",
+                "control": "position", "locomotion_or_reference_controller": False}
         if initialize_only:
             return {"pre_intervention_state": pre_intervention_state,
+                "initial_physical_state_audit": initial_audit,
                 "telemetry_initialized": isinstance(trajectory, list),
                 "admission_vector_length": len(initialization_vector),
                 "neural_steps": 0, "physics_steps": 0,
@@ -153,7 +180,7 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
                     channel["peak_observer"] = max(channel["peak_observer"], peak_observer); channel["peak_raw"] = max(channel["peak_raw"], abs(raw))
                     if increments and channel["first_activity_ms"] is None: channel["first_activity_ms"] = now_ms
                     if raw and channel["first_decoder_output_ms"] is None: channel["first_decoder_output_ms"] = now_ms
-                contributions = gate_contributions(raw_values, condition, admitted_names)
+                contributions = gate(raw_values, condition, admitted_names)
                 neural_vector = [0.] * 42
                 for name, channel in channels.items():
                     result = channel["pipeline"].update(float(measured[channel["index"]]), contributions[name], NEURAL_DT_MS / 1000)
@@ -165,9 +192,25 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
                 assert_started = time.perf_counter(); cached_admission_assertion(neural_vector, cached_table)
                 phase["admission_assertion"] += time.perf_counter() - assert_started
                 phase["observer_decoder"] += time.perf_counter() - decode_started
+                if compact_telemetry:
+                    neural["time_ms"].append(now_ms)
+                    neural["sensory_encoded"].append([sensory_values[leg] for leg in LEG_ORDER])
+                    neural["delivered_drive_count"].append(len(delivered))
+                    neural["aggregate_spikes"].append(aggregate_spikes)
+                    neural["observer_outputs"].append([channels[n]["peak_observer"] for n in admitted_names])
+                    neural["decoder_outputs"].append([raw_values[n] for n in admitted_names])
+                    neural["admitted_contributions"].append([contributions[n] for n in admitted_names])
             telemetry_started = time.perf_counter(); arrays = (physics.data.qpos, physics.data.qvel, physics.data.ctrl)
             finite = all(np.all(np.isfinite(a)) for a in arrays); instability |= not finite
-            trajectory.append({"time_ms": now_ms, "qpos": np.asarray(physics.data.qpos).tolist(),
+            if compact_telemetry:
+                compact["time_ms"].append(now_ms); compact["qpos"].append(np.asarray(physics.data.qpos).copy())
+                compact["qvel"].append(np.asarray(physics.data.qvel).copy()); compact["joint_position"].append(np.asarray(measured).copy())
+                compact["action"].append(np.asarray(commands).copy())
+                compact["ctrl"].append(np.asarray(physics.data.ctrl).copy()); compact["body_position"].append(np.asarray(physics.data.qpos[:3]).copy())
+                compact["body_orientation"].append(np.asarray(physics.data.qpos[3:7]).copy())
+                compact["contact_forces"].append(np.asarray(_forces(obs)).copy()); compact["finite"].append(finite)
+            else:
+                trajectory.append({"time_ms": now_ms, "qpos": np.asarray(physics.data.qpos).tolist(),
                 "qvel": np.asarray(physics.data.qvel).tolist(), "action": np.asarray(commands).tolist(),
                 "ctrl": np.asarray(physics.data.ctrl).tolist(), "body_position": np.asarray(physics.data.qpos[:3]).tolist(),
                 "body_orientation": np.asarray(physics.data.qpos[3:7]).tolist(), "sensory": sensory_values if step and step % stride == 0 else {},
@@ -194,10 +237,16 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
             summaries.append({"actuator": name, "status": status, **{k: v for k, v in x.items()
                 if k in ("spikes", "peak_observer", "peak_raw", "peak_admitted", "first_activity_ms",
                          "first_decoder_output_ms", "first_admitted_contribution_ms", "saturation", "slew_limited")}})
+        raw_arrays = ({**{"physics_" + key: np.asarray(value) for key, value in compact.items()},
+            **{"neural_" + key: np.asarray(value) for key, value in neural.items()}} if compact_telemetry else {})
         return {"pre_intervention_equivalence": True, "pre_intervention_state": pre_intervention_state,
+            "initial_physical_state_audit": initial_audit,
             "local_milestones": local,
             "unauthorized_contribution_count": unauthorized, "physics_instability": instability,
-            "per_channel": summaries, "trajectory": trajectory, "feedback_milestones": {}, "performance": phase}
+            "per_channel": summaries, "trajectory": trajectory, "raw_arrays": raw_arrays,
+            "physics_steps": final_step if not instability else len(compact["time_ms"]) - 1,
+            "neural_steps": len(neural["time_ms"]) if compact_telemetry else final_step // stride,
+            "feedback_milestones": {}, "performance": phase}
     finally:
         close = getattr(sim, "close", None)
         if close: close()
