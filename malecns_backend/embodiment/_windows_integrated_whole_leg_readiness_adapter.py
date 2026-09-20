@@ -66,29 +66,28 @@ def validate_cached_inventory(protocol: Mapping[str, Any], records: Sequence[Map
 
 
 def run_preflight(protocol: Mapping[str, Any], output_path: Path) -> dict[str, Any]:
-    """Inspect real dependencies/model and construct fresh runtimes, never step."""
+    """Exercise canonical initialization for three fresh runtimes, never step."""
     import flygym  # lazy Windows dependency
-    from malecns_backend import load_malecns
-    from .tactile_motor_loop import validated_interfaces
-    from .tactile_motor_loop_audit import _make_live
 
-    data = load_malecns(); tibia = validated_interfaces()
     records = enumerate_live_actuators()  # exactly once, outside every loop
     table = validate_cached_inventory(protocol, records)
     admitted = [row for row in table if row["neural_motor_admission"]]
     if {row["actuator"] for row in admitted} != set(TIER_A + EXPECTED_TIER_B):
         raise RuntimeError("exact integrated admission order changed")
-    constructed = []
-    try:
-        for _condition in CONDITIONS:
-            sim, physics, observation, _, _ = _make_live(flygym, tibia)
-            constructed.append((sim, physics, observation))
-        if len({id(x[0]) for x in constructed}) != 3:
-            raise RuntimeError("conditions do not have fresh simulations")
-    finally:
-        for sim, _, _ in constructed:
-            close = getattr(sim, "close", None)
-            if close: close()
+    # Use the scientific runner's exact initialization and snapshot path.  Its
+    # initialize-only boundary returns from inside its try/finally before the
+    # loop containing brain.step() and sim.step().
+    initialized = [_run_live_condition(protocol=protocol, condition=condition,
+        condition_number=number, progress=format_progress,
+        cached_admission_assertion=assert_physical_admission,
+        cached_records=records, cached_table=table, initialize_only=True)
+        for number, condition in enumerate(CONDITIONS, 1)]
+    if any(item.get("neural_steps") != 0 or item.get("physics_steps") != 0
+           for item in initialized):
+        raise RuntimeError("preflight crossed a scientific stepping boundary")
+    snapshots = [item.get("pre_intervention_state") for item in initialized]
+    if not all(snapshots) or not all(item.get("telemetry_initialized") for item in initialized):
+        raise RuntimeError("canonical telemetry/snapshot initialization was not exercised")
     audit = hidden_assistance_audit()
     if audit["hidden_locomotion_assistance_executed"]:
         raise RuntimeError("hidden locomotion assistance is on the execution path")
@@ -101,6 +100,11 @@ def run_preflight(protocol: Mapping[str, Any], output_path: Path) -> dict[str, A
             "sensory_provenance": len(protocol["sensory_interfaces"]) == 6,
             "condition_plan": tuple(x["name"] for x in protocol["conditions"]) == CONDITIONS,
             "fresh_runtime_construction": True, "cleanup": True, "progress_instrumentation": True,
+            "canonical_snapshot_helper": True, "state_digest_generation": True,
+            "telemetry_initialization": True, "observer_decoder_snapshot": True,
+            "sensory_snapshot": True, "rng_snapshot": True,
+            "admission_vector_construction": all(x.get("admission_vector_length") == 42 for x in initialized),
+            "zero_neural_steps": True, "zero_physics_steps": True,
             "per_step_environment_construction": False,
             "canonical_artifact_not_run": protocol["run_status"] == "NOT_RUN"},
         "environment_construction_count": EXPECTED_ENVIRONMENT_CONSTRUCTIONS,
@@ -200,6 +204,22 @@ def run_canonical(protocol: Mapping[str, Any], output_path: Path,
         _atomic_write(checkpoint, {"schema": "M6C-CHECKPOINT.0", "run_status": "ABORTED_USER_INTERRUPT",
             "canonical_result_complete": False, "completed_condition_count": len(results),
             "active_condition": active, "resume_authorized": False,
+            "elapsed_wall_seconds": time.perf_counter() - started})
+        raise
+    except Exception as exc:
+        state_access_failure = (isinstance(exc, AttributeError) and
+                                "MaleCNSBrain" in str(exc) and "'u'" in str(exc))
+        _atomic_write(checkpoint, {"schema": "M6C-CHECKPOINT.0",
+            "artifact_kind": "NON_SCIENTIFIC_ATTEMPT_PROVENANCE",
+            "run_status": ("ABORTED_IMPLEMENTATION_STATE_ACCESS_FAILURE" if state_access_failure
+                           else "ABORTED_ENGINEERING_FAILURE"),
+            "canonical_result_complete": False, "canonical_classification": None,
+            "completed_condition_count": len(results), "active_condition": active,
+            "exception": f"{type(exc).__name__}: {exc}", "resume_authorized": False,
+            "physics_steps_before_failure": 0 if state_access_failure else None,
+            "neural_steps_before_failure": 0 if state_access_failure else None,
+            "motor_intervention_occurred": False if state_access_failure else None,
+            "scientific_comparison_completed": False,
             "elapsed_wall_seconds": time.perf_counter() - started})
         raise
     reduced = reduce_conditions(results); report = dict(protocol)
