@@ -43,10 +43,61 @@ NEURAL_FIELDS = {
     "neural_aggregate_spikes", "neural_observer_outputs", "neural_decoder_outputs",
     "neural_admitted_contributions",
 }
+PHYSICS_SAMPLE_COUNT = 50_001
+NEURAL_SAMPLE_COUNT = 10_000
+PHYSICS_DT_MS = 0.1
+NEURAL_DT_MS = 0.5
 
 
 class EvidenceError(RuntimeError):
     """Canonical evidence differs from the frozen contract."""
+
+
+def _accumulation_tolerance(expected: np.ndarray, dt_ms: float) -> np.ndarray:
+    """Return a per-sample bound for a clock formed by repeated float64 adds.
+
+    IEEE-754 round-to-nearest introduces at most half an ULP at each addition.
+    Summing that bound through each timestamp models accumulated runtime-clock
+    error.  One further ULP covers rounding in the vectorized ``i * dt``
+    reference calculation.  This is deliberately scale- and length-dependent,
+    rather than a fitted absolute tolerance for the canonical archive.
+    """
+    addition_ulp = np.spacing(np.maximum(np.abs(expected), abs(dt_ms)))
+    return 0.5 * np.cumsum(addition_ulp) + np.spacing(np.maximum(np.abs(expected), abs(dt_ms)))
+
+
+def _validate_time_vector(time: np.ndarray, *, sample_count: int, dt_ms: float,
+                          first_step: int, label: str) -> np.ndarray:
+    """Validate the count, representation, origin, endpoint, and cadence."""
+    if time.dtype != np.dtype("float64"):
+        raise EvidenceError(f"{label} time dtype mismatch")
+    if time.shape != (sample_count,):
+        raise EvidenceError(f"{label} time sample-count mismatch")
+    if not np.all(np.isfinite(time)):
+        raise EvidenceError(f"{label} time contains NaN/Inf")
+    if not np.all(np.diff(time) > 0):
+        raise EvidenceError(f"{label} time is not strictly increasing")
+
+    # Physics records the initial state (first_step=0); neural telemetry is
+    # post-update and therefore starts after the first 0.5-ms update (step=1).
+    steps = np.arange(first_step, first_step + sample_count, dtype=np.float64)
+    expected = steps * dt_ms
+    accumulated_tol = _accumulation_tolerance(expected, dt_ms)
+    if abs(time[0] - expected[0]) > accumulated_tol[0]:
+        raise EvidenceError(f"{label} time origin mismatch")
+    if abs(time[-1] - expected[-1]) > accumulated_tol[-1]:
+        raise EvidenceError(f"{label} time endpoint mismatch")
+    if np.any(np.abs(time - expected) > accumulated_tol):
+        raise EvidenceError(f"{label} accumulated time mismatch")
+
+    # A subtraction can expose the rounding errors of both adjacent clock
+    # values.  Two ULPs at their magnitude, plus one ULP of dt, bounds that
+    # representation effect while remaining many orders below a real dt shift.
+    adjacent_scale = np.maximum(np.abs(time[:-1]), np.abs(time[1:]))
+    cadence_tol = 2 * np.spacing(np.maximum(adjacent_scale, abs(dt_ms))) + np.spacing(dt_ms)
+    if np.any(np.abs(np.diff(time) - dt_ms) > cadence_tol):
+        raise EvidenceError(f"{label} cadence mismatch")
+    return accumulated_tol
 
 
 def _sha(path: Path) -> str:
@@ -134,27 +185,40 @@ def validate_evidence(raw: Path, manifest_path: Path, summary_path: Path,
                 raise EvidenceError(f"finite-state flag failed: {name}")
         elif np.issubdtype(array.dtype, np.number) and not np.all(np.isfinite(array)):
             raise EvidenceError(f"nonfinite required telemetry: {name}")
-    p_count = 50_001 if canonical else next(iter(declared.values()))["shape"][0]
-    n_count = 10_000 if canonical else None
+    p_count = PHYSICS_SAMPLE_COUNT if canonical else len(arrays[f"{CONDITIONS[0]}__physics_time_ms"])
+    n_count = NEURAL_SAMPLE_COUNT if canonical else len(arrays[f"{CONDITIONS[0]}__neural_time_ms"])
     for condition in CONDITIONS:
         pt = arrays[f"{condition}__physics_time_ms"]
         nt = arrays[f"{condition}__neural_time_ms"]
-        if canonical and (len(pt) != p_count or len(nt) != n_count):
-            raise EvidenceError("sample-count mismatch")
-        if (len(pt) < 2 or len(nt) < 2 or
-                not np.allclose(pt, np.arange(len(pt)) * 0.1, rtol=0, atol=1e-9) or
-                not np.allclose(nt, np.arange(len(nt)) * 0.5, rtol=0, atol=1e-9)):
-            raise EvidenceError("time vector/cadence mismatch")
+        _validate_time_vector(pt, sample_count=p_count, dt_ms=PHYSICS_DT_MS,
+                              first_step=0, label=f"{condition} physics")
+        _validate_time_vector(nt, sample_count=n_count, dt_ms=NEURAL_DT_MS,
+                              first_step=1, label=f"{condition} neural")
         for field in PHYSICS_FIELDS:
             if arrays[f"{condition}__{field}"].shape[0] != len(pt):
                 raise EvidenceError(f"physics cadence mismatch: {field}")
         for field in NEURAL_FIELDS:
             if arrays[f"{condition}__{field}"].shape[0] != len(nt):
                 raise EvidenceError(f"neural cadence mismatch: {field}")
+    enabled, disabled = CONDITIONS
+    for field in ("physics_time_ms", "neural_time_ms"):
+        left = arrays[f"{enabled}__{field}"]
+        right = arrays[f"{disabled}__{field}"]
+        # Both conditions use the same deterministic frozen clock mechanism;
+        # unlike comparison to an ideal decimal sequence, no independently
+        # accumulated arithmetic is involved in this pairwise comparison.
+        if not np.array_equal(left, right):
+            raise EvidenceError(f"cross-condition clock mismatch: {field}")
     validation = {"status": "PASS", "allow_pickle": False, "raw_sha256": raw_sha,
                   "manifest_sha256": _sha(manifest_path), "object_arrays": False,
                   "all_required_values_finite": True, "physics_states_per_condition": len(pt),
-                  "neural_samples_per_condition": len(nt), "conditions": expected_conditions}
+                  "neural_samples_per_condition": len(nt), "conditions": expected_conditions,
+                  "time_semantics": {
+                      "physics": "initial state plus post-transition states; t[i] = i * 0.1 ms",
+                      "neural": "post-neural-update states; t[i] = (i + 1) * 0.5 ms"},
+                  "time_tolerance_policy": "cumulative half-ULP per repeated float64 addition plus one reference ULP; cadence bounded by adjacent-value ULPs",
+                  "cross_condition_clock_comparison": "exact float64 sample equality",
+                  "cross_condition_clocks_equivalent": True}
     return arrays, manifest, summary, validation
 
 
