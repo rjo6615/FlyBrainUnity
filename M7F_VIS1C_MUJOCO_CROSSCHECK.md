@@ -51,8 +51,11 @@ The verifier refuses to run unless all of the following hold:
 * the live `Fly` signature says the omitted `xml_variant` defaults to `seqik`;
 * the exact installed seqik resource exists;
 * the replay's 42 names equal the frozen order below;
-* every name resolves once in the assembled native MuJoCo model and their qpos
-  addresses are monotonically ordered;
+* M7D's recorded columns are proven to be `obs["joints"]` in the exact
+  `Fly.actuated_joints` order, and that live order equals the manifest names;
+* every name resolves once to a scalar hinge in the assembled native MuJoCo
+  model and every resolved qpos address is unique (the addresses need not be
+  monotonically ordered in canonical array order);
 * exactly one root freejoint exists and starts at `qpos[0]` (translation in
   `qpos[0:3]`, quaternion **wxyz** in `qpos[3:7]`); and
 * all required `L{F,M,H}/R{F,M,H}` Coxa, Femur, Tibia, Tarsus1 and endpoint
@@ -81,6 +84,18 @@ positions on every canonical frame.  VIS1C does not reset or step a simulation.
 It assigns each selected frame's recorded root directly to the root freejoint and
 each recorded joint value to its validated qpos address, then calls only
 `mujoco.mj_forward`.
+
+The recorder chain is explicit: M7D delegates to the M6C live condition runner;
+that runner evaluates `measured = _joint_positions(obs)`; the extractor takes
+`np.asarray(obs["joints"])` (selecting row zero only for FlyGym's batched form);
+and FlyGym defines those coordinates in `Fly.actuated_joints` order.  Thus the
+canonical index is an actuator/observation index, **not** a global qpos offset.
+The verifier obtains the live 42-name actuator order from the same constructed
+Fly, requires exact equality with all 42 canonical names, and emits a row giving
+the source index, compiled joint ID, qpos address, joint type, and body for every
+column.  It separately emits the rows sorted by qpos address.  A difference
+between those two permutations is expected to be representational and does not
+reinterpret or reorder the replay values.
 
 ## MaleCNS XML versus the actual FlyGym model
 
