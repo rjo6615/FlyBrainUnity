@@ -93,6 +93,10 @@ namespace FlyBrain.M7FReplay
         public M7FFlyRig EnabledRig => enabledRig;
         public M7FFlyRig DisabledRig => disabledRig;
         public void Configure(M7FReplayLoader replayLoader, M7FFlyRig enabledScientificRig, M7FFlyRig disabledScientificRig)
-        { loader = replayLoader; enabledRig = enabledScientificRig; disabledRig = disabledScientificRig; condition = M7FCondition.SideBySide; presentationInterpolation = false; }
+        {
+            loader = replayLoader; enabledRig = enabledScientificRig; disabledRig = disabledScientificRig;
+            condition = M7FCondition.Enabled; presentationInterpolation = false;
+            enabledRig.gameObject.SetActive(true); disabledRig.gameObject.SetActive(false);
+        }
     }
 }

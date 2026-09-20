@@ -1,81 +1,83 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace FlyBrain.M7FReplay
 {
-    /// <summary>Creates presentation geometry and transform-only scientific hinges. It never steps a simulation.</summary>
+    /// <summary>Builds only the transform rig serialized from native MuJoCo constants. No physics, IK, or fitting.</summary>
     public sealed class M7FScientificFlyBuilder : MonoBehaviour
     {
-        [SerializeField] bool showJointMarkers = false;
+        [SerializeField] bool showAxisIndicators = false;
+        public const float SegmentRadius = .00035f;
+        public const float PivotDiameter = .0008f;
         public const float ApproximateVisualRadius = .03f;
 
-        [ContextMenu("BUILD SCIENTIFIC FLY (NO PHYSICS)")]
+        [ContextMenu("BUILD AUTHORITATIVE SCIENTIFIC FLY (NO PHYSICS)")]
         public void Rebuild()
         {
             for (var i = transform.childCount - 1; i >= 0; i--) SafeDestroy(transform.GetChild(i).gameObject);
-            var scientificRoot = Child(transform, "ScientificRoot");
-            var anatomy = Child(scientificRoot, "PresentationAnatomy");
-            var bodyMaterial = Material("M7F neutral body", new Color(.11f, .10f, .09f));
-            var legMaterial = Material("M7F segmented legs", new Color(.20f, .17f, .13f));
-            var eyeMaterial = Material("M7F eyes (presentation)", new Color(.32f, .08f, .06f));
-            var wingMaterial = Material("M7F translucent wings", new Color(.65f, .72f, .76f, .42f));
-            wingMaterial.SetFloat("_Mode", 3); wingMaterial.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha); wingMaterial.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha); wingMaterial.SetInt("_ZWrite", 0); wingMaterial.EnableKeyword("_ALPHABLEND_ON"); wingMaterial.renderQueue = 3000;
-
-            Primitive(anatomy, "ThoraxVisual", PrimitiveType.Sphere, new Vector3(0, .004f, 0), new Vector3(.012f, .010f, .009f), bodyMaterial);
-            Primitive(anatomy, "AbdomenVisual", PrimitiveType.Sphere, new Vector3(-.011f, .004f, 0), new Vector3(.017f, .007f, .007f), bodyMaterial);
-            Primitive(anatomy, "HeadVisual", PrimitiveType.Sphere, new Vector3(.010f, .004f, 0), Vector3.one * .008f, bodyMaterial);
-            Primitive(anatomy, "LeftEyeVisual", PrimitiveType.Sphere, new Vector3(.012f, .005f, .004f), new Vector3(.005f, .005f, .003f), eyeMaterial);
-            Primitive(anatomy, "RightEyeVisual", PrimitiveType.Sphere, new Vector3(.012f, .005f, -.004f), new Vector3(.005f, .005f, .003f), eyeMaterial);
-            var leftWing = Primitive(anatomy, "LeftWingVisual", PrimitiveType.Sphere, new Vector3(-.002f, .008f, .008f), new Vector3(.018f, .001f, .008f), wingMaterial); leftWing.localRotation = Quaternion.Euler(0, -22, 0);
-            var rightWing = Primitive(anatomy, "RightWingVisual", PrimitiveType.Sphere, new Vector3(-.002f, .008f, -.008f), new Vector3(.018f, .001f, .008f), wingMaterial); rightWing.localRotation = Quaternion.Euler(0, 22, 0);
-
-            foreach (var leg in M7FScientificFlyRigDefinition.Legs) BuildLeg(scientificRoot, leg, legMaterial);
+            var root = Child(transform, "ScientificRoot — SCIENTIFIC RIG ONLY");
+            var material = Material("M7F authoritative skeleton", new Color(.16f, .72f, .78f));
+            var pivotMaterial = Material("M7F authoritative pivots", new Color(.95f, .75f, .18f));
+            var data = M7FScientificFlyRigDefinition.Data; var definitions = data.bodies;
+            var thorax = Child(root, "Thorax");
+            thorax.localPosition = M7FCoordinates.SourcePositionToUnity(M7FScientificFlyRigDefinition.Vector(data.root_body.local_position)) * M7FCoordinates.MillimetresToUnity;
+            thorax.localRotation = M7FCoordinates.SourceQuaternionToUnity(M7FScientificFlyRigDefinition.QuaternionWxyz(data.root_body.local_quaternion_wxyz));
+            var finalFrames = new Dictionary<string, Transform> { ["Thorax"] = thorax };
+            var pending = new List<M7FAuthoritativeBody>(definitions);
+            while (pending.Count != 0)
+            {
+                var progress = false;
+                for (var i = pending.Count - 1; i >= 0; i--)
+                {
+                    var body = pending[i];
+                    if (!finalFrames.TryGetValue(body.parent_body, out var parent)) continue;
+                    finalFrames[body.name] = BuildBody(parent, body, material, pivotMaterial);
+                    pending.RemoveAt(i); progress = true;
+                }
+                if (!progress) throw new InvalidOperationException("Authoritative body hierarchy has a missing parent or cycle.");
+            }
             var rig = GetComponent<M7FFlyRig>() ?? gameObject.AddComponent<M7FFlyRig>();
-            rig.Configure(scientificRoot, System.Array.Empty<M7FJointBinding>()); rig.AutoBindCanonicalJoints();
-            var overlay = GetComponent<M7FKinematicReferenceOverlay>() ?? gameObject.AddComponent<M7FKinematicReferenceOverlay>();
-            overlay.RefreshFrame0();
+            rig.Configure(root, Array.Empty<M7FJointBinding>()); rig.AutoBindCanonicalJoints();
+            var legacy = GetComponent<M7FKinematicReferenceOverlay>(); if (legacy != null) SafeDestroy(legacy);
         }
 
-        void BuildLeg(Transform root, string leg, Material material)
+        Transform BuildBody(Transform parent, M7FAuthoritativeBody body, Material segmentMaterial, Material pivotMaterial)
         {
-            var legRoot = Child(root, leg + "_LegRoot"); legRoot.localPosition = M7FScientificFlyRigDefinition.BodyReferencePosition(leg, 0);
-            // Coincident hinge nesting follows MJCF element order, not manifest array order.
-            Transform pivot = legRoot; var transforms = new Dictionary<string, Transform>();
-            foreach (var name in M7FScientificFlyRigDefinition.HierarchyOrder(leg))
+            var bodyBase = Child(parent, body.name + "_BodyBase");
+            bodyBase.localPosition = M7FCoordinates.SourcePositionToUnity(M7FScientificFlyRigDefinition.Vector(body.local_position)) * M7FCoordinates.MillimetresToUnity;
+            bodyBase.localRotation = M7FCoordinates.SourceQuaternionToUnity(M7FScientificFlyRigDefinition.QuaternionWxyz(body.local_quaternion_wxyz));
+            var frame = bodyBase; var previousPivot = Vector3.zero;
+            Array.Sort(body.joints, (a, b) => a.declaration_order.CompareTo(b.declaration_order));
+            foreach (var joint in body.joints)
             {
-                pivot = Child(pivot, name); transforms[name] = pivot;
-                if (name.EndsWith("Femur_roll")) pivot.localPosition = M7FScientificFlyRigDefinition.BodyReferencePosition(leg, 1);
-                else if (name.EndsWith("Tibia")) pivot.localPosition = M7FScientificFlyRigDefinition.BodyReferencePosition(leg, 2);
-                else if (name.EndsWith("Tarsus1")) pivot.localPosition = M7FScientificFlyRigDefinition.BodyReferencePosition(leg, 3);
-                var marker = Primitive(pivot, name + "_JointMarker", PrimitiveType.Sphere, Vector3.zero, Vector3.one * .0012f, material);
-                marker.gameObject.SetActive(showJointMarkers);
+                var pivot = M7FCoordinates.SourcePositionToUnity(M7FScientificFlyRigDefinition.Vector(joint.local_position)) * M7FCoordinates.MillimetresToUnity;
+                var hinge = Child(frame, joint.name); hinge.localPosition = pivot - previousPivot;
+                Primitive(hinge, joint.name + "_Pivot", PrimitiveType.Sphere, Vector3.zero, Vector3.one * PivotDiameter, pivotMaterial);
+                if (showAxisIndicators) AddSegment(hinge, joint.name + "_Axis", M7FCoordinates.SourceAxialToUnity(M7FScientificFlyRigDefinition.Vector(joint.local_axis)).normalized * .002f, pivotMaterial);
+                var after = Child(hinge, joint.name + "_AfterPivot"); after.localPosition = -pivot;
+                frame = after; previousPivot = Vector3.zero;
             }
-            transforms["joint_" + leg + "Coxa_roll"].localRotation = M7FScientificFlyRigDefinition.BodyReferenceRotation(leg, 0);
-            transforms["joint_" + leg + "Femur_roll"].localRotation *= M7FScientificFlyRigDefinition.BodyReferenceRotation(leg, 1);
-            transforms["joint_" + leg + "Tibia"].localRotation *= M7FScientificFlyRigDefinition.BodyReferenceRotation(leg, 2);
-            transforms["joint_" + leg + "Tarsus1"].localRotation *= M7FScientificFlyRigDefinition.BodyReferenceRotation(leg, 3);
-            AddSegment(transforms["joint_" + leg + "Coxa"], leg + "_CoxaVisual", M7FScientificFlyRigDefinition.SegmentEndpoint(leg, 0), material);
-            AddSegment(transforms["joint_" + leg + "Femur"], leg + "_FemurVisual", M7FScientificFlyRigDefinition.SegmentEndpoint(leg, 1), material);
-            AddSegment(transforms["joint_" + leg + "Tibia"], leg + "_TibiaVisual", M7FScientificFlyRigDefinition.SegmentEndpoint(leg, 2), material);
-            AddSegment(transforms["joint_" + leg + "Tarsus1"], leg + "_TarsusVisual", M7FScientificFlyRigDefinition.SegmentEndpoint(leg, 3), material);
+            var pose = Child(frame, body.name);
+            var endpoint = M7FCoordinates.SourcePositionToUnity(M7FScientificFlyRigDefinition.Vector(body.segment_endpoint_local)) * M7FCoordinates.MillimetresToUnity;
+            AddSegment(pose, body.name + "_Segment", endpoint, segmentMaterial);
+            return pose;
         }
 
         static void AddSegment(Transform parent, string name, Vector3 endpoint, Material material)
         {
             var length = endpoint.magnitude;
-            var visual = Primitive(parent, name, PrimitiveType.Cylinder, endpoint * .5f, new Vector3(.0007f, length * .5f, .0007f), material);
+            var visual = Primitive(parent, name, PrimitiveType.Cylinder, endpoint * .5f, new Vector3(SegmentRadius, length * .5f, SegmentRadius), material);
             visual.localRotation = Quaternion.FromToRotation(Vector3.up, endpoint.normalized);
-            var continuation = Child(parent, name + "_DistalReference"); continuation.localPosition = endpoint;
+            var distal = Child(parent, name + "_DistalReference"); distal.localPosition = endpoint;
         }
-
         static Transform Child(Transform parent, string name) { var value = new GameObject(name).transform; value.SetParent(parent, false); return value; }
         static Transform Primitive(Transform parent, string name, PrimitiveType type, Vector3 position, Vector3 scale, Material material)
         {
             var value = GameObject.CreatePrimitive(type); value.name = name; value.transform.SetParent(parent, false); value.transform.localPosition = position; value.transform.localScale = scale;
-            var collider = value.GetComponent<Collider>(); if (collider != null) SafeDestroy(collider);
-            value.GetComponent<Renderer>().sharedMaterial = material; return value.transform;
+            var collider = value.GetComponent<Collider>(); if (collider != null) SafeDestroy(collider); value.GetComponent<Renderer>().sharedMaterial = material; return value.transform;
         }
-        static Material Material(string name, Color color) { var shader = Shader.Find("Standard") ?? Shader.Find("Universal Render Pipeline/Lit"); var result = new Material(shader) { name = name, color = color }; return result; }
-        static void SafeDestroy(Object value) { if (Application.isPlaying) Object.Destroy(value); else Object.DestroyImmediate(value); }
+        static Material Material(string name, Color color) { var shader = Shader.Find("Standard") ?? Shader.Find("Universal Render Pipeline/Lit"); return new Material(shader) { name = name, color = color }; }
+        static void SafeDestroy(UnityEngine.Object value) { if (Application.isPlaying) UnityEngine.Object.Destroy(value); else UnityEngine.Object.DestroyImmediate(value); }
     }
 }

@@ -1,0 +1,1360 @@
+{
+  "schema": "M7F-VIS2-AUTHORITATIVE-RIG.1",
+  "status": "AUTHORITATIVE_CONSTANTS_EXTRACTED",
+  "provenance": {
+    "flygym_version": "1.2.1",
+    "mujoco_version": "3.2.7",
+    "mjcf_filename": "neuromechfly_seqik_kinorder_ypr.xml",
+    "mjcf_sha256": "413b3a1dcb7537d08122e16f256f27ec0d8bb9f52c58670345b6c24c9e72e05a",
+    "assembled_xml_sha256": "264c8b7718875612e7cf67c23f0170895fbd54705bd731d9b0a6cab2d251e2e8",
+    "source": "compiled FlyGym model attached exactly as M7D; extracted by native MuJoCo",
+    "coordinate_convention": "MuJoCo RH Z-up [x,y,z] -> Unity LH Y-up [x,z,y]",
+    "model_length_to_unity": 0.1,
+    "model_length_unit": "millimetre presentation unit"
+  },
+  "canonical_joint_names": [
+    "joint_LFCoxa",
+    "joint_LFCoxa_roll",
+    "joint_LFCoxa_yaw",
+    "joint_LFFemur",
+    "joint_LFFemur_roll",
+    "joint_LFTibia",
+    "joint_LFTarsus1",
+    "joint_LMCoxa",
+    "joint_LMCoxa_roll",
+    "joint_LMCoxa_yaw",
+    "joint_LMFemur",
+    "joint_LMFemur_roll",
+    "joint_LMTibia",
+    "joint_LMTarsus1",
+    "joint_LHCoxa",
+    "joint_LHCoxa_roll",
+    "joint_LHCoxa_yaw",
+    "joint_LHFemur",
+    "joint_LHFemur_roll",
+    "joint_LHTibia",
+    "joint_LHTarsus1",
+    "joint_RFCoxa",
+    "joint_RFCoxa_roll",
+    "joint_RFCoxa_yaw",
+    "joint_RFFemur",
+    "joint_RFFemur_roll",
+    "joint_RFTibia",
+    "joint_RFTarsus1",
+    "joint_RMCoxa",
+    "joint_RMCoxa_roll",
+    "joint_RMCoxa_yaw",
+    "joint_RMFemur",
+    "joint_RMFemur_roll",
+    "joint_RMTibia",
+    "joint_RMTarsus1",
+    "joint_RHCoxa",
+    "joint_RHCoxa_roll",
+    "joint_RHCoxa_yaw",
+    "joint_RHFemur",
+    "joint_RHFemur_roll",
+    "joint_RHTibia",
+    "joint_RHTarsus1"
+  ],
+  "bodies": [
+    {
+      "name": "LFCoxa",
+      "parent_body": "Thorax",
+      "local_position": [
+        -0.16059550643,
+        0.171588003635,
+        -0.23021531105
+      ],
+      "local_quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "segment_endpoint_local": [
+        -0.001812040807,
+        -0.001716278493,
+        -0.365456312895
+      ],
+      "joints": [
+        {
+          "name": "joint_LFCoxa_yaw",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "declaration_order": 0,
+          "canonical_replay_index": 2,
+          "mj_joint_id": 1,
+          "mj_qpos_address": 7
+        },
+        {
+          "name": "joint_LFCoxa",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "declaration_order": 1,
+          "canonical_replay_index": 0,
+          "mj_joint_id": 2,
+          "mj_qpos_address": 8
+        },
+        {
+          "name": "joint_LFCoxa_roll",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "declaration_order": 2,
+          "canonical_replay_index": 1,
+          "mj_joint_id": 3,
+          "mj_qpos_address": 9
+        }
+      ]
+    },
+    {
+      "name": "LFFemur",
+      "parent_body": "LFCoxa",
+      "local_position": [
+        -0.001812040806,
+        -0.001716278493,
+        -0.365456312895
+      ],
+      "local_quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "segment_endpoint_local": [
+        -0.004654750227,
+        -0.00148844719,
+        -0.705222618069
+      ],
+      "joints": [
+        {
+          "name": "joint_LFFemur",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "declaration_order": 0,
+          "canonical_replay_index": 3,
+          "mj_joint_id": 4,
+          "mj_qpos_address": 10
+        },
+        {
+          "name": "joint_LFFemur_roll",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "declaration_order": 1,
+          "canonical_replay_index": 4,
+          "mj_joint_id": 5,
+          "mj_qpos_address": 11
+        }
+      ]
+    },
+    {
+      "name": "LFTibia",
+      "parent_body": "LFFemur",
+      "local_position": [
+        -0.004654750228,
+        -0.001488447189,
+        -0.705222618068
+      ],
+      "local_quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "segment_endpoint_local": [
+        -0.000143989921,
+        -0.000951536,
+        -0.518396813189
+      ],
+      "joints": [
+        {
+          "name": "joint_LFTibia",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "declaration_order": 0,
+          "canonical_replay_index": 5,
+          "mj_joint_id": 6,
+          "mj_qpos_address": 12
+        }
+      ]
+    },
+    {
+      "name": "LFTarsus1",
+      "parent_body": "LFTibia",
+      "local_position": [
+        -0.000143989921,
+        -0.000951536,
+        -0.51839681319
+      ],
+      "local_quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "segment_endpoint_local": [
+        0.001819327473,
+        -0.000976979732,
+        -0.225463539362
+      ],
+      "joints": [
+        {
+          "name": "joint_LFTarsus1",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "declaration_order": 0,
+          "canonical_replay_index": 6,
+          "mj_joint_id": 7,
+          "mj_qpos_address": 13
+        }
+      ]
+    },
+    {
+      "name": "LMCoxa",
+      "parent_body": "Thorax",
+      "local_position": [
+        -0.556871114299,
+        0.124901093543,
+        -0.482208788395
+      ],
+      "local_quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "segment_endpoint_local": [
+        -0.000215718524,
+        0.0001491718,
+        -0.181446701288
+      ],
+      "joints": [
+        {
+          "name": "joint_LMCoxa_yaw",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "declaration_order": 0,
+          "canonical_replay_index": 9,
+          "mj_joint_id": 23,
+          "mj_qpos_address": 29
+        },
+        {
+          "name": "joint_LMCoxa",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "declaration_order": 1,
+          "canonical_replay_index": 7,
+          "mj_joint_id": 24,
+          "mj_qpos_address": 30
+        },
+        {
+          "name": "joint_LMCoxa_roll",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "declaration_order": 2,
+          "canonical_replay_index": 8,
+          "mj_joint_id": 25,
+          "mj_qpos_address": 31
+        }
+      ]
+    },
+    {
+      "name": "LMFemur",
+      "parent_body": "LMCoxa",
+      "local_position": [
+        -0.000215718523,
+        0.000149171799,
+        -0.181446701288
+      ],
+      "local_quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "segment_endpoint_local": [
+        -0.000970758498,
+        5.5249779e-05,
+        -0.783669747413
+      ],
+      "joints": [
+        {
+          "name": "joint_LMFemur",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "declaration_order": 0,
+          "canonical_replay_index": 10,
+          "mj_joint_id": 26,
+          "mj_qpos_address": 32
+        },
+        {
+          "name": "joint_LMFemur_roll",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "declaration_order": 1,
+          "canonical_replay_index": 11,
+          "mj_joint_id": 27,
+          "mj_qpos_address": 33
+        }
+      ]
+    },
+    {
+      "name": "LMTibia",
+      "parent_body": "LMFemur",
+      "local_position": [
+        -0.000970758498,
+        5.524978e-05,
+        -0.783669747412
+      ],
+      "local_quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "segment_endpoint_local": [
+        6.5840782e-05,
+        -0.000369586051,
+        -0.667326383292
+      ],
+      "joints": [
+        {
+          "name": "joint_LMTibia",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "declaration_order": 0,
+          "canonical_replay_index": 12,
+          "mj_joint_id": 28,
+          "mj_qpos_address": 34
+        }
+      ]
+    },
+    {
+      "name": "LMTarsus1",
+      "parent_body": "LMTibia",
+      "local_position": [
+        6.5840781e-05,
+        -0.000369586051,
+        -0.667326383293
+      ],
+      "local_quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "segment_endpoint_local": [
+        0.000512469559,
+        -9.8031014e-05,
+        -0.292152762413
+      ],
+      "joints": [
+        {
+          "name": "joint_LMTarsus1",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "declaration_order": 0,
+          "canonical_replay_index": 13,
+          "mj_joint_id": 29,
+          "mj_qpos_address": 35
+        }
+      ]
+    },
+    {
+      "name": "LHCoxa",
+      "parent_body": "Thorax",
+      "local_position": [
+        -0.783721581101,
+        0.086993448436,
+        -0.496611744165
+      ],
+      "local_quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "segment_endpoint_local": [
+        -0.000176548957,
+        -0.000227406621,
+        -0.199417114258
+      ],
+      "joints": [
+        {
+          "name": "joint_LHCoxa_yaw",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "declaration_order": 0,
+          "canonical_replay_index": 16,
+          "mj_joint_id": 12,
+          "mj_qpos_address": 18
+        },
+        {
+          "name": "joint_LHCoxa",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "declaration_order": 1,
+          "canonical_replay_index": 14,
+          "mj_joint_id": 13,
+          "mj_qpos_address": 19
+        },
+        {
+          "name": "joint_LHCoxa_roll",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "declaration_order": 2,
+          "canonical_replay_index": 15,
+          "mj_joint_id": 14,
+          "mj_qpos_address": 20
+        }
+      ]
+    },
+    {
+      "name": "LHFemur",
+      "parent_body": "LHCoxa",
+      "local_position": [
+        -0.000176548958,
+        -0.000227406621,
+        -0.199417114258
+      ],
+      "local_quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "segment_endpoint_local": [
+        0.000108450651,
+        0.000294145195,
+        -0.836313821375
+      ],
+      "joints": [
+        {
+          "name": "joint_LHFemur",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "declaration_order": 0,
+          "canonical_replay_index": 17,
+          "mj_joint_id": 15,
+          "mj_qpos_address": 21
+        },
+        {
+          "name": "joint_LHFemur_roll",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "declaration_order": 1,
+          "canonical_replay_index": 18,
+          "mj_joint_id": 16,
+          "mj_qpos_address": 22
+        }
+      ]
+    },
+    {
+      "name": "LHTibia",
+      "parent_body": "LHFemur",
+      "local_position": [
+        0.000108450651,
+        0.000294145197,
+        -0.836313821375
+      ],
+      "local_quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "segment_endpoint_local": [
+        -8.9407e-07,
+        -0.000324036925,
+        -0.684455864131
+      ],
+      "joints": [
+        {
+          "name": "joint_LHTibia",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "declaration_order": 0,
+          "canonical_replay_index": 19,
+          "mj_joint_id": 17,
+          "mj_qpos_address": 23
+        }
+      ]
+    },
+    {
+      "name": "LHTarsus1",
+      "parent_body": "LHTibia",
+      "local_position": [
+        -8.9407e-07,
+        -0.000324036926,
+        -0.684455864131
+      ],
+      "local_quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "segment_endpoint_local": [
+        9.6902251e-05,
+        0.000510279089,
+        -0.352742850781
+      ],
+      "joints": [
+        {
+          "name": "joint_LHTarsus1",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "declaration_order": 0,
+          "canonical_replay_index": 20,
+          "mj_joint_id": 18,
+          "mj_qpos_address": 24
+        }
+      ]
+    },
+    {
+      "name": "RFCoxa",
+      "parent_body": "Thorax",
+      "local_position": [
+        -0.16059550643,
+        -0.171588003635,
+        -0.23021531105
+      ],
+      "local_quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "segment_endpoint_local": [
+        -0.001812040806,
+        0.001716278493,
+        -0.365456312894
+      ],
+      "joints": [
+        {
+          "name": "joint_RFCoxa_yaw",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "declaration_order": 0,
+          "canonical_replay_index": 23,
+          "mj_joint_id": 56,
+          "mj_qpos_address": 62
+        },
+        {
+          "name": "joint_RFCoxa",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "declaration_order": 1,
+          "canonical_replay_index": 21,
+          "mj_joint_id": 57,
+          "mj_qpos_address": 63
+        },
+        {
+          "name": "joint_RFCoxa_roll",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "declaration_order": 2,
+          "canonical_replay_index": 22,
+          "mj_joint_id": 58,
+          "mj_qpos_address": 64
+        }
+      ]
+    },
+    {
+      "name": "RFFemur",
+      "parent_body": "RFCoxa",
+      "local_position": [
+        -0.001812040806,
+        0.001716278493,
+        -0.365456312895
+      ],
+      "local_quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "segment_endpoint_local": [
+        -0.004654750229,
+        0.00148844719,
+        -0.705222618067
+      ],
+      "joints": [
+        {
+          "name": "joint_RFFemur",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "declaration_order": 0,
+          "canonical_replay_index": 24,
+          "mj_joint_id": 59,
+          "mj_qpos_address": 65
+        },
+        {
+          "name": "joint_RFFemur_roll",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "declaration_order": 1,
+          "canonical_replay_index": 25,
+          "mj_joint_id": 60,
+          "mj_qpos_address": 66
+        }
+      ]
+    },
+    {
+      "name": "RFTibia",
+      "parent_body": "RFFemur",
+      "local_position": [
+        -0.004654750228,
+        0.001488447189,
+        -0.705222618068
+      ],
+      "local_quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "segment_endpoint_local": [
+        -0.000143989919,
+        0.000951536,
+        -0.51839681319
+      ],
+      "joints": [
+        {
+          "name": "joint_RFTibia",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "declaration_order": 0,
+          "canonical_replay_index": 26,
+          "mj_joint_id": 61,
+          "mj_qpos_address": 67
+        }
+      ]
+    },
+    {
+      "name": "RFTarsus1",
+      "parent_body": "RFTibia",
+      "local_position": [
+        -0.000143989921,
+        0.000951536,
+        -0.51839681319
+      ],
+      "local_quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "segment_endpoint_local": [
+        0.001819327473,
+        0.000976979732,
+        -0.225463539363
+      ],
+      "joints": [
+        {
+          "name": "joint_RFTarsus1",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "declaration_order": 0,
+          "canonical_replay_index": 27,
+          "mj_joint_id": 62,
+          "mj_qpos_address": 68
+        }
+      ]
+    },
+    {
+      "name": "RMCoxa",
+      "parent_body": "Thorax",
+      "local_position": [
+        -0.556871114299,
+        -0.124901093543,
+        -0.482208788395
+      ],
+      "local_quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "segment_endpoint_local": [
+        -0.000215718523,
+        -0.0001491718,
+        -0.181446701288
+      ],
+      "joints": [
+        {
+          "name": "joint_RMCoxa_yaw",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "declaration_order": 0,
+          "canonical_replay_index": 30,
+          "mj_joint_id": 45,
+          "mj_qpos_address": 51
+        },
+        {
+          "name": "joint_RMCoxa",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "declaration_order": 1,
+          "canonical_replay_index": 28,
+          "mj_joint_id": 46,
+          "mj_qpos_address": 52
+        },
+        {
+          "name": "joint_RMCoxa_roll",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "declaration_order": 2,
+          "canonical_replay_index": 29,
+          "mj_joint_id": 47,
+          "mj_qpos_address": 53
+        }
+      ]
+    },
+    {
+      "name": "RMFemur",
+      "parent_body": "RMCoxa",
+      "local_position": [
+        -0.000215718523,
+        -0.000149171799,
+        -0.181446701288
+      ],
+      "local_quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "segment_endpoint_local": [
+        -0.000970758498,
+        -5.524978e-05,
+        -0.783669747411
+      ],
+      "joints": [
+        {
+          "name": "joint_RMFemur",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "declaration_order": 0,
+          "canonical_replay_index": 31,
+          "mj_joint_id": 48,
+          "mj_qpos_address": 54
+        },
+        {
+          "name": "joint_RMFemur_roll",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "declaration_order": 1,
+          "canonical_replay_index": 32,
+          "mj_joint_id": 49,
+          "mj_qpos_address": 55
+        }
+      ]
+    },
+    {
+      "name": "RMTibia",
+      "parent_body": "RMFemur",
+      "local_position": [
+        -0.000970758498,
+        -5.524978e-05,
+        -0.783669747412
+      ],
+      "local_quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "segment_endpoint_local": [
+        6.5840781e-05,
+        0.00036958605,
+        -0.667326383292
+      ],
+      "joints": [
+        {
+          "name": "joint_RMTibia",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "declaration_order": 0,
+          "canonical_replay_index": 33,
+          "mj_joint_id": 50,
+          "mj_qpos_address": 56
+        }
+      ]
+    },
+    {
+      "name": "RMTarsus1",
+      "parent_body": "RMTibia",
+      "local_position": [
+        6.5840781e-05,
+        0.000369586051,
+        -0.667326383293
+      ],
+      "local_quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "segment_endpoint_local": [
+        0.000512469561,
+        9.8031015e-05,
+        -0.292152762414
+      ],
+      "joints": [
+        {
+          "name": "joint_RMTarsus1",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "declaration_order": 0,
+          "canonical_replay_index": 34,
+          "mj_joint_id": 51,
+          "mj_qpos_address": 57
+        }
+      ]
+    },
+    {
+      "name": "RHCoxa",
+      "parent_body": "Thorax",
+      "local_position": [
+        -0.783721581101,
+        -0.086993448436,
+        -0.496611744165
+      ],
+      "local_quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "segment_endpoint_local": [
+        -0.000176548957,
+        0.000227406621,
+        -0.199417114257
+      ],
+      "joints": [
+        {
+          "name": "joint_RHCoxa_yaw",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "declaration_order": 0,
+          "canonical_replay_index": 37,
+          "mj_joint_id": 34,
+          "mj_qpos_address": 40
+        },
+        {
+          "name": "joint_RHCoxa",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "declaration_order": 1,
+          "canonical_replay_index": 35,
+          "mj_joint_id": 35,
+          "mj_qpos_address": 41
+        },
+        {
+          "name": "joint_RHCoxa_roll",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "declaration_order": 2,
+          "canonical_replay_index": 36,
+          "mj_joint_id": 36,
+          "mj_qpos_address": 42
+        }
+      ]
+    },
+    {
+      "name": "RHFemur",
+      "parent_body": "RHCoxa",
+      "local_position": [
+        -0.000176548958,
+        0.000227406621,
+        -0.199417114258
+      ],
+      "local_quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "segment_endpoint_local": [
+        0.00010845065,
+        -0.000294145196,
+        -0.836313821376
+      ],
+      "joints": [
+        {
+          "name": "joint_RHFemur",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "declaration_order": 0,
+          "canonical_replay_index": 38,
+          "mj_joint_id": 37,
+          "mj_qpos_address": 43
+        },
+        {
+          "name": "joint_RHFemur_roll",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "declaration_order": 1,
+          "canonical_replay_index": 39,
+          "mj_joint_id": 38,
+          "mj_qpos_address": 44
+        }
+      ]
+    },
+    {
+      "name": "RHTibia",
+      "parent_body": "RHFemur",
+      "local_position": [
+        0.000108450651,
+        -0.000294145197,
+        -0.836313821375
+      ],
+      "local_quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "segment_endpoint_local": [
+        -8.94071e-07,
+        0.000324036926,
+        -0.684455864131
+      ],
+      "joints": [
+        {
+          "name": "joint_RHTibia",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "declaration_order": 0,
+          "canonical_replay_index": 40,
+          "mj_joint_id": 39,
+          "mj_qpos_address": 45
+        }
+      ]
+    },
+    {
+      "name": "RHTarsus1",
+      "parent_body": "RHTibia",
+      "local_position": [
+        -8.9407e-07,
+        0.000324036926,
+        -0.684455864131
+      ],
+      "local_quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "segment_endpoint_local": [
+        9.6902252e-05,
+        -0.000510279089,
+        -0.35274285078
+      ],
+      "joints": [
+        {
+          "name": "joint_RHTarsus1",
+          "type": "hinge",
+          "local_position": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "local_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "declaration_order": 0,
+          "canonical_replay_index": 41,
+          "mj_joint_id": 40,
+          "mj_qpos_address": 46
+        }
+      ]
+    }
+  ],
+  "root_body": {
+    "name": "Thorax",
+    "parent_body": "freejoint_root",
+    "local_position": [
+      0.495645254851,
+      -0.0,
+      1.296644091606
+    ],
+    "local_quaternion_wxyz": [
+      1.0,
+      0.0,
+      -0.0,
+      0.0
+    ]
+  }
+}

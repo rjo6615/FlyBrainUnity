@@ -385,6 +385,15 @@ def main():
         args.crosscheck_output.parent.mkdir(parents=True, exist_ok=True)
         result = verify_mujoco(pos, quat, joints, names, [x["segments"] for x in frames], args.crosscheck_output)
         print(f"wrote {args.crosscheck_output}; model={result['provenance']['installed_mjcf']}; mj_forward={len(FRAMES)}; mj_step=0")
+        # Package the compiled constants and native reference frames immediately,
+        # so the one authoritative Windows command cannot leave Unity artifacts
+        # out of sync with its cross-check.
+        from build_m7f_vis2_artifacts import build, RIG, REFERENCE
+        rig, reference = build(result)
+        for path, value in ((RIG, rig), (REFERENCE, reference)):
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(json.dumps(value, indent=2) + "\n", encoding="utf-8")
+            print(f"wrote {path}")
     print(f"wrote {args.output}; frames={len(FRAMES)}; mj_step=0; physics transitions=0; MaleCNS updates=0")
 
 
