@@ -1,0 +1,27 @@
+{
+  "artifact_kind": "RAW_SCIENTIFIC_EVIDENCE",
+  "byte_size": 184494787,
+  "canonical_path": "malecns_backend/embodiment/interface_output/integrated_whole_leg_readiness.json",
+  "classification": "INTEGRATED_MULTI_LEG_CAUSALITY_CONFIRMED",
+  "condition_count": 3,
+  "condition_membership": [
+    "ALL_NEURAL_MOTOR_DISABLED",
+    "INTEGRATED_NEURAL_MOTOR_ENABLED",
+    "TIER_B_FEMUR_DISABLED"
+  ],
+  "duration_ms": 500,
+  "lock_status": "LOCKED",
+  "m7_readiness": "M7_SPONTANEOUS_LOCOMOTION_EXPERIMENT_READY",
+  "preservation_policy": "Never rewrite, normalize, regenerate, or overwrite the canonical JSON.",
+  "provenance": {
+    "m6a_sha256": "722ee9b3b1d6a0fad2bf8ef0f02fc63f49277c5f44e3bccf27898e6c4ea673d9",
+    "m6b_sha256": "02a4bbb7ec79ccf0967e9b8499c5a68d0ed8133a56688592ba13cfb2785285a2",
+    "tier_a_sha256": "18aaafd51360e0a60b56f98c0b93e156e4cba2a27efd653111b04a5b8c329271"
+  },
+  "raw_sha256": "eca51d5ab644f9826eaeedfc521952c1b9def5ef9cf30d846dfa82df95fbc69b",
+  "run_status": "COMPLETE",
+  "schema": "M6C.0",
+  "scientific_run_executed": true,
+  "seed": 1,
+  "serialized_condition_order_is_semantic": false
+}
