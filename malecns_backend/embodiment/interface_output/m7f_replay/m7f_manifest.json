@@ -1,0 +1,287 @@
+{
+  "artifacts": [
+    {
+      "byte_size": 2336424,
+      "path": "m7f_enabled_replay.bin",
+      "sha256": "00c8d8d188133884ca11c13924c5155e38b2532b41db1c4d326cc0ab20051ccc"
+    },
+    {
+      "byte_size": 2336424,
+      "path": "m7f_disabled_replay.bin",
+      "sha256": "f53aa3c2860baed8bb8ca58ba90e76358a666fbb7b07674e1b626d587049fb13"
+    }
+  ],
+  "binary": {
+    "endianness": "little",
+    "header": "8-byte magic, uint32 schema, physics count, neural count, field count",
+    "layout": [
+      {
+        "dtype": "<f8",
+        "name": "physics_time_ms",
+        "offset_bytes": 24,
+        "shape": [
+          5001
+        ],
+        "size_bytes": 40008
+      },
+      {
+        "dtype": "<f8",
+        "name": "physics_body_position",
+        "offset_bytes": 40032,
+        "shape": [
+          5001,
+          3
+        ],
+        "size_bytes": 120024
+      },
+      {
+        "dtype": "<f8",
+        "name": "physics_body_orientation",
+        "offset_bytes": 160056,
+        "shape": [
+          5001,
+          4
+        ],
+        "size_bytes": 160032
+      },
+      {
+        "dtype": "<f8",
+        "name": "physics_joint_position",
+        "offset_bytes": 320088,
+        "shape": [
+          5001,
+          42
+        ],
+        "size_bytes": 1680336
+      },
+      {
+        "dtype": "<f8",
+        "name": "neural_time_ms",
+        "offset_bytes": 2000424,
+        "shape": [
+          1000
+        ],
+        "size_bytes": 8000
+      },
+      {
+        "dtype": "<f8",
+        "name": "neural_observer_outputs",
+        "offset_bytes": 2008424,
+        "shape": [
+          1000,
+          11
+        ],
+        "size_bytes": 88000
+      },
+      {
+        "dtype": "<f8",
+        "name": "neural_decoder_outputs",
+        "offset_bytes": 2096424,
+        "shape": [
+          1000,
+          11
+        ],
+        "size_bytes": 88000
+      },
+      {
+        "dtype": "<f8",
+        "name": "neural_admitted_contributions",
+        "offset_bytes": 2184424,
+        "shape": [
+          1000,
+          11
+        ],
+        "size_bytes": 88000
+      },
+      {
+        "dtype": "<f8",
+        "name": "neural_sensory_encoded",
+        "offset_bytes": 2272424,
+        "shape": [
+          1000,
+          6
+        ],
+        "size_bytes": 48000
+      },
+      {
+        "dtype": "<i8",
+        "name": "neural_delivered_drive_count",
+        "offset_bytes": 2320424,
+        "shape": [
+          1000
+        ],
+        "size_bytes": 8000
+      },
+      {
+        "dtype": "<i8",
+        "name": "neural_aggregate_spikes",
+        "offset_bytes": 2328424,
+        "shape": [
+          1000
+        ],
+        "size_bytes": 8000
+      }
+    ],
+    "magic_ascii": "M7FRPLY\\0"
+  },
+  "bookmarks": [
+    {
+      "classification": "NAVIGATION_ONLY",
+      "label": "initial state",
+      "time_ms": 0.0
+    },
+    {
+      "classification": "NAVIGATION_ONLY",
+      "label": "first mapped motor contribution / physical divergence begins",
+      "time_ms": 54.0
+    },
+    {
+      "classification": "NAVIGATION_ONLY",
+      "label": "altered sensory drive and downstream CNS divergence",
+      "time_ms": 78.5
+    },
+    {
+      "classification": "NAVIGATION_ONLY",
+      "label": "near RH tibia maximum A/B divergence",
+      "time_ms": 121.0
+    },
+    {
+      "classification": "NAVIGATION_ONLY",
+      "label": "later mapped motor-state divergence",
+      "time_ms": 157.0
+    },
+    {
+      "classification": "NAVIGATION_ONLY",
+      "label": "strong RM/RH divergence region",
+      "time_ms": 250.0
+    },
+    {
+      "classification": "NAVIGATION_ONLY",
+      "label": "later large joint divergence region start",
+      "time_ms": 398.0
+    },
+    {
+      "classification": "NAVIGATION_ONLY",
+      "label": "later large joint divergence region end",
+      "time_ms": 425.0
+    }
+  ],
+  "cadence_ms": {
+    "neural": 0.5,
+    "physics": 0.1
+  },
+  "canonical_m7d_sha256": "92b5c645a88fe74e5d6aa0988478c374e8fde3a0e923d42cc13974a3e60d8444",
+  "canonical_m7e_analysis_sha256": "ec930c9e76cf87168df617ced86cef6a7f9688da5365a1ca5e0475eeadd93f55",
+  "classifications": [
+    "CANONICAL_REPLAY_EXPORT_COMPLETE",
+    "CONTACT_IDENTITY_MAPPING_UNRESOLVED",
+    "UNITY_REPLAY_VIEWER_READY"
+  ],
+  "condition_labels": {
+    "CORRECTED_ALL_NEURAL_MOTOR_DISABLED": "MATCHED MOTOR-DISABLED CONTROL",
+    "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT": "NEURAL MOTOR ENABLED"
+  },
+  "contact_mapping_classification": "CONTACT_IDENTITY_MAPPING_UNRESOLVED",
+  "contacts_available": false,
+  "coordinate_conversion": {
+    "mapping": "[x,y,z] -> [x,z,y]",
+    "scale": 0.1,
+    "source": "FlyGym right-handed Z-up millimetres",
+    "stored_coordinates": "unconverted scientific source values",
+    "unity": "left-handed Y-up"
+  },
+  "exporter_source_commit": "62e7b75fe8bf10ce33b52fbaaa363e6c4ad36cbd",
+  "frame_counts": {
+    "neural": 1000,
+    "physics": 5001
+  },
+  "gait_classification": null,
+  "joint_names": [
+    "joint_LFCoxa",
+    "joint_LFCoxa_roll",
+    "joint_LFCoxa_yaw",
+    "joint_LFFemur",
+    "joint_LFFemur_roll",
+    "joint_LFTibia",
+    "joint_LFTarsus1",
+    "joint_LMCoxa",
+    "joint_LMCoxa_roll",
+    "joint_LMCoxa_yaw",
+    "joint_LMFemur",
+    "joint_LMFemur_roll",
+    "joint_LMTibia",
+    "joint_LMTarsus1",
+    "joint_LHCoxa",
+    "joint_LHCoxa_roll",
+    "joint_LHCoxa_yaw",
+    "joint_LHFemur",
+    "joint_LHFemur_roll",
+    "joint_LHTibia",
+    "joint_LHTarsus1",
+    "joint_RFCoxa",
+    "joint_RFCoxa_roll",
+    "joint_RFCoxa_yaw",
+    "joint_RFFemur",
+    "joint_RFFemur_roll",
+    "joint_RFTibia",
+    "joint_RFTarsus1",
+    "joint_RMCoxa",
+    "joint_RMCoxa_roll",
+    "joint_RMCoxa_yaw",
+    "joint_RMFemur",
+    "joint_RMFemur_roll",
+    "joint_RMTibia",
+    "joint_RMTarsus1",
+    "joint_RHCoxa",
+    "joint_RHCoxa_roll",
+    "joint_RHCoxa_yaw",
+    "joint_RHFemur",
+    "joint_RHFemur_roll",
+    "joint_RHTibia",
+    "joint_RHTarsus1"
+  ],
+  "milestone_provenance": "canonical M7D summary; consistency annotated by completed M7E",
+  "milestones": {
+    "D0_pre_intervention_equivalent": true,
+    "D10_first_later_motor_divergence_ms": 156.99999999999903,
+    "D1_first_mapped_motor_activity_ms": 54.00000000000052,
+    "D2_first_observer_divergence_ms": 156.99999999999903,
+    "D3_first_decoder_or_admitted_divergence_ms": 54.00000000000052,
+    "D4_first_action_divergence_ms": 54.00000000000052,
+    "D5_first_admitted_joint_divergence_ms": 54.10000000000052,
+    "D6_first_whole_body_divergence_ms": 54.10000000000052,
+    "D7_first_tibial_sensory_divergence_ms": 54.50000000000053,
+    "D8_first_delivered_sensory_drive_divergence_ms": 78.50000000000122,
+    "D9_first_downstream_cns_divergence_ms": 78.50000000000122
+  },
+  "motor_channel_names": [
+    "joint_LFTibia",
+    "joint_LMTibia",
+    "joint_LHTibia",
+    "joint_RFTibia",
+    "joint_RMTibia",
+    "joint_RHTibia",
+    "joint_LFFemur",
+    "joint_LMFemur",
+    "joint_LHFemur",
+    "joint_RMFemur",
+    "joint_RHFemur"
+  ],
+  "neural_transitions": 0,
+  "physics_transitions": 0,
+  "presentation_interpolation": {
+    "default": false,
+    "scientific_evidence": false
+  },
+  "schema": "M7F-CANONICAL-REPLAY.1",
+  "sensory_channel_names": [
+    "joint_LFTibia",
+    "joint_LMTibia",
+    "joint_LHTibia",
+    "joint_RFTibia",
+    "joint_RMTibia",
+    "joint_RHTibia"
+  ],
+  "status": "CANONICAL_REPLAY_EXPORT_COMPLETE",
+  "walking_classification": null
+}
