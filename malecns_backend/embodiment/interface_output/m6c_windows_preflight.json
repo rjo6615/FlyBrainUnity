@@ -1,0 +1,34 @@
+{
+  "artifact_kind": "NON_SCIENTIFIC_PREFLIGHT",
+  "canonical_artifact_status": "NOT_RUN",
+  "checks": {
+    "action_indices": true,
+    "actuator_order_42": true,
+    "canonical_artifact_not_run": true,
+    "cleanup": true,
+    "condition_plan": true,
+    "coordinate_signs": true,
+    "dependencies": true,
+    "exact_11_admissions": true,
+    "fresh_runtime_construction": true,
+    "per_step_environment_construction": false,
+    "progress_instrumentation": true,
+    "provenance": true,
+    "sensory_provenance": true
+  },
+  "duration_ms": 500,
+  "environment_construction_count": 4,
+  "hidden_locomotion_audit": {
+    "executed_modules": [
+      "malecns_backend.embodiment.integrated_whole_leg_readiness",
+      "_windows_integrated_whole_leg_readiness_adapter"
+    ],
+    "forbidden_controller_entry_points": [],
+    "hidden_locomotion_assistance_executed": false,
+    "method": "allowlisted M6C execution-path call graph; historical/unused modules excluded"
+  },
+  "run_status": "PASS",
+  "schema": "M6C-PREFLIGHT.0",
+  "scientific_run_executed": false,
+  "seed": 1
+}
