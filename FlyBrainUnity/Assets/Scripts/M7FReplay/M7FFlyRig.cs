@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace FlyBrain.M7FReplay
 {
-    [Serializable] public sealed class M7FJointBinding { public string jointName; public Transform transform; public Vector3 localAxis = Vector3.right; }
+    [Serializable] public sealed class M7FJointBinding { public string jointName; public Transform transform; public Vector3 sourceAxis; public Vector3 localAxis; }
 
     /// <summary>Transform-only visual rig. Joint values are never fed to Unity physics.</summary>
     public sealed class M7FFlyRig : MonoBehaviour
@@ -14,16 +14,44 @@ namespace FlyBrain.M7FReplay
         Quaternion[] restRotations;
         int[] sourceIndices;
         public string LastMappingError { get; private set; }
+        public string ValidationStatus => LastMappingError ?? (restRotations == null ? "NOT VALIDATED" : "42 / 42 JOINTS BOUND");
         public Vector3 PresentationOffset { get; set; }
+        public IReadOnlyList<M7FJointBinding> Joints => joints;
+        public Transform ScientificRoot => root;
+
+        public void Configure(Transform scientificRoot, M7FJointBinding[] bindings) { root = scientificRoot; joints = bindings ?? Array.Empty<M7FJointBinding>(); restRotations = null; }
+
+        [ContextMenu("AUTO-BIND CANONICAL 42 JOINTS")]
+        public void AutoBindCanonicalJoints()
+        {
+            var matches = new Dictionary<string, List<Transform>>();
+            foreach (var transformInRig in GetComponentsInChildren<Transform>(true))
+                if (M7FScientificFlyRigDefinition.IsCanonical(transformInRig.name))
+                {
+                    if (!matches.TryGetValue(transformInRig.name, out var list)) matches[transformInRig.name] = list = new List<Transform>();
+                    list.Add(transformInRig);
+                }
+            var bindings = new M7FJointBinding[M7FScientificFlyRigDefinition.JointCount];
+            for (var i = 0; i < bindings.Length; i++)
+            {
+                var name = M7FScientificFlyRigDefinition.CanonicalNames[i];
+                if (!matches.TryGetValue(name, out var found) || found.Count != 1)
+                { LastMappingError = !matches.ContainsKey(name) ? $"M7F REQUIRED JOINT MISSING: {name}" : $"M7F AMBIGUOUS RECURSIVE JOINT NAME: {name}"; Debug.LogError(LastMappingError, this); joints = Array.Empty<M7FJointBinding>(); return; }
+                bindings[i] = new M7FJointBinding { jointName = name, transform = found[0], sourceAxis = M7FScientificFlyRigDefinition.SourceAxis(name), localAxis = M7FScientificFlyRigDefinition.UnityAxis(name) };
+            }
+            joints = bindings; ValidateMapping(M7FScientificFlyRigDefinition.Names);
+        }
 
         public bool ValidateMapping(IReadOnlyList<string> required)
         {
             if (joints.Length != required.Count) { LastMappingError = $"M7F requires exactly {required.Count} joint bindings; found {joints.Length}."; Debug.LogError(LastMappingError, this); return false; }
-            var map = new Dictionary<string, int>(); sourceIndices = new int[joints.Length];
+            var map = new Dictionary<string, int>(); var transforms = new HashSet<Transform>(); sourceIndices = new int[joints.Length];
             for (var i = 0; i < joints.Length; i++)
             {
-                if (joints[i] == null || string.IsNullOrEmpty(joints[i].jointName) || joints[i].transform == null) continue;
+                if (joints[i] == null || string.IsNullOrEmpty(joints[i].jointName) || joints[i].transform == null) { LastMappingError = $"M7F NULL/INCOMPLETE JOINT BINDING AT {i}."; return false; }
                 if (map.ContainsKey(joints[i].jointName)) { LastMappingError = $"M7F DUPLICATE JOINT BINDING: {joints[i].jointName}"; Debug.LogError(LastMappingError, this); return false; }
+                if (!transforms.Add(joints[i].transform)) { LastMappingError = $"M7F DUPLICATE TRANSFORM BINDING: {joints[i].transform.name}"; Debug.LogError(LastMappingError, this); return false; }
+                if (!M7FScientificFlyRigDefinition.IsCanonical(joints[i].jointName)) { LastMappingError = $"M7F NON-CANONICAL JOINT: {joints[i].jointName}"; return false; }
                 map[joints[i].jointName] = i;
             }
             for (var source = 0; source < required.Count; source++)
@@ -50,13 +78,12 @@ namespace FlyBrain.M7FReplay
             }
         }
 
-        static Quaternion SourceQuaternion(M7FReplayData data, int frame)
+        public static Quaternion SourceQuaternion(M7FReplayData data, int frame)
         {
             // FlyGym/MuJoCo free-joint quaternion is w,x,y,z. Convert by mapping
             // its rotated forward/up vectors through [x,y,z] -> [x,z,y].
             var i = frame * 4; var q = new Quaternion((float)data.BodyOrientation[i + 1], (float)data.BodyOrientation[i + 2], (float)data.BodyOrientation[i + 3], (float)data.BodyOrientation[i]);
-            Vector3 Convert(Vector3 v) => new(v.x, v.z, v.y);
-            return Quaternion.LookRotation(Convert(q * Vector3.forward), Convert(q * Vector3.up));
+            return M7FCoordinates.SourceQuaternionToUnity(q);
         }
     }
 }

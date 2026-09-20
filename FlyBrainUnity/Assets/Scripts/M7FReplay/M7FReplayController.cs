@@ -13,7 +13,7 @@ namespace FlyBrain.M7FReplay
         [SerializeField] M7FCondition condition;
         [SerializeField] bool presentationInterpolation;
         [SerializeField] float playbackSpeed = 1f;
-        [SerializeField] float sideBySideOffset = 2f;
+        [SerializeField] float sideBySideOffset = .08f;
         public bool IsPlaying { get; private set; }
         public int Frame { get; private set; }
         public M7FCondition Condition => condition;
@@ -59,5 +59,9 @@ namespace FlyBrain.M7FReplay
         public string ConditionLabel => condition switch { M7FCondition.Enabled => "NEURAL MOTOR ENABLED", M7FCondition.Disabled => "MATCHED MOTOR-DISABLED CONTROL", _ => "SIDE-BY-SIDE — PRESENTATION OFFSETS ACTIVE" };
         public double TimeMs => loader.Enabled?.PhysicsTime[Frame] ?? 0;
         public int NeuralIndex => loader.Enabled?.NeuralIndexForFrame(Frame) ?? 0;
+        public M7FFlyRig EnabledRig => enabledRig;
+        public M7FFlyRig DisabledRig => disabledRig;
+        public void Configure(M7FReplayLoader replayLoader, M7FFlyRig enabledScientificRig, M7FFlyRig disabledScientificRig)
+        { loader = replayLoader; enabledRig = enabledScientificRig; disabledRig = disabledScientificRig; condition = M7FCondition.SideBySide; presentationInterpolation = false; }
     }
 }

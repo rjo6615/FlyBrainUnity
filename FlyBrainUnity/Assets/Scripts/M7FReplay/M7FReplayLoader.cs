@@ -62,7 +62,8 @@ namespace FlyBrain.M7FReplay
         }
         public int NeuralIndexForFrame(int frame) => Mathf.Clamp(frame / 5, 0, NeuralCount - 1);
         public Vector3 SourcePosition(int frame) => new((float)BodyPosition[frame * 3], (float)BodyPosition[frame * 3 + 1], (float)BodyPosition[frame * 3 + 2]);
-        public Vector3 UnityPosition(int frame) { var p = SourcePosition(frame); return new Vector3(p.x, p.z, p.y) * .1f; }    }
+        public Vector3 UnityPosition(int frame) => M7FCoordinates.SourcePositionToUnity(SourcePosition(frame)) * M7FCoordinates.MillimetresToUnity;
+    }
     public sealed class M7FReplayLoader : MonoBehaviour
     {
         [SerializeField] string replayDirectory = "M7FReplay";

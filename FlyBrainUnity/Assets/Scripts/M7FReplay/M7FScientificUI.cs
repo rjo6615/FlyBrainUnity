@@ -9,9 +9,14 @@ namespace FlyBrain.M7FReplay
         [SerializeField] M7FReplayController controller;
         Vector2 motorScroll;
         static readonly (double time, string label)[] Milestones = {
-            (54.0, "D1/D3/D4"), (54.1, "D5/D6"), (54.5, "D7"),
-            (78.5, "D8/D9"), (157.0, "D10")
+            (0, "initial state"), (54.0, "mapped motor activity / decoder-admitted divergence"),
+            (54.1, "admitted-joint / whole-body divergence"), (54.5, "tibial sensory divergence"),
+            (78.5, "delivered sensory-drive / downstream CNS divergence"), (121, "near RH tibia max A/B divergence"),
+            (157.0, "observer / mapped motor-state divergence"), (250, "strong RM/RH divergence region"),
+            (398, "later large joint-divergence region begins"), (425, "later large joint-divergence region ends")
         };
+
+        public void Configure(M7FReplayController replayController) => controller = replayController;
 
         void OnGUI()
         {
@@ -63,11 +68,12 @@ namespace FlyBrain.M7FReplay
         }
         void DrawProvenance()
         {
-            GUILayout.Label("Source: M7D corrected spontaneous experiment");
-            GUILayout.Label("M7D raw SHA: 92b5c645a88fe74e5d6aa0988478c374e8fde3a0e923d42cc13974a3e60d8444");
+            GUILayout.Label("Source: RECORDED CANONICAL M7D STATES");
+            GUILayout.Label("M7D SHA: 92b5c645a88fe74e5d6aa0988478c374e8fde3a0e923d42cc13974a3e60d8444");
             GUILayout.Label("Duration: 500 ms | Physics states: 5001 | Neural updates: 1000");
-            GUILayout.Label("Replay: recorded-state visualization | New physics transitions: 0 | New neural transitions: 0");
-            GUILayout.Label("Walking classification: NONE | Gait classification: NONE");
+            GUILayout.Label("New physics transitions: 0 | New neural transitions: 0 | Unity physics drives replay: NO");
+            GUILayout.Label("Presentation interpolation: OFF by default | Contact identity: UNAVAILABLE");
+            GUILayout.Label("Walking classification: NONE | Gait classification: NONE | Biological function inference: NONE");
         }
     }
 }
