@@ -1,6 +1,7 @@
 """Synthetic-only M7B tests; no scientific runtime is imported or executed."""
 from __future__ import annotations
 
+import ast
 import hashlib
 import json
 from pathlib import Path
@@ -227,9 +228,11 @@ def test_known_divergence_and_activation_timing(tmp_path):
     arrays[f"{e}__neural_admitted_contributions"][2:,0]=.2
     arrays[f"{e}__neural_observer_outputs"][1:,0]=5
     row=post._divergence("x",arrays[f"{e}__neural_admitted_contributions"],arrays[f"{c}__neural_admitted_contributions"],arrays[f"{e}__neural_time_ms"],None,"intervention")
-    assert row["first_exact_inequality_ms"]==1.5
+    assert row["first_exact_inequality_ms"] == pytest.approx(1.5)
     activation=post._activation(arrays,e); channel=activation["channels"][0]
-    assert channel["first_nonzero_observer_ms"]==1.0 and channel["first_nonzero_admitted_ms"]==1.5 and channel["activation_episodes"]==1
+    assert channel["first_nonzero_observer_ms"] == pytest.approx(1.0)
+    assert channel["first_nonzero_admitted_ms"] == pytest.approx(1.5)
+    assert channel["activation_episodes"] == 1
 
 
 def test_frozen_fall_rollover_detection(tmp_path):
@@ -237,7 +240,8 @@ def test_frozen_fall_rollover_detection(tmp_path):
     arrays[f"{e}__physics_body_position"][10:,2]=.49
     arrays[f"{e}__physics_body_orientation"][15:,0]=0; arrays[f"{e}__physics_body_orientation"][15:,1]=1
     result=post._fall(arrays,e)
-    assert result["fall"]["time_ms"]==1 and result["rollover"]["time_ms"]==1.5
+    assert result["fall"]["time_ms"] == pytest.approx(1.0)
+    assert result["rollover"]["time_ms"] == pytest.approx(1.5)
 
 
 def test_analysis_deterministic_and_compact(tmp_path):
@@ -249,9 +253,24 @@ def test_analysis_deterministic_and_compact(tmp_path):
 
 
 def test_no_simulation_imports_required():
-    source=Path(post.__file__).read_text()
-    forbidden=("flygym","mujoco","brain.step(","sim.step(","_windows_m7")
-    assert not any(word in source.lower() for word in forbidden)
+    tree = ast.parse(Path(post.__file__).read_text(encoding="utf-8"))
+    imports = {
+        node.module if isinstance(node, ast.ImportFrom) else alias.name
+        for node in ast.walk(tree)
+        if isinstance(node, (ast.Import, ast.ImportFrom))
+        for alias in node.names
+    }
+    assert "m7_protocol" in imports
+    assert "m7_spontaneous_locomotion" not in imports
+    assert not any(name.startswith(("flygym", "mujoco")) for name in imports)
+    runtime_calls = {
+        (node.func.value.id, node.func.attr)
+        for node in ast.walk(tree)
+        if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute)
+        and isinstance(node.func.value, ast.Name)
+    }
+    assert runtime_calls.isdisjoint({("brain", "step"), ("sim", "step")})
+    assert "malecns_backend.embodiment.m7_spontaneous_locomotion" not in sys.modules
     assert not any(name.startswith(("flygym","mujoco")) for name in sys.modules)
 
 

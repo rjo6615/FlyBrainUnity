@@ -15,13 +15,13 @@ import time
 from typing import Any, Mapping, Sequence
 
 from .integrated_whole_leg_readiness import EQUIVALENCE_FIELDS, EXPECTED_TIER_B, TIER_A
+from .m7_protocol import CONDITIONS, THRESHOLDS
 
 SCHEMA = "M7.0"
 SEED = 1
 DURATION_MS = 5000
 PHYSICS_DT_MS = 0.1
 NEURAL_DT_MS = 0.5
-CONDITIONS = ("SPONTANEOUS_NEURAL_EMBODIMENT", "ALL_NEURAL_MOTOR_DISABLED")
 ADMITTED_MOTOR = TIER_A + EXPECTED_TIER_B
 ADMITTED_SENSORY = TIER_A
 OUTPUT = Path(__file__).resolve().parent / "interface_output" / "m7_spontaneous_locomotion.json"
@@ -43,10 +43,6 @@ FAIL_CLOSED = (
     "numerical or physics instability", "telemetry corruption", "incomplete condition",
     "wrong physics transition count", "wrong neural update count",
 )
-THRESHOLDS = {"joint_divergence_rad": 1e-6, "com_displacement_m": 1e-6,
-              "orientation_divergence_rad": 1e-6, "height_divergence_m": 1e-6,
-              "oscillation_prominence_rad": 1e-4, "oscillation_min_extrema": 3,
-              "rollover_body_up_z_max": 0.0, "fall_height_fraction": 0.5}
 
 
 def build_not_run() -> dict[str, Any]:
