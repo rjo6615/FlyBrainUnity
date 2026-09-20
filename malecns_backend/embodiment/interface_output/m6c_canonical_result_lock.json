@@ -1,0 +1,8 @@
+{
+  "artifact_kind": "EVIDENCE_LOCK_PLACEHOLDER",
+  "canonical_path": "malecns_backend/embodiment/interface_output/integrated_whole_leg_readiness.json",
+  "lock_status": "EVIDENCE_NOT_MATERIALIZED",
+  "raw_sha256": null,
+  "reason": "The ignored external canonical JSON was absent from this checkout at audit start; no digest or scientific observation is inferred or fabricated.",
+  "schema": "M6C-CANONICAL-RESULT-LOCK.0"
+}

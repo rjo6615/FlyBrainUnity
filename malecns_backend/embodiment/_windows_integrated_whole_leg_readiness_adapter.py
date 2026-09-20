@@ -184,6 +184,11 @@ def _run_live_condition(*args: Any, **kwargs: Any) -> Mapping[str, Any]:
 def run_canonical(protocol: Mapping[str, Any], output_path: Path,
                   condition_runner: Callable[..., Mapping[str, Any]] = _run_live_condition) -> dict[str, Any]:
     """Run exactly three fresh matched conditions with abort-safe provenance."""
+    if Path(output_path).exists():
+        raise FileExistsError(
+            "refusing to overwrite an existing M6C result; a new experiment "
+            "must use a new experiment ID and output path"
+        )
     started = time.perf_counter(); progress_header(); results = {}; active = None
     cached_records = enumerate_live_actuators()  # one locked inventory construction only
     cached_table = validate_cached_inventory(protocol, cached_records)

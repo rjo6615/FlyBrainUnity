@@ -247,3 +247,12 @@ def test_state_access_initialization_failure_is_never_complete(protocol, tmp_pat
     assert attempt["neural_steps_before_failure"] == 0
     assert attempt["physics_steps_before_failure"] == 0
     assert attempt["motor_intervention_occurred"] is False
+
+
+def test_existing_canonical_result_is_never_overwritten(protocol, tmp_path, monkeypatch):
+    output = tmp_path / "result.json"
+    original = b"immutable canonical evidence"
+    output.write_bytes(original)
+    with pytest.raises(FileExistsError, match="new experiment ID"):
+        adapter.run_canonical(protocol, output, lambda **kwargs: {})
+    assert output.read_bytes() == original

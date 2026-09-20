@@ -1,0 +1,110 @@
+{
+  "admitted_motor_interfaces": [
+    "joint_LFTibia",
+    "joint_LMTibia",
+    "joint_LHTibia",
+    "joint_RFTibia",
+    "joint_RMTibia",
+    "joint_RHTibia",
+    "joint_LFFemur",
+    "joint_LMFemur",
+    "joint_LHFemur",
+    "joint_RMFemur",
+    "joint_RHFemur"
+  ],
+  "admitted_sensory_interfaces": [
+    "joint_LFTibia",
+    "joint_LMTibia",
+    "joint_LHTibia",
+    "joint_RFTibia",
+    "joint_RMTibia",
+    "joint_RHTibia"
+  ],
+  "artifact_kind": "PREREGISTERED_NOT_RUN_RESULT",
+  "baseline_only_actuator_count": 31,
+  "classification": null,
+  "conditions": [
+    {
+      "fresh_runtime": true,
+      "name": "SPONTANEOUS_NEURAL_EMBODIMENT"
+    },
+    {
+      "fresh_runtime": true,
+      "name": "ALL_NEURAL_MOTOR_DISABLED"
+    }
+  ],
+  "duration_ms": 5000,
+  "equivalence_fields": [
+    "qpos",
+    "qvel",
+    "action",
+    "ctrl",
+    "sensory_encoder_state",
+    "malecns_state",
+    "spike_counts",
+    "observer_state",
+    "decoder_state",
+    "rng_state",
+    "baseline_action",
+    "admitted_actuator_metadata"
+  ],
+  "expected_neural_updates": 10000,
+  "expected_physics_transitions": 50000,
+  "fail_closed": [
+    "provenance failure",
+    "interface mismatch",
+    "pre-intervention equivalence failure",
+    "physics instability before intervention",
+    "unauthorized actuator contribution",
+    "hidden locomotion controller detected",
+    "telemetry corruption",
+    "incomplete condition"
+  ],
+  "frozen_thresholds": {
+    "com_displacement_m": 1e-06,
+    "fall_height_fraction": 0.5,
+    "height_divergence_m": 1e-06,
+    "joint_divergence_rad": 1e-06,
+    "orientation_divergence_rad": 1e-06,
+    "oscillation_min_extrema": 3,
+    "oscillation_prominence_rad": 0.0001,
+    "rollover_body_up_z_max": 0.0
+  },
+  "gait_policy": "Descriptive only: contact-derived stance/swing intervals, inter-leg phase, autocorrelation/periodicity, stride-like repetition, displacement per cycle, and directionality; no gait label, template, score, or optimization.",
+  "movement_categories": [
+    "NO_MEASURABLE_NEURAL_PHYSICAL_EFFECT",
+    "LOCALIZED_LIMB_MOVEMENT",
+    "MULTI_LEG_MOVEMENT",
+    "BODY_POSTURAL_CHANGE",
+    "NET_BODY_DISPLACEMENT",
+    "REPEATED_OR_OSCILLATORY_LIMB_ACTIVITY"
+  ],
+  "neural_dt_ms": 0.5,
+  "outcomes": [
+    "body_center_of_mass_displacement",
+    "forward_displacement",
+    "lateral_displacement",
+    "yaw_change",
+    "body_height",
+    "body_velocity",
+    "joint_trajectories",
+    "admitted_motor_activity",
+    "tibial_sensory_activity",
+    "cns_activity_summary",
+    "existing_ground_contact_state",
+    "numerical_stability",
+    "objective_fall_or_rollover"
+  ],
+  "physics_dt_ms": 0.1,
+  "run_status": "NOT_RUN",
+  "schema": "M7.0",
+  "scientific_question": "What does the currently validated MaleCNS embodied system do when placed in the FlyGym physical environment without being instructed to produce a gait or target movement?",
+  "scientific_run_executed": false,
+  "seed": 1,
+  "spontaneous_definition": "Frozen M6C initialization, deterministic background dynamics, and the six admitted tibial sensory streams only; no added stimulation, noise, tonic drive, locomotor command, controller, target, reference, reward, or tuning.",
+  "telemetry": {
+    "raw_format": "immutable compressed NPZ",
+    "summary_format": "JSON",
+    "trajectory_replay": "render only from recorded state; rendering must not alter simulation state"
+  }
+}
