@@ -1,0 +1,193 @@
+{
+  "adhesion_changed": false,
+  "brain_constructed": false,
+  "calibration_surface_changed": false,
+  "candidate_results": [],
+  "checkpoints": {
+    "100_ms": null,
+    "13_ms": null
+  },
+  "classification": [],
+  "classification_note": "No execution classification is permitted before validated Windows physics execution.",
+  "classifications_are_execution_results": false,
+  "first_fall_time_ms": null,
+  "first_rollover_time_ms": null,
+  "hidden_controller_audit": {
+    "balance": false,
+    "gait": false,
+    "reference_trajectory": false,
+    "reward_rl_ai": false
+  },
+  "initial_geometry": {
+    "calibration_surface": {
+      "half_size": [
+        0.025,
+        0.025,
+        0.002
+      ],
+      "id": 1,
+      "name": "m5d2c_calibration_surface",
+      "orientation_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "position": [
+        -0.05264855858702331,
+        2.2303476629745846,
+        1.4171913587929754
+      ],
+      "target_tarsus_id": 35,
+      "target_tarsus_name": "0/LMTarsus5",
+      "target_tarsus_position": [
+        -0.05264855858702331,
+        2.2303476629745846,
+        1.4899084550643675
+      ],
+      "target_tarsus_rbound": 0.07081709627139213
+    },
+    "contacts": [
+      {
+        "distance": -0.02453605937522539,
+        "geom1_id": 20,
+        "geom1_name": "0/LHCoxa",
+        "geom2_id": 36,
+        "geom2_name": "0/RHCoxa",
+        "involves_calibration_surface": false,
+        "normal": [
+          -8.231241277713994e-09,
+          -0.9999999999999999,
+          1.5119539473633614e-08
+        ],
+        "position": [
+          -0.2916761852081384,
+          -2.498731083155903e-11,
+          1.158427759226986
+        ]
+      },
+      {
+        "distance": -0.02453605937522539,
+        "geom1_id": 20,
+        "geom1_name": "0/LHCoxa",
+        "geom2_id": 36,
+        "geom2_name": "0/RHCoxa",
+        "involves_calibration_surface": false,
+        "normal": [
+          -8.231241277713994e-09,
+          -0.9999999999999999,
+          1.5119539473633614e-08
+        ],
+        "position": [
+          -0.2916761852081384,
+          -2.498731083155903e-11,
+          1.158427759226986
+        ]
+      }
+    ],
+    "ground_name": "ground",
+    "ground_surface_z": 0.0,
+    "interpretation": "D: incompatible pose for the current joint configuration. Root qpos z=0.5 is not foot world height: articulated transforms place distal feet approximately 1.49-1.89 world-z, well above ground.",
+    "maximum_conservative_foot_z": 1.8380541586283317,
+    "minimum_conservative_foot_z": 1.4259575251353929,
+    "root_orientation_quaternion_wxyz": [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "root_position": [
+      0.0,
+      0.0,
+      0.5
+    ],
+    "support_plane_relationship": "all six distal Tarsus5 conservative lower bounds are above ground z=0; canonical pose is unsupported by the ground",
+    "tarsus5": [
+      {
+        "center_world_xyz": [
+          1.9429905861845265,
+          0.18577857276630866,
+          1.8937617428654767
+        ],
+        "conservative_lower_z": 1.8380541586283317,
+        "geom": "0/LFTarsus5",
+        "leg": "LF"
+      },
+      {
+        "center_world_xyz": [
+          -0.05264855858702331,
+          2.2303476629745846,
+          1.4899084550643675
+        ],
+        "conservative_lower_z": 1.4331997779811774,
+        "geom": "0/LMTarsus5",
+        "leg": "LM"
+      },
+      {
+        "center_world_xyz": [
+          -2.2290640254879466,
+          1.2170352344174475,
+          1.485894114450989
+        ],
+        "conservative_lower_z": 1.4259575251590255,
+        "geom": "0/LHTarsus5",
+        "leg": "LH"
+      },
+      {
+        "center_world_xyz": [
+          1.9429905860649774,
+          -0.18577857274973544,
+          1.893761742834745
+        ],
+        "conservative_lower_z": 1.8380541586012837,
+        "geom": "0/RFTarsus5",
+        "leg": "RF"
+      },
+      {
+        "center_world_xyz": [
+          -0.0526485584704376,
+          -2.2303476632739847,
+          1.4899084551590738
+        ],
+        "conservative_lower_z": 1.4331997782823764,
+        "geom": "0/RMTarsus5",
+        "leg": "RM"
+      },
+      {
+        "center_world_xyz": [
+          -2.2290640255515752,
+          -1.2170352344101076,
+          1.4858941144364797
+        ],
+        "conservative_lower_z": 1.4259575251353929,
+        "geom": "0/RHTarsus5",
+        "leg": "RH"
+      }
+    ]
+  },
+  "neural_transitions": 0,
+  "physics_transitions": 0,
+  "reason": "Local Codex environment has neither flygym nor mujoco; preregistered experiment stopped before physics execution.",
+  "run_status": "NOT_RUN_ENVIRONMENT_UNAVAILABLE",
+  "schema": "M7C-B-RESULT.1",
+  "self_contact": {
+    "canonical_initial_pair": [
+      "0/LHCoxa",
+      "0/RHCoxa"
+    ],
+    "distance": -0.02453605937522539,
+    "evolution": null,
+    "force": null
+  }
+}
