@@ -20,16 +20,23 @@ namespace FlyBrain.M7FReplay
 
         void OnGUI()
         {
-            if (controller == null || controller.Loader?.Enabled == null) return;
+            if (controller == null) return;
             GUILayout.BeginArea(new Rect(12, 12, 440, Screen.height - 24), GUI.skin.box);
-            GUILayout.Label("M7F CANONICAL REPLAY"); GUILayout.Label(controller.ConditionLabel);
+            GUILayout.Label("M7F CANONICAL REPLAY");
+            GUILayout.Label($"Playback: {(controller.IsPlaying ? "PLAYING" : "PAUSED")}    speed: {controller.PlaybackSpeed:g}x");
+            GUILayout.Label($"Loaded: {(controller.IsLoaded ? "YES" : "NO")}    enabled: {(controller.EnabledReplayLoaded ? "YES" : "NO")}    disabled: {(controller.DisabledReplayLoaded ? "YES" : "NO")}");
+            GUILayout.Label($"Last applied physical frame: {controller.LastAppliedFrame}");
+            if (!controller.IsLoaded) { GUILayout.EndArea(); return; }
+            GUILayout.Label(controller.ConditionLabel);
             GUILayout.Label($"Canonical time: {controller.TimeMs:F1} ms    physical frame: {controller.Frame}");
             GUILayout.Label($"Neural sample: {controller.NeuralIndex}    time: {Current.NeuralTime[controller.NeuralIndex]:F1} ms");
             GUILayout.BeginHorizontal();
-            if (GUILayout.Button(controller.IsPlaying ? "Pause" : "Play")) { if (controller.IsPlaying) controller.Pause(); else controller.Play(); }
+            if (GUILayout.Button(controller.IsPlaying ? "Pause" : "Play")) controller.TogglePlayback();
             if (GUILayout.Button("Restart")) controller.Restart(); if (GUILayout.Button("< Frame")) controller.Step(-1); if (GUILayout.Button("Frame >")) controller.Step(1);
             GUILayout.EndHorizontal();
-            var scrub = GUILayout.HorizontalSlider(controller.Frame / (float)(Current.PhysicsCount - 1), 0, 1); if (GUI.changed) controller.ScrubNormalized(scrub);
+            GUI.BeginChangeCheck();
+            var scrub = GUILayout.HorizontalSlider(controller.Frame / (float)(Current.PhysicsCount - 1), 0, 1);
+            if (GUI.EndChangeCheck()) controller.ScrubNormalized(scrub);
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("Enabled")) controller.SetCondition(M7FCondition.Enabled);
             if (GUILayout.Button("Disabled")) controller.SetCondition(M7FCondition.Disabled);
@@ -44,6 +51,10 @@ namespace FlyBrain.M7FReplay
         void DrawTimeline()
         {
             GUILayout.Label("Canonical milestones (exact values are in manifest)");
+            GUILayout.BeginHorizontal();
+            foreach (var marker in Milestones)
+                if (GUILayout.Button($"{marker.time:g} ms")) controller.SeekFrame(M7FReplayController.FrameForCanonicalTime(marker.time, Current.PhysicsCount));
+            GUILayout.EndHorizontal();
             var rect = GUILayoutUtility.GetRect(400, 26); GUI.Box(rect, GUIContent.none);
             var duration = Current.PhysicsTime[^1];
             foreach (var marker in Milestones) { var x = rect.x + (float)(marker.time / duration) * rect.width; GUI.DrawTexture(new Rect(x, rect.y, 1, rect.height), Texture2D.whiteTexture); GUI.Label(new Rect(x + 2, rect.y, 55, 20), marker.label); }

@@ -133,6 +133,45 @@ namespace FlyBrain.Tests
             finally { Object.DestroyImmediate(go); }
         }
 
+        [TestCase(0.0, 0)]
+        [TestCase(0.1, 1)]
+        [TestCase(1.0, 10)]
+        [TestCase(54.0, 540)]
+        [TestCase(54.1, 541)]
+        [TestCase(500.0, 5000)]
+        [TestCase(501.0, 5000)]
+        public void CanonicalMillisecondsMapToDiscretePhysicalFrames(double milliseconds, int expected)
+        { Assert.That(M7FReplayController.FrameForCanonicalTime(milliseconds, 5001), Is.EqualTo(expected)); }
+
+        [Test] public void PlaybackControlsClockSeekingAndUiToggleShareOneState()
+        {
+            var go = new GameObject("playback controls test");
+            try
+            {
+                var loader = go.AddComponent<M7FReplayLoader>(); loader.Load();
+                var enabled = new GameObject("enabled"); enabled.transform.SetParent(go.transform); enabled.AddComponent<M7FScientificFlyBuilder>().Rebuild();
+                var disabled = new GameObject("disabled"); disabled.transform.SetParent(go.transform); disabled.AddComponent<M7FScientificFlyBuilder>().Rebuild();
+                var controller = go.AddComponent<M7FReplayController>(); controller.Configure(loader, enabled.GetComponent<M7FFlyRig>(), disabled.GetComponent<M7FFlyRig>());
+                Assert.That(enabled.GetComponent<M7FFlyRig>().ValidateMapping(loader.Manifest.joint_names), Is.True);
+                Assert.That(disabled.GetComponent<M7FFlyRig>().ValidateMapping(loader.Manifest.joint_names), Is.True);
+
+                controller.TogglePlayback(); Assert.That(controller.IsPlaying, Is.True, "UI toggle must use controller playback state");
+                controller.AdvancePlayback(.0001); Assert.That(controller.Frame, Is.EqualTo(1), "Unity seconds must convert to replay milliseconds");
+                controller.Pause(); Assert.That(controller.IsPlaying, Is.False);
+                controller.Restart(); Assert.That(controller.Frame, Is.Zero); Assert.That(controller.TimeMs, Is.Zero); Assert.That(controller.LastAppliedFrame, Is.Zero);
+                controller.Step(1); Assert.That(controller.Frame, Is.EqualTo(1));
+                controller.Step(-1); Assert.That(controller.Frame, Is.Zero);
+                controller.Step(-1); Assert.That(controller.Frame, Is.Zero);
+                controller.SeekFrame(540); Assert.That(controller.Frame, Is.EqualTo(540)); Assert.That(controller.LastAppliedFrame, Is.EqualTo(540));
+                controller.SeekFrame(7); controller.SeekFrame(540); Assert.That(controller.Frame, Is.EqualTo(540), "seek must be absolute");
+                controller.SetSpeed(2); controller.Restart(); controller.Play(); controller.AdvancePlayback(.0001); Assert.That(controller.Frame, Is.EqualTo(2));
+                controller.SeekFrame(5000); controller.Play(); controller.AdvancePlayback(1); Assert.That(controller.Frame, Is.EqualTo(5000)); Assert.That(controller.IsPlaying, Is.False);
+                controller.Step(1); Assert.That(controller.Frame, Is.EqualTo(5000));
+                controller.SeekFrame(123); Assert.That(controller.IsPlaying, Is.False); Assert.That(controller.LastAppliedFrame, Is.EqualTo(123));
+            }
+            finally { Object.DestroyImmediate(go); }
+        }
+
         [Test] public void SceneMenuCreatesRequiredSystemsTwoRigsAndPhysicsFreeGround()
         {
             Assert.That(EditorApplication.ExecuteMenuItem("Fly Brain/M7F/Create Canonical Replay Scene"), Is.True);
