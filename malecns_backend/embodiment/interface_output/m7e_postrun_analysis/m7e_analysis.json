@@ -1,0 +1,3353 @@
+{
+  "body": {
+    "CORRECTED_ALL_NEURAL_MOTOR_DISABLED": {
+      "body_up_z": {
+        "final": 0.9971394665489848,
+        "initial": 1.0,
+        "minimum": 0.9950113082079953
+      },
+      "event_threshold_provenance": "Frozen M7: height < 0.5 * initial height; body-up Z <= 0.",
+      "final_root_position": [
+        0.005077232544874687,
+        0.020209632424512045,
+        0.3866896875634877
+      ],
+      "first_fall_time_ms": null,
+      "first_rollover_time_ms": null,
+      "horizontal_displacement_magnitude": 0.0208376470132456,
+      "horizontal_path_length": 0.19438182708538795,
+      "initial_root_position": [
+        0.0,
+        0.0,
+        0.6045752232266313
+      ],
+      "maximum_distance_from_initial": 0.2463736312087745,
+      "minimum_body_height": 0.36496912459789654,
+      "net_displacement_vector": [
+        0.005077232544874687,
+        0.020209632424512045,
+        -0.21788553566314356
+      ],
+      "orientation_change_radians": 0.07585573350860009,
+      "survived_through_500ms": true,
+      "total_3d_path_length": 0.38263313389118825,
+      "velocity_rms": 2.299387283516199,
+      "vertical_displacement": -0.21788553566314356,
+      "yaw_change_radians": 0.004773565000543345
+    },
+    "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT": {
+      "body_up_z": {
+        "final": 0.9974959336386209,
+        "initial": 1.0,
+        "minimum": 0.9950113082079953
+      },
+      "event_threshold_provenance": "Frozen M7: height < 0.5 * initial height; body-up Z <= 0.",
+      "final_root_position": [
+        0.010230189443236597,
+        0.018202116836231054,
+        0.40415658578911084
+      ],
+      "first_fall_time_ms": null,
+      "first_rollover_time_ms": null,
+      "horizontal_displacement_magnitude": 0.020879986431133413,
+      "horizontal_path_length": 0.4294760459526654,
+      "initial_root_position": [
+        0.0,
+        0.0,
+        0.6045752232266313
+      ],
+      "maximum_distance_from_initial": 0.2463736312087745,
+      "minimum_body_height": 0.36496912459789654,
+      "net_displacement_vector": [
+        0.010230189443236597,
+        0.018202116836231054,
+        -0.20041863743752042
+      ],
+      "orientation_change_radians": 0.07095614311100702,
+      "survived_through_500ms": true,
+      "total_3d_path_length": 0.640338865989498,
+      "velocity_rms": 2.3363633535772346,
+      "vertical_displacement": -0.20041863743752042,
+      "yaw_change_radians": 0.004540396728844596
+    },
+    "enabled_minus_disabled": {
+      "first_exact_divergence_ms": 54.10000000000052,
+      "first_meaningful_divergence_ms": 54.10000000000052,
+      "max_absolute_divergence": 0.01949851833166938,
+      "max_vector_divergence": 0.019979066847380027,
+      "meaningful_tolerance": 7.105427357601002e-15,
+      "rms_divergence": 0.0078047691371723096,
+      "signed_integrated_difference": [
+        -0.0007497473105634659,
+        -0.00023843993665390647,
+        0.0047737960233255414
+      ],
+      "time_of_max_divergence_ms": 398.29999999997244
+    }
+  },
+  "causal_milestone_consistency": {
+    "D10_first_later_motor_divergence_ms": {
+      "agrees_within_one_sample": true,
+      "recomputed_ms": 156.99999999999903,
+      "reported_ms": 156.99999999999903
+    },
+    "D1_first_mapped_motor_activity_ms": {
+      "agrees_within_one_sample": true,
+      "recomputed_ms": 54.00000000000052,
+      "reported_ms": 54.00000000000052
+    },
+    "D2_first_observer_divergence_ms": {
+      "agrees_within_one_sample": true,
+      "recomputed_ms": 156.99999999999903,
+      "reported_ms": 156.99999999999903
+    },
+    "D3_first_decoder_or_admitted_divergence_ms": {
+      "agrees_within_one_sample": true,
+      "recomputed_ms": 54.00000000000052,
+      "reported_ms": 54.00000000000052
+    },
+    "D4_first_action_divergence_ms": {
+      "agrees_within_one_sample": true,
+      "recomputed_ms": 54.00000000000052,
+      "reported_ms": 54.00000000000052
+    },
+    "D5_first_admitted_joint_divergence_ms": {
+      "agrees_within_one_sample": true,
+      "recomputed_ms": 54.10000000000052,
+      "reported_ms": 54.10000000000052
+    },
+    "D6_first_whole_body_divergence_ms": {
+      "agrees_within_one_sample": true,
+      "recomputed_ms": 54.10000000000052,
+      "reported_ms": 54.10000000000052
+    },
+    "D7_first_tibial_sensory_divergence_ms": {
+      "agrees_within_one_sample": true,
+      "recomputed_ms": 54.50000000000053,
+      "reported_ms": 54.50000000000053
+    },
+    "D8_first_delivered_sensory_drive_divergence_ms": {
+      "agrees_within_one_sample": true,
+      "recomputed_ms": 78.50000000000122,
+      "reported_ms": 78.50000000000122
+    },
+    "D9_first_downstream_cns_divergence_ms": {
+      "agrees_within_one_sample": true,
+      "recomputed_ms": 78.50000000000122,
+      "reported_ms": 78.50000000000122
+    }
+  },
+  "causal_milestones": {
+    "D0_pre_intervention_equivalent": true,
+    "D10_first_later_motor_divergence_ms": 156.99999999999903,
+    "D1_first_mapped_motor_activity_ms": 54.00000000000052,
+    "D2_first_observer_divergence_ms": 156.99999999999903,
+    "D3_first_decoder_or_admitted_divergence_ms": 54.00000000000052,
+    "D4_first_action_divergence_ms": 54.00000000000052,
+    "D5_first_admitted_joint_divergence_ms": 54.10000000000052,
+    "D6_first_whole_body_divergence_ms": 54.10000000000052,
+    "D7_first_tibial_sensory_divergence_ms": 54.50000000000053,
+    "D8_first_delivered_sensory_drive_divergence_ms": 78.50000000000122,
+    "D9_first_downstream_cns_divergence_ms": 78.50000000000122,
+    "definition_note": "Derived from recorded numerical inequality tolerance; unavailable events are null."
+  },
+  "classification": [
+    "POSTRUN_ANALYSIS_COMPLETE",
+    "NEURAL_PHYSICAL_DIVERGENCE_CHARACTERIZED",
+    "SENSORIMOTOR_FEEDBACK_STRUCTURE_CHARACTERIZED"
+  ],
+  "contact_support": {
+    "analysis_performed": false,
+    "available": true,
+    "limitation": "The raw archive contains 36x3 force vectors but no recorded geom/leg identity mapping; no support or per-leg contact state is inferred."
+  },
+  "inter_interface_cross_correlation": {
+    "joint_LFFemur__joint_LHFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LFFemur__joint_LMFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LFFemur__joint_RHFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LFFemur__joint_RMFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LFTibia__joint_LFFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LFTibia__joint_LHFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LFTibia__joint_LHTibia": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LFTibia__joint_LMFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LFTibia__joint_LMTibia": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LFTibia__joint_RFTibia": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LFTibia__joint_RHFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LFTibia__joint_RHTibia": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LFTibia__joint_RMFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LFTibia__joint_RMTibia": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LHFemur__joint_RHFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LHFemur__joint_RMFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LHTibia__joint_LFFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LHTibia__joint_LHFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LHTibia__joint_LMFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LHTibia__joint_RFTibia": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LHTibia__joint_RHFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LHTibia__joint_RHTibia": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LHTibia__joint_RMFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LHTibia__joint_RMTibia": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LMFemur__joint_LHFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LMFemur__joint_RHFemur": {
+      "lag_at_maximum_ms": 221.5,
+      "maximum_normalized_correlation": 0.36986754340609007,
+      "overlapping_active_samples": 242,
+      "relationship": "lagged relationship; temporally correlated",
+      "zero_lag_correlation": -0.3060504184140208
+    },
+    "joint_LMFemur__joint_RMFemur": {
+      "lag_at_maximum_ms": 146.5,
+      "maximum_normalized_correlation": 0.5818487105419505,
+      "overlapping_active_samples": 242,
+      "relationship": "lagged relationship; temporally correlated",
+      "zero_lag_correlation": -0.1980298486080066
+    },
+    "joint_LMTibia__joint_LFFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LMTibia__joint_LHFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LMTibia__joint_LHTibia": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LMTibia__joint_LMFemur": {
+      "lag_at_maximum_ms": 25.0,
+      "maximum_normalized_correlation": 0.7162543097003149,
+      "overlapping_active_samples": 192,
+      "relationship": "lagged relationship; temporally correlated",
+      "zero_lag_correlation": 0.23300956059408767
+    },
+    "joint_LMTibia__joint_RFTibia": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_LMTibia__joint_RHFemur": {
+      "lag_at_maximum_ms": 246.5,
+      "maximum_normalized_correlation": 0.6705658602209764,
+      "overlapping_active_samples": 192,
+      "relationship": "lagged relationship; temporally correlated",
+      "zero_lag_correlation": -0.23387374887191828
+    },
+    "joint_LMTibia__joint_RHTibia": {
+      "lag_at_maximum_ms": 335.0,
+      "maximum_normalized_correlation": 0.45809836829339895,
+      "overlapping_active_samples": 192,
+      "relationship": "lagged relationship; temporally correlated",
+      "zero_lag_correlation": 0.09785964387262958
+    },
+    "joint_LMTibia__joint_RMFemur": {
+      "lag_at_maximum_ms": 170.0,
+      "maximum_normalized_correlation": 0.6247788973232697,
+      "overlapping_active_samples": 192,
+      "relationship": "lagged relationship; temporally correlated",
+      "zero_lag_correlation": -0.1371904907847739
+    },
+    "joint_LMTibia__joint_RMTibia": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_RFTibia__joint_LFFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_RFTibia__joint_LHFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_RFTibia__joint_LMFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_RFTibia__joint_RHFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_RFTibia__joint_RHTibia": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_RFTibia__joint_RMFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_RFTibia__joint_RMTibia": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_RHTibia__joint_LFFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_RHTibia__joint_LHFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_RHTibia__joint_LMFemur": {
+      "lag_at_maximum_ms": -379.0,
+      "maximum_normalized_correlation": -0.527696219874814,
+      "overlapping_active_samples": 242,
+      "relationship": "lagged relationship; anti-correlated",
+      "zero_lag_correlation": 0.04098649441681483
+    },
+    "joint_RHTibia__joint_RHFemur": {
+      "lag_at_maximum_ms": 186.5,
+      "maximum_normalized_correlation": 0.3717839908946493,
+      "overlapping_active_samples": 829,
+      "relationship": "lagged relationship; temporally correlated",
+      "zero_lag_correlation": 0.04258537766141399
+    },
+    "joint_RHTibia__joint_RMFemur": {
+      "lag_at_maximum_ms": 15.0,
+      "maximum_normalized_correlation": 0.48501414807989224,
+      "overlapping_active_samples": 862,
+      "relationship": "lagged relationship; temporally correlated",
+      "zero_lag_correlation": 0.30462240295906584
+    },
+    "joint_RMFemur__joint_RHFemur": {
+      "lag_at_maximum_ms": 226.0,
+      "maximum_normalized_correlation": -0.3730819028881652,
+      "overlapping_active_samples": 829,
+      "relationship": "lagged relationship; anti-correlated",
+      "zero_lag_correlation": 0.21119041815105327
+    },
+    "joint_RMTibia__joint_LFFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_RMTibia__joint_LHFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_RMTibia__joint_LMFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_RMTibia__joint_RHFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_RMTibia__joint_RHTibia": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    },
+    "joint_RMTibia__joint_RMFemur": {
+      "lag_at_maximum_ms": null,
+      "maximum_normalized_correlation": null,
+      "overlapping_active_samples": 0,
+      "relationship": "no clear relationship",
+      "zero_lag_correlation": null
+    }
+  },
+  "joints": {
+    "admitted_neural_joints": {
+      "joint_LFFemur": {
+        "contribution_periodicity": {
+          "approximate_cycle_count": 0.0,
+          "autocorrelation_peak_nonzero": null,
+          "dominant_non_dc_frequency_hz": null,
+          "frequency_resolution_hz": null,
+          "label": "NO_REPEATED_STRUCTURE",
+          "local_extrema": 0,
+          "periodicity_strength": 0.0,
+          "zero_crossings": 0
+        },
+        "contribution_to_motion_correlation": {
+          "lag_at_maximum_ms": null,
+          "maximum_normalized_correlation": null,
+          "overlapping_active_samples": 0,
+          "relationship": "no clear relationship",
+          "zero_lag_correlation": null
+        },
+        "difference": {
+          "first_exact_divergence_ms": 54.30000000000053,
+          "first_meaningful_divergence_ms": 54.30000000000053,
+          "max_absolute_divergence": 0.006135463714599609,
+          "max_vector_divergence": 0.006135463714599609,
+          "meaningful_tolerance": 8.630633845942669e-15,
+          "rms_divergence": 0.0018366575031835508,
+          "signed_integrated_difference": -0.0004657216906547172,
+          "time_of_max_divergence_ms": 473.59999999996415
+        },
+        "movement_after_contribution": 0.0,
+        "movement_before_contribution": 0.14966881275177002,
+        "periodicity": {
+          "approximate_cycle_count": 1.999600079983962,
+          "autocorrelation_peak_nonzero": 0.9997205006621382,
+          "dominant_non_dc_frequency_hz": 3.999200159968234,
+          "frequency_resolution_hz": 2.000000000000155,
+          "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+          "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+          "local_extrema": 84,
+          "periodicity_strength": 0.3045656137474333,
+          "zero_crossings": 19
+        }
+      },
+      "joint_LFTibia": {
+        "contribution_periodicity": {
+          "approximate_cycle_count": 0.0,
+          "autocorrelation_peak_nonzero": null,
+          "dominant_non_dc_frequency_hz": null,
+          "frequency_resolution_hz": null,
+          "label": "NO_REPEATED_STRUCTURE",
+          "local_extrema": 0,
+          "periodicity_strength": 0.0,
+          "zero_crossings": 0
+        },
+        "contribution_to_motion_correlation": {
+          "lag_at_maximum_ms": null,
+          "maximum_normalized_correlation": null,
+          "overlapping_active_samples": 0,
+          "relationship": "no clear relationship",
+          "zero_lag_correlation": null
+        },
+        "difference": {
+          "first_exact_divergence_ms": 54.10000000000052,
+          "first_meaningful_divergence_ms": 54.10000000000052,
+          "max_absolute_divergence": 0.004886984825134277,
+          "max_vector_divergence": 0.004886984825134277,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "rms_divergence": 0.0019306930322772497,
+          "signed_integrated_difference": 0.00023170162141319226,
+          "time_of_max_divergence_ms": 482.3999999999632
+        },
+        "movement_after_contribution": 0.0,
+        "movement_before_contribution": 0.10529202222824097,
+        "periodicity": {
+          "approximate_cycle_count": 1.999600079983962,
+          "autocorrelation_peak_nonzero": 0.9995082005527642,
+          "dominant_non_dc_frequency_hz": 3.999200159968234,
+          "frequency_resolution_hz": 2.000000000000155,
+          "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+          "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+          "local_extrema": 61,
+          "periodicity_strength": 0.46987534717802376,
+          "zero_crossings": 11
+        }
+      },
+      "joint_LHFemur": {
+        "contribution_periodicity": {
+          "approximate_cycle_count": 0.0,
+          "autocorrelation_peak_nonzero": null,
+          "dominant_non_dc_frequency_hz": null,
+          "frequency_resolution_hz": null,
+          "label": "NO_REPEATED_STRUCTURE",
+          "local_extrema": 0,
+          "periodicity_strength": 0.0,
+          "zero_crossings": 0
+        },
+        "contribution_to_motion_correlation": {
+          "lag_at_maximum_ms": null,
+          "maximum_normalized_correlation": null,
+          "overlapping_active_samples": 0,
+          "relationship": "no clear relationship",
+          "zero_lag_correlation": null
+        },
+        "difference": {
+          "first_exact_divergence_ms": 54.10000000000052,
+          "first_meaningful_divergence_ms": 54.10000000000052,
+          "max_absolute_divergence": 0.010680556297302246,
+          "max_vector_divergence": 0.010680556297302246,
+          "meaningful_tolerance": 1.1594575770139653e-14,
+          "rms_divergence": 0.002493480003612114,
+          "signed_integrated_difference": 9.694394469260468e-05,
+          "time_of_max_divergence_ms": 398.9999999999724
+        },
+        "movement_after_contribution": 0.0,
+        "movement_before_contribution": 0.2037968635559082,
+        "periodicity": {
+          "approximate_cycle_count": 0.999800039991981,
+          "autocorrelation_peak_nonzero": 0.9997554968598786,
+          "dominant_non_dc_frequency_hz": 1.999600079984117,
+          "frequency_resolution_hz": 2.000000000000155,
+          "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+          "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+          "local_extrema": 135,
+          "periodicity_strength": 0.2632584595489008,
+          "zero_crossings": 8
+        }
+      },
+      "joint_LHTibia": {
+        "contribution_periodicity": {
+          "approximate_cycle_count": 0.0,
+          "autocorrelation_peak_nonzero": null,
+          "dominant_non_dc_frequency_hz": null,
+          "frequency_resolution_hz": null,
+          "label": "NO_REPEATED_STRUCTURE",
+          "local_extrema": 0,
+          "periodicity_strength": 0.0,
+          "zero_crossings": 0
+        },
+        "contribution_to_motion_correlation": {
+          "lag_at_maximum_ms": null,
+          "maximum_normalized_correlation": null,
+          "overlapping_active_samples": 0,
+          "relationship": "no clear relationship",
+          "zero_lag_correlation": null
+        },
+        "difference": {
+          "first_exact_divergence_ms": 54.10000000000052,
+          "first_meaningful_divergence_ms": 54.10000000000052,
+          "max_absolute_divergence": 0.015988707542419434,
+          "max_vector_divergence": 0.015988707542419434,
+          "meaningful_tolerance": 8.171169294034046e-15,
+          "rms_divergence": 0.005812245614692056,
+          "signed_integrated_difference": 0.0012314930379389304,
+          "time_of_max_divergence_ms": 425.19999999996946
+        },
+        "movement_after_contribution": 0.0,
+        "movement_before_contribution": 0.13477349281311035,
+        "periodicity": {
+          "approximate_cycle_count": 0.999800039991981,
+          "autocorrelation_peak_nonzero": 0.9996684470477913,
+          "dominant_non_dc_frequency_hz": 1.999600079984117,
+          "frequency_resolution_hz": 2.000000000000155,
+          "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+          "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+          "local_extrema": 81,
+          "periodicity_strength": 0.49221980877785615,
+          "zero_crossings": 1
+        }
+      },
+      "joint_LMFemur": {
+        "contribution_periodicity": {
+          "approximate_cycle_count": 2.9970000000001082,
+          "autocorrelation_peak_nonzero": 0.9884671015268499,
+          "dominant_non_dc_frequency_hz": 6.000000000000682,
+          "frequency_resolution_hz": 2.002002002002157,
+          "label": "REPEATED_NONPERIODIC",
+          "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+          "local_extrema": 5,
+          "periodicity_strength": 0.24391570747949703,
+          "zero_crossings": 2
+        },
+        "contribution_to_motion_correlation": {
+          "lag_at_maximum_ms": -6.800000000000001,
+          "maximum_normalized_correlation": 0.906054444451183,
+          "overlapping_active_samples": 1210,
+          "relationship": "lagged relationship; temporally correlated",
+          "zero_lag_correlation": 0.8014431149826456
+        },
+        "difference": {
+          "first_exact_divergence_ms": 54.10000000000052,
+          "first_meaningful_divergence_ms": 54.10000000000052,
+          "max_absolute_divergence": 0.03369951248168945,
+          "max_vector_divergence": 0.03369951248168945,
+          "meaningful_tolerance": 1.237379017743909e-14,
+          "rms_divergence": 0.008607895924208641,
+          "signed_integrated_difference": 0.0008159428000448969,
+          "time_of_max_divergence_ms": 397.9999999999725
+        },
+        "movement_after_contribution": 0.0937807559967041,
+        "movement_before_contribution": 0.15163171291351318,
+        "periodicity": {
+          "approximate_cycle_count": 1.999600079983962,
+          "autocorrelation_peak_nonzero": 0.9999474224340538,
+          "dominant_non_dc_frequency_hz": 3.999200159968234,
+          "frequency_resolution_hz": 2.000000000000155,
+          "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+          "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+          "local_extrema": 61,
+          "periodicity_strength": 0.2512995392427744,
+          "zero_crossings": 2
+        }
+      },
+      "joint_LMTibia": {
+        "contribution_periodicity": {
+          "approximate_cycle_count": 0.9990000000000361,
+          "autocorrelation_peak_nonzero": 0.9874299770736296,
+          "dominant_non_dc_frequency_hz": 2.0000000000002274,
+          "frequency_resolution_hz": 2.002002002002157,
+          "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+          "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+          "local_extrema": 2,
+          "periodicity_strength": 0.2985407069023829,
+          "zero_crossings": 1
+        },
+        "contribution_to_motion_correlation": {
+          "lag_at_maximum_ms": -10.700000000000001,
+          "maximum_normalized_correlation": 0.9491914731162037,
+          "overlapping_active_samples": 960,
+          "relationship": "lagged relationship; temporally correlated",
+          "zero_lag_correlation": 0.7843950177147512
+        },
+        "difference": {
+          "first_exact_divergence_ms": 54.10000000000052,
+          "first_meaningful_divergence_ms": 54.10000000000052,
+          "max_absolute_divergence": 0.03995990753173828,
+          "max_vector_divergence": 0.03995990753173828,
+          "meaningful_tolerance": 1.2865158225306046e-14,
+          "rms_divergence": 0.008875250046780095,
+          "signed_integrated_difference": 0.0014001661598680747,
+          "time_of_max_divergence_ms": 423.99999999996965
+        },
+        "movement_after_contribution": 0.08116459846496582,
+        "movement_before_contribution": 0.12262487411499023,
+        "periodicity": {
+          "approximate_cycle_count": 1.999600079983962,
+          "autocorrelation_peak_nonzero": 0.9999665210760651,
+          "dominant_non_dc_frequency_hz": 3.999200159968234,
+          "frequency_resolution_hz": 2.000000000000155,
+          "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+          "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+          "local_extrema": 53,
+          "periodicity_strength": 0.24043633361819025,
+          "zero_crossings": 1
+        }
+      },
+      "joint_RFTibia": {
+        "contribution_periodicity": {
+          "approximate_cycle_count": 0.0,
+          "autocorrelation_peak_nonzero": null,
+          "dominant_non_dc_frequency_hz": null,
+          "frequency_resolution_hz": null,
+          "label": "NO_REPEATED_STRUCTURE",
+          "local_extrema": 0,
+          "periodicity_strength": 0.0,
+          "zero_crossings": 0
+        },
+        "contribution_to_motion_correlation": {
+          "lag_at_maximum_ms": null,
+          "maximum_normalized_correlation": null,
+          "overlapping_active_samples": 0,
+          "relationship": "no clear relationship",
+          "zero_lag_correlation": null
+        },
+        "difference": {
+          "first_exact_divergence_ms": 54.10000000000052,
+          "first_meaningful_divergence_ms": 54.10000000000052,
+          "max_absolute_divergence": 0.00400310754776001,
+          "max_vector_divergence": 0.00400310754776001,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "rms_divergence": 0.001964549349309466,
+          "signed_integrated_difference": 0.00030667290389532265,
+          "time_of_max_divergence_ms": 424.1999999999696
+        },
+        "movement_after_contribution": 0.0,
+        "movement_before_contribution": 0.08215898275375366,
+        "periodicity": {
+          "approximate_cycle_count": 0.999800039991981,
+          "autocorrelation_peak_nonzero": 0.9999064241368071,
+          "dominant_non_dc_frequency_hz": 1.999600079984117,
+          "frequency_resolution_hz": 2.000000000000155,
+          "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+          "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+          "local_extrema": 66,
+          "periodicity_strength": 0.5463999016095802,
+          "zero_crossings": 9
+        }
+      },
+      "joint_RHFemur": {
+        "contribution_periodicity": {
+          "approximate_cycle_count": 0.9990000000000361,
+          "autocorrelation_peak_nonzero": 0.9860604774452199,
+          "dominant_non_dc_frequency_hz": 2.0000000000002274,
+          "frequency_resolution_hz": 2.002002002002157,
+          "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+          "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+          "local_extrema": 10,
+          "periodicity_strength": 0.36443238899229213,
+          "zero_crossings": 7
+        },
+        "contribution_to_motion_correlation": {
+          "lag_at_maximum_ms": -3.9000000000000004,
+          "maximum_normalized_correlation": 0.8984212618755262,
+          "overlapping_active_samples": 4145,
+          "relationship": "lagged relationship; temporally correlated",
+          "zero_lag_correlation": 0.8442121602612749
+        },
+        "difference": {
+          "first_exact_divergence_ms": 54.10000000000052,
+          "first_meaningful_divergence_ms": 54.10000000000052,
+          "max_absolute_divergence": 0.03354048728942871,
+          "max_vector_divergence": 0.03354048728942871,
+          "meaningful_tolerance": 9.819877421250126e-15,
+          "rms_divergence": 0.010215346337663996,
+          "signed_integrated_difference": 0.002809486174583201,
+          "time_of_max_divergence_ms": 250.6999999999887
+        },
+        "movement_after_contribution": 0.20827078819274902,
+        "movement_before_contribution": 0.1486872434616089,
+        "periodicity": {
+          "approximate_cycle_count": 0.999800039991981,
+          "autocorrelation_peak_nonzero": 0.9999060236396154,
+          "dominant_non_dc_frequency_hz": 1.999600079984117,
+          "frequency_resolution_hz": 2.000000000000155,
+          "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+          "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+          "local_extrema": 141,
+          "periodicity_strength": 0.3691841830656176,
+          "zero_crossings": 7
+        }
+      },
+      "joint_RHTibia": {
+        "contribution_periodicity": {
+          "approximate_cycle_count": 2.9970000000001082,
+          "autocorrelation_peak_nonzero": 0.9781901389141049,
+          "dominant_non_dc_frequency_hz": 6.000000000000682,
+          "frequency_resolution_hz": 2.002002002002157,
+          "label": "REPEATED_NONPERIODIC",
+          "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+          "local_extrema": 10,
+          "periodicity_strength": 0.3118440084151758,
+          "zero_crossings": 8
+        },
+        "contribution_to_motion_correlation": {
+          "lag_at_maximum_ms": -10.3,
+          "maximum_normalized_correlation": 0.8904722220463045,
+          "overlapping_active_samples": 4310,
+          "relationship": "lagged relationship; temporally correlated",
+          "zero_lag_correlation": 0.6799135584586731
+        },
+        "difference": {
+          "first_exact_divergence_ms": 54.10000000000052,
+          "first_meaningful_divergence_ms": 54.10000000000052,
+          "max_absolute_divergence": 0.08470320701599121,
+          "max_vector_divergence": 0.08470320701599121,
+          "meaningful_tolerance": 8.582460541133475e-15,
+          "rms_divergence": 0.040342452039267375,
+          "signed_integrated_difference": 0.017207902145384216,
+          "time_of_max_divergence_ms": 120.90000000000244
+        },
+        "movement_after_contribution": 0.46768224239349365,
+        "movement_before_contribution": 0.08097171783447266,
+        "periodicity": {
+          "approximate_cycle_count": 2.999400119975943,
+          "autocorrelation_peak_nonzero": 0.9997001527627912,
+          "dominant_non_dc_frequency_hz": 5.998800239952351,
+          "frequency_resolution_hz": 2.000000000000155,
+          "label": "REPEATED_NONPERIODIC",
+          "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+          "local_extrema": 20,
+          "periodicity_strength": 0.32857988281412265,
+          "zero_crossings": 8
+        }
+      },
+      "joint_RMFemur": {
+        "contribution_periodicity": {
+          "approximate_cycle_count": 2.9970000000001082,
+          "autocorrelation_peak_nonzero": 0.9929225341202704,
+          "dominant_non_dc_frequency_hz": 6.000000000000682,
+          "frequency_resolution_hz": 2.002002002002157,
+          "label": "REPEATED_NONPERIODIC",
+          "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+          "local_extrema": 12,
+          "periodicity_strength": 0.415643364546918,
+          "zero_crossings": 6
+        },
+        "contribution_to_motion_correlation": {
+          "lag_at_maximum_ms": -7.2,
+          "maximum_normalized_correlation": 0.9176118642387028,
+          "overlapping_active_samples": 4460,
+          "relationship": "lagged relationship; temporally correlated",
+          "zero_lag_correlation": 0.8186753043124767
+        },
+        "difference": {
+          "first_exact_divergence_ms": 54.10000000000052,
+          "first_meaningful_divergence_ms": 54.10000000000052,
+          "max_absolute_divergence": 0.06870341300964355,
+          "max_vector_divergence": 0.06870341300964355,
+          "meaningful_tolerance": 1.3600736036261784e-14,
+          "rms_divergence": 0.024937459135823948,
+          "signed_integrated_difference": 0.010286320644616235,
+          "time_of_max_divergence_ms": 249.29999999998887
+        },
+        "movement_after_contribution": 0.2691751718521118,
+        "movement_before_contribution": 0.14438331127166748,
+        "periodicity": {
+          "approximate_cycle_count": 2.999400119975943,
+          "autocorrelation_peak_nonzero": 0.9997660004199163,
+          "dominant_non_dc_frequency_hz": 5.998800239952351,
+          "frequency_resolution_hz": 2.000000000000155,
+          "label": "REPEATED_NONPERIODIC",
+          "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+          "local_extrema": 64,
+          "periodicity_strength": 0.37067668338167903,
+          "zero_crossings": 10
+        }
+      },
+      "joint_RMTibia": {
+        "contribution_periodicity": {
+          "approximate_cycle_count": 0.0,
+          "autocorrelation_peak_nonzero": null,
+          "dominant_non_dc_frequency_hz": null,
+          "frequency_resolution_hz": null,
+          "label": "NO_REPEATED_STRUCTURE",
+          "local_extrema": 0,
+          "periodicity_strength": 0.0,
+          "zero_crossings": 0
+        },
+        "contribution_to_motion_correlation": {
+          "lag_at_maximum_ms": null,
+          "maximum_normalized_correlation": null,
+          "overlapping_active_samples": 0,
+          "relationship": "no clear relationship",
+          "zero_lag_correlation": null
+        },
+        "difference": {
+          "first_exact_divergence_ms": 54.10000000000052,
+          "first_meaningful_divergence_ms": 54.10000000000052,
+          "max_absolute_divergence": 0.01384580135345459,
+          "max_vector_divergence": 0.01384580135345459,
+          "meaningful_tolerance": 1.2475931339449645e-14,
+          "rms_divergence": 0.006451890413224448,
+          "signed_integrated_difference": -0.0025864372372624575,
+          "time_of_max_divergence_ms": 249.7999999999888
+        },
+        "movement_after_contribution": 0.0,
+        "movement_before_contribution": 0.18410885334014893,
+        "periodicity": {
+          "approximate_cycle_count": 0.999800039991981,
+          "autocorrelation_peak_nonzero": 0.9997465790883547,
+          "dominant_non_dc_frequency_hz": 1.999600079984117,
+          "frequency_resolution_hz": 2.000000000000155,
+          "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+          "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+          "local_extrema": 76,
+          "periodicity_strength": 0.4334494513710317,
+          "zero_crossings": 9
+        }
+      }
+    },
+    "all_42": {
+      "CORRECTED_ALL_NEURAL_MOTOR_DISABLED": {
+        "joint_LFCoxa": {
+          "direction_reversals": 51,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.03734526038169861,
+          "initial": -0.01378601137548685,
+          "range": 0.028881150297820568,
+          "rms_velocity": 0.6457329208367131,
+          "standard_deviation": 0.0019062021008275293,
+          "total_signed_change": -0.023559249006211758,
+          "total_variation": 0.061907592229545116
+        },
+        "joint_LFCoxa_roll": {
+          "direction_reversals": 47,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.0013553682947531343,
+          "initial": -0.00025236228248104453,
+          "range": 0.0050696551479632035,
+          "rms_velocity": 0.15938441019908467,
+          "standard_deviation": 0.000356701130330781,
+          "total_signed_change": -0.0011030060122720897,
+          "total_variation": 0.014276530913775787
+        },
+        "joint_LFCoxa_yaw": {
+          "direction_reversals": 46,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": 0.0014469331363216043,
+          "initial": 0.0026297986041754484,
+          "range": 0.006365014472976327,
+          "rms_velocity": 0.2026503444756773,
+          "standard_deviation": 0.0004662327435750299,
+          "total_signed_change": -0.0011828654678538442,
+          "total_variation": 0.01775662153522717
+        },
+        "joint_LFFemur": {
+          "direction_reversals": 58,
+          "direction_tolerance": 8.630633845942669e-15,
+          "final": -1.2008485794067383,
+          "initial": -1.1793841123580933,
+          "range": 0.03527021408081055,
+          "rms_velocity": 1.238615926297524,
+          "standard_deviation": 0.001694568888991121,
+          "total_signed_change": -0.02146446704864502,
+          "total_variation": 0.09801113605499268
+        },
+        "joint_LFFemur_roll": {
+          "direction_reversals": 58,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.0013659154064953327,
+          "initial": -0.0017620716243982315,
+          "range": 0.0025833294494077563,
+          "rms_velocity": 0.09699764833998747,
+          "standard_deviation": 0.0002018343495871893,
+          "total_signed_change": 0.0003961562179028988,
+          "total_variation": 0.00941724558651913
+        },
+        "joint_LFTarsus1": {
+          "direction_reversals": 42,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.149830624461174,
+          "initial": -0.14223375916481018,
+          "range": 0.009615316987037659,
+          "rms_velocity": 0.17625587493171288,
+          "standard_deviation": 0.000739840398631457,
+          "total_signed_change": -0.007596865296363831,
+          "total_variation": 0.018745526671409607
+        },
+        "joint_LFTibia": {
+          "direction_reversals": 71,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": 0.7443423867225647,
+          "initial": 0.7576697468757629,
+          "range": 0.017674148082733154,
+          "rms_velocity": 0.6101354374908217,
+          "standard_deviation": 0.0016124012982526267,
+          "total_signed_change": -0.013327360153198242,
+          "total_variation": 0.054659247398376465
+        },
+        "joint_LHCoxa": {
+          "direction_reversals": 42,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": 0.05593559518456459,
+          "initial": 0.02112620882689953,
+          "range": 0.054507264867424965,
+          "rms_velocity": 1.1469840173919146,
+          "standard_deviation": 0.0040668409723737045,
+          "total_signed_change": 0.03480938635766506,
+          "total_variation": 0.10332921706140041
+        },
+        "joint_LHCoxa_roll": {
+          "direction_reversals": 51,
+          "direction_tolerance": 1.7066028291609116e-14,
+          "final": 2.392249345779419,
+          "initial": 2.401829957962036,
+          "range": 0.012097597122192383,
+          "rms_velocity": 0.21825700375665477,
+          "standard_deviation": 0.0013481228499436482,
+          "total_signed_change": -0.009580612182617188,
+          "total_variation": 0.024895668029785156
+        },
+        "joint_LHCoxa_yaw": {
+          "direction_reversals": 34,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": 0.2200911045074463,
+          "initial": 0.18669065833091736,
+          "range": 0.042927682399749756,
+          "rms_velocity": 0.7875943365356578,
+          "standard_deviation": 0.00360824181228225,
+          "total_signed_change": 0.03340044617652893,
+          "total_variation": 0.0628412663936615
+        },
+        "joint_LHFemur": {
+          "direction_reversals": 35,
+          "direction_tolerance": 1.1594575770139653e-14,
+          "final": -1.6054147481918335,
+          "initial": -1.560032844543457,
+          "range": 0.07341921329498291,
+          "rms_velocity": 1.578598888843207,
+          "standard_deviation": 0.005432912442382094,
+          "total_signed_change": -0.045381903648376465,
+          "total_variation": 0.13714611530303955
+        },
+        "joint_LHFemur_roll": {
+          "direction_reversals": 41,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.14035502076148987,
+          "initial": -0.14132468402385712,
+          "range": 0.012606099247932434,
+          "rms_velocity": 0.2862358000244272,
+          "standard_deviation": 0.0010248604462833296,
+          "total_signed_change": 0.0009696632623672485,
+          "total_variation": 0.033723995089530945
+        },
+        "joint_LHTarsus1": {
+          "direction_reversals": 50,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.1220712959766388,
+          "initial": -0.10569198429584503,
+          "range": 0.018274590373039246,
+          "rms_velocity": 0.3195752850650633,
+          "standard_deviation": 0.001902992237068733,
+          "total_signed_change": -0.016379311680793762,
+          "total_variation": 0.02966892719268799
+        },
+        "joint_LHTibia": {
+          "direction_reversals": 43,
+          "direction_tolerance": 8.171169294034046e-15,
+          "final": 1.1180095672607422,
+          "initial": 1.1483670473098755,
+          "range": 0.0359874963760376,
+          "rms_velocity": 0.7846387678284144,
+          "standard_deviation": 0.00355929217634891,
+          "total_signed_change": -0.0303574800491333,
+          "total_variation": 0.07529938220977783
+        },
+        "joint_LMCoxa": {
+          "direction_reversals": 42,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": 0.043885085731744766,
+          "initial": 0.03598107770085335,
+          "range": 0.03098570927977562,
+          "rms_velocity": 0.8863852348822261,
+          "standard_deviation": 0.00262497650777669,
+          "total_signed_change": 0.007904008030891418,
+          "total_variation": 0.07997121661901474
+        },
+        "joint_LMCoxa_roll": {
+          "direction_reversals": 37,
+          "direction_tolerance": 1.2675410986659821e-14,
+          "final": 1.7752692699432373,
+          "initial": 1.7781654596328735,
+          "range": 0.01137387752532959,
+          "rms_velocity": 0.26385164828799457,
+          "standard_deviation": 0.0009617324273845835,
+          "total_signed_change": -0.0028961896896362305,
+          "total_variation": 0.03062283992767334
+        },
+        "joint_LMCoxa_yaw": {
+          "direction_reversals": 37,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": 0.26512739062309265,
+          "initial": 0.21877549588680267,
+          "range": 0.06394712626934052,
+          "rms_velocity": 1.4056759522426792,
+          "standard_deviation": 0.005544331305821658,
+          "total_signed_change": 0.04635189473628998,
+          "total_variation": 0.10319970548152924
+        },
+        "joint_LMFemur": {
+          "direction_reversals": 32,
+          "direction_tolerance": 1.237379017743909e-14,
+          "final": -1.7211380004882812,
+          "initial": -1.6747645139694214,
+          "range": 0.06988155841827393,
+          "rms_velocity": 1.6087717630700222,
+          "standard_deviation": 0.005783752124990584,
+          "total_signed_change": -0.04637348651885986,
+          "total_variation": 0.12277162075042725
+        },
+        "joint_LMFemur_roll": {
+          "direction_reversals": 40,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.0017845954280346632,
+          "initial": -0.0034093402791768312,
+          "range": 0.026076574809849262,
+          "rms_velocity": 0.5951497756499602,
+          "standard_deviation": 0.0021174636975481035,
+          "total_signed_change": 0.001624744851142168,
+          "total_variation": 0.059027323964983225
+        },
+        "joint_LMTarsus1": {
+          "direction_reversals": 33,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.11678548157215118,
+          "initial": -0.12028518319129944,
+          "range": 0.015128642320632935,
+          "rms_velocity": 0.5861785302671735,
+          "standard_deviation": 0.0007771106869094733,
+          "total_signed_change": 0.0034997016191482544,
+          "total_variation": 0.04066723585128784
+        },
+        "joint_LMTibia": {
+          "direction_reversals": 36,
+          "direction_tolerance": 1.2736059392716177e-14,
+          "final": 1.770617961883545,
+          "initial": 1.7638238668441772,
+          "range": 0.03038954734802246,
+          "rms_velocity": 1.15054608002505,
+          "standard_deviation": 0.001613648661250439,
+          "total_signed_change": 0.006794095039367676,
+          "total_variation": 0.08601033687591553
+        },
+        "joint_RFCoxa": {
+          "direction_reversals": 50,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.006499023642390966,
+          "initial": -0.0013245590962469578,
+          "range": 0.01392932899761945,
+          "rms_velocity": 0.4205526985223007,
+          "standard_deviation": 0.0009884214049499312,
+          "total_signed_change": -0.005174464546144009,
+          "total_variation": 0.03931583557277918
+        },
+        "joint_RFCoxa_roll": {
+          "direction_reversals": 52,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": 0.0011453012702986598,
+          "initial": 0.001191056682728231,
+          "range": 0.0017345711530651897,
+          "rms_velocity": 0.07875491011131391,
+          "standard_deviation": 0.00012546247572697315,
+          "total_signed_change": -4.575541242957115e-05,
+          "total_variation": 0.00880305991449859
+        },
+        "joint_RFCoxa_yaw": {
+          "direction_reversals": 50,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.00066119444090873,
+          "initial": -0.00048262756899930537,
+          "range": 0.002218445675680414,
+          "rms_velocity": 0.10684260683811192,
+          "standard_deviation": 0.00015484849532235718,
+          "total_signed_change": -0.00017856687190942466,
+          "total_variation": 0.010775276779895648
+        },
+        "joint_RFFemur": {
+          "direction_reversals": 48,
+          "direction_tolerance": 9.379797218339418e-15,
+          "final": -1.3170523643493652,
+          "initial": -1.3108537197113037,
+          "range": 0.012912988662719727,
+          "rms_velocity": 0.6403121353055041,
+          "standard_deviation": 0.00111885857829026,
+          "total_signed_change": -0.0061986446380615234,
+          "total_variation": 0.04786992073059082
+        },
+        "joint_RFFemur_roll": {
+          "direction_reversals": 54,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": 0.0005699046305380762,
+          "initial": 0.0003741272957995534,
+          "range": 0.0015322990948334336,
+          "rms_velocity": 0.08690715819764268,
+          "standard_deviation": 9.31194929780986e-05,
+          "total_signed_change": 0.00019577733473852277,
+          "total_variation": 0.0075985348667018116
+        },
+        "joint_RFTarsus1": {
+          "direction_reversals": 45,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.17341071367263794,
+          "initial": -0.17225642502307892,
+          "range": 0.004681259393692017,
+          "rms_velocity": 0.13294667908270177,
+          "standard_deviation": 0.0003435927437969971,
+          "total_signed_change": -0.001154288649559021,
+          "total_variation": 0.014467701315879822
+        },
+        "joint_RFTibia": {
+          "direction_reversals": 44,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": 0.894325852394104,
+          "initial": 0.8962323665618896,
+          "range": 0.010629713535308838,
+          "rms_velocity": 0.40081512178207335,
+          "standard_deviation": 0.0006817750262604723,
+          "total_signed_change": -0.0019065141677856445,
+          "total_variation": 0.039264678955078125
+        },
+        "joint_RHCoxa": {
+          "direction_reversals": 43,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": 0.3118513524532318,
+          "initial": 0.27960363030433655,
+          "range": 0.04974919557571411,
+          "rms_velocity": 1.134491964226004,
+          "standard_deviation": 0.003753091540300137,
+          "total_signed_change": 0.032247722148895264,
+          "total_variation": 0.10526162385940552
+        },
+        "joint_RHCoxa_roll": {
+          "direction_reversals": 39,
+          "direction_tolerance": 1.7426239216824374e-14,
+          "final": -2.4407854080200195,
+          "initial": -2.4415981769561768,
+          "range": 0.016468286514282227,
+          "rms_velocity": 0.4311933395425392,
+          "standard_deviation": 0.0012680936168063426,
+          "total_signed_change": 0.0008127689361572266,
+          "total_variation": 0.05182003974914551
+        },
+        "joint_RHCoxa_yaw": {
+          "direction_reversals": 46,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.17511394619941711,
+          "initial": -0.1381906419992447,
+          "range": 0.040698304772377014,
+          "rms_velocity": 0.8290753162388961,
+          "standard_deviation": 0.003930116894324608,
+          "total_signed_change": -0.036923304200172424,
+          "total_variation": 0.05682991445064545
+        },
+        "joint_RHFemur": {
+          "direction_reversals": 46,
+          "direction_tolerance": 9.819877421250126e-15,
+          "final": -1.3643373250961304,
+          "initial": -1.31553053855896,
+          "range": 0.06739258766174316,
+          "rms_velocity": 1.5698053820332074,
+          "standard_deviation": 0.005513011224305816,
+          "total_signed_change": -0.04880678653717041,
+          "total_variation": 0.1354910135269165
+        },
+        "joint_RHFemur_roll": {
+          "direction_reversals": 43,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.2753784656524658,
+          "initial": -0.26682204008102417,
+          "range": 0.01051667332649231,
+          "rms_velocity": 0.18597675277601863,
+          "standard_deviation": 0.001214273694876547,
+          "total_signed_change": -0.00855642557144165,
+          "total_variation": 0.023921549320220947
+        },
+        "joint_RHTarsus1": {
+          "direction_reversals": 49,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.3994264006614685,
+          "initial": -0.3836708664894104,
+          "range": 0.02074742317199707,
+          "rms_velocity": 0.46966543478486134,
+          "standard_deviation": 0.0017579467523428979,
+          "total_signed_change": -0.015755534172058105,
+          "total_variation": 0.034741878509521484
+        },
+        "joint_RHTibia": {
+          "direction_reversals": 49,
+          "direction_tolerance": 8.13953515455294e-15,
+          "final": 1.123232364654541,
+          "initial": 1.1447480916976929,
+          "range": 0.0288546085357666,
+          "rms_velocity": 0.8284218542750229,
+          "standard_deviation": 0.0024980189576588813,
+          "total_signed_change": -0.021515727043151855,
+          "total_variation": 0.08066880702972412
+        },
+        "joint_RMCoxa": {
+          "direction_reversals": 38,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": 0.02149929478764534,
+          "initial": 0.011523355729877949,
+          "range": 0.034594244323670864,
+          "rms_velocity": 0.9478890699830121,
+          "standard_deviation": 0.002720492774085358,
+          "total_signed_change": 0.009975939057767391,
+          "total_variation": 0.08937544468790293
+        },
+        "joint_RMCoxa_roll": {
+          "direction_reversals": 35,
+          "direction_tolerance": 1.3025260157831318e-14,
+          "final": -1.822474479675293,
+          "initial": -1.8260176181793213,
+          "range": 0.01442253589630127,
+          "rms_velocity": 0.34448257710947616,
+          "standard_deviation": 0.0012090390059537426,
+          "total_signed_change": 0.0035431385040283203,
+          "total_variation": 0.03712296485900879
+        },
+        "joint_RMCoxa_yaw": {
+          "direction_reversals": 49,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.14899125695228577,
+          "initial": -0.105523481965065,
+          "range": 0.06815061718225479,
+          "rms_velocity": 1.5964867985419633,
+          "standard_deviation": 0.00545496676969398,
+          "total_signed_change": -0.043467774987220764,
+          "total_variation": 0.11575928330421448
+        },
+        "joint_RMFemur": {
+          "direction_reversals": 42,
+          "direction_tolerance": 1.3600736036261784e-14,
+          "final": -1.880588412284851,
+          "initial": -1.8363397121429443,
+          "range": 0.08046901226043701,
+          "rms_velocity": 1.9557112235451501,
+          "standard_deviation": 0.006121224362947546,
+          "total_signed_change": -0.04424870014190674,
+          "total_variation": 0.14988934993743896
+        },
+        "joint_RMFemur_roll": {
+          "direction_reversals": 36,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": 0.0006752944318577647,
+          "initial": 0.0019978152122348547,
+          "range": 0.024307115469127893,
+          "rms_velocity": 0.5689568615429211,
+          "standard_deviation": 0.0019406202368929004,
+          "total_signed_change": -0.00132252078037709,
+          "total_variation": 0.05900451295019593
+        },
+        "joint_RMTarsus1": {
+          "direction_reversals": 45,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.033459585160017014,
+          "initial": -0.03337957337498665,
+          "range": 0.02326139621436596,
+          "rms_velocity": 0.8316007987079953,
+          "standard_deviation": 0.002153055924597387,
+          "total_signed_change": -8.001178503036499e-05,
+          "total_variation": 0.05590001121163368
+        },
+        "joint_RMTibia": {
+          "direction_reversals": 40,
+          "direction_tolerance": 1.2475931339449645e-14,
+          "final": 1.725095272064209,
+          "initial": 1.7278085947036743,
+          "range": 0.03229665756225586,
+          "rms_velocity": 1.2522221733939918,
+          "standard_deviation": 0.003146357758057107,
+          "total_signed_change": -0.002713322639465332,
+          "total_variation": 0.08596146106719971
+        }
+      },
+      "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT": {
+        "joint_LFCoxa": {
+          "direction_reversals": 65,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.034903623163700104,
+          "initial": -0.01378601137548685,
+          "range": 0.028881150297820568,
+          "rms_velocity": 0.6588095161981706,
+          "standard_deviation": 0.0024381612746958007,
+          "total_signed_change": -0.021117611788213253,
+          "total_variation": 0.10632680635899305
+        },
+        "joint_LFCoxa_roll": {
+          "direction_reversals": 53,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": 0.00033010795596055686,
+          "initial": -0.00025236228248104453,
+          "range": 0.009348680265247822,
+          "rms_velocity": 0.2154627410195016,
+          "standard_deviation": 0.0019734119059952844,
+          "total_signed_change": 0.0005824702384416014,
+          "total_variation": 0.06439524510642514
+        },
+        "joint_LFCoxa_yaw": {
+          "direction_reversals": 56,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": 0.0033385443966835737,
+          "initial": 0.0026297986041754484,
+          "range": 0.012040015077218413,
+          "rms_velocity": 0.27671957757208765,
+          "standard_deviation": 0.002485789645696685,
+          "total_signed_change": 0.0007087457925081253,
+          "total_variation": 0.08309508657112019
+        },
+        "joint_LFFemur": {
+          "direction_reversals": 91,
+          "direction_tolerance": 8.630633845942669e-15,
+          "final": -1.20389986038208,
+          "initial": -1.1793841123580933,
+          "range": 0.03527021408081055,
+          "rms_velocity": 1.251840268013047,
+          "standard_deviation": 0.002328027025730862,
+          "total_signed_change": -0.024515748023986816,
+          "total_variation": 0.14966881275177002
+        },
+        "joint_LFFemur_roll": {
+          "direction_reversals": 72,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.0021582667250186205,
+          "initial": -0.0017620716243982315,
+          "range": 0.0053329188376665115,
+          "rms_velocity": 0.13526738588765455,
+          "standard_deviation": 0.0011119576116299823,
+          "total_signed_change": -0.000396195100620389,
+          "total_variation": 0.04051754817191977
+        },
+        "joint_LFTarsus1": {
+          "direction_reversals": 72,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.1484609693288803,
+          "initial": -0.14223375916481018,
+          "range": 0.009615316987037659,
+          "rms_velocity": 0.18526753905903295,
+          "standard_deviation": 0.0009952121422819127,
+          "total_signed_change": -0.006227210164070129,
+          "total_variation": 0.03760574758052826
+        },
+        "joint_LFTibia": {
+          "direction_reversals": 86,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": 0.7487645149230957,
+          "initial": 0.7576697468757629,
+          "range": 0.017674148082733154,
+          "rms_velocity": 0.6323552171946768,
+          "standard_deviation": 0.002441181934115981,
+          "total_signed_change": -0.008905231952667236,
+          "total_variation": 0.10529202222824097
+        },
+        "joint_LHCoxa": {
+          "direction_reversals": 40,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": 0.05549079179763794,
+          "initial": 0.02112620882689953,
+          "range": 0.054507264867424965,
+          "rms_velocity": 1.1627795759582604,
+          "standard_deviation": 0.00432567298506387,
+          "total_signed_change": 0.03436458297073841,
+          "total_variation": 0.16067619808018208
+        },
+        "joint_LHCoxa_roll": {
+          "direction_reversals": 53,
+          "direction_tolerance": 1.7066028291609116e-14,
+          "final": 2.391798973083496,
+          "initial": 2.401829957962036,
+          "range": 0.016119956970214844,
+          "rms_velocity": 0.2947562731917249,
+          "standard_deviation": 0.002950482732698393,
+          "total_signed_change": -0.010030984878540039,
+          "total_variation": 0.09260153770446777
+        },
+        "joint_LHCoxa_yaw": {
+          "direction_reversals": 47,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": 0.21938566863536835,
+          "initial": 0.18669065833091736,
+          "range": 0.042927682399749756,
+          "rms_velocity": 0.8104143063095121,
+          "standard_deviation": 0.0042220424985960165,
+          "total_signed_change": 0.03269501030445099,
+          "total_variation": 0.12172211706638336
+        },
+        "joint_LHFemur": {
+          "direction_reversals": 70,
+          "direction_tolerance": 1.1594575770139653e-14,
+          "final": -1.6083741188049316,
+          "initial": -1.560032844543457,
+          "range": 0.07341921329498291,
+          "rms_velocity": 1.6105006712620764,
+          "standard_deviation": 0.0059828912695294835,
+          "total_signed_change": -0.04834127426147461,
+          "total_variation": 0.2037968635559082
+        },
+        "joint_LHFemur_roll": {
+          "direction_reversals": 36,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.14100289344787598,
+          "initial": -0.14132468402385712,
+          "range": 0.015226125717163086,
+          "rms_velocity": 0.3241852417664894,
+          "standard_deviation": 0.002319042334881005,
+          "total_signed_change": 0.00032179057598114014,
+          "total_variation": 0.08643724024295807
+        },
+        "joint_LHTarsus1": {
+          "direction_reversals": 79,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.11706862598657608,
+          "initial": -0.10569198429584503,
+          "range": 0.018274590373039246,
+          "rms_velocity": 0.358608476166836,
+          "standard_deviation": 0.002911707265739735,
+          "total_signed_change": -0.011376641690731049,
+          "total_variation": 0.05392485111951828
+        },
+        "joint_LHTibia": {
+          "direction_reversals": 72,
+          "direction_tolerance": 8.171169294034046e-15,
+          "final": 1.12934410572052,
+          "initial": 1.1483670473098755,
+          "range": 0.0359874963760376,
+          "rms_velocity": 0.8706462490988742,
+          "standard_deviation": 0.006171147292340757,
+          "total_signed_change": -0.01902294158935547,
+          "total_variation": 0.13477349281311035
+        },
+        "joint_LMCoxa": {
+          "direction_reversals": 62,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": 0.04310337454080582,
+          "initial": 0.03598107770085335,
+          "range": 0.03098570927977562,
+          "rms_velocity": 0.9074348950395121,
+          "standard_deviation": 0.003476805728910238,
+          "total_signed_change": 0.007122296839952469,
+          "total_variation": 0.14762630686163902
+        },
+        "joint_LMCoxa_roll": {
+          "direction_reversals": 90,
+          "direction_tolerance": 1.2675410986659821e-14,
+          "final": 1.776273488998413,
+          "initial": 1.7781654596328735,
+          "range": 0.012062907218933105,
+          "rms_velocity": 0.2869230235599213,
+          "standard_deviation": 0.001486614077116688,
+          "total_signed_change": -0.0018919706344604492,
+          "total_variation": 0.06739532947540283
+        },
+        "joint_LMCoxa_yaw": {
+          "direction_reversals": 137,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": 0.25479748845100403,
+          "initial": 0.21877549588680267,
+          "range": 0.06394712626934052,
+          "rms_velocity": 1.4447717519801353,
+          "standard_deviation": 0.006927147515718876,
+          "total_signed_change": 0.036021992564201355,
+          "total_variation": 0.1842006891965866
+        },
+        "joint_LMFemur": {
+          "direction_reversals": 46,
+          "direction_tolerance": 1.237379017743909e-14,
+          "final": -1.7238104343414307,
+          "initial": -1.6747645139694214,
+          "range": 0.06988155841827393,
+          "rms_velocity": 1.7084439881772535,
+          "standard_deviation": 0.010200379861241681,
+          "total_signed_change": -0.04904592037200928,
+          "total_variation": 0.24541246891021729
+        },
+        "joint_LMFemur_roll": {
+          "direction_reversals": 44,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.002997226547449827,
+          "initial": -0.0034093402791768312,
+          "range": 0.026076574809849262,
+          "rms_velocity": 0.6229821294074668,
+          "standard_deviation": 0.0030922238700980924,
+          "total_signed_change": 0.00041211373172700405,
+          "total_variation": 0.1236963433038909
+        },
+        "joint_LMTarsus1": {
+          "direction_reversals": 40,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.12123017758131027,
+          "initial": -0.12028518319129944,
+          "range": 0.02684807777404785,
+          "rms_velocity": 0.6080177701111532,
+          "standard_deviation": 0.00404208094022943,
+          "total_signed_change": -0.0009449943900108337,
+          "total_variation": 0.08062496036291122
+        },
+        "joint_LMTibia": {
+          "direction_reversals": 46,
+          "direction_tolerance": 1.2865158225306046e-14,
+          "final": 1.7741774320602417,
+          "initial": 1.7638238668441772,
+          "range": 0.04921221733093262,
+          "rms_velocity": 1.2762559869896024,
+          "standard_deviation": 0.008535226670077594,
+          "total_signed_change": 0.010353565216064453,
+          "total_variation": 0.20378947257995605
+        },
+        "joint_RFCoxa": {
+          "direction_reversals": 71,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.003799735102802515,
+          "initial": -0.0013245590962469578,
+          "range": 0.01392932899761945,
+          "rms_velocity": 0.43596222456329514,
+          "standard_deviation": 0.00157705331925311,
+          "total_signed_change": -0.0024751760065555573,
+          "total_variation": 0.07685556169599295
+        },
+        "joint_RFCoxa_roll": {
+          "direction_reversals": 54,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": 0.0015606783563271165,
+          "initial": 0.001191056682728231,
+          "range": 0.007831997470930219,
+          "rms_velocity": 0.16011803236140765,
+          "standard_deviation": 0.001821575885597151,
+          "total_signed_change": 0.00036962167359888554,
+          "total_variation": 0.05761590140173212
+        },
+        "joint_RFCoxa_yaw": {
+          "direction_reversals": 52,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.00015693384921178222,
+          "initial": -0.00048262756899930537,
+          "range": 0.009750515222549438,
+          "rms_velocity": 0.20423005858867146,
+          "standard_deviation": 0.0022490357305777055,
+          "total_signed_change": 0.00032569371978752315,
+          "total_variation": 0.07134455503546633
+        },
+        "joint_RFFemur": {
+          "direction_reversals": 93,
+          "direction_tolerance": 9.381713206866107e-15,
+          "final": -1.315171241760254,
+          "initial": -1.3108537197113037,
+          "range": 0.013182640075683594,
+          "rms_velocity": 0.6574581650180539,
+          "standard_deviation": 0.0018145140621229953,
+          "total_signed_change": -0.004317522048950195,
+          "total_variation": 0.08952593803405762
+        },
+        "joint_RFFemur_roll": {
+          "direction_reversals": 66,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": 0.00029219858697615564,
+          "initial": 0.0003741272957995534,
+          "range": 0.005360602401196957,
+          "rms_velocity": 0.13045464805186924,
+          "standard_deviation": 0.0012269136283459055,
+          "total_signed_change": -8.192870882339776e-05,
+          "total_variation": 0.03995296647190116
+        },
+        "joint_RFTarsus1": {
+          "direction_reversals": 74,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.172349750995636,
+          "initial": -0.17225642502307892,
+          "range": 0.004681259393692017,
+          "rms_velocity": 0.1456487564183208,
+          "standard_deviation": 0.0008363646151920945,
+          "total_signed_change": -9.332597255706787e-05,
+          "total_variation": 0.03328545391559601
+        },
+        "joint_RFTibia": {
+          "direction_reversals": 79,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": 0.8963145613670349,
+          "initial": 0.8962323665618896,
+          "range": 0.010629713535308838,
+          "rms_velocity": 0.4255975671126018,
+          "standard_deviation": 0.001981980027525423,
+          "total_signed_change": 8.219480514526367e-05,
+          "total_variation": 0.08215898275375366
+        },
+        "joint_RHCoxa": {
+          "direction_reversals": 99,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": 0.31540071964263916,
+          "initial": 0.27960363030433655,
+          "range": 0.04974919557571411,
+          "rms_velocity": 1.17875938777641,
+          "standard_deviation": 0.0050968059830100425,
+          "total_signed_change": 0.03579708933830261,
+          "total_variation": 0.21026566624641418
+        },
+        "joint_RHCoxa_roll": {
+          "direction_reversals": 110,
+          "direction_tolerance": 1.7426239216824374e-14,
+          "final": -2.4436228275299072,
+          "initial": -2.4415981769561768,
+          "range": 0.016468286514282227,
+          "rms_velocity": 0.4581791363284194,
+          "standard_deviation": 0.0021796715221139755,
+          "total_signed_change": -0.0020246505737304688,
+          "total_variation": 0.10148477554321289
+        },
+        "joint_RHCoxa_yaw": {
+          "direction_reversals": 143,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.1749509871006012,
+          "initial": -0.1381906419992447,
+          "range": 0.047207996249198914,
+          "rms_velocity": 0.8754493886065835,
+          "standard_deviation": 0.005084808780315145,
+          "total_signed_change": -0.036760345101356506,
+          "total_variation": 0.14557506144046783
+        },
+        "joint_RHFemur": {
+          "direction_reversals": 145,
+          "direction_tolerance": 9.819877421250126e-15,
+          "final": -1.3568276166915894,
+          "initial": -1.31553053855896,
+          "range": 0.06739258766174316,
+          "rms_velocity": 1.7697788690841878,
+          "standard_deviation": 0.009868726308821347,
+          "total_signed_change": -0.041297078132629395,
+          "total_variation": 0.3569580316543579
+        },
+        "joint_RHFemur_roll": {
+          "direction_reversals": 119,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.2738844156265259,
+          "initial": -0.26682204008102417,
+          "range": 0.01249164342880249,
+          "rms_velocity": 0.22376438000014875,
+          "standard_deviation": 0.002029427609684087,
+          "total_signed_change": -0.007062375545501709,
+          "total_variation": 0.059198975563049316
+        },
+        "joint_RHTarsus1": {
+          "direction_reversals": 62,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.39914098381996155,
+          "initial": -0.3836708664894104,
+          "range": 0.02211695909500122,
+          "rms_velocity": 0.5114670792091117,
+          "standard_deviation": 0.0026383834695611025,
+          "total_signed_change": -0.015470117330551147,
+          "total_variation": 0.096822589635849
+        },
+        "joint_RHTibia": {
+          "direction_reversals": 38,
+          "direction_tolerance": 8.582460541133475e-15,
+          "final": 1.1517131328582764,
+          "initial": 1.1447480916976929,
+          "range": 0.09119081497192383,
+          "rms_velocity": 1.699575121706885,
+          "standard_deviation": 0.02070723192813937,
+          "total_signed_change": 0.006965041160583496,
+          "total_variation": 0.5486539602279663
+        },
+        "joint_RMCoxa": {
+          "direction_reversals": 85,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": 0.021751273423433304,
+          "initial": 0.011523355729877949,
+          "range": 0.034594244323670864,
+          "rms_velocity": 0.9610444107607325,
+          "standard_deviation": 0.0032526197658790073,
+          "total_signed_change": 0.010227917693555355,
+          "total_variation": 0.13427794072777033
+        },
+        "joint_RMCoxa_roll": {
+          "direction_reversals": 77,
+          "direction_tolerance": 1.3025260157831318e-14,
+          "final": -1.8238600492477417,
+          "initial": -1.8260176181793213,
+          "range": 0.01442253589630127,
+          "rms_velocity": 0.35969450150154136,
+          "standard_deviation": 0.0015008037461248598,
+          "total_signed_change": 0.00215756893157959,
+          "total_variation": 0.06632983684539795
+        },
+        "joint_RMCoxa_yaw": {
+          "direction_reversals": 125,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.1417933851480484,
+          "initial": -0.105523481965065,
+          "range": 0.06815061718225479,
+          "rms_velocity": 1.674234965971518,
+          "standard_deviation": 0.008997172309942958,
+          "total_signed_change": -0.0362699031829834,
+          "total_variation": 0.2686130553483963
+        },
+        "joint_RMFemur": {
+          "direction_reversals": 67,
+          "direction_tolerance": 1.3600736036261784e-14,
+          "final": -1.8601629734039307,
+          "initial": -1.8363397121429443,
+          "range": 0.10225045680999756,
+          "rms_velocity": 2.162610539956769,
+          "standard_deviation": 0.014973006911989118,
+          "total_signed_change": -0.023823261260986328,
+          "total_variation": 0.4135584831237793
+        },
+        "joint_RMFemur_roll": {
+          "direction_reversals": 61,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": 0.0026508979499340057,
+          "initial": 0.0019978152122348547,
+          "range": 0.024307115469127893,
+          "rms_velocity": 0.5822431917420801,
+          "standard_deviation": 0.002321438833234043,
+          "total_signed_change": 0.000653082737699151,
+          "total_variation": 0.09642621603416046
+        },
+        "joint_RMTarsus1": {
+          "direction_reversals": 65,
+          "direction_tolerance": 7.105427357601002e-15,
+          "final": -0.03773105889558792,
+          "initial": -0.03337957337498665,
+          "range": 0.03029496781527996,
+          "rms_velocity": 0.8471595769461614,
+          "standard_deviation": 0.00329195377260676,
+          "total_signed_change": -0.004351485520601273,
+          "total_variation": 0.10586859285831451
+        },
+        "joint_RMTibia": {
+          "direction_reversals": 66,
+          "direction_tolerance": 1.2475931339449645e-14,
+          "final": 1.7175407409667969,
+          "initial": 1.7278085947036743,
+          "range": 0.04455411434173584,
+          "rms_velocity": 1.2931043709178007,
+          "standard_deviation": 0.005379380371503767,
+          "total_signed_change": -0.010267853736877441,
+          "total_variation": 0.18410885334014893
+        }
+      }
+    },
+    "baseline_only_joint_names": [
+      "joint_LFCoxa",
+      "joint_LFCoxa_roll",
+      "joint_LFCoxa_yaw",
+      "joint_LFFemur_roll",
+      "joint_LFTarsus1",
+      "joint_LMCoxa",
+      "joint_LMCoxa_roll",
+      "joint_LMCoxa_yaw",
+      "joint_LMFemur_roll",
+      "joint_LMTarsus1",
+      "joint_LHCoxa",
+      "joint_LHCoxa_roll",
+      "joint_LHCoxa_yaw",
+      "joint_LHFemur_roll",
+      "joint_LHTarsus1",
+      "joint_RFCoxa",
+      "joint_RFCoxa_roll",
+      "joint_RFCoxa_yaw",
+      "joint_RFFemur",
+      "joint_RFFemur_roll",
+      "joint_RFTarsus1",
+      "joint_RMCoxa",
+      "joint_RMCoxa_roll",
+      "joint_RMCoxa_yaw",
+      "joint_RMFemur_roll",
+      "joint_RMTarsus1",
+      "joint_RHCoxa",
+      "joint_RHCoxa_roll",
+      "joint_RHCoxa_yaw",
+      "joint_RHFemur_roll",
+      "joint_RHTarsus1"
+    ]
+  },
+  "neural_motor": {
+    "CORRECTED_ALL_NEURAL_MOTOR_DISABLED": {
+      "joint_LFFemur": {
+        "admitted_contributions": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "decoder_outputs": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": -0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "observer_outputs": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        }
+      },
+      "joint_LFTibia": {
+        "admitted_contributions": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "decoder_outputs": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "observer_outputs": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        }
+      },
+      "joint_LHFemur": {
+        "admitted_contributions": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "decoder_outputs": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": -0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "observer_outputs": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        }
+      },
+      "joint_LHTibia": {
+        "admitted_contributions": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "decoder_outputs": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "observer_outputs": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        }
+      },
+      "joint_LMFemur": {
+        "admitted_contributions": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "decoder_outputs": {
+          "active_duration_ms": 329.9999999999625,
+          "active_fraction": 0.66,
+          "burst_episodes": 1,
+          "first_meaningful_ms": 170.49999999999756,
+          "first_nonzero_ms": 170.49999999999756,
+          "integrated_absolute_activity": 0.0019381939568013523,
+          "mean": -0.0038763879136031448,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.04610725412930622,
+          "peak_signed_value": -0.04610725412930622,
+          "peak_time_ms": 170.49999999999756,
+          "rms": 0.009563269595889922,
+          "sign_changes": 0
+        },
+        "observer_outputs": {
+          "active_duration_ms": 329.9999999999625,
+          "active_fraction": 0.66,
+          "burst_episodes": 1,
+          "first_meaningful_ms": 170.49999999999756,
+          "first_nonzero_ms": 170.49999999999756,
+          "integrated_absolute_activity": 8.249999999999062,
+          "mean": 16.5,
+          "meaningful_tolerance": 1.7763568394002505e-13,
+          "peak_absolute_value": 25.0,
+          "peak_signed_value": 25.0,
+          "peak_time_ms": 170.49999999999756,
+          "rms": 20.310096011589902,
+          "sign_changes": 0
+        }
+      },
+      "joint_LMTibia": {
+        "admitted_contributions": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "decoder_outputs": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "observer_outputs": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        }
+      },
+      "joint_RFTibia": {
+        "admitted_contributions": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "decoder_outputs": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "observer_outputs": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        }
+      },
+      "joint_RHFemur": {
+        "admitted_contributions": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "decoder_outputs": {
+          "active_duration_ms": 414.49999999995293,
+          "active_fraction": 0.829,
+          "burst_episodes": 1,
+          "first_meaningful_ms": 86.00000000000144,
+          "first_nonzero_ms": 86.00000000000144,
+          "integrated_absolute_activity": 0.007298939398379356,
+          "mean": 0.012197279820020175,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.08937134347762365,
+          "peak_signed_value": 0.08937134347762365,
+          "peak_time_ms": 165.4999999999981,
+          "rms": 0.024176566941497352,
+          "sign_changes": 2
+        },
+        "observer_outputs": {
+          "active_duration_ms": 414.49999999995293,
+          "active_fraction": 0.829,
+          "burst_episodes": 1,
+          "first_meaningful_ms": 86.00000000000144,
+          "first_nonzero_ms": 86.00000000000144,
+          "integrated_absolute_activity": 6.952884826806808,
+          "mean": 13.905769653615197,
+          "meaningful_tolerance": 1.3876106129321522e-13,
+          "peak_absolute_value": 19.52888324792683,
+          "peak_signed_value": 19.52888324792683,
+          "peak_time_ms": 165.4999999999981,
+          "rms": 16.119667527845404,
+          "sign_changes": 0
+        }
+      },
+      "joint_RHTibia": {
+        "admitted_contributions": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "decoder_outputs": {
+          "active_duration_ms": 430.99999999995106,
+          "active_fraction": 0.862,
+          "burst_episodes": 1,
+          "first_meaningful_ms": 69.50000000000097,
+          "first_nonzero_ms": 69.50000000000097,
+          "integrated_absolute_activity": 0.021003306118614486,
+          "mean": 0.042006612237233745,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.1281071184239586,
+          "peak_signed_value": 0.1281071184239586,
+          "peak_time_ms": 105.00000000000198,
+          "rms": 0.05389493333643207,
+          "sign_changes": 0
+        },
+        "observer_outputs": {
+          "active_duration_ms": 430.99999999995106,
+          "active_fraction": 0.862,
+          "burst_episodes": 1,
+          "first_meaningful_ms": 69.50000000000097,
+          "first_nonzero_ms": 69.50000000000097,
+          "integrated_absolute_activity": 7.411408647649989,
+          "mean": 14.822817295301663,
+          "meaningful_tolerance": 1.25178741778618e-13,
+          "peak_absolute_value": 17.617341713402862,
+          "peak_signed_value": 17.617341713402862,
+          "peak_time_ms": 105.00000000000198,
+          "rms": 16.018645282171097,
+          "sign_changes": 0
+        }
+      },
+      "joint_RMFemur": {
+        "admitted_contributions": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "decoder_outputs": {
+          "active_duration_ms": 446.4999999999493,
+          "active_fraction": 0.893,
+          "burst_episodes": 1,
+          "first_meaningful_ms": 54.00000000000052,
+          "first_nonzero_ms": 54.00000000000052,
+          "integrated_absolute_activity": 0.0130185860613837,
+          "mean": 0.026037172122770357,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.10651903281372344,
+          "peak_signed_value": 0.10651903281372344,
+          "peak_time_ms": 316.9999999999814,
+          "rms": 0.0350122548210057,
+          "sign_changes": 0
+        },
+        "observer_outputs": {
+          "active_duration_ms": 446.4999999999493,
+          "active_fraction": 0.893,
+          "burst_episodes": 1,
+          "first_meaningful_ms": 54.00000000000052,
+          "first_nonzero_ms": 54.00000000000052,
+          "integrated_absolute_activity": 6.1220410047451645,
+          "mean": 12.24408200949172,
+          "meaningful_tolerance": 1.244094494194266e-13,
+          "peak_absolute_value": 17.50907343895932,
+          "peak_signed_value": 17.50907343895932,
+          "peak_time_ms": 316.9999999999814,
+          "rms": 13.327393721605782,
+          "sign_changes": 0
+        }
+      },
+      "joint_RMTibia": {
+        "admitted_contributions": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "decoder_outputs": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "observer_outputs": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        }
+      }
+    },
+    "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT": {
+      "joint_LFFemur": {
+        "admitted_contributions": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": -0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "decoder_outputs": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": -0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "observer_outputs": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        }
+      },
+      "joint_LFTibia": {
+        "admitted_contributions": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "decoder_outputs": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "observer_outputs": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        }
+      },
+      "joint_LHFemur": {
+        "admitted_contributions": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": -0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "decoder_outputs": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": -0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "observer_outputs": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        }
+      },
+      "joint_LHTibia": {
+        "admitted_contributions": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "decoder_outputs": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "observer_outputs": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        }
+      },
+      "joint_LMFemur": {
+        "admitted_contributions": {
+          "active_duration_ms": 120.99999999998626,
+          "active_fraction": 0.242,
+          "burst_episodes": 1,
+          "first_meaningful_ms": 379.49999999997453,
+          "first_nonzero_ms": 379.49999999997453,
+          "integrated_absolute_activity": 0.0028669006464049377,
+          "mean": 0.0014851793853801719,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.049563016616561095,
+          "peak_signed_value": 0.049563016616561095,
+          "peak_time_ms": 381.4999999999743,
+          "rms": 0.012680229454532854,
+          "sign_changes": 1
+        },
+        "decoder_outputs": {
+          "active_duration_ms": 120.99999999998626,
+          "active_fraction": 0.242,
+          "burst_episodes": 1,
+          "first_meaningful_ms": 379.49999999997453,
+          "first_nonzero_ms": 379.49999999997453,
+          "integrated_absolute_activity": 0.0028669006464049377,
+          "mean": 0.0014851793853801719,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.049563016616561095,
+          "peak_signed_value": 0.049563016616561095,
+          "peak_time_ms": 381.4999999999743,
+          "rms": 0.012680229454532854,
+          "sign_changes": 1
+        },
+        "observer_outputs": {
+          "active_duration_ms": 120.99999999998626,
+          "active_fraction": 0.242,
+          "burst_episodes": 1,
+          "first_meaningful_ms": 379.49999999997453,
+          "first_nonzero_ms": 379.49999999997453,
+          "integrated_absolute_activity": 1.6477457095771006,
+          "mean": 3.2954914191545757,
+          "meaningful_tolerance": 1.7763568394002505e-13,
+          "peak_absolute_value": 25.0,
+          "peak_signed_value": 25.0,
+          "peak_time_ms": 455.4999999999662,
+          "rms": 7.96781372662397,
+          "sign_changes": 0
+        }
+      },
+      "joint_LMTibia": {
+        "admitted_contributions": {
+          "active_duration_ms": 95.9999999999891,
+          "active_fraction": 0.192,
+          "burst_episodes": 1,
+          "first_meaningful_ms": 404.49999999997175,
+          "first_nonzero_ms": 404.49999999997175,
+          "integrated_absolute_activity": 0.004060795879000036,
+          "mean": 0.008121591758000994,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.09982611240267811,
+          "peak_signed_value": 0.09982611240267811,
+          "peak_time_ms": 404.49999999997175,
+          "rms": 0.02162076375479651,
+          "sign_changes": 0
+        },
+        "decoder_outputs": {
+          "active_duration_ms": 95.9999999999891,
+          "active_fraction": 0.192,
+          "burst_episodes": 1,
+          "first_meaningful_ms": 404.49999999997175,
+          "first_nonzero_ms": 404.49999999997175,
+          "integrated_absolute_activity": 0.004060795879000036,
+          "mean": 0.008121591758000994,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.09982611240267811,
+          "peak_signed_value": 0.09982611240267811,
+          "peak_time_ms": 404.49999999997175,
+          "rms": 0.02162076375479651,
+          "sign_changes": 0
+        },
+        "observer_outputs": {
+          "active_duration_ms": 95.9999999999891,
+          "active_fraction": 0.192,
+          "burst_episodes": 1,
+          "first_meaningful_ms": 404.49999999997175,
+          "first_nonzero_ms": 404.49999999997175,
+          "integrated_absolute_activity": 1.1999999999998636,
+          "mean": 2.4,
+          "meaningful_tolerance": 8.881784197001252e-14,
+          "peak_absolute_value": 12.5,
+          "peak_signed_value": 12.5,
+          "peak_time_ms": 404.49999999997175,
+          "rms": 5.477225575051661,
+          "sign_changes": 0
+        }
+      },
+      "joint_RFTibia": {
+        "admitted_contributions": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "decoder_outputs": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "observer_outputs": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        }
+      },
+      "joint_RHFemur": {
+        "admitted_contributions": {
+          "active_duration_ms": 414.49999999995293,
+          "active_fraction": 0.829,
+          "burst_episodes": 1,
+          "first_meaningful_ms": 86.00000000000144,
+          "first_nonzero_ms": 86.00000000000144,
+          "integrated_absolute_activity": 0.004977283888533955,
+          "mean": 0.009954567777069039,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.051845614002527546,
+          "peak_signed_value": 0.051845614002527546,
+          "peak_time_ms": 161.99999999999847,
+          "rms": 0.014949897851633979,
+          "sign_changes": 0
+        },
+        "decoder_outputs": {
+          "active_duration_ms": 414.49999999995293,
+          "active_fraction": 0.829,
+          "burst_episodes": 1,
+          "first_meaningful_ms": 86.00000000000144,
+          "first_nonzero_ms": 86.00000000000144,
+          "integrated_absolute_activity": 0.004977283888533955,
+          "mean": 0.009954567777069039,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.051845614002527546,
+          "peak_signed_value": 0.051845614002527546,
+          "peak_time_ms": 161.99999999999847,
+          "rms": 0.014949897851633979,
+          "sign_changes": 0
+        },
+        "observer_outputs": {
+          "active_duration_ms": 414.49999999995293,
+          "active_fraction": 0.829,
+          "burst_episodes": 1,
+          "first_meaningful_ms": 86.00000000000144,
+          "first_nonzero_ms": 86.00000000000144,
+          "integrated_absolute_activity": 3.8563727010927558,
+          "mean": 7.712745402186388,
+          "meaningful_tolerance": 7.290365818229193e-14,
+          "peak_absolute_value": 10.260277744491123,
+          "peak_signed_value": 10.260277744491123,
+          "peak_time_ms": 161.99999999999847,
+          "rms": 8.66837583004544,
+          "sign_changes": 0
+        }
+      },
+      "joint_RHTibia": {
+        "admitted_contributions": {
+          "active_duration_ms": 430.99999999995106,
+          "active_fraction": 0.862,
+          "burst_episodes": 1,
+          "first_meaningful_ms": 69.50000000000097,
+          "first_nonzero_ms": 69.50000000000097,
+          "integrated_absolute_activity": 0.02093226788787736,
+          "mean": 0.04186453577575948,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.1281071184239586,
+          "peak_signed_value": 0.1281071184239586,
+          "peak_time_ms": 105.00000000000198,
+          "rms": 0.053000563286902336,
+          "sign_changes": 0
+        },
+        "decoder_outputs": {
+          "active_duration_ms": 430.99999999995106,
+          "active_fraction": 0.862,
+          "burst_episodes": 1,
+          "first_meaningful_ms": 69.50000000000097,
+          "first_nonzero_ms": 69.50000000000097,
+          "integrated_absolute_activity": 0.02093226788787736,
+          "mean": 0.04186453577575948,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.1281071184239586,
+          "peak_signed_value": 0.1281071184239586,
+          "peak_time_ms": 105.00000000000198,
+          "rms": 0.053000563286902336,
+          "sign_changes": 0
+        },
+        "observer_outputs": {
+          "active_duration_ms": 430.99999999995106,
+          "active_fraction": 0.862,
+          "burst_episodes": 1,
+          "first_meaningful_ms": 69.50000000000097,
+          "first_nonzero_ms": 69.50000000000097,
+          "integrated_absolute_activity": 7.411408647649989,
+          "mean": 14.822817295301663,
+          "meaningful_tolerance": 1.25178741778618e-13,
+          "peak_absolute_value": 17.617341713402862,
+          "peak_signed_value": 17.617341713402862,
+          "peak_time_ms": 105.00000000000198,
+          "rms": 16.018645282171097,
+          "sign_changes": 0
+        }
+      },
+      "joint_RMFemur": {
+        "admitted_contributions": {
+          "active_duration_ms": 446.4999999999493,
+          "active_fraction": 0.893,
+          "burst_episodes": 1,
+          "first_meaningful_ms": 54.00000000000052,
+          "first_nonzero_ms": 54.00000000000052,
+          "integrated_absolute_activity": 0.010818469760647965,
+          "mean": 0.021636939521298387,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.1026719513179705,
+          "peak_signed_value": 0.1026719513179705,
+          "peak_time_ms": 234.99999999999045,
+          "rms": 0.03129563127142973,
+          "sign_changes": 0
+        },
+        "decoder_outputs": {
+          "active_duration_ms": 446.4999999999493,
+          "active_fraction": 0.893,
+          "burst_episodes": 1,
+          "first_meaningful_ms": 54.00000000000052,
+          "first_nonzero_ms": 54.00000000000052,
+          "integrated_absolute_activity": 0.010818469760647965,
+          "mean": 0.021636939521298387,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.1026719513179705,
+          "peak_signed_value": 0.1026719513179705,
+          "peak_time_ms": 234.99999999999045,
+          "rms": 0.03129563127142973,
+          "sign_changes": 0
+        },
+        "observer_outputs": {
+          "active_duration_ms": 446.4999999999493,
+          "active_fraction": 0.893,
+          "burst_episodes": 1,
+          "first_meaningful_ms": 54.00000000000052,
+          "first_nonzero_ms": 54.00000000000052,
+          "integrated_absolute_activity": 6.399386934966563,
+          "mean": 12.798773869934578,
+          "meaningful_tolerance": 1.1848105642759066e-13,
+          "peak_absolute_value": 16.674726299305,
+          "peak_signed_value": 16.674726299305,
+          "peak_time_ms": 234.99999999999045,
+          "rms": 13.832092889512875,
+          "sign_changes": 0
+        }
+      },
+      "joint_RMTibia": {
+        "admitted_contributions": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "decoder_outputs": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        },
+        "observer_outputs": {
+          "active_duration_ms": 0.0,
+          "active_fraction": 0.0,
+          "burst_episodes": 0,
+          "first_meaningful_ms": null,
+          "first_nonzero_ms": null,
+          "integrated_absolute_activity": 0.0,
+          "mean": 0.0,
+          "meaningful_tolerance": 7.105427357601002e-15,
+          "peak_absolute_value": 0.0,
+          "peak_signed_value": 0.0,
+          "peak_time_ms": 0.5,
+          "rms": 0.0,
+          "sign_changes": 0
+        }
+      }
+    }
+  },
+  "neural_transitions": 0,
+  "per_leg": {
+    "LF": {
+      "activity_duration_ms": 446.0,
+      "admitted_joint_AB_rms": 0.001884261973410857,
+      "normalized_joint_total_variation": {
+        "CORRECTED_ALL_NEURAL_MOTOR_DISABLED": 0.03925341434140656,
+        "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT": 0.08384303839557106
+      },
+      "onset_of_divergence_ms": 54.10000000000052,
+      "peak_movement_time_ms": 473.59999999996415,
+      "repeated_movement_evidence": {
+        "approximate_cycle_count": 1.999600079983962,
+        "autocorrelation_peak_nonzero": 0.9993327579972332,
+        "dominant_non_dc_frequency_hz": 3.999200159968234,
+        "frequency_resolution_hz": 2.000000000000155,
+        "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+        "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+        "local_extrema": 78,
+        "periodicity_strength": 0.2736585631446921,
+        "zero_crossings": 21
+      },
+      "summed_joint_total_variation": {
+        "CORRECTED_ALL_NEURAL_MOTOR_DISABLED": 0.27477390038984595,
+        "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT": 0.5869012687689974
+      }
+    },
+    "LH": {
+      "activity_duration_ms": 446.0,
+      "admitted_joint_AB_rms": 0.0044721159205638045,
+      "normalized_joint_total_variation": {
+        "CORRECTED_ALL_NEURAL_MOTOR_DISABLED": 0.06670065303998333,
+        "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT": 0.12199032865464687
+      },
+      "onset_of_divergence_ms": 54.10000000000052,
+      "peak_movement_time_ms": 467.7999999999648,
+      "repeated_movement_evidence": {
+        "approximate_cycle_count": 0.999800039991981,
+        "autocorrelation_peak_nonzero": 0.9996928036340685,
+        "dominant_non_dc_frequency_hz": 1.999600079984117,
+        "frequency_resolution_hz": 2.000000000000155,
+        "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+        "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+        "local_extrema": 78,
+        "periodicity_strength": 0.3920593578031183,
+        "zero_crossings": 1
+      },
+      "summed_joint_total_variation": {
+        "CORRECTED_ALL_NEURAL_MOTOR_DISABLED": 0.4669045712798834,
+        "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT": 0.8539323005825281
+      }
+    },
+    "LM": {
+      "activity_duration_ms": 446.0,
+      "admitted_joint_AB_rms": 0.008742595027647048,
+      "normalized_joint_total_variation": {
+        "CORRECTED_ALL_NEURAL_MOTOR_DISABLED": 0.07461003992440444,
+        "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT": 0.150392224384372
+      },
+      "onset_of_divergence_ms": 54.10000000000052,
+      "peak_movement_time_ms": 423.4999999999697,
+      "repeated_movement_evidence": {
+        "approximate_cycle_count": 0.999800039991981,
+        "autocorrelation_peak_nonzero": 0.99993984795751,
+        "dominant_non_dc_frequency_hz": 1.999600079984117,
+        "frequency_resolution_hz": 2.000000000000155,
+        "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+        "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+        "local_extrema": 46,
+        "periodicity_strength": 0.3680537540506075,
+        "zero_crossings": 2
+      },
+      "summed_joint_total_variation": {
+        "CORRECTED_ALL_NEURAL_MOTOR_DISABLED": 0.5222702794708312,
+        "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT": 1.052745570690604
+      }
+    },
+    "RF": {
+      "activity_duration_ms": 446.0,
+      "admitted_joint_AB_rms": 0.001964549349309466,
+      "normalized_joint_total_variation": {
+        "CORRECTED_ALL_NEURAL_MOTOR_DISABLED": 0.024013572590774857,
+        "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT": 0.0643913370440714
+      },
+      "onset_of_divergence_ms": 54.10000000000052,
+      "peak_movement_time_ms": 424.1999999999696,
+      "repeated_movement_evidence": {
+        "approximate_cycle_count": 1.999600079983962,
+        "autocorrelation_peak_nonzero": 0.9997486492251577,
+        "dominant_non_dc_frequency_hz": 3.999200159968234,
+        "frequency_resolution_hz": 2.000000000000155,
+        "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+        "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+        "local_extrema": 73,
+        "periodicity_strength": 0.21703095433980607,
+        "zero_crossings": 17
+      },
+      "summed_joint_total_variation": {
+        "CORRECTED_ALL_NEURAL_MOTOR_DISABLED": 0.168095008135424,
+        "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT": 0.45073935930849984
+      }
+    },
+    "RH": {
+      "activity_duration_ms": 446.0,
+      "admitted_joint_AB_rms": 0.029426745804956193,
+      "normalized_joint_total_variation": {
+        "CORRECTED_ALL_NEURAL_MOTOR_DISABLED": 0.06981926092079707,
+        "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT": 0.21699415147304535
+      },
+      "onset_of_divergence_ms": 54.10000000000052,
+      "peak_movement_time_ms": 120.90000000000244,
+      "repeated_movement_evidence": {
+        "approximate_cycle_count": 2.999400119975943,
+        "autocorrelation_peak_nonzero": 0.999647959776804,
+        "dominant_non_dc_frequency_hz": 5.998800239952351,
+        "frequency_resolution_hz": 2.000000000000155,
+        "label": "REPEATED_NONPERIODIC",
+        "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+        "local_extrema": 24,
+        "periodicity_strength": 0.3330236130266359,
+        "zero_crossings": 8
+      },
+      "summed_joint_total_variation": {
+        "CORRECTED_ALL_NEURAL_MOTOR_DISABLED": 0.48873482644557953,
+        "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT": 1.5189590603113174
+      }
+    },
+    "RM": {
+      "activity_duration_ms": 446.0,
+      "admitted_joint_AB_rms": 0.01821405718195629,
+      "normalized_joint_total_variation": {
+        "CORRECTED_ALL_NEURAL_MOTOR_DISABLED": 0.08471614685965635,
+        "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT": 0.18131185403970967
+      },
+      "onset_of_divergence_ms": 54.10000000000052,
+      "peak_movement_time_ms": 249.39999999998886,
+      "repeated_movement_evidence": {
+        "approximate_cycle_count": 2.999400119975943,
+        "autocorrelation_peak_nonzero": 0.9997433462066527,
+        "dominant_non_dc_frequency_hz": 5.998800239952351,
+        "frequency_resolution_hz": 2.000000000000155,
+        "label": "REPEATED_NONPERIODIC",
+        "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+        "local_extrema": 56,
+        "periodicity_strength": 0.3459019166873683,
+        "zero_crossings": 9
+      },
+      "summed_joint_total_variation": {
+        "CORRECTED_ALL_NEURAL_MOTOR_DISABLED": 0.5930130280175945,
+        "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT": 1.2691829782779678
+      }
+    }
+  },
+  "physics_transitions": 0,
+  "provenance": {
+    "analysis_schema": "M7E-POSTRUN-ANALYSIS.1",
+    "analyzer_source_commit": "f39e3e5ce7e42dc98af337832c808eb70281a9ae",
+    "input_byte_size": 16737088,
+    "input_path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m7d_corrected_spontaneous\\m7d_raw.npz",
+    "input_sha256": "92b5c645a88fe74e5d6aa0988478c374e8fde3a0e923d42cc13974a3e60d8444",
+    "m7d_source_commit": "6ce20ef6c496345ad348784188bb9e948bdef42d",
+    "numpy_version": "2.0.2"
+  },
+  "schema": "M7E-POSTRUN-ANALYSIS.1",
+  "scope": {
+    "biological_function_inference": null,
+    "duration_ms": 500,
+    "exploratory_descriptive": true,
+    "gait_classifier": null,
+    "walking_classifier": null
+  },
+  "sensory": {
+    "delivered_drive_count": {
+      "CORRECTED_ALL_NEURAL_MOTOR_DISABLED": {
+        "active_duration_ms": 497.4999999999435,
+        "active_fraction": 0.995,
+        "burst_episodes": 6,
+        "first_meaningful_ms": 0.5,
+        "first_nonzero_ms": 0.5,
+        "integrated_absolute_activity": 2.577499999999707,
+        "mean": 5.155,
+        "meaningful_tolerance": 1.0658141036401503e-13,
+        "peak_absolute_value": 15.0,
+        "peak_signed_value": 15.0,
+        "peak_time_ms": 81.0000000000013,
+        "rms": 5.653406052991418,
+        "sign_changes": 0
+      },
+      "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT": {
+        "active_duration_ms": 497.4999999999435,
+        "active_fraction": 0.995,
+        "burst_episodes": 6,
+        "first_meaningful_ms": 0.5,
+        "first_nonzero_ms": 0.5,
+        "integrated_absolute_activity": 2.5469999999997106,
+        "mean": 5.094,
+        "meaningful_tolerance": 1.0658141036401503e-13,
+        "peak_absolute_value": 15.0,
+        "peak_signed_value": 15.0,
+        "peak_time_ms": 81.0000000000013,
+        "rms": 5.5962487435781485,
+        "sign_changes": 0
+      }
+    },
+    "joint_LFTibia": {
+      "first_exact_divergence_ms": 54.50000000000053,
+      "first_meaningful_divergence_ms": 54.50000000000053,
+      "max_absolute_divergence": 0.04635057028627898,
+      "max_vector_divergence": 0.04635057028627898,
+      "meaningful_tolerance": 8.520905347835543e-13,
+      "rms_divergence": 0.01910823257866327,
+      "signed_integrated_difference": 0.002098579155037337,
+      "time_of_max_divergence_ms": 482.49999999996317
+    },
+    "joint_LHTibia": {
+      "first_exact_divergence_ms": 54.50000000000053,
+      "first_meaningful_divergence_ms": 54.50000000000053,
+      "max_absolute_divergence": 0.026345785164480162,
+      "max_vector_divergence": 0.026345785164480162,
+      "meaningful_tolerance": 8.526512823714136e-13,
+      "rms_divergence": 0.00847329554100901,
+      "signed_integrated_difference": -0.0018462891060014703,
+      "time_of_max_divergence_ms": 415.9999999999705
+    },
+    "joint_LMTibia": {
+      "first_exact_divergence_ms": 54.50000000000053,
+      "first_meaningful_divergence_ms": 54.50000000000053,
+      "max_absolute_divergence": 4.132161306530932,
+      "max_vector_divergence": 4.132161306530932,
+      "meaningful_tolerance": 6.572730615691848e-13,
+      "rms_divergence": 0.9134286535352747,
+      "signed_integrated_difference": -0.14408512500542417,
+      "time_of_max_divergence_ms": 423.99999999996965
+    },
+    "joint_RFTibia": {
+      "first_exact_divergence_ms": 54.50000000000053,
+      "first_meaningful_divergence_ms": 54.50000000000053,
+      "max_absolute_divergence": 0.10596338784820603,
+      "max_vector_divergence": 0.10596338784820603,
+      "meaningful_tolerance": 8.438221500587013e-13,
+      "rms_divergence": 0.04848864100814561,
+      "signed_integrated_difference": 0.009886279267560284,
+      "time_of_max_divergence_ms": 423.99999999996965
+    },
+    "joint_RHTibia": {
+      "first_exact_divergence_ms": 54.50000000000053,
+      "first_meaningful_divergence_ms": 54.50000000000053,
+      "max_absolute_divergence": 0.021156444683754216,
+      "max_vector_divergence": 0.021156444683754216,
+      "meaningful_tolerance": 8.526512827444411e-13,
+      "rms_divergence": 0.007159831442876885,
+      "signed_integrated_difference": -0.0017946737590127182,
+      "time_of_max_divergence_ms": 469.4999999999646
+    },
+    "joint_RMTibia": {
+      "first_exact_divergence_ms": 54.50000000000053,
+      "first_meaningful_divergence_ms": 54.50000000000053,
+      "max_absolute_divergence": 1.3248895918508055,
+      "max_vector_divergence": 1.3248895918508055,
+      "meaningful_tolerance": 6.925619399551027e-13,
+      "rms_divergence": 0.6201223037153449,
+      "signed_integrated_difference": 0.24861923043723816,
+      "time_of_max_divergence_ms": 249.99999999998877
+    },
+    "temporal_relationships": {
+      "sensory_AB_to_later_CNS_AB": {
+        "lag_at_maximum_ms": 83.5,
+        "maximum_normalized_correlation": 0.6446538880973549,
+        "overlapping_active_samples": 840,
+        "relationship": "lagged relationship; temporally correlated",
+        "zero_lag_correlation": 0.3003553017704181
+      },
+      "sensory_AB_to_later_motor_AB": {
+        "lag_at_maximum_ms": -39.5,
+        "maximum_normalized_correlation": -0.5934616023584889,
+        "overlapping_active_samples": 687,
+        "relationship": "lagged relationship; anti-correlated",
+        "zero_lag_correlation": -0.3723880384068571
+      }
+    }
+  },
+  "status": "COMPLETE",
+  "summary_consistency": {
+    "CORRECTED_ALL_NEURAL_MOTOR_DISABLED": {
+      "checks": {
+        "body_path_length": true,
+        "first_fall_time_ms": true,
+        "first_rollover_time_ms": true,
+        "minimum_body_height": true,
+        "minimum_body_up_z": true,
+        "net_displacement": true,
+        "survived_through_500ms": true
+      },
+      "movement_category_inputs": {
+        "net_displacement_vector": [
+          0.005077232544874687,
+          0.020209632424512045,
+          -0.21788553566314356
+        ],
+        "total_3d_path_length": 0.38263313389118825
+      },
+      "status": "PASS"
+    },
+    "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT": {
+      "checks": {
+        "body_path_length": true,
+        "first_fall_time_ms": true,
+        "first_rollover_time_ms": true,
+        "minimum_body_height": true,
+        "minimum_body_up_z": true,
+        "net_displacement": true,
+        "survived_through_500ms": true
+      },
+      "movement_category_inputs": {
+        "net_displacement_vector": [
+          0.010230189443236597,
+          0.018202116836231054,
+          -0.20041863743752042
+        ],
+        "total_3d_path_length": 0.640338865989498
+      },
+      "status": "PASS"
+    }
+  },
+  "thresholds": {
+    "meaningful": "32 * float64 epsilon * max(1, maximum absolute signal scale); fixed before canonical inspection",
+    "periodicity_candidate": "at least 2 cycles, 4 centered crossings, 4 extrema, and >=0.5 FFT non-DC power fraction; descriptive only"
+  }
+}

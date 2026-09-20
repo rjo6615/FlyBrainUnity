@@ -1,0 +1,20 @@
+{
+  "analysis": {
+    "byte_size": 135480,
+    "path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m7e_postrun_analysis\\m7e_analysis.json",
+    "sha256": "ec930c9e76cf87168df617ced86cef6a7f9688da5365a1ca5e0475eeadd93f55"
+  },
+  "neural_transitions": 0,
+  "physics_transitions": 0,
+  "schema": "M7E-POSTRUN-ANALYSIS.1",
+  "source": {
+    "analysis_schema": "M7E-POSTRUN-ANALYSIS.1",
+    "analyzer_source_commit": "f39e3e5ce7e42dc98af337832c808eb70281a9ae",
+    "input_byte_size": 16737088,
+    "input_path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m7d_corrected_spontaneous\\m7d_raw.npz",
+    "input_sha256": "92b5c645a88fe74e5d6aa0988478c374e8fde3a0e923d42cc13974a3e60d8444",
+    "m7d_source_commit": "6ce20ef6c496345ad348784188bb9e948bdef42d",
+    "numpy_version": "2.0.2"
+  },
+  "status": "COMPLETE"
+}
