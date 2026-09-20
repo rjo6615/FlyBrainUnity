@@ -47,3 +47,4 @@ malecns_backend/embodiment/interface_output/integrated_whole_leg_readiness.json
 # M7 canonical raw telemetry - stored locally due to size
 malecns_backend/embodiment/interface_output/m7_canonical/m7_raw.npz
 malecns_backend/embodiment/interface_output/m7c_initial_stability/m7c_b4_stability_raw.npz
+malecns_backend/embodiment/interface_output/m7d_corrected_spontaneous/m7d_raw.npz

@@ -1,0 +1,5 @@
+{
+  "name": "FlyBrain.M7FReplay",
+  "references": ["Unity.InputSystem"],
+  "autoReferenced": true
+}
