@@ -138,6 +138,12 @@ def _flygym_model():
     # fly.model alone would silently omit that essential part of the model.
     b4 = importlib.import_module("malecns_backend.embodiment.m7c_b4_stability")
     simulation = b4._make_sim(flygym, b4._surface())
+    fly = getattr(simulation, "fly", None)
+    if fly is None:
+        fly = getattr(simulation, "_fly", None)
+    recorder_names = tuple(getattr(fly, "actuated_joints", ()))
+    if len(recorder_names) != 42:
+        raise RuntimeError("cannot establish FlyGym actuated-joint order used by the M7D observation")
     arena = simulation.arena
     root = arena.root_element
     xml_bytes = root.to_xml_string()
@@ -157,6 +163,13 @@ def _flygym_model():
             "spawn_orientation": [0.0, 0.0, 0.0], "enable_adhesion": False, "control": "position",
             "contact_sensor_placements": placements},
         "assembly": "M7D's m7c_b4_stability._make_sim parsed seqik, applied FlyGym edits, and attached it to FlatTerrain in memory; no assets copied",
+        "recorder_semantics": {
+            "verified": recorder_names == EXPECTED_JOINTS,
+            "m7d_recorder_expression": "measured = _joint_positions(obs); telemetry.record(... physics_joint_position=measured)",
+            "m6c_extractor_expression": "np.asarray(obs['joints'], dtype=np.float64); joints[0] if ndim == 2 else joints",
+            "flygym_observation_order": list(recorder_names),
+            "meaning": "column i is obs['joints'] coordinate i, in Fly.actuated_joints order",
+        },
     }
     return mujoco, model, provenance
 
@@ -169,22 +182,67 @@ def _id_by_base(mujoco, model, kind, count, expected):
     return matches[0]
 
 
-def _validate_model(mujoco, model, replay_names):
+def _joint_mapping(mujoco, model, replay_names, *, recorder_semantics_verified):
+    """Map recorder columns to scalar hinges without assuming model order."""
+    if not recorder_semantics_verified:
+        raise RuntimeError("M7D recorder semantics are unverified")
+    if not replay_names or len(set(replay_names)) != len(replay_names):
+        raise RuntimeError("canonical replay contains duplicate or missing joint names")
+    rows = []
+    hinge = int(mujoco.mjtJoint.mjJNT_HINGE)
+    for canonical_index, name in enumerate(replay_names):
+        jid = _id_by_base(mujoco, model, mujoco.mjtObj.mjOBJ_JOINT, model.njnt, name)
+        joint_type = int(model.jnt_type[jid])
+        if joint_type != hinge:
+            raise RuntimeError(f"canonical joint {name!r} is not a scalar hinge")
+        qadr = int(model.jnt_qposadr[jid]); bid = int(model.jnt_bodyid[jid])
+        rows.append({"canonical_index": canonical_index, "canonical_name": name,
+            "source_expression": "np.asarray(obs['joints'])[0 if ndim == 2 else ...]",
+            "source_array_index": canonical_index, "mj_joint_id": int(jid),
+            "mj_qpos_address": qadr, "mj_joint_type": "hinge",
+            "mj_body_id": bid, "mj_body_name": _name(mujoco, model, mujoco.mjtObj.mjOBJ_BODY, bid)})
+    qaddrs = [row["mj_qpos_address"] for row in rows]
+    if len(set(qaddrs)) != len(qaddrs):
+        raise RuntimeError("two canonical joints map to the same MuJoCo qpos address")
+    return rows
+
+
+def _validate_model(mujoco, model, replay_names, *, recorder_names=None,
+                    recorder_semantics_verified=False):
     if tuple(replay_names) != EXPECTED_JOINTS:
         raise RuntimeError("canonical replay joint ordering is not the frozen FlyGym 42-position order")
-    ids = []
-    for name in replay_names:
-        jid = _id_by_base(mujoco, model, mujoco.mjtObj.mjOBJ_JOINT, model.njnt, name)
-        ids.append(jid)
-    if len(set(ids)) != 42: raise RuntimeError("canonical joints do not map uniquely")
-    model_order = tuple((_name(mujoco, model, mujoco.mjtObj.mjOBJ_JOINT, jid) or "").rsplit("/", 1)[-1] for jid in ids)
-    if model_order != tuple(replay_names): raise RuntimeError("unexpected authoritative joint name mapping")
-    qaddrs = [int(model.jnt_qposadr[jid]) for jid in ids]
-    if qaddrs != sorted(qaddrs): raise RuntimeError("authoritative model qpos ordering differs from canonical 42 order")
+    recorder_names = tuple(recorder_names or ())
+    if recorder_names != tuple(replay_names):
+        affected = [{"index": i,
+                     "canonical": replay_names[i] if i < len(replay_names) else None,
+                     "recorder": recorder_names[i] if i < len(recorder_names) else None}
+                    for i in range(max(len(replay_names), len(recorder_names)))
+                    if (replay_names[i] if i < len(replay_names) else None) !=
+                       (recorder_names[i] if i < len(recorder_names) else None)]
+        raise RuntimeError(f"CANONICAL_REPLAY_JOINT_SEMANTICS_MISMATCH: {affected}")
+    rows = _joint_mapping(mujoco, model, replay_names,
+                          recorder_semantics_verified=recorder_semantics_verified)
+    ids = [row["mj_joint_id"] for row in rows]
+    qaddrs = [row["mj_qpos_address"] for row in rows]
     free = [jid for jid in range(model.njnt) if int(model.jnt_type[jid]) == int(mujoco.mjtJoint.mjJNT_FREE)]
     if len(free) != 1 or int(model.jnt_qposadr[free[0]]) != 0:
         raise RuntimeError("authoritative model must contain exactly one root freejoint at qpos[0:7]")
-    return ids, qaddrs, free[0]
+    return ids, qaddrs, free[0], rows
+
+
+def _print_mapping(rows):
+    print("CANONICAL INDEX | CANONICAL NAME | MJ JOINT ID | MJ QPOS ADR | TYPE | BODY")
+    for row in rows:
+        print(f"{row['canonical_index']:>15} | {row['canonical_name']:<22} | "
+              f"{row['mj_joint_id']:>11} | {row['mj_qpos_address']:>11} | "
+              f"{row['mj_joint_type']} | {row['mj_body_id']}:{row['mj_body_name']}")
+    print("MUJOCO QPOS ORDER")
+    for row in sorted(rows, key=lambda item: item["mj_qpos_address"]):
+        print(f"{row['mj_qpos_address']:>11} | {row['canonical_index']:>2} | {row['canonical_name']}")
+    ordered = [r["mj_qpos_address"] for r in rows] == sorted(r["mj_qpos_address"] for r in rows)
+    print(f"Canonical order matches MuJoCo qpos order: {'YES' if ordered else 'NO'}")
+    print("Canonical order is explicitly and uniquely mappable by joint name: YES")
+    print("M7D recorder semantics verified: YES")
 
 
 def _mujoco_records(mujoco, model, data, joint_ids):
@@ -272,7 +330,11 @@ def _model_comparison(mujoco, model, joint_ids):
 
 def verify_mujoco(pos, quat, joints, names, static_frames, output_path):
     mujoco, model, provenance = _flygym_model()
-    joint_ids, qaddrs, free_id = _validate_model(mujoco, model, names)
+    recorder = provenance["recorder_semantics"]
+    joint_ids, qaddrs, free_id, mapping = _validate_model(mujoco, model, names,
+        recorder_names=recorder["flygym_observation_order"],
+        recorder_semantics_verified=recorder["verified"])
+    _print_mapping(mapping)
     data = mujoco.MjData(model); frame_results = []
     for frame, static in zip(FRAMES, static_frames):
         data.qpos[:] = 0
@@ -291,7 +353,11 @@ def verify_mujoco(pos, quat, joints, names, static_frames, output_path):
         "unit": frame_results[0]["errors"][metric]["unit"]} for metric in metrics}
     result = {"schema": "M7F-VIS1C-MUJOCO-CROSSCHECK.1", "status": "COMPLETE", "provenance": provenance,
         "model_validation": {"expected_mjcf": FLYGYM_MJCF, "canonical_joint_order": list(names),
-            "root_freejoint_qpos_address": 0, "body_hierarchy_source": "compiled FlyGym model"},
+            "mujoco_qpos_order": [row["canonical_name"] for row in sorted(mapping, key=lambda x: x["mj_qpos_address"])],
+            "canonical_order_equals_mujoco_qpos_order": qaddrs == sorted(qaddrs),
+            "canonical_name_qpos_mapping_unique": True, "m7d_recorder_semantics_verified": True,
+            "joint_provenance_mapping": mapping, "root_freejoint_qpos_address": 0,
+            "body_hierarchy_source": "compiled FlyGym model"},
         "malecns_comparison": _model_comparison(mujoco, model, joint_ids), "frames": frame_results, "overall": overall,
         "counters": {"mj_forward_calls": len(FRAMES), "mj_step_calls": 0, "physics_transitions": 0, "neural_transitions": 0}}
     output_path.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")

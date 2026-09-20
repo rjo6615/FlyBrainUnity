@@ -2,6 +2,7 @@ import json
 import importlib.util
 import subprocess
 import sys
+from types import SimpleNamespace
 from pathlib import Path
 
 import pytest
@@ -58,3 +59,52 @@ def test_verify_fails_closed_before_writing_crosscheck_without_dependencies(tmp_
 ])
 def test_model_field_classification(left, right, expected):
     assert generator._classification(left, right) == expected
+
+
+def _mapping_fixture(*, names=("joint_A", "joint_B"), qaddrs=(9, 7), types=(3, 3)):
+    mujoco = SimpleNamespace(
+        mjtObj=SimpleNamespace(mjOBJ_JOINT=0, mjOBJ_BODY=1),
+        mjtJoint=SimpleNamespace(mjJNT_HINGE=3),
+        mj_id2name=lambda model, kind, index: model.joint_names[index] if kind == 0 else model.body_names[index],
+    )
+    model = SimpleNamespace(njnt=len(names), joint_names=list(names), body_names=["body_A", "body_B"],
+        jnt_qposadr=list(qaddrs), jnt_type=list(types), jnt_bodyid=[0, 1])
+    return mujoco, model
+
+
+def test_unique_name_mapping_need_not_match_global_qpos_order():
+    mujoco, model = _mapping_fixture()
+    rows = generator._joint_mapping(mujoco, model, ("joint_A", "joint_B"),
+                                    recorder_semantics_verified=True)
+    assert [row["mj_qpos_address"] for row in rows] == [9, 7]
+    assert [row["canonical_name"] for row in sorted(rows, key=lambda row: row["mj_qpos_address"])] == ["joint_B", "joint_A"]
+
+
+def test_joint_mapping_rejects_missing_name():
+    mujoco, model = _mapping_fixture()
+    with pytest.raises(RuntimeError, match="maps .* 0 times"):
+        generator._joint_mapping(mujoco, model, ("joint_A", "joint_missing"), recorder_semantics_verified=True)
+
+
+def test_joint_mapping_rejects_duplicate_name():
+    mujoco, model = _mapping_fixture()
+    with pytest.raises(RuntimeError, match="duplicate"):
+        generator._joint_mapping(mujoco, model, ("joint_A", "joint_A"), recorder_semantics_verified=True)
+
+
+def test_joint_mapping_rejects_duplicate_qpos_address():
+    mujoco, model = _mapping_fixture(qaddrs=(7, 7))
+    with pytest.raises(RuntimeError, match="same MuJoCo qpos"):
+        generator._joint_mapping(mujoco, model, ("joint_A", "joint_B"), recorder_semantics_verified=True)
+
+
+def test_joint_mapping_rejects_non_scalar_joint():
+    mujoco, model = _mapping_fixture(types=(3, 2))
+    with pytest.raises(RuntimeError, match="not a scalar hinge"):
+        generator._joint_mapping(mujoco, model, ("joint_A", "joint_B"), recorder_semantics_verified=True)
+
+
+def test_joint_mapping_rejects_unverified_recorder_semantics():
+    mujoco, model = _mapping_fixture()
+    with pytest.raises(RuntimeError, match="semantics are unverified"):
+        generator._joint_mapping(mujoco, model, ("joint_A", "joint_B"), recorder_semantics_verified=False)
