@@ -25,7 +25,7 @@ CONDITIONS = ("SPONTANEOUS_NEURAL_EMBODIMENT", "ALL_NEURAL_MOTOR_DISABLED")
 ADMITTED_MOTOR = TIER_A + EXPECTED_TIER_B
 ADMITTED_SENSORY = TIER_A
 OUTPUT = Path(__file__).resolve().parent / "interface_output" / "m7_spontaneous_locomotion.json"
-PREFLIGHT = Path(__file__).resolve().parent / "interface_output" / "m7_windows_preflight_v2.json"
+PREFLIGHT = Path(__file__).resolve().parent / "interface_output" / "m7_windows_preflight_v3.json"
 RESULT_DIRECTORY = Path(__file__).resolve().parent / "interface_output" / "m7_canonical"
 EXPECTED_PHYSICS_TRANSITIONS = 50000
 EXPECTED_NEURAL_UPDATES = 10000
@@ -142,10 +142,14 @@ def write_aborted(directory: Path, exc: BaseException, completed: int, elapsed: 
     """Preserve an engineering abort separately; never call it a result."""
     stamp = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
     path = directory / f"ABORTED_IMPLEMENTATION_{stamp}_{os.getpid()}.json"
-    write_json_exclusive(path, {"schema": "M7-ABORT.1", "artifact_kind": "NON_SCIENTIFIC_ATTEMPT_PROVENANCE",
-        "run_status": "ABORTED_IMPLEMENTATION_FAILURE", "classification": None,
+    status = getattr(exc, "run_status", "ABORTED_IMPLEMENTATION_FAILURE")
+    payload = {"schema": "M7-ABORT.1", "artifact_kind": "NON_SCIENTIFIC_ATTEMPT_PROVENANCE",
+        "run_status": status, "classification": None,
         "completed_condition_count": completed, "exception": f"{type(exc).__name__}: {exc}",
-        "elapsed_wall_seconds": elapsed})
+        "elapsed_wall_seconds": elapsed}
+    details = getattr(exc, "details", None)
+    if callable(details): payload["telemetry_schema_failure"] = details()
+    write_json_exclusive(path, payload)
     return path
 
 
@@ -188,7 +192,7 @@ def reduce_results(results: Mapping[str, Mapping[str, Any]], table: Sequence[Map
             "per_joint_range_of_motion": np.ptp(np.asarray(arrays["physics_joint_position"])[:, indices], axis=0).tolist(),
             "contact_nonzero_samples": int(np.count_nonzero(arrays["physics_contact_forces"])),
             "admitted_channel_peak_abs": np.max(np.abs(neural_contribution), axis=0).tolist(),
-            "validated_sensory_peak_hz": np.max(sensory, axis=(0, 2)).tolist(),
+            "validated_sensory_peak_hz": np.max(sensory, axis=0).tolist(),
             "cns_final_aggregate_spikes": int(arrays["neural_aggregate_spikes"][-1]),
             "fall": bool(pos[:, 2].min() < THRESHOLDS["fall_height_fraction"] * pos[0, 2]),
             "rollover": bool(np.any(up_z <= THRESHOLDS["rollover_body_up_z_max"]))}
@@ -237,7 +241,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         validate_preflight(protocol)
         from ._windows_m7_spontaneous_locomotion_adapter import run_preflight
         run_preflight(PREFLIGHT)
-        print("M7 WINDOWS SCIENTIFIC PREFLIGHT PASS — ZERO STEPS — SCIENCE NOT RUN")
+        print("M7 WINDOWS SCIENTIFIC PREFLIGHT PASS — TELEMETRY SCHEMA VALID — ZERO STEPS — SCIENCE NOT RUN")
     if args.run_windows:
         from ._windows_m7_spontaneous_locomotion_adapter import run_canonical
         run_canonical(OutputPaths.canonical(args.output_directory))

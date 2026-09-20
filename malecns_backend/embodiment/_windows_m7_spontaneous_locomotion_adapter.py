@@ -98,15 +98,32 @@ def run_preflight(output_path: Path, runner: Callable[..., Mapping[str, Any]] = 
     audits = [x["initial_physical_state_audit"] for x in states]
     if audits[0] != audits[1] or audits[0]["adhesion_enabled"] or audits[0]["locomotion_or_reference_controller"]:
         raise RuntimeError("physical setup, adhesion, or hidden-controller audit failure")
-    report = {"schema": "M7-PREFLIGHT.1", "artifact_kind": "NON_SCIENTIFIC_PREFLIGHT",
+    schemas = [x.get("telemetry_schema") for x in states]
+    if (not schemas[0] or schemas[0] != schemas[1] or
+            any(x.get("telemetry_object_dtype") or not x.get("telemetry_npz_roundtrip") for x in states)):
+        raise RuntimeError("compact telemetry schema or NPZ round-trip preflight failure")
+    required = {"physics_qpos", "physics_qvel", "physics_joint_position", "physics_action",
+        "physics_ctrl", "physics_body_position", "physics_body_orientation", "physics_contact_forces",
+        "physics_time_ms", "physics_finite", "neural_time_ms", "neural_sensory_encoded",
+        "neural_delivered_drive_count", "neural_aggregate_spikes", "neural_observer_outputs",
+        "neural_decoder_outputs", "neural_admitted_contributions"}
+    if set(schemas[0]) != required or schemas[0]["neural_sensory_encoded"]["sample_shape"] != [6] or any(
+            schemas[0][name]["sample_shape"] != [11] for name in
+            ("neural_observer_outputs", "neural_decoder_outputs", "neural_admitted_contributions")):
+        raise RuntimeError("compact telemetry field inventory or interface dimensions mismatch")
+    report = {"schema": "M7-PREFLIGHT.3", "artifact_kind": "NON_SCIENTIFIC_PREFLIGHT",
         "run_status": "PASS", "scientific_run_executed": False,
         "scientific_transitions": 0, "conditions": list(m7.CONDITIONS),
         "initial_physical_state": audits[0], "environment_construction_count": 2,
+        "compact_telemetry_schema": schemas[0],
         "checks": {"m6c_final_evidence_lock": True, "protocol": True,
             "actual_flygym_mujoco_environment": True, "actual_malecns_runtime": True,
             "strict_initial_equivalence": True, "adhesion_constant_zero_disabled": True,
             "exact_motor_admissions": True, "exact_sensory_admissions": True,
-            "telemetry_writers": True, "immutable_output_paths": True,
+            "telemetry_writers": True, "telemetry_schema_fixed_numeric": True,
+            "telemetry_npz_roundtrip_allow_pickle_false": True, "telemetry_object_dtype_absent": True,
+            "six_sensory_channels": True, "eleven_observer_decoder_contribution_channels": True,
+            "immutable_output_paths": True,
             "no_per_step_environment_construction": True, "hidden_controller_audit": True,
             "zero_sim_steps": True, "zero_brain_steps": True}}
     m7.write_json_exclusive(output_path, report)
