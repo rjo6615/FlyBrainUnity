@@ -42,3 +42,4 @@ __pycache__/
 .DS_Store
 Thumbs.db
 malecns_backend/embodiment/interface_output/instrumented_proprioceptive_closed_loop_telemetry.npz
+malecns_backend/embodiment/interface_output/integrated_whole_leg_readiness.json
