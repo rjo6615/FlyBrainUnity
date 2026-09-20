@@ -128,50 +128,54 @@ namespace FlyBrain.Tests
             finally { Object.DestroyImmediate(go); }
         }
 
-        [Test] public void ScientificSegmentsJoinExactModelDerivedPivotsAndMarkersAreDebugOnly()
+        [Test] public void ScientificSegmentsAndPivotsComeFromAuthoritativeArtifact()
         {
             var go = new GameObject("kinematic geometry test");
             try
             {
                 go.AddComponent<M7FScientificFlyBuilder>().Rebuild(); var rig = go.GetComponent<M7FFlyRig>();
-                foreach (var leg in M7FScientificFlyRigDefinition.Legs)
+                foreach (var body in M7FScientificFlyRigDefinition.Data.bodies)
                 {
-                    var segments = new[] { "Coxa", "Femur", "Tibia", "Tarsus" };
-                    var next = new[] { "Femur_roll", "Tibia", "Tarsus1" };
-                    for (var i = 0; i < 4; i++)
-                    {
-                        var distal = Descendant(rig.ScientificRoot, leg + "_" + segments[i] + "Visual_DistalReference");
-                        Assert.That(distal, Is.Not.Null);
-                        Assert.That(distal.localPosition, Is.EqualTo(M7FScientificFlyRigDefinition.SegmentEndpoint(leg, i)));
-                        if (i < 3) Assert.That((distal.position - Descendant(rig.ScientificRoot, "joint_" + leg + next[i]).position).magnitude, Is.LessThan(1e-6f));
-                    }
+                    var distal = Descendant(rig.ScientificRoot, body.name + "_Segment_DistalReference");
+                    var expected = M7FCoordinates.SourcePositionToUnity(M7FScientificFlyRigDefinition.Vector(body.segment_endpoint_local)) * M7FCoordinates.MillimetresToUnity;
+                    Assert.That(distal, Is.Not.Null); Assert.That((distal.localPosition - expected).magnitude, Is.LessThan(1e-7f));
                 }
                 foreach (var binding in rig.Joints)
                 {
-                    var marker = Descendant(binding.transform, binding.jointName + "_JointMarker");
-                    Assert.That(marker, Is.Not.Null); Assert.That(marker.gameObject.activeSelf, Is.False);
+                    var marker = Descendant(binding.transform, binding.jointName + "_Pivot");
+                    Assert.That(marker, Is.Not.Null); Assert.That(marker.gameObject.activeSelf, Is.True);
                     Assert.That(marker.localPosition, Is.EqualTo(Vector3.zero));
                 }
             }
             finally { Object.DestroyImmediate(go); }
         }
 
-        [Test] public void SelectedCanonicalFramesKeepEveryScientificChainConnected()
+        [Test] public void AuthoritativeArtifactDeclaresCompiledFlyGymProvenanceAndMapping()
         {
-            var go = new GameObject("multi frame kinematic test");
+            var data = M7FScientificFlyRigDefinition.Data;
+            Assert.That(data.provenance.flygym_version, Is.EqualTo("1.2.1"));
+            Assert.That(data.provenance.mujoco_version, Is.EqualTo("3.2.7"));
+            Assert.That(data.provenance.mjcf_filename, Is.EqualTo("neuromechfly_seqik_kinorder_ypr.xml"));
+            Assert.That(data.provenance.mjcf_sha256, Has.Length.EqualTo(64));
+            var addresses = new System.Collections.Generic.HashSet<int>();
+            foreach (var body in data.bodies) foreach (var joint in body.joints) Assert.That(addresses.Add(joint.mj_qpos_address), Is.True);
+            Assert.That(addresses.Count, Is.EqualTo(42));
+        }
+
+        [Test] public void NineNativeMjForwardFramesAreTheNumericalAcceptanceGate()
+        {
+            var go = new GameObject("authoritative validation");
             try
             {
                 var loader = go.AddComponent<M7FReplayLoader>(); loader.Load();
-                go.AddComponent<M7FScientificFlyBuilder>().Rebuild(); var rig = go.GetComponent<M7FFlyRig>();
-                foreach (var frame in new[] { 0, 540, 541, 785, 1210, 1570, 2500, 3980, 5000 })
-                {
-                    rig.Apply(loader.Enabled, frame, frame, 0);
-                    foreach (var leg in M7FScientificFlyRigDefinition.Legs)
-                    {
-                        var visuals = new[] { "Coxa", "Femur", "Tibia" }; var next = new[] { "Femur_roll", "Tibia", "Tarsus1" };
-                        for (var i = 0; i < 3; i++) Assert.That((Descendant(rig.ScientificRoot, leg + "_" + visuals[i] + "Visual_DistalReference").position - Descendant(rig.ScientificRoot, "joint_" + leg + next[i]).position).magnitude, Is.LessThan(1e-6f), leg + " frame " + frame);
-                    }
-                }
+                go.AddComponent<M7FScientificFlyBuilder>().Rebuild();
+                var report = M7FAuthoritativeRigValidator.Validate(go.GetComponent<M7FFlyRig>(), loader.Enabled, M7FAuthoritativeRigValidator.Load());
+                Assert.That(report.PivotPosition.Samples, Is.EqualTo(9 * 42));
+                Assert.That(report.BodyPosition.Samples, Is.EqualTo(9 * 24));
+                Assert.That(report.SegmentEndpoint.Samples, Is.EqualTo(9 * 24));
+                Assert.That(report.PivotPosition.Maximum, Is.LessThanOrEqualTo(M7FAuthoritativeRigValidator.PositionTolerance));
+                Assert.That(report.AxisAngular.Maximum, Is.LessThanOrEqualTo(M7FAuthoritativeRigValidator.AngularToleranceRadians));
+                Assert.That(report.BodyOrientation.Maximum, Is.LessThanOrEqualTo(M7FAuthoritativeRigValidator.AngularToleranceRadians));
             }
             finally { Object.DestroyImmediate(go); }
         }

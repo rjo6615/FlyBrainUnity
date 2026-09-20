@@ -25,10 +25,34 @@ def test_static_kinematic_reference_is_deterministic_and_transition_free(tmp_pat
     }
 
 
-def test_checked_in_reference_matches_generator(tmp_path):
+def test_vis1b_reference_is_archived_as_invalid_not_authoritative(tmp_path):
     output = tmp_path / "reference.json"
     subprocess.run([sys.executable, "tools/generate_m7f_kinematic_reference.py", "--output", str(output)], check=True)
-    assert output.read_bytes() == open("FlyBrainUnity/Assets/StreamingAssets/M7FValidation/m7f_frame0_kinematic_reference.json", "rb").read()
+    generated = json.loads(output.read_text())
+    archived = json.loads(Path("FlyBrainUnity/Assets/StreamingAssets/M7FValidation/m7f_vis1b_invalid_reference.json").read_text())
+    # Windows and POSIX serialize the two provenance paths with different separators.
+    assert generated["frames"] == archived["frames"]
+    assert generated["evaluation"] == archived["evaluation"]
+    assert not Path("FlyBrainUnity/Assets/StreamingAssets/M7FValidation/m7f_frame0_kinematic_reference.json").exists()
+
+
+def test_vis2_artifacts_are_deterministic_and_complete(tmp_path):
+    rig = tmp_path / "rig.json"; reference = tmp_path / "reference.json"
+    subprocess.run([sys.executable, "tools/build_m7f_vis2_artifacts.py", "--rig-output", str(rig),
+                    "--reference-output", str(reference)], check=True)
+    checked_rig = Path("FlyBrainUnity/Assets/StreamingAssets/M7FValidation/m7f_authoritative_rig.json")
+    checked_reference = Path("FlyBrainUnity/Assets/StreamingAssets/M7FValidation/m7f_mujoco_reference_frames.json")
+    assert rig.read_bytes() == checked_rig.read_bytes()
+    assert reference.read_bytes() == checked_reference.read_bytes()
+    rig_data = json.loads(rig.read_text()); native = json.loads(reference.read_text())
+    assert len(rig_data["bodies"]) == 24
+    assert rig_data["root_body"]["name"] == "Thorax"
+    joints = [joint for body in rig_data["bodies"] for joint in body["joints"]]
+    assert len(joints) == len({joint["name"] for joint in joints}) == 42
+    assert len({joint["mj_qpos_address"] for joint in joints}) == 42
+    assert [frame["frame"] for frame in native["frames"]] == list(generator.FRAMES)
+    assert native["counters"] == {"mj_forward_calls": 9, "mj_step_calls": 0,
+                                   "physics_transitions": 0, "neural_transitions": 0}
 
 
 def test_authoritative_contract_matches_frozen_m7d_provenance():

@@ -1,93 +1,81 @@
 using System;
-using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 namespace FlyBrain.M7FReplay
 {
+    [Serializable] public sealed class M7FRigProvenance
+    {
+        public string flygym_version, mujoco_version, mjcf_filename, mjcf_sha256, assembled_xml_sha256;
+        public string source, coordinate_convention, model_length_unit;
+        public float model_length_to_unity;
+    }
+    [Serializable] public sealed class M7FAuthoritativeJoint
+    {
+        public string name, type;
+        public double[] local_position, local_axis;
+        public int declaration_order, canonical_replay_index, mj_joint_id, mj_qpos_address;
+    }
+    [Serializable] public sealed class M7FAuthoritativeBody
+    {
+        public string name, parent_body;
+        public double[] local_position, local_quaternion_wxyz, segment_endpoint_local;
+        public M7FAuthoritativeJoint[] joints;
+    }
+    [Serializable] public sealed class M7FAuthoritativeRig
+    {
+        public string schema, status;
+        public M7FRigProvenance provenance;
+        public M7FAuthoritativeBody root_body;
+        public string[] canonical_joint_names;
+        public M7FAuthoritativeBody[] bodies;
+    }
+
     /// <summary>
-    /// Frozen visualization metadata transcribed from fruitfly.xml.  MuJoCo lists
-    /// coincident hinges in XML order: abduct(z), twist(y), extend(x) at the coxa,
-    /// then twist(y), extend(x) at the femur, followed by tibia/tarsus extend(x).
-    /// A reflection B(x,y,z)=(x,z,y) changes an axial vector as det(B)B, hence the
-    /// Unity hinge axes below are -B(sourceAxis), not a guessed component swap.
+    /// Loader and coordinate conversion for constants extracted from the compiled
+    /// FlyGym 1.2.1 seqik model. MaleCNS XML is deliberately not consulted.
     /// </summary>
     public static class M7FScientificFlyRigDefinition
     {
         public const int JointCount = 42;
-        public const string Evidence = "fly-brain-main/body/flybody/fruitfly.xml lines 92-190, 460-655";
-        public static readonly string[] Legs = { "LF", "LM", "LH", "RF", "RM", "RH" };
-        static readonly string[] Suffixes = { "Coxa", "Coxa_roll", "Coxa_yaw", "Femur", "Femur_roll", "Tibia", "Tarsus1" };
+        public const string ArtifactName = "m7f_authoritative_rig.json";
+        static M7FAuthoritativeRig cached;
 
-        public static readonly string[] CanonicalNames = BuildNames();
-        static string[] BuildNames()
+        public static M7FAuthoritativeRig Load(string path = null)
         {
-            var result = new string[JointCount]; var n = 0;
-            foreach (var leg in Legs) foreach (var suffix in Suffixes) result[n++] = "joint_" + leg + suffix;
-            return result;
+            path ??= Path.Combine(Application.streamingAssetsPath, "M7FValidation", ArtifactName);
+            var value = JsonUtility.FromJson<M7FAuthoritativeRig>(File.ReadAllText(path));
+            if (value == null || value.schema != "M7F-VIS2-AUTHORITATIVE-RIG.1" ||
+                value.status != "AUTHORITATIVE_CONSTANTS_EXTRACTED" || value.root_body == null || value.root_body.name != "Thorax" || value.bodies == null || value.bodies.Length != 24 ||
+                value.canonical_joint_names == null || value.canonical_joint_names.Length != JointCount)
+                throw new InvalidDataException("M7F VIS2 authoritative rig artifact is incomplete or has the wrong schema.");
+            var names = new System.Collections.Generic.HashSet<string>();
+            var count = 0;
+            foreach (var body in value.bodies) foreach (var joint in body.joints)
+            {
+                count++;
+                if (joint.type != "hinge" || !names.Add(joint.name) || joint.canonical_replay_index < 0 || joint.canonical_replay_index >= JointCount)
+                    throw new InvalidDataException("M7F VIS2 authoritative joint mapping is invalid.");
+                if (value.canonical_joint_names[joint.canonical_replay_index] != joint.name)
+                    throw new InvalidDataException("M7F VIS2 canonical-name mapping is inconsistent.");
+            }
+            if (count != JointCount) throw new InvalidDataException("M7F VIS2 authoritative rig does not contain exactly 42 hinges.");
+            return value;
         }
 
+        public static M7FAuthoritativeRig Data => cached ??= Load();
+        public static string[] CanonicalNames => Data.canonical_joint_names;
+        public static bool IsCanonical(string name) => Array.IndexOf(CanonicalNames, name) >= 0;
+        public static System.Collections.Generic.IReadOnlyList<string> Names => CanonicalNames;
         public static Vector3 SourceAxis(string canonicalName)
         {
-            if (canonicalName.EndsWith("Coxa_roll", StringComparison.Ordinal)) return Vector3.forward;
-            if (canonicalName.EndsWith("Coxa_yaw", StringComparison.Ordinal) || canonicalName.EndsWith("Femur_roll", StringComparison.Ordinal)) return Vector3.up;
-            return Vector3.right;
+            foreach (var body in Data.bodies) foreach (var joint in body.joints)
+                if (joint.name == canonicalName) return Vector(joint.local_axis);
+            throw new ArgumentOutOfRangeException(nameof(canonicalName));
         }
-
         public static Vector3 UnityAxis(string canonicalName) => M7FCoordinates.SourceAxialToUnity(SourceAxis(canonicalName));
-
-        // XML order is significant for multiple hinges on one MuJoCo body.
-        public static string[] HierarchyOrder(string leg) => new[] {
-            "joint_" + leg + "Coxa_roll", "joint_" + leg + "Coxa_yaw", "joint_" + leg + "Coxa",
-            "joint_" + leg + "Femur_roll", "joint_" + leg + "Femur", "joint_" + leg + "Tibia", "joint_" + leg + "Tarsus1"
-        };
-
-        public static bool IsCanonical(string name) => Array.IndexOf(CanonicalNames, name) >= 0;
-        public static IReadOnlyList<string> Names => CanonicalNames;
-
-        // w,x,y,z values copied verbatim from the six coxa/femur/tibia/tarsus bodies in the frozen MJCF.
-        static readonly float[,,] BodyQuaternions = {
-            { {-.532f,.787f,-.311f,-.0229f}, {0,0,.252f,.968f}, {.186f,.162f,.677f,-.694f}, {.039f,.998f,.00674f,.0474f} },
-            { {-.371f,.917f,-.126f,-.0722f}, {0,0,.128f,.992f}, {.107f,.0834f,.656f,-.742f}, {-.148f,.978f,-.0216f,-.143f} },
-            { {.681f,-.529f,-.0882f,.498f}, {0,0,-.668f,-.744f}, {-.117f,-.104f,-.711f,.685f}, {-.23f,.963f,-.033f,-.138f} },
-            { {.319f,.011f,-.543f,-.777f}, {0,0,.261f,.965f}, {.163f,.148f,.688f,-.692f}, {-.0745f,-.995f,.0133f,.0704f} },
-            { {.126f,-.0709f,-.374f,-.916f}, {0,0,.134f,.991f}, {.0902f,.103f,.659f,-.739f}, {.15f,-.982f,.0172f,.113f} },
-            { {-.0854f,-.505f,-.673f,-.534f}, {0,0,.661f,.751f}, {-.121f,-.111f,-.708f,.686f}, {.223f,-.965f,.0313f,.136f} }
-        };
-        static readonly Vector3[,] BodyPositions = {
-            { new(.0317f,.0209f,-.0272f), new(0,.0437f,0), new(0,.0697f,0), new(0,-.051f,.00175f) },
-            { new(-.0144f,.0241f,-.0425f), new(0,.0281f,0), new(0,.083f,0), new(0,-.0668f,.00175f) },
-            { new(-.0377f,.0192f,-.0402f), new(-.00398f,.0232f,-.00668f), new(0,.0779f,.00000016f), new(0,-.0715f,.00175f) },
-            { new(.0317f,-.0209f,-.0272f), new(0,-.0436f,0), new(0,-.0698f,0), new(0,.0515f,-.00175f) },
-            { new(-.0144f,-.0241f,-.0425f), new(0,-.0282f,0), new(0,-.084f,0), new(0,.0665f,-.00175f) },
-            { new(-.0377f,-.0192f,-.0402f), new(.00383f,-.0232f,.0066f), new(0,-.077f,.000000196f), new(0,.0721f,-.00175f) }
-        };
-
-        public static Quaternion BodyReferenceRotation(string leg, int segment)
-        {
-            var index = Array.IndexOf(Legs, leg); if (index < 0 || segment < 0 || segment > 3) throw new ArgumentOutOfRangeException();
-            var source = new Quaternion(BodyQuaternions[index,segment,1], BodyQuaternions[index,segment,2], BodyQuaternions[index,segment,3], BodyQuaternions[index,segment,0]);
-            return M7FCoordinates.SourceQuaternionToUnity(source);
-        }
-        public static Vector3 BodyReferencePosition(string leg, int segment)
-        {
-            var index = Array.IndexOf(Legs, leg); if (index < 0 || segment < 0 || segment > 3) throw new ArgumentOutOfRangeException();
-            return M7FCoordinates.SourcePositionToUnity(BodyPositions[index, segment]) * M7FCoordinates.MillimetresToUnity;
-        }
-
-        // Distal end of tarsus1, from the frozen collision geom's fromto.  The
-        // preceding three segment endpoints are the next MJCF body's local pos.
-        static readonly Vector3[] TarsusEndpoints = {
-            new(-.000165f,.0235f,.00174f), new(.000471f,.0342f,.00136f), new(.00027f,.0337f,.00102f),
-            new(-.000965f,-.0227f,-.00161f), new(-.000367f,-.0339f,-.00103f), new(-.00073f,-.0338f,-.00122f)
-        };
-
-        public static Vector3 SegmentEndpoint(string leg, int segment)
-        {
-            if (segment < 0 || segment > 3) throw new ArgumentOutOfRangeException(nameof(segment));
-            if (segment < 3) return BodyReferencePosition(leg, segment + 1);
-            var index = Array.IndexOf(Legs, leg); if (index < 0) throw new ArgumentOutOfRangeException(nameof(leg));
-            return M7FCoordinates.SourcePositionToUnity(TarsusEndpoints[index]) * M7FCoordinates.MillimetresToUnity;
-        }
+        public static Vector3 Vector(double[] value) => new((float)value[0], (float)value[1], (float)value[2]);
+        public static Quaternion QuaternionWxyz(double[] value) => new((float)value[1], (float)value[2], (float)value[3], (float)value[0]);
     }
 
     public static class M7FCoordinates
@@ -95,16 +83,12 @@ namespace FlyBrain.M7FReplay
         public const float MillimetresToUnity = .1f;
         public static Vector3 SourcePositionToUnity(Vector3 value) => new(value.x, value.z, value.y);
         public static Vector3 SourceAxialToUnity(Vector3 axis) => -SourcePositionToUnity(axis);
-
         public static Quaternion SourceQuaternionToUnity(Quaternion source)
         {
-            if (!IsFinite(source) || (source.x * source.x + source.y * source.y + source.z * source.z + source.w * source.w) < 1e-12f)
-            throw new ArgumentException("Source quaternion must be finite and non-zero.");            source = Quaternion.Normalize(source);
-            var forward = SourcePositionToUnity(source * Vector3.forward);
-            var up = SourcePositionToUnity(source * Vector3.up);
-            return Quaternion.LookRotation(forward, up);
+            if (!IsFinite(source) || source.sqrMagnitude < 1e-12f) throw new ArgumentException("Source quaternion must be finite and non-zero.");
+            source = Quaternion.Normalize(source);
+            return Quaternion.LookRotation(SourcePositionToUnity(source * Vector3.forward), SourcePositionToUnity(source * Vector3.up));
         }
-
         public static bool IsFinite(Quaternion q) => !(float.IsNaN(q.x) || float.IsInfinity(q.x) || float.IsNaN(q.y) || float.IsInfinity(q.y) || float.IsNaN(q.z) || float.IsInfinity(q.z) || float.IsNaN(q.w) || float.IsInfinity(q.w));
     }
 }

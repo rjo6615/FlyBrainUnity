@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace FlyBrain.M7FReplay
 {
-    [Serializable] sealed class M7FReferenceFile { public M7FReferenceFrame[] frames; }
-    [Serializable] sealed class M7FReferenceFrame { public int frame; public M7FReferenceSegment[] segments; }
+    [Serializable] sealed class M7FReferenceFile { public string schema, status; public M7FReferenceFrame[] frames; }
+    [Serializable] sealed class M7FReferenceFrame { public int frame; public M7FReferenceSegment[] bodies; }
     [Serializable] sealed class M7FReferenceSegment { public M7FReferenceJoint[] joints; }
     [Serializable] sealed class M7FReferenceJoint { public string canonical_name; public double[] pivot; }
 
-    /// <summary>Optional, non-scientific debug overlay loaded from static validation metadata.</summary>
+    /// <summary>Optional debug overlay loaded from independent native mj_forward references.</summary>
     public sealed class M7FKinematicReferenceOverlay : MonoBehaviour
     {
         [SerializeField] bool showReferenceOverlay;
@@ -19,14 +19,16 @@ namespace FlyBrain.M7FReplay
         public void RefreshFrame0()
         {
             if (container != null) { if (Application.isPlaying) Destroy(container.gameObject); else DestroyImmediate(container.gameObject); }
-            container = new GameObject("FrozenModelReferenceOverlay_DEBUG_ONLY").transform;
+            container = new GameObject("NativeMuJoCoReferenceOverlay_DEBUG_ONLY").transform;
             container.SetParent(transform, false); container.gameObject.SetActive(showReferenceOverlay);
-            var path = Path.Combine(Application.streamingAssetsPath, "M7FValidation", "m7f_frame0_kinematic_reference.json");
+            var path = Path.Combine(Application.streamingAssetsPath, "M7FValidation", "m7f_mujoco_reference_frames.json");
             var reference = JsonUtility.FromJson<M7FReferenceFile>(File.ReadAllText(path));
+            if (reference == null || reference.schema != "M7F-VIS2-MUJOCO-REFERENCE.1" || reference.status != "NATIVE_MJ_FORWARD_COMPLETE")
+                throw new InvalidDataException("Native MuJoCo overlay reference is incomplete.");
             var frame = Array.Find(reference.frames, value => value.frame == 0);
             var shader = Shader.Find("Standard") ?? Shader.Find("Universal Render Pipeline/Lit");
             var material = new Material(shader) { name = "Frozen reference pivot (cyan)", color = Color.cyan };
-            foreach (var segment in frame.segments) foreach (var joint in segment.joints)
+            foreach (var segment in frame.bodies) foreach (var joint in segment.joints)
             {
                 var marker = GameObject.CreatePrimitive(PrimitiveType.Cube); marker.name = joint.canonical_name + "_FrozenReferenceMarker";
                 marker.transform.SetParent(container, false);
