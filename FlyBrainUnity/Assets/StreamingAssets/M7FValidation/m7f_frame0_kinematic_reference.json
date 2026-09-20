@@ -1,9 +1,9 @@
 {
   "schema": "m7f-kinematic-reference-v1",
   "purpose": "visualization validation only",
-  "source_xml": "fly-brain-main/body/flybody/fruitfly.xml",
+  "source_xml": "fly-brain-main\\body\\flybody\\fruitfly.xml",
   "source_xml_sha256": "d14946fd0311025ecca70c8eeb5de80e1fe18700d3072be37ecbb18d33d80fd8",
-  "source_replay": "FlyBrainUnity/Assets/StreamingAssets/M7FReplay/m7f_enabled_replay.bin",
+  "source_replay": "FlyBrainUnity\\Assets\\StreamingAssets\\M7FReplay\\m7f_enabled_replay.bin",
   "source_replay_sha256": "00c8d8d188133884ca11c13924c5155e38b2532b41db1c4d326cc0ab20051ccc",
   "coordinate_convention": "frozen MJCF source coordinates and model units; quaternion wxyz",
   "frames": [
