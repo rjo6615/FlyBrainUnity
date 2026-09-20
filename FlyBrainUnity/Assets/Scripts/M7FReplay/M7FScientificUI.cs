@@ -34,11 +34,13 @@ namespace FlyBrain.M7FReplay
             if (GUILayout.Button(controller.IsPlaying ? "Pause" : "Play")) controller.TogglePlayback();
             if (GUILayout.Button("Restart")) controller.Restart(); if (GUILayout.Button("< Frame")) controller.Step(-1); if (GUILayout.Button("Frame >")) controller.Step(1);
             GUILayout.EndHorizontal();
-            GUI.BeginChangeCheck();
-            var scrub = GUILayout.HorizontalSlider(controller.Frame / (float)(Current.PhysicsCount - 1), 0, 1);
-            if (GUI.EndChangeCheck()) controller.ScrubNormalized(scrub);
-            GUILayout.BeginHorizontal();
-            if (GUILayout.Button("Enabled")) controller.SetCondition(M7FCondition.Enabled);
+var currentScrub = controller.Frame / (float)(Current.PhysicsCount - 1);
+var scrub = GUILayout.HorizontalSlider(currentScrub, 0f, 1f);
+
+if (!Mathf.Approximately(scrub, currentScrub))
+    controller.ScrubNormalized(scrub);
+
+GUILayout.BeginHorizontal();            if (GUILayout.Button("Enabled")) controller.SetCondition(M7FCondition.Enabled);
             if (GUILayout.Button("Disabled")) controller.SetCondition(M7FCondition.Disabled);
             if (GUILayout.Button("Side-by-side")) controller.SetCondition(M7FCondition.SideBySide);
             GUILayout.EndHorizontal();
