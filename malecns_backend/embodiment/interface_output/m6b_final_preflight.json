@@ -1,0 +1,1195 @@
+{
+  "all_failures": [
+    {
+      "action_index": 3,
+      "actuator": "joint_LFFemur",
+      "actuator_ctrlrange": [
+        -1000000.0,
+        1000000.0
+      ],
+      "joint_range": [
+        0.0,
+        0.0
+      ],
+      "reason": "inactive joint-range placeholder was numerically intersected"
+    },
+    {
+      "action_index": 6,
+      "actuator": "joint_LFTarsus1",
+      "actuator_ctrlrange": [
+        -1000000.0,
+        1000000.0
+      ],
+      "joint_range": [
+        0.0,
+        0.0
+      ],
+      "reason": "inactive joint-range placeholder was numerically intersected"
+    },
+    {
+      "action_index": 10,
+      "actuator": "joint_LMFemur",
+      "actuator_ctrlrange": [
+        -1000000.0,
+        1000000.0
+      ],
+      "joint_range": [
+        0.0,
+        0.0
+      ],
+      "reason": "inactive joint-range placeholder was numerically intersected"
+    },
+    {
+      "action_index": 17,
+      "actuator": "joint_LHFemur",
+      "actuator_ctrlrange": [
+        -1000000.0,
+        1000000.0
+      ],
+      "joint_range": [
+        0.0,
+        0.0
+      ],
+      "reason": "inactive joint-range placeholder was numerically intersected"
+    },
+    {
+      "action_index": 24,
+      "actuator": "joint_RFFemur",
+      "actuator_ctrlrange": [
+        -1000000.0,
+        1000000.0
+      ],
+      "joint_range": [
+        0.0,
+        0.0
+      ],
+      "reason": "inactive joint-range placeholder was numerically intersected"
+    },
+    {
+      "action_index": 27,
+      "actuator": "joint_RFTarsus1",
+      "actuator_ctrlrange": [
+        -1000000.0,
+        1000000.0
+      ],
+      "joint_range": [
+        0.0,
+        0.0
+      ],
+      "reason": "inactive joint-range placeholder was numerically intersected"
+    },
+    {
+      "action_index": 31,
+      "actuator": "joint_RMFemur",
+      "actuator_ctrlrange": [
+        -1000000.0,
+        1000000.0
+      ],
+      "joint_range": [
+        0.0,
+        0.0
+      ],
+      "reason": "inactive joint-range placeholder was numerically intersected"
+    },
+    {
+      "action_index": 38,
+      "actuator": "joint_RHFemur",
+      "actuator_ctrlrange": [
+        -1000000.0,
+        1000000.0
+      ],
+      "joint_range": [
+        0.0,
+        0.0
+      ],
+      "reason": "inactive joint-range placeholder was numerically intersected"
+    }
+  ],
+  "artifact_kind": "NON_SCIENTIFIC_PREFLIGHT",
+  "checks": {
+    "action_indices_locked": true,
+    "action_order_42": true,
+    "canonical_artifact_not_run": true,
+    "dependencies_import": true,
+    "environment_constructed": true,
+    "exact_eight_eligible": true,
+    "exact_six_unresolved_excluded": true,
+    "excluded_contributions_zero": true,
+    "fresh_runtime_factory": true,
+    "joint_limits": true,
+    "joint_metadata": true,
+    "locked_signs": true,
+    "malecns_loaded": true,
+    "matched_conditions_construct": true,
+    "matched_control_pipeline": true,
+    "motor_body_ids": true,
+    "motor_population_mappings_locked": true,
+    "scientific_runner_not_called": true,
+    "sign_calibration_machinery": true,
+    "telemetry_contract": true,
+    "tibia_indices_unchanged": true,
+    "tier_a_contribution_disabled": true,
+    "tier_b_indices": true,
+    "tier_c_d_contribution_disabled": true
+  },
+  "classification": "OTHER_LIMIT_IMPLEMENTATION_FAILURE",
+  "first_failure": {
+    "action_index": 3,
+    "actuator": "joint_LFFemur",
+    "actuator_ctrlrange": [
+      -1000000.0,
+      1000000.0
+    ],
+    "joint_range": [
+      0.0,
+      0.0
+    ],
+    "reason": "inactive joint-range placeholder was numerically intersected"
+  },
+  "interfaces": [
+    {
+      "action_index": 3,
+      "actuator_bias_parameters": [
+        0.0,
+        -45.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actuator_control_limited": true,
+      "actuator_ctrlrange_domain": "absolute joint-position target (radians; unit joint transmission)",
+      "actuator_force_limited": true,
+      "actuator_forcerange_domain": "actuator scalar force",
+      "actuator_gain_parameters": [
+        45.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actuator_gear": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actuator_transmission_ids": [
+        4,
+        -1
+      ],
+      "actuator_transmission_type": 0,
+      "classification": "JOINT_RANGE_UNAVAILABLE",
+      "ctrl_and_joint_same_domain": true,
+      "current_action_value": -2.268928050994873,
+      "current_ctrl": 0.0,
+      "current_qpos": -2.2689280275926285,
+      "effective_position_target_range": [
+        -1000000.0,
+        1000000.0
+      ],
+      "joint_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "joint_limited": false,
+      "joint_range_domain": "inactive placeholder; jnt_limited=false",
+      "joint_type": 3,
+      "metadata_status": "RESOLVED",
+      "mujoco_actuator_id": 3,
+      "mujoco_actuator_name": "1/actuator_position_joint_LFFemur",
+      "mujoco_joint_id": 4,
+      "mujoco_joint_name": "1/joint_LFFemur",
+      "physical_actuator_name": "joint_LFFemur",
+      "position_servo_signature": true,
+      "proposed_safe_decoder_contribution_bound_rad": 0.25,
+      "qpos_address": 10,
+      "qvel_address": 9,
+      "raw_actuator_ctrlrange": [
+        -1000000.0,
+        1000000.0
+      ],
+      "raw_actuator_forcerange": [
+        -65.0,
+        65.0
+      ],
+      "raw_joint_range": [
+        0.0,
+        0.0
+      ],
+      "sign_calibration": {
+        "coordinate_sign": -1,
+        "evidence": {
+          "actuator_id": 3,
+          "anatomical_projection": "body_vertical_z",
+          "endpoint_geom_ids": [
+            18,
+            19
+          ],
+          "epsilon_rad": 0.0001,
+          "joint_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "joint_id": 4,
+          "method": "deterministic_non_neural_kinematic_perturbation",
+          "negative_endpoint": [
+            1.901339520031097,
+            0.1856251470793304,
+            1.877326160195313
+          ],
+          "nmf_coordinate_sign_for_annotation_positive": -1,
+          "positive_endpoint": [
+            1.9014706569243964,
+            0.1856251470793304,
+            1.876988750275063
+          ],
+          "positive_minus_negative_displacement": [
+            0.0001311368932994661,
+            0.0,
+            -0.00033740992024999805
+          ],
+          "projection_value": -0.00033740992024999805,
+          "qpos_index": 10,
+          "qvel_index": 9,
+          "reason": "signed distal displacement agrees with the preregistered annotation direction",
+          "uses_neural_behavior": false,
+          "uses_walking_performance": false
+        },
+        "status": "RESOLVED"
+      },
+      "slew_limit_rad_s": 4.0
+    },
+    {
+      "action_index": 6,
+      "actuator_bias_parameters": [
+        0.0,
+        -45.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actuator_control_limited": true,
+      "actuator_ctrlrange_domain": "absolute joint-position target (radians; unit joint transmission)",
+      "actuator_force_limited": true,
+      "actuator_forcerange_domain": "actuator scalar force",
+      "actuator_gain_parameters": [
+        45.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actuator_gear": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actuator_transmission_ids": [
+        7,
+        -1
+      ],
+      "actuator_transmission_type": 0,
+      "classification": "JOINT_RANGE_UNAVAILABLE",
+      "ctrl_and_joint_same_domain": true,
+      "current_action_value": 0.0,
+      "current_ctrl": 0.0,
+      "current_qpos": 0.0,
+      "effective_position_target_range": [
+        -1000000.0,
+        1000000.0
+      ],
+      "joint_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "joint_limited": false,
+      "joint_range_domain": "inactive placeholder; jnt_limited=false",
+      "joint_type": 3,
+      "metadata_status": "RESOLVED",
+      "mujoco_actuator_id": 6,
+      "mujoco_actuator_name": "1/actuator_position_joint_LFTarsus1",
+      "mujoco_joint_id": 7,
+      "mujoco_joint_name": "1/joint_LFTarsus1",
+      "physical_actuator_name": "joint_LFTarsus1",
+      "position_servo_signature": true,
+      "proposed_safe_decoder_contribution_bound_rad": 0.25,
+      "qpos_address": 13,
+      "qvel_address": 12,
+      "raw_actuator_ctrlrange": [
+        -1000000.0,
+        1000000.0
+      ],
+      "raw_actuator_forcerange": [
+        -65.0,
+        65.0
+      ],
+      "raw_joint_range": [
+        0.0,
+        0.0
+      ],
+      "sign_calibration": {
+        "coordinate_sign": -1,
+        "evidence": {
+          "actuator_id": 6,
+          "anatomical_projection": "body_vertical_z",
+          "endpoint_geom_ids": [
+            18,
+            19
+          ],
+          "epsilon_rad": 0.0001,
+          "joint_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "joint_id": 7,
+          "method": "deterministic_non_neural_kinematic_perturbation",
+          "negative_endpoint": [
+            1.9013829283490322,
+            0.1856251470793304,
+            1.8772117556791166
+          ],
+          "nmf_coordinate_sign_for_annotation_positive": -1,
+          "positive_endpoint": [
+            1.90142726004713,
+            0.1856251470793304,
+            1.87710315913152
+          ],
+          "positive_minus_negative_displacement": [
+            4.4331698097810346e-05,
+            0.0,
+            -0.00010859654759665105
+          ],
+          "projection_value": -0.00010859654759665105,
+          "qpos_index": 13,
+          "qvel_index": 12,
+          "reason": "signed distal displacement agrees with the preregistered annotation direction",
+          "uses_neural_behavior": false,
+          "uses_walking_performance": false
+        },
+        "status": "RESOLVED"
+      },
+      "slew_limit_rad_s": 4.0
+    },
+    {
+      "action_index": 10,
+      "actuator_bias_parameters": [
+        0.0,
+        -45.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actuator_control_limited": true,
+      "actuator_ctrlrange_domain": "absolute joint-position target (radians; unit joint transmission)",
+      "actuator_force_limited": true,
+      "actuator_forcerange_domain": "actuator scalar force",
+      "actuator_gain_parameters": [
+        45.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actuator_gear": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actuator_transmission_ids": [
+        26,
+        -1
+      ],
+      "actuator_transmission_type": 0,
+      "classification": "JOINT_RANGE_UNAVAILABLE",
+      "ctrl_and_joint_same_domain": true,
+      "current_action_value": -1.7453292608261108,
+      "current_ctrl": 0.0,
+      "current_qpos": -1.7453292519943295,
+      "effective_position_target_range": [
+        -1000000.0,
+        1000000.0
+      ],
+      "joint_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "joint_limited": false,
+      "joint_range_domain": "inactive placeholder; jnt_limited=false",
+      "joint_type": 3,
+      "metadata_status": "RESOLVED",
+      "mujoco_actuator_id": 10,
+      "mujoco_actuator_name": "1/actuator_position_joint_LMFemur",
+      "mujoco_joint_id": 26,
+      "mujoco_joint_name": "1/joint_LMFemur",
+      "physical_actuator_name": "joint_LMFemur",
+      "position_servo_signature": true,
+      "proposed_safe_decoder_contribution_bound_rad": 0.25,
+      "qpos_address": 32,
+      "qvel_address": 31,
+      "raw_actuator_ctrlrange": [
+        -1000000.0,
+        1000000.0
+      ],
+      "raw_actuator_forcerange": [
+        -65.0,
+        65.0
+      ],
+      "raw_joint_range": [
+        0.0,
+        0.0
+      ],
+      "sign_calibration": {
+        "coordinate_sign": -1,
+        "evidence": {
+          "actuator_id": 10,
+          "anatomical_projection": "body_vertical_z",
+          "endpoint_geom_ids": [
+            34,
+            35
+          ],
+          "epsilon_rad": 0.0001,
+          "joint_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "joint_id": 26,
+          "method": "deterministic_non_neural_kinematic_perturbation",
+          "negative_endpoint": [
+            -0.053514604670096985,
+            2.193213539518471,
+            1.4833587732534705
+          ],
+          "nmf_coordinate_sign_for_annotation_positive": -1,
+          "positive_endpoint": [
+            -0.053514604670096985,
+            2.1932835721817066,
+            1.4829450606159251
+          ],
+          "positive_minus_negative_displacement": [
+            0.0,
+            7.003266323568624e-05,
+            -0.0004137126375454159
+          ],
+          "projection_value": -0.0004137126375454159,
+          "qpos_index": 32,
+          "qvel_index": 31,
+          "reason": "signed distal displacement agrees with the preregistered annotation direction",
+          "uses_neural_behavior": false,
+          "uses_walking_performance": false
+        },
+        "status": "RESOLVED"
+      },
+      "slew_limit_rad_s": 4.0
+    },
+    {
+      "action_index": 17,
+      "actuator_bias_parameters": [
+        0.0,
+        -45.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actuator_control_limited": true,
+      "actuator_ctrlrange_domain": "absolute joint-position target (radians; unit joint transmission)",
+      "actuator_force_limited": true,
+      "actuator_forcerange_domain": "actuator scalar force",
+      "actuator_gain_parameters": [
+        45.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actuator_gear": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actuator_transmission_ids": [
+        15,
+        -1
+      ],
+      "actuator_transmission_type": 0,
+      "classification": "JOINT_RANGE_UNAVAILABLE",
+      "ctrl_and_joint_same_domain": true,
+      "current_action_value": -1.7453292608261108,
+      "current_ctrl": 0.0,
+      "current_qpos": -1.7453292519943295,
+      "effective_position_target_range": [
+        -1000000.0,
+        1000000.0
+      ],
+      "joint_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "joint_limited": false,
+      "joint_range_domain": "inactive placeholder; jnt_limited=false",
+      "joint_type": 3,
+      "metadata_status": "RESOLVED",
+      "mujoco_actuator_id": 17,
+      "mujoco_actuator_name": "1/actuator_position_joint_LHFemur",
+      "mujoco_joint_id": 15,
+      "mujoco_joint_name": "1/joint_LHFemur",
+      "physical_actuator_name": "joint_LHFemur",
+      "position_servo_signature": true,
+      "proposed_safe_decoder_contribution_bound_rad": 0.25,
+      "qpos_address": 21,
+      "qvel_address": 20,
+      "raw_actuator_ctrlrange": [
+        -1000000.0,
+        1000000.0
+      ],
+      "raw_actuator_forcerange": [
+        -65.0,
+        65.0
+      ],
+      "raw_joint_range": [
+        0.0,
+        0.0
+      ],
+      "sign_calibration": {
+        "coordinate_sign": -1,
+        "evidence": {
+          "actuator_id": 17,
+          "anatomical_projection": "body_vertical_z",
+          "endpoint_geom_ids": [
+            26,
+            27
+          ],
+          "epsilon_rad": 0.0001,
+          "joint_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "joint_id": 15,
+          "method": "deterministic_non_neural_kinematic_perturbation",
+          "negative_endpoint": [
+            -2.1927220731748105,
+            1.194979382074735,
+            1.4774596963309197
+          ],
+          "nmf_coordinate_sign_for_annotation_positive": -1,
+          "positive_endpoint": [
+            -2.192787306381863,
+            1.1950170444843873,
+            1.477018960573404
+          ],
+          "positive_minus_negative_displacement": [
+            -6.523320705253965e-05,
+            3.766240965230594e-05,
+            -0.0004407357575155757
+          ],
+          "projection_value": -0.0004407357575155757,
+          "qpos_index": 21,
+          "qvel_index": 20,
+          "reason": "signed distal displacement agrees with the preregistered annotation direction",
+          "uses_neural_behavior": false,
+          "uses_walking_performance": false
+        },
+        "status": "RESOLVED"
+      },
+      "slew_limit_rad_s": 4.0
+    },
+    {
+      "action_index": 24,
+      "actuator_bias_parameters": [
+        0.0,
+        -45.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actuator_control_limited": true,
+      "actuator_ctrlrange_domain": "absolute joint-position target (radians; unit joint transmission)",
+      "actuator_force_limited": true,
+      "actuator_forcerange_domain": "actuator scalar force",
+      "actuator_gain_parameters": [
+        45.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actuator_gear": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actuator_transmission_ids": [
+        59,
+        -1
+      ],
+      "actuator_transmission_type": 0,
+      "classification": "JOINT_RANGE_UNAVAILABLE",
+      "ctrl_and_joint_same_domain": true,
+      "current_action_value": -2.268928050994873,
+      "current_ctrl": 0.0,
+      "current_qpos": -2.2689280275926285,
+      "effective_position_target_range": [
+        -1000000.0,
+        1000000.0
+      ],
+      "joint_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "joint_limited": false,
+      "joint_range_domain": "inactive placeholder; jnt_limited=false",
+      "joint_type": 3,
+      "metadata_status": "RESOLVED",
+      "mujoco_actuator_id": 24,
+      "mujoco_actuator_name": "1/actuator_position_joint_RFFemur",
+      "mujoco_joint_id": 59,
+      "mujoco_joint_name": "1/joint_RFFemur",
+      "physical_actuator_name": "joint_RFFemur",
+      "position_servo_signature": true,
+      "proposed_safe_decoder_contribution_bound_rad": 0.25,
+      "qpos_address": 65,
+      "qvel_address": 64,
+      "raw_actuator_ctrlrange": [
+        -1000000.0,
+        1000000.0
+      ],
+      "raw_actuator_forcerange": [
+        -65.0,
+        65.0
+      ],
+      "raw_joint_range": [
+        0.0,
+        0.0
+      ],
+      "sign_calibration": {
+        "coordinate_sign": -1,
+        "evidence": {
+          "actuator_id": 24,
+          "anatomical_projection": "body_vertical_z",
+          "endpoint_geom_ids": [
+            58,
+            59
+          ],
+          "epsilon_rad": 0.0001,
+          "joint_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "joint_id": 59,
+          "method": "deterministic_non_neural_kinematic_perturbation",
+          "negative_endpoint": [
+            1.9013395200106271,
+            -0.18562514705645483,
+            1.8773261602040703
+          ],
+          "nmf_coordinate_sign_for_annotation_positive": -1,
+          "positive_endpoint": [
+            1.9014706569039286,
+            -0.18562514705645483,
+            1.8769887502838243
+          ],
+          "positive_minus_negative_displacement": [
+            0.0001311368933014645,
+            0.0,
+            -0.00033740992024600125
+          ],
+          "projection_value": -0.00033740992024600125,
+          "qpos_index": 65,
+          "qvel_index": 64,
+          "reason": "signed distal displacement agrees with the preregistered annotation direction",
+          "uses_neural_behavior": false,
+          "uses_walking_performance": false
+        },
+        "status": "RESOLVED"
+      },
+      "slew_limit_rad_s": 4.0
+    },
+    {
+      "action_index": 27,
+      "actuator_bias_parameters": [
+        0.0,
+        -45.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actuator_control_limited": true,
+      "actuator_ctrlrange_domain": "absolute joint-position target (radians; unit joint transmission)",
+      "actuator_force_limited": true,
+      "actuator_forcerange_domain": "actuator scalar force",
+      "actuator_gain_parameters": [
+        45.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actuator_gear": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actuator_transmission_ids": [
+        62,
+        -1
+      ],
+      "actuator_transmission_type": 0,
+      "classification": "JOINT_RANGE_UNAVAILABLE",
+      "ctrl_and_joint_same_domain": true,
+      "current_action_value": 0.0,
+      "current_ctrl": 0.0,
+      "current_qpos": 0.0,
+      "effective_position_target_range": [
+        -1000000.0,
+        1000000.0
+      ],
+      "joint_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "joint_limited": false,
+      "joint_range_domain": "inactive placeholder; jnt_limited=false",
+      "joint_type": 3,
+      "metadata_status": "RESOLVED",
+      "mujoco_actuator_id": 27,
+      "mujoco_actuator_name": "1/actuator_position_joint_RFTarsus1",
+      "mujoco_joint_id": 62,
+      "mujoco_joint_name": "1/joint_RFTarsus1",
+      "physical_actuator_name": "joint_RFTarsus1",
+      "position_servo_signature": true,
+      "proposed_safe_decoder_contribution_bound_rad": 0.25,
+      "qpos_address": 68,
+      "qvel_address": 67,
+      "raw_actuator_ctrlrange": [
+        -1000000.0,
+        1000000.0
+      ],
+      "raw_actuator_forcerange": [
+        -65.0,
+        65.0
+      ],
+      "raw_joint_range": [
+        0.0,
+        0.0
+      ],
+      "sign_calibration": {
+        "coordinate_sign": -1,
+        "evidence": {
+          "actuator_id": 27,
+          "anatomical_projection": "body_vertical_z",
+          "endpoint_geom_ids": [
+            58,
+            59
+          ],
+          "epsilon_rad": 0.0001,
+          "joint_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "joint_id": 62,
+          "method": "deterministic_non_neural_kinematic_perturbation",
+          "negative_endpoint": [
+            1.9013829283285624,
+            -0.18562514705645483,
+            1.8772117556878736
+          ],
+          "nmf_coordinate_sign_for_annotation_positive": -1,
+          "positive_endpoint": [
+            1.9014272600266622,
+            -0.18562514705645483,
+            1.877103159140281
+          ],
+          "positive_minus_negative_displacement": [
+            4.433169809980875e-05,
+            0.0,
+            -0.00010859654759265425
+          ],
+          "projection_value": -0.00010859654759265425,
+          "qpos_index": 68,
+          "qvel_index": 67,
+          "reason": "signed distal displacement agrees with the preregistered annotation direction",
+          "uses_neural_behavior": false,
+          "uses_walking_performance": false
+        },
+        "status": "RESOLVED"
+      },
+      "slew_limit_rad_s": 4.0
+    },
+    {
+      "action_index": 31,
+      "actuator_bias_parameters": [
+        0.0,
+        -45.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actuator_control_limited": true,
+      "actuator_ctrlrange_domain": "absolute joint-position target (radians; unit joint transmission)",
+      "actuator_force_limited": true,
+      "actuator_forcerange_domain": "actuator scalar force",
+      "actuator_gain_parameters": [
+        45.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actuator_gear": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actuator_transmission_ids": [
+        48,
+        -1
+      ],
+      "actuator_transmission_type": 0,
+      "classification": "JOINT_RANGE_UNAVAILABLE",
+      "ctrl_and_joint_same_domain": true,
+      "current_action_value": -1.7453292608261108,
+      "current_ctrl": 0.0,
+      "current_qpos": -1.7453292519943295,
+      "effective_position_target_range": [
+        -1000000.0,
+        1000000.0
+      ],
+      "joint_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "joint_limited": false,
+      "joint_range_domain": "inactive placeholder; jnt_limited=false",
+      "joint_type": 3,
+      "metadata_status": "RESOLVED",
+      "mujoco_actuator_id": 31,
+      "mujoco_actuator_name": "1/actuator_position_joint_RMFemur",
+      "mujoco_joint_id": 48,
+      "mujoco_joint_name": "1/joint_RMFemur",
+      "physical_actuator_name": "joint_RMFemur",
+      "position_servo_signature": true,
+      "proposed_safe_decoder_contribution_bound_rad": 0.25,
+      "qpos_address": 54,
+      "qvel_address": 53,
+      "raw_actuator_ctrlrange": [
+        -1000000.0,
+        1000000.0
+      ],
+      "raw_actuator_forcerange": [
+        -65.0,
+        65.0
+      ],
+      "raw_joint_range": [
+        0.0,
+        0.0
+      ],
+      "sign_calibration": {
+        "coordinate_sign": -1,
+        "evidence": {
+          "actuator_id": 31,
+          "anatomical_projection": "body_vertical_z",
+          "endpoint_geom_ids": [
+            50,
+            51
+          ],
+          "epsilon_rad": 0.0001,
+          "joint_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "joint_id": 48,
+          "method": "deterministic_non_neural_kinematic_perturbation",
+          "negative_endpoint": [
+            -0.05351460464538914,
+            -2.1932135395435486,
+            1.4833587732834657
+          ],
+          "nmf_coordinate_sign_for_annotation_positive": -1,
+          "positive_endpoint": [
+            -0.05351460464538914,
+            -2.1932835722067905,
+            1.482945060645915
+          ],
+          "positive_minus_negative_displacement": [
+            0.0,
+            -7.003266324190349e-05,
+            -0.00041371263755074494
+          ],
+          "projection_value": -0.00041371263755074494,
+          "qpos_index": 54,
+          "qvel_index": 53,
+          "reason": "signed distal displacement agrees with the preregistered annotation direction",
+          "uses_neural_behavior": false,
+          "uses_walking_performance": false
+        },
+        "status": "RESOLVED"
+      },
+      "slew_limit_rad_s": 4.0
+    },
+    {
+      "action_index": 38,
+      "actuator_bias_parameters": [
+        0.0,
+        -45.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actuator_control_limited": true,
+      "actuator_ctrlrange_domain": "absolute joint-position target (radians; unit joint transmission)",
+      "actuator_force_limited": true,
+      "actuator_forcerange_domain": "actuator scalar force",
+      "actuator_gain_parameters": [
+        45.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actuator_gear": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actuator_transmission_ids": [
+        37,
+        -1
+      ],
+      "actuator_transmission_type": 0,
+      "classification": "JOINT_RANGE_UNAVAILABLE",
+      "ctrl_and_joint_same_domain": true,
+      "current_action_value": -1.7453292608261108,
+      "current_ctrl": 0.0,
+      "current_qpos": -1.7453292519943295,
+      "effective_position_target_range": [
+        -1000000.0,
+        1000000.0
+      ],
+      "joint_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "joint_limited": false,
+      "joint_range_domain": "inactive placeholder; jnt_limited=false",
+      "joint_type": 3,
+      "metadata_status": "RESOLVED",
+      "mujoco_actuator_id": 38,
+      "mujoco_actuator_name": "1/actuator_position_joint_RHFemur",
+      "mujoco_joint_id": 37,
+      "mujoco_joint_name": "1/joint_RHFemur",
+      "physical_actuator_name": "joint_RHFemur",
+      "position_servo_signature": true,
+      "proposed_safe_decoder_contribution_bound_rad": 0.25,
+      "qpos_address": 43,
+      "qvel_address": 42,
+      "raw_actuator_ctrlrange": [
+        -1000000.0,
+        1000000.0
+      ],
+      "raw_actuator_forcerange": [
+        -65.0,
+        65.0
+      ],
+      "raw_joint_range": [
+        0.0,
+        0.0
+      ],
+      "sign_calibration": {
+        "coordinate_sign": -1,
+        "evidence": {
+          "actuator_id": 38,
+          "anatomical_projection": "body_vertical_z",
+          "endpoint_geom_ids": [
+            42,
+            43
+          ],
+          "epsilon_rad": 0.0001,
+          "joint_axis": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "joint_id": 37,
+          "method": "deterministic_non_neural_kinematic_perturbation",
+          "negative_endpoint": [
+            -2.19272207321154,
+            -1.1949793820839805,
+            1.477459696311095
+          ],
+          "nmf_coordinate_sign_for_annotation_positive": -1,
+          "positive_endpoint": [
+            -2.1927873064185897,
+            -1.1950170444936306,
+            1.4770189605535724
+          ],
+          "positive_minus_negative_displacement": [
+            -6.523320704987512e-05,
+            -3.766240965008549e-05,
+            -0.0004407357575226811
+          ],
+          "projection_value": -0.0004407357575226811,
+          "qpos_index": 43,
+          "qvel_index": 42,
+          "reason": "signed distal displacement agrees with the preregistered annotation direction",
+          "uses_neural_behavior": false,
+          "uses_walking_performance": false
+        },
+        "status": "RESOLVED"
+      },
+      "slew_limit_rad_s": 4.0
+    }
+  ],
+  "m6a_sha256": "722ee9b3b1d6a0fad2bf8ef0f02fc63f49277c5f44e3bccf27898e6c4ea673d9",
+  "provenance": {
+    "canonical_artifact_modified": false,
+    "preflight_attempts": [
+      {
+        "attempt": 1,
+        "failure": "M6A raw-byte provenance mismatch",
+        "scientific_run_consumed": false
+      },
+      {
+        "attempt": 2,
+        "failure": "joint and actuator limits have no valid intersection",
+        "scientific_run_consumed": false
+      },
+      {
+        "attempt": 3,
+        "result": "PASS after corrected live-limit handling",
+        "scientific_run_consumed": false
+      }
+    ],
+    "scientific_run_1": "NOT_RUN"
+  },
+  "run_status": "PASS",
+  "safe_bound_rule": "intersect only active bounds expressed as absolute joint-position targets; derive symmetric neural-offset headroom about the current target and cap at 0.25 rad",
+  "schema": "M6B-P4.0",
+  "scientific_run_executed": false,
+  "scientific_run_number_consumed": null,
+  "type": "NON_SCIENTIFIC_FINAL_PREFLIGHT",
+  "validated_control_semantics": {
+    "actuator_clamp": "included only when live ctrl is an absolute unit-gear position target",
+    "flygym_control_mode": "position",
+    "mechanical_clamp": "MatchedControlPipeline MotorSafety joint bounds",
+    "pipeline_units": "radians",
+    "pipeline_value": "absolute joint-position target = current measured position + admitted neural offset",
+    "slew_limit_rad_s": 4.0
+  }
+}
