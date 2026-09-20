@@ -1,0 +1,18 @@
+{
+  "artifact_kind": "NON_SCIENTIFIC_PREFLIGHT",
+  "checks": {
+    "duration_frozen": true,
+    "exact_motor_interfaces": true,
+    "exact_sensory_interfaces": true,
+    "fresh_runtimes": true,
+    "no_scientific_runner_in_preregistration_module": true,
+    "not_run": true,
+    "other_31_baseline_only": true,
+    "seed_frozen": true,
+    "strict_equivalence": true,
+    "two_conditions": true
+  },
+  "run_status": "PASS",
+  "schema": "M7-PREFLIGHT.0",
+  "scientific_run_executed": false
+}
