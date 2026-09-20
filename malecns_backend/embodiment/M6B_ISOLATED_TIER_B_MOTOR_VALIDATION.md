@@ -212,9 +212,9 @@ records B0 through B5, allowing `<=` (same-update) ordering, full-body
 physical divergence, selected-joint maximum/RMS differences, directional
 spikes, observer/raw/admitted maxima, limit encounters, and instability.
 
-Scientific Run #1 for each joint is immutable. Results are never overwritten
-or repeated to improve an outcome. A setup/provenance failure before physics
-starts does not consume Run #1. Synthetic count tests, if used, are separately
+Scientific attempts are immutable. Results are never overwritten or repeated
+to improve an outcome. Attempt #1 is retained strictly as an aborted attempt
+without a scientific result. Synthetic count tests, if used, are separately
 labeled `SYNTHETIC_INTERFACE_DIAGNOSTIC_ONLY` and are not scientific evidence.
 
 ## Canonical Windows invocation
@@ -229,6 +229,34 @@ Run the non-scientific engineering preflight first:
 ```
 
 It must print `M6B WINDOWS FINAL PREFLIGHT PASS`. Do **not** invoke
-`--run-windows` until Scientific Run #1 is separately authorized. The adapter
-will preserve each first-run artifact and populate per-joint and aggregate
-results without changing this frozen protocol.
+`--run-windows` until Scientific Attempt #2 is separately authorized. The
+adapter will preserve the aborted-attempt record and populate per-joint and
+aggregate results without changing this frozen protocol.
+
+## M6B-P5 performance repair and Attempt #1 provenance
+
+Scientific Attempt #1 was manually interrupted after static inspection found
+that the final physical-admission boundary called `enumerate_live_actuators()`
+on every non-final 0.1-ms physics step. That helper constructs a temporary
+FlyGym/MuJoCo simulation, so the canonical plan would have created 80,000
+redundant inspection environments in addition to the setup inspection and 16
+fresh scientific condition environments. No completed scientific result was
+available or inspected. The machine-readable record is
+`interface_output/m6b_attempt_1_abort.json`; its status is
+`ABORTED_IMPLEMENTATION_PERFORMANCE_DEFECT`, not a scientific classification.
+
+P5 resolves and validates the immutable 42-actuator inventory once during
+setup and passes its ordered names to every fresh condition runtime. The
+physical-admission assertion remains immediately adjacent to every command.
+Expected canonical construction count is now exactly 17: one closed setup
+inspection plus 16 fresh condition environments, with zero constructions per
+physics step. Full neural-state digests still cover the same four arrays, but
+are recomputed only after each 0.5-ms `brain.step()` and reused for the four
+intervening physics samples, during which those arrays cannot change.
+
+The runner prints flushed start, ten-percent, completion, elapsed-time, and
+estimated-remaining messages, writes an atomic observational checkpoint after
+each completed condition, records engineering phase timings, and closes every
+condition environment in `finally`. Ctrl+C writes an incomplete
+`ABORTED_USER_INTERRUPT` checkpoint with the active condition, completed count,
+and elapsed wall time; it never writes a completed classification.

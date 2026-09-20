@@ -16,6 +16,7 @@ import math
 import os
 from pathlib import Path
 import tempfile
+import time
 from typing import Any, Callable, Mapping, Sequence
 
 import numpy as np
@@ -43,7 +44,12 @@ from .tactile_propagation import rng_digest
 CONDITIONS = ("ENABLED", "MOTOR_OUTPUT_DISABLED")
 PHYSICS_DT_MS = contact.DEFAULT_TIMESTEP_S * 1000.0
 CALIBRATION_EPSILON_RAD = 1e-4
-PREFLIGHT_SCHEMA = "M6B-P4.0"
+PREFLIGHT_SCHEMA = "M6B-P5.0"
+EXPECTED_CONDITIONS = len(TIER_B) * len(CONDITIONS)
+EXPECTED_PHYSICS_STEPS_PER_CONDITION = int(round(DURATION_MS / PHYSICS_DT_MS))
+EXPECTED_NEURAL_STEPS_PER_CONDITION = int(round(DURATION_MS / NEURAL_DT_MS))
+EXPECTED_CANONICAL_ENVIRONMENT_CONSTRUCTIONS = 1 + EXPECTED_CONDITIONS
+MAX_CANONICAL_ENVIRONMENT_CONSTRUCTIONS = EXPECTED_CANONICAL_ENVIRONMENT_CONSTRUCTIONS
 TELEMETRY_FIELDS = (
     "qpos", "qvel", "action", "ctrl", "selected_joint_state",
     "observer_state", "decoder_state", "sensory_state", "rng_state",
@@ -95,6 +101,24 @@ def _atomic_write(path: Path, value: Mapping[str, Any]) -> None:
         os.replace(temporary, path)
     finally:
         if os.path.exists(temporary): os.unlink(temporary)
+
+
+def _elapsed(seconds: float) -> str:
+    seconds = max(0, int(seconds))
+    return f"{seconds // 3600:02d}:{seconds % 3600 // 60:02d}:{seconds % 60:02d}"
+
+
+def _progress(message: str) -> None:
+    """Emit engineering-only progress without touching scientific state/RNG."""
+    print(message, flush=True)
+
+
+def _cached_state_digest(brain: Any, cached: str | None,
+                         neural_state_changed: bool) -> str:
+    """Hash exactly the original four arrays, only after they can have changed."""
+    if cached is None or neural_state_changed:
+        return _state_tuple(brain)
+    return cached
 
 
 def _model_name(model: Any, kind: str, object_id: int) -> str | None:
@@ -339,28 +363,39 @@ def _fresh_runtime(flygym: Any, data: Any, tibia_interfaces: Mapping[str, Any],
                    condition: str) -> dict[str, Any]:
     """Construct every stateful component afresh for one condition."""
     sim, physics, obs, tarsus_id, surface_id = _make_live(flygym, tibia_interfaces)
-    brain = MaleCNSBrain(data); brain.reset(CANONICAL_SEED)
-    if float(brain.config.dt) != NEURAL_DT_MS: raise RuntimeError("MaleCNS neural dt changed")
-    populations, positive, negative = _population_index(interface, data)
-    observer = MotorActivityObserver(populations, OBSERVER_TAU_MS); observer.reset(brain.spike_counts)
-    tactile_encoder = TactileContactEncoder(config=TactileContactConfig(seed=CANONICAL_SEED))
-    sensory_encoders = {leg: SensoryEncoder(tibia_interfaces[leg]) for leg in LEG_ORDER}
-    sensory_rngs = proprio_rngs(CANONICAL_SEED)
-    metadata = resolve_joint_metadata(physics, metadata_record)
-    baseline = float(_joint_positions(obs)[interface["action_index"]])
-    bound = safe_contribution_bound(metadata.joint_min, metadata.joint_max, baseline)
-    safety = MotorSafety(metadata.joint_min, metadata.joint_max, bound, SLEW_RAD_S)
-    pipeline = MatchedControlPipeline(condition == "ENABLED", safety)
-    return locals()
+    try:
+        brain = MaleCNSBrain(data); brain.reset(CANONICAL_SEED)
+        if float(brain.config.dt) != NEURAL_DT_MS: raise RuntimeError("MaleCNS neural dt changed")
+        populations, positive, negative = _population_index(interface, data)
+        observer = MotorActivityObserver(populations, OBSERVER_TAU_MS); observer.reset(brain.spike_counts)
+        tactile_encoder = TactileContactEncoder(config=TactileContactConfig(seed=CANONICAL_SEED))
+        sensory_encoders = {leg: SensoryEncoder(tibia_interfaces[leg]) for leg in LEG_ORDER}
+        sensory_rngs = proprio_rngs(CANONICAL_SEED)
+        metadata = resolve_joint_metadata(physics, metadata_record)
+        baseline = float(_joint_positions(obs)[interface["action_index"]])
+        bound = safe_contribution_bound(metadata.joint_min, metadata.joint_max, baseline)
+        safety = MotorSafety(metadata.joint_min, metadata.joint_max, bound, SLEW_RAD_S)
+        pipeline = MatchedControlPipeline(condition == "ENABLED", safety)
+        return locals()
+    except BaseException:
+        close = getattr(sim, "close", None)
+        if close is not None:
+            close()
+        raise
 
 
 def _run_condition(flygym: Any, data: Any, tibia_interfaces: Mapping[str, Any],
                    interface: Mapping[str, Any], metadata_record: Mapping[str, Any],
-                   calibration: SignCalibration, condition: str) -> list[dict[str, Any]]:
+                   calibration: SignCalibration, condition: str,
+                   actuator_names: Sequence[str], condition_number: int = 1,
+                   total_conditions: int = EXPECTED_CONDITIONS,
+                   run_started: float | None = None) -> tuple[list[dict[str, Any]], dict[str, float]]:
     if condition not in CONDITIONS: raise ValueError("unknown M6B condition")
     if calibration.status != "RESOLVED" or calibration.coordinate_sign not in (-1, 1):
         raise RuntimeError("SIGN_UNRESOLVED interfaces cannot receive neural actuation")
+    condition_started = time.perf_counter()
     runtime = _fresh_runtime(flygym, data, tibia_interfaces, interface, metadata_record, condition)
+    runtime_initialized = time.perf_counter()
     sim, physics, obs, brain = (runtime[x] for x in ("sim", "physics", "obs", "brain"))
     observer, populations = runtime["observer"], runtime["populations"]
     positive, negative, pipeline = runtime["positive"], runtime["negative"], runtime["pipeline"]
@@ -371,12 +406,20 @@ def _run_condition(flygym: Any, data: Any, tibia_interfaces: Mapping[str, Any],
     final_step = int(round(DURATION_MS / PHYSICS_DT_MS)); selected = interface["physical_joint"]
     raw = admitted = 0.0; observed: Mapping[str, Any] = {}; decoder: Mapping[str, Any] = {}
     sensory_state: Mapping[str, Any] = {}; positive_spikes = negative_spikes = 0
+    brain_state_digest = _cached_state_digest(brain, None, True)
+    phase = {"brain_step_seconds": 0.0, "sim_step_seconds": 0.0,
+             "sensory_seconds": 0.0, "observer_decoder_seconds": 0.0,
+             "telemetry_hash_seconds": 0.0, "physical_admission_seconds": 0.0}
+    progress_every = final_step // 10
     try:
         for step in range(final_step + 1):
+            sensory_started = time.perf_counter()
             time_ms = float(physics.data.time * 1000.0); measured = _joint_positions(obs)
             forces = _forces(obs); tactile = tactile_encoder.encode(forces, time_ms, PHYSICS_DT_MS)["LM"]
             pending.update(map(int, tactile.generated_dense_indices))
+            phase["sensory_seconds"] += time.perf_counter() - sensory_started
             if step and step % stride == 0:
+                neural_started = time.perf_counter()
                 brain.clear_external_drive(); candidates = set(pending); pending.clear()
                 proprio_log = {}
                 for leg in LEG_ORDER:
@@ -388,6 +431,9 @@ def _run_condition(flygym: Any, data: Any, tibia_interfaces: Mapping[str, Any],
                     proprio_log[leg] = {"rates_hz": tuple(map(float, encoded.rates_hz)), "candidate": generated}
                 if candidates: brain.set_external_drive(tuple(sorted(candidates)), 1000.0 / brain.config.dt)
                 brain.external_drive_withheld_indices = np.empty(0, np.intp); brain.step()
+                brain_state_digest = _cached_state_digest(brain, brain_state_digest, True)
+                phase["brain_step_seconds"] += time.perf_counter() - neural_started
+                observer_started = time.perf_counter()
                 observed = observer.update(brain.spike_counts, NEURAL_DT_MS)
                 pos_hz = _rate(positive, observed["filtered_hz"], populations)
                 neg_hz = _rate(negative, observed["filtered_hz"], populations)
@@ -405,6 +451,8 @@ def _run_condition(flygym: Any, data: Any, tibia_interfaces: Mapping[str, Any],
                 sensory_state = {"proprio": proprio_log,
                     "tactile_pending": tuple(sorted(candidates)),
                     "delivered": tuple(map(int, brain._last_external_delivered))}
+                phase["observer_decoder_seconds"] += time.perf_counter() - observer_started
+            telemetry_started = time.perf_counter()
             arrays = (physics.data.qpos, physics.data.qvel, physics.data.qacc, physics.data.ctrl)
             valid = all(np.all(np.isfinite(x)) for x in arrays)
             row = {"time_ms": time_ms, "physical_step": step,
@@ -423,22 +471,37 @@ def _run_condition(flygym: Any, data: Any, tibia_interfaces: Mapping[str, Any],
                     "qvel": np.asarray(physics.data.qvel).copy()},
                 "mechanical_limit_encounter": bool(abs(float(measured[interface["action_index"]]) - metadata.joint_min) <= 1e-12 or abs(float(measured[interface["action_index"]]) - metadata.joint_max) <= 1e-12),
                 "physics_warnings": [] if valid else ["NON_FINITE_MUJOCO_STATE"],
-                "brain_state_digest": _state_tuple(brain)}
+                "brain_state_digest": brain_state_digest}
             if set(TELEMETRY_FIELDS) - set(row): raise RuntimeError("telemetry contract incomplete")
             rows.append(row)
+            phase["telemetry_hash_seconds"] += time.perf_counter() - telemetry_started
+            if step and (step % progress_every == 0 or step == final_step):
+                now = time.perf_counter(); total_started = condition_started if run_started is None else run_started
+                _progress(f"[{condition_number:02d}/{total_conditions:02d}] {selected} {condition} | "
+                          f"{step * 100 // final_step:3d}% | {step * PHYSICS_DT_MS:g}/{DURATION_MS:g} ms | "
+                          f"step {step}/{final_step} | condition wall {_elapsed(now - condition_started)} | "
+                          f"total wall {_elapsed(now - total_started)}")
             if not valid: break
             if step == final_step: break
             # This is intentionally adjacent to physical application.  The
             # full action-name vector proves Tier A, excluded Tier B, C and D
             # all remain exactly zero at the admission boundary.
-            physical_admissions = {record["name"]: 0.0 for record in enumerate_live_actuators()}
+            admission_started = time.perf_counter()
+            physical_admissions = {name: 0.0 for name in actuator_names}
             physical_admissions[selected] = admitted
             assert_physical_admission(selected, physical_admissions,
-                                      tuple(physical_admissions))
+                                      actuator_names)
+            phase["physical_admission_seconds"] += time.perf_counter() - admission_started
+            sim_started = time.perf_counter()
             obs = sim.step({"joints": commands.copy(), "adhesion": np.zeros(6)})[0]
+            phase["sim_step_seconds"] += time.perf_counter() - sim_started
     finally:
         if getattr(sim, "close", None): sim.close()
-    return rows
+    ended = time.perf_counter()
+    timing = {"runtime_initialization_seconds": runtime_initialized - condition_started,
+              "condition_loop_seconds": ended - runtime_initialized,
+              "total_condition_seconds": ended - condition_started, **phase}
+    return rows, timing
 
 
 def _first(rows: Sequence[Mapping[str, Any]], predicate: Callable[[Mapping[str, Any]], bool]) -> int | None:
@@ -527,7 +590,9 @@ def run_preflight(protocol: Mapping[str, Any], output_path: Path) -> dict[str, A
             {"attempt": 1, "failure": "M6A raw-byte provenance mismatch", "scientific_run_consumed": False},
             {"attempt": 2, "failure": "joint and actuator limits have no valid intersection", "scientific_run_consumed": False},
             {"attempt": 3, "result": "PASS after corrected live-limit handling", "scientific_run_consumed": False}],
-            "scientific_run_1": "NOT_RUN", "canonical_artifact_modified": False}}
+            "scientific_attempt_1": "ABORTED_IMPLEMENTATION_PERFORMANCE_DEFECT",
+            "attempt_1_scientific_result_available": False,
+            "canonical_artifact_modified": False}}
     flygym, data, tibia, records, by_name = _live_setup(protocol)
     report["checks"].update(dependencies_import=True, malecns_loaded=True,
         action_order_42=True, exact_eight_eligible=True, exact_six_unresolved_excluded=True,
@@ -632,7 +697,15 @@ def run_preflight(protocol: Mapping[str, Any], output_path: Path) -> dict[str, A
         fresh_runtime_factory=(len(constructed) == 2), matched_conditions_construct=(len(constructed) == 2),
         canonical_artifact_not_run=(protocol.get("run_status") == "NOT_RUN" and
             protocol.get("scientific_run_number") is None and not protocol.get("per_joint")),
-        scientific_runner_not_called=True)
+        scientific_runner_not_called=True,
+        per_step_environment_construction=False,
+        attempt_1_not_complete=True)
+    report["performance_guards"] = {
+        "PER_STEP_ENVIRONMENT_CONSTRUCTION": False,
+        "expected_canonical_environment_construction_count": EXPECTED_CANONICAL_ENVIRONMENT_CONSTRUCTIONS,
+        "expected_physics_steps": EXPECTED_CONDITIONS * EXPECTED_PHYSICS_STEPS_PER_CONDITION,
+        "expected_neural_steps": EXPECTED_CONDITIONS * EXPECTED_NEURAL_STEPS_PER_CONDITION,
+    }
     _atomic_write(output_path, report)
     if fatal:
         raise RuntimeError("; ".join(f"{x['actuator']}: {x['error']}" for x in fatal))
@@ -641,28 +714,92 @@ def run_preflight(protocol: Mapping[str, Any], output_path: Path) -> dict[str, A
 
 def run_canonical(protocol: Mapping[str, Any], output_path: Path) -> dict[str, Any]:
     """Execute each immutable M6B pair once, using fresh condition runtimes."""
+    run_started = time.perf_counter()
     flygym, data, tibia, records, by_name = _live_setup(protocol)
-    # P4 freezes signs before Scientific Run #1. Never recalibrate from output.
+    setup_ended = time.perf_counter()
+    actuator_names = tuple(record["name"] for record in records)
+    if len(actuator_names) != 42:
+        raise RuntimeError("canonical actuator inventory is not exactly 42 actions")
+    # P4 froze signs before execution. Never recalibrate from scientific output.
     calibrations = {name: SignCalibration("RESOLVED", LOCKED_SIGNS[name],
         next(x for x in protocol["interfaces"] if x["physical_joint"] == name)
         ["mechanical_calibration"]["evidence"]) for name in TIER_B}
-    per_joint = []
-    for interface in (x for x in protocol["interfaces"] if x["physical_joint"] in TIER_B):
-        name = interface["physical_joint"]; calibration = calibrations[name]
-        if calibration.status != "RESOLVED":
-            per_joint.append({"actuator": name, "action_index": interface["action_index"],
-                "physical_sign_status": "SIGN_UNRESOLVED", "sign_calibration": asdict(calibration),
-                "classification": "SIGN_UNRESOLVED", "scientific_conditions_executed": False})
-            continue
-        enabled = _run_condition(flygym, data, tibia, interface, by_name[name], calibration, CONDITIONS[0])
-        disabled = _run_condition(flygym, data, tibia, interface, by_name[name], calibration, CONDITIONS[1])
-        per_joint.append(_reduce_pair(interface, calibration, enabled, disabled))
-    report = dict(protocol); report.update(run_status="COMPLETE", scientific_run_number=1,
+    interfaces = tuple(x for x in protocol["interfaces"] if x["physical_joint"] in TIER_B)
+    if len(interfaces) != 8 or EXPECTED_CONDITIONS != 16:
+        raise RuntimeError("canonical 8-interface/16-condition execution plan changed")
+    _progress("=" * 60); _progress("M6B SCIENTIFIC RUN")
+    _progress("8 interfaces | 16 conditions | 500 ms each"); _progress("=" * 60)
+    checkpoint_path = output_path.with_name(f"{output_path.stem}.progress.json")
+    completed: list[dict[str, Any]] = []; per_joint = []; condition_timings = []
+    active: dict[str, Any] | None = None
+    try:
+        for interface in interfaces:
+            name = interface["physical_joint"]; calibration = calibrations[name]
+            pair = {}
+            for condition in CONDITIONS:
+                number = len(completed) + 1
+                active = {"condition_number": number, "interface": name, "condition": condition}
+                _progress(f"[{number:02d}/{EXPECTED_CONDITIONS:02d}] START {name} | {condition}")
+                _atomic_write(checkpoint_path, {"schema": "M6B-P5.0-CHECKPOINT",
+                    "run_status": "IN_PROGRESS", "canonical_result_complete": False,
+                    "resume_authorized": False, "completed_condition_count": len(completed),
+                    "active_condition": active, "completed_conditions": completed,
+                    "elapsed_wall_seconds": time.perf_counter() - run_started})
+                rows, timing = _run_condition(flygym, data, tibia, interface, by_name[name],
+                    calibration, condition, actuator_names, number, EXPECTED_CONDITIONS, run_started)
+                pair[condition] = rows; timing.update(active); condition_timings.append(timing)
+                completed.append(dict(active))
+                now = time.perf_counter()
+                _progress(f"[{number:02d}/{EXPECTED_CONDITIONS:02d}] DONE  {name} | {condition}")
+                _progress(f"        condition wall time: {_elapsed(timing['total_condition_seconds'])}")
+                _progress(f"        total elapsed: {_elapsed(now - run_started)}")
+                if number < EXPECTED_CONDITIONS:
+                    estimate = (now - run_started) / number * (EXPECTED_CONDITIONS - number)
+                    _progress(f"        ESTIMATED remaining: {_elapsed(estimate)}")
+                _atomic_write(checkpoint_path, {"schema": "M6B-P5.0-CHECKPOINT",
+                    "run_status": "IN_PROGRESS", "canonical_result_complete": False,
+                    "resume_authorized": False, "completed_condition_count": len(completed),
+                    "active_condition": None, "completed_conditions": completed,
+                    "elapsed_wall_seconds": now - run_started})
+                active = None
+            reduction_started = time.perf_counter()
+            result = _reduce_pair(interface, calibration, pair[CONDITIONS[0]], pair[CONDITIONS[1]])
+            result["performance"] = {"pair_reduction_seconds": time.perf_counter() - reduction_started,
+                                     "conditions": condition_timings[-2:]}
+            per_joint.append(result)
+    except KeyboardInterrupt:
+        now = time.perf_counter()
+        _atomic_write(checkpoint_path, {"schema": "M6B-P5.0-CHECKPOINT",
+            "run_status": "ABORTED_USER_INTERRUPT", "canonical_result_complete": False,
+            "scientific_result_available": False, "resume_authorized": False,
+            "active_condition": active, "completed_condition_count": len(completed),
+            "completed_conditions": completed, "elapsed_wall_seconds": now - run_started})
+        _progress("M6B RUN ABORTED_USER_INTERRUPT; incomplete result recorded.")
+        raise
+    if len(completed) != EXPECTED_CONDITIONS:
+        raise RuntimeError("refusing to classify an incomplete canonical run")
+    report = dict(protocol); report.update(run_status="COMPLETE", scientific_run_number=2,
         classification=aggregate_classification(per_joint), per_joint=per_joint,
         m6c_eligible=m6c_eligible(per_joint),
+        performance={"total_wall_seconds": time.perf_counter() - run_started,
+            "runtime_initialization_seconds": setup_ended - run_started,
+            "condition_timings": condition_timings,
+            "environment_construction_count": EXPECTED_CANONICAL_ENVIRONMENT_CONSTRUCTIONS,
+            "per_physics_step_environment_construction": False},
         provenance={**protocol["provenance"], "scientific_run_number": 1,
             "scientific_results_fabricated": False, "windows_adapter": __name__})
+    report["provenance"]["scientific_run_number"] = 2
     _atomic_write(output_path, report)
+    _atomic_write(checkpoint_path, {"schema": "M6B-P5.0-CHECKPOINT", "run_status": "COMPLETE",
+        "canonical_result_complete": True, "completed_condition_count": len(completed),
+        "completed_conditions": completed, "elapsed_wall_seconds": time.perf_counter() - run_started})
+    _progress("=" * 60); _progress("M6B PERFORMANCE SUMMARY"); _progress("=" * 60)
+    _progress(f"Total wall time: {_elapsed(report['performance']['total_wall_seconds'])}")
+    _progress(f"Runtime construction: {_elapsed(sum(x['runtime_initialization_seconds'] for x in condition_timings))}")
+    _progress(f"Neural stepping: {_elapsed(sum(x['brain_step_seconds'] for x in condition_timings))}")
+    _progress(f"MuJoCo stepping: {_elapsed(sum(x['sim_step_seconds'] for x in condition_timings))}")
+    _progress(f"Sensory: {_elapsed(sum(x['sensory_seconds'] for x in condition_timings))}")
+    _progress(f"Telemetry/hashing: {_elapsed(sum(x['telemetry_hash_seconds'] for x in condition_timings))}")
     return report
 
 

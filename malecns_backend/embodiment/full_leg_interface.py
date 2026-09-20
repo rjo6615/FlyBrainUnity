@@ -102,133 +102,141 @@ def enumerate_live_actuators() -> list[dict[str, Any]]:
             physics = owner.physics
             break
     if physics is None or getattr(physics, "model", None) is None:
+        close = getattr(sim, "close", None)
+        if close is not None:
+            close()
         raise RuntimeError("installed FlyGym simulation exposes no compiled MuJoCo physics model")
-    model = physics.model
-    mujoco = importlib.import_module("mujoco")
-    joint_transmission = int(mujoco.mjtTrn.mjTRN_JOINT)
+    try:
+        model = physics.model
+        mujoco = importlib.import_module("mujoco")
+        joint_transmission = int(mujoco.mjtTrn.mjTRN_JOINT)
 
-    def model_name(kind: str, object_id: int) -> str:
-        """Use dm_control's compiled-model name table, never the MJCF tree."""
-        method = getattr(model, "id2name", None)
-        if method is None:
-            raise RuntimeError("compiled MuJoCo model exposes no id2name API")
-        for args in ((object_id, kind), (kind, object_id)):
-            try:
-                value = method(*args)
-            except (TypeError, ValueError, KeyError):
-                continue
-            if value is not None:
-                return str(value)
-        raise RuntimeError(f"compiled MuJoCo {kind} id {object_id} has no name")
+        def model_name(kind: str, object_id: int) -> str:
+            """Use dm_control's compiled-model name table, never the MJCF tree."""
+            method = getattr(model, "id2name", None)
+            if method is None:
+                raise RuntimeError("compiled MuJoCo model exposes no id2name API")
+            for args in ((object_id, kind), (kind, object_id)):
+                try:
+                    value = method(*args)
+                except (TypeError, ValueError, KeyError):
+                    continue
+                if value is not None:
+                    return str(value)
+            raise RuntimeError(f"compiled MuJoCo {kind} id {object_id} has no name")
 
-    # FlyGym builds one ordered MJCF actuator for every entry in
-    # ``actuated_joints`` and applies the action with physics.bind(_actuators).
-    # Once the fly is attached, dm_control qualifies both joint and actuator
-    # names, so the unqualified public name need not be in the compiled table.
-    source_actuators = getattr(fly, "_actuators", None)
-    if isinstance(source_actuators, dict):
-        source_actuators = tuple(source_actuators.values())
-    elif source_actuators is not None:
-        source_actuators = tuple(source_actuators)
+        # FlyGym builds one ordered MJCF actuator for every entry in
+        # ``actuated_joints`` and applies the action with physics.bind(_actuators).
+        # Once the fly is attached, dm_control qualifies both joint and actuator
+        # names, so the unqualified public name need not be in the compiled table.
+        source_actuators = getattr(fly, "_actuators", None)
+        if isinstance(source_actuators, dict):
+            source_actuators = tuple(source_actuators.values())
+        elif source_actuators is not None:
+            source_actuators = tuple(source_actuators)
 
-    def source_identifiers(element: Any) -> tuple[str, ...]:
-        values = []
-        for attribute in ("full_identifier", "name"):
-            value = getattr(element, attribute, None)
-            if value is not None and str(value) not in values:
-                values.append(str(value))
-        return tuple(values)
+        def source_identifiers(element: Any) -> tuple[str, ...]:
+            values = []
+            for attribute in ("full_identifier", "name"):
+                value = getattr(element, attribute, None)
+                if value is not None and str(value) not in values:
+                    values.append(str(value))
+            return tuple(values)
 
-    compiled = []
-    for actuator_id in range(int(model.nu)):
-        transmission_type = int(model.actuator_trntype[actuator_id])
-        transmission_ids = [int(value) for value in model.actuator_trnid[actuator_id]]
-        joint_id = transmission_ids[0] if transmission_type == joint_transmission else None
-        if joint_id is not None and not 0 <= joint_id < int(model.njnt):
-            raise RuntimeError(f"actuator {actuator_id} has invalid joint transmission id {joint_id}")
-        compiled.append({
-            "actuator_id": actuator_id,
-            "actuator_name": model_name("actuator", actuator_id),
-            "transmission_type": transmission_type,
-            "transmission_ids": transmission_ids,
-            "joint_id": joint_id,
-            "joint_name": model_name("joint", joint_id) if joint_id is not None else None,
-        })
+        compiled = []
+        for actuator_id in range(int(model.nu)):
+            transmission_type = int(model.actuator_trntype[actuator_id])
+            transmission_ids = [int(value) for value in model.actuator_trnid[actuator_id]]
+            joint_id = transmission_ids[0] if transmission_type == joint_transmission else None
+            if joint_id is not None and not 0 <= joint_id < int(model.njnt):
+                raise RuntimeError(f"actuator {actuator_id} has invalid joint transmission id {joint_id}")
+            compiled.append({
+                "actuator_id": actuator_id,
+                "actuator_name": model_name("actuator", actuator_id),
+                "transmission_type": transmission_type,
+                "transmission_ids": transmission_ids,
+                "joint_id": joint_id,
+                "joint_name": model_name("joint", joint_id) if joint_id is not None else None,
+            })
 
-    def qualification(compiled_name: str, source_name: str) -> str | None:
-        """Return dm_control's attachment prefix for an exact identifier.
+        def qualification(compiled_name: str, source_name: str) -> str | None:
+            """Return dm_control's attachment prefix for an exact identifier.
 
-        Attachment can replace an MJCF root's identifier (for example ``fly``)
-        with a numeric one.  The element's local ``name`` remains authoritative;
-        accepting it only as a complete slash-delimited component keeps Coxa,
-        Coxa_roll, and Coxa_yaw distinct.
-        """
-        if compiled_name == source_name:
-            return ""
-        suffix = f"/{source_name}"
-        if compiled_name.endswith(suffix):
-            return compiled_name[:-len(source_name)]
-        return None
+            Attachment can replace an MJCF root's identifier (for example ``fly``)
+            with a numeric one.  The element's local ``name`` remains authoritative;
+            accepting it only as a complete slash-delimited component keeps Coxa,
+            Coxa_roll, and Coxa_yaw distinct.
+            """
+            if compiled_name == source_name:
+                return ""
+            suffix = f"/{source_name}"
+            if compiled_name.endswith(suffix):
+                return compiled_name[:-len(source_name)]
+            return None
 
-    def diagnostic(index: int, logical_name: str) -> str:
-        token = logical_name.removeprefix("joint_").casefold()
-        plausible = [item for item in compiled if token in item["actuator_name"].casefold()
-                     or (item["joint_name"] is not None and token in item["joint_name"].casefold())]
-        return json.dumps({"logical_action_index": index, "logical_name": logical_name,
-                           "plausible_compiled_associations": plausible}, sort_keys=True)
+        def diagnostic(index: int, logical_name: str) -> str:
+            token = logical_name.removeprefix("joint_").casefold()
+            plausible = [item for item in compiled if token in item["actuator_name"].casefold()
+                         or (item["joint_name"] is not None and token in item["joint_name"].casefold())]
+            return json.dumps({"logical_action_index": index, "logical_name": logical_name,
+                               "plausible_compiled_associations": plausible}, sort_keys=True)
 
-    records = []
-    for index, name in enumerate(names):
-        association = None
-        source = (source_actuators[index] if source_actuators is not None
-                  and len(source_actuators) == len(names) else None)
-        if source is not None:
-            identifiers = source_identifiers(source)
-            matches = []
-            for item in compiled:
-                actuator_prefixes = {
-                    prefix for value in identifiers
-                    if (prefix := qualification(item["actuator_name"], value)) is not None
-                }
-                joint_prefix = (qualification(item["joint_name"], str(name))
-                                if item["joint_name"] is not None else None)
-                # The ordered FlyGym actuator must transmit the exact logical
-                # joint in the same compiled attachment namespace.
-                if joint_prefix is not None and joint_prefix in actuator_prefixes:
-                    matches.append(item)
-            if len({item["actuator_id"] for item in matches}) == 1:
-                association = matches[0]
-        # Compatibility for versions without exposed ordered actuator elements.
-        if association is None:
-            matches = [item for item in compiled if item["joint_name"] is not None
-                       and qualification(item["joint_name"], str(name)) is not None]
-            if len(matches) == 1:
-                association = matches[0]
-        if association is None or association["transmission_type"] != joint_transmission:
-            raise RuntimeError(
-                f"no compiled joint actuator transmission for FlyGym joint {name}; "
-                f"compiled inventory diagnostic: {diagnostic(index, str(name))}")
-        aid, jid = association["actuator_id"], association["joint_id"]
-        q0, d0 = int(model.jnt_qposadr[jid]), int(model.jnt_dofadr[jid])
-        q1 = int(model.jnt_qposadr[jid + 1]) if jid + 1 < model.njnt else int(model.nq)
-        d1 = int(model.jnt_dofadr[jid + 1]) if jid + 1 < model.njnt else int(model.nv)
-        records.append({"index": index, "name": str(name), "mujoco_metadata": {
-            "source_actuator_name": (str(getattr(source, "name"))
-                                     if source is not None and getattr(source, "name", None) is not None
-                                     else None),
-            "source_actuator_full_identifier": (str(getattr(source, "full_identifier"))
-                                                if source is not None and getattr(source, "full_identifier", None) is not None
-                                                else None),
-            "actuator_id": aid, "actuator_name": association["actuator_name"],
-            "actuator_transmission_type": association["transmission_type"],
-            "actuator_transmission_ids": association["transmission_ids"],
-            "joint_id": jid, "joint_name": model_name("joint", jid),
-            "joint_type": int(model.jnt_type[jid]),
-            "qpos_range": [q0, q1], "dof_range": [d0, d1],
-            "actuator_control_range": list(map(float, model.actuator_ctrlrange[aid])),
-            "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
-        }})
-    return records
+        records = []
+        for index, name in enumerate(names):
+            association = None
+            source = (source_actuators[index] if source_actuators is not None
+                      and len(source_actuators) == len(names) else None)
+            if source is not None:
+                identifiers = source_identifiers(source)
+                matches = []
+                for item in compiled:
+                    actuator_prefixes = {
+                        prefix for value in identifiers
+                        if (prefix := qualification(item["actuator_name"], value)) is not None
+                    }
+                    joint_prefix = (qualification(item["joint_name"], str(name))
+                                    if item["joint_name"] is not None else None)
+                    # The ordered FlyGym actuator must transmit the exact logical
+                    # joint in the same compiled attachment namespace.
+                    if joint_prefix is not None and joint_prefix in actuator_prefixes:
+                        matches.append(item)
+                if len({item["actuator_id"] for item in matches}) == 1:
+                    association = matches[0]
+            # Compatibility for versions without exposed ordered actuator elements.
+            if association is None:
+                matches = [item for item in compiled if item["joint_name"] is not None
+                           and qualification(item["joint_name"], str(name)) is not None]
+                if len(matches) == 1:
+                    association = matches[0]
+            if association is None or association["transmission_type"] != joint_transmission:
+                raise RuntimeError(
+                    f"no compiled joint actuator transmission for FlyGym joint {name}; "
+                    f"compiled inventory diagnostic: {diagnostic(index, str(name))}")
+            aid, jid = association["actuator_id"], association["joint_id"]
+            q0, d0 = int(model.jnt_qposadr[jid]), int(model.jnt_dofadr[jid])
+            q1 = int(model.jnt_qposadr[jid + 1]) if jid + 1 < model.njnt else int(model.nq)
+            d1 = int(model.jnt_dofadr[jid + 1]) if jid + 1 < model.njnt else int(model.nv)
+            records.append({"index": index, "name": str(name), "mujoco_metadata": {
+                "source_actuator_name": (str(getattr(source, "name"))
+                                         if source is not None and getattr(source, "name", None) is not None
+                                         else None),
+                "source_actuator_full_identifier": (str(getattr(source, "full_identifier"))
+                                                    if source is not None and getattr(source, "full_identifier", None) is not None
+                                                    else None),
+                "actuator_id": aid, "actuator_name": association["actuator_name"],
+                "actuator_transmission_type": association["transmission_type"],
+                "actuator_transmission_ids": association["transmission_ids"],
+                "joint_id": jid, "joint_name": model_name("joint", jid),
+                "joint_type": int(model.jnt_type[jid]),
+                "qpos_range": [q0, q1], "dof_range": [d0, d1],
+                "actuator_control_range": list(map(float, model.actuator_ctrlrange[aid])),
+                "metadata_source": "live FlyGym simulation physics.model compiled MuJoCo model",
+            }})
+        return records
+    finally:
+        close = getattr(sim, "close", None)
+        if close is not None:
+            close()
 
 
 def _print_order_comparison(physical: list[dict[str, Any]],

@@ -1,0 +1,12 @@
+{
+  "attempt_number": 1,
+  "status": "ABORTED_IMPLEMENTATION_PERFORMANCE_DEFECT",
+  "scientific_result_available": false,
+  "scientific_result_inspected": false,
+  "reason": "Static source audit discovered unintended FlyGym/MuJoCo environment reconstruction once per physics step, causing approximately 80,000 redundant environment constructions during the canonical protocol.",
+  "termination": "Manual Ctrl+C / KeyboardInterrupt after the defect was identified.",
+  "active_condition": null,
+  "completed_condition_count": null,
+  "partial_results_fabricated": false,
+  "canonical_scientific_result_complete": false
+}

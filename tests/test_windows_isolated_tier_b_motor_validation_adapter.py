@@ -1,4 +1,5 @@
 """M6B Windows adapter contract tests that need no live FlyGym install."""
+import ast
 import inspect
 import json
 from types import SimpleNamespace
@@ -181,7 +182,7 @@ def test_preflight_inspects_all_fourteen_before_sign_calibration(monkeypatch, tm
     monkeypatch.setattr(adapter, "_fresh_runtime", lambda *a, **k: {
         "sim": SimpleNamespace(close=lambda: None), "brain": object()})
     report = adapter.run_preflight({"interfaces": interfaces}, tmp_path / "limits.json")
-    assert report["schema"] == "M6B-P4.0"
+    assert report["schema"] == "M6B-P5.0"
     assert [x["physical_actuator_name"] for x in report["interfaces"]] == list(m6b.TIER_B)
     assert len(report["interfaces"]) == 8
 
@@ -209,3 +210,82 @@ def test_provenance_failure_cannot_launch_preflight_or_science(monkeypatch, caps
     committed = json.loads(m6b.OUTPUT.read_text(encoding="utf-8"))
     assert committed["run_status"] == "NOT_RUN"
     assert committed["provenance"]["scientific_run_number"] is None
+
+
+def test_frozen_canonical_execution_counts_and_order():
+    assert adapter.CONDITIONS == ("ENABLED", "MOTOR_OUTPUT_DISABLED")
+    assert tuple(m6b.TIER_B) == ("joint_LFFemur", "joint_LFTarsus1", "joint_LMFemur",
+        "joint_LHFemur", "joint_RFFemur", "joint_RFTarsus1", "joint_RMFemur",
+        "joint_RHFemur")
+    assert adapter.PHYSICS_DT_MS == .1 and adapter.NEURAL_DT_MS == .5
+    assert m6b.DURATION_MS == 500
+    assert adapter.EXPECTED_PHYSICS_STEPS_PER_CONDITION == 5000
+    assert adapter.EXPECTED_NEURAL_STEPS_PER_CONDITION == 1000
+    assert adapter.EXPECTED_CONDITIONS == 16
+    assert adapter.EXPECTED_CONDITIONS * adapter.EXPECTED_PHYSICS_STEPS_PER_CONDITION == 80_000
+    assert adapter.EXPECTED_CONDITIONS * adapter.EXPECTED_NEURAL_STEPS_PER_CONDITION == 16_000
+    assert adapter.EXPECTED_CANONICAL_ENVIRONMENT_CONSTRUCTIONS == 17
+    plan = [(name, condition) for name in m6b.TIER_B for condition in adapter.CONDITIONS]
+    assert len(plan) == len(set(plan)) == 16
+
+
+def test_no_live_inventory_construction_in_condition_loop():
+    tree = ast.parse(inspect.getsource(adapter._run_condition))
+    calls = {node.func.id for node in ast.walk(tree)
+             if isinstance(node, ast.Call) and isinstance(node.func, ast.Name)}
+    assert "enumerate_live_actuators" not in calls
+    assert "_make_live" not in calls  # construction is isolated in the fresh-runtime boundary
+    source = inspect.getsource(adapter._run_condition)
+    assert "for name in actuator_names" in source
+    assert "assert_physical_admission" in source
+
+
+def test_cached_digest_sequence_is_identical_between_neural_updates(monkeypatch):
+    brain = SimpleNamespace(v=np.array([1.]), g_exc=np.array([2.]),
+        g_inh=np.array([3.]), spike_counts=np.array([4]))
+    calls = 0
+    original = adapter._state_tuple
+    def counted(value):
+        nonlocal calls
+        calls += 1
+        return original(value)
+    monkeypatch.setattr(adapter, "_state_tuple", counted)
+    cached = adapter._cached_state_digest(brain, None, True)
+    expected = [original(brain)] * 5
+    actual = [adapter._cached_state_digest(brain, cached, False) for _ in range(5)]
+    assert actual == expected and calls == 1
+    brain.v[0] = 9
+    cached = adapter._cached_state_digest(brain, cached, True)
+    assert cached == original(brain) and calls == 2
+
+
+def test_progress_is_flushed_and_rng_neutral(monkeypatch):
+    emitted = []
+    monkeypatch.setattr("builtins.print", lambda *a, **k: emitted.append((a, k)))
+    state = np.random.default_rng(1).bit_generator.state
+    adapter._progress("hello")
+    assert emitted == [(("hello",), {"flush": True})]
+    assert np.random.default_rng(1).bit_generator.state == state
+
+
+def test_attempt_one_is_machine_readable_aborted_not_complete():
+    path = m6b.OUTPUT.with_name("m6b_attempt_1_abort.json")
+    attempt = json.loads(path.read_text(encoding="utf-8"))
+    assert attempt["attempt_number"] == 1
+    assert attempt["status"] == "ABORTED_IMPLEMENTATION_PERFORMANCE_DEFECT"
+    assert attempt["scientific_result_available"] is False
+    assert attempt["scientific_result_inspected"] is False
+    assert attempt["canonical_scientific_result_complete"] is False
+
+
+def test_fresh_runtime_closes_environment_when_initialization_is_interrupted(monkeypatch):
+    closed = []
+    sim = SimpleNamespace(close=lambda: closed.append(True))
+    monkeypatch.setattr(adapter, "_make_live", lambda *a: (sim, object(), {}, 0, 0))
+    class InterruptedBrain:
+        def __init__(self, data):
+            raise KeyboardInterrupt
+    monkeypatch.setattr(adapter, "MaleCNSBrain", InterruptedBrain)
+    with pytest.raises(KeyboardInterrupt):
+        adapter._fresh_runtime(object(), object(), {}, {}, {}, "ENABLED")
+    assert closed == [True]
