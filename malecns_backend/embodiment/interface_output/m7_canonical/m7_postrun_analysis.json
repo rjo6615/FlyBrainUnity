@@ -1,0 +1,1192 @@
+{
+  "analysis_code_version": "cf5e7ab558f6ce9bbf9d08637ebc337b171c36bc",
+  "body_trajectory_metrics": {
+    "ALL_NEURAL_MOTOR_DISABLED": {
+      "condition": "ALL_NEURAL_MOTOR_DISABLED",
+      "cumulative_orientation_change_rad": 2.813170695681377,
+      "final_xyz": [
+        0.388588665312132,
+        -0.08515867751005063,
+        0.43273534183884477
+      ],
+      "height_max_m": 0.5,
+      "height_min_m": -0.49399230066573396,
+      "initial_xyz": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "mean_speed_m_s": 0.6445688795436854,
+      "net_displacement_m": 0.40345716674990667,
+      "net_displacement_xyz": [
+        0.388588665312132,
+        -0.08515867751005063,
+        -0.06726465816115523
+      ],
+      "path_length_m": 3.22284439771826,
+      "peak_speed_m_s": 148.7384746470333
+    },
+    "SPONTANEOUS_NEURAL_EMBODIMENT": {
+      "condition": "SPONTANEOUS_NEURAL_EMBODIMENT",
+      "cumulative_orientation_change_rad": 14.317546454395842,
+      "final_xyz": [
+        -2.669303165070216,
+        0.34358508933973014,
+        0.8444773065168264
+      ],
+      "height_max_m": 1.4405437188911496,
+      "height_min_m": -0.4938934145019767,
+      "initial_xyz": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "mean_speed_m_s": 2.9420997372776103,
+      "net_displacement_m": 2.7132811714556144,
+      "net_displacement_xyz": [
+        -2.669303165070216,
+        0.34358508933973014,
+        0.3444773065168264
+      ],
+      "path_length_m": 14.71049868638809,
+      "peak_speed_m_s": 148.75667848585405
+    }
+  },
+  "coordination_metrics": {
+    "method": "descriptive normalized lag correlation; no fitting",
+    "pairwise": [
+      {
+        "channel_a": "joint_LFTibia",
+        "channel_b": "joint_RFTibia",
+        "entire_run": {
+          "correlation": -0.7421028418014904,
+          "lag_ms": 100.0
+        },
+        "pre_fall_or_rollover": {
+          "correlation": -0.8358723832174837,
+          "lag_ms": 1.5
+        }
+      },
+      {
+        "channel_a": "joint_LMTibia",
+        "channel_b": "joint_RMTibia",
+        "entire_run": {
+          "correlation": 0.6139364624201832,
+          "lag_ms": 0.0
+        },
+        "pre_fall_or_rollover": {
+          "correlation": 0.992106136178593,
+          "lag_ms": 0.0
+        }
+      },
+      {
+        "channel_a": "joint_LHTibia",
+        "channel_b": "joint_RHTibia",
+        "entire_run": {
+          "correlation": 0.9950441206058138,
+          "lag_ms": -100.0
+        },
+        "pre_fall_or_rollover": {
+          "correlation": -0.9693885439930916,
+          "lag_ms": 0.0
+        }
+      },
+      {
+        "channel_a": "joint_LFTibia",
+        "channel_b": "joint_LMTibia",
+        "entire_run": {
+          "correlation": 0.9491629708549559,
+          "lag_ms": 40.5
+        },
+        "pre_fall_or_rollover": {
+          "correlation": -0.9694402309227096,
+          "lag_ms": -0.5
+        }
+      },
+      {
+        "channel_a": "joint_LMTibia",
+        "channel_b": "joint_LHTibia",
+        "entire_run": {
+          "correlation": 0.9599860054375198,
+          "lag_ms": 76.0
+        },
+        "pre_fall_or_rollover": {
+          "correlation": -0.9724519476091145,
+          "lag_ms": 0.5
+        }
+      },
+      {
+        "channel_a": "joint_RFTibia",
+        "channel_b": "joint_RMTibia",
+        "entire_run": {
+          "correlation": -0.1952263410114419,
+          "lag_ms": -100.0
+        },
+        "pre_fall_or_rollover": {
+          "correlation": -0.48858949580323524,
+          "lag_ms": 1.5
+        }
+      },
+      {
+        "channel_a": "joint_RMTibia",
+        "channel_b": "joint_RHTibia",
+        "entire_run": {
+          "correlation": 0.6128299092827065,
+          "lag_ms": 100.0
+        },
+        "pre_fall_or_rollover": {
+          "correlation": 0.9985627959765535,
+          "lag_ms": 0.0
+        }
+      },
+      {
+        "channel_a": "joint_LFTibia",
+        "channel_b": "joint_RMTibia",
+        "entire_run": {
+          "correlation": 0.6320131716918075,
+          "lag_ms": -100.0
+        },
+        "pre_fall_or_rollover": {
+          "correlation": -0.9570051234434471,
+          "lag_ms": -0.5
+        }
+      },
+      {
+        "channel_a": "joint_LMTibia",
+        "channel_b": "joint_RHTibia",
+        "entire_run": {
+          "correlation": 0.9558333280639755,
+          "lag_ms": -86.5
+        },
+        "pre_fall_or_rollover": {
+          "correlation": 0.9899708820475469,
+          "lag_ms": 0.0
+        }
+      },
+      {
+        "channel_a": "joint_RFTibia",
+        "channel_b": "joint_LMTibia",
+        "entire_run": {
+          "correlation": -0.770509137383285,
+          "lag_ms": -100.0
+        },
+        "pre_fall_or_rollover": {
+          "correlation": -0.527915615027946,
+          "lag_ms": 1.5
+        }
+      },
+      {
+        "channel_a": "joint_RMTibia",
+        "channel_b": "joint_LHTibia",
+        "entire_run": {
+          "correlation": 0.5440699669706057,
+          "lag_ms": 100.0
+        },
+        "pre_fall_or_rollover": {
+          "correlation": -0.9808002072362136,
+          "lag_ms": 0.0
+        }
+      }
+    ],
+    "stable_pattern_conclusion": "No validated gait classification is performed.",
+    "tripod_gait_classification": null
+  },
+  "divergence_timeline": [
+    {
+      "causal_class": "downstream",
+      "final_absolute_divergence": 1.5651154150687934,
+      "first_descriptive_numerical_inequality_ms": 0.2,
+      "first_exact_inequality_ms": 0.2,
+      "first_frozen_threshold_crossing_ms": 13.099999999999977,
+      "frozen_threshold": 1e-06,
+      "numerical_tolerance_policy": "8 * float64 epsilon * max(1, instantaneous scale)",
+      "peak_absolute_divergence": 2.0781694383702285,
+      "quantity": "body_orientation_angular_distance_rad"
+    },
+    {
+      "causal_class": "intervention_driven",
+      "final_absolute_divergence": 0.21716878228069875,
+      "first_descriptive_numerical_inequality_ms": 12.999999999999977,
+      "first_exact_inequality_ms": 12.999999999999977,
+      "first_frozen_threshold_crossing_ms": null,
+      "frozen_threshold": null,
+      "numerical_tolerance_policy": "8 * float64 epsilon * max(1, instantaneous scale)",
+      "peak_absolute_divergence": 0.24935662349115245,
+      "quantity": "admitted_neural_motor_contribution"
+    },
+    {
+      "causal_class": "downstream",
+      "final_absolute_divergence": 3.137767167358468,
+      "first_descriptive_numerical_inequality_ms": 12.999999999999977,
+      "first_exact_inequality_ms": 12.999999999999977,
+      "first_frozen_threshold_crossing_ms": null,
+      "frozen_threshold": null,
+      "numerical_tolerance_policy": "8 * float64 epsilon * max(1, instantaneous scale)",
+      "peak_absolute_divergence": 3.8964747623848814,
+      "quantity": "commanded_actuator_action"
+    },
+    {
+      "causal_class": "downstream",
+      "final_absolute_divergence": 3.062607929110527,
+      "first_descriptive_numerical_inequality_ms": 13.099999999999977,
+      "first_exact_inequality_ms": 13.099999999999977,
+      "first_frozen_threshold_crossing_ms": 13.099999999999977,
+      "frozen_threshold": 1e-06,
+      "numerical_tolerance_policy": "8 * float64 epsilon * max(1, instantaneous scale)",
+      "peak_absolute_divergence": 3.9021942242980003,
+      "quantity": "measured_admitted_joint_position"
+    },
+    {
+      "causal_class": "downstream",
+      "final_absolute_divergence": 3.0626079693525003,
+      "first_descriptive_numerical_inequality_ms": 13.099999999999977,
+      "first_exact_inequality_ms": 13.099999999999977,
+      "first_frozen_threshold_crossing_ms": null,
+      "frozen_threshold": null,
+      "numerical_tolerance_policy": "8 * float64 epsilon * max(1, instantaneous scale)",
+      "peak_absolute_divergence": 3.9021941548571806,
+      "quantity": "whole_body_qpos"
+    },
+    {
+      "causal_class": "downstream",
+      "final_absolute_divergence": 3.057891830382348,
+      "first_descriptive_numerical_inequality_ms": 13.099999999999977,
+      "first_exact_inequality_ms": 13.099999999999977,
+      "first_frozen_threshold_crossing_ms": 13.099999999999977,
+      "frozen_threshold": 1e-06,
+      "numerical_tolerance_policy": "8 * float64 epsilon * max(1, instantaneous scale)",
+      "peak_absolute_divergence": 3.639559085831044,
+      "quantity": "body_position"
+    },
+    {
+      "causal_class": "feedback_downstream",
+      "final_absolute_divergence": 119.98849294408228,
+      "first_descriptive_numerical_inequality_ms": 13.499999999999973,
+      "first_exact_inequality_ms": 13.499999999999973,
+      "first_frozen_threshold_crossing_ms": null,
+      "frozen_threshold": null,
+      "numerical_tolerance_policy": "8 * float64 epsilon * max(1, instantaneous scale)",
+      "peak_absolute_divergence": 119.99990263748181,
+      "quantity": "validated_sensory_encoding"
+    },
+    {
+      "causal_class": "feedback_downstream",
+      "final_absolute_divergence": 177961.0,
+      "first_descriptive_numerical_inequality_ms": 23.99999999999991,
+      "first_exact_inequality_ms": 23.99999999999991,
+      "first_frozen_threshold_crossing_ms": null,
+      "frozen_threshold": null,
+      "numerical_tolerance_policy": "8 * float64 epsilon * max(1, instantaneous scale)",
+      "peak_absolute_divergence": 177961.0,
+      "quantity": "aggregate_cns_spike_trajectory"
+    }
+  ],
+  "evidence_validation": {
+    "all_required_values_finite": true,
+    "allow_pickle": false,
+    "conditions": [
+      "SPONTANEOUS_NEURAL_EMBODIMENT",
+      "ALL_NEURAL_MOTOR_DISABLED"
+    ],
+    "cross_condition_clock_comparison": "exact float64 sample equality",
+    "cross_condition_clocks_equivalent": true,
+    "manifest_sha256": "86201abdc8507f71a3215f98dbe5eb6e7ce4c8da0f207b95ecc12ac587b764b9",
+    "neural_samples_per_condition": 10000,
+    "object_arrays": false,
+    "physics_states_per_condition": 50001,
+    "raw_sha256": "155ef633a319711d44fc471c1f46c24cec0b36ea6e7326556c5b987e912fed47",
+    "status": "PASS",
+    "time_semantics": {
+      "neural": "post-neural-update states sampled exactly from physics_time_ms[5::5]; t[i] is nominally (i + 1) * 0.5 ms",
+      "physics": "initial state plus post-transition states; t[i] = i * 0.1 ms"
+    },
+    "time_tolerance_policy": "physics uses cumulative half-ULP per repeated 0.1-ms float64 advancement plus one reference ULP and adjacent-value cadence ULPs; neural has only nominal boundary checks using sampled physics bounds and must exactly equal physics_time_ms[5::5]"
+  },
+  "fall_rollover_timeline": {
+    "ALL_NEURAL_MOTOR_DISABLED": {
+      "condition": "ALL_NEURAL_MOTOR_DISABLED",
+      "fall": {
+        "body_orientation_immediately_before": [
+          0.9997482414823777,
+          0.022394013465577362,
+          -0.00062463635735605,
+          0.001253651952592674
+        ],
+        "body_position_immediately_before": [
+          0.001368932028244034,
+          0.05517087463521892,
+          0.25380239387763176
+        ],
+        "sample_index": 72,
+        "time_ms": 7.2000000000000055
+      },
+      "joint_total_variation_in_final_10ms_before_event": [
+        0.0006794875662308186,
+        0.02006518206326291,
+        0.002316920959856361,
+        0.00029423443629639223,
+        0.003575924114556983,
+        0.0022194822086021304,
+        0.012265205383300781,
+        0.024971842765808105,
+        0.012608051300048828,
+        0.005206584930419922,
+        0.004634857177734375
+      ],
+      "neural_motor_activity_preceded_first_event": false,
+      "rollover": {
+        "body_orientation_immediately_before": [
+          0.6811513844650127,
+          -0.1484564800562335,
+          -0.6911899214765677,
+          -0.19039421582580981
+        ],
+        "body_position_immediately_before": [
+          0.39449631430687476,
+          -0.16687353245285583,
+          0.3624737219315429
+        ],
+        "sample_index": 3624,
+        "time_ms": 362.3999999999764
+      },
+      "usable_pre_event_duration_ms": 7.2000000000000055
+    },
+    "SPONTANEOUS_NEURAL_EMBODIMENT": {
+      "condition": "SPONTANEOUS_NEURAL_EMBODIMENT",
+      "fall": {
+        "body_orientation_immediately_before": [
+          0.9997482414823777,
+          0.022394013465577362,
+          -0.00062463635735605,
+          0.001253651952592674
+        ],
+        "body_position_immediately_before": [
+          0.001368932028244034,
+          0.05517087463521892,
+          0.25380239387763176
+        ],
+        "sample_index": 72,
+        "time_ms": 7.2000000000000055
+      },
+      "joint_total_variation_in_final_10ms_before_event": [
+        0.0006794875662308186,
+        0.02006518206326291,
+        0.002316920959856361,
+        0.00029423443629639223,
+        0.003575924114556983,
+        0.0022194822086021304,
+        0.012265205383300781,
+        0.024971842765808105,
+        0.012608051300048828,
+        0.005206584930419922,
+        0.004634857177734375
+      ],
+      "neural_motor_activity_preceded_first_event": false,
+      "rollover": {
+        "body_orientation_immediately_before": [
+          0.542204181057805,
+          -0.01943508499610336,
+          -0.7066518860656316,
+          0.45418059781821973
+        ],
+        "body_position_immediately_before": [
+          -0.39657046719583644,
+          1.3642019421145732,
+          0.3505310821382073
+        ],
+        "sample_index": 3643,
+        "time_ms": 364.2999999999762
+      },
+      "usable_pre_event_duration_ms": 7.2000000000000055
+    }
+  },
+  "interpretation_guardrails": {
+    "biological_locomotion_claim": false,
+    "biological_motor_function_claim": false,
+    "biological_muscle_force_claim": false,
+    "causal_inference": "Only the enabled neural motor contribution versus matched disabled control intervention supports causal attribution; within-condition lags are associations.",
+    "natural_gait_claim": false,
+    "walking": null
+  },
+  "joint_metrics": {
+    "ALL_NEURAL_MOTOR_DISABLED": {
+      "joint_LFFemur": {
+        "angular_velocity_mean": 0.46044256761654584,
+        "angular_velocity_peak_abs": 43.46847534178222,
+        "angular_velocity_std": 0.9750769806565632,
+        "dominant_frequency_amplitude": 0.2218484970841843,
+        "dominant_frequency_hz_descriptive": 0.19999600007993096,
+        "extrema_count": 4501,
+        "final_angle": 0.033284787088632584,
+        "initial_angle": -2.268928050994873,
+        "maximum": 0.033406779170036316,
+        "minimum": -2.268928050994873,
+        "range_of_motion": 2.3023348301649094,
+        "total_variation": 2.352597925812006
+      },
+      "joint_LFTibia": {
+        "angular_velocity_mean": 0.012469476461406316,
+        "angular_velocity_peak_abs": 17.70189031957983,
+        "angular_velocity_std": 0.32429139783199995,
+        "dominant_frequency_amplitude": 0.059181431015676515,
+        "dominant_frequency_hz_descriptive": 0.19999600007993096,
+        "extrema_count": 1543,
+        "final_angle": 0.06234738230705261,
+        "initial_angle": 0.0,
+        "maximum": 0.4255017042160034,
+        "minimum": -0.0001884956582216546,
+        "range_of_motion": 0.4256901998742251,
+        "total_variation": 0.8555062085797545
+      },
+      "joint_LHFemur": {
+        "angular_velocity_mean": -0.28763387203206847,
+        "angular_velocity_peak_abs": 47.99127578733733,
+        "angular_velocity_std": 1.2782755914275992,
+        "dominant_frequency_amplitude": 0.06344586740781934,
+        "dominant_frequency_hz_descriptive": 0.19999600007993096,
+        "extrema_count": 2324,
+        "final_angle": -3.1834986209869385,
+        "initial_angle": -1.7453292608261108,
+        "maximum": -1.6854103803634644,
+        "minimum": -3.1835784912109375,
+        "range_of_motion": 1.4981681108474731,
+        "total_variation": 1.720401644706726
+      },
+      "joint_LHTibia": {
+        "angular_velocity_mean": -0.013273033499713236,
+        "angular_velocity_peak_abs": 17.952802591019775,
+        "angular_velocity_std": 0.5460837643619352,
+        "dominant_frequency_amplitude": 0.006495169907447404,
+        "dominant_frequency_hz_descriptive": 0.19999600007993096,
+        "extrema_count": 757,
+        "final_angle": -0.06636516749858856,
+        "initial_angle": 0.0,
+        "maximum": 0.019023820757865906,
+        "minimum": -0.08790898323059082,
+        "range_of_motion": 0.10693280398845673,
+        "total_variation": 0.5805161781026982
+      },
+      "joint_LMFemur": {
+        "angular_velocity_mean": 0.2604769587515906,
+        "angular_velocity_peak_abs": 41.63861274717834,
+        "angular_velocity_std": 0.7240567096775441,
+        "dominant_frequency_amplitude": 0.13676587510458715,
+        "dominant_frequency_hz_descriptive": 0.19999600007993096,
+        "extrema_count": 6256,
+        "final_angle": -0.4429444670677185,
+        "initial_angle": -1.7453292608261108,
+        "maximum": -0.44181936979293823,
+        "minimum": -1.7849746942520142,
+        "range_of_motion": 1.343155324459076,
+        "total_variation": 1.4414991736412048
+      },
+      "joint_LMTibia": {
+        "angular_velocity_mean": -0.016128006577486323,
+        "angular_velocity_peak_abs": 16.710720956319896,
+        "angular_velocity_std": 0.30300649433886695,
+        "dominant_frequency_amplitude": 0.024974803644946295,
+        "dominant_frequency_hz_descriptive": 0.19999600007993096,
+        "extrema_count": 378,
+        "final_angle": -0.0806400328874588,
+        "initial_angle": 0.0,
+        "maximum": 0.07260031253099442,
+        "minimum": -0.0806400328874588,
+        "range_of_motion": 0.15324034541845322,
+        "total_variation": 0.39548516197828576
+      },
+      "joint_RFTibia": {
+        "angular_velocity_mean": -0.1869771242141093,
+        "angular_velocity_peak_abs": 18.419604748481262,
+        "angular_velocity_std": 0.25409303664585314,
+        "dominant_frequency_amplitude": 0.18964134271835126,
+        "dominant_frequency_hz_descriptive": 0.19999600007993096,
+        "extrema_count": 110,
+        "final_angle": -0.9348856210708618,
+        "initial_angle": 0.0,
+        "maximum": 0.08179603517055511,
+        "minimum": -0.9348856210708618,
+        "range_of_motion": 1.016681656241417,
+        "total_variation": 1.1230039155270788
+      },
+      "joint_RHFemur": {
+        "angular_velocity_mean": -0.2824691057204247,
+        "angular_velocity_peak_abs": 174.1731166839012,
+        "angular_velocity_std": 2.2564688061987352,
+        "dominant_frequency_amplitude": 0.06042633951082024,
+        "dominant_frequency_hz_descriptive": 0.19999600007993096,
+        "extrema_count": 5913,
+        "final_angle": -3.157674789428711,
+        "initial_angle": -1.7453292608261108,
+        "maximum": -1.733935832977295,
+        "minimum": -3.158159017562866,
+        "range_of_motion": 1.4242231845855713,
+        "total_variation": 1.8486427068710327
+      },
+      "joint_RHTibia": {
+        "angular_velocity_mean": -0.02008498609065332,
+        "angular_velocity_peak_abs": 90.2731996029311,
+        "angular_velocity_std": 1.0690304876894656,
+        "dominant_frequency_amplitude": 0.010733977833308124,
+        "dominant_frequency_hz_descriptive": 0.19999600007993096,
+        "extrema_count": 2658,
+        "final_angle": -0.10042493045330048,
+        "initial_angle": 0.0,
+        "maximum": 0.025789840146899223,
+        "minimum": -0.10045884549617767,
+        "range_of_motion": 0.1262486856430769,
+        "total_variation": 0.6889680923777632
+      },
+      "joint_RMFemur": {
+        "angular_velocity_mean": 0.33979410603631005,
+        "angular_velocity_peak_abs": 85.0021839141559,
+        "angular_velocity_std": 1.2907998102008207,
+        "dominant_frequency_amplitude": 0.19902968176718638,
+        "dominant_frequency_hz_descriptive": 0.19999600007993096,
+        "extrema_count": 62,
+        "final_angle": -0.046358730643987656,
+        "initial_angle": -1.7453292608261108,
+        "maximum": -0.046358730643987656,
+        "minimum": -1.8375563621520996,
+        "range_of_motion": 1.791197631508112,
+        "total_variation": 1.9032003618776798
+      },
+      "joint_RMTibia": {
+        "angular_velocity_mean": 2.5017221923906804e-05,
+        "angular_velocity_peak_abs": 36.30717284976212,
+        "angular_velocity_std": 0.5103081625342698,
+        "dominant_frequency_amplitude": 0.013287462046713053,
+        "dominant_frequency_hz_descriptive": 0.19999600007993096,
+        "extrema_count": 2177,
+        "final_angle": 0.00012508610961958766,
+        "initial_angle": 0.0,
+        "maximum": 0.04978005215525627,
+        "minimum": -0.0421328991651535,
+        "range_of_motion": 0.09191295132040977,
+        "total_variation": 0.3336119325540494
+      }
+    },
+    "SPONTANEOUS_NEURAL_EMBODIMENT": {
+      "joint_LFFemur": {
+        "angular_velocity_mean": 0.3170443058012846,
+        "angular_velocity_peak_abs": 43.46132278440917,
+        "angular_velocity_std": 2.816619058811736,
+        "dominant_frequency_amplitude": 0.435795956517635,
+        "dominant_frequency_hz_descriptive": 0.19999600007993096,
+        "extrema_count": 890,
+        "final_angle": -0.683706521987915,
+        "initial_angle": -2.268928050994873,
+        "maximum": -0.6323988437652588,
+        "minimum": -3.988605499267578,
+        "range_of_motion": 3.3562066555023193,
+        "total_variation": 11.425845742225647
+      },
+      "joint_LFTibia": {
+        "angular_velocity_mean": 0.4681401729582161,
+        "angular_velocity_peak_abs": 37.71543502806345,
+        "angular_velocity_std": 2.156774477000163,
+        "dominant_frequency_amplitude": 0.4249074556577661,
+        "dominant_frequency_hz_descriptive": 0.19999600007993096,
+        "extrema_count": 3180,
+        "final_angle": 2.34070086479187,
+        "initial_angle": 0.0,
+        "maximum": 2.9830727577209473,
+        "minimum": -0.12033940851688385,
+        "range_of_motion": 3.103412166237831,
+        "total_variation": 7.107844684243901
+      },
+      "joint_LHFemur": {
+        "angular_velocity_mean": -0.3319022893904521,
+        "angular_velocity_peak_abs": 104.49171066280655,
+        "angular_velocity_std": 2.811813891873832,
+        "dominant_frequency_amplitude": 0.07754111551123093,
+        "dominant_frequency_hz_descriptive": 0.19999600007993096,
+        "extrema_count": 2905,
+        "final_angle": -3.4048407077789307,
+        "initial_angle": -1.7453292608261108,
+        "maximum": -1.69357168674469,
+        "minimum": -3.4104247093200684,
+        "range_of_motion": 1.7168530225753784,
+        "total_variation": 4.107704043388367
+      },
+      "joint_LHTibia": {
+        "angular_velocity_mean": 0.5864677906034399,
+        "angular_velocity_peak_abs": 70.7483291625738,
+        "angular_velocity_std": 3.290587466347711,
+        "dominant_frequency_amplitude": 0.46417731544568636,
+        "dominant_frequency_hz_descriptive": 0.19999600007993096,
+        "extrema_count": 8121,
+        "final_angle": 2.9323389530181885,
+        "initial_angle": 0.0,
+        "maximum": 2.933607578277588,
+        "minimum": -0.2201935052871704,
+        "range_of_motion": 3.1538010835647583,
+        "total_variation": 5.083243173954543
+      },
+      "joint_LMFemur": {
+        "angular_velocity_mean": 0.7025625944135205,
+        "angular_velocity_peak_abs": 74.81336593625407,
+        "angular_velocity_std": 2.4555620571119983,
+        "dominant_frequency_amplitude": 0.3493651469565024,
+        "dominant_frequency_hz_descriptive": 0.19999600007993096,
+        "extrema_count": 1863,
+        "final_angle": 1.7674837112426758,
+        "initial_angle": -1.7453292608261108,
+        "maximum": 1.7674837112426758,
+        "minimum": -1.785463571548462,
+        "range_of_motion": 3.5529472827911377,
+        "total_variation": 4.759117245674133
+      },
+      "joint_LMTibia": {
+        "angular_velocity_mean": 0.5722548961637475,
+        "angular_velocity_peak_abs": 76.70164108273781,
+        "angular_velocity_std": 2.5385284282700282,
+        "dominant_frequency_amplitude": 0.28708299189805286,
+        "dominant_frequency_hz_descriptive": 0.19999600007993096,
+        "extrema_count": 4081,
+        "final_angle": 2.861274480819702,
+        "initial_angle": 0.0,
+        "maximum": 2.8613035678863525,
+        "minimum": -0.039194606244564056,
+        "range_of_motion": 2.9004981741309166,
+        "total_variation": 3.8741145424428396
+      },
+      "joint_RFTibia": {
+        "angular_velocity_mean": -0.1888503670691807,
+        "angular_velocity_peak_abs": 18.415816593909014,
+        "angular_velocity_std": 0.3212192664596765,
+        "dominant_frequency_amplitude": 0.2210688017049912,
+        "dominant_frequency_hz_descriptive": 0.19999600007993096,
+        "extrema_count": 611,
+        "final_angle": -0.9442518353462219,
+        "initial_angle": 0.0,
+        "maximum": 0.07844392210245132,
+        "minimum": -0.9442518353462219,
+        "range_of_motion": 1.0226957574486732,
+        "total_variation": 1.201496835819853
+      },
+      "joint_RHFemur": {
+        "angular_velocity_mean": 0.16997778415674203,
+        "angular_velocity_peak_abs": 174.1719245910057,
+        "angular_velocity_std": 3.4327473496926286,
+        "dominant_frequency_amplitude": 0.23051312197684531,
+        "dominant_frequency_hz_descriptive": 0.19999600007993096,
+        "extrema_count": 613,
+        "final_angle": -0.8954403400421143,
+        "initial_angle": -1.7453292608261108,
+        "maximum": -0.6566120386123657,
+        "minimum": -2.9089736938476562,
+        "range_of_motion": 2.2523616552352905,
+        "total_variation": 10.286657571792603
+      },
+      "joint_RHTibia": {
+        "angular_velocity_mean": 0.5924365997312455,
+        "angular_velocity_peak_abs": 90.24719242003496,
+        "angular_velocity_std": 2.4217112144127664,
+        "dominant_frequency_amplitude": 0.35581459325733544,
+        "dominant_frequency_hz_descriptive": 0.19999600007993096,
+        "extrema_count": 2644,
+        "final_angle": 2.9621829986572266,
+        "initial_angle": 0.0,
+        "maximum": 3.000770330429077,
+        "minimum": -0.02110392041504383,
+        "range_of_motion": 3.021874250844121,
+        "total_variation": 5.865459063206799
+      },
+      "joint_RMFemur": {
+        "angular_velocity_mean": 0.582371616363329,
+        "angular_velocity_peak_abs": 85.07490158078186,
+        "angular_velocity_std": 2.558476013390839,
+        "dominant_frequency_amplitude": 0.3777549974082763,
+        "dominant_frequency_hz_descriptive": 0.19999600007993096,
+        "extrema_count": 1859,
+        "final_angle": 1.1665288209915161,
+        "initial_angle": -1.7453292608261108,
+        "maximum": 1.1718933582305908,
+        "minimum": -1.8376343250274658,
+        "range_of_motion": 3.0095276832580566,
+        "total_variation": 6.7968924809247255
+      },
+      "joint_RMTibia": {
+        "angular_velocity_mean": 0.3411250829695505,
+        "angular_velocity_peak_abs": 36.32109612225261,
+        "angular_velocity_std": 2.4511792581369347,
+        "dominant_frequency_amplitude": 0.10736707266795899,
+        "dominant_frequency_hz_descriptive": 0.19999600007993096,
+        "extrema_count": 883,
+        "final_angle": 1.7056254148483276,
+        "initial_angle": 0.0,
+        "maximum": 1.8856956958770752,
+        "minimum": -0.04216672480106354,
+        "range_of_motion": 1.9278624206781387,
+        "total_variation": 8.861954713967862
+      }
+    }
+  },
+  "limitations": [
+    "Aggregate telemetry cannot establish neuron-level causal pathways.",
+    "Frequency, phase, and lag results are descriptive only.",
+    "Fall/rollover restricts interpretable pre-event coordination time.",
+    "Recorded joint coordinates are not biological muscle force."
+  ],
+  "motor_activation_timeline": {
+    "ALL_NEURAL_MOTOR_DISABLED": {
+      "channels": [
+        {
+          "activation_episodes": 0,
+          "active_duration_ms": 0.0,
+          "first_nonzero_admitted_ms": null,
+          "first_nonzero_decoder_ms": 161.49999999999852,
+          "first_nonzero_observer_ms": 161.49999999999852,
+          "interface": "joint_LFTibia",
+          "joint": "Tibia",
+          "leg": "LF",
+          "peak_admitted_contribution": 0.0,
+          "peak_admitted_time_ms": 0.5,
+          "peak_decoder_magnitude": 0.12824909835657988,
+          "peak_decoder_time_ms": 2306.500000000443,
+          "peak_observer_hz": 17.6459258538067,
+          "peak_observer_time_ms": 2306.500000000443,
+          "tier": "Tier A"
+        },
+        {
+          "activation_episodes": 0,
+          "active_duration_ms": 0.0,
+          "first_nonzero_admitted_ms": null,
+          "first_nonzero_decoder_ms": 12.999999999999977,
+          "first_nonzero_observer_ms": 12.999999999999977,
+          "interface": "joint_LMTibia",
+          "joint": "Tibia",
+          "leg": "LM",
+          "peak_admitted_contribution": 0.0,
+          "peak_admitted_time_ms": 0.5,
+          "peak_decoder_magnitude": 0.24944332272033193,
+          "peak_decoder_time_ms": 233.99999999999054,
+          "peak_observer_hz": 149.78481001873686,
+          "peak_observer_time_ms": 233.99999999999054,
+          "tier": "Tier A"
+        },
+        {
+          "activation_episodes": 0,
+          "active_duration_ms": 0.0,
+          "first_nonzero_admitted_ms": null,
+          "first_nonzero_decoder_ms": 23.99999999999991,
+          "first_nonzero_observer_ms": 23.99999999999991,
+          "interface": "joint_LHTibia",
+          "joint": "Tibia",
+          "leg": "LH",
+          "peak_admitted_contribution": 0.0,
+          "peak_admitted_time_ms": 0.5,
+          "peak_decoder_magnitude": 0.18483469273362746,
+          "peak_decoder_time_ms": 476.9999999999638,
+          "peak_observer_hz": 32.975848811611506,
+          "peak_observer_time_ms": 476.9999999999638,
+          "tier": "Tier A"
+        },
+        {
+          "activation_episodes": 0,
+          "active_duration_ms": 0.0,
+          "first_nonzero_admitted_ms": null,
+          "first_nonzero_decoder_ms": null,
+          "first_nonzero_observer_ms": null,
+          "interface": "joint_RFTibia",
+          "joint": "Tibia",
+          "leg": "RF",
+          "peak_admitted_contribution": 0.0,
+          "peak_admitted_time_ms": 0.5,
+          "peak_decoder_magnitude": 0.0,
+          "peak_decoder_time_ms": 0.5,
+          "peak_observer_hz": 0.0,
+          "peak_observer_time_ms": 0.5,
+          "tier": "Tier A"
+        },
+        {
+          "activation_episodes": 0,
+          "active_duration_ms": 0.0,
+          "first_nonzero_admitted_ms": null,
+          "first_nonzero_decoder_ms": 40.00000000000012,
+          "first_nonzero_observer_ms": 40.00000000000012,
+          "interface": "joint_RMTibia",
+          "joint": "Tibia",
+          "leg": "RM",
+          "peak_admitted_contribution": 0.0,
+          "peak_admitted_time_ms": 0.5,
+          "peak_decoder_magnitude": 0.2276763981422219,
+          "peak_decoder_time_ms": 342.4999999999786,
+          "peak_observer_hz": 59.24986826553736,
+          "peak_observer_time_ms": 342.4999999999786,
+          "tier": "Tier A"
+        },
+        {
+          "activation_episodes": 0,
+          "active_duration_ms": 0.0,
+          "first_nonzero_admitted_ms": null,
+          "first_nonzero_decoder_ms": 21.999999999999922,
+          "first_nonzero_observer_ms": 21.999999999999922,
+          "interface": "joint_RHTibia",
+          "joint": "Tibia",
+          "leg": "RH",
+          "peak_admitted_contribution": 0.0,
+          "peak_admitted_time_ms": 0.5,
+          "peak_decoder_magnitude": 0.21369742828835253,
+          "peak_decoder_time_ms": 632.9999999999466,
+          "peak_observer_hz": 47.32433541077255,
+          "peak_observer_time_ms": 632.9999999999466,
+          "tier": "Tier A"
+        },
+        {
+          "activation_episodes": 0,
+          "active_duration_ms": 0.0,
+          "first_nonzero_admitted_ms": null,
+          "first_nonzero_decoder_ms": 22.999999999999915,
+          "first_nonzero_observer_ms": 22.999999999999915,
+          "interface": "joint_LFFemur",
+          "joint": "Femur",
+          "leg": "LF",
+          "peak_admitted_contribution": 0.0,
+          "peak_admitted_time_ms": 0.5,
+          "peak_decoder_magnitude": -0.18620455273877584,
+          "peak_decoder_time_ms": 227.99999999999122,
+          "peak_observer_hz": 45.79812252813086,
+          "peak_observer_time_ms": 227.99999999999122,
+          "tier": "Tier B"
+        },
+        {
+          "activation_episodes": 0,
+          "active_duration_ms": 0.0,
+          "first_nonzero_admitted_ms": null,
+          "first_nonzero_decoder_ms": 17.49999999999995,
+          "first_nonzero_observer_ms": 17.49999999999995,
+          "interface": "joint_LMFemur",
+          "joint": "Femur",
+          "leg": "LM",
+          "peak_admitted_contribution": 0.0,
+          "peak_admitted_time_ms": 0.5,
+          "peak_decoder_magnitude": 0.23978179836879862,
+          "peak_decoder_time_ms": 216.49999999999247,
+          "peak_observer_hz": 100.82076810427598,
+          "peak_observer_time_ms": 216.49999999999247,
+          "tier": "Tier B"
+        },
+        {
+          "activation_episodes": 0,
+          "active_duration_ms": 0.0,
+          "first_nonzero_admitted_ms": null,
+          "first_nonzero_decoder_ms": 16.999999999999954,
+          "first_nonzero_observer_ms": 16.999999999999954,
+          "interface": "joint_LHFemur",
+          "joint": "Femur",
+          "leg": "LH",
+          "peak_admitted_contribution": 0.0,
+          "peak_admitted_time_ms": 0.5,
+          "peak_decoder_magnitude": -0.2228529394448738,
+          "peak_decoder_time_ms": 217.49999999999235,
+          "peak_observer_hz": 87.92842900370208,
+          "peak_observer_time_ms": 217.49999999999235,
+          "tier": "Tier B"
+        },
+        {
+          "activation_episodes": 0,
+          "active_duration_ms": 0.0,
+          "first_nonzero_admitted_ms": null,
+          "first_nonzero_decoder_ms": 27.999999999999886,
+          "first_nonzero_observer_ms": 27.999999999999886,
+          "interface": "joint_RMFemur",
+          "joint": "Femur",
+          "leg": "RM",
+          "peak_admitted_contribution": 0.0,
+          "peak_admitted_time_ms": 0.5,
+          "peak_decoder_magnitude": 0.18023001663145788,
+          "peak_decoder_time_ms": 3274.5000000024856,
+          "peak_observer_hz": 40.244457729352625,
+          "peak_observer_time_ms": 3274.5000000024856,
+          "tier": "Tier B"
+        },
+        {
+          "activation_episodes": 0,
+          "active_duration_ms": 0.0,
+          "first_nonzero_admitted_ms": null,
+          "first_nonzero_decoder_ms": 40.500000000000135,
+          "first_nonzero_observer_ms": 40.500000000000135,
+          "interface": "joint_RHFemur",
+          "joint": "Femur",
+          "leg": "RH",
+          "peak_admitted_contribution": 0.0,
+          "peak_admitted_time_ms": 0.5,
+          "peak_decoder_magnitude": 0.13718011067630512,
+          "peak_decoder_time_ms": 956.9999999999109,
+          "peak_observer_hz": 35.287654085691045,
+          "peak_observer_time_ms": 956.9999999999109,
+          "tier": "Tier B"
+        }
+      ],
+      "condition": "ALL_NEURAL_MOTOR_DISABLED",
+      "first_active_channel": null,
+      "first_active_leg": null,
+      "maximum_simultaneously_active_channels": 0,
+      "recruitment_order": [],
+      "samples_with_simultaneous_channels": 0,
+      "silent_channels": [
+        "joint_LFTibia",
+        "joint_LMTibia",
+        "joint_LHTibia",
+        "joint_RFTibia",
+        "joint_RMTibia",
+        "joint_RHTibia",
+        "joint_LFFemur",
+        "joint_LMFemur",
+        "joint_LHFemur",
+        "joint_RMFemur",
+        "joint_RHFemur"
+      ]
+    },
+    "SPONTANEOUS_NEURAL_EMBODIMENT": {
+      "channels": [
+        {
+          "activation_episodes": 1,
+          "active_duration_ms": 4911.000000001656,
+          "first_nonzero_admitted_ms": 89.50000000000153,
+          "first_nonzero_decoder_ms": 89.50000000000153,
+          "first_nonzero_observer_ms": 89.50000000000153,
+          "interface": "joint_LFTibia",
+          "joint": "Tibia",
+          "leg": "LF",
+          "peak_admitted_contribution": 0.13023332757190692,
+          "peak_admitted_time_ms": 4169.0000000036225,
+          "peak_decoder_magnitude": 0.13023332757190692,
+          "peak_decoder_time_ms": 4169.0000000036225,
+          "peak_observer_hz": 19.875852116176986,
+          "peak_observer_time_ms": 1045.4999999999013,
+          "tier": "Tier A"
+        },
+        {
+          "activation_episodes": 1,
+          "active_duration_ms": 4987.500000001683,
+          "first_nonzero_admitted_ms": 12.999999999999977,
+          "first_nonzero_decoder_ms": 12.999999999999977,
+          "first_nonzero_observer_ms": 12.999999999999977,
+          "interface": "joint_LMTibia",
+          "joint": "Tibia",
+          "leg": "LM",
+          "peak_admitted_contribution": 0.24935662349115245,
+          "peak_admitted_time_ms": 101.50000000000188,
+          "peak_decoder_magnitude": 0.24935662349115245,
+          "peak_decoder_time_ms": 101.50000000000188,
+          "peak_observer_hz": 146.23483501795283,
+          "peak_observer_time_ms": 101.50000000000188,
+          "tier": "Tier A"
+        },
+        {
+          "activation_episodes": 1,
+          "active_duration_ms": 4976.500000001679,
+          "first_nonzero_admitted_ms": 23.99999999999991,
+          "first_nonzero_decoder_ms": 23.99999999999991,
+          "first_nonzero_observer_ms": 23.99999999999991,
+          "interface": "joint_LHTibia",
+          "joint": "Tibia",
+          "leg": "LH",
+          "peak_admitted_contribution": 0.21509006135833772,
+          "peak_admitted_time_ms": 701.999999999939,
+          "peak_decoder_magnitude": 0.21509006135833772,
+          "peak_decoder_time_ms": 701.999999999939,
+          "peak_observer_hz": 48.28371267791054,
+          "peak_observer_time_ms": 701.999999999939,
+          "tier": "Tier A"
+        },
+        {
+          "activation_episodes": 0,
+          "active_duration_ms": 0.0,
+          "first_nonzero_admitted_ms": null,
+          "first_nonzero_decoder_ms": null,
+          "first_nonzero_observer_ms": null,
+          "interface": "joint_RFTibia",
+          "joint": "Tibia",
+          "leg": "RF",
+          "peak_admitted_contribution": 0.0,
+          "peak_admitted_time_ms": 0.5,
+          "peak_decoder_magnitude": 0.0,
+          "peak_decoder_time_ms": 0.5,
+          "peak_observer_hz": 0.0,
+          "peak_observer_time_ms": 0.5,
+          "tier": "Tier A"
+        },
+        {
+          "activation_episodes": 1,
+          "active_duration_ms": 4960.5000000016735,
+          "first_nonzero_admitted_ms": 40.00000000000012,
+          "first_nonzero_decoder_ms": 40.00000000000012,
+          "first_nonzero_observer_ms": 40.00000000000012,
+          "interface": "joint_RMTibia",
+          "joint": "Tibia",
+          "leg": "RM",
+          "peak_admitted_contribution": 0.2278997668867324,
+          "peak_admitted_time_ms": 308.4999999999823,
+          "peak_decoder_magnitude": 0.2278997668867324,
+          "peak_decoder_time_ms": 308.4999999999823,
+          "peak_observer_hz": 59.49650824300831,
+          "peak_observer_time_ms": 308.4999999999823,
+          "tier": "Tier A"
+        },
+        {
+          "activation_episodes": 1,
+          "active_duration_ms": 4978.500000001679,
+          "first_nonzero_admitted_ms": 21.999999999999922,
+          "first_nonzero_decoder_ms": 21.999999999999922,
+          "first_nonzero_observer_ms": 21.999999999999922,
+          "interface": "joint_RHTibia",
+          "joint": "Tibia",
+          "leg": "RH",
+          "peak_admitted_contribution": 0.1939527071618059,
+          "peak_admitted_time_ms": 472.99999999996425,
+          "peak_decoder_magnitude": 0.1939527071618059,
+          "peak_decoder_time_ms": 472.99999999996425,
+          "peak_observer_hz": 36.67259548687811,
+          "peak_observer_time_ms": 472.99999999996425,
+          "tier": "Tier A"
+        },
+        {
+          "activation_episodes": 1,
+          "active_duration_ms": 4977.500000001679,
+          "first_nonzero_admitted_ms": 22.999999999999915,
+          "first_nonzero_decoder_ms": 22.999999999999915,
+          "first_nonzero_observer_ms": 22.999999999999915,
+          "interface": "joint_LFFemur",
+          "joint": "Femur",
+          "leg": "LF",
+          "peak_admitted_contribution": -0.196892193118546,
+          "peak_admitted_time_ms": 278.4999999999857,
+          "peak_decoder_magnitude": -0.196892193118546,
+          "peak_decoder_time_ms": 278.4999999999857,
+          "peak_observer_hz": 45.653096575324966,
+          "peak_observer_time_ms": 273.4999999999862,
+          "tier": "Tier B"
+        },
+        {
+          "activation_episodes": 1,
+          "active_duration_ms": 4983.000000001681,
+          "first_nonzero_admitted_ms": 17.49999999999995,
+          "first_nonzero_decoder_ms": 17.49999999999995,
+          "first_nonzero_observer_ms": 17.49999999999995,
+          "interface": "joint_LMFemur",
+          "joint": "Femur",
+          "leg": "LM",
+          "peak_admitted_contribution": 0.2373761933194001,
+          "peak_admitted_time_ms": 1196.9999999998845,
+          "peak_decoder_magnitude": 0.2373761933194001,
+          "peak_decoder_time_ms": 1196.9999999998845,
+          "peak_observer_hz": 94.15421476802639,
+          "peak_observer_time_ms": 1196.9999999998845,
+          "tier": "Tier B"
+        },
+        {
+          "activation_episodes": 1,
+          "active_duration_ms": 4983.500000001681,
+          "first_nonzero_admitted_ms": 16.999999999999954,
+          "first_nonzero_decoder_ms": 16.999999999999954,
+          "first_nonzero_observer_ms": 16.999999999999954,
+          "interface": "joint_LHFemur",
+          "joint": "Femur",
+          "leg": "LH",
+          "peak_admitted_contribution": -0.22985313900213483,
+          "peak_admitted_time_ms": 1215.4999999998827,
+          "peak_decoder_magnitude": -0.22985313900213483,
+          "peak_decoder_time_ms": 1215.4999999998827,
+          "peak_observer_hz": 84.85343709657793,
+          "peak_observer_time_ms": 1222.9999999998818,
+          "tier": "Tier B"
+        },
+        {
+          "activation_episodes": 1,
+          "active_duration_ms": 4972.500000001677,
+          "first_nonzero_admitted_ms": 27.999999999999886,
+          "first_nonzero_decoder_ms": 27.999999999999886,
+          "first_nonzero_observer_ms": 27.999999999999886,
+          "interface": "joint_RMFemur",
+          "joint": "Femur",
+          "leg": "RM",
+          "peak_admitted_contribution": 0.20920602204588748,
+          "peak_admitted_time_ms": 1255.9999999998781,
+          "peak_decoder_magnitude": 0.20920602204588748,
+          "peak_decoder_time_ms": 1255.9999999998781,
+          "peak_observer_hz": 55.337778663893225,
+          "peak_observer_time_ms": 1052.4999999999004,
+          "tier": "Tier B"
+        },
+        {
+          "activation_episodes": 1,
+          "active_duration_ms": 4960.000000001673,
+          "first_nonzero_admitted_ms": 40.500000000000135,
+          "first_nonzero_decoder_ms": 40.500000000000135,
+          "first_nonzero_observer_ms": 40.500000000000135,
+          "interface": "joint_RHFemur",
+          "joint": "Femur",
+          "leg": "RH",
+          "peak_admitted_contribution": -0.1672710568670429,
+          "peak_admitted_time_ms": 3368.500000002684,
+          "peak_decoder_magnitude": -0.1672710568670429,
+          "peak_decoder_time_ms": 3368.500000002684,
+          "peak_observer_hz": 60.13622890651101,
+          "peak_observer_time_ms": 3073.0000000020605,
+          "tier": "Tier B"
+        }
+      ],
+      "condition": "SPONTANEOUS_NEURAL_EMBODIMENT",
+      "first_active_channel": "joint_LMTibia",
+      "first_active_leg": "LM",
+      "maximum_simultaneously_active_channels": 10,
+      "recruitment_order": [
+        "joint_LMTibia",
+        "joint_LHFemur",
+        "joint_LMFemur",
+        "joint_RHTibia",
+        "joint_LFFemur",
+        "joint_LHTibia",
+        "joint_RMFemur",
+        "joint_RMTibia",
+        "joint_RHFemur",
+        "joint_LFTibia"
+      ],
+      "samples_with_simultaneous_channels": 9967,
+      "silent_channels": [
+        "joint_RFTibia"
+      ]
+    }
+  },
+  "schema": "M7-POSTRUN-ANALYSIS.1",
+  "sensorimotor_temporal_metrics": {
+    "adjacent_stage_lags": [
+      {
+        "correlation": -0.7497868153523609,
+        "from": "sensory_encoding",
+        "lag_ms": 0.0,
+        "to": "aggregate_cns_spikes"
+      },
+      {
+        "correlation": 0.7669500938155333,
+        "from": "aggregate_cns_spikes",
+        "lag_ms": 95.0,
+        "to": "observer_output"
+      },
+      {
+        "correlation": 0.48443980451727087,
+        "from": "observer_output",
+        "lag_ms": 0.0,
+        "to": "decoder_output"
+      },
+      {
+        "correlation": 1.0,
+        "from": "decoder_output",
+        "lag_ms": 0.0,
+        "to": "admitted_contribution"
+      },
+      {
+        "correlation": -0.27483764236455666,
+        "from": "admitted_contribution",
+        "lag_ms": 3.5,
+        "to": "body_displacement_rate"
+      }
+    ],
+    "scope": "within-condition descriptive associations only"
+  },
+  "source_manifest_sha256": "86201abdc8507f71a3215f98dbe5eb6e7ce4c8da0f207b95ecc12ac587b764b9",
+  "source_raw_sha256": "155ef633a319711d44fc471c1f46c24cec0b36ea6e7326556c5b987e912fed47"
+}
