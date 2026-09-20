@@ -16,7 +16,7 @@ from typing import Any, Mapping, Sequence
 
 import numpy as np
 
-from .m7_spontaneous_locomotion import CONDITIONS, THRESHOLDS
+from .m7_protocol import CONDITIONS, THRESHOLDS
 
 SCHEMA = "M7-POSTRUN-ANALYSIS.1"
 CANONICAL_SHA256 = "155ef633a319711d44fc471c1f46c24cec0b36ea6e7326556c5b987e912fed47"
@@ -216,7 +216,6 @@ def validate_evidence(raw: Path, manifest_path: Path, summary_path: Path,
         elif np.issubdtype(array.dtype, np.number) and not np.all(np.isfinite(array)):
             raise EvidenceError(f"nonfinite required telemetry: {name}")
     p_count = PHYSICS_SAMPLE_COUNT if canonical else len(arrays[f"{CONDITIONS[0]}__physics_time_ms"])
-    n_count = NEURAL_SAMPLE_COUNT if canonical else len(arrays[f"{CONDITIONS[0]}__neural_time_ms"])
     for condition in CONDITIONS:
         pt = arrays[f"{condition}__physics_time_ms"]
         nt = arrays[f"{condition}__neural_time_ms"]
@@ -227,6 +226,9 @@ def validate_evidence(raw: Path, manifest_path: Path, summary_path: Path,
         if neural_stride * PHYSICS_DT_MS != NEURAL_DT_MS:
             raise EvidenceError("neural/physics cadence ratio is not integral")
         sampled_physics = pt[neural_stride::neural_stride]
+        # Derive the structural neural count from the validated primitive
+        # physics clock, never from the possibly malformed neural vector.
+        n_count = NEURAL_SAMPLE_COUNT if canonical else len(sampled_physics)
         _validate_neural_time(
             nt, sample_count=n_count,
             sampled_physics=sampled_physics,
