@@ -19,6 +19,11 @@ namespace FlyBrain.M7FReplay
         public M7FCondition Condition => condition;
         public bool PresentationInterpolation => presentationInterpolation;
         public M7FReplayLoader Loader => loader;
+        public float PlaybackSpeed => playbackSpeed;
+        public bool IsLoaded => loader != null && loader.Enabled != null && loader.Disabled != null;
+        public bool EnabledReplayLoaded => loader != null && loader.Enabled != null;
+        public bool DisabledReplayLoaded => loader != null && loader.Disabled != null;
+        public int LastAppliedFrame { get; private set; } = -1;
         public event Action FrameChanged;
         double cursorMs;
 
@@ -30,24 +35,50 @@ namespace FlyBrain.M7FReplay
         }
         void Update()
         {
-            if (!IsPlaying || loader.Enabled == null) return;
-            cursorMs += Time.unscaledDeltaTime * 1000.0 * playbackSpeed;
+            AdvancePlayback(Time.unscaledDeltaTime);
+        }
+        /// <summary>Advances the presentation clock. The argument is Unity time in seconds.</summary>
+        public void AdvancePlayback(double elapsedSeconds)
+        {
+            if (!IsPlaying) return;
+            if (!IsLoaded)
+            {
+                IsPlaying = false;
+                Debug.LogError("M7F PLAYBACK: cannot advance because both canonical replays are not loaded.", this);
+                return;
+            }
+            cursorMs += elapsedSeconds * 1000.0 * playbackSpeed;
             if (cursorMs >= loader.Enabled.PhysicsTime[^1]) { cursorMs = loader.Enabled.PhysicsTime[^1]; IsPlaying = false; }
-            Frame = Mathf.Clamp((int)Math.Floor(cursorMs / .1 + 1e-9), 0, loader.Enabled.PhysicsCount - 1);
+            Frame = FrameForCanonicalTime(cursorMs, loader.Enabled.PhysicsCount);
             var blend = presentationInterpolation && Frame + 1 < loader.Enabled.PhysicsCount ? Mathf.Clamp01((float)((cursorMs - loader.Enabled.PhysicsTime[Frame]) / .1)) : 0f;
             Apply(blend); FrameChanged?.Invoke();
+        }
+        public static int FrameForCanonicalTime(double milliseconds, int physicsCount)
+        {
+            if (physicsCount < 1) throw new ArgumentOutOfRangeException(nameof(physicsCount));
+            return Mathf.Clamp((int)Math.Floor(milliseconds / .1 + 1e-9), 0, physicsCount - 1);
         }
         void Apply(float blend)
         {
             var next = Mathf.Min(Frame + 1, loader.Enabled.PhysicsCount - 1);
             enabledRig.Apply(loader.Enabled, Frame, next, blend); disabledRig.Apply(loader.Disabled, Frame, next, blend);
+            LastAppliedFrame = Frame;
         }
-        public void Play() => IsPlaying = true;
-        public void Pause() => IsPlaying = false;
-        public void Restart() { Pause(); SeekFrame(0); }
+        public void Play()
+        {
+            if (!IsLoaded) { IsPlaying = false; Debug.LogError("M7F PLAYBACK: PLAY rejected because both canonical replays are not loaded.", this); return; }
+            IsPlaying = true; Debug.Log("M7F PLAYBACK: PLAY", this);
+        }
+        public void Pause() { IsPlaying = false; Debug.Log("M7F PLAYBACK: PAUSE", this); }
+        public void TogglePlayback() { if (IsPlaying) Pause(); else Play(); }
+        public void Restart() { IsPlaying = false; SeekFrame(0); Debug.Log("M7F PLAYBACK: RESTART", this); }
         public void Step(int delta) { Pause(); SeekFrame(Frame + Math.Sign(delta)); }
         public void ScrubNormalized(float value) { Pause(); SeekFrame(Mathf.RoundToInt(Mathf.Clamp01(value) * (loader.Enabled.PhysicsCount - 1))); }
-        public void SeekFrame(int frame) { Frame = Mathf.Clamp(frame, 0, loader.Enabled.PhysicsCount - 1); cursorMs = loader.Enabled.PhysicsTime[Frame]; Apply(0f); FrameChanged?.Invoke(); }
+        public void SeekFrame(int frame)
+        {
+            if (!IsLoaded) { Debug.LogError("M7F PLAYBACK: seek rejected because both canonical replays are not loaded.", this); return; }
+            Frame = Mathf.Clamp(frame, 0, loader.Enabled.PhysicsCount - 1); cursorMs = loader.Enabled.PhysicsTime[Frame]; Apply(0f); FrameChanged?.Invoke();
+        }
         public void SetSpeed(float speed) { foreach (var allowed in AllowedSpeeds) if (Mathf.Approximately(speed, allowed)) { playbackSpeed = speed; return; } throw new ArgumentOutOfRangeException(nameof(speed)); }
         public void SetInterpolation(bool value) { presentationInterpolation = value; Apply(0f); }
         public void SetCondition(M7FCondition value)
