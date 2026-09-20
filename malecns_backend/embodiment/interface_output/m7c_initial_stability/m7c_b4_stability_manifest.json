@@ -1,0 +1,68 @@
+{
+  "b3": {
+    "path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m7c_initial_stability\\m7c_b3_tripod_support_height.json",
+    "sha256": "0e1f37939d10d085a49a795b52f75eb285858971ae85d61cd74f83d388c7df31"
+  },
+  "constants": {
+    "adhesion_enabled": false,
+    "control": "position",
+    "dt": 0.0001,
+    "duration_seconds": 0.1,
+    "init_pose": "tripod",
+    "neural_transitions": 0,
+    "physics_transitions": 1000,
+    "spawn_orientation": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spawn_pos": [
+      0.0,
+      0.0,
+      0.6045752232266313
+    ]
+  },
+  "environment": {
+    "flygym_version": "1.2.1",
+    "module_paths": {
+      "flygym": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\fly-brain-interactive\\.venv\\Lib\\site-packages\\flygym\\__init__.py",
+      "mujoco": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\fly-brain-interactive\\.venv\\Lib\\site-packages\\mujoco\\__init__.py",
+      "numpy": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\fly-brain-interactive\\.venv\\Lib\\site-packages\\numpy\\__init__.py"
+    },
+    "mujoco_version": "3.2.7"
+  },
+  "raw": {
+    "byte_size": 4770477,
+    "path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m7c_initial_stability\\m7c_b4_stability_raw.npz",
+    "sha256": "966996caa3504b592c603b349c1ebb905f18e687f2d99f3c0be5d06fe83a4109"
+  },
+  "schema": "M7C-B4-STABILITY.1",
+  "status": "COMPLETE",
+  "summary_path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m7c_initial_stability\\m7c_b4_stability_summary.json",
+  "telemetry_schema": {
+    "json_utf8": [
+      "contact_identities",
+      "contact_depths",
+      "contact_forces",
+      "distal_support",
+      "forbidden_ground",
+      "self_contacts",
+      "calibration_surface_contacts"
+    ],
+    "numeric": [
+      "time",
+      "root_xyz",
+      "body_orientation_wxyz",
+      "body_up_z",
+      "qpos",
+      "qvel",
+      "joints",
+      "commanded_targets",
+      "action",
+      "ctrl",
+      "contact_count",
+      "finite"
+    ],
+    "states": 1001
+  }
+}
