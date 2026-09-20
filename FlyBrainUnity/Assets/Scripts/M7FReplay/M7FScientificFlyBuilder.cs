@@ -6,7 +6,7 @@ namespace FlyBrain.M7FReplay
     /// <summary>Creates presentation geometry and transform-only scientific hinges. It never steps a simulation.</summary>
     public sealed class M7FScientificFlyBuilder : MonoBehaviour
     {
-        [SerializeField] bool showJointMarkers = true;
+        [SerializeField] bool showJointMarkers = false;
         public const float ApproximateVisualRadius = .03f;
 
         [ContextMenu("BUILD SCIENTIFIC FLY (NO PHYSICS)")]
@@ -32,11 +32,12 @@ namespace FlyBrain.M7FReplay
             foreach (var leg in M7FScientificFlyRigDefinition.Legs) BuildLeg(scientificRoot, leg, legMaterial);
             var rig = GetComponent<M7FFlyRig>() ?? gameObject.AddComponent<M7FFlyRig>();
             rig.Configure(scientificRoot, System.Array.Empty<M7FJointBinding>()); rig.AutoBindCanonicalJoints();
+            var overlay = GetComponent<M7FKinematicReferenceOverlay>() ?? gameObject.AddComponent<M7FKinematicReferenceOverlay>();
+            overlay.RefreshFrame0();
         }
 
         void BuildLeg(Transform root, string leg, Material material)
         {
-            var left = leg[0] == 'L'; var rank = leg[1] == 'F' ? 0 : leg[1] == 'M' ? 1 : 2;
             var legRoot = Child(root, leg + "_LegRoot"); legRoot.localPosition = M7FScientificFlyRigDefinition.BodyReferencePosition(leg, 0);
             // Coincident hinge nesting follows MJCF element order, not manifest array order.
             Transform pivot = legRoot; var transforms = new Dictionary<string, Transform>();
@@ -46,23 +47,24 @@ namespace FlyBrain.M7FReplay
                 if (name.EndsWith("Femur_roll")) pivot.localPosition = M7FScientificFlyRigDefinition.BodyReferencePosition(leg, 1);
                 else if (name.EndsWith("Tibia")) pivot.localPosition = M7FScientificFlyRigDefinition.BodyReferencePosition(leg, 2);
                 else if (name.EndsWith("Tarsus1")) pivot.localPosition = M7FScientificFlyRigDefinition.BodyReferencePosition(leg, 3);
-                if (showJointMarkers) Primitive(pivot, name + "_JointMarker", PrimitiveType.Sphere, Vector3.zero, Vector3.one * .0012f, material);
+                var marker = Primitive(pivot, name + "_JointMarker", PrimitiveType.Sphere, Vector3.zero, Vector3.one * .0012f, material);
+                marker.gameObject.SetActive(showJointMarkers);
             }
             transforms["joint_" + leg + "Coxa_roll"].localRotation = M7FScientificFlyRigDefinition.BodyReferenceRotation(leg, 0);
             transforms["joint_" + leg + "Femur_roll"].localRotation *= M7FScientificFlyRigDefinition.BodyReferenceRotation(leg, 1);
             transforms["joint_" + leg + "Tibia"].localRotation *= M7FScientificFlyRigDefinition.BodyReferenceRotation(leg, 2);
             transforms["joint_" + leg + "Tarsus1"].localRotation *= M7FScientificFlyRigDefinition.BodyReferenceRotation(leg, 3);
-            var outward = left ? 1f : -1f;
-            AddSegment(transforms["joint_" + leg + "Coxa"], leg + "_CoxaVisual", Vector3.zero, .005f, outward, material);
-            AddSegment(transforms["joint_" + leg + "Femur"], leg + "_FemurVisual", Vector3.zero, .008f, outward, material);
-            AddSegment(transforms["joint_" + leg + "Tibia"], leg + "_TibiaVisual", Vector3.zero, .010f, outward, material);
-            AddSegment(transforms["joint_" + leg + "Tarsus1"], leg + "_TarsusVisual", Vector3.zero, .007f, outward, material);
+            AddSegment(transforms["joint_" + leg + "Coxa"], leg + "_CoxaVisual", M7FScientificFlyRigDefinition.SegmentEndpoint(leg, 0), material);
+            AddSegment(transforms["joint_" + leg + "Femur"], leg + "_FemurVisual", M7FScientificFlyRigDefinition.SegmentEndpoint(leg, 1), material);
+            AddSegment(transforms["joint_" + leg + "Tibia"], leg + "_TibiaVisual", M7FScientificFlyRigDefinition.SegmentEndpoint(leg, 2), material);
+            AddSegment(transforms["joint_" + leg + "Tarsus1"], leg + "_TarsusVisual", M7FScientificFlyRigDefinition.SegmentEndpoint(leg, 3), material);
         }
 
-        static void AddSegment(Transform parent, string name, Vector3 endpoint, float length, float side, Material material)
+        static void AddSegment(Transform parent, string name, Vector3 endpoint, Material material)
         {
-            var visual = Primitive(parent, name, PrimitiveType.Cylinder, new Vector3(0, -length * .5f, side * length * .14f), new Vector3(.001f, length * .5f, .001f), material);
-            visual.localRotation = Quaternion.Euler(side * 18f, 0, endpoint.x * 30f);
+            var length = endpoint.magnitude;
+            var visual = Primitive(parent, name, PrimitiveType.Cylinder, endpoint * .5f, new Vector3(.0007f, length * .5f, .0007f), material);
+            visual.localRotation = Quaternion.FromToRotation(Vector3.up, endpoint.normalized);
             var continuation = Child(parent, name + "_DistalReference"); continuation.localPosition = endpoint;
         }
 

@@ -73,6 +73,21 @@ namespace FlyBrain.M7FReplay
             var index = Array.IndexOf(Legs, leg); if (index < 0 || segment < 0 || segment > 3) throw new ArgumentOutOfRangeException();
             return M7FCoordinates.SourcePositionToUnity(BodyPositions[index, segment]) * M7FCoordinates.MillimetresToUnity;
         }
+
+        // Distal end of tarsus1, from the frozen collision geom's fromto.  The
+        // preceding three segment endpoints are the next MJCF body's local pos.
+        static readonly Vector3[] TarsusEndpoints = {
+            new(-.000165f,.0235f,.00174f), new(.000471f,.0342f,.00136f), new(.00027f,.0337f,.00102f),
+            new(-.000965f,-.0227f,-.00161f), new(-.000367f,-.0339f,-.00103f), new(-.00073f,-.0338f,-.00122f)
+        };
+
+        public static Vector3 SegmentEndpoint(string leg, int segment)
+        {
+            if (segment < 0 || segment > 3) throw new ArgumentOutOfRangeException(nameof(segment));
+            if (segment < 3) return BodyReferencePosition(leg, segment + 1);
+            var index = Array.IndexOf(Legs, leg); if (index < 0) throw new ArgumentOutOfRangeException(nameof(leg));
+            return M7FCoordinates.SourcePositionToUnity(TarsusEndpoints[index]) * M7FCoordinates.MillimetresToUnity;
+        }
     }
 
     public static class M7FCoordinates
