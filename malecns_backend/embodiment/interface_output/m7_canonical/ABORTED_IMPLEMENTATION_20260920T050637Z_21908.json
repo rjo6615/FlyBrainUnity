@@ -1,0 +1,9 @@
+{
+  "artifact_kind": "NON_SCIENTIFIC_ATTEMPT_PROVENANCE",
+  "classification": null,
+  "completed_condition_count": 0,
+  "elapsed_wall_seconds": 433.30410960002337,
+  "exception": "ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 2 dimensions. The detected shape was (10000, 6) + inhomogeneous part.",
+  "run_status": "ABORTED_IMPLEMENTATION_FAILURE",
+  "schema": "M7-ABORT.1"
+}
