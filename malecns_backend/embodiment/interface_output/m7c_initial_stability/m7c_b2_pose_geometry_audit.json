@@ -1,0 +1,55 @@
+{
+  "schema": "M7C-B2-POSE-GEOMETRY-AUDIT.1",
+  "status": "AWAITING_VALIDATED_WINDOWS_ZERO_TRANSITION_AUDIT",
+  "flygym_version": "1.2.1 (from frozen M7C-B Windows preflight)",
+  "mujoco_version": "3.2.7 (from frozen M7C-B Windows preflight)",
+  "installed_source": {
+    "authority": "validated installed Windows package; not online/newer behavior",
+    "pose_resources": {
+      "stretch": {"relative_path": "data/pose/pose_stretch.yaml", "sha256": "99207214c9b98a376deefb960546f3030e37fc22788e83e5be23e8c4024dff1a", "definition": null},
+      "tripod": {"relative_path": "data/pose/pose_tripod.yaml", "sha256": "8d71c1536c2a0fc55bfb574999eab5bff3568c3f38fe032a4b594a0bcb59a640", "definition": null},
+      "zero": {"relative_path": "data/pose/pose_zero.yaml", "sha256": "339b4ca89a5c727872505812c55ccc5411d858ee2b40aa466aeb5c18018093b2", "definition": null}
+    },
+    "kinematic_pose": {"relative_path": "state/kinematic_pose.py", "sha256": "40d275c91bd2f32cfd792ac934100ba6ad457d31cf901069832e79d967879fec"},
+    "finding": "The Windows audit will record exact definitions and local source evidence; tripod is inspected only as static KinematicPose data."
+  },
+  "pose_audits": [
+    {"id": "canonical_stretch", "init_pose": "stretch", "spawn_pos": [0.0, 0.0, 0.5], "result": null},
+    {"id": "default_tripod", "init_pose": "tripod", "spawn_pos": "FlyGym 1.2.1 constructor default", "result": null},
+    {"id": "default_zero", "init_pose": "zero", "spawn_pos": "FlyGym 1.2.1 constructor default", "result": null}
+  ],
+  "established_findings": {
+    "canonical_stretch_distal_conservative_lower_z": {"LF": 1.8254, "LM": 1.4191, "LH": 1.40355, "RF": 1.8254, "RM": 1.4191, "RH": 1.40355},
+    "canonical_support": "NO_SUPPORT_CONTACT",
+    "canonical_self_collision": "LHCoxa/RHCoxa",
+    "rejected_old_translation_z": -1.4035507742524747,
+    "rejected_old_spawn_z": -0.9035507742524747,
+    "rejection": "substantial ground penetration by proximal coxa/femur/tibia geometry"
+  },
+  "geometry_gate": {
+    "status_labels": ["VALID_SUPPORT_CONTACT", "NO_SUPPORT_CONTACT", "BODY_GROUND_PENETRATION", "PROXIMAL_LEG_GROUND_PENETRATION", "EXCESSIVE_DISTAL_PENETRATION", "SELF_COLLISION_PRESENT", "CALIBRATION_SURFACE_CONTACT", "MIXED_SUPPORT_SURFACES"],
+    "material_penetration_tolerance": 1e-6,
+    "distal_penetration_tolerance": 0.001,
+    "contact_tolerance": 1e-6,
+    "fail_closed_nonfinite": true
+  },
+  "calibration_surface": {"name": "m5d2c_calibration_surface", "position": [-0.05264855858702331, 2.2303476629745846, 1.4171913587929754], "half_size": [0.025, 0.025, 0.002], "changed": false},
+  "candidate_eligibility": "UNDETERMINED_UNTIL_WINDOWS_AUDIT",
+  "analytic_spawn_height_correction": null,
+  "protocol": {
+    "brain_constructed": false,
+    "neural_transitions": 0,
+    "physics_transitions": 0,
+    "sim_step_prohibited": true,
+    "adhesion_enabled": false,
+    "gait_controller": false,
+    "balance_controller": false,
+    "walking_reference_trajectory": false,
+    "reward_rl_ai": false,
+    "height_sweep": false,
+    "optimizer": false,
+    "adaptive_candidate_generation": false,
+    "calibration_surface_changed": false
+  },
+  "statement": "No dynamics were executed; this repository host lacks FlyGym and MuJoCo, so exact geometry remains intentionally null until the validated Windows command is run."
+}
