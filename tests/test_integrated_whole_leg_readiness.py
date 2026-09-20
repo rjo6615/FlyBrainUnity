@@ -1,11 +1,17 @@
 import copy
+import hashlib
 import json
+from pathlib import Path
+import subprocess
 
 import pytest
 
 from malecns_backend.embodiment import integrated_whole_leg_readiness as m6c
 from malecns_backend.embodiment import isolated_tier_b_motor_validation as m6b
 from malecns_backend.embodiment import _windows_integrated_whole_leg_readiness_adapter as adapter
+
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def completed_m6b():
@@ -18,6 +24,39 @@ def completed_m6b():
         "physical_sign_status": "RESOLVED"} for name in m6b.TIER_B]
     data["m6c_eligible"] = [name for name in m6b.TIER_B if name in m6c.EXPECTED_TIER_B]
     return data
+
+
+def test_tier_a_raw_bytes_survive_autocrlf_checkout(tmp_path):
+    """The raw-byte provenance lock must survive Windows-style materialization."""
+    expected_sha256 = "18aaafd51360e0a60b56f98c0b93e156e4cba2a27efd653111b04a5b8c329271"
+    source = ROOT / "six_tibia_causal_result.json"
+    source_bytes = source.read_bytes()
+    assert len(source_bytes) == 9555
+    assert hashlib.sha256(source_bytes).hexdigest() == expected_sha256
+
+    origin = tmp_path / "origin"
+    checkout = tmp_path / "checkout"
+    origin.mkdir()
+    (origin / ".gitattributes").write_bytes((ROOT / ".gitattributes").read_bytes())
+    (origin / source.name).write_bytes(source_bytes)
+    subprocess.run(["git", "init", "-q"], cwd=origin, check=True)
+    subprocess.run(["git", "add", ".gitattributes", source.name], cwd=origin, check=True)
+    subprocess.run(
+        ["git", "-c", "user.name=M6C test", "-c", "user.email=m6c@example.invalid",
+         "commit", "-qm", "fixture"],
+        cwd=origin,
+        check=True,
+    )
+    subprocess.run(
+        ["git", "-c", "core.autocrlf=true", "clone", "-q", str(origin), str(checkout)],
+        check=True,
+    )
+
+    materialized = (checkout / source.name).read_bytes()
+    assert len(materialized) == 9555
+    assert hashlib.sha256(materialized).hexdigest() == expected_sha256
+    assert b"\r" not in materialized
+    assert json.loads(materialized) == json.loads(source_bytes)
 
 
 @pytest.fixture

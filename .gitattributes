@@ -9,3 +9,6 @@ malecns_backend/embodiment/interface_output/whole_leg_motor_mapping_audit.json -
 # M6B-P2/P3 are raw-byte provenance inputs to the canonical P4 protocol.
 malecns_backend/embodiment/interface_output/m6b_live_limit_diagnostic.json -text
 malecns_backend/embodiment/interface_output/m6b_coxa_yaw_sign_diagnostic.json -text
+# M6C Tier-A is an immutable raw-byte provenance input. Preserve its canonical
+# LF bytes even when a checkout has core.autocrlf=true.
+six_tibia_causal_result.json -text
