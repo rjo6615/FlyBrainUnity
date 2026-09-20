@@ -1,0 +1,68 @@
+{
+  "arbitrary_height_sweep": false,
+  "brain_constructed": false,
+  "candidate_count": 2,
+  "candidate_definition_sha256": "1c59b984bdcfd93558732255ee5fe9d8409f397dd01848c7e2e564db1ed9ac28",
+  "candidates": [
+    {
+      "derivation": "exact canonical M7 initialization",
+      "id": "canonical_control",
+      "joint_pose": "FlyGym default pose (no override)",
+      "root_position": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "vertical_translation": 0.0
+    },
+    {
+      "derivation": "single vertical translation placing the lowest conservative Tarsus5 bound at ground z=0",
+      "id": "distal_tarsus_support_translation",
+      "joint_pose": "FlyGym default pose (no override)",
+      "root_position": [
+        0.0,
+        0.0,
+        -0.9259575251353929
+      ],
+      "vertical_translation": -1.4259575251353929
+    }
+  ],
+  "controls": {
+    "adhesion_command": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "adhesion_enabled": false,
+    "balance_controller": false,
+    "calibration_surface": "canonical present and fixed",
+    "gait_controller": false,
+    "position_targets": "post-reset measured 42-joint positions",
+    "reference_trajectory": false,
+    "reward_rl_ai": false
+  },
+  "execution_environment": "validated Windows FlyGym/MuJoCo environment only",
+  "gate": {
+    "fail_closed_nonfinite": true,
+    "flag_self_collision": true,
+    "reject_body_penetration": true,
+    "reject_mixed_support_surfaces": true,
+    "reject_severe_foot_penetration": true,
+    "reject_unsupported_feet": true
+  },
+  "neural_transitions": 0,
+  "optimizer": false,
+  "physics": {
+    "checkpoint_13ms_transition": 130,
+    "duration_ms": 100.0,
+    "fall_height_lt": 0.25,
+    "rollover_body_up_z_le": 0.0,
+    "timestep_s": 0.0001,
+    "transitions": 1000
+  },
+  "schema": "M7C-B-PREREGISTRATION.1",
+  "status": "FROZEN_BEFORE_EXECUTION"
+}
