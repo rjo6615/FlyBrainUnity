@@ -1,0 +1,2844 @@
+{
+  "between_condition_difference": {
+    "horizontal_path_length": 3.1432228578952452,
+    "net_horizontal_displacement": -0.0034543806270373473
+  },
+  "causal_sequence": {
+    "delivered_sensory_divergence_ms": 78.50000000000122,
+    "downstream_cns_divergence_ms": 78.50000000000122,
+    "later_mapped_motor_state_divergence_ms": 156.99999999999903,
+    "mapped_motor_output_ms": 54.00000000000052,
+    "physical_action_divergence_ms": 54.00000000000052,
+    "physical_state_divergence_ms": 54.10000000000052,
+    "tibial_encoding_divergence_ms": 54.50000000000053
+  },
+  "conditions": {
+    "CORRECTED_ALL_NEURAL_MOTOR_DISABLED": {
+      "authoritative_contacts": {
+        "available": true,
+        "per_leg": {
+          "LF": {
+            "contact_duration_ms": 9997.1,
+            "episodes": [
+              {
+                "duration_ms": 0.1,
+                "end_ms": 0.0,
+                "start_ms": 0.0
+              },
+              {
+                "duration_ms": 0.7000000000000001,
+                "end_ms": 0.8000000000000002,
+                "start_ms": 0.2
+              },
+              {
+                "duration_ms": 0.5000000000000001,
+                "end_ms": 1.5000000000000004,
+                "start_ms": 1.1000000000000003
+              },
+              {
+                "duration_ms": 0.49999999999999944,
+                "end_ms": 2.2,
+                "start_ms": 1.8000000000000007
+              },
+              {
+                "duration_ms": 0.49999999999999944,
+                "end_ms": 2.899999999999999,
+                "start_ms": 2.4999999999999996
+              },
+              {
+                "duration_ms": 0.5999999999999991,
+                "end_ms": 3.6999999999999975,
+                "start_ms": 3.1999999999999984
+              },
+              {
+                "duration_ms": 0.6000000000000009,
+                "end_ms": 4.699999999999999,
+                "start_ms": 4.199999999999998
+              },
+              {
+                "duration_ms": 0.6000000000000009,
+                "end_ms": 5.600000000000001,
+                "start_ms": 5.1000000000000005
+              },
+              {
+                "duration_ms": 0.7000000000000014,
+                "end_ms": 6.600000000000004,
+                "start_ms": 6.000000000000003
+              },
+              {
+                "duration_ms": 0.8000000000000019,
+                "end_ms": 7.800000000000008,
+                "start_ms": 7.100000000000006
+              },
+              {
+                "duration_ms": 1.2999999999999923,
+                "end_ms": 9.499999999999998,
+                "start_ms": 8.300000000000006
+              },
+              {
+                "duration_ms": 2.9999999999999827,
+                "end_ms": 12.59999999999998,
+                "start_ms": 9.699999999999998
+              },
+              {
+                "duration_ms": 3.3999999999999813,
+                "end_ms": 16.09999999999996,
+                "start_ms": 12.799999999999978
+              },
+              {
+                "duration_ms": 9983.799999990035,
+                "end_ms": 9999.999999990034,
+                "start_ms": 16.299999999999958
+              }
+            ]
+          },
+          "LH": {
+            "contact_duration_ms": 9994.7,
+            "episodes": [
+              {
+                "duration_ms": 0.5000000000000003,
+                "end_ms": 4.599999999999999,
+                "start_ms": 4.199999999999998
+              },
+              {
+                "duration_ms": 0.6000000000000009,
+                "end_ms": 5.700000000000002,
+                "start_ms": 5.200000000000001
+              },
+              {
+                "duration_ms": 0.8000000000000019,
+                "end_ms": 6.700000000000005,
+                "start_ms": 6.000000000000003
+              },
+              {
+                "duration_ms": 0.8000000000000019,
+                "end_ms": 7.600000000000007,
+                "start_ms": 6.900000000000005
+              },
+              {
+                "duration_ms": 0.8999999999999954,
+                "end_ms": 8.600000000000003,
+                "start_ms": 7.800000000000008
+              },
+              {
+                "duration_ms": 1.1999999999999926,
+                "end_ms": 9.899999999999995,
+                "start_ms": 8.800000000000002
+              },
+              {
+                "duration_ms": 2.4999999999999862,
+                "end_ms": 12.49999999999998,
+                "start_ms": 10.099999999999994
+              },
+              {
+                "duration_ms": 9987.399999990033,
+                "end_ms": 9999.999999990034,
+                "start_ms": 12.699999999999978
+              }
+            ]
+          },
+          "LM": {
+            "contact_duration_ms": 9994.6,
+            "episodes": [
+              {
+                "duration_ms": 3.5000000000000013,
+                "end_ms": 8.800000000000002,
+                "start_ms": 5.400000000000001
+              },
+              {
+                "duration_ms": 9991.099999990034,
+                "end_ms": 9999.999999990034,
+                "start_ms": 9.000000000000002
+              }
+            ]
+          },
+          "RF": {
+            "contact_duration_ms": 9990.6,
+            "episodes": [
+              {
+                "duration_ms": 0.4000000000000007,
+                "end_ms": 5.400000000000001,
+                "start_ms": 5.1000000000000005
+              },
+              {
+                "duration_ms": 0.4000000000000007,
+                "end_ms": 6.700000000000005,
+                "start_ms": 6.400000000000004
+              },
+              {
+                "duration_ms": 0.5000000000000003,
+                "end_ms": 7.9000000000000075,
+                "start_ms": 7.500000000000007
+              },
+              {
+                "duration_ms": 0.7999999999999957,
+                "end_ms": 9.699999999999998,
+                "start_ms": 9.000000000000002
+              },
+              {
+                "duration_ms": 1.0999999999999948,
+                "end_ms": 11.499999999999986,
+                "start_ms": 10.499999999999991
+              },
+              {
+                "duration_ms": 0.999999999999995,
+                "end_ms": 12.899999999999977,
+                "start_ms": 11.999999999999982
+              },
+              {
+                "duration_ms": 1.0999999999999948,
+                "end_ms": 14.399999999999968,
+                "start_ms": 13.399999999999974
+              },
+              {
+                "duration_ms": 1.8999999999999884,
+                "end_ms": 16.399999999999956,
+                "start_ms": 14.599999999999968
+              },
+              {
+                "duration_ms": 4.599999999999971,
+                "end_ms": 21.099999999999927,
+                "start_ms": 16.599999999999955
+              },
+              {
+                "duration_ms": 9978.799999990035,
+                "end_ms": 9999.999999990034,
+                "start_ms": 21.299999999999926
+              }
+            ]
+          },
+          "RH": {
+            "contact_duration_ms": 9994.2,
+            "episodes": [
+              {
+                "duration_ms": 0.7000000000000023,
+                "end_ms": 5.200000000000001,
+                "start_ms": 4.599999999999999
+              },
+              {
+                "duration_ms": 0.7000000000000014,
+                "end_ms": 6.400000000000004,
+                "start_ms": 5.8000000000000025
+              },
+              {
+                "duration_ms": 0.8000000000000019,
+                "end_ms": 7.400000000000007,
+                "start_ms": 6.700000000000005
+              },
+              {
+                "duration_ms": 0.9999999999999959,
+                "end_ms": 8.600000000000003,
+                "start_ms": 7.700000000000007
+              },
+              {
+                "duration_ms": 1.099999999999993,
+                "end_ms": 9.899999999999995,
+                "start_ms": 8.900000000000002
+              },
+              {
+                "duration_ms": 1.4999999999999916,
+                "end_ms": 11.499999999999986,
+                "start_ms": 10.099999999999994
+              },
+              {
+                "duration_ms": 9988.399999990033,
+                "end_ms": 9999.999999990034,
+                "start_ms": 11.699999999999985
+              }
+            ]
+          },
+          "RM": {
+            "contact_duration_ms": 9994.300000000001,
+            "episodes": [
+              {
+                "duration_ms": 7.899999999999971,
+                "end_ms": 13.499999999999973,
+                "start_ms": 5.700000000000002
+              },
+              {
+                "duration_ms": 9986.399999990033,
+                "end_ms": 9999.999999990034,
+                "start_ms": 13.699999999999973
+              }
+            ]
+          }
+        },
+        "support_count_range": [
+          0,
+          6
+        ],
+        "support_pattern_counts": {
+          "": 13,
+          "LF": 29,
+          "LFLH": 4,
+          "LFLHRF": 1,
+          "LFLHRFRH": 1,
+          "LFLHRH": 1,
+          "LFLHRMRH": 1,
+          "LFLMLH": 2,
+          "LFLMLHRF": 1,
+          "LFLMLHRFRH": 1,
+          "LFLMLHRFRM": 4,
+          "LFLMLHRFRMRH": 99890,
+          "LFLMLHRM": 2,
+          "LFLMLHRMRH": 28,
+          "LFLMRFRMRH": 2,
+          "LFLMRM": 2,
+          "LFRFRH": 1,
+          "LFRH": 1,
+          "LMLHRFRMRH": 5,
+          "LMLHRM": 1,
+          "LMLHRMRH": 5,
+          "LMRMRH": 3,
+          "RH": 3
+        }
+      },
+      "body_height_range": [
+        0.3621582406098338,
+        0.6045752232266313
+      ],
+      "body_orientation_quaternion_component_ranges": [
+        [
+          0.9987500484419444,
+          1.0
+        ],
+        [
+          0.0,
+          0.011365634595326184
+        ],
+        [
+          -0.04921421293187931,
+          0.0
+        ],
+        [
+          0.0,
+          0.003280530715402318
+        ]
+      ],
+      "body_up_z_range": [
+        0.9950113082079953,
+        1.0
+      ],
+      "first_fall_time_ms": null,
+      "first_rollover_time_ms": null,
+      "horizontal_displacement_vector": [
+        0.005670043316867144,
+        0.017321511423578368
+      ],
+      "horizontal_path_length": 0.2044930168568233,
+      "joints": {
+        "joint_LFCoxa": {
+          "excursion": 0.028881150297820568,
+          "range": [
+            -0.04266716167330742,
+            -0.01378601137548685
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.39398211127290284,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 148,
+            "periodicity_strength": 0.1005738011700036,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 4
+          }
+        },
+        "joint_LFCoxa_roll": {
+          "excursion": 0.0050696551479632035,
+          "range": [
+            -0.005313193891197443,
+            -0.00024353874323423952
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.88483650742201,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 157,
+            "periodicity_strength": 0.40785399684809054,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 6
+          }
+        },
+        "joint_LFCoxa_yaw": {
+          "excursion": 0.006365014472976327,
+          "range": [
+            -0.0037338424008339643,
+            0.0026311720721423626
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.9215758519037016,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 131,
+            "periodicity_strength": 0.4351622275759,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 4
+          }
+        },
+        "joint_LFFemur": {
+          "excursion": 0.03527021408081055,
+          "range": [
+            -1.214653730392456,
+            -1.1793835163116455
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.4796742331275729,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 203,
+            "periodicity_strength": 0.2878222896312789,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 7
+          }
+        },
+        "joint_LFFemur_roll": {
+          "excursion": 0.0026711556129157543,
+          "range": [
+            -0.0018515144474804401,
+            0.0008196411654353142
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.9615227578371118,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 127,
+            "periodicity_strength": 0.4851619484917577,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 2
+          }
+        },
+        "joint_LFTarsus1": {
+          "excursion": 0.009615316987037659,
+          "range": [
+            -0.15184734761714935,
+            -0.1422320306301117
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.6800387696180121,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 153,
+            "periodicity_strength": 0.23713833240021479,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 2
+          }
+        },
+        "joint_LFTibia": {
+          "excursion": 0.017674148082733154,
+          "range": [
+            0.7399955987930298,
+            0.7576697468757629
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.842557381169731,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 188,
+            "periodicity_strength": 0.3916199378127665,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 4
+          }
+        },
+        "joint_LHCoxa": {
+          "excursion": 0.054507264867424965,
+          "range": [
+            0.02112620882689953,
+            0.0756334736943245
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.4183703731705983,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 154,
+            "periodicity_strength": 0.137798890490404,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 5
+          }
+        },
+        "joint_LHCoxa_roll": {
+          "excursion": 0.012097597122192383,
+          "range": [
+            2.3897323608398438,
+            2.401829957962036
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.8915997579483833,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 348,
+            "periodicity_strength": 0.44502167338193277,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 3
+          }
+        },
+        "joint_LHCoxa_yaw": {
+          "excursion": 0.042927682399749756,
+          "range": [
+            0.18669065833091736,
+            0.22961834073066711
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.6314446480806472,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 134,
+            "periodicity_strength": 0.22515132255309905,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 3
+          }
+        },
+        "joint_LHFemur": {
+          "excursion": 0.07341921329498291,
+          "range": [
+            -1.6317914724349976,
+            -1.5583722591400146
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.6620295423680789,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 174,
+            "periodicity_strength": 0.33469314116464377,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 3
+          }
+        },
+        "joint_LHFemur_roll": {
+          "excursion": 0.012606099247932434,
+          "range": [
+            -0.150146484375,
+            -0.13754038512706757
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.46131297464701737,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 170,
+            "periodicity_strength": 0.055174775124492384,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 21
+          }
+        },
+        "joint_LHTarsus1": {
+          "excursion": 0.018274590373039246,
+          "range": [
+            -0.12388059496879578,
+            -0.10560600459575653
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.6635765770076419,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 214,
+            "periodicity_strength": 0.16150030547980945,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 6
+          }
+        },
+        "joint_LHTibia": {
+          "excursion": 0.0359874963760376,
+          "range": [
+            1.1140023469924927,
+            1.1499898433685303
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.8274218969153918,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 174,
+            "periodicity_strength": 0.35954041483699994,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 2
+          }
+        },
+        "joint_LMCoxa": {
+          "excursion": 0.03098570927977562,
+          "range": [
+            0.03598107770085335,
+            0.06696678698062897
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.1434512136885994,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 208,
+            "periodicity_strength": 0.023767602183560315,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 14
+          }
+        },
+        "joint_LMCoxa_roll": {
+          "excursion": 0.01137387752532959,
+          "range": [
+            1.7725316286087036,
+            1.7839055061340332
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.5824008976079266,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 236,
+            "periodicity_strength": 0.20606433517287198,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 8
+          }
+        },
+        "joint_LMCoxa_yaw": {
+          "excursion": 0.06394712626934052,
+          "range": [
+            0.21693991124629974,
+            0.28088703751564026
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.799272025613229,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 124,
+            "periodicity_strength": 0.4189810160159195,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 2
+          }
+        },
+        "joint_LMFemur": {
+          "excursion": 0.06988155841827393,
+          "range": [
+            -1.741456151008606,
+            -1.671574592590332
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.7852238837248537,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 123,
+            "periodicity_strength": 0.4248793410657275,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 2
+          }
+        },
+        "joint_LMFemur_roll": {
+          "excursion": 0.026076574809849262,
+          "range": [
+            -0.02122528664767742,
+            0.004851288162171841
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.4750480658091738,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 150,
+            "periodicity_strength": 0.14058904824393378,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 4
+          }
+        },
+        "joint_LMTarsus1": {
+          "excursion": 0.015128642320632935,
+          "range": [
+            -0.12028518319129944,
+            -0.1051565408706665
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.9780534375143994,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 134,
+            "periodicity_strength": 0.6100056470200483,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 2
+          }
+        },
+        "joint_LMTibia": {
+          "excursion": 0.03038954734802246,
+          "range": [
+            1.7620514631271362,
+            1.7924410104751587
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.9606566476709256,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 151,
+            "periodicity_strength": 0.6000733005887023,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 2
+          }
+        },
+        "joint_RFCoxa": {
+          "excursion": 0.01392932899761945,
+          "range": [
+            -0.012659105472266674,
+            0.001270223525352776
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.7616233852350668,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 173,
+            "periodicity_strength": 0.24804335769113267,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 13
+          }
+        },
+        "joint_RFCoxa_roll": {
+          "excursion": 0.002069518406642601,
+          "range": [
+            -0.0003014779358636588,
+            0.001768040470778942
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.992809141182285,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 168,
+            "periodicity_strength": 0.5072734532993454,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 3
+          }
+        },
+        "joint_RFCoxa_yaw": {
+          "excursion": 0.0026210920041194186,
+          "range": [
+            -0.002485872944816947,
+            0.00013521905930247158
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.9935253208369739,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 155,
+            "periodicity_strength": 0.5255337125540712,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 3
+          }
+        },
+        "joint_RFFemur": {
+          "excursion": 0.012912988662719727,
+          "range": [
+            -1.3200891017913818,
+            -1.307176113128662
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.8270177147629625,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 204,
+            "periodicity_strength": 0.20278413943868664,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 15
+          }
+        },
+        "joint_RFFemur_roll": {
+          "excursion": 0.0017007684873533435,
+          "range": [
+            0.00011538422404555604,
+            0.0018161527113988996
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.9930855958636499,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 187,
+            "periodicity_strength": 0.549891636126609,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 5
+          }
+        },
+        "joint_RFTarsus1": {
+          "excursion": 0.004681259393692017,
+          "range": [
+            -0.17634277045726776,
+            -0.17166151106357574
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.6598483666073776,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 179,
+            "periodicity_strength": 0.2730068833566702,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 5
+          }
+        },
+        "joint_RFTibia": {
+          "excursion": 0.010629713535308838,
+          "range": [
+            0.8880130648612976,
+            0.8986427783966064
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.7060347853005264,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 200,
+            "periodicity_strength": 0.4022343538870409,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 7
+          }
+        },
+        "joint_RHCoxa": {
+          "excursion": 0.04974919557571411,
+          "range": [
+            0.27960363030433655,
+            0.32935282588005066
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.2580435016665963,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 158,
+            "periodicity_strength": 0.010971313513204921,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 31
+          }
+        },
+        "joint_RHCoxa_roll": {
+          "excursion": 0.016468286514282227,
+          "range": [
+            -2.4525251388549805,
+            -2.4360568523406982
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.7027905917844531,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 199,
+            "periodicity_strength": 0.3968989074129775,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 10
+          }
+        },
+        "joint_RHCoxa_yaw": {
+          "excursion": 0.040698304772377014,
+          "range": [
+            -0.1788889467716217,
+            -0.1381906419992447
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.5123950769771928,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 162,
+            "periodicity_strength": 0.06347122938033066,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 5
+          }
+        },
+        "joint_RHFemur": {
+          "excursion": 0.06739258766174316,
+          "range": [
+            -1.382024884223938,
+            -1.3146322965621948
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.32633046505665747,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 229,
+            "periodicity_strength": 0.008348497057778584,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 9
+          }
+        },
+        "joint_RHFemur_roll": {
+          "excursion": 0.01051667332649231,
+          "range": [
+            -0.27692681550979614,
+            -0.26641014218330383
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.8403054654451189,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 171,
+            "periodicity_strength": 0.35844987207880535,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 6
+          }
+        },
+        "joint_RHTarsus1": {
+          "excursion": 0.02074742317199707,
+          "range": [
+            -0.40415775775909424,
+            -0.38341033458709717
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.40219817730320884,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 212,
+            "periodicity_strength": 0.03031905259635548,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 8
+          }
+        },
+        "joint_RHTibia": {
+          "excursion": 0.0288546085357666,
+          "range": [
+            1.1166831254959106,
+            1.1455377340316772
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 1.9990004997524964,
+            "autocorrelation_peak_nonzero": 0.5737606858779698,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.19990004997544886,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 296,
+            "periodicity_strength": 0.014179710522571906,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 18
+          }
+        },
+        "joint_RMCoxa": {
+          "excursion": 0.034594244323670864,
+          "range": [
+            0.011523355729877949,
+            0.04611760005354881
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.20545922203241054,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 167,
+            "periodicity_strength": 0.10437978040611544,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 5
+          }
+        },
+        "joint_RMCoxa_roll": {
+          "excursion": 0.01442253589630127,
+          "range": [
+            -1.8331423997879028,
+            -1.8187198638916016
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.6277652262934106,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 172,
+            "periodicity_strength": 0.2902705642845702,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 6
+          }
+        },
+        "joint_RMCoxa_yaw": {
+          "excursion": 0.06815061718225479,
+          "range": [
+            -0.17282116413116455,
+            -0.10467054694890976
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.3588610694122225,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 153,
+            "periodicity_strength": 0.05677269415793651,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 6
+          }
+        },
+        "joint_RMFemur": {
+          "excursion": 0.08046901226043701,
+          "range": [
+            -1.9141334295272827,
+            -1.8336644172668457
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.24852464930877347,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 224,
+            "periodicity_strength": 0.036318210136517565,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 8
+          }
+        },
+        "joint_RMFemur_roll": {
+          "excursion": 0.024307115469127893,
+          "range": [
+            -0.005520940292626619,
+            0.018786175176501274
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.561124459241966,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 160,
+            "periodicity_strength": 0.2654065555005506,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 4
+          }
+        },
+        "joint_RMTarsus1": {
+          "excursion": 0.02326139621436596,
+          "range": [
+            -0.03422621637582779,
+            -0.01096482016146183
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 2.998500749628745,
+            "autocorrelation_peak_nonzero": 0.3006113057207912,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.2998500749631733,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 179,
+            "periodicity_strength": 0.005282242060236552,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 45
+          }
+        },
+        "joint_RMTibia": {
+          "excursion": 0.03229665756225586,
+          "range": [
+            1.7235345840454102,
+            1.755831241607666
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.21914816926681724,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 329,
+            "periodicity_strength": 0.01832095309627813,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 13
+          }
+        }
+      },
+      "max_horizontal_speed": 12.9531558098324,
+      "mean_horizontal_speed": 0.02044930168568233,
+      "motor_channels": {
+        "joint_LFFemur": {
+          "active": false,
+          "first_activation_ms": null,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "joint_LFTibia": {
+          "active": false,
+          "first_activation_ms": null,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "joint_LHFemur": {
+          "active": false,
+          "first_activation_ms": null,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "joint_LHTibia": {
+          "active": false,
+          "first_activation_ms": null,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "joint_LMFemur": {
+          "active": false,
+          "first_activation_ms": null,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "joint_LMTibia": {
+          "active": false,
+          "first_activation_ms": null,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "joint_RFTibia": {
+          "active": false,
+          "first_activation_ms": null,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "joint_RHFemur": {
+          "active": false,
+          "first_activation_ms": null,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "joint_RHTibia": {
+          "active": false,
+          "first_activation_ms": null,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "joint_RMFemur": {
+          "active": false,
+          "first_activation_ms": null,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "joint_RMTibia": {
+          "active": false,
+          "first_activation_ms": null,
+          "range": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "net_horizontal_displacement": 0.018225919708270023,
+      "tarsus5_world_position_ranges": {
+        "LF": [
+          [
+            1.5245215923299198,
+            1.6948306021595814
+          ],
+          [
+            0.17139760487593242,
+            0.20452810270757402
+          ],
+          [
+            0.06618956177145821,
+            0.10176201102234322
+          ]
+        ],
+        "LH": [
+          [
+            -1.6126085850304102,
+            -1.4950388919554927
+          ],
+          [
+            1.18596433942396,
+            1.306632908260417
+          ],
+          [
+            0.061601709335746144,
+            0.1831906132185398
+          ]
+        ],
+        "LM": [
+          [
+            -0.2665852224516013,
+            -0.23674145432454125
+          ],
+          [
+            1.127562714130434,
+            1.2324521550611407
+          ],
+          [
+            0.0856615205329965,
+            0.2432758966181026
+          ]
+        ],
+        "RF": [
+          [
+            1.5419072262429478,
+            1.6429026115323822
+          ],
+          [
+            -0.16593952238198473,
+            -0.1291385671282445
+          ],
+          [
+            0.08114522609997853,
+            0.18036539827416115
+          ]
+        ],
+        "RH": [
+          [
+            -1.5953445243820181,
+            -1.4977019612270532
+          ],
+          [
+            -1.4032806402219944,
+            -1.3176596875172395
+          ],
+          [
+            0.03263021822071258,
+            0.21024373301028065
+          ]
+        ],
+        "RM": [
+          [
+            -0.3086020738127109,
+            -0.2708242575611117
+          ],
+          [
+            -1.2013823861594104,
+            -1.1160263669541595
+          ],
+          [
+            0.0794510605903814,
+            0.2816873812243124
+          ]
+        ]
+      },
+      "upright_through_end": true
+    },
+    "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT": {
+      "authoritative_contacts": {
+        "available": true,
+        "per_leg": {
+          "LF": {
+            "contact_duration_ms": 9997.1,
+            "episodes": [
+              {
+                "duration_ms": 0.1,
+                "end_ms": 0.0,
+                "start_ms": 0.0
+              },
+              {
+                "duration_ms": 0.7000000000000001,
+                "end_ms": 0.8000000000000002,
+                "start_ms": 0.2
+              },
+              {
+                "duration_ms": 0.5000000000000001,
+                "end_ms": 1.5000000000000004,
+                "start_ms": 1.1000000000000003
+              },
+              {
+                "duration_ms": 0.49999999999999944,
+                "end_ms": 2.2,
+                "start_ms": 1.8000000000000007
+              },
+              {
+                "duration_ms": 0.49999999999999944,
+                "end_ms": 2.899999999999999,
+                "start_ms": 2.4999999999999996
+              },
+              {
+                "duration_ms": 0.5999999999999991,
+                "end_ms": 3.6999999999999975,
+                "start_ms": 3.1999999999999984
+              },
+              {
+                "duration_ms": 0.6000000000000009,
+                "end_ms": 4.699999999999999,
+                "start_ms": 4.199999999999998
+              },
+              {
+                "duration_ms": 0.6000000000000009,
+                "end_ms": 5.600000000000001,
+                "start_ms": 5.1000000000000005
+              },
+              {
+                "duration_ms": 0.7000000000000014,
+                "end_ms": 6.600000000000004,
+                "start_ms": 6.000000000000003
+              },
+              {
+                "duration_ms": 0.8000000000000019,
+                "end_ms": 7.800000000000008,
+                "start_ms": 7.100000000000006
+              },
+              {
+                "duration_ms": 1.2999999999999923,
+                "end_ms": 9.499999999999998,
+                "start_ms": 8.300000000000006
+              },
+              {
+                "duration_ms": 2.9999999999999827,
+                "end_ms": 12.59999999999998,
+                "start_ms": 9.699999999999998
+              },
+              {
+                "duration_ms": 3.3999999999999813,
+                "end_ms": 16.09999999999996,
+                "start_ms": 12.799999999999978
+              },
+              {
+                "duration_ms": 9983.799999990035,
+                "end_ms": 9999.999999990034,
+                "start_ms": 16.299999999999958
+              }
+            ]
+          },
+          "LH": {
+            "contact_duration_ms": 9994.6,
+            "episodes": [
+              {
+                "duration_ms": 0.5000000000000003,
+                "end_ms": 4.599999999999999,
+                "start_ms": 4.199999999999998
+              },
+              {
+                "duration_ms": 0.6000000000000009,
+                "end_ms": 5.700000000000002,
+                "start_ms": 5.200000000000001
+              },
+              {
+                "duration_ms": 0.8000000000000019,
+                "end_ms": 6.700000000000005,
+                "start_ms": 6.000000000000003
+              },
+              {
+                "duration_ms": 0.8000000000000019,
+                "end_ms": 7.600000000000007,
+                "start_ms": 6.900000000000005
+              },
+              {
+                "duration_ms": 0.8999999999999954,
+                "end_ms": 8.600000000000003,
+                "start_ms": 7.800000000000008
+              },
+              {
+                "duration_ms": 1.1999999999999926,
+                "end_ms": 9.899999999999995,
+                "start_ms": 8.800000000000002
+              },
+              {
+                "duration_ms": 2.4999999999999862,
+                "end_ms": 12.49999999999998,
+                "start_ms": 10.099999999999994
+              },
+              {
+                "duration_ms": 377.8999999999734,
+                "end_ms": 390.49999999997334,
+                "start_ms": 12.699999999999978
+              },
+              {
+                "duration_ms": 9609.39999999006,
+                "end_ms": 9999.999999990034,
+                "start_ms": 390.6999999999733
+              }
+            ]
+          },
+          "LM": {
+            "contact_duration_ms": 9994.6,
+            "episodes": [
+              {
+                "duration_ms": 3.5000000000000013,
+                "end_ms": 8.800000000000002,
+                "start_ms": 5.400000000000001
+              },
+              {
+                "duration_ms": 9991.099999990034,
+                "end_ms": 9999.999999990034,
+                "start_ms": 9.000000000000002
+              }
+            ]
+          },
+          "RF": {
+            "contact_duration_ms": 9989.7,
+            "episodes": [
+              {
+                "duration_ms": 0.4000000000000007,
+                "end_ms": 5.400000000000001,
+                "start_ms": 5.1000000000000005
+              },
+              {
+                "duration_ms": 0.4000000000000007,
+                "end_ms": 6.700000000000005,
+                "start_ms": 6.400000000000004
+              },
+              {
+                "duration_ms": 0.5000000000000003,
+                "end_ms": 7.9000000000000075,
+                "start_ms": 7.500000000000007
+              },
+              {
+                "duration_ms": 0.7999999999999957,
+                "end_ms": 9.699999999999998,
+                "start_ms": 9.000000000000002
+              },
+              {
+                "duration_ms": 1.0999999999999948,
+                "end_ms": 11.499999999999986,
+                "start_ms": 10.499999999999991
+              },
+              {
+                "duration_ms": 0.999999999999995,
+                "end_ms": 12.899999999999977,
+                "start_ms": 11.999999999999982
+              },
+              {
+                "duration_ms": 1.0999999999999948,
+                "end_ms": 14.399999999999968,
+                "start_ms": 13.399999999999974
+              },
+              {
+                "duration_ms": 1.8999999999999884,
+                "end_ms": 16.399999999999956,
+                "start_ms": 14.599999999999968
+              },
+              {
+                "duration_ms": 4.599999999999971,
+                "end_ms": 21.099999999999927,
+                "start_ms": 16.599999999999955
+              },
+              {
+                "duration_ms": 224.19999999998936,
+                "end_ms": 245.3999999999893,
+                "start_ms": 21.299999999999926
+              },
+              {
+                "duration_ms": 904.5999999999007,
+                "end_ms": 1150.0999999998899,
+                "start_ms": 245.59999999998928
+              },
+              {
+                "duration_ms": 2513.200000003417,
+                "end_ms": 3663.4000000033066,
+                "start_ms": 1150.2999999998897
+              },
+              {
+                "duration_ms": 491.9000000003472,
+                "end_ms": 4155.400000003654,
+                "start_ms": 3663.600000003307
+              },
+              {
+                "duration_ms": 723.1999999983151,
+                "end_ms": 4878.700000001969,
+                "start_ms": 4155.600000003654
+              },
+              {
+                "duration_ms": 215.19999999949923,
+                "end_ms": 5094.000000001467,
+                "start_ms": 4878.900000001968
+              },
+              {
+                "duration_ms": 1216.1999999971663,
+                "end_ms": 6310.299999998632,
+                "start_ms": 5094.200000001466
+              },
+              {
+                "duration_ms": 397.9999999990729,
+                "end_ms": 6708.399999997704,
+                "start_ms": 6310.499999998631
+              },
+              {
+                "duration_ms": 1000.099999997669,
+                "end_ms": 7708.599999995373,
+                "start_ms": 6708.599999997704
+              },
+              {
+                "duration_ms": 2291.299999994661,
+                "end_ms": 9999.999999990034,
+                "start_ms": 7708.799999995373
+              }
+            ]
+          },
+          "RH": {
+            "contact_duration_ms": 9993.5,
+            "episodes": [
+              {
+                "duration_ms": 0.7000000000000023,
+                "end_ms": 5.200000000000001,
+                "start_ms": 4.599999999999999
+              },
+              {
+                "duration_ms": 0.7000000000000014,
+                "end_ms": 6.400000000000004,
+                "start_ms": 5.8000000000000025
+              },
+              {
+                "duration_ms": 0.8000000000000019,
+                "end_ms": 7.400000000000007,
+                "start_ms": 6.700000000000005
+              },
+              {
+                "duration_ms": 0.9999999999999959,
+                "end_ms": 8.600000000000003,
+                "start_ms": 7.700000000000007
+              },
+              {
+                "duration_ms": 1.099999999999993,
+                "end_ms": 9.899999999999995,
+                "start_ms": 8.900000000000002
+              },
+              {
+                "duration_ms": 1.4999999999999916,
+                "end_ms": 11.499999999999986,
+                "start_ms": 10.099999999999994
+              },
+              {
+                "duration_ms": 72.80000000000139,
+                "end_ms": 84.40000000000138,
+                "start_ms": 11.699999999999985
+              },
+              {
+                "duration_ms": 4793.20000000197,
+                "end_ms": 4877.700000001971,
+                "start_ms": 84.6000000000014
+              },
+              {
+                "duration_ms": 367.5999999991433,
+                "end_ms": 5245.400000001114,
+                "start_ms": 4877.9000000019705
+              },
+              {
+                "duration_ms": 4.799999999988904,
+                "end_ms": 5250.3000000011025,
+                "start_ms": 5245.600000001114
+              },
+              {
+                "duration_ms": 1447.0999999966275,
+                "end_ms": 6697.49999999773,
+                "start_ms": 5250.500000001102
+              },
+              {
+                "duration_ms": 49.19999999988577,
+                "end_ms": 6746.799999997615,
+                "start_ms": 6697.699999997729
+              },
+              {
+                "duration_ms": 3.7999999999916327,
+                "end_ms": 6750.699999997606,
+                "start_ms": 6746.999999997614
+              },
+              {
+                "duration_ms": 3249.1999999924287,
+                "end_ms": 9999.999999990034,
+                "start_ms": 6750.899999997605
+              }
+            ]
+          },
+          "RM": {
+            "contact_duration_ms": 9994.300000000001,
+            "episodes": [
+              {
+                "duration_ms": 7.899999999999971,
+                "end_ms": 13.499999999999973,
+                "start_ms": 5.700000000000002
+              },
+              {
+                "duration_ms": 9986.399999990033,
+                "end_ms": 9999.999999990034,
+                "start_ms": 13.699999999999973
+              }
+            ]
+          }
+        },
+        "support_count_range": [
+          0,
+          6
+        ],
+        "support_pattern_counts": {
+          "": 13,
+          "LF": 29,
+          "LFLH": 4,
+          "LFLHRF": 1,
+          "LFLHRFRH": 1,
+          "LFLHRH": 1,
+          "LFLHRMRH": 1,
+          "LFLMLH": 2,
+          "LFLMLHRF": 1,
+          "LFLMLHRFRH": 1,
+          "LFLMLHRFRM": 11,
+          "LFLMLHRFRMRH": 99873,
+          "LFLMLHRM": 2,
+          "LFLMLHRMRH": 37,
+          "LFLMRFRMRH": 3,
+          "LFLMRM": 2,
+          "LFRFRH": 1,
+          "LFRH": 1,
+          "LMLHRFRMRH": 5,
+          "LMLHRM": 1,
+          "LMLHRMRH": 5,
+          "LMRMRH": 3,
+          "RH": 3
+        }
+      },
+      "body_height_range": [
+        0.36496912459789654,
+        0.6045752232266313
+      ],
+      "body_orientation_quaternion_component_ranges": [
+        [
+          0.9987500484419444,
+          1.0
+        ],
+        [
+          -0.007644575894005343,
+          0.012823486677641792
+        ],
+        [
+          -0.04921421293187931,
+          0.0
+        ],
+        [
+          0.0,
+          0.003441461522690232
+        ]
+      ],
+      "body_up_z_range": [
+        0.9950113082079953,
+        1.0
+      ],
+      "first_fall_time_ms": null,
+      "first_rollover_time_ms": null,
+      "horizontal_displacement_vector": [
+        0.002817603350699577,
+        0.014500326830334231
+      ],
+      "horizontal_path_length": 3.3477158747520686,
+      "joints": {
+        "joint_LFCoxa": {
+          "excursion": 0.028881150297820568,
+          "range": [
+            -0.04266716167330742,
+            -0.01378601137548685
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 9.995002498762483,
+            "autocorrelation_peak_nonzero": 0.8723098834314953,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.9995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 518,
+            "periodicity_strength": 0.06388212969732981,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 133
+          }
+        },
+        "joint_LFCoxa_roll": {
+          "excursion": 0.01487709442153573,
+          "range": [
+            -0.005313193891197443,
+            0.009563900530338287
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 24.987506246906207,
+            "autocorrelation_peak_nonzero": 0.9709421899645351,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 2.498750624693111,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 462,
+            "periodicity_strength": 0.055708185223661104,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 89
+          }
+        },
+        "joint_LFCoxa_yaw": {
+          "excursion": 0.018592008156701922,
+          "range": [
+            -0.0037338424008339643,
+            0.014858165755867958
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 24.987506246906207,
+            "autocorrelation_peak_nonzero": 0.971175223087744,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 2.498750624693111,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 478,
+            "periodicity_strength": 0.05677232047372188,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 99
+          }
+        },
+        "joint_LFFemur": {
+          "excursion": 0.03527021408081055,
+          "range": [
+            -1.214653730392456,
+            -1.1793835163116455
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 5.99700149925749,
+            "autocorrelation_peak_nonzero": 0.8755132023784823,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.5997001499263466,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 638,
+            "periodicity_strength": 0.07434865243545422,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 136
+          }
+        },
+        "joint_LFFemur_roll": {
+          "excursion": 0.008118916302919388,
+          "range": [
+            -0.007299275137484074,
+            0.0008196411654353142
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 24.987506246906207,
+            "autocorrelation_peak_nonzero": 0.9637809463597354,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 2.498750624693111,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 502,
+            "periodicity_strength": 0.05608382863130185,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 113
+          }
+        },
+        "joint_LFTarsus1": {
+          "excursion": 0.009615316987037659,
+          "range": [
+            -0.15184734761714935,
+            -0.1422320306301117
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 9.995002498762483,
+            "autocorrelation_peak_nonzero": 0.9117081075005051,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.9995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 575,
+            "periodicity_strength": 0.050766816167266735,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 121
+          }
+        },
+        "joint_LFTibia": {
+          "excursion": 0.017674148082733154,
+          "range": [
+            0.7399955987930298,
+            0.7576697468757629
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 20.989505247401215,
+            "autocorrelation_peak_nonzero": 0.9323432953402471,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 2.098950524742213,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 557,
+            "periodicity_strength": 0.04438965765512154,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 125
+          }
+        },
+        "joint_LHCoxa": {
+          "excursion": 0.054507264867424965,
+          "range": [
+            0.02112620882689953,
+            0.0756334736943245
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.8048400023872376,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 456,
+            "periodicity_strength": 0.0825701182328772,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 130
+          }
+        },
+        "joint_LHCoxa_roll": {
+          "excursion": 0.01874709129333496,
+          "range": [
+            2.383082866668701,
+            2.401829957962036
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 3.9980009995049928,
+            "autocorrelation_peak_nonzero": 0.9611923011862756,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.3998000999508977,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 448,
+            "periodicity_strength": 0.06884325029234623,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 103
+          }
+        },
+        "joint_LHCoxa_yaw": {
+          "excursion": 0.042927682399749756,
+          "range": [
+            0.18669065833091736,
+            0.22961834073066711
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 3.9980009995049928,
+            "autocorrelation_peak_nonzero": 0.862003986414074,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.3998000999508977,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 493,
+            "periodicity_strength": 0.050763117848847336,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 112
+          }
+        },
+        "joint_LHFemur": {
+          "excursion": 0.07341921329498291,
+          "range": [
+            -1.6317914724349976,
+            -1.5583722591400146
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.7730004246514147,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 793,
+            "periodicity_strength": 0.087882661164623,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 188
+          }
+        },
+        "joint_LHFemur_roll": {
+          "excursion": 0.016661837697029114,
+          "range": [
+            -0.150146484375,
+            -0.1334846466779709
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 3.9980009995049928,
+            "autocorrelation_peak_nonzero": 0.9605404482376939,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.3998000999508977,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 456,
+            "periodicity_strength": 0.07184317974522403,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 112
+          }
+        },
+        "joint_LHTarsus1": {
+          "excursion": 0.018274590373039246,
+          "range": [
+            -0.12388059496879578,
+            -0.10560600459575653
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.9025952882369839,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 942,
+            "periodicity_strength": 0.07133672353728718,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 285
+          }
+        },
+        "joint_LHTibia": {
+          "excursion": 0.0359874963760376,
+          "range": [
+            1.1140023469924927,
+            1.1499898433685303
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.9177020017722898,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 895,
+            "periodicity_strength": 0.07259759830258321,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 277
+          }
+        },
+        "joint_LMCoxa": {
+          "excursion": 0.03228916600346565,
+          "range": [
+            0.034677620977163315,
+            0.06696678698062897
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 3.9980009995049928,
+            "autocorrelation_peak_nonzero": 0.8987805315251293,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.3998000999508977,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 500,
+            "periodicity_strength": 0.06667389607377672,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 130
+          }
+        },
+        "joint_LMCoxa_roll": {
+          "excursion": 0.013677358627319336,
+          "range": [
+            1.7702281475067139,
+            1.7839055061340332
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 55.9720139930699,
+            "autocorrelation_peak_nonzero": 0.9303571397002602,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 5.597201399312568,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 546,
+            "periodicity_strength": 0.0496890645857297,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 133
+          }
+        },
+        "joint_LMCoxa_yaw": {
+          "excursion": 0.06413917243480682,
+          "range": [
+            0.21693991124629974,
+            0.28107908368110657
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 9.995002498762483,
+            "autocorrelation_peak_nonzero": 0.8971713984006413,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.9995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 474,
+            "periodicity_strength": 0.03885205671649269,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 113
+          }
+        },
+        "joint_LMFemur": {
+          "excursion": 0.07147419452667236,
+          "range": [
+            -1.7430487871170044,
+            -1.671574592590332
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 10.99450274863873,
+            "autocorrelation_peak_nonzero": 0.9179921548695658,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 1.0994502748649686,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 507,
+            "periodicity_strength": 0.05688480667495694,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 98
+          }
+        },
+        "joint_LMFemur_roll": {
+          "excursion": 0.028017964214086533,
+          "range": [
+            -0.02122528664767742,
+            0.006792677566409111
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 9.995002498762483,
+            "autocorrelation_peak_nonzero": 0.9329824480481648,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.9995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 492,
+            "periodicity_strength": 0.06867888692360981,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 115
+          }
+        },
+        "joint_LMTarsus1": {
+          "excursion": 0.03449641168117523,
+          "range": [
+            -0.13965295255184174,
+            -0.1051565408706665
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 13.993003498267475,
+            "autocorrelation_peak_nonzero": 0.9774236804026766,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 1.399300349828142,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 606,
+            "periodicity_strength": 0.06199904986751649,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 123
+          }
+        },
+        "joint_LMTibia": {
+          "excursion": 0.07715022563934326,
+          "range": [
+            1.7589555978775024,
+            1.8361058235168457
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 24.987506246906207,
+            "autocorrelation_peak_nonzero": 0.9761976081568815,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 2.498750624693111,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 666,
+            "periodicity_strength": 0.05083584350345815,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 28
+          }
+        },
+        "joint_RFCoxa": {
+          "excursion": 0.01392932899761945,
+          "range": [
+            -0.012659105472266674,
+            0.001270223525352776
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 9.995002498762483,
+            "autocorrelation_peak_nonzero": 0.9407300884983395,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.9995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 548,
+            "periodicity_strength": 0.0654586395364897,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 127
+          }
+        },
+        "joint_RFCoxa_roll": {
+          "excursion": 0.015284860972315073,
+          "range": [
+            -0.005289440508931875,
+            0.009995420463383198
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.9776636129593443,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 470,
+            "periodicity_strength": 0.15611316593699973,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 101
+          }
+        },
+        "joint_RFCoxa_yaw": {
+          "excursion": 0.0186458146199584,
+          "range": [
+            -0.008561791852116585,
+            0.010084022767841816
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.978155484216038,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 484,
+            "periodicity_strength": 0.15503787581629874,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 99
+          }
+        },
+        "joint_RFFemur": {
+          "excursion": 0.013609766960144043,
+          "range": [
+            -1.3207858800888062,
+            -1.307176113128662
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.9403917584712567,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 588,
+            "periodicity_strength": 0.09642645522553134,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 129
+          }
+        },
+        "joint_RFFemur_roll": {
+          "excursion": 0.010098828468471766,
+          "range": [
+            -0.005263224709779024,
+            0.004835603758692741
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.9776055375542325,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 532,
+            "periodicity_strength": 0.15093637898136117,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 97
+          }
+        },
+        "joint_RFTarsus1": {
+          "excursion": 0.005941405892372131,
+          "range": [
+            -0.17634277045726776,
+            -0.17040136456489563
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.9630330831157983,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 623,
+            "periodicity_strength": 0.13022612322738972,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 105
+          }
+        },
+        "joint_RFTibia": {
+          "excursion": 0.013166546821594238,
+          "range": [
+            0.8880130648612976,
+            0.9011796116828918
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.9665181997789534,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 664,
+            "periodicity_strength": 0.15016126348970676,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 113
+          }
+        },
+        "joint_RHCoxa": {
+          "excursion": 0.0556330680847168,
+          "range": [
+            0.27960363030433655,
+            0.33523669838905334
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.9223851376919021,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 548,
+            "periodicity_strength": 0.051877343334003415,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 137
+          }
+        },
+        "joint_RHCoxa_roll": {
+          "excursion": 0.016468286514282227,
+          "range": [
+            -2.4525251388549805,
+            -2.4360568523406982
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.9252924416827685,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 705,
+            "periodicity_strength": 0.1352357172757015,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 131
+          }
+        },
+        "joint_RHCoxa_yaw": {
+          "excursion": 0.05816499888896942,
+          "range": [
+            -0.1963556408882141,
+            -0.1381906419992447
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 15.992003998019971,
+            "autocorrelation_peak_nonzero": 0.9363740688057948,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 1.5992003998035909,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 359,
+            "periodicity_strength": 0.038095035719050666,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 123
+          }
+        },
+        "joint_RHFemur": {
+          "excursion": 0.09740126132965088,
+          "range": [
+            -1.3862242698669434,
+            -1.2888230085372925
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 2.998500749628745,
+            "autocorrelation_peak_nonzero": 0.9537708517358497,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.2998500749631733,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 463,
+            "periodicity_strength": 0.06852988854947495,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 109
+          }
+        },
+        "joint_RHFemur_roll": {
+          "excursion": 0.0155906081199646,
+          "range": [
+            -0.2812652289867401,
+            -0.2656746208667755
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 17.99100449777247,
+            "autocorrelation_peak_nonzero": 0.9512185395146973,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 1.7991004497790397,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 601,
+            "periodicity_strength": 0.04968376974383966,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 126
+          }
+        },
+        "joint_RHTarsus1": {
+          "excursion": 0.028032422065734863,
+          "range": [
+            -0.41144275665283203,
+            -0.38341033458709717
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 3.9980009995049928,
+            "autocorrelation_peak_nonzero": 0.9467699937073737,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.3998000999508977,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 423,
+            "periodicity_strength": 0.045575980589526326,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 125
+          }
+        },
+        "joint_RHTibia": {
+          "excursion": 0.11451280117034912,
+          "range": [
+            1.1166831254959106,
+            1.2311959266662598
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 9.995002498762483,
+            "autocorrelation_peak_nonzero": 0.9649864521414852,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.9995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 517,
+            "periodicity_strength": 0.055454226333766184,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 76
+          }
+        },
+        "joint_RMCoxa": {
+          "excursion": 0.034594244323670864,
+          "range": [
+            0.011523355729877949,
+            0.04611760005354881
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 26.9865067466587,
+            "autocorrelation_peak_nonzero": 0.7741922944855985,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 2.6986506746685595,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 780,
+            "periodicity_strength": 0.03964482609032544,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 178
+          }
+        },
+        "joint_RMCoxa_roll": {
+          "excursion": 0.01442253589630127,
+          "range": [
+            -1.8331423997879028,
+            -1.8187198638916016
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 0.9995002498762482,
+            "autocorrelation_peak_nonzero": 0.8681171146815839,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.09995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 714,
+            "periodicity_strength": 0.06814872370638958,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 205
+          }
+        },
+        "joint_RMCoxa_yaw": {
+          "excursion": 0.07099368423223495,
+          "range": [
+            -0.17566423118114471,
+            -0.10467054694890976
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 20.989505247401215,
+            "autocorrelation_peak_nonzero": 0.9303234715113051,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 2.098950524742213,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 532,
+            "periodicity_strength": 0.03786543477301207,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 121
+          }
+        },
+        "joint_RMFemur": {
+          "excursion": 0.12222790718078613,
+          "range": [
+            -1.9141334295272827,
+            -1.7919055223464966
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 1.9990004997524964,
+            "autocorrelation_peak_nonzero": 0.9476624013197621,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.19990004997544886,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 496,
+            "periodicity_strength": 0.08657331962401384,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 97
+          }
+        },
+        "joint_RMFemur_roll": {
+          "excursion": 0.024307115469127893,
+          "range": [
+            -0.005520940292626619,
+            0.018786175176501274
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 9.995002498762483,
+            "autocorrelation_peak_nonzero": 0.8395339405223854,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.9995002498772443,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 752,
+            "periodicity_strength": 0.04939292000211791,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 149
+          }
+        },
+        "joint_RMTarsus1": {
+          "excursion": 0.04430251009762287,
+          "range": [
+            -0.0552673302590847,
+            -0.01096482016146183
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 1.9990004997524964,
+            "autocorrelation_peak_nonzero": 0.9530413990536193,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 0.19990004997544886,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "INSUFFICIENT_DURATION_FOR_PERIODICITY",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 568,
+            "periodicity_strength": 0.09922965399660372,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 110
+          }
+        },
+        "joint_RMTibia": {
+          "excursion": 0.09580802917480469,
+          "range": [
+            1.6985149383544922,
+            1.7943229675292969
+          ],
+          "repeated_activity": {
+            "approximate_cycle_count": 24.987506246906207,
+            "autocorrelation_peak_nonzero": 0.9610753427291926,
+            "diagnostic_sampling_ms": 5.0,
+            "dominant_non_dc_frequency_hz": 2.498750624693111,
+            "frequency_resolution_hz": 0.10000000000009965,
+            "label": "REPEATED_NONPERIODIC",
+            "limitation": "A 500-ms record cannot establish a stable oscillator from a spectral peak alone.",
+            "local_extrema": 578,
+            "periodicity_strength": 0.10780755734648134,
+            "raw_physics_telemetry_retained_ms": 0.1,
+            "zero_crossings": 112
+          }
+        }
+      },
+      "max_horizontal_speed": 12.9531558098324,
+      "mean_horizontal_speed": 0.33477158747520674,
+      "motor_channels": {
+        "joint_LFFemur": {
+          "active": false,
+          "first_activation_ms": null,
+          "range": [
+            -0.0,
+            -0.0
+          ]
+        },
+        "joint_LFTibia": {
+          "active": false,
+          "first_activation_ms": null,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "joint_LHFemur": {
+          "active": false,
+          "first_activation_ms": null,
+          "range": [
+            -0.0,
+            -0.0
+          ]
+        },
+        "joint_LHTibia": {
+          "active": false,
+          "first_activation_ms": null,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "joint_LMFemur": {
+          "active": true,
+          "first_activation_ms": 379.49999999997453,
+          "range": [
+            -0.04655467529411533,
+            0.07126354224539597
+          ]
+        },
+        "joint_LMTibia": {
+          "active": true,
+          "first_activation_ms": 404.49999999997175,
+          "range": [
+            0.0,
+            0.15921467379642712
+          ]
+        },
+        "joint_RFTibia": {
+          "active": false,
+          "first_activation_ms": null,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "joint_RHFemur": {
+          "active": true,
+          "first_activation_ms": 86.00000000000144,
+          "range": [
+            -0.06276488407839531,
+            0.11628169643852676
+          ]
+        },
+        "joint_RHTibia": {
+          "active": true,
+          "first_activation_ms": 69.50000000000097,
+          "range": [
+            0.0,
+            0.14833189018875576
+          ]
+        },
+        "joint_RMFemur": {
+          "active": true,
+          "first_activation_ms": 54.00000000000052,
+          "range": [
+            -0.0,
+            0.11747211322419321
+          ]
+        },
+        "joint_RMTibia": {
+          "active": true,
+          "first_activation_ms": 730.4999999999359,
+          "range": [
+            -0.04174795553691418,
+            0.14796300878086427
+          ]
+        }
+      },
+      "net_horizontal_displacement": 0.014771539081232675,
+      "tarsus5_world_position_ranges": {
+        "LF": [
+          [
+            1.5245215923299198,
+            1.6948306021595814
+          ],
+          [
+            0.17139760487593242,
+            0.20483090992067374
+          ],
+          [
+            0.0773430473831076,
+            0.10176201102234322
+          ]
+        ],
+        "LH": [
+          [
+            -1.6126085850304102,
+            -1.4950388919554927
+          ],
+          [
+            1.18596433942396,
+            1.306632908260417
+          ],
+          [
+            0.06782620463328823,
+            0.1831906132185398
+          ]
+        ],
+        "LM": [
+          [
+            -0.2665852224516013,
+            -0.23674145432454125
+          ],
+          [
+            1.127562714130434,
+            1.2331264112428046
+          ],
+          [
+            0.11390740636074348,
+            0.2432758966181026
+          ]
+        ],
+        "RF": [
+          [
+            1.5419072262429478,
+            1.6429026115323822
+          ],
+          [
+            -0.16593952238198473,
+            -0.1291385671282445
+          ],
+          [
+            0.08896252024680516,
+            0.18036539827416115
+          ]
+        ],
+        "RH": [
+          [
+            -1.5953445243820181,
+            -1.4977019612270532
+          ],
+          [
+            -1.4032806402219944,
+            -1.3176596875172395
+          ],
+          [
+            0.05856271578163217,
+            0.21024373301028065
+          ]
+        ],
+        "RM": [
+          [
+            -0.3086020738127109,
+            -0.2708242575611117
+          ],
+          [
+            -1.207849406963845,
+            -1.1160263669541595
+          ],
+          [
+            0.11228568798976368,
+            0.2816873812243124
+          ]
+        ]
+      },
+      "upright_through_end": true
+    }
+  },
+  "gait_classification": null,
+  "inter_leg_temporal_relationships": {
+    "enabled_first_activation_offsets_ms": {
+      "joint_LFFemur_minus_joint_LFTibia": null,
+      "joint_LFFemur_minus_joint_LHFemur": null,
+      "joint_LFFemur_minus_joint_LHTibia": null,
+      "joint_LFFemur_minus_joint_LMFemur": null,
+      "joint_LFFemur_minus_joint_LMTibia": null,
+      "joint_LFFemur_minus_joint_RFTibia": null,
+      "joint_LFFemur_minus_joint_RHFemur": null,
+      "joint_LFFemur_minus_joint_RHTibia": null,
+      "joint_LFFemur_minus_joint_RMFemur": null,
+      "joint_LFFemur_minus_joint_RMTibia": null,
+      "joint_LFTibia_minus_joint_LHFemur": null,
+      "joint_LFTibia_minus_joint_LHTibia": null,
+      "joint_LFTibia_minus_joint_LMFemur": null,
+      "joint_LFTibia_minus_joint_LMTibia": null,
+      "joint_LFTibia_minus_joint_RFTibia": null,
+      "joint_LFTibia_minus_joint_RHFemur": null,
+      "joint_LFTibia_minus_joint_RHTibia": null,
+      "joint_LFTibia_minus_joint_RMFemur": null,
+      "joint_LFTibia_minus_joint_RMTibia": null,
+      "joint_LHFemur_minus_joint_LHTibia": null,
+      "joint_LHFemur_minus_joint_LMFemur": null,
+      "joint_LHFemur_minus_joint_LMTibia": null,
+      "joint_LHFemur_minus_joint_RFTibia": null,
+      "joint_LHFemur_minus_joint_RHFemur": null,
+      "joint_LHFemur_minus_joint_RHTibia": null,
+      "joint_LHFemur_minus_joint_RMFemur": null,
+      "joint_LHFemur_minus_joint_RMTibia": null,
+      "joint_LHTibia_minus_joint_LMFemur": null,
+      "joint_LHTibia_minus_joint_LMTibia": null,
+      "joint_LHTibia_minus_joint_RFTibia": null,
+      "joint_LHTibia_minus_joint_RHFemur": null,
+      "joint_LHTibia_minus_joint_RHTibia": null,
+      "joint_LHTibia_minus_joint_RMFemur": null,
+      "joint_LHTibia_minus_joint_RMTibia": null,
+      "joint_LMFemur_minus_joint_LMTibia": -24.999999999997215,
+      "joint_LMFemur_minus_joint_RFTibia": null,
+      "joint_LMFemur_minus_joint_RHFemur": 293.4999999999731,
+      "joint_LMFemur_minus_joint_RHTibia": 309.99999999997357,
+      "joint_LMFemur_minus_joint_RMFemur": 325.499999999974,
+      "joint_LMFemur_minus_joint_RMTibia": -350.99999999996135,
+      "joint_LMTibia_minus_joint_RFTibia": null,
+      "joint_LMTibia_minus_joint_RHFemur": 318.4999999999703,
+      "joint_LMTibia_minus_joint_RHTibia": 334.9999999999708,
+      "joint_LMTibia_minus_joint_RMFemur": 350.49999999997124,
+      "joint_LMTibia_minus_joint_RMTibia": -325.99999999996413,
+      "joint_RFTibia_minus_joint_RHFemur": null,
+      "joint_RFTibia_minus_joint_RHTibia": null,
+      "joint_RFTibia_minus_joint_RMFemur": null,
+      "joint_RFTibia_minus_joint_RMTibia": null,
+      "joint_RHFemur_minus_joint_RHTibia": 16.50000000000047,
+      "joint_RHFemur_minus_joint_RMFemur": 32.00000000000092,
+      "joint_RHFemur_minus_joint_RMTibia": -644.4999999999344,
+      "joint_RHTibia_minus_joint_RMFemur": 15.500000000000448,
+      "joint_RHTibia_minus_joint_RMTibia": -660.999999999935,
+      "joint_RMFemur_minus_joint_RMTibia": -676.4999999999353
+    },
+    "method": "pairwise first admitted-motor activation offsets; descriptive only"
+  },
+  "limitations": [
+    "No movement is classified as walking, gait, reflex, or CPG.",
+    "Spectral and correlation summaries are descriptive and were not tuned on M8 outcomes."
+  ],
+  "preregistered_descriptive_analysis": true,
+  "schema": "M8-POSTRUN-ANALYSIS.1",
+  "source_raw_sha256": "4e39bb83dd4455d56a4d88f717615530602317efaf83a6ed241b13af89dc2a5b",
+  "status": "COMPLETE",
+  "walking_classification": null
+}
