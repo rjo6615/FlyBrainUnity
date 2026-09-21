@@ -28,8 +28,10 @@ def test_historical_evidence_byte_size_and_sha256_are_frozen():
 @pytest.mark.parametrize(("key", "frozen_size"), (
     ("m9a/m9a_preregistration.json", 5386),
     ("m9a_2/m9a_2_preregistration.json", 4877),
+    ("forensics/README.md", 1235),
+    ("forensics/m9a_2_postrun_forensics.py", 12776),
 ))
-def test_preregistration_lf_and_crlf_have_one_canonical_identity(tmp_path, key, frozen_size):
+def test_text_evidence_lf_and_crlf_have_one_canonical_identity(tmp_path, key, frozen_size):
     expected_size, expected_digest = m9a.HISTORICAL[key]
     lf = m9a._canonical_historical_bytes(key, m9a._historical_path(key).read_bytes())
     crlf = lf.replace(b"\n", b"\r\n")
@@ -37,7 +39,7 @@ def test_preregistration_lf_and_crlf_have_one_canonical_identity(tmp_path, key, 
     assert hashlib.sha256(lf).hexdigest() == expected_digest
     assert m9a._canonical_historical_bytes(key, lf) == lf
     assert m9a._canonical_historical_bytes(key, crlf) == lf
-    for name, data in (("lf.json", lf), ("crlf.json", crlf)):
+    for name, data in (("lf.txt", lf), ("crlf.txt", crlf)):
         path = tmp_path / name; path.write_bytes(data)
         m9a._verify_historical_file(key, path, expected_size, expected_digest)
 
@@ -66,6 +68,13 @@ def test_binary_historical_evidence_remains_exact_bytes(tmp_path):
     changed.write_bytes(raw[:-1] + bytes([raw[-1] ^ 1]))
     with pytest.raises(RuntimeError, match="immutable historical evidence mismatch"):
         m9a._verify_historical_file(key, changed, size, digest)
+
+
+def test_historical_evidence_policy_is_exhaustive_and_disjoint():
+    assert m9a.CANONICAL_LF_TEXT_EVIDENCE | m9a.EXACT_BYTE_BINARY_EVIDENCE == set(m9a.HISTORICAL)
+    assert m9a.CANONICAL_LF_TEXT_EVIDENCE & m9a.EXACT_BYTE_BINARY_EVIDENCE == set()
+    with pytest.raises(RuntimeError, match="unclassified historical evidence"):
+        m9a._canonical_historical_bytes("future/unclassified.txt", b"evidence\n")
 
 
 def test_protocol_validation_accepts_crlf_historical_checkout(tmp_path, monkeypatch):

@@ -27,8 +27,8 @@ START_MS, STOP_MS, OBSERVE_MS = 500.0, 520.0, 1500.0
 DT_MS, TRANSITIONS, STATES = m7d.PHYSICS_DT_MS, 15_000, 15_001
 
 # Values are intentionally duplicated here rather than trusted from mutable
-# manifests. The M9A and M9A-2 preregistrations have canonical-LF identities;
-# all other historical evidence is verified as exact bytes.
+# manifests. Text/source evidence has canonical-LF identities; binary evidence
+# is verified as exact bytes. Every entry must be explicitly classified below.
 HISTORICAL = {
     "m9a/candidate_0.0001_raw.npz": (3075886, "71b4c0150cb1296ffcffdab1bc600d725995f302cc1da25dd53fee88a701de41"),
     "m9a/candidate_0.0002_raw.npz": (3075658, "1bebe255c785ea6468a5e6bad2f4a86dca3575247ca0aecc9108942ad9b0a241"),
@@ -47,7 +47,23 @@ HISTORICAL = {
 CANONICAL_LF_TEXT_EVIDENCE = frozenset({
     "m9a/m9a_preregistration.json",
     "m9a_2/m9a_2_preregistration.json",
+    "forensics/README.md",
+    "forensics/m9a_2_postrun_forensics.py",
 })
+
+EXACT_BYTE_BINARY_EVIDENCE = frozenset({
+    "m9a/candidate_0.0001_raw.npz",
+    "m9a/candidate_0.0002_raw.npz",
+    "m9a/candidate_0.0004_raw.npz",
+    "m9a/candidate_0.0008_raw.npz",
+    "m9a_2/candidate_0.002000_raw.npz",
+    "m9a_2/candidate_0.008000_raw.npz",
+    "m9a_2/candidate_0.032000_raw.npz",
+    "m9a_2/candidate_0.128000_raw.npz",
+})
+
+assert CANONICAL_LF_TEXT_EVIDENCE | EXACT_BYTE_BINARY_EVIDENCE == set(HISTORICAL)
+assert not CANONICAL_LF_TEXT_EVIDENCE & EXACT_BYTE_BINARY_EVIDENCE
 
 
 def _historical_path(key: str) -> Path:
@@ -60,8 +76,10 @@ def _historical_path(key: str) -> Path:
 
 def _canonical_historical_bytes(key: str, raw: bytes) -> bytes:
     """Return the explicit byte representation frozen for historical evidence."""
-    if key not in CANONICAL_LF_TEXT_EVIDENCE:
+    if key in EXACT_BYTE_BINARY_EVIDENCE:
         return raw
+    if key not in CANONICAL_LF_TEXT_EVIDENCE:
+        raise RuntimeError(f"unclassified historical evidence: {key}")
     canonical = raw.replace(b"\r\n", b"\n")
     if b"\r" in canonical:
         raise RuntimeError(f"invalid historical line endings: {key}")
