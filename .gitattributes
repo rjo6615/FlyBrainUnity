@@ -12,3 +12,11 @@ malecns_backend/embodiment/interface_output/m6b_coxa_yaw_sign_diagnostic.json -t
 # M6C Tier-A is an immutable raw-byte provenance input. Preserve its canonical
 # LF bytes even when a checkout has core.autocrlf=true.
 six_tibia_causal_result.json -text
+malecns_backend/embodiment/interface_output/m7c_initial_stability/m7c_b4_stability_raw.npz filter=lfs diff=lfs merge=lfs -text
+malecns_backend/embodiment/interface_output/m7_canonical/m7_raw.npz filter=lfs diff=lfs merge=lfs -text
+malecns_backend/embodiment/interface_output/m7d_corrected_spontaneous/m7d_raw.npz filter=lfs diff=lfs merge=lfs -text
+malecns_backend/embodiment/interface_output/m7f_replay/m7f_enabled_replay.bin filter=lfs diff=lfs merge=lfs -text
+malecns_backend/embodiment/interface_output/m7f_replay/m7f_disabled_replay.bin filter=lfs diff=lfs merge=lfs -text
+malecns_backend/embodiment/interface_output/m8_extended_spontaneous/m8_raw.npz filter=lfs diff=lfs merge=lfs -text
+malecns_backend/embodiment/interface_output/m8_extended_spontaneous/m8_enabled_replay.bin filter=lfs diff=lfs merge=lfs -text
+malecns_backend/embodiment/interface_output/m8_extended_spontaneous/m8_disabled_replay.bin filter=lfs diff=lfs merge=lfs -text
