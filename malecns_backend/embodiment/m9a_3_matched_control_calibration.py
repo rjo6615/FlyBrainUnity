@@ -27,14 +27,14 @@ START_MS, STOP_MS, OBSERVE_MS = 500.0, 520.0, 1500.0
 DT_MS, TRANSITIONS, STATES = m7d.PHYSICS_DT_MS, 15_000, 15_001
 
 # Values are intentionally duplicated here rather than trusted from mutable
-# manifests. Text preregistration is canonicalized to the Windows CRLF bytes
-# used by the historical execution; binary evidence is hashed byte-for-byte.
+# manifests. The M9A and M9A-2 preregistrations have canonical-LF identities;
+# all other historical evidence is verified as exact bytes.
 HISTORICAL = {
     "m9a/candidate_0.0001_raw.npz": (3075886, "71b4c0150cb1296ffcffdab1bc600d725995f302cc1da25dd53fee88a701de41"),
     "m9a/candidate_0.0002_raw.npz": (3075658, "1bebe255c785ea6468a5e6bad2f4a86dca3575247ca0aecc9108942ad9b0a241"),
     "m9a/candidate_0.0004_raw.npz": (3076169, "f97e3d3f67dd70835592ab27458e237bc4b2ac331c61cee5ac12b8c602077075"),
     "m9a/candidate_0.0008_raw.npz": (3076391, "12bd71526456f844f66ac64fc58e84c7799a776432c1eec31b3aab763e4d45b7"),
-    "m9a/m9a_preregistration.json": (5386, "c597593129b6de859888023463f696dd5cc4c7cebba3ba07c25a0561252089fb"),
+    "m9a/m9a_preregistration.json": (5386, "7babc0d657bd74c8f1de596644ac4422a317f3a9f74729eb588fd0c76fe54408"),
     "m9a_2/candidate_0.002000_raw.npz": (3076871, "1c840a69a7f9b065b5957c4e8e338da80046ef4dec0ab068aedd7fef406069ad"),
     "m9a_2/candidate_0.008000_raw.npz": (3077824, "d60a40669c7f4c4df3a97b1725c31b917560bf9e9c2b4f3fb8d9929b62ecf80b"),
     "m9a_2/candidate_0.032000_raw.npz": (3080754, "aace3bfc4b79c50ef3f7b74a7111a1654edf751c5085e2fe8e4d53746de74cd1"),
@@ -43,6 +43,11 @@ HISTORICAL = {
     "forensics/README.md": (1235, "8ce08f4ae2770d6ad8de0cb9dc8870e08caa7227cb9b661b6680ffa0d55569a4"),
     "forensics/m9a_2_postrun_forensics.py": (12776, "53a13908044fcbee0d6ec609a5fb401d51973266a3817ae1d8f27dd50a98eef5"),
 }
+
+CANONICAL_LF_TEXT_EVIDENCE = frozenset({
+    "m9a/m9a_preregistration.json",
+    "m9a_2/m9a_2_preregistration.json",
+})
 
 
 def _historical_path(key: str) -> Path:
@@ -53,15 +58,25 @@ def _historical_path(key: str) -> Path:
             if name == "README.md" else HERE / name)
 
 
+def _canonical_historical_bytes(key: str, raw: bytes) -> bytes:
+    """Return the explicit byte representation frozen for historical evidence."""
+    if key not in CANONICAL_LF_TEXT_EVIDENCE:
+        return raw
+    canonical = raw.replace(b"\r\n", b"\n")
+    if b"\r" in canonical:
+        raise RuntimeError(f"invalid historical line endings: {key}")
+    return canonical
+
+
+def _verify_historical_file(key: str, path: Path, size: int, digest: str) -> None:
+    canonical = _canonical_historical_bytes(key, path.read_bytes())
+    if len(canonical) != size or hashlib.sha256(canonical).hexdigest() != digest:
+        raise RuntimeError(f"immutable historical evidence mismatch: {key}")
+
+
 def verify_historical_evidence() -> None:
     for key, (size, digest) in HISTORICAL.items():
-        path = _historical_path(key); data = path.read_bytes()
-        if key == "m9a/m9a_preregistration.json":
-            data = data.replace(b"\r\n", b"\n")
-            if b"\r" in data: raise RuntimeError(f"invalid historical line endings: {key}")
-            data = data.replace(b"\n", b"\r\n")
-        if path.stat().st_size != size or hashlib.sha256(data).hexdigest() != digest:
-            raise RuntimeError(f"immutable historical evidence mismatch: {key}")
+        _verify_historical_file(key, _historical_path(key), size, digest)
 
 
 def force_at(time_ms: float, magnitude: float, condition: str) -> tuple[float, float, float]:
