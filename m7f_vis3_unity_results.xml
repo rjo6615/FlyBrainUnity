@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Failed(Child)" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-21 01:21:09Z" end-time="2026-09-21 01:21:11Z" duration="1.6230967">
+  <test-suite type="TestSuite" id="1000" name="FlyBrainUnity" fullname="FlyBrainUnity" runstate="Runnable" testcasecount="39" result="Failed" site="Child" start-time="2026-09-21 01:21:09Z" end-time="2026-09-21 01:21:11Z" duration="1.623097" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1046" name="M7FReplay.EditorTests.dll" fullname="C:/Users/legen/Documents/FlyBrainUnity/FlyBrainUnity/Library/ScriptAssemblies/M7FReplay.EditorTests.dll" runstate="Runnable" testcasecount="39" result="Failed" site="Child" start-time="2026-09-21 01:21:09Z" end-time="2026-09-21 01:21:11Z" duration="1.613934" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="34524" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1047" name="FlyBrain" fullname="FlyBrain" runstate="Runnable" testcasecount="39" result="Failed" site="Child" start-time="2026-09-21 01:21:09Z" end-time="2026-09-21 01:21:11Z" duration="1.609327" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1048" name="Tests" fullname="FlyBrain.Tests" runstate="Runnable" testcasecount="39" result="Failed" site="Child" start-time="2026-09-21 01:21:09Z" end-time="2026-09-21 01:21:11Z" duration="1.606318" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1041" name="M7FVis3AnatomyTests" fullname="FlyBrain.Tests.M7FVis3AnatomyTests" classname="FlyBrain.Tests.M7FVis3AnatomyTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-21 01:21:09Z" end-time="2026-09-21 01:21:11Z" duration="1.603793" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1043" name="AnatomyAttachesToManifestParentsWithOnlyRemainingLocalTransform" fullname="FlyBrain.Tests.M7FVis3AnatomyTests.AnatomyAttachesToManifestParentsWithOnlyRemainingLocalTransform" methodname="AnatomyAttachesToManifestParentsWithOnlyRemainingLocalTransform" classname="FlyBrain.Tests.M7FVis3AnatomyTests" runstate="Runnable" seed="1362061215" result="Passed" start-time="2026-09-21 01:21:09Z" end-time="2026-09-21 01:21:11Z" duration="1.569211" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1044" name="GeneratedObjIsAlreadyConvertedAndHasNoRuntimeHandednessOperation" fullname="FlyBrain.Tests.M7FVis3AnatomyTests.GeneratedObjIsAlreadyConvertedAndHasNoRuntimeHandednessOperation" methodname="GeneratedObjIsAlreadyConvertedAndHasNoRuntimeHandednessOperation" classname="FlyBrain.Tests.M7FVis3AnatomyTests" runstate="Runnable" seed="586754588" result="Passed" start-time="2026-09-21 01:21:11Z" end-time="2026-09-21 01:21:11Z" duration="0.016997" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1042" name="ManifestIsTheCompleteExtractedSixtyNineMeshInventory" fullname="FlyBrain.Tests.M7FVis3AnatomyTests.ManifestIsTheCompleteExtractedSixtyNineMeshInventory" methodname="ManifestIsTheCompleteExtractedSixtyNineMeshInventory" classname="FlyBrain.Tests.M7FVis3AnatomyTests" runstate="Runnable" seed="1321105948" result="Passed" start-time="2026-09-21 01:21:11Z" end-time="2026-09-21 01:21:11Z" duration="0.004110" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1045" name="ScientificArtifactsAndCanonicalReplaysRemainByteIdentical" fullname="FlyBrain.Tests.M7FVis3AnatomyTests.ScientificArtifactsAndCanonicalReplaysRemainByteIdentical" methodname="ScientificArtifactsAndCanonicalReplaysRemainByteIdentical" classname="FlyBrain.Tests.M7FVis3AnatomyTests" runstate="Runnable" seed="1837936065" result="Failed" start-time="2026-09-21 01:21:11Z" end-time="2026-09-21 01:21:11Z" duration="0.005248" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  String lengths are both 64. Strings differ at index 0.
+  Expected: "d8cd7e58bb33fff5e102484d937100d7afd7dc1f4156b39dc2a27f65c0c29eb7"
+  But was:  "0997190a94e4a84e9a595e0859dbbc99787ff249e48788c7df58ffb0030045ab"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[at FlyBrain.Tests.M7FVis3AnatomyTests.ScientificArtifactsAndCanonicalReplaysRemainByteIdentical () [0x00000] in C:\Users\legen\Documents\FlyBrainUnity\FlyBrainUnity\Assets\Tests\Editor\M7FVis3AnatomyTests.cs:71
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[Saving results to: C:/Users/legen/AppData/LocalLow/DefaultCompany/FlyBrainUnity\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
