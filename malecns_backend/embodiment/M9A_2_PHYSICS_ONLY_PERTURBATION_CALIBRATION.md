@@ -23,7 +23,9 @@ are frozen in the preregistration before any candidate is executed.
 
 Each fresh candidate uses the exact inherited physical initialization and fixed
 baseline actuator semantics. A direct `data.xfrc_applied` force targets the
-unique authoritative `0/Thorax` (the exact terminal `Thorax` component), in
+unique authoritative source body `Thorax`, resolved by the exact final
+slash-delimited component of its compiled name (for example `0/Thorax` or
+`1/Thorax`), in
 world +Y with zero torque, for exactly 200 outgoing 0.1 ms transitions from
 500 ms inclusive to 520 ms exclusive. Observation lasts 1500 ms. Authoritative
 six-leg ground contacts and distal-tarsus positions are recorded.

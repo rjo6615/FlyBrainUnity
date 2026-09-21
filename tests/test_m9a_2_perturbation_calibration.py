@@ -97,7 +97,7 @@ def test_force_schedule_is_half_open_and_has_exactly_200_transitions():
 
 def test_force_target_fails_closed_and_xfrc_targets_one_body_only():
     source = inspect.getsource(live)
-    assert 'if name == m9a.APPLICATION_BODY_EXACT' in source
+    assert 'contact.namespace_component(name) == m9a.APPLICATION_BODY_SOURCE' in source
     assert 'physics.data.xfrc_applied[:] = 0.0' in source
     assert 'physics.data.xfrc_applied[body["body_id"], :3] = force' in source
     assert 'nonzero.tolist() != [body["body_id"]]' in source
@@ -139,16 +139,17 @@ def test_m9a_2_identity_resolution_uses_dm_control_compiled_model_api(monkeypatc
         "LF": 2, "LM": 3, "LH": 4, "RF": 5, "RM": 6, "RH": 7}
 
 
-def test_m9a_2_thorax_identity_requires_exact_authoritative_compiled_name():
-    model = _CompiledModel()
-    model._bodies = ("world", "0/Thorax", *model._bodies[2:])
-    assert live._body_identity(model) == {
-        "body_id": 1, "body_name": "0/Thorax",
-        "resolution": "exact compiled MuJoCo body name",
-        "all_body_names": {i: name for i, name in enumerate(model._bodies)}}
-    model._bodies = ("world", "Thorax", *model._bodies[2:])
-    with pytest.raises(RuntimeError, match="zero authoritative Thorax matches"):
-        live._body_identity(model)
+def test_m9a_2_sequential_runtime_namespaces_resolve_the_same_source_thorax():
+    resolved = []
+    for namespace in ("0", "1"):
+        model = _CompiledModel()
+        model._bodies = ("world", f"{namespace}/Thorax", *model._bodies[2:])
+        resolved.append(live._body_identity(model))
+    assert [(row["body_id"], row["body_name"], row["source_body_name"])
+            for row in resolved] == [(1, "0/Thorax", "Thorax"), (1, "1/Thorax", "Thorax")]
+    assert all(row["resolution"] ==
+        "exact terminal component of slash-namespaced compiled MuJoCo body identity"
+        for row in resolved)
 
 
 @pytest.mark.parametrize("deceptive", ["FakeThorax", "ThoraxExtra", "0/FakeThorax", "0/ThoraxExtra"])
@@ -159,24 +160,48 @@ def test_m9a_2_thorax_identity_rejects_deceptive_substrings(deceptive):
         live._body_identity(model)
 
 
-def test_m9a_2_thorax_identity_ignores_other_namespaces_but_rejects_duplicate_exact_names():
+def test_m9a_2_thorax_identity_rejects_duplicate_terminal_components():
     model = _CompiledModel()
     model._bodies = ("world", "0/Thorax", "1/Thorax", "LMTarsus5", "LHTarsus5",
                      "RFTarsus5", "RMTarsus5", "RHTarsus5")
-    assert live._body_identity(model)["body_id"] == 1
+    with pytest.raises(RuntimeError, match="multiple/ambiguous authoritative Thorax matches"):
+        live._body_identity(model)
     model._bodies = ("world", "0/Thorax", "0/Thorax", *model._bodies[3:])
     with pytest.raises(RuntimeError, match="multiple/ambiguous authoritative Thorax matches"):
         live._body_identity(model)
 
 
-def test_m9a_2_thorax_identity_rejects_no_match_and_world_body():
+@pytest.mark.parametrize("absent", ["Head", ""])
+def test_m9a_2_thorax_identity_rejects_no_match_and_world_body(absent):
     model = _CompiledModel()
-    model._bodies = ("world", "Head", *model._bodies[2:])
+    model._bodies = ("world", absent, *model._bodies[2:])
     with pytest.raises(RuntimeError, match="zero authoritative Thorax matches"):
         live._body_identity(model)
     model._bodies = ("0/Thorax", "Head", *model._bodies[2:])
     with pytest.raises(RuntimeError, match="Thorax match resolves to the MuJoCo world body"):
         live._body_identity(model)
+
+
+def test_candidate_identity_failure_precedes_first_physics_transition(monkeypatch):
+    class Sim:
+        transitions = 0
+        closed = False
+
+        def step(self, _action):
+            self.transitions += 1
+
+        def close(self):
+            self.closed = True
+
+    class Physics:
+        model = _CompiledModel()
+    Physics.model._bodies = ("world", "Head", *_CompiledModel._bodies[2:])
+    sim = Sim()
+    monkeypatch.setattr(live, "_runtime", lambda _flygym: (sim, Physics(), {}, object()))
+    with pytest.raises(RuntimeError, match="zero authoritative Thorax matches"):
+        live._run_candidate(object(), object(), m9a.CANDIDATE_FORCE_NATIVE[0])
+    assert sim.transitions == 0
+    assert sim.closed is True
 
 
 def test_authoritative_contact_identity_still_fails_closed():
