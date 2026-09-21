@@ -1,0 +1,1597 @@
+{
+  "schema": "M7F-VIS3-ANATOMY.1",
+  "flygym_version": "1.2.1",
+  "mjcf": "neuromechfly_seqik_kinorder_ypr.xml",
+  "mjcf_sha256": "413b3a1dcb7537d08122e16f256f27ec0d8bb9f52c58670345b6c24c9e72e05a",
+  "basis": "[x,y,z] -> [x,z,y]",
+  "presentation_scale": 0.1,
+  "meshes": [
+    {
+      "mesh_name": "mesh_Thorax",
+      "source_stl": "../mesh/Thorax.stl",
+      "body": "Thorax",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_A1A2",
+      "source_stl": "../mesh/A1A2.stl",
+      "body": "A1A2",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_A3",
+      "source_stl": "../mesh/A3.stl",
+      "body": "A3",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_A4",
+      "source_stl": "../mesh/A4.stl",
+      "body": "A4",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_A5",
+      "source_stl": "../mesh/A5.stl",
+      "body": "A5",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_A6",
+      "source_stl": "../mesh/A6.stl",
+      "body": "A6",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LHaltere",
+      "source_stl": "../mesh/RHaltere.stl",
+      "body": "LHaltere",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LWing",
+      "source_stl": "../mesh/RWing.stl",
+      "body": "LWing",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        -1.455191697833692e-15
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RHaltere",
+      "source_stl": "../mesh/RHaltere.stl",
+      "body": "RHaltere",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RWing",
+      "source_stl": "../mesh/RWing.stl",
+      "body": "RWing",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        1.455191697833692e-15
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LFCoxa",
+      "source_stl": "../mesh/RFCoxa.stl",
+      "body": "LFCoxa",
+      "scientific_body": "LFCoxa",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LFFemur",
+      "source_stl": "../mesh/RFFemur.stl",
+      "body": "LFFemur",
+      "scientific_body": "LFFemur",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LFTibia",
+      "source_stl": "../mesh/RFTibia.stl",
+      "body": "LFTibia",
+      "scientific_body": "LFTibia",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LFTarsus1",
+      "source_stl": "../mesh/RFTarsus1.stl",
+      "body": "LFTarsus1",
+      "scientific_body": "LFTarsus1",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LFTarsus2",
+      "source_stl": "../mesh/RFTarsus2.stl",
+      "body": "LFTarsus2",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LFTarsus3",
+      "source_stl": "../mesh/RFTarsus3.stl",
+      "body": "LFTarsus3",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LFTarsus4",
+      "source_stl": "../mesh/RFTarsus4.stl",
+      "body": "LFTarsus4",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LFTarsus5",
+      "source_stl": "../mesh/RFTarsus5.stl",
+      "body": "LFTarsus5",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LHCoxa",
+      "source_stl": "../mesh/RHCoxa.stl",
+      "body": "LHCoxa",
+      "scientific_body": "LHCoxa",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LHFemur",
+      "source_stl": "../mesh/RHFemur.stl",
+      "body": "LHFemur",
+      "scientific_body": "LHFemur",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LHTibia",
+      "source_stl": "../mesh/RHTibia.stl",
+      "body": "LHTibia",
+      "scientific_body": "LHTibia",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LHTarsus1",
+      "source_stl": "../mesh/RHTarsus1.stl",
+      "body": "LHTarsus1",
+      "scientific_body": "LHTarsus1",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LHTarsus2",
+      "source_stl": "../mesh/RHTarsus2.stl",
+      "body": "LHTarsus2",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LHTarsus3",
+      "source_stl": "../mesh/RHTarsus3.stl",
+      "body": "LHTarsus3",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LHTarsus4",
+      "source_stl": "../mesh/RHTarsus4.stl",
+      "body": "LHTarsus4",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LHTarsus5",
+      "source_stl": "../mesh/RHTarsus5.stl",
+      "body": "LHTarsus5",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LMCoxa",
+      "source_stl": "../mesh/RMCoxa.stl",
+      "body": "LMCoxa",
+      "scientific_body": "LMCoxa",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LMFemur",
+      "source_stl": "../mesh/RMFemur.stl",
+      "body": "LMFemur",
+      "scientific_body": "LMFemur",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LMTibia",
+      "source_stl": "../mesh/RMTibia.stl",
+      "body": "LMTibia",
+      "scientific_body": "LMTibia",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LMTarsus1",
+      "source_stl": "../mesh/RMTarsus1.stl",
+      "body": "LMTarsus1",
+      "scientific_body": "LMTarsus1",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LMTarsus2",
+      "source_stl": "../mesh/RMTarsus2.stl",
+      "body": "LMTarsus2",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LMTarsus3",
+      "source_stl": "../mesh/RMTarsus3.stl",
+      "body": "LMTarsus3",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LMTarsus4",
+      "source_stl": "../mesh/RMTarsus4.stl",
+      "body": "LMTarsus4",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LMTarsus5",
+      "source_stl": "../mesh/RMTarsus5.stl",
+      "body": "LMTarsus5",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RHCoxa",
+      "source_stl": "../mesh/RHCoxa.stl",
+      "body": "RHCoxa",
+      "scientific_body": "RHCoxa",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RHFemur",
+      "source_stl": "../mesh/RHFemur.stl",
+      "body": "RHFemur",
+      "scientific_body": "RHFemur",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RHTibia",
+      "source_stl": "../mesh/RHTibia.stl",
+      "body": "RHTibia",
+      "scientific_body": "RHTibia",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RHTarsus1",
+      "source_stl": "../mesh/RHTarsus1.stl",
+      "body": "RHTarsus1",
+      "scientific_body": "RHTarsus1",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RHTarsus2",
+      "source_stl": "../mesh/RHTarsus2.stl",
+      "body": "RHTarsus2",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RHTarsus3",
+      "source_stl": "../mesh/RHTarsus3.stl",
+      "body": "RHTarsus3",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RHTarsus4",
+      "source_stl": "../mesh/RHTarsus4.stl",
+      "body": "RHTarsus4",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RHTarsus5",
+      "source_stl": "../mesh/RHTarsus5.stl",
+      "body": "RHTarsus5",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RMCoxa",
+      "source_stl": "../mesh/RMCoxa.stl",
+      "body": "RMCoxa",
+      "scientific_body": "RMCoxa",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RMFemur",
+      "source_stl": "../mesh/RMFemur.stl",
+      "body": "RMFemur",
+      "scientific_body": "RMFemur",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RMTibia",
+      "source_stl": "../mesh/RMTibia.stl",
+      "body": "RMTibia",
+      "scientific_body": "RMTibia",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RMTarsus1",
+      "source_stl": "../mesh/RMTarsus1.stl",
+      "body": "RMTarsus1",
+      "scientific_body": "RMTarsus1",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RMTarsus2",
+      "source_stl": "../mesh/RMTarsus2.stl",
+      "body": "RMTarsus2",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RMTarsus3",
+      "source_stl": "../mesh/RMTarsus3.stl",
+      "body": "RMTarsus3",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RMTarsus4",
+      "source_stl": "../mesh/RMTarsus4.stl",
+      "body": "RMTarsus4",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RMTarsus5",
+      "source_stl": "../mesh/RMTarsus5.stl",
+      "body": "RMTarsus5",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RFCoxa",
+      "source_stl": "../mesh/RFCoxa.stl",
+      "body": "RFCoxa",
+      "scientific_body": "RFCoxa",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RFFemur",
+      "source_stl": "../mesh/RFFemur.stl",
+      "body": "RFFemur",
+      "scientific_body": "RFFemur",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RFTibia",
+      "source_stl": "../mesh/RFTibia.stl",
+      "body": "RFTibia",
+      "scientific_body": "RFTibia",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RFTarsus1",
+      "source_stl": "../mesh/RFTarsus1.stl",
+      "body": "RFTarsus1",
+      "scientific_body": "RFTarsus1",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RFTarsus2",
+      "source_stl": "../mesh/RFTarsus2.stl",
+      "body": "RFTarsus2",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RFTarsus3",
+      "source_stl": "../mesh/RFTarsus3.stl",
+      "body": "RFTarsus3",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RFTarsus4",
+      "source_stl": "../mesh/RFTarsus4.stl",
+      "body": "RFTarsus4",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RFTarsus5",
+      "source_stl": "../mesh/RFTarsus5.stl",
+      "body": "RFTarsus5",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_Head",
+      "source_stl": "../mesh/Head.stl",
+      "body": "Head",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LEye",
+      "source_stl": "../mesh/REye.stl",
+      "body": "LEye",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_REye",
+      "source_stl": "../mesh/REye.stl",
+      "body": "REye",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_Rostrum",
+      "source_stl": "../mesh/Rostrum.stl",
+      "body": "Rostrum",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_Haustellum",
+      "source_stl": "../mesh/Haustellum.stl",
+      "body": "Haustellum",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LPedicel",
+      "source_stl": "../mesh/RPedicel.stl",
+      "body": "LPedicel",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LFuniculus",
+      "source_stl": "../mesh/RFuniculus.stl",
+      "body": "LFuniculus",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_LArista",
+      "source_stl": "../mesh/RArista.stl",
+      "body": "LArista",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        -1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RPedicel",
+      "source_stl": "../mesh/RPedicel.stl",
+      "body": "RPedicel",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RFuniculus",
+      "source_stl": "../mesh/RFuniculus.stl",
+      "body": "RFuniculus",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    },
+    {
+      "mesh_name": "mesh_RArista",
+      "source_stl": "../mesh/RArista.stl",
+      "body": "RArista",
+      "scientific_body": "Thorax",
+      "mesh_scale": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion_wxyz": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "role": "visual"
+    }
+  ]
+}
