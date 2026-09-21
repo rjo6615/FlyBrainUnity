@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Failed(Child)" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-20 23:57:20Z" end-time="2026-09-20 23:57:20Z" duration="0.0941991">
+  <test-suite type="TestSuite" id="1000" name="FlyBrainUnity" fullname="FlyBrainUnity" runstate="Runnable" testcasecount="24" result="Failed" site="Child" start-time="2026-09-20 23:57:20Z" end-time="2026-09-20 23:57:20Z" duration="0.094199" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1028" name="M7FReplay.EditorTests.dll" fullname="C:/Users/legen/Documents/FlyBrainUnity/FlyBrainUnity/Library/ScriptAssemblies/M7FReplay.EditorTests.dll" runstate="Runnable" testcasecount="24" result="Failed" site="Child" start-time="2026-09-20 23:57:20Z" end-time="2026-09-20 23:57:20Z" duration="0.088623" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="30784" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1029" name="FlyBrain" fullname="FlyBrain" runstate="Runnable" testcasecount="24" result="Failed" site="Child" start-time="2026-09-20 23:57:20Z" end-time="2026-09-20 23:57:20Z" duration="0.088065" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1030" name="Tests" fullname="FlyBrain.Tests" runstate="Runnable" testcasecount="24" result="Failed" site="Child" start-time="2026-09-20 23:57:20Z" end-time="2026-09-20 23:57:20Z" duration="0.087642" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1001" name="M7FReplayTests" fullname="FlyBrain.Tests.M7FReplayTests" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" testcasecount="24" result="Failed" site="Child" start-time="2026-09-20 23:57:20Z" end-time="2026-09-20 23:57:20Z" duration="0.086577" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1015" name="NineNativeMjForwardFramesAreTheNumericalAcceptanceGate" fullname="FlyBrain.Tests.M7FReplayTests.NineNativeMjForwardFramesAreTheNumericalAcceptanceGate" methodname="NineNativeMjForwardFramesAreTheNumericalAcceptanceGate" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="1205861060" result="Failed" label="Error" start-time="2026-09-20 23:57:20Z" end-time="2026-09-20 23:57:20Z" duration="0.077221" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.IO.InvalidDataException : AUTHORITATIVE UNITY RIG VALIDATION FAILED: pivot max=0.274425059556961, axis max=3.14159274101257, body max=0.274425059556961]]></message>
+                <stack-trace><![CDATA[  at FlyBrain.M7FReplay.M7FAuthoritativeRigValidator.Validate (FlyBrain.M7FReplay.M7FFlyRig rig, FlyBrain.M7FReplay.M7FReplayData replay, FlyBrain.M7FReplay.M7FNativeReference reference) [0x00383] in C:\Users\legen\Documents\FlyBrainUnity\FlyBrainUnity\Assets\Scripts\M7FReplay\M7FAuthoritativeRigValidator.cs:89 
+  at FlyBrain.Tests.M7FReplayTests.NineNativeMjForwardFramesAreTheNumericalAcceptanceGate () [0x00023] in C:\Users\legen\Documents\FlyBrainUnity\FlyBrainUnity\Assets\Tests\Editor\M7FReplayTests.cs:172 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <41d29b352f6a475ab1bf7c6628b82790>:0 ]]></stack-trace>
+              </failure>
+              <output><![CDATA[Saving results to: C:/Users/legen/AppData/LocalLow/DefaultCompany/FlyBrainUnity\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
