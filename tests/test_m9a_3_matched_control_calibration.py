@@ -1,6 +1,7 @@
 """M9A-3 pure/static contract tests. These execute zero physics transitions."""
 from __future__ import annotations
 
+import hashlib
 import inspect
 import json
 
@@ -22,6 +23,56 @@ def test_preregistration_and_candidate_ladder_are_frozen():
 def test_historical_evidence_byte_size_and_sha256_are_frozen():
     m9a.verify_historical_evidence()
     assert len(m9a.HISTORICAL) == 12
+
+
+def test_m9a_preregistration_lf_and_crlf_have_one_canonical_identity(tmp_path):
+    key = "m9a/m9a_preregistration.json"
+    expected_size, expected_digest = m9a.HISTORICAL[key]
+    lf = m9a._historical_path(key).read_bytes()
+    crlf = lf.replace(b"\n", b"\r\n")
+    assert len(lf) == expected_size == 5386
+    assert hashlib.sha256(lf).hexdigest() == expected_digest
+    assert m9a._canonical_historical_bytes(key, lf) == lf
+    assert m9a._canonical_historical_bytes(key, crlf) == lf
+    for name, data in (("lf.json", lf), ("crlf.json", crlf)):
+        path = tmp_path / name; path.write_bytes(data)
+        m9a._verify_historical_file(key, path, expected_size, expected_digest)
+
+
+def test_canonical_text_mutation_and_bare_carriage_return_fail(tmp_path):
+    key = "m9a/m9a_preregistration.json"
+    size, digest = m9a.HISTORICAL[key]
+    original = m9a._historical_path(key).read_bytes()
+    mutated = tmp_path / "mutated.json"
+    mutated.write_bytes(original.replace(b'"status": "NOT_RUN"', b'"status": "HAS_RUN"'))
+    with pytest.raises(RuntimeError, match="immutable historical evidence mismatch"):
+        m9a._verify_historical_file(key, mutated, size, digest)
+    stray = tmp_path / "stray.json"; stray.write_bytes(original + b"\r")
+    with pytest.raises(RuntimeError, match="invalid historical line endings"):
+        m9a._verify_historical_file(key, stray, size, digest)
+
+
+def test_binary_historical_evidence_remains_exact_bytes(tmp_path):
+    key = "m9a/candidate_0.0001_raw.npz"
+    path = m9a._historical_path(key)
+    size, digest = m9a.HISTORICAL[key]
+    m9a._verify_historical_file(key, path, size, digest)
+    raw = path.read_bytes()
+    assert m9a._canonical_historical_bytes(key, raw) is raw
+    changed = tmp_path / "changed.npz"
+    changed.write_bytes(raw[:-1] + bytes([raw[-1] ^ 1]))
+    with pytest.raises(RuntimeError, match="immutable historical evidence mismatch"):
+        m9a._verify_historical_file(key, changed, size, digest)
+
+
+def test_protocol_validation_accepts_crlf_historical_checkout(tmp_path, monkeypatch):
+    key = "m9a/m9a_preregistration.json"
+    crlf_path = tmp_path / "m9a_preregistration.json"
+    crlf_path.write_bytes(m9a._historical_path(key).read_bytes().replace(b"\n", b"\r\n"))
+    original_path = m9a._historical_path
+    monkeypatch.setattr(m9a, "_historical_path",
+                        lambda candidate: crlf_path if candidate == key else original_path(candidate))
+    m9a.validate_protocol(m9a.protocol())
 
 
 def test_exact_m7d_b4_initialization_is_inherited_and_pair_equivalence_required():
