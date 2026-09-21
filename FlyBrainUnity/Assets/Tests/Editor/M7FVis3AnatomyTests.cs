@@ -74,6 +74,41 @@ namespace FlyBrain.Tests
             try { loader.Load(); Assert.That(loader.Enabled, Is.Not.Null); Assert.That(loader.Disabled, Is.Not.Null); } finally { Object.DestroyImmediate(loader.gameObject); }
         }
 
+        [Test] public void CanonicalPresentationDefaultsToAuthoritativeAnatomyOnly()
+        {
+            var go = new GameObject("M7F Canonical Replay presentation test");
+            try
+            {
+                var canonical = go.AddComponent<M7FCanonicalReplayPresentation>();
+                go.AddComponent<M7FScientificFlyBuilder>().Rebuild();
+                var anatomy = go.AddComponent<M7FAnatomyPresentation>(); anatomy.Rebuild();
+
+                Assert.That(canonical.ShowLegacyBridgeDebugPresentation, Is.False,
+                    "the older decorative fly and RGB world axes must be off by default");
+                Assert.That(M7FCanonicalReplayPresentation.AllowsLegacyBridgePresentationInCurrentScene(), Is.False);
+                Assert.That(anatomy.LoadedCount, Is.EqualTo(69));
+                Assert.That(go.GetComponentsInChildren<M7FAnatomyObject>(true), Has.Length.EqualTo(69));
+                Assert.That(FindDescendant(go.transform, "Authoritative Fly Proxy"), Is.Null,
+                    "UnityFlyBridge's legacy/decorative fly must not be present");
+                Assert.That(FindDescendant(go.transform, "Origin axes (X red, Y green, Z blue)"), Is.Null,
+                    "UnityFlyBridge's world-axis debug renderers must not be present");
+
+                var skeleton = go.GetComponent<M7FScientificSkeletonVisibility>();
+                Assert.That(skeleton.Visible, Is.False);
+                foreach (var renderer in skeleton.GetComponentsInChildren<Renderer>(true))
+                    if (!(renderer.GetComponentInParent<M7FAnatomyObject>() != null)) Assert.That(renderer.enabled, Is.False);
+                skeleton.SetVisible(true); Assert.That(skeleton.Visible, Is.True);
+                skeleton.SetVisible(false); Assert.That(skeleton.Visible, Is.False);
+            }
+            finally { Object.DestroyImmediate(go); }
+        }
+
+        static Transform FindDescendant(Transform root, string name)
+        {
+            foreach (var value in root.GetComponentsInChildren<Transform>(true)) if (value.name == name) return value;
+            return null;
+        }
+
         static string Sha(string relative)
         {
             using var stream = File.OpenRead(Path.Combine(Application.streamingAssetsPath, relative)); using var hash = SHA256.Create();

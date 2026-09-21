@@ -11,6 +11,7 @@ public static class M7FCanonicalReplaySceneGenerator
     {
         var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
         var top = new GameObject("M7F Canonical Replay");
+        top.AddComponent<M7FCanonicalReplayPresentation>();
         var replaySystem = Child(top.transform, "ReplaySystem");
         var loader = replaySystem.gameObject.AddComponent<M7FReplayLoader>();
         var controller = replaySystem.gameObject.AddComponent<M7FReplayController>();
