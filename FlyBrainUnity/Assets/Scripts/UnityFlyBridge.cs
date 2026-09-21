@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using FlyBrain.M7FReplay;
 
 namespace FlyBrain.UnityBridge
 {
@@ -66,6 +67,9 @@ namespace FlyBrain.UnityBridge
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Install()
         {
+            // The bridge owns the earlier decorative fly and RGB origin bars.  They are useful
+            // in the live Python viewer, but must not be layered over a canonical VIS3 replay.
+            if (!M7FCanonicalReplayPresentation.AllowsLegacyBridgePresentationInCurrentScene()) return;
             if (FindFirstObjectByType<UnityFlyBridge>() == null)
                 new GameObject("Python Fly Bridge").AddComponent<UnityFlyBridge>();
         }

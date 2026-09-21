@@ -336,11 +336,14 @@ namespace FlyBrain.Tests
         {
             Assert.That(EditorApplication.ExecuteMenuItem("Fly Brain/M7F/Create Canonical Replay Scene"), Is.True);
             var top = GameObject.Find("M7F Canonical Replay"); Assert.That(top, Is.Not.Null);
+            Assert.That(top.GetComponent<M7FCanonicalReplayPresentation>(), Is.Not.Null);
+            Assert.That(top.GetComponent<M7FCanonicalReplayPresentation>().ShowLegacyBridgeDebugPresentation, Is.False);
             Assert.That(top.transform.Find("ReplaySystem").GetComponent<M7FReplayLoader>(), Is.Not.Null);
             Assert.That(top.transform.Find("ReplaySystem").GetComponent<M7FReplayController>(), Is.Not.Null);
             Assert.That(top.transform.Find("ReplaySystem").GetComponent<M7FScientificUI>(), Is.Not.Null);
             var rigs = top.GetComponentsInChildren<M7FFlyRig>(true); Assert.That(rigs.Length, Is.EqualTo(2));
             foreach (var rig in rigs) Assert.That(rig.ValidationStatus, Is.EqualTo("42 / 42 JOINTS BOUND"));
+            Assert.That(top.GetComponentsInChildren<M7FAnatomyObject>(true), Has.Length.EqualTo(138));
             var ground = GameObject.Find("VisualGround — PRESENTATION REFERENCE ONLY"); Assert.That(ground, Is.Not.Null); Assert.That(ground.GetComponent<Collider>(), Is.Null); Assert.That(ground.GetComponent<Rigidbody>(), Is.Null);
             Assert.That(top.GetComponentsInChildren<ArticulationBody>(true), Is.Empty);
             Object.DestroyImmediate(top);
