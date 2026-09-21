@@ -11,6 +11,7 @@ from malecns_backend.embodiment import m7d_corrected_spontaneous as m7d
 from malecns_backend.embodiment import m8_extended_spontaneous as m8
 from malecns_backend.embodiment import m9a_perturbation_calibration as m9a
 from malecns_backend.embodiment import _windows_m9a_perturbation_calibration_adapter as live
+from malecns_backend.embodiment import m8_contact_kinematics as contacts
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -63,6 +64,55 @@ def test_force_target_fails_closed_and_xfrc_targets_one_body_only():
     assert 'physics.data.xfrc_applied[:] = 0.0' in source
     assert 'physics.data.xfrc_applied[body["body_id"], :3] = force' in source
     assert 'nonzero.tolist() != [body["body_id"]]' in source
+
+
+class _CompiledModel:
+    nbody = 8
+    ngeom = 8
+    geom_bodyid = [0, 2, 3, 4, 5, 6, 7, 1]
+    _bodies = ("world", "Thorax", "LFTarsus5", "LMTarsus5", "LHTarsus5",
+               "RFTarsus5", "RMTarsus5", "RHTarsus5")
+    _geoms = ("ground", "LFTarsus", "LMTarsus", "LHTarsus", "RFTarsus",
+              "RMTarsus", "RHTarsus", "other")
+
+    def id2name(self, object_id, kind):
+        return {"body": self._bodies, "geom": self._geoms}[kind][object_id]
+
+
+def test_m9a_identity_resolution_uses_dm_control_compiled_model_api(monkeypatch):
+    """Regression: never pass a dm_control MjModel to native mj_id2name."""
+    class NativeMuJoCo:
+        class mjtObj:
+            mjOBJ_BODY = object()
+            mjOBJ_GEOM = object()
+
+        @staticmethod
+        def mj_id2name(*_args):
+            raise AssertionError("native mj_id2name received the dm_control wrapper")
+
+    monkeypatch.setitem(__import__("sys").modules, "mujoco", NativeMuJoCo)
+    model = _CompiledModel()
+    body = live._body_identity(model)
+    identity = contacts.resolve(model)
+    assert body["body_id"] == 1 and body["body_name"] == "Thorax"
+    assert identity["available"]
+    assert identity["ground_geom_ids"] == (0,)
+    assert identity["tarsus5_body_ids"] == {
+        "LF": 2, "LM": 3, "LH": 4, "RF": 5, "RM": 6, "RH": 7}
+
+
+def test_m9a_thorax_identity_still_fails_closed():
+    model = _CompiledModel()
+    model._bodies = ("world", "Thorax", "Thorax", "LMTarsus5", "LHTarsus5",
+                     "RFTarsus5", "RMTarsus5", "RHTarsus5")
+    with pytest.raises(RuntimeError, match="Thorax body identity is not unique"):
+        live._body_identity(model)
+
+
+def test_authoritative_contact_identity_still_fails_closed():
+    model = _CompiledModel()
+    model._geoms = ("other",) * model.ngeom
+    assert contacts.resolve(model)["available"] is False
 
 
 def test_no_controller_assistance_is_introduced():

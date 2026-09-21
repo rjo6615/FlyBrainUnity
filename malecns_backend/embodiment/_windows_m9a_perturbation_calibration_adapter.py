@@ -27,8 +27,8 @@ def _modules() -> tuple[Any, Any, Any, dict[str, Any]]:
     return np, flygym, mujoco, versions
 
 
-def _body_identity(model: Any, mujoco: Any) -> dict[str, Any]:
-    names = {i: (mujoco.mj_id2name(model, mujoco.mjtObj.mjOBJ_BODY, i) or "")
+def _body_identity(model: Any) -> dict[str, Any]:
+    names = {i: contact.compiled_name(model, "body", i)
              for i in range(int(model.nbody))}
     matches = [i for i, name in names.items() if name == m9a.APPLICATION_BODY_EXACT]
     if len(matches) != 1 or matches[0] == 0:
@@ -56,10 +56,10 @@ def _inspect(np: Any, physics: Any, identity: Mapping[str, Any], body_id: int) -
         "finite": bool(all(np.isfinite(x).all() for x in (qpos, qvel, cvel, feet)))}
 
 
-def _run_candidate(np: Any, flygym: Any, mujoco: Any, magnitude: float) -> tuple[dict[str, Any], dict[str, Any]]:
+def _run_candidate(np: Any, flygym: Any, magnitude: float) -> tuple[dict[str, Any], dict[str, Any]]:
     sim, physics, _obs, baseline = _runtime(flygym)
     try:
-        body = _body_identity(physics.model, mujoco); identity = contact.resolve(physics.model)
+        body = _body_identity(physics.model); identity = contact.resolve(physics.model)
         if not identity["available"]: raise RuntimeError("authoritative ground/tarsus identity unavailable")
         rows = []
         for step in range(m9a.STATES):
@@ -126,9 +126,9 @@ def _reduce(np: Any, a: Mapping[str, Any], magnitude: float, body: Mapping[str, 
 
 def windows_preflight() -> dict[str, Any]:
     m9a.validate_protocol(m9a.protocol()); m7d.verify_b4(); m7d.verify_m7()
-    np, flygym, mujoco, environment = _modules(); sim, physics, _, baseline = _runtime(flygym)
+    np, flygym, _mujoco, environment = _modules(); sim, physics, _, baseline = _runtime(flygym)
     try:
-        body, identity = _body_identity(physics.model, mujoco), contact.resolve(physics.model)
+        body, identity = _body_identity(physics.model), contact.resolve(physics.model)
         if not identity["available"]: raise RuntimeError("authoritative contact identity unavailable")
         if baseline.shape != (42,) or tuple(physics.data.qpos[:3]) != m7d.SPAWN_POS:
             raise RuntimeError("frozen corrected initialization mismatch")
@@ -148,10 +148,10 @@ def _exclusive(path: Path, payload: bytes) -> None:
 def run_windows() -> dict[str, Any]:
     if m9a.REPORT_PATH.exists() or m9a.MANIFEST_PATH.exists():
         raise FileExistsError("refusing to overwrite M9A calibration evidence")
-    preflight = windows_preflight(); np, flygym, mujoco, environment = _modules()
+    preflight = windows_preflight(); np, flygym, _mujoco, environment = _modules()
     results, raw_evidence = [], []
     for magnitude in m9a.CANDIDATE_FORCE_NATIVE:
-        row, arrays = _run_candidate(np, flygym, mujoco, magnitude)
+        row, arrays = _run_candidate(np, flygym, magnitude)
         path = m9a.OUTPUT_DIR / f"candidate_{magnitude:.4f}_raw.npz"
         buffer = io.BytesIO(); np.savez_compressed(buffer, **arrays); _exclusive(path, buffer.getvalue())
         row["raw"] = {"path": str(path.resolve()), "sha256": m9a.sha256(path), "byte_size": path.stat().st_size}

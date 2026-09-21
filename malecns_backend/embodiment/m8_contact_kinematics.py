@@ -6,22 +6,41 @@ from typing import Any
 LEGS = ("LF", "LM", "LH", "RF", "RM", "RH")
 
 
-def _name(model: Any, kind: str, index: int) -> str:
+def compiled_name(model: Any, kind: str, index: int) -> str:
+    """Read an identity from the instantiated compiled model's name table.
+
+    FlyGym exposes a ``dm_control`` MjModel, whose ``id2name`` method is the
+    primary API used elsewhere in this project.  The native MuJoCo function is
+    only valid with the wrapper's native ``ptr`` (when one is exposed).
+    """
+    method = getattr(model, "id2name", None)
+    if method is not None:
+        for args in ((int(index), kind.lower()), (kind.lower(), int(index))):
+            try:
+                value = method(*args)
+            except (AttributeError, IndexError, TypeError, ValueError, KeyError):
+                continue
+            if value is not None:
+                return str(value)
     try:
         import mujoco
-        return mujoco.mj_id2name(model, getattr(mujoco.mjtObj, f"mjOBJ_{kind}"), int(index)) or ""
+        ptr = getattr(model, "ptr", None)
+        if ptr is not None:
+            return mujoco.mj_id2name(
+                ptr, getattr(mujoco.mjtObj, f"mjOBJ_{kind.upper()}"), int(index)) or ""
     except (ImportError, AttributeError, TypeError, ValueError):
-        accessor = getattr(model, kind.lower(), None)
-        if accessor:
-            try: return str(accessor(int(index)).name or "")
-            except (AttributeError, IndexError, TypeError, ValueError): pass
-        return ""
+        pass
+    accessor = getattr(model, kind.lower(), None)
+    if accessor:
+        try: return str(accessor(int(index)).name or "")
+        except (AttributeError, IndexError, TypeError, ValueError): pass
+    return ""
 
 
 def resolve(model: Any) -> dict[str, Any]:
     """Resolve each leg from compiled model identities, never force-vector order."""
-    body_names = {i: _name(model, "BODY", i) for i in range(int(model.nbody))}
-    geom_names = {i: _name(model, "GEOM", i) for i in range(int(model.ngeom))}
+    body_names = {i: compiled_name(model, "body", i) for i in range(int(model.nbody))}
+    geom_names = {i: compiled_name(model, "geom", i) for i in range(int(model.ngeom))}
     ground = tuple(i for i, name in geom_names.items() if any(x in name.lower() for x in ("floor", "ground", "terrain", "surface", "platform", "m5d2c")))
     bodies, geoms = {}, {}
     for leg in LEGS:
