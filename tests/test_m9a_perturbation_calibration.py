@@ -59,8 +59,7 @@ def test_force_schedule_is_half_open_and_has_exactly_200_transitions():
 
 def test_force_target_fails_closed_and_xfrc_targets_one_body_only():
     source = inspect.getsource(live)
-    assert 'name == m9a.APPLICATION_BODY_EXACT' in source
-    assert 'len(matches) != 1 or matches[0] == 0' in source
+    assert 'contact.namespace_component(name) == m9a.APPLICATION_BODY_EXACT' in source
     assert 'physics.data.xfrc_applied[:] = 0.0' in source
     assert 'physics.data.xfrc_applied[body["body_id"], :3] = force' in source
     assert 'nonzero.tolist() != [body["body_id"]]' in source
@@ -101,17 +100,57 @@ def test_m9a_identity_resolution_uses_dm_control_compiled_model_api(monkeypatch)
         "LF": 2, "LM": 3, "LH": 4, "RF": 5, "RM": 6, "RH": 7}
 
 
-def test_m9a_thorax_identity_still_fails_closed():
+@pytest.mark.parametrize("compiled_name", ["Thorax", "0/Thorax"])
+def test_m9a_thorax_identity_accepts_exact_source_component(compiled_name):
     model = _CompiledModel()
-    model._bodies = ("world", "Thorax", "Thorax", "LMTarsus5", "LHTarsus5",
+    model._bodies = ("world", compiled_name, *model._bodies[2:])
+    assert live._body_identity(model) == {
+        "body_id": 1, "body_name": compiled_name,
+        "resolution": "exact terminal component of slash-namespaced compiled MuJoCo body name",
+        "all_body_names": {i: name for i, name in enumerate(model._bodies)}}
+
+
+@pytest.mark.parametrize("deceptive", ["FakeThorax", "ThoraxExtra", "0/FakeThorax", "0/ThoraxExtra"])
+def test_m9a_thorax_identity_rejects_deceptive_substrings(deceptive):
+    model = _CompiledModel()
+    model._bodies = ("world", deceptive, *model._bodies[2:])
+    with pytest.raises(RuntimeError, match="zero authoritative Thorax matches"):
+        live._body_identity(model)
+
+
+def test_m9a_thorax_identity_rejects_ambiguous_namespace_components():
+    model = _CompiledModel()
+    model._bodies = ("world", "0/Thorax", "1/Thorax", "LMTarsus5", "LHTarsus5",
                      "RFTarsus5", "RMTarsus5", "RHTarsus5")
-    with pytest.raises(RuntimeError, match="Thorax body identity is not unique"):
+    with pytest.raises(RuntimeError, match="multiple/ambiguous authoritative Thorax matches"):
+        live._body_identity(model)
+
+
+def test_m9a_thorax_identity_rejects_no_match_and_world_body():
+    model = _CompiledModel()
+    model._bodies = ("world", "Head", *model._bodies[2:])
+    with pytest.raises(RuntimeError, match="zero authoritative Thorax matches"):
+        live._body_identity(model)
+    model._bodies = ("Thorax", "Head", *model._bodies[2:])
+    with pytest.raises(RuntimeError, match="Thorax match resolves to the MuJoCo world body"):
         live._body_identity(model)
 
 
 def test_authoritative_contact_identity_still_fails_closed():
     model = _CompiledModel()
     model._geoms = ("other",) * model.ngeom
+    assert contacts.resolve(model)["available"] is False
+
+
+def test_authoritative_contact_identity_is_namespace_exact_and_ambiguous_safe():
+    model = _CompiledModel()
+    model._bodies = tuple("0/" + name if name != "world" else name for name in model._bodies)
+    model._geoms = ("arena/ground", *model._geoms[1:])
+    assert contacts.resolve(model)["available"] is True
+    model._bodies = tuple(name.replace("LFTarsus5", "LFFakeTarsus5") for name in model._bodies)
+    assert contacts.resolve(model)["available"] is False
+    model._bodies = (*model._bodies, "1/LFTarsus5")
+    model.nbody = 9
     assert contacts.resolve(model)["available"] is False
 
 

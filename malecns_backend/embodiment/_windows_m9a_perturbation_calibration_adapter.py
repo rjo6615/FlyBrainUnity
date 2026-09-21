@@ -30,11 +30,18 @@ def _modules() -> tuple[Any, Any, Any, dict[str, Any]]:
 def _body_identity(model: Any) -> dict[str, Any]:
     names = {i: contact.compiled_name(model, "body", i)
              for i in range(int(model.nbody))}
-    matches = [i for i, name in names.items() if name == m9a.APPLICATION_BODY_EXACT]
-    if len(matches) != 1 or matches[0] == 0:
-        raise RuntimeError("authoritative compiled MuJoCo Thorax body identity is not unique")
+    matches = [i for i, name in names.items()
+               if contact.namespace_component(name) == m9a.APPLICATION_BODY_EXACT]
+    if not matches:
+        raise RuntimeError("zero authoritative Thorax matches in compiled MuJoCo body identities")
+    if len(matches) > 1:
+        raise RuntimeError(
+            f"multiple/ambiguous authoritative Thorax matches in compiled MuJoCo body identities: {matches}")
+    if matches[0] == 0:
+        raise RuntimeError("authoritative Thorax match resolves to the MuJoCo world body")
     return {"body_id": matches[0], "body_name": names[matches[0]],
-        "resolution": "exact compiled MuJoCo body name", "all_body_names": names}
+        "resolution": "exact terminal component of slash-namespaced compiled MuJoCo body name",
+        "all_body_names": names}
 
 
 def _runtime(flygym: Any) -> tuple[Any, Any, Any, Any]:
