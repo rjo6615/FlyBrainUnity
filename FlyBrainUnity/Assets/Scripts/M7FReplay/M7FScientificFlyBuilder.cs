@@ -39,6 +39,8 @@ namespace FlyBrain.M7FReplay
             }
             var rig = GetComponent<M7FFlyRig>() ?? gameObject.AddComponent<M7FFlyRig>();
             rig.Configure(root, Array.Empty<M7FJointBinding>()); rig.AutoBindCanonicalJoints();
+            var skeleton = GetComponent<M7FScientificSkeletonVisibility>() ?? gameObject.AddComponent<M7FScientificSkeletonVisibility>();
+            skeleton.Configure(root.GetComponentsInChildren<Renderer>(true)); skeleton.SetVisible(false);
             var legacy = GetComponent<M7FKinematicReferenceOverlay>(); if (legacy != null) SafeDestroy(legacy);
         }
 
@@ -79,5 +81,15 @@ namespace FlyBrain.M7FReplay
         }
         static Material Material(string name, Color color) { var shader = Shader.Find("Standard") ?? Shader.Find("Universal Render Pipeline/Lit"); return new Material(shader) { name = name, color = color }; }
         static void SafeDestroy(UnityEngine.Object value) { if (Application.isPlaying) UnityEngine.Object.Destroy(value); else UnityEngine.Object.DestroyImmediate(value); }
+    }
+
+    /// <summary>Optional renderer-only overlay. It does not change any scientific transform.</summary>
+    public sealed class M7FScientificSkeletonVisibility : MonoBehaviour
+    {
+        [SerializeField] bool visible;
+        Renderer[] renderers = Array.Empty<Renderer>();
+        public bool Visible => visible;
+        public void Configure(Renderer[] scientificRenderers) => renderers = scientificRenderers ?? Array.Empty<Renderer>();
+        public void SetVisible(bool value) { visible = value; foreach (var renderer in renderers) if (renderer != null) renderer.enabled = value; }
     }
 }

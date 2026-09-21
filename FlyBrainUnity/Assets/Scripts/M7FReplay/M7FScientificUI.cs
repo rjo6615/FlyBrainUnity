@@ -28,6 +28,9 @@ namespace FlyBrain.M7FReplay
             GUILayout.Label($"Last applied physical frame: {controller.LastAppliedFrame}");
             if (!controller.IsLoaded) { GUILayout.EndArea(); return; }
             GUILayout.Label(controller.ConditionLabel);
+            var skeleton = controller.EnabledRig.GetComponent<M7FScientificSkeletonVisibility>();
+            var showSkeleton = GUILayout.Toggle(skeleton != null && skeleton.Visible, "Scientific Skeleton");
+            SetSkeleton(controller.EnabledRig, showSkeleton); SetSkeleton(controller.DisabledRig, showSkeleton);
             GUILayout.Label($"Canonical time: {controller.TimeMs:F1} ms    physical frame: {controller.Frame}");
             GUILayout.Label($"Neural sample: {controller.NeuralIndex}    time: {Current.NeuralTime[controller.NeuralIndex]:F1} ms");
             GUILayout.BeginHorizontal();
@@ -50,6 +53,7 @@ GUILayout.BeginHorizontal();            if (GUILayout.Button("Enabled")) control
         }
 
         M7FReplayData Current => controller.Condition == M7FCondition.Disabled ? controller.Loader.Disabled : controller.Loader.Enabled;
+        static void SetSkeleton(M7FFlyRig rig, bool visible) { var value = rig == null ? null : rig.GetComponent<M7FScientificSkeletonVisibility>(); if (value != null && value.Visible != visible) value.SetVisible(visible); }
         void DrawTimeline()
         {
             GUILayout.Label("Canonical milestones (exact values are in manifest)");
