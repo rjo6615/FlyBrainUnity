@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Passed" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-21 03:00:06Z" end-time="2026-09-21 03:00:13Z" duration="7.3860173">
+  <test-suite type="TestSuite" id="1000" name="FlyBrainUnity" fullname="FlyBrainUnity" runstate="Runnable" testcasecount="44" result="Passed" start-time="2026-09-21 03:00:06Z" end-time="2026-09-21 03:00:13Z" duration="7.386017" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1052" name="M7FReplay.EditorTests.dll" fullname="C:/Users/legen/Documents/FlyBrainUnity/FlyBrainUnity/Library/ScriptAssemblies/M7FReplay.EditorTests.dll" runstate="Runnable" testcasecount="44" result="Passed" start-time="2026-09-21 03:00:06Z" end-time="2026-09-21 03:00:13Z" duration="7.381514" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="26680" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1053" name="FlyBrain" fullname="FlyBrain" runstate="Runnable" testcasecount="44" result="Passed" start-time="2026-09-21 03:00:06Z" end-time="2026-09-21 03:00:13Z" duration="7.380793" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1054" name="Tests" fullname="FlyBrain.Tests" runstate="Runnable" testcasecount="44" result="Passed" start-time="2026-09-21 03:00:06Z" end-time="2026-09-21 03:00:13Z" duration="7.380187" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1047" name="M8ReplayPresentationTests" fullname="FlyBrain.Tests.M8ReplayPresentationTests" classname="FlyBrain.Tests.M8ReplayPresentationTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-21 03:00:06Z" end-time="2026-09-21 03:00:13Z" duration="7.379144" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1049" name="ConditionsAreDistinctAndContainTheDeclaredCompleteTimeline" fullname="FlyBrain.Tests.M8ReplayPresentationTests.ConditionsAreDistinctAndContainTheDeclaredCompleteTimeline" methodname="ConditionsAreDistinctAndContainTheDeclaredCompleteTimeline" classname="FlyBrain.Tests.M8ReplayPresentationTests" runstate="Runnable" seed="1002535969" result="Passed" start-time="2026-09-21 03:00:06Z" end-time="2026-09-21 03:00:07Z" duration="0.944751" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1051" name="DedicatedSceneKeepsEnabledDefaultAndUsesVis3Anatomy" fullname="FlyBrain.Tests.M8ReplayPresentationTests.DedicatedSceneKeepsEnabledDefaultAndUsesVis3Anatomy" methodname="DedicatedSceneKeepsEnabledDefaultAndUsesVis3Anatomy" classname="FlyBrain.Tests.M8ReplayPresentationTests" runstate="Runnable" seed="473874605" result="Passed" start-time="2026-09-21 03:00:07Z" end-time="2026-09-21 03:00:11Z" duration="4.078785" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Created presentation-only M8 replay scene in memory using the validated M7F/VIS3 viewer. Review it, then save explicitly.
+]]></output>
+            </test-case>
+            <test-case id="1050" name="FirstAndFinalRecordedFramesApplyToTheExistingScientificRig" fullname="FlyBrain.Tests.M8ReplayPresentationTests.FirstAndFinalRecordedFramesApplyToTheExistingScientificRig" methodname="FirstAndFinalRecordedFramesApplyToTheExistingScientificRig" classname="FlyBrain.Tests.M8ReplayPresentationTests" runstate="Runnable" seed="951558478" result="Passed" start-time="2026-09-21 03:00:11Z" end-time="2026-09-21 03:00:12Z" duration="0.883621" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1048" name="ManifestAndBothRecordedBinariesValidateBeforeUse" fullname="FlyBrain.Tests.M8ReplayPresentationTests.ManifestAndBothRecordedBinariesValidateBeforeUse" methodname="ManifestAndBothRecordedBinariesValidateBeforeUse" classname="FlyBrain.Tests.M8ReplayPresentationTests" runstate="Runnable" seed="2116748958" result="Passed" start-time="2026-09-21 03:00:12Z" end-time="2026-09-21 03:00:13Z" duration="1.464017" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/legen/AppData/LocalLow/DefaultCompany/FlyBrainUnity\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

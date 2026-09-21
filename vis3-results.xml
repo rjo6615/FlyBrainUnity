@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Passed" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-21 03:01:34Z" end-time="2026-09-21 03:01:37Z" duration="3.1416642">
+  <test-suite type="TestSuite" id="1000" name="FlyBrainUnity" fullname="FlyBrainUnity" runstate="Runnable" testcasecount="44" result="Passed" start-time="2026-09-21 03:01:34Z" end-time="2026-09-21 03:01:37Z" duration="3.141664" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1052" name="M7FReplay.EditorTests.dll" fullname="C:/Users/legen/Documents/FlyBrainUnity/FlyBrainUnity/Library/ScriptAssemblies/M7FReplay.EditorTests.dll" runstate="Runnable" testcasecount="44" result="Passed" start-time="2026-09-21 03:01:34Z" end-time="2026-09-21 03:01:37Z" duration="3.137271" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="31188" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1053" name="FlyBrain" fullname="FlyBrain" runstate="Runnable" testcasecount="44" result="Passed" start-time="2026-09-21 03:01:34Z" end-time="2026-09-21 03:01:37Z" duration="3.136626" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1054" name="Tests" fullname="FlyBrain.Tests" runstate="Runnable" testcasecount="44" result="Passed" start-time="2026-09-21 03:01:34Z" end-time="2026-09-21 03:01:37Z" duration="3.136064" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1041" name="M7FVis3AnatomyTests" fullname="FlyBrain.Tests.M7FVis3AnatomyTests" classname="FlyBrain.Tests.M7FVis3AnatomyTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-21 03:01:34Z" end-time="2026-09-21 03:01:37Z" duration="3.135053" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1043" name="AnatomyAttachesToManifestParentsWithOnlyRemainingLocalTransform" fullname="FlyBrain.Tests.M7FVis3AnatomyTests.AnatomyAttachesToManifestParentsWithOnlyRemainingLocalTransform" methodname="AnatomyAttachesToManifestParentsWithOnlyRemainingLocalTransform" classname="FlyBrain.Tests.M7FVis3AnatomyTests" runstate="Runnable" seed="1108503749" result="Passed" start-time="2026-09-21 03:01:34Z" end-time="2026-09-21 03:01:36Z" duration="1.545104" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1046" name="CanonicalPresentationDefaultsToAuthoritativeAnatomyOnly" fullname="FlyBrain.Tests.M7FVis3AnatomyTests.CanonicalPresentationDefaultsToAuthoritativeAnatomyOnly" methodname="CanonicalPresentationDefaultsToAuthoritativeAnatomyOnly" classname="FlyBrain.Tests.M7FVis3AnatomyTests" runstate="Runnable" seed="2084599589" result="Passed" start-time="2026-09-21 03:01:36Z" end-time="2026-09-21 03:01:37Z" duration="1.513297" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1044" name="GeneratedObjIsAlreadyConvertedAndHasNoRuntimeHandednessOperation" fullname="FlyBrain.Tests.M7FVis3AnatomyTests.GeneratedObjIsAlreadyConvertedAndHasNoRuntimeHandednessOperation" methodname="GeneratedObjIsAlreadyConvertedAndHasNoRuntimeHandednessOperation" classname="FlyBrain.Tests.M7FVis3AnatomyTests" runstate="Runnable" seed="1918855986" result="Passed" start-time="2026-09-21 03:01:37Z" end-time="2026-09-21 03:01:37Z" duration="0.017201" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1042" name="ManifestIsTheCompleteExtractedSixtyNineMeshInventory" fullname="FlyBrain.Tests.M7FVis3AnatomyTests.ManifestIsTheCompleteExtractedSixtyNineMeshInventory" methodname="ManifestIsTheCompleteExtractedSixtyNineMeshInventory" classname="FlyBrain.Tests.M7FVis3AnatomyTests" runstate="Runnable" seed="209697182" result="Passed" start-time="2026-09-21 03:01:37Z" end-time="2026-09-21 03:01:37Z" duration="0.003263" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1045" name="ScientificArtifactsAndCanonicalReplaysRemainByteIdentical" fullname="FlyBrain.Tests.M7FVis3AnatomyTests.ScientificArtifactsAndCanonicalReplaysRemainByteIdentical" methodname="ScientificArtifactsAndCanonicalReplaysRemainByteIdentical" classname="FlyBrain.Tests.M7FVis3AnatomyTests" runstate="Runnable" seed="1513112526" result="Passed" start-time="2026-09-21 03:01:37Z" end-time="2026-09-21 03:01:37Z" duration="0.048077" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/legen/AppData/LocalLow/DefaultCompany/FlyBrainUnity\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

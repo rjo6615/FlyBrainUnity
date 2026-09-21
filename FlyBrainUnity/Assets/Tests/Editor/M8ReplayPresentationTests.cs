@@ -37,8 +37,8 @@ namespace FlyBrain.Tests
             Assert.That(loader.Disabled.PhysicsCount, Is.EqualTo(100001));
             Assert.That(loader.Enabled.NeuralCount, Is.EqualTo(20000));
             Assert.That(loader.Disabled.NeuralCount, Is.EqualTo(20000));
-            Assert.That(loader.Enabled.PhysicsTime[^1], Is.EqualTo(10000));
-            Assert.That(loader.Disabled.PhysicsTime[^1], Is.EqualTo(10000));
+            Assert.That(loader.Enabled.PhysicsTime[^1], Is.EqualTo(10000.0).Within(1e-6));
+            Assert.That(loader.Disabled.PhysicsTime[^1], Is.EqualTo(10000.0).Within(1e-6));
         }
 
         [Test] public void FirstAndFinalRecordedFramesApplyToTheExistingScientificRig()
@@ -73,3 +73,4 @@ namespace FlyBrain.Tests
         }
     }
 }
+
