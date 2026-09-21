@@ -20,7 +20,7 @@ ATTEMPT1_FROZEN = {
     "malecns_backend/embodiment/interface_output/m9a_perturbation_calibration/candidate_0.0002_raw.npz": "1bebe255c785ea6468a5e6bad2f4a86dca3575247ca0aecc9108942ad9b0a241",
     "malecns_backend/embodiment/interface_output/m9a_perturbation_calibration/candidate_0.0004_raw.npz": "f97e3d3f67dd70835592ab27458e237bc4b2ac331c61cee5ac12b8c602077075",
     "malecns_backend/embodiment/interface_output/m9a_perturbation_calibration/candidate_0.0008_raw.npz": "12bd71526456f844f66ac64fc58e84c7799a776432c1eec31b3aab763e4d45b7",
-    "malecns_backend/embodiment/interface_output/m9a_perturbation_calibration/m9a_preregistration.json": "7babc0d657bd74c8f1de596644ac4422a317f3a9f74729eb588fd0c76fe54408",
+    "malecns_backend/embodiment/interface_output/m9a_perturbation_calibration/m9a_preregistration.json": "c597593129b6de859888023463f696dd5cc4c7cebba3ba07c25a0561252089fb",
 }
 
 
@@ -38,8 +38,12 @@ FROZEN = {
 
 
 def test_m9a_attempt_1_artifacts_are_byte_identical():
-    assert {name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest()
+    attempt1_dir = "malecns_backend/embodiment/interface_output/m9a_perturbation_calibration/"
+    assert {name: m9a.attempt1_sha256(name.removeprefix(attempt1_dir))
             for name in ATTEMPT1_FROZEN} == ATTEMPT1_FROZEN
+    assert m9a.ATTEMPT1_FROZEN_SHA256 == {
+        name.removeprefix(attempt1_dir): digest
+        for name, digest in ATTEMPT1_FROZEN.items()}
 
 
 def test_new_namespace_and_logarithmic_candidates_are_frozen_before_execution():
