@@ -38,19 +38,33 @@ ATTEMPT1_FROZEN_SHA256 = {
     "candidate_0.0002_raw.npz": "1bebe255c785ea6468a5e6bad2f4a86dca3575247ca0aecc9108942ad9b0a241",
     "candidate_0.0004_raw.npz": "f97e3d3f67dd70835592ab27458e237bc4b2ac331c61cee5ac12b8c602077075",
     "candidate_0.0008_raw.npz": "12bd71526456f844f66ac64fc58e84c7799a776432c1eec31b3aab763e4d45b7",
-    "m9a_preregistration.json": "7babc0d657bd74c8f1de596644ac4422a317f3a9f74729eb588fd0c76fe54408",
+    "m9a_preregistration.json": "c597593129b6de859888023463f696dd5cc4c7cebba3ba07c25a0561252089fb",
 }
 ATTEMPT1_DIR = HERE / "interface_output" / "m9a_perturbation_calibration"
 
 
 def verify_attempt1_immutable() -> None:
-    actual = {name: sha256(ATTEMPT1_DIR / name) for name in ATTEMPT1_FROZEN_SHA256}
+    actual = {name: attempt1_sha256(name) for name in ATTEMPT1_FROZEN_SHA256}
     if actual != ATTEMPT1_FROZEN_SHA256:
         raise RuntimeError("immutable M9A Attempt 1 evidence mismatch")
 
 
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def attempt1_sha256(name: str) -> str:
+    """Hash raw evidence, using the preregistration's canonical Windows bytes."""
+    data = (ATTEMPT1_DIR / name).read_bytes()
+    if name == "m9a_preregistration.json":
+        # Git stores this text file with LF, but the authoritative Attempt 1
+        # execution checkout used CRLF. Reject non-line-ending byte variation
+        # while making verification independent of the checkout platform.
+        data = data.replace(b"\r\n", b"\n")
+        if b"\r" in data:
+            raise RuntimeError("invalid M9A Attempt 1 preregistration line endings")
+        data = data.replace(b"\n", b"\r\n")
+    return hashlib.sha256(data).hexdigest()
 
 
 def force_at(time_ms: float, magnitude: float) -> tuple[float, float, float]:
