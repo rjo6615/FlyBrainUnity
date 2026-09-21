@@ -22,7 +22,8 @@ namespace FlyBrain.M7FReplay
         {
             if (controller == null) return;
             GUILayout.BeginArea(new Rect(12, 12, 440, Screen.height - 24), GUI.skin.box);
-            GUILayout.Label("M7F CANONICAL REPLAY");
+            var isM8 = controller.Loader.Dataset == ReplayDataset.M8ExtendedSpontaneous;
+            GUILayout.Label(isM8 ? "M8 EXTENDED SPONTANEOUS — 10 s" : "M7F CANONICAL REPLAY");
             GUILayout.Label($"Playback: {(controller.IsPlaying ? "PLAYING" : "PAUSED")}    speed: {controller.PlaybackSpeed:g}x");
             GUILayout.Label($"Loaded: {(controller.IsLoaded ? "YES" : "NO")}    enabled: {(controller.EnabledReplayLoaded ? "YES" : "NO")}    disabled: {(controller.DisabledReplayLoaded ? "YES" : "NO")}");
             GUILayout.Label($"Last applied physical frame: {controller.LastAppliedFrame}");
@@ -49,7 +50,8 @@ GUILayout.BeginHorizontal();            if (GUILayout.Button("Enabled")) control
             GUILayout.EndHorizontal();
             GUILayout.Label("Speed (presentation):"); GUILayout.BeginHorizontal(); foreach (var speed in M7FReplayController.AllowedSpeeds) if (GUILayout.Button($"{speed:g}x")) controller.SetSpeed(speed); GUILayout.EndHorizontal();
             var interpolate = GUILayout.Toggle(controller.PresentationInterpolation, "Presentation interpolation (never scientific evidence)"); if (interpolate != controller.PresentationInterpolation) controller.SetInterpolation(interpolate);
-            DrawTimeline(); DrawTelemetry(); DrawProvenance(); GUILayout.EndArea();
+            if (!isM8) DrawTimeline();
+            DrawTelemetry(); DrawProvenance(isM8); GUILayout.EndArea();
         }
 
         M7FReplayData Current => controller.Condition == M7FCondition.Disabled ? controller.Loader.Disabled : controller.Loader.Enabled;
@@ -83,8 +85,17 @@ GUILayout.BeginHorizontal();            if (GUILayout.Button("Enabled")) control
             GUILayout.Label(controller.Loader.Manifest.contacts_available ? "RECORDED CONTACT TELEMETRY AVAILABLE" : "CONTACT IDENTITY UNAVAILABLE");
             GUILayout.EndScrollView();
         }
-        void DrawProvenance()
+        void DrawProvenance(bool isM8)
         {
+            if (isM8)
+            {
+                GUILayout.Label("Source: RECORDED COMPLETED M8 STATES");
+                GUILayout.Label("Duration: 10000 ms | Physics states: 100001 | Neural updates: 20000");
+                GUILayout.Label("Validated M7F scientific rig and VIS3 anatomy: UNCHANGED");
+                GUILayout.Label("New physics transitions: 0 | New neural transitions: 0 | Unity physics drives replay: NO");
+                GUILayout.Label("Presentation interpolation: OFF by default");
+                return;
+            }
             GUILayout.Label("Source: RECORDED CANONICAL M7D STATES");
             GUILayout.Label("M7D SHA: 92b5c645a88fe74e5d6aa0988478c374e8fde3a0e923d42cc13974a3e60d8444");
             GUILayout.Label("Duration: 500 ms | Physics states: 5001 | Neural updates: 1000");

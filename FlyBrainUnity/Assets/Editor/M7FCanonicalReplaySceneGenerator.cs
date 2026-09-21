@@ -8,12 +8,20 @@ public static class M7FCanonicalReplaySceneGenerator
 {
     [MenuItem("Fly Brain/M7F/Create Canonical Replay Scene")]
     public static void CreateCanonicalReplayScene()
+    { CreateReplayScene(false); }
+
+    [MenuItem("Fly Brain/M8/Create Extended Spontaneous Replay Scene")]
+    public static void CreateM8ReplayScene()
+    { CreateReplayScene(true); }
+
+    static void CreateReplayScene(bool m8)
     {
         var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
-        var top = new GameObject("M7F Canonical Replay");
+        var top = new GameObject(m8 ? "M8 Extended Spontaneous Replay" : "M7F Canonical Replay");
         top.AddComponent<M7FCanonicalReplayPresentation>();
         var replaySystem = Child(top.transform, "ReplaySystem");
         var loader = replaySystem.gameObject.AddComponent<M7FReplayLoader>();
+        if (m8) loader.ConfigureM8();
         var controller = replaySystem.gameObject.AddComponent<M7FReplayController>();
         var ui = replaySystem.gameObject.AddComponent<M7FScientificUI>();
 
@@ -33,7 +41,8 @@ public static class M7FCanonicalReplaySceneGenerator
         var lighting = Child(top.transform, "Lighting"); var lightObject = Child(lighting, "Directional Light"); var light = lightObject.gameObject.AddComponent<Light>(); light.type = LightType.Directional; light.intensity = 1.1f; lightObject.rotation = Quaternion.Euler(45, -35, 0);
         AddLabel(top.transform, "CONTACT IDENTITY UNAVAILABLE", new Vector3(0, 1.5f, 0));
         EditorSceneManager.MarkSceneDirty(scene); Selection.activeGameObject = top;
-        Debug.Log("Created M7F canonical replay scene in memory. Review it, then save explicitly; canonical replay artifacts were only read at runtime.");
+        Debug.Log(m8 ? "Created presentation-only M8 replay scene in memory using the validated M7F/VIS3 viewer. Review it, then save explicitly."
+            : "Created M7F canonical replay scene in memory. Review it, then save explicitly; canonical replay artifacts were only read at runtime.");
     }
 
     static M7FFlyRig BuildFly(Transform parent, string name)
