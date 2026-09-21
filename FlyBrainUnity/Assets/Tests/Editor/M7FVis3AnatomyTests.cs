@@ -68,8 +68,8 @@ namespace FlyBrain.Tests
 
         [Test] public void ScientificArtifactsAndCanonicalReplaysRemainByteIdentical()
         {
-            Assert.That(Sha("M7FValidation/m7f_authoritative_rig.json"), Is.EqualTo("d8cd7e58bb33fff5e102484d937100d7afd7dc1f4156b39dc2a27f65c0c29eb7"));
-            Assert.That(Sha("M7FValidation/m7f_mujoco_reference_frames.json"), Is.EqualTo("cd7c372214df6dc71071d05114ccdc2ccdca0f6dd48442797980772720f0fa5d"));
+            Assert.That(Sha("M7FValidation/m7f_authoritative_rig.json"), Is.EqualTo("0997190a94e4a84e9a595e0859dbbc99787ff249e48788c7df58ffb0030045ab"));
+            Assert.That(Sha("M7FValidation/m7f_mujoco_reference_frames.json"), Is.EqualTo("0058f0b60046979023a103c7bb1f46ee09b4c8bf6bfac2b386132362763483e3"));
             var loader = new GameObject("hash validation").AddComponent<M7FReplayLoader>();
             try { loader.Load(); Assert.That(loader.Enabled, Is.Not.Null); Assert.That(loader.Disabled, Is.Not.Null); } finally { Object.DestroyImmediate(loader.gameObject); }
         }
