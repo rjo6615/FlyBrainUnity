@@ -176,6 +176,45 @@ namespace FlyBrain.Tests
             CollectionAssert.AreEqual(manifest.joint_names, M7FScientificFlyRigDefinition.CanonicalNames);
         }
 
+        [Test] public void StableDirectionalAngleHandlesIdenticalOppositeAndInvalidVectors()
+        {
+            Assert.That(M7FAuthoritativeRigValidator.DirectionalAngle(new Vector3(.3f, -.4f, .5f), new Vector3(.3f, -.4f, .5f)), Is.EqualTo(0).Within(1e-15));
+            Assert.That(M7FAuthoritativeRigValidator.DirectionalAngle(Vector3.right, Vector3.left), Is.EqualTo(System.Math.PI).Within(1e-15));
+            Assert.That(M7FAuthoritativeRigValidator.DirectionalAngle(Vector3.zero, Vector3.right), Is.EqualTo(double.PositiveInfinity));
+            Assert.That(M7FAuthoritativeRigValidator.DirectionalAngle(new Vector3(float.NaN, 0, 0), Vector3.right), Is.EqualTo(double.PositiveInfinity));
+            Assert.That(M7FAuthoritativeRigValidator.DirectionalAngle(new Vector3(float.PositiveInfinity, 0, 0), Vector3.right), Is.EqualTo(double.PositiveInfinity));
+        }
+
+        [TestCase(1.5e-4, true)]
+        [TestCase(2.5e-4, false)]
+        public void StableDirectionalAngleResolvesTinyRotationsAcrossTolerance(double radians, bool accepted)
+        {
+            var rotated = new Vector3((float)System.Math.Cos(radians), (float)System.Math.Sin(radians), 0);
+            var angle = M7FAuthoritativeRigValidator.DirectionalAngle(Vector3.right, rotated);
+            Assert.That(angle, Is.EqualTo(radians).Within(2e-11));
+            Assert.That(angle <= M7FAuthoritativeRigValidator.AngularToleranceRadians, Is.EqualTo(accepted));
+        }
+
+        [Test] public void StableDirectionalAnglePreservesTwoTimesTenToMinusFourBoundary()
+        {
+            var tolerance = (double)M7FAuthoritativeRigValidator.AngularToleranceRadians;
+            var boundary = new Vector3((float)System.Math.Cos(tolerance), (float)System.Math.Sin(tolerance), 0);
+            Assert.That(M7FAuthoritativeRigValidator.DirectionalAngle(Vector3.right, boundary), Is.EqualTo(tolerance).Within(2e-11));
+            var above = new Vector3((float)System.Math.Cos(tolerance + 1e-6), (float)System.Math.Sin(tolerance + 1e-6), 0);
+            Assert.That(M7FAuthoritativeRigValidator.DirectionalAngle(Vector3.right, above), Is.GreaterThan(tolerance));
+        }
+
+        [Test] public void StableDirectionalAngleMeasuresReportedWorstAxisWithoutFloatAcosQuantization()
+        {
+            var expected = new Vector3(.65671324729919434f, .049622122198343277f, .75250601768493652f);
+            var actual = new Vector3(.65671283006668091f, .04962216317653656f, .7525063157081604f);
+            var floatAcos = Mathf.Acos(Mathf.Clamp(Vector3.Dot(expected, actual), -1, 1));
+            var stable = M7FAuthoritativeRigValidator.DirectionalAngle(expected, actual);
+            Assert.That(floatAcos, Is.EqualTo(.00048828125f).Within(1e-10f));
+            Assert.That(stable, Is.EqualTo(5.121565679716428e-7).Within(1e-12));
+            Assert.That(stable, Is.LessThan(M7FAuthoritativeRigValidator.AngularToleranceRadians));
+        }
+
         static string Sha256(string path)
         {
             using var stream = File.OpenRead(path); using var hash = SHA256.Create();

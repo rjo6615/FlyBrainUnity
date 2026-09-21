@@ -156,8 +156,9 @@ namespace FlyBrain.M7FReplay
                         var pivotError = Position(report.PivotPosition, perFrame.PivotPosition, binding.transform.position, joint.pivot, frame.frame, joint.canonical_name);
                         var expected = M7FCoordinates.SourceAxialToUnity(M7FScientificFlyRigDefinition.Vector(joint.axis)).normalized;
                         var actual = (binding.transform.rotation * binding.localAxis).normalized;
-                        var dot = Mathf.Clamp(Vector3.Dot(expected, actual), -1, 1); var angle = Mathf.Acos(dot);
-                        var detail = "dot(expected,actual)=" + M7FValidationReport.F(dot) + ", actual ~= -expected: " + (dot < -.9999f ? "YES" : "no");
+                        var dot = Mathf.Clamp(Vector3.Dot(expected, actual), -1, 1);
+                        var angle = DirectionalAngle(expected, actual);
+                        var detail = "float dot(expected,actual)=" + M7FValidationReport.F(dot) + ", actual ~= -expected: " + (dot < -.9999f ? "YES" : "no");
                         Add(report.AxisAngular, perFrame.AxisAngular, angle, frame.frame, joint.canonical_name,
                             "MuJoCo=" + A(joint.axis) + " -> Unity(axial)=" + V(expected), V(actual), detail);
                         if (frame.frame == 0) hierarchy.Append("    joint ").Append(joint.canonical_name).Append(": pivot=").Append(M7FValidationReport.F(pivotError))
@@ -181,6 +182,33 @@ namespace FlyBrain.M7FReplay
             var expected = M7FCoordinates.SourcePositionToUnity(M7FScientificFlyRigDefinition.Vector(source)) * M7FCoordinates.MillimetresToUnity;
             var delta = actual - expected; var detail = "actual-expected=" + V(delta);
             Add(all, frameMetric, delta.magnitude, frame, element, "MuJoCo=" + A(source) + " -> Unity=" + V(expected), V(actual), detail); return delta.magnitude;
+        }
+
+        /// <summary>
+        /// Returns the unsigned angle between two directions. Vector3 stores the inputs as
+        /// floats, but normalization, dot, cross, and atan2 deliberately use doubles. Unlike
+        /// acos(dot), atan2(|cross|, dot) remains well-conditioned for nearly parallel axes.
+        /// Invalid or zero directions fail closed rather than appearing to agree.
+        /// </summary>
+        public static double DirectionalAngle(Vector3 first, Vector3 second)
+        {
+            var ax = (double)first.x; var ay = (double)first.y; var az = (double)first.z;
+            var bx = (double)second.x; var by = (double)second.y; var bz = (double)second.z;
+            var aLength = Math.Sqrt(ax * ax + ay * ay + az * az);
+            var bLength = Math.Sqrt(bx * bx + by * by + bz * bz);
+            if (!(aLength > 0) || !(bLength > 0) || double.IsInfinity(aLength) || double.IsInfinity(bLength))
+                return double.PositiveInfinity;
+
+            ax /= aLength; ay /= aLength; az /= aLength;
+            bx /= bLength; by /= bLength; bz /= bLength;
+            var dot = ax * bx + ay * by + az * bz;
+            var crossX = ay * bz - az * by;
+            var crossY = az * bx - ax * bz;
+            var crossZ = ax * by - ay * bx;
+            var crossMagnitude = Math.Sqrt(crossX * crossX + crossY * crossY + crossZ * crossZ);
+            if (double.IsNaN(dot) || double.IsInfinity(dot) || double.IsNaN(crossMagnitude) || double.IsInfinity(crossMagnitude))
+                return double.PositiveInfinity;
+            return Math.Atan2(crossMagnitude, dot);
         }
 
         static double Rotation(M7FValidationMetric all, M7FValidationMetric frameMetric, Quaternion actual, double[] source, int frame, string element)
