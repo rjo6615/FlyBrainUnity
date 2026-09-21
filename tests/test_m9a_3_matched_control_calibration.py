@@ -25,12 +25,15 @@ def test_historical_evidence_byte_size_and_sha256_are_frozen():
     assert len(m9a.HISTORICAL) == 12
 
 
-def test_m9a_preregistration_lf_and_crlf_have_one_canonical_identity(tmp_path):
-    key = "m9a/m9a_preregistration.json"
+@pytest.mark.parametrize(("key", "frozen_size"), (
+    ("m9a/m9a_preregistration.json", 5386),
+    ("m9a_2/m9a_2_preregistration.json", 4877),
+))
+def test_preregistration_lf_and_crlf_have_one_canonical_identity(tmp_path, key, frozen_size):
     expected_size, expected_digest = m9a.HISTORICAL[key]
-    lf = m9a._historical_path(key).read_bytes()
+    lf = m9a._canonical_historical_bytes(key, m9a._historical_path(key).read_bytes())
     crlf = lf.replace(b"\n", b"\r\n")
-    assert len(lf) == expected_size == 5386
+    assert len(lf) == expected_size == frozen_size
     assert hashlib.sha256(lf).hexdigest() == expected_digest
     assert m9a._canonical_historical_bytes(key, lf) == lf
     assert m9a._canonical_historical_bytes(key, crlf) == lf
@@ -42,7 +45,7 @@ def test_m9a_preregistration_lf_and_crlf_have_one_canonical_identity(tmp_path):
 def test_canonical_text_mutation_and_bare_carriage_return_fail(tmp_path):
     key = "m9a/m9a_preregistration.json"
     size, digest = m9a.HISTORICAL[key]
-    original = m9a._historical_path(key).read_bytes()
+    original = m9a._canonical_historical_bytes(key, m9a._historical_path(key).read_bytes())
     mutated = tmp_path / "mutated.json"
     mutated.write_bytes(original.replace(b'"status": "NOT_RUN"', b'"status": "HAS_RUN"'))
     with pytest.raises(RuntimeError, match="immutable historical evidence mismatch"):
@@ -66,12 +69,16 @@ def test_binary_historical_evidence_remains_exact_bytes(tmp_path):
 
 
 def test_protocol_validation_accepts_crlf_historical_checkout(tmp_path, monkeypatch):
-    key = "m9a/m9a_preregistration.json"
-    crlf_path = tmp_path / "m9a_preregistration.json"
-    crlf_path.write_bytes(m9a._historical_path(key).read_bytes().replace(b"\n", b"\r\n"))
     original_path = m9a._historical_path
+    windows_paths = {}
+    for key in m9a.CANONICAL_LF_TEXT_EVIDENCE:
+        lf = m9a._canonical_historical_bytes(key, original_path(key).read_bytes())
+        crlf_path = tmp_path / key.replace("/", "_")
+        crlf_path.write_bytes(lf.replace(b"\n", b"\r\n"))
+        windows_paths[key] = crlf_path
     monkeypatch.setattr(m9a, "_historical_path",
-                        lambda candidate: crlf_path if candidate == key else original_path(candidate))
+                        lambda candidate: (windows_paths[candidate] if candidate in windows_paths
+                                           else original_path(candidate)))
     m9a.validate_protocol(m9a.protocol())
 
 

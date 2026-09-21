@@ -27,7 +27,7 @@ START_MS, STOP_MS, OBSERVE_MS = 500.0, 520.0, 1500.0
 DT_MS, TRANSITIONS, STATES = m7d.PHYSICS_DT_MS, 15_000, 15_001
 
 # Values are intentionally duplicated here rather than trusted from mutable
-# manifests. The M9A preregistration has a frozen canonical-LF identity;
+# manifests. The M9A and M9A-2 preregistrations have canonical-LF identities;
 # all other historical evidence is verified as exact bytes.
 HISTORICAL = {
     "m9a/candidate_0.0001_raw.npz": (3075886, "71b4c0150cb1296ffcffdab1bc600d725995f302cc1da25dd53fee88a701de41"),
@@ -44,7 +44,10 @@ HISTORICAL = {
     "forensics/m9a_2_postrun_forensics.py": (12776, "53a13908044fcbee0d6ec609a5fb401d51973266a3817ae1d8f27dd50a98eef5"),
 }
 
-CANONICAL_LF_TEXT_EVIDENCE = frozenset({"m9a/m9a_preregistration.json"})
+CANONICAL_LF_TEXT_EVIDENCE = frozenset({
+    "m9a/m9a_preregistration.json",
+    "m9a_2/m9a_2_preregistration.json",
+})
 
 
 def _historical_path(key: str) -> Path:
