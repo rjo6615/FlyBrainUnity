@@ -49,3 +49,8 @@ malecns_backend/embodiment/interface_output/m7_canonical/m7_raw.npz
 malecns_backend/embodiment/interface_output/m7c_initial_stability/m7c_b4_stability_raw.npz
 malecns_backend/embodiment/interface_output/m7d_corrected_spontaneous/m7d_raw.npz
 malecns_backend/embodiment/interface_output/m8_extended_spontaneous/m8_raw.npz
+
+# M8 Unity replay binaries are local staged artifacts (too large for PR transport).
+# Copy the completed, manifest-matching files into this directory before playback.
+/FlyBrainUnity/Assets/StreamingAssets/M8Replay/m8_enabled_replay.bin
+/FlyBrainUnity/Assets/StreamingAssets/M8Replay/m8_disabled_replay.bin

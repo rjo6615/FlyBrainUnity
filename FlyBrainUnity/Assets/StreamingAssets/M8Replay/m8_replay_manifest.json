@@ -1,0 +1,27 @@
+{
+  "artifacts": [
+    {
+      "byte_size": 46720424,
+      "path": "m8_enabled_replay.bin",
+      "sha256": "56a19ef572338e454febe4249578a54787e697bba87a2a4a4f7a11976e69b558"
+    },
+    {
+      "byte_size": 46720424,
+      "path": "m8_disabled_replay.bin",
+      "sha256": "29569c8b8612acda0cd5b12471a00ba80599b7e6c7b5e77ea4e200ea47dfd843"
+    }
+  ],
+  "cadence_ms": {
+    "neural": 0.5,
+    "physics": 0.1
+  },
+  "consumer": "existing validated M7F Unity replay loader",
+  "contact_and_foot_telemetry": "retained in raw M8 archive; replay binary remains backward-compatible",
+  "neural_frames": 20000,
+  "physics_frames": 100001,
+  "schema": "M8-UNITY-REPLAY-EXPORT.1",
+  "scientific_rig_changed": false,
+  "source_raw_sha256": "4e39bb83dd4455d56a4d88f717615530602317efaf83a6ed241b13af89dc2a5b",
+  "status": "COMPLETE",
+  "vis3_anatomy_changed": false
+}

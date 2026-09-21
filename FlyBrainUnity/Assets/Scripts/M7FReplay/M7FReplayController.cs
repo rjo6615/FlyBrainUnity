@@ -87,7 +87,7 @@ namespace FlyBrain.M7FReplay
             enabledRig.PresentationOffset = value == M7FCondition.SideBySide ? Vector3.left * sideBySideOffset * .5f : Vector3.zero;
             disabledRig.PresentationOffset = value == M7FCondition.SideBySide ? Vector3.right * sideBySideOffset * .5f : Vector3.zero;
         }
-        public string ConditionLabel => condition switch { M7FCondition.Enabled => "NEURAL MOTOR ENABLED", M7FCondition.Disabled => "MATCHED MOTOR-DISABLED CONTROL", _ => "SIDE-BY-SIDE — PRESENTATION OFFSETS ACTIVE" };
+        public string ConditionLabel => condition switch { M7FCondition.Enabled => "NEURAL MOTOR ENABLED", M7FCondition.Disabled => Loader != null && Loader.Dataset == ReplayDataset.M8ExtendedSpontaneous ? "NEURAL MOTOR DISABLED" : "MATCHED MOTOR-DISABLED CONTROL", _ => "SIDE-BY-SIDE — PRESENTATION OFFSETS ACTIVE" };
         public double TimeMs => loader.Enabled?.PhysicsTime[Frame] ?? 0;
         public int NeuralIndex => loader.Enabled?.NeuralIndexForFrame(Frame) ?? 0;
         public M7FFlyRig EnabledRig => enabledRig;
