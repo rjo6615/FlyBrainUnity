@@ -138,8 +138,11 @@ namespace FlyBrain.Tests
             var derived = Quaternion.AngleAxis(90, M7FCoordinates.SourceAxialToUnity(sourceAxis));
             Assert.That(Mathf.Abs(Quaternion.Dot(converted, derived)), Is.EqualTo(1).Within(1e-5));
             foreach (var basis in new[] { Vector3.right, Vector3.up, Vector3.forward })
-                Assert.That(converted * M7FCoordinates.SourcePositionToUnity(basis),
-                    Is.EqualTo(M7FCoordinates.SourcePositionToUnity(Quaternion.AngleAxis(90, sourceAxis) * basis)).Using(Vector3ComparerWithEqualsOperator.Instance));
+            {
+                var actual = converted * M7FCoordinates.SourcePositionToUnity(basis);
+                var expected = M7FCoordinates.SourcePositionToUnity(Quaternion.AngleAxis(90, sourceAxis) * basis);
+                Assert.That(actual == expected, Is.True, $"Converted basis vector {basis}: expected {expected}, got {actual}");
+            }
         }
 
         [Test] public void MultipleHingesOnOneBodyFollowAuthoritativeDeclarationOrder()
