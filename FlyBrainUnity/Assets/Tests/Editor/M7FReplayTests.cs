@@ -1,4 +1,5 @@
 using System.IO;
+using System.Security.Cryptography;
 using FlyBrain.M7FReplay;
 using NUnit.Framework;
 using UnityEditor;
@@ -41,6 +42,17 @@ namespace FlyBrain.Tests
             Assert.That(replay.UnityPosition(1).x, Is.EqualTo(.3f).Within(1e-6));
             Assert.That(replay.UnityPosition(1).y, Is.EqualTo(.5f).Within(1e-6));
             Assert.That(replay.UnityPosition(1).z, Is.EqualTo(.4f).Within(1e-6));
+        }
+
+        [Test] public void PolarAndAxialVectorsRespectImproperBasisDeterminant()
+        {
+            var source = new Vector3(2, 3, 5);
+            Assert.That(M7FCoordinates.SourcePositionToUnity(source), Is.EqualTo(new Vector3(2, 5, 3)));
+            Assert.That(M7FCoordinates.SourceAxialToUnity(source), Is.EqualTo(new Vector3(-2, -5, -3)));
+            Assert.That(Vector3.Dot(Vector3.Cross(
+                M7FCoordinates.SourcePositionToUnity(Vector3.right),
+                M7FCoordinates.SourcePositionToUnity(Vector3.up)),
+                M7FCoordinates.SourcePositionToUnity(Vector3.forward)), Is.EqualTo(-1));
         }
 
         [Test] public void BuilderCreatesExactlyOneCompleteTransformOnlyFlyAndAutoBinds42()
@@ -97,8 +109,9 @@ namespace FlyBrain.Tests
             };
             foreach (var source in cases)
             {
-                var expectedForward = M7FCoordinates.SourcePositionToUnity(source * Vector3.forward);
-                var expectedUp = M7FCoordinates.SourcePositionToUnity(source * Vector3.up);
+                // R_Unity Bv = B R_Source v, i.e. R_Unity = B R_Source B^-1.
+                var expectedForward = M7FCoordinates.SourcePositionToUnity(source * Vector3.up);
+                var expectedUp = M7FCoordinates.SourcePositionToUnity(source * Vector3.forward);
                 var unityQ = M7FCoordinates.SourceQuaternionToUnity(source);
                 var right = unityQ * Vector3.right; var up = unityQ * Vector3.up; var forward = unityQ * Vector3.forward;
                 var magnitudeSquared = unityQ.x * unityQ.x + unityQ.y * unityQ.y + unityQ.z * unityQ.z + unityQ.w * unityQ.w;
@@ -113,6 +126,57 @@ namespace FlyBrain.Tests
                 Assert.That(Vector3.Dot(Vector3.Cross(right, up), forward), Is.GreaterThan(.9999f));
                 Assert.That(Mathf.Abs(Quaternion.Dot(unityQ, M7FCoordinates.SourceQuaternionToUnity(source))), Is.EqualTo(1f).Within(1e-6f));
             }
+        }
+
+        [TestCase(1, 0, 0)]
+        [TestCase(0, 1, 0)]
+        [TestCase(0, 0, 1)]
+        public void PositiveNinetyDegreeSourceRotationsUseConvertedAxialAxis(float x, float y, float z)
+        {
+            var sourceAxis = new Vector3(x, y, z);
+            var converted = M7FCoordinates.SourceQuaternionToUnity(Quaternion.AngleAxis(90, sourceAxis));
+            var derived = Quaternion.AngleAxis(90, M7FCoordinates.SourceAxialToUnity(sourceAxis));
+            Assert.That(Mathf.Abs(Quaternion.Dot(converted, derived)), Is.EqualTo(1).Within(1e-5));
+            foreach (var basis in new[] { Vector3.right, Vector3.up, Vector3.forward })
+                Assert.That(converted * M7FCoordinates.SourcePositionToUnity(basis),
+                    Is.EqualTo(M7FCoordinates.SourcePositionToUnity(Quaternion.AngleAxis(90, sourceAxis) * basis)).Using(Vector3ComparerWithEqualsOperator.Instance));
+        }
+
+        [Test] public void MultipleHingesOnOneBodyFollowAuthoritativeDeclarationOrder()
+        {
+            var go = new GameObject("multi hinge order test");
+            try
+            {
+                go.AddComponent<M7FScientificFlyBuilder>().Rebuild(); var rig = go.GetComponent<M7FFlyRig>();
+                foreach (var body in M7FScientificFlyRigDefinition.Data.bodies)
+                {
+                    var ordered = (M7FAuthoritativeJoint[])body.joints.Clone();
+                    System.Array.Sort(ordered, (a, b) => a.declaration_order.CompareTo(b.declaration_order));
+                    for (var i = 1; i < ordered.Length; i++)
+                    {
+                        var child = Descendant(rig.ScientificRoot, ordered[i].name);
+                        var ancestor = Descendant(rig.ScientificRoot, ordered[i - 1].name);
+                        Assert.That(child.IsChildOf(ancestor), Is.True, body.name + " hinge composition order");
+                    }
+                }
+            }
+            finally { Object.DestroyImmediate(go); }
+        }
+
+        [Test] public void ScientificInputsOrderingAndAcceptanceThresholdsRemainImmutable()
+        {
+            Assert.That(M7FAuthoritativeRigValidator.PositionTolerance, Is.EqualTo(2e-5f));
+            Assert.That(M7FAuthoritativeRigValidator.AngularToleranceRadians, Is.EqualTo(2e-4f));
+            Assert.That(Sha256(Path.Combine(Application.streamingAssetsPath, "M7FValidation", "m7f_authoritative_rig.json")), Is.EqualTo("d8cd7e58bb33fff5e102484d937100d7afd7dc1f4156b39dc2a27f65c0c29eb7"));
+            Assert.That(Sha256(Path.Combine(Application.streamingAssetsPath, "M7FValidation", "m7f_mujoco_reference_frames.json")), Is.EqualTo("cd7c372214df6dc71071d05114ccdc2ccdca0f6dd48442797980772720f0fa5d"));
+            var manifest = JsonUtility.FromJson<M7FManifest>(File.ReadAllText(Path.Combine(Application.streamingAssetsPath, "M7FReplay", "m7f_manifest.json")));
+            CollectionAssert.AreEqual(manifest.joint_names, M7FScientificFlyRigDefinition.CanonicalNames);
+        }
+
+        static string Sha256(string path)
+        {
+            using var stream = File.OpenRead(path); using var hash = SHA256.Create();
+            return System.BitConverter.ToString(hash.ComputeHash(stream)).Replace("-", "").ToLowerInvariant();
         }
 
         [Test] public void JointApplicationIsAbsoluteSoDirectSeekEqualsNonSequentialSeek()

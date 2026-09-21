@@ -87,7 +87,10 @@ namespace FlyBrain.M7FReplay
         {
             if (!IsFinite(source) || source.x * source.x + source.y * source.y + source.z * source.z + source.w * source.w < 1e-12f) throw new ArgumentException("Source quaternion must be finite and non-zero.");
             source = Quaternion.Normalize(source);
-            return Quaternion.LookRotation(SourcePositionToUnity(source * Vector3.forward), SourcePositionToUnity(source * Vector3.up));
+            // B swaps source y/z and has det(B)=-1.  R_Unity = B R_Source B^-1:
+            // Unity forward (e_z) corresponds to source e_y, while Unity up (e_y)
+            // corresponds to source e_z.  B is a reflection, never a quaternion.
+            return Quaternion.LookRotation(SourcePositionToUnity(source * Vector3.up), SourcePositionToUnity(source * Vector3.forward));
         }
         public static bool IsFinite(Quaternion q) => !(float.IsNaN(q.x) || float.IsInfinity(q.x) || float.IsNaN(q.y) || float.IsInfinity(q.y) || float.IsNaN(q.z) || float.IsInfinity(q.z) || float.IsNaN(q.w) || float.IsInfinity(q.w));
     }
