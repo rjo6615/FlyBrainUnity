@@ -73,7 +73,7 @@
     "neural_transitions": 0
   },
   "perturbation": {
-    "application_body_exact": "0/Thorax",
+    "application_body_source": "Thorax",
     "application_point": "compiled body center of mass (xfrc_applied force; zero torque)",
     "candidate_force_magnitudes_native": [
       0.002,
@@ -81,6 +81,7 @@
       0.032,
       0.128
     ],
+    "compiled_identity_resolution": "exact final slash-delimited component",
     "direction_xyz": [
       0.0,
       1.0,

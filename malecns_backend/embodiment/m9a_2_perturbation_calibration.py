@@ -24,7 +24,9 @@ SCHEMA = "M9A-2-PHYSICS-ONLY-PERTURBATION-CALIBRATION.1"
 # candidates and their ordering are preregistered, not generated adaptively.
 CANDIDATE_FORCE_NATIVE = (0.002, 0.008, 0.032, 0.128)
 DIRECTION = (0.0, 1.0, 0.0)
-APPLICATION_BODY_EXACT = "0/Thorax"
+# Scientific source identity.  dm_control assigns an ephemeral attachment
+# namespace (for example ``0/`` or ``1/``) independently to each runtime.
+APPLICATION_BODY_SOURCE = "Thorax"
 START_MS, STOP_MS, OBSERVE_MS = 500.0, 520.0, 1500.0
 DT_MS = m7d.PHYSICS_DT_MS
 TRANSITIONS = 15_000
@@ -86,7 +88,8 @@ def protocol() -> dict[str, Any]:
             "motor_interfaces": list(m7d.ADMITTED_MOTOR),
             "baseline_only_actuator_count": inherited["baseline_only_actuator_count"]},
         "perturbation": {"mechanism": "MuJoCo data.xfrc_applied direct Cartesian force",
-            "application_body_exact": APPLICATION_BODY_EXACT,
+            "application_body_source": APPLICATION_BODY_SOURCE,
+            "compiled_identity_resolution": "exact final slash-delimited component",
             "application_point": "compiled body center of mass (xfrc_applied force; zero torque)",
             "direction_xyz": list(DIRECTION), "start_ms_inclusive": START_MS,
             "stop_ms_exclusive": STOP_MS, "duration_ms": STOP_MS - START_MS,
@@ -120,7 +123,7 @@ def validate_protocol(value: Mapping[str, Any]) -> None:
     checks = (value.get("physical_initialization") == inherited["physical_initialization"],
         value.get("male_cns") == {"constructed": False, "advanced": False, "neural_transitions": 0},
         tuple(p.get("candidate_force_magnitudes_native", ())) == CANDIDATE_FORCE_NATIVE,
-        p.get("application_body_exact") == APPLICATION_BODY_EXACT,
+        p.get("application_body_source") == APPLICATION_BODY_SOURCE,
         p.get("direction_xyz") == list(DIRECTION), p.get("start_ms_inclusive") == START_MS,
         p.get("stop_ms_exclusive") == STOP_MS,
         not any(value.get("controls_absent", {}).values()),

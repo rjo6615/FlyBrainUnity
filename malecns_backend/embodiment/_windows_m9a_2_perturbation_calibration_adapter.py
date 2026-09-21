@@ -31,7 +31,7 @@ def _body_identity(model: Any) -> dict[str, Any]:
     names = {i: contact.compiled_name(model, "body", i)
              for i in range(int(model.nbody))}
     matches = [i for i, name in names.items()
-               if name == m9a.APPLICATION_BODY_EXACT]
+               if contact.namespace_component(name) == m9a.APPLICATION_BODY_SOURCE]
     if not matches:
         raise RuntimeError("zero authoritative Thorax matches in compiled MuJoCo body identities")
     if len(matches) > 1:
@@ -40,7 +40,8 @@ def _body_identity(model: Any) -> dict[str, Any]:
     if matches[0] == 0:
         raise RuntimeError("authoritative Thorax match resolves to the MuJoCo world body")
     return {"body_id": matches[0], "body_name": names[matches[0]],
-        "resolution": "exact compiled MuJoCo body name",
+        "source_body_name": m9a.APPLICATION_BODY_SOURCE,
+        "resolution": "exact terminal component of slash-namespaced compiled MuJoCo body identity",
         "all_body_names": names}
 
 
