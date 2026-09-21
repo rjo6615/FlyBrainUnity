@@ -1,0 +1,175 @@
+{
+  "calibration_execution": {
+    "candidate_results": [],
+    "performed": false,
+    "reason": "pinned FlyGym/MuJoCo runtime required; M9B prohibited until COMPLETE calibration report",
+    "selected_perturbation": null
+  },
+  "controls_absent": {
+    "AI policy": false,
+    "CPG": false,
+    "adaptive stabilization": false,
+    "adhesion scheduler": false,
+    "balance controller": false,
+    "dynamic adhesion": false,
+    "fall recovery": false,
+    "foot placement controller": false,
+    "gait controller": false,
+    "navigation target": false,
+    "optimizer": false,
+    "outcome-dependent parameter changes": false,
+    "phase oscillator": false,
+    "postural controller": false,
+    "reference trajectory": false,
+    "reinforcement learning": false,
+    "reward": false,
+    "scripted descending command": false,
+    "scripted neural stimulation": false,
+    "stance controller": false,
+    "swing controller": false,
+    "target movement": false,
+    "tripod controller": false,
+    "walking trajectory": false
+  },
+  "embodiment_inventory_retained_but_inactive": {
+    "baseline_only_actuator_count": 31,
+    "motor_interfaces": [
+      "joint_LFTibia",
+      "joint_LMTibia",
+      "joint_LHTibia",
+      "joint_RFTibia",
+      "joint_RMTibia",
+      "joint_RHTibia",
+      "joint_LFFemur",
+      "joint_LMFemur",
+      "joint_LHFemur",
+      "joint_RMFemur",
+      "joint_RHFemur"
+    ],
+    "sensory_interfaces": [
+      "joint_LFTibia",
+      "joint_LMTibia",
+      "joint_LHTibia",
+      "joint_RFTibia",
+      "joint_RMTibia",
+      "joint_RHTibia"
+    ]
+  },
+  "experiment_namespace": "M9A",
+  "explicit_absences": {
+    "adhesion_scheduling": false,
+    "ai_controller": false,
+    "cpg": false,
+    "gait_controller": false,
+    "hidden_assistance": false,
+    "reference_trajectory": false,
+    "reward_or_rl": false,
+    "stabilization_controller": false,
+    "target_pose_controller_beyond_inherited_fixed_actuator_semantics": false
+  },
+  "frozen_artifact_provenance": {
+    "malecns_backend/embodiment/interface_output/m7d_corrected_spontaneous/m7d_manifest.json": {
+      "byte_size": 7202,
+      "sha256": "6c788951eee438a5969588a768b6b227e48dc1f64dc2f686f56203a052a8d6f2"
+    },
+    "malecns_backend/embodiment/interface_output/m7d_corrected_spontaneous/m7d_summary.json": {
+      "byte_size": 2781,
+      "sha256": "981d02fa12629bcd3639b8fcc07493800848f9b7a587ef195c4f04d1aa691661"
+    },
+    "malecns_backend/embodiment/interface_output/m8_extended_spontaneous/m8_analysis.json": {
+      "byte_size": 107169,
+      "sha256": "5ed3e0c7003b95b987cc2b81c1d4d565a1cc9f274e881597988bfbd8a3836884"
+    },
+    "malecns_backend/embodiment/interface_output/m8_extended_spontaneous/m8_manifest.json": {
+      "byte_size": 12841,
+      "sha256": "b57ffb147daed37c6cf447005f8b687d78d2018ee511146cca0941d43a79a2ff"
+    }
+  },
+  "male_cns": {
+    "advanced": false,
+    "constructed": false,
+    "neural_transitions": 0
+  },
+  "perturbation": {
+    "application_body_exact": "Thorax",
+    "application_point": "compiled body center of mass (xfrc_applied force; zero torque)",
+    "candidate_force_magnitudes_native": [
+      0.0001,
+      0.0002,
+      0.0004,
+      0.0008
+    ],
+    "direction_xyz": [
+      0.0,
+      1.0,
+      0.0
+    ],
+    "duration_ms": 20.0,
+    "force_units": "MuJoCo model-native force (mm-ms-mg derived unit)",
+    "impulse_semantics": "magnitude * 20 ms in model-native force-time units",
+    "mechanism": "MuJoCo data.xfrc_applied direct Cartesian force",
+    "start_ms_inclusive": 500.0,
+    "stop_ms_exclusive": 520.0
+  },
+  "physical_initialization": {
+    "adhesion_enabled": false,
+    "baseline_targets": "exact measured corrected tripod joint state at time zero",
+    "calibration_surface": "canonical inherited static m5d2c_calibration_surface",
+    "control": "position",
+    "flygym": "1.2.1",
+    "init_pose": "tripod",
+    "mujoco": "3.2.7",
+    "settling_transitions": 0,
+    "spawn_orientation": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spawn_pos": [
+      0.0,
+      0.0,
+      0.6045752232266313
+    ]
+  },
+  "physics": {
+    "dt_ms": 0.1,
+    "flygym": "1.2.1",
+    "mujoco": "3.2.7",
+    "observation_duration_ms": 1500.0,
+    "states_per_candidate": 15001,
+    "transitions_per_candidate": 15000
+  },
+  "schema": "M9A-PHYSICS-ONLY-PERTURBATION-CALIBRATION.1",
+  "scientific_claim_boundary": "calibrated external physical perturbation only",
+  "selection_rule_preregistered": {
+    "choice": "lowest preregistered magnitude satisfying every criterion; fail closed if none",
+    "hard_exclusions": {
+      "fall_or_rollover_by_600ms": true,
+      "maximum_root_displacement_mm_greater_than": 1.5,
+      "maximum_tilt_deg_greater_than": 60.0,
+      "nonfinite": true
+    },
+    "inputs": [
+      "finite",
+      "fall_or_rollover",
+      "maximum_root_displacement_mm",
+      "maximum_tilt_deg",
+      "authoritative_contact_pattern_changed",
+      "post_force_displacement_reduction_fraction",
+      "post_force_tilt_reduction_fraction"
+    ],
+    "meaningful_disturbance": {
+      "contact_pattern_change_required": true,
+      "minimum_root_displacement_mm": 0.05,
+      "minimum_tilt_deg": 5.0
+    },
+    "return_toward_pre_state": {
+      "either_displacement_or_tilt_reduction_fraction_at_least": 0.25,
+      "late_window_ms": [
+        1250.0,
+        1500.0
+      ]
+    }
+  },
+  "status": "NOT_RUN"
+}
