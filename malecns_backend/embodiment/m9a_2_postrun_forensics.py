@@ -34,6 +34,12 @@ CANDIDATES = (
 REQUIRED = ("time_ms", "root_position", "orientation_wxyz", "body_up_z",
             "linear_velocity", "angular_velocity", "ground_contact",
             "distal_tarsus_positions", "applied_force")
+TRAJECTORY_FIELDS = {
+    "root_position": "continuous", "linear_velocity": "continuous",
+    "orientation_wxyz": "continuous", "body_up_z": "continuous",
+    "angular_velocity": "continuous", "ground_contact": "boolean",
+    "distal_tarsus_positions": "continuous",
+}
 
 
 def _sha(path: Path) -> str:
@@ -88,19 +94,47 @@ def _normmax(np: Any, x: Any) -> float:
 
 def _trajectory(np: Any, base: Mapping[str, Any], a: Mapping[str, Any]) -> dict[str, Any]:
     if not np.array_equal(base["time_ms"], a["time_ms"]): raise ValueError("timestamps are not exactly aligned")
-    t = a["time_ms"]; fields = ("root_position", "linear_velocity", "orientation_wxyz",
-        "body_up_z", "angular_velocity", "ground_contact", "distal_tarsus_positions")
-    different = np.zeros(len(t), dtype=bool); maxima, windows = {}, {}
-    for key in fields:
-        d = a[key] != base[key]; row = d if d.ndim == 1 else np.any(d.reshape((len(t), -1)), axis=1)
+    t = a["time_ms"]
+    different = np.zeros(len(t), dtype=bool); maxima, windows, boolean = {}, {}, {}
+    window_masks = (("pre_499.9_ms", t < 500),
+                    ("during_500_to_519.9_ms", (t >= 500) & (t < 520)),
+                    ("post_from_520_ms", t >= 520))
+    for key, semantics in TRAJECTORY_FIELDS.items():
+        left, right = a[key], base[key]
+        if left.shape != right.shape or left.ndim == 0 or left.shape[0] != len(t):
+            raise ValueError(f"{key} trajectory shape mismatch")
+        if semantics == "boolean":
+            if not (np.issubdtype(left.dtype, np.bool_) and np.issubdtype(right.dtype, np.bool_)):
+                raise TypeError(f"{key} must contain Boolean trajectory data")
+            d = np.logical_xor(left, right)
+        elif semantics == "continuous":
+            if (not np.issubdtype(left.dtype, np.number) or not np.issubdtype(right.dtype, np.number)
+                    or np.issubdtype(left.dtype, np.bool_) or np.issubdtype(right.dtype, np.bool_)):
+                raise TypeError(f"{key} must contain continuous numeric trajectory data")
+            d = left != right
+        else:
+            raise ValueError(f"unsupported trajectory semantics for {key}: {semantics}")
+        row = d if d.ndim == 1 else np.any(d.reshape((len(t), -1)), axis=1)
         different |= row
-        maxima[key] = (float(np.max(np.abs(a[key]-base[key]))) if key != "ground_contact"
-                       else int(np.count_nonzero(d)))
-        windows[key] = {name: (float(np.max(np.abs(a[key][mask]-base[key][mask]))) if np.any(mask) else None)
-            for name, mask in (("pre_499.9_ms", t < 500), ("during_500_to_519.9_ms", (t>=500)&(t<520)),
-                               ("post_from_520_ms", t>=520))}
+        if semantics == "boolean":
+            def summary(mask: Any) -> dict[str, Any]:
+                selected, selected_rows = d[mask], row[mask]
+                return {"any_difference": bool(np.any(selected)),
+                        "differing_value_count": int(np.count_nonzero(selected)),
+                        "differing_value_fraction": (float(np.mean(selected)) if selected.size else None),
+                        "differing_sample_count": int(np.count_nonzero(selected_rows)),
+                        "differing_sample_fraction": (float(np.mean(selected_rows)) if selected_rows.size else None)}
+            boolean[key] = {**summary(np.ones(len(t), dtype=bool)),
+                            "first_divergence_ms": _first(row, t),
+                            "windows": {name: summary(mask) for name, mask in window_masks}}
+        else:
+            delta = np.abs(left - right)
+            maxima[key] = float(np.max(delta))
+            windows[key] = {name: (float(np.max(delta[mask])) if np.any(mask) else None)
+                            for name, mask in window_masks}
     return {"first_exact_divergence_ms": _first(different, t), "max_absolute_component_difference": maxima,
             "window_max_absolute_component_difference": windows,
+            "boolean_difference": boolean,
             "root_position_euclidean_max_mm": _normmax(np, a["root_position"]-base["root_position"]),
             "root_velocity_euclidean_max": _normmax(np, a["linear_velocity"]-base["linear_velocity"]),
             "angular_velocity_euclidean_max": _normmax(np, a["angular_velocity"]-base["angular_velocity"]),
