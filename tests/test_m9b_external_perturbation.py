@@ -1,6 +1,7 @@
 """Zero-transition static/synthetic tests for the frozen M9B preregistration."""
 import importlib
 import json
+import shutil
 from pathlib import Path
 
 import pytest
@@ -28,23 +29,35 @@ def test_frozen_m9a_attempt_3_provenance_and_selection():
 
 def _copy_calibration(tmp_path):
     for name in m9b.CALIBRATION_FILES:
-        (tmp_path / name).write_bytes((m9b.CALIBRATION_DIR / name).read_bytes())
-    for source in m9b.CALIBRATION_DIR.glob("*_raw.npz"):
-        (tmp_path / source.name).symlink_to(source)
+        shutil.copy2(m9b.CALIBRATION_DIR / name, tmp_path / name)
 
 
-def test_canonical_lf_and_equivalent_crlf_text_pass(tmp_path):
+def _verify_fixture(tmp_path):
+    return m9b.verify_m9a_provenance(
+        tmp_path, immutable_directory=m9b.CALIBRATION_DIR)
+
+
+@pytest.mark.parametrize("name", sorted(m9b.CANONICAL_LF_TEXT_ARTIFACTS))
+def test_canonical_lf_and_equivalent_crlf_text_pass(tmp_path, name):
     _copy_calibration(tmp_path)
-    target = tmp_path / "m9a_3_attempt_3_preregistration.json"
+    target = tmp_path / name
     canonical = target.read_bytes()
     assert b"\r" not in canonical
-    m9b.verify_m9a_provenance(tmp_path)
+    _verify_fixture(tmp_path)
     target.write_bytes(canonical.replace(b"\n", b"\r\n"))
-    m9b.verify_m9a_provenance(tmp_path)
+    _verify_fixture(tmp_path)
+
+
+@pytest.mark.parametrize("name", sorted(m9b.CANONICAL_LF_TEXT_ARTIFACTS))
+def test_equivalent_lone_cr_text_passes(tmp_path, name):
+    _copy_calibration(tmp_path)
+    target = tmp_path / name
+    target.write_bytes(target.read_bytes().replace(b"\n", b"\r"))
+    _verify_fixture(tmp_path)
 
 
 def test_crlf_canonicalization_does_not_create_crcrlf():
-    name = "m9a_3_attempt_3_preregistration.json"
+    name = "m9a_3_attempt_3_report.json"
     assert m9b._canonical_provenance_bytes(name, b"a\r\nb\rc\n") == b"a\nb\nc\n"
 
 
@@ -59,24 +72,24 @@ def test_changed_text_or_non_newline_whitespace_fails(tmp_path, mutation):
     assert json.loads(changed)
     target.write_bytes(changed)
     with pytest.raises(RuntimeError, match="provenance mismatch"):
-        m9b.verify_m9a_provenance(tmp_path)
+        _verify_fixture(tmp_path)
 
 
 def test_changed_binary_bytes_fail(tmp_path):
-    _copy_calibration(tmp_path)
-    target = tmp_path / "m9a_3_attempt_3_manifest.json"
-    raw = target.read_bytes()
-    target.write_bytes(raw[:10] + bytes([raw[10] ^ 1]) + raw[11:])
-    with pytest.raises(RuntimeError, match="provenance mismatch"):
-        m9b.verify_m9a_provenance(tmp_path)
+    target = tmp_path / "raw.npz"
+    target.write_bytes(b"immutable binary")
+    assert m9b._exact_file_identity(target, 16,
+        "c45a85f54ff5f95113bf9708107595a28429ae00bff84cd6395b11878411273d")
+    target.write_bytes(b"immutable binarz")
+    assert not m9b._exact_file_identity(target, 16,
+        "c45a85f54ff5f95113bf9708107595a28429ae00bff84cd6395b11878411273d")
 
 
 def test_wrong_binary_size_fails(tmp_path):
-    _copy_calibration(tmp_path)
-    target = tmp_path / "m9a_3_attempt_3_manifest.json"
-    target.write_bytes(target.read_bytes() + b" ")
-    with pytest.raises(RuntimeError, match="provenance mismatch"):
-        m9b.verify_m9a_provenance(tmp_path)
+    target = tmp_path / "raw.npz"
+    target.write_bytes(b"immutable binary ")
+    assert not m9b._exact_file_identity(target, 16,
+        "c45a85f54ff5f95113bf9708107595a28429ae00bff84cd6395b11878411273d")
 
 
 def test_unknown_provenance_artifact_fails_closed():
