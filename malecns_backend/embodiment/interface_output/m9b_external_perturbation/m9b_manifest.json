@@ -1,0 +1,3519 @@
+{
+  "preflight": {
+    "canonical_output_namespace_clean": true,
+    "corrected_initialization_diagnostics": {
+      "configuration_state_distinguished": true,
+      "four_condition_audits_equivalent_after_name_normalization": true,
+      "four_condition_state_zero_equivalent": true,
+      "raw_audit_dictionary_equality": false,
+      "representation_difference": true,
+      "representation_note": "dm_control attachment prefixes are runtime-instance identity, not scientific initialization",
+      "runtimes": [
+        {
+          "compiled_body_names": {
+            "0": "world",
+            "1": "1/",
+            "2": "1/FlyBody",
+            "3": "1/Thorax",
+            "4": "1/A1A2",
+            "5": "1/A3",
+            "6": "1/A4",
+            "7": "1/A5",
+            "8": "1/A6",
+            "9": "1/LHaltere",
+            "10": "1/LWing",
+            "11": "1/RHaltere",
+            "12": "1/RWing",
+            "13": "1/LFCoxa",
+            "14": "1/LFFemur",
+            "15": "1/LFTibia",
+            "16": "1/LFTarsus1",
+            "17": "1/LFTarsus2",
+            "18": "1/LFTarsus3",
+            "19": "1/LFTarsus4",
+            "20": "1/LFTarsus5",
+            "21": "1/LHCoxa",
+            "22": "1/LHFemur",
+            "23": "1/LHTibia",
+            "24": "1/LHTarsus1",
+            "25": "1/LHTarsus2",
+            "26": "1/LHTarsus3",
+            "27": "1/LHTarsus4",
+            "28": "1/LHTarsus5",
+            "29": "1/LMCoxa",
+            "30": "1/LMFemur",
+            "31": "1/LMTibia",
+            "32": "1/LMTarsus1",
+            "33": "1/LMTarsus2",
+            "34": "1/LMTarsus3",
+            "35": "1/LMTarsus4",
+            "36": "1/LMTarsus5",
+            "37": "1/RHCoxa",
+            "38": "1/RHFemur",
+            "39": "1/RHTibia",
+            "40": "1/RHTarsus1",
+            "41": "1/RHTarsus2",
+            "42": "1/RHTarsus3",
+            "43": "1/RHTarsus4",
+            "44": "1/RHTarsus5",
+            "45": "1/RMCoxa",
+            "46": "1/RMFemur",
+            "47": "1/RMTibia",
+            "48": "1/RMTarsus1",
+            "49": "1/RMTarsus2",
+            "50": "1/RMTarsus3",
+            "51": "1/RMTarsus4",
+            "52": "1/RMTarsus5",
+            "53": "1/RFCoxa",
+            "54": "1/RFFemur",
+            "55": "1/RFTibia",
+            "56": "1/RFTarsus1",
+            "57": "1/RFTarsus2",
+            "58": "1/RFTarsus3",
+            "59": "1/RFTarsus4",
+            "60": "1/RFTarsus5",
+            "61": "1/Head",
+            "62": "1/LEye",
+            "63": "1/REye",
+            "64": "1/Rostrum",
+            "65": "1/Haustellum",
+            "66": "1/LPedicel",
+            "67": "1/LFuniculus",
+            "68": "1/LArista",
+            "69": "1/RPedicel",
+            "70": "1/RFuniculus",
+            "71": "1/RArista"
+          },
+          "compiled_body_terminal_names": {
+            "0": "world",
+            "1": "",
+            "2": "FlyBody",
+            "3": "Thorax",
+            "4": "A1A2",
+            "5": "A3",
+            "6": "A4",
+            "7": "A5",
+            "8": "A6",
+            "9": "LHaltere",
+            "10": "LWing",
+            "11": "RHaltere",
+            "12": "RWing",
+            "13": "LFCoxa",
+            "14": "LFFemur",
+            "15": "LFTibia",
+            "16": "LFTarsus1",
+            "17": "LFTarsus2",
+            "18": "LFTarsus3",
+            "19": "LFTarsus4",
+            "20": "LFTarsus5",
+            "21": "LHCoxa",
+            "22": "LHFemur",
+            "23": "LHTibia",
+            "24": "LHTarsus1",
+            "25": "LHTarsus2",
+            "26": "LHTarsus3",
+            "27": "LHTarsus4",
+            "28": "LHTarsus5",
+            "29": "LMCoxa",
+            "30": "LMFemur",
+            "31": "LMTibia",
+            "32": "LMTarsus1",
+            "33": "LMTarsus2",
+            "34": "LMTarsus3",
+            "35": "LMTarsus4",
+            "36": "LMTarsus5",
+            "37": "RHCoxa",
+            "38": "RHFemur",
+            "39": "RHTibia",
+            "40": "RHTarsus1",
+            "41": "RHTarsus2",
+            "42": "RHTarsus3",
+            "43": "RHTarsus4",
+            "44": "RHTarsus5",
+            "45": "RMCoxa",
+            "46": "RMFemur",
+            "47": "RMTibia",
+            "48": "RMTarsus1",
+            "49": "RMTarsus2",
+            "50": "RMTarsus3",
+            "51": "RMTarsus4",
+            "52": "RMTarsus5",
+            "53": "RFCoxa",
+            "54": "RFFemur",
+            "55": "RFTibia",
+            "56": "RFTarsus1",
+            "57": "RFTarsus2",
+            "58": "RFTarsus3",
+            "59": "RFTarsus4",
+            "60": "RFTarsus5",
+            "61": "Head",
+            "62": "LEye",
+            "63": "REye",
+            "64": "Rostrum",
+            "65": "Haustellum",
+            "66": "LPedicel",
+            "67": "LFuniculus",
+            "68": "LArista",
+            "69": "RPedicel",
+            "70": "RFuniculus",
+            "71": "RArista"
+          },
+          "condition": "A_P",
+          "configuration": {
+            "adhesion_actual": {
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "enabled": false,
+              "policy": "constant zero baseline; no schedule or controller"
+            },
+            "adhesion_expected": {
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "enabled": false,
+              "policy": "constant zero baseline; no schedule or controller"
+            },
+            "control_actual": "position",
+            "control_expected": "position",
+            "model": {
+              "gravity": [
+                0.0,
+                0.0,
+                -9810.0
+              ],
+              "ground": "FlyGym FlatTerrain plus static m5d2c_calibration_surface positioned once at reset under LMTarsus5",
+              "ground_dynamic_after_reset": false,
+              "locomotion_or_reference_controller": false
+            },
+            "runtime_factory": "malecns_backend.embodiment._windows_m7d_corrected_spontaneous_adapter._runtime",
+            "spawn_orientation_euler_expected": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "spawn_position_expected": [
+              0.0,
+              0.0,
+              0.6045752232266313
+            ],
+            "static_tripod": {
+              "actual_source": "caller-supplied frozen physical runtime",
+              "expected_identity": "tripod",
+              "expected_source": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m7c_initial_stability\\m7c_b3_tripod_support_height.json"
+            }
+          },
+          "state_zero": {
+            "baseline_joint_vector": {
+              "actual_dtype": "float",
+              "actual_shape": [
+                42
+              ],
+              "expected_dtype": "JSON number (frozen B3 float values)",
+              "expected_shape": [
+                42
+              ],
+              "maximum_absolute_difference": 0.0,
+              "maximum_difference_index": 0,
+              "maximum_difference_joint": "joint_LFCoxa",
+              "targets": [
+                {
+                  "actual": -0.01378601137548685,
+                  "delta": 0.0,
+                  "expected": -0.01378601137548685,
+                  "index": 0,
+                  "joint": "joint_LFCoxa"
+                },
+                {
+                  "actual": -0.00025236228248104453,
+                  "delta": 0.0,
+                  "expected": -0.00025236228248104453,
+                  "index": 1,
+                  "joint": "joint_LFCoxa_roll"
+                },
+                {
+                  "actual": 0.0026297986041754484,
+                  "delta": 0.0,
+                  "expected": 0.0026297986041754484,
+                  "index": 2,
+                  "joint": "joint_LFCoxa_yaw"
+                },
+                {
+                  "actual": -1.1793841123580933,
+                  "delta": 0.0,
+                  "expected": -1.1793841123580933,
+                  "index": 3,
+                  "joint": "joint_LFFemur"
+                },
+                {
+                  "actual": -0.0017620716243982315,
+                  "delta": 0.0,
+                  "expected": -0.0017620716243982315,
+                  "index": 4,
+                  "joint": "joint_LFFemur_roll"
+                },
+                {
+                  "actual": 0.7576697468757629,
+                  "delta": 0.0,
+                  "expected": 0.7576697468757629,
+                  "index": 5,
+                  "joint": "joint_LFTibia"
+                },
+                {
+                  "actual": -0.14223375916481018,
+                  "delta": 0.0,
+                  "expected": -0.14223375916481018,
+                  "index": 6,
+                  "joint": "joint_LFTarsus1"
+                },
+                {
+                  "actual": 0.03598107770085335,
+                  "delta": 0.0,
+                  "expected": 0.03598107770085335,
+                  "index": 7,
+                  "joint": "joint_LMCoxa"
+                },
+                {
+                  "actual": 1.7781654596328735,
+                  "delta": 0.0,
+                  "expected": 1.7781654596328735,
+                  "index": 8,
+                  "joint": "joint_LMCoxa_roll"
+                },
+                {
+                  "actual": 0.21877549588680267,
+                  "delta": 0.0,
+                  "expected": 0.21877549588680267,
+                  "index": 9,
+                  "joint": "joint_LMCoxa_yaw"
+                },
+                {
+                  "actual": -1.6747645139694214,
+                  "delta": 0.0,
+                  "expected": -1.6747645139694214,
+                  "index": 10,
+                  "joint": "joint_LMFemur"
+                },
+                {
+                  "actual": -0.0034093402791768312,
+                  "delta": 0.0,
+                  "expected": -0.0034093402791768312,
+                  "index": 11,
+                  "joint": "joint_LMFemur_roll"
+                },
+                {
+                  "actual": 1.7638238668441772,
+                  "delta": 0.0,
+                  "expected": 1.7638238668441772,
+                  "index": 12,
+                  "joint": "joint_LMTibia"
+                },
+                {
+                  "actual": -0.12028518319129944,
+                  "delta": 0.0,
+                  "expected": -0.12028518319129944,
+                  "index": 13,
+                  "joint": "joint_LMTarsus1"
+                },
+                {
+                  "actual": 0.02112620882689953,
+                  "delta": 0.0,
+                  "expected": 0.02112620882689953,
+                  "index": 14,
+                  "joint": "joint_LHCoxa"
+                },
+                {
+                  "actual": 2.401829957962036,
+                  "delta": 0.0,
+                  "expected": 2.401829957962036,
+                  "index": 15,
+                  "joint": "joint_LHCoxa_roll"
+                },
+                {
+                  "actual": 0.18669065833091736,
+                  "delta": 0.0,
+                  "expected": 0.18669065833091736,
+                  "index": 16,
+                  "joint": "joint_LHCoxa_yaw"
+                },
+                {
+                  "actual": -1.560032844543457,
+                  "delta": 0.0,
+                  "expected": -1.560032844543457,
+                  "index": 17,
+                  "joint": "joint_LHFemur"
+                },
+                {
+                  "actual": -0.14132468402385712,
+                  "delta": 0.0,
+                  "expected": -0.14132468402385712,
+                  "index": 18,
+                  "joint": "joint_LHFemur_roll"
+                },
+                {
+                  "actual": 1.1483670473098755,
+                  "delta": 0.0,
+                  "expected": 1.1483670473098755,
+                  "index": 19,
+                  "joint": "joint_LHTibia"
+                },
+                {
+                  "actual": -0.10569198429584503,
+                  "delta": 0.0,
+                  "expected": -0.10569198429584503,
+                  "index": 20,
+                  "joint": "joint_LHTarsus1"
+                },
+                {
+                  "actual": -0.0013245590962469578,
+                  "delta": 0.0,
+                  "expected": -0.0013245590962469578,
+                  "index": 21,
+                  "joint": "joint_RFCoxa"
+                },
+                {
+                  "actual": 0.001191056682728231,
+                  "delta": 0.0,
+                  "expected": 0.001191056682728231,
+                  "index": 22,
+                  "joint": "joint_RFCoxa_roll"
+                },
+                {
+                  "actual": -0.00048262756899930537,
+                  "delta": 0.0,
+                  "expected": -0.00048262756899930537,
+                  "index": 23,
+                  "joint": "joint_RFCoxa_yaw"
+                },
+                {
+                  "actual": -1.3108537197113037,
+                  "delta": 0.0,
+                  "expected": -1.3108537197113037,
+                  "index": 24,
+                  "joint": "joint_RFFemur"
+                },
+                {
+                  "actual": 0.0003741272957995534,
+                  "delta": 0.0,
+                  "expected": 0.0003741272957995534,
+                  "index": 25,
+                  "joint": "joint_RFFemur_roll"
+                },
+                {
+                  "actual": 0.8962323665618896,
+                  "delta": 0.0,
+                  "expected": 0.8962323665618896,
+                  "index": 26,
+                  "joint": "joint_RFTibia"
+                },
+                {
+                  "actual": -0.17225642502307892,
+                  "delta": 0.0,
+                  "expected": -0.17225642502307892,
+                  "index": 27,
+                  "joint": "joint_RFTarsus1"
+                },
+                {
+                  "actual": 0.011523355729877949,
+                  "delta": 0.0,
+                  "expected": 0.011523355729877949,
+                  "index": 28,
+                  "joint": "joint_RMCoxa"
+                },
+                {
+                  "actual": -1.8260176181793213,
+                  "delta": 0.0,
+                  "expected": -1.8260176181793213,
+                  "index": 29,
+                  "joint": "joint_RMCoxa_roll"
+                },
+                {
+                  "actual": -0.105523481965065,
+                  "delta": 0.0,
+                  "expected": -0.105523481965065,
+                  "index": 30,
+                  "joint": "joint_RMCoxa_yaw"
+                },
+                {
+                  "actual": -1.8363397121429443,
+                  "delta": 0.0,
+                  "expected": -1.8363397121429443,
+                  "index": 31,
+                  "joint": "joint_RMFemur"
+                },
+                {
+                  "actual": 0.0019978152122348547,
+                  "delta": 0.0,
+                  "expected": 0.0019978152122348547,
+                  "index": 32,
+                  "joint": "joint_RMFemur_roll"
+                },
+                {
+                  "actual": 1.7278085947036743,
+                  "delta": 0.0,
+                  "expected": 1.7278085947036743,
+                  "index": 33,
+                  "joint": "joint_RMTibia"
+                },
+                {
+                  "actual": -0.03337957337498665,
+                  "delta": 0.0,
+                  "expected": -0.03337957337498665,
+                  "index": 34,
+                  "joint": "joint_RMTarsus1"
+                },
+                {
+                  "actual": 0.27960363030433655,
+                  "delta": 0.0,
+                  "expected": 0.27960363030433655,
+                  "index": 35,
+                  "joint": "joint_RHCoxa"
+                },
+                {
+                  "actual": -2.4415981769561768,
+                  "delta": 0.0,
+                  "expected": -2.4415981769561768,
+                  "index": 36,
+                  "joint": "joint_RHCoxa_roll"
+                },
+                {
+                  "actual": -0.1381906419992447,
+                  "delta": 0.0,
+                  "expected": -0.1381906419992447,
+                  "index": 37,
+                  "joint": "joint_RHCoxa_yaw"
+                },
+                {
+                  "actual": -1.31553053855896,
+                  "delta": 0.0,
+                  "expected": -1.31553053855896,
+                  "index": 38,
+                  "joint": "joint_RHFemur"
+                },
+                {
+                  "actual": -0.26682204008102417,
+                  "delta": 0.0,
+                  "expected": -0.26682204008102417,
+                  "index": 39,
+                  "joint": "joint_RHFemur_roll"
+                },
+                {
+                  "actual": 1.1447480916976929,
+                  "delta": 0.0,
+                  "expected": 1.1447480916976929,
+                  "index": 40,
+                  "joint": "joint_RHTibia"
+                },
+                {
+                  "actual": -0.3836708664894104,
+                  "delta": 0.0,
+                  "expected": -0.3836708664894104,
+                  "index": 41,
+                  "joint": "joint_RHTarsus1"
+                }
+              ]
+            },
+            "qpos": [
+              0.0,
+              0.0,
+              0.6045752232266313,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0026297986774267853,
+              -0.013786011209829531,
+              -0.0002523622955142488,
+              -1.179384164839487,
+              -0.0017620716456228183,
+              0.7576697527152239,
+              -0.14223376459034956,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.18669065806232432,
+              0.021126209394829457,
+              2.40182983936772,
+              -1.5600327984359073,
+              -0.1413246811303093,
+              1.1483670219522084,
+              -0.10569198371949849,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.218775497321695,
+              0.03598107675464884,
+              1.7781654369575668,
+              -1.6747644921106808,
+              -0.003409340294187225,
+              1.7638238818766956,
+              -0.12028518120716244,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -0.13819064547360718,
+              0.27960362589505483,
+              -2.441598208611467,
+              -1.3155305945251143,
+              -0.26682204917270513,
+              1.1447480632864273,
+              -0.3836708584059661,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -0.10552348033533762,
+              0.011523355635855924,
+              -1.8260175599723456,
+              -1.83633975605308,
+              0.0019978151339155215,
+              1.727808616914636,
+              -0.0333795739975935,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -0.00048262756867217794,
+              -0.0013245590523738352,
+              0.0011910567303813648,
+              -1.3108537227850876,
+              0.0003741273017454201,
+              0.8962323508935617,
+              -0.17225643006286973,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "qvel": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "root_orientation_quaternion": {
+              "actual": [
+                1.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "delta": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "expected": [
+                1.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "root_position": {
+              "actual": [
+                0.0,
+                0.0,
+                0.6045752232266313
+              ],
+              "delta": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "expected": [
+                0.0,
+                0.0,
+                0.6045752232266313
+              ]
+            }
+          }
+        },
+        {
+          "compiled_body_names": {
+            "0": "world",
+            "1": "2/",
+            "2": "2/FlyBody",
+            "3": "2/Thorax",
+            "4": "2/A1A2",
+            "5": "2/A3",
+            "6": "2/A4",
+            "7": "2/A5",
+            "8": "2/A6",
+            "9": "2/LHaltere",
+            "10": "2/LWing",
+            "11": "2/RHaltere",
+            "12": "2/RWing",
+            "13": "2/LFCoxa",
+            "14": "2/LFFemur",
+            "15": "2/LFTibia",
+            "16": "2/LFTarsus1",
+            "17": "2/LFTarsus2",
+            "18": "2/LFTarsus3",
+            "19": "2/LFTarsus4",
+            "20": "2/LFTarsus5",
+            "21": "2/LHCoxa",
+            "22": "2/LHFemur",
+            "23": "2/LHTibia",
+            "24": "2/LHTarsus1",
+            "25": "2/LHTarsus2",
+            "26": "2/LHTarsus3",
+            "27": "2/LHTarsus4",
+            "28": "2/LHTarsus5",
+            "29": "2/LMCoxa",
+            "30": "2/LMFemur",
+            "31": "2/LMTibia",
+            "32": "2/LMTarsus1",
+            "33": "2/LMTarsus2",
+            "34": "2/LMTarsus3",
+            "35": "2/LMTarsus4",
+            "36": "2/LMTarsus5",
+            "37": "2/RHCoxa",
+            "38": "2/RHFemur",
+            "39": "2/RHTibia",
+            "40": "2/RHTarsus1",
+            "41": "2/RHTarsus2",
+            "42": "2/RHTarsus3",
+            "43": "2/RHTarsus4",
+            "44": "2/RHTarsus5",
+            "45": "2/RMCoxa",
+            "46": "2/RMFemur",
+            "47": "2/RMTibia",
+            "48": "2/RMTarsus1",
+            "49": "2/RMTarsus2",
+            "50": "2/RMTarsus3",
+            "51": "2/RMTarsus4",
+            "52": "2/RMTarsus5",
+            "53": "2/RFCoxa",
+            "54": "2/RFFemur",
+            "55": "2/RFTibia",
+            "56": "2/RFTarsus1",
+            "57": "2/RFTarsus2",
+            "58": "2/RFTarsus3",
+            "59": "2/RFTarsus4",
+            "60": "2/RFTarsus5",
+            "61": "2/Head",
+            "62": "2/LEye",
+            "63": "2/REye",
+            "64": "2/Rostrum",
+            "65": "2/Haustellum",
+            "66": "2/LPedicel",
+            "67": "2/LFuniculus",
+            "68": "2/LArista",
+            "69": "2/RPedicel",
+            "70": "2/RFuniculus",
+            "71": "2/RArista"
+          },
+          "compiled_body_terminal_names": {
+            "0": "world",
+            "1": "",
+            "2": "FlyBody",
+            "3": "Thorax",
+            "4": "A1A2",
+            "5": "A3",
+            "6": "A4",
+            "7": "A5",
+            "8": "A6",
+            "9": "LHaltere",
+            "10": "LWing",
+            "11": "RHaltere",
+            "12": "RWing",
+            "13": "LFCoxa",
+            "14": "LFFemur",
+            "15": "LFTibia",
+            "16": "LFTarsus1",
+            "17": "LFTarsus2",
+            "18": "LFTarsus3",
+            "19": "LFTarsus4",
+            "20": "LFTarsus5",
+            "21": "LHCoxa",
+            "22": "LHFemur",
+            "23": "LHTibia",
+            "24": "LHTarsus1",
+            "25": "LHTarsus2",
+            "26": "LHTarsus3",
+            "27": "LHTarsus4",
+            "28": "LHTarsus5",
+            "29": "LMCoxa",
+            "30": "LMFemur",
+            "31": "LMTibia",
+            "32": "LMTarsus1",
+            "33": "LMTarsus2",
+            "34": "LMTarsus3",
+            "35": "LMTarsus4",
+            "36": "LMTarsus5",
+            "37": "RHCoxa",
+            "38": "RHFemur",
+            "39": "RHTibia",
+            "40": "RHTarsus1",
+            "41": "RHTarsus2",
+            "42": "RHTarsus3",
+            "43": "RHTarsus4",
+            "44": "RHTarsus5",
+            "45": "RMCoxa",
+            "46": "RMFemur",
+            "47": "RMTibia",
+            "48": "RMTarsus1",
+            "49": "RMTarsus2",
+            "50": "RMTarsus3",
+            "51": "RMTarsus4",
+            "52": "RMTarsus5",
+            "53": "RFCoxa",
+            "54": "RFFemur",
+            "55": "RFTibia",
+            "56": "RFTarsus1",
+            "57": "RFTarsus2",
+            "58": "RFTarsus3",
+            "59": "RFTarsus4",
+            "60": "RFTarsus5",
+            "61": "Head",
+            "62": "LEye",
+            "63": "REye",
+            "64": "Rostrum",
+            "65": "Haustellum",
+            "66": "LPedicel",
+            "67": "LFuniculus",
+            "68": "LArista",
+            "69": "RPedicel",
+            "70": "RFuniculus",
+            "71": "RArista"
+          },
+          "condition": "A_C",
+          "configuration": {
+            "adhesion_actual": {
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "enabled": false,
+              "policy": "constant zero baseline; no schedule or controller"
+            },
+            "adhesion_expected": {
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "enabled": false,
+              "policy": "constant zero baseline; no schedule or controller"
+            },
+            "control_actual": "position",
+            "control_expected": "position",
+            "model": {
+              "gravity": [
+                0.0,
+                0.0,
+                -9810.0
+              ],
+              "ground": "FlyGym FlatTerrain plus static m5d2c_calibration_surface positioned once at reset under LMTarsus5",
+              "ground_dynamic_after_reset": false,
+              "locomotion_or_reference_controller": false
+            },
+            "runtime_factory": "malecns_backend.embodiment._windows_m7d_corrected_spontaneous_adapter._runtime",
+            "spawn_orientation_euler_expected": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "spawn_position_expected": [
+              0.0,
+              0.0,
+              0.6045752232266313
+            ],
+            "static_tripod": {
+              "actual_source": "caller-supplied frozen physical runtime",
+              "expected_identity": "tripod",
+              "expected_source": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m7c_initial_stability\\m7c_b3_tripod_support_height.json"
+            }
+          },
+          "state_zero": {
+            "baseline_joint_vector": {
+              "actual_dtype": "float",
+              "actual_shape": [
+                42
+              ],
+              "expected_dtype": "JSON number (frozen B3 float values)",
+              "expected_shape": [
+                42
+              ],
+              "maximum_absolute_difference": 0.0,
+              "maximum_difference_index": 0,
+              "maximum_difference_joint": "joint_LFCoxa",
+              "targets": [
+                {
+                  "actual": -0.01378601137548685,
+                  "delta": 0.0,
+                  "expected": -0.01378601137548685,
+                  "index": 0,
+                  "joint": "joint_LFCoxa"
+                },
+                {
+                  "actual": -0.00025236228248104453,
+                  "delta": 0.0,
+                  "expected": -0.00025236228248104453,
+                  "index": 1,
+                  "joint": "joint_LFCoxa_roll"
+                },
+                {
+                  "actual": 0.0026297986041754484,
+                  "delta": 0.0,
+                  "expected": 0.0026297986041754484,
+                  "index": 2,
+                  "joint": "joint_LFCoxa_yaw"
+                },
+                {
+                  "actual": -1.1793841123580933,
+                  "delta": 0.0,
+                  "expected": -1.1793841123580933,
+                  "index": 3,
+                  "joint": "joint_LFFemur"
+                },
+                {
+                  "actual": -0.0017620716243982315,
+                  "delta": 0.0,
+                  "expected": -0.0017620716243982315,
+                  "index": 4,
+                  "joint": "joint_LFFemur_roll"
+                },
+                {
+                  "actual": 0.7576697468757629,
+                  "delta": 0.0,
+                  "expected": 0.7576697468757629,
+                  "index": 5,
+                  "joint": "joint_LFTibia"
+                },
+                {
+                  "actual": -0.14223375916481018,
+                  "delta": 0.0,
+                  "expected": -0.14223375916481018,
+                  "index": 6,
+                  "joint": "joint_LFTarsus1"
+                },
+                {
+                  "actual": 0.03598107770085335,
+                  "delta": 0.0,
+                  "expected": 0.03598107770085335,
+                  "index": 7,
+                  "joint": "joint_LMCoxa"
+                },
+                {
+                  "actual": 1.7781654596328735,
+                  "delta": 0.0,
+                  "expected": 1.7781654596328735,
+                  "index": 8,
+                  "joint": "joint_LMCoxa_roll"
+                },
+                {
+                  "actual": 0.21877549588680267,
+                  "delta": 0.0,
+                  "expected": 0.21877549588680267,
+                  "index": 9,
+                  "joint": "joint_LMCoxa_yaw"
+                },
+                {
+                  "actual": -1.6747645139694214,
+                  "delta": 0.0,
+                  "expected": -1.6747645139694214,
+                  "index": 10,
+                  "joint": "joint_LMFemur"
+                },
+                {
+                  "actual": -0.0034093402791768312,
+                  "delta": 0.0,
+                  "expected": -0.0034093402791768312,
+                  "index": 11,
+                  "joint": "joint_LMFemur_roll"
+                },
+                {
+                  "actual": 1.7638238668441772,
+                  "delta": 0.0,
+                  "expected": 1.7638238668441772,
+                  "index": 12,
+                  "joint": "joint_LMTibia"
+                },
+                {
+                  "actual": -0.12028518319129944,
+                  "delta": 0.0,
+                  "expected": -0.12028518319129944,
+                  "index": 13,
+                  "joint": "joint_LMTarsus1"
+                },
+                {
+                  "actual": 0.02112620882689953,
+                  "delta": 0.0,
+                  "expected": 0.02112620882689953,
+                  "index": 14,
+                  "joint": "joint_LHCoxa"
+                },
+                {
+                  "actual": 2.401829957962036,
+                  "delta": 0.0,
+                  "expected": 2.401829957962036,
+                  "index": 15,
+                  "joint": "joint_LHCoxa_roll"
+                },
+                {
+                  "actual": 0.18669065833091736,
+                  "delta": 0.0,
+                  "expected": 0.18669065833091736,
+                  "index": 16,
+                  "joint": "joint_LHCoxa_yaw"
+                },
+                {
+                  "actual": -1.560032844543457,
+                  "delta": 0.0,
+                  "expected": -1.560032844543457,
+                  "index": 17,
+                  "joint": "joint_LHFemur"
+                },
+                {
+                  "actual": -0.14132468402385712,
+                  "delta": 0.0,
+                  "expected": -0.14132468402385712,
+                  "index": 18,
+                  "joint": "joint_LHFemur_roll"
+                },
+                {
+                  "actual": 1.1483670473098755,
+                  "delta": 0.0,
+                  "expected": 1.1483670473098755,
+                  "index": 19,
+                  "joint": "joint_LHTibia"
+                },
+                {
+                  "actual": -0.10569198429584503,
+                  "delta": 0.0,
+                  "expected": -0.10569198429584503,
+                  "index": 20,
+                  "joint": "joint_LHTarsus1"
+                },
+                {
+                  "actual": -0.0013245590962469578,
+                  "delta": 0.0,
+                  "expected": -0.0013245590962469578,
+                  "index": 21,
+                  "joint": "joint_RFCoxa"
+                },
+                {
+                  "actual": 0.001191056682728231,
+                  "delta": 0.0,
+                  "expected": 0.001191056682728231,
+                  "index": 22,
+                  "joint": "joint_RFCoxa_roll"
+                },
+                {
+                  "actual": -0.00048262756899930537,
+                  "delta": 0.0,
+                  "expected": -0.00048262756899930537,
+                  "index": 23,
+                  "joint": "joint_RFCoxa_yaw"
+                },
+                {
+                  "actual": -1.3108537197113037,
+                  "delta": 0.0,
+                  "expected": -1.3108537197113037,
+                  "index": 24,
+                  "joint": "joint_RFFemur"
+                },
+                {
+                  "actual": 0.0003741272957995534,
+                  "delta": 0.0,
+                  "expected": 0.0003741272957995534,
+                  "index": 25,
+                  "joint": "joint_RFFemur_roll"
+                },
+                {
+                  "actual": 0.8962323665618896,
+                  "delta": 0.0,
+                  "expected": 0.8962323665618896,
+                  "index": 26,
+                  "joint": "joint_RFTibia"
+                },
+                {
+                  "actual": -0.17225642502307892,
+                  "delta": 0.0,
+                  "expected": -0.17225642502307892,
+                  "index": 27,
+                  "joint": "joint_RFTarsus1"
+                },
+                {
+                  "actual": 0.011523355729877949,
+                  "delta": 0.0,
+                  "expected": 0.011523355729877949,
+                  "index": 28,
+                  "joint": "joint_RMCoxa"
+                },
+                {
+                  "actual": -1.8260176181793213,
+                  "delta": 0.0,
+                  "expected": -1.8260176181793213,
+                  "index": 29,
+                  "joint": "joint_RMCoxa_roll"
+                },
+                {
+                  "actual": -0.105523481965065,
+                  "delta": 0.0,
+                  "expected": -0.105523481965065,
+                  "index": 30,
+                  "joint": "joint_RMCoxa_yaw"
+                },
+                {
+                  "actual": -1.8363397121429443,
+                  "delta": 0.0,
+                  "expected": -1.8363397121429443,
+                  "index": 31,
+                  "joint": "joint_RMFemur"
+                },
+                {
+                  "actual": 0.0019978152122348547,
+                  "delta": 0.0,
+                  "expected": 0.0019978152122348547,
+                  "index": 32,
+                  "joint": "joint_RMFemur_roll"
+                },
+                {
+                  "actual": 1.7278085947036743,
+                  "delta": 0.0,
+                  "expected": 1.7278085947036743,
+                  "index": 33,
+                  "joint": "joint_RMTibia"
+                },
+                {
+                  "actual": -0.03337957337498665,
+                  "delta": 0.0,
+                  "expected": -0.03337957337498665,
+                  "index": 34,
+                  "joint": "joint_RMTarsus1"
+                },
+                {
+                  "actual": 0.27960363030433655,
+                  "delta": 0.0,
+                  "expected": 0.27960363030433655,
+                  "index": 35,
+                  "joint": "joint_RHCoxa"
+                },
+                {
+                  "actual": -2.4415981769561768,
+                  "delta": 0.0,
+                  "expected": -2.4415981769561768,
+                  "index": 36,
+                  "joint": "joint_RHCoxa_roll"
+                },
+                {
+                  "actual": -0.1381906419992447,
+                  "delta": 0.0,
+                  "expected": -0.1381906419992447,
+                  "index": 37,
+                  "joint": "joint_RHCoxa_yaw"
+                },
+                {
+                  "actual": -1.31553053855896,
+                  "delta": 0.0,
+                  "expected": -1.31553053855896,
+                  "index": 38,
+                  "joint": "joint_RHFemur"
+                },
+                {
+                  "actual": -0.26682204008102417,
+                  "delta": 0.0,
+                  "expected": -0.26682204008102417,
+                  "index": 39,
+                  "joint": "joint_RHFemur_roll"
+                },
+                {
+                  "actual": 1.1447480916976929,
+                  "delta": 0.0,
+                  "expected": 1.1447480916976929,
+                  "index": 40,
+                  "joint": "joint_RHTibia"
+                },
+                {
+                  "actual": -0.3836708664894104,
+                  "delta": 0.0,
+                  "expected": -0.3836708664894104,
+                  "index": 41,
+                  "joint": "joint_RHTarsus1"
+                }
+              ]
+            },
+            "qpos": [
+              0.0,
+              0.0,
+              0.6045752232266313,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0026297986774267853,
+              -0.013786011209829531,
+              -0.0002523622955142488,
+              -1.179384164839487,
+              -0.0017620716456228183,
+              0.7576697527152239,
+              -0.14223376459034956,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.18669065806232432,
+              0.021126209394829457,
+              2.40182983936772,
+              -1.5600327984359073,
+              -0.1413246811303093,
+              1.1483670219522084,
+              -0.10569198371949849,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.218775497321695,
+              0.03598107675464884,
+              1.7781654369575668,
+              -1.6747644921106808,
+              -0.003409340294187225,
+              1.7638238818766956,
+              -0.12028518120716244,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -0.13819064547360718,
+              0.27960362589505483,
+              -2.441598208611467,
+              -1.3155305945251143,
+              -0.26682204917270513,
+              1.1447480632864273,
+              -0.3836708584059661,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -0.10552348033533762,
+              0.011523355635855924,
+              -1.8260175599723456,
+              -1.83633975605308,
+              0.0019978151339155215,
+              1.727808616914636,
+              -0.0333795739975935,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -0.00048262756867217794,
+              -0.0013245590523738352,
+              0.0011910567303813648,
+              -1.3108537227850876,
+              0.0003741273017454201,
+              0.8962323508935617,
+              -0.17225643006286973,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "qvel": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "root_orientation_quaternion": {
+              "actual": [
+                1.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "delta": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "expected": [
+                1.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "root_position": {
+              "actual": [
+                0.0,
+                0.0,
+                0.6045752232266313
+              ],
+              "delta": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "expected": [
+                0.0,
+                0.0,
+                0.6045752232266313
+              ]
+            }
+          }
+        },
+        {
+          "compiled_body_names": {
+            "0": "world",
+            "1": "3/",
+            "2": "3/FlyBody",
+            "3": "3/Thorax",
+            "4": "3/A1A2",
+            "5": "3/A3",
+            "6": "3/A4",
+            "7": "3/A5",
+            "8": "3/A6",
+            "9": "3/LHaltere",
+            "10": "3/LWing",
+            "11": "3/RHaltere",
+            "12": "3/RWing",
+            "13": "3/LFCoxa",
+            "14": "3/LFFemur",
+            "15": "3/LFTibia",
+            "16": "3/LFTarsus1",
+            "17": "3/LFTarsus2",
+            "18": "3/LFTarsus3",
+            "19": "3/LFTarsus4",
+            "20": "3/LFTarsus5",
+            "21": "3/LHCoxa",
+            "22": "3/LHFemur",
+            "23": "3/LHTibia",
+            "24": "3/LHTarsus1",
+            "25": "3/LHTarsus2",
+            "26": "3/LHTarsus3",
+            "27": "3/LHTarsus4",
+            "28": "3/LHTarsus5",
+            "29": "3/LMCoxa",
+            "30": "3/LMFemur",
+            "31": "3/LMTibia",
+            "32": "3/LMTarsus1",
+            "33": "3/LMTarsus2",
+            "34": "3/LMTarsus3",
+            "35": "3/LMTarsus4",
+            "36": "3/LMTarsus5",
+            "37": "3/RHCoxa",
+            "38": "3/RHFemur",
+            "39": "3/RHTibia",
+            "40": "3/RHTarsus1",
+            "41": "3/RHTarsus2",
+            "42": "3/RHTarsus3",
+            "43": "3/RHTarsus4",
+            "44": "3/RHTarsus5",
+            "45": "3/RMCoxa",
+            "46": "3/RMFemur",
+            "47": "3/RMTibia",
+            "48": "3/RMTarsus1",
+            "49": "3/RMTarsus2",
+            "50": "3/RMTarsus3",
+            "51": "3/RMTarsus4",
+            "52": "3/RMTarsus5",
+            "53": "3/RFCoxa",
+            "54": "3/RFFemur",
+            "55": "3/RFTibia",
+            "56": "3/RFTarsus1",
+            "57": "3/RFTarsus2",
+            "58": "3/RFTarsus3",
+            "59": "3/RFTarsus4",
+            "60": "3/RFTarsus5",
+            "61": "3/Head",
+            "62": "3/LEye",
+            "63": "3/REye",
+            "64": "3/Rostrum",
+            "65": "3/Haustellum",
+            "66": "3/LPedicel",
+            "67": "3/LFuniculus",
+            "68": "3/LArista",
+            "69": "3/RPedicel",
+            "70": "3/RFuniculus",
+            "71": "3/RArista"
+          },
+          "compiled_body_terminal_names": {
+            "0": "world",
+            "1": "",
+            "2": "FlyBody",
+            "3": "Thorax",
+            "4": "A1A2",
+            "5": "A3",
+            "6": "A4",
+            "7": "A5",
+            "8": "A6",
+            "9": "LHaltere",
+            "10": "LWing",
+            "11": "RHaltere",
+            "12": "RWing",
+            "13": "LFCoxa",
+            "14": "LFFemur",
+            "15": "LFTibia",
+            "16": "LFTarsus1",
+            "17": "LFTarsus2",
+            "18": "LFTarsus3",
+            "19": "LFTarsus4",
+            "20": "LFTarsus5",
+            "21": "LHCoxa",
+            "22": "LHFemur",
+            "23": "LHTibia",
+            "24": "LHTarsus1",
+            "25": "LHTarsus2",
+            "26": "LHTarsus3",
+            "27": "LHTarsus4",
+            "28": "LHTarsus5",
+            "29": "LMCoxa",
+            "30": "LMFemur",
+            "31": "LMTibia",
+            "32": "LMTarsus1",
+            "33": "LMTarsus2",
+            "34": "LMTarsus3",
+            "35": "LMTarsus4",
+            "36": "LMTarsus5",
+            "37": "RHCoxa",
+            "38": "RHFemur",
+            "39": "RHTibia",
+            "40": "RHTarsus1",
+            "41": "RHTarsus2",
+            "42": "RHTarsus3",
+            "43": "RHTarsus4",
+            "44": "RHTarsus5",
+            "45": "RMCoxa",
+            "46": "RMFemur",
+            "47": "RMTibia",
+            "48": "RMTarsus1",
+            "49": "RMTarsus2",
+            "50": "RMTarsus3",
+            "51": "RMTarsus4",
+            "52": "RMTarsus5",
+            "53": "RFCoxa",
+            "54": "RFFemur",
+            "55": "RFTibia",
+            "56": "RFTarsus1",
+            "57": "RFTarsus2",
+            "58": "RFTarsus3",
+            "59": "RFTarsus4",
+            "60": "RFTarsus5",
+            "61": "Head",
+            "62": "LEye",
+            "63": "REye",
+            "64": "Rostrum",
+            "65": "Haustellum",
+            "66": "LPedicel",
+            "67": "LFuniculus",
+            "68": "LArista",
+            "69": "RPedicel",
+            "70": "RFuniculus",
+            "71": "RArista"
+          },
+          "condition": "B_P",
+          "configuration": {
+            "adhesion_actual": {
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "enabled": false,
+              "policy": "constant zero baseline; no schedule or controller"
+            },
+            "adhesion_expected": {
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "enabled": false,
+              "policy": "constant zero baseline; no schedule or controller"
+            },
+            "control_actual": "position",
+            "control_expected": "position",
+            "model": {
+              "gravity": [
+                0.0,
+                0.0,
+                -9810.0
+              ],
+              "ground": "FlyGym FlatTerrain plus static m5d2c_calibration_surface positioned once at reset under LMTarsus5",
+              "ground_dynamic_after_reset": false,
+              "locomotion_or_reference_controller": false
+            },
+            "runtime_factory": "malecns_backend.embodiment._windows_m7d_corrected_spontaneous_adapter._runtime",
+            "spawn_orientation_euler_expected": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "spawn_position_expected": [
+              0.0,
+              0.0,
+              0.6045752232266313
+            ],
+            "static_tripod": {
+              "actual_source": "caller-supplied frozen physical runtime",
+              "expected_identity": "tripod",
+              "expected_source": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m7c_initial_stability\\m7c_b3_tripod_support_height.json"
+            }
+          },
+          "state_zero": {
+            "baseline_joint_vector": {
+              "actual_dtype": "float",
+              "actual_shape": [
+                42
+              ],
+              "expected_dtype": "JSON number (frozen B3 float values)",
+              "expected_shape": [
+                42
+              ],
+              "maximum_absolute_difference": 0.0,
+              "maximum_difference_index": 0,
+              "maximum_difference_joint": "joint_LFCoxa",
+              "targets": [
+                {
+                  "actual": -0.01378601137548685,
+                  "delta": 0.0,
+                  "expected": -0.01378601137548685,
+                  "index": 0,
+                  "joint": "joint_LFCoxa"
+                },
+                {
+                  "actual": -0.00025236228248104453,
+                  "delta": 0.0,
+                  "expected": -0.00025236228248104453,
+                  "index": 1,
+                  "joint": "joint_LFCoxa_roll"
+                },
+                {
+                  "actual": 0.0026297986041754484,
+                  "delta": 0.0,
+                  "expected": 0.0026297986041754484,
+                  "index": 2,
+                  "joint": "joint_LFCoxa_yaw"
+                },
+                {
+                  "actual": -1.1793841123580933,
+                  "delta": 0.0,
+                  "expected": -1.1793841123580933,
+                  "index": 3,
+                  "joint": "joint_LFFemur"
+                },
+                {
+                  "actual": -0.0017620716243982315,
+                  "delta": 0.0,
+                  "expected": -0.0017620716243982315,
+                  "index": 4,
+                  "joint": "joint_LFFemur_roll"
+                },
+                {
+                  "actual": 0.7576697468757629,
+                  "delta": 0.0,
+                  "expected": 0.7576697468757629,
+                  "index": 5,
+                  "joint": "joint_LFTibia"
+                },
+                {
+                  "actual": -0.14223375916481018,
+                  "delta": 0.0,
+                  "expected": -0.14223375916481018,
+                  "index": 6,
+                  "joint": "joint_LFTarsus1"
+                },
+                {
+                  "actual": 0.03598107770085335,
+                  "delta": 0.0,
+                  "expected": 0.03598107770085335,
+                  "index": 7,
+                  "joint": "joint_LMCoxa"
+                },
+                {
+                  "actual": 1.7781654596328735,
+                  "delta": 0.0,
+                  "expected": 1.7781654596328735,
+                  "index": 8,
+                  "joint": "joint_LMCoxa_roll"
+                },
+                {
+                  "actual": 0.21877549588680267,
+                  "delta": 0.0,
+                  "expected": 0.21877549588680267,
+                  "index": 9,
+                  "joint": "joint_LMCoxa_yaw"
+                },
+                {
+                  "actual": -1.6747645139694214,
+                  "delta": 0.0,
+                  "expected": -1.6747645139694214,
+                  "index": 10,
+                  "joint": "joint_LMFemur"
+                },
+                {
+                  "actual": -0.0034093402791768312,
+                  "delta": 0.0,
+                  "expected": -0.0034093402791768312,
+                  "index": 11,
+                  "joint": "joint_LMFemur_roll"
+                },
+                {
+                  "actual": 1.7638238668441772,
+                  "delta": 0.0,
+                  "expected": 1.7638238668441772,
+                  "index": 12,
+                  "joint": "joint_LMTibia"
+                },
+                {
+                  "actual": -0.12028518319129944,
+                  "delta": 0.0,
+                  "expected": -0.12028518319129944,
+                  "index": 13,
+                  "joint": "joint_LMTarsus1"
+                },
+                {
+                  "actual": 0.02112620882689953,
+                  "delta": 0.0,
+                  "expected": 0.02112620882689953,
+                  "index": 14,
+                  "joint": "joint_LHCoxa"
+                },
+                {
+                  "actual": 2.401829957962036,
+                  "delta": 0.0,
+                  "expected": 2.401829957962036,
+                  "index": 15,
+                  "joint": "joint_LHCoxa_roll"
+                },
+                {
+                  "actual": 0.18669065833091736,
+                  "delta": 0.0,
+                  "expected": 0.18669065833091736,
+                  "index": 16,
+                  "joint": "joint_LHCoxa_yaw"
+                },
+                {
+                  "actual": -1.560032844543457,
+                  "delta": 0.0,
+                  "expected": -1.560032844543457,
+                  "index": 17,
+                  "joint": "joint_LHFemur"
+                },
+                {
+                  "actual": -0.14132468402385712,
+                  "delta": 0.0,
+                  "expected": -0.14132468402385712,
+                  "index": 18,
+                  "joint": "joint_LHFemur_roll"
+                },
+                {
+                  "actual": 1.1483670473098755,
+                  "delta": 0.0,
+                  "expected": 1.1483670473098755,
+                  "index": 19,
+                  "joint": "joint_LHTibia"
+                },
+                {
+                  "actual": -0.10569198429584503,
+                  "delta": 0.0,
+                  "expected": -0.10569198429584503,
+                  "index": 20,
+                  "joint": "joint_LHTarsus1"
+                },
+                {
+                  "actual": -0.0013245590962469578,
+                  "delta": 0.0,
+                  "expected": -0.0013245590962469578,
+                  "index": 21,
+                  "joint": "joint_RFCoxa"
+                },
+                {
+                  "actual": 0.001191056682728231,
+                  "delta": 0.0,
+                  "expected": 0.001191056682728231,
+                  "index": 22,
+                  "joint": "joint_RFCoxa_roll"
+                },
+                {
+                  "actual": -0.00048262756899930537,
+                  "delta": 0.0,
+                  "expected": -0.00048262756899930537,
+                  "index": 23,
+                  "joint": "joint_RFCoxa_yaw"
+                },
+                {
+                  "actual": -1.3108537197113037,
+                  "delta": 0.0,
+                  "expected": -1.3108537197113037,
+                  "index": 24,
+                  "joint": "joint_RFFemur"
+                },
+                {
+                  "actual": 0.0003741272957995534,
+                  "delta": 0.0,
+                  "expected": 0.0003741272957995534,
+                  "index": 25,
+                  "joint": "joint_RFFemur_roll"
+                },
+                {
+                  "actual": 0.8962323665618896,
+                  "delta": 0.0,
+                  "expected": 0.8962323665618896,
+                  "index": 26,
+                  "joint": "joint_RFTibia"
+                },
+                {
+                  "actual": -0.17225642502307892,
+                  "delta": 0.0,
+                  "expected": -0.17225642502307892,
+                  "index": 27,
+                  "joint": "joint_RFTarsus1"
+                },
+                {
+                  "actual": 0.011523355729877949,
+                  "delta": 0.0,
+                  "expected": 0.011523355729877949,
+                  "index": 28,
+                  "joint": "joint_RMCoxa"
+                },
+                {
+                  "actual": -1.8260176181793213,
+                  "delta": 0.0,
+                  "expected": -1.8260176181793213,
+                  "index": 29,
+                  "joint": "joint_RMCoxa_roll"
+                },
+                {
+                  "actual": -0.105523481965065,
+                  "delta": 0.0,
+                  "expected": -0.105523481965065,
+                  "index": 30,
+                  "joint": "joint_RMCoxa_yaw"
+                },
+                {
+                  "actual": -1.8363397121429443,
+                  "delta": 0.0,
+                  "expected": -1.8363397121429443,
+                  "index": 31,
+                  "joint": "joint_RMFemur"
+                },
+                {
+                  "actual": 0.0019978152122348547,
+                  "delta": 0.0,
+                  "expected": 0.0019978152122348547,
+                  "index": 32,
+                  "joint": "joint_RMFemur_roll"
+                },
+                {
+                  "actual": 1.7278085947036743,
+                  "delta": 0.0,
+                  "expected": 1.7278085947036743,
+                  "index": 33,
+                  "joint": "joint_RMTibia"
+                },
+                {
+                  "actual": -0.03337957337498665,
+                  "delta": 0.0,
+                  "expected": -0.03337957337498665,
+                  "index": 34,
+                  "joint": "joint_RMTarsus1"
+                },
+                {
+                  "actual": 0.27960363030433655,
+                  "delta": 0.0,
+                  "expected": 0.27960363030433655,
+                  "index": 35,
+                  "joint": "joint_RHCoxa"
+                },
+                {
+                  "actual": -2.4415981769561768,
+                  "delta": 0.0,
+                  "expected": -2.4415981769561768,
+                  "index": 36,
+                  "joint": "joint_RHCoxa_roll"
+                },
+                {
+                  "actual": -0.1381906419992447,
+                  "delta": 0.0,
+                  "expected": -0.1381906419992447,
+                  "index": 37,
+                  "joint": "joint_RHCoxa_yaw"
+                },
+                {
+                  "actual": -1.31553053855896,
+                  "delta": 0.0,
+                  "expected": -1.31553053855896,
+                  "index": 38,
+                  "joint": "joint_RHFemur"
+                },
+                {
+                  "actual": -0.26682204008102417,
+                  "delta": 0.0,
+                  "expected": -0.26682204008102417,
+                  "index": 39,
+                  "joint": "joint_RHFemur_roll"
+                },
+                {
+                  "actual": 1.1447480916976929,
+                  "delta": 0.0,
+                  "expected": 1.1447480916976929,
+                  "index": 40,
+                  "joint": "joint_RHTibia"
+                },
+                {
+                  "actual": -0.3836708664894104,
+                  "delta": 0.0,
+                  "expected": -0.3836708664894104,
+                  "index": 41,
+                  "joint": "joint_RHTarsus1"
+                }
+              ]
+            },
+            "qpos": [
+              0.0,
+              0.0,
+              0.6045752232266313,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0026297986774267853,
+              -0.013786011209829531,
+              -0.0002523622955142488,
+              -1.179384164839487,
+              -0.0017620716456228183,
+              0.7576697527152239,
+              -0.14223376459034956,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.18669065806232432,
+              0.021126209394829457,
+              2.40182983936772,
+              -1.5600327984359073,
+              -0.1413246811303093,
+              1.1483670219522084,
+              -0.10569198371949849,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.218775497321695,
+              0.03598107675464884,
+              1.7781654369575668,
+              -1.6747644921106808,
+              -0.003409340294187225,
+              1.7638238818766956,
+              -0.12028518120716244,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -0.13819064547360718,
+              0.27960362589505483,
+              -2.441598208611467,
+              -1.3155305945251143,
+              -0.26682204917270513,
+              1.1447480632864273,
+              -0.3836708584059661,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -0.10552348033533762,
+              0.011523355635855924,
+              -1.8260175599723456,
+              -1.83633975605308,
+              0.0019978151339155215,
+              1.727808616914636,
+              -0.0333795739975935,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -0.00048262756867217794,
+              -0.0013245590523738352,
+              0.0011910567303813648,
+              -1.3108537227850876,
+              0.0003741273017454201,
+              0.8962323508935617,
+              -0.17225643006286973,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "qvel": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "root_orientation_quaternion": {
+              "actual": [
+                1.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "delta": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "expected": [
+                1.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "root_position": {
+              "actual": [
+                0.0,
+                0.0,
+                0.6045752232266313
+              ],
+              "delta": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "expected": [
+                0.0,
+                0.0,
+                0.6045752232266313
+              ]
+            }
+          }
+        },
+        {
+          "compiled_body_names": {
+            "0": "world",
+            "1": "4/",
+            "2": "4/FlyBody",
+            "3": "4/Thorax",
+            "4": "4/A1A2",
+            "5": "4/A3",
+            "6": "4/A4",
+            "7": "4/A5",
+            "8": "4/A6",
+            "9": "4/LHaltere",
+            "10": "4/LWing",
+            "11": "4/RHaltere",
+            "12": "4/RWing",
+            "13": "4/LFCoxa",
+            "14": "4/LFFemur",
+            "15": "4/LFTibia",
+            "16": "4/LFTarsus1",
+            "17": "4/LFTarsus2",
+            "18": "4/LFTarsus3",
+            "19": "4/LFTarsus4",
+            "20": "4/LFTarsus5",
+            "21": "4/LHCoxa",
+            "22": "4/LHFemur",
+            "23": "4/LHTibia",
+            "24": "4/LHTarsus1",
+            "25": "4/LHTarsus2",
+            "26": "4/LHTarsus3",
+            "27": "4/LHTarsus4",
+            "28": "4/LHTarsus5",
+            "29": "4/LMCoxa",
+            "30": "4/LMFemur",
+            "31": "4/LMTibia",
+            "32": "4/LMTarsus1",
+            "33": "4/LMTarsus2",
+            "34": "4/LMTarsus3",
+            "35": "4/LMTarsus4",
+            "36": "4/LMTarsus5",
+            "37": "4/RHCoxa",
+            "38": "4/RHFemur",
+            "39": "4/RHTibia",
+            "40": "4/RHTarsus1",
+            "41": "4/RHTarsus2",
+            "42": "4/RHTarsus3",
+            "43": "4/RHTarsus4",
+            "44": "4/RHTarsus5",
+            "45": "4/RMCoxa",
+            "46": "4/RMFemur",
+            "47": "4/RMTibia",
+            "48": "4/RMTarsus1",
+            "49": "4/RMTarsus2",
+            "50": "4/RMTarsus3",
+            "51": "4/RMTarsus4",
+            "52": "4/RMTarsus5",
+            "53": "4/RFCoxa",
+            "54": "4/RFFemur",
+            "55": "4/RFTibia",
+            "56": "4/RFTarsus1",
+            "57": "4/RFTarsus2",
+            "58": "4/RFTarsus3",
+            "59": "4/RFTarsus4",
+            "60": "4/RFTarsus5",
+            "61": "4/Head",
+            "62": "4/LEye",
+            "63": "4/REye",
+            "64": "4/Rostrum",
+            "65": "4/Haustellum",
+            "66": "4/LPedicel",
+            "67": "4/LFuniculus",
+            "68": "4/LArista",
+            "69": "4/RPedicel",
+            "70": "4/RFuniculus",
+            "71": "4/RArista"
+          },
+          "compiled_body_terminal_names": {
+            "0": "world",
+            "1": "",
+            "2": "FlyBody",
+            "3": "Thorax",
+            "4": "A1A2",
+            "5": "A3",
+            "6": "A4",
+            "7": "A5",
+            "8": "A6",
+            "9": "LHaltere",
+            "10": "LWing",
+            "11": "RHaltere",
+            "12": "RWing",
+            "13": "LFCoxa",
+            "14": "LFFemur",
+            "15": "LFTibia",
+            "16": "LFTarsus1",
+            "17": "LFTarsus2",
+            "18": "LFTarsus3",
+            "19": "LFTarsus4",
+            "20": "LFTarsus5",
+            "21": "LHCoxa",
+            "22": "LHFemur",
+            "23": "LHTibia",
+            "24": "LHTarsus1",
+            "25": "LHTarsus2",
+            "26": "LHTarsus3",
+            "27": "LHTarsus4",
+            "28": "LHTarsus5",
+            "29": "LMCoxa",
+            "30": "LMFemur",
+            "31": "LMTibia",
+            "32": "LMTarsus1",
+            "33": "LMTarsus2",
+            "34": "LMTarsus3",
+            "35": "LMTarsus4",
+            "36": "LMTarsus5",
+            "37": "RHCoxa",
+            "38": "RHFemur",
+            "39": "RHTibia",
+            "40": "RHTarsus1",
+            "41": "RHTarsus2",
+            "42": "RHTarsus3",
+            "43": "RHTarsus4",
+            "44": "RHTarsus5",
+            "45": "RMCoxa",
+            "46": "RMFemur",
+            "47": "RMTibia",
+            "48": "RMTarsus1",
+            "49": "RMTarsus2",
+            "50": "RMTarsus3",
+            "51": "RMTarsus4",
+            "52": "RMTarsus5",
+            "53": "RFCoxa",
+            "54": "RFFemur",
+            "55": "RFTibia",
+            "56": "RFTarsus1",
+            "57": "RFTarsus2",
+            "58": "RFTarsus3",
+            "59": "RFTarsus4",
+            "60": "RFTarsus5",
+            "61": "Head",
+            "62": "LEye",
+            "63": "REye",
+            "64": "Rostrum",
+            "65": "Haustellum",
+            "66": "LPedicel",
+            "67": "LFuniculus",
+            "68": "LArista",
+            "69": "RPedicel",
+            "70": "RFuniculus",
+            "71": "RArista"
+          },
+          "condition": "B_C",
+          "configuration": {
+            "adhesion_actual": {
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "enabled": false,
+              "policy": "constant zero baseline; no schedule or controller"
+            },
+            "adhesion_expected": {
+              "command": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "enabled": false,
+              "policy": "constant zero baseline; no schedule or controller"
+            },
+            "control_actual": "position",
+            "control_expected": "position",
+            "model": {
+              "gravity": [
+                0.0,
+                0.0,
+                -9810.0
+              ],
+              "ground": "FlyGym FlatTerrain plus static m5d2c_calibration_surface positioned once at reset under LMTarsus5",
+              "ground_dynamic_after_reset": false,
+              "locomotion_or_reference_controller": false
+            },
+            "runtime_factory": "malecns_backend.embodiment._windows_m7d_corrected_spontaneous_adapter._runtime",
+            "spawn_orientation_euler_expected": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "spawn_position_expected": [
+              0.0,
+              0.0,
+              0.6045752232266313
+            ],
+            "static_tripod": {
+              "actual_source": "caller-supplied frozen physical runtime",
+              "expected_identity": "tripod",
+              "expected_source": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m7c_initial_stability\\m7c_b3_tripod_support_height.json"
+            }
+          },
+          "state_zero": {
+            "baseline_joint_vector": {
+              "actual_dtype": "float",
+              "actual_shape": [
+                42
+              ],
+              "expected_dtype": "JSON number (frozen B3 float values)",
+              "expected_shape": [
+                42
+              ],
+              "maximum_absolute_difference": 0.0,
+              "maximum_difference_index": 0,
+              "maximum_difference_joint": "joint_LFCoxa",
+              "targets": [
+                {
+                  "actual": -0.01378601137548685,
+                  "delta": 0.0,
+                  "expected": -0.01378601137548685,
+                  "index": 0,
+                  "joint": "joint_LFCoxa"
+                },
+                {
+                  "actual": -0.00025236228248104453,
+                  "delta": 0.0,
+                  "expected": -0.00025236228248104453,
+                  "index": 1,
+                  "joint": "joint_LFCoxa_roll"
+                },
+                {
+                  "actual": 0.0026297986041754484,
+                  "delta": 0.0,
+                  "expected": 0.0026297986041754484,
+                  "index": 2,
+                  "joint": "joint_LFCoxa_yaw"
+                },
+                {
+                  "actual": -1.1793841123580933,
+                  "delta": 0.0,
+                  "expected": -1.1793841123580933,
+                  "index": 3,
+                  "joint": "joint_LFFemur"
+                },
+                {
+                  "actual": -0.0017620716243982315,
+                  "delta": 0.0,
+                  "expected": -0.0017620716243982315,
+                  "index": 4,
+                  "joint": "joint_LFFemur_roll"
+                },
+                {
+                  "actual": 0.7576697468757629,
+                  "delta": 0.0,
+                  "expected": 0.7576697468757629,
+                  "index": 5,
+                  "joint": "joint_LFTibia"
+                },
+                {
+                  "actual": -0.14223375916481018,
+                  "delta": 0.0,
+                  "expected": -0.14223375916481018,
+                  "index": 6,
+                  "joint": "joint_LFTarsus1"
+                },
+                {
+                  "actual": 0.03598107770085335,
+                  "delta": 0.0,
+                  "expected": 0.03598107770085335,
+                  "index": 7,
+                  "joint": "joint_LMCoxa"
+                },
+                {
+                  "actual": 1.7781654596328735,
+                  "delta": 0.0,
+                  "expected": 1.7781654596328735,
+                  "index": 8,
+                  "joint": "joint_LMCoxa_roll"
+                },
+                {
+                  "actual": 0.21877549588680267,
+                  "delta": 0.0,
+                  "expected": 0.21877549588680267,
+                  "index": 9,
+                  "joint": "joint_LMCoxa_yaw"
+                },
+                {
+                  "actual": -1.6747645139694214,
+                  "delta": 0.0,
+                  "expected": -1.6747645139694214,
+                  "index": 10,
+                  "joint": "joint_LMFemur"
+                },
+                {
+                  "actual": -0.0034093402791768312,
+                  "delta": 0.0,
+                  "expected": -0.0034093402791768312,
+                  "index": 11,
+                  "joint": "joint_LMFemur_roll"
+                },
+                {
+                  "actual": 1.7638238668441772,
+                  "delta": 0.0,
+                  "expected": 1.7638238668441772,
+                  "index": 12,
+                  "joint": "joint_LMTibia"
+                },
+                {
+                  "actual": -0.12028518319129944,
+                  "delta": 0.0,
+                  "expected": -0.12028518319129944,
+                  "index": 13,
+                  "joint": "joint_LMTarsus1"
+                },
+                {
+                  "actual": 0.02112620882689953,
+                  "delta": 0.0,
+                  "expected": 0.02112620882689953,
+                  "index": 14,
+                  "joint": "joint_LHCoxa"
+                },
+                {
+                  "actual": 2.401829957962036,
+                  "delta": 0.0,
+                  "expected": 2.401829957962036,
+                  "index": 15,
+                  "joint": "joint_LHCoxa_roll"
+                },
+                {
+                  "actual": 0.18669065833091736,
+                  "delta": 0.0,
+                  "expected": 0.18669065833091736,
+                  "index": 16,
+                  "joint": "joint_LHCoxa_yaw"
+                },
+                {
+                  "actual": -1.560032844543457,
+                  "delta": 0.0,
+                  "expected": -1.560032844543457,
+                  "index": 17,
+                  "joint": "joint_LHFemur"
+                },
+                {
+                  "actual": -0.14132468402385712,
+                  "delta": 0.0,
+                  "expected": -0.14132468402385712,
+                  "index": 18,
+                  "joint": "joint_LHFemur_roll"
+                },
+                {
+                  "actual": 1.1483670473098755,
+                  "delta": 0.0,
+                  "expected": 1.1483670473098755,
+                  "index": 19,
+                  "joint": "joint_LHTibia"
+                },
+                {
+                  "actual": -0.10569198429584503,
+                  "delta": 0.0,
+                  "expected": -0.10569198429584503,
+                  "index": 20,
+                  "joint": "joint_LHTarsus1"
+                },
+                {
+                  "actual": -0.0013245590962469578,
+                  "delta": 0.0,
+                  "expected": -0.0013245590962469578,
+                  "index": 21,
+                  "joint": "joint_RFCoxa"
+                },
+                {
+                  "actual": 0.001191056682728231,
+                  "delta": 0.0,
+                  "expected": 0.001191056682728231,
+                  "index": 22,
+                  "joint": "joint_RFCoxa_roll"
+                },
+                {
+                  "actual": -0.00048262756899930537,
+                  "delta": 0.0,
+                  "expected": -0.00048262756899930537,
+                  "index": 23,
+                  "joint": "joint_RFCoxa_yaw"
+                },
+                {
+                  "actual": -1.3108537197113037,
+                  "delta": 0.0,
+                  "expected": -1.3108537197113037,
+                  "index": 24,
+                  "joint": "joint_RFFemur"
+                },
+                {
+                  "actual": 0.0003741272957995534,
+                  "delta": 0.0,
+                  "expected": 0.0003741272957995534,
+                  "index": 25,
+                  "joint": "joint_RFFemur_roll"
+                },
+                {
+                  "actual": 0.8962323665618896,
+                  "delta": 0.0,
+                  "expected": 0.8962323665618896,
+                  "index": 26,
+                  "joint": "joint_RFTibia"
+                },
+                {
+                  "actual": -0.17225642502307892,
+                  "delta": 0.0,
+                  "expected": -0.17225642502307892,
+                  "index": 27,
+                  "joint": "joint_RFTarsus1"
+                },
+                {
+                  "actual": 0.011523355729877949,
+                  "delta": 0.0,
+                  "expected": 0.011523355729877949,
+                  "index": 28,
+                  "joint": "joint_RMCoxa"
+                },
+                {
+                  "actual": -1.8260176181793213,
+                  "delta": 0.0,
+                  "expected": -1.8260176181793213,
+                  "index": 29,
+                  "joint": "joint_RMCoxa_roll"
+                },
+                {
+                  "actual": -0.105523481965065,
+                  "delta": 0.0,
+                  "expected": -0.105523481965065,
+                  "index": 30,
+                  "joint": "joint_RMCoxa_yaw"
+                },
+                {
+                  "actual": -1.8363397121429443,
+                  "delta": 0.0,
+                  "expected": -1.8363397121429443,
+                  "index": 31,
+                  "joint": "joint_RMFemur"
+                },
+                {
+                  "actual": 0.0019978152122348547,
+                  "delta": 0.0,
+                  "expected": 0.0019978152122348547,
+                  "index": 32,
+                  "joint": "joint_RMFemur_roll"
+                },
+                {
+                  "actual": 1.7278085947036743,
+                  "delta": 0.0,
+                  "expected": 1.7278085947036743,
+                  "index": 33,
+                  "joint": "joint_RMTibia"
+                },
+                {
+                  "actual": -0.03337957337498665,
+                  "delta": 0.0,
+                  "expected": -0.03337957337498665,
+                  "index": 34,
+                  "joint": "joint_RMTarsus1"
+                },
+                {
+                  "actual": 0.27960363030433655,
+                  "delta": 0.0,
+                  "expected": 0.27960363030433655,
+                  "index": 35,
+                  "joint": "joint_RHCoxa"
+                },
+                {
+                  "actual": -2.4415981769561768,
+                  "delta": 0.0,
+                  "expected": -2.4415981769561768,
+                  "index": 36,
+                  "joint": "joint_RHCoxa_roll"
+                },
+                {
+                  "actual": -0.1381906419992447,
+                  "delta": 0.0,
+                  "expected": -0.1381906419992447,
+                  "index": 37,
+                  "joint": "joint_RHCoxa_yaw"
+                },
+                {
+                  "actual": -1.31553053855896,
+                  "delta": 0.0,
+                  "expected": -1.31553053855896,
+                  "index": 38,
+                  "joint": "joint_RHFemur"
+                },
+                {
+                  "actual": -0.26682204008102417,
+                  "delta": 0.0,
+                  "expected": -0.26682204008102417,
+                  "index": 39,
+                  "joint": "joint_RHFemur_roll"
+                },
+                {
+                  "actual": 1.1447480916976929,
+                  "delta": 0.0,
+                  "expected": 1.1447480916976929,
+                  "index": 40,
+                  "joint": "joint_RHTibia"
+                },
+                {
+                  "actual": -0.3836708664894104,
+                  "delta": 0.0,
+                  "expected": -0.3836708664894104,
+                  "index": 41,
+                  "joint": "joint_RHTarsus1"
+                }
+              ]
+            },
+            "qpos": [
+              0.0,
+              0.0,
+              0.6045752232266313,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0026297986774267853,
+              -0.013786011209829531,
+              -0.0002523622955142488,
+              -1.179384164839487,
+              -0.0017620716456228183,
+              0.7576697527152239,
+              -0.14223376459034956,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.18669065806232432,
+              0.021126209394829457,
+              2.40182983936772,
+              -1.5600327984359073,
+              -0.1413246811303093,
+              1.1483670219522084,
+              -0.10569198371949849,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.218775497321695,
+              0.03598107675464884,
+              1.7781654369575668,
+              -1.6747644921106808,
+              -0.003409340294187225,
+              1.7638238818766956,
+              -0.12028518120716244,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -0.13819064547360718,
+              0.27960362589505483,
+              -2.441598208611467,
+              -1.3155305945251143,
+              -0.26682204917270513,
+              1.1447480632864273,
+              -0.3836708584059661,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -0.10552348033533762,
+              0.011523355635855924,
+              -1.8260175599723456,
+              -1.83633975605308,
+              0.0019978151339155215,
+              1.727808616914636,
+              -0.0333795739975935,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -0.00048262756867217794,
+              -0.0013245590523738352,
+              0.0011910567303813648,
+              -1.3108537227850876,
+              0.0003741273017454201,
+              0.8962323508935617,
+              -0.17225643006286973,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "qvel": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "root_orientation_quaternion": {
+              "actual": [
+                1.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "delta": [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "expected": [
+                1.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "root_position": {
+              "actual": [
+                0.0,
+                0.0,
+                0.6045752232266313
+              ],
+              "delta": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "expected": [
+                0.0,
+                0.0,
+                0.6045752232266313
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "design_rationale": "orthogonal frozen interventions are supported without changing embodiment semantics; enables perturbation-specific difference-in-differences",
+    "environment": {
+      "flygym": {
+        "module_path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\fly-brain-interactive\\.venv\\Lib\\site-packages\\flygym\\__init__.py",
+        "version": "1.2.1"
+      },
+      "mujoco": {
+        "module_path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\fly-brain-interactive\\.venv\\Lib\\site-packages\\mujoco\\__init__.py",
+        "version": "3.2.7"
+      },
+      "numpy": {
+        "module_path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\fly-brain-interactive\\.venv\\Lib\\site-packages\\numpy\\__init__.py",
+        "version": "2.0.2"
+      }
+    },
+    "force_schedule": {
+      "count": 200,
+      "direction_world": [
+        0,
+        1,
+        0
+      ],
+      "transition_indices": "5000-5199"
+    },
+    "fresh_runtime_count": 4,
+    "hidden_assistance": false,
+    "identity_resolution": {
+      "contacts": {
+        "available": true,
+        "body_names": {
+          "0": "world",
+          "1": "1/",
+          "2": "1/FlyBody",
+          "3": "1/Thorax",
+          "4": "1/A1A2",
+          "5": "1/A3",
+          "6": "1/A4",
+          "7": "1/A5",
+          "8": "1/A6",
+          "9": "1/LHaltere",
+          "10": "1/LWing",
+          "11": "1/RHaltere",
+          "12": "1/RWing",
+          "13": "1/LFCoxa",
+          "14": "1/LFFemur",
+          "15": "1/LFTibia",
+          "16": "1/LFTarsus1",
+          "17": "1/LFTarsus2",
+          "18": "1/LFTarsus3",
+          "19": "1/LFTarsus4",
+          "20": "1/LFTarsus5",
+          "21": "1/LHCoxa",
+          "22": "1/LHFemur",
+          "23": "1/LHTibia",
+          "24": "1/LHTarsus1",
+          "25": "1/LHTarsus2",
+          "26": "1/LHTarsus3",
+          "27": "1/LHTarsus4",
+          "28": "1/LHTarsus5",
+          "29": "1/LMCoxa",
+          "30": "1/LMFemur",
+          "31": "1/LMTibia",
+          "32": "1/LMTarsus1",
+          "33": "1/LMTarsus2",
+          "34": "1/LMTarsus3",
+          "35": "1/LMTarsus4",
+          "36": "1/LMTarsus5",
+          "37": "1/RHCoxa",
+          "38": "1/RHFemur",
+          "39": "1/RHTibia",
+          "40": "1/RHTarsus1",
+          "41": "1/RHTarsus2",
+          "42": "1/RHTarsus3",
+          "43": "1/RHTarsus4",
+          "44": "1/RHTarsus5",
+          "45": "1/RMCoxa",
+          "46": "1/RMFemur",
+          "47": "1/RMTibia",
+          "48": "1/RMTarsus1",
+          "49": "1/RMTarsus2",
+          "50": "1/RMTarsus3",
+          "51": "1/RMTarsus4",
+          "52": "1/RMTarsus5",
+          "53": "1/RFCoxa",
+          "54": "1/RFFemur",
+          "55": "1/RFTibia",
+          "56": "1/RFTarsus1",
+          "57": "1/RFTarsus2",
+          "58": "1/RFTarsus3",
+          "59": "1/RFTarsus4",
+          "60": "1/RFTarsus5",
+          "61": "1/Head",
+          "62": "1/LEye",
+          "63": "1/REye",
+          "64": "1/Rostrum",
+          "65": "1/Haustellum",
+          "66": "1/LPedicel",
+          "67": "1/LFuniculus",
+          "68": "1/LArista",
+          "69": "1/RPedicel",
+          "70": "1/RFuniculus",
+          "71": "1/RArista"
+        },
+        "ground_geom_ids": [
+          0,
+          1
+        ],
+        "method": "exact terminal component of slash-namespaced compiled MuJoCo identities",
+        "tarsal_geom_ids": {
+          "LF": [
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "LH": [
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "LM": [
+            31,
+            32,
+            33,
+            34,
+            35
+          ],
+          "RF": [
+            55,
+            56,
+            57,
+            58,
+            59
+          ],
+          "RH": [
+            39,
+            40,
+            41,
+            42,
+            43
+          ],
+          "RM": [
+            47,
+            48,
+            49,
+            50,
+            51
+          ]
+        },
+        "tarsus5_body_ids": {
+          "LF": 20,
+          "LH": 28,
+          "LM": 36,
+          "RF": 60,
+          "RH": 44,
+          "RM": 52
+        }
+      },
+      "thorax": {
+        "body_id": 3,
+        "body_name": "1/Thorax",
+        "method": "unique exact terminal slash-delimited body component"
+      }
+    },
+    "initial_state_equivalence": true,
+    "m9a_attempt_3_provenance_verified": true,
+    "m9a_evidence": {
+      "m9a_3_attempt_3_manifest.json": {
+        "byte_size": 2680,
+        "sha256": "4b39440d1322379064f4655bf86a83f5be33f160ed40c32779f59bd505423226"
+      },
+      "m9a_3_attempt_3_preregistration.json": {
+        "byte_size": 5495,
+        "sha256": "1adca0c26dd2e70eb5c2ea697bf01be22ccb9d7ce64f198af8bcc1d436bda366"
+      },
+      "m9a_3_attempt_3_report.json": {
+        "byte_size": 5996715,
+        "sha256": "05a8c63766fd5e74ec5b241a3977e8215356a676845281a9fccad5d9dfa61d22"
+      }
+    },
+    "malecns_runtime": {
+      "configuration": "frozen M7D/M8 scientific runtime",
+      "neural_dt_ms": 0.5,
+      "seed": 1
+    },
+    "motor_interfaces": [
+      {
+        "action_index": 5,
+        "coordinate_sign": 1,
+        "name": "joint_LFTibia"
+      },
+      {
+        "action_index": 12,
+        "coordinate_sign": 1,
+        "name": "joint_LMTibia"
+      },
+      {
+        "action_index": 19,
+        "coordinate_sign": 1,
+        "name": "joint_LHTibia"
+      },
+      {
+        "action_index": 26,
+        "coordinate_sign": 1,
+        "name": "joint_RFTibia"
+      },
+      {
+        "action_index": 33,
+        "coordinate_sign": 1,
+        "name": "joint_RMTibia"
+      },
+      {
+        "action_index": 40,
+        "coordinate_sign": 1,
+        "name": "joint_RHTibia"
+      },
+      {
+        "action_index": 3,
+        "coordinate_sign": -1,
+        "name": "joint_LFFemur"
+      },
+      {
+        "action_index": 10,
+        "coordinate_sign": -1,
+        "name": "joint_LMFemur"
+      },
+      {
+        "action_index": 17,
+        "coordinate_sign": -1,
+        "name": "joint_LHFemur"
+      },
+      {
+        "action_index": 31,
+        "coordinate_sign": -1,
+        "name": "joint_RMFemur"
+      },
+      {
+        "action_index": 38,
+        "coordinate_sign": -1,
+        "name": "joint_RHFemur"
+      }
+    ],
+    "neural_transitions": 0,
+    "physical_initialization": {
+      "adhesion_enabled": false,
+      "baseline_targets": "exact measured corrected tripod joint state at time zero",
+      "calibration_surface": "canonical inherited static m5d2c_calibration_surface",
+      "control": "position",
+      "flygym": "1.2.1",
+      "init_pose": "tripod",
+      "mujoco": "3.2.7",
+      "settling_transitions": 0,
+      "spawn_orientation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "spawn_pos": [
+        0.0,
+        0.0,
+        0.6045752232266313
+      ]
+    },
+    "physics_transitions": 0,
+    "proprioceptive_interfaces": [
+      "joint_LFTibia",
+      "joint_LMTibia",
+      "joint_LHTibia",
+      "joint_RFTibia",
+      "joint_RMTibia",
+      "joint_RHTibia"
+    ],
+    "schema": "M9B-MALECNS-CALIBRATED-EXTERNAL-PERTURBATION.1",
+    "selected_design": "four-condition factorial",
+    "selected_perturbation_native": 1.024,
+    "status": "PREFLIGHT_PASS"
+  },
+  "protocol": {
+    "admitted_motor_interfaces": [
+      {
+        "action_index": 5,
+        "coordinate_sign": 1,
+        "name": "joint_LFTibia"
+      },
+      {
+        "action_index": 12,
+        "coordinate_sign": 1,
+        "name": "joint_LMTibia"
+      },
+      {
+        "action_index": 19,
+        "coordinate_sign": 1,
+        "name": "joint_LHTibia"
+      },
+      {
+        "action_index": 26,
+        "coordinate_sign": 1,
+        "name": "joint_RFTibia"
+      },
+      {
+        "action_index": 33,
+        "coordinate_sign": 1,
+        "name": "joint_RMTibia"
+      },
+      {
+        "action_index": 40,
+        "coordinate_sign": 1,
+        "name": "joint_RHTibia"
+      },
+      {
+        "action_index": 3,
+        "coordinate_sign": -1,
+        "name": "joint_LFFemur"
+      },
+      {
+        "action_index": 10,
+        "coordinate_sign": -1,
+        "name": "joint_LMFemur"
+      },
+      {
+        "action_index": 17,
+        "coordinate_sign": -1,
+        "name": "joint_LHFemur"
+      },
+      {
+        "action_index": 31,
+        "coordinate_sign": -1,
+        "name": "joint_RMFemur"
+      },
+      {
+        "action_index": 38,
+        "coordinate_sign": -1,
+        "name": "joint_RHFemur"
+      }
+    ],
+    "admitted_sensory_interfaces": [
+      "joint_LFTibia",
+      "joint_LMTibia",
+      "joint_LHTibia",
+      "joint_RFTibia",
+      "joint_RMTibia",
+      "joint_RHTibia"
+    ],
+    "analyses": [
+      "force_onset_offset_integrity",
+      "first_physical_effect",
+      "root_position_orientation_velocity",
+      "distal_tarsus_trajectories",
+      "contact_pattern_evolution",
+      "fall_rollover",
+      "post_force_980ms",
+      "proprioceptive_encoding_and_delivered_drive",
+      "CNS_activity",
+      "motor_observer_decoder_and_output",
+      "A_P_minus_A_C",
+      "B_P_minus_B_C",
+      "difference_in_differences",
+      "analogous_valid_sensory_CNS_motor_contrasts"
+    ],
+    "baseline": {
+      "exact_equivalence_required_only_at_state_zero": true,
+      "interval_ms": [
+        0,
+        500
+      ],
+      "pre_force_physical_equality_required": false,
+      "record_each_condition_independently": true
+    },
+    "calibration": {
+      "attempt": 3,
+      "schema": "M9A-3-MATCHED-CONTROL-PHYSICS-ONLY-CALIBRATION.3",
+      "selected_force_magnitude_native": 1.024,
+      "selection": "preregistered lowest qualifying candidate",
+      "status": "COMPLETE"
+    },
+    "claim_boundary": "descriptive trajectories and conservative causal contrasts only; post-500ms A/B divergence alone is not perturbation attribution",
+    "classifications": [
+      "M9B_COMPLETE_NO_DETECTABLE_NEURAL_MOTOR_EFFECT_UNDER_PERTURBATION",
+      "M9B_NEURAL_MOTOR_CAUSALLY_ALTERS_TRAJECTORY_UNDER_PERTURBATION",
+      "M9B_PERTURBATION_RESPONSE_DEPENDS_ON_NEURAL_MOTOR_ENABLEMENT"
+    ],
+    "contact_is_neural_input": false,
+    "decoder_semantics": "exact frozen M7D/M8 filter, gain, saturation, slew, and bounds; no retuning",
+    "design": {
+      "conditions": [
+        "A_P",
+        "A_C",
+        "B_P",
+        "B_C"
+      ],
+      "factors": [
+        "neural_motor_enabled",
+        "external_force_present"
+      ],
+      "rationale": "orthogonal frozen interventions are supported without changing embodiment semantics; enables perturbation-specific difference-in-differences",
+      "type": "preregistered_2x2_factorial"
+    },
+    "disabled_control": {
+      "brain_active": true,
+      "decoder_active": true,
+      "neural_updates_active": true,
+      "observer_active": true,
+      "pre_zero_decoder_computed": true,
+      "sensory_active": true,
+      "zero_point": "immediately before physical application"
+    },
+    "duration_ms": 1500.0,
+    "hidden_assistance": {
+      "AI policy": false,
+      "CPG": false,
+      "adaptive stabilization": false,
+      "adhesion scheduler": false,
+      "balance controller": false,
+      "dynamic adhesion": false,
+      "fall recovery": false,
+      "foot placement controller": false,
+      "gait controller": false,
+      "navigation target": false,
+      "optimizer": false,
+      "outcome-dependent parameter changes": false,
+      "phase oscillator": false,
+      "postural controller": false,
+      "reference trajectory": false,
+      "reinforcement learning": false,
+      "reward": false,
+      "scripted descending command": false,
+      "scripted neural stimulation": false,
+      "stance controller": false,
+      "swing controller": false,
+      "target movement": false,
+      "tripod controller": false,
+      "walking trajectory": false
+    },
+    "neural_dt_ms": 0.5,
+    "neural_updates_per_condition": 3000,
+    "perturbation": {
+      "application_body_source": "Thorax",
+      "application_point": "authoritative body center of mass",
+      "direction_xyz": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "frame": "world",
+      "integer_index_scheduling": true,
+      "outgoing_transition_count": 200,
+      "start_transition_inclusive": 5000,
+      "stop_transition_exclusive": 5200,
+      "torque_xyz": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transition_indices": "5000-5199"
+    },
+    "physical_initialization": {
+      "adhesion_enabled": false,
+      "baseline_targets": "exact measured corrected tripod joint state at time zero",
+      "calibration_surface": "canonical inherited static m5d2c_calibration_surface",
+      "control": "position",
+      "flygym": "1.2.1",
+      "init_pose": "tripod",
+      "mujoco": "3.2.7",
+      "settling_transitions": 0,
+      "spawn_orientation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "spawn_pos": [
+        0.0,
+        0.0,
+        0.6045752232266313
+      ]
+    },
+    "physics_dt_ms": 0.1,
+    "physics_states_per_condition": 15001,
+    "physics_transitions_per_condition": 15000,
+    "schema": "M9B-MALECNS-CALIBRATED-EXTERNAL-PERTURBATION.1",
+    "scientific_run_executed": false,
+    "seed": 1,
+    "status": "NOT_RUN",
+    "telemetry": {
+      "causal_milestone_ordering": true,
+      "channel_identity_provenance": true,
+      "neural": [
+        "timestamps",
+        "aggregate_cns_state_and_spikes",
+        "six_tibial_proprioceptive_encoded_signals",
+        "delivered_sensory_drive",
+        "mapped_motor_population_activity",
+        "11_motor_observer_states",
+        "11_decoder_outputs",
+        "disabled_pre_zero_motor_vector",
+        "disabled_post_zero_motor_vector"
+      ],
+      "neural_cadence_ms": 0.5,
+      "physics": [
+        "timestamps",
+        "root_position",
+        "root_quaternion",
+        "body_up_vector",
+        "root_linear_velocity",
+        "root_angular_velocity",
+        "42_joint_positions",
+        "42_actuator_commands",
+        "11_neural_contribution_pre_application",
+        "six_authoritative_contact_flags",
+        "six_distal_tarsus_positions",
+        "external_force_vector",
+        "fall_rollover"
+      ],
+      "physics_cadence_ms": 0.1
+    }
+  },
+  "raw": {
+    "byte_size": 108063966,
+    "sha256": "55359880f3f63a5ef2ae2b316737973e73ad4308d499a02d999538f8f19d984f"
+  },
+  "report": {
+    "byte_size": 316,
+    "sha256": "7299c349d5824fb9d5ef7713bf7ea5e9794972f3669790502609dfa5a3e8224e"
+  },
+  "schema": "M9B-MALECNS-CALIBRATED-EXTERNAL-PERTURBATION.1",
+  "source_commit": "d220bde41ad065603b8d1846a2314d73ea6c6993",
+  "status": "COMPLETE"
+}

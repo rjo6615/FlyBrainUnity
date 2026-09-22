@@ -20,3 +20,4 @@ malecns_backend/embodiment/interface_output/m7f_replay/m7f_disabled_replay.bin f
 malecns_backend/embodiment/interface_output/m8_extended_spontaneous/m8_raw.npz filter=lfs diff=lfs merge=lfs -text
 malecns_backend/embodiment/interface_output/m8_extended_spontaneous/m8_enabled_replay.bin filter=lfs diff=lfs merge=lfs -text
 malecns_backend/embodiment/interface_output/m8_extended_spontaneous/m8_disabled_replay.bin filter=lfs diff=lfs merge=lfs -text
+malecns_backend/embodiment/interface_output/m9b_external_perturbation/m9b_raw.npz filter=lfs diff=lfs merge=lfs -text

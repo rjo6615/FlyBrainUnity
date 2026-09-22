@@ -1,0 +1,7 @@
+{
+  "analysis_required": true,
+  "claim_boundary": "descriptive trajectories and conservative causal contrasts only; post-500ms A/B divergence alone is not perturbation attribution",
+  "classification": null,
+  "schema": "M9B-MALECNS-CALIBRATED-EXTERNAL-PERTURBATION.1",
+  "status": "COMPLETE_UNCLASSIFIED"
+}
