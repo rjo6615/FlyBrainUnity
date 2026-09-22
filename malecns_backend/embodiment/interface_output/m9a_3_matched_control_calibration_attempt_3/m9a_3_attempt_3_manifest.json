@@ -1,0 +1,50 @@
+{
+  "raw": [
+    {
+      "byte_size": 3112848,
+      "path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m9a_3_matched_control_calibration_attempt_3\\candidate_0.256000_P_raw.npz",
+      "sha256": "0a9d2e1bf4afff09d89024b519e98887239fa8251cdbcc91aef66e175f0594bc"
+    },
+    {
+      "byte_size": 3098301,
+      "path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m9a_3_matched_control_calibration_attempt_3\\candidate_0.256000_C_raw.npz",
+      "sha256": "65131425a23fdeaebed7983d76047a65f89a08ae25841e54045d7bcc1b371dae"
+    },
+    {
+      "byte_size": 3116108,
+      "path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m9a_3_matched_control_calibration_attempt_3\\candidate_0.512000_P_raw.npz",
+      "sha256": "44c214e9cbbac745f8edd0080943fe3d0267a9a06e1dfeddb48d430a4e793ca2"
+    },
+    {
+      "byte_size": 3098301,
+      "path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m9a_3_matched_control_calibration_attempt_3\\candidate_0.512000_C_raw.npz",
+      "sha256": "65131425a23fdeaebed7983d76047a65f89a08ae25841e54045d7bcc1b371dae"
+    },
+    {
+      "byte_size": 3132308,
+      "path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m9a_3_matched_control_calibration_attempt_3\\candidate_1.024000_P_raw.npz",
+      "sha256": "d13435568696172b5e5a0c24cb0886a3c97ba5cc92ca9773f538fd8973d60312"
+    },
+    {
+      "byte_size": 3098301,
+      "path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m9a_3_matched_control_calibration_attempt_3\\candidate_1.024000_C_raw.npz",
+      "sha256": "65131425a23fdeaebed7983d76047a65f89a08ae25841e54045d7bcc1b371dae"
+    },
+    {
+      "byte_size": 3126755,
+      "path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m9a_3_matched_control_calibration_attempt_3\\candidate_2.048000_P_raw.npz",
+      "sha256": "4bc2c10cb13ee517d37eeaea7d45d1d5c2a6618ab5afd83078477f453acce753"
+    },
+    {
+      "byte_size": 3098301,
+      "path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m9a_3_matched_control_calibration_attempt_3\\candidate_2.048000_C_raw.npz",
+      "sha256": "65131425a23fdeaebed7983d76047a65f89a08ae25841e54045d7bcc1b371dae"
+    }
+  ],
+  "report": {
+    "byte_size": 5996715,
+    "sha256": "05a8c63766fd5e74ec5b241a3977e8215356a676845281a9fccad5d9dfa61d22"
+  },
+  "schema": "M9A-3-MATCHED-CONTROL-PHYSICS-ONLY-CALIBRATION.3",
+  "status": "COMPLETE"
+}
