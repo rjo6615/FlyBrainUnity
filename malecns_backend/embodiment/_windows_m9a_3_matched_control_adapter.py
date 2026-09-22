@@ -83,14 +83,14 @@ def _norm(np: Any, x: Any) -> Any: return np.linalg.norm(x.reshape((len(x), -1))
 
 
 def _reduce_pair(np: Any, p: Mapping[str, Any], c: Mapping[str, Any], magnitude: float) -> dict[str, Any]:
-    if not np.array_equal(p["time_ms"], c["time_ms"]): raise RuntimeError("P/C timestamps differ")
-    t = p["time_ms"]; pre = t < m9a.START_MS; post = t > m9a.START_MS
+    start_index, stop_index = _audit_pair_schedule(np, p, c, magnitude)
+    t = p["time_ms"]
+    indices = np.arange(m9a.STATES)
+    pre = indices < start_index
+    post = indices > start_index
     exact_fields = ("root_position", "orientation_wxyz", "body_up_z", "linear_velocity", "angular_velocity",
                     "ground_contact", "distal_tarsus_positions", "fixed_actuator_commands")
     if any(not np.array_equal(p[k][pre], c[k][pre]) for k in exact_fields): raise RuntimeError("P/C pre-force trajectories are not exactly equivalent")
-    expected_p=np.asarray([m9a.force_at(float(x),magnitude,"P") for x in t])
-    if not np.array_equal(p["applied_force"],expected_p) or np.any(c["applied_force"] != 0):
-        raise RuntimeError("recorded P/C force schedule mismatch")
     dp = p["root_position"] - c["root_position"]; dv = p["linear_velocity"] - c["linear_velocity"]
     dw = p["angular_velocity"] - c["angular_velocity"]
     dots = np.abs(np.sum(p["orientation_wxyz"] * c["orientation_wxyz"], axis=1))
@@ -123,6 +123,34 @@ def _reduce_pair(np: Any, p: Mapping[str, Any], c: Mapping[str, Any], magnitude:
         "max_absolute_root_linear_speed": abs_speed, "post_force_observation_ms": m9a.OBSERVE_MS-m9a.STOP_MS}
 
 
+def _audit_pair_schedule(np: Any, p: Mapping[str, Any], c: Mapping[str, Any], magnitude: float) -> tuple[int, int]:
+    """Audit recorded force against execution's integer-index schedule."""
+    if m9a.STATES != m9a.TRANSITIONS + 1:
+        raise RuntimeError("state/transition count mismatch")
+    if len(p["time_ms"]) != m9a.STATES or len(c["time_ms"]) != m9a.STATES:
+        raise RuntimeError("recording does not contain the frozen state count")
+    if not np.array_equal(p["time_ms"], c["time_ms"]):
+        raise RuntimeError("P/C timestamps differ")
+    expected_times = np.arange(m9a.STATES, dtype=float) * m9a.DT_MS
+    if not np.all(np.isclose(p["time_ms"], expected_times, rtol=0.0, atol=1e-7)):
+        raise RuntimeError("clock/cadence mismatch")
+    start_quotient, stop_quotient = m9a.START_MS / m9a.DT_MS, m9a.STOP_MS / m9a.DT_MS
+    if not start_quotient.is_integer() or not stop_quotient.is_integer():
+        raise RuntimeError("force boundaries are not integral transition indices")
+    start_index, stop_index = int(start_quotient), int(stop_quotient)
+    if (start_index, stop_index) != (5000, 5200):
+        raise RuntimeError("frozen force boundary mismatch")
+    expected_p = np.asarray([
+        m9a.force_at(step * m9a.DT_MS, magnitude, "P") for step in range(m9a.STATES)
+    ])
+    expected_c = np.asarray([
+        m9a.force_at(step * m9a.DT_MS, magnitude, "C") for step in range(m9a.STATES)
+    ])
+    if not np.array_equal(p["applied_force"], expected_p) or not np.array_equal(c["applied_force"], expected_c):
+        raise RuntimeError("recorded P/C force schedule mismatch")
+    return start_index, stop_index
+
+
 def windows_preflight() -> dict[str, Any]:
     m9a.validate_protocol(m9a.protocol()); m7d.verify_b4(); m7d.verify_m7()
     np, flygym, env = _modules(); snapshots=[]
@@ -146,7 +174,7 @@ def _exclusive(path: Path, data: bytes) -> None:
 def run_windows() -> dict[str, Any]:
     allowed = {m9a.PREREGISTRATION_PATH.resolve()}
     existing = {p.resolve() for p in m9a.OUTPUT_DIR.iterdir()} if m9a.OUTPUT_DIR.exists() else set()
-    if existing - allowed: raise FileExistsError("M9A-3 evidence namespace already contains execution output")
+    if existing - allowed: raise FileExistsError("M9A-3 Attempt 2 evidence namespace already contains execution output")
     preflight=windows_preflight(); np,flygym,env=_modules(); results=[]; raw=[]
     for magnitude in m9a.CANDIDATE_FORCE_NATIVE:
         pair={}; provenance={}

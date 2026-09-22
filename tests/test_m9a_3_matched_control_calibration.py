@@ -14,15 +14,24 @@ from malecns_backend.embodiment import _windows_m9a_3_matched_control_adapter as
 
 def test_preregistration_and_candidate_ladder_are_frozen():
     p=m9a.protocol(); frozen=json.loads(m9a.PREREGISTRATION_PATH.read_text())
-    assert p == frozen and p["status"] == "NOT_RUN" and p["experiment_namespace"] == "M9A-3"
+    assert p == frozen and p["status"] == "NOT_RUN" and p["experiment_namespace"] == "M9A-3-Attempt-2"
     assert m9a.CANDIDATE_FORCE_NATIVE == (.256,.512,1.024,2.048)
     assert all(b/a == 2 for a,b in zip(m9a.CANDIDATE_FORCE_NATIVE,m9a.CANDIDATE_FORCE_NATIVE[1:]))
-    assert m9a.OUTPUT_DIR.name == "m9a_3_matched_control_calibration"
+    assert m9a.OUTPUT_DIR.name == "m9a_3_matched_control_calibration_attempt_2"
+    assert m9a.OUTPUT_DIR != m9a.ATTEMPT_1_DIR
+    assert p["attempt_provenance"]["scientific_protocol_change_from_predecessor"] is False
+    attempt_1 = json.loads((m9a.ATTEMPT_1_DIR / "m9a_3_preregistration.json").read_text())
+    for identity_key in ("schema", "experiment_namespace"):
+        attempt_1.pop(identity_key)
+    attempt_2_science = dict(p)
+    for identity_key in ("schema", "experiment_namespace", "attempt_provenance"):
+        attempt_2_science.pop(identity_key)
+    assert attempt_2_science == attempt_1
 
 
 def test_historical_evidence_byte_size_and_sha256_are_frozen():
     m9a.verify_historical_evidence()
-    assert len(m9a.HISTORICAL) == 12
+    assert len(m9a.HISTORICAL) == 14
 
 
 @pytest.mark.parametrize(("key", "frozen_size"), (
@@ -169,3 +178,47 @@ def test_exclusive_creation_and_separate_pc_raw_files():
     source=inspect.getsource(live)
     assert "os.O_EXCL" in source and 'for condition in ("P","C")' in source
     assert 'candidate_{magnitude:.6f}_{condition}_raw.npz' in source
+
+
+def test_attempt_1_provenance_and_raw_schedule_regression_are_read_only():
+    """Audit only: this deliberately does not call the scientific reducer."""
+    np = pytest.importorskip("numpy")
+    provenance = json.loads((m9a.ATTEMPT_1_DIR / "m9a_3_attempt_1_provenance.json").read_text())
+    assert provenance["disposition"] == "INCOMPLETE_EXECUTION"
+    assert provenance["execution"] == {
+        "candidate_selected": False, "candidates_started": [0.256],
+        "condition_order": ["P", "C"], "failure_location": "_reduce_pair()",
+        "later_candidates_executed": False, "reduction_completed": False,
+    }
+    loaded = {}
+    for record in provenance["raw_files"]:
+        path = m9a.ATTEMPT_1_DIR / record["path"]
+        raw = path.read_bytes()
+        assert len(raw) == record["byte_size"]
+        assert hashlib.sha256(raw).hexdigest() == record["sha256"]
+        with np.load(path) as archive:
+            loaded[record["path"].split("_")[-2]] = {key: archive[key] for key in archive.files}
+    p, c = loaded["P"], loaded["C"]
+    assert live._audit_pair_schedule(np, p, c, .256) == (5000, 5200)
+    assert np.flatnonzero(np.any(p["applied_force"] != 0, axis=1)).tolist() == list(range(5000, 5200))
+    assert not np.any(c["applied_force"])
+    different = np.zeros(m9a.STATES, dtype=bool)
+    for key in ("root_position", "orientation_wxyz", "body_up_z", "linear_velocity",
+                "angular_velocity", "ground_contact", "distal_tarsus_positions"):
+        delta = p[key] != c[key]
+        different |= delta if delta.ndim == 1 else np.any(delta.reshape((m9a.STATES, -1)), axis=1)
+    assert np.flatnonzero(different)[0] == 5001
+    assert p["time_ms"][5000] < 500.0 and p["time_ms"][5200] < 520.0
+
+
+def test_index_schedule_ignores_synthetic_accumulated_boundary_drift():
+    np = pytest.importorskip("numpy")
+    times = np.arange(m9a.STATES, dtype=float) * m9a.DT_MS
+    times[5000] = np.nextafter(500.0, -np.inf)
+    times[5200] = np.nextafter(520.0, -np.inf)
+    expected_p = np.asarray([m9a.force_at(i * m9a.DT_MS, .512, "P") for i in range(m9a.STATES)])
+    expected_c = np.asarray([m9a.force_at(i * m9a.DT_MS, .512, "C") for i in range(m9a.STATES)])
+    p = {"time_ms": times, "applied_force": expected_p}
+    c = {"time_ms": times.copy(), "applied_force": expected_c}
+    assert live._audit_pair_schedule(np, p, c, .512) == (5000, 5200)
+    assert np.flatnonzero(np.any(expected_p != 0, axis=1)).tolist() == list(range(5000, 5200))

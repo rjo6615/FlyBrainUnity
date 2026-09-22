@@ -1,0 +1,30 @@
+{
+  "attempt": "M9A-3-Attempt-1",
+  "disposition": "INCOMPLETE_EXECUTION",
+  "execution": {
+    "candidate_selected": false,
+    "candidates_started": [
+      0.256
+    ],
+    "condition_order": [
+      "P",
+      "C"
+    ],
+    "failure_location": "_reduce_pair()",
+    "later_candidates_executed": false,
+    "reduction_completed": false
+  },
+  "raw_files": [
+    {
+      "byte_size": 3112848,
+      "path": "candidate_0.256000_P_raw.npz",
+      "sha256": "0a9d2e1bf4afff09d89024b519e98887239fa8251cdbcc91aef66e175f0594bc"
+    },
+    {
+      "byte_size": 3098301,
+      "path": "candidate_0.256000_C_raw.npz",
+      "sha256": "65131425a23fdeaebed7983d76047a65f89a08ae25841e54045d7bcc1b371dae"
+    }
+  ],
+  "schema": "M9A-3-ATTEMPT-1-IMMUTABLE-PROVENANCE.1"
+}

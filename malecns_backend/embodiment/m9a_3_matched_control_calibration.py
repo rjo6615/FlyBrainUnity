@@ -14,11 +14,12 @@ from typing import Any, Mapping, Sequence
 from . import m7d_corrected_spontaneous as m7d
 
 HERE = Path(__file__).resolve().parent
-OUTPUT_DIR = HERE / "interface_output" / "m9a_3_matched_control_calibration"
-REPORT_PATH = OUTPUT_DIR / "m9a_3_report.json"
-MANIFEST_PATH = OUTPUT_DIR / "m9a_3_manifest.json"
-PREREGISTRATION_PATH = OUTPUT_DIR / "m9a_3_preregistration.json"
-SCHEMA = "M9A-3-MATCHED-CONTROL-PHYSICS-ONLY-CALIBRATION.1"
+ATTEMPT_1_DIR = HERE / "interface_output" / "m9a_3_matched_control_calibration"
+OUTPUT_DIR = HERE / "interface_output" / "m9a_3_matched_control_calibration_attempt_2"
+REPORT_PATH = OUTPUT_DIR / "m9a_3_attempt_2_report.json"
+MANIFEST_PATH = OUTPUT_DIR / "m9a_3_attempt_2_manifest.json"
+PREREGISTRATION_PATH = OUTPUT_DIR / "m9a_3_attempt_2_preregistration.json"
+SCHEMA = "M9A-3-MATCHED-CONTROL-PHYSICS-ONLY-CALIBRATION.2"
 
 CANDIDATE_FORCE_NATIVE = (0.256, 0.512, 1.024, 2.048)
 DIRECTION = (0.0, 1.0, 0.0)
@@ -42,6 +43,8 @@ HISTORICAL = {
     "m9a_2/m9a_2_preregistration.json": (4877, "b724b8941a3055141d2203663c9940f01acf4a93e3e2ba387470370f3083d116"),
     "forensics/README.md": (1235, "8ce08f4ae2770d6ad8de0cb9dc8870e08caa7227cb9b661b6680ffa0d55569a4"),
     "forensics/m9a_2_postrun_forensics.py": (12776, "53a13908044fcbee0d6ec609a5fb401d51973266a3817ae1d8f27dd50a98eef5"),
+    "m9a_3_attempt_1/candidate_0.256000_P_raw.npz": (3112848, "0a9d2e1bf4afff09d89024b519e98887239fa8251cdbcc91aef66e175f0594bc"),
+    "m9a_3_attempt_1/candidate_0.256000_C_raw.npz": (3098301, "65131425a23fdeaebed7983d76047a65f89a08ae25841e54045d7bcc1b371dae"),
 }
 
 CANONICAL_LF_TEXT_EVIDENCE = frozenset({
@@ -60,6 +63,8 @@ EXACT_BYTE_BINARY_EVIDENCE = frozenset({
     "m9a_2/candidate_0.008000_raw.npz",
     "m9a_2/candidate_0.032000_raw.npz",
     "m9a_2/candidate_0.128000_raw.npz",
+    "m9a_3_attempt_1/candidate_0.256000_P_raw.npz",
+    "m9a_3_attempt_1/candidate_0.256000_C_raw.npz",
 })
 
 assert CANONICAL_LF_TEXT_EVIDENCE | EXACT_BYTE_BINARY_EVIDENCE == set(HISTORICAL)
@@ -70,6 +75,7 @@ def _historical_path(key: str) -> Path:
     prefix, name = key.split("/", 1)
     if prefix == "m9a": return HERE / "interface_output/m9a_perturbation_calibration" / name
     if prefix == "m9a_2": return HERE / "interface_output/m9a_2_perturbation_calibration" / name
+    if prefix == "m9a_3_attempt_1": return ATTEMPT_1_DIR / name
     return (HERE / "interface_output/m9a_2_postrun_forensics" / name
             if name == "README.md" else HERE / name)
 
@@ -106,7 +112,10 @@ def force_at(time_ms: float, magnitude: float, condition: str) -> tuple[float, f
 def protocol() -> dict[str, Any]:
     inherited = m7d.protocol()
     return {
-        "schema": SCHEMA, "status": "NOT_RUN", "experiment_namespace": "M9A-3",
+        "schema": SCHEMA, "status": "NOT_RUN", "experiment_namespace": "M9A-3-Attempt-2",
+        "attempt_provenance": {"attempt": 2, "predecessor": "M9A-3-Attempt-1",
+            "predecessor_disposition": "INCOMPLETE_EXECUTION_REDUCER_FAILURE_NO_SELECTION",
+            "scientific_protocol_change_from_predecessor": False},
         "claim_boundary": "physical perturbation calibration only; not balance, neural stabilization, reflexes, gait, biological function, MaleCNS, or M9B",
         "male_cns": {"constructed": False, "neural_transitions": 0},
         "physics": {"flygym": "1.2.1", "mujoco": "3.2.7", "dt_ms": DT_MS,
