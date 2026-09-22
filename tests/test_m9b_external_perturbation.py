@@ -37,22 +37,33 @@ def _verify_fixture(tmp_path):
         tmp_path, immutable_directory=m9b.CALIBRATION_DIR)
 
 
-@pytest.mark.parametrize("name", sorted(m9b.CANONICAL_LF_TEXT_ARTIFACTS))
-def test_canonical_lf_and_equivalent_crlf_text_pass(tmp_path, name):
-    _copy_calibration(tmp_path)
-    target = tmp_path / name
-    canonical = target.read_bytes()
-    assert b"\r" not in canonical
-    _verify_fixture(tmp_path)
-    target.write_bytes(canonical.replace(b"\n", b"\r\n"))
-    _verify_fixture(tmp_path)
+def _canonical_lf(raw: bytes) -> bytes:
+    return raw.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+
+
+def _mixed_newlines(canonical: bytes) -> bytes:
+    lines = canonical.splitlines(keepends=True)
+    endings = (b"\n", b"\r\n", b"\r")
+    return b"".join(
+        line[:-1] + endings[index % len(endings)] if line.endswith(b"\n") else line
+        for index, line in enumerate(lines)
+    )
 
 
 @pytest.mark.parametrize("name", sorted(m9b.CANONICAL_LF_TEXT_ARTIFACTS))
-def test_equivalent_lone_cr_text_passes(tmp_path, name):
+@pytest.mark.parametrize("representation", ("lf", "crlf", "cr", "mixed"))
+def test_equivalent_text_newline_representations_pass(tmp_path, name, representation):
     _copy_calibration(tmp_path)
     target = tmp_path / name
-    target.write_bytes(target.read_bytes().replace(b"\n", b"\r"))
+    canonical = _canonical_lf(target.read_bytes())
+    representations = {
+        "lf": canonical,
+        "crlf": canonical.replace(b"\n", b"\r\n"),
+        "cr": canonical.replace(b"\n", b"\r"),
+        "mixed": _mixed_newlines(canonical),
+    }
+
+    target.write_bytes(representations[representation])
     _verify_fixture(tmp_path)
 
 
@@ -61,14 +72,17 @@ def test_crlf_canonicalization_does_not_create_crcrlf():
     assert m9b._canonical_provenance_bytes(name, b"a\r\nb\rc\n") == b"a\nb\nc\n"
 
 
+@pytest.mark.parametrize("name", sorted(m9b.CANONICAL_LF_TEXT_ARTIFACTS))
 @pytest.mark.parametrize("mutation", [
-    lambda raw: raw.replace(b'"status": "NOT_RUN"', b'"status": "READY"', 1),
-    lambda raw: raw.replace(b'  "attempt_provenance"', b'   "attempt_provenance"', 1),
+    pytest.param(lambda raw: raw.replace(b"{", b'{"_mutation": true,', 1),
+                 id="content"),
+    pytest.param(lambda raw: raw.replace(b"{", b"{ ", 1),
+                 id="non-newline-whitespace"),
 ])
-def test_changed_text_or_non_newline_whitespace_fails(tmp_path, mutation):
+def test_changed_text_or_non_newline_whitespace_fails(tmp_path, name, mutation):
     _copy_calibration(tmp_path)
-    target = tmp_path / "m9a_3_attempt_3_preregistration.json"
-    changed = mutation(target.read_bytes())
+    target = tmp_path / name
+    changed = mutation(_canonical_lf(target.read_bytes()))
     assert json.loads(changed)
     target.write_bytes(changed)
     with pytest.raises(RuntimeError, match="provenance mismatch"):
