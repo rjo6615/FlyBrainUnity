@@ -10,6 +10,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import shutil
 import subprocess
 from typing import Any, Mapping
 
@@ -171,7 +172,18 @@ def audit_disabled(arrays: Mapping[str, np.ndarray]) -> dict[str, Any]:
 
 
 def _summary(value: np.ndarray, times: np.ndarray) -> dict[str, Any]:
+    """Summarize one scalar series or one component vector series.
+
+    The first axis is always time.  A second axis, when present, is the set of
+    components belonging to *one* scientifically identified vector.  Entity or
+    channel axes must be selected by :func:`_contrast_summaries` before calling
+    this function; accepting higher ranks here would make a peak ambiguous and
+    was the cause of the original M9C failure.
+    """
     v, t = np.asarray(value), np.asarray(times)
+    _require(v.ndim in (1, 2), "summary supports only (T,) scalars or (T,D) vectors")
+    _require(t.ndim == 1 and v.shape[0] == t.shape[0], "summary time axis mismatch")
+    _require(v.ndim == 1 or v.shape[1] > 0, "summary vector has no components")
     magnitude = np.abs(v) if v.ndim == 1 else np.linalg.norm(v, axis=-1)
     eligible = np.flatnonzero(t >= 500.0)
     _require(bool(eligible.size), "summary contains no post-onset sample")
@@ -193,14 +205,36 @@ def _summary(value: np.ndarray, times: np.ndarray) -> dict[str, Any]:
 
 def _contrast_summaries(arrays: Mapping[str, np.ndarray], field: str, times: np.ndarray,
                         names: tuple[str, ...] | None = None) -> dict[str, Any]:
+    """Summarize factorial contrasts without discarding channel/entity identity.
+
+    ``(T,)`` and unnamed ``(T,D)`` inputs describe one scalar or vector.
+    Named ``(T,N)`` inputs describe N scalar channels.  Named ``(T,N,D)``
+    inputs describe N vector entities.  Named data are always reported per
+    identity; the explicitly labelled aggregate is descriptive only.
+    """
     contrasts = factorial(arrays, field)
     out = {}
     for label, value in contrasts.items():
-        item = {"vector_or_signed_summary": _summary(value, times)}
-        if names is not None:
-            item["channels"] = {name: _summary(value[:, i], times) for i, name in enumerate(names)}
-            ranked = sorted(names, key=lambda n: item["channels"][n]["maximum_magnitude"], reverse=True)
-            item["largest_channels_by_peak_magnitude"] = ranked
+        value = np.asarray(value)
+        if names is None:
+            _require(value.ndim in (1, 2), f"unsupported unnamed rank for {field}")
+            item = {"vector_or_signed_summary": _summary(value, times)}
+        else:
+            _require(value.ndim in (2, 3), f"unsupported named rank for {field}")
+            _require(value.shape[1] == len(names), f"identity count mismatch for {field}")
+            key = "channels" if value.ndim == 2 else "entities"
+            identified = {name: _summary(value[:, i], times) for i, name in enumerate(names)}
+            item = {
+                key: identified,
+                "aggregate_l2_summary": _summary(
+                    np.linalg.norm(value.reshape(value.shape[0], -1), axis=1), times),
+                "aggregate_l2_definition": (
+                    "Euclidean root-sum-square across all named channels"
+                    if value.ndim == 2 else
+                    "Euclidean root-sum-square across all named entities and vector components"),
+            }
+            ranked = sorted(names, key=lambda n: identified[n]["maximum_magnitude"], reverse=True)
+            item[f"largest_{key}_by_peak_magnitude"] = ranked
         out[label] = item
     return out
 
@@ -302,6 +336,33 @@ def _validate_arrays(a: Mapping[str, np.ndarray]) -> None:
                  for x in state_fields for c in m9b.CONDITIONS), "state-zero inequality")
 
 
+def _publish(output_dir: Path, result: Mapping[str, Any], report: Mapping[str, Any],
+             source_identities: Mapping[str, Any]) -> None:
+    """Publish the complete M9C namespace with one atomic directory rename."""
+    staging = output_dir.with_name(f".{output_dir.name}.tmp-{os.getpid()}")
+    _require(not staging.exists(), "M9C transactional staging namespace already exists")
+    staging.mkdir(parents=False, exist_ok=False)
+    try:
+        for name, value in (("m9c_analysis.json", result), ("m9c_report.json", report)):
+            with (staging / name).open("x", encoding="utf-8") as stream:
+                json.dump(value, stream, indent=2, sort_keys=True, allow_nan=False); stream.write("\n")
+        manifest = {"schema": SCHEMA, "status": "COMPLETE", "read_only": True,
+            "physics_transitions": 0, "neural_transitions": 0,
+            "source_m9b_artifacts": source_identities,
+            "analyzer_source_commit": result["analyzer_source_commit"],
+            "outputs": {name: _identity(staging / name)
+                        for name in ("m9c_analysis.json", "m9c_report.json")}}
+        with (staging / "m9c_manifest.json").open("x", encoding="utf-8") as stream:
+            json.dump(manifest, stream, indent=2, sort_keys=True, allow_nan=False); stream.write("\n")
+        # The completed directory becomes visible under its final name at once.
+        staging.rename(output_dir)
+    except BaseException:
+        # A staging directory is never a final-looking M9C output namespace.
+        if staging.exists():
+            shutil.rmtree(staging)
+        raise
+
+
 def analyze(source_dir: Path = SOURCE_DIR, output_dir: Path = OUTPUT_DIR) -> dict[str, Any]:
     """Analyze canonical evidence and exclusively publish three JSON artifacts."""
     _require(not output_dir.exists(), "M9C output namespace already exists")
@@ -396,22 +457,7 @@ def analyze(source_dir: Path = SOURCE_DIR, output_dir: Path = OUTPUT_DIR) -> dic
               "physics_transitions": 0, "neural_transitions": 0,
               "classification": result["classification"], "causal_milestones": milestones,
               "limitations": result["limitations"]}
-    output_dir.mkdir(parents=False, exist_ok=False)
-    try:
-        for name, value in (("m9c_analysis.json", result), ("m9c_report.json", report)):
-            with (output_dir / name).open("x", encoding="utf-8") as stream:
-                json.dump(value, stream, indent=2, sort_keys=True, allow_nan=False); stream.write("\n")
-        manifest = {"schema": SCHEMA, "status": "COMPLETE", "read_only": True,
-            "physics_transitions": 0, "neural_transitions": 0,
-            "source_m9b_artifacts": provenance["identities"], "analyzer_source_commit": result["analyzer_source_commit"],
-            "outputs": {name: _identity(output_dir / name) for name in ("m9c_analysis.json", "m9c_report.json")}}
-        with (output_dir / "m9c_manifest.json").open("x", encoding="utf-8") as stream:
-            json.dump(manifest, stream, indent=2, sort_keys=True, allow_nan=False); stream.write("\n")
-    except BaseException:
-        # Never leave a namespace that could be mistaken for a completed analysis.
-        for path in output_dir.glob("*"): path.unlink()
-        output_dir.rmdir()
-        raise
+    _publish(output_dir, result, report, provenance["identities"])
     return result
 
 
