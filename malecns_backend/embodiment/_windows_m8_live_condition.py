@@ -53,7 +53,9 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
                   runtime_factory: Any | None = None,
                   proprioception_only: bool = False,
                   fixed_initial_baseline: bool = False,
-                  m8_extended_telemetry: bool = True) -> Mapping[str, Any]:
+                  m8_extended_telemetry: bool = True,
+                  external_force_by_transition: Any | None = None,
+                  m9b_extended_telemetry: bool = False) -> Mapping[str, Any]:
     """Create, run, close, and summarize one fresh frozen runtime.
 
     The optional arguments are used by M7 to reuse this exact M6C embodiment.
@@ -138,6 +140,11 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
         from .m8_contact_kinematics import resolve as resolve_contacts, sample as sample_contacts
         contact_identity = resolve_contacts(model)
         m8_contacts, m8_feet = [], []
+        m9b_force, m9b_pre_zero, m9b_post_zero, m9b_body_up, m9b_fall_rollover = [], [], [], [], []
+        thorax_ids = [i for i, name in enumerate(contact_identity.get("body_names", {}).values())
+                      if str(name).split("/")[-1] == "Thorax"]
+        if external_force_by_transition is not None and len(thorax_ids) != 1:
+            raise RuntimeError("authoritative Thorax body identity is not unique")
         initial_audit = {"initial_pose_source": ("FlyGym default pose (no pose override)" if runtime_factory is None
                                                 else "caller-supplied frozen physical runtime"),
                 "body_position": np.asarray(physics.data.qpos[:3]).tolist(),
@@ -152,6 +159,7 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
                 "control": "position", "locomotion_or_reference_controller": False,
                 "m8_contact_identity": {"available": contact_identity["available"],
                     "method": contact_identity["method"],
+                    "body_names": contact_identity["body_names"],
                     "ground_geom_ids": list(contact_identity["ground_geom_ids"]),
                     "tarsus5_body_ids": contact_identity["tarsus5_body_ids"],
                     "tarsal_geom_ids": {k: list(v) for k, v in contact_identity["tarsal_geom_ids"].items()}}}
@@ -214,6 +222,9 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
                     if increments and channel["first_activity_ms"] is None: channel["first_activity_ms"] = now_ms
                     if raw and channel["first_decoder_output_ms"] is None: channel["first_decoder_output_ms"] = now_ms
                 contributions = gate(raw_values, condition, admitted_names)
+                if m9b_extended_telemetry:
+                    m9b_pre_zero.append([raw_values[n] for n in admitted_names])
+                    m9b_post_zero.append([contributions[n] for n in admitted_names])
                 neural_vector = [0.] * 42
                 for name, channel in channels.items():
                     baseline = (baseline_commands[channel["index"]] if fixed_initial_baseline
@@ -243,6 +254,15 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
                 if not np.all(np.isfinite(foot_xyz)):
                     raise RuntimeError("authoritative Tarsus5 body identity unavailable")
                 m8_contacts.append(contact_flags); m8_feet.append(foot_xyz)
+            if m9b_extended_telemetry:
+                quat = np.asarray(physics.data.qpos[3:7], dtype=float)
+                norm = float(np.linalg.norm(quat))
+                if not norm: raise RuntimeError("zero root quaternion")
+                w, x, y, z = quat / norm
+                up = np.asarray((2*(x*z+w*y), 2*(y*z-w*x), 1-2*(x*x+y*y)))
+                m9b_body_up.append(up)
+                # Descriptive machine-readable state; no biological label.
+                m9b_fall_rollover.append((up[2] <= 0.0, up[2] < -0.5))
             telemetry_started = time.perf_counter(); arrays = (physics.data.qpos, physics.data.qvel, physics.data.ctrl)
             finite = all(np.all(np.isfinite(a)) for a in arrays); instability |= not finite
             if compact_telemetry:
@@ -261,6 +281,14 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
                 "aggregate_cns_spike_count": aggregate_spikes, "finite": finite})
             phase["telemetry_hash"] += time.perf_counter() - telemetry_started
             if not finite or step == final_step: break
+            if external_force_by_transition is not None:
+                force = np.asarray(external_force_by_transition(condition, step), dtype=float)
+                if force.shape != (3,) or not np.all(np.isfinite(force)):
+                    raise RuntimeError("invalid M9B external force")
+                physics.data.xfrc_applied[:] = 0.0
+                physics.data.xfrc_applied[thorax_ids[0], :3] = force
+                physics.data.xfrc_applied[thorax_ids[0], 3:] = 0.0
+                m9b_force.append(force.copy())
             sim_started = time.perf_counter(); obs = sim.step({"joints": commands.copy(), "adhesion": np.zeros(6)})[0]
             phase["mujoco_stepping"] += time.perf_counter() - sim_started
             if step and step % max(1, final_step // 10) == 0:
@@ -284,6 +312,14 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
         if m8_extended_telemetry:
             raw_arrays["physics_tarsal_contact"] = np.asarray(m8_contacts, dtype=np.bool_)
             raw_arrays["physics_tarsus5_world_position"] = np.asarray(m8_feet, dtype=np.float64)
+        if m9b_extended_telemetry:
+            # Force is transition telemetry (N), while physical state telemetry
+            # is N+1. Pre/post-zero vectors are neural-cadence decoder samples.
+            raw_arrays["physics_external_force"] = np.asarray(m9b_force, dtype=np.float64)
+            raw_arrays["neural_motor_pre_zero"] = np.asarray(m9b_pre_zero, dtype=np.float64)
+            raw_arrays["neural_motor_post_zero"] = np.asarray(m9b_post_zero, dtype=np.float64)
+            raw_arrays["physics_body_up_vector"] = np.asarray(m9b_body_up, dtype=np.float64)
+            raw_arrays["physics_fall_rollover"] = np.asarray(m9b_fall_rollover, dtype=np.bool_)
         return {"pre_intervention_equivalence": True, "pre_intervention_state": pre_intervention_state,
             "initial_physical_state_audit": initial_audit,
             "local_milestones": local,
