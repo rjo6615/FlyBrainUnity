@@ -161,7 +161,7 @@ def test_recorder_and_alternate_float_timestamp_expressions_pass():
 @pytest.mark.parametrize(("field", "mutation", "message"), [
     ("physics_time_ms", lambda x: x.__setitem__(7000, x[7000] + 1e-6), "index cadence"),
     ("physics_time_ms", lambda x: x.__setitem__(slice(None), np.arange(x.size) * .11), "endpoint"),
-    ("physics_time_ms", lambda x: x.__setitem__(0, .1), "origin"),
+    ("physics_time_ms", lambda x: x.__setitem__(slice(None), x + .01), "origin"),
     ("physics_time_ms", lambda x: x.__setitem__(100, x[99]), "strictly monotonic"),
     ("physics_time_ms", lambda x: x.__setitem__(100, x[99] - .1), "strictly monotonic"),
     ("neural_time_ms", lambda x: x.__setitem__(0, 0.), "origin"),
