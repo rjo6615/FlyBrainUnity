@@ -7,6 +7,8 @@ from pathlib import Path
 import pytest
 
 from malecns_backend.embodiment import m9b_external_perturbation as m9b
+from malecns_backend.embodiment import _windows_m9b_external_perturbation_adapter as adapter
+from malecns_backend.embodiment import m7c_b4_stability as b4
 
 
 def test_import_and_protocol_are_inert_and_preregistered(monkeypatch):
@@ -181,3 +183,61 @@ def test_checked_in_preregistration_matches_code():
     recorded = json.loads(m9b.PREREGISTRATION_PATH.read_text(encoding="utf-8"))
     assert recorded == m9b.protocol()
     m9b.validate_protocol(recorded)
+
+
+def _initial_audit(prefix="0", *, mutate_joint=None):
+    expected = json.loads(b4.B3_PATH.read_text(encoding="utf-8"))[
+        "zero_step_reconstruction"]["controlled_joint_positions"]
+    joints = list(expected)
+    if mutate_joint is not None:
+        joints[mutate_joint] += 0.01
+    return {"initial_pose_source": "caller-supplied frozen physical runtime",
+        "body_position": list(m9b.m7d.SPAWN_POS),
+        "body_orientation_quaternion": [1.0, 0.0, 0.0, 0.0],
+        "joint_configuration": joints, "qpos": [0.0] * 49, "qvel": [0.0] * 48,
+        "ground": "frozen surface", "ground_dynamic_after_reset": False,
+        "gravity": [0.0, 0.0, -9.81], "adhesion_enabled": False,
+        "adhesion_command": [0.0] * 6,
+        "adhesion_policy": "constant zero baseline; no schedule or controller",
+        "control": "position", "locomotion_or_reference_controller": False,
+        "m8_contact_identity": {"available": True, "method": "compiled IDs",
+            "body_names": {0: "world", 1: f"{prefix}/Thorax"},
+            "ground_geom_ids": [0], "tarsus5_body_ids": {}, "tarsal_geom_ids": {}}}
+
+
+def test_corrected_initialization_uses_frozen_b3_vector_and_ignores_only_instance_prefixes():
+    audits = [_initial_audit(str(i)) for i in range(4)]
+    diagnostic = adapter._assert_corrected_initialization(audits, True)
+    assert diagnostic["raw_audit_dictionary_equality"] is False
+    assert diagnostic["representation_difference"] is True
+    assert diagnostic["four_condition_audits_equivalent_after_name_normalization"] is True
+    for runtime in diagnostic["runtimes"]:
+        joints = runtime["state_zero"]["baseline_joint_vector"]
+        assert joints["actual_shape"] == [42]
+        assert joints["maximum_absolute_difference"] == 0.0
+        assert [row["joint"] for row in joints["targets"]] == [
+            f"joint_{leg}{suffix}" for leg in ("LF", "LM", "LH", "RF", "RM", "RH")
+            for suffix in ("Coxa", "Coxa_roll", "Coxa_yaw", "Femur", "Femur_roll", "Tibia", "Tarsus1")]
+
+
+def test_corrected_initialization_diagnostics_fail_closed_on_joint_mutation():
+    audits = [_initial_audit(str(i)) for i in range(4)]
+    audits[2] = _initial_audit("2", mutate_joint=17)
+    with pytest.raises(RuntimeError, match=r'"maximum_difference_index": 17') as caught:
+        adapter._assert_corrected_initialization(audits, False)
+    message = str(caught.value)
+    assert '"joint": "joint_LHFemur"' in message
+    assert '"four_condition_state_zero_equivalent": false' in message
+
+
+def test_m9b_reuses_m7d_runtime_factory_and_initialization_path_without_transitions():
+    calls = []
+    def runner(**kwargs):
+        calls.append(kwargs)
+        return {"physics_steps": 0, "neural_steps": 0}
+    for number, condition in enumerate(m9b.CONDITIONS, 1):
+        result = adapter._invoke(runner, {}, (), (), condition, number, True)
+        assert result == {"physics_steps": 0, "neural_steps": 0}
+    assert len(calls) == 4
+    assert all(call["initialize_only"] and call["runtime_factory"] is adapter.m7da._runtime
+               and call["fixed_initial_baseline"] for call in calls)
