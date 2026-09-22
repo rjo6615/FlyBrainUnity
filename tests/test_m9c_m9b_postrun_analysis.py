@@ -55,6 +55,9 @@ def _forces():
 
 def test_exact_force_schedule_and_fail_closed_mutation():
     arrays = _forces()
+    result = m9c.verify_force_integrity(arrays)
+    assert result["active_transition_indices"] == [5000, 5199]
+    assert result["nonzero_transitions_per_perturbed_condition"] == 200
     assert m9c.verify_force_integrity(arrays)["first_potentially_affected_state"] == 5001
     arrays["A_P__physics_external_force"][5199, 1] = 0
     with pytest.raises(RuntimeError, match="force schedule"): m9c.verify_force_integrity(arrays)
@@ -122,11 +125,69 @@ def _schema_arrays():
             if field == "physics_time_ms":
                 value = np.arange(15001, dtype=float) * .1
             elif field == "neural_time_ms":
-                value = np.arange(3000, dtype=float) * .5
+                value = np.arange(1, 3001, dtype=float) * .5
             else:
                 value = np.broadcast_to(np.zeros((), dtype=float), shape)
             arrays[f"{condition}__{field}"] = value
     return arrays
+
+
+def _recorder_physics_clock():
+    """Synthetic MuJoCo-style clock: repeated seconds additions, then ms."""
+    result = np.empty(15001, dtype=np.float64)
+    now_s = np.float64(0.0)
+    for index in range(result.size):
+        result[index] = now_s * 1000.0
+        now_s += np.float64(0.0001)
+    return result
+
+
+def test_recorder_and_alternate_float_timestamp_expressions_pass():
+    recorder = _schema_arrays()
+    physics = _recorder_physics_clock()
+    for condition in m9b.CONDITIONS:
+        recorder[f"{condition}__physics_time_ms"] = physics.copy()
+        recorder[f"{condition}__neural_time_ms"] = physics[5::5].copy()
+    m9c._validate_arrays(recorder)
+
+    # Independent index multiplication is mathematically identical but not
+    # byte-identical to MuJoCo's repeatedly advanced binary64 clock.
+    alternate = _schema_arrays()
+    assert not np.array_equal(physics, alternate["A_P__physics_time_ms"])
+    assert not np.array_equal(physics[5::5], alternate["A_P__neural_time_ms"])
+    m9c._validate_arrays(alternate)
+
+
+@pytest.mark.parametrize(("field", "mutation", "message"), [
+    ("physics_time_ms", lambda x: x.__setitem__(7000, x[7000] + 1e-6), "index cadence"),
+    ("physics_time_ms", lambda x: x.__setitem__(slice(None), np.arange(x.size) * .11), "endpoint"),
+    ("physics_time_ms", lambda x: x.__setitem__(0, .1), "origin"),
+    ("physics_time_ms", lambda x: x.__setitem__(100, x[99]), "strictly monotonic"),
+    ("physics_time_ms", lambda x: x.__setitem__(100, x[99] - .1), "strictly monotonic"),
+    ("neural_time_ms", lambda x: x.__setitem__(0, 0.), "origin"),
+])
+def test_timestamp_cadence_mutations_fail_closed(field, mutation, message):
+    arrays = _schema_arrays()
+    value = arrays[f"A_P__{field}"].copy()
+    mutation(value)
+    arrays[f"A_P__{field}"] = value
+    with pytest.raises(RuntimeError, match=message):
+        m9c._validate_arrays(arrays)
+
+
+@pytest.mark.parametrize("field", ("physics_time_ms", "neural_time_ms"))
+def test_timestamp_wrong_sample_count_fails(field):
+    arrays = _schema_arrays()
+    arrays[f"A_P__{field}"] = arrays[f"A_P__{field}"][:-1]
+    with pytest.raises(RuntimeError, match=field):
+        m9c._validate_arrays(arrays)
+
+
+def test_timestamp_dtype_must_remain_binary64():
+    arrays = _schema_arrays()
+    arrays["A_P__physics_time_ms"] = arrays["A_P__physics_time_ms"].astype(np.float32)
+    with pytest.raises(RuntimeError, match="dtype"):
+        m9c._validate_arrays(arrays)
 
 
 def test_authoritative_model_nq_and_nv_are_independent_and_accepted():
@@ -182,3 +243,15 @@ def test_validation_failure_precedes_output_publication(tmp_path, monkeypatch):
         m9c.analyze(tmp_path, output)
     assert not output.exists()
     assert m9c.PHYSICS_TRANSITIONS == m9c.NEURAL_TRANSITIONS == 0
+
+
+def test_cadence_failure_precedes_output_publication(tmp_path, monkeypatch):
+    arrays = _schema_arrays()
+    arrays["A_P__physics_time_ms"] = arrays["A_P__physics_time_ms"].copy()
+    arrays["A_P__physics_time_ms"][42] += 1e-6
+    output = tmp_path / "m9c"
+    monkeypatch.setattr(m9c, "validate_provenance", lambda source: {})
+    monkeypatch.setattr(m9c, "_load_raw", lambda path: arrays)
+    with pytest.raises(RuntimeError, match="physics cadence"):
+        m9c.analyze(tmp_path, output)
+    assert not output.exists()

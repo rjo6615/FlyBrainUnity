@@ -224,6 +224,51 @@ def _load_raw(path: Path) -> dict[str, np.ndarray]:
         return {name: archive[name].copy() for name in archive.files}
 
 
+def _clock_accumulation_tolerance(expected: np.ndarray, dt_ms: float) -> np.ndarray:
+    """Bound binary64 error from the recorder's repeated clock advancement.
+
+    MuJoCo advances its seconds-valued binary64 clock once per transition and
+    the recorder then multiplies that value by 1000.  Each addition contributes
+    at most half an ULP (round-to-nearest); the final ULP covers construction of
+    the independently vectorized nominal reference.  This is a derived IEEE-754
+    bound, not a fitted ``allclose`` tolerance.
+    """
+    # Convert the nominal millisecond values to the seconds scale on which the
+    # accumulation actually occurs, then return the error bound in milliseconds.
+    seconds = expected / 1000.0
+    dt_seconds = dt_ms / 1000.0
+    addition_ulp = np.spacing(np.maximum(np.abs(seconds), abs(dt_seconds)))
+    return 1000.0 * (0.5 * np.cumsum(addition_ulp) +
+                     np.spacing(np.maximum(np.abs(seconds), abs(dt_seconds))))
+
+
+def _validate_clock(time: np.ndarray, *, sample_count: int, dt_ms: float,
+                    first_index: int, label: str,
+                    tolerance: np.ndarray | None = None) -> np.ndarray:
+    """Validate sample-index cadence under the frozen binary64 recorder model."""
+    time = np.asarray(time)
+    _require(time.dtype == np.dtype("float64"), f"{label} dtype")
+    _require(time.shape == (sample_count,), f"{label} sample count")
+    _require(bool(np.all(np.isfinite(time))), f"{label} nonfinite timestamp")
+    _require(bool(np.all(np.diff(time) > 0)), f"{label} timestamps not strictly monotonic")
+    indices = np.arange(first_index, first_index + sample_count, dtype=np.float64)
+    expected = indices * dt_ms
+    if tolerance is None:
+        tolerance = _clock_accumulation_tolerance(expected, dt_ms)
+    _require(tolerance.shape == time.shape, f"{label} tolerance shape")
+    delta = np.abs(time - expected)
+    _require(bool(delta[0] <= tolerance[0]), f"{label} origin")
+    _require(bool(delta[-1] <= tolerance[-1]), f"{label} endpoint")
+    _require(bool(np.all(delta <= tolerance)), f"{label} index cadence")
+
+    # Adjacent subtraction exposes the rounding errors at both endpoints.  The
+    # per-index accumulated bounds therefore also bound any represented step.
+    step_tolerance = tolerance[:-1] + tolerance[1:] + np.spacing(dt_ms)
+    _require(bool(np.all(np.abs(np.diff(time) - dt_ms) <= step_tolerance)),
+             f"{label} dt")
+    return tolerance
+
+
 def _validate_arrays(a: Mapping[str, np.ndarray]) -> None:
     expected_keys = {f"{c}__{name}" for c in m9b.CONDITIONS for name in M9B_RECORDED_SHAPES}
     _require(set(a) == expected_keys, "recorded array inventory mismatch")
@@ -231,11 +276,27 @@ def _validate_arrays(a: Mapping[str, np.ndarray]) -> None:
         for name, shape in M9B_RECORDED_SHAPES.items():
             _require(f"{c}__{name}" in a and np.asarray(a[f"{c}__{name}"]).shape == shape,
                      f"missing or malformed {c} {name}")
-    pt = np.arange(15001) * .1
-    nt = np.arange(3000) * .5
     for c in m9b.CONDITIONS:
-        _require(np.array_equal(a[f"{c}__physics_time_ms"], pt), f"physics cadence {c}")
-        _require(np.array_equal(a[f"{c}__neural_time_ms"], nt), f"neural cadence {c}")
+        pt = np.asarray(a[f"{c}__physics_time_ms"])
+        nt = np.asarray(a[f"{c}__neural_time_ms"])
+        physics_tolerance = _validate_clock(
+            pt, sample_count=15001, dt_ms=.1, first_index=0,
+            label=f"physics cadence {c}")
+        # Neural updates occur at steps 5, 10, ..., 15000.  The recorder writes
+        # the very same ``now_ms`` scalar to neural and physics telemetry on
+        # those iterations; it does not own a zero-origin 0.5-ms accumulator.
+        sampled_physics = pt[5::5]
+        neural_tolerance = physics_tolerance[5::5]
+        _validate_clock(nt, sample_count=3000, dt_ms=.5, first_index=1,
+                        label=f"neural cadence {c}", tolerance=neural_tolerance)
+        _require(bool(np.all(np.abs(nt - sampled_physics) <= 2 * neural_tolerance)),
+                 f"neural/physics index correspondence {c}")
+    # Separate conditions use the identical deterministic MuJoCo clock.  These
+    # are recorded peers, not independently reconstructed decimal references.
+    for field in ("physics_time_ms", "neural_time_ms"):
+        reference = a[f"A_P__{field}"]
+        _require(all(np.array_equal(reference, a[f"{c}__{field}"])
+                     for c in m9b.CONDITIONS), f"cross-condition {field}")
     state_fields = ("physics_body_position", "physics_body_orientation", "physics_joint_position")
     _require(all(np.array_equal(a[f"A_P__{x}"][0], a[f"{c}__{x}"][0])
                  for x in state_fields for c in m9b.CONDITIONS), "state-zero inequality")
