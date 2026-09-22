@@ -22,6 +22,17 @@ CALIBRATION_FILES = {
     "m9a_3_attempt_3_report.json": (5996715, "05a8c63766fd5e74ec5b241a3977e8215356a676845281a9fccad5d9dfa61d22"),
     "m9a_3_attempt_3_preregistration.json": (5495, "1adca0c26dd2e70eb5c2ea697bf01be22ccb9d7ce64f198af8bcc1d436bda366"),
 }
+# Generated scientific results remain exact-byte locked.  The preregistration
+# is text/source evidence and is locked to its canonical-LF representation so
+# Git's platform newline conversion cannot alter its identity.  Keep the
+# classification exhaustive and fail closed rather than inferring from suffix.
+CANONICAL_LF_TEXT_ARTIFACTS = frozenset({
+    "m9a_3_attempt_3_preregistration.json",
+})
+EXACT_BYTE_BINARY_ARTIFACTS = frozenset({
+    "m9a_3_attempt_3_manifest.json",
+    "m9a_3_attempt_3_report.json",
+})
 OUTPUT_DIR = HERE / "interface_output/m9b_external_perturbation"
 RAW_PATH = OUTPUT_DIR / "m9b_raw.npz"
 REPORT_PATH = OUTPUT_DIR / "m9b_report.json"
@@ -55,12 +66,26 @@ def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def _canonical_provenance_bytes(name: str, raw: bytes) -> bytes:
+    """Apply the explicitly classified representation policy for an artifact."""
+    if name in EXACT_BYTE_BINARY_ARTIFACTS:
+        return raw
+    if name in CANONICAL_LF_TEXT_ARTIFACTS:
+        # Replace CRLF first: replacing CR first would manufacture CRCRLF.
+        return raw.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    raise RuntimeError(f"unclassified M9A Attempt-3 provenance artifact: {name}")
+
+
 def verify_m9a_provenance(directory: Path = CALIBRATION_DIR) -> dict[str, Any]:
     """Verify all three canonical inputs and the frozen selection semantics."""
+    classified = CANONICAL_LF_TEXT_ARTIFACTS | EXACT_BYTE_BINARY_ARTIFACTS
+    if classified != set(CALIBRATION_FILES) or CANONICAL_LF_TEXT_ARTIFACTS & EXACT_BYTE_BINARY_ARTIFACTS:
+        raise RuntimeError("M9A Attempt-3 provenance artifact classification is not exhaustive")
     evidence = {}
     for name, (size, digest) in CALIBRATION_FILES.items():
         path = directory / name
-        if not path.is_file() or path.stat().st_size != size or _sha256(path) != digest:
+        canonical = _canonical_provenance_bytes(name, path.read_bytes()) if path.is_file() else b""
+        if not path.is_file() or len(canonical) != size or hashlib.sha256(canonical).hexdigest() != digest:
             raise RuntimeError(f"M9A Attempt-3 canonical provenance mismatch: {name}")
         evidence[name] = {"byte_size": size, "sha256": digest}
     manifest = json.loads((directory / "m9a_3_attempt_3_manifest.json").read_text(encoding="utf-8"))
