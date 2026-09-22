@@ -45,6 +45,69 @@ def test_first_divergence_respects_analysis_boundary():
     assert m9c.first_divergence(np.zeros(4), t) is None
 
 
+def test_scalar_and_single_vector_summaries_have_unambiguous_peaks_and_returns():
+    t = np.array([500., 520., 750., 1000., 1500.])
+    scalar = m9c._summary(np.array([0., -2., 1., 0., 0.]), t)
+    assert scalar["maximum_magnitude"] == 2
+    assert scalar["maximum_time_ms"] == 520
+    assert scalar["value_at_maximum"] == -2
+    assert scalar["post_run_descriptive_return_fraction_at_1500_ms"] == 1
+
+    vector = m9c._summary(np.array([[0., 0., 0.], [3., 4., 0.],
+                                    [0., 0., 2.], [0., 0., 0.], [0., 0., 0.]]), t)
+    assert vector["maximum_magnitude"] == 5
+    assert vector["maximum_time_ms"] == 520
+    assert vector["value_at_maximum"] == [3., 4., 0.]
+
+
+def _factorial_fixture(value):
+    return {f"{condition}__x": (value.copy() if condition == "A_P" else np.zeros_like(value))
+            for condition in m9b.CONDITIONS}
+
+
+def test_named_scalar_channels_preserve_joint_sensory_and_motor_identity():
+    t = np.array([500., 520., 750., 1000., 1500.])
+    for names in (m9c.JOINTS, tuple(m9b.SENSORY_INTERFACES),
+                  tuple(name for name, _, _ in m9b.MOTOR_INTERFACES)):
+        value = np.zeros((t.size, len(names)))
+        value[2, -1] = -7
+        item = m9c._contrast_summaries(_factorial_fixture(value), "x", t, names)["delta_A"]
+        assert list(item["channels"]) == list(names)
+        assert item["channels"][names[-1]]["maximum_time_ms"] == 750
+        assert item["channels"][names[-1]]["value_at_maximum"] == -7
+        assert item["largest_channels_by_peak_magnitude"][0] == names[-1]
+        assert item["aggregate_l2_definition"] == "Euclidean root-sum-square across all named channels"
+
+
+def test_six_leg_xyz_preserves_entities_and_computes_per_leg_magnitudes():
+    t = np.array([500., 520., 750., 1000., 1500.])
+    value = np.zeros((t.size, 6, 3))
+    value[1, 0] = [3., -4., 0.]
+    value[2, 5] = [0., 0., 6.]
+    item = m9c._contrast_summaries(_factorial_fixture(value), "x", t, m9c.LEGS)["delta_A"]
+    assert list(item["entities"]) == list(m9c.LEGS)
+    assert item["entities"]["LF"]["force_offset_520_ms"] == {
+        "value": [3., -4., 0.], "magnitude": 5.0}
+    assert item["entities"]["RH"]["maximum_magnitude"] == 6
+    assert item["entities"]["RH"]["maximum_time_ms"] == 750
+    assert item["largest_entities_by_peak_magnitude"][:2] == ["RH", "LF"]
+    assert item["aggregate_l2_summary"]["maximum_magnitude"] == 6
+    assert item["aggregate_l2_definition"] == (
+        "Euclidean root-sum-square across all named entities and vector components")
+    assert m9c.first_divergence(value, t) == 520
+
+
+@pytest.mark.parametrize("shape,names", [((5, 2, 2), None), ((5, 2, 2, 2), ("a", "b")),
+                                          ((5, 2), ("only_one",))])
+def test_unsupported_or_mislabeled_summary_shapes_fail_explicitly(shape, names):
+    t = np.array([500., 520., 750., 1000., 1500.])
+    with pytest.raises(RuntimeError, match="rank|identity count"):
+        m9c._contrast_summaries(_factorial_fixture(np.zeros(shape)), "x", t, names)
+
+    with pytest.raises(RuntimeError, match=r"only \(T,\) scalars or \(T,D\) vectors"):
+        m9c._summary(np.zeros((5, 2, 3)), t)
+
+
 def _forces():
     arrays = {}
     expected = np.zeros((15000, 3)); expected[5000:5200, 1] = 1.024
@@ -89,6 +152,39 @@ def test_contact_summary_reports_signed_per_leg_difference():
 def test_output_namespace_protection(tmp_path):
     output = tmp_path / "existing"; output.mkdir()
     with pytest.raises(RuntimeError, match="already exists"): m9c.analyze(tmp_path, output)
+
+
+def test_publication_is_transactional_and_cleans_failed_staging(tmp_path, monkeypatch):
+    output = tmp_path / "m9c"
+    result = {"analyzer_source_commit": "synthetic"}
+    real_dump = json.dump
+    calls = 0
+
+    def fail_second_dump(*args, **kwargs):
+        nonlocal calls
+        calls += 1
+        if calls == 2:
+            raise OSError("synthetic publication failure")
+        return real_dump(*args, **kwargs)
+
+    monkeypatch.setattr(json, "dump", fail_second_dump)
+    with pytest.raises(OSError, match="synthetic publication failure"):
+        m9c._publish(output, result, {}, {})
+    assert not output.exists()
+    assert not list(tmp_path.glob(".m9c.tmp-*"))
+    assert m9c.PHYSICS_TRANSITIONS == m9c.NEURAL_TRANSITIONS == 0
+
+
+def test_successful_publication_renames_complete_namespace(tmp_path):
+    output = tmp_path / "m9c"
+    m9c._publish(output, {"analyzer_source_commit": "synthetic"}, {"ok": True}, {})
+    assert {path.name for path in output.iterdir()} == {
+        "m9c_analysis.json", "m9c_report.json", "m9c_manifest.json"}
+    manifest = json.loads((output / "m9c_manifest.json").read_text())
+    for name, identity in manifest["outputs"].items():
+        content = (output / name).read_bytes()
+        assert identity["byte_size"] == len(content)
+        assert identity["sha256"] == hashlib.sha256(content).hexdigest()
 
 
 def test_conservative_classification_rules():
