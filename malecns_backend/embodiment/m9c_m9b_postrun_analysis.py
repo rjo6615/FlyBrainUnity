@@ -27,6 +27,38 @@ JOINTS = tuple(f"joint_{leg}{suffix}" for leg in LEGS for suffix in
 PHYSICS_TRANSITIONS = 0
 NEURAL_TRANSITIONS = 0
 
+# Complete array contract emitted by CompactTelemetry plus the M8/M9B extended
+# recorder.  The canonical model dimensions are independently captured by the
+# four state-zero model snapshots in the immutable M9B manifest: nq=94 and
+# nv=93.  They differ because MuJoCo represents the free-root orientation with
+# four qpos quaternion coordinates but only three angular velocity DOFs.
+M9B_RECORDED_SHAPES = {
+    "physics_time_ms": (15001,),
+    "physics_qpos": (15001, 94),
+    "physics_qvel": (15001, 93),
+    "physics_joint_position": (15001, 42),
+    "physics_action": (15001, 42),
+    "physics_ctrl": (15001, 48),
+    "physics_body_position": (15001, 3),
+    "physics_body_orientation": (15001, 4),
+    "physics_contact_forces": (15001, 36, 3),
+    "physics_finite": (15001,),
+    "physics_tarsal_contact": (15001, 6),
+    "physics_tarsus5_world_position": (15001, 6, 3),
+    "physics_body_up_vector": (15001, 3),
+    "physics_fall_rollover": (15001, 2),
+    "physics_external_force": (15000, 3),
+    "neural_time_ms": (3000,),
+    "neural_sensory_encoded": (3000, 6),
+    "neural_delivered_drive_count": (3000,),
+    "neural_aggregate_spikes": (3000,),
+    "neural_observer_outputs": (3000, 11),
+    "neural_decoder_outputs": (3000, 11),
+    "neural_admitted_contributions": (3000, 11),
+    "neural_motor_pre_zero": (3000, 11),
+    "neural_motor_post_zero": (3000, 11),
+}
+
 
 def _identity(path: Path) -> dict[str, Any]:
     h = hashlib.sha256()
@@ -193,18 +225,10 @@ def _load_raw(path: Path) -> dict[str, np.ndarray]:
 
 
 def _validate_arrays(a: Mapping[str, np.ndarray]) -> None:
-    required_shapes = {"physics_time_ms": (15001,), "physics_body_position": (15001, 3),
-        "physics_body_orientation": (15001, 4), "physics_body_up_vector": (15001, 3),
-        "physics_joint_position": (15001, 42), "physics_tarsus5_world_position": (15001, 6, 3),
-        "physics_qvel": (15001, 48),
-        "physics_tarsal_contact": (15001, 6), "physics_fall_rollover": (15001, 2),
-        "physics_external_force": (15000, 3), "neural_time_ms": (3000,),
-        "neural_sensory_encoded": (3000, 6), "neural_delivered_drive_count": (3000,),
-        "neural_aggregate_spikes": (3000,), "neural_observer_outputs": (3000, 11),
-        "neural_decoder_outputs": (3000, 11), "neural_admitted_contributions": (3000, 11),
-        "neural_motor_pre_zero": (3000, 11), "neural_motor_post_zero": (3000, 11)}
+    expected_keys = {f"{c}__{name}" for c in m9b.CONDITIONS for name in M9B_RECORDED_SHAPES}
+    _require(set(a) == expected_keys, "recorded array inventory mismatch")
     for c in m9b.CONDITIONS:
-        for name, shape in required_shapes.items():
+        for name, shape in M9B_RECORDED_SHAPES.items():
             _require(f"{c}__{name}" in a and np.asarray(a[f"{c}__{name}"]).shape == shape,
                      f"missing or malformed {c} {name}")
     pt = np.arange(15001) * .1

@@ -112,3 +112,73 @@ def test_provenance_rejects_report_mutation(tmp_path):
     report["status"] = "COMPLETE"
     (tmp_path / "m9b_report.json").write_text(json.dumps(report))
     with pytest.raises(RuntimeError, match="provenance"): m9c.validate_provenance(tmp_path)
+
+
+def _schema_arrays():
+    """Make a low-memory, shape-faithful view of every recorded M9B field."""
+    arrays = {}
+    for condition in m9b.CONDITIONS:
+        for field, shape in m9c.M9B_RECORDED_SHAPES.items():
+            if field == "physics_time_ms":
+                value = np.arange(15001, dtype=float) * .1
+            elif field == "neural_time_ms":
+                value = np.arange(3000, dtype=float) * .5
+            else:
+                value = np.broadcast_to(np.zeros((), dtype=float), shape)
+            arrays[f"{condition}__{field}"] = value
+    return arrays
+
+
+def test_authoritative_model_nq_and_nv_are_independent_and_accepted():
+    manifest = json.loads((m9c.SOURCE_DIR / "m9b_manifest.json").read_text(encoding="utf-8"))
+    runtimes = manifest["preflight"]["corrected_initialization_diagnostics"]["runtimes"]
+    assert {(len(x["state_zero"]["qpos"]), len(x["state_zero"]["qvel"]))
+            for x in runtimes} == {(94, 93)}
+    arrays = _schema_arrays()
+    m9c._validate_arrays(arrays)
+    assert m9c.M9B_RECORDED_SHAPES["physics_qpos"] == (15001, 94)
+    assert m9c.M9B_RECORDED_SHAPES["physics_qvel"] == (15001, 93)
+
+
+@pytest.mark.parametrize(("field", "wrong_width"),
+                         (("physics_qpos", 93), ("physics_qvel", 94)))
+def test_qpos_and_qvel_wrong_dimensions_fail_independently(field, wrong_width):
+    arrays = _schema_arrays()
+    arrays[f"A_P__{field}"] = np.broadcast_to(0., (15001, wrong_width))
+    with pytest.raises(RuntimeError, match=field):
+        m9c._validate_arrays(arrays)
+
+
+def test_complete_recorder_contract_and_each_malformed_dimension_fail_closed():
+    expected = {
+        # CompactTelemetry physics fields.
+        "physics_time_ms", "physics_qpos", "physics_qvel", "physics_joint_position",
+        "physics_action", "physics_ctrl", "physics_body_position", "physics_body_orientation",
+        "physics_contact_forces", "physics_finite",
+        # M8/M9B extended physics and all neural fields.
+        "physics_tarsal_contact", "physics_tarsus5_world_position", "physics_body_up_vector",
+        "physics_fall_rollover", "physics_external_force", "neural_time_ms",
+        "neural_sensory_encoded", "neural_delivered_drive_count", "neural_aggregate_spikes",
+        "neural_observer_outputs", "neural_decoder_outputs", "neural_admitted_contributions",
+        "neural_motor_pre_zero", "neural_motor_post_zero",
+    }
+    assert set(m9c.M9B_RECORDED_SHAPES) == expected
+    baseline = _schema_arrays()
+    m9c._validate_arrays(baseline)
+    for field, shape in m9c.M9B_RECORDED_SHAPES.items():
+        malformed = dict(baseline)
+        malformed[f"A_P__{field}"] = np.zeros((*shape[:-1], shape[-1] + 1))
+        with pytest.raises(RuntimeError, match=field):
+            m9c._validate_arrays(malformed)
+
+
+def test_validation_failure_precedes_output_publication(tmp_path, monkeypatch):
+    arrays = _schema_arrays()
+    arrays["A_P__physics_qvel"] = np.zeros((15001, 48))
+    output = tmp_path / "m9c"
+    monkeypatch.setattr(m9c, "validate_provenance", lambda source: {})
+    monkeypatch.setattr(m9c, "_load_raw", lambda path: arrays)
+    with pytest.raises(RuntimeError, match="physics_qvel"):
+        m9c.analyze(tmp_path, output)
+    assert not output.exists()
+    assert m9c.PHYSICS_TRANSITIONS == m9c.NEURAL_TRANSITIONS == 0
