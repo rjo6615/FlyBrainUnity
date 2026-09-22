@@ -1,0 +1,147 @@
+{
+  "attempt_provenance": {
+    "attempt": 2,
+    "predecessor": "M9A-3-Attempt-1",
+    "predecessor_disposition": "INCOMPLETE_EXECUTION_REDUCER_FAILURE_NO_SELECTION",
+    "scientific_protocol_change_from_predecessor": false
+  },
+  "claim_boundary": "physical perturbation calibration only; not balance, neural stabilization, reflexes, gait, biological function, MaleCNS, or M9B",
+  "disturbance_metrics": [
+    "root_position_vector_and_euclidean",
+    "root_linear_velocity_vector_and_euclidean",
+    "quaternion_shortest_arc_angle_deg",
+    "body_up_angle_deg",
+    "angular_velocity_vector_and_euclidean",
+    "authoritative_six_leg_contact_xor",
+    "per_leg_distal_tarsus_euclidean",
+    "first_physical_divergence_ms"
+  ],
+  "experiment_namespace": "M9A-3-Attempt-2",
+  "explicit_absences": {
+    "adaptive_force_tuning": false,
+    "gait_or_cpg": false,
+    "hidden_assistance": false,
+    "mapped_motor_decoding": false,
+    "reference_trajectory": false,
+    "reward_rl_ai": false,
+    "sensory_encoding": false,
+    "stabilization_controller": false
+  },
+  "fixed_actuation": {
+    "adhesion": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "commands": "frozen corrected M7D/B4 baseline copied at every transition",
+    "joint_count": 42
+  },
+  "male_cns": {
+    "constructed": false,
+    "neural_transitions": 0
+  },
+  "matched_pair": {
+    "comparison": "timestamp-aligned P minus C; never own-pre-state displacement",
+    "conditions": [
+      "P",
+      "C"
+    ],
+    "exact_pre_force_equivalence_required": true,
+    "fresh_identical_runtime_per_condition": true
+  },
+  "perturbation": {
+    "application_body_source": "Thorax",
+    "application_point": "body center of mass",
+    "candidate_force_magnitudes_native": [
+      0.256,
+      0.512,
+      1.024,
+      2.048
+    ],
+    "compiled_identity_resolution": "unique exact terminal slash-delimited component",
+    "direction_xyz": [
+      0.0,
+      1.0,
+      0.0
+    ],
+    "frame": "world",
+    "ladder_rationale": "factor-two geometric escalation above 0.128; under local proportional extrapolation, its 0.000411825-mm maximum P-vs-0.0001 position signal predicts approximately 0.000824, 0.001647, 0.003295, and 0.006589 mm; outcomes cannot alter the ladder",
+    "mechanism": "MuJoCo data.xfrc_applied direct Cartesian force",
+    "start_ms_inclusive": 500.0,
+    "stop_ms_exclusive": 520.0,
+    "torque_xyz": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "physical_initialization": {
+    "adhesion_enabled": false,
+    "baseline_targets": "exact measured corrected tripod joint state at time zero",
+    "calibration_surface": "canonical inherited static m5d2c_calibration_surface",
+    "control": "position",
+    "flygym": "1.2.1",
+    "init_pose": "tripod",
+    "mujoco": "3.2.7",
+    "settling_transitions": 0,
+    "spawn_orientation": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spawn_pos": [
+      0.0,
+      0.0,
+      0.6045752232266313
+    ]
+  },
+  "physics": {
+    "dt_ms": 0.1,
+    "flygym": "1.2.1",
+    "mujoco": "3.2.7",
+    "observation_duration_ms": 1500.0,
+    "states_per_condition": 15001,
+    "transitions_per_condition": 15000
+  },
+  "schema": "M9A-3-MATCHED-CONTROL-PHYSICS-ONLY-CALIBRATION.2",
+  "selection_rule_preregistered": {
+    "choice": "lowest qualifying magnitude in frozen order; fail closed if none",
+    "meaningful_posture_any_of": {
+      "authoritative_contact_pattern_divergence": true,
+      "maximum_any_distal_tarsus_divergence_mm_at_least": 0.01,
+      "maximum_orientation_divergence_deg_at_least": 0.25,
+      "maximum_root_position_divergence_mm_at_least": 0.005
+    },
+    "measurable": {
+      "post_500ms_any_continuous_divergence_at_least": 1e-09
+    },
+    "passive_return_required": false,
+    "return_rationale": "the future causal question is whether enabled neural feedback changes recovery; requiring >=25% passive return would select on an irrelevant property and can exclude a safe useful disturbance",
+    "safety": {
+      "absolute_root_displacement_from_initial_mm_each_condition": 1.5,
+      "absolute_root_linear_speed_each_condition": 10.0,
+      "absolute_tilt_deg_each_condition": 60.0,
+      "finite_both": true,
+      "maximum_orientation_divergence_deg": 30.0,
+      "maximum_root_linear_velocity_divergence": 5.0,
+      "maximum_root_position_divergence_mm": 0.5,
+      "minimum_post_force_observation_ms": 980.0,
+      "no_fall_launch_or_rollover_through_ms": 750.0
+    }
+  },
+  "status": "NOT_RUN",
+  "telemetry": [
+    "complete_physical_timestamps",
+    "root_pose",
+    "root_linear_and_angular_velocity",
+    "six_authoritative_contacts",
+    "six_distal_tarsus_positions",
+    "applied_external_force",
+    "fixed_actuator_commands_and_sha256",
+    "body_id_name_and_source",
+    "environment_and_model_provenance"
+  ]
+}

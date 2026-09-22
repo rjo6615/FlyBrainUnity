@@ -2,8 +2,19 @@
 
 ## Status and claim boundary
 
-This is a **new, preregistered, NOT RUN** experiment. M9A Attempt 1 and M9A-2
-remain historical evidence and are neither rerun nor reinterpreted as success.
+**Attempt 1 is permanently classified as an incomplete execution.** It ran
+only candidate 0.256 (P, then C), failed in `_reduce_pair()`, completed no
+reduction or selection, and ran no later candidate. Its two raw files remain
+immutable, read-only failed-attempt evidence in
+`interface_output/m9a_3_matched_control_calibration`; their byte sizes and
+SHA-256 identities are recorded in `m9a_3_attempt_1_provenance.json`.
+
+**Attempt 2 is a distinct, preregistered, NOT RUN experiment.** Its exclusive
+output namespace is
+`interface_output/m9a_3_matched_control_calibration_attempt_2`. The scientific
+protocol below is unchanged from Attempt 1; only the reducer defect and attempt
+identity/output isolation have changed. M9A and M9A-2 remain historical
+evidence and are neither rerun nor reinterpreted as success.
 M9A-3 calibrates an external physical disturbance only. It does not test
 balance, stabilization, reflexes, walking, gait, biological function, MaleCNS,
 or whether any neural system responds favorably.
@@ -42,6 +53,9 @@ P targets the unique compiled body whose terminal component is exactly
 `Thorax`, in world +Y at its COM with zero torque, on the 200 outgoing 0.1-ms
 transitions from 500 ms inclusive through 520 ms exclusive. C is forced to zero
 on every transition. Both are observed to 1500 ms, leaving 980 ms after force.
+The repaired reducer reconstructs that schedule solely from integer transition
+indices: P is nonzero exactly at indices 5000–5199. Recorded accumulated times
+are checked against `index * 0.1 ms`, but never decide force-window membership.
 
 ## Frozen selection rule
 
@@ -73,10 +87,10 @@ property.
 
 ## Evidence and execution boundary
 
-The protocol verifies SHA-256 and byte size for every M9A Attempt 1 and M9A-2
-raw file and preregistration plus the forensic report materials used here. New
-raw P/C files, report, and manifest use the exclusive M9A-3 namespace and
-exclusive creation. Partial files are never overwritten.
+The protocol verifies SHA-256 and byte size for every earlier M9A and M9A-2
+evidence file used here and both M9A-3 Attempt-1 raw files. New Attempt-2 raw
+P/C files, report, and manifest use its exclusive namespace and exclusive
+creation. Attempt-1 files can therefore never be overwritten by Attempt 2.
 
 Static/unit tests and Windows preflight perform zero transitions. The live
 command below is documented for separately authorized future Windows use only;
@@ -87,3 +101,7 @@ python -m malecns_backend.embodiment.m9a_3_matched_control_calibration --windows
 # FUTURE SEPARATE AUTHORIZATION ONLY:
 python -m malecns_backend.embodiment.m9a_3_matched_control_calibration --run-windows
 ```
+
+The preflight is dedicated to Attempt 2 and constructs only fresh physics
+runtimes for static initialization/identity inspection. It executes zero
+physics transitions, zero neural transitions, and never constructs MaleCNS.
