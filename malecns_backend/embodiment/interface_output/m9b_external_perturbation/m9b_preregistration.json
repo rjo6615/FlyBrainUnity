@@ -1,0 +1,238 @@
+{
+  "admitted_motor_interfaces": [
+    {
+      "action_index": 5,
+      "coordinate_sign": 1,
+      "name": "joint_LFTibia"
+    },
+    {
+      "action_index": 12,
+      "coordinate_sign": 1,
+      "name": "joint_LMTibia"
+    },
+    {
+      "action_index": 19,
+      "coordinate_sign": 1,
+      "name": "joint_LHTibia"
+    },
+    {
+      "action_index": 26,
+      "coordinate_sign": 1,
+      "name": "joint_RFTibia"
+    },
+    {
+      "action_index": 33,
+      "coordinate_sign": 1,
+      "name": "joint_RMTibia"
+    },
+    {
+      "action_index": 40,
+      "coordinate_sign": 1,
+      "name": "joint_RHTibia"
+    },
+    {
+      "action_index": 3,
+      "coordinate_sign": -1,
+      "name": "joint_LFFemur"
+    },
+    {
+      "action_index": 10,
+      "coordinate_sign": -1,
+      "name": "joint_LMFemur"
+    },
+    {
+      "action_index": 17,
+      "coordinate_sign": -1,
+      "name": "joint_LHFemur"
+    },
+    {
+      "action_index": 31,
+      "coordinate_sign": -1,
+      "name": "joint_RMFemur"
+    },
+    {
+      "action_index": 38,
+      "coordinate_sign": -1,
+      "name": "joint_RHFemur"
+    }
+  ],
+  "admitted_sensory_interfaces": [
+    "joint_LFTibia",
+    "joint_LMTibia",
+    "joint_LHTibia",
+    "joint_RFTibia",
+    "joint_RMTibia",
+    "joint_RHTibia"
+  ],
+  "analyses": [
+    "force_onset_offset_integrity",
+    "first_physical_effect",
+    "root_position_orientation_velocity",
+    "distal_tarsus_trajectories",
+    "contact_pattern_evolution",
+    "fall_rollover",
+    "post_force_980ms",
+    "proprioceptive_encoding_and_delivered_drive",
+    "CNS_activity",
+    "motor_observer_decoder_and_output",
+    "A_P_minus_A_C",
+    "B_P_minus_B_C",
+    "difference_in_differences",
+    "analogous_valid_sensory_CNS_motor_contrasts"
+  ],
+  "baseline": {
+    "exact_equivalence_required_only_at_state_zero": true,
+    "interval_ms": [
+      0,
+      500
+    ],
+    "pre_force_physical_equality_required": false,
+    "record_each_condition_independently": true
+  },
+  "calibration": {
+    "attempt": 3,
+    "schema": "M9A-3-MATCHED-CONTROL-PHYSICS-ONLY-CALIBRATION.3",
+    "selected_force_magnitude_native": 1.024,
+    "selection": "preregistered lowest qualifying candidate",
+    "status": "COMPLETE"
+  },
+  "claim_boundary": "descriptive trajectories and conservative causal contrasts only; post-500ms A/B divergence alone is not perturbation attribution",
+  "classifications": [
+    "M9B_COMPLETE_NO_DETECTABLE_NEURAL_MOTOR_EFFECT_UNDER_PERTURBATION",
+    "M9B_NEURAL_MOTOR_CAUSALLY_ALTERS_TRAJECTORY_UNDER_PERTURBATION",
+    "M9B_PERTURBATION_RESPONSE_DEPENDS_ON_NEURAL_MOTOR_ENABLEMENT"
+  ],
+  "contact_is_neural_input": false,
+  "decoder_semantics": "exact frozen M7D/M8 filter, gain, saturation, slew, and bounds; no retuning",
+  "design": {
+    "conditions": [
+      "A_P",
+      "A_C",
+      "B_P",
+      "B_C"
+    ],
+    "factors": [
+      "neural_motor_enabled",
+      "external_force_present"
+    ],
+    "rationale": "orthogonal frozen interventions are supported without changing embodiment semantics; enables perturbation-specific difference-in-differences",
+    "type": "preregistered_2x2_factorial"
+  },
+  "disabled_control": {
+    "brain_active": true,
+    "decoder_active": true,
+    "neural_updates_active": true,
+    "observer_active": true,
+    "pre_zero_decoder_computed": true,
+    "sensory_active": true,
+    "zero_point": "immediately before physical application"
+  },
+  "duration_ms": 1500.0,
+  "hidden_assistance": {
+    "AI policy": false,
+    "CPG": false,
+    "adaptive stabilization": false,
+    "adhesion scheduler": false,
+    "balance controller": false,
+    "dynamic adhesion": false,
+    "fall recovery": false,
+    "foot placement controller": false,
+    "gait controller": false,
+    "navigation target": false,
+    "optimizer": false,
+    "outcome-dependent parameter changes": false,
+    "phase oscillator": false,
+    "postural controller": false,
+    "reference trajectory": false,
+    "reinforcement learning": false,
+    "reward": false,
+    "scripted descending command": false,
+    "scripted neural stimulation": false,
+    "stance controller": false,
+    "swing controller": false,
+    "target movement": false,
+    "tripod controller": false,
+    "walking trajectory": false
+  },
+  "neural_dt_ms": 0.5,
+  "neural_updates_per_condition": 3000,
+  "perturbation": {
+    "application_body_source": "Thorax",
+    "application_point": "authoritative body center of mass",
+    "direction_xyz": [
+      0.0,
+      1.0,
+      0.0
+    ],
+    "frame": "world",
+    "integer_index_scheduling": true,
+    "outgoing_transition_count": 200,
+    "start_transition_inclusive": 5000,
+    "stop_transition_exclusive": 5200,
+    "torque_xyz": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "transition_indices": "5000-5199"
+  },
+  "physical_initialization": {
+    "adhesion_enabled": false,
+    "baseline_targets": "exact measured corrected tripod joint state at time zero",
+    "calibration_surface": "canonical inherited static m5d2c_calibration_surface",
+    "control": "position",
+    "flygym": "1.2.1",
+    "init_pose": "tripod",
+    "mujoco": "3.2.7",
+    "settling_transitions": 0,
+    "spawn_orientation": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spawn_pos": [
+      0.0,
+      0.0,
+      0.6045752232266313
+    ]
+  },
+  "physics_dt_ms": 0.1,
+  "physics_states_per_condition": 15001,
+  "physics_transitions_per_condition": 15000,
+  "schema": "M9B-MALECNS-CALIBRATED-EXTERNAL-PERTURBATION.1",
+  "scientific_run_executed": false,
+  "seed": 1,
+  "status": "NOT_RUN",
+  "telemetry": {
+    "causal_milestone_ordering": true,
+    "channel_identity_provenance": true,
+    "neural": [
+      "timestamps",
+      "aggregate_cns_state_and_spikes",
+      "six_tibial_proprioceptive_encoded_signals",
+      "delivered_sensory_drive",
+      "mapped_motor_population_activity",
+      "11_motor_observer_states",
+      "11_decoder_outputs",
+      "disabled_pre_zero_motor_vector",
+      "disabled_post_zero_motor_vector"
+    ],
+    "neural_cadence_ms": 0.5,
+    "physics": [
+      "timestamps",
+      "root_position",
+      "root_quaternion",
+      "body_up_vector",
+      "root_linear_velocity",
+      "root_angular_velocity",
+      "42_joint_positions",
+      "42_actuator_commands",
+      "11_neural_contribution_pre_application",
+      "six_authoritative_contact_flags",
+      "six_distal_tarsus_positions",
+      "external_force_vector",
+      "fall_rollover"
+    ],
+    "physics_cadence_ms": 0.1
+  }
+}
