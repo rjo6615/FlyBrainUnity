@@ -22,17 +22,16 @@ CALIBRATION_FILES = {
     "m9a_3_attempt_3_report.json": (5996715, "05a8c63766fd5e74ec5b241a3977e8215356a676845281a9fccad5d9dfa61d22"),
     "m9a_3_attempt_3_preregistration.json": (5495, "1adca0c26dd2e70eb5c2ea697bf01be22ccb9d7ce64f198af8bcc1d436bda366"),
 }
-# Generated scientific results remain exact-byte locked.  The preregistration
-# is text/source evidence and is locked to its canonical-LF representation so
-# Git's platform newline conversion cannot alter its identity.  Keep the
+# The three JSON files are Git-managed text.  Their frozen identities are the
+# LF bytes stored in Git and must survive checkout newline materialization.
+# Scientific NPZ results remain exact-byte locked below.  Keep this
 # classification exhaustive and fail closed rather than inferring from suffix.
 CANONICAL_LF_TEXT_ARTIFACTS = frozenset({
-    "m9a_3_attempt_3_preregistration.json",
-})
-EXACT_BYTE_BINARY_ARTIFACTS = frozenset({
     "m9a_3_attempt_3_manifest.json",
     "m9a_3_attempt_3_report.json",
+    "m9a_3_attempt_3_preregistration.json",
 })
+EXACT_BYTE_BINARY_ARTIFACTS = frozenset()
 OUTPUT_DIR = HERE / "interface_output/m9b_external_perturbation"
 RAW_PATH = OUTPUT_DIR / "m9b_raw.npz"
 REPORT_PATH = OUTPUT_DIR / "m9b_report.json"
@@ -76,8 +75,20 @@ def _canonical_provenance_bytes(name: str, raw: bytes) -> bytes:
     raise RuntimeError(f"unclassified M9A Attempt-3 provenance artifact: {name}")
 
 
-def verify_m9a_provenance(directory: Path = CALIBRATION_DIR) -> dict[str, Any]:
-    """Verify all three canonical inputs and the frozen selection semantics."""
+def _exact_file_identity(path: Path, size: int, digest: str) -> bool:
+    """Verify an immutable binary without interpreting or normalizing it."""
+    return path.is_file() and path.stat().st_size == size and _sha256(path) == digest
+
+
+def verify_m9a_provenance(directory: Path = CALIBRATION_DIR, *,
+                          immutable_directory: Path | None = None) -> dict[str, Any]:
+    """Verify canonical text, immutable NPZ inputs, and selection semantics.
+
+    ``immutable_directory`` exists so tests can copy and mutate only the small
+    text artifacts without symlinks or duplicate NPZ files.  Production omits
+    it, so every artifact is necessarily verified in the one canonical tree.
+    """
+    raw_directory = directory if immutable_directory is None else immutable_directory
     classified = CANONICAL_LF_TEXT_ARTIFACTS | EXACT_BYTE_BINARY_ARTIFACTS
     if classified != set(CALIBRATION_FILES) or CANONICAL_LF_TEXT_ARTIFACTS & EXACT_BYTE_BINARY_ARTIFACTS:
         raise RuntimeError("M9A Attempt-3 provenance artifact classification is not exhaustive")
@@ -94,8 +105,8 @@ def verify_m9a_provenance(directory: Path = CALIBRATION_DIR) -> dict[str, Any]:
     raw_entries = manifest.get("raw", ())
     raw_names = [str(x["path"]).replace("\\", "/").rsplit("/", 1)[-1] for x in raw_entries]
     raw_ok = len(raw_entries) == 8 and all(
-        (directory / name).is_file() and (directory / name).stat().st_size == x["byte_size"] and
-        _sha256(directory / name) == x["sha256"] for x, name in zip(raw_entries, raw_names))
+        _exact_file_identity(raw_directory / name, x["byte_size"], x["sha256"])
+        for x, name in zip(raw_entries, raw_names))
     manifest_report = manifest.get("report", {})
     perturb = prereg.get("perturbation", {})
     checks = (manifest.get("schema") == CALIBRATION_SCHEMA, manifest.get("status") == "COMPLETE",
