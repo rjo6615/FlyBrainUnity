@@ -49,9 +49,23 @@ LABELS = ("ATTENUATING", "AMPLIFYING", "DIRECTIONALLY_MIXED",
           "NO_RESOLVED_DIRECTIONAL_EFFECT")
 OUTPUT_DIR = HERE / "interface_output" / "m10b_perturbation_scaling"
 PREREGISTRATION_PATH = OUTPUT_DIR / "m10b_preregistration.json"
-RAW_PATH = OUTPUT_DIR / "m10b_raw.npz"
-REPORT_PATH = OUTPUT_DIR / "m10b_report.json"
-MANIFEST_PATH = OUTPUT_DIR / "m10b_manifest.json"
+FUTURE_OUTPUT_IDENTIFIERS = {
+    "raw": "interface_output/m10b_perturbation_scaling/m10b_raw.npz",
+    "report": "interface_output/m10b_perturbation_scaling/m10b_report.json",
+    "manifest": "interface_output/m10b_perturbation_scaling/m10b_manifest.json",
+}
+
+
+def resolve_future_output(identifier: str, root: Path = HERE) -> Path:
+    """Resolve a frozen repository-relative artifact identifier at runtime."""
+    if identifier not in FUTURE_OUTPUT_IDENTIFIERS.values():
+        raise ValueError("unknown M10B output identifier")
+    return root / Path(identifier)
+
+
+RAW_PATH = resolve_future_output(FUTURE_OUTPUT_IDENTIFIERS["raw"])
+REPORT_PATH = resolve_future_output(FUTURE_OUTPUT_IDENTIFIERS["report"])
+MANIFEST_PATH = resolve_future_output(FUTURE_OUTPUT_IDENTIFIERS["manifest"])
 PREFLIGHT_PATH = OUTPUT_DIR / "m10b_preflight.json"
 SCHEMA = "M10B-PREREGISTERED-PERTURBATION-SCALING-NEURAL-CAUSAL.1"
 PREREGISTRATION_SHA256 = "a267647093d616f394374761da58ae495f12a6df6fe12e004abbcb1cb1b2d5a9"
@@ -95,12 +109,17 @@ def verify_m10a(directory: Path = M10A_DIR) -> dict[str, str]:
 
 
 def verify_preregistration(path: Path = PREREGISTRATION_PATH) -> str:
-    """Verify the immutable, reviewed preregistration as exact bytes."""
-    if not path.is_file() or _sha256(path) != PREREGISTRATION_SHA256:
+    """Verify immutable scientific bytes after only CRLF-to-LF normalization."""
+    if not path.is_file():
+        raise RuntimeError("M10B fail-closed before transitions: frozen preregistration mismatch")
+    physical = path.read_bytes()
+    canonical = physical.replace(b"\r\n", b"\n")
+    # A lone CR is not a Windows line ending and is therefore substantive.
+    if b"\r" in canonical or hashlib.sha256(canonical).hexdigest() != PREREGISTRATION_SHA256:
         raise RuntimeError("M10B fail-closed before transitions: frozen preregistration mismatch")
     try:
-        validate_protocol(json.loads(path.read_text(encoding="utf-8")))
-    except (ValueError, KeyError, TypeError) as exc:
+        validate_protocol(json.loads(canonical.decode("utf-8")))
+    except (UnicodeDecodeError, ValueError, KeyError, TypeError) as exc:
         raise RuntimeError("M10B fail-closed before transitions: invalid preregistration") from exc
     return PREREGISTRATION_SHA256
 
@@ -188,7 +207,7 @@ def protocol() -> dict[str, Any]:
             "absolute-effect monotonic nondecreasing indicator"], "curve_fit": False, "correlation": False,
             "normalization_or_ratio": False, "order": list(FORCES)},
         "raw_schema_per_condition": RAW_SCHEMA,
-        "future_outputs": {"raw": str(RAW_PATH), "report": str(REPORT_PATH), "manifest": str(MANIFEST_PATH),
+        "future_outputs": {**FUTURE_OUTPUT_IDENTIFIERS,
             "exclusive_creation_required": True, "m9_and_m10a_namespaces_read_only": True},
         "future_manifest_required": ["source_commit", "M10A source commit and exact artifact identities",
             "selected force series", "M9 interface provenance", "MaleCNS and connectome provenance",
@@ -205,7 +224,17 @@ def protocol() -> dict[str, Any]:
 
 
 def validate_protocol(value: Mapping[str, Any]) -> None:
-    if (value != protocol() or tuple(value["m10a"]["selected_force_series"]) != FORCES
+    # The already-frozen document contains the original Linux checkout root.
+    # Translate only those three exact legacy serialization values to their
+    # repository-relative identities; all runtime paths are resolved separately.
+    comparable = dict(value)
+    outputs = dict(comparable.get("future_outputs", {}))
+    legacy_root = "/workspace/FlyBrainUnity/malecns_backend/embodiment/"
+    for key, identifier in FUTURE_OUTPUT_IDENTIFIERS.items():
+        if outputs.get(key) == legacy_root + identifier:
+            outputs[key] = identifier
+    comparable["future_outputs"] = outputs
+    if (comparable != protocol() or tuple(value["m10a"]["selected_force_series"]) != FORCES
             or tuple(value["interfaces"]["sensory"]) != m9b.SENSORY_INTERFACES
             or value["physical_initialization"] != m7d.protocol()["physical_initialization"]):
         raise RuntimeError("M10B frozen preregistration mismatch")
