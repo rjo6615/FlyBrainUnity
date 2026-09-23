@@ -1,0 +1,189 @@
+{
+  "artifacts": [
+    {
+      "byte_size": 6000420,
+      "path": "m9d_a_p_replay.bin",
+      "sha256": "8014a73ed456a8f86a749f104212fc2a4acaab96a8003186c8f8cecc0facb514"
+    },
+    {
+      "byte_size": 6000420,
+      "path": "m9d_a_c_replay.bin",
+      "sha256": "2c4fdbb424426e31bc1e7d8792cab3b46d181605f506ad172629075b182d7789"
+    },
+    {
+      "byte_size": 6000420,
+      "path": "m9d_b_p_replay.bin",
+      "sha256": "60d2455a95a75974ce4968722a31b4c1de7fd30bb5e6aae2dded99f7cbf1f32c"
+    },
+    {
+      "byte_size": 6000420,
+      "path": "m9d_b_c_replay.bin",
+      "sha256": "005d7b1763716ff2140f9282ca7185c3e21f991645756358ec6f7641fe88cfbc"
+    }
+  ],
+  "canonical_m9b_sources": {
+    "m9b_manifest.json": {
+      "canonical_lf_identity": {
+        "byte_size": 104660,
+        "sha256": "1ac6be8338180feccc6af5a9a0d5e5590c6f4d4278d55f5a87218df21b4c1830"
+      },
+      "identity_semantics": "canonical_lf_after_crlf_normalization",
+      "working_tree_identity": {
+        "byte_size": 108179,
+        "sha256": "1e26bc46c94dee387141929a20e4c553989703b26f03c64e60f70a8b240760ac"
+      },
+      "working_tree_newlines": "CRLF"
+    },
+    "m9b_preregistration.json": {
+      "canonical_lf_identity": {
+        "byte_size": 6442,
+        "sha256": "1c2509317b01950925d7fa29807ab5aec73dbed78a2606da87512b665b7d3c23"
+      },
+      "identity_semantics": "canonical_lf_after_crlf_normalization",
+      "working_tree_identity": {
+        "byte_size": 6680,
+        "sha256": "72c560c8cdc2aaf539cd0738e62732c762473b88679f979d4a6c817d319e1c32"
+      },
+      "working_tree_newlines": "CRLF"
+    },
+    "m9b_raw.npz": {
+      "exact_identity": {
+        "byte_size": 108063966,
+        "sha256": "55359880f3f63a5ef2ae2b316737973e73ad4308d499a02d999538f8f19d984f"
+      },
+      "identity_semantics": "exact_bytes",
+      "working_tree_identity": {
+        "byte_size": 108063966,
+        "sha256": "55359880f3f63a5ef2ae2b316737973e73ad4308d499a02d999538f8f19d984f"
+      }
+    },
+    "m9b_report.json": {
+      "canonical_lf_identity": {
+        "byte_size": 309,
+        "sha256": "a76b861a9cc6a846f07a3f2fa7f4115f92bae2a0cd1c6f99304e49478ea64be5"
+      },
+      "identity_semantics": "canonical_lf_after_crlf_normalization",
+      "working_tree_identity": {
+        "byte_size": 316,
+        "sha256": "7299c349d5824fb9d5ef7713bf7ea5e9794972f3669790502609dfa5a3e8224e"
+      },
+      "working_tree_newlines": "CRLF"
+    }
+  },
+  "conditions": [
+    {
+      "artifact": "m9d_a_p_replay.bin",
+      "id": "A_P",
+      "neural_motor_enabled": true,
+      "perturbation_present": true,
+      "state_count": 15001
+    },
+    {
+      "artifact": "m9d_a_c_replay.bin",
+      "id": "A_C",
+      "neural_motor_enabled": true,
+      "perturbation_present": false,
+      "state_count": 15001
+    },
+    {
+      "artifact": "m9d_b_p_replay.bin",
+      "id": "B_P",
+      "neural_motor_enabled": false,
+      "perturbation_present": true,
+      "state_count": 15001
+    },
+    {
+      "artifact": "m9d_b_c_replay.bin",
+      "id": "B_C",
+      "neural_motor_enabled": false,
+      "perturbation_present": false,
+      "state_count": 15001
+    }
+  ],
+  "coordinate_conversion": {
+    "mapping": "[x,y,z] -> [x,z,y]",
+    "presentation_scale": 0.1,
+    "stored_coordinates": "unconverted authoritative source values"
+  },
+  "exporter_source_commit": "69ba4ef83872a1ced75e4fdf775e5add004e16de",
+  "force": {
+    "first_potentially_affected_state_ms": 500.1,
+    "magnitude_native": 1.024,
+    "start_ms_inclusive": 500.0,
+    "stop_ms_exclusive": 520.0,
+    "target": "authoritative Thorax center of mass",
+    "torque_source_xyz": [
+      0,
+      0,
+      0
+    ],
+    "transition_start_inclusive": 5000,
+    "transition_stop_exclusive": 5200,
+    "unity_direction_xyz": [
+      0,
+      0,
+      1
+    ],
+    "world_direction_source_xyz": [
+      0,
+      1,
+      0
+    ]
+  },
+  "joint_count": 42,
+  "joint_names": [
+    "joint_LFCoxa",
+    "joint_LFCoxa_roll",
+    "joint_LFCoxa_yaw",
+    "joint_LFFemur",
+    "joint_LFFemur_roll",
+    "joint_LFTibia",
+    "joint_LFTarsus1",
+    "joint_LMCoxa",
+    "joint_LMCoxa_roll",
+    "joint_LMCoxa_yaw",
+    "joint_LMFemur",
+    "joint_LMFemur_roll",
+    "joint_LMTibia",
+    "joint_LMTarsus1",
+    "joint_LHCoxa",
+    "joint_LHCoxa_roll",
+    "joint_LHCoxa_yaw",
+    "joint_LHFemur",
+    "joint_LHFemur_roll",
+    "joint_LHTibia",
+    "joint_LHTarsus1",
+    "joint_RFCoxa",
+    "joint_RFCoxa_roll",
+    "joint_RFCoxa_yaw",
+    "joint_RFFemur",
+    "joint_RFFemur_roll",
+    "joint_RFTibia",
+    "joint_RFTarsus1",
+    "joint_RMCoxa",
+    "joint_RMCoxa_roll",
+    "joint_RMCoxa_yaw",
+    "joint_RMFemur",
+    "joint_RMFemur_roll",
+    "joint_RMTibia",
+    "joint_RMTarsus1",
+    "joint_RHCoxa",
+    "joint_RHCoxa_roll",
+    "joint_RHCoxa_yaw",
+    "joint_RHFemur",
+    "joint_RHFemur_roll",
+    "joint_RHTibia",
+    "joint_RHTarsus1"
+  ],
+  "neural_transitions": 0,
+  "physics_transitions": 0,
+  "presentation_interpolation_default": false,
+  "published_m9b_report_identity": {
+    "byte_size": 316,
+    "identity_semantics": "exact_bytes_of_m9b_windows_publication",
+    "sha256": "7299c349d5824fb9d5ef7713bf7ea5e9794972f3669790502609dfa5a3e8224e"
+  },
+  "schema": "M9D-CANONICAL-M9B-UNITY-REPLAY.1",
+  "status": "COMPLETE",
+  "unity_physics_authoritative": false
+}
