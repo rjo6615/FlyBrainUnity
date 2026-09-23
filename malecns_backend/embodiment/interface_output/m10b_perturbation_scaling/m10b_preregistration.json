@@ -1,0 +1,410 @@
+{
+  "analysis_windows": {
+    "direct_force": {
+      "start_ms_inclusive": 500.0,
+      "stop_ms_exclusive": 520.0
+    },
+    "early_post_force": {
+      "start_ms_inclusive": 520.0,
+      "stop_ms_exclusive": 557.0
+    },
+    "later_post_force": {
+      "start_ms_inclusive": 557.0,
+      "stop_ms_inclusive": 1500.0
+    },
+    "pre_perturbation": {
+      "start_ms_inclusive": 0.0,
+      "stop_ms_exclusive": 500.0
+    }
+  },
+  "canonical_experiment_executed": false,
+  "conditions": [
+    {
+      "force_magnitude": 0.0,
+      "fresh_identical_deterministic_initialization": true,
+      "motor_enabled": true,
+      "name": "A_C"
+    },
+    {
+      "force_magnitude": 0.0,
+      "fresh_identical_deterministic_initialization": true,
+      "motor_enabled": false,
+      "name": "B_C"
+    },
+    {
+      "force_magnitude": 0.256,
+      "fresh_identical_deterministic_initialization": true,
+      "motor_enabled": true,
+      "name": "A_F0256"
+    },
+    {
+      "force_magnitude": 0.256,
+      "fresh_identical_deterministic_initialization": true,
+      "motor_enabled": false,
+      "name": "B_F0256"
+    },
+    {
+      "force_magnitude": 1.024,
+      "fresh_identical_deterministic_initialization": true,
+      "motor_enabled": true,
+      "name": "A_F1024"
+    },
+    {
+      "force_magnitude": 1.024,
+      "fresh_identical_deterministic_initialization": true,
+      "motor_enabled": false,
+      "name": "B_F1024"
+    },
+    {
+      "force_magnitude": 2.896309375740099,
+      "fresh_identical_deterministic_initialization": true,
+      "motor_enabled": true,
+      "name": "A_F2896"
+    },
+    {
+      "force_magnitude": 2.896309375740099,
+      "fresh_identical_deterministic_initialization": true,
+      "motor_enabled": false,
+      "name": "B_F2896"
+    },
+    {
+      "force_magnitude": 4.096,
+      "fresh_identical_deterministic_initialization": true,
+      "motor_enabled": true,
+      "name": "A_F4096"
+    },
+    {
+      "force_magnitude": 4.096,
+      "fresh_identical_deterministic_initialization": true,
+      "motor_enabled": false,
+      "name": "B_F4096"
+    }
+  ],
+  "directional_resolution": {
+    "comparison": "inclusive: <= -threshold attenuating; >= threshold amplifying",
+    "labels": [
+      "ATTENUATING",
+      "AMPLIFYING",
+      "DIRECTIONALLY_MIXED",
+      "NO_RESOLVED_DIRECTIONAL_EFFECT"
+    ],
+    "no_resolved_window_or_only_unresolved_opposition": "NO_RESOLVED_DIRECTIONAL_EFFECT",
+    "opposite_resolved_window_signs": "DIRECTIONALLY_MIXED",
+    "post_force_windows_used": [
+      "early_post_force",
+      "later_post_force"
+    ],
+    "threshold_provenance": "M9A meaningful-disturbance conventions fixed before M10B",
+    "thresholds": {
+      "root_orientation_shortest_arc_deg": 0.25,
+      "thorax_com_deviation_mm": 0.005
+    }
+  },
+  "disabled_intervention": {
+    "decoder_runs": true,
+    "exact_11_channel_physical_contribution_zero_required": true,
+    "male_cns_runs": true,
+    "observer_runtime_runs": true,
+    "sensory_encoding_and_delivery_runs": true,
+    "zero_boundary": "immediately before physical application"
+  },
+  "execution_absences": {
+    "contact_sensory_input": false,
+    "controllers": false,
+    "gait_logic": false,
+    "reference_trajectory": false,
+    "reward": false,
+    "rl": false
+  },
+  "future_manifest_required": [
+    "source_commit",
+    "M10A source commit and exact artifact identities",
+    "selected force series",
+    "M9 interface provenance",
+    "MaleCNS and connectome provenance",
+    "physical initialization identity",
+    "FlyGym MuJoCo and NumPy versions",
+    "physics and neural timesteps",
+    "duration and perturbation geometry",
+    "condition matrix",
+    "11 motor and six sensory channel identities",
+    "frozen decoder filter gain saturation slew and bounds",
+    "random seeds and deterministic state",
+    "raw artifact SHA-256",
+    "transition counts per condition",
+    "force integrity",
+    "disabled-motor exact-zero integrity",
+    "absence of controllers reward RL and reference trajectory",
+    "contact observation-only semantics"
+  ],
+  "future_outputs": {
+    "exclusive_creation_required": true,
+    "m9_and_m10a_namespaces_read_only": true,
+    "manifest": "/workspace/FlyBrainUnity/malecns_backend/embodiment/interface_output/m10b_perturbation_scaling/m10b_manifest.json",
+    "raw": "/workspace/FlyBrainUnity/malecns_backend/embodiment/interface_output/m10b_perturbation_scaling/m10b_raw.npz",
+    "report": "/workspace/FlyBrainUnity/malecns_backend/embodiment/interface_output/m10b_perturbation_scaling/m10b_report.json"
+  },
+  "integrity_before_transitions": [
+    "M10A exact hashes",
+    "M9 interface identity",
+    "frozen initialization",
+    "versions and timing",
+    "condition matrix",
+    "force schedule",
+    "clean exclusive M10B outputs"
+  ],
+  "interfaces": {
+    "contact_is_neural_input": false,
+    "motor": [
+      {
+        "action_index": 5,
+        "coordinate_sign": 1,
+        "name": "joint_LFTibia"
+      },
+      {
+        "action_index": 12,
+        "coordinate_sign": 1,
+        "name": "joint_LMTibia"
+      },
+      {
+        "action_index": 19,
+        "coordinate_sign": 1,
+        "name": "joint_LHTibia"
+      },
+      {
+        "action_index": 26,
+        "coordinate_sign": 1,
+        "name": "joint_RFTibia"
+      },
+      {
+        "action_index": 33,
+        "coordinate_sign": 1,
+        "name": "joint_RMTibia"
+      },
+      {
+        "action_index": 40,
+        "coordinate_sign": 1,
+        "name": "joint_RHTibia"
+      },
+      {
+        "action_index": 3,
+        "coordinate_sign": -1,
+        "name": "joint_LFFemur"
+      },
+      {
+        "action_index": 10,
+        "coordinate_sign": -1,
+        "name": "joint_LMFemur"
+      },
+      {
+        "action_index": 17,
+        "coordinate_sign": -1,
+        "name": "joint_LHFemur"
+      },
+      {
+        "action_index": 31,
+        "coordinate_sign": -1,
+        "name": "joint_RMFemur"
+      },
+      {
+        "action_index": 38,
+        "coordinate_sign": -1,
+        "name": "joint_RHFemur"
+      }
+    ],
+    "provenance": "canonical M9B unchanged",
+    "sensory": [
+      "joint_LFTibia",
+      "joint_LMTibia",
+      "joint_LHTibia",
+      "joint_RFTibia",
+      "joint_RMTibia",
+      "joint_RHTibia"
+    ]
+  },
+  "m10a": {
+    "artifacts": {
+      "m10a_manifest.json": "86d4e0833b31adb8e836bf072c03c0cf39b413c5c3d4a34861a1f4766801253f",
+      "m10a_raw.npz": "3058b21a4776ee8743b1ed5ea3233ed5e03e81eeafacf174b0d19ab06533af5c",
+      "m10a_report.json": "e08b5f127a18a9b1f51feca41cb140a6b8d787254bea106056a7c87ab30667b8"
+    },
+    "read_only": true,
+    "selected_force_series": [
+      0.256,
+      1.024,
+      2.896309375740099,
+      4.096
+    ],
+    "source_commit": "aa76c684343d088913eabe636d7a76dcc6e11e3b"
+  },
+  "metric_reduction": "for each primary metric and window, maximum timestamp-aligned nonnegative condition-vs-shared-control deviation; directional effect is enabled minus disabled",
+  "perturbation": {
+    "application_body_source": "Thorax",
+    "application_point": "authoritative body center of mass",
+    "direction_xyz": [
+      0.0,
+      1.0,
+      0.0
+    ],
+    "first_possible_affected_state_ms": 500.1,
+    "frame": "world",
+    "only_magnitude_varies": true,
+    "start_ms_inclusive": 500.0,
+    "start_transition_inclusive": 5000,
+    "stop_ms_exclusive": 520.0,
+    "stop_transition_exclusive": 5200,
+    "torque_xyz": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "transition_indices": "5000-5199"
+  },
+  "physical_initialization": {
+    "adhesion_enabled": false,
+    "baseline_targets": "exact measured corrected tripod joint state at time zero",
+    "calibration_surface": "canonical inherited static m5d2c_calibration_surface",
+    "control": "position",
+    "flygym": "1.2.1",
+    "init_pose": "tripod",
+    "mujoco": "3.2.7",
+    "settling_transitions": 0,
+    "spawn_orientation": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spawn_pos": [
+      0.0,
+      0.0,
+      0.6045752232266313
+    ]
+  },
+  "primary_estimator": "delta_delta_F(t) = (A_F(t) - A_C(t)) - (B_F(t) - B_C(t))",
+  "primary_metrics": [
+    "thorax_com_deviation_mm",
+    "root_orientation_shortest_arc_deg"
+  ],
+  "raw_schema_per_condition": {
+    "admitted_neural_motor_physical_contribution": [
+      15000,
+      11
+    ],
+    "admitted_neural_motor_pre_intervention": [
+      3000,
+      11
+    ],
+    "applied_external_force": [
+      15000,
+      3
+    ],
+    "condition_identity": [],
+    "decoder_state_output": [
+      3000,
+      11
+    ],
+    "delivered_sensory_cns_state": [
+      3000,
+      6
+    ],
+    "distal_tarsus_positions": [
+      15001,
+      6,
+      3
+    ],
+    "force_magnitude": [],
+    "height": [
+      15001
+    ],
+    "joint_positions": [
+      15001,
+      42
+    ],
+    "mapped_motor_population_state": [
+      3000,
+      11
+    ],
+    "modeled_sensory_encoding": [
+      3000,
+      6
+    ],
+    "motor_enabled": [],
+    "neural_time_ms": [
+      3000
+    ],
+    "physical_command_after_intervention": [
+      15000,
+      42
+    ],
+    "physical_contact_observations": [
+      15001,
+      6
+    ],
+    "physics_time_ms": [
+      15001
+    ],
+    "root_angular_velocity": [
+      15001,
+      3
+    ],
+    "root_linear_velocity": [
+      15001,
+      3
+    ],
+    "root_orientation_wxyz": [
+      15001,
+      4
+    ],
+    "root_thorax_position": [
+      15001,
+      3
+    ],
+    "tibial_proprioceptive_physical_inputs": [
+      3000,
+      6
+    ]
+  },
+  "scaling_analysis": {
+    "correlation": false,
+    "curve_fit": false,
+    "normalization_or_ratio": false,
+    "order": [
+      0.256,
+      1.024,
+      2.896309375740099,
+      4.096
+    ],
+    "per_metric_and_window": [
+      "signed directional effect at each force",
+      "absolute effect at each force",
+      "adjacent signed and absolute changes",
+      "resolved sign consistency and adjacent sign changes",
+      "absolute-effect monotonic nondecreasing indicator"
+    ]
+  },
+  "schema": "M10B-PREREGISTERED-PERTURBATION-SCALING-NEURAL-CAUSAL.1",
+  "scientific_question": "whether the preregistered physical perturbation-response effect attributable to neural-motor enablement changes systematically across four frozen magnitudes",
+  "shared_controls": [
+    "A_C",
+    "B_C"
+  ],
+  "status": "NOT_RUN",
+  "supporting_metrics": [
+    "root_linear_velocity",
+    "root_angular_velocity",
+    "height",
+    "distal_tarsus_trajectory_deviation",
+    "physical_contact_pattern_difference_observation_only"
+  ],
+  "timing": {
+    "duration_ms": 1500.0,
+    "flygym": "1.2.1",
+    "mujoco": "3.2.7",
+    "neural_dt_ms": 0.5,
+    "neural_updates": 3000,
+    "physics_dt_ms": 0.1,
+    "physics_states": 15001,
+    "physics_transitions": 15000
+  },
+  "window_rationale": "557 ms is the frozen M9C approximate first admitted-motor boundary; it separates post-force observations before versus from that modeled-chain milestone without asserting biological timing"
+}
