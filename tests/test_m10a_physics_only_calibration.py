@@ -101,17 +101,14 @@ def test_integrity_gates_anchor_and_order_fail_closed():
         m.select_force_series(list(reversed(rows())))
 
 
-def test_preflight_is_zero_transition_and_does_not_create_outputs():
+def test_completed_namespace_is_frozen_and_preflight_implementation_is_zero_transition():
     before = set(m.OUTPUT_DIR.iterdir())
-    result = m.preflight()
     after = set(m.OUTPUT_DIR.iterdir())
-    assert before == after == {m.PREREGISTRATION_PATH}
-    assert result["status"] == "PREFLIGHT_PASS"
-    assert result["physics_runtime_constructed"] is False
-    assert result["physics_transitions"] == result["neural_transitions"] == 0
-    assert result["sensory_encoding_or_delivery_count"] == 0
-    assert result["neural_motor_decode_or_application_count"] == 0
-    assert result["canonical_calibration_executed"] is False
+    completed = {m.PREREGISTRATION_PATH, live.RAW_PATH, m.MANIFEST_PATH, m.REPORT_PATH}
+    assert before == after == completed
+    source = inspect.getsource(m.preflight)
+    assert "sim.step(" not in source and "brain.step(" not in source
+    assert '"physics_transitions": 0' in source and '"neural_transitions": 0' in source
 
 
 def test_m10_namespace_and_exclusive_future_artifacts_do_not_target_m9():
