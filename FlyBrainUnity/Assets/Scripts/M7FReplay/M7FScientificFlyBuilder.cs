@@ -83,13 +83,4 @@ namespace FlyBrain.M7FReplay
         static void SafeDestroy(UnityEngine.Object value) { if (Application.isPlaying) UnityEngine.Object.Destroy(value); else UnityEngine.Object.DestroyImmediate(value); }
     }
 
-    /// <summary>Optional renderer-only overlay. It does not change any scientific transform.</summary>
-    public sealed class M7FScientificSkeletonVisibility : MonoBehaviour
-    {
-        [SerializeField] bool visible;
-        Renderer[] renderers = Array.Empty<Renderer>();
-        public bool Visible => visible;
-        public void Configure(Renderer[] scientificRenderers) => renderers = scientificRenderers ?? Array.Empty<Renderer>();
-        public void SetVisible(bool value) { visible = value; foreach (var renderer in renderers) if (renderer != null) renderer.enabled = value; }
-    }
 }

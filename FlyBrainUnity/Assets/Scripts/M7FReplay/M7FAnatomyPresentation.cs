@@ -20,14 +20,6 @@ namespace FlyBrain.M7FReplay
         public double[] mesh_scale, position, quaternion_wxyz;
     }
 
-    /// <summary>Identifies a renderer-only child created directly from the VIS3 manifest.</summary>
-    public sealed class M7FAnatomyObject : MonoBehaviour
-    {
-        public string MeshName { get; private set; }
-        public string ScientificParent { get; private set; }
-        public void Configure(string meshName, string scientificParent) { MeshName = meshName; ScientificParent = scientificParent; }
-    }
-
     /// <summary>Deterministic, deliberately small loader for the generated v/f-only VIS3 OBJ dialect.</summary>
     public static class M7FGeneratedObjLoader
     {
