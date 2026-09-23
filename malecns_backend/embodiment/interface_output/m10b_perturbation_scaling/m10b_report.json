@@ -1,0 +1,177 @@
+{
+  "analysis_required": true,
+  "canonical_experiment_executed": true,
+  "condition_order": [
+    "A_C",
+    "B_C",
+    "A_F0256",
+    "B_F0256",
+    "A_F1024",
+    "B_F1024",
+    "A_F2896",
+    "B_F2896",
+    "A_F4096",
+    "B_F4096"
+  ],
+  "disabled_motor_integrity": {
+    "passed": true,
+    "per_condition": {
+      "A_C": {
+        "motor_enabled": true,
+        "post_intervention_exact_zero": null,
+        "post_intervention_exact_zero_required": false,
+        "pre_intervention_recorded": true
+      },
+      "A_F0256": {
+        "motor_enabled": true,
+        "post_intervention_exact_zero": null,
+        "post_intervention_exact_zero_required": false,
+        "pre_intervention_recorded": true
+      },
+      "A_F1024": {
+        "motor_enabled": true,
+        "post_intervention_exact_zero": null,
+        "post_intervention_exact_zero_required": false,
+        "pre_intervention_recorded": true
+      },
+      "A_F2896": {
+        "motor_enabled": true,
+        "post_intervention_exact_zero": null,
+        "post_intervention_exact_zero_required": false,
+        "pre_intervention_recorded": true
+      },
+      "A_F4096": {
+        "motor_enabled": true,
+        "post_intervention_exact_zero": null,
+        "post_intervention_exact_zero_required": false,
+        "pre_intervention_recorded": true
+      },
+      "B_C": {
+        "motor_enabled": false,
+        "post_intervention_exact_zero": true,
+        "post_intervention_exact_zero_required": true,
+        "pre_intervention_recorded": true
+      },
+      "B_F0256": {
+        "motor_enabled": false,
+        "post_intervention_exact_zero": true,
+        "post_intervention_exact_zero_required": true,
+        "pre_intervention_recorded": true
+      },
+      "B_F1024": {
+        "motor_enabled": false,
+        "post_intervention_exact_zero": true,
+        "post_intervention_exact_zero_required": true,
+        "pre_intervention_recorded": true
+      },
+      "B_F2896": {
+        "motor_enabled": false,
+        "post_intervention_exact_zero": true,
+        "post_intervention_exact_zero_required": true,
+        "pre_intervention_recorded": true
+      },
+      "B_F4096": {
+        "motor_enabled": false,
+        "post_intervention_exact_zero": true,
+        "post_intervention_exact_zero_required": true,
+        "pre_intervention_recorded": true
+      }
+    }
+  },
+  "force_integrity": {
+    "passed": true,
+    "per_condition": {
+      "A_C": {
+        "application_body": "Thorax",
+        "application_point": "authoritative body center of mass",
+        "exact": true,
+        "nonzero_transition_count": 0,
+        "torque_exact_zero": true,
+        "transition_indices": "none"
+      },
+      "A_F0256": {
+        "application_body": "Thorax",
+        "application_point": "authoritative body center of mass",
+        "exact": true,
+        "nonzero_transition_count": 200,
+        "torque_exact_zero": true,
+        "transition_indices": "5000-5199"
+      },
+      "A_F1024": {
+        "application_body": "Thorax",
+        "application_point": "authoritative body center of mass",
+        "exact": true,
+        "nonzero_transition_count": 200,
+        "torque_exact_zero": true,
+        "transition_indices": "5000-5199"
+      },
+      "A_F2896": {
+        "application_body": "Thorax",
+        "application_point": "authoritative body center of mass",
+        "exact": true,
+        "nonzero_transition_count": 200,
+        "torque_exact_zero": true,
+        "transition_indices": "5000-5199"
+      },
+      "A_F4096": {
+        "application_body": "Thorax",
+        "application_point": "authoritative body center of mass",
+        "exact": true,
+        "nonzero_transition_count": 200,
+        "torque_exact_zero": true,
+        "transition_indices": "5000-5199"
+      },
+      "B_C": {
+        "application_body": "Thorax",
+        "application_point": "authoritative body center of mass",
+        "exact": true,
+        "nonzero_transition_count": 0,
+        "torque_exact_zero": true,
+        "transition_indices": "none"
+      },
+      "B_F0256": {
+        "application_body": "Thorax",
+        "application_point": "authoritative body center of mass",
+        "exact": true,
+        "nonzero_transition_count": 200,
+        "torque_exact_zero": true,
+        "transition_indices": "5000-5199"
+      },
+      "B_F1024": {
+        "application_body": "Thorax",
+        "application_point": "authoritative body center of mass",
+        "exact": true,
+        "nonzero_transition_count": 200,
+        "torque_exact_zero": true,
+        "transition_indices": "5000-5199"
+      },
+      "B_F2896": {
+        "application_body": "Thorax",
+        "application_point": "authoritative body center of mass",
+        "exact": true,
+        "nonzero_transition_count": 200,
+        "torque_exact_zero": true,
+        "transition_indices": "5000-5199"
+      },
+      "B_F4096": {
+        "application_body": "Thorax",
+        "application_point": "authoritative body center of mass",
+        "exact": true,
+        "nonzero_transition_count": 200,
+        "torque_exact_zero": true,
+        "transition_indices": "5000-5199"
+      }
+    }
+  },
+  "schema": "M10B-PREREGISTERED-PERTURBATION-SCALING-NEURAL-CAUSAL.1",
+  "status": "COMPLETE_UNANALYZED",
+  "transition_counts": {
+    "decoder_events": 30000,
+    "event_count_semantics": "sensory, decoder, and application events are not physics or neural transition aliases",
+    "neural_updates": 30000,
+    "physical_application_events": 150000,
+    "physics_states_recorded": 150010,
+    "physics_transitions": 150000,
+    "sensory_encoding_delivery_events": 30000
+  }
+}

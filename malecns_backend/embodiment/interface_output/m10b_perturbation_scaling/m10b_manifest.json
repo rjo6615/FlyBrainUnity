@@ -1,0 +1,855 @@
+{
+  "conditions": [
+    {
+      "force_magnitude": 0.0,
+      "fresh_identical_deterministic_initialization": true,
+      "motor_enabled": true,
+      "name": "A_C"
+    },
+    {
+      "force_magnitude": 0.0,
+      "fresh_identical_deterministic_initialization": true,
+      "motor_enabled": false,
+      "name": "B_C"
+    },
+    {
+      "force_magnitude": 0.256,
+      "fresh_identical_deterministic_initialization": true,
+      "motor_enabled": true,
+      "name": "A_F0256"
+    },
+    {
+      "force_magnitude": 0.256,
+      "fresh_identical_deterministic_initialization": true,
+      "motor_enabled": false,
+      "name": "B_F0256"
+    },
+    {
+      "force_magnitude": 1.024,
+      "fresh_identical_deterministic_initialization": true,
+      "motor_enabled": true,
+      "name": "A_F1024"
+    },
+    {
+      "force_magnitude": 1.024,
+      "fresh_identical_deterministic_initialization": true,
+      "motor_enabled": false,
+      "name": "B_F1024"
+    },
+    {
+      "force_magnitude": 2.896309375740099,
+      "fresh_identical_deterministic_initialization": true,
+      "motor_enabled": true,
+      "name": "A_F2896"
+    },
+    {
+      "force_magnitude": 2.896309375740099,
+      "fresh_identical_deterministic_initialization": true,
+      "motor_enabled": false,
+      "name": "B_F2896"
+    },
+    {
+      "force_magnitude": 4.096,
+      "fresh_identical_deterministic_initialization": true,
+      "motor_enabled": true,
+      "name": "A_F4096"
+    },
+    {
+      "force_magnitude": 4.096,
+      "fresh_identical_deterministic_initialization": true,
+      "motor_enabled": false,
+      "name": "B_F4096"
+    }
+  ],
+  "connectome_runtime_provenance": {
+    "environment": {
+      "flygym": {
+        "module_path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\fly-brain-interactive\\.venv\\lib\\site-packages\\flygym\\__init__.py",
+        "version": "1.2.1"
+      },
+      "mujoco": {
+        "module_path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\fly-brain-interactive\\.venv\\lib\\site-packages\\mujoco\\__init__.py",
+        "version": "3.2.7"
+      },
+      "numpy": {
+        "module_path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\fly-brain-interactive\\.venv\\lib\\site-packages\\numpy\\__init__.py",
+        "version": "2.0.2"
+      }
+    },
+    "runtime": "canonical M7D/M8/M9B live condition",
+    "seed": 1
+  },
+  "contact_semantics": "physical observation only; never neural input",
+  "decoder_filter_parameters": {
+    "channels_with_compiled_bounds": [
+      {
+        "action_index": 5,
+        "coordinate_sign": 1,
+        "joint_max_rad": 1000000.0,
+        "joint_min_rad": -1000000.0,
+        "name": "joint_LFTibia",
+        "observer_tau_ms": 40.0,
+        "safe_contribution_bound_rad": 0.25,
+        "slew_limit_rad_s": 4.0
+      },
+      {
+        "action_index": 12,
+        "coordinate_sign": 1,
+        "joint_max_rad": 1000000.0,
+        "joint_min_rad": -1000000.0,
+        "name": "joint_LMTibia",
+        "observer_tau_ms": 40.0,
+        "safe_contribution_bound_rad": 0.25,
+        "slew_limit_rad_s": 4.0
+      },
+      {
+        "action_index": 19,
+        "coordinate_sign": 1,
+        "joint_max_rad": 1000000.0,
+        "joint_min_rad": -1000000.0,
+        "name": "joint_LHTibia",
+        "observer_tau_ms": 40.0,
+        "safe_contribution_bound_rad": 0.25,
+        "slew_limit_rad_s": 4.0
+      },
+      {
+        "action_index": 26,
+        "coordinate_sign": 1,
+        "joint_max_rad": 1000000.0,
+        "joint_min_rad": -1000000.0,
+        "name": "joint_RFTibia",
+        "observer_tau_ms": 40.0,
+        "safe_contribution_bound_rad": 0.25,
+        "slew_limit_rad_s": 4.0
+      },
+      {
+        "action_index": 33,
+        "coordinate_sign": 1,
+        "joint_max_rad": 1000000.0,
+        "joint_min_rad": -1000000.0,
+        "name": "joint_RMTibia",
+        "observer_tau_ms": 40.0,
+        "safe_contribution_bound_rad": 0.25,
+        "slew_limit_rad_s": 4.0
+      },
+      {
+        "action_index": 40,
+        "coordinate_sign": 1,
+        "joint_max_rad": 1000000.0,
+        "joint_min_rad": -1000000.0,
+        "name": "joint_RHTibia",
+        "observer_tau_ms": 40.0,
+        "safe_contribution_bound_rad": 0.25,
+        "slew_limit_rad_s": 4.0
+      },
+      {
+        "action_index": 3,
+        "coordinate_sign": -1,
+        "joint_max_rad": 1000000.0,
+        "joint_min_rad": -1000000.0,
+        "name": "joint_LFFemur",
+        "observer_tau_ms": 40.0,
+        "safe_contribution_bound_rad": 0.25,
+        "slew_limit_rad_s": 4.0
+      },
+      {
+        "action_index": 10,
+        "coordinate_sign": -1,
+        "joint_max_rad": 1000000.0,
+        "joint_min_rad": -1000000.0,
+        "name": "joint_LMFemur",
+        "observer_tau_ms": 40.0,
+        "safe_contribution_bound_rad": 0.25,
+        "slew_limit_rad_s": 4.0
+      },
+      {
+        "action_index": 17,
+        "coordinate_sign": -1,
+        "joint_max_rad": 1000000.0,
+        "joint_min_rad": -1000000.0,
+        "name": "joint_LHFemur",
+        "observer_tau_ms": 40.0,
+        "safe_contribution_bound_rad": 0.25,
+        "slew_limit_rad_s": 4.0
+      },
+      {
+        "action_index": 31,
+        "coordinate_sign": -1,
+        "joint_max_rad": 1000000.0,
+        "joint_min_rad": -1000000.0,
+        "name": "joint_RMFemur",
+        "observer_tau_ms": 40.0,
+        "safe_contribution_bound_rad": 0.25,
+        "slew_limit_rad_s": 4.0
+      },
+      {
+        "action_index": 38,
+        "coordinate_sign": -1,
+        "joint_max_rad": 1000000.0,
+        "joint_min_rad": -1000000.0,
+        "name": "joint_RHFemur",
+        "observer_tau_ms": 40.0,
+        "safe_contribution_bound_rad": 0.25,
+        "slew_limit_rad_s": 4.0
+      }
+    ],
+    "half_activation_hz": 17.0,
+    "maximum_decoder_contribution_rad": 0.25,
+    "semantics": "exact frozen M7D/M8 filter, gain, saturation, slew, and bounds; no retuning"
+  },
+  "determinism": {
+    "fresh_identical_runtime_per_condition": true,
+    "seed": 1
+  },
+  "disabled_motor_integrity": {
+    "passed": true,
+    "per_condition": {
+      "A_C": {
+        "motor_enabled": true,
+        "post_intervention_exact_zero": null,
+        "post_intervention_exact_zero_required": false,
+        "pre_intervention_recorded": true
+      },
+      "A_F0256": {
+        "motor_enabled": true,
+        "post_intervention_exact_zero": null,
+        "post_intervention_exact_zero_required": false,
+        "pre_intervention_recorded": true
+      },
+      "A_F1024": {
+        "motor_enabled": true,
+        "post_intervention_exact_zero": null,
+        "post_intervention_exact_zero_required": false,
+        "pre_intervention_recorded": true
+      },
+      "A_F2896": {
+        "motor_enabled": true,
+        "post_intervention_exact_zero": null,
+        "post_intervention_exact_zero_required": false,
+        "pre_intervention_recorded": true
+      },
+      "A_F4096": {
+        "motor_enabled": true,
+        "post_intervention_exact_zero": null,
+        "post_intervention_exact_zero_required": false,
+        "pre_intervention_recorded": true
+      },
+      "B_C": {
+        "motor_enabled": false,
+        "post_intervention_exact_zero": true,
+        "post_intervention_exact_zero_required": true,
+        "pre_intervention_recorded": true
+      },
+      "B_F0256": {
+        "motor_enabled": false,
+        "post_intervention_exact_zero": true,
+        "post_intervention_exact_zero_required": true,
+        "pre_intervention_recorded": true
+      },
+      "B_F1024": {
+        "motor_enabled": false,
+        "post_intervention_exact_zero": true,
+        "post_intervention_exact_zero_required": true,
+        "pre_intervention_recorded": true
+      },
+      "B_F2896": {
+        "motor_enabled": false,
+        "post_intervention_exact_zero": true,
+        "post_intervention_exact_zero_required": true,
+        "pre_intervention_recorded": true
+      },
+      "B_F4096": {
+        "motor_enabled": false,
+        "post_intervention_exact_zero": true,
+        "post_intervention_exact_zero_required": true,
+        "pre_intervention_recorded": true
+      }
+    }
+  },
+  "execution_absences": {
+    "contact_sensory_input": false,
+    "controllers": false,
+    "gait_logic": false,
+    "reference_trajectory": false,
+    "reward": false,
+    "rl": false
+  },
+  "force_integrity": {
+    "passed": true,
+    "per_condition": {
+      "A_C": {
+        "application_body": "Thorax",
+        "application_point": "authoritative body center of mass",
+        "exact": true,
+        "nonzero_transition_count": 0,
+        "torque_exact_zero": true,
+        "transition_indices": "none"
+      },
+      "A_F0256": {
+        "application_body": "Thorax",
+        "application_point": "authoritative body center of mass",
+        "exact": true,
+        "nonzero_transition_count": 200,
+        "torque_exact_zero": true,
+        "transition_indices": "5000-5199"
+      },
+      "A_F1024": {
+        "application_body": "Thorax",
+        "application_point": "authoritative body center of mass",
+        "exact": true,
+        "nonzero_transition_count": 200,
+        "torque_exact_zero": true,
+        "transition_indices": "5000-5199"
+      },
+      "A_F2896": {
+        "application_body": "Thorax",
+        "application_point": "authoritative body center of mass",
+        "exact": true,
+        "nonzero_transition_count": 200,
+        "torque_exact_zero": true,
+        "transition_indices": "5000-5199"
+      },
+      "A_F4096": {
+        "application_body": "Thorax",
+        "application_point": "authoritative body center of mass",
+        "exact": true,
+        "nonzero_transition_count": 200,
+        "torque_exact_zero": true,
+        "transition_indices": "5000-5199"
+      },
+      "B_C": {
+        "application_body": "Thorax",
+        "application_point": "authoritative body center of mass",
+        "exact": true,
+        "nonzero_transition_count": 0,
+        "torque_exact_zero": true,
+        "transition_indices": "none"
+      },
+      "B_F0256": {
+        "application_body": "Thorax",
+        "application_point": "authoritative body center of mass",
+        "exact": true,
+        "nonzero_transition_count": 200,
+        "torque_exact_zero": true,
+        "transition_indices": "5000-5199"
+      },
+      "B_F1024": {
+        "application_body": "Thorax",
+        "application_point": "authoritative body center of mass",
+        "exact": true,
+        "nonzero_transition_count": 200,
+        "torque_exact_zero": true,
+        "transition_indices": "5000-5199"
+      },
+      "B_F2896": {
+        "application_body": "Thorax",
+        "application_point": "authoritative body center of mass",
+        "exact": true,
+        "nonzero_transition_count": 200,
+        "torque_exact_zero": true,
+        "transition_indices": "5000-5199"
+      },
+      "B_F4096": {
+        "application_body": "Thorax",
+        "application_point": "authoritative body center of mass",
+        "exact": true,
+        "nonzero_transition_count": 200,
+        "torque_exact_zero": true,
+        "transition_indices": "5000-5199"
+      }
+    }
+  },
+  "force_series": [
+    0.256,
+    1.024,
+    2.896309375740099,
+    4.096
+  ],
+  "frozen_m10a_artifact_sha256": {
+    "m10a_manifest.json": "86d4e0833b31adb8e836bf072c03c0cf39b413c5c3d4a34861a1f4766801253f",
+    "m10a_raw.npz": "3058b21a4776ee8743b1ed5ea3233ed5e03e81eeafacf174b0d19ab06533af5c",
+    "m10a_report.json": "e08b5f127a18a9b1f51feca41cb140a6b8d787254bea106056a7c87ab30667b8"
+  },
+  "frozen_m10b_preregistration_sha256": "a267647093d616f394374761da58ae495f12a6df6fe12e004abbcb1cb1b2d5a9",
+  "initialization_identity": {
+    "adhesion_enabled": false,
+    "baseline_targets": "exact measured corrected tripod joint state at time zero",
+    "calibration_surface": "canonical inherited static m5d2c_calibration_surface",
+    "control": "position",
+    "flygym": "1.2.1",
+    "init_pose": "tripod",
+    "mujoco": "3.2.7",
+    "settling_transitions": 0,
+    "spawn_orientation": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spawn_pos": [
+      0.0,
+      0.0,
+      0.6045752232266313
+    ]
+  },
+  "m9_interface_provenance": {
+    "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m9b_external_perturbation\\m9b_manifest.json": "1e26bc46c94dee387141929a20e4c553989703b26f03c64e60f70a8b240760ac",
+    "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m9b_external_perturbation\\m9b_preregistration.json": "72c560c8cdc2aaf539cd0738e62732c762473b88679f979d4a6c817d319e1c32",
+    "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m9b_external_perturbation\\m9b_raw.npz": "55359880f3f63a5ef2ae2b316737973e73ad4308d499a02d999538f8f19d984f",
+    "C:\\Users\\legen\\Documents\\FlyBrainUnity\\malecns_backend\\embodiment\\interface_output\\m9b_external_perturbation\\m9b_report.json": "7299c349d5824fb9d5ef7713bf7ea5e9794972f3669790502609dfa5a3e8224e"
+  },
+  "motor_channels": [
+    {
+      "action_index": 5,
+      "coordinate_sign": 1,
+      "name": "joint_LFTibia"
+    },
+    {
+      "action_index": 12,
+      "coordinate_sign": 1,
+      "name": "joint_LMTibia"
+    },
+    {
+      "action_index": 19,
+      "coordinate_sign": 1,
+      "name": "joint_LHTibia"
+    },
+    {
+      "action_index": 26,
+      "coordinate_sign": 1,
+      "name": "joint_RFTibia"
+    },
+    {
+      "action_index": 33,
+      "coordinate_sign": 1,
+      "name": "joint_RMTibia"
+    },
+    {
+      "action_index": 40,
+      "coordinate_sign": 1,
+      "name": "joint_RHTibia"
+    },
+    {
+      "action_index": 3,
+      "coordinate_sign": -1,
+      "name": "joint_LFFemur"
+    },
+    {
+      "action_index": 10,
+      "coordinate_sign": -1,
+      "name": "joint_LMFemur"
+    },
+    {
+      "action_index": 17,
+      "coordinate_sign": -1,
+      "name": "joint_LHFemur"
+    },
+    {
+      "action_index": 31,
+      "coordinate_sign": -1,
+      "name": "joint_RMFemur"
+    },
+    {
+      "action_index": 38,
+      "coordinate_sign": -1,
+      "name": "joint_RHFemur"
+    }
+  ],
+  "per_condition_counts": {
+    "A_C": {
+      "decoder_events": 3000,
+      "neural_updates": 3000,
+      "physical_application_events": 15000,
+      "physics_states": 15001,
+      "physics_transitions": 15000,
+      "sensory_encoding_delivery_events": 3000
+    },
+    "A_F0256": {
+      "decoder_events": 3000,
+      "neural_updates": 3000,
+      "physical_application_events": 15000,
+      "physics_states": 15001,
+      "physics_transitions": 15000,
+      "sensory_encoding_delivery_events": 3000
+    },
+    "A_F1024": {
+      "decoder_events": 3000,
+      "neural_updates": 3000,
+      "physical_application_events": 15000,
+      "physics_states": 15001,
+      "physics_transitions": 15000,
+      "sensory_encoding_delivery_events": 3000
+    },
+    "A_F2896": {
+      "decoder_events": 3000,
+      "neural_updates": 3000,
+      "physical_application_events": 15000,
+      "physics_states": 15001,
+      "physics_transitions": 15000,
+      "sensory_encoding_delivery_events": 3000
+    },
+    "A_F4096": {
+      "decoder_events": 3000,
+      "neural_updates": 3000,
+      "physical_application_events": 15000,
+      "physics_states": 15001,
+      "physics_transitions": 15000,
+      "sensory_encoding_delivery_events": 3000
+    },
+    "B_C": {
+      "decoder_events": 3000,
+      "neural_updates": 3000,
+      "physical_application_events": 15000,
+      "physics_states": 15001,
+      "physics_transitions": 15000,
+      "sensory_encoding_delivery_events": 3000
+    },
+    "B_F0256": {
+      "decoder_events": 3000,
+      "neural_updates": 3000,
+      "physical_application_events": 15000,
+      "physics_states": 15001,
+      "physics_transitions": 15000,
+      "sensory_encoding_delivery_events": 3000
+    },
+    "B_F1024": {
+      "decoder_events": 3000,
+      "neural_updates": 3000,
+      "physical_application_events": 15000,
+      "physics_states": 15001,
+      "physics_transitions": 15000,
+      "sensory_encoding_delivery_events": 3000
+    },
+    "B_F2896": {
+      "decoder_events": 3000,
+      "neural_updates": 3000,
+      "physical_application_events": 15000,
+      "physics_states": 15001,
+      "physics_transitions": 15000,
+      "sensory_encoding_delivery_events": 3000
+    },
+    "B_F4096": {
+      "decoder_events": 3000,
+      "neural_updates": 3000,
+      "physical_application_events": 15000,
+      "physics_states": 15001,
+      "physics_transitions": 15000,
+      "sensory_encoding_delivery_events": 3000
+    }
+  },
+  "perturbation_geometry": {
+    "application_body_source": "Thorax",
+    "application_point": "authoritative body center of mass",
+    "direction_xyz": [
+      0.0,
+      1.0,
+      0.0
+    ],
+    "first_possible_affected_state_ms": 500.1,
+    "frame": "world",
+    "only_magnitude_varies": true,
+    "start_ms_inclusive": 500.0,
+    "start_transition_inclusive": 5000,
+    "stop_ms_exclusive": 520.0,
+    "stop_transition_exclusive": 5200,
+    "torque_xyz": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "transition_indices": "5000-5199"
+  },
+  "raw": {
+    "byte_size": 57652701,
+    "sha256": "85e98715ac3d8b219c86ef338187828e787ee8f300bacad9d318809e23208cde"
+  },
+  "readiness": {
+    "analysis_windows": {
+      "direct_force": {
+        "start_ms_inclusive": 500.0,
+        "stop_ms_exclusive": 520.0
+      },
+      "early_post_force": {
+        "start_ms_inclusive": 520.0,
+        "stop_ms_exclusive": 557.0
+      },
+      "later_post_force": {
+        "start_ms_inclusive": 557.0,
+        "stop_ms_inclusive": 1500.0
+      },
+      "pre_perturbation": {
+        "start_ms_inclusive": 0.0,
+        "stop_ms_exclusive": 500.0
+      }
+    },
+    "authoritative_thorax_body_id": 3,
+    "canonical_experiment_executed": false,
+    "condition_matrix": [
+      {
+        "force_magnitude": 0.0,
+        "fresh_identical_deterministic_initialization": true,
+        "motor_enabled": true,
+        "name": "A_C"
+      },
+      {
+        "force_magnitude": 0.0,
+        "fresh_identical_deterministic_initialization": true,
+        "motor_enabled": false,
+        "name": "B_C"
+      },
+      {
+        "force_magnitude": 0.256,
+        "fresh_identical_deterministic_initialization": true,
+        "motor_enabled": true,
+        "name": "A_F0256"
+      },
+      {
+        "force_magnitude": 0.256,
+        "fresh_identical_deterministic_initialization": true,
+        "motor_enabled": false,
+        "name": "B_F0256"
+      },
+      {
+        "force_magnitude": 1.024,
+        "fresh_identical_deterministic_initialization": true,
+        "motor_enabled": true,
+        "name": "A_F1024"
+      },
+      {
+        "force_magnitude": 1.024,
+        "fresh_identical_deterministic_initialization": true,
+        "motor_enabled": false,
+        "name": "B_F1024"
+      },
+      {
+        "force_magnitude": 2.896309375740099,
+        "fresh_identical_deterministic_initialization": true,
+        "motor_enabled": true,
+        "name": "A_F2896"
+      },
+      {
+        "force_magnitude": 2.896309375740099,
+        "fresh_identical_deterministic_initialization": true,
+        "motor_enabled": false,
+        "name": "B_F2896"
+      },
+      {
+        "force_magnitude": 4.096,
+        "fresh_identical_deterministic_initialization": true,
+        "motor_enabled": true,
+        "name": "A_F4096"
+      },
+      {
+        "force_magnitude": 4.096,
+        "fresh_identical_deterministic_initialization": true,
+        "motor_enabled": false,
+        "name": "B_F4096"
+      }
+    ],
+    "directional_resolution": {
+      "comparison": "inclusive: <= -threshold attenuating; >= threshold amplifying",
+      "labels": [
+        "ATTENUATING",
+        "AMPLIFYING",
+        "DIRECTIONALLY_MIXED",
+        "NO_RESOLVED_DIRECTIONAL_EFFECT"
+      ],
+      "no_resolved_window_or_only_unresolved_opposition": "NO_RESOLVED_DIRECTIONAL_EFFECT",
+      "opposite_resolved_window_signs": "DIRECTIONALLY_MIXED",
+      "post_force_windows_used": [
+        "early_post_force",
+        "later_post_force"
+      ],
+      "threshold_provenance": "M9A meaningful-disturbance conventions fixed before M10B",
+      "thresholds": {
+        "root_orientation_shortest_arc_deg": 0.25,
+        "thorax_com_deviation_mm": 0.005
+      }
+    },
+    "environment": {
+      "flygym": {
+        "module_path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\fly-brain-interactive\\.venv\\lib\\site-packages\\flygym\\__init__.py",
+        "version": "1.2.1"
+      },
+      "mujoco": {
+        "module_path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\fly-brain-interactive\\.venv\\lib\\site-packages\\mujoco\\__init__.py",
+        "version": "3.2.7"
+      },
+      "numpy": {
+        "module_path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\fly-brain-interactive\\.venv\\lib\\site-packages\\numpy\\__init__.py",
+        "version": "2.0.2"
+      }
+    },
+    "fresh_initialization_equivalent": true,
+    "fresh_runtime_count": 10,
+    "frozen_force_series": [
+      0.256,
+      1.024,
+      2.896309375740099,
+      4.096
+    ],
+    "frozen_preregistration_sha256": "a267647093d616f394374761da58ae495f12a6df6fe12e004abbcb1cb1b2d5a9",
+    "future_outputs": {
+      "exclusive_creation_required": true,
+      "m9_and_m10a_namespaces_read_only": true,
+      "manifest": "interface_output/m10b_perturbation_scaling/m10b_manifest.json",
+      "raw": "interface_output/m10b_perturbation_scaling/m10b_raw.npz",
+      "report": "interface_output/m10b_perturbation_scaling/m10b_report.json"
+    },
+    "interfaces": {
+      "contact_is_neural_input": false,
+      "motor": [
+        {
+          "action_index": 5,
+          "coordinate_sign": 1,
+          "name": "joint_LFTibia"
+        },
+        {
+          "action_index": 12,
+          "coordinate_sign": 1,
+          "name": "joint_LMTibia"
+        },
+        {
+          "action_index": 19,
+          "coordinate_sign": 1,
+          "name": "joint_LHTibia"
+        },
+        {
+          "action_index": 26,
+          "coordinate_sign": 1,
+          "name": "joint_RFTibia"
+        },
+        {
+          "action_index": 33,
+          "coordinate_sign": 1,
+          "name": "joint_RMTibia"
+        },
+        {
+          "action_index": 40,
+          "coordinate_sign": 1,
+          "name": "joint_RHTibia"
+        },
+        {
+          "action_index": 3,
+          "coordinate_sign": -1,
+          "name": "joint_LFFemur"
+        },
+        {
+          "action_index": 10,
+          "coordinate_sign": -1,
+          "name": "joint_LMFemur"
+        },
+        {
+          "action_index": 17,
+          "coordinate_sign": -1,
+          "name": "joint_LHFemur"
+        },
+        {
+          "action_index": 31,
+          "coordinate_sign": -1,
+          "name": "joint_RMFemur"
+        },
+        {
+          "action_index": 38,
+          "coordinate_sign": -1,
+          "name": "joint_RHFemur"
+        }
+      ],
+      "provenance": "canonical M9B unchanged",
+      "sensory": [
+        "joint_LFTibia",
+        "joint_LMTibia",
+        "joint_LHTibia",
+        "joint_RFTibia",
+        "joint_RMTibia",
+        "joint_RHTibia"
+      ]
+    },
+    "male_cns_constructed": false,
+    "neural_motor_decode_or_application_count": 0,
+    "neural_transitions": 0,
+    "perturbation": {
+      "application_body_source": "Thorax",
+      "application_point": "authoritative body center of mass",
+      "direction_xyz": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "first_possible_affected_state_ms": 500.1,
+      "frame": "world",
+      "only_magnitude_varies": true,
+      "start_ms_inclusive": 500.0,
+      "start_transition_inclusive": 5000,
+      "stop_ms_exclusive": 520.0,
+      "stop_transition_exclusive": 5200,
+      "torque_xyz": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "transition_indices": "5000-5199"
+    },
+    "physics_runtime_constructed": false,
+    "physics_transitions": 0,
+    "primary_metrics": [
+      "thorax_com_deviation_mm",
+      "root_orientation_shortest_arc_deg"
+    ],
+    "scaling_analysis": {
+      "correlation": false,
+      "curve_fit": false,
+      "normalization_or_ratio": false,
+      "order": [
+        0.256,
+        1.024,
+        2.896309375740099,
+        4.096
+      ],
+      "per_metric_and_window": [
+        "signed directional effect at each force",
+        "absolute effect at each force",
+        "adjacent signed and absolute changes",
+        "resolved sign consistency and adjacent sign changes",
+        "absolute-effect monotonic nondecreasing indicator"
+      ]
+    },
+    "schema": "M10B-PREREGISTERED-PERTURBATION-SCALING-NEURAL-CAUSAL.1",
+    "sensory_encoding_or_delivery_count": 0,
+    "status": "EXECUTION_READINESS_PASS",
+    "verified_m10a_artifact_hashes": {
+      "m10a_manifest.json": "86d4e0833b31adb8e836bf072c03c0cf39b413c5c3d4a34861a1f4766801253f",
+      "m10a_raw.npz": "3058b21a4776ee8743b1ed5ea3233ed5e03e81eeafacf174b0d19ab06533af5c",
+      "m10a_report.json": "e08b5f127a18a9b1f51feca41cb140a6b8d787254bea106056a7c87ab30667b8"
+    }
+  },
+  "runner_source_commit": "0951a63243b0a90eb174be7c31ec29d7b52f099e",
+  "schema": "M10B-PREREGISTERED-PERTURBATION-SCALING-NEURAL-CAUSAL.1",
+  "sensory_channels": [
+    "joint_LFTibia",
+    "joint_LMTibia",
+    "joint_LHTibia",
+    "joint_RFTibia",
+    "joint_RMTibia",
+    "joint_RHTibia"
+  ],
+  "status": "COMPLETE",
+  "timing": {
+    "duration_ms": 1500.0,
+    "flygym": "1.2.1",
+    "mujoco": "3.2.7",
+    "neural_dt_ms": 0.5,
+    "neural_updates": 3000,
+    "physics_dt_ms": 0.1,
+    "physics_states": 15001,
+    "physics_transitions": 15000
+  },
+  "total_counts": {
+    "decoder_events": 30000,
+    "event_count_semantics": "sensory, decoder, and application events are not physics or neural transition aliases",
+    "neural_updates": 30000,
+    "physical_application_events": 150000,
+    "physics_states_recorded": 150010,
+    "physics_transitions": 150000,
+    "sensory_encoding_delivery_events": 30000
+  }
+}
