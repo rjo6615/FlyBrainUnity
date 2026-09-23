@@ -44,6 +44,10 @@ CANONICAL = {
     # byte-equivalent Windows CRLF publication (316 bytes, SHA 7299c3...).
     "m9b_report.json": (309, "a76b861a9cc6a846f07a3f2fa7f4115f92bae2a0cd1c6f99304e49478ea64be5"),
 }
+PUBLISHED_WINDOWS_REPORT = {
+    "byte_size": 316,
+    "sha256": "7299c349d5824fb9d5ef7713bf7ea5e9794972f3669790502609dfa5a3e8224e",
+}
 PHYSICS_TRANSITIONS = NEURAL_TRANSITIONS = 0
 
 
@@ -57,14 +61,58 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _identity(data: bytes) -> dict:
+    return {"byte_size": len(data), "sha256": hashlib.sha256(data).hexdigest()}
+
+
+def _read_canonical_json(path: Path, canonical: tuple[int, str]) -> tuple[dict, dict]:
+    """Read an LF-canonical JSON artifact without changing its physical bytes."""
+    physical = path.read_bytes()
+    crlf_count = physical.count(b"\r\n")
+    without_crlf = physical.replace(b"\r\n", b"")
+    if b"\r" in without_crlf:
+        raise EvidenceError(f"malformed newline representation: {path.name}")
+    if crlf_count and b"\n" in without_crlf:
+        raise EvidenceError(f"mixed newline representation: {path.name}")
+
+    canonical_bytes = physical.replace(b"\r\n", b"\n")
+    if (len(canonical_bytes), hashlib.sha256(canonical_bytes).hexdigest()) != canonical:
+        raise EvidenceError(f"canonical M9B source identity mismatch: {path.name}")
+    try:
+        value = json.loads(canonical_bytes.decode("utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise EvidenceError(f"invalid canonical M9B JSON: {path.name}") from exc
+    provenance = {
+        "identity_semantics": "canonical_lf_after_crlf_normalization",
+        "canonical_lf_identity": {"byte_size": canonical[0], "sha256": canonical[1]},
+        "working_tree_identity": _identity(physical),
+        "working_tree_newlines": "CRLF" if crlf_count else "LF",
+    }
+    return value, provenance
+
+
 def validate_source(source_dir: Path = SOURCE_DIR) -> dict:
-    for name, (size, digest) in CANONICAL.items():
+    raw_path = source_dir / "m9b_raw.npz"
+    raw_size, raw_digest = CANONICAL[raw_path.name]
+    if (not raw_path.is_file() or raw_path.stat().st_size != raw_size
+            or sha256(raw_path) != raw_digest):
+        raise EvidenceError(f"canonical M9B source identity mismatch: {raw_path.name}")
+    provenance = {
+        raw_path.name: {
+            "identity_semantics": "exact_bytes",
+            "exact_identity": {"byte_size": raw_size, "sha256": raw_digest},
+            "working_tree_identity": {"byte_size": raw_size, "sha256": raw_digest},
+        }
+    }
+    values = {}
+    for name in ("m9b_manifest.json", "m9b_preregistration.json", "m9b_report.json"):
         path = source_dir / name
-        if not path.is_file() or path.stat().st_size != size or sha256(path) != digest:
+        if not path.is_file():
             raise EvidenceError(f"canonical M9B source identity mismatch: {name}")
-    manifest = json.loads((source_dir / "m9b_manifest.json").read_text(encoding="utf-8"))
-    prereg = json.loads((source_dir / "m9b_preregistration.json").read_text(encoding="utf-8"))
-    report = json.loads((source_dir / "m9b_report.json").read_text(encoding="utf-8"))
+        values[name], provenance[name] = _read_canonical_json(path, CANONICAL[name])
+    manifest = values["m9b_manifest.json"]
+    prereg = values["m9b_preregistration.json"]
+    report = values["m9b_report.json"]
     if manifest.get("status") != "COMPLETE" or report.get("status") != "COMPLETE_UNCLASSIFIED":
         raise EvidenceError("canonical M9B completion status mismatch")
     if prereg.get("design", {}).get("conditions") != list(CONDITIONS):
@@ -72,11 +120,12 @@ def validate_source(source_dir: Path = SOURCE_DIR) -> dict:
     raw = manifest.get("raw", {})
     if (raw.get("byte_size"), raw.get("sha256")) != CANONICAL["m9b_raw.npz"]:
         raise EvidenceError("M9B manifest raw identity mismatch")
-    if manifest.get("report") != {"byte_size": 316, "sha256": "7299c349d5824fb9d5ef7713bf7ea5e9794972f3669790502609dfa5a3e8224e"}:
+    if manifest.get("report") != PUBLISHED_WINDOWS_REPORT:
         # The explicit check deliberately keeps the published Windows identity
         # separate from the repository's newline-normalized frozen copy.
         raise EvidenceError("M9B manifest report identity mismatch")
-    return {"manifest": manifest, "preregistration": prereg, "report": report}
+    return {"manifest": manifest, "preregistration": prereg, "report": report,
+            "source_provenance": provenance}
 
 
 def validate_arrays(arrays: Mapping[str, np.ndarray]) -> None:
@@ -141,10 +190,21 @@ def _commit():
                           text=True, capture_output=True).stdout.strip()
 
 
-def build_manifest(paths: Sequence[Path]) -> dict:
+def build_manifest(paths: Sequence[Path], source_provenance: Mapping | None = None) -> dict:
+    if source_provenance is None:
+        source_provenance = {
+            name: {"identity_semantics": "exact_bytes" if name.endswith(".npz") else
+                   "canonical_lf_after_crlf_normalization",
+                   "canonical_lf_identity" if name.endswith(".json") else "exact_identity":
+                   {"byte_size": size, "sha256": digest}}
+            for name, (size, digest) in CANONICAL.items()
+        }
     return {"schema": SCHEMA, "status": "COMPLETE", "exporter_source_commit": _commit(),
-            "canonical_m9b_sources": {name: {"byte_size": size, "sha256": digest}
-                                      for name, (size, digest) in CANONICAL.items()},
+            "canonical_m9b_sources": dict(source_provenance),
+            "published_m9b_report_identity": {
+                "identity_semantics": "exact_bytes_of_m9b_windows_publication",
+                **PUBLISHED_WINDOWS_REPORT,
+            },
             "conditions": [{"id": c, "artifact": FILES[c], "state_count": STATE_COUNT,
                             "neural_motor_enabled": c.startswith("A_"), "perturbation_present": c.endswith("_P")}
                            for c in CONDITIONS],
@@ -163,7 +223,7 @@ def build_manifest(paths: Sequence[Path]) -> dict:
 
 def export(source_dir: Path = SOURCE_DIR, output_dir: Path = OUTPUT_DIR) -> dict:
     if output_dir.exists(): raise FileExistsError(f"conflicting M9D output exists: {output_dir}")
-    validate_source(source_dir); arrays = load_arrays(source_dir / "m9b_raw.npz")
+    source = validate_source(source_dir); arrays = load_arrays(source_dir / "m9b_raw.npz")
     output_dir.parent.mkdir(parents=True, exist_ok=True)
     staging = Path(tempfile.mkdtemp(prefix=".m9d.tmp-", dir=output_dir.parent))
     try:
@@ -173,7 +233,8 @@ def export(source_dir: Path = SOURCE_DIR, output_dir: Path = OUTPUT_DIR) -> dict
             replay = parse_replay(path.read_bytes())
             for field, _ in FIELDS:
                 if not np.array_equal(replay[field], arrays[f"{condition}__{field}"]): raise EvidenceError("replay endpoint equality failure")
-        (staging / "m9d_replay_manifest.json").write_text(json.dumps(build_manifest(paths), indent=2, sort_keys=True) + "\n")
+        (staging / "m9d_replay_manifest.json").write_text(
+            json.dumps(build_manifest(paths, source["source_provenance"]), indent=2, sort_keys=True) + "\n")
         staging.rename(output_dir)
     except Exception:
         shutil.rmtree(staging, ignore_errors=True); raise
