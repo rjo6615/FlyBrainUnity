@@ -15,7 +15,7 @@ namespace FlyBrain.M7FReplay
             GUILayout.Label(M9DReplayController.Label(controller.LeftCondition)); if (controller.SideBySide) GUILayout.Label(M9DReplayController.Label(controller.RightCondition));
             GUILayout.Label($"Canonical time: {controller.TimeMs:F1} ms    physical frame: {controller.Frame}");
             GUILayout.BeginHorizontal(); if(GUILayout.Button(controller.IsPlaying?"Pause":"Play"))controller.TogglePlayback(); if(GUILayout.Button("Restart"))controller.Restart(); if(GUILayout.Button("< Frame"))controller.Step(-1); if(GUILayout.Button("Frame >"))controller.Step(1); GUILayout.EndHorizontal();
-            var scrub=GUILayout.HorizontalSlider(controller.Frame/15000f,0,1); if(!Mathf.Approximately(scrub,controller.Frame/15000f))controller.Scrub(scrub);
+            var normalizedFrame=controller.Frame/(float)M9DReplayController.FinalFrame; var scrub=GUILayout.HorizontalSlider(normalizedFrame,0,1); if(!Mathf.Approximately(scrub,normalizedFrame))controller.Scrub(scrub);
             GUILayout.Label("Speed (presentation):"); GUILayout.BeginHorizontal(); foreach(var value in M9DReplayController.AllowedSpeeds)if(GUILayout.Button($"{value:g}x"))controller.SetSpeed(value); GUILayout.EndHorizontal();
             var interpolation=GUILayout.Toggle(controller.PresentationInterpolation,"Presentation-only interpolation (OFF by default)"); if(interpolation!=controller.PresentationInterpolation)controller.SetInterpolation(interpolation);
             GUILayout.BeginHorizontal(); GUILayout.Label("Camera: synchronized orbit/zoom"); if(GUILayout.Button("Reset view"))replayCamera?.ResetView(); if(GUILayout.Button("Thorax/legs close-up"))replayCamera?.Configure(controller.transform.root,.18f); GUILayout.EndHorizontal();
