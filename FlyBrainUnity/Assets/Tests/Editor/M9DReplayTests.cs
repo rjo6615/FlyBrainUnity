@@ -37,6 +37,8 @@ namespace FlyBrain.Tests
             Assert.That(typeof(M9DForceArrow).GetFields(BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.DeclaredOnly)
                 .Select(field=>$"{field.Name}:{field.FieldType.FullName}"),Is.EquivalentTo(new[]{
                     $"controller:{typeof(M9DReplayController).FullName}",$"authoritativeThorax:{typeof(Transform).FullName}",$"illustrativeLength:{typeof(float).FullName}"}));
+            Assert.That(CalledMethods(UnityDirectionGetter),Is.EqualTo(new MethodBase[]{Vector3ForwardGetter}),"UnityDirection must remain the fixed presentation-space +Z direction");
+            Assert.That(ReferencedFields(UnityDirectionGetter),Is.Empty,"UnityDirection must not read or mutate component, physics, or scientific state");
             foreach(var method in typeof(M9DForceArrow).GetMethods(BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.DeclaredOnly))
                 foreach(var called in CalledMethods(method)) Assert.That(IsPresentationOnlyCall(called),Is.True,$"{method.Name} calls prohibited API {called.DeclaringType?.FullName}.{called.Name}");
             UnityEngine.Object.DestroyImmediate(owner);
@@ -45,6 +47,7 @@ namespace FlyBrain.Tests
         static bool IsPresentationOnlyCall(MethodBase method)
         {
             var owner=method.DeclaringType;
+            if(owner==typeof(M9DForceArrow))return method==UnityDirectionGetter;
             if(owner==typeof(M9DReplayController))return method.Name=="get_ForceActive";
             if(owner==typeof(UnityEngine.Object))return method.Name is "op_Implicit" or "op_Inequality";
             if(owner==typeof(Component))return method.Name=="get_transform" || method.Name=="GetComponentsInChildren" && method is MethodInfo info && info.IsGenericMethod && info.GetGenericArguments().SequenceEqual(new[]{typeof(Renderer)});
@@ -71,6 +74,23 @@ namespace FlyBrain.Tests
             return calls.ToArray();
         }
 
+        static FieldInfo[] ReferencedFields(MethodInfo method)
+        {
+            var body=method.GetMethodBody(); if(body==null)return Array.Empty<FieldInfo>();
+            var il=body.GetILAsByteArray(); var fields=new System.Collections.Generic.List<FieldInfo>();
+            for(var offset=0;offset<il.Length;)
+            {
+                OpCode opcode; var first=il[offset++];
+                if(first==0xfe)opcode=MultiByteOpCodes[il[offset++]]; else opcode=SingleByteOpCodes[first];
+                if(opcode.OperandType is OperandType.InlineField)
+                {
+                    var token=BitConverter.ToInt32(il,offset); fields.Add(method.Module.ResolveField(token,method.DeclaringType?.GetGenericArguments(),method.GetGenericArguments()));
+                }
+                offset+=OperandSize(opcode.OperandType,il,offset);
+            }
+            return fields.ToArray();
+        }
+
         static int OperandSize(OperandType type,byte[] il,int offset) => type switch
         {
             OperandType.InlineNone=>0, OperandType.ShortInlineBrTarget or OperandType.ShortInlineI or OperandType.ShortInlineVar=>1,
@@ -78,6 +98,8 @@ namespace FlyBrain.Tests
             OperandType.InlineSwitch=>4+BitConverter.ToInt32(il,offset)*4, _=>4
         };
 
+        static readonly MethodInfo UnityDirectionGetter=typeof(M9DForceArrow).GetProperty(nameof(M9DForceArrow.UnityDirection),BindingFlags.Instance|BindingFlags.Public|BindingFlags.DeclaredOnly).GetGetMethod();
+        static readonly MethodInfo Vector3ForwardGetter=typeof(Vector3).GetProperty(nameof(Vector3.forward),BindingFlags.Static|BindingFlags.Public).GetGetMethod();
         static readonly OpCode[] SingleByteOpCodes=BuildOpCodes(false), MultiByteOpCodes=BuildOpCodes(true);
         static OpCode[] BuildOpCodes(bool multiByte)
         {
