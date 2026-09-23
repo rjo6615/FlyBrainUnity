@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="48" result="Failed(Child)" total="48" passed="42" failed="6" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:55Z" duration="14.5043105">
+  <test-suite type="TestSuite" id="1000" name="FlyBrainUnity" fullname="FlyBrainUnity" runstate="Runnable" testcasecount="52" result="Failed" site="Child" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:55Z" duration="14.504311" total="48" passed="42" failed="6" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1062" name="M7FReplay.EditorTests.dll" fullname="C:/Users/legen/Documents/FlyBrainUnity/FlyBrainUnity/Library/ScriptAssemblies/M7FReplay.EditorTests.dll" runstate="Runnable" testcasecount="52" result="Failed" site="Child" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:55Z" duration="14.499859" total="48" passed="42" failed="6" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="29832" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1063" name="FlyBrain" fullname="FlyBrain" runstate="Runnable" testcasecount="52" result="Failed" site="Child" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:55Z" duration="14.499033" total="48" passed="42" failed="6" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1064" name="Tests" fullname="FlyBrain.Tests" runstate="Runnable" testcasecount="52" result="Failed" site="Child" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:55Z" duration="14.498284" total="48" passed="42" failed="6" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1001" name="M7FReplayTests" fullname="FlyBrain.Tests.M7FReplayTests" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:44Z" duration="3.255855" total="35" passed="30" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1027" name="AuthoritativeArtifactDeclaresCompiledFlyGymProvenanceAndMapping" fullname="FlyBrain.Tests.M7FReplayTests.AuthoritativeArtifactDeclaresCompiledFlyGymProvenanceAndMapping" methodname="AuthoritativeArtifactDeclaresCompiledFlyGymProvenanceAndMapping" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="715059591" result="Passed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.009986" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1011" name="AxialVectorConversionIncludesReflectionSign" fullname="FlyBrain.Tests.M7FReplayTests.AxialVectorConversionIncludesReflectionSign" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.005473" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1007" name="AxialVectorConversionIncludesReflectionSign(&quot;joint_LFCoxa&quot;,-1,0,0)" fullname="FlyBrain.Tests.M7FReplayTests.AxialVectorConversionIncludesReflectionSign(&quot;joint_LFCoxa&quot;,-1,0,0)" methodname="AxialVectorConversionIncludesReflectionSign" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="976786165" result="Failed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.003794" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: (-1.00, 0.00, 0.00)
+  But was:  (0.00, 0.00, -1.00)
+]]></message>
+                  <stack-trace><![CDATA[at FlyBrain.Tests.M7FReplayTests.AxialVectorConversionIncludesReflectionSign (System.String name, System.Single x, System.Single y, System.Single z) [0x00000] in C:\Users\legen\Documents\FlyBrainUnity\FlyBrainUnity\Assets\Tests\Editor\M7FReplayTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1008" name="AxialVectorConversionIncludesReflectionSign(&quot;joint_LFCoxa_roll&quot;,0,-1,0)" fullname="FlyBrain.Tests.M7FReplayTests.AxialVectorConversionIncludesReflectionSign(&quot;joint_LFCoxa_roll&quot;,0,-1,0)" methodname="AxialVectorConversionIncludesReflectionSign" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="1995055861" result="Passed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.000044" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1009" name="AxialVectorConversionIncludesReflectionSign(&quot;joint_LFCoxa_yaw&quot;,0,0,-1)" fullname="FlyBrain.Tests.M7FReplayTests.AxialVectorConversionIncludesReflectionSign(&quot;joint_LFCoxa_yaw&quot;,0,0,-1)" methodname="AxialVectorConversionIncludesReflectionSign" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="1226268968" result="Failed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.000092" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: (0.00, 0.00, -1.00)
+  But was:  (-1.00, 0.00, 0.00)
+]]></message>
+                  <stack-trace><![CDATA[at FlyBrain.Tests.M7FReplayTests.AxialVectorConversionIncludesReflectionSign (System.String name, System.Single x, System.Single y, System.Single z) [0x00000] in C:\Users\legen\Documents\FlyBrainUnity\FlyBrainUnity\Assets\Tests\Editor\M7FReplayTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1010" name="AxialVectorConversionIncludesReflectionSign(&quot;joint_LFFemur_roll&quot;,0,0,-1)" fullname="FlyBrain.Tests.M7FReplayTests.AxialVectorConversionIncludesReflectionSign(&quot;joint_LFFemur_roll&quot;,0,0,-1)" methodname="AxialVectorConversionIncludesReflectionSign" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="1063946140" result="Failed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.000067" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: (0.00, 0.00, -1.00)
+  But was:  (0.00, -1.00, 0.00)
+]]></message>
+                  <stack-trace><![CDATA[at FlyBrain.Tests.M7FReplayTests.AxialVectorConversionIncludesReflectionSign (System.String name, System.Single x, System.Single y, System.Single z) [0x00000] in C:\Users\legen\Documents\FlyBrainUnity\FlyBrainUnity\Assets\Tests\Editor\M7FReplayTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1005" name="BuilderCreatesExactlyOneCompleteTransformOnlyFlyAndAutoBinds42" fullname="FlyBrain.Tests.M7FReplayTests.BuilderCreatesExactlyOneCompleteTransformOnlyFlyAndAutoBinds42" methodname="BuilderCreatesExactlyOneCompleteTransformOnlyFlyAndAutoBinds42" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="339196191" result="Passed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.011496" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1037" name="CanonicalMillisecondsMapToDiscretePhysicalFrames" fullname="FlyBrain.Tests.M7FReplayTests.CanonicalMillisecondsMapToDiscretePhysicalFrames" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.001573" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1030" name="CanonicalMillisecondsMapToDiscretePhysicalFrames(0.0d,0)" fullname="FlyBrain.Tests.M7FReplayTests.CanonicalMillisecondsMapToDiscretePhysicalFrames(0.0d,0)" methodname="CanonicalMillisecondsMapToDiscretePhysicalFrames" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="1359137643" result="Passed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.000250" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1031" name="CanonicalMillisecondsMapToDiscretePhysicalFrames(0.1d,1)" fullname="FlyBrain.Tests.M7FReplayTests.CanonicalMillisecondsMapToDiscretePhysicalFrames(0.1d,1)" methodname="CanonicalMillisecondsMapToDiscretePhysicalFrames" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="293301653" result="Passed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.000029" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1032" name="CanonicalMillisecondsMapToDiscretePhysicalFrames(1.0d,10)" fullname="FlyBrain.Tests.M7FReplayTests.CanonicalMillisecondsMapToDiscretePhysicalFrames(1.0d,10)" methodname="CanonicalMillisecondsMapToDiscretePhysicalFrames" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="942057009" result="Passed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.000040" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1033" name="CanonicalMillisecondsMapToDiscretePhysicalFrames(54.0d,540)" fullname="FlyBrain.Tests.M7FReplayTests.CanonicalMillisecondsMapToDiscretePhysicalFrames(54.0d,540)" methodname="CanonicalMillisecondsMapToDiscretePhysicalFrames" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="626397590" result="Passed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.000027" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1034" name="CanonicalMillisecondsMapToDiscretePhysicalFrames(54.1d,541)" fullname="FlyBrain.Tests.M7FReplayTests.CanonicalMillisecondsMapToDiscretePhysicalFrames(54.1d,541)" methodname="CanonicalMillisecondsMapToDiscretePhysicalFrames" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="747987029" result="Passed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.000018" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1035" name="CanonicalMillisecondsMapToDiscretePhysicalFrames(500.0d,5000)" fullname="FlyBrain.Tests.M7FReplayTests.CanonicalMillisecondsMapToDiscretePhysicalFrames(500.0d,5000)" methodname="CanonicalMillisecondsMapToDiscretePhysicalFrames" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="1899524216" result="Passed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.000018" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1036" name="CanonicalMillisecondsMapToDiscretePhysicalFrames(501.0d,5000)" fullname="FlyBrain.Tests.M7FReplayTests.CanonicalMillisecondsMapToDiscretePhysicalFrames(501.0d,5000)" methodname="CanonicalMillisecondsMapToDiscretePhysicalFrames" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="664235789" result="Passed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.000017" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1003" name="CoordinateConversionUsesValidatedProjectConvention" fullname="FlyBrain.Tests.M7FReplayTests.CoordinateConversionUsesValidatedProjectConvention" methodname="CoordinateConversionUsesValidatedProjectConvention" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="30541222" result="Passed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.001821" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1029" name="InterpolationAndClassificationDefaultsRemainScientificBoundarySafe" fullname="FlyBrain.Tests.M7FReplayTests.InterpolationAndClassificationDefaultsRemainScientificBoundarySafe" methodname="InterpolationAndClassificationDefaultsRemainScientificBoundarySafe" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="856154228" result="Passed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.000828" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1025" name="JointApplicationIsAbsoluteSoDirectSeekEqualsNonSequentialSeek" fullname="FlyBrain.Tests.M7FReplayTests.JointApplicationIsAbsoluteSoDirectSeekEqualsNonSequentialSeek" methodname="JointApplicationIsAbsoluteSoDirectSeekEqualsNonSequentialSeek" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="2051425039" result="Passed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.004461" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1002" name="LoaderPreservesCanonicalValuesAndIndexesNeuralCadence" fullname="FlyBrain.Tests.M7FReplayTests.LoaderPreservesCanonicalValuesAndIndexesNeuralCadence" methodname="LoaderPreservesCanonicalValuesAndIndexesNeuralCadence" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="525916897" result="Passed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.000408" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1006" name="MissingAndAmbiguousNamesFailClosed" fullname="FlyBrain.Tests.M7FReplayTests.MissingAndAmbiguousNamesFailClosed" methodname="MissingAndAmbiguousNamesFailClosed" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="833117117" result="Passed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.007639" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[M7F REQUIRED JOINT MISSING: joint_LFCoxa
+M7F AMBIGUOUS RECURSIVE JOINT NAME: joint_LFCoxa
+]]></output>
+            </test-case>
+            <test-case id="1017" name="MultipleHingesOnOneBodyFollowAuthoritativeDeclarationOrder" fullname="FlyBrain.Tests.M7FReplayTests.MultipleHingesOnOneBodyFollowAuthoritativeDeclarationOrder" methodname="MultipleHingesOnOneBodyFollowAuthoritativeDeclarationOrder" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="1678092137" result="Passed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.004052" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1028" name="NineNativeMjForwardFramesAreTheNumericalAcceptanceGate" fullname="FlyBrain.Tests.M7FReplayTests.NineNativeMjForwardFramesAreTheNumericalAcceptanceGate" methodname="NineNativeMjForwardFramesAreTheNumericalAcceptanceGate" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="1252851729" result="Passed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.072234" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1038" name="PlaybackControlsClockSeekingAndUiToggleShareOneState" fullname="FlyBrain.Tests.M7FReplayTests.PlaybackControlsClockSeekingAndUiToggleShareOneState" methodname="PlaybackControlsClockSeekingAndUiToggleShareOneState" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="1260000357" result="Passed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.052046" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[M7F PLAYBACK: PLAY
+M7F PLAYBACK: PAUSE
+M7F PLAYBACK: RESTART
+M7F PLAYBACK: PAUSE
+M7F PLAYBACK: PAUSE
+M7F PLAYBACK: PAUSE
+M7F PLAYBACK: RESTART
+M7F PLAYBACK: PLAY
+M7F PLAYBACK: PLAY
+M7F PLAYBACK: PAUSE
+]]></output>
+            </test-case>
+            <test-case id="1004" name="PolarAndAxialVectorsRespectImproperBasisDeterminant" fullname="FlyBrain.Tests.M7FReplayTests.PolarAndAxialVectorsRespectImproperBasisDeterminant" methodname="PolarAndAxialVectorsRespectImproperBasisDeterminant" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="2144585191" result="Passed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.000291" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1016" name="PositiveNinetyDegreeSourceRotationsUseConvertedAxialAxis" fullname="FlyBrain.Tests.M7FReplayTests.PositiveNinetyDegreeSourceRotationsUseConvertedAxialAxis" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.001470" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1013" name="PositiveNinetyDegreeSourceRotationsUseConvertedAxialAxis(1,0,0)" fullname="FlyBrain.Tests.M7FReplayTests.PositiveNinetyDegreeSourceRotationsUseConvertedAxialAxis(1,0,0)" methodname="PositiveNinetyDegreeSourceRotationsUseConvertedAxialAxis" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="1386904919" result="Passed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.000407" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1014" name="PositiveNinetyDegreeSourceRotationsUseConvertedAxialAxis(0,1,0)" fullname="FlyBrain.Tests.M7FReplayTests.PositiveNinetyDegreeSourceRotationsUseConvertedAxialAxis(0,1,0)" methodname="PositiveNinetyDegreeSourceRotationsUseConvertedAxialAxis" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="1161067869" result="Passed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.000037" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1015" name="PositiveNinetyDegreeSourceRotationsUseConvertedAxialAxis(0,0,1)" fullname="FlyBrain.Tests.M7FReplayTests.PositiveNinetyDegreeSourceRotationsUseConvertedAxialAxis(0,0,1)" methodname="PositiveNinetyDegreeSourceRotationsUseConvertedAxialAxis" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="2061971293" result="Passed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.000030" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1012" name="RootQuaternionBasisConversionPreservesMappedForwardAndUp" fullname="FlyBrain.Tests.M7FReplayTests.RootQuaternionBasisConversionPreservesMappedForwardAndUp" methodname="RootQuaternionBasisConversionPreservesMappedForwardAndUp" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="1853461248" result="Passed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:41Z" duration="0.000653" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1039" name="SceneMenuCreatesRequiredSystemsTwoRigsAndPhysicsFreeGround" fullname="FlyBrain.Tests.M7FReplayTests.SceneMenuCreatesRequiredSystemsTwoRigsAndPhysicsFreeGround" methodname="SceneMenuCreatesRequiredSystemsTwoRigsAndPhysicsFreeGround" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="73606264" result="Passed" start-time="2026-09-23 02:28:41Z" end-time="2026-09-23 02:28:44Z" duration="3.061471" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Created M7F canonical replay scene in memory. Review it, then save explicitly; canonical replay artifacts were only read at runtime.
+]]></output>
+            </test-case>
+            <test-case id="1018" name="ScientificInputsOrderingAndAcceptanceThresholdsRemainImmutable" fullname="FlyBrain.Tests.M7FReplayTests.ScientificInputsOrderingAndAcceptanceThresholdsRemainImmutable" methodname="ScientificInputsOrderingAndAcceptanceThresholdsRemainImmutable" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="483672674" result="Failed" start-time="2026-09-23 02:28:44Z" end-time="2026-09-23 02:28:44Z" duration="0.001423" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  String lengths are both 64. Strings differ at index 0.
+  Expected: "d8cd7e58bb33fff5e102484d937100d7afd7dc1f4156b39dc2a27f65c0c29eb7"
+  But was:  "0997190a94e4a84e9a595e0859dbbc99787ff249e48788c7df58ffb0030045ab"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[at FlyBrain.Tests.M7FReplayTests.ScientificInputsOrderingAndAcceptanceThresholdsRemainImmutable () [0x00032] in C:\Users\legen\Documents\FlyBrainUnity\FlyBrainUnity\Assets\Tests\Editor\M7FReplayTests.cs:173
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1026" name="ScientificSegmentsAndPivotsComeFromAuthoritativeArtifact" fullname="FlyBrain.Tests.M7FReplayTests.ScientificSegmentsAndPivotsComeFromAuthoritativeArtifact" methodname="ScientificSegmentsAndPivotsComeFromAuthoritativeArtifact" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="922678578" result="Passed" start-time="2026-09-23 02:28:44Z" end-time="2026-09-23 02:28:44Z" duration="0.004413" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1019" name="StableDirectionalAngleHandlesIdenticalOppositeAndInvalidVectors" fullname="FlyBrain.Tests.M7FReplayTests.StableDirectionalAngleHandlesIdenticalOppositeAndInvalidVectors" methodname="StableDirectionalAngleHandlesIdenticalOppositeAndInvalidVectors" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="1818694745" result="Passed" start-time="2026-09-23 02:28:44Z" end-time="2026-09-23 02:28:44Z" duration="0.000228" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1024" name="StableDirectionalAngleMeasuresReportedWorstAxisWithoutFloatAcosQuantization" fullname="FlyBrain.Tests.M7FReplayTests.StableDirectionalAngleMeasuresReportedWorstAxisWithoutFloatAcosQuantization" methodname="StableDirectionalAngleMeasuresReportedWorstAxisWithoutFloatAcosQuantization" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="575605055" result="Passed" start-time="2026-09-23 02:28:44Z" end-time="2026-09-23 02:28:44Z" duration="0.000201" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1023" name="StableDirectionalAnglePreservesTwoTimesTenToMinusFourBoundary" fullname="FlyBrain.Tests.M7FReplayTests.StableDirectionalAnglePreservesTwoTimesTenToMinusFourBoundary" methodname="StableDirectionalAnglePreservesTwoTimesTenToMinusFourBoundary" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="1053565023" result="Passed" start-time="2026-09-23 02:28:44Z" end-time="2026-09-23 02:28:44Z" duration="0.000263" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1022" name="StableDirectionalAngleResolvesTinyRotationsAcrossTolerance" fullname="FlyBrain.Tests.M7FReplayTests.StableDirectionalAngleResolvesTinyRotationsAcrossTolerance" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-23 02:28:44Z" end-time="2026-09-23 02:28:44Z" duration="0.002897" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1020" name="StableDirectionalAngleResolvesTinyRotationsAcrossTolerance(0.00015d,True)" fullname="FlyBrain.Tests.M7FReplayTests.StableDirectionalAngleResolvesTinyRotationsAcrossTolerance(0.00015d,True)" methodname="StableDirectionalAngleResolvesTinyRotationsAcrossTolerance" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="1534496415" result="Passed" start-time="2026-09-23 02:28:44Z" end-time="2026-09-23 02:28:44Z" duration="0.000285" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1021" name="StableDirectionalAngleResolvesTinyRotationsAcrossTolerance(0.00025d,False)" fullname="FlyBrain.Tests.M7FReplayTests.StableDirectionalAngleResolvesTinyRotationsAcrossTolerance(0.00025d,False)" methodname="StableDirectionalAngleResolvesTinyRotationsAcrossTolerance" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="517586118" result="Failed" start-time="2026-09-23 02:28:44Z" end-time="2026-09-23 02:28:44Z" duration="0.000124" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0.00025000000000000001d +/- 1.9999999999999999E-11d
+  But was:  0.0002500000215671908d
+]]></message>
+                  <stack-trace><![CDATA[at FlyBrain.Tests.M7FReplayTests.StableDirectionalAngleResolvesTinyRotationsAcrossTolerance (System.Double radians, System.Boolean accepted) [0x00025] in C:\Users\legen\Documents\FlyBrainUnity\FlyBrainUnity\Assets\Tests\Editor\M7FReplayTests.cs:194
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1040" name="TruncatedBinaryFailsClosed" fullname="FlyBrain.Tests.M7FReplayTests.TruncatedBinaryFailsClosed" methodname="TruncatedBinaryFailsClosed" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="418595478" result="Passed" start-time="2026-09-23 02:28:44Z" end-time="2026-09-23 02:28:44Z" duration="0.000765" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1041" name="M7FVis3AnatomyTests" fullname="FlyBrain.Tests.M7FVis3AnatomyTests" classname="FlyBrain.Tests.M7FVis3AnatomyTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-23 02:28:44Z" end-time="2026-09-23 02:28:47Z" duration="3.247647" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1043" name="AnatomyAttachesToManifestParentsWithOnlyRemainingLocalTransform" fullname="FlyBrain.Tests.M7FVis3AnatomyTests.AnatomyAttachesToManifestParentsWithOnlyRemainingLocalTransform" methodname="AnatomyAttachesToManifestParentsWithOnlyRemainingLocalTransform" classname="FlyBrain.Tests.M7FVis3AnatomyTests" runstate="Runnable" seed="744071236" result="Passed" start-time="2026-09-23 02:28:44Z" end-time="2026-09-23 02:28:46Z" duration="1.502779" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1046" name="CanonicalPresentationDefaultsToAuthoritativeAnatomyOnly" fullname="FlyBrain.Tests.M7FVis3AnatomyTests.CanonicalPresentationDefaultsToAuthoritativeAnatomyOnly" methodname="CanonicalPresentationDefaultsToAuthoritativeAnatomyOnly" classname="FlyBrain.Tests.M7FVis3AnatomyTests" runstate="Runnable" seed="1402617799" result="Passed" start-time="2026-09-23 02:28:46Z" end-time="2026-09-23 02:28:47Z" duration="1.667191" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1044" name="GeneratedObjIsAlreadyConvertedAndHasNoRuntimeHandednessOperation" fullname="FlyBrain.Tests.M7FVis3AnatomyTests.GeneratedObjIsAlreadyConvertedAndHasNoRuntimeHandednessOperation" methodname="GeneratedObjIsAlreadyConvertedAndHasNoRuntimeHandednessOperation" classname="FlyBrain.Tests.M7FVis3AnatomyTests" runstate="Runnable" seed="846418254" result="Passed" start-time="2026-09-23 02:28:47Z" end-time="2026-09-23 02:28:47Z" duration="0.027307" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1042" name="ManifestIsTheCompleteExtractedSixtyNineMeshInventory" fullname="FlyBrain.Tests.M7FVis3AnatomyTests.ManifestIsTheCompleteExtractedSixtyNineMeshInventory" methodname="ManifestIsTheCompleteExtractedSixtyNineMeshInventory" classname="FlyBrain.Tests.M7FVis3AnatomyTests" runstate="Runnable" seed="1117954142" result="Passed" start-time="2026-09-23 02:28:47Z" end-time="2026-09-23 02:28:47Z" duration="0.003276" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1045" name="ScientificArtifactsAndCanonicalReplaysRemainByteIdentical" fullname="FlyBrain.Tests.M7FVis3AnatomyTests.ScientificArtifactsAndCanonicalReplaysRemainByteIdentical" methodname="ScientificArtifactsAndCanonicalReplaysRemainByteIdentical" classname="FlyBrain.Tests.M7FVis3AnatomyTests" runstate="Runnable" seed="1233743416" result="Passed" start-time="2026-09-23 02:28:47Z" end-time="2026-09-23 02:28:47Z" duration="0.045701" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1052" name="M9DReplayTests" fullname="FlyBrain.Tests.M9DReplayTests" classname="FlyBrain.Tests.M9DReplayTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-23 02:28:47Z" end-time="2026-09-23 02:28:47Z" duration="0.055689" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1055" name="ComparisonOffsetsArePresentationOnlyAndDefaultPairIsAPVersusBP" fullname="FlyBrain.Tests.M9DReplayTests.ComparisonOffsetsArePresentationOnlyAndDefaultPairIsAPVersusBP" methodname="ComparisonOffsetsArePresentationOnlyAndDefaultPairIsAPVersusBP" classname="FlyBrain.Tests.M9DReplayTests" runstate="Runnable" seed="1612323082" result="Passed" start-time="2026-09-23 02:28:47Z" end-time="2026-09-23 02:28:47Z" duration="0.001262" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1056" name="ForceArrowIsPurePresentationAndCannotApplyForce" fullname="FlyBrain.Tests.M9DReplayTests.ForceArrowIsPurePresentationAndCannotApplyForce" methodname="ForceArrowIsPurePresentationAndCannotApplyForce" classname="FlyBrain.Tests.M9DReplayTests" runstate="Runnable" seed="2122764083" result="Passed" start-time="2026-09-23 02:28:47Z" end-time="2026-09-23 02:28:47Z" duration="0.002525" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1054" name="LoaderParsesExactPhysicalSchemaAndRejectsTrailingBytes" fullname="FlyBrain.Tests.M9DReplayTests.LoaderParsesExactPhysicalSchemaAndRejectsTrailingBytes" methodname="LoaderParsesExactPhysicalSchemaAndRejectsTrailingBytes" classname="FlyBrain.Tests.M9DReplayTests" runstate="Runnable" seed="1471257647" result="Passed" start-time="2026-09-23 02:28:47Z" end-time="2026-09-23 02:28:47Z" duration="0.049173" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1053" name="PresentationPlaybackStateAndClockAreDeterministic" fullname="FlyBrain.Tests.M9DReplayTests.PresentationPlaybackStateAndClockAreDeterministic" methodname="PresentationPlaybackStateAndClockAreDeterministic" classname="FlyBrain.Tests.M9DReplayTests" runstate="Runnable" seed="663282030" result="Passed" start-time="2026-09-23 02:28:47Z" end-time="2026-09-23 02:28:47Z" duration="0.000689" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1057" name="ScientificLabelsUseRequiredMotorGateLanguage" fullname="FlyBrain.Tests.M9DReplayTests.ScientificLabelsUseRequiredMotorGateLanguage" methodname="ScientificLabelsUseRequiredMotorGateLanguage" classname="FlyBrain.Tests.M9DReplayTests" runstate="Runnable" seed="536818487" result="Passed" start-time="2026-09-23 02:28:47Z" end-time="2026-09-23 02:28:47Z" duration="0.000121" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1058" name="M9DSceneConstructionTests" fullname="FlyBrain.Tests.M9DSceneConstructionTests" classname="FlyBrain.Tests.M9DSceneConstructionTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-23 02:28:47Z" end-time="2026-09-23 02:28:55Z" duration="7.937369" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1059" name="MenuGenerationPathPersistsCompleteReferenceSafePresentation" fullname="FlyBrain.Tests.M9DSceneConstructionTests.MenuGenerationPathPersistsCompleteReferenceSafePresentation" methodname="MenuGenerationPathPersistsCompleteReferenceSafePresentation" classname="FlyBrain.Tests.M9DSceneConstructionTests" runstate="Runnable" seed="380558031" result="Failed" label="Error" start-time="2026-09-23 02:28:47Z" end-time="2026-09-23 02:28:52Z" duration="4.541742" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.ArgumentException : Property Count was not found
+Parameter name: name]]></message>
+                <stack-trace><![CDATA[  at NUnit.Framework.Constraints.PropertyConstraint.ApplyTo (System.Object actual) [0x0004a] in <f577cd9686154d6ab10efd7e65e64366>:0 
+  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 
+  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0 
+  at FlyBrain.Tests.M9DSceneConstructionTests.MenuGenerationPathPersistsCompleteReferenceSafePresentation () [0x0009f] in C:\Users\legen\Documents\FlyBrainUnity\FlyBrainUnity\Assets\Tests\Editor\M9DSceneConstructionTests.cs:32 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <41d29b352f6a475ab1bf7c6628b82790>:0 ]]></stack-trace>
+              </failure>
+              <output><![CDATA[Created M9D replay scene in memory. No scientific transition or canonical export was executed.
+]]></output>
+            </test-case>
+            <test-case id="1060" name="RuntimeInitializationPlaybackAndNavigationApplyRecordedFrames" fullname="FlyBrain.Tests.M9DSceneConstructionTests.RuntimeInitializationPlaybackAndNavigationApplyRecordedFrames" methodname="RuntimeInitializationPlaybackAndNavigationApplyRecordedFrames" classname="FlyBrain.Tests.M9DSceneConstructionTests" runstate="Runnable" seed="1709388728" result="Passed" start-time="2026-09-23 02:28:52Z" end-time="2026-09-23 02:28:55Z" duration="3.386281" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Created M9D replay scene in memory. No scientific transition or canonical export was executed.
+]]></output>
+            </test-case>
+            <test-case id="1061" name="UnassignedControllerNamesDependencyAndUiDoesNotThrow" fullname="FlyBrain.Tests.M9DSceneConstructionTests.UnassignedControllerNamesDependencyAndUiDoesNotThrow" methodname="UnassignedControllerNamesDependencyAndUiDoesNotThrow" classname="FlyBrain.Tests.M9DSceneConstructionTests" runstate="Runnable" seed="1994094801" result="Passed" start-time="2026-09-23 02:28:55Z" end-time="2026-09-23 02:28:55Z" duration="0.007997" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[M9D replay initialization failed: serialized dependency 'loader' is not assigned.
+Saving results to: C:/Users/legen/AppData/LocalLow/DefaultCompany/FlyBrainUnity\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
