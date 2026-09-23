@@ -33,3 +33,5 @@ FlyBrainUnity/Assets/StreamingAssets/M9DReplay/*.bin filter=lfs diff=lfs merge=l
 six_tibia_causal_result.json -text
 
 malecns_backend/embodiment/interface_output/isolated_tier_b_motor_validation.json -text
+malecns_backend/embodiment/interface_output/m10a_physics_only_calibration/m10a_manifest.json -text
+malecns_backend/embodiment/interface_output/m10a_physics_only_calibration/m10a_report.json -text
