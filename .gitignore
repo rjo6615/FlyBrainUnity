@@ -42,15 +42,3 @@ __pycache__/
 .DS_Store
 Thumbs.db
 malecns_backend/embodiment/interface_output/instrumented_proprioceptive_closed_loop_telemetry.npz
-malecns_backend/embodiment/interface_output/integrated_whole_leg_readiness.json
-
-
-# M8 Unity replay binaries are local staged artifacts (too large for PR transport).
-# Copy the completed, manifest-matching files into this directory before playback.
-/FlyBrainUnity/Assets/StreamingAssets/M8Replay/m8_enabled_replay.bin
-/FlyBrainUnity/Assets/StreamingAssets/M8Replay/m8_disabled_replay.bin
-
-# M9D artifacts are created only by the separate reviewed Windows export.
-/FlyBrainUnity/Assets/StreamingAssets/M9DReplay/*.bin
-/FlyBrainUnity/Assets/StreamingAssets/M9DReplay/m9d_replay_manifest.json
-/malecns_backend/embodiment/interface_output/m9d_unity_replay/
