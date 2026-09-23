@@ -1,0 +1,80 @@
+{
+  "causal_milestones": {
+    "admitted_motor_contribution_divergence_ms": {
+      "delta_A": 556.999999999955,
+      "delta_B": null,
+      "interaction": 556.999999999955
+    },
+    "aggregate_cns_spike_divergence_ms": {
+      "delta_A": 522.9999999999587,
+      "delta_B": 508.99999999996027,
+      "interaction": 508.99999999996027
+    },
+    "decoder_output_divergence_ms": {
+      "delta_A": 556.999999999955,
+      "delta_B": 555.9999999999551,
+      "interaction": 555.9999999999551
+    },
+    "delivered_sensory_drive_divergence_ms": {
+      "delta_A": 522.9999999999587,
+      "delta_B": 508.99999999996027,
+      "interaction": 508.99999999996027
+    },
+    "external_force_application_ms": {
+      "delta_A": 500.0,
+      "delta_B": 500.0,
+      "interaction": null
+    },
+    "first_potential_physical_effect_ms": {
+      "delta_A": 500.1,
+      "delta_B": 500.1,
+      "interaction": 500.1
+    },
+    "later_sensory_cns_motor_divergence_ms": {
+      "delta_A": 564.9999999999541,
+      "delta_B": 500.4999999999612,
+      "interaction": 564.9999999999541
+    },
+    "mapped_motor_observer_divergence_ms": {
+      "delta_A": 564.9999999999541,
+      "delta_B": 649.9999999999447,
+      "interaction": 564.9999999999541
+    },
+    "modeled_proprioceptive_encoding_divergence_ms": {
+      "delta_A": 500.4999999999612,
+      "delta_B": 500.4999999999612,
+      "interaction": 500.4999999999612
+    },
+    "physical_trajectory_divergence_ms": {
+      "delta_A": 500.09999999996126,
+      "delta_B": 500.09999999996126,
+      "interaction": 500.09999999996126
+    },
+    "subsequent_physical_divergence_after_changed_motor_ms": {
+      "delta_A": 557.099999999955,
+      "delta_B": null,
+      "interaction": 557.099999999955
+    }
+  },
+  "classification": {
+    "primary": "M9B_PERTURBATION_RESPONSE_DEPENDS_ON_NEURAL_MOTOR_ENABLEMENT",
+    "rule": "interaction is primary; causal motor alteration requires changed admitted contribution; otherwise no detectable effect",
+    "supported": [
+      "M9B_NEURAL_MOTOR_CAUSALLY_ALTERS_TRAJECTORY_UNDER_PERTURBATION",
+      "M9B_PERTURBATION_RESPONSE_DEPENDS_ON_NEURAL_MOTOR_ENABLEMENT"
+    ]
+  },
+  "limitations": [
+    "Exact numeric inequality defines detectable divergence; no post-hoc threshold was selected.",
+    "Aggregate CNS state and mapped population activity were not separately recorded; aggregate spikes and observer states are reported without substitution.",
+    "Contact is authoritative physical telemetry, not a neural sensory input in this embodiment.",
+    "Temporal ordering alone does not establish biological function.",
+    "No result is labeled balance, stabilization, righting, reflex, natural recovery, gait, or CPG.",
+    "Return fractions are post-run descriptive metrics, not preregistered selection criteria."
+  ],
+  "neural_transitions": 0,
+  "physics_transitions": 0,
+  "read_only": true,
+  "schema": "M9C-M9B-READ-ONLY-POSTRUN-ANALYSIS.1",
+  "status": "COMPLETE"
+}

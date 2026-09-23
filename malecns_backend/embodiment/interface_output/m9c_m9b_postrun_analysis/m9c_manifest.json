@@ -1,0 +1,42 @@
+{
+  "analyzer_source_commit": "99745302e88d33b8ffd2d67dc4f1115eb6725644",
+  "neural_transitions": 0,
+  "outputs": {
+    "m9c_analysis.json": {
+      "byte_size": 371044,
+      "path": "m9c_analysis.json",
+      "sha256": "8a92ab99a6398a08dd8dfcd000a9aae855ef8d1b17e7572406740b9903f9aeaf"
+    },
+    "m9c_report.json": {
+      "byte_size": 3036,
+      "path": "m9c_report.json",
+      "sha256": "81b1f3e021d23b39731aa07690a4a8914a1ed23a85e29af1e14990d615f74323"
+    }
+  },
+  "physics_transitions": 0,
+  "read_only": true,
+  "schema": "M9C-M9B-READ-ONLY-POSTRUN-ANALYSIS.1",
+  "source_m9b_artifacts": {
+    "m9b_manifest.json": {
+      "byte_size": 108179,
+      "path": "m9b_manifest.json",
+      "sha256": "1e26bc46c94dee387141929a20e4c553989703b26f03c64e60f70a8b240760ac"
+    },
+    "m9b_preregistration.json": {
+      "byte_size": 6680,
+      "path": "m9b_preregistration.json",
+      "sha256": "72c560c8cdc2aaf539cd0738e62732c762473b88679f979d4a6c817d319e1c32"
+    },
+    "m9b_raw.npz": {
+      "byte_size": 108063966,
+      "path": "m9b_raw.npz",
+      "sha256": "55359880f3f63a5ef2ae2b316737973e73ad4308d499a02d999538f8f19d984f"
+    },
+    "m9b_report.json": {
+      "byte_size": 316,
+      "path": "m9b_report.json",
+      "sha256": "7299c349d5824fb9d5ef7713bf7ea5e9794972f3669790502609dfa5a3e8224e"
+    }
+  },
+  "status": "COMPLETE"
+}
