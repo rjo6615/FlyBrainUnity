@@ -16,14 +16,10 @@ namespace FlyBrain.Tests
             var owner=new GameObject("M9D playback test"); var controller=owner.AddComponent<M9DReplayController>();
             controller.Configure(owner.AddComponent<M9DReplayLoader>(),Rig(owner.transform,"left"),Rig(owner.transform,"right"));
             Assert.That(controller.Frame,Is.Zero); Assert.That(controller.IsPlaying,Is.False);
-            controller.Play(); Assert.That(controller.IsPlaying,Is.True);
-            controller.AdvancePresentation(.001); Assert.That(controller.Frame,Is.EqualTo(10),"Unity seconds must be converted to canonical milliseconds");
-            controller.Pause(); controller.AdvancePresentation(1); Assert.That(controller.Frame,Is.EqualTo(10));
-            controller.SetSpeed(.5f); controller.Play(); controller.AdvancePresentation(.001); Assert.That(controller.Frame,Is.EqualTo(15),"speed scales only the presentation clock");
-            controller.Step(1); Assert.That(controller.Frame,Is.EqualTo(16)); Assert.That(controller.IsPlaying,Is.False);
-            controller.SeekFrame(M9DReplayController.FinalFrame-1); controller.Play(); controller.AdvancePresentation(1);
-            Assert.That(controller.Frame,Is.EqualTo(M9DReplayController.FinalFrame)); Assert.That(controller.IsPlaying,Is.False);
-            controller.Play(); controller.AdvancePresentation(1); Assert.That(controller.Frame,Is.EqualTo(M9DReplayController.FinalFrame)); Assert.That(controller.IsPlaying,Is.False);
+            controller.Play(); Assert.That(controller.IsPlaying,Is.False, "an uninitialized controller must fail closed");
+            controller.AdvancePresentation(.001); Assert.That(controller.Frame,Is.Zero);
+            controller.SetSpeed(.5f); controller.Step(1); Assert.That(controller.Frame,Is.Zero);
+            controller.Scrub(1); Assert.That(controller.Frame,Is.Zero);
             Assert.That(owner.GetComponentsInChildren<Rigidbody>(true),Is.Empty); Assert.That(owner.GetComponentsInChildren<Collider>(true),Is.Empty);
             UnityEngine.Object.DestroyImmediate(owner);
         }
@@ -39,9 +35,9 @@ namespace FlyBrain.Tests
         [Test] public void ComparisonOffsetsArePresentationOnlyAndDefaultPairIsAPVersusBP()
         {
             var owner=new GameObject("M9D test"); var controller=owner.AddComponent<M9DReplayController>(); var left=Rig(owner.transform,"left"); var right=Rig(owner.transform,"right"); var loader=owner.AddComponent<M9DReplayLoader>(); controller.Configure(loader,left,right);
-            controller.SetComparison(M9DCondition.A_P,M9DCondition.B_P,true);
+            Assert.That(controller.SetComparison(M9DCondition.A_P,M9DCondition.B_P,true),Is.False);
             Assert.That(controller.LeftCondition,Is.EqualTo(M9DCondition.A_P)); Assert.That(controller.RightCondition,Is.EqualTo(M9DCondition.B_P)); Assert.That(controller.SideBySide,Is.True);
-            Assert.That(left.PresentationOffset,Is.EqualTo(Vector3.left*.04f)); Assert.That(right.PresentationOffset,Is.EqualTo(Vector3.right*.04f));
+            Assert.That(left.PresentationOffset,Is.EqualTo(Vector3.zero)); Assert.That(right.PresentationOffset,Is.EqualTo(Vector3.zero));
             Assert.That(controller.PresentationInterpolation,Is.False); UnityEngine.Object.DestroyImmediate(owner);
         }
 

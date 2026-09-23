@@ -25,7 +25,26 @@ public static class M7FCanonicalReplaySceneGenerator
         var arrow=new GameObject(M9DForceArrow.Annotation); arrow.transform.SetParent(left.transform,false); arrow.AddComponent<M9DForceArrow>().Configure(controller,FindDescendant(left.transform,"Thorax"));
         var label=arrow.AddComponent<TextMesh>(); label.text=M9DForceArrow.Annotation; label.characterSize=.02f;
         var lighting=Child(top.transform,"Lighting"); var lightObject=Child(lighting,"Directional Light"); var light=lightObject.gameObject.AddComponent<Light>(); light.type=LightType.Directional; light.intensity=1.1f; lightObject.rotation=Quaternion.Euler(45,-35,0);
+        ValidateM9DConstruction(top, controller, ui);
         EditorSceneManager.MarkSceneDirty(scene); Selection.activeGameObject=top; Debug.Log("Created M9D replay scene in memory. No scientific transition or canonical export was executed.");
+    }
+
+    public static void ValidateM9DConstruction(GameObject top, M9DReplayController controller, M9DScientificUI ui)
+    {
+        if (top == null) throw new System.InvalidOperationException("M9D generated root is null.");
+        foreach (var item in top.GetComponentsInChildren<Transform>(true))
+            if (GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(item.gameObject) != 0)
+                throw new System.InvalidOperationException("M9D generated object contains a missing MonoBehaviour: " + item.name);
+        if (controller == null || controller.Loader == null || controller.LeftRig == null || controller.RightRig == null)
+            throw new System.InvalidOperationException("M9D controller dependencies were not assigned by the scene generator.");
+        if (ui == null || ui.Controller != controller) throw new System.InvalidOperationException("M9D UI does not reference the generated controller.");
+        if (controller.LeftRig == controller.RightRig) throw new System.InvalidOperationException("M9D comparison requires two distinct rigs.");
+        if (controller.LeftRig.Joints.Count != M7FScientificFlyRigDefinition.JointCount || controller.RightRig.Joints.Count != M7FScientificFlyRigDefinition.JointCount)
+            throw new System.InvalidOperationException("M9D generated rigs do not contain both canonical 42-joint mappings.");
+        M7FAnatomyPresentation.ValidatePresentation(controller.LeftRig.transform);
+        M7FAnatomyPresentation.ValidatePresentation(controller.RightRig.transform);
+        if (top.GetComponentsInChildren<Rigidbody>(true).Length != 0 || top.GetComponentsInChildren<Collider>(true).Length != 0)
+            throw new System.InvalidOperationException("M9D generated presentation contains forbidden Unity physics authority.");
     }
 
     static Transform FindDescendant(Transform root,string name) { foreach(var value in root.GetComponentsInChildren<Transform>(true))if(value.name==name)return value; return root; }

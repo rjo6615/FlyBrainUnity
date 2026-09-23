@@ -5,6 +5,8 @@ namespace FlyBrain.M7FReplay
     public sealed class M9DScientificUI : MonoBehaviour
     {
         [SerializeField] M9DReplayController controller; [SerializeField] M7FReplayCamera replayCamera;
+        public M9DReplayController Controller => controller;
+        public M7FReplayCamera ReplayCamera => replayCamera;
         static readonly (double time, string label)[] Markers = { (500,"force begins"), (520,"force ends"), (500.1,"physical trajectory divergence (M9C)"), (500.5,"modeled proprioceptive encoding divergence (M9C)"), (508.5,"delivered sensory/CNS interaction divergence (M9C)"), (556,"decoder-output interaction divergence (M9C)"), (557,"admitted physical motor-contribution interaction divergence (M9C)"), (557.1,"subsequent physical divergence (M9C)") };
         public void Configure(M9DReplayController value, M7FReplayCamera camera=null) { controller=value; replayCamera=camera; }
         void OnGUI()
@@ -12,6 +14,12 @@ namespace FlyBrain.M7FReplay
             if (controller == null) return; GUILayout.BeginArea(new Rect(12,12,620,Screen.height-24),GUI.skin.box);
             GUILayout.Label("M9D — CANONICAL M9B EXTERNAL PERTURBATION REPLAY");
             GUILayout.Label("Recorded canonical M9B replay. Unity does not simulate neural or physical dynamics.");
+            if (!controller.IsInitialized)
+            {
+                GUILayout.Label(controller.InitializationError ?? "M9D replay has not initialized; controls are disabled.");
+                GUILayout.EndArea();
+                return;
+            }
             GUILayout.Label(M9DReplayController.Label(controller.LeftCondition)); if (controller.SideBySide) GUILayout.Label(M9DReplayController.Label(controller.RightCondition));
             GUILayout.Label($"Canonical time: {controller.TimeMs:F1} ms    physical frame: {controller.Frame}");
             GUILayout.BeginHorizontal(); if(GUILayout.Button(controller.IsPlaying?"Pause":"Play"))controller.TogglePlayback(); if(GUILayout.Button("Restart"))controller.Restart(); if(GUILayout.Button("< Frame"))controller.Step(-1); if(GUILayout.Button("Frame >"))controller.Step(1); GUILayout.EndHorizontal();
