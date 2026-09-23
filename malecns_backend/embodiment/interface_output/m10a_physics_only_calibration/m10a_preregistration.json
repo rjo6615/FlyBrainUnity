@@ -1,0 +1,170 @@
+{
+  "claim_boundary": "physics-only calibration of physical disturbance and mechanical response; no biological or neural-function inference",
+  "conditions": {
+    "comparison": "each nonzero candidate minus the single zero-force control at matched timestamps",
+    "fresh_identical_runtime_per_condition": true,
+    "same_initialization_duration_geometry_and_fixed_actuation": true,
+    "zero_force_control": 0.0
+  },
+  "contact_semantics": "physical observation only; never encoded or delivered",
+  "derived_physical_metrics": [
+    "timestamp_aligned_com_displacement_vs_zero_control",
+    "quaternion_shortest_arc_orientation_deviation_vs_zero_control",
+    "peak_linear_velocity",
+    "peak_angular_velocity",
+    "post_perturbation_trajectory_deviation_vs_zero_control",
+    "contact_pattern_difference_vs_zero_control",
+    "mechanical_integrity_gate_results"
+  ],
+  "execution_absence": {
+    "contact_used_as_sensory_input": false,
+    "controllers": false,
+    "gait_or_reference_controller": false,
+    "male_cns_constructed": false,
+    "neural_motor_decode_or_application_count": 0,
+    "neural_transitions": 0,
+    "reward_or_rl": false,
+    "sensory_encoding_or_delivery_count": 0
+  },
+  "fixed_actuation": {
+    "adhesion": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "commands": "frozen corrected baseline copied at every transition",
+    "joint_count": 42
+  },
+  "future_artifacts": {
+    "manifest": "m10a_manifest.json",
+    "raw": "m10a_raw.npz",
+    "raw_sha256_in_manifest": true,
+    "report": "m10a_report.json",
+    "selected_force_series_in_report": true
+  },
+  "initialization_identity": "exact frozen corrected M7D/B4 static initialization used by canonical M9",
+  "measurement_gate": {
+    "maximum_continuous_candidate_vs_control_divergence_at_least": 1e-09,
+    "provenance": "inherited unchanged from M9A-3 Attempt-3 measurable threshold"
+  },
+  "mechanical_integrity_gates": {
+    "catastrophic_definition": "height <= 50% initial height, body_up_z <= 0, or absolute root displacement > 1.5 mm",
+    "catastrophic_through_ms": 750.0,
+    "finite": true,
+    "maximum_absolute_root_displacement_mm": 1.5,
+    "maximum_absolute_tilt_deg": 60.0,
+    "minimum_post_force_observation_ms": 980.0,
+    "provenance": "numeric limits inherited unchanged from M9A-3 Attempt-3 safety rules"
+  },
+  "perturbation": {
+    "anchor_force_native": 1.024,
+    "application_body_source": "Thorax",
+    "application_point": "authoritative body center of mass",
+    "candidate_force_magnitudes_native": [
+      0.256,
+      0.3620386719675124,
+      0.512,
+      0.7240773439350248,
+      1.024,
+      1.4481546878700495,
+      2.048,
+      2.896309375740099,
+      4.096
+    ],
+    "direction_xyz": [
+      0.0,
+      1.0,
+      0.0
+    ],
+    "first_possible_affected_state_ms": 500.1,
+    "frame": "world",
+    "half_octave_indices": [
+      -4,
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "ladder_construction": "anchor * 2^(k/2), integer k=-4..4; half-octave refinement of M9A geometric escalation",
+    "only_force_magnitude_varies": true,
+    "start_ms_inclusive": 500.0,
+    "start_transition_inclusive": 5000,
+    "stop_ms_exclusive": 520.0,
+    "stop_transition_exclusive": 5200,
+    "torque_xyz": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "transition_indices": "5000-5199"
+  },
+  "physical_initialization": {
+    "adhesion_enabled": false,
+    "baseline_targets": "exact measured corrected tripod joint state at time zero",
+    "calibration_surface": "canonical inherited static m5d2c_calibration_surface",
+    "control": "position",
+    "flygym": "1.2.1",
+    "init_pose": "tripod",
+    "mujoco": "3.2.7",
+    "settling_transitions": 0,
+    "spawn_orientation": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spawn_pos": [
+      0.0,
+      0.0,
+      0.6045752232266313
+    ]
+  },
+  "physical_observables": [
+    "timestamps",
+    "thorax_com_position",
+    "root_orientation_wxyz",
+    "body_up_vector",
+    "root_linear_velocity",
+    "root_angular_velocity",
+    "height",
+    "42_joint_positions",
+    "six_authoritative_contact_flags_observation_only",
+    "six_distal_tarsus_positions",
+    "applied_external_force"
+  ],
+  "physics": {
+    "dt_ms": 0.1,
+    "duration_ms": 1500.0,
+    "flygym": "1.2.1",
+    "mujoco": "3.2.7",
+    "post_force_observation_ms": 980.0,
+    "states_per_condition": 15001,
+    "transitions_per_condition": 15000
+  },
+  "response_score": {
+    "definition": "max(position_mm/0.005, orientation_deg/0.25, distal_tarsus_mm/0.01, 1 if contact differs else 0)",
+    "normalizers": "M9A-3 Attempt-3 preregistered meaningful-disturbance thresholds"
+  },
+  "schema": "M10A-PHYSICS-ONLY-PERTURBATION-RANGE-CALIBRATION.1",
+  "scientific_run_executed": false,
+  "selection_rule_preregistered": {
+    "algorithm": [
+      "sort eligible candidates by (response score, magnitude)",
+      "select the lowest-score candidate, the 1.024 anchor, and highest-score candidate",
+      "until four are selected, add the unselected candidate maximizing its minimum absolute log2 response-score distance to selected candidates",
+      "break equal-distance ties by lower magnitude; return selected magnitudes in ascending magnitude order"
+    ],
+    "anchor": "1.024 must be selected; fail closed if it is ineligible",
+    "eligibility": "measurement gate and every mechanical integrity gate",
+    "failure": "fail closed unless at least four eligible candidates and four distinct response scores exist",
+    "target_nonzero_count": 4
+  },
+  "source_commit": "recorded by the future canonical runner before transitions",
+  "status": "NOT_RUN"
+}
