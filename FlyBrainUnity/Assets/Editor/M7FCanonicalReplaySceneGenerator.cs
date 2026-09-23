@@ -14,6 +14,22 @@ public static class M7FCanonicalReplaySceneGenerator
     public static void CreateM8ReplayScene()
     { CreateReplayScene(true); }
 
+    [MenuItem("Fly Brain/M9D/Create External Perturbation Replay Scene")]
+    public static void CreateM9DReplayScene()
+    {
+        var scene=EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single); var top=new GameObject("M9D Canonical M9B Replay"); top.AddComponent<M7FCanonicalReplayPresentation>();
+        var system=Child(top.transform,"ReplaySystem"); var loader=system.gameObject.AddComponent<M9DReplayLoader>(); var controller=system.gameObject.AddComponent<M9DReplayController>(); var ui=system.gameObject.AddComponent<M9DScientificUI>();
+        var left=BuildFly(top.transform,"A_P — Brain Enabled + Push"); var right=BuildFly(top.transform,"B_P — Brain Disabled + Push"); controller.Configure(loader,left,right); ui.Configure(controller);
+        var environment=Child(top.transform,"Environment"); var ground=GameObject.CreatePrimitive(PrimitiveType.Plane); ground.name="VisualGround — PRESENTATION REFERENCE ONLY"; ground.transform.SetParent(environment,false); ground.transform.localScale=Vector3.one*.8f; Object.DestroyImmediate(ground.GetComponent<Collider>());
+        var cameraRig=Child(top.transform,"SynchronizedCameraRig"); var cameraObject=Child(cameraRig,"Main Camera"); cameraObject.tag="MainCamera"; var camera=cameraObject.gameObject.AddComponent<Camera>(); camera.nearClipPlane=.01f; camera.farClipPlane=100; cameraObject.gameObject.AddComponent<AudioListener>(); var replayCamera=cameraObject.gameObject.AddComponent<M7FReplayCamera>(); replayCamera.Configure(top.transform,M7FScientificFlyBuilder.ApproximateVisualRadius*2); ui.Configure(controller,replayCamera);
+        var arrow=new GameObject(M9DForceArrow.Annotation); arrow.transform.SetParent(left.transform,false); arrow.AddComponent<M9DForceArrow>().Configure(controller,FindDescendant(left.transform,"Thorax"));
+        var label=arrow.AddComponent<TextMesh>(); label.text=M9DForceArrow.Annotation; label.characterSize=.02f;
+        var lighting=Child(top.transform,"Lighting"); var lightObject=Child(lighting,"Directional Light"); var light=lightObject.gameObject.AddComponent<Light>(); light.type=LightType.Directional; light.intensity=1.1f; lightObject.rotation=Quaternion.Euler(45,-35,0);
+        EditorSceneManager.MarkSceneDirty(scene); Selection.activeGameObject=top; Debug.Log("Created M9D replay scene in memory. No scientific transition or canonical export was executed.");
+    }
+
+    static Transform FindDescendant(Transform root,string name) { foreach(var value in root.GetComponentsInChildren<Transform>(true))if(value.name==name)return value; return root; }
+
     static void CreateReplayScene(bool m8)
     {
         var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
