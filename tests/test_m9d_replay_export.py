@@ -41,7 +41,10 @@ def test_malformed_shape_nonfinite_count_and_binary_fail_closed():
 
 
 def test_coordinate_conversion_and_force_manifest(monkeypatch,tmp_path):
-    assert np.array_equal(m9d.flygym_to_unity([1,2,3]),[.1,.3,.2])
+    # Multiplication by the presentation scale can differ from an independently
+    # parsed decimal literal by one binary64 ULP (3 * .1 versus literal .3).
+    np.testing.assert_allclose(m9d.flygym_to_unity([1,2,3]),[.1,.3,.2],
+                               rtol=0,atol=np.spacing(np.float64(.3)))
     paths=[]
     for condition in m9d.CONDITIONS:
         path=tmp_path/m9d.FILES[condition]; path.write_bytes(m9d.serialize_condition(arrays(),condition)); paths.append(path)
