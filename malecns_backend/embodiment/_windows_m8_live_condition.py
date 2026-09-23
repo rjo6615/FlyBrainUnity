@@ -55,7 +55,8 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
                   fixed_initial_baseline: bool = False,
                   m8_extended_telemetry: bool = True,
                   external_force_by_transition: Any | None = None,
-                  m9b_extended_telemetry: bool = False) -> Mapping[str, Any]:
+                  m9b_extended_telemetry: bool = False,
+                  m10b_extended_telemetry: bool = False) -> Mapping[str, Any]:
     """Create, run, close, and summarize one fresh frozen runtime.
 
     The optional arguments are used by M7 to reuse this exact M6C embodiment.
@@ -141,6 +142,7 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
         contact_identity = resolve_contacts(model)
         m8_contacts, m8_feet = [], []
         m9b_force, m9b_pre_zero, m9b_post_zero, m9b_body_up, m9b_fall_rollover = [], [], [], [], []
+        m10b_physical_inputs, m10b_delivered, m10b_mapped_motor, m10b_physical_motor = [], [], [], []
         thorax_ids = [i for i, name in enumerate(contact_identity.get("body_names", {}).values())
                       if str(name).split("/")[-1] == "Thorax"]
         if external_force_by_transition is not None and len(thorax_ids) != 1:
@@ -201,16 +203,22 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
             phase["sensory"] += time.perf_counter() - sensory_started
             if step and step % stride == 0:
                 neural_started = time.perf_counter(); brain.clear_external_drive(); candidates = set(pending); pending.clear()
-                sensory_values = {}
+                sensory_values, sensory_indices = {}, {}
                 for leg in LEG_ORDER:
                     encoded = encoders[leg].encode(LegSensoryFrame(now_ms / 1000, float(measured[ACTUATOR_INDICES[leg]])))
                     sensory_values[leg] = tuple(map(float, encoded.rates_hz))
+                    sensory_indices[leg] = tuple(map(int, encoded.indices))
                     local = sample_candidates(encoded.rates_hz, rngs[leg]); candidates.update(int(encoded.indices[i]) for i in local)
                 if candidates: brain.set_external_drive(tuple(sorted(candidates)), 1000. / brain.config.dt)
                 brain.external_drive_withheld_indices = np.empty(0, np.intp); brain.step()
                 delivered = tuple(map(int, brain._last_external_delivered)); aggregate_spikes = int(np.sum(brain.spike_counts))
+                if m10b_extended_telemetry:
+                    delivered_set = set(delivered)
+                    m10b_physical_inputs.append([float(measured[ACTUATOR_INDICES[leg]]) for leg in LEG_ORDER])
+                    m10b_delivered.append([sum(index in delivered_set for index in sensory_indices[leg])
+                                           for leg in LEG_ORDER])
                 phase["neural_stepping"] += time.perf_counter() - neural_started
-                decode_started = time.perf_counter(); raw_values = {}
+                decode_started = time.perf_counter(); raw_values, mapped_values = {}, {}
                 for name, channel in channels.items():
                     observed = channel["observer"].update(brain.spike_counts, NEURAL_DT_MS)
                     pos = _rate(channel["positive"], observed["filtered_hz"], channel["populations"])
@@ -218,9 +226,12 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
                     raw = compute_raw_contribution(pos, neg, channel["bound"], channel["sign"]); raw_values[name] = raw
                     increments = sum(observed["increments"].values()); channel["spikes"] += increments
                     peak_observer = max([abs(x) for x in observed["filtered_hz"].values()] or [0.])
+                    mapped_values[name] = peak_observer
                     channel["peak_observer"] = max(channel["peak_observer"], peak_observer); channel["peak_raw"] = max(channel["peak_raw"], abs(raw))
                     if increments and channel["first_activity_ms"] is None: channel["first_activity_ms"] = now_ms
                     if raw and channel["first_decoder_output_ms"] is None: channel["first_decoder_output_ms"] = now_ms
+                if m10b_extended_telemetry:
+                    m10b_mapped_motor.append([mapped_values[name] for name in admitted_names])
                 contributions = gate(raw_values, condition, admitted_names)
                 if m9b_extended_telemetry:
                     m9b_pre_zero.append([raw_values[n] for n in admitted_names])
@@ -263,6 +274,11 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
                 m9b_body_up.append(up)
                 # Descriptive machine-readable state; no biological label.
                 m9b_fall_rollover.append((up[2] <= 0.0, up[2] < -0.5))
+            if m10b_extended_telemetry and step < final_step:
+                m10b_physical_motor.append([float(neural_vector[channels[n]["index"]])
+                                            if step and step % stride == 0 else
+                                            float(commands[channels[n]["index"]] - baseline_commands[channels[n]["index"]])
+                                            for n in admitted_names])
             telemetry_started = time.perf_counter(); arrays = (physics.data.qpos, physics.data.qvel, physics.data.ctrl)
             finite = all(np.all(np.isfinite(a)) for a in arrays); instability |= not finite
             if compact_telemetry:
@@ -320,8 +336,18 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
             raw_arrays["neural_motor_post_zero"] = np.asarray(m9b_post_zero, dtype=np.float64)
             raw_arrays["physics_body_up_vector"] = np.asarray(m9b_body_up, dtype=np.float64)
             raw_arrays["physics_fall_rollover"] = np.asarray(m9b_fall_rollover, dtype=np.bool_)
+        if m10b_extended_telemetry:
+            raw_arrays["neural_sensory_physical_inputs"] = np.asarray(m10b_physical_inputs, dtype=np.float64)
+            raw_arrays["neural_delivered_sensory_state"] = np.asarray(m10b_delivered, dtype=np.int64)
+            raw_arrays["neural_mapped_motor_population_state"] = np.asarray(m10b_mapped_motor, dtype=np.float64)
+            raw_arrays["physics_neural_motor_contribution"] = np.asarray(m10b_physical_motor, dtype=np.float64)
         return {"pre_intervention_equivalence": True, "pre_intervention_state": pre_intervention_state,
             "initial_physical_state_audit": initial_audit,
+            "decoder_configuration": [{"name": name, "action_index": x["index"],
+                "coordinate_sign": x["sign"], "joint_min_rad": float(x["metadata"].joint_min),
+                "joint_max_rad": float(x["metadata"].joint_max), "safe_contribution_bound_rad": float(x["bound"]),
+                "observer_tau_ms": OBSERVER_TAU_MS, "slew_limit_rad_s": SLEW_RAD_S}
+                for name, x in channels.items()],
             "local_milestones": local,
             "unauthorized_contribution_count": unauthorized, "physics_instability": instability,
             "per_channel": summaries, "trajectory": trajectory, "raw_arrays": raw_arrays,

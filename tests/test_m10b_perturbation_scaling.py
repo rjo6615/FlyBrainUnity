@@ -7,6 +7,7 @@ from pathlib import Path
 import pytest
 
 from malecns_backend.embodiment import m10b_perturbation_scaling as m
+from malecns_backend.embodiment import _windows_m10b_perturbation_scaling_adapter as adapter
 
 
 def test_frozen_m10a_hashes_and_fail_closed_mutation(tmp_path):
@@ -132,13 +133,14 @@ def test_output_namespaces_are_m10b_exclusive_and_frozen_artifacts_untouched(tmp
                (m.OUTPUT_DIR, m.PREREGISTRATION_PATH, m.PREFLIGHT_PATH))
 
 
-def test_import_preflight_has_no_canonical_execution_path_or_runtime_calls():
+def test_import_preflight_has_only_explicit_canonical_execution_path():
     tree = ast.parse(inspect.getsource(m))
     imports = {alias.name for node in ast.walk(tree) if isinstance(node, (ast.Import, ast.ImportFrom))
                for alias in node.names}
     assert not any(name.startswith(("flygym", "mujoco")) for name in imports)
     source = inspect.getsource(m)
-    assert "--run" not in source and ".step(" not in source
+    assert '"--run-windows"' in source and ".step(" not in source
+    assert "_windows_m10b_perturbation_scaling_adapter" in source
     assert not any(name.startswith("run") for name in vars(m))
 
 
@@ -154,3 +156,83 @@ def test_preregistration_matches_code_and_zero_transition_preflight():
     assert result["sensory_encoding_or_delivery_count"] == 0
     assert result["neural_motor_decode_or_application_count"] == 0
     assert result["verified_m10a_artifact_hashes"] == m.M10A_ARTIFACTS
+    assert result["frozen_preregistration_sha256"] == m.PREREGISTRATION_SHA256
+
+
+def test_preregistration_exact_byte_identity_fails_closed(tmp_path):
+    assert m.verify_preregistration() == "a267647093d616f394374761da58ae495f12a6df6fe12e004abbcb1cb1b2d5a9"
+    changed = tmp_path / "m10b_preregistration.json"
+    changed.write_bytes(m.PREREGISTRATION_PATH.read_bytes() + b"\n")
+    with pytest.raises(RuntimeError, match="frozen preregistration mismatch"):
+        m.verify_preregistration(changed)
+
+
+def _synthetic_condition(name):
+    import numpy as np
+    force = np.asarray([m.force_at_transition(name, i) for i in range(15000)])
+    enabled = dict((n, e) for n, e, _ in m.CONDITIONS)[name]
+    return {"applied_external_force": force,
+        "admitted_neural_motor_pre_intervention": np.ones((3000, 11)),
+        "admitted_neural_motor_physical_contribution":
+            np.ones((15000, 11)) if enabled else np.zeros((15000, 11))}
+
+
+def test_force_and_disabled_motor_integrity_detect_corruption():
+    np = pytest.importorskip("numpy")
+    conditions = {name: _synthetic_condition(name) for name, _, _ in m.CONDITIONS}
+    assert adapter.check_force_integrity(conditions)["passed"]
+    assert adapter.check_disabled_motor_integrity(conditions)["passed"]
+    conditions["A_F0256"]["applied_external_force"][4999, 1] = .256
+    with pytest.raises(RuntimeError, match="applied-force corruption"):
+        adapter.check_force_integrity(conditions)
+    conditions = {name: _synthetic_condition(name) for name, _, _ in m.CONDITIONS}
+    conditions["B_F1024"]["admitted_neural_motor_physical_contribution"][0, 0] = np.nextafter(0., 1.)
+    with pytest.raises(RuntimeError, match="disabled motor physically admitted"):
+        adapter.check_disabled_motor_integrity(conditions)
+
+
+def test_complete_raw_contract_is_shape_checked_without_runtime():
+    np = pytest.importorskip("numpy")
+    arrays = {name: np.zeros(shape, dtype=("<U4" if name == "condition_identity" else float))
+              for name, shape in m.RAW_SCHEMA.items()}
+    arrays["condition_identity"] = np.asarray("A_C")
+    arrays["motor_enabled"] = np.asarray(True)
+    adapter.validate_raw_condition(arrays)
+    arrays["joint_positions"] = np.zeros((15000, 42))
+    with pytest.raises(RuntimeError, match="raw schema mismatch"):
+        adapter.validate_raw_condition(arrays)
+
+
+def test_runner_maps_order_fresh_runtime_and_m9_semantics_without_execution():
+    calls = []
+    def runner(**kwargs):
+        calls.append(kwargs)
+        return {"physics_steps": 0, "neural_steps": 0}
+    for number, (condition, enabled, _) in enumerate(m.CONDITIONS, 1):
+        adapter._invoke(runner, {}, (), (), condition, number, True)
+        values = {name: index + .5 for index, name in enumerate(m.m7d.ADMITTED_MOTOR)}
+        gated = calls[-1]["contribution_gate"](values, condition, tuple(values))
+        assert gated == (values if enabled else dict.fromkeys(values, 0.0))
+    assert [call["condition"] for call in calls] == [row[0] for row in m.CONDITIONS]
+    assert len(calls) == 10 and all(call["initialize_only"] for call in calls)
+    assert all(call["runtime_factory"] is adapter.m7da._runtime for call in calls)
+    assert all(call["m10b_extended_telemetry"] for call in calls)
+    assert "run_windows" not in inspect.getsource(adapter._invoke)
+
+
+def test_transition_accounting_and_execution_absences_are_exact():
+    assert (m.PHYSICS_TRANSITIONS_PER_CONDITION, m.NEURAL_UPDATES_PER_CONDITION) == (15000, 3000)
+    assert (m.TOTAL_PHYSICS_TRANSITIONS, m.TOTAL_NEURAL_UPDATES) == (150000, 30000)
+    assert m.protocol()["execution_absences"] == {"controllers": False, "reward": False,
+        "rl": False, "reference_trajectory": False, "gait_logic": False,
+        "contact_sensory_input": False}
+
+
+def test_exclusive_json_publish_and_protected_namespaces(tmp_path):
+    target = tmp_path / "m10b_manifest.json"
+    adapter._publish_json(target, {"ok": True})
+    with pytest.raises(FileExistsError):
+        adapter._publish_json(target, {"ok": False})
+    source = inspect.getsource(adapter.run_windows)
+    assert "m9b.RAW_PATH.open" not in source and "m10b.RAW_PATH.open(\"xb\")" in source
+    assert "m10b.verify_m10a()" in inspect.getsource(adapter._assert_protected_unchanged)

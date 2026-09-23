@@ -1,7 +1,7 @@
-"""M10B preregistration and zero-transition preflight.
+"""Frozen M10B protocol, inert preflight, and explicit execution entry point.
 
-This module contains no canonical runner.  Import and ``--preflight`` only read
-and hash frozen files; they never construct physics or MaleCNS.
+Import and ``--preflight`` only read and hash frozen files.  The Windows
+runtime is imported only after the explicit ``--run-windows`` switch.
 """
 from __future__ import annotations
 
@@ -54,6 +54,11 @@ REPORT_PATH = OUTPUT_DIR / "m10b_report.json"
 MANIFEST_PATH = OUTPUT_DIR / "m10b_manifest.json"
 PREFLIGHT_PATH = OUTPUT_DIR / "m10b_preflight.json"
 SCHEMA = "M10B-PREREGISTERED-PERTURBATION-SCALING-NEURAL-CAUSAL.1"
+PREREGISTRATION_SHA256 = "a267647093d616f394374761da58ae495f12a6df6fe12e004abbcb1cb1b2d5a9"
+PHYSICS_TRANSITIONS_PER_CONDITION = 15000
+NEURAL_UPDATES_PER_CONDITION = 3000
+TOTAL_PHYSICS_TRANSITIONS = 150000
+TOTAL_NEURAL_UPDATES = 30000
 
 RAW_SCHEMA = {
     "physics_time_ms": [15001], "root_thorax_position": [15001, 3],
@@ -87,6 +92,17 @@ def verify_m10a(directory: Path = M10A_DIR) -> dict[str, str]:
             raise RuntimeError(f"M10B fail-closed before transitions: frozen M10A mismatch: {name}")
         verified[name] = expected
     return verified
+
+
+def verify_preregistration(path: Path = PREREGISTRATION_PATH) -> str:
+    """Verify the immutable, reviewed preregistration as exact bytes."""
+    if not path.is_file() or _sha256(path) != PREREGISTRATION_SHA256:
+        raise RuntimeError("M10B fail-closed before transitions: frozen preregistration mismatch")
+    try:
+        validate_protocol(json.loads(path.read_text(encoding="utf-8")))
+    except (ValueError, KeyError, TypeError) as exc:
+        raise RuntimeError("M10B fail-closed before transitions: invalid preregistration") from exc
+    return PREREGISTRATION_SHA256
 
 
 def force_at_transition(condition: str, transition: int) -> tuple[float, float, float]:
@@ -202,7 +218,7 @@ def outputs_available() -> bool:
 def preflight(m10a_dir: Path = M10A_DIR) -> dict[str, Any]:
     """Perform read-only integrity checks and report explicit zero counters."""
     value = protocol()
-    validate_protocol(value)
+    preregistration_sha256 = verify_preregistration()
     verified = verify_m10a(m10a_dir)
     if not outputs_available():
         raise FileExistsError("M10B future output namespace is not exclusively available")
@@ -211,6 +227,7 @@ def preflight(m10a_dir: Path = M10A_DIR) -> dict[str, Any]:
         "physics_transitions": 0, "neural_transitions": 0,
         "sensory_encoding_or_delivery_count": 0, "neural_motor_decode_or_application_count": 0,
         "verified_m10a_artifact_hashes": verified, "frozen_force_series": list(FORCES),
+        "frozen_preregistration_sha256": preregistration_sha256,
         "condition_matrix": value["conditions"], "perturbation": PERTURBATION,
         "interfaces": value["interfaces"], "analysis_windows": WINDOWS,
         "primary_metrics": value["primary_metrics"], "directional_resolution": value["directional_resolution"],
@@ -219,9 +236,18 @@ def preflight(m10a_dir: Path = M10A_DIR) -> dict[str, Any]:
 
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--preflight", action="store_true", required=True)
-    parser.parse_args(argv)
-    print(json.dumps(preflight(), indent=2, sort_keys=True))
+    modes = parser.add_mutually_exclusive_group(required=True)
+    modes.add_argument("--preflight", action="store_true")
+    modes.add_argument("--run-windows", action="store_true")
+    args = parser.parse_args(argv)
+    if args.preflight:
+        result = preflight()
+    else:
+        # Deliberately late: importing this module or preflighting cannot even
+        # import the physics execution boundary.
+        from . import _windows_m10b_perturbation_scaling_adapter as adapter
+        result = adapter.run_windows()
+    print(json.dumps(result, indent=2, sort_keys=True))
     return 0
 
 
