@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-23 01:26:51Z" end-time="2026-09-23 01:26:51Z" duration="0.1395371">
+  <test-suite type="TestSuite" id="1000" name="FlyBrainUnity" fullname="FlyBrainUnity" runstate="Runnable" testcasecount="48" result="Passed" start-time="2026-09-23 01:26:51Z" end-time="2026-09-23 01:26:51Z" duration="0.139537" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1057" name="M7FReplay.EditorTests.dll" fullname="C:/Users/legen/Documents/FlyBrainUnity/FlyBrainUnity/Library/ScriptAssemblies/M7FReplay.EditorTests.dll" runstate="Runnable" testcasecount="48" result="Passed" start-time="2026-09-23 01:26:51Z" end-time="2026-09-23 01:26:51Z" duration="0.135399" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="28236" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1058" name="FlyBrain" fullname="FlyBrain" runstate="Runnable" testcasecount="48" result="Passed" start-time="2026-09-23 01:26:51Z" end-time="2026-09-23 01:26:51Z" duration="0.134782" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1059" name="Tests" fullname="FlyBrain.Tests" runstate="Runnable" testcasecount="48" result="Passed" start-time="2026-09-23 01:26:51Z" end-time="2026-09-23 01:26:51Z" duration="0.134314" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1001" name="M7FReplayTests" fullname="FlyBrain.Tests.M7FReplayTests" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" testcasecount="35" result="Passed" start-time="2026-09-23 01:26:51Z" end-time="2026-09-23 01:26:51Z" duration="0.133274" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1028" name="NineNativeMjForwardFramesAreTheNumericalAcceptanceGate" fullname="FlyBrain.Tests.M7FReplayTests.NineNativeMjForwardFramesAreTheNumericalAcceptanceGate" methodname="NineNativeMjForwardFramesAreTheNumericalAcceptanceGate" classname="FlyBrain.Tests.M7FReplayTests" runstate="Runnable" seed="2045600873" result="Passed" start-time="2026-09-23 01:26:51Z" end-time="2026-09-23 01:26:51Z" duration="0.125270" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/legen/AppData/LocalLow/DefaultCompany/FlyBrainUnity\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
