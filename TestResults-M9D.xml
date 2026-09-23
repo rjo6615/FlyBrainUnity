@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Failed(Child)" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-23 01:18:17Z" end-time="2026-09-23 01:18:17Z" duration="0.318697">
+  <test-suite type="TestSuite" id="1000" name="FlyBrainUnity" fullname="FlyBrainUnity" runstate="Runnable" testcasecount="48" result="Failed" site="Child" start-time="2026-09-23 01:18:17Z" end-time="2026-09-23 01:18:17Z" duration="0.318697" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1057" name="M7FReplay.EditorTests.dll" fullname="C:/Users/legen/Documents/FlyBrainUnity/FlyBrainUnity/Library/ScriptAssemblies/M7FReplay.EditorTests.dll" runstate="Runnable" testcasecount="48" result="Failed" site="Child" start-time="2026-09-23 01:18:17Z" end-time="2026-09-23 01:18:17Z" duration="0.314376" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="17440" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1058" name="FlyBrain" fullname="FlyBrain" runstate="Runnable" testcasecount="48" result="Failed" site="Child" start-time="2026-09-23 01:18:17Z" end-time="2026-09-23 01:18:17Z" duration="0.313624" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1059" name="Tests" fullname="FlyBrain.Tests" runstate="Runnable" testcasecount="48" result="Failed" site="Child" start-time="2026-09-23 01:18:17Z" end-time="2026-09-23 01:18:17Z" duration="0.313019" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1052" name="M9DReplayTests" fullname="FlyBrain.Tests.M9DReplayTests" classname="FlyBrain.Tests.M9DReplayTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-23 01:18:17Z" end-time="2026-09-23 01:18:17Z" duration="0.311981" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1054" name="ComparisonOffsetsArePresentationOnlyAndDefaultPairIsAPVersusBP" fullname="FlyBrain.Tests.M9DReplayTests.ComparisonOffsetsArePresentationOnlyAndDefaultPairIsAPVersusBP" methodname="ComparisonOffsetsArePresentationOnlyAndDefaultPairIsAPVersusBP" classname="FlyBrain.Tests.M9DReplayTests" runstate="Runnable" seed="1994321149" result="Passed" start-time="2026-09-23 01:18:17Z" end-time="2026-09-23 01:18:17Z" duration="0.009988" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1055" name="ForceArrowIsPurePresentationAndCannotApplyForce" fullname="FlyBrain.Tests.M9DReplayTests.ForceArrowIsPurePresentationAndCannotApplyForce" methodname="ForceArrowIsPurePresentationAndCannotApplyForce" classname="FlyBrain.Tests.M9DReplayTests" runstate="Runnable" seed="2099364360" result="Failed" start-time="2026-09-23 01:18:17Z" end-time="2026-09-23 01:18:17Z" duration="0.005634" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  LateUpdate calls prohibited API FlyBrain.M7FReplay.M9DForceArrow.get_UnityDirection
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at FlyBrain.Tests.M9DReplayTests.ForceArrowIsPurePresentationAndCannotApplyForce () [0x00180] in C:\Users\legen\Documents\FlyBrainUnity\FlyBrainUnity\Assets\Tests\Editor\M9DReplayTests.cs:41
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1053" name="LoaderParsesExactPhysicalSchemaAndRejectsTrailingBytes" fullname="FlyBrain.Tests.M9DReplayTests.LoaderParsesExactPhysicalSchemaAndRejectsTrailingBytes" methodname="LoaderParsesExactPhysicalSchemaAndRejectsTrailingBytes" classname="FlyBrain.Tests.M9DReplayTests" runstate="Runnable" seed="1219783452" result="Passed" start-time="2026-09-23 01:18:17Z" end-time="2026-09-23 01:18:17Z" duration="0.288190" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1056" name="ScientificLabelsUseRequiredMotorGateLanguage" fullname="FlyBrain.Tests.M9DReplayTests.ScientificLabelsUseRequiredMotorGateLanguage" methodname="ScientificLabelsUseRequiredMotorGateLanguage" classname="FlyBrain.Tests.M9DReplayTests" runstate="Runnable" seed="642961623" result="Passed" start-time="2026-09-23 01:18:17Z" end-time="2026-09-23 01:18:17Z" duration="0.000217" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/legen/AppData/LocalLow/DefaultCompany/FlyBrainUnity\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
