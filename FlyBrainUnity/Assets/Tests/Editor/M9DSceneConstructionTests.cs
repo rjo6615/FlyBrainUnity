@@ -38,6 +38,10 @@ namespace FlyBrain.Tests
             Assert.That(controller.SideBySide, Is.True);
             Assert.That(controller.PresentationInterpolation, Is.False);
             Assert.That(controller.PresentationSpeed, Is.EqualTo(1));
+            Assert.That(controller.LeftRig.PresentationOffset, Is.Not.EqualTo(controller.RightRig.PresentationOffset));
+            Assert.That(controller.TrajectoryTracesVisible, Is.True);
+            Assert.That(top.GetComponentsInChildren<M9DTrajectoryTrace>(true), Has.Length.EqualTo(2));
+            Assert.That(top.GetComponentsInChildren<M9DForceArrow>(true), Has.Length.EqualTo(1));
             Assert.That(top.GetComponentsInChildren<M7FAnatomyObject>(true), Has.Length.EqualTo(138));
             Assert.That(top.GetComponentsInChildren<Rigidbody>(true), Is.Empty);
             Assert.That(top.GetComponentsInChildren<Collider>(true), Is.Empty);
@@ -63,6 +67,9 @@ namespace FlyBrain.Tests
             controller.Step(1); Assert.That(controller.Frame, Is.EqualTo(paused + 1));
             controller.Scrub(.5f); Assert.That(controller.Frame, Is.EqualTo(7500));
             controller.Restart(); Assert.That(controller.Frame, Is.Zero);
+            controller.SeekFrame(4999); Assert.That(controller.ForceActive,Is.False); controller.SeekFrame(5000); Assert.That(controller.ForceActive,Is.True); controller.SeekFrame(5199); Assert.That(controller.ForceActive,Is.True); controller.SeekFrame(5200); Assert.That(controller.ForceActive,Is.False);
+            controller.ReplayPerturbation(); Assert.That(controller.Frame,Is.EqualTo(4750)); Assert.That(controller.PresentationSpeed,Is.EqualTo(.1f)); Assert.That(controller.IsPlaying,Is.True);
+            controller.AdvancePresentation(2); Assert.That(controller.TimeMs,Is.EqualTo(650).Within(.1)); Assert.That(controller.IsPlaying,Is.False);
         }
 
         [Test] public void UnassignedControllerNamesDependencyAndUiDoesNotThrow()

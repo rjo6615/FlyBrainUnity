@@ -21,9 +21,10 @@ public static class M7FCanonicalReplaySceneGenerator
         var system=Child(top.transform,"ReplaySystem"); var loader=system.gameObject.AddComponent<M9DReplayLoader>(); var controller=system.gameObject.AddComponent<M9DReplayController>(); var ui=system.gameObject.AddComponent<M9DScientificUI>();
         var left=BuildFly(top.transform,"A_P — Brain Enabled + Push"); var right=BuildFly(top.transform,"B_P — Brain Disabled + Push"); controller.Configure(loader,left,right); ui.Configure(controller);
         var environment=Child(top.transform,"Environment"); var ground=GameObject.CreatePrimitive(PrimitiveType.Plane); ground.name="VisualGround — PRESENTATION REFERENCE ONLY"; ground.transform.SetParent(environment,false); ground.transform.localScale=Vector3.one*.8f; Object.DestroyImmediate(ground.GetComponent<Collider>());
-        var cameraRig=Child(top.transform,"SynchronizedCameraRig"); var cameraObject=Child(cameraRig,"Main Camera"); cameraObject.tag="MainCamera"; var camera=cameraObject.gameObject.AddComponent<Camera>(); camera.nearClipPlane=.01f; camera.farClipPlane=100; cameraObject.gameObject.AddComponent<AudioListener>(); var replayCamera=cameraObject.gameObject.AddComponent<M7FReplayCamera>(); replayCamera.Configure(top.transform,M7FScientificFlyBuilder.ApproximateVisualRadius*2); ui.Configure(controller,replayCamera);
-        var arrow=new GameObject(M9DForceArrow.Annotation); arrow.transform.SetParent(left.transform,false); arrow.AddComponent<M9DForceArrow>().Configure(controller,FindDescendant(left.transform,"Thorax"));
-        var label=arrow.AddComponent<TextMesh>(); label.text=M9DForceArrow.Annotation; label.characterSize=.02f;
+        var cameraRig=Child(top.transform,"SynchronizedCameraRig"); var cameraObject=Child(cameraRig,"Main Camera"); cameraObject.tag="MainCamera"; var camera=cameraObject.gameObject.AddComponent<Camera>(); camera.nearClipPlane=.01f; camera.farClipPlane=100; cameraObject.gameObject.AddComponent<AudioListener>(); var replayCamera=cameraObject.gameObject.AddComponent<M7FReplayCamera>(); replayCamera.Configure(top.transform,.05f); replayCamera.ConfigureComparison(left,right); ui.Configure(controller,replayCamera);
+        var arrow=new GameObject(M9DForceArrow.Annotation); arrow.transform.SetParent(left.transform,false); arrow.AddComponent<M9DForceArrow>().Configure(controller,FindDescendant(left.transform,"Thorax")); AddArrowGeometry(arrow.transform);
+        var label=arrow.AddComponent<TextMesh>(); label.text=M9DForceArrow.Annotation+"\n"+M9DForceArrow.Detail; label.characterSize=.014f; label.anchor=TextAnchor.LowerCenter; label.transform.localPosition=new Vector3(0,.04f,.42f);
+        var leftTrace=CreateTrace(top.transform,"A_P "+M9DTrajectoryTrace.Annotation,controller,new Color(.2f,.85f,1f)); var rightTrace=CreateTrace(top.transform,"B_P "+M9DTrajectoryTrace.Annotation,controller,new Color(1f,.45f,.15f)); controller.ConfigureTraces(leftTrace,rightTrace);
         var lighting=Child(top.transform,"Lighting"); var lightObject=Child(lighting,"Directional Light"); var light=lightObject.gameObject.AddComponent<Light>(); light.type=LightType.Directional; light.intensity=1.1f; lightObject.rotation=Quaternion.Euler(45,-35,0);
         ValidateM9DConstruction(top, controller, ui);
         EditorSceneManager.MarkSceneDirty(scene); Selection.activeGameObject=top; Debug.Log("Created M9D replay scene in memory. No scientific transition or canonical export was executed.");
@@ -48,6 +49,15 @@ public static class M7FCanonicalReplaySceneGenerator
     }
 
     static Transform FindDescendant(Transform root,string name) { foreach(var value in root.GetComponentsInChildren<Transform>(true))if(value.name==name)return value; return root; }
+
+    static M9DTrajectoryTrace CreateTrace(Transform parent,string name,M9DReplayController controller,Color color)
+    { var trace=Child(parent,name).gameObject; var line=trace.AddComponent<LineRenderer>(); line.sharedMaterial=AssetDatabase.GetBuiltinExtraResource<Material>("Default-Line.mat"); var component=trace.AddComponent<M9DTrajectoryTrace>(); component.Configure(controller,color); return component; }
+    static void AddArrowGeometry(Transform parent)
+    {
+        var shaft=GameObject.CreatePrimitive(PrimitiveType.Cylinder); shaft.name="Presentation-only arrow shaft"; shaft.transform.SetParent(parent,false); shaft.transform.localPosition=Vector3.forward*.2f; shaft.transform.localRotation=Quaternion.Euler(90,0,0); shaft.transform.localScale=new Vector3(.025f,.2f,.025f); Object.DestroyImmediate(shaft.GetComponent<Collider>());
+        var head=GameObject.CreatePrimitive(PrimitiveType.Sphere); head.name="Presentation-only arrow head"; head.transform.SetParent(parent,false); head.transform.localPosition=Vector3.forward*.4f; head.transform.localScale=new Vector3(.09f,.09f,.14f); Object.DestroyImmediate(head.GetComponent<Collider>());
+        foreach(var renderer in parent.GetComponentsInChildren<Renderer>(true)) renderer.sharedMaterial.color=new Color(1f,.1f,.05f);
+    }
 
     static void CreateReplayScene(bool m8)
     {
