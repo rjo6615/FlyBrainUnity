@@ -29,8 +29,8 @@ namespace FlyBrain.Tests
             var top = controller.transform.root.gameObject;
             Assert.That(top.GetComponentsInChildren<Transform>(true).Sum(value => GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(value.gameObject)), Is.Zero);
             Assert.That(controller.Loader, Is.Not.Null);
-            Assert.That(controller.LeftRig.Joints, Has.Count.EqualTo(42));
-            Assert.That(controller.RightRig.Joints, Has.Count.EqualTo(42));
+            Assert.That(controller.LeftRig.Joints.Count, Is.EqualTo(42));
+            Assert.That(controller.RightRig.Joints.Count, Is.EqualTo(42));
             Assert.That(ui.Controller, Is.SameAs(controller));
             Assert.That(ui.ReplayCamera, Is.Not.Null);
             Assert.That(controller.LeftCondition, Is.EqualTo(M9DCondition.A_P));
