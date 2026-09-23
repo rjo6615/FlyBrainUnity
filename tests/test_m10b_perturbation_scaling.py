@@ -145,11 +145,16 @@ def test_import_preflight_has_only_explicit_canonical_execution_path():
     assert not any(name.startswith("run") for name in vars(m))
 
 
-def test_preregistration_matches_code_and_zero_transition_preflight():
+def test_preregistration_matches_code_and_zero_transition_preflight(tmp_path, monkeypatch):
     recorded = json.loads(m.PREREGISTRATION_PATH.read_text(encoding="utf-8"))
     # Validation maps the frozen legacy checkout-root strings to the portable
     # identifiers returned by protocol(), without rewriting the frozen file.
     m.validate_protocol(recorded)
+    # Recreate the clean future-output namespace that existed before the
+    # canonical experiment ran, without touching its now-immutable outputs.
+    monkeypatch.setattr(m, "RAW_PATH", tmp_path / "m10b_raw.npz")
+    monkeypatch.setattr(m, "REPORT_PATH", tmp_path / "m10b_report.json")
+    monkeypatch.setattr(m, "MANIFEST_PATH", tmp_path / "m10b_manifest.json")
     result = m.preflight()
     assert result["status"] == "PREFLIGHT_PASS"
     assert result["canonical_experiment_executed"] is False
@@ -160,6 +165,15 @@ def test_preregistration_matches_code_and_zero_transition_preflight():
     assert result["neural_motor_decode_or_application_count"] == 0
     assert result["verified_m10a_artifact_hashes"] == m.M10A_ARTIFACTS
     assert result["frozen_preregistration_sha256"] == m.PREREGISTRATION_SHA256
+
+
+def test_preflight_fails_closed_when_future_output_namespace_is_occupied(tmp_path, monkeypatch):
+    monkeypatch.setattr(m, "RAW_PATH", tmp_path / "m10b_raw.npz")
+    monkeypatch.setattr(m, "REPORT_PATH", tmp_path / "m10b_report.json")
+    monkeypatch.setattr(m, "MANIFEST_PATH", tmp_path / "m10b_manifest.json")
+    m.REPORT_PATH.touch()
+    with pytest.raises(FileExistsError, match="future output namespace is not exclusively available"):
+        m.preflight()
 
 
 def test_preregistration_exact_byte_identity_fails_closed(tmp_path):
