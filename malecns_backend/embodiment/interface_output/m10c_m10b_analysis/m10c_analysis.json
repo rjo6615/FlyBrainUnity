@@ -1,0 +1,809 @@
+{
+  "analysis_only": true,
+  "canonical_input_identities": {
+    "m10b_manifest.json": {
+      "byte_size": 26684,
+      "path": "m10b_manifest.json",
+      "sha256": "62b1f4a3e5f5773de594a3d965b0227e0dec9cc52fb09658c0a3d92ecc7f0ad7"
+    },
+    "m10b_preregistration.json": {
+      "byte_size": 10924,
+      "path": "m10b_preregistration.json",
+      "sha256": "a267647093d616f394374761da58ae495f12a6df6fe12e004abbcb1cb1b2d5a9"
+    },
+    "m10b_raw.npz": {
+      "byte_size": 57652701,
+      "path": "m10b_raw.npz",
+      "sha256": "85e98715ac3d8b219c86ef338187828e787ee8f300bacad9d318809e23208cde"
+    },
+    "m10b_report.json": {
+      "byte_size": 5785,
+      "path": "m10b_report.json",
+      "sha256": "fdc3cc8aef9f02a85dc10f671a4ff86d9592354c8ea60d9a5f179b2c0c81acfc"
+    }
+  },
+  "condition_mapping": [
+    {
+      "condition": "A_C",
+      "force_magnitude": 0.0,
+      "motor_enabled": true
+    },
+    {
+      "condition": "B_C",
+      "force_magnitude": 0.0,
+      "motor_enabled": false
+    },
+    {
+      "condition": "A_F0256",
+      "force_magnitude": 0.256,
+      "motor_enabled": true
+    },
+    {
+      "condition": "B_F0256",
+      "force_magnitude": 0.256,
+      "motor_enabled": false
+    },
+    {
+      "condition": "A_F1024",
+      "force_magnitude": 1.024,
+      "motor_enabled": true
+    },
+    {
+      "condition": "B_F1024",
+      "force_magnitude": 1.024,
+      "motor_enabled": false
+    },
+    {
+      "condition": "A_F2896",
+      "force_magnitude": 2.896309375740099,
+      "motor_enabled": true
+    },
+    {
+      "condition": "B_F2896",
+      "force_magnitude": 2.896309375740099,
+      "motor_enabled": false
+    },
+    {
+      "condition": "A_F4096",
+      "force_magnitude": 4.096,
+      "motor_enabled": true
+    },
+    {
+      "condition": "B_F4096",
+      "force_magnitude": 4.096,
+      "motor_enabled": false
+    }
+  ],
+  "frozen_preregistration_identity": {
+    "byte_size": 10924,
+    "path": "m10b_preregistration.json",
+    "sha256": "a267647093d616f394374761da58ae495f12a6df6fe12e004abbcb1cb1b2d5a9"
+  },
+  "interpretation_boundaries": [
+    "causal physical perturbation-response within the modeled MaleCNS -> decoder -> admitted motor -> MuJoCo chain",
+    "not balance, stabilization, righting, reflex, recovery, natural locomotion, biological function, or biological timing",
+    "557 ms is the frozen M9C approximate first admitted-motor boundary, not a biological latency",
+    "contact is observation only and is not a neural sensory input"
+  ],
+  "neural_transitions": 0,
+  "per_force": {
+    "0.256": {
+      "disabled_condition": "B_F0256",
+      "enabled_condition": "A_F0256",
+      "force_magnitude": 0.256,
+      "metrics": {
+        "root_orientation_shortest_arc_deg": {
+          "overall_post_force_directional_classification": "AMPLIFYING",
+          "windows": {
+            "direct_force": {
+              "absolute_directional_effect": 0.009208330635069456,
+              "directional_classification": "UNRESOLVED",
+              "directional_effect": -0.009208330635069456,
+              "disabled_maximum_deviation": 0.07557871277273691,
+              "disabled_maximum_time_ms": 507.3999999999604,
+              "enabled_maximum_deviation": 0.06637038213766745,
+              "enabled_maximum_time_ms": 507.3999999999604
+            },
+            "early_post_force": {
+              "absolute_directional_effect": 0.0009053432544191553,
+              "directional_classification": "UNRESOLVED",
+              "directional_effect": 0.0009053432544191553,
+              "disabled_maximum_deviation": 0.05306030102766836,
+              "disabled_maximum_time_ms": 520.0999999999591,
+              "enabled_maximum_deviation": 0.05396564428208751,
+              "enabled_maximum_time_ms": 520.0999999999591
+            },
+            "later_post_force": {
+              "absolute_directional_effect": 0.6517009921275492,
+              "directional_classification": "AMPLIFYING",
+              "directional_effect": 0.6517009921275492,
+              "disabled_maximum_deviation": 0.00483736183571108,
+              "disabled_maximum_time_ms": 888.5999999999185,
+              "enabled_maximum_deviation": 0.6565383539632602,
+              "enabled_maximum_time_ms": 1499.9999999998513
+            },
+            "pre_perturbation": {
+              "absolute_directional_effect": 7.07289246948279e-07,
+              "directional_classification": "UNRESOLVED",
+              "directional_effect": -7.07289246948279e-07,
+              "disabled_maximum_deviation": 2.4148365394514667e-06,
+              "disabled_maximum_time_ms": 174.89999999999705,
+              "enabled_maximum_deviation": 1.7075472925031877e-06,
+              "enabled_maximum_time_ms": 1.3000000000000003
+            }
+          }
+        },
+        "thorax_com_deviation_mm": {
+          "overall_post_force_directional_classification": "AMPLIFYING",
+          "windows": {
+            "direct_force": {
+              "absolute_directional_effect": 8.957540034203822e-05,
+              "directional_classification": "UNRESOLVED",
+              "directional_effect": -8.957540034203822e-05,
+              "disabled_maximum_deviation": 0.000853127511208525,
+              "disabled_maximum_time_ms": 508.09999999996035,
+              "enabled_maximum_deviation": 0.0007635521108664868,
+              "enabled_maximum_time_ms": 508.19999999996037
+            },
+            "early_post_force": {
+              "absolute_directional_effect": 0.00021798235691155167,
+              "directional_classification": "UNRESOLVED",
+              "directional_effect": 0.00021798235691155167,
+              "disabled_maximum_deviation": 0.0004789915592598409,
+              "disabled_maximum_time_ms": 520.999999999959,
+              "enabled_maximum_deviation": 0.0006969739161713926,
+              "enabled_maximum_time_ms": 520.0999999999591
+            },
+            "later_post_force": {
+              "absolute_directional_effect": 0.01939008338813636,
+              "directional_classification": "AMPLIFYING",
+              "directional_effect": 0.01939008338813636,
+              "disabled_maximum_deviation": 0.00012773121605955102,
+              "disabled_maximum_time_ms": 1342.1999999998686,
+              "enabled_maximum_deviation": 0.01951781460419591,
+              "enabled_maximum_time_ms": 1499.9999999998513
+            },
+            "pre_perturbation": {
+              "absolute_directional_effect": 0.0,
+              "directional_classification": "UNRESOLVED",
+              "directional_effect": 0.0,
+              "disabled_maximum_deviation": 0.0,
+              "disabled_maximum_time_ms": 0.0,
+              "enabled_maximum_deviation": 0.0,
+              "enabled_maximum_time_ms": 0.0
+            }
+          }
+        }
+      }
+    },
+    "1.024": {
+      "disabled_condition": "B_F1024",
+      "enabled_condition": "A_F1024",
+      "force_magnitude": 1.024,
+      "metrics": {
+        "root_orientation_shortest_arc_deg": {
+          "overall_post_force_directional_classification": "AMPLIFYING",
+          "windows": {
+            "direct_force": {
+              "absolute_directional_effect": 0.03621230522517366,
+              "directional_classification": "UNRESOLVED",
+              "directional_effect": -0.03621230522517366,
+              "disabled_maximum_deviation": 0.3416571453056877,
+              "disabled_maximum_time_ms": 507.89999999996036,
+              "enabled_maximum_deviation": 0.30544484008051404,
+              "enabled_maximum_time_ms": 507.29999999996045
+            },
+            "early_post_force": {
+              "absolute_directional_effect": 0.014379677153638054,
+              "directional_classification": "UNRESOLVED",
+              "directional_effect": -0.014379677153638054,
+              "disabled_maximum_deviation": 0.22501969401023397,
+              "disabled_maximum_time_ms": 520.299999999959,
+              "enabled_maximum_deviation": 0.21064001685659592,
+              "enabled_maximum_time_ms": 520.599999999959
+            },
+            "later_post_force": {
+              "absolute_directional_effect": 0.9823315388383825,
+              "directional_classification": "AMPLIFYING",
+              "directional_effect": 0.9823315388383825,
+              "disabled_maximum_deviation": 0.0489672040946473,
+              "disabled_maximum_time_ms": 557.099999999955,
+              "enabled_maximum_deviation": 1.0312987429330298,
+              "enabled_maximum_time_ms": 1398.2999999998624
+            },
+            "pre_perturbation": {
+              "absolute_directional_effect": 7.07289246948279e-07,
+              "directional_classification": "UNRESOLVED",
+              "directional_effect": -7.07289246948279e-07,
+              "disabled_maximum_deviation": 2.4148365394514667e-06,
+              "disabled_maximum_time_ms": 174.89999999999705,
+              "enabled_maximum_deviation": 1.7075472925031877e-06,
+              "enabled_maximum_time_ms": 1.3000000000000003
+            }
+          }
+        },
+        "thorax_com_deviation_mm": {
+          "overall_post_force_directional_classification": "AMPLIFYING",
+          "windows": {
+            "direct_force": {
+              "absolute_directional_effect": 0.0008799453670853461,
+              "directional_classification": "UNRESOLVED",
+              "directional_effect": -0.0008799453670853461,
+              "disabled_maximum_deviation": 0.004688896815241581,
+              "disabled_maximum_time_ms": 508.4999999999603,
+              "enabled_maximum_deviation": 0.0038089514481562353,
+              "enabled_maximum_time_ms": 508.4999999999603
+            },
+            "early_post_force": {
+              "absolute_directional_effect": 0.0010484103686667326,
+              "directional_classification": "UNRESOLVED",
+              "directional_effect": 0.0010484103686667326,
+              "disabled_maximum_deviation": 0.0028810693543149875,
+              "disabled_maximum_time_ms": 521.099999999959,
+              "enabled_maximum_deviation": 0.00392947972298172,
+              "enabled_maximum_time_ms": 543.2999999999565
+            },
+            "later_post_force": {
+              "absolute_directional_effect": 0.03492443912875707,
+              "directional_classification": "AMPLIFYING",
+              "directional_effect": 0.03492443912875707,
+              "disabled_maximum_deviation": 0.001402544762679473,
+              "disabled_maximum_time_ms": 563.9999999999542,
+              "enabled_maximum_deviation": 0.03632698389143654,
+              "enabled_maximum_time_ms": 654.1999999999442
+            },
+            "pre_perturbation": {
+              "absolute_directional_effect": 0.0,
+              "directional_classification": "UNRESOLVED",
+              "directional_effect": 0.0,
+              "disabled_maximum_deviation": 0.0,
+              "disabled_maximum_time_ms": 0.0,
+              "enabled_maximum_deviation": 0.0,
+              "enabled_maximum_time_ms": 0.0
+            }
+          }
+        }
+      }
+    },
+    "2.896309375740099": {
+      "disabled_condition": "B_F2896",
+      "enabled_condition": "A_F2896",
+      "force_magnitude": 2.896309375740099,
+      "metrics": {
+        "root_orientation_shortest_arc_deg": {
+          "overall_post_force_directional_classification": "AMPLIFYING",
+          "windows": {
+            "direct_force": {
+              "absolute_directional_effect": 0.03513419456190148,
+              "directional_classification": "UNRESOLVED",
+              "directional_effect": -0.03513419456190148,
+              "disabled_maximum_deviation": 1.1274907183292449,
+              "disabled_maximum_time_ms": 513.4999999999598,
+              "enabled_maximum_deviation": 1.0923565237673434,
+              "enabled_maximum_time_ms": 517.9999999999593
+            },
+            "early_post_force": {
+              "absolute_directional_effect": 0.2320872169898487,
+              "directional_classification": "UNRESOLVED",
+              "directional_effect": 0.2320872169898487,
+              "disabled_maximum_deviation": 0.8385890816293382,
+              "disabled_maximum_time_ms": 520.0999999999591,
+              "enabled_maximum_deviation": 1.070676298619187,
+              "enabled_maximum_time_ms": 520.0999999999591
+            },
+            "later_post_force": {
+              "absolute_directional_effect": 0.8008681086657423,
+              "directional_classification": "AMPLIFYING",
+              "directional_effect": 0.8008681086657423,
+              "disabled_maximum_deviation": 0.21940301838094903,
+              "disabled_maximum_time_ms": 557.099999999955,
+              "enabled_maximum_deviation": 1.0202711270466913,
+              "enabled_maximum_time_ms": 1398.6999999998625
+            },
+            "pre_perturbation": {
+              "absolute_directional_effect": 7.07289246948279e-07,
+              "directional_classification": "UNRESOLVED",
+              "directional_effect": -7.07289246948279e-07,
+              "disabled_maximum_deviation": 2.4148365394514667e-06,
+              "disabled_maximum_time_ms": 174.89999999999705,
+              "enabled_maximum_deviation": 1.7075472925031877e-06,
+              "enabled_maximum_time_ms": 1.3000000000000003
+            }
+          }
+        },
+        "thorax_com_deviation_mm": {
+          "overall_post_force_directional_classification": "AMPLIFYING",
+          "windows": {
+            "direct_force": {
+              "absolute_directional_effect": 0.0011050066819797977,
+              "directional_classification": "UNRESOLVED",
+              "directional_effect": 0.0011050066819797977,
+              "disabled_maximum_deviation": 0.03233751731482658,
+              "disabled_maximum_time_ms": 512.4999999999599,
+              "enabled_maximum_deviation": 0.033442523996806375,
+              "enabled_maximum_time_ms": 518.3999999999593
+            },
+            "early_post_force": {
+              "absolute_directional_effect": 0.006072751361185805,
+              "directional_classification": "AMPLIFYING",
+              "directional_effect": 0.006072751361185805,
+              "disabled_maximum_deviation": 0.026794931425411617,
+              "disabled_maximum_time_ms": 520.399999999959,
+              "enabled_maximum_deviation": 0.03286768278659742,
+              "enabled_maximum_time_ms": 520.0999999999591
+            },
+            "later_post_force": {
+              "absolute_directional_effect": 0.018996867529297794,
+              "directional_classification": "AMPLIFYING",
+              "directional_effect": 0.018996867529297794,
+              "disabled_maximum_deviation": 0.015316885432774536,
+              "disabled_maximum_time_ms": 564.8999999999542,
+              "enabled_maximum_deviation": 0.03431375296207233,
+              "enabled_maximum_time_ms": 1151.0999999998896
+            },
+            "pre_perturbation": {
+              "absolute_directional_effect": 0.0,
+              "directional_classification": "UNRESOLVED",
+              "directional_effect": 0.0,
+              "disabled_maximum_deviation": 0.0,
+              "disabled_maximum_time_ms": 0.0,
+              "enabled_maximum_deviation": 0.0,
+              "enabled_maximum_time_ms": 0.0
+            }
+          }
+        }
+      }
+    },
+    "4.096": {
+      "disabled_condition": "B_F4096",
+      "enabled_condition": "A_F4096",
+      "force_magnitude": 4.096,
+      "metrics": {
+        "root_orientation_shortest_arc_deg": {
+          "overall_post_force_directional_classification": "AMPLIFYING",
+          "windows": {
+            "direct_force": {
+              "absolute_directional_effect": 0.02180065005325238,
+              "directional_classification": "UNRESOLVED",
+              "directional_effect": -0.02180065005325238,
+              "disabled_maximum_deviation": 2.5974556932641066,
+              "disabled_maximum_time_ms": 519.9999999999591,
+              "enabled_maximum_deviation": 2.5756550432108543,
+              "enabled_maximum_time_ms": 516.9999999999594
+            },
+            "early_post_force": {
+              "absolute_directional_effect": 0.06706965235692808,
+              "directional_classification": "UNRESOLVED",
+              "directional_effect": -0.06706965235692808,
+              "disabled_maximum_deviation": 2.620684291027627,
+              "disabled_maximum_time_ms": 520.399999999959,
+              "enabled_maximum_deviation": 2.553614638670699,
+              "enabled_maximum_time_ms": 520.199999999959
+            },
+            "later_post_force": {
+              "absolute_directional_effect": 1.5204191554624042,
+              "directional_classification": "AMPLIFYING",
+              "directional_effect": 1.5204191554624042,
+              "disabled_maximum_deviation": 0.9671093577593908,
+              "disabled_maximum_time_ms": 558.1999999999548,
+              "enabled_maximum_deviation": 2.487528513221795,
+              "enabled_maximum_time_ms": 751.4999999999336
+            },
+            "pre_perturbation": {
+              "absolute_directional_effect": 7.07289246948279e-07,
+              "directional_classification": "UNRESOLVED",
+              "directional_effect": -7.07289246948279e-07,
+              "disabled_maximum_deviation": 2.4148365394514667e-06,
+              "disabled_maximum_time_ms": 174.89999999999705,
+              "enabled_maximum_deviation": 1.7075472925031877e-06,
+              "enabled_maximum_time_ms": 1.3000000000000003
+            }
+          }
+        },
+        "thorax_com_deviation_mm": {
+          "overall_post_force_directional_classification": "AMPLIFYING",
+          "windows": {
+            "direct_force": {
+              "absolute_directional_effect": 0.010581553063991805,
+              "directional_classification": "AMPLIFYING",
+              "directional_effect": 0.010581553063991805,
+              "disabled_maximum_deviation": 0.11821793550267051,
+              "disabled_maximum_time_ms": 519.9999999999591,
+              "enabled_maximum_deviation": 0.12879948856666232,
+              "enabled_maximum_time_ms": 519.9999999999591
+            },
+            "early_post_force": {
+              "absolute_directional_effect": 0.01584220916274981,
+              "directional_classification": "AMPLIFYING",
+              "directional_effect": 0.01584220916274981,
+              "disabled_maximum_deviation": 0.12416868773905726,
+              "disabled_maximum_time_ms": 521.8999999999588,
+              "enabled_maximum_deviation": 0.14001089690180707,
+              "enabled_maximum_time_ms": 522.0999999999589
+            },
+            "later_post_force": {
+              "absolute_directional_effect": 0.07777799909156119,
+              "directional_classification": "AMPLIFYING",
+              "directional_effect": 0.07777799909156119,
+              "disabled_maximum_deviation": 0.04134203455170249,
+              "disabled_maximum_time_ms": 559.9999999999546,
+              "enabled_maximum_deviation": 0.11912003364326368,
+              "enabled_maximum_time_ms": 751.4999999999336
+            },
+            "pre_perturbation": {
+              "absolute_directional_effect": 0.0,
+              "directional_classification": "UNRESOLVED",
+              "directional_effect": 0.0,
+              "disabled_maximum_deviation": 0.0,
+              "disabled_maximum_time_ms": 0.0,
+              "enabled_maximum_deviation": 0.0,
+              "enabled_maximum_time_ms": 0.0
+            }
+          }
+        }
+      }
+    }
+  },
+  "physics_transitions": 0,
+  "position_native_unit_to_mm": 1.0,
+  "prohibited_analyses_not_performed": [
+    "correlation",
+    "regression",
+    "curve fitting",
+    "force normalization",
+    "response/force ratios",
+    "normalized effect sizes",
+    "post-hoc thresholds",
+    "post-hoc windows"
+  ],
+  "scaling_analysis": {
+    "root_orientation_shortest_arc_deg": {
+      "direct_force": {
+        "absolute_directional_effects": [
+          0.009208330635069456,
+          0.03621230522517366,
+          0.03513419456190148,
+          0.02180065005325238
+        ],
+        "absolute_effect_monotonic_nondecreasing": false,
+        "adjacent_absolute_effect_changes": [
+          0.0270039745901042,
+          -0.0010781106632721804,
+          -0.013333544508649098
+        ],
+        "adjacent_resolved_sign_changes": [
+          false,
+          false,
+          false
+        ],
+        "adjacent_signed_changes": [
+          -0.0270039745901042,
+          0.0010781106632721804,
+          0.013333544508649098
+        ],
+        "force_order": [
+          0.256,
+          1.024,
+          2.896309375740099,
+          4.096
+        ],
+        "resolved_sign_consistency": true,
+        "signed_directional_effects": [
+          -0.009208330635069456,
+          -0.03621230522517366,
+          -0.03513419456190148,
+          -0.02180065005325238
+        ]
+      },
+      "early_post_force": {
+        "absolute_directional_effects": [
+          0.0009053432544191553,
+          0.014379677153638054,
+          0.2320872169898487,
+          0.06706965235692808
+        ],
+        "absolute_effect_monotonic_nondecreasing": false,
+        "adjacent_absolute_effect_changes": [
+          0.013474333899218899,
+          0.21770753983621063,
+          -0.1650175646329206
+        ],
+        "adjacent_resolved_sign_changes": [
+          false,
+          false,
+          false
+        ],
+        "adjacent_signed_changes": [
+          -0.01528502040805721,
+          0.24646689414348674,
+          -0.29915686934677677
+        ],
+        "force_order": [
+          0.256,
+          1.024,
+          2.896309375740099,
+          4.096
+        ],
+        "resolved_sign_consistency": true,
+        "signed_directional_effects": [
+          0.0009053432544191553,
+          -0.014379677153638054,
+          0.2320872169898487,
+          -0.06706965235692808
+        ]
+      },
+      "later_post_force": {
+        "absolute_directional_effects": [
+          0.6517009921275492,
+          0.9823315388383825,
+          0.8008681086657423,
+          1.5204191554624042
+        ],
+        "absolute_effect_monotonic_nondecreasing": false,
+        "adjacent_absolute_effect_changes": [
+          0.33063054671083336,
+          -0.18146343017264022,
+          0.7195510467966619
+        ],
+        "adjacent_resolved_sign_changes": [
+          false,
+          false,
+          false
+        ],
+        "adjacent_signed_changes": [
+          0.33063054671083336,
+          -0.18146343017264022,
+          0.7195510467966619
+        ],
+        "force_order": [
+          0.256,
+          1.024,
+          2.896309375740099,
+          4.096
+        ],
+        "resolved_sign_consistency": true,
+        "signed_directional_effects": [
+          0.6517009921275492,
+          0.9823315388383825,
+          0.8008681086657423,
+          1.5204191554624042
+        ]
+      },
+      "pre_perturbation": {
+        "absolute_directional_effects": [
+          7.07289246948279e-07,
+          7.07289246948279e-07,
+          7.07289246948279e-07,
+          7.07289246948279e-07
+        ],
+        "absolute_effect_monotonic_nondecreasing": true,
+        "adjacent_absolute_effect_changes": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "adjacent_resolved_sign_changes": [
+          false,
+          false,
+          false
+        ],
+        "adjacent_signed_changes": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "force_order": [
+          0.256,
+          1.024,
+          2.896309375740099,
+          4.096
+        ],
+        "resolved_sign_consistency": true,
+        "signed_directional_effects": [
+          -7.07289246948279e-07,
+          -7.07289246948279e-07,
+          -7.07289246948279e-07,
+          -7.07289246948279e-07
+        ]
+      }
+    },
+    "thorax_com_deviation_mm": {
+      "direct_force": {
+        "absolute_directional_effects": [
+          8.957540034203822e-05,
+          0.0008799453670853461,
+          0.0011050066819797977,
+          0.010581553063991805
+        ],
+        "absolute_effect_monotonic_nondecreasing": true,
+        "adjacent_absolute_effect_changes": [
+          0.0007903699667433079,
+          0.00022506131489445158,
+          0.009476546382012008
+        ],
+        "adjacent_resolved_sign_changes": [
+          false,
+          false,
+          false
+        ],
+        "adjacent_signed_changes": [
+          -0.0007903699667433079,
+          0.0019849520490651438,
+          0.009476546382012008
+        ],
+        "force_order": [
+          0.256,
+          1.024,
+          2.896309375740099,
+          4.096
+        ],
+        "resolved_sign_consistency": true,
+        "signed_directional_effects": [
+          -8.957540034203822e-05,
+          -0.0008799453670853461,
+          0.0011050066819797977,
+          0.010581553063991805
+        ]
+      },
+      "early_post_force": {
+        "absolute_directional_effects": [
+          0.00021798235691155167,
+          0.0010484103686667326,
+          0.006072751361185805,
+          0.01584220916274981
+        ],
+        "absolute_effect_monotonic_nondecreasing": true,
+        "adjacent_absolute_effect_changes": [
+          0.000830428011755181,
+          0.0050243409925190725,
+          0.009769457801564005
+        ],
+        "adjacent_resolved_sign_changes": [
+          false,
+          false,
+          false
+        ],
+        "adjacent_signed_changes": [
+          0.000830428011755181,
+          0.0050243409925190725,
+          0.009769457801564005
+        ],
+        "force_order": [
+          0.256,
+          1.024,
+          2.896309375740099,
+          4.096
+        ],
+        "resolved_sign_consistency": true,
+        "signed_directional_effects": [
+          0.00021798235691155167,
+          0.0010484103686667326,
+          0.006072751361185805,
+          0.01584220916274981
+        ]
+      },
+      "later_post_force": {
+        "absolute_directional_effects": [
+          0.01939008338813636,
+          0.03492443912875707,
+          0.018996867529297794,
+          0.07777799909156119
+        ],
+        "absolute_effect_monotonic_nondecreasing": false,
+        "adjacent_absolute_effect_changes": [
+          0.01553435574062071,
+          -0.015927571599459275,
+          0.058781131562263396
+        ],
+        "adjacent_resolved_sign_changes": [
+          false,
+          false,
+          false
+        ],
+        "adjacent_signed_changes": [
+          0.01553435574062071,
+          -0.015927571599459275,
+          0.058781131562263396
+        ],
+        "force_order": [
+          0.256,
+          1.024,
+          2.896309375740099,
+          4.096
+        ],
+        "resolved_sign_consistency": true,
+        "signed_directional_effects": [
+          0.01939008338813636,
+          0.03492443912875707,
+          0.018996867529297794,
+          0.07777799909156119
+        ]
+      },
+      "pre_perturbation": {
+        "absolute_directional_effects": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "absolute_effect_monotonic_nondecreasing": true,
+        "adjacent_absolute_effect_changes": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "adjacent_resolved_sign_changes": [
+          false,
+          false,
+          false
+        ],
+        "adjacent_signed_changes": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "force_order": [
+          0.256,
+          1.024,
+          2.896309375740099,
+          4.096
+        ],
+        "resolved_sign_consistency": true,
+        "signed_directional_effects": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  "schema": "M10C-PREREGISTERED-M10B-PERTURBATION-SCALING-ANALYSIS.1",
+  "scientific_question": "whether the preregistered physical perturbation-response effect attributable to neural-motor enablement changes systematically across four frozen magnitudes",
+  "source_git_commit": "612c224381a9ca72fbfb6764a1a9ec61e438d760",
+  "status": "COMPLETE",
+  "supporting_metrics": {
+    "distal_tarsus_trajectory_deviation": {
+      "reason": "the frozen preregistration specifies no exact reduction; no post-hoc reduction was introduced",
+      "status": "NOT_INFERENTIALLY_REDUCED_DESCRIPTIVE_ONLY"
+    },
+    "height": {
+      "reason": "the frozen preregistration specifies no exact reduction; no post-hoc reduction was introduced",
+      "status": "NOT_INFERENTIALLY_REDUCED_DESCRIPTIVE_ONLY"
+    },
+    "physical_contact_pattern_difference_observation_only": {
+      "reason": "the frozen preregistration specifies no exact reduction; no post-hoc reduction was introduced",
+      "status": "NOT_INFERENTIALLY_REDUCED_DESCRIPTIVE_ONLY"
+    },
+    "root_angular_velocity": {
+      "reason": "the frozen preregistration specifies no exact reduction; no post-hoc reduction was introduced",
+      "status": "NOT_INFERENTIALLY_REDUCED_DESCRIPTIVE_ONLY"
+    },
+    "root_linear_velocity": {
+      "reason": "the frozen preregistration specifies no exact reduction; no post-hoc reduction was introduced",
+      "status": "NOT_INFERENTIALLY_REDUCED_DESCRIPTIVE_ONLY"
+    }
+  },
+  "thresholds": {
+    "root_orientation_shortest_arc_deg": 0.25,
+    "thorax_com_deviation_mm": 0.005
+  },
+  "windows": {
+    "direct_force": {
+      "start_ms_inclusive": 500.0,
+      "stop_ms_exclusive": 520.0
+    },
+    "early_post_force": {
+      "start_ms_inclusive": 520.0,
+      "stop_ms_exclusive": 557.0
+    },
+    "later_post_force": {
+      "start_ms_inclusive": 557.0,
+      "stop_ms_inclusive": 1500.0
+    },
+    "pre_perturbation": {
+      "start_ms_inclusive": 0.0,
+      "stop_ms_exclusive": 500.0
+    }
+  }
+}

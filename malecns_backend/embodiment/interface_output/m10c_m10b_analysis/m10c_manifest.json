@@ -1,0 +1,83 @@
+{
+  "analysis_rules": {
+    "force_order": [
+      0.256,
+      1.024,
+      2.896309375740099,
+      4.096
+    ],
+    "position_native_unit_to_mm": 1.0,
+    "reduction": "maximum timestamp-aligned nonnegative deviation; enabled minus disabled",
+    "thresholds": {
+      "root_orientation_shortest_arc_deg": 0.25,
+      "thorax_com_deviation_mm": 0.005
+    },
+    "windows": {
+      "direct_force": {
+        "start_ms_inclusive": 500.0,
+        "stop_ms_exclusive": 520.0
+      },
+      "early_post_force": {
+        "start_ms_inclusive": 520.0,
+        "stop_ms_exclusive": 557.0
+      },
+      "later_post_force": {
+        "start_ms_inclusive": 557.0,
+        "stop_ms_inclusive": 1500.0
+      },
+      "pre_perturbation": {
+        "start_ms_inclusive": 0.0,
+        "stop_ms_exclusive": 500.0
+      }
+    }
+  },
+  "analysis_source": {
+    "byte_size": 17879,
+    "path": "m10c_m10b_analysis.py",
+    "sha256": "094d18f86b4eeb0e483ae7b06b45458fbdea8a08ea26b4d7562c181f19212d71"
+  },
+  "canonical_m10b_inputs": {
+    "m10b_manifest.json": {
+      "byte_size": 26684,
+      "path": "m10b_manifest.json",
+      "sha256": "62b1f4a3e5f5773de594a3d965b0227e0dec9cc52fb09658c0a3d92ecc7f0ad7"
+    },
+    "m10b_preregistration.json": {
+      "byte_size": 10924,
+      "path": "m10b_preregistration.json",
+      "sha256": "a267647093d616f394374761da58ae495f12a6df6fe12e004abbcb1cb1b2d5a9"
+    },
+    "m10b_raw.npz": {
+      "byte_size": 57652701,
+      "path": "m10b_raw.npz",
+      "sha256": "85e98715ac3d8b219c86ef338187828e787ee8f300bacad9d318809e23208cde"
+    },
+    "m10b_report.json": {
+      "byte_size": 5785,
+      "path": "m10b_report.json",
+      "sha256": "fdc3cc8aef9f02a85dc10f671a4ff86d9592354c8ea60d9a5f179b2c0c81acfc"
+    }
+  },
+  "frozen_preregistration_identity": {
+    "byte_size": 10924,
+    "path": "m10b_preregistration.json",
+    "sha256": "a267647093d616f394374761da58ae495f12a6df6fe12e004abbcb1cb1b2d5a9"
+  },
+  "numpy_version": "2.0.2",
+  "outputs": {
+    "m10c_analysis.json": {
+      "byte_size": 30426,
+      "path": "m10c_analysis.json",
+      "sha256": "31d7dd5445ecd6bc17542f455d5196a087934f3251d5c36915424b737e595740"
+    }
+  },
+  "python_version": "3.12.10",
+  "schema": "M10C-PREREGISTERED-M10B-PERTURBATION-SCALING-ANALYSIS.1",
+  "source_git_commit": "612c224381a9ca72fbfb6764a1a9ec61e438d760",
+  "status": "COMPLETE",
+  "timestamp_independent_reproducibility": {
+    "deterministic": true,
+    "input_and_source_sha256_recorded": true,
+    "json_keys_sorted": true
+  }
+}
