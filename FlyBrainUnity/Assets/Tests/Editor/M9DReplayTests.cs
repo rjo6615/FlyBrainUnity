@@ -11,6 +11,23 @@ namespace FlyBrain.Tests
 {
     public sealed class M9DReplayTests
     {
+        [Test] public void PresentationPlaybackStateAndClockAreDeterministic()
+        {
+            var owner=new GameObject("M9D playback test"); var controller=owner.AddComponent<M9DReplayController>();
+            controller.Configure(owner.AddComponent<M9DReplayLoader>(),Rig(owner.transform,"left"),Rig(owner.transform,"right"));
+            Assert.That(controller.Frame,Is.Zero); Assert.That(controller.IsPlaying,Is.False);
+            controller.Play(); Assert.That(controller.IsPlaying,Is.True);
+            controller.AdvancePresentation(.001); Assert.That(controller.Frame,Is.EqualTo(10),"Unity seconds must be converted to canonical milliseconds");
+            controller.Pause(); controller.AdvancePresentation(1); Assert.That(controller.Frame,Is.EqualTo(10));
+            controller.SetSpeed(.5f); controller.Play(); controller.AdvancePresentation(.001); Assert.That(controller.Frame,Is.EqualTo(15),"speed scales only the presentation clock");
+            controller.Step(1); Assert.That(controller.Frame,Is.EqualTo(16)); Assert.That(controller.IsPlaying,Is.False);
+            controller.SeekFrame(M9DReplayController.FinalFrame-1); controller.Play(); controller.AdvancePresentation(1);
+            Assert.That(controller.Frame,Is.EqualTo(M9DReplayController.FinalFrame)); Assert.That(controller.IsPlaying,Is.False);
+            controller.Play(); controller.AdvancePresentation(1); Assert.That(controller.Frame,Is.EqualTo(M9DReplayController.FinalFrame)); Assert.That(controller.IsPlaying,Is.False);
+            Assert.That(owner.GetComponentsInChildren<Rigidbody>(true),Is.Empty); Assert.That(owner.GetComponentsInChildren<Collider>(true),Is.Empty);
+            UnityEngine.Object.DestroyImmediate(owner);
+        }
+
         [Test] public void LoaderParsesExactPhysicalSchemaAndRejectsTrailingBytes()
         {
             var bytes=ReplayBytes(); var replay=M9DReplayLoader.Read(bytes);
