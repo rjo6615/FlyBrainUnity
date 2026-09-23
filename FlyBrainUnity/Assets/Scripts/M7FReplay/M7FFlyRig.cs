@@ -85,5 +85,19 @@ namespace FlyBrain.M7FReplay
             var i = frame * 4; var q = new Quaternion((float)data.BodyOrientation[i + 1], (float)data.BodyOrientation[i + 2], (float)data.BodyOrientation[i + 3], (float)data.BodyOrientation[i]);
             return M7FCoordinates.SourceQuaternionToUnity(q);
         }
+
+        public void Apply(M9DReplayData data, int frame, int nextFrame, float presentationBlend)
+        {
+            if (data == null || restRotations == null) return;
+            frame = Mathf.Clamp(frame, 0, data.StateCount - 1); nextFrame = Mathf.Clamp(nextFrame, 0, data.StateCount - 1);
+            root.position = Vector3.Lerp(data.UnityPosition(frame), data.UnityPosition(nextFrame), presentationBlend) + PresentationOffset;
+            root.rotation = Quaternion.Slerp(SourceQuaternion(data.BodyOrientation, frame), SourceQuaternion(data.BodyOrientation, nextFrame), presentationBlend);
+            for (var i = 0; i < joints.Length; i++) { var source=sourceIndices[i]; var a=(float)data.JointPosition[frame*42+source]; var b=(float)data.JointPosition[nextFrame*42+source]; joints[i].transform.localRotation=restRotations[i]*Quaternion.AngleAxis(Mathf.Lerp(a,b,presentationBlend)*Mathf.Rad2Deg,joints[i].localAxis.normalized); }
+        }
+
+        static Quaternion SourceQuaternion(double[] orientation, int frame)
+        {
+            var i=frame*4; return M7FCoordinates.SourceQuaternionToUnity(new Quaternion((float)orientation[i+1],(float)orientation[i+2],(float)orientation[i+3],(float)orientation[i]));
+        }
     }
 }
