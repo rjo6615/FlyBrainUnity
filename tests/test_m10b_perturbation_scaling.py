@@ -172,12 +172,24 @@ def test_preregistration_exact_byte_identity_fails_closed(tmp_path):
 
 
 def test_preregistration_lf_and_windows_crlf_share_canonical_identity(tmp_path):
-    lf = m.PREREGISTRATION_PATH.read_bytes()
-    assert b"\r" not in lf
-    crlf_path = tmp_path / "m10b_preregistration.json"
-    crlf_path.write_bytes(lf.replace(b"\n", b"\r\n"))
-    assert m.verify_preregistration(crlf_path) == m.PREREGISTRATION_SHA256
-    assert hashlib.sha256(crlf_path.read_bytes().replace(b"\r\n", b"\n")).hexdigest() == m.PREREGISTRATION_SHA256
+    physical = m.PREREGISTRATION_PATH.read_bytes()
+    canonical_lf = physical.replace(b"\r\n", b"\n")
+    assert b"\r" not in canonical_lf
+
+    lf_path = tmp_path / "lf" / "m10b_preregistration.json"
+    lf_path.parent.mkdir()
+    lf_path.write_bytes(canonical_lf)
+    lf_hash = m.verify_preregistration(lf_path)
+    assert lf_hash == m.PREREGISTRATION_SHA256
+
+    crlf = canonical_lf.replace(b"\n", b"\r\n")
+    crlf_path = tmp_path / "crlf" / "m10b_preregistration.json"
+    crlf_path.parent.mkdir()
+    crlf_path.write_bytes(crlf)
+    crlf_hash = m.verify_preregistration(crlf_path)
+    assert crlf_hash == m.PREREGISTRATION_SHA256
+    assert lf_hash == crlf_hash
+    assert hashlib.sha256(crlf_path.read_bytes().replace(b"\r\n", b"\n")).hexdigest() == lf_hash
 
 
 def test_protocol_paths_are_checkout_independent_and_runtime_paths_resolve(monkeypatch):
