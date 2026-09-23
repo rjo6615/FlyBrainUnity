@@ -1,5 +1,6 @@
 """M10B preregistration tests.  Nothing here constructs a scientific runtime."""
 import ast
+import hashlib
 import inspect
 import json
 from pathlib import Path
@@ -146,7 +147,9 @@ def test_import_preflight_has_only_explicit_canonical_execution_path():
 
 def test_preregistration_matches_code_and_zero_transition_preflight():
     recorded = json.loads(m.PREREGISTRATION_PATH.read_text(encoding="utf-8"))
-    assert recorded == m.protocol()
+    # Validation maps the frozen legacy checkout-root strings to the portable
+    # identifiers returned by protocol(), without rewriting the frozen file.
+    m.validate_protocol(recorded)
     result = m.preflight()
     assert result["status"] == "PREFLIGHT_PASS"
     assert result["canonical_experiment_executed"] is False
@@ -162,9 +165,35 @@ def test_preregistration_matches_code_and_zero_transition_preflight():
 def test_preregistration_exact_byte_identity_fails_closed(tmp_path):
     assert m.verify_preregistration() == "a267647093d616f394374761da58ae495f12a6df6fe12e004abbcb1cb1b2d5a9"
     changed = tmp_path / "m10b_preregistration.json"
-    changed.write_bytes(m.PREREGISTRATION_PATH.read_bytes() + b"\n")
+    original = m.PREREGISTRATION_PATH.read_bytes()
+    changed.write_bytes(original.replace(b"0.256", b"0.257", 1))
     with pytest.raises(RuntimeError, match="frozen preregistration mismatch"):
         m.verify_preregistration(changed)
+
+
+def test_preregistration_lf_and_windows_crlf_share_canonical_identity(tmp_path):
+    lf = m.PREREGISTRATION_PATH.read_bytes()
+    assert b"\r" not in lf
+    crlf_path = tmp_path / "m10b_preregistration.json"
+    crlf_path.write_bytes(lf.replace(b"\n", b"\r\n"))
+    assert m.verify_preregistration(crlf_path) == m.PREREGISTRATION_SHA256
+    assert hashlib.sha256(crlf_path.read_bytes().replace(b"\r\n", b"\n")).hexdigest() == m.PREREGISTRATION_SHA256
+
+
+def test_protocol_paths_are_checkout_independent_and_runtime_paths_resolve(monkeypatch):
+    expected = m.FUTURE_OUTPUT_IDENTIFIERS
+    linux_protocol = m.protocol()
+    linux = Path("/workspace/FlyBrainUnity/malecns_backend/embodiment")
+    windows = Path("C:/Users/legen/Documents/FlyBrainUnity/malecns_backend/embodiment")
+    monkeypatch.setattr(m, "HERE", windows)
+    assert m.protocol() == linux_protocol
+    assert {key: linux_protocol["future_outputs"][key] for key in expected} == expected
+    for key, identifier in expected.items():
+        assert m.resolve_future_output(identifier, linux) == linux / Path(identifier)
+        assert m.resolve_future_output(identifier, windows) == windows / Path(identifier)
+        assert getattr(m, key.upper() + "_PATH") == m.resolve_future_output(identifier)
+    with pytest.raises(ValueError, match="unknown M10B output identifier"):
+        m.resolve_future_output("../m10a_report.json")
 
 
 def _synthetic_condition(name):
