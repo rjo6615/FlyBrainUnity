@@ -1,0 +1,322 @@
+{
+  "analysis": {
+    "classification": {
+      "inclusive_rules": {
+        "ABLATION_INCREASES_AMPLIFICATION": "effect >= threshold",
+        "ABLATION_REDUCES_AMPLIFICATION": "effect <= -threshold",
+        "UNRESOLVED_AT_INHERITED_THRESHOLD": "-threshold < effect < threshold"
+      },
+      "per_channel_per_primary_metric": true,
+      "ranking_or_composite": false
+    },
+    "estimand": "E_channel_metric = D_leave_one_out_channel_metric - D_full_11_enabled_metric",
+    "metric_reduction": "for each condition and metric/window, maximum timestamp-aligned nonnegative perturbation-versus-matched-control deviation, exactly as M10",
+    "metrics": [
+      "thorax_com_deviation_mm",
+      "root_orientation_shortest_arc_deg"
+    ],
+    "primary_window": "later_post_force",
+    "sign_semantics": {
+      "negative": "ablation decreased the M10-style physical deviation",
+      "positive": "ablation increased the M10-style physical deviation",
+      "zero": "ablation did not change the M10-style physical deviation"
+    },
+    "thresholds": {
+      "root_orientation_shortest_arc_deg": 0.25,
+      "thorax_com_deviation_mm": 0.005
+    },
+    "windows": {
+      "direct_force": {
+        "start_ms_inclusive": 500.0,
+        "stop_ms_exclusive": 520.0
+      },
+      "early_post_force": {
+        "start_ms_inclusive": 520.0,
+        "stop_ms_exclusive": 557.0
+      },
+      "later_post_force": {
+        "start_ms_inclusive": 557.0,
+        "stop_ms_inclusive": 1500.0
+      },
+      "pre": {
+        "start_ms_inclusive": 0.0,
+        "stop_ms_exclusive": 500.0
+      }
+    }
+  },
+  "boundary_note": "557 ms is the inherited approximate admitted-motor boundary, not a biological latency.",
+  "conditions": [
+    {
+      "ablated_channels": [],
+      "fresh_identical_deterministic_initialization": true,
+      "name": "full_11_enabled"
+    },
+    {
+      "ablated_channels": [
+        "joint_LFTibia",
+        "joint_LMTibia",
+        "joint_LHTibia",
+        "joint_RFTibia",
+        "joint_RMTibia",
+        "joint_RHTibia",
+        "joint_LFFemur",
+        "joint_LMFemur",
+        "joint_LHFemur",
+        "joint_RMFemur",
+        "joint_RHFemur"
+      ],
+      "fresh_identical_deterministic_initialization": true,
+      "name": "all_11_disabled"
+    },
+    {
+      "ablated_channels": [
+        "joint_LFTibia"
+      ],
+      "fresh_identical_deterministic_initialization": true,
+      "name": "leave_one_out__joint_LFTibia"
+    },
+    {
+      "ablated_channels": [
+        "joint_LMTibia"
+      ],
+      "fresh_identical_deterministic_initialization": true,
+      "name": "leave_one_out__joint_LMTibia"
+    },
+    {
+      "ablated_channels": [
+        "joint_LHTibia"
+      ],
+      "fresh_identical_deterministic_initialization": true,
+      "name": "leave_one_out__joint_LHTibia"
+    },
+    {
+      "ablated_channels": [
+        "joint_RFTibia"
+      ],
+      "fresh_identical_deterministic_initialization": true,
+      "name": "leave_one_out__joint_RFTibia"
+    },
+    {
+      "ablated_channels": [
+        "joint_RMTibia"
+      ],
+      "fresh_identical_deterministic_initialization": true,
+      "name": "leave_one_out__joint_RMTibia"
+    },
+    {
+      "ablated_channels": [
+        "joint_RHTibia"
+      ],
+      "fresh_identical_deterministic_initialization": true,
+      "name": "leave_one_out__joint_RHTibia"
+    },
+    {
+      "ablated_channels": [
+        "joint_LFFemur"
+      ],
+      "fresh_identical_deterministic_initialization": true,
+      "name": "leave_one_out__joint_LFFemur"
+    },
+    {
+      "ablated_channels": [
+        "joint_LMFemur"
+      ],
+      "fresh_identical_deterministic_initialization": true,
+      "name": "leave_one_out__joint_LMFemur"
+    },
+    {
+      "ablated_channels": [
+        "joint_LHFemur"
+      ],
+      "fresh_identical_deterministic_initialization": true,
+      "name": "leave_one_out__joint_LHFemur"
+    },
+    {
+      "ablated_channels": [
+        "joint_RMFemur"
+      ],
+      "fresh_identical_deterministic_initialization": true,
+      "name": "leave_one_out__joint_RMFemur"
+    },
+    {
+      "ablated_channels": [
+        "joint_RHFemur"
+      ],
+      "fresh_identical_deterministic_initialization": true,
+      "name": "leave_one_out__joint_RHFemur"
+    }
+  ],
+  "future_outputs": {
+    "M10_namespaces_read_only": true,
+    "directory": "interface_output/m11_motor_channel_dissection",
+    "exclusive_creation_required": true,
+    "manifest": "m11_manifest.json",
+    "raw": "m11_raw.npz",
+    "report": "m11_report.json"
+  },
+  "inherited_configuration": {
+    "contact_is_neural_input": false,
+    "perturbation": {
+      "application_body_source": "Thorax",
+      "application_point": "authoritative body center of mass",
+      "direction_xyz": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "frame": "world",
+      "magnitude": 1.024,
+      "start_ms_inclusive": 500.0,
+      "start_transition_inclusive": 5000,
+      "stop_ms_exclusive": 520.0,
+      "stop_transition_exclusive": 5200,
+      "torque_xyz": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "source": "exact M10B initialization, neural runtime, sensory mapping, decoder, physics, timing, and perturbation implementation; no recalibration",
+    "timing": {
+      "duration_ms": 1500.0,
+      "neural_dt_ms": 0.5,
+      "neural_transitions_per_condition": 3000,
+      "physics_dt_ms": 0.1,
+      "physics_transitions_per_condition": 15000
+    }
+  },
+  "integrity": {
+    "exact_condition_motor_intervention_and_force_validation": true,
+    "fail_closed": true,
+    "no_automatic_retries": true,
+    "no_completed_output_overwrite": true,
+    "preflight_scientific_transitions": 0,
+    "raw_data_every_condition": true,
+    "verify_upstream_before_and_after_execution": true
+  },
+  "interpretation_prohibitions": [
+    "balance",
+    "stabilization",
+    "righting",
+    "reflex",
+    "recovery",
+    "natural locomotion",
+    "biological motor function",
+    "biological timing",
+    "biological necessity or sufficiency of corresponding real neurons"
+  ],
+  "intervention": {
+    "MaleCNS_active": true,
+    "ablated_value": 0.0,
+    "boundary": "decoded physical motor contribution immediately before physical application",
+    "decoder_active": true,
+    "motor_observation_active": true,
+    "neural_updates_active": true,
+    "only_listed_channels_changed": true,
+    "sensory_encoding_active": true
+  },
+  "motor_channels": [
+    {
+      "action_index": 5,
+      "coordinate_sign": 1,
+      "name": "joint_LFTibia"
+    },
+    {
+      "action_index": 12,
+      "coordinate_sign": 1,
+      "name": "joint_LMTibia"
+    },
+    {
+      "action_index": 19,
+      "coordinate_sign": 1,
+      "name": "joint_LHTibia"
+    },
+    {
+      "action_index": 26,
+      "coordinate_sign": 1,
+      "name": "joint_RFTibia"
+    },
+    {
+      "action_index": 33,
+      "coordinate_sign": 1,
+      "name": "joint_RMTibia"
+    },
+    {
+      "action_index": 40,
+      "coordinate_sign": 1,
+      "name": "joint_RHTibia"
+    },
+    {
+      "action_index": 3,
+      "coordinate_sign": -1,
+      "name": "joint_LFFemur"
+    },
+    {
+      "action_index": 10,
+      "coordinate_sign": -1,
+      "name": "joint_LMFemur"
+    },
+    {
+      "action_index": 17,
+      "coordinate_sign": -1,
+      "name": "joint_LHFemur"
+    },
+    {
+      "action_index": 31,
+      "coordinate_sign": -1,
+      "name": "joint_RMFemur"
+    },
+    {
+      "action_index": 38,
+      "coordinate_sign": -1,
+      "name": "joint_RHFemur"
+    }
+  ],
+  "schema": "M11A-PREREGISTERED-MOTOR-CHANNEL-DISSECTION.1",
+  "scientific_question": "Which admitted motor channels are causally responsible for the later post-perturbation amplification observed in M10, and is that effect distributed across the admitted motor interface or concentrated in particular channels?",
+  "scope": "M11 tests causal physical contributions of individual admitted motor channels within the modeled MaleCNS -> decoder -> admitted motor -> MuJoCo chain.",
+  "secondary_descriptive_only": [
+    "tibia versus femur",
+    "left versus right",
+    "fore versus mid versus hind",
+    "temporal emergence across direct, early, and later windows"
+  ],
+  "stage_design": {
+    "automatic_four_force_expansion": false,
+    "stage_1": "exactly 13 conditions at force 1.024",
+    "stage_2": "only after Stage 1 is frozen and analyzed, cross-force work requires a separate preregistration"
+  },
+  "status": "NOT_RUN",
+  "upstream_artifacts": {
+    "m10b_manifest.json": {
+      "byte_size": 26684,
+      "directory": "m10b",
+      "sha256": "62b1f4a3e5f5773de594a3d965b0227e0dec9cc52fb09658c0a3d92ecc7f0ad7"
+    },
+    "m10b_preregistration.json": {
+      "byte_size": 10924,
+      "directory": "m10b",
+      "sha256": "a267647093d616f394374761da58ae495f12a6df6fe12e004abbcb1cb1b2d5a9"
+    },
+    "m10b_raw.npz": {
+      "byte_size": 57652701,
+      "directory": "m10b",
+      "sha256": "85e98715ac3d8b219c86ef338187828e787ee8f300bacad9d318809e23208cde"
+    },
+    "m10b_report.json": {
+      "byte_size": 5785,
+      "directory": "m10b",
+      "sha256": "fdc3cc8aef9f02a85dc10f671a4ff86d9592354c8ea60d9a5f179b2c0c81acfc"
+    },
+    "m10c_analysis.json": {
+      "byte_size": 30426,
+      "directory": "m10c",
+      "sha256": "31d7dd5445ecd6bc17542f455d5196a087934f3251d5c36915424b737e595740"
+    },
+    "m10c_manifest.json": {
+      "byte_size": 2505,
+      "directory": "m10c",
+      "sha256": "4169cd04974330cfbdfb435f1ffb174fd6711b495192c9f1528b7ee9505e29c9"
+    }
+  }
+}
