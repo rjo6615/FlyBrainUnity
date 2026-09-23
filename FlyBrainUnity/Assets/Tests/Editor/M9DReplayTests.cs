@@ -37,7 +37,11 @@ namespace FlyBrain.Tests
             var owner=new GameObject("M9D test"); var controller=owner.AddComponent<M9DReplayController>(); var left=Rig(owner.transform,"left"); var right=Rig(owner.transform,"right"); var loader=owner.AddComponent<M9DReplayLoader>(); controller.Configure(loader,left,right);
             Assert.That(controller.SetComparison(M9DCondition.A_P,M9DCondition.B_P,true),Is.False);
             Assert.That(controller.LeftCondition,Is.EqualTo(M9DCondition.A_P)); Assert.That(controller.RightCondition,Is.EqualTo(M9DCondition.B_P)); Assert.That(controller.SideBySide,Is.True);
-            Assert.That(left.PresentationOffset,Is.EqualTo(Vector3.zero)); Assert.That(right.PresentationOffset,Is.EqualTo(Vector3.zero));
+            Assert.That(left.PresentationOffset,Is.Not.EqualTo(right.PresentationOffset));
+            Assert.That(Vector3.Distance(left.PresentationOffset,right.PresentationOffset),Is.GreaterThanOrEqualTo(.3f));
+            var replay=M9DReplayLoader.Read(ReplayBytes()); var canonicalBefore=replay.UnityPosition(0);
+            left.PresentationOffset+=Vector3.one;
+            Assert.That(replay.UnityPosition(0),Is.EqualTo(canonicalBefore),"display offsets must not mutate canonical replay state");
             Assert.That(controller.PresentationInterpolation,Is.False); UnityEngine.Object.DestroyImmediate(owner);
         }
 
@@ -45,7 +49,8 @@ namespace FlyBrain.Tests
         {
             var owner=new GameObject("arrow"); var arrow=owner.AddComponent<M9DForceArrow>();
             Assert.That(owner.GetComponent<Rigidbody>(),Is.Null); Assert.That(owner.GetComponent<Collider>(),Is.Null);
-            Assert.That(arrow.UnityDirection,Is.EqualTo(Vector3.forward)); Assert.That(M9DForceArrow.Annotation,Does.Contain("visualization only"));
+            Assert.That(arrow.UnityDirection,Is.EqualTo(Vector3.forward)); Assert.That(M9DForceArrow.Annotation,Is.EqualTo("RECORDED EXTERNAL PERTURBATION"));
+            Assert.That(M9DForceArrow.Detail,Does.Contain("NOT a physical force scale")); Assert.That(arrow.IllustrativeLength,Is.GreaterThanOrEqualTo(.4f));
             Assert.That(owner.GetComponents<Component>().Select(value=>value.GetType()),Is.EquivalentTo(new[]{typeof(Transform),typeof(M9DForceArrow)}));
             Assert.That(typeof(M9DForceArrow).GetFields(BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.DeclaredOnly)
                 .Select(field=>$"{field.Name}:{field.FieldType.FullName}"),Is.EquivalentTo(new[]{
@@ -55,6 +60,24 @@ namespace FlyBrain.Tests
             foreach(var method in typeof(M9DForceArrow).GetMethods(BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.DeclaredOnly))
                 foreach(var called in CalledMethods(method)) Assert.That(IsPresentationOnlyCall(called),Is.True,$"{method.Name} calls prohibited API {called.DeclaringType?.FullName}.{called.Name}");
             UnityEngine.Object.DestroyImmediate(owner);
+        }
+
+        [Test] public void ForceIntervalAndPerturbationReplayPresentationConstantsRemainExact()
+        {
+            Assert.That(M9DReplayController.ForceStartMs,Is.EqualTo(500)); Assert.That(M9DReplayController.ForceStopMs,Is.EqualTo(520));
+            Assert.That(M9DReplayController.PerturbationReplayStartFrame*M9DReplayController.FrameIntervalMs,Is.EqualTo(475));
+            Assert.That(M9DReplayController.PerturbationReplayStopMs,Is.EqualTo(650));
+            Assert.That(M9DReplayController.AllowedSpeeds,Does.Contain(.1f));
+            Assert.That(typeof(M9DReplayController).GetMethod(nameof(M9DReplayController.ReplayPerturbation)).GetParameters(),Is.Empty,
+                "replay control accepts no physical state, force, or trajectory input");
+        }
+
+        [Test] public void TrajectoryTraceUsesRecordedRootSamplesAndPresentationOffsetOnly()
+        {
+            var replay=M9DReplayLoader.Read(ReplayBytes()); var offset=new Vector3(.3f,.2f,.1f); var points=M9DTrajectoryTrace.RecordedPoints(replay,offset);
+            Assert.That(M9DTrajectoryTrace.FirstFrame,Is.EqualTo(5000)); Assert.That(points.Length,Is.EqualTo(10001));
+            Assert.That(points[0],Is.EqualTo(replay.UnityPosition(5000)+offset));
+            Assert.That(points[^1],Is.EqualTo(replay.UnityPosition(15000)+offset));
         }
 
         static bool IsPresentationOnlyCall(MethodBase method)
