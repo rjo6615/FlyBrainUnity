@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="10" result="Failed(Child)" total="10" passed="8" failed="1" inconclusive="0" skipped="1" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-23 13:15:55Z" end-time="2026-09-23 13:16:11Z" duration="15.5709515">
+  <test-suite type="TestSuite" id="1000" name="FlyBrainUnity" fullname="FlyBrainUnity" runstate="Runnable" testcasecount="54" result="Failed" site="Child" start-time="2026-09-23 13:15:55Z" end-time="2026-09-23 13:16:11Z" duration="15.570952" total="10" passed="8" failed="1" inconclusive="0" skipped="1" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1064" name="M7FReplay.EditorTests.dll" fullname="C:/Users/legen/Documents/FlyBrainUnity/FlyBrainUnity/Library/ScriptAssemblies/M7FReplay.EditorTests.dll" runstate="Runnable" testcasecount="54" result="Failed" site="Child" start-time="2026-09-23 13:15:55Z" end-time="2026-09-23 13:16:11Z" duration="15.559444" total="10" passed="8" failed="1" inconclusive="0" skipped="1" asserts="0">
+      <properties>
+        <property name="_PID" value="29804" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1065" name="FlyBrain" fullname="FlyBrain" runstate="Runnable" testcasecount="54" result="Failed" site="Child" start-time="2026-09-23 13:15:55Z" end-time="2026-09-23 13:16:11Z" duration="15.555468" total="10" passed="8" failed="1" inconclusive="0" skipped="1" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1066" name="Tests" fullname="FlyBrain.Tests" runstate="Runnable" testcasecount="54" result="Failed" site="Child" start-time="2026-09-23 13:15:55Z" end-time="2026-09-23 13:16:11Z" duration="15.553661" total="10" passed="8" failed="1" inconclusive="0" skipped="1" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1052" name="M9DReplayTests" fullname="FlyBrain.Tests.M9DReplayTests" classname="FlyBrain.Tests.M9DReplayTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-09-23 13:15:55Z" end-time="2026-09-23 13:15:56Z" duration="0.732122" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1055" name="ComparisonOffsetsArePresentationOnlyAndDefaultPairIsAPVersusBP" fullname="FlyBrain.Tests.M9DReplayTests.ComparisonOffsetsArePresentationOnlyAndDefaultPairIsAPVersusBP" methodname="ComparisonOffsetsArePresentationOnlyAndDefaultPairIsAPVersusBP" classname="FlyBrain.Tests.M9DReplayTests" runstate="Runnable" seed="1684284188" result="Passed" start-time="2026-09-23 13:15:55Z" end-time="2026-09-23 13:15:56Z" duration="0.165023" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1056" name="ForceArrowIsPurePresentationAndCannotApplyForce" fullname="FlyBrain.Tests.M9DReplayTests.ForceArrowIsPurePresentationAndCannotApplyForce" methodname="ForceArrowIsPurePresentationAndCannotApplyForce" classname="FlyBrain.Tests.M9DReplayTests" runstate="Runnable" seed="2094789519" result="Passed" start-time="2026-09-23 13:15:56Z" end-time="2026-09-23 13:15:56Z" duration="0.011547" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1057" name="ForceIntervalAndPerturbationReplayPresentationConstantsRemainExact" fullname="FlyBrain.Tests.M9DReplayTests.ForceIntervalAndPerturbationReplayPresentationConstantsRemainExact" methodname="ForceIntervalAndPerturbationReplayPresentationConstantsRemainExact" classname="FlyBrain.Tests.M9DReplayTests" runstate="Runnable" seed="1276852291" result="Passed" start-time="2026-09-23 13:15:56Z" end-time="2026-09-23 13:15:56Z" duration="0.002841" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1054" name="LoaderParsesExactPhysicalSchemaAndRejectsTrailingBytes" fullname="FlyBrain.Tests.M9DReplayTests.LoaderParsesExactPhysicalSchemaAndRejectsTrailingBytes" methodname="LoaderParsesExactPhysicalSchemaAndRejectsTrailingBytes" classname="FlyBrain.Tests.M9DReplayTests" runstate="Runnable" seed="305803288" result="Passed" start-time="2026-09-23 13:15:56Z" end-time="2026-09-23 13:15:56Z" duration="0.432932" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1053" name="PresentationPlaybackStateAndClockAreDeterministic" fullname="FlyBrain.Tests.M9DReplayTests.PresentationPlaybackStateAndClockAreDeterministic" methodname="PresentationPlaybackStateAndClockAreDeterministic" classname="FlyBrain.Tests.M9DReplayTests" runstate="Runnable" seed="456206141" result="Passed" start-time="2026-09-23 13:15:56Z" end-time="2026-09-23 13:15:56Z" duration="0.002543" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1059" name="ScientificLabelsUseRequiredMotorGateLanguage" fullname="FlyBrain.Tests.M9DReplayTests.ScientificLabelsUseRequiredMotorGateLanguage" methodname="ScientificLabelsUseRequiredMotorGateLanguage" classname="FlyBrain.Tests.M9DReplayTests" runstate="Runnable" seed="2146373326" result="Passed" start-time="2026-09-23 13:15:56Z" end-time="2026-09-23 13:15:56Z" duration="0.001591" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1058" name="TrajectoryTraceUsesRecordedRootSamplesAndPresentationOffsetOnly" fullname="FlyBrain.Tests.M9DReplayTests.TrajectoryTraceUsesRecordedRootSamplesAndPresentationOffsetOnly" methodname="TrajectoryTraceUsesRecordedRootSamplesAndPresentationOffsetOnly" classname="FlyBrain.Tests.M9DReplayTests" runstate="Runnable" seed="1668696331" result="Passed" start-time="2026-09-23 13:15:56Z" end-time="2026-09-23 13:15:56Z" duration="0.090765" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1060" name="M9DSceneConstructionTests" fullname="FlyBrain.Tests.M9DSceneConstructionTests" classname="FlyBrain.Tests.M9DSceneConstructionTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-23 13:15:56Z" end-time="2026-09-23 13:16:11Z" duration="14.817436" total="3" passed="1" failed="1" inconclusive="0" skipped="1" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1061" name="MenuGenerationPathPersistsCompleteReferenceSafePresentation" fullname="FlyBrain.Tests.M9DSceneConstructionTests.MenuGenerationPathPersistsCompleteReferenceSafePresentation" methodname="MenuGenerationPathPersistsCompleteReferenceSafePresentation" classname="FlyBrain.Tests.M9DSceneConstructionTests" runstate="Runnable" seed="1362347139" result="Failed" start-time="2026-09-23 13:15:56Z" end-time="2026-09-23 13:16:11Z" duration="14.769950" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not equal to (0.00, 0.00, 0.00)
+  But was:  (0.00, 0.00, 0.00)
+]]></message>
+                <stack-trace><![CDATA[at FlyBrain.Tests.M9DSceneConstructionTests.MenuGenerationPathPersistsCompleteReferenceSafePresentation () [0x00168] in C:\Users\legen\Documents\FlyBrainUnity\FlyBrainUnity\Assets\Tests\Editor\M9DSceneConstructionTests.cs:41
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[Created M9D replay scene in memory. No scientific transition or canonical export was executed.
+The following asset(s) located in immutable packages were unexpectedly altered. Making changes to immutable packages isn't recommended because the changes can be lost without any warning during Package Manager operations.
+  Packages/com.unity.render-pipelines.universal/Runtime/Materials/Lit.mat
+
+]]></output>
+            </test-case>
+            <test-case id="1062" name="RuntimeInitializationPlaybackAndNavigationApplyRecordedFrames" fullname="FlyBrain.Tests.M9DSceneConstructionTests.RuntimeInitializationPlaybackAndNavigationApplyRecordedFrames" methodname="RuntimeInitializationPlaybackAndNavigationApplyRecordedFrames" classname="FlyBrain.Tests.M9DSceneConstructionTests" runstate="Runnable" seed="640178170" result="Skipped" label="Ignored" start-time="2026-09-23 13:16:11Z" end-time="2026-09-23 13:16:11Z" duration="0.021908" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <reason>
+                <message><![CDATA[Frozen canonical M9D replay artifacts are not installed in this checkout.]]></message>
+              </reason>
+            </test-case>
+            <test-case id="1063" name="UnassignedControllerNamesDependencyAndUiDoesNotThrow" fullname="FlyBrain.Tests.M9DSceneConstructionTests.UnassignedControllerNamesDependencyAndUiDoesNotThrow" methodname="UnassignedControllerNamesDependencyAndUiDoesNotThrow" classname="FlyBrain.Tests.M9DSceneConstructionTests" runstate="Runnable" seed="1855351247" result="Passed" start-time="2026-09-23 13:16:11Z" end-time="2026-09-23 13:16:11Z" duration="0.022478" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[M9D replay initialization failed: serialized dependency 'loader' is not assigned.
+Saving results to: C:/Users/legen/AppData/LocalLow/DefaultCompany/FlyBrainUnity\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
