@@ -38,7 +38,11 @@ namespace FlyBrain.Tests
             Assert.That(controller.SideBySide, Is.True);
             Assert.That(controller.PresentationInterpolation, Is.False);
             Assert.That(controller.PresentationSpeed, Is.EqualTo(1));
-            Assert.That(controller.LeftRig.PresentationOffset, Is.Not.EqualTo(controller.RightRig.PresentationOffset));
+            var expectedHalfSeparation = controller.PresentationSeparation * .5f;
+            Assert.That(controller.LeftRig.PresentationOffset, Is.EqualTo(Vector3.left * expectedHalfSeparation));
+            Assert.That(controller.RightRig.PresentationOffset, Is.EqualTo(Vector3.right * expectedHalfSeparation));
+            Assert.That(controller.LeftRig.PresentationOffset, Is.EqualTo(-controller.RightRig.PresentationOffset),
+                "saved comparison rigs must retain distinct symmetric presentation-only offsets");
             Assert.That(controller.TrajectoryTracesVisible, Is.True);
             Assert.That(top.GetComponentsInChildren<M9DTrajectoryTrace>(true), Has.Length.EqualTo(2));
             Assert.That(top.GetComponentsInChildren<M9DForceArrow>(true), Has.Length.EqualTo(1));

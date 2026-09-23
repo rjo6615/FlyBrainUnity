@@ -11,11 +11,12 @@ namespace FlyBrain.M7FReplay
     {
         [SerializeField] Transform root;
         [SerializeField] M7FJointBinding[] joints = Array.Empty<M7FJointBinding>();
+        [SerializeField] Vector3 presentationOffset;
         Quaternion[] restRotations;
         int[] sourceIndices;
         public string LastMappingError { get; private set; }
         public string ValidationStatus => LastMappingError ?? (restRotations == null ? "NOT VALIDATED" : "42 / 42 JOINTS BOUND");
-        public Vector3 PresentationOffset { get; set; }
+        public Vector3 PresentationOffset { get => presentationOffset; set => presentationOffset = value; }
         public IReadOnlyList<M7FJointBinding> Joints => joints;
         public Transform ScientificRoot => root;
 
