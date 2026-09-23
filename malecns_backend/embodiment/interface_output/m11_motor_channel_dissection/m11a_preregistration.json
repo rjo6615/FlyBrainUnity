@@ -272,6 +272,15 @@
       "name": "joint_RHFemur"
     }
   ],
+  "provenance_amendment": {
+    "neural_transitions_before_correction": 0,
+    "physics_transitions_before_correction": 0,
+    "previous_preregistration_sha256": "758668128d0fbc89e95da787a9f3088a453cb751d7c25a174c90d04cc746e3bd",
+    "reason": "m10c_manifest.json was recorded using the LF-normalized Git blob identity rather than the canonical generated M10C artifact raw-byte identity",
+    "scientific_conditions_executed_before_correction": 0,
+    "scientific_design_changed": false,
+    "type": "PRE-EXECUTION provenance correction"
+  },
   "schema": "M11A-PREREGISTERED-MOTOR-CHANNEL-DISSECTION.1",
   "scientific_question": "Which admitted motor channels are causally responsible for the later post-perturbation amplification observed in M10, and is that effect distributed across the admitted motor interface or concentrated in particular channels?",
   "scope": "M11 tests causal physical contributions of individual admitted motor channels within the modeled MaleCNS -> decoder -> admitted motor -> MuJoCo chain.",
@@ -314,9 +323,9 @@
       "sha256": "31d7dd5445ecd6bc17542f455d5196a087934f3251d5c36915424b737e595740"
     },
     "m10c_manifest.json": {
-      "byte_size": 2505,
+      "byte_size": 2588,
       "directory": "m10c",
-      "sha256": "4169cd04974330cfbdfb435f1ffb174fd6711b495192c9f1528b7ee9505e29c9"
+      "sha256": "d5cb32c04da9b285247b35ad44b252997bc0a38c3f5fd9657a49857635f10454"
     }
   }
 }
