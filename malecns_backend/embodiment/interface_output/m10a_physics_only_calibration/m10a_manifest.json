@@ -1,0 +1,14 @@
+{
+  "raw": {
+    "byte_size": 75475563,
+    "path": "m10a_raw.npz",
+    "sha256": "3058b21a4776ee8743b1ed5ea3233ed5e03e81eeafacf174b0d19ab06533af5c"
+  },
+  "report": {
+    "byte_size": 76366,
+    "path": "m10a_report.json",
+    "sha256": "e08b5f127a18a9b1f51feca41cb140a6b8d787254bea106056a7c87ab30667b8"
+  },
+  "schema": "M10A-PHYSICS-ONLY-PERTURBATION-RANGE-CALIBRATION.1",
+  "status": "COMPLETE"
+}
