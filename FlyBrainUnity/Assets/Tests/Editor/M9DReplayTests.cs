@@ -1,6 +1,8 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
+using System.Reflection.Emit;
 using FlyBrain.M7FReplay;
 using NUnit.Framework;
 using UnityEngine;
@@ -31,8 +33,61 @@ namespace FlyBrain.Tests
             var owner=new GameObject("arrow"); var arrow=owner.AddComponent<M9DForceArrow>();
             Assert.That(owner.GetComponent<Rigidbody>(),Is.Null); Assert.That(owner.GetComponent<Collider>(),Is.Null);
             Assert.That(arrow.UnityDirection,Is.EqualTo(Vector3.forward)); Assert.That(M9DForceArrow.Annotation,Does.Contain("visualization only"));
-            foreach(var method in typeof(M9DForceArrow).GetMethods(BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic)) Assert.That(method.Name,Does.Not.Contain("Force"));
+            Assert.That(owner.GetComponents<Component>().Select(value=>value.GetType()),Is.EquivalentTo(new[]{typeof(Transform),typeof(M9DForceArrow)}));
+            Assert.That(typeof(M9DForceArrow).GetFields(BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.DeclaredOnly)
+                .Select(field=>$"{field.Name}:{field.FieldType.FullName}"),Is.EquivalentTo(new[]{
+                    $"controller:{typeof(M9DReplayController).FullName}",$"authoritativeThorax:{typeof(Transform).FullName}",$"illustrativeLength:{typeof(float).FullName}"}));
+            foreach(var method in typeof(M9DForceArrow).GetMethods(BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.DeclaredOnly))
+                foreach(var called in CalledMethods(method)) Assert.That(IsPresentationOnlyCall(called),Is.True,$"{method.Name} calls prohibited API {called.DeclaringType?.FullName}.{called.Name}");
             UnityEngine.Object.DestroyImmediate(owner);
+        }
+
+        static bool IsPresentationOnlyCall(MethodBase method)
+        {
+            var owner=method.DeclaringType;
+            if(owner==typeof(M9DReplayController))return method.Name=="get_ForceActive";
+            if(owner==typeof(UnityEngine.Object))return method.Name is "op_Implicit" or "op_Inequality";
+            if(owner==typeof(Component))return method.Name=="get_transform" || method.Name=="GetComponentsInChildren" && method is MethodInfo info && info.IsGenericMethod && info.GetGenericArguments().SequenceEqual(new[]{typeof(Renderer)});
+            if(owner==typeof(Renderer))return method.Name=="set_enabled";
+            if(owner==typeof(Transform))return method.Name is "get_position" or "set_position" or "set_rotation";
+            if(owner==typeof(Vector3))return method.Name=="get_forward";
+            return owner==typeof(Quaternion) && method.Name=="LookRotation";
+        }
+
+        static MethodBase[] CalledMethods(MethodInfo method)
+        {
+            var body=method.GetMethodBody(); if(body==null)return Array.Empty<MethodBase>();
+            var il=body.GetILAsByteArray(); var calls=new System.Collections.Generic.List<MethodBase>();
+            for(var offset=0;offset<il.Length;)
+            {
+                OpCode opcode; var first=il[offset++];
+                if(first==0xfe)opcode=MultiByteOpCodes[il[offset++]]; else opcode=SingleByteOpCodes[first];
+                if(opcode.OperandType is OperandType.InlineMethod)
+                {
+                    var token=BitConverter.ToInt32(il,offset); calls.Add(method.Module.ResolveMethod(token,method.DeclaringType?.GetGenericArguments(),method.GetGenericArguments()));
+                }
+                offset+=OperandSize(opcode.OperandType,il,offset);
+            }
+            return calls.ToArray();
+        }
+
+        static int OperandSize(OperandType type,byte[] il,int offset) => type switch
+        {
+            OperandType.InlineNone=>0, OperandType.ShortInlineBrTarget or OperandType.ShortInlineI or OperandType.ShortInlineVar=>1,
+            OperandType.InlineVar=>2, OperandType.InlineI8 or OperandType.InlineR=>8,
+            OperandType.InlineSwitch=>4+BitConverter.ToInt32(il,offset)*4, _=>4
+        };
+
+        static readonly OpCode[] SingleByteOpCodes=BuildOpCodes(false), MultiByteOpCodes=BuildOpCodes(true);
+        static OpCode[] BuildOpCodes(bool multiByte)
+        {
+            var values=new OpCode[256];
+            foreach(var field in typeof(OpCodes).GetFields(BindingFlags.Public|BindingFlags.Static))
+            {
+                var opcode=(OpCode)field.GetValue(null); var value=(ushort)opcode.Value;
+                if((value>0xff)==multiByte)values[value&0xff]=opcode;
+            }
+            return values;
         }
 
         [Test] public void ScientificLabelsUseRequiredMotorGateLanguage()
