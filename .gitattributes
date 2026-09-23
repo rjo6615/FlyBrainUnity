@@ -29,3 +29,5 @@ malecns_backend/embodiment/interface_output/m10b_perturbation_scaling/m10b_raw.n
 malecns_backend/embodiment/interface_output/m9d_unity_replay/*.bin filter=lfs diff=lfs merge=lfs -text
 FlyBrainUnity/Assets/StreamingAssets/M8Replay/*.bin filter=lfs diff=lfs merge=lfs -text
 FlyBrainUnity/Assets/StreamingAssets/M9DReplay/*.bin filter=lfs diff=lfs merge=lfs -text
+
+six_tibia_causal_result.json -text
