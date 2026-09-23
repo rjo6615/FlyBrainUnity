@@ -12,9 +12,22 @@ from malecns_backend.embodiment import m11_motor_channel_dissection as m
 def test_exact_frozen_upstream_identity_registry_and_fail_closed(tmp_path):
     assert m.UPSTREAM_ARTIFACTS["m10b_raw.npz"] == {"directory": "m10b", "sha256": "85e98715ac3d8b219c86ef338187828e787ee8f300bacad9d318809e23208cde", "byte_size": 57652701}
     assert m.UPSTREAM_ARTIFACTS["m10c_analysis.json"]["sha256"] == "31d7dd5445ecd6bc17542f455d5196a087934f3251d5c36915424b737e595740"
+    assert m.UPSTREAM_ARTIFACTS["m10c_manifest.json"] == {"directory": "m10c", "sha256": "d5cb32c04da9b285247b35ad44b252997bc0a38c3f5fd9657a49857635f10454", "byte_size": 2588}
     assert set(m.UPSTREAM_ARTIFACTS) == {"m10b_raw.npz", "m10b_report.json", "m10b_manifest.json", "m10b_preregistration.json", "m10c_analysis.json", "m10c_manifest.json"}
     with pytest.raises(RuntimeError, match="before transitions.*m10b_raw"):
         m.verify_upstream(tmp_path, tmp_path)
+
+
+def test_pre_execution_provenance_amendment_is_frozen():
+    assert m.protocol()["provenance_amendment"] == {
+        "type": "PRE-EXECUTION provenance correction",
+        "previous_preregistration_sha256": "758668128d0fbc89e95da787a9f3088a453cb751d7c25a174c90d04cc746e3bd",
+        "reason": "m10c_manifest.json was recorded using the LF-normalized Git blob identity rather than the canonical generated M10C artifact raw-byte identity",
+        "scientific_conditions_executed_before_correction": 0,
+        "physics_transitions_before_correction": 0,
+        "neural_transitions_before_correction": 0,
+        "scientific_design_changed": False,
+    }
 
 
 def test_exact_motor_and_condition_inventories():

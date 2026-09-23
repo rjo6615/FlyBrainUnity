@@ -25,7 +25,17 @@ UPSTREAM_ARTIFACTS = {
     "m10b_manifest.json": {"directory": "m10b", "sha256": "62b1f4a3e5f5773de594a3d965b0227e0dec9cc52fb09658c0a3d92ecc7f0ad7", "byte_size": 26684},
     "m10b_preregistration.json": {"directory": "m10b", "sha256": "a267647093d616f394374761da58ae495f12a6df6fe12e004abbcb1cb1b2d5a9", "byte_size": 10924},
     "m10c_analysis.json": {"directory": "m10c", "sha256": "31d7dd5445ecd6bc17542f455d5196a087934f3251d5c36915424b737e595740", "byte_size": 30426},
-    "m10c_manifest.json": {"directory": "m10c", "sha256": "4169cd04974330cfbdfb435f1ffb174fd6711b495192c9f1528b7ee9505e29c9", "byte_size": 2505},
+    "m10c_manifest.json": {"directory": "m10c", "sha256": "d5cb32c04da9b285247b35ad44b252997bc0a38c3f5fd9657a49857635f10454", "byte_size": 2588},
+}
+
+PROVENANCE_AMENDMENT = {
+    "type": "PRE-EXECUTION provenance correction",
+    "previous_preregistration_sha256": "758668128d0fbc89e95da787a9f3088a453cb751d7c25a174c90d04cc746e3bd",
+    "reason": "m10c_manifest.json was recorded using the LF-normalized Git blob identity rather than the canonical generated M10C artifact raw-byte identity",
+    "scientific_conditions_executed_before_correction": 0,
+    "physics_transitions_before_correction": 0,
+    "neural_transitions_before_correction": 0,
+    "scientific_design_changed": False,
 }
 
 MOTOR_CHANNELS = (
@@ -58,7 +68,7 @@ THRESHOLDS = {"thorax_com_deviation_mm": 0.005, "root_orientation_shortest_arc_d
 CLASSIFICATIONS = ("ABLATION_REDUCES_AMPLIFICATION", "ABLATION_INCREASES_AMPLIFICATION",
                    "UNRESOLVED_AT_INHERITED_THRESHOLD")
 FUTURE_OUTPUTS = {"raw": "m11_raw.npz", "report": "m11_report.json", "manifest": "m11_manifest.json"}
-PREREGISTRATION_SHA256 = "758668128d0fbc89e95da787a9f3088a453cb751d7c25a174c90d04cc746e3bd"
+PREREGISTRATION_SHA256 = "aa8f0b57c1126d6f4bb5b477849e81be2dbd9c86ba6d180698810c7aedfe6fd5"
 
 
 def _sha256(path: Path) -> str:
@@ -119,6 +129,7 @@ def force_at_transition(transition: int) -> tuple[float, float, float]:
 def protocol() -> dict[str, Any]:
     return {
         "schema": "M11A-PREREGISTERED-MOTOR-CHANNEL-DISSECTION.1", "status": "NOT_RUN",
+        "provenance_amendment": PROVENANCE_AMENDMENT,
         "scientific_question": "Which admitted motor channels are causally responsible for the later post-perturbation amplification observed in M10, and is that effect distributed across the admitted motor interface or concentrated in particular channels?",
         "scope": "M11 tests causal physical contributions of individual admitted motor channels within the modeled MaleCNS -> decoder -> admitted motor -> MuJoCo chain.",
         "stage_design": {"stage_1": "exactly 13 conditions at force 1.024", "stage_2": "only after Stage 1 is frozen and analyzed, cross-force work requires a separate preregistration", "automatic_four_force_expansion": False},
