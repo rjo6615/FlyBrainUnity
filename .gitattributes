@@ -31,3 +31,5 @@ FlyBrainUnity/Assets/StreamingAssets/M8Replay/*.bin filter=lfs diff=lfs merge=lf
 FlyBrainUnity/Assets/StreamingAssets/M9DReplay/*.bin filter=lfs diff=lfs merge=lfs -text
 
 six_tibia_causal_result.json -text
+
+malecns_backend/embodiment/interface_output/isolated_tier_b_motor_validation.json -text
