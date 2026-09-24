@@ -1,8 +1,9 @@
 """Phase-1 session regressions; these never execute a canonical experiment."""
+import importlib.util
 import os
 from pathlib import Path
 import subprocess
-import types
+import sys
 
 import pytest
 
@@ -194,9 +195,21 @@ def test_real_parent_vs_session_noncanonical_prefix():
     __import__("numpy"); __import__("flygym")
     baseline = subprocess.check_output(["git", "show",
         "ec7773c:malecns_backend/embodiment/_windows_m8_live_condition.py"], text=True)
-    module = types.ModuleType("malecns_backend.embodiment._phase1_parent_baseline")
-    module.__package__ = "malecns_backend.embodiment"
-    exec(compile(baseline, "<phase1-parent-baseline>", "exec"), module.__dict__)
+    module_name = "malecns_backend.embodiment._phase1_parent_baseline"
+    historical_path = Path(
+        "malecns_backend/embodiment/_windows_m8_live_condition.py").resolve()
+    spec = importlib.util.spec_from_file_location(module_name, historical_path)
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    previous_module = sys.modules.get(module_name)
+    sys.modules[module_name] = module
+    try:
+        exec(compile(baseline, str(historical_path), "exec"), module.__dict__)
+    finally:
+        if previous_module is None:
+            sys.modules.pop(module_name, None)
+        else:
+            sys.modules[module_name] = previous_module
     from malecns_backend.embodiment import _windows_m7d_corrected_spontaneous_adapter as m7da
     from malecns_backend.embodiment import integrated_whole_leg_readiness as m6c
     protocol, records, table = m7da._protocol()
