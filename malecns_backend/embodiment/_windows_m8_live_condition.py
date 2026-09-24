@@ -42,7 +42,7 @@ def _pre_intervention_snapshot(*, brain: Any, physics: Any, commands: Any,
                                          for x in cached_table if x["neural_motor_admission"]]}
 
 
-def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_number: int,
+def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str, condition_number: int,
                   progress: Any, cached_admission_assertion: Any,
                   cached_records: Sequence[Mapping[str, Any]],
                   cached_table: Sequence[Mapping[str, Any]],
@@ -56,7 +56,8 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
                   m8_extended_telemetry: bool = True,
                   external_force_by_transition: Any | None = None,
                   m9b_extended_telemetry: bool = False,
-                  m10b_extended_telemetry: bool = False) -> Mapping[str, Any]:
+                  m10b_extended_telemetry: bool = False,
+                  pause_at_states: bool = False) -> Mapping[str, Any]:
     """Create, run, close, and summarize one fresh frozen runtime.
 
     The optional arguments are used by M7 to reuse this exact M6C embodiment.
@@ -181,7 +182,7 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
                 "dtype": str(field.dtype), "cadence": field.cadence, "meaning": field.meaning}
                 for name, field in telemetry_schema.items()}
         if initialize_only:
-            return {"pre_intervention_state": pre_intervention_state,
+            result = {"pre_intervention_state": pre_intervention_state,
                 "initial_physical_state_audit": initial_audit,
                 "telemetry_initialized": isinstance(trajectory, list),
                 "telemetry_schema": schema_report,
@@ -191,6 +192,14 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
                 "neural_steps": 0, "physics_steps": 0,
                 "sensory_updates": 0, "decoder_updates": 0,
                 "motor_interventions": 0}
+            if pause_at_states:
+                yield {"time_ms": float(physics.data.time * 1000),
+                    "qpos": physics.data.qpos, "qvel": physics.data.qvel,
+                    "joint_positions": commands, "commands": commands,
+                    "brain": brain, "finite": True, "initialization_only": True,
+                    "physics_transition": 0, "neural_transition_count": 0,
+                    "adhesion": (0.,) * 6}
+            return result
         phase["initialization"] = time.perf_counter() - started
         condition_started = time.perf_counter()
         for step in range(final_step + 1):
@@ -296,6 +305,22 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
                 "delivered_sensory_drive": delivered, "malecns_state_digest": _digest(brain),
                 "aggregate_cns_spike_count": aggregate_spikes, "finite": finite})
             phase["telemetry_hash"] += time.perf_counter() - telemetry_started
+            # Persistent sessions pause on an observational view. Legacy finite
+            # runs set pause_at_states=False, so they execute the parent path
+            # without snapshot copies, hashing, or generator suspension here.
+            if pause_at_states:
+                yield {"time_ms": now_ms, "qpos": physics.data.qpos,
+                    "qvel": physics.data.qvel, "joint_positions": measured,
+                    "commands": commands, "brain": brain,
+                    "sensory": sensory_values if step and step % stride == 0 else {},
+                    "sensory_candidates": tuple(sorted(candidates)) if step and step % stride == 0 else (),
+                    "delivered_sensory_drive": delivered,
+                    "decoder_outputs": raw_values if step and step % stride == 0 else {},
+                    "admitted_motor_contributions": contributions,
+                    "finite": bool(finite), "physics_transition": step,
+                    "neural_transition_count": step // stride,
+                    "neural_update": bool(step and step % stride == 0),
+                    "adhesion": (0.,) * 6}
             if not finite or step == final_step: break
             if external_force_by_transition is not None:
                 force = np.asarray(external_force_by_transition(condition, step), dtype=float)
@@ -358,3 +383,28 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
     finally:
         close = getattr(sim, "close", None)
         if close: close()
+
+
+def create_scientific_session(**kwargs: Any):
+    """Create an uninitialized persistent session for the frozen kernel."""
+    from .scientific_session import ScientificSession
+
+    return ScientificSession(lambda: _scientific_transition_kernel(
+        **kwargs, pause_at_states=True))
+
+
+def run_condition(**kwargs: Any) -> Mapping[str, Any]:
+    """Finite M8 adapter over the shared scientific kernel.
+
+    The no-pause policy retains the parent's return, telemetry, non-finite, and
+    initialize-only semantics without constructing Live Fly snapshots.
+    """
+    kernel = _scientific_transition_kernel(**kwargs, pause_at_states=False)
+    try:
+        try:
+            next(kernel)
+        except StopIteration as stopped:
+            return stopped.value
+        raise RuntimeError("legacy finite kernel unexpectedly paused")
+    finally:
+        kernel.close()
