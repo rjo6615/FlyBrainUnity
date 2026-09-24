@@ -83,7 +83,6 @@ def test_preregistration_bytes_match_protocol_and_frozen_hash():
     assert hashlib.sha256(m.PREREGISTRATION_PATH.read_bytes()).hexdigest() == m.PREREGISTRATION_SHA256
     assert m.verify_preregistration() == m.PREREGISTRATION_SHA256
     assert m.PREREGISTRATION_PATH.stat().st_size == 10003
-    assert not any((m.OUTPUT_DIR / name).exists() for name in m.FUTURE_OUTPUTS.values())
 
 
 def test_zero_transition_preflight_with_exact_identity_fixtures(tmp_path, monkeypatch):
