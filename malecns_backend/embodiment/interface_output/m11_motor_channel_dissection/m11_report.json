@@ -1,0 +1,545 @@
+{
+  "condition_order": [
+    "full_11_enabled",
+    "all_11_disabled",
+    "leave_one_out__joint_LFTibia",
+    "leave_one_out__joint_LMTibia",
+    "leave_one_out__joint_LHTibia",
+    "leave_one_out__joint_RFTibia",
+    "leave_one_out__joint_RMTibia",
+    "leave_one_out__joint_RHTibia",
+    "leave_one_out__joint_LFFemur",
+    "leave_one_out__joint_LMFemur",
+    "leave_one_out__joint_LHFemur",
+    "leave_one_out__joint_RMFemur",
+    "leave_one_out__joint_RHFemur"
+  ],
+  "initialization": {
+    "fresh_initialization_equivalent": true,
+    "fresh_runtime_count": 13,
+    "initialization_identity_canonicalization": {
+      "field": "m8_contact_identity.body_names values",
+      "neural_transitions_before_correction": 0,
+      "physics_transitions_before_correction": 0,
+      "preserves": "body IDs, semantic body identities, contact IDs, identity method, and all physical state",
+      "reason": "independently constructed runtimes add nonphysical per-runtime slash namespace prefixes to compiled MuJoCo body names",
+      "rule": "exact terminal component of slash-namespaced compiled MuJoCo identities",
+      "scientific_conditions_executed_before_correction": 0,
+      "scientific_design_changed": false,
+      "scope": "initialization-audit comparison and initialization identity hash only",
+      "type": "PRE-EXECUTION implementation correction"
+    },
+    "initialization_identity_sha256": "7bdb773f02aa49273a76750278c13548a5daa1f492228393daffb390cc5002e2",
+    "neural_transitions": 0,
+    "physics_transitions": 0
+  },
+  "interpretation_boundaries": {
+    "boundary_557_ms": "inherited engineering boundary; not biological latency",
+    "contact": "observational only; not neural sensory input",
+    "scope": "No inference about biological balance, righting, reflexes, recovery, natural locomotion, natural gait, or biological motor function is licensed."
+  },
+  "later_post_force_estimands": {
+    "joint_LFFemur": {
+      "root_orientation_shortest_arc_deg": {
+        "classification": "UNRESOLVED_AT_INHERITED_THRESHOLD",
+        "effect": 0.0
+      },
+      "thorax_com_deviation_mm": {
+        "classification": "UNRESOLVED_AT_INHERITED_THRESHOLD",
+        "effect": 0.0
+      }
+    },
+    "joint_LFTibia": {
+      "root_orientation_shortest_arc_deg": {
+        "classification": "UNRESOLVED_AT_INHERITED_THRESHOLD",
+        "effect": 0.0
+      },
+      "thorax_com_deviation_mm": {
+        "classification": "UNRESOLVED_AT_INHERITED_THRESHOLD",
+        "effect": 0.0
+      }
+    },
+    "joint_LHFemur": {
+      "root_orientation_shortest_arc_deg": {
+        "classification": "UNRESOLVED_AT_INHERITED_THRESHOLD",
+        "effect": 0.0
+      },
+      "thorax_com_deviation_mm": {
+        "classification": "UNRESOLVED_AT_INHERITED_THRESHOLD",
+        "effect": 0.0
+      }
+    },
+    "joint_LHTibia": {
+      "root_orientation_shortest_arc_deg": {
+        "classification": "UNRESOLVED_AT_INHERITED_THRESHOLD",
+        "effect": 0.0
+      },
+      "thorax_com_deviation_mm": {
+        "classification": "UNRESOLVED_AT_INHERITED_THRESHOLD",
+        "effect": 0.0
+      }
+    },
+    "joint_LMFemur": {
+      "root_orientation_shortest_arc_deg": {
+        "classification": "UNRESOLVED_AT_INHERITED_THRESHOLD",
+        "effect": 0.0800809527370534
+      },
+      "thorax_com_deviation_mm": {
+        "classification": "ABLATION_INCREASES_AMPLIFICATION",
+        "effect": 0.01057914718072301
+      }
+    },
+    "joint_LMTibia": {
+      "root_orientation_shortest_arc_deg": {
+        "classification": "UNRESOLVED_AT_INHERITED_THRESHOLD",
+        "effect": 0.030845901276372212
+      },
+      "thorax_com_deviation_mm": {
+        "classification": "ABLATION_INCREASES_AMPLIFICATION",
+        "effect": 0.008878514168945462
+      }
+    },
+    "joint_RFTibia": {
+      "root_orientation_shortest_arc_deg": {
+        "classification": "UNRESOLVED_AT_INHERITED_THRESHOLD",
+        "effect": 0.0
+      },
+      "thorax_com_deviation_mm": {
+        "classification": "UNRESOLVED_AT_INHERITED_THRESHOLD",
+        "effect": 0.0
+      }
+    },
+    "joint_RHFemur": {
+      "root_orientation_shortest_arc_deg": {
+        "classification": "UNRESOLVED_AT_INHERITED_THRESHOLD",
+        "effect": -0.018853553152418767
+      },
+      "thorax_com_deviation_mm": {
+        "classification": "UNRESOLVED_AT_INHERITED_THRESHOLD",
+        "effect": 0.004611411328502176
+      }
+    },
+    "joint_RHTibia": {
+      "root_orientation_shortest_arc_deg": {
+        "classification": "ABLATION_INCREASES_AMPLIFICATION",
+        "effect": 0.2954130474348725
+      },
+      "thorax_com_deviation_mm": {
+        "classification": "ABLATION_REDUCES_AMPLIFICATION",
+        "effect": -0.0065629231183492575
+      }
+    },
+    "joint_RMFemur": {
+      "root_orientation_shortest_arc_deg": {
+        "classification": "UNRESOLVED_AT_INHERITED_THRESHOLD",
+        "effect": 0.11340333038115702
+      },
+      "thorax_com_deviation_mm": {
+        "classification": "ABLATION_INCREASES_AMPLIFICATION",
+        "effect": 0.0050496501257384745
+      }
+    },
+    "joint_RMTibia": {
+      "root_orientation_shortest_arc_deg": {
+        "classification": "UNRESOLVED_AT_INHERITED_THRESHOLD",
+        "effect": 0.0
+      },
+      "thorax_com_deviation_mm": {
+        "classification": "UNRESOLVED_AT_INHERITED_THRESHOLD",
+        "effect": -0.0010727972689350898
+      }
+    }
+  },
+  "metric_definitions": {
+    "root_orientation_shortest_arc_deg": "quaternion shortest-arc orientation displacement in degrees",
+    "thorax_com_deviation_mm": "Euclidean Thorax/root COM displacement in mm"
+  },
+  "motor_inventory": [
+    {
+      "action_index": 5,
+      "coordinate_sign": 1,
+      "name": "joint_LFTibia"
+    },
+    {
+      "action_index": 12,
+      "coordinate_sign": 1,
+      "name": "joint_LMTibia"
+    },
+    {
+      "action_index": 19,
+      "coordinate_sign": 1,
+      "name": "joint_LHTibia"
+    },
+    {
+      "action_index": 26,
+      "coordinate_sign": 1,
+      "name": "joint_RFTibia"
+    },
+    {
+      "action_index": 33,
+      "coordinate_sign": 1,
+      "name": "joint_RMTibia"
+    },
+    {
+      "action_index": 40,
+      "coordinate_sign": 1,
+      "name": "joint_RHTibia"
+    },
+    {
+      "action_index": 3,
+      "coordinate_sign": -1,
+      "name": "joint_LFFemur"
+    },
+    {
+      "action_index": 10,
+      "coordinate_sign": -1,
+      "name": "joint_LMFemur"
+    },
+    {
+      "action_index": 17,
+      "coordinate_sign": -1,
+      "name": "joint_LHFemur"
+    },
+    {
+      "action_index": 31,
+      "coordinate_sign": -1,
+      "name": "joint_RMFemur"
+    },
+    {
+      "action_index": 38,
+      "coordinate_sign": -1,
+      "name": "joint_RHFemur"
+    }
+  ],
+  "per_condition_deviations": {
+    "all_11_disabled": {
+      "root_orientation_shortest_arc_deg": {
+        "direct_force": 0.3415218267171645,
+        "early_post_force": 0.2245832329493167,
+        "later_post_force": 0.048953906821274214,
+        "pre": 4.346213381911881
+      },
+      "thorax_com_deviation_mm": {
+        "direct_force": 0.00469250080349265,
+        "early_post_force": 0.0028724686571690015,
+        "later_post_force": 0.001967323116760628,
+        "pre": 0.21887967969700528
+      }
+    },
+    "full_11_enabled": {
+      "root_orientation_shortest_arc_deg": {
+        "direct_force": 0.24539058971165395,
+        "early_post_force": 0.29804916742528587,
+        "later_post_force": 0.751905117937245,
+        "pre": 4.065487530786974
+      },
+      "thorax_com_deviation_mm": {
+        "direct_force": 0.006375089349667632,
+        "early_post_force": 0.007115683986851279,
+        "later_post_force": 0.02053403052433354,
+        "pre": 0.20150335993644516
+      }
+    },
+    "leave_one_out__joint_LFFemur": {
+      "root_orientation_shortest_arc_deg": {
+        "direct_force": 0.24539058971165395,
+        "early_post_force": 0.29804916742528587,
+        "later_post_force": 0.751905117937245,
+        "pre": 4.065487530786974
+      },
+      "thorax_com_deviation_mm": {
+        "direct_force": 0.006375089349667632,
+        "early_post_force": 0.007115683986851279,
+        "later_post_force": 0.02053403052433354,
+        "pre": 0.20150335993644516
+      }
+    },
+    "leave_one_out__joint_LFTibia": {
+      "root_orientation_shortest_arc_deg": {
+        "direct_force": 0.24539058971165395,
+        "early_post_force": 0.29804916742528587,
+        "later_post_force": 0.751905117937245,
+        "pre": 4.065487530786974
+      },
+      "thorax_com_deviation_mm": {
+        "direct_force": 0.006375089349667632,
+        "early_post_force": 0.007115683986851279,
+        "later_post_force": 0.02053403052433354,
+        "pre": 0.20150335993644516
+      }
+    },
+    "leave_one_out__joint_LHFemur": {
+      "root_orientation_shortest_arc_deg": {
+        "direct_force": 0.24539058971165395,
+        "early_post_force": 0.29804916742528587,
+        "later_post_force": 0.751905117937245,
+        "pre": 4.065487530786974
+      },
+      "thorax_com_deviation_mm": {
+        "direct_force": 0.006375089349667632,
+        "early_post_force": 0.007115683986851279,
+        "later_post_force": 0.02053403052433354,
+        "pre": 0.20150335993644516
+      }
+    },
+    "leave_one_out__joint_LHTibia": {
+      "root_orientation_shortest_arc_deg": {
+        "direct_force": 0.24539058971165395,
+        "early_post_force": 0.29804916742528587,
+        "later_post_force": 0.751905117937245,
+        "pre": 4.065487530786974
+      },
+      "thorax_com_deviation_mm": {
+        "direct_force": 0.006375089349667632,
+        "early_post_force": 0.007115683986851279,
+        "later_post_force": 0.02053403052433354,
+        "pre": 0.20150335993644516
+      }
+    },
+    "leave_one_out__joint_LMFemur": {
+      "root_orientation_shortest_arc_deg": {
+        "direct_force": 0.30547817917752446,
+        "early_post_force": 0.19738956446582734,
+        "later_post_force": 0.8319860706742984,
+        "pre": 4.069733524511961
+      },
+      "thorax_com_deviation_mm": {
+        "direct_force": 0.0074825152969362685,
+        "early_post_force": 0.006151555637532089,
+        "later_post_force": 0.03111317770505655,
+        "pre": 0.20761642974647604
+      }
+    },
+    "leave_one_out__joint_LMTibia": {
+      "root_orientation_shortest_arc_deg": {
+        "direct_force": 0.2243825483951613,
+        "early_post_force": 0.30478625534640424,
+        "later_post_force": 0.7827510192136172,
+        "pre": 4.042688435104274
+      },
+      "thorax_com_deviation_mm": {
+        "direct_force": 0.005592881856240294,
+        "early_post_force": 0.005599486920184352,
+        "later_post_force": 0.029412544693279002,
+        "pre": 0.2005394755503623
+      }
+    },
+    "leave_one_out__joint_RFTibia": {
+      "root_orientation_shortest_arc_deg": {
+        "direct_force": 0.24539058971165395,
+        "early_post_force": 0.29804916742528587,
+        "later_post_force": 0.751905117937245,
+        "pre": 4.065487530786974
+      },
+      "thorax_com_deviation_mm": {
+        "direct_force": 0.006375089349667632,
+        "early_post_force": 0.007115683986851279,
+        "later_post_force": 0.02053403052433354,
+        "pre": 0.20150335993644516
+      }
+    },
+    "leave_one_out__joint_RHFemur": {
+      "root_orientation_shortest_arc_deg": {
+        "direct_force": 0.31723748645319744,
+        "early_post_force": 0.189335814444686,
+        "later_post_force": 0.7330515647848262,
+        "pre": 4.109738251999136
+      },
+      "thorax_com_deviation_mm": {
+        "direct_force": 0.006980939957455566,
+        "early_post_force": 0.006110654571383427,
+        "later_post_force": 0.025145441852835716,
+        "pre": 0.2089738169922936
+      }
+    },
+    "leave_one_out__joint_RHTibia": {
+      "root_orientation_shortest_arc_deg": {
+        "direct_force": 0.3161425613064954,
+        "early_post_force": 0.22311151548655686,
+        "later_post_force": 1.0473181653721175,
+        "pre": 4.276742021220307
+      },
+      "thorax_com_deviation_mm": {
+        "direct_force": 0.0036089482757516982,
+        "early_post_force": 0.003686804930671901,
+        "later_post_force": 0.013971107405984283,
+        "pre": 0.2110055254891887
+      }
+    },
+    "leave_one_out__joint_RMFemur": {
+      "root_orientation_shortest_arc_deg": {
+        "direct_force": 0.7844971718166847,
+        "early_post_force": 0.7849538976746693,
+        "later_post_force": 0.865308448318402,
+        "pre": 4.041081479174988
+      },
+      "thorax_com_deviation_mm": {
+        "direct_force": 0.017723768012505997,
+        "early_post_force": 0.02084453300752023,
+        "later_post_force": 0.025583680650072015,
+        "pre": 0.21737206798777103
+      }
+    },
+    "leave_one_out__joint_RMTibia": {
+      "root_orientation_shortest_arc_deg": {
+        "direct_force": 0.24539058971165395,
+        "early_post_force": 0.29804916742528587,
+        "later_post_force": 0.751905117937245,
+        "pre": 4.065487530786974
+      },
+      "thorax_com_deviation_mm": {
+        "direct_force": 0.006375089349667632,
+        "early_post_force": 0.007115683986851279,
+        "later_post_force": 0.01946123325539845,
+        "pre": 0.20150335993644516
+      }
+    }
+  },
+  "perturbation": {
+    "application_body_source": "Thorax",
+    "application_point": "authoritative body center of mass",
+    "direction_xyz": [
+      0.0,
+      1.0,
+      0.0
+    ],
+    "frame": "world",
+    "magnitude": 1.024,
+    "start_ms_inclusive": 500.0,
+    "start_transition_inclusive": 5000,
+    "stop_ms_exclusive": 520.0,
+    "stop_transition_exclusive": 5200,
+    "torque_xyz": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "preregistration": {
+    "byte_size": 10003,
+    "sha256": "aa8f0b57c1126d6f4bb5b477849e81be2dbd9c86ba6d180698810c7aedfe6fd5"
+  },
+  "schema": "M11B-CANONICAL-MOTOR-CHANNEL-DISSECTION.1",
+  "status": "COMPLETE",
+  "thresholds": {
+    "root_orientation_shortest_arc_deg": 0.25,
+    "thorax_com_deviation_mm": 0.005
+  },
+  "timing": {
+    "duration_ms": 1500.0,
+    "neural_dt_ms": 0.5,
+    "neural_transitions_per_condition": 3000,
+    "physics_dt_ms": 0.1,
+    "physics_transitions_per_condition": 15000
+  },
+  "transition_counts": {
+    "aggregate": {
+      "neural_transitions": 39000,
+      "physics_transitions": 195000
+    },
+    "per_condition": {
+      "all_11_disabled": {
+        "neural_transitions": 3000,
+        "physics_transitions": 15000
+      },
+      "full_11_enabled": {
+        "neural_transitions": 3000,
+        "physics_transitions": 15000
+      },
+      "leave_one_out__joint_LFFemur": {
+        "neural_transitions": 3000,
+        "physics_transitions": 15000
+      },
+      "leave_one_out__joint_LFTibia": {
+        "neural_transitions": 3000,
+        "physics_transitions": 15000
+      },
+      "leave_one_out__joint_LHFemur": {
+        "neural_transitions": 3000,
+        "physics_transitions": 15000
+      },
+      "leave_one_out__joint_LHTibia": {
+        "neural_transitions": 3000,
+        "physics_transitions": 15000
+      },
+      "leave_one_out__joint_LMFemur": {
+        "neural_transitions": 3000,
+        "physics_transitions": 15000
+      },
+      "leave_one_out__joint_LMTibia": {
+        "neural_transitions": 3000,
+        "physics_transitions": 15000
+      },
+      "leave_one_out__joint_RFTibia": {
+        "neural_transitions": 3000,
+        "physics_transitions": 15000
+      },
+      "leave_one_out__joint_RHFemur": {
+        "neural_transitions": 3000,
+        "physics_transitions": 15000
+      },
+      "leave_one_out__joint_RHTibia": {
+        "neural_transitions": 3000,
+        "physics_transitions": 15000
+      },
+      "leave_one_out__joint_RMFemur": {
+        "neural_transitions": 3000,
+        "physics_transitions": 15000
+      },
+      "leave_one_out__joint_RMTibia": {
+        "neural_transitions": 3000,
+        "physics_transitions": 15000
+      }
+    }
+  },
+  "upstream_artifacts": {
+    "m10b_manifest.json": {
+      "byte_size": 26684,
+      "directory": "m10b",
+      "sha256": "62b1f4a3e5f5773de594a3d965b0227e0dec9cc52fb09658c0a3d92ecc7f0ad7"
+    },
+    "m10b_preregistration.json": {
+      "byte_size": 10924,
+      "directory": "m10b",
+      "sha256": "a267647093d616f394374761da58ae495f12a6df6fe12e004abbcb1cb1b2d5a9"
+    },
+    "m10b_raw.npz": {
+      "byte_size": 57652701,
+      "directory": "m10b",
+      "sha256": "85e98715ac3d8b219c86ef338187828e787ee8f300bacad9d318809e23208cde"
+    },
+    "m10b_report.json": {
+      "byte_size": 5785,
+      "directory": "m10b",
+      "sha256": "fdc3cc8aef9f02a85dc10f671a4ff86d9592354c8ea60d9a5f179b2c0c81acfc"
+    },
+    "m10c_analysis.json": {
+      "byte_size": 30426,
+      "directory": "m10c",
+      "sha256": "31d7dd5445ecd6bc17542f455d5196a087934f3251d5c36915424b737e595740"
+    },
+    "m10c_manifest.json": {
+      "byte_size": 2588,
+      "directory": "m10c",
+      "sha256": "d5cb32c04da9b285247b35ad44b252997bc0a38c3f5fd9657a49857635f10454"
+    }
+  },
+  "windows": {
+    "direct_force": {
+      "start_ms_inclusive": 500.0,
+      "stop_ms_exclusive": 520.0
+    },
+    "early_post_force": {
+      "start_ms_inclusive": 520.0,
+      "stop_ms_exclusive": 557.0
+    },
+    "later_post_force": {
+      "start_ms_inclusive": 557.0,
+      "stop_ms_inclusive": 1500.0
+    },
+    "pre": {
+      "start_ms_inclusive": 0.0,
+      "stop_ms_exclusive": 500.0
+    }
+  }
+}

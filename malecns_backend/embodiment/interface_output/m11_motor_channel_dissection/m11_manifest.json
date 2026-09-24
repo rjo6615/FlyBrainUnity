@@ -1,0 +1,146 @@
+{
+  "completion_status": "COMPLETE",
+  "condition_count": 13,
+  "determinism": {
+    "fresh_initialization_equivalent": true,
+    "fresh_runtime_count": 13,
+    "initialization_identity_canonicalization": {
+      "field": "m8_contact_identity.body_names values",
+      "neural_transitions_before_correction": 0,
+      "physics_transitions_before_correction": 0,
+      "preserves": "body IDs, semantic body identities, contact IDs, identity method, and all physical state",
+      "reason": "independently constructed runtimes add nonphysical per-runtime slash namespace prefixes to compiled MuJoCo body names",
+      "rule": "exact terminal component of slash-namespaced compiled MuJoCo identities",
+      "scientific_conditions_executed_before_correction": 0,
+      "scientific_design_changed": false,
+      "scope": "initialization-audit comparison and initialization identity hash only",
+      "type": "PRE-EXECUTION implementation correction"
+    },
+    "initialization_identity_sha256": "7bdb773f02aa49273a76750278c13548a5daa1f492228393daffb390cc5002e2",
+    "neural_transitions": 0,
+    "physics_transitions": 0
+  },
+  "numpy_version": "2.0.2",
+  "output_filenames": [
+    "m11_raw.npz",
+    "m11_report.json",
+    "m11_manifest.json"
+  ],
+  "outputs": {
+    "m11_raw.npz": {
+      "byte_size": 81305728,
+      "sha256": "0f5c8ca4777c79640a8cf032e21366cd6819335a7b22ff9457ed07aec1e183c1"
+    },
+    "m11_report.json": {
+      "byte_size": 17257,
+      "sha256": "2678b2fcb74144632134c397d96132f8232992606d34a40e2d056e061a49606f"
+    }
+  },
+  "preregistration": {
+    "byte_size": 10003,
+    "sha256": "aa8f0b57c1126d6f4bb5b477849e81be2dbd9c86ba6d180698810c7aedfe6fd5"
+  },
+  "python_version": "3.12.10",
+  "runtime_versions": {
+    "flygym": "1.2.1",
+    "mujoco": "3.2.7"
+  },
+  "schema": "M11B-CANONICAL-MOTOR-CHANNEL-DISSECTION.1",
+  "source_code": {
+    "_windows_m11_motor_channel_dissection_adapter.py": {
+      "byte_size": 23280,
+      "sha256": "80f53d73fa65b920ace6e0f7010c50be38d3a169b1b3dcd5e4baf3f5fcb83f6f"
+    },
+    "m11_motor_channel_dissection.py": {
+      "byte_size": 13735,
+      "sha256": "5a3e2bac587e748b4f34392c9741be5e47ada1abd52f533469396726813624a6"
+    }
+  },
+  "status": "COMPLETE",
+  "transition_counts": {
+    "aggregate": {
+      "neural_transitions": 39000,
+      "physics_transitions": 195000
+    },
+    "per_condition": {
+      "all_11_disabled": {
+        "neural_transitions": 3000,
+        "physics_transitions": 15000
+      },
+      "full_11_enabled": {
+        "neural_transitions": 3000,
+        "physics_transitions": 15000
+      },
+      "leave_one_out__joint_LFFemur": {
+        "neural_transitions": 3000,
+        "physics_transitions": 15000
+      },
+      "leave_one_out__joint_LFTibia": {
+        "neural_transitions": 3000,
+        "physics_transitions": 15000
+      },
+      "leave_one_out__joint_LHFemur": {
+        "neural_transitions": 3000,
+        "physics_transitions": 15000
+      },
+      "leave_one_out__joint_LHTibia": {
+        "neural_transitions": 3000,
+        "physics_transitions": 15000
+      },
+      "leave_one_out__joint_LMFemur": {
+        "neural_transitions": 3000,
+        "physics_transitions": 15000
+      },
+      "leave_one_out__joint_LMTibia": {
+        "neural_transitions": 3000,
+        "physics_transitions": 15000
+      },
+      "leave_one_out__joint_RFTibia": {
+        "neural_transitions": 3000,
+        "physics_transitions": 15000
+      },
+      "leave_one_out__joint_RHFemur": {
+        "neural_transitions": 3000,
+        "physics_transitions": 15000
+      },
+      "leave_one_out__joint_RHTibia": {
+        "neural_transitions": 3000,
+        "physics_transitions": 15000
+      },
+      "leave_one_out__joint_RMFemur": {
+        "neural_transitions": 3000,
+        "physics_transitions": 15000
+      },
+      "leave_one_out__joint_RMTibia": {
+        "neural_transitions": 3000,
+        "physics_transitions": 15000
+      }
+    }
+  },
+  "upstream_artifacts": {
+    "m10b_manifest.json": {
+      "byte_size": 26684,
+      "sha256": "62b1f4a3e5f5773de594a3d965b0227e0dec9cc52fb09658c0a3d92ecc7f0ad7"
+    },
+    "m10b_preregistration.json": {
+      "byte_size": 10924,
+      "sha256": "a267647093d616f394374761da58ae495f12a6df6fe12e004abbcb1cb1b2d5a9"
+    },
+    "m10b_raw.npz": {
+      "byte_size": 57652701,
+      "sha256": "85e98715ac3d8b219c86ef338187828e787ee8f300bacad9d318809e23208cde"
+    },
+    "m10b_report.json": {
+      "byte_size": 5785,
+      "sha256": "fdc3cc8aef9f02a85dc10f671a4ff86d9592354c8ea60d9a5f179b2c0c81acfc"
+    },
+    "m10c_analysis.json": {
+      "byte_size": 30426,
+      "sha256": "31d7dd5445ecd6bc17542f455d5196a087934f3251d5c36915424b737e595740"
+    },
+    "m10c_manifest.json": {
+      "byte_size": 2588,
+      "sha256": "d5cb32c04da9b285247b35ad44b252997bc0a38c3f5fd9657a49857635f10454"
+    }
+  }
+}

@@ -37,3 +37,5 @@ malecns_backend/embodiment/interface_output/m10a_physics_only_calibration/m10a_m
 malecns_backend/embodiment/interface_output/m10a_physics_only_calibration/m10a_report.json -text
 
 malecns_backend/embodiment/interface_output/m11_motor_channel_dissection/m11a_preregistration.json -text
+malecns_backend/embodiment/interface_output/m11_motor_channel_dissection/m11_report.json -text
+malecns_backend/embodiment/interface_output/m11_motor_channel_dissection/m11_manifest.json -text
