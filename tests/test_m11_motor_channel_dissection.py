@@ -3,10 +3,15 @@ import ast
 import hashlib
 import inspect
 import json
-
 import pytest
 
+try:
+    import numpy as np
+except ModuleNotFoundError:  # Core zero-transition tests remain runnable in minimal environments.
+    np = None
+
 from malecns_backend.embodiment import m11_motor_channel_dissection as m
+from malecns_backend.embodiment import _windows_m11_motor_channel_dissection_adapter as adapter
 
 
 def test_exact_frozen_upstream_identity_registry_and_fail_closed(tmp_path):
@@ -118,3 +123,104 @@ def test_import_and_cli_have_no_automatic_scientific_execution():
     assert not any(name.startswith(("flygym", "mujoco")) for name in imports)
     assert ".step(" not in source and "--run-windows" not in source
     assert m.protocol()["integrity"]["no_automatic_retries"] is True
+
+
+def test_cli_requires_explicit_mode_and_preflight_does_not_load_adapter(monkeypatch):
+    with pytest.raises(SystemExit):
+        m.main([])
+    called = False
+    monkeypatch.setattr(m, "preflight", lambda: {"status": "PREFLIGHT_PASS"})
+    assert m.main(["--preflight"]) == 0
+    assert called is False
+
+
+@pytest.mark.skipif(np is None, reason="NumPy unavailable")
+def _synthetic_raw(condition):
+    names = [x[0] for x in m.MOTOR_CHANNELS]
+    pre = np.arange(33_000, dtype=float).reshape(3000, 11) + 1
+    post = np.repeat(pre, 5, axis=0)
+    mask = np.asarray([name in dict(m.CONDITIONS)[condition] for name in names])
+    post[:, mask] = 0
+    times = np.linspace(0, 1500, 15001)
+    position = np.column_stack((times / 1000, np.zeros((15001, 2))))
+    orientation = np.zeros((15001, 4)); orientation[:, 0] = 1
+    return {
+        "physics_time_ms": times, "physics_body_position": position,
+        "physics_body_orientation": orientation,
+        "physics_qvel": np.zeros((15001, 6)),
+        "physics_joint_position": np.zeros((15001, 42)),
+        "physics_tarsus5_world_position": np.zeros((15001, 6, 3)),
+        "physics_tarsal_contact": np.zeros((15001, 6)),
+        "physics_external_force": np.asarray([m.force_at_transition(i) for i in range(15000)]),
+        "neural_sensory_physical_inputs": np.zeros((3000, 6)),
+        "neural_sensory_encoded": np.zeros((3000, 6)),
+        "neural_delivered_sensory_state": np.zeros((3000, 6)),
+        "neural_mapped_motor_population_state": np.zeros((3000, 11)),
+        "neural_decoder_outputs": pre.copy(), "neural_motor_pre_zero": pre,
+        "physics_neural_motor_contribution": post,
+        "physics_action": np.zeros((15001, 42)), "neural_time_ms": np.arange(3000) * .5,
+    }
+
+
+@pytest.mark.skipif(np is None, reason="NumPy unavailable")
+def test_raw_contract_retains_intervention_force_time_and_initialization_evidence():
+    result = {"raw_arrays": _synthetic_raw("leave_one_out__joint_LFTibia")}
+    arrays = adapter.condition_arrays(result, "leave_one_out__joint_LFTibia", "abc123")
+    assert tuple(arrays) == adapter.RAW_FIELDS
+    assert arrays["ablated_channel_mask"].sum() == 1
+    assert arrays["initialization_identity_sha256"].item() == "abc123"
+    assert np.count_nonzero(arrays["applied_external_force"][:, 1]) == 200
+    assert np.all(arrays["admitted_neural_motor_physical_contribution"][:, 0] == 0)
+    assert np.all(arrays["admitted_neural_motor_physical_contribution"][:, 1:] != 0)
+
+
+@pytest.mark.skipif(np is None, reason="NumPy unavailable")
+def test_report_builder_is_deterministic_and_has_required_estimands():
+    conditions = {name: adapter.condition_arrays({"raw_arrays": _synthetic_raw(name)}, name, "same")
+                  for name, _ in m.CONDITIONS}
+    counts = {"aggregate": {"physics_transitions": 195000, "neural_transitions": 39000}}
+    init = {"fresh_runtime_count": 13, "fresh_initialization_equivalent": True}
+    first = adapter.build_report(conditions, counts, init)
+    second = adapter.build_report(conditions, counts, init)
+    assert adapter._json_bytes(first) == adapter._json_bytes(second)
+    assert set(first["later_post_force_estimands"]) == {x[0] for x in m.MOTOR_CHANNELS}
+    assert "not biological latency" in first["interpretation_boundaries"]["boundary_557_ms"]
+    assert "not neural sensory input" in first["interpretation_boundaries"]["contact"]
+
+
+def test_transactional_publish_and_failure_rollback(tmp_path, monkeypatch):
+    report = {"schema": m.SCHEMA, "status": "COMPLETE"}
+    base = {"schema": m.SCHEMA, "status": "COMPLETE"}
+    manifest = adapter.publish_transaction(tmp_path, b"synthetic npz bytes", report, base)
+    assert manifest["outputs"]["m11_raw.npz"]["byte_size"] == 19
+    assert all((tmp_path / name).is_file() for name in m.FUTURE_OUTPUTS.values())
+
+    failed = tmp_path / "failed"; failed.mkdir()
+    real_replace = adapter.os.replace
+    calls = 0
+    def fail_second(source, destination):
+        nonlocal calls
+        calls += 1
+        if calls == 2:
+            raise OSError("synthetic publication failure")
+        return real_replace(source, destination)
+    monkeypatch.setattr(adapter.os, "replace", fail_second)
+    with pytest.raises(OSError, match="synthetic"):
+        adapter.publish_transaction(failed, b"raw", report, base)
+    assert not any((failed / name).exists() for name in m.FUTURE_OUTPUTS.values())
+    assert not any(path.name.startswith(".m11b-tmp") for path in failed.iterdir())
+
+
+def test_execution_checks_namespace_before_runtime_construction(tmp_path, monkeypatch):
+    (tmp_path / "m11_report.json").write_text("sentinel")
+    monkeypatch.setattr(m, "OUTPUT_DIR", tmp_path)
+    monkeypatch.setattr(m, "verify_preregistration", lambda: m.PREREGISTRATION_SHA256)
+    monkeypatch.setattr(m, "verify_upstream", lambda *args: {})
+    constructed = False
+    def forbidden(*args, **kwargs):
+        nonlocal constructed
+        constructed = True
+        raise AssertionError("runtime constructed")
+    with pytest.raises(FileExistsError):
+        adapter.execute_canonical(forbidden)
+    assert constructed is False

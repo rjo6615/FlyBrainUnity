@@ -1,8 +1,8 @@
-"""Inert M11A motor-channel-dissection design and read-only preflight.
+"""M11 motor-channel-dissection protocol, preflight, and guarded runner.
 
-This module contains no scientific execution path.  Importing it, testing its
-pure boundary intervention, and running ``--preflight`` construct neither the
-MaleCNS nor a physics runtime and perform zero scientific transitions.
+Importing it, testing its pure helpers, and running ``--preflight`` construct
+neither the MaleCNS nor a physics runtime.  Canonical execution is reachable
+only through the explicit ``--execute-canonical`` switch and a late import.
 """
 from __future__ import annotations
 
@@ -69,6 +69,10 @@ CLASSIFICATIONS = ("ABLATION_REDUCES_AMPLIFICATION", "ABLATION_INCREASES_AMPLIFI
                    "UNRESOLVED_AT_INHERITED_THRESHOLD")
 FUTURE_OUTPUTS = {"raw": "m11_raw.npz", "report": "m11_report.json", "manifest": "m11_manifest.json"}
 PREREGISTRATION_SHA256 = "aa8f0b57c1126d6f4bb5b477849e81be2dbd9c86ba6d180698810c7aedfe6fd5"
+PREREGISTRATION_BYTE_SIZE = 10003
+SCHEMA = "M11B-CANONICAL-MOTOR-CHANNEL-DISSECTION.1"
+TOTAL_PHYSICS_TRANSITIONS = 195000
+TOTAL_NEURAL_TRANSITIONS = 39000
 
 
 def _sha256(path: Path) -> str:
@@ -148,7 +152,8 @@ def protocol() -> dict[str, Any]:
 
 
 def verify_preregistration(path: Path = PREREGISTRATION_PATH) -> str:
-    if not path.is_file() or _sha256(path) != PREREGISTRATION_SHA256:
+    if (not path.is_file() or path.stat().st_size != PREREGISTRATION_BYTE_SIZE
+            or _sha256(path) != PREREGISTRATION_SHA256):
         raise RuntimeError("M11 fail-closed before transitions: preregistration mismatch")
     if json.loads(path.read_text(encoding="utf-8")) != protocol():
         raise RuntimeError("M11 fail-closed before transitions: preregistration content mismatch")
@@ -160,8 +165,9 @@ def outputs_available(output_dir: Path = OUTPUT_DIR) -> bool:
 
 
 def preflight(m10b_dir: Path = M10B_DIR, m10c_dir: Path = M10C_DIR,
-              output_dir: Path = OUTPUT_DIR) -> dict[str, Any]:
+              output_dir: Path | None = None) -> dict[str, Any]:
     """Read and hash only; deliberately reject before constructing runtimes."""
+    output_dir = OUTPUT_DIR if output_dir is None else output_dir
     preregistration = verify_preregistration()
     verified = verify_upstream(m10b_dir, m10c_dir)
     if not outputs_available(output_dir):
@@ -175,11 +181,20 @@ def preflight(m10b_dir: Path = M10B_DIR, m10c_dir: Path = M10C_DIR,
 
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--preflight", action="store_true", required=True,
-                        help="read-only validation; performs zero scientific transitions")
+    modes = parser.add_mutually_exclusive_group(required=True)
+    modes.add_argument("--preflight", action="store_true",
+                       help="read-only validation; performs zero scientific transitions")
+    modes.add_argument("--execute-canonical", action="store_true",
+                       help="explicitly execute and transactionally publish canonical M11B")
     args = parser.parse_args(argv)
     if args.preflight:
-        print(json.dumps(preflight(), indent=2, sort_keys=True))
+        result = preflight()
+    else:
+        # Physics dependencies and execution code are unreachable from import,
+        # --help, default invocation, and --preflight.
+        from . import _windows_m11_motor_channel_dissection_adapter as adapter
+        result = adapter.execute_canonical()
+    print(json.dumps(result, indent=2, sort_keys=True))
     return 0
 
 
