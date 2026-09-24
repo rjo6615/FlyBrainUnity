@@ -35,6 +35,17 @@ class ScientificSnapshot:
     diagnostics: Mapping[str, Any]
 
 
+@dataclass(frozen=True)
+class ScientificStep:
+    """Constant-size state needed by continuous observational runtimes."""
+
+    time_ms: float
+    root_position_xyz: tuple[float, float, float]
+    finite: bool
+    physics_transitions: int
+    neural_transitions: int
+
+
 class ScientificSession:
     """Initialize once, advance incrementally, snapshot, and close once.
 
@@ -77,7 +88,7 @@ class ScientificSession:
             self.finished = True
             self._result = stopped.value
 
-    def step(self) -> ScientificSnapshot:
+    def step(self, *, lightweight: bool = False) -> ScientificSnapshot | ScientificStep:
         if not self._initialized:
             raise RuntimeError("scientific session is not initialized")
         if self._closed:
@@ -90,6 +101,15 @@ class ScientificSession:
         if not self._state.get("finite", False):
             self.close()
             raise RuntimeError("non-finite authoritative state; session failed closed")
+        if lightweight:
+            qpos = self._state["qpos"]
+            return ScientificStep(
+                time_ms=float(self._state["time_ms"]),
+                root_position_xyz=tuple(float(x) for x in qpos[:3]),
+                finite=bool(self._state["finite"]),
+                physics_transitions=int(self._state["physics_transition"]),
+                neural_transitions=int(self._state["neural_transition_count"]),
+            )
         return self.snapshot()
 
     def snapshot(self) -> ScientificSnapshot:
