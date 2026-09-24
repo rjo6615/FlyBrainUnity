@@ -42,7 +42,7 @@ def _pre_intervention_snapshot(*, brain: Any, physics: Any, commands: Any,
                                          for x in cached_table if x["neural_motor_admission"]]}
 
 
-def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_number: int,
+def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str, condition_number: int,
                   progress: Any, cached_admission_assertion: Any,
                   cached_records: Sequence[Mapping[str, Any]],
                   cached_table: Sequence[Mapping[str, Any]],
@@ -181,7 +181,7 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
                 "dtype": str(field.dtype), "cadence": field.cadence, "meaning": field.meaning}
                 for name, field in telemetry_schema.items()}
         if initialize_only:
-            return {"pre_intervention_state": pre_intervention_state,
+            result = {"pre_intervention_state": pre_intervention_state,
                 "initial_physical_state_audit": initial_audit,
                 "telemetry_initialized": isinstance(trajectory, list),
                 "telemetry_schema": schema_report,
@@ -191,6 +191,14 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
                 "neural_steps": 0, "physics_steps": 0,
                 "sensory_updates": 0, "decoder_updates": 0,
                 "motor_interventions": 0}
+            yield {"time_ms": float(physics.data.time * 1000),
+                "qpos": np.asarray(physics.data.qpos).copy(),
+                "qvel": np.asarray(physics.data.qvel).copy(),
+                "joint_positions": np.asarray(commands).copy(),
+                "finite": bool(all(np.all(np.isfinite(a)) for a in
+                    (physics.data.qpos, physics.data.qvel, physics.data.ctrl))),
+                "initialization_only": True}
+            return result
         phase["initialization"] = time.perf_counter() - started
         condition_started = time.perf_counter()
         for step in range(final_step + 1):
@@ -296,6 +304,21 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
                 "delivered_sensory_drive": delivered, "malecns_state_digest": _digest(brain),
                 "aggregate_cns_spike_count": aggregate_spikes, "finite": finite})
             phase["telemetry_hash"] += time.perf_counter() - telemetry_started
+            # This yield is the sole persistent-session boundary.  State zero is
+            # yielded by initialize(); every subsequent resume performs exactly
+            # one MuJoCo transition before yielding the next authoritative state.
+            yield {"time_ms": now_ms,
+                "qpos": np.asarray(physics.data.qpos).copy(),
+                "qvel": np.asarray(physics.data.qvel).copy(),
+                "joint_positions": np.asarray(measured).copy(),
+                "sensory": sensory_values if step and step % stride == 0 else {},
+                "sensory_candidates": tuple(sorted(candidates)) if step and step % stride == 0 else (),
+                "delivered_sensory_drive": delivered,
+                "decoder_outputs": dict(raw_values) if step and step % stride == 0 else {},
+                "admitted_motor_contributions": dict(contributions),
+                "malecns_state_digest": _digest(brain),
+                "finite": bool(finite), "physics_transition": step,
+                "neural_update": bool(step and step % stride == 0)}
             if not finite or step == final_step: break
             if external_force_by_transition is not None:
                 force = np.asarray(external_force_by_transition(condition, step), dtype=float)
@@ -358,3 +381,29 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
     finally:
         close = getattr(sim, "close", None)
         if close: close()
+
+
+def create_scientific_session(**kwargs: Any):
+    """Create an uninitialized persistent session for the frozen kernel."""
+    from .scientific_session import ScientificSession
+
+    return ScientificSession(lambda: _scientific_transition_kernel(**kwargs))
+
+
+def run_condition(**kwargs: Any) -> Mapping[str, Any]:
+    """Finite M8 adapter over the same persistent scientific kernel.
+
+    Keeping this compatibility boundary means canonical callers retain their
+    result shape while incremental development callers use ``ScientificSession``.
+    """
+    session = create_scientific_session(**kwargs)
+    session.initialize()
+    try:
+        while not session.finished:
+            try:
+                session.step()
+            except StopIteration:
+                break
+        return session.result
+    finally:
+        session.close()
