@@ -7,6 +7,7 @@ position through the already validated safety pipeline.
 from __future__ import annotations
 
 import hashlib
+import itertools
 import json
 import math
 import time
@@ -57,7 +58,8 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                   external_force_by_transition: Any | None = None,
                   m9b_extended_telemetry: bool = False,
                   m10b_extended_telemetry: bool = False,
-                  pause_at_states: bool = False) -> Mapping[str, Any]:
+                  pause_at_states: bool = False,
+                  continuous: bool = False) -> Mapping[str, Any]:
     """Create, run, close, and summarize one fresh frozen runtime.
 
     The optional arguments are used by M7 to reuse this exact M6C embodiment.
@@ -127,7 +129,9 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
         encoders = {leg: SensoryEncoder(tibia[leg]) for leg in LEG_ORDER}; rngs = proprio_rngs(SEED)
         commands = _joint_positions(obs); baseline_commands = commands.copy()
         pending = set(); stride = int(round(NEURAL_DT_MS / (DEFAULT_TIMESTEP_S * 1000)))
-        final_step = int(round(run_duration_ms / (DEFAULT_TIMESTEP_S * 1000))); contributions = dict.fromkeys(admitted_names, 0.)
+        final_step = (None if continuous else
+                      int(round(run_duration_ms / (DEFAULT_TIMESTEP_S * 1000))))
+        contributions = dict.fromkeys(admitted_names, 0.)
         trajectory = []
         aggregate_spikes = 0; instability = False; unauthorized = 0
         pre_intervention_state = _pre_intervention_snapshot(brain=brain, physics=physics,
@@ -168,6 +172,8 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                     "tarsal_geom_ids": {k: list(v) for k, v in contact_identity["tarsal_geom_ids"].items()}}}
         telemetry = None; schema_report = {}
         if compact_telemetry:
+            if continuous:
+                raise ValueError("continuous sessions cannot allocate finite compact telemetry")
             telemetry_schema = build_schema(qpos_shape=np.asarray(physics.data.qpos).shape,
                 qvel_shape=np.asarray(physics.data.qvel).shape, ctrl_shape=np.asarray(physics.data.ctrl).shape,
                 contact_forces_shape=np.asarray(_forces(obs)).shape,
@@ -202,7 +208,9 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
             return result
         phase["initialization"] = time.perf_counter() - started
         condition_started = time.perf_counter()
-        for step in range(final_step + 1):
+        # Phase-1 finite-loop equivalent: for step in range(final_step + 1)
+        steps = itertools.count() if continuous else range(final_step + 1)
+        for step in steps:
             now_ms = float(physics.data.time * 1000); measured = _joint_positions(obs)
             sensory_started = time.perf_counter()
             if not proprioception_only:
@@ -283,7 +291,7 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                 m9b_body_up.append(up)
                 # Descriptive machine-readable state; no biological label.
                 m9b_fall_rollover.append((up[2] <= 0.0, up[2] < -0.5))
-            if m10b_extended_telemetry and step < final_step:
+            if m10b_extended_telemetry and (final_step is None or step < final_step):
                 m10b_physical_motor.append([float(neural_vector[channels[n]["index"]])
                                             if step and step % stride == 0 else
                                             float(commands[channels[n]["index"]] - baseline_commands[channels[n]["index"]])
@@ -297,7 +305,7 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                     "physics_ctrl": physics.data.ctrl, "physics_body_position": physics.data.qpos[:3],
                     "physics_body_orientation": physics.data.qpos[3:7],
                     "physics_contact_forces": _forces(obs), "physics_finite": finite}, now_ms)
-            else:
+            elif not pause_at_states:
                 trajectory.append({"time_ms": now_ms, "qpos": np.asarray(physics.data.qpos).tolist(),
                 "qvel": np.asarray(physics.data.qvel).tolist(), "action": np.asarray(commands).tolist(),
                 "ctrl": np.asarray(physics.data.ctrl).tolist(), "body_position": np.asarray(physics.data.qpos[:3]).tolist(),
@@ -321,7 +329,8 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                     "neural_transition_count": step // stride,
                     "neural_update": bool(step and step % stride == 0),
                     "adhesion": (0.,) * 6}
-            if not finite or step == final_step: break
+            # Phase-1 finite stop predicate: if not finite or step == final_step
+            if not finite or (final_step is not None and step == final_step): break
             if external_force_by_transition is not None:
                 force = np.asarray(external_force_by_transition(condition, step), dtype=float)
                 if force.shape != (3,) or not np.all(np.isfinite(force)):
@@ -332,7 +341,7 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                 m9b_force.append(force.copy())
             sim_started = time.perf_counter(); obs = sim.step({"joints": commands.copy(), "adhesion": np.zeros(6)})[0]
             phase["mujoco_stepping"] += time.perf_counter() - sim_started
-            if step and step % max(1, final_step // 10) == 0:
+            if final_step is not None and step and step % max(1, final_step // 10) == 0:
                 elapsed = time.perf_counter() - started
                 print(progress(condition_number, condition, step / final_step, step,
                     time.perf_counter() - condition_started, elapsed, elapsed / max(step, 1) * (final_step-step)), flush=True)
