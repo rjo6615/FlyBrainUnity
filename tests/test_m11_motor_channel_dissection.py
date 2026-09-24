@@ -82,6 +82,8 @@ def test_preregistration_bytes_match_protocol_and_frozen_hash():
     assert json.loads(m.PREREGISTRATION_PATH.read_text()) == m.protocol()
     assert hashlib.sha256(m.PREREGISTRATION_PATH.read_bytes()).hexdigest() == m.PREREGISTRATION_SHA256
     assert m.verify_preregistration() == m.PREREGISTRATION_SHA256
+    assert m.PREREGISTRATION_PATH.stat().st_size == 10003
+    assert not any((m.OUTPUT_DIR / name).exists() for name in m.FUTURE_OUTPUTS.values())
 
 
 def test_zero_transition_preflight_with_exact_identity_fixtures(tmp_path, monkeypatch):
@@ -176,8 +178,131 @@ def test_initialization_diagnostic_reports_only_exact_differences(monkeypatch):
         "baseline_value": [1.0, 2.0], "comparison_value": [1.0, 3.0],
         "category": "numeric_physical_state_value"}
     assert comparison["differing_audit_fields"][1]["category"] == "condition_or_runtime_metadata"
+    assert comparison["canonical_audit_equivalent_to_condition_1"] is False
+    assert comparison["raw_differences_disappear_under_canonical_audit_identity"] is False
     assert progress == ["[1/2] constructing baseline", "[1/2] complete: physics=0 neural=0",
                         "[2/2] constructing comparison", "[2/2] complete: physics=0 neural=0"]
+
+
+def _m11_initial_audit(namespace="1"):
+    return {
+        "initial_pose_source": "caller-supplied frozen physical runtime",
+        "body_position": [0.0, 0.0, 0.5],
+        "body_orientation_quaternion": [1.0, 0.0, 0.0, 0.0],
+        "joint_configuration": [0.1, 0.2],
+        "qpos": [0.0, 0.5], "qvel": [0.0, 0.0],
+        "ground": "frozen surface", "ground_dynamic_after_reset": False,
+        "gravity": [0.0, 0.0, -9.81], "control": "position",
+        "adhesion_enabled": False, "adhesion_command": [0.0] * 6,
+        "adhesion_policy": "constant zero baseline",
+        "locomotion_or_reference_controller": False,
+        "m8_contact_identity": {
+            "available": True,
+            "method": "exact terminal component of slash-namespaced compiled MuJoCo identities",
+            "body_names": {0: "world", 1: f"{namespace}/Thorax",
+                           2: f"{namespace}/LFTibia"},
+            "ground_geom_ids": [0],
+            "tarsal_geom_ids": {"LF": [7, 8]},
+            "tarsus5_body_ids": {"LF": 9},
+        },
+    }
+
+
+def test_initialization_audit_canonicalizes_only_body_name_runtime_namespaces():
+    first = _m11_initial_audit("1")
+    later = _m11_initial_audit("13")
+    canonical_first = adapter._canonical_initialization_audit(first)
+    canonical_later = adapter._canonical_initialization_audit(later)
+    assert canonical_first == canonical_later
+    assert canonical_first["m8_contact_identity"]["body_names"] == {
+        0: "world", 1: "Thorax", 2: "LFTibia"}
+    # Canonicalization is comparison-only and never mutates runtime evidence.
+    assert first["m8_contact_identity"]["body_names"][1] == "1/Thorax"
+    assert later["m8_contact_identity"]["body_names"][2] == "13/LFTibia"
+
+
+@pytest.mark.parametrize(("path", "replacement"), [
+    (("m8_contact_identity", "body_names", 2), "13/RFTibia"),
+    (("m8_contact_identity", "body_names"), {0: "world", 7: "13/Thorax", 2: "13/LFTibia"}),
+    (("m8_contact_identity", "tarsal_geom_ids"), {"LF": [7, 99]}),
+    (("m8_contact_identity", "tarsus5_body_ids"), {"LF": 10}),
+    (("m8_contact_identity", "ground_geom_ids"), [4]),
+    (("m8_contact_identity", "method"), "different method"),
+    (("m8_contact_identity", "available"), False),
+    (("qpos",), [1.0, 0.5]), (("qvel",), [1.0, 0.0]),
+    (("body_position",), [0.0, 0.1, 0.5]),
+    (("body_orientation_quaternion",), [0.0, 1.0, 0.0, 0.0]),
+    (("control",), "torque"), (("gravity",), [0.0, 0.0, -1.0]),
+    (("ground",), "other"), (("ground_dynamic_after_reset",), True),
+    (("initial_pose_source",), "other"), (("joint_configuration",), [0.1, 0.3]),
+    (("adhesion_enabled",), True), (("adhesion_command",), [1.0] * 6),
+    (("adhesion_policy",), "other"), (("locomotion_or_reference_controller",), True),
+])
+def test_initialization_audit_canonicalization_preserves_strict_differences(path, replacement):
+    baseline = _m11_initial_audit("1")
+    changed = _m11_initial_audit("13")
+    target = changed
+    for key in path[:-1]:
+        target = target[key]
+    target[path[-1]] = replacement
+    assert (adapter._canonical_initialization_audit(baseline)
+            != adapter._canonical_initialization_audit(changed))
+
+
+def test_readiness_uses_13_zero_transition_canonical_audits_and_deterministic_hash(monkeypatch):
+    monkeypatch.setattr(adapter.m7runner, "_protocol", lambda: (None, None, None))
+    calls = []
+    def initialize_only(runner, live, records, table, name, number, flag):
+        calls.append((name, number, flag))
+        return {"physics_steps": 0, "neural_steps": 0,
+                "pre_intervention_state": {"same": True},
+                "initial_physical_state_audit": _m11_initial_audit(str(number))}
+    monkeypatch.setattr(adapter, "invoke", initialize_only)
+    monkeypatch.setattr(adapter.m6c, "pre_intervention_equivalent", lambda left, right: left == right)
+    first = adapter.readiness(object())
+    second = adapter.readiness(object())
+    expected = hashlib.sha256(adapter._serialized_audit(
+        adapter._canonical_initialization_audit(_m11_initial_audit("99"))).encode()).hexdigest()
+    assert len(calls) == 26 and all(flag is True for _, _, flag in calls)
+    assert first["fresh_runtime_count"] == 13
+    assert first["physics_transitions"] == first["neural_transitions"] == 0
+    assert first["initialization_identity_sha256"] == expected
+    assert second["initialization_identity_sha256"] == expected
+
+
+@pytest.mark.parametrize(("physics", "neural"), [(1, 0), (0, 1)])
+def test_readiness_rejects_physics_or_neural_transition(monkeypatch, physics, neural):
+    monkeypatch.setattr(adapter.m7runner, "_protocol", lambda: (None, None, None))
+    monkeypatch.setattr(adapter, "invoke", lambda *args: {
+        "physics_steps": physics, "neural_steps": neural,
+        "pre_intervention_state": {}, "initial_physical_state_audit": _m11_initial_audit()})
+    with pytest.raises(RuntimeError, match="crossed a transition boundary"):
+        adapter.readiness(object())
+
+
+def test_readiness_still_requires_pre_intervention_equivalence(monkeypatch):
+    monkeypatch.setattr(adapter.m7runner, "_protocol", lambda: (None, None, None))
+    monkeypatch.setattr(adapter, "invoke", lambda *args: {
+        "physics_steps": 0, "neural_steps": 0,
+        "pre_intervention_state": {"condition": args[4]},
+        "initial_physical_state_audit": _m11_initial_audit(str(args[5]))})
+    monkeypatch.setattr(adapter.m6c, "pre_intervention_equivalent", lambda left, right: False)
+    with pytest.raises(RuntimeError, match="fresh initial states differ"):
+        adapter.readiness(object())
+
+
+def test_diagnostic_exposes_raw_namespace_difference_and_canonical_match(monkeypatch):
+    monkeypatch.setattr(adapter.m11, "CONDITIONS", (("baseline", ()), ("comparison", ())))
+    monkeypatch.setattr(adapter.m7runner, "_protocol", lambda: (None, None, None))
+    monkeypatch.setattr(adapter, "invoke", lambda runner, live, records, table, name, number, flag: {
+        "physics_steps": 0, "neural_steps": 0, "pre_intervention_state": {},
+        "initial_physical_state_audit": _m11_initial_audit(str(number))})
+    monkeypatch.setattr(adapter.m6c, "pre_intervention_equivalent", lambda left, right: True)
+    result = adapter.diagnose_initialization(object(), lambda message: None)
+    comparison = result["conditions"][1]
+    assert [row["field"] for row in comparison["differing_audit_fields"]] == ["m8_contact_identity"]
+    assert comparison["canonical_audit_equivalent_to_condition_1"] is True
+    assert comparison["raw_differences_disappear_under_canonical_audit_identity"] is True
 
 
 def test_initialization_diagnostic_rejects_any_transition(monkeypatch):

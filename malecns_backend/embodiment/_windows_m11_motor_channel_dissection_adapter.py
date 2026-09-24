@@ -6,6 +6,7 @@ force selector and final admitted-motor contribution gate.
 """
 from __future__ import annotations
 
+import copy
 import hashlib
 import io
 import json
@@ -33,6 +34,19 @@ RAW_FIELDS = (
     "neural_time_ms", "condition_identity", "ablated_channel_mask",
     "initialization_identity_sha256",
 )
+
+INITIALIZATION_IDENTITY_CANONICALIZATION = {
+    "type": "PRE-EXECUTION implementation correction",
+    "reason": "independently constructed runtimes add nonphysical per-runtime slash namespace prefixes to compiled MuJoCo body names",
+    "scope": "initialization-audit comparison and initialization identity hash only",
+    "field": "m8_contact_identity.body_names values",
+    "rule": "exact terminal component of slash-namespaced compiled MuJoCo identities",
+    "preserves": "body IDs, semantic body identities, contact IDs, identity method, and all physical state",
+    "scientific_conditions_executed_before_correction": 0,
+    "physics_transitions_before_correction": 0,
+    "neural_transitions_before_correction": 0,
+    "scientific_design_changed": False,
+}
 
 
 def _condition_ablations(condition: str) -> tuple[str, ...]:
@@ -70,22 +84,54 @@ def invoke(runner: Any, live: Any, records: Any, table: Any, condition: str,
         m10b_extended_telemetry=True)
 
 
+def _canonical_initialization_audit(audit: Mapping[str, Any]) -> dict[str, Any]:
+    """Remove only per-runtime slash namespaces from compiled body names.
+
+    The copy is used solely as an audit identity.  Runtime/model data and every
+    other audit field remain untouched and therefore subject to exact equality.
+    """
+    canonical = copy.deepcopy(dict(audit))
+    if "m8_contact_identity" not in canonical:
+        return canonical
+    contact = canonical["m8_contact_identity"]
+    if not isinstance(contact, dict):
+        raise TypeError("m8_contact_identity must be a mapping")
+    if "body_names" not in contact:
+        return canonical
+    body_names = contact["body_names"]
+    if not isinstance(body_names, dict):
+        raise TypeError("m8_contact_identity.body_names must be a mapping")
+    contact["body_names"] = {
+        body_id: str(name).rsplit("/", 1)[-1]
+        for body_id, name in body_names.items()
+    }
+    return canonical
+
+
+def _serialized_audit(audit: Mapping[str, Any]) -> str:
+    """Return the deterministic, exact JSON identity used by M11 readiness."""
+    return json.dumps(audit, sort_keys=True, separators=(",", ":"), default=str)
+
+
 def readiness(runner: Any) -> dict[str, Any]:
     """Construct 13 fresh states, check identity, and cross zero transitions."""
     live, records, table = m7runner._protocol()
     states = [invoke(runner, live, records, table, name, i, True)
               for i, (name, _) in enumerate(m11.CONDITIONS, 1)]
+    if len(states) != 13:
+        raise RuntimeError("M11 readiness requires exactly 13 fresh runtimes")
     if any(x["physics_steps"] or x["neural_steps"] for x in states):
         raise RuntimeError("M11 readiness crossed a transition boundary")
     snapshots = [x["pre_intervention_state"] for x in states]
     if not all(m6c.pre_intervention_equivalent(snapshots[0], x) for x in snapshots[1:]):
         raise RuntimeError("M11 fresh initial states differ")
-    audits = [json.dumps(x["initial_physical_state_audit"], sort_keys=True,
-                        separators=(",", ":"), default=str) for x in states]
+    audits = [_serialized_audit(_canonical_initialization_audit(
+        x["initial_physical_state_audit"])) for x in states]
     if len(set(audits)) != 1:
         raise RuntimeError("M11 physical initialization audits differ")
     return {"fresh_runtime_count": 13, "fresh_initialization_equivalent": True,
             "initialization_identity_sha256": hashlib.sha256(audits[0].encode()).hexdigest(),
+            "initialization_identity_canonicalization": INITIALIZATION_IDENTITY_CANONICALIZATION,
             "physics_transitions": 0, "neural_transitions": 0}
 
 
@@ -142,11 +188,13 @@ def diagnose_initialization(runner: Any = m10runner._runner,
 
     baseline_snapshot = states[0]["pre_intervention_state"]
     baseline_audit = states[0]["initial_physical_state_audit"]
+    baseline_canonical_audit = _canonical_initialization_audit(baseline_audit)
     all_keys = sorted({key for state in states
                        for key in state["initial_physical_state_audit"]})
     condition_reports = []
     for index, ((name, _), state) in enumerate(zip(m11.CONDITIONS, states)):
         audit = state["initial_physical_state_audit"]
+        canonical_audit = _canonical_initialization_audit(audit)
         differences = []
         for key in all_keys:
             baseline_present = key in baseline_audit
@@ -174,6 +222,12 @@ def diagnose_initialization(runner: Any = m10runner._runner,
                 bool(m6c.pre_intervention_equivalent(baseline_snapshot,
                                                      state["pre_intervention_state"]))),
             "differing_audit_fields": differences,
+            "canonical_audit_equivalent_to_condition_1": (
+                _serialized_audit(canonical_audit)
+                == _serialized_audit(baseline_canonical_audit)),
+            "raw_differences_disappear_under_canonical_audit_identity": (
+                bool(differences) and _serialized_audit(canonical_audit)
+                == _serialized_audit(baseline_canonical_audit)),
         })
     return {
         "mode": "INITIALIZATION_DIAGNOSTIC",
@@ -182,6 +236,7 @@ def diagnose_initialization(runner: Any = m10runner._runner,
         "neural_transitions": 0,
         "baseline_condition": m11.CONDITIONS[0][0],
         "initial_physical_state_audit_keys": all_keys,
+        "initialization_identity_canonicalization": INITIALIZATION_IDENTITY_CANONICALIZATION,
         "conditions": condition_reports,
         "canonical_outputs_published": False,
     }
