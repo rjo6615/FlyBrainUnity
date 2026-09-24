@@ -186,14 +186,21 @@ def main(argv: Sequence[str] | None = None) -> int:
                        help="read-only validation; performs zero scientific transitions")
     modes.add_argument("--execute-canonical", action="store_true",
                        help="explicitly execute and transactionally publish canonical M11B")
+    modes.add_argument("--diagnose-initialization", action="store_true",
+                       help="construct fresh initialize-only states and report exact audit differences")
     args = parser.parse_args(argv)
     if args.preflight:
         result = preflight()
-    else:
+    elif args.execute_canonical:
         # Physics dependencies and execution code are unreachable from import,
         # --help, default invocation, and --preflight.
         from . import _windows_m11_motor_channel_dissection_adapter as adapter
         result = adapter.execute_canonical()
+    else:
+        # This diagnostic constructs runtimes but invoke(..., initialize_only=True)
+        # crosses no transition and cannot publish canonical outputs.
+        from . import _windows_m11_motor_channel_dissection_adapter as adapter
+        result = adapter.diagnose_initialization()
     print(json.dumps(result, indent=2, sort_keys=True))
     return 0
 

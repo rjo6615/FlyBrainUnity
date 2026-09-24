@@ -13,7 +13,7 @@ import os
 from pathlib import Path
 import platform
 import shutil
-from typing import Any, Mapping
+from typing import Any, Callable, Mapping
 
 from . import m11_motor_channel_dissection as m11
 from . import _windows_m10b_perturbation_scaling_adapter as m10runner
@@ -87,6 +87,104 @@ def readiness(runner: Any) -> dict[str, Any]:
     return {"fresh_runtime_count": 13, "fresh_initialization_equivalent": True,
             "initialization_identity_sha256": hashlib.sha256(audits[0].encode()).hexdigest(),
             "physics_transitions": 0, "neural_transitions": 0}
+
+
+def _diagnostic_value(value: Any) -> Any:
+    """Return a JSON-renderable representation without altering comparisons."""
+    try:
+        return json.loads(json.dumps(value, allow_nan=False))
+    except (TypeError, ValueError):
+        return str(value)
+
+
+def _audit_category(key: str, baseline: Any, comparison: Any) -> str:
+    """Mechanically label a difference; the label has no audit semantics."""
+    lowered = key.lower()
+    if any(token in lowered for token in ("condition", "runtime", "identity", "name")):
+        return "condition_or_runtime_metadata"
+
+    def numeric(value: Any) -> bool:
+        if isinstance(value, bool):
+            return False
+        if isinstance(value, (int, float, complex)):
+            return True
+        if isinstance(value, (list, tuple)):
+            return bool(value) and all(numeric(item) for item in value)
+        try:
+            import numpy as np
+            array = np.asarray(value)
+            return array.size > 0 and np.issubdtype(array.dtype, np.number)
+        except (ImportError, TypeError, ValueError):
+            return False
+
+    if numeric(baseline) and numeric(comparison):
+        return "numeric_physical_state_value"
+    return "other"
+
+
+def diagnose_initialization(runner: Any = m10runner._runner,
+                              emit: Callable[[str], None] = print) -> dict[str, Any]:
+    """Expose exact initialize-only audit differences without running conditions."""
+    live, records, table = m7runner._protocol()
+    states = []
+    total = len(m11.CONDITIONS)
+    for index, (name, _) in enumerate(m11.CONDITIONS, 1):
+        emit(f"[{index}/{total}] constructing {name}")
+        state = invoke(runner, live, records, table, name, index, True)
+        physics = int(state["physics_steps"])
+        neural = int(state["neural_steps"])
+        emit(f"[{index}/{total}] complete: physics={physics} neural={neural}")
+        if physics or neural:
+            raise RuntimeError(
+                f"M11 initialization diagnostic crossed a transition boundary: {name} "
+                f"physics={physics} neural={neural}")
+        states.append(state)
+
+    baseline_snapshot = states[0]["pre_intervention_state"]
+    baseline_audit = states[0]["initial_physical_state_audit"]
+    all_keys = sorted({key for state in states
+                       for key in state["initial_physical_state_audit"]})
+    condition_reports = []
+    for index, ((name, _), state) in enumerate(zip(m11.CONDITIONS, states)):
+        audit = state["initial_physical_state_audit"]
+        differences = []
+        for key in all_keys:
+            baseline_present = key in baseline_audit
+            comparison_present = key in audit
+            baseline_value = baseline_audit.get(key)
+            comparison_value = audit.get(key)
+            equal = (baseline_present == comparison_present and
+                     json.dumps(baseline_value, sort_keys=True, separators=(",", ":"), default=str)
+                     == json.dumps(comparison_value, sort_keys=True, separators=(",", ":"), default=str))
+            if not equal:
+                differences.append({
+                    "field": key,
+                    "baseline_present": baseline_present,
+                    "comparison_present": comparison_present,
+                    "baseline_value": _diagnostic_value(baseline_value),
+                    "comparison_value": _diagnostic_value(comparison_value),
+                    "category": _audit_category(key, baseline_value, comparison_value),
+                })
+        condition_reports.append({
+            "condition": name,
+            "physics_steps": int(state["physics_steps"]),
+            "neural_steps": int(state["neural_steps"]),
+            "pre_intervention_equivalent_to_condition_1": (
+                True if index == 0 else
+                bool(m6c.pre_intervention_equivalent(baseline_snapshot,
+                                                     state["pre_intervention_state"]))),
+            "differing_audit_fields": differences,
+        })
+    return {
+        "mode": "INITIALIZATION_DIAGNOSTIC",
+        "scientific_conditions_executed": 0,
+        "physics_transitions": 0,
+        "neural_transitions": 0,
+        "baseline_condition": m11.CONDITIONS[0][0],
+        "initial_physical_state_audit_keys": all_keys,
+        "conditions": condition_reports,
+        "canonical_outputs_published": False,
+    }
 
 
 def condition_arrays(result: Mapping[str, Any], condition: str,

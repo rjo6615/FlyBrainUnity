@@ -134,6 +134,72 @@ def test_cli_requires_explicit_mode_and_preflight_does_not_load_adapter(monkeypa
     assert called is False
 
 
+def test_initialization_diagnostic_reports_only_exact_differences(monkeypatch):
+    conditions = (("baseline", ()), ("comparison", ()))
+    monkeypatch.setattr(adapter.m11, "CONDITIONS", conditions)
+    monkeypatch.setattr(adapter.m7runner, "_protocol", lambda: (object(), object(), object()))
+    calls = []
+    states = {
+        "baseline": {"physics_steps": 0, "neural_steps": 0,
+            "pre_intervention_state": {"position": 1},
+            "initial_physical_state_audit": {
+                "position": [1.0, 2.0], "runtime_name": "first", "equal": 7}},
+        "comparison": {"physics_steps": 0, "neural_steps": 0,
+            "pre_intervention_state": {"position": 2},
+            "initial_physical_state_audit": {
+                "position": [1.0, 3.0], "runtime_name": "second", "equal": 7}},
+    }
+    def initialize_only(runner, live, records, table, name, number, flag):
+        calls.append((name, flag))
+        return states[name]
+    monkeypatch.setattr(adapter, "invoke", initialize_only)
+    monkeypatch.setattr(adapter.m6c, "pre_intervention_equivalent", lambda left, right: left == right)
+    published = False
+    def forbidden_publish(*args, **kwargs):
+        nonlocal published
+        published = True
+        raise AssertionError("diagnostic published")
+    monkeypatch.setattr(adapter, "publish_transaction", forbidden_publish)
+
+    progress = []
+    result = adapter.diagnose_initialization(object(), progress.append)
+
+    assert calls == [("baseline", True), ("comparison", True)]
+    assert result["scientific_conditions_executed"] == 0
+    assert result["canonical_outputs_published"] is False and published is False
+    assert result["initial_physical_state_audit_keys"] == ["equal", "position", "runtime_name"]
+    comparison = result["conditions"][1]
+    assert comparison["pre_intervention_equivalent_to_condition_1"] is False
+    assert [row["field"] for row in comparison["differing_audit_fields"]] == ["position", "runtime_name"]
+    assert comparison["differing_audit_fields"][0] == {
+        "field": "position", "baseline_present": True, "comparison_present": True,
+        "baseline_value": [1.0, 2.0], "comparison_value": [1.0, 3.0],
+        "category": "numeric_physical_state_value"}
+    assert comparison["differing_audit_fields"][1]["category"] == "condition_or_runtime_metadata"
+    assert progress == ["[1/2] constructing baseline", "[1/2] complete: physics=0 neural=0",
+                        "[2/2] constructing comparison", "[2/2] complete: physics=0 neural=0"]
+
+
+def test_initialization_diagnostic_rejects_any_transition(monkeypatch):
+    monkeypatch.setattr(adapter.m11, "CONDITIONS", (("baseline", ()),))
+    monkeypatch.setattr(adapter.m7runner, "_protocol", lambda: (None, None, None))
+    monkeypatch.setattr(adapter, "invoke", lambda *args: {
+        "physics_steps": 1, "neural_steps": 0,
+        "pre_intervention_state": {}, "initial_physical_state_audit": {}})
+    with pytest.raises(RuntimeError, match="crossed a transition boundary.*physics=1 neural=0"):
+        adapter.diagnose_initialization(object(), lambda message: None)
+
+
+def test_cli_modes_remain_mutually_exclusive_and_dispatch_unchanged(monkeypatch):
+    with pytest.raises(SystemExit):
+        m.main(["--diagnose-initialization", "--execute-canonical"])
+    monkeypatch.setattr(adapter, "diagnose_initialization",
+                        lambda: {"mode": "INITIALIZATION_DIAGNOSTIC"})
+    monkeypatch.setattr(adapter, "execute_canonical", lambda: {"mode": "CANONICAL"})
+    assert m.main(["--diagnose-initialization"]) == 0
+    assert m.main(["--execute-canonical"]) == 0
+
+
 @pytest.mark.skipif(np is None, reason="NumPy unavailable")
 def _synthetic_raw(condition):
     names = [x[0] for x in m.MOTOR_CHANNELS]
