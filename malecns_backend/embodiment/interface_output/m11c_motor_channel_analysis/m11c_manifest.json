@@ -1,0 +1,44 @@
+{
+  "analysis_only": true,
+  "deterministic": true,
+  "implementation_source": {
+    "byte_size": 16163,
+    "path": "m11c_motor_channel_analysis.py",
+    "sha256": "985dbe1db5dfb6dcceef501c8173441ecad779ce438312a20eceedf36c972126"
+  },
+  "m11a_preregistration": {
+    "byte_size": 10003,
+    "path": "m11a_preregistration.json",
+    "sha256": "aa8f0b57c1126d6f4bb5b477849e81be2dbd9c86ba6d180698810c7aedfe6fd5"
+  },
+  "m11b_source_artifacts": {
+    "m11_manifest.json": {
+      "byte_size": 4828,
+      "path": "m11_manifest.json",
+      "sha256": "7a2f6c23a5b7e3f42929c94c88847a24d50bb7b87139e04cba35112fe5ea0180"
+    },
+    "m11_raw.npz": {
+      "byte_size": 81305728,
+      "path": "m11_raw.npz",
+      "sha256": "0f5c8ca4777c79640a8cf032e21366cd6819335a7b22ff9457ed07aec1e183c1"
+    },
+    "m11_report.json": {
+      "byte_size": 17257,
+      "path": "m11_report.json",
+      "sha256": "2678b2fcb74144632134c397d96132f8232992606d34a40e2d056e061a49606f"
+    }
+  },
+  "neural_transitions": 0,
+  "numpy_version": "not used",
+  "outputs": {
+    "m11c_analysis.json": {
+      "byte_size": 18919,
+      "sha256": "092556b2d2e56cd961e5881f64d9a88fb1ca63fba5d01780d93f89ae6c6acd75"
+    }
+  },
+  "physics_transitions": 0,
+  "python_version": "3.12.10",
+  "schema": "M11C-PREREGISTERED-MOTOR-CHANNEL-ANALYSIS.1",
+  "scientific_interpretation_boundary_summary": "Modeled MaleCNS -> decoder -> admitted motor -> MuJoCo interface only; no biological motor-function inference.",
+  "status": "COMPLETE"
+}
