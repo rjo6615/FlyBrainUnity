@@ -73,6 +73,7 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                   detailed_motor_telemetry: bool = False,
                   final_contribution_gate: Any | None = None,
                   isolated_candidate_telemetry: bool = False,
+                  identity_diagnostics: bool = False,
                   pause_at_states: bool = False,
                   continuous: bool = False) -> Mapping[str, Any]:
     """Create, run, close, and summarize one fresh frozen runtime.
@@ -222,6 +223,11 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                 "neural_steps": 0, "physics_steps": 0,
                 "sensory_updates": 0, "decoder_updates": 0,
                 "motor_interventions": 0}
+            if identity_diagnostics:
+                result["physics_model_diagnostic_snapshot"] = __import__(
+                    "malecns_backend.embodiment.candidate_motor_channel_experiment",
+                    fromlist=["physics_model_diagnostic_snapshot"]).physics_model_diagnostic_snapshot(
+                        model, physics.data)
             if pause_at_states:
                 yield {"time_ms": float(physics.data.time * 1000),
                     "qpos": physics.data.qpos, "qvel": physics.data.qvel,
