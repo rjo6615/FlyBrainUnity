@@ -75,7 +75,7 @@ namespace FlyBrain.M7FReplay
             for (var i = 0; i < joints.Length; i++)
             {
                 var source = sourceIndices[i]; var a = (float)data.JointPosition[frame * 42 + source]; var b = (float)data.JointPosition[nextFrame * 42 + source];
-                joints[i].transform.localRotation = restRotations[i] * Quaternion.AngleAxis(Mathf.Lerp(a, b, presentationBlend) * Mathf.Rad2Deg, joints[i].localAxis.normalized);
+                ApplyJointPosition(i, Mathf.Lerp(a, b, presentationBlend));
             }
         }
 
@@ -93,7 +93,7 @@ namespace FlyBrain.M7FReplay
             frame = Mathf.Clamp(frame, 0, data.StateCount - 1); nextFrame = Mathf.Clamp(nextFrame, 0, data.StateCount - 1);
             root.position = Vector3.Lerp(data.UnityPosition(frame), data.UnityPosition(nextFrame), presentationBlend) + PresentationOffset;
             root.rotation = Quaternion.Slerp(SourceQuaternion(data.BodyOrientation, frame), SourceQuaternion(data.BodyOrientation, nextFrame), presentationBlend);
-            for (var i = 0; i < joints.Length; i++) { var source=sourceIndices[i]; var a=(float)data.JointPosition[frame*42+source]; var b=(float)data.JointPosition[nextFrame*42+source]; joints[i].transform.localRotation=restRotations[i]*Quaternion.AngleAxis(Mathf.Lerp(a,b,presentationBlend)*Mathf.Rad2Deg,joints[i].localAxis.normalized); }
+            for (var i = 0; i < joints.Length; i++) { var source=sourceIndices[i]; var a=(float)data.JointPosition[frame*42+source]; var b=(float)data.JointPosition[nextFrame*42+source]; ApplyJointPosition(i,Mathf.Lerp(a,b,presentationBlend)); }
         }
 
         static Quaternion SourceQuaternion(double[] orientation, int frame)
@@ -113,8 +113,17 @@ namespace FlyBrain.M7FReplay
             for (var i = 0; i < joints.Length; i++)
             {
                 var radians = jointPositions[sourceIndices[i]];
-                joints[i].transform.localRotation = restRotations[i] * Quaternion.AngleAxis((float)radians * Mathf.Rad2Deg, joints[i].localAxis.normalized);
+                ApplyJointPosition(i, (float)radians);
             }
+        }
+
+        // Replay and live poses deliberately share this single authoritative joint
+        // path: qpos radians rotate the captured rest frame around the mapped axis.
+        void ApplyJointPosition(int bindingIndex, float radians)
+        {
+            var binding = joints[bindingIndex];
+            binding.transform.localRotation = restRotations[bindingIndex] *
+                Quaternion.AngleAxis(radians * Mathf.Rad2Deg, binding.localAxis.normalized);
         }
     }
 }

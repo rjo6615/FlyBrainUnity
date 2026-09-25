@@ -8,6 +8,13 @@ using FlyBrain.M7FReplay;
 
 public sealed class LiveFlyTests
 {
+    static double RotationAngleDegrees(Quaternion before,Quaternion after)
+    {
+        var relative=Quaternion.Inverse(before)*after;
+        var vectorMagnitude=Math.Sqrt((double)relative.x*relative.x+(double)relative.y*relative.y+(double)relative.z*relative.z);
+        return 2d*Math.Atan2(vectorMagnitude,Math.Abs((double)relative.w))*Mathf.Rad2Deg;
+    }
+
     static string Array(string values)=>"["+values+"]";
     static string Names()=>Array(string.Join(",",M7FScientificFlyRigDefinition.CanonicalNames.Select(x=>"\""+x+"\"")));
     static string Hello(string session="s",int version=1,int count=42,string names=null)=>"{\"type\":\"hello\",\"protocol\":\"live_fly_pose\",\"version\":"+version+",\"session_id\":\""+session+"\",\"joint_count\":"+count+",\"joint_names\":"+(names??Names())+",\"root_quaternion_order\":\"wxyz\"}";
@@ -61,7 +68,10 @@ public sealed class LiveFlyTests
             var before=rig.Joints.Select(x=>x.transform.localRotation).ToArray();var values=Enumerable.Range(1,42).Select(i=>i*.001).ToArray();
             var position=LiveFlyCoordinates.PositionMmToUnity(new[]{1d,2d,3d});var rotation=LiveFlyCoordinates.QuaternionWxyzToUnity(new[]{1d,0d,0d,0d});rig.ApplyLivePose(position,rotation,values);
             Assert.That(rig.ScientificRoot.position,Is.EqualTo(position).Using(Vector3ComparerWithEqualsOperator.Instance));Assert.That(Quaternion.Angle(rig.ScientificRoot.rotation,rotation),Is.LessThan(1e-4));
-            for(var i=0;i<42;i++)Assert.That(Quaternion.Angle(before[i],rig.Joints[i].transform.localRotation),Is.EqualTo((float)(values[i]*Mathf.Rad2Deg)).Within(.002),"joint "+i);
+            // Quaternion.Angle intentionally snaps sufficiently small rotations to
+            // zero.  atan2 over the relative quaternion preserves this 0.001 rad
+            // case without changing the expected value or tolerance.
+            for(var i=0;i<42;i++)Assert.That(RotationAngleDegrees(before[i],rig.Joints[i].transform.localRotation),Is.EqualTo(values[i]*Mathf.Rad2Deg).Within(.002),"joint "+i);
         }
         finally{UnityEngine.Object.DestroyImmediate(go);}
     }
