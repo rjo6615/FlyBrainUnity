@@ -54,13 +54,14 @@ class _FakeOption:
 
 
 class _FakeModel:
-    def __init__(self):
+    def __init__(self, names_map=(3, 1, -1, 0)):
         self.nq, self.nv, self.nu, self.na = 2, 2, 1, 1
         self.nbody, self.njnt, self.ngeom = 1, 1, 1
-        self.nsensor, self.nsite = 0, 0
+        self.nsensor, self.nsite = 1, 1
         self.opt = _FakeOption()
         self.jnt_range = np.asarray([[-1., 1.]])
         self.body_mass = np.asarray([1.])
+        self.names_map = np.asarray(names_map, dtype=np.int32)
         self.names = np.frombuffer(f"instance-{id(self)}".encode(), dtype=np.uint8)
         self.jnt_nameadr = np.asarray([len(self.names)])
 
@@ -76,19 +77,35 @@ class _FakeData:
         self.ctrl = np.asarray([0.])
 
 
-def test_physics_identity_ignores_instance_namespace_but_rejects_scientific_changes():
+def test_physics_identity_ignores_only_names_map_and_rejects_scientific_changes():
     first = exp.physics_model_identity(_FakeModel(), _FakeData())
-    second = exp.physics_model_identity(_FakeModel(), _FakeData())
+    second = exp.physics_model_identity(_FakeModel(names_map=(0, -1, 1, 3)), _FakeData())
     assert first == second
+    assert "names_map" not in first["components"]["model_arrays"]
 
     changed_qpos = _FakeData(); changed_qpos.qpos[0] = 1.
     assert exp.physics_model_identity(_FakeModel(), changed_qpos) != first
     changed_qvel = _FakeData(); changed_qvel.qvel[0] = 1.
     assert exp.physics_model_identity(_FakeModel(), changed_qvel) != first
-    changed_model = _FakeModel(); changed_model.opt.gravity[2] = -1.62
-    assert exp.physics_model_identity(changed_model, _FakeData()) != first
+    changed_array = _FakeModel(); changed_array.body_mass[0] = 2.
+    assert exp.physics_model_identity(changed_array, _FakeData()) != first
     changed_act = _FakeData(); changed_act.act[0] = .25
     assert exp.physics_model_identity(_FakeModel(), changed_act) != first
+    changed_ctrl = _FakeData(); changed_ctrl.ctrl[0] = .25
+    assert exp.physics_model_identity(_FakeModel(), changed_ctrl) != first
+    changed_option = _FakeModel(); changed_option.opt.gravity[2] = -1.62
+    assert exp.physics_model_identity(changed_option, _FakeData()) != first
+
+
+@pytest.mark.parametrize("kind", ("body", "joint", "geom", "actuator", "sensor", "site"))
+def test_physics_identity_rejects_each_normalized_ordered_inventory_change(kind):
+    first = exp.physics_model_identity(_FakeModel(), _FakeData())
+    changed = _FakeModel()
+    original = changed.id2name
+    changed.id2name = lambda index, queried_kind: (
+        f"instance-{id(changed)}/renamed-{queried_kind}-{index}"
+        if queried_kind == kind else original(index, queried_kind))
+    assert exp.physics_model_identity(changed, _FakeData()) != first
 
 
 def test_component_diagnostic_reports_exact_array_values_and_inventory_indices():
@@ -118,6 +135,17 @@ def test_component_diagnostic_identical_fresh_fake_constructions():
     a2 = exp.physics_model_diagnostic_snapshot(_FakeModel(), _FakeData())
     result = exp.compare_physics_model_snapshots(a1, a2)
     assert result["identical"] and result["differences"] == []
+
+
+def test_recursive_diagnostic_retains_but_ignores_names_map_difference():
+    a1 = exp.physics_model_diagnostic_snapshot(_FakeModel((3, 1, -1, 0)), _FakeData())
+    a2 = exp.physics_model_diagnostic_snapshot(_FakeModel((0, -1, 1, 3)), _FakeData())
+    assert not np.array_equal(a1["model_arrays"]["names_map"],
+                              a2["model_arrays"]["names_map"])
+    assert a1["aggregate_identity"] == a2["aggregate_identity"]
+    result = exp.compare_physics_model_snapshots(a1, a2)
+    assert result["identical"]
+    assert result["differences"] == []
 
 
 def test_diagnostic_json_value_recursively_normalizes_numpy_values():

@@ -65,7 +65,9 @@ def physics_model_identity(model: Any, data: Any) -> dict[str, Any]:
 
     Only value-bearing numeric MuJoCo fields and compiled names are included.
     In particular, wrapper reprs, ``ptr``, object IDs, attachment-instance
-    namespaces, paths, and temporary filenames never enter the identity.
+    namespaces, paths, temporary filenames, and MuJoCo's derived ``names_map``
+    name-lookup hash table never enter the identity.  Scientifically meaningful
+    names and ordering are represented by the normalized inventories below.
     """
     import numpy as np
     from .m8_contact_kinematics import compiled_name, namespace_component
@@ -85,7 +87,7 @@ def physics_model_identity(model: Any, data: Any) -> dict[str, Any]:
         # The compiled name buffer and its byte offsets encode dm_control's
         # per-instance attachment prefix.  Names are represented separately
         # below after removing only that irrelevant namespace.
-        if (name.startswith("_") or name == "ptr" or name == "names"
+        if (name.startswith("_") or name == "ptr" or name in ("names", "names_map")
                 or name.endswith("_nameadr")):
             continue
         try:
@@ -229,6 +231,11 @@ def compare_physics_model_snapshots(left: Mapping[str, Any], right: Mapping[str,
     differing = []
     for section in ("model_arrays", "initial_state"):
         for name in sorted(set(left[section]) | set(right[section])):
+            # Keep the raw lookup table in the recursive snapshot for audit,
+            # but compare the same scientifically relevant components as the
+            # aggregate identity.  This is the sole model-array exclusion.
+            if section == "model_arrays" and name == "names_map":
+                continue
             if name not in left[section] or name not in right[section]:
                 differing.append({"component": f"{section}.{name}", "missing_from":
                                   "ENABLED" if name not in left[section] else "ZEROED"})
