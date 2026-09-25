@@ -267,6 +267,25 @@ def compare_physics_model_snapshots(left: Mapping[str, Any], right: Mapping[str,
             "aggregate_sha_identical": left_sha == right_sha, "differences": differing}
 
 
+def diagnostic_json_value(value: Any) -> Any:
+    """Recursively copy a diagnostic value into JSON-native containers/scalars."""
+    import numpy as np
+
+    if isinstance(value, np.ndarray):
+        return diagnostic_json_value(value.tolist())
+    if isinstance(value, np.bool_):
+        return bool(value)
+    if isinstance(value, np.integer):
+        return int(value)
+    if isinstance(value, np.floating):
+        return float(value)
+    if isinstance(value, dict):
+        return {key: diagnostic_json_value(item) for key, item in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [diagnostic_json_value(item) for item in value]
+    return value
+
+
 def verify_preregistration_bytes(raw: bytes, expected_sha256: str = PREREGISTRATION_SHA256) -> str:
     actual = sha256_bytes(raw)
     if actual != expected_sha256:
@@ -411,7 +430,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         result = preflight()
     elif args.diagnose_identity:
         from . import _windows_candidate_motor_channel_experiment_adapter as adapter
-        result = adapter.diagnose_identity()
+        result = diagnostic_json_value(adapter.diagnose_identity())
     else:
         from . import _windows_candidate_motor_channel_experiment_adapter as adapter
         result = adapter.execute()
