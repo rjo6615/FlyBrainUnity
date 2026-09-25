@@ -47,6 +47,48 @@ def test_matched_initialization_is_exact_and_complete():
         exp.require_matched_initialization(state, different)
 
 
+class _FakeOption:
+    def __init__(self):
+        self.timestep = .0001
+        self.gravity = np.asarray([0., 0., -9.81])
+
+
+class _FakeModel:
+    def __init__(self):
+        self.nq, self.nv, self.nu, self.na = 2, 2, 1, 1
+        self.nbody, self.njnt, self.ngeom = 1, 1, 1
+        self.nsensor, self.nsite = 0, 0
+        self.opt = _FakeOption()
+        self.jnt_range = np.asarray([[-1., 1.]])
+        self.body_mass = np.asarray([1.])
+        self.names = np.frombuffer(f"instance-{id(self)}".encode(), dtype=np.uint8)
+        self.jnt_nameadr = np.asarray([len(self.names)])
+
+    def id2name(self, index, kind):
+        return f"instance-{id(self)}/{kind}-{index}"
+
+
+class _FakeData:
+    def __init__(self):
+        self.qpos = np.asarray([0., 1.])
+        self.qvel = np.asarray([0., 0.])
+        self.act = np.asarray([0.])
+        self.ctrl = np.asarray([0.])
+
+
+def test_physics_identity_ignores_instance_namespace_but_rejects_scientific_changes():
+    first = exp.physics_model_identity(_FakeModel(), _FakeData())
+    second = exp.physics_model_identity(_FakeModel(), _FakeData())
+    assert first == second
+
+    changed_qpos = _FakeData(); changed_qpos.qpos[0] = 1.
+    assert exp.physics_model_identity(_FakeModel(), changed_qpos) != first
+    changed_qvel = _FakeData(); changed_qvel.qvel[0] = 1.
+    assert exp.physics_model_identity(_FakeModel(), changed_qvel) != first
+    changed_model = _FakeModel(); changed_model.opt.gravity[2] = -1.62
+    assert exp.physics_model_identity(changed_model, _FakeData()) != first
+
+
 def test_fixed_duration_has_no_result_dependent_extension():
     assert exp.transition_counts(1000, 0.1, 0.5) == (10000, 2000)
     with pytest.raises(ValueError):

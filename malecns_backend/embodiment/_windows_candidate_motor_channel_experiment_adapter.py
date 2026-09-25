@@ -104,7 +104,7 @@ def _initialization(result: Mapping[str, Any]) -> dict[str, Any]:
         "initial_ctrl": state["ctrl"], "malecns_state_digest": state["malecns_state"],
         "sensory_state": {"encoders": state["sensory_encoder_state"], "rng": state["rng_state"]},
         "decoder_state": state["decoder_state"], "seed": experiment.SEED,
-        "physics_model_identity": audit["m8_contact_identity"],
+        "physics_model_identity": audit["physics_model_identity"],
         "timestep_configuration": {"physics_dt_ms": experiment.PHYSICS_DT_MS,
                                    "neural_dt_ms": experiment.NEURAL_DT_MS,
                                    "physics_to_neural_transition_ratio": 5}}

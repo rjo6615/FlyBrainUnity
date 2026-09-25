@@ -45,6 +45,91 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _canonical_array_identity(value: Any) -> dict[str, Any]:
+    """Describe a numeric array without encoding its owning Python object."""
+    import numpy as np
+
+    array = np.asarray(value)
+    # MuJoCo model scalars/arrays are native endian.  Normalizing byte order
+    # makes an identity portable without changing any represented values.
+    dtype = array.dtype.newbyteorder("<")
+    canonical = np.ascontiguousarray(array.astype(dtype, copy=False))
+    return {"dtype": dtype.str, "shape": list(canonical.shape),
+            "sha256": sha256_bytes(canonical.tobytes(order="C"))}
+
+
+def physics_model_identity(model: Any, data: Any) -> dict[str, Any]:
+    """Return a deterministic identity for a compiled model and initial state.
+
+    Only value-bearing numeric MuJoCo fields and compiled names are included.
+    In particular, wrapper reprs, ``ptr``, object IDs, attachment-instance
+    namespaces, paths, and temporary filenames never enter the identity.
+    """
+    import numpy as np
+    from .m8_contact_kinematics import compiled_name, namespace_component
+
+    dimensions = {}
+    for name in dir(model):
+        if name.startswith("n"):
+            try:
+                value = getattr(model, name)
+            except (AttributeError, RuntimeError, TypeError, ValueError):
+                continue
+            if isinstance(value, (int, np.integer)):
+                dimensions[name] = int(value)
+
+    arrays = {}
+    for name in dir(model):
+        # The compiled name buffer and its byte offsets encode dm_control's
+        # per-instance attachment prefix.  Names are represented separately
+        # below after removing only that irrelevant namespace.
+        if (name.startswith("_") or name == "ptr" or name == "names"
+                or name.endswith("_nameadr")):
+            continue
+        try:
+            value = getattr(model, name)
+        except (AttributeError, RuntimeError, TypeError, ValueError):
+            continue
+        if isinstance(value, np.ndarray) and value.dtype.kind in "biufc":
+            arrays[name] = _canonical_array_identity(value)
+
+    inventories = {}
+    for kind, count_name in (("body", "nbody"), ("joint", "njnt"),
+                             ("geom", "ngeom"), ("actuator", "nu"),
+                             ("sensor", "nsensor"), ("site", "nsite")):
+        count = int(getattr(model, count_name, 0))
+        inventories[kind] = [namespace_component(compiled_name(model, kind, index))
+                             for index in range(count)]
+
+    option = getattr(model, "opt", None)
+    options = {}
+    if option is not None:
+        for name in dir(option):
+            if name.startswith("_"):
+                continue
+            try:
+                value = getattr(option, name)
+            except (AttributeError, RuntimeError, TypeError, ValueError):
+                continue
+            if isinstance(value, (bool, int, float, np.bool_, np.integer, np.floating)):
+                options[name] = value.item() if isinstance(value, np.generic) else value
+            elif isinstance(value, np.ndarray) and value.dtype.kind in "biufc":
+                options[name] = _canonical_array_identity(value)
+
+    state = {}
+    for name in ("qpos", "qvel", "act", "ctrl"):
+        if hasattr(data, name):
+            state[name] = _canonical_array_identity(getattr(data, name))
+    components = {"schema": "MUJOCO-SCIENTIFIC-PHYSICS-IDENTITY.1",
+                  "dimensions": dimensions, "options": options,
+                  "inventories": inventories, "model_arrays": arrays,
+                  "initial_state": state}
+    canonical = json.dumps(components, sort_keys=True, separators=(",", ":"),
+                           allow_nan=False).encode()
+    return {"schema": components["schema"], "sha256": sha256_bytes(canonical),
+            "components": components}
+
+
 def verify_preregistration_bytes(raw: bytes, expected_sha256: str = PREREGISTRATION_SHA256) -> str:
     actual = sha256_bytes(raw)
     if actual != expected_sha256:
