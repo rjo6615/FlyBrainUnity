@@ -17,6 +17,15 @@ positions.
 The Inspector exposes state, session ID, last sequence/simulation time, received
 poses, and replaced poses. Connection and JSON work runs on a task. `Update`
 alone converts and applies the newest capacity-one pose to Unity transforms.
+The runtime overlay separately reports TCP connection, hello receipt and
+acceptance, raw and pose lines, accepted/rejected poses, slot consumption, rig
+application, and the last background transport/parser/validation error.
+
+The legacy `UnityFlyBridge` is deliberately not auto-installed when a
+`LiveFlyClient` exists. The Python Live Fly publisher is single-client; allowing
+the legacy `fly_state` client to connect first would consume and ignore the v1
+hello/pose stream while the real client remained connected only at the TCP
+backlog and waited forever for a hello.
 
 ## Coordinates
 

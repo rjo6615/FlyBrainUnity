@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using FlyBrain.M7FReplay;
+using FlyBrain.LiveFly;
 
 namespace FlyBrain.UnityBridge
 {
@@ -70,6 +71,11 @@ namespace FlyBrain.UnityBridge
             // The bridge owns the earlier decorative fly and RGB origin bars.  They are useful
             // in the live Python viewer, but must not be layered over a canonical VIS3 replay.
             if (!M7FCanonicalReplayPresentation.AllowsLegacyBridgePresentationInCurrentScene()) return;
+            // Live Fly v1 has its own strictly validated receiver and authoritative M7F rig.
+            // The Python publisher intentionally serves one client at a time.  Installing this
+            // legacy fly_state receiver in that scene would take the only connection, discard the
+            // v1 hello/poses as unknown messages, and leave LiveFlyClient waiting for its hello.
+            if (FindFirstObjectByType<LiveFlyClient>() != null) return;
             if (FindFirstObjectByType<UnityFlyBridge>() == null)
                 new GameObject("Python Fly Bridge").AddComponent<UnityFlyBridge>();
         }

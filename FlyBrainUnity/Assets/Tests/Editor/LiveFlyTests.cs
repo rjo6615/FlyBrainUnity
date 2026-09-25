@@ -38,6 +38,24 @@ public sealed class LiveFlyTests
         Assert.Throws<LiveFlyProtocolException>(()=>LiveFlyProtocol.ParsePose("{bad", "s"));
     }
 
+    [Test] public void ActualPythonWireMessagesAcceptMixedJsonNumberRepresentations()
+    {
+        // Mirrors json.dumps(..., separators=(",", ":")) output from
+        // malecns_backend.live.protocol, including hello-only diagnostic fields
+        // and the integer/decimal/exponent mixture emitted by real snapshots.
+        const string session="51ed8943-7ba3-4327-9059-b4aece175607";
+        var hello="{\"type\":\"hello\",\"protocol\":\"live_fly_pose\",\"version\":1,\"session_id\":\""+session+"\",\"joint_count\":42,\"joint_names\":"+Names()+",\"physics_dt_seconds\":0.0001,\"neural_dt_seconds\":0.0005,\"root_quaternion_order\":\"wxyz\",\"source_length_unit\":\"millimetres\",\"coordinate_convention\":\"FlyGym right-handed Z-up; unconverted MuJoCo coordinates\",\"rig/model identity\":\"FlyGym NeuroMechFly, validated MaleCNS 42-leg-joint action order\"}";
+        var joints=string.Join(",",Enumerable.Range(0,42).Select(i=>i%3==0?"0":i%3==1?"-1.25e-3":"0.5"));
+        var pose="{\"type\":\"pose\",\"protocol\":\"live_fly_pose\",\"version\":1,\"session_id\":\""+session+"\",\"sequence\":127,\"sim_time_seconds\":2,\"root_position\":[0,-1.25e-3,2.5],\"root_quaternion_wxyz\":[1,0.0,0,0],\"joint_positions\":["+joints+"],\"physics_transitions\":20000,\"neural_transitions\":4000,\"finite\":true}";
+
+        var parsedHello=LiveFlyProtocol.ParseHello(hello,M7FScientificFlyRigDefinition.Names);
+        var parsedPose=LiveFlyProtocol.ParsePose(pose,parsedHello.SessionId);
+        Assert.That(parsedPose.Sequence,Is.EqualTo(127));
+        Assert.That(parsedPose.SimTimeSeconds,Is.EqualTo(2d));
+        Assert.That(parsedPose.RootPosition[1],Is.EqualTo(-.00125d));
+        Assert.That(parsedPose.JointPositions.Length,Is.EqualTo(42));
+    }
+
     [Test] public void PositionUsesValidatedM7FScaleAndReflectedBasis()
     {
         Assert.That(LiveFlyCoordinates.PositionMmToUnity(new[]{1d,2d,3d}),Is.EqualTo(new Vector3(.1f,.3f,.2f)).Using(Vector3ComparerWithEqualsOperator.Instance));
