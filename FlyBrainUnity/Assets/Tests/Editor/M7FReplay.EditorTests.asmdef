@@ -1,6 +1,6 @@
 {
   "name": "M7FReplay.EditorTests",
-  "references": ["FlyBrain.M7FReplay"],
+  "references": ["FlyBrain.M7FReplay", "FlyBrain.LiveFly"],
   "optionalUnityReferences": ["TestAssemblies"],
   "includePlatforms": ["Editor"],
   "autoReferenced": false

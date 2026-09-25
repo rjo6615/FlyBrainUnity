@@ -1,0 +1,5 @@
+{
+  "name": "FlyBrain.LiveFly",
+  "references": ["FlyBrain.M7FReplay"],
+  "autoReferenced": true
+}
