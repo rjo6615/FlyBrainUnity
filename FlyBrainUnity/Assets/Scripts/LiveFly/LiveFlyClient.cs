@@ -115,7 +115,7 @@ namespace FlyBrain.LiveFly
                     using(client) using(var stream=client.GetStream()) using(var reader=new StreamReader(stream,new UTF8Encoding(false,true),false,4096))
                     {
                         var line=await ReadLine(reader,token); if(line==null)throw new IOException("Connection closed before hello.");
-                        LineReceived(true); var hello=LiveFlyProtocol.ParseHello(line,jointNames); HelloAccepted();
+                        LineReceived(true); var hello=LiveFlyProtocol.ParseHello(line,jointNames); MarkHelloAccepted();
                         Set(LiveFlyConnectionStatus.AwaitingFirstPose,"Hello accepted; awaiting first authoritative pose",hello.SessionId);
                         while(!token.IsCancellationRequested)
                         {
@@ -141,7 +141,7 @@ namespace FlyBrain.LiveFly
         void Set(LiveFlyConnectionStatus value,string detail,string session=null){lock(stateGate){workerState.Status=value;workerState.Detail=detail;if(session!=null)workerState.Session=session;}}
         void Connected(){lock(stateGate){workerState.TcpConnected=true;workerState.HelloReceived=false;workerState.HelloAccepted=false;}}
         void LineReceived(bool hello){lock(stateGate){workerState.RawLines++;if(hello)workerState.HelloReceived=true;else workerState.PoseLines++;}}
-        void HelloAccepted(){lock(stateGate)workerState.HelloAccepted=true;}
+        void MarkHelloAccepted(){lock(stateGate)workerState.HelloAccepted=true;}
         void Accepted(LiveFlyPose pose){lock(stateGate){workerState.Accepted++;workerState.LatestSequence=pose.Sequence;workerState.LatestSimTime=pose.SimTimeSeconds;}}
         void Rejected(){lock(stateGate)workerState.Rejected++;}
         void Failed(Exception error,bool retry)
