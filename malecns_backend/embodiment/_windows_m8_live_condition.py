@@ -14,6 +14,17 @@ import time
 from typing import Any, Mapping, Sequence
 
 
+def _legacy_neural_telemetry(*, admitted_names: Sequence[str], channels: Mapping[str, Any],
+                             raw_values: Mapping[str, float], contributions: Mapping[str, float],
+                             isolated_candidate_telemetry: bool) -> tuple[list[float], list[float], list[float]]:
+    """Build only the historical 11-channel compact-telemetry payload."""
+    if isolated_candidate_telemetry:
+        return [0.0] * 11, [0.0] * 11, [0.0] * 11
+    return ([channels[name]["peak_observer"] for name in admitted_names],
+            [raw_values[name] for name in admitted_names],
+            [contributions[name] for name in admitted_names])
+
+
 def _digest(brain: Any) -> str:
     """Return the validated MaleCNS state digest used by M5/M6."""
     from .tactile_motor_loop_audit import _state_tuple
@@ -61,6 +72,7 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                   motor_channel_names: Sequence[str] | None = None,
                   detailed_motor_telemetry: bool = False,
                   final_contribution_gate: Any | None = None,
+                  isolated_candidate_telemetry: bool = False,
                   pause_at_states: bool = False,
                   continuous: bool = False) -> Mapping[str, Any]:
     """Create, run, close, and summarize one fresh frozen runtime.
@@ -99,6 +111,8 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
     channels = {}; admitted_names = tuple(motor_channel_names or protocol["admitted_motor_interfaces"])
     if detailed_motor_telemetry and len(admitted_names) != 1:
         raise ValueError("detailed motor telemetry requires exactly one selected channel")
+    if isolated_candidate_telemetry and not detailed_motor_telemetry:
+        raise ValueError("isolated candidate telemetry requires detailed motor telemetry")
     by_record = {r["name"]: r for r in cached_records}
     table_by_name = {r["actuator"]: r for r in cached_table}
     m6b_interfaces = {x["physical_joint"]: x for x in json.loads(
@@ -261,6 +275,7 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                 if m9b_extended_telemetry:
                     m9b_pre_zero.append([raw_values[n] for n in admitted_names])
                     m9b_post_zero.append([contributions[n] for n in admitted_names])
+                neural_vector_before = [0.] * 42
                 neural_vector = [0.] * 42
                 for name, channel in channels.items():
                     baseline = (baseline_commands[channel["index"]] if fixed_initial_baseline
@@ -271,6 +286,7 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                             name, channel["index"], result.admitted_neural_contribution, condition)))
                     if not math.isfinite(physical_contribution):
                         raise RuntimeError("non-finite final neural contribution")
+                    neural_vector_before[channel["index"]] = result.admitted_neural_contribution
                     commands[channel["index"]] = (result.actuator_command if final_contribution_gate is None
                         else result.baseline_target + physical_contribution)
                     neural_vector[channel["index"]] = physical_contribution
@@ -311,21 +327,30 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                             "candidate_contribution_after_intervention": float(physical_contribution),
                             "final_candidate_neural_contribution_before_experimental_zeroing": float(result.admitted_neural_contribution),
                             "final_applied_candidate_contribution": float(physical_contribution),
-                            "neural_contribution_vector": list(neural_vector),
+                            "neural_contribution_vector_before_intervention": list(neural_vector_before),
+                            "neural_contribution_vector_after_intervention": list(neural_vector),
+                            "authorized_indices": [channel["index"]],
                             "nonzero_indices": [i for i, value in enumerate(neural_vector) if value != 0.0]})
                 assert_started = time.perf_counter(); cached_admission_assertion(neural_vector, cached_table)
                 phase["admission_assertion"] += time.perf_counter() - assert_started
                 phase["observer_decoder"] += time.perf_counter() - decode_started
                 if compact_telemetry:
+                    # The compact fields are the immutable historical 11-channel
+                    # contract.  An isolated candidate is deliberately outside
+                    # that inventory and has separate detailed telemetry above.
+                    legacy_observer, legacy_decoder, legacy_admitted = _legacy_neural_telemetry(
+                        admitted_names=admitted_names, channels=channels, raw_values=raw_values,
+                        contributions=contributions,
+                        isolated_candidate_telemetry=isolated_candidate_telemetry)
                     telemetry.record("neural", {
                         "neural_time_ms": now_ms,
                         "neural_sensory_encoded": sensory_channel_peaks(
                             [sensory_values[leg] for leg in LEG_ORDER]),
                         "neural_delivered_drive_count": len(delivered),
                         "neural_aggregate_spikes": aggregate_spikes,
-                        "neural_observer_outputs": [channels[n]["peak_observer"] for n in admitted_names],
-                        "neural_decoder_outputs": [raw_values[n] for n in admitted_names],
-                        "neural_admitted_contributions": [contributions[n] for n in admitted_names],
+                        "neural_observer_outputs": legacy_observer,
+                        "neural_decoder_outputs": legacy_decoder,
+                        "neural_admitted_contributions": legacy_admitted,
                     }, now_ms)
             if m8_extended_telemetry:
                 contact_flags, foot_xyz = sample_contacts(physics, contact_identity)

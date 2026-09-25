@@ -95,7 +95,7 @@ def _invoke(runner: Any, protocol: Mapping[str, Any], records: Any, table: Any,
         compact_telemetry=True, runtime_factory=m7runner._runtime, proprioception_only=True,
         fixed_initial_baseline=True, m8_extended_telemetry=True,
         motor_channel_names=(candidate,), detailed_motor_telemetry=True,
-        final_contribution_gate=final_gate)
+        final_contribution_gate=final_gate, isolated_candidate_telemetry=True)
 
 
 def _initialization(result: Mapping[str, Any]) -> dict[str, Any]:
@@ -116,6 +116,20 @@ def _condition_arrays(result: Mapping[str, Any], candidate: str,
     raw = result["raw_arrays"]
     details = raw["detailed_motor_telemetry"]
     configuration = result["decoder_configuration"][0]
+    legacy = np.asarray(raw["neural_admitted_contributions"], dtype=np.float64)
+    if legacy.shape != (2000, 11) or np.any(legacy):
+        raise RuntimeError("historical 11-channel telemetry contract changed")
+    before_vectors = np.asarray([row["neural_contribution_vector_before_intervention"]
+                                 for row in details], dtype=np.float64)
+    after_vectors = np.asarray([row["neural_contribution_vector_after_intervention"]
+                                for row in details], dtype=np.float64)
+    if before_vectors.shape != (2000, 42) or after_vectors.shape != (2000, 42):
+        raise RuntimeError("candidate neural vector telemetry shape mismatch")
+    other_indices = [index for index in range(42) if index != action_index]
+    if np.any(before_vectors[:, other_indices]) or np.any(after_vectors[:, other_indices]):
+        raise RuntimeError("non-selected candidate contribution in neural telemetry")
+    if condition == "ZEROED" and np.any(after_vectors):
+        raise RuntimeError("ZEROED candidate survived final intervention boundary")
     vectors = np.asarray(raw["physics_neural_contribution_vector"], dtype=np.float64)
     if vectors.shape != (10001, 42):
         raise RuntimeError("candidate physical vector telemetry shape mismatch")
@@ -151,6 +165,15 @@ def _condition_arrays(result: Mapping[str, Any], candidate: str,
         "candidate_range_limited_contribution": field("range_limited_contribution"),
         "candidate_contribution_before_intervention": field("candidate_contribution_before_intervention"),
         "candidate_contribution_after_intervention": field("candidate_contribution_after_intervention"),
+        "candidate_neural_contribution_vector_before_intervention": field(
+            "neural_contribution_vector_before_intervention"),
+        "candidate_neural_contribution_vector_after_intervention": field(
+            "neural_contribution_vector_after_intervention"),
+        "candidate_authorized_indices": field("authorized_indices", np.int64),
+        # Fixed-width exact index telemetry: -1 means the nonzero set is empty.
+        "candidate_nonzero_index_after_intervention": np.asarray([
+            row["nonzero_indices"][0] if row["nonzero_indices"] else -1
+            for row in details], dtype=np.int64),
         "candidate_nonzero_mask": vectors != 0.0,
         "selected_joint_qpos": np.asarray(raw["physics_qpos"])[:, configuration["qpos_index"]],
         "selected_joint_qvel": np.asarray(raw["physics_qvel"])[:, configuration["qvel_index"]],
@@ -209,11 +232,12 @@ def _comparison(enabled: Mapping[str, Any], zeroed: Mapping[str, Any]) -> dict[s
 
 def execute(runner: Any = kernel.run_condition) -> dict[str, Any]:
     """Execute exactly six fresh conditions and transactionally retain evidence."""
-    experiment.preflight()
-    output = experiment.OUTPUT_DIR
+    preflight = experiment.preflight()
+    output = Path(preflight["output_directory"])
     output.mkdir(parents=True, exist_ok=False)
     start_hash = experiment.sha256_file(experiment.PREREGISTRATION_PATH)
-    manifest = _environment_manifest()
+    manifest = {**_environment_manifest(), "attempt": preflight["attempt"],
+        "prior_attempts": preflight["prior_attempts"]}
     (output / experiment.OUTPUTS[0]).write_bytes(_json_bytes(manifest))
     protocol, records, table = m7runner._protocol()
     all_arrays, report_candidates = {}, {}
