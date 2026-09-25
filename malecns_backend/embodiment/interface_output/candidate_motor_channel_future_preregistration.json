@@ -1,0 +1,53 @@
+{
+  "candidates": [
+    {
+      "action_index": 24,
+      "coordinate_sign": -1,
+      "joint": "joint_RFFemur"
+    },
+    {
+      "action_index": 6,
+      "coordinate_sign": -1,
+      "joint": "joint_LFTarsus1"
+    },
+    {
+      "action_index": 27,
+      "coordinate_sign": -1,
+      "joint": "joint_RFTarsus1"
+    }
+  ],
+  "conditions": [
+    "ENABLED",
+    "ZEROED"
+  ],
+  "current_11_channel_policy": "zero_neural_contribution",
+  "duration_ms": 1000,
+  "duration_policy": "fixed before mechanical calibration and must not be extended",
+  "fresh_identical_state_per_condition": true,
+  "isolation": {
+    "at_most_one_candidate": true,
+    "intervention": "replace only selected candidate contribution with exactly zero in ZEROED",
+    "other_41_action_entries_exactly_zero": true
+  },
+  "outcomes": [
+    "IDENTITY_FAILURE",
+    "MECHANICAL_FAILURE",
+    "SOFTWARE_FAILURE",
+    "SUPPORTED_AND_ACTIVE",
+    "SUPPORTED_BUT_SILENT",
+    "DECODER_CANCELLATION",
+    "SUPPORTED_LOW_ACTIVITY"
+  ],
+  "prohibitions": [
+    "do not execute from mechanical validation",
+    "no duration adaptation",
+    "no gait controller",
+    "no stabilization",
+    "no tuning",
+    "no result-dependent rerun"
+  ],
+  "purpose": "future isolated neural observation; this file is not execution authorization",
+  "schema": "THREE-CANDIDATE-FUTURE-EXPERIMENT.0",
+  "seed": 1,
+  "status": "NOT_RUN"
+}
