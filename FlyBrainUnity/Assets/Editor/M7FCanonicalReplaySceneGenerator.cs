@@ -92,8 +92,7 @@ public static class M7FCanonicalReplaySceneGenerator
 
     static M7FFlyRig BuildFly(Transform parent, string name)
     {
-        var root = Child(parent, name); var builder = root.gameObject.AddComponent<M7FScientificFlyBuilder>(); builder.Rebuild();
-        root.gameObject.AddComponent<M7FAnatomyPresentation>().Rebuild(); return root.GetComponent<M7FFlyRig>();
+        return M7FFlyPresentationBuilder.Build(Child(parent, name));
     }
     static Transform Child(Transform parent, string name) { var value = new GameObject(name).transform; value.SetParent(parent, false); return value; }
     static void AddLabel(Transform parent, string text, Vector3 position) { var value = Child(parent, text); value.localPosition = position; var mesh = value.gameObject.AddComponent<TextMesh>(); mesh.text = text; mesh.anchor = TextAnchor.MiddleCenter; mesh.characterSize = .08f; mesh.fontSize = 42; }
