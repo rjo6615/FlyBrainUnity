@@ -185,6 +185,9 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                 "adhesion_enabled": False, "adhesion_command": [0.0] * 6,
                 "adhesion_policy": "constant zero baseline; no schedule or controller",
                 "control": "position", "locomotion_or_reference_controller": False,
+                "physics_model_identity": __import__(
+                    "malecns_backend.embodiment.candidate_motor_channel_experiment",
+                    fromlist=["physics_model_identity"]).physics_model_identity(model, physics.data),
                 "m8_contact_identity": {"available": contact_identity["available"],
                     "method": contact_identity["method"],
                     "body_names": contact_identity["body_names"],
