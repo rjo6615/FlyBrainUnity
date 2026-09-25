@@ -120,6 +120,25 @@ def test_component_diagnostic_identical_fresh_fake_constructions():
     assert result["identical"] and result["differences"] == []
 
 
+def test_diagnostic_json_value_recursively_normalizes_numpy_values():
+    diagnostic = {
+        "difference": {
+            "index": (np.int64(7),),
+            "values": [np.float64(1.25), np.bool_(True)],
+            "sample": np.asarray([[2, 3]], dtype=np.int64),
+        }
+    }
+
+    normalized = exp.diagnostic_json_value(diagnostic)
+
+    assert normalized == {"difference": {
+        "index": [7], "values": [1.25, True], "sample": [[2, 3]]}}
+    assert type(normalized["difference"]["index"][0]) is int
+    assert type(normalized["difference"]["values"][0]) is float
+    assert type(normalized["difference"]["values"][1]) is bool
+    assert json.loads(json.dumps(normalized)) == normalized
+
+
 def test_fixed_duration_has_no_result_dependent_extension():
     assert exp.transition_counts(1000, 0.1, 0.5) == (10000, 2000)
     with pytest.raises(ValueError):
