@@ -176,3 +176,31 @@ final Git status is also reported there.
 Confirmed: the current 11-channel Live Fly runtime was not changed; none of the
 three channels was admitted; no canonical experiment was run; no canonical
 artifact was modified; and the proposed 14-channel interface was not built.
+
+## 17. LegendaryPC mechanical revalidation command
+
+The narrowly scoped mode is dependency-gated and imports FlyGym, MuJoCo, and
+NumPy only after `--mechanical` is selected. Run it from the repository root in
+the project's existing desktop environment:
+
+```text
+./fly-brain-interactive/.venv/Scripts/python.exe -m malecns_backend.embodiment.candidate_motor_channel_validation --mechanical
+```
+
+The runner constructs a separate compiled FlyGym simulation for each of the
+three candidates, resets it, and performs only MuJoCo kinematic forward calls
+at neutral and at ±0.0001 rad. It never constructs MaleCNS, steps a simulation,
+or observes neural activity. It records actuator/joint/body identity, neutral
+body and segment transforms, axes, ranges, endpoint positions, and independent
+positive/negative endpoint and rotation evidence. Any identity, isolation,
+transform, endpoint, rotation, or sign inconsistency raises after writing a
+`MECHANICAL_FAILURE` record and removes any future preregistration.
+
+When dependencies are unavailable the command writes `SKIPPED /
+DEPENDENCIES_UNAVAILABLE`, leaves `mechanical_validation_passed` false, and
+does not create a preregistration. Only three independently reproduced `-1`
+signs permit creation of
+`interface_output/candidate_motor_channel_future_preregistration.json`. That
+file is marked `NOT_RUN`, retains the frozen 1,000 ms future duration, is
+hashed into the noncanonical validation record, and is not executed by this
+mode.

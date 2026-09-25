@@ -621,8 +621,8 @@
   "mechanical_validation_passed": false,
   "preregistration_created": false,
   "preregistration_withheld_reason": "fail-closed: independent owning-body-transform/sign revalidation is incomplete",
-  "run_status": "READ_ONLY_VALIDATION_COMPLETE",
-  "schema": "THREE-CANDIDATE-VALIDATION.0",
+  "run_status": "SKIPPED / DEPENDENCIES_UNAVAILABLE",
+  "schema": "THREE-CANDIDATE-VALIDATION.1",
   "source_hashes": {
     "fly-brain-main/public/data/bodymap.json": "10630cd4c7a6cc2c1dcfcbee4a602d307f06766f316b185f631406813a58da9d",
     "malecns_backend/embodiment/interface_output/isolated_tier_b_motor_validation.json": "02a4bbb7ec79ccf0967e9b8499c5a68d0ed8133a56688592ba13cfb2785285a2",
