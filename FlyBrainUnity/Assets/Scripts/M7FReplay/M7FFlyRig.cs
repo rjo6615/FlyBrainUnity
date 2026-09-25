@@ -100,5 +100,21 @@ namespace FlyBrain.M7FReplay
         {
             var i=frame*4; return M7FCoordinates.SourceQuaternionToUnity(new Quaternion((float)orientation[i+1],(float)orientation[i+2],(float)orientation[i+3],(float)orientation[i]));
         }
+
+        /// <summary>Applies one already converted live pose.  This is presentation-only;
+        /// every joint scalar is the authoritative MuJoCo qpos in radians.</summary>
+        public void ApplyLivePose(Vector3 unityPosition, Quaternion unityRotation, IReadOnlyList<double> jointPositions)
+        {
+            if (restRotations == null) throw new InvalidOperationException("M7F rig must be validated before applying a live pose.");
+            if (jointPositions == null || jointPositions.Count != M7FScientificFlyRigDefinition.JointCount)
+                throw new ArgumentException("A live pose must contain exactly 42 joint positions.", nameof(jointPositions));
+            root.position = unityPosition + PresentationOffset;
+            root.rotation = unityRotation;
+            for (var i = 0; i < joints.Length; i++)
+            {
+                var radians = jointPositions[sourceIndices[i]];
+                joints[i].transform.localRotation = restRotations[i] * Quaternion.AngleAxis((float)radians * Mathf.Rad2Deg, joints[i].localAxis.normalized);
+            }
+        }
     }
 }
