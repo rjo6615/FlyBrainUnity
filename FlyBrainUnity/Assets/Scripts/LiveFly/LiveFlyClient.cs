@@ -38,6 +38,8 @@ namespace FlyBrain.LiveFly
         public LiveFlyConnectionStatus Status => status; public string SessionId => sessionId;
         public long LatestSequence => latestSequence; public double LatestSimTime => latestSimTime;
         public long PosesReceived => posesReceived; public long PosesDroppedOrReplaced => posesDroppedOrReplaced;
+        public string Host => host; public int Port => port; public bool ConnectOnStart => connectOnStart;
+        public bool PresentationInterpolation => presentationInterpolation; public M7FFlyRig Rig => rig;
         public void Configure(M7FFlyRig targetRig, string targetHost = "127.0.0.1", int targetPort = 8765)
         { rig=targetRig;host=targetHost;port=targetPort;connectOnStart=true;presentationInterpolation=false; }
 

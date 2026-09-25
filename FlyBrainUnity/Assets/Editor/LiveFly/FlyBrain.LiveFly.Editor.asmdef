@@ -1,0 +1,6 @@
+{
+  "name": "FlyBrain.LiveFly.Editor",
+  "references": ["FlyBrain.M7FReplay", "FlyBrain.LiveFly"],
+  "includePlatforms": ["Editor"],
+  "autoReferenced": true
+}
