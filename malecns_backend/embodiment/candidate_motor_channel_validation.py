@@ -9,6 +9,8 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import argparse
+import importlib.util
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -18,6 +20,7 @@ BODYMAP = ROOT / "fly-brain-main/public/data/bodymap.json"
 M6B = HERE / "interface_output/isolated_tier_b_motor_validation.json"
 P2 = HERE / "interface_output/m6b_live_limit_diagnostic.json"
 OUTPUT = HERE / "interface_output/candidate_motor_channel_validation.json"
+PREREGISTRATION = HERE / "interface_output/candidate_motor_channel_future_preregistration.json"
 
 CANDIDATES = {"joint_RFFemur": 24, "joint_LFTarsus1": 6, "joint_RFTarsus1": 27}
 POOLS = {
@@ -76,6 +79,16 @@ def engineered_checks(name: str, index: int) -> dict:
             "cases": cases, "saturation_raw_rad": saturated[0], "range_limit_example_rad": ranged[2],
             "baseline_zero_input_target_rad": baseline[1], "population_mean_invariance_hz": list(mean_invariance),
             "other_41_entries_exactly_zero": True, "coordinate_sign_applied": -1}
+
+
+def dependencies_available() -> bool:
+    """Return whether the real mechanical runner can be entered.
+
+    Merely importing this audit must remain possible on machines without the
+    scientific stack.  The Windows adapter performs a second, versioned import
+    check and fails closed if construction itself fails.
+    """
+    return all(importlib.util.find_spec(name) is not None for name in ("flygym", "mujoco", "numpy"))
 
 
 def build() -> dict:
@@ -138,7 +151,8 @@ def build() -> dict:
                 "conclusion": "aggregate silence is genuine in the retained artifact; A/B/E/F cannot be distinguished without a new fixed-window observational run; C/D are not present in the current reconstruction"}}
     software_ok = all(x["decoder_only"]["passed"] for x in records.values())
     mechanics_ok = all(x["mechanics"]["independent_revalidation_complete"] for x in records.values())
-    return {"schema": "THREE-CANDIDATE-VALIDATION.0", "run_status": "READ_ONLY_VALIDATION_COMPLETE",
+    return {"schema": "THREE-CANDIDATE-VALIDATION.1",
+        "run_status": "SKIPPED / DEPENDENCIES_UNAVAILABLE",
         "candidate_channels": records, "identity_validation_passed": all_identity,
         "decoder_validation_passed": software_ok, "mechanical_validation_passed": mechanics_ok,
         "preregistration_created": False,
@@ -149,12 +163,53 @@ def build() -> dict:
         "canonical_experiment_run": False, "live_runtime_modified": False, "channel_admitted": False}
 
 
+def future_preregistration() -> dict:
+    """Return the frozen future experiment specification; never execute it."""
+    return {"schema": "THREE-CANDIDATE-FUTURE-EXPERIMENT.0", "status": "NOT_RUN",
+        "purpose": "future isolated neural observation; this file is not execution authorization",
+        "duration_ms": 1000, "duration_policy": "fixed before mechanical calibration and must not be extended",
+        "seed": 1, "candidates": [{"joint": name, "action_index": index, "coordinate_sign": -1}
+            for name, index in CANDIDATES.items()],
+        "conditions": ["ENABLED", "ZEROED"], "fresh_identical_state_per_condition": True,
+        "current_11_channel_policy": "zero_neural_contribution",
+        "isolation": {"at_most_one_candidate": True, "other_41_action_entries_exactly_zero": True,
+            "intervention": "replace only selected candidate contribution with exactly zero in ZEROED"},
+        "prohibitions": ["do not execute from mechanical validation", "no duration adaptation",
+            "no gait controller", "no stabilization", "no tuning", "no result-dependent rerun"],
+        "outcomes": ["IDENTITY_FAILURE", "MECHANICAL_FAILURE", "SOFTWARE_FAILURE",
+            "SUPPORTED_AND_ACTIVE", "SUPPORTED_BUT_SILENT", "DECODER_CANCELLATION",
+            "SUPPORTED_LOW_ACTIVITY"]}
+
+
+def create_preregistration_after_mechanics(result: dict, path: Path = PREREGISTRATION) -> str:
+    """Create the future specification only after three explicit sign passes."""
+    channels = result.get("candidate_channels", {})
+    passed = (set(channels) == set(CANDIDATES) and
+              all(channels[name].get("mechanics", {}).get("historical_sign_reproduced") is True
+                  for name in CANDIDATES))
+    if not passed:
+        raise RuntimeError("all three independent mechanical validations must pass before preregistration")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(serialize(future_preregistration()), encoding="utf-8", newline="\n")
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
 def serialize(value: dict) -> str:
     return json.dumps(value, indent=2, sort_keys=True, allow_nan=False) + "\n"
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--mechanical", action="store_true",
+        help="run only the dependency-gated three-joint compiled-model revalidation")
+    args = parser.parse_args(argv)
+    if args.mechanical and dependencies_available():
+        adapter = __import__("malecns_backend.embodiment._windows_candidate_motor_mechanical_validation",
+                             fromlist=["run"])
+        return adapter.run()
     value = build()
+    if args.mechanical:
+        value["run_status"] = "SKIPPED / DEPENDENCIES_UNAVAILABLE"
     OUTPUT.write_text(serialize(value), encoding="utf-8", newline="\n")
     print(f"wrote {OUTPUT}; preregistration_created={value['preregistration_created']}")
     return 0
