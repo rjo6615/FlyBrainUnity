@@ -1,0 +1,80 @@
+{
+  "admission_decision": {
+    "active_motor_interface_channel_count": 11,
+    "attempt_4_candidates_admitted": false,
+    "new_channels_admitted": 0
+  },
+  "artifacts": {
+    "candidate_motor_channel_raw.npz": {
+      "byte_size": 101866490,
+      "sha256": "99c90b1bf42e1ef7f09e4a349a231a3384d7e011195da1d28a71e443de9e6ce6",
+      "verified": true
+    },
+    "candidate_motor_channel_report.json": {
+      "byte_size": 6770822,
+      "sha256": "0629d05f9bf4c21cd911ac5f43f8f4518db3be5706daaf4d2f23991463645199",
+      "verified": true
+    },
+    "execution_manifest.json": {
+      "byte_size": 2831,
+      "sha256": "9d7516ca0c5ce45e1203433a7eb202e2db3654828c256d25d9b72f7c5d627650",
+      "verified": true
+    },
+    "final_manifest.json": {
+      "byte_size": 3616,
+      "sha256": "b79899e317d16f3007961c6d8e50c9ac33132272c84fe8dc38b7a7d9b047eea9",
+      "verified": true
+    }
+  },
+  "attempt": 4,
+  "attempt_provenance": {
+    "attempt_001": "ABORTED_INFRASTRUCTURE_ERROR",
+    "attempt_002": "OCCUPIED_IMMUTABLE_NO_SCIENTIFIC_CLASSIFICATION",
+    "attempt_003": "OCCUPIED_IMMUTABLE_NO_SCIENTIFIC_CLASSIFICATION",
+    "attempt_004": "COMPLETE"
+  },
+  "candidates": [
+    {
+      "action_index": 24,
+      "classification": "SUPPORTED_BUT_SILENT",
+      "coordinate_sign": -1,
+      "joint": "joint_RFFemur"
+    },
+    {
+      "action_index": 6,
+      "classification": "SUPPORTED_BUT_SILENT",
+      "coordinate_sign": -1,
+      "joint": "joint_LFTarsus1"
+    },
+    {
+      "action_index": 27,
+      "classification": "SUPPORTED_BUT_SILENT",
+      "coordinate_sign": -1,
+      "joint": "joint_RFTarsus1"
+    }
+  ],
+  "freeze_created_utc": "2026-09-25T23:45:26.122744+00:00",
+  "immutability": {
+    "attempt_004_is_frozen": true,
+    "instruction": "Do not regenerate, overwrite, modify, or delete any Attempt 4 artifact. Future analyses must consume the frozen artifacts read-only."
+  },
+  "interpretation_boundary": "The anatomical/mechanical candidate mappings remain supported, but the corresponding candidate neural populations produced no spikes during this specific preregistered 1000-ms runtime, initialization, and input condition. This does not establish that the populations are biologically nonfunctional, permanently silent, or irrelevant to natural behavior.",
+  "preregistration_sha256": "16cf491729aae39b8552a79b67993feef5661ee2240317d37c2d385e9e21893d",
+  "purpose": "Immutable provenance record for the completed preregistered three-candidate motor-channel experiment.",
+  "result_summary": {
+    "all_candidate_decoded_contributions_zero": true,
+    "all_candidate_neurons_fired": false,
+    "all_candidate_total_spike_increments": 0,
+    "all_enabled_vs_zeroed_physical_divergences_zero": true,
+    "conditions": 6,
+    "duration_ms": 1000,
+    "neural_dt_ms": 0.5,
+    "neural_transitions_per_condition": 2000,
+    "physics_dt_ms": 0.1,
+    "physics_transitions_per_condition": 10000,
+    "seed": 1,
+    "unauthorized_neural_contribution_occurred": false
+  },
+  "schema": "candidate_motor_channel_attempt_freeze_v1",
+  "status": "COMPLETE"
+}
