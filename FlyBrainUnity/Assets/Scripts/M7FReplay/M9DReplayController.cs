@@ -9,6 +9,7 @@ namespace FlyBrain.M7FReplay
         public const double FrameIntervalMs = .1;
         public const double FinalTimeMs = 1500;
         public const double ForceStartMs = 500, ForceStopMs = 520;
+        public const int ForceStartFrame = 5000, ForceStopFrame = 5200;
         public const int PerturbationReplayStartFrame = 4750;
         public const double PerturbationReplayStopMs = 650;
         public static readonly float[] AllowedSpeeds = { .05f, .1f, .25f, .5f, 1f };
@@ -115,7 +116,10 @@ namespace FlyBrain.M7FReplay
         public void SeekFrame(int frame) { if (!IsInitialized) return; Frame = Mathf.Clamp(frame, 0, FinalFrame); cursor = Frame * FrameIntervalMs; Apply(); }
         public void SetSpeed(float value) { foreach (var allowed in AllowedSpeeds) if (Mathf.Approximately(value, allowed)) { speed = value; return; } throw new ArgumentOutOfRangeException(nameof(value)); }
         public void SetInterpolation(bool value) { presentationInterpolation = value; Apply(); }
-        public bool ForceActive => IsInitialized && TimeMs >= ForceStartMs && TimeMs < ForceStopMs &&
+        // The canonical artifact declares the perturbation over transitions [5000,5200).
+        // Use that discrete boundary rather than comparing its slightly noisy recorded
+        // floating-point clock with nominal millisecond constants.
+        public bool ForceActive => IsInitialized && Frame >= ForceStartFrame && Frame < ForceStopFrame &&
             (leftCondition is M9DCondition.A_P or M9DCondition.B_P || sideBySide && (rightCondition is M9DCondition.A_P or M9DCondition.B_P));
         public static string Label(M9DCondition c) => c switch { M9DCondition.A_P => "A_P — Brain Enabled + Push\nMapped MaleCNS motor output ENABLED", M9DCondition.A_C => "A_C — Brain Enabled + No Push\nMapped MaleCNS motor output ENABLED", M9DCondition.B_P => "B_P — Brain Disabled + Push\nMapped MaleCNS motor output DISABLED before physical application", _ => "B_C — Brain Disabled + No Push\nMapped MaleCNS motor output DISABLED before physical application" };
         public void SetTrajectoryTraces(bool visible) { trajectoryTraces=visible; leftTrace?.SetVisible(visible); rightTrace?.SetVisible(visible&&sideBySide); }
