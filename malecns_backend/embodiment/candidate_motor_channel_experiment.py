@@ -1,8 +1,10 @@
 """Guarded executor contract for the frozen three-candidate observation.
 
 Import, ``--help``, and ``--preflight`` never construct a neural or physics
-runtime.  The only execution boundary is the explicit ``--execute`` option;
-the Windows adapter reuses the authoritative scientific transition kernel.
+runtime.  ``--diagnose-identity`` may construct runtimes but cannot advance
+them, apply commands, write results, or classify a candidate.  The only
+scientific execution boundary is the explicit ``--execute`` option; the
+Windows adapter reuses the authoritative scientific transition kernel.
 """
 from __future__ import annotations
 
@@ -128,6 +130,141 @@ def physics_model_identity(model: Any, data: Any) -> dict[str, Any]:
                            allow_nan=False).encode()
     return {"schema": components["schema"], "sha256": sha256_bytes(canonical),
             "components": components}
+
+
+def physics_model_diagnostic_snapshot(model: Any, data: Any) -> dict[str, Any]:
+    """Capture values needed to explain an identity mismatch.
+
+    This is deliberately separate from :func:`physics_model_identity`: it is
+    diagnostic data, not a revised scientific identity.  Callers must keep it
+    in memory and must not place it in a canonical experiment result.
+    """
+    import numpy as np
+    from .m8_contact_kinematics import compiled_name, namespace_component
+
+    dimensions, arrays = {}, {}
+    for name in dir(model):
+        try:
+            value = getattr(model, name)
+        except (AttributeError, RuntimeError, TypeError, ValueError):
+            continue
+        if name.startswith("n") and isinstance(value, (int, np.integer)):
+            dimensions[name] = int(value)
+        if (not name.startswith("_") and name != "ptr" and name != "names"
+                and not name.endswith("_nameadr") and isinstance(value, np.ndarray)
+                and value.dtype.kind in "biufc"):
+            arrays[name] = np.array(value, copy=True)
+    inventories = {}
+    for kind, count_name in (("body", "nbody"), ("joint", "njnt"),
+                             ("geom", "ngeom"), ("actuator", "nu"),
+                             ("sensor", "nsensor"), ("site", "nsite")):
+        inventories[kind] = [namespace_component(compiled_name(model, kind, index))
+                             for index in range(int(getattr(model, count_name, 0)))]
+    options = {}
+    option = getattr(model, "opt", None)
+    if option is not None:
+        for name in dir(option):
+            if name.startswith("_"):
+                continue
+            try:
+                value = getattr(option, name)
+            except (AttributeError, RuntimeError, TypeError, ValueError):
+                continue
+            if isinstance(value, (bool, int, float, np.bool_, np.integer, np.floating)):
+                options[name] = value.item() if isinstance(value, np.generic) else value
+            elif isinstance(value, np.ndarray) and value.dtype.kind in "biufc":
+                options[name] = np.array(value, copy=True)
+    state = {name: np.array(getattr(data, name), copy=True)
+             for name in ("qpos", "qvel", "act", "ctrl") if hasattr(data, name)}
+    return {"dimensions": dimensions, "model_arrays": arrays, "options": options,
+            "inventories": inventories, "initial_state": state,
+            "aggregate_identity": physics_model_identity(model, data)}
+
+
+def compare_physics_model_snapshots(left: Mapping[str, Any], right: Mapping[str, Any],
+                                    sample_limit: int = 8) -> dict[str, Any]:
+    """Return a JSON-safe, component-level, exact comparison of snapshots."""
+    import numpy as np
+
+    def scalar(value: Any) -> Any:
+        value = value.item() if isinstance(value, np.generic) else value
+        if isinstance(value, float) and not math.isfinite(value):
+            return {"nonfinite": str(value)}
+        if isinstance(value, complex):
+            return {"real": scalar(value.real), "imag": scalar(value.imag)}
+        return value
+
+    def array_report(a: Any, b: Any) -> dict[str, Any]:
+        a, b = np.asarray(a), np.asarray(b)
+        ai, bi = _canonical_array_identity(a), _canonical_array_identity(b)
+        report = {"enabled_dtype": ai["dtype"], "zeroed_dtype": bi["dtype"],
+                  "enabled_shape": ai["shape"], "zeroed_shape": bi["shape"],
+                  "enabled_sha256": ai["sha256"], "zeroed_sha256": bi["sha256"],
+                  "bit_identical": bool(a.dtype == b.dtype and a.shape == b.shape
+                                        and a.tobytes() == b.tobytes())}
+        if a.dtype != b.dtype or a.shape != b.shape:
+            report.update(differing_element_count=None, first_differences=[],
+                          maximum_absolute_difference=None)
+            return report
+        item_bytes = max(1, a.dtype.itemsize)
+        av = np.ascontiguousarray(a).view(np.uint8).reshape(-1, item_bytes)
+        bv = np.ascontiguousarray(b).view(np.uint8).reshape(-1, item_bytes)
+        differing = np.flatnonzero(np.any(av != bv, axis=1))
+        samples = []
+        flat_a, flat_b = a.reshape(-1), b.reshape(-1)
+        for flat_index in differing[:sample_limit]:
+            index = list(np.unravel_index(int(flat_index), a.shape))
+            samples.append({"index": index, "enabled": scalar(flat_a[flat_index]),
+                            "zeroed": scalar(flat_b[flat_index])})
+        report["differing_element_count"] = int(differing.size)
+        report["first_differences"] = samples
+        try:
+            finite = np.isfinite(a) & np.isfinite(b)
+            report["maximum_absolute_difference"] = (float(np.max(np.abs(a[finite] - b[finite])))
+                                                       if np.any(finite) else None)
+        except (TypeError, ValueError, OverflowError):
+            report["maximum_absolute_difference"] = None
+        return report
+
+    differing = []
+    for section in ("model_arrays", "initial_state"):
+        for name in sorted(set(left[section]) | set(right[section])):
+            if name not in left[section] or name not in right[section]:
+                differing.append({"component": f"{section}.{name}", "missing_from":
+                                  "ENABLED" if name not in left[section] else "ZEROED"})
+                continue
+            detail = array_report(left[section][name], right[section][name])
+            if not detail["bit_identical"]:
+                differing.append({"component": f"{section}.{name}", **detail})
+    for name in sorted(set(left["options"]) | set(right["options"])):
+        if name not in left["options"] or name not in right["options"]:
+            differing.append({"component": f"options.{name}", "missing_from":
+                              "ENABLED" if name not in left["options"] else "ZEROED"})
+        elif isinstance(left["options"][name], np.ndarray) or isinstance(right["options"][name], np.ndarray):
+            detail = array_report(left["options"][name], right["options"][name])
+            if not detail["bit_identical"]:
+                differing.append({"component": f"options.{name}", **detail})
+        elif left["options"][name] != right["options"][name]:
+            differing.append({"component": f"options.{name}",
+                              "enabled": scalar(left["options"][name]),
+                              "zeroed": scalar(right["options"][name])})
+    for section in ("dimensions", "inventories"):
+        for name in sorted(set(left[section]) | set(right[section])):
+            a, b = left[section].get(name), right[section].get(name)
+            if a != b:
+                row = {"component": f"{section}.{name}", "enabled": a, "zeroed": b}
+                if section == "inventories" and isinstance(a, list) and isinstance(b, list):
+                    row["differing_indices"] = [{"index": i,
+                        "enabled": a[i] if i < len(a) else None,
+                        "zeroed": b[i] if i < len(b) else None}
+                        for i in range(max(len(a), len(b)))
+                        if i >= len(a) or i >= len(b) or a[i] != b[i]]
+                differing.append(row)
+    left_sha = left["aggregate_identity"]["sha256"]
+    right_sha = right["aggregate_identity"]["sha256"]
+    return {"identical": not differing and left_sha == right_sha,
+            "enabled_aggregate_sha256": left_sha, "zeroed_aggregate_sha256": right_sha,
+            "aggregate_sha_identical": left_sha == right_sha, "differences": differing}
 
 
 def verify_preregistration_bytes(raw: bytes, expected_sha256: str = PREREGISTRATION_SHA256) -> str:
@@ -267,10 +404,14 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument("--preflight", action="store_true")
+    mode.add_argument("--diagnose-identity", action="store_true")
     mode.add_argument("--execute", action="store_true")
     args = parser.parse_args(argv)
     if args.preflight:
         result = preflight()
+    elif args.diagnose_identity:
+        from . import _windows_candidate_motor_channel_experiment_adapter as adapter
+        result = adapter.diagnose_identity()
     else:
         from . import _windows_candidate_motor_channel_experiment_adapter as adapter
         result = adapter.execute()

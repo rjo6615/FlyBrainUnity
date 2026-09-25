@@ -98,6 +98,50 @@ def _invoke(runner: Any, protocol: Mapping[str, Any], records: Any, table: Any,
         final_contribution_gate=final_gate, isolated_candidate_telemetry=True)
 
 
+def _diagnostic_invoke(runner: Any, protocol: Mapping[str, Any], records: Any,
+                       table: Any, condition: str, number: int) -> Mapping[str, Any]:
+    """Construct the authoritative runtime and return before any transition."""
+    candidate, action_index, _ = experiment.CANDIDATES[0]
+    return runner(protocol=protocol, condition=condition, condition_number=number,
+        progress=lambda *_: "identity diagnostic", cached_admission_assertion=admission_assertion(action_index),
+        cached_records=records, cached_table=table, initialize_only=True,
+        duration_ms=experiment.DURATION_MS, condition_names=experiment.CONDITIONS,
+        contribution_gate=contribution_gate, compact_telemetry=True,
+        runtime_factory=m7runner._runtime, proprioception_only=True,
+        fixed_initial_baseline=True, m8_extended_telemetry=True,
+        motor_channel_names=(candidate,), detailed_motor_telemetry=True,
+        final_contribution_gate=final_gate, isolated_candidate_telemetry=True,
+        identity_diagnostics=True)
+
+
+def diagnose_identity(runner: Any = kernel.run_condition) -> dict[str, Any]:
+    """Compare four RF Femur constructions without commands, steps, or output."""
+    preregistration = experiment.verify_preregistration()
+    protocol, records, table = m7runner._protocol()
+    labels = (("A1", "ENABLED"), ("A2", "ENABLED"),
+              ("B1", "ZEROED"), ("B2", "ZEROED"))
+    snapshots = {}
+    counters = {}
+    for number, (label, condition) in enumerate(labels, 1):
+        result = _diagnostic_invoke(runner, copy.deepcopy(protocol), records, table,
+                                    condition, number)
+        counters[label] = {name: result[name] for name in (
+            "physics_steps", "neural_steps", "sensory_updates", "decoder_updates",
+            "motor_interventions")}
+        if any(counters[label].values()):
+            raise RuntimeError("identity diagnostic performed a scientific operation")
+        snapshots[label] = result["physics_model_diagnostic_snapshot"]
+    matrix = {left: {right: experiment.compare_physics_model_snapshots(
+        snapshots[left], snapshots[right]) for right, _ in labels} for left, _ in labels}
+    return {"schema": "THREE-CANDIDATE-IDENTITY-DIAGNOSTIC.1",
+        "status": "NON_SCIENTIFIC_DIAGNOSTIC_ONLY", "candidate": "joint_RFFemur",
+        "frozen_preregistration_sha256": preregistration,
+        "canonical_experiment_result_written": False, "candidate_commands_applied": 0,
+        "scientific_transitions": 0, "construction_counters": counters,
+        "component_identity_matrix": matrix,
+        "classification_performed": False}
+
+
 def _initialization(result: Mapping[str, Any]) -> dict[str, Any]:
     state, audit = result["pre_intervention_state"], result["initial_physical_state_audit"]
     return {"initial_qpos": state["qpos"], "initial_qvel": state["qvel"],

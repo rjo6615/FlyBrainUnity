@@ -87,6 +87,37 @@ def test_physics_identity_ignores_instance_namespace_but_rejects_scientific_chan
     assert exp.physics_model_identity(_FakeModel(), changed_qvel) != first
     changed_model = _FakeModel(); changed_model.opt.gravity[2] = -1.62
     assert exp.physics_model_identity(changed_model, _FakeData()) != first
+    changed_act = _FakeData(); changed_act.act[0] = .25
+    assert exp.physics_model_identity(_FakeModel(), changed_act) != first
+
+
+def test_component_diagnostic_reports_exact_array_values_and_inventory_indices():
+    enabled = exp.physics_model_diagnostic_snapshot(_FakeModel(), _FakeData())
+    model, data = _FakeModel(), _FakeData()
+    model.body_mass[0] = np.nextafter(1.0, 2.0)
+    data.act[0] = .25
+    zeroed = exp.physics_model_diagnostic_snapshot(model, data)
+    zeroed["inventories"]["body"][0] = "different-body"
+    comparison = exp.compare_physics_model_snapshots(enabled, zeroed)
+    assert not comparison["identical"]
+    by_name = {row["component"]: row for row in comparison["differences"]}
+    mass = by_name["model_arrays.body_mass"]
+    assert mass["enabled_dtype"] == mass["zeroed_dtype"] == "<f8"
+    assert mass["enabled_shape"] == mass["zeroed_shape"] == [1]
+    assert mass["differing_element_count"] == 1
+    assert mass["first_differences"] == [{"index": [0], "enabled": 1.0,
+                                           "zeroed": np.nextafter(1.0, 2.0)}]
+    assert mass["maximum_absolute_difference"] == np.nextafter(1.0, 2.0) - 1.0
+    assert by_name["initial_state.act"]["first_differences"][0]["index"] == [0]
+    assert by_name["inventories.body"]["differing_indices"] == [
+        {"index": 0, "enabled": "body-0", "zeroed": "different-body"}]
+
+
+def test_component_diagnostic_identical_fresh_fake_constructions():
+    a1 = exp.physics_model_diagnostic_snapshot(_FakeModel(), _FakeData())
+    a2 = exp.physics_model_diagnostic_snapshot(_FakeModel(), _FakeData())
+    result = exp.compare_physics_model_snapshots(a1, a2)
+    assert result["identical"] and result["differences"] == []
 
 
 def test_fixed_duration_has_no_result_dependent_extension():
