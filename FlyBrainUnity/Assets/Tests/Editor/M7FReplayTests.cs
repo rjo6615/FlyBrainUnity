@@ -91,12 +91,19 @@ namespace FlyBrain.Tests
             finally { Object.DestroyImmediate(go); }
         }
 
-        [TestCase("joint_LFCoxa", -1, 0, 0)]
-        [TestCase("joint_LFCoxa_roll", 0, -1, 0)]
-        [TestCase("joint_LFCoxa_yaw", 0, 0, -1)]
-        [TestCase("joint_LFFemur_roll", 0, 0, -1)]
-        public void AxialVectorConversionIncludesReflectionSign(string name, float x, float y, float z)
-        { Assert.That(M7FScientificFlyRigDefinition.UnityAxis(name), Is.EqualTo(new Vector3(x, y, z))); }
+        [TestCase("joint_LFCoxa", 0, 1, 0)]
+        [TestCase("joint_LFCoxa_roll", 0, 0, 1)]
+        [TestCase("joint_LFCoxa_yaw", 1, 0, 0)]
+        [TestCase("joint_LFFemur_roll", 0, 0, 1)]
+        public void AxialVectorConversionIncludesReflectionSign(string name, float sourceX, float sourceY, float sourceZ)
+        {
+            // These are the compiled FlyGym local axes in the authoritative rig.
+            // B(x,y,z)=(x,z,y) has det(B)=-1, so an axial vector maps as det(B)Bv.
+            var source = new Vector3(sourceX, sourceY, sourceZ);
+            var derivedUnityAxis = -new Vector3(source.x, source.z, source.y);
+            Assert.That(M7FScientificFlyRigDefinition.SourceAxis(name), Is.EqualTo(source));
+            Assert.That(M7FScientificFlyRigDefinition.UnityAxis(name), Is.EqualTo(derivedUnityAxis));
+        }
 
         [Test] public void RootQuaternionBasisConversionPreservesMappedForwardAndUp()
         {
@@ -170,8 +177,8 @@ namespace FlyBrain.Tests
         {
             Assert.That(M7FAuthoritativeRigValidator.PositionTolerance, Is.EqualTo(2e-5f));
             Assert.That(M7FAuthoritativeRigValidator.AngularToleranceRadians, Is.EqualTo(2e-4f));
-            Assert.That(Sha256(Path.Combine(Application.streamingAssetsPath, "M7FValidation", "m7f_authoritative_rig.json")), Is.EqualTo("d8cd7e58bb33fff5e102484d937100d7afd7dc1f4156b39dc2a27f65c0c29eb7"));
-            Assert.That(Sha256(Path.Combine(Application.streamingAssetsPath, "M7FValidation", "m7f_mujoco_reference_frames.json")), Is.EqualTo("cd7c372214df6dc71071d05114ccdc2ccdca0f6dd48442797980772720f0fa5d"));
+            Assert.That(Sha256CanonicalLf(Path.Combine(Application.streamingAssetsPath, "M7FValidation", "m7f_authoritative_rig.json")), Is.EqualTo("d8cd7e58bb33fff5e102484d937100d7afd7dc1f4156b39dc2a27f65c0c29eb7"));
+            Assert.That(Sha256CanonicalLf(Path.Combine(Application.streamingAssetsPath, "M7FValidation", "m7f_mujoco_reference_frames.json")), Is.EqualTo("cd7c372214df6dc71071d05114ccdc2ccdca0f6dd48442797980772720f0fa5d"));
             var manifest = JsonUtility.FromJson<M7FManifest>(File.ReadAllText(Path.Combine(Application.streamingAssetsPath, "M7FReplay", "m7f_manifest.json")));
             CollectionAssert.AreEqual(manifest.joint_names, M7FScientificFlyRigDefinition.CanonicalNames);
         }
@@ -191,7 +198,11 @@ namespace FlyBrain.Tests
         {
             var rotated = new Vector3((float)System.Math.Cos(radians), (float)System.Math.Sin(radians), 0);
             var angle = M7FAuthoritativeRigValidator.DirectionalAngle(Vector3.right, rotated);
-            Assert.That(angle, Is.EqualTo(radians).Within(2e-11));
+            // Vector3 has already quantized the requested direction to floats. Compare
+            // with the exact angle represented by those inputs, not the unrepresentable
+            // pre-quantization double angle.
+            var representedAngle = System.Math.Atan2((double)rotated.y, (double)rotated.x);
+            Assert.That(angle, Is.EqualTo(representedAngle).Within(1e-15));
             Assert.That(angle <= M7FAuthoritativeRigValidator.AngularToleranceRadians, Is.EqualTo(accepted));
         }
 
@@ -215,10 +226,13 @@ namespace FlyBrain.Tests
             Assert.That(stable, Is.LessThan(M7FAuthoritativeRigValidator.AngularToleranceRadians));
         }
 
-        static string Sha256(string path)
+        static string Sha256CanonicalLf(string path)
         {
-            using var stream = File.OpenRead(path); using var hash = SHA256.Create();
-            return System.BitConverter.ToString(hash.ComputeHash(stream)).Replace("-", "").ToLowerInvariant();
+            // Git may materialize text artifacts with CRLF on Windows. Their scientific
+            // JSON fields and ordering are unchanged, so hash the repository's LF form.
+            var canonical = File.ReadAllText(path).Replace("\r\n", "\n");
+            using var hash = SHA256.Create();
+            return System.BitConverter.ToString(hash.ComputeHash(System.Text.Encoding.UTF8.GetBytes(canonical))).Replace("-", "").ToLowerInvariant();
         }
 
         [Test] public void JointApplicationIsAbsoluteSoDirectSeekEqualsNonSequentialSeek()
