@@ -1,0 +1,632 @@
+{
+  "candidate_channels": {
+    "joint_LFTarsus1": {
+      "action_index": 6,
+      "annotation_release": "Male CNS v1.0",
+      "coordinate_sign": -1,
+      "decoder_only": {
+        "baseline_zero_input_target_rad": 0.123,
+        "cases": {
+          "asymmetric": {
+            "candidate_with_zero_baseline_rad": -0.0625,
+            "nonzero_action_indices": [
+              6
+            ],
+            "rates_hz": [
+              34.0,
+              17.0
+            ],
+            "raw_rad": 0.0625,
+            "signed_neural_contribution_rad": -0.0625,
+            "slew_limited_target_rad": -0.004
+          },
+          "both_zero": {
+            "candidate_with_zero_baseline_rad": 0.0,
+            "nonzero_action_indices": [],
+            "rates_hz": [
+              0.0,
+              0.0
+            ],
+            "raw_rad": 0.0,
+            "signed_neural_contribution_rad": -0.0,
+            "slew_limited_target_rad": 0.0
+          },
+          "equal": {
+            "candidate_with_zero_baseline_rad": 0.0,
+            "nonzero_action_indices": [],
+            "rates_hz": [
+              34.0,
+              34.0
+            ],
+            "raw_rad": 0.0,
+            "signed_neural_contribution_rad": -0.0,
+            "slew_limited_target_rad": 0.0
+          },
+          "negative_only": {
+            "candidate_with_zero_baseline_rad": 0.1875,
+            "nonzero_action_indices": [
+              6
+            ],
+            "rates_hz": [
+              0.0,
+              34.0
+            ],
+            "raw_rad": -0.1875,
+            "signed_neural_contribution_rad": 0.1875,
+            "slew_limited_target_rad": 0.004
+          },
+          "positive_only": {
+            "candidate_with_zero_baseline_rad": -0.1875,
+            "nonzero_action_indices": [
+              6
+            ],
+            "rates_hz": [
+              34.0,
+              0.0
+            ],
+            "raw_rad": 0.1875,
+            "signed_neural_contribution_rad": -0.1875,
+            "slew_limited_target_rad": -0.004
+          }
+        },
+        "coordinate_sign_applied": -1,
+        "input_provenance": "ENGINEERED_TEST_INPUT_NOT_BIOLOGICAL_EVIDENCE",
+        "other_41_entries_exactly_zero": true,
+        "passed": true,
+        "population_mean_invariance_hz": [
+          34.0,
+          34.0
+        ],
+        "range_limit_example_rad": 0.1,
+        "saturation_raw_rad": 0.25
+      },
+      "directional_pools": {
+        "negative": [
+          {
+            "body_root_ids": [
+              817655,
+              819278,
+              1050403926,
+              1050660827,
+              1051062549
+            ],
+            "compiled_identity_artifact": "malecns_backend/interface_map.json",
+            "dense_indices": [
+              156498,
+              157269,
+              164697,
+              164725,
+              164766
+            ],
+            "duplicates": [],
+            "exact_annotation": "Ta depressor MN T1 left",
+            "missing_ids": [],
+            "neuron_count": 5,
+            "resolved_exactly_once": true,
+            "side": "left",
+            "source_artifact": "fly-brain-main/public/data/bodymap.json",
+            "thoracic_segment": "T1",
+            "unexpected_resolutions": []
+          }
+        ],
+        "positive": [
+          {
+            "body_root_ids": [
+              810541,
+              1050111955
+            ],
+            "compiled_identity_artifact": "malecns_backend/interface_map.json",
+            "dense_indices": [
+              151228,
+              164626
+            ],
+            "duplicates": [],
+            "exact_annotation": "Ta levator MN T1 left",
+            "missing_ids": [],
+            "neuron_count": 2,
+            "resolved_exactly_once": true,
+            "side": "left",
+            "source_artifact": "fly-brain-main/public/data/bodymap.json",
+            "thoracic_segment": "T1",
+            "unexpected_resolutions": []
+          }
+        ]
+      },
+      "historical_silence": {
+        "classification": "NO_MAPPED_MOTOR_ACTIVITY",
+        "conclusion": "aggregate silence is genuine in the retained artifact; A/B/E/F cannot be distinguished without a new fixed-window observational run; C/D are not present in the current reconstruction",
+        "duration_ms": 500,
+        "individual_neuron_telemetry_retained": false,
+        "max_absolute_admitted_contribution": 0.0,
+        "max_absolute_raw_contribution": 0.0
+      },
+      "identity_valid": true,
+      "mechanics": {
+        "actuator_id": 6,
+        "blocking_reason": "owning-body transform was not retained and FlyGym/MuJoCo is unavailable",
+        "compiled_actuator": "1/actuator_position_joint_LFTarsus1",
+        "coordinate_range_rad": [
+          -1000000.0,
+          1000000.0
+        ],
+        "epsilon_rad": 0.0001,
+        "historical_sign_reproduced_from_endpoint_capture": true,
+        "independent_revalidation_complete": false,
+        "joint_id": 7,
+        "local_joint_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "negative_endpoint": [
+          1.9013829283490322,
+          0.1856251470793304,
+          1.8772117556791166
+        ],
+        "neutral_qpos_rad": 0.0,
+        "owning_body_transform": null,
+        "positive_endpoint": [
+          1.90142726004713,
+          0.1856251470793304,
+          1.87710315913152
+        ],
+        "positive_minus_negative_displacement": [
+          4.4331698097810346e-05,
+          0.0,
+          -0.00010859654759665105
+        ],
+        "projection_value": -0.00010859654759665105,
+        "transmitted_joint": "1/joint_LFTarsus1"
+      },
+      "opposing_pool_overlap_body_ids": []
+    },
+    "joint_RFFemur": {
+      "action_index": 24,
+      "annotation_release": "Male CNS v1.0",
+      "coordinate_sign": -1,
+      "decoder_only": {
+        "baseline_zero_input_target_rad": 0.123,
+        "cases": {
+          "asymmetric": {
+            "candidate_with_zero_baseline_rad": -0.0625,
+            "nonzero_action_indices": [
+              24
+            ],
+            "rates_hz": [
+              34.0,
+              17.0
+            ],
+            "raw_rad": 0.0625,
+            "signed_neural_contribution_rad": -0.0625,
+            "slew_limited_target_rad": -0.004
+          },
+          "both_zero": {
+            "candidate_with_zero_baseline_rad": 0.0,
+            "nonzero_action_indices": [],
+            "rates_hz": [
+              0.0,
+              0.0
+            ],
+            "raw_rad": 0.0,
+            "signed_neural_contribution_rad": -0.0,
+            "slew_limited_target_rad": 0.0
+          },
+          "equal": {
+            "candidate_with_zero_baseline_rad": 0.0,
+            "nonzero_action_indices": [],
+            "rates_hz": [
+              34.0,
+              34.0
+            ],
+            "raw_rad": 0.0,
+            "signed_neural_contribution_rad": -0.0,
+            "slew_limited_target_rad": 0.0
+          },
+          "negative_only": {
+            "candidate_with_zero_baseline_rad": 0.1875,
+            "nonzero_action_indices": [
+              24
+            ],
+            "rates_hz": [
+              0.0,
+              34.0
+            ],
+            "raw_rad": -0.1875,
+            "signed_neural_contribution_rad": 0.1875,
+            "slew_limited_target_rad": 0.004
+          },
+          "positive_only": {
+            "candidate_with_zero_baseline_rad": -0.1875,
+            "nonzero_action_indices": [
+              24
+            ],
+            "rates_hz": [
+              34.0,
+              0.0
+            ],
+            "raw_rad": 0.1875,
+            "signed_neural_contribution_rad": -0.1875,
+            "slew_limited_target_rad": -0.004
+          }
+        },
+        "coordinate_sign_applied": -1,
+        "input_provenance": "ENGINEERED_TEST_INPUT_NOT_BIOLOGICAL_EVIDENCE",
+        "other_41_entries_exactly_zero": true,
+        "passed": true,
+        "population_mean_invariance_hz": [
+          34.0,
+          34.0
+        ],
+        "range_limit_example_rad": 0.1,
+        "saturation_raw_rad": 0.25
+      },
+      "directional_pools": {
+        "negative": [
+          {
+            "body_root_ids": [
+              807873,
+              1050306082,
+              1050349786
+            ],
+            "compiled_identity_artifact": "malecns_backend/interface_map.json",
+            "dense_indices": [
+              149013,
+              164683,
+              164687
+            ],
+            "duplicates": [],
+            "exact_annotation": "Acc. tr flexor MN T1 right",
+            "missing_ids": [],
+            "neuron_count": 3,
+            "resolved_exactly_once": true,
+            "side": "right",
+            "source_artifact": "fly-brain-main/public/data/bodymap.json",
+            "thoracic_segment": "T1",
+            "unexpected_resolutions": []
+          },
+          {
+            "body_root_ids": [
+              816648,
+              817640,
+              818719,
+              820130,
+              820668,
+              903010,
+              914655
+            ],
+            "compiled_identity_artifact": "malecns_backend/interface_map.json",
+            "dense_indices": [
+              155875,
+              156489,
+              157046,
+              157561,
+              157697,
+              159230,
+              162321
+            ],
+            "duplicates": [],
+            "exact_annotation": "Tr flexor MN T1 right",
+            "missing_ids": [],
+            "neuron_count": 7,
+            "resolved_exactly_once": true,
+            "side": "right",
+            "source_artifact": "fly-brain-main/public/data/bodymap.json",
+            "thoracic_segment": "T1",
+            "unexpected_resolutions": []
+          }
+        ],
+        "positive": [
+          {
+            "body_root_ids": [
+              801079,
+              803698
+            ],
+            "compiled_identity_artifact": "malecns_backend/interface_map.json",
+            "dense_indices": [
+              143581,
+              145568
+            ],
+            "duplicates": [],
+            "exact_annotation": "Sternotrochanter MN T1 right",
+            "missing_ids": [],
+            "neuron_count": 2,
+            "resolved_exactly_once": true,
+            "side": "right",
+            "source_artifact": "fly-brain-main/public/data/bodymap.json",
+            "thoracic_segment": "T1",
+            "unexpected_resolutions": []
+          },
+          {
+            "body_root_ids": [
+              804866,
+              817347,
+              909521,
+              924716
+            ],
+            "compiled_identity_artifact": "malecns_backend/interface_map.json",
+            "dense_indices": [
+              146511,
+              156301,
+              161362,
+              162567
+            ],
+            "duplicates": [],
+            "exact_annotation": "Tergotr. MN T1 right",
+            "missing_ids": [],
+            "neuron_count": 4,
+            "resolved_exactly_once": true,
+            "side": "right",
+            "source_artifact": "fly-brain-main/public/data/bodymap.json",
+            "thoracic_segment": "T1",
+            "unexpected_resolutions": []
+          },
+          {
+            "body_root_ids": [
+              818842,
+              838321
+            ],
+            "compiled_identity_artifact": "malecns_backend/interface_map.json",
+            "dense_indices": [
+              157103,
+              158670
+            ],
+            "duplicates": [],
+            "exact_annotation": "Tr extensor MN T1 right",
+            "missing_ids": [],
+            "neuron_count": 2,
+            "resolved_exactly_once": true,
+            "side": "right",
+            "source_artifact": "fly-brain-main/public/data/bodymap.json",
+            "thoracic_segment": "T1",
+            "unexpected_resolutions": []
+          }
+        ]
+      },
+      "historical_silence": {
+        "classification": "NO_MAPPED_MOTOR_ACTIVITY",
+        "conclusion": "aggregate silence is genuine in the retained artifact; A/B/E/F cannot be distinguished without a new fixed-window observational run; C/D are not present in the current reconstruction",
+        "duration_ms": 500,
+        "individual_neuron_telemetry_retained": false,
+        "max_absolute_admitted_contribution": 0.0,
+        "max_absolute_raw_contribution": 0.0
+      },
+      "identity_valid": true,
+      "mechanics": {
+        "actuator_id": 24,
+        "blocking_reason": "owning-body transform was not retained and FlyGym/MuJoCo is unavailable",
+        "compiled_actuator": "1/actuator_position_joint_RFFemur",
+        "coordinate_range_rad": [
+          -1000000.0,
+          1000000.0
+        ],
+        "epsilon_rad": 0.0001,
+        "historical_sign_reproduced_from_endpoint_capture": true,
+        "independent_revalidation_complete": false,
+        "joint_id": 59,
+        "local_joint_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "negative_endpoint": [
+          1.9013395200106271,
+          -0.18562514705645483,
+          1.8773261602040703
+        ],
+        "neutral_qpos_rad": -2.2689280275926285,
+        "owning_body_transform": null,
+        "positive_endpoint": [
+          1.9014706569039286,
+          -0.18562514705645483,
+          1.8769887502838243
+        ],
+        "positive_minus_negative_displacement": [
+          0.0001311368933014645,
+          0.0,
+          -0.00033740992024600125
+        ],
+        "projection_value": -0.00033740992024600125,
+        "transmitted_joint": "1/joint_RFFemur"
+      },
+      "opposing_pool_overlap_body_ids": []
+    },
+    "joint_RFTarsus1": {
+      "action_index": 27,
+      "annotation_release": "Male CNS v1.0",
+      "coordinate_sign": -1,
+      "decoder_only": {
+        "baseline_zero_input_target_rad": 0.123,
+        "cases": {
+          "asymmetric": {
+            "candidate_with_zero_baseline_rad": -0.0625,
+            "nonzero_action_indices": [
+              27
+            ],
+            "rates_hz": [
+              34.0,
+              17.0
+            ],
+            "raw_rad": 0.0625,
+            "signed_neural_contribution_rad": -0.0625,
+            "slew_limited_target_rad": -0.004
+          },
+          "both_zero": {
+            "candidate_with_zero_baseline_rad": 0.0,
+            "nonzero_action_indices": [],
+            "rates_hz": [
+              0.0,
+              0.0
+            ],
+            "raw_rad": 0.0,
+            "signed_neural_contribution_rad": -0.0,
+            "slew_limited_target_rad": 0.0
+          },
+          "equal": {
+            "candidate_with_zero_baseline_rad": 0.0,
+            "nonzero_action_indices": [],
+            "rates_hz": [
+              34.0,
+              34.0
+            ],
+            "raw_rad": 0.0,
+            "signed_neural_contribution_rad": -0.0,
+            "slew_limited_target_rad": 0.0
+          },
+          "negative_only": {
+            "candidate_with_zero_baseline_rad": 0.1875,
+            "nonzero_action_indices": [
+              27
+            ],
+            "rates_hz": [
+              0.0,
+              34.0
+            ],
+            "raw_rad": -0.1875,
+            "signed_neural_contribution_rad": 0.1875,
+            "slew_limited_target_rad": 0.004
+          },
+          "positive_only": {
+            "candidate_with_zero_baseline_rad": -0.1875,
+            "nonzero_action_indices": [
+              27
+            ],
+            "rates_hz": [
+              34.0,
+              0.0
+            ],
+            "raw_rad": 0.1875,
+            "signed_neural_contribution_rad": -0.1875,
+            "slew_limited_target_rad": -0.004
+          }
+        },
+        "coordinate_sign_applied": -1,
+        "input_provenance": "ENGINEERED_TEST_INPUT_NOT_BIOLOGICAL_EVIDENCE",
+        "other_41_entries_exactly_zero": true,
+        "passed": true,
+        "population_mean_invariance_hz": [
+          34.0,
+          34.0
+        ],
+        "range_limit_example_rad": 0.1,
+        "saturation_raw_rad": 0.25
+      },
+      "directional_pools": {
+        "negative": [
+          {
+            "body_root_ids": [
+              825721,
+              1050248133,
+              1050380236,
+              1050815462
+            ],
+            "compiled_identity_artifact": "malecns_backend/interface_map.json",
+            "dense_indices": [
+              158308,
+              164672,
+              164694,
+              164739
+            ],
+            "duplicates": [],
+            "exact_annotation": "Ta depressor MN T1 right",
+            "missing_ids": [],
+            "neuron_count": 4,
+            "resolved_exactly_once": true,
+            "side": "right",
+            "source_artifact": "fly-brain-main/public/data/bodymap.json",
+            "thoracic_segment": "T1",
+            "unexpected_resolutions": []
+          }
+        ],
+        "positive": [
+          {
+            "body_root_ids": [
+              817210,
+              820110,
+              820896
+            ],
+            "compiled_identity_artifact": "malecns_backend/interface_map.json",
+            "dense_indices": [
+              156216,
+              157553,
+              157751
+            ],
+            "duplicates": [],
+            "exact_annotation": "Ta levator MN T1 right",
+            "missing_ids": [],
+            "neuron_count": 3,
+            "resolved_exactly_once": true,
+            "side": "right",
+            "source_artifact": "fly-brain-main/public/data/bodymap.json",
+            "thoracic_segment": "T1",
+            "unexpected_resolutions": []
+          }
+        ]
+      },
+      "historical_silence": {
+        "classification": "NO_MAPPED_MOTOR_ACTIVITY",
+        "conclusion": "aggregate silence is genuine in the retained artifact; A/B/E/F cannot be distinguished without a new fixed-window observational run; C/D are not present in the current reconstruction",
+        "duration_ms": 500,
+        "individual_neuron_telemetry_retained": false,
+        "max_absolute_admitted_contribution": 0.0,
+        "max_absolute_raw_contribution": 0.0
+      },
+      "identity_valid": true,
+      "mechanics": {
+        "actuator_id": 27,
+        "blocking_reason": "owning-body transform was not retained and FlyGym/MuJoCo is unavailable",
+        "compiled_actuator": "1/actuator_position_joint_RFTarsus1",
+        "coordinate_range_rad": [
+          -1000000.0,
+          1000000.0
+        ],
+        "epsilon_rad": 0.0001,
+        "historical_sign_reproduced_from_endpoint_capture": true,
+        "independent_revalidation_complete": false,
+        "joint_id": 62,
+        "local_joint_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "negative_endpoint": [
+          1.9013829283285624,
+          -0.18562514705645483,
+          1.8772117556878736
+        ],
+        "neutral_qpos_rad": 0.0,
+        "owning_body_transform": null,
+        "positive_endpoint": [
+          1.9014272600266622,
+          -0.18562514705645483,
+          1.877103159140281
+        ],
+        "positive_minus_negative_displacement": [
+          4.433169809980875e-05,
+          0.0,
+          -0.00010859654759265425
+        ],
+        "projection_value": -0.00010859654759265425,
+        "transmitted_joint": "1/joint_RFTarsus1"
+      },
+      "opposing_pool_overlap_body_ids": []
+    }
+  },
+  "canonical_experiment_run": false,
+  "channel_admitted": false,
+  "decoder_validation_passed": true,
+  "duration_rationale": "fixed at twice the historical 500 ms before any new activity observation",
+  "fixed_future_observation_duration_ms": 1000,
+  "identity_validation_passed": true,
+  "live_runtime_modified": false,
+  "mechanical_validation_passed": false,
+  "preregistration_created": false,
+  "preregistration_withheld_reason": "fail-closed: independent owning-body-transform/sign revalidation is incomplete",
+  "run_status": "READ_ONLY_VALIDATION_COMPLETE",
+  "schema": "THREE-CANDIDATE-VALIDATION.0",
+  "source_hashes": {
+    "fly-brain-main/public/data/bodymap.json": "10630cd4c7a6cc2c1dcfcbee4a602d307f06766f316b185f631406813a58da9d",
+    "malecns_backend/embodiment/interface_output/isolated_tier_b_motor_validation.json": "02a4bbb7ec79ccf0967e9b8499c5a68d0ed8133a56688592ba13cfb2785285a2",
+    "malecns_backend/embodiment/interface_output/m6b_live_limit_diagnostic.json": "7bcd5e0fd9525f45423955e01b85ee27f707aa20dad10fe2a9a40bc505dbe0fd",
+    "malecns_backend/interface_map.json": "24b7229bea6f24ff0e65fe09b202d42dc06819fe234194e3c3ab95b596319e0b"
+  }
+}
