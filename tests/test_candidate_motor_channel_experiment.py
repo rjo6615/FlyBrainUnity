@@ -3,6 +3,10 @@ import json
 import pytest
 
 from malecns_backend.embodiment import candidate_motor_channel_experiment as exp
+from malecns_backend.embodiment import _windows_m8_live_condition as kernel
+from malecns_backend.embodiment.m7_telemetry import CompactTelemetry, build_schema
+
+import numpy as np
 
 
 def test_frozen_preregistration_gate_and_status(tmp_path):
@@ -55,6 +59,53 @@ def test_output_cannot_overlap_preregistration(tmp_path):
     occupied = tmp_path / "output"; occupied.mkdir(); (occupied / "x").write_text("x")
     with pytest.raises(FileExistsError):
         exp.require_new_output_directory(occupied)
+
+
+def test_aborted_legacy_attempt_is_immutable_and_next_attempt_is_namespaced(tmp_path):
+    root = tmp_path / "candidate_motor_channel_experiment"
+    root.mkdir()
+    original = b'{"status":"STARTED"}\n'
+    (root / "execution_manifest.json").write_bytes(original)
+    destination, attempt, prior = exp.next_attempt_directory(root)
+    assert destination == root / "attempt_002"
+    assert attempt == 2
+    assert prior[0]["status"] == "ABORTED_INFRASTRUCTURE_ERROR"
+    assert (root / "execution_manifest.json").read_bytes() == original
+
+
+def test_candidate_mode_preserves_legacy_shape_and_exposes_42_vectors():
+    schema = build_schema(qpos_shape=(2,), qvel_shape=(2,), ctrl_shape=(2,),
+                          contact_forces_shape=(1,))
+    telemetry = CompactTelemetry(schema, physics_capacity=1, neural_capacity=1)
+    observer, decoder, admitted = kernel._legacy_neural_telemetry(
+        admitted_names=("joint_RFFemur",), channels={"joint_RFFemur": {"peak_observer": 2.0}},
+        raw_values={"joint_RFFemur": .2}, contributions={"joint_RFFemur": .1},
+        isolated_candidate_telemetry=True)
+    telemetry.record("neural", {"neural_time_ms": .5,
+        "neural_sensory_encoded": np.zeros(6), "neural_delivered_drive_count": 0,
+        "neural_aggregate_spikes": 0, "neural_observer_outputs": observer,
+        "neural_decoder_outputs": decoder, "neural_admitted_contributions": admitted}, .5)
+    assert telemetry.export()["neural_admitted_contributions"].shape == (1, 11)
+    assert not np.any(telemetry.export()["neural_admitted_contributions"])
+    for condition in exp.CONDITIONS:
+        post, before_value, after_value = exp.authorize_contribution(24, .125, condition)
+        before = np.zeros(42); before[24] = before_value
+        assert before.shape == np.asarray(post).shape == (42,)
+        assert np.flatnonzero(before).tolist() == [24]
+        assert np.flatnonzero(post).tolist() == ([24] if condition == "ENABLED" else [])
+        assert after_value == post[24]
+
+
+def test_default_legacy_telemetry_behavior_is_unchanged():
+    names = tuple(f"channel_{index}" for index in range(11))
+    channels = {name: {"peak_observer": float(index)} for index, name in enumerate(names)}
+    raw = {name: float(index + 20) for index, name in enumerate(names)}
+    admitted_input = {name: float(index + 40) for index, name in enumerate(names)}
+    assert kernel._legacy_neural_telemetry(admitted_names=names, channels=channels,
+        raw_values=raw, contributions=admitted_input, isolated_candidate_telemetry=False) == (
+            [float(index) for index in range(11)],
+            [float(index + 20) for index in range(11)],
+            [float(index + 40) for index in range(11)])
 
 
 @pytest.mark.parametrize("metrics,classification", [

@@ -121,6 +121,35 @@ def require_new_output_directory(path: Path = OUTPUT_DIR) -> Path:
     return path
 
 
+def next_attempt_directory(path: Path = OUTPUT_DIR) -> tuple[Path, int, list[dict[str, Any]]]:
+    """Select a fresh attempt without touching legacy aborted-start evidence."""
+    root = Path(path).resolve()
+    prereg = PREREGISTRATION_PATH.resolve()
+    if root == prereg or prereg in root.parents or root in prereg.parents:
+        raise ValueError("output path may not overlap the preregistration")
+    prior: list[dict[str, Any]] = []
+    occupied_legacy = root.is_dir() and any(
+        child.name in OUTPUTS for child in root.iterdir() if child.is_file())
+    if occupied_legacy:
+        manifest = root / OUTPUTS[0]
+        status = "ABORTED_INFRASTRUCTURE_ERROR"
+        if manifest.is_file():
+            try:
+                recorded = json.loads(manifest.read_bytes()).get("status")
+            except (OSError, UnicodeDecodeError, json.JSONDecodeError):
+                recorded = None
+            if recorded not in (None, "STARTED"):
+                status = str(recorded)
+        prior.append({"attempt": 1, "directory": ".", "status": status,
+                      "reason": "legacy-layout attempt; STARTED without final_manifest is aborted"})
+    attempt = 2 if occupied_legacy else 1
+    while (root / f"attempt_{attempt:03d}").exists():
+        prior.append({"attempt": attempt, "directory": f"attempt_{attempt:03d}",
+                      "status": "OCCUPIED_IMMUTABLE"})
+        attempt += 1
+    return root / f"attempt_{attempt:03d}", attempt, prior
+
+
 def classify(metrics: Mapping[str, float]) -> str:
     """Apply exact, predeclared activity rules without a movement threshold."""
     spikes = int(metrics["total_spike_increments"])
@@ -140,11 +169,12 @@ def classify(metrics: Mapping[str, float]) -> str:
 
 def preflight(output_dir: Path = OUTPUT_DIR) -> dict[str, Any]:
     digest = verify_preregistration()
-    destination = require_new_output_directory(output_dir)
+    destination, attempt, prior = next_attempt_directory(output_dir)
     physics, neural = transition_counts(DURATION_MS, PHYSICS_DT_MS, NEURAL_DT_MS)
     return {"status": "PREFLIGHT_PASS", "preregistration_sha256": digest,
             "scientific_conditions_executed": 0, "runtime_constructed": False,
-            "output_directory": str(destination), "physics_transitions_per_condition": physics,
+            "output_directory": str(destination), "attempt": attempt, "prior_attempts": prior,
+            "physics_transitions_per_condition": physics,
             "neural_transitions_per_condition": neural, "condition_count": 6}
 
 
