@@ -49,6 +49,7 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
                   initialize_only: bool = False, duration_ms: float | None = None,
                   condition_names: Sequence[str] | None = None,
                   contribution_gate: Any | None = None,
+                  read_only_neural_observer: Any | None = None,
                   compact_telemetry: bool = False,
                   runtime_factory: Any | None = None,
                   proprioception_only: bool = False,
@@ -128,6 +129,8 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
         pre_intervention_state = _pre_intervention_snapshot(brain=brain, physics=physics,
             commands=commands, encoders=encoders, channels=channels, rngs=rngs,
             cached_table=cached_table)
+        if read_only_neural_observer is not None:
+            read_only_neural_observer.initialize(brain.spike_counts)
         # Construct and validate the exact admitted command shape during both
         # preflight and science initialization.  This is deliberately before
         # every sensory, decoder, neural, and physics transition.
@@ -192,6 +195,15 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
                 if candidates: brain.set_external_drive(tuple(sorted(candidates)), 1000. / brain.config.dt)
                 brain.external_drive_withheld_indices = np.empty(0, np.intp); brain.step()
                 delivered = tuple(map(int, brain._last_external_delivered)); aggregate_spikes = int(np.sum(brain.spike_counts))
+                if read_only_neural_observer is not None:
+                    # This hook is deliberately after the one authoritative brain
+                    # transition and before decoding.  It receives read-only
+                    # snapshots, never the brain, simulator, encoders, or decoder.
+                    read_only_neural_observer.observe(
+                        time_ms=now_ms, spike_counts=np.asarray(brain.spike_counts).copy(),
+                        physical_action=np.asarray(commands).copy(),
+                        neural_transition_count=step // stride,
+                        physics_transition_count=step)
                 phase["neural_stepping"] += time.perf_counter() - neural_started
                 decode_started = time.perf_counter(); raw_values = {}
                 for name, channel in channels.items():
@@ -267,6 +279,8 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
                 if k in ("spikes", "peak_observer", "peak_raw", "peak_admitted", "first_activity_ms",
                          "first_decoder_output_ms", "first_admitted_contribution_ms", "saturation", "slew_limited")}})
         raw_arrays = telemetry.export() if compact_telemetry else {}
+        observer_result = (read_only_neural_observer.finalize() if
+                           read_only_neural_observer is not None else None)
         return {"pre_intervention_equivalence": True, "pre_intervention_state": pre_intervention_state,
             "initial_physical_state_audit": initial_audit,
             "local_milestones": local,
@@ -275,7 +289,8 @@ def run_condition(*, protocol: Mapping[str, Any], condition: str, condition_numb
             "physics_steps": final_step if not instability else (
                 telemetry.counts["physics"] - 1 if compact_telemetry else len(trajectory) - 1),
             "neural_steps": telemetry.counts["neural"] if compact_telemetry else final_step // stride,
-            "feedback_milestones": {}, "performance": phase}
+            "feedback_milestones": {}, "performance": phase,
+            "read_only_observer_result": observer_result}
     finally:
         close = getattr(sim, "close", None)
         if close: close()

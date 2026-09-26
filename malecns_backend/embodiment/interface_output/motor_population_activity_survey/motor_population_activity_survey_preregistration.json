@@ -1,0 +1,633 @@
+{
+  "admitted_interface": {
+    "admitted_channel_count": 11,
+    "all_other_population_physical_contribution": 0,
+    "channels": [
+      {
+        "action_index": 5,
+        "activity_used_by_decoder": true,
+        "coordinate_sign": 1,
+        "joint": "joint_LFTibia",
+        "mapped_populations": [
+          "Acc. ti flexor MN T1 left",
+          "Ti extensor MN T1 left",
+          "Ti flexor MN T1 left"
+        ],
+        "mapping_source": "M6A annotation audit plus frozen Tier-A/M6B validation"
+      },
+      {
+        "action_index": 12,
+        "activity_used_by_decoder": true,
+        "coordinate_sign": 1,
+        "joint": "joint_LMTibia",
+        "mapped_populations": [
+          "Ti extensor MN T2 left",
+          "Ti flexor MN T2 left"
+        ],
+        "mapping_source": "M6A annotation audit plus frozen Tier-A/M6B validation"
+      },
+      {
+        "action_index": 19,
+        "activity_used_by_decoder": true,
+        "coordinate_sign": 1,
+        "joint": "joint_LHTibia",
+        "mapped_populations": [
+          "Acc. ti flexor MN T3 left",
+          "Ti extensor MN T3 left",
+          "Ti flexor MN T3 left"
+        ],
+        "mapping_source": "M6A annotation audit plus frozen Tier-A/M6B validation"
+      },
+      {
+        "action_index": 26,
+        "activity_used_by_decoder": true,
+        "coordinate_sign": 1,
+        "joint": "joint_RFTibia",
+        "mapped_populations": [
+          "Acc. ti flexor MN T1 right",
+          "Ti extensor MN T1 right",
+          "Ti flexor MN T1 right"
+        ],
+        "mapping_source": "M6A annotation audit plus frozen Tier-A/M6B validation"
+      },
+      {
+        "action_index": 33,
+        "activity_used_by_decoder": true,
+        "coordinate_sign": 1,
+        "joint": "joint_RMTibia",
+        "mapped_populations": [
+          "Acc. ti flexor MN T2 right",
+          "Ti extensor MN T2 right",
+          "Ti flexor MN T2 right"
+        ],
+        "mapping_source": "M6A annotation audit plus frozen Tier-A/M6B validation"
+      },
+      {
+        "action_index": 40,
+        "activity_used_by_decoder": true,
+        "coordinate_sign": 1,
+        "joint": "joint_RHTibia",
+        "mapped_populations": [
+          "Acc. ti flexor MN T3 right",
+          "Ti extensor MN T3 right",
+          "Ti flexor MN T3 right"
+        ],
+        "mapping_source": "M6A annotation audit plus frozen Tier-A/M6B validation"
+      },
+      {
+        "action_index": 3,
+        "activity_used_by_decoder": true,
+        "coordinate_sign": -1,
+        "joint": "joint_LFFemur",
+        "mapped_populations": [
+          "Acc. tr flexor MN T1 left",
+          "Sternotrochanter MN T1 left",
+          "Tergotr. MN T1 left",
+          "Tr extensor MN T1 left",
+          "Tr flexor MN T1 left"
+        ],
+        "mapping_source": "M6A annotation audit plus frozen Tier-A/M6B validation"
+      },
+      {
+        "action_index": 10,
+        "activity_used_by_decoder": true,
+        "coordinate_sign": -1,
+        "joint": "joint_LMFemur",
+        "mapped_populations": [
+          "Acc. tr flexor MN T2 left",
+          "Sternotrochanter MN T2 left",
+          "Tergotr. MN T2 left",
+          "Tr extensor MN T2 left",
+          "Tr flexor MN T2 left"
+        ],
+        "mapping_source": "M6A annotation audit plus frozen Tier-A/M6B validation"
+      },
+      {
+        "action_index": 17,
+        "activity_used_by_decoder": true,
+        "coordinate_sign": -1,
+        "joint": "joint_LHFemur",
+        "mapped_populations": [
+          "Acc. tr flexor MN T3 left",
+          "Sternotrochanter MN T3 left",
+          "Tergotr. MN T3 left",
+          "Tr extensor MN T3 left",
+          "Tr flexor MN T3 left"
+        ],
+        "mapping_source": "M6A annotation audit plus frozen Tier-A/M6B validation"
+      },
+      {
+        "action_index": 31,
+        "activity_used_by_decoder": true,
+        "coordinate_sign": -1,
+        "joint": "joint_RMFemur",
+        "mapped_populations": [
+          "Acc. tr flexor MN T2 right",
+          "Sternotrochanter MN T2 right",
+          "Tergotr. MN T2 right",
+          "Tr extensor MN T2 right",
+          "Tr flexor MN T2 right"
+        ],
+        "mapping_source": "M6A annotation audit plus frozen Tier-A/M6B validation"
+      },
+      {
+        "action_index": 38,
+        "activity_used_by_decoder": true,
+        "coordinate_sign": -1,
+        "joint": "joint_RHFemur",
+        "mapped_populations": [
+          "Acc. tr flexor MN T3 right",
+          "Sternotrochanter MN T3 right",
+          "Tergotr. MN T3 right",
+          "Tr extensor MN T3 right",
+          "Tr flexor MN T3 right"
+        ],
+        "mapping_source": "M6A annotation audit plus frozen Tier-A/M6B validation"
+      }
+    ],
+    "physical_action_entries": 42
+  },
+  "attempt4": {
+    "admission_decision": null,
+    "included": [
+      {
+        "action_index": 24,
+        "admission_status": "NOT_ADMITTED",
+        "coordinate_sign": -1,
+        "experimental_status": "EXPERIMENTALLY_SUPPORTED_BUT_SILENT",
+        "freeze_commit": "05926f4",
+        "joint": "joint_RFFemur",
+        "mechanical_status": "MECHANICALLY_SUPPORTED"
+      },
+      {
+        "action_index": 6,
+        "admission_status": "NOT_ADMITTED",
+        "coordinate_sign": -1,
+        "experimental_status": "EXPERIMENTALLY_SUPPORTED_BUT_SILENT",
+        "freeze_commit": "05926f4",
+        "joint": "joint_LFTarsus1",
+        "mechanical_status": "MECHANICALLY_SUPPORTED"
+      },
+      {
+        "action_index": 27,
+        "admission_status": "NOT_ADMITTED",
+        "coordinate_sign": -1,
+        "experimental_status": "EXPERIMENTALLY_SUPPORTED_BUT_SILENT",
+        "freeze_commit": "05926f4",
+        "joint": "joint_RFTarsus1",
+        "mechanical_status": "MECHANICALLY_SUPPORTED"
+      }
+    ],
+    "silence_not_required": true
+  },
+  "bin_count": 40,
+  "bin_width_ms": 25,
+  "binning": {
+    "alignment": "[0,25), [25,50), ..., [975,1000] by authoritative post-transition time",
+    "per_bin_metrics": [
+      "total_spike_increments",
+      "active_member_neurons",
+      "mean_filtered_rate_hz",
+      "peak_filtered_rate_hz"
+    ],
+    "width_ms": 25
+  },
+  "classification_rules": {
+    "OBSERVED_ACTIVE": "total_spike_increments > 0 and active_neural_transition_fraction >= 0.01",
+    "OBSERVED_LOW_ACTIVITY": "total_spike_increments > 0 and active_neural_transition_fraction < 0.01",
+    "OBSERVED_SILENT": "total_spike_increments == 0",
+    "descriptive_only": true
+  },
+  "coxa_yaw": {
+    "physical_coordinate_sign_assigned": false,
+    "population_count": 12,
+    "records": [
+      {
+        "action_indices": [
+          2
+        ],
+        "admission_blocker": "anatomical anterior/posterior labels do not establish FlyGym coordinate sign; mechanical sign validation is required",
+        "anatomical_mapping_unique": true,
+        "annotation_names": [
+          "Sternal anterior rotator MN T1 left",
+          "Sternal posterior rotator MN T1 left"
+        ],
+        "candidate_joints": [
+          "joint_LFCoxa_yaw"
+        ],
+        "coordinate_sign": null,
+        "leg": "LF",
+        "populations": [
+          {
+            "count": 2,
+            "interpretation": "Sternal anterior rotator MN T1 left",
+            "name": "Sternal anterior rotator MN T1 left",
+            "neuron_ids": [
+              806923,
+              919509
+            ]
+          },
+          {
+            "count": 4,
+            "interpretation": "Sternal posterior rotator MN T1 left",
+            "name": "Sternal posterior rotator MN T1 left",
+            "neuron_ids": [
+              801915,
+              804851,
+              808640,
+              1050335829
+            ]
+          }
+        ]
+      },
+      {
+        "action_indices": [
+          9
+        ],
+        "admission_blocker": "anatomical anterior/posterior labels do not establish FlyGym coordinate sign; mechanical sign validation is required",
+        "anatomical_mapping_unique": true,
+        "annotation_names": [
+          "Sternal anterior rotator MN T2 left",
+          "Sternal posterior rotator MN T2 left"
+        ],
+        "candidate_joints": [
+          "joint_LMCoxa_yaw"
+        ],
+        "coordinate_sign": null,
+        "leg": "LM",
+        "populations": [
+          {
+            "count": 2,
+            "interpretation": "Sternal anterior rotator MN T2 left",
+            "name": "Sternal anterior rotator MN T2 left",
+            "neuron_ids": [
+              832490,
+              903689
+            ]
+          },
+          {
+            "count": 4,
+            "interpretation": "Sternal posterior rotator MN T2 left",
+            "name": "Sternal posterior rotator MN T2 left",
+            "neuron_ids": [
+              801768,
+              803226,
+              803704,
+              1051054875
+            ]
+          }
+        ]
+      },
+      {
+        "action_indices": [
+          16
+        ],
+        "admission_blocker": "anatomical anterior/posterior labels do not establish FlyGym coordinate sign; mechanical sign validation is required",
+        "anatomical_mapping_unique": true,
+        "annotation_names": [
+          "Sternal anterior rotator MN T3 left",
+          "Sternal posterior rotator MN T3 left"
+        ],
+        "candidate_joints": [
+          "joint_LHCoxa_yaw"
+        ],
+        "coordinate_sign": null,
+        "leg": "LH",
+        "populations": [
+          {
+            "count": 2,
+            "interpretation": "Sternal anterior rotator MN T3 left",
+            "name": "Sternal anterior rotator MN T3 left",
+            "neuron_ids": [
+              801548,
+              802215
+            ]
+          },
+          {
+            "count": 4,
+            "interpretation": "Sternal posterior rotator MN T3 left",
+            "name": "Sternal posterior rotator MN T3 left",
+            "neuron_ids": [
+              801492,
+              801715,
+              802964,
+              818399
+            ]
+          }
+        ]
+      },
+      {
+        "action_indices": [
+          23
+        ],
+        "admission_blocker": "anatomical anterior/posterior labels do not establish FlyGym coordinate sign; mechanical sign validation is required",
+        "anatomical_mapping_unique": true,
+        "annotation_names": [
+          "Sternal anterior rotator MN T1 right",
+          "Sternal posterior rotator MN T1 right"
+        ],
+        "candidate_joints": [
+          "joint_RFCoxa_yaw"
+        ],
+        "coordinate_sign": null,
+        "leg": "RF",
+        "populations": [
+          {
+            "count": 2,
+            "interpretation": "Sternal anterior rotator MN T1 right",
+            "name": "Sternal anterior rotator MN T1 right",
+            "neuron_ids": [
+              801469,
+              801918
+            ]
+          },
+          {
+            "count": 2,
+            "interpretation": "Sternal posterior rotator MN T1 right",
+            "name": "Sternal posterior rotator MN T1 right",
+            "neuron_ids": [
+              805410,
+              808011
+            ]
+          }
+        ]
+      },
+      {
+        "action_indices": [
+          30
+        ],
+        "admission_blocker": "anatomical anterior/posterior labels do not establish FlyGym coordinate sign; mechanical sign validation is required",
+        "anatomical_mapping_unique": true,
+        "annotation_names": [
+          "Sternal anterior rotator MN T2 right",
+          "Sternal posterior rotator MN T2 right"
+        ],
+        "candidate_joints": [
+          "joint_RMCoxa_yaw"
+        ],
+        "coordinate_sign": null,
+        "leg": "RM",
+        "populations": [
+          {
+            "count": 2,
+            "interpretation": "Sternal anterior rotator MN T2 right",
+            "name": "Sternal anterior rotator MN T2 right",
+            "neuron_ids": [
+              801813,
+              801946
+            ]
+          },
+          {
+            "count": 4,
+            "interpretation": "Sternal posterior rotator MN T2 right",
+            "name": "Sternal posterior rotator MN T2 right",
+            "neuron_ids": [
+              800962,
+              801761,
+              802521,
+              818996
+            ]
+          }
+        ]
+      },
+      {
+        "action_indices": [
+          37
+        ],
+        "admission_blocker": "anatomical anterior/posterior labels do not establish FlyGym coordinate sign; mechanical sign validation is required",
+        "anatomical_mapping_unique": true,
+        "annotation_names": [
+          "Sternal anterior rotator MN T3 right",
+          "Sternal posterior rotator MN T3 right"
+        ],
+        "candidate_joints": [
+          "joint_RHCoxa_yaw"
+        ],
+        "coordinate_sign": null,
+        "leg": "RH",
+        "populations": [
+          {
+            "count": 2,
+            "interpretation": "Sternal anterior rotator MN T3 right",
+            "name": "Sternal anterior rotator MN T3 right",
+            "neuron_ids": [
+              800316,
+              906235
+            ]
+          },
+          {
+            "count": 4,
+            "interpretation": "Sternal posterior rotator MN T3 right",
+            "name": "Sternal posterior rotator MN T3 right",
+            "neuron_ids": [
+              903642,
+              903643,
+              907256,
+              1050493413
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "duration_ms": 1000,
+  "expected_neural_transitions": 2000,
+  "expected_physics_transitions": 10000,
+  "filtered_rate_semantics": {
+    "population_mean": "arithmetic mean of member-neuron filtered rates",
+    "tau_ms": 40.0,
+    "update": "existing Euler low-pass: filtered += (dt/tau)*(increment*1000/dt-filtered)"
+  },
+  "initialization_procedure": {
+    "baseline_targets": "exact measured corrected tripod joint state at time zero",
+    "calibration_surface": "canonical inherited static m5d2c_calibration_surface",
+    "init_pose": "tripod",
+    "seed": 1,
+    "settling_transitions": 0,
+    "spawn_orientation": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spawn_pos": [
+      0.0,
+      0.0,
+      0.6045752232266313
+    ]
+  },
+  "integrity_assertions": [
+    "inventory and preregistration SHA-256 gates",
+    "42-entry physical action",
+    "exact existing 11-channel admission table",
+    "other 91 populations have no decoder/action path",
+    "observer receives copies only and checks inputs unchanged",
+    "no neural, sensory, or decoder object is exposed to observer",
+    "observer callback adds no neural or physics transition",
+    "exact 2000 neural and 10000 physics transitions",
+    "no stimulation",
+    "no extra forces",
+    "exclusive-create output refusal"
+  ],
+  "interpretation_boundary": "Observes activity in annotation-backed MaleCNS motor populations under one modeled closed-loop condition. It does not establish natural motor function, walking, locomotion, gait generation, balance, stabilization, righting, reflexes, behavioral necessity, or biological sufficiency.",
+  "inventory_generation_commit": "7cfe2ae73112b70dc01239944945c192edb65604c",
+  "inventory_path": "malecns_backend/embodiment/interface_output/motor_population_activity_survey/motor_population_inventory.json",
+  "inventory_sha256": "b0fbbe9d7bf5d83ee2b7b6d8d458be92105344c7bef24729e9e2969edaabc5cb",
+  "metrics": [
+    "total_spike_increments",
+    "active_member_neurons",
+    "active_member_neuron_fraction",
+    "mean_spike_increments_per_neuron",
+    "peak_spike_increments_member_neuron",
+    "mean_per_neuron_filtered_rate_hz",
+    "peak_filtered_rate_hz",
+    "first_activity_time_ms",
+    "last_activity_time_ms",
+    "active_neural_transition_count",
+    "active_neural_transition_fraction"
+  ],
+  "neural_dt_ms": 0.5,
+  "output_schema": {
+    "execution_manifest": "commit, versions, exact counts, frozen hashes, intervention assertions",
+    "final_manifest": "SHA-256 identities of final artifacts",
+    "raw": "numeric-only compressed NPZ aggregates and 40-bin traces; allow_pickle=False",
+    "report": "canonical sorted JSON; identity, aggregate metrics, classification, bins for 102 populations"
+  },
+  "physics_dt_ms": 0.1,
+  "population_set": {
+    "canonical_names": [
+      "Acc. ti flexor MN T1 left",
+      "Acc. ti flexor MN T1 right",
+      "Acc. ti flexor MN T2 left",
+      "Acc. ti flexor MN T2 right",
+      "Acc. ti flexor MN T3 left",
+      "Acc. ti flexor MN T3 right",
+      "Acc. tr flexor MN T1 left",
+      "Acc. tr flexor MN T1 right",
+      "Acc. tr flexor MN T2 left",
+      "Acc. tr flexor MN T2 right",
+      "Acc. tr flexor MN T3 left",
+      "Acc. tr flexor MN T3 right",
+      "Fe reductor MN T1 left",
+      "Fe reductor MN T1 right",
+      "Fe reductor MN T2 left",
+      "Fe reductor MN T2 right",
+      "Fe reductor MN T3 left",
+      "Fe reductor MN T3 right",
+      "Pleural remotor/abductor MN T1 left",
+      "Pleural remotor/abductor MN T1 right",
+      "Pleural remotor/abductor MN T2 left",
+      "Pleural remotor/abductor MN T2 right",
+      "Pleural remotor/abductor MN T3 left",
+      "Pleural remotor/abductor MN T3 right",
+      "Sternal adductor MN T1 left",
+      "Sternal adductor MN T1 right",
+      "Sternal adductor MN T2 left",
+      "Sternal adductor MN T2 right",
+      "Sternal adductor MN T3 left",
+      "Sternal adductor MN T3 right",
+      "Sternal anterior rotator MN T1 left",
+      "Sternal anterior rotator MN T1 right",
+      "Sternal anterior rotator MN T2 left",
+      "Sternal anterior rotator MN T2 right",
+      "Sternal anterior rotator MN T3 left",
+      "Sternal anterior rotator MN T3 right",
+      "Sternal posterior rotator MN T1 left",
+      "Sternal posterior rotator MN T1 right",
+      "Sternal posterior rotator MN T2 left",
+      "Sternal posterior rotator MN T2 right",
+      "Sternal posterior rotator MN T3 left",
+      "Sternal posterior rotator MN T3 right",
+      "Sternotrochanter MN T1 left",
+      "Sternotrochanter MN T1 right",
+      "Sternotrochanter MN T2 left",
+      "Sternotrochanter MN T2 right",
+      "Sternotrochanter MN T3 left",
+      "Sternotrochanter MN T3 right",
+      "Ta depressor MN T1 left",
+      "Ta depressor MN T1 right",
+      "Ta levator MN T1 left",
+      "Ta levator MN T1 right",
+      "Tergopleural/Pleural promotor MN T1 left",
+      "Tergopleural/Pleural promotor MN T1 right",
+      "Tergotr. MN T1 left",
+      "Tergotr. MN T1 right",
+      "Tergotr. MN T2 left",
+      "Tergotr. MN T2 right",
+      "Tergotr. MN T3 left",
+      "Tergotr. MN T3 right",
+      "Ti extensor MN T1 left",
+      "Ti extensor MN T1 right",
+      "Ti extensor MN T2 left",
+      "Ti extensor MN T2 right",
+      "Ti extensor MN T3 left",
+      "Ti extensor MN T3 right",
+      "Ti flexor MN T1 left",
+      "Ti flexor MN T1 right",
+      "Ti flexor MN T2 left",
+      "Ti flexor MN T2 right",
+      "Ti flexor MN T3 left",
+      "Ti flexor MN T3 right",
+      "Tr extensor MN T1 left",
+      "Tr extensor MN T1 right",
+      "Tr extensor MN T2 left",
+      "Tr extensor MN T2 right",
+      "Tr extensor MN T3 left",
+      "Tr extensor MN T3 right",
+      "Tr flexor MN T1 left",
+      "Tr flexor MN T1 right",
+      "Tr flexor MN T2 left",
+      "Tr flexor MN T2 right",
+      "Tr flexor MN T3 left",
+      "Tr flexor MN T3 right",
+      "ltm MN T1 left",
+      "ltm MN T1 right",
+      "ltm MN T2 left",
+      "ltm MN T2 right",
+      "ltm MN T3 left",
+      "ltm MN T3 right",
+      "ltm1-tibia MN T1 left",
+      "ltm1-tibia MN T1 right",
+      "ltm1-tibia MN T2 left",
+      "ltm1-tibia MN T2 right",
+      "ltm1-tibia MN T3 left",
+      "ltm1-tibia MN T3 right",
+      "ltm2-femur MN T1 left",
+      "ltm2-femur MN T1 right",
+      "ltm2-femur MN T2 left",
+      "ltm2-femur MN T2 right",
+      "ltm2-femur MN T3 left",
+      "ltm2-femur MN T3 right"
+    ],
+    "count": 102,
+    "membership_count": 328,
+    "unique_neuron_ids": 328
+  },
+  "runtime_configuration": {
+    "adhesion_enabled": false,
+    "condition": "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT",
+    "control": "position",
+    "decoder_gain_changes": null,
+    "extra_forces": null,
+    "flygym": "1.2.1",
+    "mujoco": "3.2.7",
+    "neural_parameter_changes": null,
+    "runtime": "current validated MaleCNS + FlyGym corrected closed loop",
+    "stimulation": null
+  },
+  "schema": "MOTOR-POPULATION-ACTIVITY-SURVEY-PREREGISTRATION.1",
+  "scientific_run_executed": false,
+  "seed": 1,
+  "sensory_configuration": {
+    "added_drive": null,
+    "configuration": "unchanged current validated closed-loop encoding",
+    "streams": "six admitted tibial proprioceptive streams only"
+  },
+  "source_sha256": {
+    "malecns_backend/embodiment/_windows_m6c_live_condition.py": "f8cb4eb9772130a4bb902769f0c5814d40b34c3b6bdc9175b21eeaf94bb65518",
+    "malecns_backend/embodiment/_windows_m7d_corrected_spontaneous_adapter.py": "cec995856be96a8c632e098e92153eb9c7b95d396b98d8d0499eb5f013ae9e17",
+    "malecns_backend/embodiment/integrated_whole_leg_readiness.py": "7ab4279118cbe577a4247ddfc7a0928210e474a536671987d1dc04bafa4278ff",
+    "malecns_backend/embodiment/m7d_corrected_spontaneous.py": "1b7015af3a740d8d5d390d2352eb4a193ca8fd10eacc10208a68746bafcf1649",
+    "malecns_backend/embodiment/motor.py": "a64e75a0097c2927d35d94401d5c26f948fb83c86b63e5f6e527ed7d70efb12f"
+  },
+  "status": "FROZEN_NOT_RUN"
+}
