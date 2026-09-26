@@ -1,0 +1,41 @@
+{
+  "artifacts": {
+    "motor_population_activity_survey_execution_manifest.json": {
+      "sha256": "10e6cfbaf9a5529910a411271b00c5f33b5fe2ee62c29b4f4837b8fc90a18cae",
+      "size_bytes": 687
+    },
+    "motor_population_activity_survey_final_manifest.json": {
+      "sha256": "fc1131d01839d8d70b340441167bea47eceee5c5514983eceb403752d13107e7",
+      "size_bytes": 472
+    },
+    "motor_population_activity_survey_raw.npz": {
+      "sha256": "1af4046577e61f41ba4d8dd68a7b8511c87cffe6168fe99cff298866042f5b43",
+      "size_bytes": 10713
+    },
+    "motor_population_activity_survey_report.json": {
+      "sha256": "9a2cf19a7f634c7ab15fd0041cdf38e465bb3ffc8821d7d83d846284a50cebfa",
+      "size_bytes": 903509
+    }
+  },
+  "created_utc": "2026-09-26T16:42:02.431211+00:00",
+  "immutability": {
+    "interpretation": "Read-only survey of annotation-backed leg-motor population activity under the preregistered 1000-ms condition. Activity does not establish biological function or justify motor admission.",
+    "modify_frozen_artifacts": false,
+    "rerun_scientific_execution": false
+  },
+  "inventory_canonical_sha256": "b0fbbe9d7bf5d83ee2b7b6d8d458be92105344c7bef24729e9e2969edaabc5cb",
+  "neural_transitions": 2000,
+  "physics_transitions": 10000,
+  "population_count": 102,
+  "preregistration_canonical_sha256": "8cf9e38219316886a69e5970c5d521283cf652e8a747fba77d99cd4ccc0eaff5",
+  "result_summary": {
+    "non_silent_populations": 19,
+    "observed_active_populations": 2,
+    "observed_low_activity_populations": 17,
+    "observed_silent_populations": 83,
+    "total_spike_increments": 193
+  },
+  "schema": "MOTOR-POPULATION-ACTIVITY-SURVEY-FREEZE.1",
+  "scientific_execution_git_commit": "cd81fa2f7730e972adc7ba78bfcdab53057a9fd9",
+  "status": "FROZEN"
+}
