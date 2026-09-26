@@ -1,0 +1,42 @@
+{
+  "action_vector_length": 42,
+  "active_interface": {"expected_count": 11, "modification_permitted": false, "coxa_yaw_admission_permitted": false},
+  "anatomical_frame_identity_gate": {
+    "abdomen_landmark": "compiled body A1A2",
+    "head_landmark": "compiled body Head",
+    "rule": "Head must have positive and A1A2 must have negative projection relative to compiled Thorax origin on baseline Thorax local +X; otherwise GEOMETRY_IDENTITY_FAILURE"
+  },
+  "anatomical_metric": {
+    "anterior_axis": "Thorax local +X transformed to world by baseline Thorax xmat",
+    "formula": "dot(landmark_perturbed_world - landmark_baseline_world, anterior_axis_world)",
+    "frame": "compiled Thorax body frame at the fresh neutral baseline",
+    "landmark": "origin of the named Femur body (the coxa distal child landmark)",
+    "selection_policy": "The same proximal distal-coxa landmark and projection formula are fixed for all six legs before perturbation; no alternative landmark or axis may be selected from results."
+  },
+  "baseline_tolerance": 1e-12,
+  "classification": {
+    "failure_values": ["ANATOMICAL_SIGN_GEOMETRICALLY_UNRESOLVED", "GEOMETRY_IDENTITY_FAILURE", "MECHANICAL_FAILURE", "SOFTWARE_FAILURE"],
+    "rule": "Resolve only with valid identities, identical fresh baselines, opposing axis-projected mechanical rotations, finite opposite-signed projected anterior displacements, and each displacement strictly above metric tolerance. Positive projection is anterior.",
+    "success_values": ["ANTERIOR_SIGN_POSITIVE", "ANTERIOR_SIGN_NEGATIVE"]
+  },
+  "epsilon_rad": 0.0001,
+  "execution_policy": {
+    "fresh_model_per_sign": true,
+    "kinematic_forward_allowed": true,
+    "physics_dynamics_steps": 0,
+    "run_once": true
+  },
+  "metric_tolerance": 1e-10,
+  "opposition_tolerance": 1e-10,
+  "prohibitions": ["neural runtime", "neural firing or motor survey activity", "stimulation", "external forces", "physics stepping", "bodymap dir values", "prep_bodymap sign values", "old sign comments", "bilateral inference", "visual sign choice", "result-dependent metric selection", "active-interface modification"],
+  "schema": "COXA-YAW-ANATOMICAL-SIGN-BRIDGE-PREREGISTRATION.1",
+  "status": "NOT_RUN",
+  "targets": [
+    {"action_index": 2, "joint": "joint_LFCoxa_yaw", "landmark_body": "LFFemur", "leg": "LF"},
+    {"action_index": 9, "joint": "joint_LMCoxa_yaw", "landmark_body": "LMFemur", "leg": "LM"},
+    {"action_index": 16, "joint": "joint_LHCoxa_yaw", "landmark_body": "LHFemur", "leg": "LH"},
+    {"action_index": 23, "joint": "joint_RFCoxa_yaw", "landmark_body": "RFFemur", "leg": "RF"},
+    {"action_index": 30, "joint": "joint_RMCoxa_yaw", "landmark_body": "RMFemur", "leg": "RM"},
+    {"action_index": 37, "joint": "joint_RHCoxa_yaw", "landmark_body": "RHFemur", "leg": "RH"}
+  ]
+}
