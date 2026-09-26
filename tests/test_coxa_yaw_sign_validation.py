@@ -74,14 +74,28 @@ def test_identity_neural_stimulation_force_and_isolation_fail_closed(field, valu
     assert validation.classify(evidence) == "MECHANICAL_VALIDATION_FAILED"
 
 
-def test_frozen_preregistration_hash_and_not_run_status(tmp_path):
+def test_frozen_preregistration_lf_and_crlf_hash_and_not_run_status(tmp_path):
     value = validation.verify_preregistration()
     assert value["status"] == "NOT_RUN"
-    assert validation.sha256(validation.PREREGISTRATION_PATH) == validation.PREREGISTRATION_SHA256
+    assert validation.PREREGISTRATION_SHA256 == "dcf1b4419f8d0bd7cd65979ad2da3084db5482cf906b3e40217836335c563254"
+    original = validation.PREREGISTRATION_PATH.read_bytes()
+    assert validation.preregistration_sha256(validation.PREREGISTRATION_PATH) == validation.PREREGISTRATION_SHA256
+    crlf = tmp_path / "crlf.json"
+    crlf.write_bytes(original.replace(b"\n", b"\r\n"))
+    assert validation.verify_preregistration(crlf) == value
     changed = tmp_path / "changed.json"
-    changed.write_bytes(validation.PREREGISTRATION_PATH.read_bytes() + b" ")
+    changed.write_bytes(original + b" ")
     with pytest.raises(RuntimeError, match="SHA-256"):
         validation.verify_preregistration(changed)
+
+
+def test_preregistration_hash_normalization_is_limited_to_crlf(tmp_path):
+    original = validation.PREREGISTRATION_PATH.read_bytes()
+    lone_cr = tmp_path / "lone-cr.json"
+    lone_cr.write_bytes(original.replace(b"\n", b"\r", 1))
+    assert validation.preregistration_sha256(lone_cr) != validation.PREREGISTRATION_SHA256
+    with pytest.raises(RuntimeError, match="SHA-256"):
+        validation.verify_preregistration(lone_cr)
 
 
 def test_preflight_is_zero_transition_and_interface_remains_11():
