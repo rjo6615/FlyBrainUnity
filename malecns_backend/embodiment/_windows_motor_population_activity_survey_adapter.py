@@ -14,6 +14,7 @@ from . import _windows_m7d_corrected_spontaneous_adapter as m7d_adapter
 from . import integrated_whole_leg_readiness as m6c
 
 CONDITION = "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT"
+ADMITTED_INTERFACE_SIZE = 11
 
 
 def _runner(**kwargs: Any) -> Mapping[str, Any]:
@@ -27,6 +28,18 @@ def _gate(values: Mapping[str, float], condition: str, admitted: tuple[str, ...]
     return {name: float(values[name]) for name in admitted}
 
 
+def _assert_admitted_interface_identity(
+        live: list[tuple[str, int, int]], frozen: list[tuple[str, int, int]]) -> None:
+    """Require the same complete admitted interface, independent of serialization order."""
+    if len(live) != ADMITTED_INTERFACE_SIZE or len(frozen) != ADMITTED_INTERFACE_SIZE:
+        raise RuntimeError("live admitted interface differs from frozen existing 11")
+    if len(set(live)) != len(live) or len(set(frozen)) != len(frozen):
+        raise RuntimeError("live admitted interface differs from frozen existing 11")
+    canonical_key = lambda row: (row[1], row[0], row[2])
+    if sorted(live, key=canonical_key) != sorted(frozen, key=canonical_key):
+        raise RuntimeError("live admitted interface differs from frozen existing 11")
+
+
 def _invoke(runner: Any, *, initialize_only: bool, observer: Any | None = None) -> Mapping[str, Any]:
     protocol, records, table = m7d_adapter._protocol()
     if len(records) != 42 or len(table) != 42 or sum(bool(x["neural_motor_admission"]) for x in table) != 11:
@@ -34,8 +47,8 @@ def _invoke(runner: Any, *, initialize_only: bool, observer: Any | None = None) 
     frozen = survey.load_inventory()["admitted_11_inventory"]
     live_admitted = [(x["actuator"], x["action_index"], x["coordinate_sign"])
                      for x in table if x["neural_motor_admission"]]
-    if live_admitted != [(x["joint"], x["action_index"], x["coordinate_sign"]) for x in frozen]:
-        raise RuntimeError("live admitted interface differs from frozen existing 11")
+    frozen_admitted = [(x["joint"], x["action_index"], x["coordinate_sign"]) for x in frozen]
+    _assert_admitted_interface_identity(live_admitted, frozen_admitted)
     return runner(protocol=protocol, condition=CONDITION, condition_number=1,
         progress=lambda *_: "motor population survey", cached_admission_assertion=m6c.assert_physical_admission,
         cached_records=records, cached_table=table, initialize_only=initialize_only,
