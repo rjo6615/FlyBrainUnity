@@ -1,0 +1,50 @@
+{
+  "artifacts": {
+    "coxa_yaw_anatomical_sign_bridge_attempt.json": {
+      "sha256": "2ba9abc771a7ae38573346165f2abd3ad1e724818d25bd0b10bb695babe83f5d",
+      "size_bytes": 122
+    },
+    "coxa_yaw_anatomical_sign_bridge_result.json": {
+      "sha256": "4da8a7407e207ca3812aae85b591a9d80c304e837b69f3f17e338f84c38dd7e7",
+      "size_bytes": 199499
+    }
+  },
+  "created_utc": "2026-09-26T19:57:29.150905+00:00",
+  "immutability": {
+    "modify_attempt": false,
+    "modify_preregistration": false,
+    "modify_result": false,
+    "reinterpret_with_posthoc_metric": false,
+    "rerun_execution": false
+  },
+  "interpretation": "The preregistered femur-origin displacement projection onto the Thorax-local anterior axis did not resolve the anatomical coordinate sign for any of the six Coxa_yaw joints. This outcome is retained without post-hoc metric modification. No Coxa-yaw coordinate sign was assigned and no motor channel was admitted.",
+  "preregistration": {
+    "canonical_lf_sha256": "90fff49d72547ae65c4f7af380a3c0eed2ef3a8bc102b81098ae594f033f13f3",
+    "raw_windows_sha256": "533c50af8b5f06817602bb48d3d83c74ca6113ffc045787147013b4f4b5d00ad",
+    "raw_windows_size_bytes": 2851
+  },
+  "result": {
+    "classifications": {
+      "LF": "ANATOMICAL_SIGN_GEOMETRICALLY_UNRESOLVED",
+      "LH": "ANATOMICAL_SIGN_GEOMETRICALLY_UNRESOLVED",
+      "LM": "ANATOMICAL_SIGN_GEOMETRICALLY_UNRESOLVED",
+      "RF": "ANATOMICAL_SIGN_GEOMETRICALLY_UNRESOLVED",
+      "RH": "ANATOMICAL_SIGN_GEOMETRICALLY_UNRESOLVED",
+      "RM": "ANATOMICAL_SIGN_GEOMETRICALLY_UNRESOLVED"
+    },
+    "resolved_sign_count": 0,
+    "unresolved_sign_count": 6
+  },
+  "schema": "COXA-YAW-ANATOMICAL-SIGN-BRIDGE-FREEZE.1",
+  "scientific_boundary": {
+    "active_interface_count": 11,
+    "active_interface_modified": false,
+    "coordinate_signs_assigned": false,
+    "neural_transitions": 0,
+    "physical_motor_interface_length": 42,
+    "physical_motor_interface_modified": false,
+    "physics_transitions": 0
+  },
+  "scientific_execution_occurred": true,
+  "status": "FROZEN"
+}
