@@ -36,6 +36,10 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def preregistration_sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+
+
 def isolated_action(index: int, value: float) -> list[float]:
     if index not in {row[2] for row in TARGETS} or not math.isfinite(value):
         raise ValueError("exactly one frozen Coxa-yaw target is required")
@@ -101,7 +105,7 @@ def _validate_population_identity() -> list[dict[str, Any]]:
 
 
 def verify_preregistration(path: Path = PREREGISTRATION_PATH) -> dict[str, Any]:
-    if sha256(path) != PREREGISTRATION_SHA256:
+    if preregistration_sha256(path) != PREREGISTRATION_SHA256:
         raise RuntimeError("frozen preregistration SHA-256 mismatch")
     value = json.loads(path.read_text(encoding="utf-8"))
     validate_targets([(x["leg"], x["joint"], x["action_index"]) for x in value["targets"]])
