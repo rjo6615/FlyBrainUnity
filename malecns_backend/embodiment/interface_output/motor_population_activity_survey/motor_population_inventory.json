@@ -1,0 +1,4620 @@
+{
+  "admitted_11_inventory": [
+    {
+      "action_index": 5,
+      "activity_used_by_decoder": true,
+      "coordinate_sign": 1,
+      "joint": "joint_LFTibia",
+      "mapped_populations": [
+        "Acc. ti flexor MN T1 left",
+        "Ti extensor MN T1 left",
+        "Ti flexor MN T1 left"
+      ],
+      "mapping_source": "M6A annotation audit plus frozen Tier-A/M6B validation"
+    },
+    {
+      "action_index": 12,
+      "activity_used_by_decoder": true,
+      "coordinate_sign": 1,
+      "joint": "joint_LMTibia",
+      "mapped_populations": [
+        "Ti extensor MN T2 left",
+        "Ti flexor MN T2 left"
+      ],
+      "mapping_source": "M6A annotation audit plus frozen Tier-A/M6B validation"
+    },
+    {
+      "action_index": 19,
+      "activity_used_by_decoder": true,
+      "coordinate_sign": 1,
+      "joint": "joint_LHTibia",
+      "mapped_populations": [
+        "Acc. ti flexor MN T3 left",
+        "Ti extensor MN T3 left",
+        "Ti flexor MN T3 left"
+      ],
+      "mapping_source": "M6A annotation audit plus frozen Tier-A/M6B validation"
+    },
+    {
+      "action_index": 26,
+      "activity_used_by_decoder": true,
+      "coordinate_sign": 1,
+      "joint": "joint_RFTibia",
+      "mapped_populations": [
+        "Acc. ti flexor MN T1 right",
+        "Ti extensor MN T1 right",
+        "Ti flexor MN T1 right"
+      ],
+      "mapping_source": "M6A annotation audit plus frozen Tier-A/M6B validation"
+    },
+    {
+      "action_index": 33,
+      "activity_used_by_decoder": true,
+      "coordinate_sign": 1,
+      "joint": "joint_RMTibia",
+      "mapped_populations": [
+        "Acc. ti flexor MN T2 right",
+        "Ti extensor MN T2 right",
+        "Ti flexor MN T2 right"
+      ],
+      "mapping_source": "M6A annotation audit plus frozen Tier-A/M6B validation"
+    },
+    {
+      "action_index": 40,
+      "activity_used_by_decoder": true,
+      "coordinate_sign": 1,
+      "joint": "joint_RHTibia",
+      "mapped_populations": [
+        "Acc. ti flexor MN T3 right",
+        "Ti extensor MN T3 right",
+        "Ti flexor MN T3 right"
+      ],
+      "mapping_source": "M6A annotation audit plus frozen Tier-A/M6B validation"
+    },
+    {
+      "action_index": 3,
+      "activity_used_by_decoder": true,
+      "coordinate_sign": -1,
+      "joint": "joint_LFFemur",
+      "mapped_populations": [
+        "Acc. tr flexor MN T1 left",
+        "Sternotrochanter MN T1 left",
+        "Tergotr. MN T1 left",
+        "Tr extensor MN T1 left",
+        "Tr flexor MN T1 left"
+      ],
+      "mapping_source": "M6A annotation audit plus frozen Tier-A/M6B validation"
+    },
+    {
+      "action_index": 10,
+      "activity_used_by_decoder": true,
+      "coordinate_sign": -1,
+      "joint": "joint_LMFemur",
+      "mapped_populations": [
+        "Acc. tr flexor MN T2 left",
+        "Sternotrochanter MN T2 left",
+        "Tergotr. MN T2 left",
+        "Tr extensor MN T2 left",
+        "Tr flexor MN T2 left"
+      ],
+      "mapping_source": "M6A annotation audit plus frozen Tier-A/M6B validation"
+    },
+    {
+      "action_index": 17,
+      "activity_used_by_decoder": true,
+      "coordinate_sign": -1,
+      "joint": "joint_LHFemur",
+      "mapped_populations": [
+        "Acc. tr flexor MN T3 left",
+        "Sternotrochanter MN T3 left",
+        "Tergotr. MN T3 left",
+        "Tr extensor MN T3 left",
+        "Tr flexor MN T3 left"
+      ],
+      "mapping_source": "M6A annotation audit plus frozen Tier-A/M6B validation"
+    },
+    {
+      "action_index": 31,
+      "activity_used_by_decoder": true,
+      "coordinate_sign": -1,
+      "joint": "joint_RMFemur",
+      "mapped_populations": [
+        "Acc. tr flexor MN T2 right",
+        "Sternotrochanter MN T2 right",
+        "Tergotr. MN T2 right",
+        "Tr extensor MN T2 right",
+        "Tr flexor MN T2 right"
+      ],
+      "mapping_source": "M6A annotation audit plus frozen Tier-A/M6B validation"
+    },
+    {
+      "action_index": 38,
+      "activity_used_by_decoder": true,
+      "coordinate_sign": -1,
+      "joint": "joint_RHFemur",
+      "mapped_populations": [
+        "Acc. tr flexor MN T3 right",
+        "Sternotrochanter MN T3 right",
+        "Tergotr. MN T3 right",
+        "Tr extensor MN T3 right",
+        "Tr flexor MN T3 right"
+      ],
+      "mapping_source": "M6A annotation audit plus frozen Tier-A/M6B validation"
+    }
+  ],
+  "ambiguity_records": [
+    {
+      "action_index": 0,
+      "candidate_populations": [
+        "Pleural remotor/abductor MN T1 left",
+        "Tergopleural/Pleural promotor MN T1 left"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_LFCoxa",
+      "joint_type_axis": "coxa",
+      "leg": "LF",
+      "mapping": "AMBIGUOUS",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "shared-axis anatomical ambiguity"
+    },
+    {
+      "action_index": 1,
+      "candidate_populations": [
+        "Pleural remotor/abductor MN T1 left",
+        "Sternal adductor MN T1 left"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_LFCoxa_roll",
+      "joint_type_axis": "coxa_abduct",
+      "leg": "LF",
+      "mapping": "AMBIGUOUS",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "shared-axis anatomical ambiguity"
+    },
+    {
+      "action_index": 7,
+      "candidate_populations": [
+        "Pleural remotor/abductor MN T2 left"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_LMCoxa",
+      "joint_type_axis": "coxa",
+      "leg": "LM",
+      "mapping": "AMBIGUOUS",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "shared-axis anatomical ambiguity"
+    },
+    {
+      "action_index": 8,
+      "candidate_populations": [
+        "Pleural remotor/abductor MN T2 left",
+        "Sternal adductor MN T2 left"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_LMCoxa_roll",
+      "joint_type_axis": "coxa_abduct",
+      "leg": "LM",
+      "mapping": "AMBIGUOUS",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "shared-axis anatomical ambiguity"
+    },
+    {
+      "action_index": 14,
+      "candidate_populations": [
+        "Pleural remotor/abductor MN T3 left"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_LHCoxa",
+      "joint_type_axis": "coxa",
+      "leg": "LH",
+      "mapping": "AMBIGUOUS",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "shared-axis anatomical ambiguity"
+    },
+    {
+      "action_index": 15,
+      "candidate_populations": [
+        "Pleural remotor/abductor MN T3 left",
+        "Sternal adductor MN T3 left"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_LHCoxa_roll",
+      "joint_type_axis": "coxa_abduct",
+      "leg": "LH",
+      "mapping": "AMBIGUOUS",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "shared-axis anatomical ambiguity"
+    },
+    {
+      "action_index": 21,
+      "candidate_populations": [
+        "Pleural remotor/abductor MN T1 right",
+        "Tergopleural/Pleural promotor MN T1 right"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_RFCoxa",
+      "joint_type_axis": "coxa",
+      "leg": "RF",
+      "mapping": "AMBIGUOUS",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "shared-axis anatomical ambiguity"
+    },
+    {
+      "action_index": 22,
+      "candidate_populations": [
+        "Pleural remotor/abductor MN T1 right",
+        "Sternal adductor MN T1 right"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_RFCoxa_roll",
+      "joint_type_axis": "coxa_abduct",
+      "leg": "RF",
+      "mapping": "AMBIGUOUS",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "shared-axis anatomical ambiguity"
+    },
+    {
+      "action_index": 28,
+      "candidate_populations": [
+        "Pleural remotor/abductor MN T2 right"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_RMCoxa",
+      "joint_type_axis": "coxa",
+      "leg": "RM",
+      "mapping": "AMBIGUOUS",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "shared-axis anatomical ambiguity"
+    },
+    {
+      "action_index": 29,
+      "candidate_populations": [
+        "Pleural remotor/abductor MN T2 right",
+        "Sternal adductor MN T2 right"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_RMCoxa_roll",
+      "joint_type_axis": "coxa_abduct",
+      "leg": "RM",
+      "mapping": "AMBIGUOUS",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "shared-axis anatomical ambiguity"
+    },
+    {
+      "action_index": 35,
+      "candidate_populations": [
+        "Pleural remotor/abductor MN T3 right"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_RHCoxa",
+      "joint_type_axis": "coxa",
+      "leg": "RH",
+      "mapping": "AMBIGUOUS",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "shared-axis anatomical ambiguity"
+    },
+    {
+      "action_index": 36,
+      "candidate_populations": [
+        "Pleural remotor/abductor MN T3 right",
+        "Sternal adductor MN T3 right"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_RHCoxa_roll",
+      "joint_type_axis": "coxa_abduct",
+      "leg": "RH",
+      "mapping": "AMBIGUOUS",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "shared-axis anatomical ambiguity"
+    }
+  ],
+  "artifact_kind": "READ_ONLY_AUDIT_NOT_EXPERIMENTAL_EVIDENCE",
+  "attempt4_candidates": [
+    {
+      "action_index": 24,
+      "admission_status": "NOT_ADMITTED",
+      "coordinate_sign": -1,
+      "experimental_status": "EXPERIMENTALLY_SUPPORTED_BUT_SILENT",
+      "freeze_commit": "05926f4",
+      "joint": "joint_RFFemur",
+      "mechanical_status": "MECHANICALLY_SUPPORTED"
+    },
+    {
+      "action_index": 6,
+      "admission_status": "NOT_ADMITTED",
+      "coordinate_sign": -1,
+      "experimental_status": "EXPERIMENTALLY_SUPPORTED_BUT_SILENT",
+      "freeze_commit": "05926f4",
+      "joint": "joint_LFTarsus1",
+      "mechanical_status": "MECHANICALLY_SUPPORTED"
+    },
+    {
+      "action_index": 27,
+      "admission_status": "NOT_ADMITTED",
+      "coordinate_sign": -1,
+      "experimental_status": "EXPERIMENTALLY_SUPPORTED_BUT_SILENT",
+      "freeze_commit": "05926f4",
+      "joint": "joint_RFTarsus1",
+      "mechanical_status": "MECHANICALLY_SUPPORTED"
+    }
+  ],
+  "coxa_yaw_audit": [
+    {
+      "action_indices": [
+        2
+      ],
+      "admission_blocker": "anatomical anterior/posterior labels do not establish FlyGym coordinate sign; mechanical sign validation is required",
+      "anatomical_mapping_unique": true,
+      "annotation_names": [
+        "Sternal anterior rotator MN T1 left",
+        "Sternal posterior rotator MN T1 left"
+      ],
+      "candidate_joints": [
+        "joint_LFCoxa_yaw"
+      ],
+      "coordinate_sign": null,
+      "leg": "LF",
+      "populations": [
+        {
+          "count": 2,
+          "interpretation": "Sternal anterior rotator MN T1 left",
+          "name": "Sternal anterior rotator MN T1 left",
+          "neuron_ids": [
+            806923,
+            919509
+          ]
+        },
+        {
+          "count": 4,
+          "interpretation": "Sternal posterior rotator MN T1 left",
+          "name": "Sternal posterior rotator MN T1 left",
+          "neuron_ids": [
+            801915,
+            804851,
+            808640,
+            1050335829
+          ]
+        }
+      ]
+    },
+    {
+      "action_indices": [
+        9
+      ],
+      "admission_blocker": "anatomical anterior/posterior labels do not establish FlyGym coordinate sign; mechanical sign validation is required",
+      "anatomical_mapping_unique": true,
+      "annotation_names": [
+        "Sternal anterior rotator MN T2 left",
+        "Sternal posterior rotator MN T2 left"
+      ],
+      "candidate_joints": [
+        "joint_LMCoxa_yaw"
+      ],
+      "coordinate_sign": null,
+      "leg": "LM",
+      "populations": [
+        {
+          "count": 2,
+          "interpretation": "Sternal anterior rotator MN T2 left",
+          "name": "Sternal anterior rotator MN T2 left",
+          "neuron_ids": [
+            832490,
+            903689
+          ]
+        },
+        {
+          "count": 4,
+          "interpretation": "Sternal posterior rotator MN T2 left",
+          "name": "Sternal posterior rotator MN T2 left",
+          "neuron_ids": [
+            801768,
+            803226,
+            803704,
+            1051054875
+          ]
+        }
+      ]
+    },
+    {
+      "action_indices": [
+        16
+      ],
+      "admission_blocker": "anatomical anterior/posterior labels do not establish FlyGym coordinate sign; mechanical sign validation is required",
+      "anatomical_mapping_unique": true,
+      "annotation_names": [
+        "Sternal anterior rotator MN T3 left",
+        "Sternal posterior rotator MN T3 left"
+      ],
+      "candidate_joints": [
+        "joint_LHCoxa_yaw"
+      ],
+      "coordinate_sign": null,
+      "leg": "LH",
+      "populations": [
+        {
+          "count": 2,
+          "interpretation": "Sternal anterior rotator MN T3 left",
+          "name": "Sternal anterior rotator MN T3 left",
+          "neuron_ids": [
+            801548,
+            802215
+          ]
+        },
+        {
+          "count": 4,
+          "interpretation": "Sternal posterior rotator MN T3 left",
+          "name": "Sternal posterior rotator MN T3 left",
+          "neuron_ids": [
+            801492,
+            801715,
+            802964,
+            818399
+          ]
+        }
+      ]
+    },
+    {
+      "action_indices": [
+        23
+      ],
+      "admission_blocker": "anatomical anterior/posterior labels do not establish FlyGym coordinate sign; mechanical sign validation is required",
+      "anatomical_mapping_unique": true,
+      "annotation_names": [
+        "Sternal anterior rotator MN T1 right",
+        "Sternal posterior rotator MN T1 right"
+      ],
+      "candidate_joints": [
+        "joint_RFCoxa_yaw"
+      ],
+      "coordinate_sign": null,
+      "leg": "RF",
+      "populations": [
+        {
+          "count": 2,
+          "interpretation": "Sternal anterior rotator MN T1 right",
+          "name": "Sternal anterior rotator MN T1 right",
+          "neuron_ids": [
+            801469,
+            801918
+          ]
+        },
+        {
+          "count": 2,
+          "interpretation": "Sternal posterior rotator MN T1 right",
+          "name": "Sternal posterior rotator MN T1 right",
+          "neuron_ids": [
+            805410,
+            808011
+          ]
+        }
+      ]
+    },
+    {
+      "action_indices": [
+        30
+      ],
+      "admission_blocker": "anatomical anterior/posterior labels do not establish FlyGym coordinate sign; mechanical sign validation is required",
+      "anatomical_mapping_unique": true,
+      "annotation_names": [
+        "Sternal anterior rotator MN T2 right",
+        "Sternal posterior rotator MN T2 right"
+      ],
+      "candidate_joints": [
+        "joint_RMCoxa_yaw"
+      ],
+      "coordinate_sign": null,
+      "leg": "RM",
+      "populations": [
+        {
+          "count": 2,
+          "interpretation": "Sternal anterior rotator MN T2 right",
+          "name": "Sternal anterior rotator MN T2 right",
+          "neuron_ids": [
+            801813,
+            801946
+          ]
+        },
+        {
+          "count": 4,
+          "interpretation": "Sternal posterior rotator MN T2 right",
+          "name": "Sternal posterior rotator MN T2 right",
+          "neuron_ids": [
+            800962,
+            801761,
+            802521,
+            818996
+          ]
+        }
+      ]
+    },
+    {
+      "action_indices": [
+        37
+      ],
+      "admission_blocker": "anatomical anterior/posterior labels do not establish FlyGym coordinate sign; mechanical sign validation is required",
+      "anatomical_mapping_unique": true,
+      "annotation_names": [
+        "Sternal anterior rotator MN T3 right",
+        "Sternal posterior rotator MN T3 right"
+      ],
+      "candidate_joints": [
+        "joint_RHCoxa_yaw"
+      ],
+      "coordinate_sign": null,
+      "leg": "RH",
+      "populations": [
+        {
+          "count": 2,
+          "interpretation": "Sternal anterior rotator MN T3 right",
+          "name": "Sternal anterior rotator MN T3 right",
+          "neuron_ids": [
+            800316,
+            906235
+          ]
+        },
+        {
+          "count": 4,
+          "interpretation": "Sternal posterior rotator MN T3 right",
+          "name": "Sternal posterior rotator MN T3 right",
+          "neuron_ids": [
+            903642,
+            903643,
+            907256,
+            1050493413
+          ]
+        }
+      ]
+    }
+  ],
+  "generation_commit": "WORKTREE (deterministic from source hashes)",
+  "interpretation_boundary": [
+    "Annotation/mapping structure only",
+    "No neural activity survey was run",
+    "Does not establish natural motor function, locomotion, walking, gait, balance, stabilization, righting, reflex behavior, or biological necessity"
+  ],
+  "non_intervention": {
+    "active_interface_count": 11,
+    "live_fly_modified": false,
+    "runtime_modified": false,
+    "simulation_run": false
+  },
+  "physical_joint_inventory": [
+    {
+      "action_index": 0,
+      "candidate_populations": [
+        "Pleural remotor/abductor MN T1 left",
+        "Tergopleural/Pleural promotor MN T1 left"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_LFCoxa",
+      "joint_type_axis": "coxa",
+      "leg": "LF",
+      "mapping": "AMBIGUOUS",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "shared-axis anatomical ambiguity"
+    },
+    {
+      "action_index": 1,
+      "candidate_populations": [
+        "Pleural remotor/abductor MN T1 left",
+        "Sternal adductor MN T1 left"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_LFCoxa_roll",
+      "joint_type_axis": "coxa_abduct",
+      "leg": "LF",
+      "mapping": "AMBIGUOUS",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "shared-axis anatomical ambiguity"
+    },
+    {
+      "action_index": 2,
+      "candidate_populations": [
+        "Sternal anterior rotator MN T1 left",
+        "Sternal posterior rotator MN T1 left"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_LFCoxa_yaw",
+      "joint_type_axis": "coxa_twist",
+      "leg": "LF",
+      "mapping": "UNIQUE",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "coordinate sign and/or experimental activity/admission evidence absent"
+    },
+    {
+      "action_index": 3,
+      "candidate_populations": [
+        "Acc. tr flexor MN T1 left",
+        "Sternotrochanter MN T1 left",
+        "Tergotr. MN T1 left",
+        "Tr extensor MN T1 left",
+        "Tr flexor MN T1 left"
+      ],
+      "currently_admitted": true,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_LFFemur",
+      "joint_type_axis": "femur",
+      "leg": "LF",
+      "mapping": "UNIQUE",
+      "mechanically_validated_coordinate_sign": -1,
+      "unresolved_blocker": null
+    },
+    {
+      "action_index": 4,
+      "candidate_populations": [
+        "Fe reductor MN T1 left"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_LFFemur_roll",
+      "joint_type_axis": "femur_twist",
+      "leg": "LF",
+      "mapping": "UNIQUE",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "coordinate sign and/or experimental activity/admission evidence absent"
+    },
+    {
+      "action_index": 5,
+      "candidate_populations": [
+        "Acc. ti flexor MN T1 left",
+        "Ti extensor MN T1 left",
+        "Ti flexor MN T1 left"
+      ],
+      "currently_admitted": true,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_LFTibia",
+      "joint_type_axis": "tibia",
+      "leg": "LF",
+      "mapping": "UNIQUE",
+      "mechanically_validated_coordinate_sign": 1,
+      "unresolved_blocker": null
+    },
+    {
+      "action_index": 6,
+      "candidate_populations": [
+        "Ta depressor MN T1 left",
+        "Ta levator MN T1 left"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_LFTarsus1",
+      "joint_type_axis": "tarsus",
+      "leg": "LF",
+      "mapping": "UNIQUE",
+      "mechanically_validated_coordinate_sign": -1,
+      "unresolved_blocker": "Attempt-4 supported but silent; not admitted"
+    },
+    {
+      "action_index": 7,
+      "candidate_populations": [
+        "Pleural remotor/abductor MN T2 left"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_LMCoxa",
+      "joint_type_axis": "coxa",
+      "leg": "LM",
+      "mapping": "AMBIGUOUS",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "shared-axis anatomical ambiguity"
+    },
+    {
+      "action_index": 8,
+      "candidate_populations": [
+        "Pleural remotor/abductor MN T2 left",
+        "Sternal adductor MN T2 left"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_LMCoxa_roll",
+      "joint_type_axis": "coxa_abduct",
+      "leg": "LM",
+      "mapping": "AMBIGUOUS",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "shared-axis anatomical ambiguity"
+    },
+    {
+      "action_index": 9,
+      "candidate_populations": [
+        "Sternal anterior rotator MN T2 left",
+        "Sternal posterior rotator MN T2 left"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_LMCoxa_yaw",
+      "joint_type_axis": "coxa_twist",
+      "leg": "LM",
+      "mapping": "UNIQUE",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "coordinate sign and/or experimental activity/admission evidence absent"
+    },
+    {
+      "action_index": 10,
+      "candidate_populations": [
+        "Acc. tr flexor MN T2 left",
+        "Sternotrochanter MN T2 left",
+        "Tergotr. MN T2 left",
+        "Tr extensor MN T2 left",
+        "Tr flexor MN T2 left"
+      ],
+      "currently_admitted": true,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_LMFemur",
+      "joint_type_axis": "femur",
+      "leg": "LM",
+      "mapping": "UNIQUE",
+      "mechanically_validated_coordinate_sign": -1,
+      "unresolved_blocker": null
+    },
+    {
+      "action_index": 11,
+      "candidate_populations": [
+        "Fe reductor MN T2 left"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_LMFemur_roll",
+      "joint_type_axis": "femur_twist",
+      "leg": "LM",
+      "mapping": "UNIQUE",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "coordinate sign and/or experimental activity/admission evidence absent"
+    },
+    {
+      "action_index": 12,
+      "candidate_populations": [
+        "Ti extensor MN T2 left",
+        "Ti flexor MN T2 left"
+      ],
+      "currently_admitted": true,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_LMTibia",
+      "joint_type_axis": "tibia",
+      "leg": "LM",
+      "mapping": "UNIQUE",
+      "mechanically_validated_coordinate_sign": 1,
+      "unresolved_blocker": null
+    },
+    {
+      "action_index": 13,
+      "candidate_populations": [],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": false,
+      "joint_name": "joint_LMTarsus1",
+      "joint_type_axis": "tarsus",
+      "leg": "LM",
+      "mapping": "MISSING",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "coordinate sign and/or experimental activity/admission evidence absent"
+    },
+    {
+      "action_index": 14,
+      "candidate_populations": [
+        "Pleural remotor/abductor MN T3 left"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_LHCoxa",
+      "joint_type_axis": "coxa",
+      "leg": "LH",
+      "mapping": "AMBIGUOUS",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "shared-axis anatomical ambiguity"
+    },
+    {
+      "action_index": 15,
+      "candidate_populations": [
+        "Pleural remotor/abductor MN T3 left",
+        "Sternal adductor MN T3 left"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_LHCoxa_roll",
+      "joint_type_axis": "coxa_abduct",
+      "leg": "LH",
+      "mapping": "AMBIGUOUS",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "shared-axis anatomical ambiguity"
+    },
+    {
+      "action_index": 16,
+      "candidate_populations": [
+        "Sternal anterior rotator MN T3 left",
+        "Sternal posterior rotator MN T3 left"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_LHCoxa_yaw",
+      "joint_type_axis": "coxa_twist",
+      "leg": "LH",
+      "mapping": "UNIQUE",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "coordinate sign and/or experimental activity/admission evidence absent"
+    },
+    {
+      "action_index": 17,
+      "candidate_populations": [
+        "Acc. tr flexor MN T3 left",
+        "Sternotrochanter MN T3 left",
+        "Tergotr. MN T3 left",
+        "Tr extensor MN T3 left",
+        "Tr flexor MN T3 left"
+      ],
+      "currently_admitted": true,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_LHFemur",
+      "joint_type_axis": "femur",
+      "leg": "LH",
+      "mapping": "UNIQUE",
+      "mechanically_validated_coordinate_sign": -1,
+      "unresolved_blocker": null
+    },
+    {
+      "action_index": 18,
+      "candidate_populations": [
+        "Fe reductor MN T3 left"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_LHFemur_roll",
+      "joint_type_axis": "femur_twist",
+      "leg": "LH",
+      "mapping": "UNIQUE",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "coordinate sign and/or experimental activity/admission evidence absent"
+    },
+    {
+      "action_index": 19,
+      "candidate_populations": [
+        "Acc. ti flexor MN T3 left",
+        "Ti extensor MN T3 left",
+        "Ti flexor MN T3 left"
+      ],
+      "currently_admitted": true,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_LHTibia",
+      "joint_type_axis": "tibia",
+      "leg": "LH",
+      "mapping": "UNIQUE",
+      "mechanically_validated_coordinate_sign": 1,
+      "unresolved_blocker": null
+    },
+    {
+      "action_index": 20,
+      "candidate_populations": [],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": false,
+      "joint_name": "joint_LHTarsus1",
+      "joint_type_axis": "tarsus",
+      "leg": "LH",
+      "mapping": "MISSING",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "coordinate sign and/or experimental activity/admission evidence absent"
+    },
+    {
+      "action_index": 21,
+      "candidate_populations": [
+        "Pleural remotor/abductor MN T1 right",
+        "Tergopleural/Pleural promotor MN T1 right"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_RFCoxa",
+      "joint_type_axis": "coxa",
+      "leg": "RF",
+      "mapping": "AMBIGUOUS",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "shared-axis anatomical ambiguity"
+    },
+    {
+      "action_index": 22,
+      "candidate_populations": [
+        "Pleural remotor/abductor MN T1 right",
+        "Sternal adductor MN T1 right"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_RFCoxa_roll",
+      "joint_type_axis": "coxa_abduct",
+      "leg": "RF",
+      "mapping": "AMBIGUOUS",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "shared-axis anatomical ambiguity"
+    },
+    {
+      "action_index": 23,
+      "candidate_populations": [
+        "Sternal anterior rotator MN T1 right",
+        "Sternal posterior rotator MN T1 right"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_RFCoxa_yaw",
+      "joint_type_axis": "coxa_twist",
+      "leg": "RF",
+      "mapping": "UNIQUE",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "coordinate sign and/or experimental activity/admission evidence absent"
+    },
+    {
+      "action_index": 24,
+      "candidate_populations": [
+        "Acc. tr flexor MN T1 right",
+        "Sternotrochanter MN T1 right",
+        "Tergotr. MN T1 right",
+        "Tr extensor MN T1 right",
+        "Tr flexor MN T1 right"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_RFFemur",
+      "joint_type_axis": "femur",
+      "leg": "RF",
+      "mapping": "UNIQUE",
+      "mechanically_validated_coordinate_sign": -1,
+      "unresolved_blocker": "Attempt-4 supported but silent; not admitted"
+    },
+    {
+      "action_index": 25,
+      "candidate_populations": [
+        "Fe reductor MN T1 right"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_RFFemur_roll",
+      "joint_type_axis": "femur_twist",
+      "leg": "RF",
+      "mapping": "UNIQUE",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "coordinate sign and/or experimental activity/admission evidence absent"
+    },
+    {
+      "action_index": 26,
+      "candidate_populations": [
+        "Acc. ti flexor MN T1 right",
+        "Ti extensor MN T1 right",
+        "Ti flexor MN T1 right"
+      ],
+      "currently_admitted": true,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_RFTibia",
+      "joint_type_axis": "tibia",
+      "leg": "RF",
+      "mapping": "UNIQUE",
+      "mechanically_validated_coordinate_sign": 1,
+      "unresolved_blocker": null
+    },
+    {
+      "action_index": 27,
+      "candidate_populations": [
+        "Ta depressor MN T1 right",
+        "Ta levator MN T1 right"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_RFTarsus1",
+      "joint_type_axis": "tarsus",
+      "leg": "RF",
+      "mapping": "UNIQUE",
+      "mechanically_validated_coordinate_sign": -1,
+      "unresolved_blocker": "Attempt-4 supported but silent; not admitted"
+    },
+    {
+      "action_index": 28,
+      "candidate_populations": [
+        "Pleural remotor/abductor MN T2 right"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_RMCoxa",
+      "joint_type_axis": "coxa",
+      "leg": "RM",
+      "mapping": "AMBIGUOUS",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "shared-axis anatomical ambiguity"
+    },
+    {
+      "action_index": 29,
+      "candidate_populations": [
+        "Pleural remotor/abductor MN T2 right",
+        "Sternal adductor MN T2 right"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_RMCoxa_roll",
+      "joint_type_axis": "coxa_abduct",
+      "leg": "RM",
+      "mapping": "AMBIGUOUS",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "shared-axis anatomical ambiguity"
+    },
+    {
+      "action_index": 30,
+      "candidate_populations": [
+        "Sternal anterior rotator MN T2 right",
+        "Sternal posterior rotator MN T2 right"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_RMCoxa_yaw",
+      "joint_type_axis": "coxa_twist",
+      "leg": "RM",
+      "mapping": "UNIQUE",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "coordinate sign and/or experimental activity/admission evidence absent"
+    },
+    {
+      "action_index": 31,
+      "candidate_populations": [
+        "Acc. tr flexor MN T2 right",
+        "Sternotrochanter MN T2 right",
+        "Tergotr. MN T2 right",
+        "Tr extensor MN T2 right",
+        "Tr flexor MN T2 right"
+      ],
+      "currently_admitted": true,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_RMFemur",
+      "joint_type_axis": "femur",
+      "leg": "RM",
+      "mapping": "UNIQUE",
+      "mechanically_validated_coordinate_sign": -1,
+      "unresolved_blocker": null
+    },
+    {
+      "action_index": 32,
+      "candidate_populations": [
+        "Fe reductor MN T2 right"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_RMFemur_roll",
+      "joint_type_axis": "femur_twist",
+      "leg": "RM",
+      "mapping": "UNIQUE",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "coordinate sign and/or experimental activity/admission evidence absent"
+    },
+    {
+      "action_index": 33,
+      "candidate_populations": [
+        "Acc. ti flexor MN T2 right",
+        "Ti extensor MN T2 right",
+        "Ti flexor MN T2 right"
+      ],
+      "currently_admitted": true,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_RMTibia",
+      "joint_type_axis": "tibia",
+      "leg": "RM",
+      "mapping": "UNIQUE",
+      "mechanically_validated_coordinate_sign": 1,
+      "unresolved_blocker": null
+    },
+    {
+      "action_index": 34,
+      "candidate_populations": [],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": false,
+      "joint_name": "joint_RMTarsus1",
+      "joint_type_axis": "tarsus",
+      "leg": "RM",
+      "mapping": "MISSING",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "coordinate sign and/or experimental activity/admission evidence absent"
+    },
+    {
+      "action_index": 35,
+      "candidate_populations": [
+        "Pleural remotor/abductor MN T3 right"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_RHCoxa",
+      "joint_type_axis": "coxa",
+      "leg": "RH",
+      "mapping": "AMBIGUOUS",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "shared-axis anatomical ambiguity"
+    },
+    {
+      "action_index": 36,
+      "candidate_populations": [
+        "Pleural remotor/abductor MN T3 right",
+        "Sternal adductor MN T3 right"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_RHCoxa_roll",
+      "joint_type_axis": "coxa_abduct",
+      "leg": "RH",
+      "mapping": "AMBIGUOUS",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "shared-axis anatomical ambiguity"
+    },
+    {
+      "action_index": 37,
+      "candidate_populations": [
+        "Sternal anterior rotator MN T3 right",
+        "Sternal posterior rotator MN T3 right"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_RHCoxa_yaw",
+      "joint_type_axis": "coxa_twist",
+      "leg": "RH",
+      "mapping": "UNIQUE",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "coordinate sign and/or experimental activity/admission evidence absent"
+    },
+    {
+      "action_index": 38,
+      "candidate_populations": [
+        "Acc. tr flexor MN T3 right",
+        "Sternotrochanter MN T3 right",
+        "Tergotr. MN T3 right",
+        "Tr extensor MN T3 right",
+        "Tr flexor MN T3 right"
+      ],
+      "currently_admitted": true,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_RHFemur",
+      "joint_type_axis": "femur",
+      "leg": "RH",
+      "mapping": "UNIQUE",
+      "mechanically_validated_coordinate_sign": -1,
+      "unresolved_blocker": null
+    },
+    {
+      "action_index": 39,
+      "candidate_populations": [
+        "Fe reductor MN T3 right"
+      ],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_RHFemur_roll",
+      "joint_type_axis": "femur_twist",
+      "leg": "RH",
+      "mapping": "UNIQUE",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "coordinate sign and/or experimental activity/admission evidence absent"
+    },
+    {
+      "action_index": 40,
+      "candidate_populations": [
+        "Acc. ti flexor MN T3 right",
+        "Ti extensor MN T3 right",
+        "Ti flexor MN T3 right"
+      ],
+      "currently_admitted": true,
+      "has_annotation_backed_candidate": true,
+      "joint_name": "joint_RHTibia",
+      "joint_type_axis": "tibia",
+      "leg": "RH",
+      "mapping": "UNIQUE",
+      "mechanically_validated_coordinate_sign": 1,
+      "unresolved_blocker": null
+    },
+    {
+      "action_index": 41,
+      "candidate_populations": [],
+      "currently_admitted": false,
+      "has_annotation_backed_candidate": false,
+      "joint_name": "joint_RHTarsus1",
+      "joint_type_axis": "tarsus",
+      "leg": "RH",
+      "mapping": "MISSING",
+      "mechanically_validated_coordinate_sign": null,
+      "unresolved_blocker": "coordinate sign and/or experimental activity/admission evidence absent"
+    }
+  ],
+  "population_inventory": [
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "tibia_T1_left",
+      "anatomical_role": "Acc. ti flexor MN T1 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        5
+      ],
+      "candidate_flygym_joints": [
+        "joint_LFTibia"
+      ],
+      "canonical_name": "Acc. ti flexor MN T1 left",
+      "coordinate_sign": 1,
+      "dense_neural_indices": [
+        147938,
+        154915,
+        155602,
+        155724,
+        156258,
+        157492,
+        158293,
+        158857,
+        159328,
+        164629
+      ],
+      "explicit_direction": -1,
+      "leg": "LF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 10,
+      "neuron_ids": [
+        806599,
+        815246,
+        816215,
+        816404,
+        817283,
+        819869,
+        825516,
+        867630,
+        903298,
+        1050115387
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "tibia_T1_right",
+      "anatomical_role": "Acc. ti flexor MN T1 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        26
+      ],
+      "candidate_flygym_joints": [
+        "joint_RFTibia"
+      ],
+      "canonical_name": "Acc. ti flexor MN T1 right",
+      "coordinate_sign": 1,
+      "dense_neural_indices": [
+        156406,
+        158615,
+        158667,
+        161420,
+        164602,
+        164622,
+        164632,
+        164642,
+        164676
+      ],
+      "explicit_direction": -1,
+      "leg": "RF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 9,
+      "neuron_ids": [
+        817509,
+        833140,
+        837745,
+        909713,
+        1050005026,
+        1050091581,
+        1050126678,
+        1050156705,
+        1050268065
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNMAPPED",
+      "anatomical_association": "tibia_T2_left",
+      "anatomical_role": "Acc. ti flexor MN T2 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [],
+      "candidate_flygym_joints": [],
+      "canonical_name": "Acc. ti flexor MN T2 left",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        150516,
+        157437,
+        158291,
+        158543,
+        160818,
+        164788
+      ],
+      "explicit_direction": -1,
+      "leg": "LM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 6,
+      "neuron_ids": [
+        809670,
+        819674,
+        825485,
+        830480,
+        908094,
+        1051356801
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "tibia_T2_right",
+      "anatomical_role": "Acc. ti flexor MN T2 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        33
+      ],
+      "candidate_flygym_joints": [
+        "joint_RMTibia"
+      ],
+      "canonical_name": "Acc. ti flexor MN T2 right",
+      "coordinate_sign": 1,
+      "dense_neural_indices": [
+        147087,
+        152816,
+        160008,
+        160730,
+        161266,
+        164850
+      ],
+      "explicit_direction": -1,
+      "leg": "RM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 6,
+      "neuron_ids": [
+        805568,
+        812531,
+        905235,
+        907848,
+        909255,
+        1052521030
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "tibia_T3_left",
+      "anatomical_role": "Acc. ti flexor MN T3 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        19
+      ],
+      "candidate_flygym_joints": [
+        "joint_LHTibia"
+      ],
+      "canonical_name": "Acc. ti flexor MN T3 left",
+      "coordinate_sign": 1,
+      "dense_neural_indices": [
+        156323,
+        158518,
+        158724,
+        162869,
+        164601,
+        164631,
+        164669,
+        164675
+      ],
+      "explicit_direction": -1,
+      "leg": "LH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 8,
+      "neuron_ids": [
+        817374,
+        829873,
+        843389,
+        934519,
+        1050003192,
+        1050123559,
+        1050233038,
+        1050263576
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "tibia_T3_right",
+      "anatomical_role": "Acc. ti flexor MN T3 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        40
+      ],
+      "candidate_flygym_joints": [
+        "joint_RHTibia"
+      ],
+      "canonical_name": "Acc. ti flexor MN T3 right",
+      "coordinate_sign": 1,
+      "dense_neural_indices": [
+        144014,
+        153682,
+        161571,
+        164611,
+        164644,
+        164661,
+        164708,
+        164969
+      ],
+      "explicit_direction": -1,
+      "leg": "RH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 8,
+      "neuron_ids": [
+        801637,
+        813629,
+        910296,
+        1050032839,
+        1050160514,
+        1050202461,
+        1050460102,
+        1059707690
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T1_left",
+      "anatomical_role": "Acc. tr flexor MN T1 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        3
+      ],
+      "candidate_flygym_joints": [
+        "joint_LFFemur"
+      ],
+      "canonical_name": "Acc. tr flexor MN T1 left",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        157849,
+        161399,
+        161783
+      ],
+      "explicit_direction": -1,
+      "leg": "LF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 3,
+      "neuron_ids": [
+        821291,
+        909618,
+        911134
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T1_right",
+      "anatomical_role": "Acc. tr flexor MN T1 right",
+      "attempt4_silent_candidate": true,
+      "candidate_action_indices": [
+        24
+      ],
+      "candidate_flygym_joints": [
+        "joint_RFFemur"
+      ],
+      "canonical_name": "Acc. tr flexor MN T1 right",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        149013,
+        164683,
+        164687
+      ],
+      "explicit_direction": -1,
+      "leg": "RF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 3,
+      "neuron_ids": [
+        807873,
+        1050306082,
+        1050349786
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T2_left",
+      "anatomical_role": "Acc. tr flexor MN T2 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        10
+      ],
+      "candidate_flygym_joints": [
+        "joint_LMFemur"
+      ],
+      "canonical_name": "Acc. tr flexor MN T2 left",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        157867,
+        162659
+      ],
+      "explicit_direction": -1,
+      "leg": "LM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        821375,
+        927828
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T2_right",
+      "anatomical_role": "Acc. tr flexor MN T2 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        31
+      ],
+      "candidate_flygym_joints": [
+        "joint_RMFemur"
+      ],
+      "canonical_name": "Acc. tr flexor MN T2 right",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        151369,
+        158858
+      ],
+      "explicit_direction": -1,
+      "leg": "RM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        810720,
+        867926
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T3_left",
+      "anatomical_role": "Acc. tr flexor MN T3 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        17
+      ],
+      "candidate_flygym_joints": [
+        "joint_LHFemur"
+      ],
+      "canonical_name": "Acc. tr flexor MN T3 left",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        150462,
+        157813,
+        158923,
+        164612,
+        164637,
+        164670,
+        164730,
+        164780
+      ],
+      "explicit_direction": -1,
+      "leg": "LH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 8,
+      "neuron_ids": [
+        809604,
+        821154,
+        896719,
+        1050038433,
+        1050139141,
+        1050239701,
+        1050730563,
+        1051236875
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T3_right",
+      "anatomical_role": "Acc. tr flexor MN T3 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        38
+      ],
+      "candidate_flygym_joints": [
+        "joint_RHFemur"
+      ],
+      "canonical_name": "Acc. tr flexor MN T3 right",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        155420,
+        160126,
+        162339,
+        164625
+      ],
+      "explicit_direction": -1,
+      "leg": "RH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 4,
+      "neuron_ids": [
+        815958,
+        905586,
+        914852,
+        1050102118
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_twist_T1_left",
+      "anatomical_role": "Fe reductor MN T1 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        4
+      ],
+      "candidate_flygym_joints": [
+        "joint_LFFemur_roll"
+      ],
+      "canonical_name": "Fe reductor MN T1 left",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        146571,
+        147111,
+        152467,
+        154103
+      ],
+      "explicit_direction": 1,
+      "leg": "LF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 4,
+      "neuron_ids": [
+        804941,
+        805598,
+        812111,
+        814163
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_twist_T1_right",
+      "anatomical_role": "Fe reductor MN T1 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        25
+      ],
+      "candidate_flygym_joints": [
+        "joint_RFFemur_roll"
+      ],
+      "canonical_name": "Fe reductor MN T1 right",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        145673,
+        148197,
+        152104,
+        153634,
+        156464,
+        158647
+      ],
+      "explicit_direction": 1,
+      "leg": "RF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 6,
+      "neuron_ids": [
+        803830,
+        806898,
+        811652,
+        813566,
+        817595,
+        835074
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_twist_T2_left",
+      "anatomical_role": "Fe reductor MN T2 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        11
+      ],
+      "candidate_flygym_joints": [
+        "joint_LMFemur_roll"
+      ],
+      "canonical_name": "Fe reductor MN T2 left",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        145834,
+        157722,
+        164719
+      ],
+      "explicit_direction": 1,
+      "leg": "LM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 3,
+      "neuron_ids": [
+        804025,
+        820764,
+        1050607195
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_twist_T2_right",
+      "anatomical_role": "Fe reductor MN T2 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        32
+      ],
+      "candidate_flygym_joints": [
+        "joint_RMFemur_roll"
+      ],
+      "canonical_name": "Fe reductor MN T2 right",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        157927,
+        158100,
+        159968
+      ],
+      "explicit_direction": 1,
+      "leg": "RM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 3,
+      "neuron_ids": [
+        821769,
+        823132,
+        905145
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_twist_T3_left",
+      "anatomical_role": "Fe reductor MN T3 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        18
+      ],
+      "candidate_flygym_joints": [
+        "joint_LHFemur_roll"
+      ],
+      "canonical_name": "Fe reductor MN T3 left",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        143222,
+        157619
+      ],
+      "explicit_direction": 1,
+      "leg": "LH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        800578,
+        820350
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_twist_T3_right",
+      "anatomical_role": "Fe reductor MN T3 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        39
+      ],
+      "candidate_flygym_joints": [
+        "joint_RHFemur_roll"
+      ],
+      "canonical_name": "Fe reductor MN T3 right",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        144056,
+        159225
+      ],
+      "explicit_direction": 1,
+      "leg": "RH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        801693,
+        902962
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "AMBIGUOUS",
+      "anatomical_association": "coxa_T1_left",
+      "anatomical_role": "Pleural remotor/abductor MN T1 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        0,
+        1
+      ],
+      "candidate_flygym_joints": [
+        "joint_LFCoxa",
+        "joint_LFCoxa_roll"
+      ],
+      "canonical_name": "Pleural remotor/abductor MN T1 left",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        144657,
+        145652
+      ],
+      "explicit_direction": -1,
+      "leg": "LF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        802509,
+        803803
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "AMBIGUOUS_MAPPING_BUT_NEURALLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "AMBIGUOUS",
+      "anatomical_association": "coxa_T1_right",
+      "anatomical_role": "Pleural remotor/abductor MN T1 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        21,
+        22
+      ],
+      "candidate_flygym_joints": [
+        "joint_RFCoxa",
+        "joint_RFCoxa_roll"
+      ],
+      "canonical_name": "Pleural remotor/abductor MN T1 right",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        145278,
+        146868
+      ],
+      "explicit_direction": -1,
+      "leg": "RF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        803314,
+        805313
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "AMBIGUOUS_MAPPING_BUT_NEURALLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "AMBIGUOUS",
+      "anatomical_association": "coxa_T2_left",
+      "anatomical_role": "Pleural remotor/abductor MN T2 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        7,
+        8
+      ],
+      "candidate_flygym_joints": [
+        "joint_LMCoxa",
+        "joint_LMCoxa_roll"
+      ],
+      "canonical_name": "Pleural remotor/abductor MN T2 left",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        143189,
+        159087,
+        160070
+      ],
+      "explicit_direction": -1,
+      "leg": "LM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 3,
+      "neuron_ids": [
+        800541,
+        902492,
+        905421
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "AMBIGUOUS_MAPPING_BUT_NEURALLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "AMBIGUOUS",
+      "anatomical_association": "coxa_T2_right",
+      "anatomical_role": "Pleural remotor/abductor MN T2 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        28,
+        29
+      ],
+      "candidate_flygym_joints": [
+        "joint_RMCoxa",
+        "joint_RMCoxa_roll"
+      ],
+      "canonical_name": "Pleural remotor/abductor MN T2 right",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        143362,
+        145416,
+        159157
+      ],
+      "explicit_direction": -1,
+      "leg": "RM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 3,
+      "neuron_ids": [
+        800776,
+        803499,
+        902719
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "AMBIGUOUS_MAPPING_BUT_NEURALLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "AMBIGUOUS",
+      "anatomical_association": "coxa_T3_left",
+      "anatomical_role": "Pleural remotor/abductor MN T3 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        14,
+        15
+      ],
+      "candidate_flygym_joints": [
+        "joint_LHCoxa",
+        "joint_LHCoxa_roll"
+      ],
+      "canonical_name": "Pleural remotor/abductor MN T3 left",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        142922,
+        159019
+      ],
+      "explicit_direction": -1,
+      "leg": "LH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        800175,
+        902310
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "AMBIGUOUS_MAPPING_BUT_NEURALLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "AMBIGUOUS",
+      "anatomical_association": "coxa_T3_right",
+      "anatomical_role": "Pleural remotor/abductor MN T3 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        35,
+        36
+      ],
+      "candidate_flygym_joints": [
+        "joint_RHCoxa",
+        "joint_RHCoxa_roll"
+      ],
+      "canonical_name": "Pleural remotor/abductor MN T3 right",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        142999,
+        143200
+      ],
+      "explicit_direction": -1,
+      "leg": "RH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        800290,
+        800553
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "AMBIGUOUS_MAPPING_BUT_NEURALLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "AMBIGUOUS",
+      "anatomical_association": "coxa_abduct_T1_left",
+      "anatomical_role": "Sternal adductor MN T1 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        1
+      ],
+      "candidate_flygym_joints": [
+        "joint_LFCoxa_roll"
+      ],
+      "canonical_name": "Sternal adductor MN T1 left",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        153568
+      ],
+      "explicit_direction": 1,
+      "leg": "LF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 1,
+      "neuron_ids": [
+        813480
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "AMBIGUOUS_MAPPING_BUT_NEURALLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "AMBIGUOUS",
+      "anatomical_association": "coxa_abduct_T1_right",
+      "anatomical_role": "Sternal adductor MN T1 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        22
+      ],
+      "candidate_flygym_joints": [
+        "joint_RFCoxa_roll"
+      ],
+      "canonical_name": "Sternal adductor MN T1 right",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        155349
+      ],
+      "explicit_direction": 1,
+      "leg": "RF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 1,
+      "neuron_ids": [
+        815854
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "AMBIGUOUS_MAPPING_BUT_NEURALLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "AMBIGUOUS",
+      "anatomical_association": "coxa_abduct_T2_left",
+      "anatomical_role": "Sternal adductor MN T2 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        8
+      ],
+      "candidate_flygym_joints": [
+        "joint_LMCoxa_roll"
+      ],
+      "canonical_name": "Sternal adductor MN T2 left",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        155465
+      ],
+      "explicit_direction": 1,
+      "leg": "LM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 1,
+      "neuron_ids": [
+        816018
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "AMBIGUOUS_MAPPING_BUT_NEURALLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "AMBIGUOUS",
+      "anatomical_association": "coxa_abduct_T2_right",
+      "anatomical_role": "Sternal adductor MN T2 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        29
+      ],
+      "candidate_flygym_joints": [
+        "joint_RMCoxa_roll"
+      ],
+      "canonical_name": "Sternal adductor MN T2 right",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        161306
+      ],
+      "explicit_direction": 1,
+      "leg": "RM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 1,
+      "neuron_ids": [
+        909371
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "AMBIGUOUS_MAPPING_BUT_NEURALLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "AMBIGUOUS",
+      "anatomical_association": "coxa_abduct_T3_left",
+      "anatomical_role": "Sternal adductor MN T3 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        15
+      ],
+      "candidate_flygym_joints": [
+        "joint_LHCoxa_roll"
+      ],
+      "canonical_name": "Sternal adductor MN T3 left",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        159664
+      ],
+      "explicit_direction": 1,
+      "leg": "LH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 1,
+      "neuron_ids": [
+        904184
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "AMBIGUOUS_MAPPING_BUT_NEURALLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "AMBIGUOUS",
+      "anatomical_association": "coxa_abduct_T3_right",
+      "anatomical_role": "Sternal adductor MN T3 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        36
+      ],
+      "candidate_flygym_joints": [
+        "joint_RHCoxa_roll"
+      ],
+      "canonical_name": "Sternal adductor MN T3 right",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        148997
+      ],
+      "explicit_direction": 1,
+      "leg": "RH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 1,
+      "neuron_ids": [
+        807854
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "AMBIGUOUS_MAPPING_BUT_NEURALLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "coxa_twist_T1_left",
+      "anatomical_role": "Sternal anterior rotator MN T1 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        2
+      ],
+      "candidate_flygym_joints": [
+        "joint_LFCoxa_yaw"
+      ],
+      "canonical_name": "Sternal anterior rotator MN T1 left",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        148218,
+        162458
+      ],
+      "explicit_direction": 1,
+      "leg": "LF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        806923,
+        919509
+      ],
+      "possible_coxa_yaw": true,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "coxa_twist_T1_right",
+      "anatomical_role": "Sternal anterior rotator MN T1 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        23
+      ],
+      "candidate_flygym_joints": [
+        "joint_RFCoxa_yaw"
+      ],
+      "canonical_name": "Sternal anterior rotator MN T1 right",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        143884,
+        144225
+      ],
+      "explicit_direction": 1,
+      "leg": "RF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        801469,
+        801918
+      ],
+      "possible_coxa_yaw": true,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "coxa_twist_T2_left",
+      "anatomical_role": "Sternal anterior rotator MN T2 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        9
+      ],
+      "candidate_flygym_joints": [
+        "joint_LMCoxa_yaw"
+      ],
+      "canonical_name": "Sternal anterior rotator MN T2 left",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        158604,
+        159489
+      ],
+      "explicit_direction": 1,
+      "leg": "LM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        832490,
+        903689
+      ],
+      "possible_coxa_yaw": true,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "coxa_twist_T2_right",
+      "anatomical_role": "Sternal anterior rotator MN T2 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        30
+      ],
+      "candidate_flygym_joints": [
+        "joint_RMCoxa_yaw"
+      ],
+      "canonical_name": "Sternal anterior rotator MN T2 right",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        144149,
+        144246
+      ],
+      "explicit_direction": 1,
+      "leg": "RM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        801813,
+        801946
+      ],
+      "possible_coxa_yaw": true,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "coxa_twist_T3_left",
+      "anatomical_role": "Sternal anterior rotator MN T3 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        16
+      ],
+      "candidate_flygym_joints": [
+        "joint_LHCoxa_yaw"
+      ],
+      "canonical_name": "Sternal anterior rotator MN T3 left",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        143949,
+        144439
+      ],
+      "explicit_direction": 1,
+      "leg": "LH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        801548,
+        802215
+      ],
+      "possible_coxa_yaw": true,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "coxa_twist_T3_right",
+      "anatomical_role": "Sternal anterior rotator MN T3 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        37
+      ],
+      "candidate_flygym_joints": [
+        "joint_RHCoxa_yaw"
+      ],
+      "canonical_name": "Sternal anterior rotator MN T3 right",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        143020,
+        160329
+      ],
+      "explicit_direction": 1,
+      "leg": "RH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        800316,
+        906235
+      ],
+      "possible_coxa_yaw": true,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "coxa_twist_T1_left",
+      "anatomical_role": "Sternal posterior rotator MN T1 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        2
+      ],
+      "candidate_flygym_joints": [
+        "joint_LFCoxa_yaw"
+      ],
+      "canonical_name": "Sternal posterior rotator MN T1 left",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        144222,
+        146498,
+        149652,
+        164685
+      ],
+      "explicit_direction": -1,
+      "leg": "LF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 4,
+      "neuron_ids": [
+        801915,
+        804851,
+        808640,
+        1050335829
+      ],
+      "possible_coxa_yaw": true,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "coxa_twist_T1_right",
+      "anatomical_role": "Sternal posterior rotator MN T1 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        23
+      ],
+      "candidate_flygym_joints": [
+        "joint_RFCoxa_yaw"
+      ],
+      "canonical_name": "Sternal posterior rotator MN T1 right",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        146951,
+        149136
+      ],
+      "explicit_direction": -1,
+      "leg": "RF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        805410,
+        808011
+      ],
+      "possible_coxa_yaw": true,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "coxa_twist_T2_left",
+      "anatomical_role": "Sternal posterior rotator MN T2 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        9
+      ],
+      "candidate_flygym_joints": [
+        "joint_LMCoxa_yaw"
+      ],
+      "canonical_name": "Sternal posterior rotator MN T2 left",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        144111,
+        145207,
+        145573,
+        164763
+      ],
+      "explicit_direction": -1,
+      "leg": "LM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 4,
+      "neuron_ids": [
+        801768,
+        803226,
+        803704,
+        1051054875
+      ],
+      "possible_coxa_yaw": true,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "coxa_twist_T2_right",
+      "anatomical_role": "Sternal posterior rotator MN T2 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        30
+      ],
+      "candidate_flygym_joints": [
+        "joint_RMCoxa_yaw"
+      ],
+      "canonical_name": "Sternal posterior rotator MN T2 right",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        143498,
+        144107,
+        144664,
+        157163
+      ],
+      "explicit_direction": -1,
+      "leg": "RM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 4,
+      "neuron_ids": [
+        800962,
+        801761,
+        802521,
+        818996
+      ],
+      "possible_coxa_yaw": true,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "coxa_twist_T3_left",
+      "anatomical_role": "Sternal posterior rotator MN T3 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        16
+      ],
+      "candidate_flygym_joints": [
+        "joint_LHCoxa_yaw"
+      ],
+      "canonical_name": "Sternal posterior rotator MN T3 left",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        143901,
+        144071,
+        144997,
+        156887
+      ],
+      "explicit_direction": -1,
+      "leg": "LH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 4,
+      "neuron_ids": [
+        801492,
+        801715,
+        802964,
+        818399
+      ],
+      "possible_coxa_yaw": true,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "coxa_twist_T3_right",
+      "anatomical_role": "Sternal posterior rotator MN T3 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        37
+      ],
+      "candidate_flygym_joints": [
+        "joint_RHCoxa_yaw"
+      ],
+      "canonical_name": "Sternal posterior rotator MN T3 right",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        159477,
+        159478,
+        160551,
+        164710
+      ],
+      "explicit_direction": -1,
+      "leg": "RH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 4,
+      "neuron_ids": [
+        903642,
+        903643,
+        907256,
+        1050493413
+      ],
+      "possible_coxa_yaw": true,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T1_left",
+      "anatomical_role": "Sternotrochanter MN T1 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        3
+      ],
+      "candidate_flygym_joints": [
+        "joint_LFFemur"
+      ],
+      "canonical_name": "Sternotrochanter MN T1 left",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        144049,
+        144538
+      ],
+      "explicit_direction": 1,
+      "leg": "LF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        801685,
+        802361
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T1_right",
+      "anatomical_role": "Sternotrochanter MN T1 right",
+      "attempt4_silent_candidate": true,
+      "candidate_action_indices": [
+        24
+      ],
+      "candidate_flygym_joints": [
+        "joint_RFFemur"
+      ],
+      "canonical_name": "Sternotrochanter MN T1 right",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        143581,
+        145568
+      ],
+      "explicit_direction": 1,
+      "leg": "RF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        801079,
+        803698
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T2_left",
+      "anatomical_role": "Sternotrochanter MN T2 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        10
+      ],
+      "candidate_flygym_joints": [
+        "joint_LMFemur"
+      ],
+      "canonical_name": "Sternotrochanter MN T2 left",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        144578,
+        159777
+      ],
+      "explicit_direction": 1,
+      "leg": "LM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        802407,
+        904657
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T2_right",
+      "anatomical_role": "Sternotrochanter MN T2 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        31
+      ],
+      "candidate_flygym_joints": [
+        "joint_RMFemur"
+      ],
+      "canonical_name": "Sternotrochanter MN T2 right",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        144918,
+        158812
+      ],
+      "explicit_direction": 1,
+      "leg": "RM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        802864,
+        856359
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T3_left",
+      "anatomical_role": "Sternotrochanter MN T3 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        17
+      ],
+      "candidate_flygym_joints": [
+        "joint_LHFemur"
+      ],
+      "canonical_name": "Sternotrochanter MN T3 left",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        143160,
+        143421,
+        158478
+      ],
+      "explicit_direction": 1,
+      "leg": "LH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 3,
+      "neuron_ids": [
+        800504,
+        800851,
+        828978
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T3_right",
+      "anatomical_role": "Sternotrochanter MN T3 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        38
+      ],
+      "candidate_flygym_joints": [
+        "joint_RHFemur"
+      ],
+      "canonical_name": "Sternotrochanter MN T3 right",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        143589,
+        143635,
+        143815
+      ],
+      "explicit_direction": 1,
+      "leg": "RH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 3,
+      "neuron_ids": [
+        801090,
+        801148,
+        801375
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "tarsus_T1_left",
+      "anatomical_role": "Ta depressor MN T1 left",
+      "attempt4_silent_candidate": true,
+      "candidate_action_indices": [
+        6
+      ],
+      "candidate_flygym_joints": [
+        "joint_LFTarsus1"
+      ],
+      "canonical_name": "Ta depressor MN T1 left",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        156498,
+        157269,
+        164697,
+        164725,
+        164766
+      ],
+      "explicit_direction": -1,
+      "leg": "LF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 5,
+      "neuron_ids": [
+        817655,
+        819278,
+        1050403926,
+        1050660827,
+        1051062549
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "tarsus_T1_right",
+      "anatomical_role": "Ta depressor MN T1 right",
+      "attempt4_silent_candidate": true,
+      "candidate_action_indices": [
+        27
+      ],
+      "candidate_flygym_joints": [
+        "joint_RFTarsus1"
+      ],
+      "canonical_name": "Ta depressor MN T1 right",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        158308,
+        164672,
+        164694,
+        164739
+      ],
+      "explicit_direction": -1,
+      "leg": "RF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 4,
+      "neuron_ids": [
+        825721,
+        1050248133,
+        1050380236,
+        1050815462
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "tarsus_T1_left",
+      "anatomical_role": "Ta levator MN T1 left",
+      "attempt4_silent_candidate": true,
+      "candidate_action_indices": [
+        6
+      ],
+      "candidate_flygym_joints": [
+        "joint_LFTarsus1"
+      ],
+      "canonical_name": "Ta levator MN T1 left",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        151228,
+        164626
+      ],
+      "explicit_direction": 1,
+      "leg": "LF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        810541,
+        1050111955
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "tarsus_T1_right",
+      "anatomical_role": "Ta levator MN T1 right",
+      "attempt4_silent_candidate": true,
+      "candidate_action_indices": [
+        27
+      ],
+      "candidate_flygym_joints": [
+        "joint_RFTarsus1"
+      ],
+      "canonical_name": "Ta levator MN T1 right",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        156216,
+        157553,
+        157751
+      ],
+      "explicit_direction": 1,
+      "leg": "RF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 3,
+      "neuron_ids": [
+        817210,
+        820110,
+        820896
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "AMBIGUOUS",
+      "anatomical_association": "coxa_T1_left",
+      "anatomical_role": "Tergopleural/Pleural promotor MN T1 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        0
+      ],
+      "candidate_flygym_joints": [
+        "joint_LFCoxa"
+      ],
+      "canonical_name": "Tergopleural/Pleural promotor MN T1 left",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        142836,
+        143654,
+        148512,
+        162856
+      ],
+      "explicit_direction": 1,
+      "leg": "LF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 4,
+      "neuron_ids": [
+        800061,
+        801173,
+        807281,
+        934091
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "AMBIGUOUS_MAPPING_BUT_NEURALLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "AMBIGUOUS",
+      "anatomical_association": "coxa_T1_right",
+      "anatomical_role": "Tergopleural/Pleural promotor MN T1 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        21
+      ],
+      "candidate_flygym_joints": [
+        "joint_RFCoxa"
+      ],
+      "canonical_name": "Tergopleural/Pleural promotor MN T1 right",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        144158,
+        144338,
+        147231,
+        151224
+      ],
+      "explicit_direction": 1,
+      "leg": "RF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 4,
+      "neuron_ids": [
+        801824,
+        802072,
+        805745,
+        810535
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "AMBIGUOUS_MAPPING_BUT_NEURALLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T1_left",
+      "anatomical_role": "Tergotr. MN T1 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        3
+      ],
+      "candidate_flygym_joints": [
+        "joint_LFFemur"
+      ],
+      "canonical_name": "Tergotr. MN T1 left",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        144687,
+        145217,
+        146190,
+        147228
+      ],
+      "explicit_direction": 1,
+      "leg": "LF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 4,
+      "neuron_ids": [
+        802552,
+        803237,
+        804465,
+        805741
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T1_right",
+      "anatomical_role": "Tergotr. MN T1 right",
+      "attempt4_silent_candidate": true,
+      "candidate_action_indices": [
+        24
+      ],
+      "candidate_flygym_joints": [
+        "joint_RFFemur"
+      ],
+      "canonical_name": "Tergotr. MN T1 right",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        146511,
+        156301,
+        161362,
+        162567
+      ],
+      "explicit_direction": 1,
+      "leg": "RF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 4,
+      "neuron_ids": [
+        804866,
+        817347,
+        909521,
+        924716
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T2_left",
+      "anatomical_role": "Tergotr. MN T2 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        10
+      ],
+      "candidate_flygym_joints": [
+        "joint_LMFemur"
+      ],
+      "canonical_name": "Tergotr. MN T2 left",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        153788
+      ],
+      "explicit_direction": 1,
+      "leg": "LM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 1,
+      "neuron_ids": [
+        813755
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T2_right",
+      "anatomical_role": "Tergotr. MN T2 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        31
+      ],
+      "candidate_flygym_joints": [
+        "joint_RMFemur"
+      ],
+      "canonical_name": "Tergotr. MN T2 right",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        147606
+      ],
+      "explicit_direction": 1,
+      "leg": "RM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 1,
+      "neuron_ids": [
+        806204
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T3_left",
+      "anatomical_role": "Tergotr. MN T3 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        17
+      ],
+      "candidate_flygym_joints": [
+        "joint_LHFemur"
+      ],
+      "canonical_name": "Tergotr. MN T3 left",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        146233
+      ],
+      "explicit_direction": 1,
+      "leg": "LH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 1,
+      "neuron_ids": [
+        804514
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T3_right",
+      "anatomical_role": "Tergotr. MN T3 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        38
+      ],
+      "candidate_flygym_joints": [
+        "joint_RHFemur"
+      ],
+      "canonical_name": "Tergotr. MN T3 right",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        160211
+      ],
+      "explicit_direction": 1,
+      "leg": "RH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 1,
+      "neuron_ids": [
+        905849
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "tibia_T1_left",
+      "anatomical_role": "Ti extensor MN T1 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        5
+      ],
+      "candidate_flygym_joints": [
+        "joint_LFTibia"
+      ],
+      "canonical_name": "Ti extensor MN T1 left",
+      "coordinate_sign": 1,
+      "dense_neural_indices": [
+        143259,
+        154980
+      ],
+      "explicit_direction": 1,
+      "leg": "LF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        800636,
+        815344
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "tibia_T1_right",
+      "anatomical_role": "Ti extensor MN T1 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        26
+      ],
+      "candidate_flygym_joints": [
+        "joint_RFTibia"
+      ],
+      "canonical_name": "Ti extensor MN T1 right",
+      "coordinate_sign": 1,
+      "dense_neural_indices": [
+        146023,
+        155213
+      ],
+      "explicit_direction": 1,
+      "leg": "RF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        804257,
+        815678
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "tibia_T2_left",
+      "anatomical_role": "Ti extensor MN T2 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        12
+      ],
+      "candidate_flygym_joints": [
+        "joint_LMTibia"
+      ],
+      "canonical_name": "Ti extensor MN T2 left",
+      "coordinate_sign": 1,
+      "dense_neural_indices": [
+        143464,
+        143700
+      ],
+      "explicit_direction": 1,
+      "leg": "LM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        800911,
+        801234
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "tibia_T2_right",
+      "anatomical_role": "Ti extensor MN T2 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        33
+      ],
+      "candidate_flygym_joints": [
+        "joint_RMTibia"
+      ],
+      "canonical_name": "Ti extensor MN T2 right",
+      "coordinate_sign": 1,
+      "dense_neural_indices": [
+        158546,
+        162677
+      ],
+      "explicit_direction": 1,
+      "leg": "RM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        830514,
+        928579
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "tibia_T3_left",
+      "anatomical_role": "Ti extensor MN T3 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        19
+      ],
+      "candidate_flygym_joints": [
+        "joint_LHTibia"
+      ],
+      "canonical_name": "Ti extensor MN T3 left",
+      "coordinate_sign": 1,
+      "dense_neural_indices": [
+        143252,
+        153153
+      ],
+      "explicit_direction": 1,
+      "leg": "LH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        800621,
+        812953
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "tibia_T3_right",
+      "anatomical_role": "Ti extensor MN T3 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        40
+      ],
+      "candidate_flygym_joints": [
+        "joint_RHTibia"
+      ],
+      "canonical_name": "Ti extensor MN T3 right",
+      "coordinate_sign": 1,
+      "dense_neural_indices": [
+        142911,
+        150738
+      ],
+      "explicit_direction": 1,
+      "leg": "RH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        800158,
+        809935
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "tibia_T1_left",
+      "anatomical_role": "Ti flexor MN T1 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        5
+      ],
+      "candidate_flygym_joints": [
+        "joint_LFTibia"
+      ],
+      "canonical_name": "Ti flexor MN T1 left",
+      "coordinate_sign": 1,
+      "dense_neural_indices": [
+        148412,
+        150721,
+        156725,
+        157314,
+        161464
+      ],
+      "explicit_direction": -1,
+      "leg": "LF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 5,
+      "neuron_ids": [
+        807165,
+        809912,
+        818057,
+        819384,
+        909831
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "tibia_T1_right",
+      "anatomical_role": "Ti flexor MN T1 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        26
+      ],
+      "candidate_flygym_joints": [
+        "joint_RFTibia"
+      ],
+      "canonical_name": "Ti flexor MN T1 right",
+      "coordinate_sign": 1,
+      "dense_neural_indices": [
+        150873,
+        157906,
+        158392,
+        164610,
+        164654
+      ],
+      "explicit_direction": -1,
+      "leg": "RF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 5,
+      "neuron_ids": [
+        810098,
+        821635,
+        827188,
+        1050031705,
+        1050189039
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "tibia_T2_left",
+      "anatomical_role": "Ti flexor MN T2 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        12
+      ],
+      "candidate_flygym_joints": [
+        "joint_LMTibia"
+      ],
+      "canonical_name": "Ti flexor MN T2 left",
+      "coordinate_sign": 1,
+      "dense_neural_indices": [
+        144494,
+        156836,
+        158153,
+        158175,
+        162657
+      ],
+      "explicit_direction": -1,
+      "leg": "LM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 5,
+      "neuron_ids": [
+        802295,
+        818295,
+        823739,
+        824041,
+        927808
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "tibia_T2_right",
+      "anatomical_role": "Ti flexor MN T2 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        33
+      ],
+      "candidate_flygym_joints": [
+        "joint_RMTibia"
+      ],
+      "canonical_name": "Ti flexor MN T2 right",
+      "coordinate_sign": 1,
+      "dense_neural_indices": [
+        146137,
+        146627,
+        155608,
+        157955,
+        159349
+      ],
+      "explicit_direction": -1,
+      "leg": "RM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 5,
+      "neuron_ids": [
+        804405,
+        805010,
+        816222,
+        822013,
+        903363
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "tibia_T3_left",
+      "anatomical_role": "Ti flexor MN T3 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        19
+      ],
+      "candidate_flygym_joints": [
+        "joint_LHTibia"
+      ],
+      "canonical_name": "Ti flexor MN T3 left",
+      "coordinate_sign": 1,
+      "dense_neural_indices": [
+        145142,
+        146556,
+        157209,
+        158075,
+        161059,
+        162703,
+        164620,
+        164624,
+        164647
+      ],
+      "explicit_direction": -1,
+      "leg": "LH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 9,
+      "neuron_ids": [
+        803147,
+        804919,
+        819112,
+        822945,
+        908762,
+        929376,
+        1050088257,
+        1050100010,
+        1050166426
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "tibia_T3_right",
+      "anatomical_role": "Ti flexor MN T3 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        40
+      ],
+      "candidate_flygym_joints": [
+        "joint_RHTibia"
+      ],
+      "canonical_name": "Ti flexor MN T3 right",
+      "coordinate_sign": 1,
+      "dense_neural_indices": [
+        145083,
+        149691,
+        158148,
+        158427,
+        158696,
+        161547,
+        164604,
+        164682
+      ],
+      "explicit_direction": -1,
+      "leg": "RH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 8,
+      "neuron_ids": [
+        803072,
+        808685,
+        823665,
+        827968,
+        840740,
+        910178,
+        1050013311,
+        1050303231
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T1_left",
+      "anatomical_role": "Tr extensor MN T1 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        3
+      ],
+      "candidate_flygym_joints": [
+        "joint_LFFemur"
+      ],
+      "canonical_name": "Tr extensor MN T1 left",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        145351,
+        149040
+      ],
+      "explicit_direction": 1,
+      "leg": "LF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        803412,
+        807906
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T1_right",
+      "anatomical_role": "Tr extensor MN T1 right",
+      "attempt4_silent_candidate": true,
+      "candidate_action_indices": [
+        24
+      ],
+      "candidate_flygym_joints": [
+        "joint_RFFemur"
+      ],
+      "canonical_name": "Tr extensor MN T1 right",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        157103,
+        158670
+      ],
+      "explicit_direction": 1,
+      "leg": "RF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        818842,
+        838321
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T2_left",
+      "anatomical_role": "Tr extensor MN T2 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        10
+      ],
+      "candidate_flygym_joints": [
+        "joint_LMFemur"
+      ],
+      "canonical_name": "Tr extensor MN T2 left",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        147006,
+        161187
+      ],
+      "explicit_direction": 1,
+      "leg": "LM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        805477,
+        909078
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T2_right",
+      "anatomical_role": "Tr extensor MN T2 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        31
+      ],
+      "candidate_flygym_joints": [
+        "joint_RMFemur"
+      ],
+      "canonical_name": "Tr extensor MN T2 right",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        154698,
+        158692
+      ],
+      "explicit_direction": 1,
+      "leg": "RM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        814942,
+        840530
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T3_left",
+      "anatomical_role": "Tr extensor MN T3 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        17
+      ],
+      "candidate_flygym_joints": [
+        "joint_LHFemur"
+      ],
+      "canonical_name": "Tr extensor MN T3 left",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        158702
+      ],
+      "explicit_direction": 1,
+      "leg": "LH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 1,
+      "neuron_ids": [
+        840981
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T3_right",
+      "anatomical_role": "Tr extensor MN T3 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        38
+      ],
+      "candidate_flygym_joints": [
+        "joint_RHFemur"
+      ],
+      "canonical_name": "Tr extensor MN T3 right",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        149491,
+        160152
+      ],
+      "explicit_direction": 1,
+      "leg": "RH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        808453,
+        905661
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T1_left",
+      "anatomical_role": "Tr flexor MN T1 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        3
+      ],
+      "candidate_flygym_joints": [
+        "joint_LFFemur"
+      ],
+      "canonical_name": "Tr flexor MN T1 left",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        151305,
+        154353,
+        156881,
+        158106,
+        158122,
+        158475,
+        164791,
+        164805
+      ],
+      "explicit_direction": -1,
+      "leg": "LF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 8,
+      "neuron_ids": [
+        810639,
+        814489,
+        818389,
+        823168,
+        823281,
+        828939,
+        1051367796,
+        1051670893
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T1_right",
+      "anatomical_role": "Tr flexor MN T1 right",
+      "attempt4_silent_candidate": true,
+      "candidate_action_indices": [
+        24
+      ],
+      "candidate_flygym_joints": [
+        "joint_RFFemur"
+      ],
+      "canonical_name": "Tr flexor MN T1 right",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        155875,
+        156489,
+        157046,
+        157561,
+        157697,
+        159230,
+        162321
+      ],
+      "explicit_direction": -1,
+      "leg": "RF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 7,
+      "neuron_ids": [
+        816648,
+        817640,
+        818719,
+        820130,
+        820668,
+        903010,
+        914655
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T2_left",
+      "anatomical_role": "Tr flexor MN T2 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        10
+      ],
+      "candidate_flygym_joints": [
+        "joint_LMFemur"
+      ],
+      "canonical_name": "Tr flexor MN T2 left",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        143231,
+        144450,
+        145672,
+        159287,
+        159288,
+        159454,
+        164726
+      ],
+      "explicit_direction": -1,
+      "leg": "LM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 7,
+      "neuron_ids": [
+        800589,
+        802232,
+        803829,
+        903158,
+        903159,
+        903579,
+        1050669248
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T2_right",
+      "anatomical_role": "Tr flexor MN T2 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        31
+      ],
+      "candidate_flygym_joints": [
+        "joint_RMFemur"
+      ],
+      "canonical_name": "Tr flexor MN T2 right",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        143566,
+        143567,
+        156514,
+        157244,
+        158204,
+        161523,
+        162556
+      ],
+      "explicit_direction": -1,
+      "leg": "RM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 7,
+      "neuron_ids": [
+        801057,
+        801058,
+        817681,
+        819203,
+        824315,
+        910095,
+        924142
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T3_left",
+      "anatomical_role": "Tr flexor MN T3 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        17
+      ],
+      "candidate_flygym_joints": [
+        "joint_LHFemur"
+      ],
+      "canonical_name": "Tr flexor MN T3 left",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        164657
+      ],
+      "explicit_direction": -1,
+      "leg": "LH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 1,
+      "neuron_ids": [
+        1050194310
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": true,
+      "ambiguity_status": "UNIQUE",
+      "anatomical_association": "femur_T3_right",
+      "anatomical_role": "Tr flexor MN T3 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [
+        38
+      ],
+      "candidate_flygym_joints": [
+        "joint_RHFemur"
+      ],
+      "canonical_name": "Tr flexor MN T3 right",
+      "coordinate_sign": -1,
+      "dense_neural_indices": [
+        144076,
+        148816,
+        160245,
+        164623,
+        164752
+      ],
+      "explicit_direction": -1,
+      "leg": "RH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 5,
+      "neuron_ids": [
+        801721,
+        807640,
+        905928,
+        1050098047,
+        1050938258
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": true
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNMAPPED",
+      "anatomical_association": "tarsus2_T1_left",
+      "anatomical_role": "ltm MN T1 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [],
+      "candidate_flygym_joints": [],
+      "canonical_name": "ltm MN T1 left",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        157968,
+        157991,
+        161591,
+        161843
+      ],
+      "explicit_direction": -1,
+      "leg": "LF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 4,
+      "neuron_ids": [
+        822092,
+        822274,
+        910334,
+        911453
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNMAPPED",
+      "anatomical_association": "tarsus2_T1_right",
+      "anatomical_role": "ltm MN T1 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [],
+      "candidate_flygym_joints": [],
+      "canonical_name": "ltm MN T1 right",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        158829,
+        162558,
+        164605,
+        164607
+      ],
+      "explicit_direction": -1,
+      "leg": "RF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 4,
+      "neuron_ids": [
+        860084,
+        924189,
+        1050013851,
+        1050015101
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNMAPPED",
+      "anatomical_association": "tarsus2_T2_left",
+      "anatomical_role": "ltm MN T2 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [],
+      "candidate_flygym_joints": [],
+      "canonical_name": "ltm MN T2 left",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        153663,
+        158227,
+        158305
+      ],
+      "explicit_direction": -1,
+      "leg": "LM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 3,
+      "neuron_ids": [
+        813603,
+        824689,
+        825681
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNMAPPED",
+      "anatomical_association": "tarsus2_T2_right",
+      "anatomical_role": "ltm MN T2 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [],
+      "candidate_flygym_joints": [],
+      "canonical_name": "ltm MN T2 right",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        153087,
+        158258,
+        160085
+      ],
+      "explicit_direction": -1,
+      "leg": "RM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 3,
+      "neuron_ids": [
+        812872,
+        824997,
+        905487
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNMAPPED",
+      "anatomical_association": "tarsus2_T3_left",
+      "anatomical_role": "ltm MN T3 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [],
+      "candidate_flygym_joints": [],
+      "canonical_name": "ltm MN T3 left",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        158128,
+        158183,
+        158911,
+        164619
+      ],
+      "explicit_direction": -1,
+      "leg": "LH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 4,
+      "neuron_ids": [
+        823405,
+        824104,
+        890541,
+        1050080384
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNMAPPED",
+      "anatomical_association": "tarsus2_T3_right",
+      "anatomical_role": "ltm MN T3 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [],
+      "candidate_flygym_joints": [],
+      "canonical_name": "ltm MN T3 right",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        154806,
+        164621,
+        164662
+      ],
+      "explicit_direction": -1,
+      "leg": "RH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 3,
+      "neuron_ids": [
+        815097,
+        1050091102,
+        1050203465
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNMAPPED",
+      "anatomical_association": "tarsus2_T1_left",
+      "anatomical_role": "ltm1-tibia MN T1 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [],
+      "candidate_flygym_joints": [],
+      "canonical_name": "ltm1-tibia MN T1 left",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        156965,
+        157963
+      ],
+      "explicit_direction": -1,
+      "leg": "LF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        818553,
+        822047
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNMAPPED",
+      "anatomical_association": "tarsus2_T1_right",
+      "anatomical_role": "ltm1-tibia MN T1 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [],
+      "candidate_flygym_joints": [],
+      "canonical_name": "ltm1-tibia MN T1 right",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        164952
+      ],
+      "explicit_direction": -1,
+      "leg": "RF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 1,
+      "neuron_ids": [
+        1057471940
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNMAPPED",
+      "anatomical_association": "tarsus2_T2_left",
+      "anatomical_role": "ltm1-tibia MN T2 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [],
+      "candidate_flygym_joints": [],
+      "canonical_name": "ltm1-tibia MN T2 left",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        160611
+      ],
+      "explicit_direction": -1,
+      "leg": "LM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 1,
+      "neuron_ids": [
+        907443
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNMAPPED",
+      "anatomical_association": "tarsus2_T2_right",
+      "anatomical_role": "ltm1-tibia MN T2 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [],
+      "candidate_flygym_joints": [],
+      "canonical_name": "ltm1-tibia MN T2 right",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        145437
+      ],
+      "explicit_direction": -1,
+      "leg": "RM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 1,
+      "neuron_ids": [
+        803523
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNMAPPED",
+      "anatomical_association": "tarsus2_T3_left",
+      "anatomical_role": "ltm1-tibia MN T3 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [],
+      "candidate_flygym_joints": [],
+      "canonical_name": "ltm1-tibia MN T3 left",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        158821,
+        162123
+      ],
+      "explicit_direction": -1,
+      "leg": "LH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        858248,
+        912694
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNMAPPED",
+      "anatomical_association": "tarsus2_T3_right",
+      "anatomical_role": "ltm1-tibia MN T3 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [],
+      "candidate_flygym_joints": [],
+      "canonical_name": "ltm1-tibia MN T3 right",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        146412,
+        162335
+      ],
+      "explicit_direction": -1,
+      "leg": "RH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        804741,
+        914837
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNMAPPED",
+      "anatomical_association": "tarsus2_T1_left",
+      "anatomical_role": "ltm2-femur MN T1 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [],
+      "candidate_flygym_joints": [],
+      "canonical_name": "ltm2-femur MN T1 left",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        146864,
+        164720
+      ],
+      "explicit_direction": -1,
+      "leg": "LF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        805309,
+        1050615112
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNMAPPED",
+      "anatomical_association": "tarsus2_T1_right",
+      "anatomical_role": "ltm2-femur MN T1 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [],
+      "candidate_flygym_joints": [],
+      "canonical_name": "ltm2-femur MN T1 right",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        158527,
+        164673
+      ],
+      "explicit_direction": -1,
+      "leg": "RF",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        830039,
+        1050251718
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNMAPPED",
+      "anatomical_association": "tarsus2_T2_left",
+      "anatomical_role": "ltm2-femur MN T2 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [],
+      "candidate_flygym_joints": [],
+      "canonical_name": "ltm2-femur MN T2 left",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        149101,
+        158385
+      ],
+      "explicit_direction": -1,
+      "leg": "LM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        807972,
+        826996
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNMAPPED",
+      "anatomical_association": "tarsus2_T2_right",
+      "anatomical_role": "ltm2-femur MN T2 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [],
+      "candidate_flygym_joints": [],
+      "canonical_name": "ltm2-femur MN T2 right",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        158788,
+        161011
+      ],
+      "explicit_direction": -1,
+      "leg": "RM",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        852673,
+        908673
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNMAPPED",
+      "anatomical_association": "tarsus2_T3_left",
+      "anatomical_role": "ltm2-femur MN T3 left",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [],
+      "candidate_flygym_joints": [],
+      "canonical_name": "ltm2-femur MN T3 left",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        155085,
+        158820
+      ],
+      "explicit_direction": -1,
+      "leg": "LH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        815498,
+        857751
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    },
+    {
+      "admitted_11": false,
+      "ambiguity_status": "UNMAPPED",
+      "anatomical_association": "tarsus2_T3_right",
+      "anatomical_role": "ltm2-femur MN T3 right",
+      "attempt4_silent_candidate": false,
+      "candidate_action_indices": [],
+      "candidate_flygym_joints": [],
+      "canonical_name": "ltm2-femur MN T3 right",
+      "coordinate_sign": null,
+      "dense_neural_indices": [
+        157875,
+        164649
+      ],
+      "explicit_direction": -1,
+      "leg": "RH",
+      "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "neuron_count": 2,
+      "neuron_ids": [
+        821449,
+        1050174251
+      ],
+      "possible_coxa_yaw": false,
+      "surveyability": "DIRECTLY_SURVEYABLE",
+      "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+      "unique_mapping": false
+    }
+  ],
+  "schema": "flybrain.motor_population_inventory",
+  "source_files": [
+    {
+      "path": "fly-brain-main/public/data/bodymap.json",
+      "sha256": "10630cd4c7a6cc2c1dcfcbee4a602d307f06766f316b185f631406813a58da9d"
+    },
+    {
+      "path": "fly-brain-main/body/flybody/fruitfly.xml",
+      "sha256": "d14946fd0311025ecca70c8eeb5de80e1fe18700d3072be37ecbb18d33d80fd8"
+    },
+    {
+      "path": "malecns_backend/interface_map.json",
+      "sha256": "24b7229bea6f24ff0e65fe09b202d42dc06819fe234194e3c3ab95b596319e0b"
+    },
+    {
+      "path": "malecns_backend/embodiment/six_leg_map.json",
+      "sha256": "575186602ac1e5a6e3b2c6d680309880266f5d80e18fff44f989440f6cd0a4bc"
+    },
+    {
+      "path": "malecns_backend/embodiment/interface_output/whole_leg_motor_mapping_audit.json",
+      "sha256": "722ee9b3b1d6a0fad2bf8ef0f02fc63f49277c5f44e3bccf27898e6c4ea673d9"
+    },
+    {
+      "path": "malecns_backend/embodiment/m9b_external_perturbation.py",
+      "sha256": "ce6f2d7931be69f5b17f59d71448e93a3d379be2b02576002628148a2e4b3750"
+    },
+    {
+      "path": "malecns_backend/embodiment/candidate_motor_channel_validation.py",
+      "sha256": "2814f54af89e1e37ccbe31f553ecd156f55cf034f15aad42e3eb698ee5a582c9"
+    }
+  ],
+  "summary": {
+    "admitted_channel_count": 11,
+    "ambiguous_physical_mappings": 12,
+    "hinges_with_candidates": 38,
+    "motor_population_count": 102,
+    "neuron_membership_count": 328,
+    "physical_hinge_count": 42,
+    "surveyability_counts": {
+      "AMBIGUOUS_MAPPING_BUT_NEURALLY_SURVEYABLE": 14,
+      "DIRECTLY_SURVEYABLE": 88
+    },
+    "unique_neuron_id_count": 328,
+    "unique_physical_mappings": 26
+  },
+  "version": "1.0.0"
+}
