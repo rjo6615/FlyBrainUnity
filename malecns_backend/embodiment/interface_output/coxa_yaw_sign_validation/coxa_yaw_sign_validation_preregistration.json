@@ -1,0 +1,74 @@
+{
+  "action_vector_length": 42,
+  "active_interface_policy": {
+    "expected_channel_count": 11,
+    "modification_permitted": false,
+    "new_channel_admission_permitted": false
+  },
+  "classification": {
+    "failure": "MECHANICAL_VALIDATION_FAILED",
+    "pass": "MECHANICAL_DIRECTION_RESOLVED_ANATOMICAL_SIGN_UNRESOLVED",
+    "rule": "All six identities, isolated actions, identical fresh baselines, opposite signed joint deltas, opposite axis-projected rotations, and opposing endpoint displacement dot products must pass. Anatomical neural sign remains unresolved because labels alone are insufficient."
+  },
+  "environment": {
+    "expected": "validated FlyGym position-control fly compiled by MuJoCo",
+    "timestep_seconds": 0.0001,
+    "versions": "record installed FlyGym, MuJoCo, and NumPy versions at execution; do not adapt protocol by version"
+  },
+  "epsilon_rad": 0.0001,
+  "failure_classifications": [
+    "PREREGISTRATION_IDENTITY_FAILURE",
+    "TARGET_IDENTITY_FAILURE",
+    "ACTION_ISOLATION_FAILURE",
+    "FRESH_BASELINE_MISMATCH",
+    "JOINT_COORDINATE_OPPOSITION_FAILURE",
+    "GEOMETRIC_DIRECTION_UNRESOLVED",
+    "MECHANICAL_VALIDATION_FAILED"
+  ],
+  "identity_checks": [
+    "exact ordered six leg/joint/action triples",
+    "42-entry FlyGym actuated-joint ordering",
+    "unique compiled actuator and joint names",
+    "actuator transmission targets the same compiled joint",
+    "unique annotation-backed anterior/posterior population pair per joint"
+  ],
+  "initialization": {
+    "adhesion": false,
+    "cameras": [],
+    "control": "position",
+    "fly": "flygym.Fly",
+    "reset_before_measurement": true
+  },
+  "mechanical_measurements": [
+    "joint qpos before and after displacement",
+    "compiled local joint axis and measured baseline world joint axis",
+    "owning-segment baseline and perturbed orientation matrices",
+    "signed relative rotation projected onto measured world joint axis",
+    "distal Tarsus5 baseline and perturbed world position",
+    "endpoint displacement from baseline"
+  ],
+  "no_extra_force": true,
+  "no_hidden_controller_or_stabilizer": true,
+  "no_result_dependent_adaptation": true,
+  "no_stimulation": true,
+  "output_artifacts": {
+    "attempt": "coxa_yaw_sign_validation_attempt.json",
+    "preregistration": "coxa_yaw_sign_validation_preregistration.json",
+    "result": "coxa_yaw_sign_validation_result.json"
+  },
+  "overwrite_protection": "attempt and result use exclusive-create semantics; either existing path refuses execution",
+  "reset_policy": "Construct and reset a fresh independent FlyGym/MuJoCo simulation for each sign of each joint; require byte-derived baseline state identities to match within each +/- pair.",
+  "schema": "COXA-YAW-MECHANICAL-SIGN-VALIDATION.1",
+  "sign_resolution_algorithm": "For each displacement, derive relative owning-segment rotation from measured matrices and project its signed axis-angle onto the measured neutral world joint axis. Require positive/negative projections and qpos deltas to oppose, and require the dot product of distal endpoint displacement vectors to be negative. This resolves mechanical coordinate direction only.",
+  "status": "NOT_RUN",
+  "targets": [
+    {"action_index": 2, "joint": "joint_LFCoxa_yaw", "leg": "LF"},
+    {"action_index": 9, "joint": "joint_LMCoxa_yaw", "leg": "LM"},
+    {"action_index": 16, "joint": "joint_LHCoxa_yaw", "leg": "LH"},
+    {"action_index": 23, "joint": "joint_RFCoxa_yaw", "leg": "RF"},
+    {"action_index": 30, "joint": "joint_RMCoxa_yaw", "leg": "RM"},
+    {"action_index": 37, "joint": "joint_RHCoxa_yaw", "leg": "RH"}
+  ],
+  "zero_neural_transition_requirement": true,
+  "zero_physics_step_policy": "Use qpos displacement followed by kinematic mj_forward only; execute zero time-advancing physics transitions."
+}
