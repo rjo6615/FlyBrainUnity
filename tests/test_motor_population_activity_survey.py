@@ -126,6 +126,29 @@ def test_no_candidate_action_leakage_gate():
     with pytest.raises(RuntimeError): adapter._gate({**values, "candidate": 1}, adapter.CONDITION, admitted + ("candidate",))
 
 
+def test_admitted_interface_identity_accepts_exact_and_different_order():
+    from malecns_backend.embodiment import _windows_motor_population_activity_survey_adapter as adapter
+    admitted = [(f"joint{i}", i, -1 if i % 2 else 1) for i in range(11)]
+    adapter._assert_admitted_interface_identity(admitted, admitted.copy())
+    adapter._assert_admitted_interface_identity(list(reversed(admitted)), admitted)
+
+
+@pytest.mark.parametrize("mutation", (
+    lambda rows: [*rows[:3], (rows[3][0], rows[3][1], -rows[3][2]), *rows[4:]],
+    lambda rows: [*rows[:3], (rows[3][0], 99, rows[3][2]), *rows[4:]],
+    lambda rows: [*rows[:3], ("renamed_joint", rows[3][1], rows[3][2]), *rows[4:]],
+    lambda rows: rows[:-1],
+    lambda rows: [*rows, ("extra_joint", 99, 1)],
+    lambda rows: [*rows[:-1], rows[0]],
+), ids=("changed-sign", "changed-action-index", "changed-name", "missing", "extra",
+        "duplicate-substitution"))
+def test_admitted_interface_identity_rejects_any_mapping_or_cardinality_change(mutation):
+    from malecns_backend.embodiment import _windows_motor_population_activity_survey_adapter as adapter
+    admitted = [(f"joint{i}", i, -1 if i % 2 else 1) for i in range(11)]
+    with pytest.raises(RuntimeError, match="live admitted interface differs"):
+        adapter._assert_admitted_interface_identity(mutation(admitted), admitted)
+
+
 def test_preflight_contract_has_zero_transitions(monkeypatch):
     from malecns_backend.embodiment import _windows_motor_population_activity_survey_adapter as adapter
     monkeypatch.setattr(survey, "assert_outputs_available", lambda: None)
