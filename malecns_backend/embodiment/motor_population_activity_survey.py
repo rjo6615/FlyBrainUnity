@@ -31,7 +31,13 @@ RESULT_PATHS = (RAW_PATH, REPORT_PATH, EXECUTION_MANIFEST_PATH, FINAL_MANIFEST_P
 
 
 def sha256(path: Path) -> str:
+    """Return the raw-byte identity used for binary and general artifacts."""
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def canonical_text_sha256(path: Path) -> str:
+    """Hash a frozen text source after Git's CRLF-to-LF normalization."""
+    return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
 
 
 def canonical_json(value: Any) -> str:
@@ -39,7 +45,7 @@ def canonical_json(value: Any) -> str:
 
 
 def load_inventory(path: Path = INVENTORY_PATH) -> dict[str, Any]:
-    if not path.is_file() or sha256(path) != INVENTORY_SHA256:
+    if not path.is_file() or canonical_text_sha256(path) != INVENTORY_SHA256:
         raise RuntimeError("frozen motor-population inventory SHA-256 mismatch")
     value = json.loads(path.read_text(encoding="utf-8")); populations = value.get("population_inventory", [])
     indices = [i for p in populations for i in p.get("dense_neural_indices", [])]
@@ -55,7 +61,8 @@ def load_inventory(path: Path = INVENTORY_PATH) -> dict[str, Any]:
 
 
 def verify_preregistration(path: Path = PREREGISTRATION_PATH) -> dict[str, Any]:
-    if PREREGISTRATION_SHA256 == "TO_BE_FROZEN" or not path.is_file() or sha256(path) != PREREGISTRATION_SHA256:
+    if (PREREGISTRATION_SHA256 == "TO_BE_FROZEN" or not path.is_file() or
+            canonical_text_sha256(path) != PREREGISTRATION_SHA256):
         raise RuntimeError("frozen survey preregistration SHA-256 mismatch")
     value = json.loads(path.read_text(encoding="utf-8"))
     if (value.get("inventory_sha256") != INVENTORY_SHA256 or value.get("seed") != SEED or
