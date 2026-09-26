@@ -24,6 +24,38 @@ def test_frozen_hash_gates_and_inventory_invariants(tmp_path):
     with pytest.raises(RuntimeError, match="SHA-256"): survey.verify_preregistration(bad)
 
 
+@pytest.mark.parametrize(
+    ("source_path", "verifier"),
+    ((survey.INVENTORY_PATH, survey.load_inventory),
+     (survey.PREREGISTRATION_PATH, survey.verify_preregistration)),
+)
+def test_frozen_text_hash_accepts_lf_and_equivalent_crlf_but_rejects_mutation(
+        tmp_path, source_path, verifier):
+    canonical_lf = source_path.read_bytes()
+    assert b"\r\n" not in canonical_lf
+
+    lf_path = tmp_path / f"lf-{source_path.name}"
+    lf_path.write_bytes(canonical_lf)
+    verifier(lf_path)
+
+    crlf_path = tmp_path / f"crlf-{source_path.name}"
+    crlf_path.write_bytes(canonical_lf.replace(b"\n", b"\r\n"))
+    verifier(crlf_path)
+    assert survey.canonical_text_sha256(crlf_path) == survey.canonical_text_sha256(lf_path)
+
+    mutated_path = tmp_path / f"mutated-{source_path.name}"
+    mutated_path.write_bytes(canonical_lf.replace(b'"schema":', b'"mutated_schema":', 1))
+    with pytest.raises(RuntimeError, match="SHA-256"):
+        verifier(mutated_path)
+
+
+def test_general_sha256_remains_raw_byte_identity(tmp_path):
+    artifact = tmp_path / "artifact.bin"
+    artifact.write_bytes(b"binary\x00payload\r\n")
+    assert survey.sha256(artifact) == __import__("hashlib").sha256(artifact.read_bytes()).hexdigest()
+    assert survey.sha256(artifact) != survey.canonical_text_sha256(artifact)
+
+
 def test_attempt4_and_all_coxa_yaw_directions_are_included():
     inventory = survey.load_inventory(); populations = inventory["population_inventory"]
     assert len(inventory["attempt4_candidates"]) == 3
