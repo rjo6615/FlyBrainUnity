@@ -1,0 +1,94 @@
+{
+  "chronology": {
+    "parent_result_canonical_lf_sha256": "33165b89c117b6ca2ee9852cf7c64e2da879f2484cdb05fb3db2fa32978e4401",
+    "parent_result_git_commit": "960e693296e7564f291e62abb7365075a22fbce5",
+    "parent_result_observed_before_followup_design": true,
+    "parent_result_raw_sha256": "e48bcaf1673871252284d118831410beccf74895d9bdc950d9f9d6c200cb94b9",
+    "statement": "This follow-up was designed after the outcome of the completed LF proximal motor recruitment experiment was observed. Static connectome, interface, encoder, and frozen-runtime information was inspected post-outcome to define observation populations. No neural execution of this follow-up occurred before this preregistration."
+  },
+  "execution_control": {
+    "implementation_must_be_completed_and_validated_before_execution": true,
+    "neural_steps_at_freeze": 0,
+    "no_endpoint_or_population_changes_after_followup_activity_is_observed": true,
+    "physics_steps_at_freeze": 0,
+    "scientific_execution_authorized_by_this_file": false,
+    "simulation_steps_at_freeze": 0
+  },
+  "inherited_frozen_protocol": {
+    "branch_point_ms": 250.0,
+    "common_prefix_ms": {
+      "start_inclusive": 0.0,
+      "stop_exclusive": 250.0
+    },
+    "conditions": [
+      "CONTROL_REPLAY",
+      "LF_MIN_BOUND",
+      "LF_MAX_BOUND"
+    ],
+    "encoder": "inherit without modification",
+    "intervention_window_ms": {
+      "start_inclusive": 250.0,
+      "stop_exclusive": 750.0
+    },
+    "model_configuration": "inherit without modification",
+    "neural_dynamics": "inherit without modification",
+    "neural_timestep_ms": 0.5,
+    "post_window_ms": {
+      "start_inclusive": 750.0,
+      "stop_exclusive": 1000.0
+    },
+    "replay": "unchanged parent LF proximal sensory replay",
+    "rng_semantics": "inherit the frozen common-random-number semantics of the parent experiment without modification",
+    "seeds": [
+      1,
+      2,
+      3
+    ]
+  },
+  "interpretation_boundaries": [
+    "Static anatomical reachability is not dynamic recruitment.",
+    "Failure to detect divergence at an observed stage does not establish biological disconnection.",
+    "Detected divergence in this modeled system does not by itself establish biological function.",
+    "No new motor decoder, coordinate sign, or physical motor contribution is assigned by this experiment.",
+    "This is explicitly a post-outcome mechanistic follow-up to the completed parent experiment."
+  ],
+  "non_goal": "This experiment does not attempt to strengthen, tune, or otherwise modify the intervention to obtain motor recruitment.",
+  "post_outcome_static_observation_population_definition": {
+    "candidate_motor_populations": "exact previously preregistered candidate motor populations from the parent experiment; no additions or removals based on the observed parent outcome",
+    "complete_anatomical_one_hop_targets": {
+      "count": 477,
+      "definition": "union of all direct postsynaptic targets of the 23 LF sensory source neurons in documented pre-to-post CSR orientation",
+      "sorted_dense_indices_uint64_le_sha256": "bf4a7b79bd2fd9e155fd05af47f40752e719c052cd6a8af7fb5dda0022d0cd81"
+    },
+    "lf_sensory_sources": {
+      "count": 23,
+      "sorted_dense_indices_uint64_le_sha256": "9978c94e5e79c4d54ef93fa888156f15ba9b321566c30419f78975e79899cc71"
+    },
+    "runtime_admitted_one_hop_targets": {
+      "confirmed_subset_of_complete_anatomical_one_hop_targets": true,
+      "count": 268,
+      "definition": "subset of complete anatomical one-hop targets receiving at least one LF sensory edge with synapse_count >= 6",
+      "min_synapses": 6,
+      "sorted_dense_indices_uint64_le_sha256": "63e11aa63802817ba4b808a4234ac2eb6ee3d0b4176b552a9a16ac19dfd126de"
+    },
+    "selection_rule": "Observation populations were defined from static frozen connectome/interface structure before any neural execution of this follow-up; no population is selected by follow-up activity.",
+    "static_anatomical_summary": {
+      "lf_outgoing_anatomical_edges": 881,
+      "lf_outgoing_anatomical_synaptic_contacts": 8120,
+      "runtime_admitted_lf_edges": 474,
+      "runtime_admitted_lf_synaptic_contacts": 6578
+    }
+  },
+  "prespecified_observation_stages": [
+    "encoded LF sensory rates",
+    "delivered LF external sensory events",
+    "23 LF sensory-neuron neural activity",
+    "complete 477-neuron anatomical one-hop population",
+    "268-neuron runtime-admitted one-hop population",
+    "previously preregistered candidate motor neurons"
+  ],
+  "primary_analysis_principle": "Compare each intervention with its paired CONTROL_REPLAY branch within seed and localize the earliest prespecified observed stage showing condition-dependent divergence. Preserve per-neuron and per-seed measurements; population summaries must not replace the underlying per-neuron observations.",
+  "schema": "LF-PROXIMAL-PROPAGATION-LOCALIZATION-PREREGISTRATION.1",
+  "scientific_question": "Using the unchanged replay, LF interventions, encoder, model configuration, RNG policy, branch point, seeds, and neural dynamics of the completed LF proximal motor recruitment experiment, determine whether LF_MIN_BOUND and LF_MAX_BOUND produce condition-dependent divergence from CONTROL_REPLAY at successive observed stages from encoded LF sensory drive through delivered LF sensory events, direct postsynaptic neural activity, and the previously preregistered candidate motor populations.",
+  "status": "POST_OUTCOME_FROZEN_BEFORE_IMPLEMENTATION_OR_EXECUTION"
+}
