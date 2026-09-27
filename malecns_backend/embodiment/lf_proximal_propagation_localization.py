@@ -34,6 +34,7 @@ ADDENDUM = PARENT_SPEC_DIR / "lf_proximal_motor_recruitment_pre_extraction_adden
 REPLAY = REPLAY_DIR / "lf_proximal_motor_recruitment_sensory_replay.npy"
 MANIFEST = REPLAY_DIR / "lf_proximal_motor_recruitment_sensory_replay_manifest.json"
 EXTRACTION_REPORT = REPLAY_DIR / "LF_PROXIMAL_MOTOR_RECRUITMENT_SENSORY_REPLAY_REPORT.md"
+EXECUTION_AUTHORIZATION = SPEC_DIR / "lf_proximal_propagation_localization_execution_authorization.json"
 
 EXPECTED = {
     "preregistration": "5fe860393c5a7ad974b9ca38afefd5ec8970335ffdf9d0cdff902d74fd853fb0",
@@ -46,6 +47,7 @@ EXPECTED = {
     "manifest": "21dc70c74e10f913cad20d15f6fc48e0695df945ab6b612c1ddaacf60bde26f3",
     "report": "b9d931dcad1ccd533dcdae5864b545c313eaeb6e70fc183d0619ef86ae206c1a",
     "source_m8": "4e39bb83dd4455d56a4d88f717615530602317efaf83a6ed241b13af89dc2a5b",
+    "execution_authorization": "b87d1cf1b542233fca43766ce062159b1cebc2600a96f991ba40982c2c072948",
 }
 # These identities were frozen from Git's canonical LF blob bytes.  A checkout
 # may represent each LF as CRLF, but no other byte transformation is allowed.
@@ -89,6 +91,140 @@ def _require(condition: bool, message: str) -> None:
     if not condition:
         raise RecruitmentFailure(message)
 
+
+def execution_authorization_gate(
+    authorization=EXECUTION_AUTHORIZATION,
+) -> dict[str, Any]:
+    """Validate the separately frozen authorization before scientific execution."""
+    path = Path(authorization)
+
+    try:
+        identity = sha256_file(path)
+    except OSError as exc:
+        raise RecruitmentFailure(
+            f"cannot read execution authorization: {exc}"
+        ) from exc
+
+    _require(
+        identity == EXPECTED["execution_authorization"],
+        "execution authorization SHA-256 mismatch",
+    )
+
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        raise RecruitmentFailure(
+            f"invalid execution authorization: {exc}"
+        ) from exc
+
+    _require(
+        data.get("schema")
+        == "LF-PROXIMAL-PROPAGATION-LOCALIZATION-EXECUTION-AUTHORIZATION.1",
+        "execution authorization schema mismatch",
+    )
+    _require(
+        data.get("status") == "SCIENTIFIC_EXECUTION_AUTHORIZED",
+        "scientific execution is not authorized",
+    )
+    _require(
+        data.get("experiment")
+        == "lf_proximal_propagation_localization",
+        "execution authorization experiment mismatch",
+    )
+
+    frozen_chain = data.get("frozen_chain", {})
+
+    followup = frozen_chain.get("followup_preregistration", {})
+    _require(
+        followup.get("git_commit")
+        == "a73ee120ff856ff9586865c435a1d88f9a5a08ed",
+        "execution authorization follow-up commit mismatch",
+    )
+    _require(
+        followup.get("canonical_lf_sha256")
+        == EXPECTED["preregistration"],
+        "execution authorization follow-up identity mismatch",
+    )
+
+    analysis = frozen_chain.get("analysis_clarification", {})
+    _require(
+        analysis.get("git_commit")
+        == "741580316f0285290a657511ac254638df6568f7",
+        "execution authorization analysis-clarification commit mismatch",
+    )
+    _require(
+        analysis.get("canonical_lf_sha256")
+        == EXPECTED["analysis_clarification"],
+        "execution authorization analysis-clarification identity mismatch",
+    )
+
+    implementation = frozen_chain.get("scientific_implementation", {})
+    _require(
+        implementation.get("git_commit")
+        == "86692687be0a431b0eb008f80ac6a16105f5b4ec",
+        "execution authorization implementation commit mismatch",
+    )
+    _require(
+        implementation.get("git_tree")
+        == "d56b84e4022b2676efa44b179cfb434068882cfa",
+        "execution authorization implementation tree mismatch",
+    )
+
+    validation = data.get("validation", {})
+    _require(
+        validation.get("passed") == 60,
+        "execution authorization validation pass count mismatch",
+    )
+    _require(
+        validation.get("failed") == 0,
+        "execution authorization validation failure count mismatch",
+    )
+    _require(
+        validation.get("result") == "PASS",
+        "execution authorization validation result mismatch",
+    )
+
+    scope = data.get("execution_scope", {})
+    _require(
+        scope.get("scientific_execution_authorized") is True,
+        "scientific execution is not authorized",
+    )
+    _require(
+        scope.get("authorization_count") == 1,
+        "execution authorization count mismatch",
+    )
+
+    for field in (
+        "protocol_changes_authorized",
+        "endpoint_changes_authorized",
+        "population_changes_authorized",
+        "intervention_changes_authorized",
+    ):
+        _require(
+            scope.get(field) is False,
+            f"execution authorization unexpectedly permits {field}",
+        )
+
+    runtime = data.get("runtime_state_at_authorization", {})
+    for field in (
+        "simulation_steps",
+        "physics_steps",
+        "neural_steps",
+    ):
+        _require(
+            runtime.get(field) == 0,
+            f"authorization runtime state is not zero for {field}",
+        )
+
+    _require(
+        runtime.get("experiment_2_result_observed") is False,
+        "execution authorization was created after observing Experiment 2",
+    )
+
+    return {
+        "identity": identity,
+        "authorization": data,
+    }
 
 def provenance_gate(*, preregistration=PREREGISTRATION,
                     parent_preregistration=PARENT_PREREGISTRATION,
@@ -1198,16 +1334,64 @@ def main(argv=None) -> int:
         return 0
 
     if args.execute:
-        print(json.dumps({
-            "status": "FAIL_CLOSED",
-            "error": (
-                "scientific execution is not authorized; "
-                "implementation and validation must be completed first"
-            ),
-            "scientific_execution_authorized": False,
-            "neural_runtime_steps": 0,
-        }, sort_keys=True))
-        return 1
+        paths = {
+            "preregistration": PREREGISTRATION,
+            "parent_preregistration": PARENT_PREREGISTRATION,
+            "parent_result": PARENT_RESULT,
+            "clarification": CLARIFICATION,
+            "addendum": ADDENDUM,
+            "analysis_clarification": ANALYSIS_CLARIFICATION,
+            "replay": args.replay_dir / REPLAY.name,
+            "manifest": args.replay_dir / MANIFEST.name,
+            "report": args.replay_dir / EXTRACTION_REPORT.name,
+        }
+
+        try:
+            replay, provenance = provenance_gate(**paths)
+            authorization = execution_authorization_gate()
+
+            result = execute_assay(
+                replay,
+                provenance,
+            )
+
+            output_path = (
+                args.output
+                or SPEC_DIR / "lf_proximal_propagation_localization_result.json"
+            )
+
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+
+            output_path.write_text(
+                json.dumps(
+                    result,
+                    sort_keys=True,
+                    allow_nan=False,
+                    indent=2,
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            print(json.dumps({
+                "status": "SCIENTIFIC_EXECUTION_COMPLETE",
+                "scientific_execution_authorized": True,
+                "authorization_sha256": authorization["identity"],
+                "output": str(output_path),
+                "seeds": result["seeds"],
+                "conditions": result["conditions"],
+            }, sort_keys=True))
+
+            return 0
+
+        except (RecruitmentFailure, OSError, ValueError) as exc:
+            print(json.dumps({
+                "status": "FAIL_CLOSED",
+                "error": str(exc),
+                "scientific_execution_authorized": False,
+                "neural_runtime_steps": 0,
+            }, sort_keys=True))
+            return 1
 
     paths = {
         "replay": args.replay_dir / REPLAY.name,

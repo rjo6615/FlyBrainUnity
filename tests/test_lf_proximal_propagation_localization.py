@@ -302,16 +302,63 @@ def test_record_propagation_step_rejects_external_withholding():
             np.asarray([], dtype=np.intp),
         )
 
-def test_execute_cli_fails_closed_before_execute_assay(monkeypatch, capsys):
+def test_execute_cli_requires_authorization_before_execute_assay(
+    monkeypatch,
+    capsys,
+):
+    calls = []
+
+    def fake_execute_assay(replay, provenance):
+        calls.append((replay, provenance))
+        return {
+            "schema": "LF-PROXIMAL-PROPAGATION-LOCALIZATION-RESULT.1",
+            "seeds": [1, 2, 3],
+            "conditions": [
+                "CONTROL_REPLAY",
+                "LF_MIN_BOUND",
+                "LF_MAX_BOUND",
+            ],
+        }
+
+    monkeypatch.setattr(
+        runner,
+        "execute_assay",
+        fake_execute_assay,
+    )
+
+    exit_code = runner.main(["--execute"])
+
+    captured = capsys.readouterr()
+
+    assert exit_code == 0
+    assert len(calls) == 1
+    assert "SCIENTIFIC_EXECUTION_COMPLETE" in captured.out
+    assert '"scientific_execution_authorized": true' in captured.out
+
+
+def test_execute_cli_fails_closed_when_authorization_is_rejected(
+    monkeypatch,
+    capsys,
+):
     def forbidden_execute_assay(*args, **kwargs):
         raise AssertionError(
-            "execute_assay must not be reached while scientific execution is locked"
+            "execute_assay must not be reached after authorization failure"
+        )
+
+    def rejected_authorization(*args, **kwargs):
+        raise runner.RecruitmentFailure(
+            "execution authorization SHA-256 mismatch"
         )
 
     monkeypatch.setattr(
         runner,
         "execute_assay",
         forbidden_execute_assay,
+    )
+    monkeypatch.setattr(
+        runner,
+        "execution_authorization_gate",
+        rejected_authorization,
     )
 
     exit_code = runner.main(["--execute"])
@@ -322,4 +369,4 @@ def test_execute_cli_fails_closed_before_execute_assay(monkeypatch, capsys):
     assert "FAIL_CLOSED" in captured.out
     assert '"scientific_execution_authorized": false' in captured.out
     assert '"neural_runtime_steps": 0' in captured.out
-    assert "scientific execution is not authorized" in captured.out
+    assert "SHA-256 mismatch" in captured.out
