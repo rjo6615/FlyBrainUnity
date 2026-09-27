@@ -1,0 +1,40 @@
+{
+    "schema":  "LF-PROXIMAL-PROPAGATION-LOCALIZATION-EXECUTION-AUTHORIZATION.1",
+    "status":  "SCIENTIFIC_EXECUTION_AUTHORIZED",
+    "experiment":  "lf_proximal_propagation_localization",
+    "frozen_chain":  {
+                         "followup_preregistration":  {
+                                                          "git_commit":  "a73ee120ff856ff9586865c435a1d88f9a5a08ed",
+                                                          "canonical_lf_sha256":  "5fe860393c5a7ad974b9ca38afefd5ec8970335ffdf9d0cdff902d74fd853fb0"
+                                                      },
+                         "analysis_clarification":  {
+                                                        "git_commit":  "741580316f0285290a657511ac254638df6568f7",
+                                                        "canonical_lf_sha256":  "e5b367779a58a53c0dda654b8ba4d63ad3e61942e911e7c506b0ebca8ffe112b"
+                                                    },
+                         "scientific_implementation":  {
+                                                           "git_commit":  "86692687be0a431b0eb008f80ac6a16105f5b4ec",
+                                                           "git_tree":  "d56b84e4022b2676efa44b179cfb434068882cfa"
+                                                       }
+                     },
+    "validation":  {
+                       "command":  "python -m pytest -q tests/test_m8_lf_proximal_pre_extraction_validation.py tests/test_lf_proximal_motor_recruitment.py tests/test_lf_proximal_propagation_localization.py",
+                       "passed":  60,
+                       "failed":  0,
+                       "result":  "PASS"
+                   },
+    "execution_scope":  {
+                            "scientific_execution_authorized":  true,
+                            "authorization_count":  1,
+                            "output_artifact":  "malecns_backend/embodiment/interface_output/lf_proximal_propagation_localization/lf_proximal_propagation_localization_result.json",
+                            "protocol_changes_authorized":  false,
+                            "endpoint_changes_authorized":  false,
+                            "population_changes_authorized":  false,
+                            "intervention_changes_authorized":  false
+                        },
+    "runtime_state_at_authorization":  {
+                                           "simulation_steps":  0,
+                                           "physics_steps":  0,
+                                           "neural_steps":  0,
+                                           "experiment_2_result_observed":  false
+                                       }
+}
