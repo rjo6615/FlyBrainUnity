@@ -104,9 +104,9 @@ def _fixture_artifacts(tmp_path, monkeypatch):
         "exact_copy_policy": "direct NumPy advanced indexing only; no numerical transformation",
         "source": {"sha256": runner.EXPECTED["source_m8"], "size": 345584215},
         "replay": {}, "validation_provenance": {"final_status": "READY_FOR_AUTHORIZED_REPLAY_EXTRACTION"},
-        "maximum_nominal_timestamp_deviation_ms": 0.0,
+        "maximum_nominal_timestamp_deviation_ms": runner.FROZEN_MAXIMUM_NOMINAL_TIMESTAMP_DEVIATION_MS,
         "nominal_timestamps_ms": [float(i) for i in range(1000)],
-        "actual_source_timestamps_ms": {"first": 0.0, "last": 999.0},
+        "actual_source_timestamps_ms": dict(runner.FROZEN_ACTUAL_SOURCE_TIMESTAMPS_MS),
     }
     manifest_data["condition"] = "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT"
     expected = dict(runner.EXPECTED)
@@ -230,6 +230,53 @@ def test_manifest_semantics_rejected(tmp_path, monkeypatch, field, bad):
     runner.EXPECTED["manifest"] = runner.sha256_file(paths["manifest"])
     with pytest.raises(runner.RecruitmentFailure, match=field):
         runner.provenance_gate(**paths)
+
+
+def _write_mutated_manifest(paths, manifest, monkeypatch):
+    paths["manifest"].write_text(json.dumps(manifest))
+    monkeypatch.setitem(runner.EXPECTED, "manifest", runner.sha256_file(paths["manifest"]))
+
+
+def test_authoritative_frozen_timestamp_contract_is_accepted(tmp_path, monkeypatch):
+    paths, manifest = _fixture_artifacts(tmp_path, monkeypatch)
+    _, provenance = runner.provenance_gate(**paths)
+    assert provenance["manifest"]["actual_source_timestamps_ms"] == {
+        "first": 0.0, "last": 998.9999999999063}
+    assert provenance["manifest"]["maximum_nominal_timestamp_deviation_ms"] == \
+        9.367795428261161e-11
+
+
+@pytest.mark.parametrize("field,bad,message", [
+    ("nominal_timestamps_ms", [float(i) for i in range(999)] + [999.0000000001],
+     "timestamp sequence"),
+    ("rows", list(range(0, 10_000, 10))[:-1] + [9981], "rows"),
+    ("replay_cadence_ms", 1.0000000001, "replay_cadence_ms"),
+    ("sample_count", 999, "sample_count"),
+    ("actual_source_timestamps_ms", {"first": 0.0, "last": 998.9999999999064},
+     "source timestamp bounds"),
+    ("actual_source_timestamps_ms", {"first": 0.0, "last": 999.0},
+     "source timestamp bounds"),
+    ("maximum_nominal_timestamp_deviation_ms", 0.0, "maximum timestamp deviation"),
+])
+def test_frozen_extraction_contract_mutations_fail_closed(
+        tmp_path, monkeypatch, field, bad, message):
+    paths, manifest = _fixture_artifacts(tmp_path, monkeypatch)
+    manifest[field] = bad
+    _write_mutated_manifest(paths, manifest, monkeypatch)
+    with pytest.raises(runner.RecruitmentFailure, match=message):
+        runner.provenance_gate(**paths)
+
+
+def test_wrong_extraction_provenance_fails_before_brain_creation(tmp_path, monkeypatch):
+    paths, manifest = _fixture_artifacts(tmp_path, monkeypatch)
+    manifest["validation_provenance"]["final_status"] = "NUMERICAL_VALIDATION_FAILURE"
+    _write_mutated_manifest(paths, manifest, monkeypatch)
+    brain_creations = []
+    monkeypatch.setattr(runner, "load_six_tibia_interfaces",
+                        lambda: brain_creations.append("brain") or object())
+    with pytest.raises(runner.RecruitmentFailure, match="validation was not ready"):
+        runner.check_ready(**paths)
+    assert brain_creations == []
 
 
 @pytest.mark.parametrize("mutation", ["source", "provenance"])
