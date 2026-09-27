@@ -47,6 +47,11 @@ CHANNELS = ("joint_LFTibia", "joint_LMTibia", "joint_LHTibia",
             "joint_RFTibia", "joint_RMTibia", "joint_RHTibia")
 CONDITIONS = ("CONTROL_REPLAY", "LF_MIN_BOUND", "LF_MAX_BOUND")
 SEEDS = (1, 2, 3)
+FROZEN_ACTUAL_SOURCE_TIMESTAMPS_MS = {
+    "first": 0.0,
+    "last": 998.9999999999063,
+}
+FROZEN_MAXIMUM_NOMINAL_TIMESTAMP_DEVIATION_MS = 9.367795428261161e-11
 
 
 class RecruitmentFailure(RuntimeError):
@@ -143,12 +148,18 @@ def provenance_gate(*, preregistration=PREREGISTRATION, clarification=CLARIFICAT
     validation = manifest_data.get("validation_provenance", {})
     _require(validation.get("final_status") == "READY_FOR_AUTHORIZED_REPLAY_EXTRACTION",
              "manifest extraction validation was not ready")
-    _require(manifest_data.get("maximum_nominal_timestamp_deviation_ms") == 0.0,
-             "manifest timestamps are not exact 1-ms samples")
     nominal = manifest_data.get("nominal_timestamps_ms")
     _require(nominal == [float(i) for i in range(1000)], "manifest timestamp sequence mismatch")
-    actual = manifest_data.get("actual_source_timestamps_ms", {})
-    _require(actual == {"first": 0.0, "last": 999.0}, "manifest source timestamp bounds mismatch")
+    # The nominal replay grid and the timestamps inherited from the M8 parent
+    # clock are deliberately distinct provenance.  The latter preserve the
+    # validated float64 accumulation recorded by the byte-frozen manifest;
+    # they must not be rounded to an invented ideal clock or tolerance-tested.
+    actual = manifest_data.get("actual_source_timestamps_ms")
+    _require(actual == FROZEN_ACTUAL_SOURCE_TIMESTAMPS_MS,
+             "manifest source timestamp bounds mismatch")
+    _require(manifest_data.get("maximum_nominal_timestamp_deviation_ms") ==
+             FROZEN_MAXIMUM_NOMINAL_TIMESTAMP_DEVIATION_MS,
+             "manifest maximum timestamp deviation mismatch")
 
     try:
         with paths["replay"].open("rb") as stream:

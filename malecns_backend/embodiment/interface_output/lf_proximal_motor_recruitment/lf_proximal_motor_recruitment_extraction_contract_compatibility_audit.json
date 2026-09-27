@@ -1,0 +1,88 @@
+{
+  "schema": "LF-PROXIMAL-MOTOR-RECRUITMENT-EXTRACTION-CONTRACT-COMPATIBILITY-AUDIT.1",
+  "status": "IMPLEMENTATION_CONTRACT_CORRECTED",
+  "scope": "Static compatibility audit of the recruitment readiness provenance gate against the frozen pre-extraction validation and deterministic extractor contracts; no frozen artifact was modified or regenerated.",
+  "incorrect_runner_assumptions": [
+    {
+      "assumption": "maximum_nominal_timestamp_deviation_ms == 0.0",
+      "finding": "Contradicts the extractor's preservation of the maximum deviation between selected parent-clock timestamps and the exact nominal replay grid.",
+      "authoritative_value": 9.367795428261161e-11
+    },
+    {
+      "assumption": "actual_source_timestamps_ms == {first: 0.0, last: 999.0}",
+      "finding": "Conflates exact nominal replay timestamps with timestamps inherited from the validated float64 M8 physical clock.",
+      "authoritative_value": {
+        "first": 0.0,
+        "last": 998.9999999999063
+      }
+    }
+  ],
+  "authoritative_frozen_extraction_semantics": {
+    "replay_cadence_ms": 1,
+    "nominal_timestamps_ms": "exact float sequence 0.0,1.0,...,999.0",
+    "source_rows": "exact integer sequence 0,10,...,9990",
+    "sample_count": 1000,
+    "actual_source_timestamps_ms": {
+      "first": 0.0,
+      "last": 998.9999999999063
+    },
+    "maximum_nominal_timestamp_deviation_ms": 9.367795428261161e-11,
+    "interpretation": "Nominal sampling is exactly 1 ms. Actual timestamps retain the already-validated deterministic IEEE-754 accumulation of the parent M8 0.1-ms physical clock. Replay values are direct source copies from the authorized rows and columns."
+  },
+  "exact_fix": {
+    "method": "Exact equality against the frozen actual timestamp record and frozen maximum-deviation record, in addition to the existing raw-byte manifest SHA-256 gate.",
+    "no_new_tolerance": true,
+    "ideal_clock_substitution_forbidden": true,
+    "rationale": "The raw-byte identity authenticates the complete manifest, while explicit exact field checks enforce the implementation contract and detect semantic regression in independently hashed fixtures."
+  },
+  "provenance_gate_field_audit": {
+    "matching_checks": [
+      "schema",
+      "source.sha256",
+      "source.size",
+      "condition",
+      "field",
+      "rows",
+      "columns",
+      "channel_names_order",
+      "units",
+      "interval_ms",
+      "replay_cadence_ms",
+      "sample_count",
+      "shape",
+      "dtype",
+      "nominal_timestamps_ms",
+      "exact_copy_policy",
+      "addendum_canonical_lf_sha256",
+      "validation_provenance.final_status",
+      "replay.sha256"
+    ],
+    "corrected_checks": [
+      "actual_source_timestamps_ms",
+      "maximum_nominal_timestamp_deviation_ms"
+    ],
+    "additional_mismatches_found": [],
+    "identity_policy": "The authoritative manifest, replay, and extraction report remain subject to exact raw-byte SHA-256 checks. Source-M8 and replay identities remain exact."
+  },
+  "regression_tests": [
+    "authoritative frozen timestamp contract accepted",
+    "nominal timestamp sequence mutation rejected",
+    "source-row mutation rejected",
+    "replay-cadence mutation rejected",
+    "actual timestamp mutation rejected",
+    "recorded maximum-deviation mutation rejected",
+    "idealized actual last timestamp 999.0 rejected",
+    "sample-count mutation rejected",
+    "extraction-provenance mutation rejected before runtime setup",
+    "check-ready cannot call scientific execution"
+  ],
+  "zero_scientific_execution_ledger": {
+    "recruitment_executions": 0,
+    "neural_runtime_steps": 0,
+    "physics_steps": 0,
+    "simulation_steps": 0,
+    "m8_reruns": 0,
+    "candidate_outcomes_generated": 0,
+    "candidate_outcomes_inspected": 0
+  }
+}
