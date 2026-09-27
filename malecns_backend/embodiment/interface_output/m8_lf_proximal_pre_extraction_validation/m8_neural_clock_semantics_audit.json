@@ -1,0 +1,59 @@
+{
+  "active_motor_interface_modified": false,
+  "candidate_decoder_weights_or_coordinate_signs_assigned": false,
+  "corrected_acceptance_semantics": {
+    "diagnostic_only": [
+      "nominal 0.5-ms grid error",
+      "apparent adjacent cadence error",
+      "hypothetical independent-0.5-ms accumulator comparison",
+      "integer correspondence to an ideal 0.5-ms grid"
+    ],
+    "required": [
+      "dtype is float64",
+      "count is exactly 20000",
+      "all values are finite",
+      "values are strictly increasing",
+      "parent physics_time validation passed",
+      "physics_time[5::5] has exactly 20000 values",
+      "exact element-wise equality with physics_time[5::5]"
+    ],
+    "validity_explanation": "Neural clock validity is inherited from the validated parent physics clock plus exact sampled-row identity."
+  },
+  "evidence_boundary": "Synthetic tests are implementation tests only and are not M8 scientific evidence. This checkout contains the 134-byte LFS pointer, so it does not demonstrate READY on the authoritative hydrated archive.",
+  "frozen_artifacts_modified": false,
+  "old_acceptance_semantics": {
+    "description": "Required structural validity, exact sampled-row identity, and the numerical bounds derived for a hypothetical independently accumulated binary64 0.5-ms clock.",
+    "incorrect_criterion": "nominal 0.5-ms accumulation-bound and adjacent-cadence checks participated in neural_time validity."
+  },
+  "schema": "M8-NEURAL-CLOCK-SEMANTICS-AUDIT.1",
+  "scientific_execution_ledger": {
+    "m8_reruns": 0,
+    "neural_runtime_steps": 0,
+    "physics_steps": 0,
+    "recruitment_executions": 0,
+    "replay_extractions": 0,
+    "simulation_steps": 0
+  },
+  "source_audit": {
+    "conclusion": "neural_time_ms is a sampled copy/view of the parent physics clock at physics_time_ms[5::5], not an independently accumulated 0.5-ms clock.",
+    "neural_telemetry": "The neural record stores neural_time_ms=the same now_ms inside the step > 0 and step % stride == 0 branch; stride is the five-physics-transition neural cadence.",
+    "now_ms_derivation": "_windows_m8_live_condition.py derives now_ms as float(physics.data.time * 1000).",
+    "physics_telemetry": "The physics record stores physics_time_ms=now_ms."
+  },
+  "source_derived_reason_for_correction": "Applying an independently accumulated 0.5-ms error model as an acceptance gate contradicts the tracked generator, which records the existing physics-derived now_ms at every fifth transition.",
+  "status": "IMPLEMENTATION_CORRECTION_ONLY_AUTHORITATIVE_ARCHIVE_NOT_AVAILABLE",
+  "tracked_source_files": [
+    {
+      "path": "malecns_backend/embodiment/_windows_m8_live_condition.py",
+      "sha256": "78b6eb56d499faa1f06705a9ea13b6cf33658cacb060769a48bc1cdf052c2040"
+    },
+    {
+      "path": "malecns_backend/embodiment/m8_lf_proximal_pre_extraction_validation.py",
+      "sha256": "50f1287f17c7e3be024d3fed2cbfb4bd2a17c78153576881105a4ac35d5d0fe5"
+    },
+    {
+      "path": "tests/test_m8_lf_proximal_pre_extraction_validation.py",
+      "sha256": "7020c111a84d172e8b103f75fea90ce873d701fc913cf8269a89c651457f7a5c"
+    }
+  ]
+}

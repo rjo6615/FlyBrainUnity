@@ -130,6 +130,10 @@ def _accumulation_bound(expected: Any, dt_ms: float, np: Any) -> Any:
 
 def _time_report(time: Any, *, count: int, dt_ms: float, first_index: int,
                  np: Any) -> tuple[dict[str, Any], bool, Any]:
+    def finite_max_or_none(values: Any) -> float | None:
+        finite_values = values[np.isfinite(values)]
+        return float(finite_values.max()) if finite_values.size else None
+
     expected = np.arange(first_index, first_index + count, dtype=np.float64) * dt_ms
     structural = (time.dtype == np.dtype("float64") and time.shape == (count,)
                   and bool(np.all(np.isfinite(time))) and bool(np.all(np.diff(time) > 0)))
@@ -141,9 +145,9 @@ def _time_report(time: Any, *, count: int, dt_ms: float, first_index: int,
         delta_bound = 2 * np.spacing(np.maximum(scale, abs(dt_ms))) + np.spacing(dt_ms)
         cadence_error = np.abs(np.diff(time) - dt_ms)
         cadence_ok = bool(np.all(cadence_error <= delta_bound))
-        max_cadence_error = float(cadence_error.max())
+        max_cadence_error = finite_max_or_none(cadence_error)
     else:
-        cadence_ok, max_cadence_error = False, float("inf")
+        cadence_ok, max_cadence_error = False, None
     report = {
         "dtype": str(time.dtype), "count": int(time.size),
         "first_timestamp_ms": float(time[0]) if time.size else None,
@@ -151,7 +155,7 @@ def _time_report(time: Any, *, count: int, dt_ms: float, first_index: int,
         "finite": bool(np.all(np.isfinite(time))),
         "strictly_increasing": bool(time.size > 0 and np.all(np.diff(time) > 0)),
         "nominal_cadence_ms": dt_ms,
-        "max_grid_error_ms": float(error.max()),
+        "max_grid_error_ms": finite_max_or_none(error),
         "maximum_derived_accumulation_bound_ms": float(bound.max()),
         "max_per_step_cadence_error_ms": max_cadence_error,
         "integer_sample_index_correspondence": accumulated_ok,
@@ -159,6 +163,56 @@ def _time_report(time: Any, *, count: int, dt_ms: float, first_index: int,
         "valid": bool(structural and accumulated_ok and cadence_ok),
     }
     return report, report["valid"], expected
+
+
+def _neural_time_report(neural_time: Any, *, physics_time: Any,
+                        physics_valid: bool, np: Any) -> tuple[dict[str, Any], bool]:
+    """Validate the neural timestamps as an exact sampled view of physics time.
+
+    The nominal-grid calculations remain useful diagnostics, but are not
+    acceptance criteria: the generator does not maintain an independent
+    0.5-ms accumulator.
+    """
+    report, hypothetical_accumulator_ok, _ = _time_report(
+        neural_time, count=20_000, dt_ms=0.5, first_index=1, np=np)
+    sampled_physics = physics_time[5::5]
+    expected_sample_count_ok = sampled_physics.shape == (20_000,)
+    expected_shape = neural_time.shape == (20_000,)
+    finite = bool(np.all(np.isfinite(neural_time)))
+    increasing = bool(neural_time.size > 0 and np.all(np.diff(neural_time) > 0))
+    exact_sampled_identity = bool(
+        expected_shape and expected_sample_count_ok
+        and np.array_equal(neural_time, sampled_physics))
+    valid = bool(
+        neural_time.dtype == np.dtype("float64")
+        and expected_shape
+        and finite
+        and increasing
+        and physics_valid
+        and expected_sample_count_ok
+        and exact_sampled_identity)
+    report.update({
+        "generation_semantics": "copied from physics.data.time at every fifth 0.1-ms transition",
+        "acceptance_semantics": (
+            "validity is inherited from the validated parent physics clock plus exact "
+            "element-wise identity with physics_time[5::5]"),
+        "expected_physics_row_rule": "5*(i+1)",
+        "expected_physics_row_range": [5, 100000],
+        "expected_sampled_count": 20_000,
+        "expected_sampled_count_matches": bool(expected_sample_count_ok),
+        "parent_physics_time_valid": bool(physics_valid),
+        "exact_alignment_to_physics_rows": exact_sampled_identity,
+        "hypothetical_independent_0_5ms_accumulator_comparison": {
+            "diagnostic_only": True,
+            "within_derived_accumulation_and_adjacent_cadence_bounds": bool(
+                hypothetical_accumulator_ok),
+            "reason_not_acceptance_criterion": (
+                "tracked generation source has no independent 0.5-ms accumulator"),
+        },
+        "nominal_grid_and_cadence_checks_are_diagnostic_only": True,
+        "valid": valid,
+    })
+    return report, valid
 
 
 def _source_joint_names() -> tuple[str, ...]:
@@ -213,19 +267,8 @@ def assess(raw_path: Path = RAW) -> dict[str, Any]:
 
     physics_report, physics_ok, _ = _time_report(
         physics_time, count=100_001, dt_ms=0.1, first_index=0, np=np)
-    neural_report, neural_nominal_ok, _ = _time_report(
-        neural_time, count=20_000, dt_ms=0.5, first_index=1, np=np)
-    aligned_physics = physics_time[5::5]
-    exact_neural_alignment = (neural_time.shape == (20_000,)
-                              and aligned_physics.shape == neural_time.shape
-                              and np.array_equal(neural_time, aligned_physics))
-    neural_report.update({
-        "generation_semantics": "copied from physics.data.time at every fifth 0.1-ms transition",
-        "expected_physics_row_rule": "5*(i+1)",
-        "expected_physics_row_range": [5, 100000],
-        "exact_alignment_to_physics_rows": bool(exact_neural_alignment),
-        "valid": bool(neural_nominal_ok and exact_neural_alignment),
-    })
+    neural_report, neural_ok = _neural_time_report(
+        neural_time, physics_time=physics_time, physics_valid=physics_ok, np=np)
 
     row_index = np.asarray(ROWS, dtype=np.int64)
     selected_view = positions[row_index[:, None], np.asarray(COLUMNS)[None, :]]
@@ -252,7 +295,7 @@ def assess(raw_path: Path = RAW) -> dict[str, Any]:
     encoder_ok = bool(frozen_encoded.shape == (20_000, 6)
                       and np.all(np.isfinite(frozen_encoded))
                       and np.array_equal(reconstructed, frozen_encoded))
-    valid = physics_ok and neural_report["valid"] and slice_ok and encoder_ok
+    valid = physics_ok and neural_ok and slice_ok and encoder_ok
     return {
         "schema": "M8-LF-PROXIMAL-PRE-EXTRACTION-VALIDATION.1",
         "final_status": "READY_FOR_AUTHORIZED_REPLAY_EXTRACTION" if valid else "NUMERICAL_VALIDATION_FAILURE",
