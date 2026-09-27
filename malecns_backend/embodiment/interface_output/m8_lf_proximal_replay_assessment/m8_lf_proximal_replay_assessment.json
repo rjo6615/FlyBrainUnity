@@ -1,0 +1,76 @@
+{
+  "schema": "M8-LF-PROXIMAL-REPLAY-ASSESSMENT.1",
+  "final_status": "PROVENANCE_FAILURE",
+  "authoritative_source": {
+    "path": "malecns_backend/embodiment/interface_output/m8_extended_spontaneous/m8_raw.npz",
+    "expected_sha256": "4e39bb83dd4455d56a4d88f717615530602317efaf83a6ed241b13af89dc2a5b",
+    "observed_worktree_sha256": "cdbfc2ed140e276a1293f288c0bccfa1a223bfbc6d40c9df5efb6c1422d7352d",
+    "observed_worktree_byte_size": 134,
+    "observed_form": "Git LFS pointer referencing the expected 345584215-byte object",
+    "scientific_data_opened": false
+  },
+  "failure": {
+    "stage": "pre-read SHA-256 verification",
+    "reason": "The worktree path contains a Git LFS pointer, not the authoritative raw archive bytes. Its byte SHA-256 does not equal the required archive SHA-256.",
+    "action": "Aborted before np.load and before reading any scientific array. Hydrate and independently verify the frozen LFS object, then rerun this read-only utility.",
+    "lfs_fetch_attempt": "failed: repository has no configured LFS transfer URL"
+  },
+  "preregistration_findings_from_full_document_review": {
+    "required_condition": "a single frozen six-angle spontaneous sensory history from the validated runtime; M8 candidate condition is CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT",
+    "duration_ms": 1000.0,
+    "sampling_cadence_ms": 1.0,
+    "channel_order": [
+      "joint_LFTibia",
+      "joint_LMTibia",
+      "joint_LHTibia",
+      "joint_RFTibia",
+      "joint_RMTibia",
+      "joint_RHTibia"
+    ],
+    "units": "radians",
+    "baseline_interval_ms": [0.0, 250.0],
+    "baseline_interval_role": "assay analysis window, not a source-interval selection rule",
+    "source_interval_selection_rule": null,
+    "replay_count": 1,
+    "seed_use": "the same replay is shared by seeds 1, 2, and 3; each seed runs a shared prefix before state-copy branching",
+    "encoder_requirement": "unchanged SensoryEncoder with bounds [-1.35, 1.30] rad, Gaussian width 0.25, 120-Hz maximum, rates <=5 Hz zeroed, and no added baseline",
+    "state_requirement": "per seed, initialize one brain, run [0,250) once, then deep-copy all enumerated mutable neural/RNG/observer state into three branches",
+    "incompatibility_or_failure_constraints": "non-finite/wrong-dimensional/nonmonotonic/missing 1-ms samples, dependency or replay hash mismatch, altered encoder/runtime/interface, synthesis, interpolation, tuning, substitution, physics execution, or outcome-dependent selection all fail closed"
+  },
+  "tracked_source_findings": {
+    "joint_order_source": "malecns_backend/embodiment/m7e_postrun_analysis.py",
+    "verified_tibial_column_indices": [5, 12, 19, 26, 33, 40],
+    "runtime_sampling_source": "malecns_backend/embodiment/_windows_m8_live_condition.py",
+    "temporal_alignment_if_archive_is_hydrated": "At each positive physics step divisible by five, the runtime reads that step's current measured positions, encodes all six tibiae, advances one neural step, and records neural telemetry at the same time. Thus neural row i should align to physics row 5*(i+1), from 0.5 through 10000.0 ms.",
+    "neural_sensory_encoded_semantics": "per-interface maximum encoded rate in LF, LM, LH, RF, RM, RH order; it is not the six physical angles",
+    "stochastic_boundary": "The angle-to-rate transformation and recorded peak are deterministic and stateless. Candidate/delivered external events involve RNG and neural refractory state and cannot be reconstructed from the six peak values alone."
+  },
+  "source_provenance_sha256": {
+    "malecns_backend/embodiment/interface_output/lf_proximal_motor_recruitment/lf_proximal_motor_recruitment_preregistration.json": "994789847840cc53287b1bcbfff34e86fdc880f7b4d00c7cbc00f54f68ed812c",
+    "malecns_backend/embodiment/m7e_postrun_analysis.py": "70d5c567b845c8e7fc66e38263bb51c4d8f60bb23ada2e8616be80802b31e934",
+    "malecns_backend/embodiment/_windows_m8_live_condition.py": "78b6eb56d499faa1f06705a9ea13b6cf33658cacb060769a48bc1cdf052c2040",
+    "malecns_backend/embodiment/sensory.py": "d245ac2b91294fef7629375e5734a6788e4749dc5b768ff082cdeb2cfd9f39ea",
+    "malecns_backend/embodiment/m7_telemetry.py": "23eaf716a392e1ab39c1dae00f8c10e79c989ef5292694abaac9e73496d042da",
+    "malecns_backend/embodiment/six_leg_map.json": "575186602ac1e5a6e3b2c6d680309880266f5d80e18fff44f989440f6cd0a4bc"
+  },
+  "not_performed_due_to_fail_closed_abort": [
+    "physics_time_ms validation",
+    "six physical tibial trajectory validation",
+    "frozen encoded-rate consistency comparison",
+    "1000-ms interval selection",
+    "derived replay extraction",
+    "proposed preregistration addendum creation"
+  ],
+  "scientific_execution": {
+    "simulation_steps": 0,
+    "physics_steps": 0,
+    "neural_steps": 0,
+    "prior_experiments_rerun": false
+  },
+  "artifact_decisions": {
+    "replay_created": false,
+    "addendum_created": false,
+    "reason_addendum_not_created": "The extraction is not blocked only by the absent interval rule; authoritative archive provenance failed first."
+  },
+  "interpretation_boundary": "No biological proprioception is claimed. The intended angles are FlyGym/MuJoCo measured joint coordinates, and the transformation is the existing modeled proprioceptive encoder. Future recruitment would mean condition-dependent activity in the current MaleCNS runtime, not biological function."
+}
