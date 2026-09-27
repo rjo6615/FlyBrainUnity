@@ -1,0 +1,118 @@
+{
+  "schema": "LF-PROXIMAL-MOTOR-RECRUITMENT-PRE-EXTRACTION-ADDENDUM.1",
+  "document_type": "PRE_EXTRACTION_PREREGISTRATION_ADDENDUM_ONLY",
+  "status": "FROZEN_BEFORE_EXTRACTION_NOT_EXECUTED",
+  "parent_preregistration": {
+    "path": "malecns_backend/embodiment/interface_output/lf_proximal_motor_recruitment/lf_proximal_motor_recruitment_preregistration.json",
+    "sha256": "994789847840cc53287b1bcbfff34e86fdc880f7b4d00c7cbc00f54f68ed812c",
+    "modified_by_this_addendum": false
+  },
+  "prior_m8_assessment": {
+    "json_path": "malecns_backend/embodiment/interface_output/m8_lf_proximal_replay_assessment/m8_lf_proximal_replay_assessment.json",
+    "markdown_path": "malecns_backend/embodiment/interface_output/m8_lf_proximal_replay_assessment/M8_LF_PROXIMAL_REPLAY_ASSESSMENT.md",
+    "preserved_unchanged": true,
+    "result": "PROVENANCE_FAILURE_IN_CODEX_CHECKOUT_BECAUSE_M8_RAW_NPZ_IS_A_GIT_LFS_POINTER",
+    "relationship_to_this_addendum": "That assessment remains valid and unchanged. This addendum records an independently supplied authoritative source identity as a future pre-open requirement; it does not claim that Codex verified the authoritative archive bytes."
+  },
+  "authoritative_source_identity_required_for_future_extraction": {
+    "path": "malecns_backend/embodiment/interface_output/m8_extended_spontaneous/m8_raw.npz",
+    "byte_size": 345584215,
+    "sha256": "4e39bb83dd4455d56a4d88f717615530602317efaf83a6ed241b13af89dc2a5b",
+    "verification_status_in_this_addendum": "NOT_VERIFIED_BY_CODEX",
+    "provenance": "Identity supplied from an independent verification of the authoritative Windows scientific archive outside this checkout.",
+    "future_fail_closed_gate": "A future extraction utility must compute and exactly match both byte size and SHA-256 before opening the archive or reading any scientific array. A Git LFS pointer, size mismatch, or digest mismatch must abort before np.load or equivalent scientific-array access."
+  },
+  "frozen_source_selection": {
+    "condition": "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT",
+    "rule": "Select the earliest eligible contiguous 1000-ms interval from the frozen M8 trajectory.",
+    "intended_interval_ms": {
+      "start_inclusive": 0.0,
+      "stop_exclusive": 1000.0
+    },
+    "intended_start_time_ms": 0.0,
+    "eligibility": "The interval is eligible only if all required timestamps and all six selected physical_joint_position values exist as finite, unmodified source samples on the frozen 0.1-ms physics grid; provenance and dimensional checks must pass.",
+    "selection_independence": [
+      "No outcome-dependent interval selection is permitted.",
+      "No inspection of candidate motor activity may influence interval selection.",
+      "Candidate recruitment execution and candidate recruitment outcomes must remain unavailable during extraction."
+    ]
+  },
+  "replay_payload": {
+    "scientific_variable": "six physical tibial joint coordinates",
+    "source_array": "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT__physics_joint_position",
+    "units": "radians",
+    "channel_order": [
+      "joint_LFTibia",
+      "joint_LMTibia",
+      "joint_LHTibia",
+      "joint_RFTibia",
+      "joint_RMTibia",
+      "joint_RHTibia"
+    ],
+    "source_columns_zero_based": [5, 12, 19, 26, 33, 40],
+    "source_physics_cadence_ms": 0.1,
+    "target_replay_cadence_ms": 1.0,
+    "sample_count": 1000,
+    "sample_times_ms": "0.0, 1.0, ..., 999.0",
+    "source_row_indices": "0, 10, ..., 9990",
+    "output_shape": [1000, 6],
+    "interval_semantics": "The 1000 samples are control-interval inputs for the left-closed, right-open assay interval [0,1000) ms. The source state at 1000.0 ms is a boundary state and is not a 1001st replay input.",
+    "transformations_forbidden": [
+      "interpolation",
+      "smoothing",
+      "averaging",
+      "synthetic values",
+      "resampling from nonexact source timestamps",
+      "substitution of neural_sensory_encoded values"
+    ],
+    "selection_method": "Select exact existing physics rows at 10-row strides only, after proving their timestamps correspond to 0.0 through 999.0 ms at exactly 1.0-ms cadence. Copy the six specified columns without numerical transformation."
+  },
+  "sample_count_resolution": {
+    "conclusion": "1000_REPLAY_INPUT_SAMPLES_NOT_1001_BOUNDARY_STATES",
+    "basis_in_frozen_protocol": [
+      "The parent protocol defines runtime_ms=1000.0 and sensory_sample_ms=1.0.",
+      "Its analysis windows are explicitly left-closed and right-open: [0,250), [250,750), and [750,1000).",
+      "It assigns 500, 1000, and 500 neural steps to those windows at a 0.5-ms neural timestep, totaling 2000 neural transitions.",
+      "The selected SixTibiaRuntime implementation applies one observed sensory input per 1.0-ms control sample and advances two 0.5-ms neural steps for that input."
+    ],
+    "reason_explicit_convention_is_frozen": "The parent document specifies duration and cadence but does not enumerate replay timestamps or explicitly distinguish interval inputs from endpoint states. Freezing [0,1000) as 1000 inputs prevents a future extractor from treating the t=1000-ms boundary state as an extra input, which would contradict the frozen left-closed/right-open transition counts.",
+    "boundary_state_policy": "A t=1000.0-ms source state may be used only for provenance or validation and must not be included in the replay payload."
+  },
+  "temporal_alignment_context_only": {
+    "rule": "M8 neural row i corresponds to physics row 5*(i+1) at the same 0.5-ms timestamp.",
+    "role": "PROVENANCE_AND_CONTEXT_ONLY",
+    "replay_data_rule": "The replay consists only of the six physical_joint_position tibial angles. neural_sensory_encoded is not an angle source and must not be extracted into the replay."
+  },
+  "interpretation_boundaries": {
+    "physical_angles": "The angles are FlyGym/MuJoCo measured joint coordinates.",
+    "sensory_transduction": "Sensory transduction remains the existing modeled proprioceptive encoder.",
+    "biological_proprioception": "This addendum does not establish biological proprioception.",
+    "recruitment_meaning": "Future candidate recruitment means condition-dependent activity in the current MaleCNS runtime, not biological motor function."
+  },
+  "authorization": {
+    "authorized_after_source_identity_gate": "Deterministic replay extraction only, using the frozen source selection and exact-copy rules in this addendum, after the authoritative M8 source byte size and SHA-256 have both been verified before scientific-array access.",
+    "not_authorized": [
+      "recruitment scientific execution unless every other frozen prerequisite is satisfied",
+      "M8 execution or re-execution",
+      "physics, FlyGym, MuJoCo, or neural-runtime execution",
+      "inspection of candidate recruitment outcomes",
+      "motor-interface modification",
+      "new motor decoder weights or coordinate signs",
+      "modification of any frozen artifact"
+    ],
+    "active_physical_motor_interface_channel_count": 11,
+    "active_interface_changed": false,
+    "candidate_decoder_weights_assigned": false,
+    "candidate_coordinate_signs_assigned": false
+  },
+  "execution_ledger": {
+    "replay_extracted": false,
+    "scientific_executions": 0,
+    "m8_executions": 0,
+    "physics_steps": 0,
+    "neural_steps": 0,
+    "candidate_outcomes_read": false,
+    "scientific_arrays_opened": false,
+    "authoritative_source_bytes_verified_by_codex": false
+  }
+}
