@@ -1,0 +1,24 @@
+{
+  "addendum_identity": {
+    "canonical_lf_sha256": "2dbfff3e8db3ea26a57a028dc0b50b24d186cedfb51f95e4fcc5fbde319b1588",
+    "expected_canonical_lf_sha256": "2dbfff3e8db3ea26a57a028dc0b50b24d186cedfb51f95e4fcc5fbde319b1588",
+    "path": "malecns_backend/embodiment/interface_output/lf_proximal_motor_recruitment/lf_proximal_motor_recruitment_pre_extraction_addendum.json",
+    "raw_worktree_sha256": "2dbfff3e8db3ea26a57a028dc0b50b24d186cedfb51f95e4fcc5fbde319b1588"
+  },
+  "failure": "M8 binary identity mismatch before array access (size=134, sha256=cdbfc2ed140e276a1293f288c0bccfa1a223bfbc6d40c9df5efb6c1422d7352d)",
+  "final_status": "PROVENANCE_FAILURE",
+  "schema": "M8-LF-PROXIMAL-PRE-EXTRACTION-VALIDATION.1",
+  "scientific_execution": {
+    "neural_steps": 0,
+    "physics_steps": 0,
+    "replay_extracted": false,
+    "simulation_steps": 0
+  },
+  "source_identity": {
+    "byte_size": 134,
+    "expected_byte_size": 345584215,
+    "expected_sha256": "4e39bb83dd4455d56a4d88f717615530602317efaf83a6ed241b13af89dc2a5b",
+    "path": "malecns_backend/embodiment/interface_output/m8_extended_spontaneous/m8_raw.npz",
+    "sha256": "cdbfc2ed140e276a1293f288c0bccfa1a223bfbc6d40c9df5efb6c1422d7352d"
+  }
+}
