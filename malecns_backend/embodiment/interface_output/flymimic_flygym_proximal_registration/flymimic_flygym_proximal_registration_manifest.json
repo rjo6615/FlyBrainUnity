@@ -1,0 +1,30 @@
+{
+  "schema": "FLYMIMIC-FLYGYM-PROXIMAL-REGISTRATION-MANIFEST.1",
+  "status": "FROZEN",
+  "result": {
+    "path": "flymimic_flygym_proximal_registration_result.json",
+    "sha256": "a06b342390d6132a37b50766085390adb1a9eb8c1c34849f1f56dd69578e0684",
+    "size_bytes": 13861
+  },
+  "provenance_inputs": [
+    {
+      "path": "flymimic_flygym_registration_export.json",
+      "role": "temporary read-only FlyMimic evidence export; deliberately not copied into this scientific output directory",
+      "sha256": "64c31caefeaaf38f2b5e22f69122062ac384c1d756bd16d0cce532d776995597"
+    },
+    {
+      "path": "FlyBrainUnity/Assets/StreamingAssets/M7FValidation/m7f_authoritative_rig.json",
+      "role": "frozen FlyGym authoritative-rig provenance",
+      "sha256": "d8cd7e58bb33fff5e102484d937100d7afd7dc1f4156b39dc2a27f65c0c29eb7",
+      "embedded_source_hashes": {
+        "mjcf_sha256": "413b3a1dcb7537d08122e16f256f27ec0d8bb9f52c58670345b6c24c9e72e05a",
+        "assembled_xml_sha256": "264c8b7718875612e7cf67c23f0170895fbd54705bd731d9b0a6cab2d251e2e8"
+      }
+    }
+  ],
+  "freeze_constraints": {
+    "pre_existing_frozen_artifacts_modified": false,
+    "temporary_export_copied_into_output_directory": false,
+    "only_result_and_manifest_created": true
+  }
+}
