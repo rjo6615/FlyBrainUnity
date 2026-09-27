@@ -1,0 +1,1758 @@
+{
+  "schema": "LF-PROXIMAL-CANDIDATE-ACTIVITY-EVIDENCE-ADDENDUM.1",
+  "document_type": "READ_ONLY_ACTIVITY_EVIDENCE_ADDENDUM",
+  "status": "COMPLETE",
+  "scope_and_nonintervention": {
+    "active_physical_interface_channel_count": 11,
+    "active_physical_interface_unchanged": true,
+    "decoder_vectors_assigned": false,
+    "coordinate_signs_assigned_by_addendum": false,
+    "prohibited_execution_performed": false,
+    "prohibited_execution": [
+      "neural simulation",
+      "MuJoCo execution",
+      "physics",
+      "Live Fly",
+      "perturbation",
+      "stimulation",
+      "behavioral run"
+    ],
+    "source_record_note": "Population records are copied verbatim and completely from the verified frozen survey report. Any coordinate_sign field inside a copied source record is pre-existing survey metadata, not an assignment by this addendum."
+  },
+  "provenance": {
+    "transferred_survey_report": "codex_evidence_transfer/motor_population_activity_survey_report.json",
+    "required_sha256": "9a2cf19a7f634c7ab15fd0041cdf38e465bb3ffc8821d7d83d846284a50cebfa",
+    "verified_sha256": "9a2cf19a7f634c7ab15fd0041cdf38e465bb3ffc8821d7d83d846284a50cebfa",
+    "sha256_verified": true,
+    "frozen_registration_result": "malecns_backend/embodiment/interface_output/flymimic_flygym_proximal_registration/flymimic_flygym_proximal_registration_result.json",
+    "candidate_preregistration": "malecns_backend/embodiment/interface_output/lf_proximal_candidate_mapping_review/lf_proximal_candidate_mapping_review_preregistration.json",
+    "survey_schema": "MOTOR-POPULATION-ACTIVITY-SURVEY-REPORT.1",
+    "survey_status": "COMPLETE",
+    "survey_runtime_copied_without_rerun": {
+      "adhesion_enabled": false,
+      "condition": "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT",
+      "control": "position",
+      "decoder_gain_changes": null,
+      "extra_forces": null,
+      "flygym": "1.2.1",
+      "mujoco": "3.2.7",
+      "neural_parameter_changes": null,
+      "runtime": "current validated MaleCNS + FlyGym corrected closed loop",
+      "stimulation": null
+    }
+  },
+  "evidence_binding_consistency_check": {
+    "method": "Read-only exact-value comparison; the frozen registration result was authoritative and no transformation was recomputed.",
+    "passed": true,
+    "covector_comparison_count": 7,
+    "numerical_discrepancy_count": 0,
+    "numerical_discrepancies": [],
+    "covector_comparisons": [
+      {
+        "population": "Tergopleural/Pleural promotor MN T1 left",
+        "flymimic_tendon": "LFC_pleural_promotor_tendon",
+        "preregistration_basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "frozen_registration_basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "preregistration_values": [
+          -0.03065742097227428,
+          -0.0217502730208869,
+          -0.011054200186017507
+        ],
+        "frozen_registration_values": [
+          -0.03065742097227428,
+          -0.0217502730208869,
+          -0.011054200186017507
+        ],
+        "component_wise_absolute_differences": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "exact_match": true
+      },
+      {
+        "population": "Tergopleural/Pleural promotor MN T1 left",
+        "flymimic_tendon": "LFC_tergopleural_promotor_a_tendon",
+        "preregistration_basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "frozen_registration_basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "preregistration_values": [
+          -0.040057275498351676,
+          -0.03061836122122686,
+          0.04031447492516933
+        ],
+        "frozen_registration_values": [
+          -0.040057275498351676,
+          -0.03061836122122686,
+          0.04031447492516933
+        ],
+        "component_wise_absolute_differences": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "exact_match": true
+      },
+      {
+        "population": "Tergopleural/Pleural promotor MN T1 left",
+        "flymimic_tendon": "LFC_tergopleural_promotor_b_tendon",
+        "preregistration_basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "frozen_registration_basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "preregistration_values": [
+          -0.00786424703389068,
+          -0.018199131200033455,
+          0.005633535853960252
+        ],
+        "frozen_registration_values": [
+          -0.00786424703389068,
+          -0.018199131200033455,
+          0.005633535853960252
+        ],
+        "component_wise_absolute_differences": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "exact_match": true
+      },
+      {
+        "population": "Pleural remotor/abductor MN T1 left",
+        "flymimic_tendon": "LFC_pleural_remotor_and_abductor_tendon",
+        "preregistration_basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "frozen_registration_basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "preregistration_values": [
+          0.035471495483644505,
+          0.025593975794095825,
+          -0.016985333948516177
+        ],
+        "frozen_registration_values": [
+          0.035471495483644505,
+          0.025593975794095825,
+          -0.016985333948516177
+        ],
+        "component_wise_absolute_differences": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "exact_match": true
+      },
+      {
+        "population": "Sternal adductor MN T1 left",
+        "flymimic_tendon": "LFC_sternal_adductor_tendon",
+        "preregistration_basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "frozen_registration_basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "preregistration_values": [
+          -0.11388808872259532,
+          0.05623004695075151,
+          -0.004274084963245932
+        ],
+        "frozen_registration_values": [
+          -0.11388808872259532,
+          0.05623004695075151,
+          -0.004274084963245932
+        ],
+        "component_wise_absolute_differences": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "exact_match": true
+      },
+      {
+        "population": "Sternal anterior rotator MN T1 left",
+        "flymimic_tendon": "LFC_sternal_anterior_rotator_tendon",
+        "preregistration_basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "frozen_registration_basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "preregistration_values": [
+          -0.08352962239815168,
+          -0.010627837399356571,
+          0.0275734905338182
+        ],
+        "frozen_registration_values": [
+          -0.08352962239815168,
+          -0.010627837399356571,
+          0.0275734905338182
+        ],
+        "component_wise_absolute_differences": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "exact_match": true
+      },
+      {
+        "population": "Sternal posterior rotator MN T1 left",
+        "flymimic_tendon": "LFC_sternal_posterior_rotator_tendon",
+        "preregistration_basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "frozen_registration_basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "preregistration_values": [
+          -0.008295719862404953,
+          0.0325514695284908,
+          0.05126777650224741
+        ],
+        "frozen_registration_values": [
+          -0.008295719862404953,
+          0.0325514695284908,
+          0.05126777650224741
+        ],
+        "component_wise_absolute_differences": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "exact_match": true
+      }
+    ],
+    "tendon_and_population_identity_bindings": [
+      {
+        "population": "Tergopleural/Pleural promotor MN T1 left",
+        "preregistered_flymimic_tendons": [
+          "LFC_pleural_promotor_tendon",
+          "LFC_tergopleural_promotor_a_tendon",
+          "LFC_tergopleural_promotor_b_tendon"
+        ],
+        "all_tendons_present_in_frozen_registration": true,
+        "population_identity_matches_annotation_source_label": true,
+        "population_neuron_identity_matches_survey": true
+      },
+      {
+        "population": "Pleural remotor/abductor MN T1 left",
+        "preregistered_flymimic_tendons": [
+          "LFC_pleural_remotor_and_abductor_tendon"
+        ],
+        "all_tendons_present_in_frozen_registration": true,
+        "population_identity_matches_annotation_source_label": true,
+        "population_neuron_identity_matches_survey": true
+      },
+      {
+        "population": "Sternal adductor MN T1 left",
+        "preregistered_flymimic_tendons": [
+          "LFC_sternal_adductor_tendon"
+        ],
+        "all_tendons_present_in_frozen_registration": true,
+        "population_identity_matches_annotation_source_label": true,
+        "population_neuron_identity_matches_survey": true
+      },
+      {
+        "population": "Sternal anterior rotator MN T1 left",
+        "preregistered_flymimic_tendons": [
+          "LFC_sternal_anterior_rotator_tendon"
+        ],
+        "all_tendons_present_in_frozen_registration": true,
+        "population_identity_matches_annotation_source_label": true,
+        "population_neuron_identity_matches_survey": true
+      },
+      {
+        "population": "Sternal posterior rotator MN T1 left",
+        "preregistered_flymimic_tendons": [
+          "LFC_sternal_posterior_rotator_tendon"
+        ],
+        "all_tendons_present_in_frozen_registration": true,
+        "population_identity_matches_annotation_source_label": true,
+        "population_neuron_identity_matches_survey": true
+      }
+    ],
+    "required_action": "NONE"
+  },
+  "activity_evidence": {
+    "interpretation": "Observes activity in annotation-backed MaleCNS motor populations under one modeled closed-loop condition. It does not establish natural motor function, walking, locomotion, gait generation, balance, stabilization, righting, reflexes, behavioral necessity, or biological sufficiency.",
+    "selection_rule": "Exact canonical-name match for the five requested LF proximal candidate populations; no inference.",
+    "population_count": 5,
+    "complete_population_records": [
+      {
+        "active_member_neuron_fraction": 0.0,
+        "active_member_neurons": 0,
+        "active_neural_transition_count": 0,
+        "active_neural_transition_fraction": 0.0,
+        "activity_classification": "OBSERVED_SILENT",
+        "admitted_11": false,
+        "ambiguity_status": "AMBIGUOUS",
+        "anatomical_association": "coxa_T1_left",
+        "anatomical_role": "Tergopleural/Pleural promotor MN T1 left",
+        "attempt4_silent_candidate": false,
+        "bins": [
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          }
+        ],
+        "candidate_action_indices": [
+          0
+        ],
+        "candidate_flygym_joints": [
+          "joint_LFCoxa"
+        ],
+        "canonical_name": "Tergopleural/Pleural promotor MN T1 left",
+        "coordinate_sign": null,
+        "dense_neural_indices": [
+          142836,
+          143654,
+          148512,
+          162856
+        ],
+        "directional_activity": null,
+        "explicit_direction": 1,
+        "first_activity_time_ms": null,
+        "last_activity_time_ms": null,
+        "leg": "LF",
+        "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+        "mean_per_neuron_filtered_rate_hz": 0.0,
+        "mean_spike_increments_per_neuron": 0.0,
+        "neuron_count": 4,
+        "neuron_ids": [
+          800061,
+          801173,
+          807281,
+          934091
+        ],
+        "peak_filtered_rate_hz": 0.0,
+        "peak_spike_increments_member_neuron": 0,
+        "possible_coxa_yaw": false,
+        "surveyability": "AMBIGUOUS_MAPPING_BUT_NEURALLY_SURVEYABLE",
+        "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+        "total_spike_increments": 0,
+        "unique_mapping": false
+      },
+      {
+        "active_member_neuron_fraction": 0.0,
+        "active_member_neurons": 0,
+        "active_neural_transition_count": 0,
+        "active_neural_transition_fraction": 0.0,
+        "activity_classification": "OBSERVED_SILENT",
+        "admitted_11": false,
+        "ambiguity_status": "AMBIGUOUS",
+        "anatomical_association": "coxa_T1_left",
+        "anatomical_role": "Pleural remotor/abductor MN T1 left",
+        "attempt4_silent_candidate": false,
+        "bins": [
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          }
+        ],
+        "candidate_action_indices": [
+          0,
+          1
+        ],
+        "candidate_flygym_joints": [
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "canonical_name": "Pleural remotor/abductor MN T1 left",
+        "coordinate_sign": null,
+        "dense_neural_indices": [
+          144657,
+          145652
+        ],
+        "directional_activity": null,
+        "explicit_direction": -1,
+        "first_activity_time_ms": null,
+        "last_activity_time_ms": null,
+        "leg": "LF",
+        "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+        "mean_per_neuron_filtered_rate_hz": 0.0,
+        "mean_spike_increments_per_neuron": 0.0,
+        "neuron_count": 2,
+        "neuron_ids": [
+          802509,
+          803803
+        ],
+        "peak_filtered_rate_hz": 0.0,
+        "peak_spike_increments_member_neuron": 0,
+        "possible_coxa_yaw": false,
+        "surveyability": "AMBIGUOUS_MAPPING_BUT_NEURALLY_SURVEYABLE",
+        "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+        "total_spike_increments": 0,
+        "unique_mapping": false
+      },
+      {
+        "active_member_neuron_fraction": 0.0,
+        "active_member_neurons": 0,
+        "active_neural_transition_count": 0,
+        "active_neural_transition_fraction": 0.0,
+        "activity_classification": "OBSERVED_SILENT",
+        "admitted_11": false,
+        "ambiguity_status": "AMBIGUOUS",
+        "anatomical_association": "coxa_abduct_T1_left",
+        "anatomical_role": "Sternal adductor MN T1 left",
+        "attempt4_silent_candidate": false,
+        "bins": [
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          }
+        ],
+        "candidate_action_indices": [
+          1
+        ],
+        "candidate_flygym_joints": [
+          "joint_LFCoxa_roll"
+        ],
+        "canonical_name": "Sternal adductor MN T1 left",
+        "coordinate_sign": null,
+        "dense_neural_indices": [
+          153568
+        ],
+        "directional_activity": null,
+        "explicit_direction": 1,
+        "first_activity_time_ms": null,
+        "last_activity_time_ms": null,
+        "leg": "LF",
+        "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+        "mean_per_neuron_filtered_rate_hz": 0.0,
+        "mean_spike_increments_per_neuron": 0.0,
+        "neuron_count": 1,
+        "neuron_ids": [
+          813480
+        ],
+        "peak_filtered_rate_hz": 0.0,
+        "peak_spike_increments_member_neuron": 0,
+        "possible_coxa_yaw": false,
+        "surveyability": "AMBIGUOUS_MAPPING_BUT_NEURALLY_SURVEYABLE",
+        "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+        "total_spike_increments": 0,
+        "unique_mapping": false
+      },
+      {
+        "active_member_neuron_fraction": 0.0,
+        "active_member_neurons": 0,
+        "active_neural_transition_count": 0,
+        "active_neural_transition_fraction": 0.0,
+        "activity_classification": "OBSERVED_SILENT",
+        "admitted_11": false,
+        "ambiguity_status": "UNIQUE",
+        "anatomical_association": "coxa_twist_T1_left",
+        "anatomical_role": "Sternal anterior rotator MN T1 left",
+        "attempt4_silent_candidate": false,
+        "bins": [
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          }
+        ],
+        "candidate_action_indices": [
+          2
+        ],
+        "candidate_flygym_joints": [
+          "joint_LFCoxa_yaw"
+        ],
+        "canonical_name": "Sternal anterior rotator MN T1 left",
+        "coordinate_sign": null,
+        "dense_neural_indices": [
+          148218,
+          162458
+        ],
+        "directional_activity": null,
+        "explicit_direction": 1,
+        "first_activity_time_ms": null,
+        "last_activity_time_ms": null,
+        "leg": "LF",
+        "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+        "mean_per_neuron_filtered_rate_hz": 0.0,
+        "mean_spike_increments_per_neuron": 0.0,
+        "neuron_count": 2,
+        "neuron_ids": [
+          806923,
+          919509
+        ],
+        "peak_filtered_rate_hz": 0.0,
+        "peak_spike_increments_member_neuron": 0,
+        "possible_coxa_yaw": true,
+        "surveyability": "DIRECTLY_SURVEYABLE",
+        "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+        "total_spike_increments": 0,
+        "unique_mapping": true
+      },
+      {
+        "active_member_neuron_fraction": 0.0,
+        "active_member_neurons": 0,
+        "active_neural_transition_count": 0,
+        "active_neural_transition_fraction": 0.0,
+        "activity_classification": "OBSERVED_SILENT",
+        "admitted_11": false,
+        "ambiguity_status": "UNIQUE",
+        "anatomical_association": "coxa_twist_T1_left",
+        "anatomical_role": "Sternal posterior rotator MN T1 left",
+        "attempt4_silent_candidate": false,
+        "bins": [
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          },
+          {
+            "active_member_neurons": 0,
+            "mean_filtered_rate_hz": 0.0,
+            "peak_filtered_rate_hz": 0.0,
+            "total_spike_increments": 0
+          }
+        ],
+        "candidate_action_indices": [
+          2
+        ],
+        "candidate_flygym_joints": [
+          "joint_LFCoxa_yaw"
+        ],
+        "canonical_name": "Sternal posterior rotator MN T1 left",
+        "coordinate_sign": null,
+        "dense_neural_indices": [
+          144222,
+          146498,
+          149652,
+          164685
+        ],
+        "directional_activity": null,
+        "explicit_direction": -1,
+        "first_activity_time_ms": null,
+        "last_activity_time_ms": null,
+        "leg": "LF",
+        "mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+        "mean_per_neuron_filtered_rate_hz": 0.0,
+        "mean_spike_increments_per_neuron": 0.0,
+        "neuron_count": 4,
+        "neuron_ids": [
+          801915,
+          804851,
+          808640,
+          1050335829
+        ],
+        "peak_filtered_rate_hz": 0.0,
+        "peak_spike_increments_member_neuron": 0,
+        "possible_coxa_yaw": true,
+        "surveyability": "DIRECTLY_SURVEYABLE",
+        "surveyability_reason": "dense indices are present in the existing interface map; physical mapping is not required for observation",
+        "total_spike_increments": 0,
+        "unique_mapping": true
+      }
+    ]
+  }
+}
