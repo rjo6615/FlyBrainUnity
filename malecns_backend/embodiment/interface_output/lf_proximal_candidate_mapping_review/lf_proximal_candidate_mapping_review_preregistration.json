@@ -1,0 +1,958 @@
+{
+  "schema": "LF-PROXIMAL-CANDIDATE-MAPPING-REVIEW-PREREGISTRATION.1",
+  "document_type": "PREREGISTERED_ANALYSIS_ONLY_CANDIDATE_HYPOTHESIS_REVIEW",
+  "status": "PREREGISTERED_NOT_EXECUTED",
+  "primary_question": "Which left-front MaleCNS proximal motor populations have sufficient anatomical and frozen external mechanical evidence to be explicit candidates for a later causal neural-to-physical mapping experiment?",
+  "scope_and_nonintervention": {
+    "active_malecns_motor_interface_count": 11,
+    "active_interface_modified": false,
+    "decoder_modified": false,
+    "coordinate_signs_modified": false,
+    "population_mappings_modified": false,
+    "body_model_modified": false,
+    "neural_runtime_modified": false,
+    "frozen_artifacts_modified": false,
+    "future_experiment_executed": false
+  },
+  "provenance": {
+    "frozen_mechanical_evidence": {
+      "directory": "malecns_backend/embodiment/interface_output/flymimic_flygym_proximal_registration/",
+      "result_sha256": "a06b342390d6132a37b50766085390adb1a9eb8c1c34849f1f56dd69578e0684",
+      "manifest_sha256": "afaa1f3f6c55367bdf564cd897d33f4b027d0f42f8041e7223e4220a2eabd20e",
+      "freeze_commit": "516900f19b2718d930370d189f8ddb26bf243608",
+      "scope": "LOCAL_DIFFERENTIAL_REGISTRATION_AT_TWO_DOCUMENTED_REFERENCE_CONFIGURATIONS"
+    },
+    "male_cns_inventory": {
+      "path": "malecns_backend/embodiment/interface_output/motor_population_activity_survey/motor_population_inventory.json",
+      "canonical_sha256_from_survey_freeze": "b0fbbe9d7bf5d83ee2b7b6d8d458be92105344c7bef24729e9e2969edaabc5cb",
+      "source_files": [
+        {
+          "path": "fly-brain-main/public/data/bodymap.json",
+          "sha256": "10630cd4c7a6cc2c1dcfcbee4a602d307f06766f316b185f631406813a58da9d"
+        },
+        {
+          "path": "fly-brain-main/body/flybody/fruitfly.xml",
+          "sha256": "d14946fd0311025ecca70c8eeb5de80e1fe18700d3072be37ecbb18d33d80fd8"
+        },
+        {
+          "path": "malecns_backend/interface_map.json",
+          "sha256": "24b7229bea6f24ff0e65fe09b202d42dc06819fe234194e3c3ab95b596319e0b"
+        },
+        {
+          "path": "malecns_backend/embodiment/six_leg_map.json",
+          "sha256": "575186602ac1e5a6e3b2c6d680309880266f5d80e18fff44f989440f6cd0a4bc"
+        },
+        {
+          "path": "malecns_backend/embodiment/interface_output/whole_leg_motor_mapping_audit.json",
+          "sha256": "722ee9b3b1d6a0fad2bf8ef0f02fc63f49277c5f44e3bccf27898e6c4ea673d9"
+        },
+        {
+          "path": "malecns_backend/embodiment/m9b_external_perturbation.py",
+          "sha256": "ce6f2d7931be69f5b17f59d71448e93a3d379be2b02576002628148a2e4b3750"
+        },
+        {
+          "path": "malecns_backend/embodiment/candidate_motor_channel_validation.py",
+          "sha256": "2814f54af89e1e37ccbe31f553ecd156f55cf034f15aad42e3eb698ee5a582c9"
+        }
+      ]
+    },
+    "activity_survey_freeze": {
+      "path": "malecns_backend/embodiment/interface_output/motor_population_activity_survey/MOTOR_POPULATION_ACTIVITY_SURVEY_FREEZE.json",
+      "scientific_execution_git_commit": "cd81fa2f7730e972adc7ba78bfcdab53057a9fd9",
+      "duration_ms": 1000,
+      "population_count": 102,
+      "result_summary": {
+        "non_silent_populations": 19,
+        "observed_active_populations": 2,
+        "observed_low_activity_populations": 17,
+        "observed_silent_populations": 83,
+        "total_spike_increments": 193
+      },
+      "frozen_report": {
+        "sha256": "9a2cf19a7f634c7ab15fd0041cdf38e465bb3ffc8821d7d83d846284a50cebfa",
+        "size_bytes": 903509
+      },
+      "availability_note": "Freeze index and aggregate summary are tracked; hashed per-population report is absent from this checkout."
+    }
+  },
+  "flygym_component_order": [
+    "joint_LFCoxa_yaw",
+    "joint_LFCoxa",
+    "joint_LFCoxa_roll"
+  ],
+  "classification_rules_preregistered_before_application": {
+    "rule_order": [
+      "BLOCKED_BY_IDENTITY_AMBIGUITY",
+      "BLOCKED_BY_MECHANICAL_AMBIGUITY",
+      "INSUFFICIENT_EVIDENCE",
+      "OBSERVED_SILENT_BUT_TESTABLE",
+      "READY_FOR_CAUSAL_MAPPING_TEST",
+      "READY_FOR_MECHANICAL_HYPOTHESIS_ONLY"
+    ],
+    "BLOCKED_BY_IDENTITY_AMBIGUITY": "Use when annotation does not uniquely identify the relevant MaleCNS muscle class or competing identities cannot be separated. Historical mapping cannot resolve it.",
+    "BLOCKED_BY_MECHANICAL_AMBIGUITY": "Use when identity is adequate but no unambiguous, separately preserved frozen external tendon covector can be bound to the class.",
+    "INSUFFICIENT_EVIDENCE": "Use when neither a defensible identity-mechanics hypothesis nor a testable causal construct can be stated.",
+    "OBSERVED_SILENT_BUT_TESTABLE": "Use when identity and mechanics support a causal construct and the exact frozen survey records zero spike increments; silence is condition-specific and does not imply nonfunction.",
+    "READY_FOR_CAUSAL_MAPPING_TEST": "Use when identity and separately preserved external mechanics support a test and the frozen survey documents activity; this does not imply admission or biological truth.",
+    "READY_FOR_MECHANICAL_HYPOTHESIS_ONLY": "Use when identity and external mechanics support a covector hypothesis but causal readiness is not established, including unavailable per-population activity evidence.",
+    "anti_shortcuts": [
+      "Historical mapping agreement alone never qualifies a candidate.",
+      "External FlyMimic mechanics alone never establishes neural function.",
+      "Neural silence alone never rejects an anatomically supported candidate.",
+      "Evidence layers must not be collapsed into a confidence score."
+    ]
+  },
+  "candidate_population_inventory": [
+    {
+      "repository_population_name": "Tergopleural/Pleural promotor MN T1 left",
+      "male_cns_muscle_class": "Tergopleural/Pleural promotor",
+      "annotation_source_label": "Tergopleural/Pleural promotor MN T1 left",
+      "mapped_neuron_ids": [
+        800061,
+        801173,
+        807281,
+        934091
+      ],
+      "neuron_count": 4,
+      "inventory_mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "frozen_activity_survey_evidence": {
+        "survey_condition": "1000-ms spontaneous Motor Population Activity Survey",
+        "observed_status": "UNAVAILABLE_FROM_TRACKED_FROZEN_INDEX",
+        "spike_count": null,
+        "rate_classification": "UNAVAILABLE_FROM_TRACKED_FROZEN_INDEX",
+        "reason": "The tracked freeze index records aggregate results and the report hash, but the per-population frozen report itself is not present in this checkout. No simulation or reconstruction was performed. Silence is therefore not inferred."
+      },
+      "historical_metadata_only": {
+        "logical_action": "promotion",
+        "physical_joint_assignment": "joint_LFCoxa",
+        "coordinate_sign": 1,
+        "evidentiary_use": "EXCLUDED_FROM_CANDIDATE_QUALIFICATION"
+      },
+      "evidence_layers": {
+        "A_neural_identity_evidence": {
+          "status": "ANNOTATION_IDENTIFIES_MUSCLE_CLASS",
+          "detail": "Tergopleural/Pleural promotor MN T1 left",
+          "source": "authoritative annotation-backed motor population inventory"
+        },
+        "B_neural_activity_evidence": {
+          "status": "PER_POPULATION_RESULT_NOT_AVAILABLE_IN_TRACKED_FREEZE_INDEX",
+          "interpretation": "Neither active nor OBSERVED_SILENT_UNDER_SURVEY_CONDITION may be asserted from aggregate totals."
+        },
+        "C_external_mechanical_evidence": {
+          "status": "FROZEN_LOCAL_DIFFERENTIAL_EXTERNAL_REFERENCE",
+          "references": [
+            {
+              "flymimic_tendon": "LFC_pleural_promotor_tendon",
+              "moment_arm_convention": "R = -dL/dq",
+              "external_reference_covector": {
+                "basis_order": [
+                  "joint_LFCoxa_yaw",
+                  "joint_LFCoxa",
+                  "joint_LFCoxa_roll"
+                ],
+                "values": [
+                  -0.03065742097227428,
+                  -0.0217502730208869,
+                  -0.011054200186017507
+                ]
+              },
+              "normalized_absolute_contribution_fractions": {
+                "normalization": "abs(component) / sum(abs(all components))",
+                "basis_order": [
+                  "joint_LFCoxa_yaw",
+                  "joint_LFCoxa",
+                  "joint_LFCoxa_roll"
+                ],
+                "values": [
+                  0.4830839256974577,
+                  0.3427296537899901,
+                  0.17418642051255218
+                ]
+              },
+              "frozen_descriptive_classification": "MULTI_AXIS_YAW_DOMINANT"
+            },
+            {
+              "flymimic_tendon": "LFC_tergopleural_promotor_a_tendon",
+              "moment_arm_convention": "R = -dL/dq",
+              "external_reference_covector": {
+                "basis_order": [
+                  "joint_LFCoxa_yaw",
+                  "joint_LFCoxa",
+                  "joint_LFCoxa_roll"
+                ],
+                "values": [
+                  -0.040057275498351676,
+                  -0.03061836122122686,
+                  0.04031447492516933
+                ]
+              },
+              "normalized_absolute_contribution_fractions": {
+                "normalization": "abs(component) / sum(abs(all components))",
+                "basis_order": [
+                  "joint_LFCoxa_yaw",
+                  "joint_LFCoxa",
+                  "joint_LFCoxa_roll"
+                ],
+                "values": [
+                  0.3609085071160681,
+                  0.27586566737790774,
+                  0.36322582550602417
+                ]
+              },
+              "frozen_descriptive_classification": "MULTI_AXIS_NO_CLEAR_DOMINANT_AXIS"
+            },
+            {
+              "flymimic_tendon": "LFC_tergopleural_promotor_b_tendon",
+              "moment_arm_convention": "R = -dL/dq",
+              "external_reference_covector": {
+                "basis_order": [
+                  "joint_LFCoxa_yaw",
+                  "joint_LFCoxa",
+                  "joint_LFCoxa_roll"
+                ],
+                "values": [
+                  -0.00786424703389068,
+                  -0.018199131200033455,
+                  0.005633535853960252
+                ]
+              },
+              "normalized_absolute_contribution_fractions": {
+                "normalization": "abs(component) / sum(abs(all components))",
+                "basis_order": [
+                  "joint_LFCoxa_yaw",
+                  "joint_LFCoxa",
+                  "joint_LFCoxa_roll"
+                ],
+                "values": [
+                  0.24810765527792045,
+                  0.5741609782445594,
+                  0.17773136647752016
+                ]
+              },
+              "frozen_descriptive_classification": "MULTI_AXIS_PITCH_DOMINANT"
+            }
+          ]
+        },
+        "D_transfer_uncertainty": [
+          "FlyMimic tendon identity must transfer to the broad MaleCNS annotation label.",
+          "The registered covector is local to two documented reference configurations, not finite-angle or pose-independent.",
+          "FlyMimic mechanics are external reference evidence, not biological ground truth.",
+          "Moment-arm magnitude is not a neural decoder gain.",
+          "Population activation sign in a MaleCNS decoder is not established by external tendon sign."
+        ]
+      },
+      "classification": "READY_FOR_MECHANICAL_HYPOTHESIS_ONLY",
+      "classification_basis": "Annotation-backed identity and at least one exact frozen external covector support hypothesis formulation; per-population frozen activity evidence is unavailable in the tracked checkout, so causal-test readiness is not asserted.",
+      "mechanical_hypothesis": {
+        "H_population": [
+          [
+            -0.03065742097227428,
+            -0.0217502730208869,
+            -0.011054200186017507
+          ],
+          [
+            -0.040057275498351676,
+            -0.03061836122122686,
+            0.04031447492516933
+          ],
+          [
+            -0.00786424703389068,
+            -0.018199131200033455,
+            0.005633535853960252
+          ]
+        ],
+        "representation": "ONE_COVECTOR_PER_TENDON; alternatives are preserved separately and are not averaged",
+        "external_reference_covectors": [
+          {
+            "flymimic_tendon": "LFC_pleural_promotor_tendon",
+            "moment_arm_convention": "R = -dL/dq",
+            "external_reference_covector": {
+              "basis_order": [
+                "joint_LFCoxa_yaw",
+                "joint_LFCoxa",
+                "joint_LFCoxa_roll"
+              ],
+              "values": [
+                -0.03065742097227428,
+                -0.0217502730208869,
+                -0.011054200186017507
+              ]
+            },
+            "normalized_absolute_contribution_fractions": {
+              "normalization": "abs(component) / sum(abs(all components))",
+              "basis_order": [
+                "joint_LFCoxa_yaw",
+                "joint_LFCoxa",
+                "joint_LFCoxa_roll"
+              ],
+              "values": [
+                0.4830839256974577,
+                0.3427296537899901,
+                0.17418642051255218
+              ]
+            },
+            "frozen_descriptive_classification": "MULTI_AXIS_YAW_DOMINANT"
+          },
+          {
+            "flymimic_tendon": "LFC_tergopleural_promotor_a_tendon",
+            "moment_arm_convention": "R = -dL/dq",
+            "external_reference_covector": {
+              "basis_order": [
+                "joint_LFCoxa_yaw",
+                "joint_LFCoxa",
+                "joint_LFCoxa_roll"
+              ],
+              "values": [
+                -0.040057275498351676,
+                -0.03061836122122686,
+                0.04031447492516933
+              ]
+            },
+            "normalized_absolute_contribution_fractions": {
+              "normalization": "abs(component) / sum(abs(all components))",
+              "basis_order": [
+                "joint_LFCoxa_yaw",
+                "joint_LFCoxa",
+                "joint_LFCoxa_roll"
+              ],
+              "values": [
+                0.3609085071160681,
+                0.27586566737790774,
+                0.36322582550602417
+              ]
+            },
+            "frozen_descriptive_classification": "MULTI_AXIS_NO_CLEAR_DOMINANT_AXIS"
+          },
+          {
+            "flymimic_tendon": "LFC_tergopleural_promotor_b_tendon",
+            "moment_arm_convention": "R = -dL/dq",
+            "external_reference_covector": {
+              "basis_order": [
+                "joint_LFCoxa_yaw",
+                "joint_LFCoxa",
+                "joint_LFCoxa_roll"
+              ],
+              "values": [
+                -0.00786424703389068,
+                -0.018199131200033455,
+                0.005633535853960252
+              ]
+            },
+            "normalized_absolute_contribution_fractions": {
+              "normalization": "abs(component) / sum(abs(all components))",
+              "basis_order": [
+                "joint_LFCoxa_yaw",
+                "joint_LFCoxa",
+                "joint_LFCoxa_roll"
+              ],
+              "values": [
+                0.24810765527792045,
+                0.5741609782445594,
+                0.17773136647752016
+              ]
+            },
+            "frozen_descriptive_classification": "MULTI_AXIS_PITCH_DOMINANT"
+          }
+        ],
+        "proposed_malecns_decoder_vector": "UNASSIGNED",
+        "gain_conversion": "PROHIBITED"
+      },
+      "sign_status": "SIGN_REQUIRES_VALIDATION",
+      "sign_distinction": "External covector signs describe registered muscle mechanics only; eventual MaleCNS population activation/decoder sign remains unassigned.",
+      "descriptive_groups": [
+        "MULTI_DOF_REFERENCE"
+      ]
+    },
+    {
+      "repository_population_name": "Pleural remotor/abductor MN T1 left",
+      "male_cns_muscle_class": "Pleural remotor/abductor",
+      "annotation_source_label": "Pleural remotor/abductor MN T1 left",
+      "mapped_neuron_ids": [
+        802509,
+        803803
+      ],
+      "neuron_count": 2,
+      "inventory_mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "frozen_activity_survey_evidence": {
+        "survey_condition": "1000-ms spontaneous Motor Population Activity Survey",
+        "observed_status": "UNAVAILABLE_FROM_TRACKED_FROZEN_INDEX",
+        "spike_count": null,
+        "rate_classification": "UNAVAILABLE_FROM_TRACKED_FROZEN_INDEX",
+        "reason": "The tracked freeze index records aggregate results and the report hash, but the per-population frozen report itself is not present in this checkout. No simulation or reconstruction was performed. Silence is therefore not inferred."
+      },
+      "historical_metadata_only": {
+        "logical_action": "remotion and abduction",
+        "physical_joint_assignment": [
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "coordinate_sign": -1,
+        "evidentiary_use": "EXCLUDED_FROM_CANDIDATE_QUALIFICATION"
+      },
+      "evidence_layers": {
+        "A_neural_identity_evidence": {
+          "status": "ANNOTATION_IDENTIFIES_MUSCLE_CLASS",
+          "detail": "Pleural remotor/abductor MN T1 left",
+          "source": "authoritative annotation-backed motor population inventory"
+        },
+        "B_neural_activity_evidence": {
+          "status": "PER_POPULATION_RESULT_NOT_AVAILABLE_IN_TRACKED_FREEZE_INDEX",
+          "interpretation": "Neither active nor OBSERVED_SILENT_UNDER_SURVEY_CONDITION may be asserted from aggregate totals."
+        },
+        "C_external_mechanical_evidence": {
+          "status": "FROZEN_LOCAL_DIFFERENTIAL_EXTERNAL_REFERENCE",
+          "references": [
+            {
+              "flymimic_tendon": "LFC_pleural_remotor_and_abductor_tendon",
+              "moment_arm_convention": "R = -dL/dq",
+              "external_reference_covector": {
+                "basis_order": [
+                  "joint_LFCoxa_yaw",
+                  "joint_LFCoxa",
+                  "joint_LFCoxa_roll"
+                ],
+                "values": [
+                  0.035471495483644505,
+                  0.025593975794095825,
+                  -0.016985333948516177
+                ]
+              },
+              "normalized_absolute_contribution_fractions": {
+                "normalization": "abs(component) / sum(abs(all components))",
+                "basis_order": [
+                  "joint_LFCoxa_yaw",
+                  "joint_LFCoxa",
+                  "joint_LFCoxa_roll"
+                ],
+                "values": [
+                  0.45446674612540444,
+                  0.3279143081215252,
+                  0.2176189457530704
+                ]
+              },
+              "frozen_descriptive_classification": "MULTI_AXIS_YAW_DOMINANT"
+            }
+          ]
+        },
+        "D_transfer_uncertainty": [
+          "FlyMimic tendon identity must transfer to the broad MaleCNS annotation label.",
+          "The registered covector is local to two documented reference configurations, not finite-angle or pose-independent.",
+          "FlyMimic mechanics are external reference evidence, not biological ground truth.",
+          "Moment-arm magnitude is not a neural decoder gain.",
+          "Population activation sign in a MaleCNS decoder is not established by external tendon sign."
+        ]
+      },
+      "classification": "READY_FOR_MECHANICAL_HYPOTHESIS_ONLY",
+      "classification_basis": "Annotation-backed identity and at least one exact frozen external covector support hypothesis formulation; per-population frozen activity evidence is unavailable in the tracked checkout, so causal-test readiness is not asserted.",
+      "mechanical_hypothesis": {
+        "H_population": [
+          0.035471495483644505,
+          0.025593975794095825,
+          -0.016985333948516177
+        ],
+        "representation": "SINGLE_EXTERNAL_TENDON_REFERENCE",
+        "external_reference_covectors": [
+          {
+            "flymimic_tendon": "LFC_pleural_remotor_and_abductor_tendon",
+            "moment_arm_convention": "R = -dL/dq",
+            "external_reference_covector": {
+              "basis_order": [
+                "joint_LFCoxa_yaw",
+                "joint_LFCoxa",
+                "joint_LFCoxa_roll"
+              ],
+              "values": [
+                0.035471495483644505,
+                0.025593975794095825,
+                -0.016985333948516177
+              ]
+            },
+            "normalized_absolute_contribution_fractions": {
+              "normalization": "abs(component) / sum(abs(all components))",
+              "basis_order": [
+                "joint_LFCoxa_yaw",
+                "joint_LFCoxa",
+                "joint_LFCoxa_roll"
+              ],
+              "values": [
+                0.45446674612540444,
+                0.3279143081215252,
+                0.2176189457530704
+              ]
+            },
+            "frozen_descriptive_classification": "MULTI_AXIS_YAW_DOMINANT"
+          }
+        ],
+        "proposed_malecns_decoder_vector": "UNASSIGNED",
+        "gain_conversion": "PROHIBITED"
+      },
+      "sign_status": "SIGN_REQUIRES_VALIDATION",
+      "sign_distinction": "External covector signs describe registered muscle mechanics only; eventual MaleCNS population activation/decoder sign remains unassigned.",
+      "descriptive_groups": [
+        "MULTI_DOF_REFERENCE"
+      ]
+    },
+    {
+      "repository_population_name": "Sternal adductor MN T1 left",
+      "male_cns_muscle_class": "Sternal adductor",
+      "annotation_source_label": "Sternal adductor MN T1 left",
+      "mapped_neuron_ids": [
+        813480
+      ],
+      "neuron_count": 1,
+      "inventory_mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "frozen_activity_survey_evidence": {
+        "survey_condition": "1000-ms spontaneous Motor Population Activity Survey",
+        "observed_status": "UNAVAILABLE_FROM_TRACKED_FROZEN_INDEX",
+        "spike_count": null,
+        "rate_classification": "UNAVAILABLE_FROM_TRACKED_FROZEN_INDEX",
+        "reason": "The tracked freeze index records aggregate results and the report hash, but the per-population frozen report itself is not present in this checkout. No simulation or reconstruction was performed. Silence is therefore not inferred."
+      },
+      "historical_metadata_only": {
+        "logical_action": "adduction",
+        "physical_joint_assignment": "joint_LFCoxa_roll",
+        "coordinate_sign": 1,
+        "evidentiary_use": "EXCLUDED_FROM_CANDIDATE_QUALIFICATION"
+      },
+      "evidence_layers": {
+        "A_neural_identity_evidence": {
+          "status": "ANNOTATION_IDENTIFIES_MUSCLE_CLASS",
+          "detail": "Sternal adductor MN T1 left",
+          "source": "authoritative annotation-backed motor population inventory"
+        },
+        "B_neural_activity_evidence": {
+          "status": "PER_POPULATION_RESULT_NOT_AVAILABLE_IN_TRACKED_FREEZE_INDEX",
+          "interpretation": "Neither active nor OBSERVED_SILENT_UNDER_SURVEY_CONDITION may be asserted from aggregate totals."
+        },
+        "C_external_mechanical_evidence": {
+          "status": "FROZEN_LOCAL_DIFFERENTIAL_EXTERNAL_REFERENCE",
+          "references": [
+            {
+              "flymimic_tendon": "LFC_sternal_adductor_tendon",
+              "moment_arm_convention": "R = -dL/dq",
+              "external_reference_covector": {
+                "basis_order": [
+                  "joint_LFCoxa_yaw",
+                  "joint_LFCoxa",
+                  "joint_LFCoxa_roll"
+                ],
+                "values": [
+                  -0.11388808872259532,
+                  0.05623004695075151,
+                  -0.004274084963245932
+                ]
+              },
+              "normalized_absolute_contribution_fractions": {
+                "normalization": "abs(component) / sum(abs(all components))",
+                "basis_order": [
+                  "joint_LFCoxa_yaw",
+                  "joint_LFCoxa",
+                  "joint_LFCoxa_roll"
+                ],
+                "values": [
+                  0.6530571622223964,
+                  0.32243437663384367,
+                  0.02450846114375987
+                ]
+              },
+              "frozen_descriptive_classification": "MULTI_AXIS_YAW_DOMINANT"
+            }
+          ]
+        },
+        "D_transfer_uncertainty": [
+          "FlyMimic tendon identity must transfer to the broad MaleCNS annotation label.",
+          "The registered covector is local to two documented reference configurations, not finite-angle or pose-independent.",
+          "FlyMimic mechanics are external reference evidence, not biological ground truth.",
+          "Moment-arm magnitude is not a neural decoder gain.",
+          "Population activation sign in a MaleCNS decoder is not established by external tendon sign."
+        ]
+      },
+      "classification": "READY_FOR_MECHANICAL_HYPOTHESIS_ONLY",
+      "classification_basis": "Annotation-backed identity and at least one exact frozen external covector support hypothesis formulation; per-population frozen activity evidence is unavailable in the tracked checkout, so causal-test readiness is not asserted.",
+      "mechanical_hypothesis": {
+        "H_population": [
+          -0.11388808872259532,
+          0.05623004695075151,
+          -0.004274084963245932
+        ],
+        "representation": "SINGLE_EXTERNAL_TENDON_REFERENCE",
+        "external_reference_covectors": [
+          {
+            "flymimic_tendon": "LFC_sternal_adductor_tendon",
+            "moment_arm_convention": "R = -dL/dq",
+            "external_reference_covector": {
+              "basis_order": [
+                "joint_LFCoxa_yaw",
+                "joint_LFCoxa",
+                "joint_LFCoxa_roll"
+              ],
+              "values": [
+                -0.11388808872259532,
+                0.05623004695075151,
+                -0.004274084963245932
+              ]
+            },
+            "normalized_absolute_contribution_fractions": {
+              "normalization": "abs(component) / sum(abs(all components))",
+              "basis_order": [
+                "joint_LFCoxa_yaw",
+                "joint_LFCoxa",
+                "joint_LFCoxa_roll"
+              ],
+              "values": [
+                0.6530571622223964,
+                0.32243437663384367,
+                0.02450846114375987
+              ]
+            },
+            "frozen_descriptive_classification": "MULTI_AXIS_YAW_DOMINANT"
+          }
+        ],
+        "proposed_malecns_decoder_vector": "UNASSIGNED",
+        "gain_conversion": "PROHIBITED"
+      },
+      "sign_status": "SIGN_REQUIRES_VALIDATION",
+      "sign_distinction": "External covector signs describe registered muscle mechanics only; eventual MaleCNS population activation/decoder sign remains unassigned.",
+      "descriptive_groups": [
+        "MULTI_DOF_REFERENCE"
+      ]
+    },
+    {
+      "repository_population_name": "Sternal anterior rotator MN T1 left",
+      "male_cns_muscle_class": "Sternal anterior rotator",
+      "annotation_source_label": "Sternal anterior rotator MN T1 left",
+      "mapped_neuron_ids": [
+        806923,
+        919509
+      ],
+      "neuron_count": 2,
+      "inventory_mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "frozen_activity_survey_evidence": {
+        "survey_condition": "1000-ms spontaneous Motor Population Activity Survey",
+        "observed_status": "UNAVAILABLE_FROM_TRACKED_FROZEN_INDEX",
+        "spike_count": null,
+        "rate_classification": "UNAVAILABLE_FROM_TRACKED_FROZEN_INDEX",
+        "reason": "The tracked freeze index records aggregate results and the report hash, but the per-population frozen report itself is not present in this checkout. No simulation or reconstruction was performed. Silence is therefore not inferred."
+      },
+      "historical_metadata_only": {
+        "logical_action": "anterior rotation",
+        "physical_joint_assignment": "joint_LFCoxa_yaw",
+        "coordinate_sign": 1,
+        "evidentiary_use": "EXCLUDED_FROM_CANDIDATE_QUALIFICATION"
+      },
+      "evidence_layers": {
+        "A_neural_identity_evidence": {
+          "status": "ANNOTATION_IDENTIFIES_MUSCLE_CLASS",
+          "detail": "Sternal anterior rotator MN T1 left",
+          "source": "authoritative annotation-backed motor population inventory"
+        },
+        "B_neural_activity_evidence": {
+          "status": "PER_POPULATION_RESULT_NOT_AVAILABLE_IN_TRACKED_FREEZE_INDEX",
+          "interpretation": "Neither active nor OBSERVED_SILENT_UNDER_SURVEY_CONDITION may be asserted from aggregate totals."
+        },
+        "C_external_mechanical_evidence": {
+          "status": "FROZEN_LOCAL_DIFFERENTIAL_EXTERNAL_REFERENCE",
+          "references": [
+            {
+              "flymimic_tendon": "LFC_sternal_anterior_rotator_tendon",
+              "moment_arm_convention": "R = -dL/dq",
+              "external_reference_covector": {
+                "basis_order": [
+                  "joint_LFCoxa_yaw",
+                  "joint_LFCoxa",
+                  "joint_LFCoxa_roll"
+                ],
+                "values": [
+                  -0.08352962239815168,
+                  -0.010627837399356571,
+                  0.0275734905338182
+                ]
+              },
+              "normalized_absolute_contribution_fractions": {
+                "normalization": "abs(component) / sum(abs(all components))",
+                "basis_order": [
+                  "joint_LFCoxa_yaw",
+                  "joint_LFCoxa",
+                  "joint_LFCoxa_roll"
+                ],
+                "values": [
+                  0.6861822911166087,
+                  0.0873059593343336,
+                  0.2265117495490577
+                ]
+              },
+              "frozen_descriptive_classification": "MULTI_AXIS_YAW_DOMINANT"
+            }
+          ]
+        },
+        "D_transfer_uncertainty": [
+          "FlyMimic tendon identity must transfer to the broad MaleCNS annotation label.",
+          "The registered covector is local to two documented reference configurations, not finite-angle or pose-independent.",
+          "FlyMimic mechanics are external reference evidence, not biological ground truth.",
+          "Moment-arm magnitude is not a neural decoder gain.",
+          "Population activation sign in a MaleCNS decoder is not established by external tendon sign."
+        ]
+      },
+      "classification": "READY_FOR_MECHANICAL_HYPOTHESIS_ONLY",
+      "classification_basis": "Annotation-backed identity and at least one exact frozen external covector support hypothesis formulation; per-population frozen activity evidence is unavailable in the tracked checkout, so causal-test readiness is not asserted.",
+      "mechanical_hypothesis": {
+        "H_population": [
+          -0.08352962239815168,
+          -0.010627837399356571,
+          0.0275734905338182
+        ],
+        "representation": "SINGLE_EXTERNAL_TENDON_REFERENCE",
+        "external_reference_covectors": [
+          {
+            "flymimic_tendon": "LFC_sternal_anterior_rotator_tendon",
+            "moment_arm_convention": "R = -dL/dq",
+            "external_reference_covector": {
+              "basis_order": [
+                "joint_LFCoxa_yaw",
+                "joint_LFCoxa",
+                "joint_LFCoxa_roll"
+              ],
+              "values": [
+                -0.08352962239815168,
+                -0.010627837399356571,
+                0.0275734905338182
+              ]
+            },
+            "normalized_absolute_contribution_fractions": {
+              "normalization": "abs(component) / sum(abs(all components))",
+              "basis_order": [
+                "joint_LFCoxa_yaw",
+                "joint_LFCoxa",
+                "joint_LFCoxa_roll"
+              ],
+              "values": [
+                0.6861822911166087,
+                0.0873059593343336,
+                0.2265117495490577
+              ]
+            },
+            "frozen_descriptive_classification": "MULTI_AXIS_YAW_DOMINANT"
+          }
+        ],
+        "proposed_malecns_decoder_vector": "UNASSIGNED",
+        "gain_conversion": "PROHIBITED"
+      },
+      "sign_status": "SIGN_REQUIRES_VALIDATION",
+      "sign_distinction": "External covector signs describe registered muscle mechanics only; eventual MaleCNS population activation/decoder sign remains unassigned.",
+      "descriptive_groups": [
+        "SINGLE_COORDINATE_DOMINANT_REFERENCE"
+      ]
+    },
+    {
+      "repository_population_name": "Sternal posterior rotator MN T1 left",
+      "male_cns_muscle_class": "Sternal posterior rotator",
+      "annotation_source_label": "Sternal posterior rotator MN T1 left",
+      "mapped_neuron_ids": [
+        801915,
+        804851,
+        808640,
+        1050335829
+      ],
+      "neuron_count": 4,
+      "inventory_mapping_evidence": "MaleCNS body-map actuator annotation projected by M6A",
+      "frozen_activity_survey_evidence": {
+        "survey_condition": "1000-ms spontaneous Motor Population Activity Survey",
+        "observed_status": "UNAVAILABLE_FROM_TRACKED_FROZEN_INDEX",
+        "spike_count": null,
+        "rate_classification": "UNAVAILABLE_FROM_TRACKED_FROZEN_INDEX",
+        "reason": "The tracked freeze index records aggregate results and the report hash, but the per-population frozen report itself is not present in this checkout. No simulation or reconstruction was performed. Silence is therefore not inferred."
+      },
+      "historical_metadata_only": {
+        "logical_action": "posterior rotation",
+        "physical_joint_assignment": "joint_LFCoxa_yaw",
+        "coordinate_sign": -1,
+        "evidentiary_use": "EXCLUDED_FROM_CANDIDATE_QUALIFICATION"
+      },
+      "evidence_layers": {
+        "A_neural_identity_evidence": {
+          "status": "ANNOTATION_IDENTIFIES_MUSCLE_CLASS",
+          "detail": "Sternal posterior rotator MN T1 left",
+          "source": "authoritative annotation-backed motor population inventory"
+        },
+        "B_neural_activity_evidence": {
+          "status": "PER_POPULATION_RESULT_NOT_AVAILABLE_IN_TRACKED_FREEZE_INDEX",
+          "interpretation": "Neither active nor OBSERVED_SILENT_UNDER_SURVEY_CONDITION may be asserted from aggregate totals."
+        },
+        "C_external_mechanical_evidence": {
+          "status": "FROZEN_LOCAL_DIFFERENTIAL_EXTERNAL_REFERENCE",
+          "references": [
+            {
+              "flymimic_tendon": "LFC_sternal_posterior_rotator_tendon",
+              "moment_arm_convention": "R = -dL/dq",
+              "external_reference_covector": {
+                "basis_order": [
+                  "joint_LFCoxa_yaw",
+                  "joint_LFCoxa",
+                  "joint_LFCoxa_roll"
+                ],
+                "values": [
+                  -0.008295719862404953,
+                  0.0325514695284908,
+                  0.05126777650224741
+                ]
+              },
+              "normalized_absolute_contribution_fractions": {
+                "normalization": "abs(component) / sum(abs(all components))",
+                "basis_order": [
+                  "joint_LFCoxa_yaw",
+                  "joint_LFCoxa",
+                  "joint_LFCoxa_roll"
+                ],
+                "values": [
+                  0.09005832854596398,
+                  0.35337872855809044,
+                  0.5565629428959455
+                ]
+              },
+              "frozen_descriptive_classification": "MULTI_AXIS_ROLL_DOMINANT"
+            }
+          ]
+        },
+        "D_transfer_uncertainty": [
+          "FlyMimic tendon identity must transfer to the broad MaleCNS annotation label.",
+          "The registered covector is local to two documented reference configurations, not finite-angle or pose-independent.",
+          "FlyMimic mechanics are external reference evidence, not biological ground truth.",
+          "Moment-arm magnitude is not a neural decoder gain.",
+          "Population activation sign in a MaleCNS decoder is not established by external tendon sign."
+        ]
+      },
+      "classification": "READY_FOR_MECHANICAL_HYPOTHESIS_ONLY",
+      "classification_basis": "Annotation-backed identity and at least one exact frozen external covector support hypothesis formulation; per-population frozen activity evidence is unavailable in the tracked checkout, so causal-test readiness is not asserted.",
+      "mechanical_hypothesis": {
+        "H_population": [
+          -0.008295719862404953,
+          0.0325514695284908,
+          0.05126777650224741
+        ],
+        "representation": "SINGLE_EXTERNAL_TENDON_REFERENCE",
+        "external_reference_covectors": [
+          {
+            "flymimic_tendon": "LFC_sternal_posterior_rotator_tendon",
+            "moment_arm_convention": "R = -dL/dq",
+            "external_reference_covector": {
+              "basis_order": [
+                "joint_LFCoxa_yaw",
+                "joint_LFCoxa",
+                "joint_LFCoxa_roll"
+              ],
+              "values": [
+                -0.008295719862404953,
+                0.0325514695284908,
+                0.05126777650224741
+              ]
+            },
+            "normalized_absolute_contribution_fractions": {
+              "normalization": "abs(component) / sum(abs(all components))",
+              "basis_order": [
+                "joint_LFCoxa_yaw",
+                "joint_LFCoxa",
+                "joint_LFCoxa_roll"
+              ],
+              "values": [
+                0.09005832854596398,
+                0.35337872855809044,
+                0.5565629428959455
+              ]
+            },
+            "frozen_descriptive_classification": "MULTI_AXIS_ROLL_DOMINANT"
+          }
+        ],
+        "proposed_malecns_decoder_vector": "UNASSIGNED",
+        "gain_conversion": "PROHIBITED"
+      },
+      "sign_status": "SIGN_REQUIRES_VALIDATION",
+      "sign_distinction": "External covector signs describe registered muscle mechanics only; eventual MaleCNS population activation/decoder sign remains unassigned.",
+      "descriptive_groups": [
+        "MULTI_DOF_REFERENCE"
+      ]
+    }
+  ],
+  "descriptive_group_definitions": {
+    "SINGLE_COORDINATE_DOMINANT_REFERENCE": "External reference with the strongest single-coordinate concentration among the seven frozen tendons; descriptive only. The sternal anterior rotator is the preserved finding (yaw absolute fraction 0.6861822911166087).",
+    "MULTI_DOF_REFERENCE": "External reference whose complete three-component covector must be retained; dominant-component reduction is prohibited.",
+    "IDENTITY_OR_MECHANICS_BLOCKED": "Candidate classified with an identity or mechanics blocker.",
+    "SURVEY_SILENT": "Candidate explicitly recorded silent by available per-population frozen evidence; none assigned because that report is unavailable here.",
+    "no_ranking": "Groups are not scores, rankings, biological superiority, or interface-readiness judgments."
+  },
+  "future_causal_experiment_design": {
+    "execution_status": "DO_NOT_EXECUTE_IN_THIS_STAGE",
+    "minimum_design": [
+      "Freeze and checksum the implementation/preregistration before execution.",
+      "Preserve the existing MaleCNS neural runtime and sensory input.",
+      "Keep the 11 admitted channels unchanged.",
+      "Branch candidate ENABLED and candidate ZEROED only at the final physical application boundary.",
+      "Where technically possible, replay/copy identical neural state and sensory history into paired conditions.",
+      "Log population spikes and rates independently of the candidate physical contribution.",
+      "Apply and log all three proximal components; do not select a dominant coordinate.",
+      "Log requested contribution and realized physical response so neural silence and zero physical effect remain distinguishable.",
+      "Use no hidden controller, gait generator, stabilization, balance/righting logic, scripted locomotion, perturbation, or force beyond the preregistered candidate boundary.",
+      "Do not interpret movement as natural biological function."
+    ],
+    "paired_conditions": {
+      "ENABLED": "Candidate boundary receives the preregistered decoder output, whose vector and gain must be preregistered separately before execution.",
+      "ZEROED": "Same candidate boundary is explicitly zero while all admitted channels remain identical.",
+      "neural_state_requirement": "IDENTICAL_WHERE_TECHNICALLY_POSSIBLE; otherwise preregister the mismatch and pairing method before execution."
+    }
+  },
+  "future_decision_gates": {
+    "NEURAL_ACTIVITY_PRESENT": {
+      "metric": "population spike increments and population rate under the future paired trial",
+      "criterion": "Nonzero prespecified activity in the analysis window",
+      "numerical_threshold": "TO_BE_PREREGISTERED_BEFORE_EXECUTION"
+    },
+    "PHYSICAL_CONTRIBUTION_NONZERO": {
+      "metric": "logged three-component candidate contribution at final application boundary",
+      "criterion": "At least one component exceeds a predeclared numerical/noise tolerance",
+      "numerical_threshold": "TO_BE_PREREGISTERED_BEFORE_EXECUTION"
+    },
+    "ENABLED_ZEROED_DIVERGENCE_PRESENT": {
+      "metric": "paired three-component proximal physical outcome difference",
+      "criterion": "Difference exceeds a predeclared numerical/noise tolerance over a predeclared window",
+      "numerical_threshold": "TO_BE_PREREGISTERED_BEFORE_EXECUTION"
+    },
+    "DIRECTION_CONSISTENT_WITH_HYPOTHESIS": {
+      "metric": "directional agreement between paired physical difference and preregistered H_population",
+      "criterion": "Predeclared vector-direction test passes; external sign cannot supply decoder activation sign",
+      "numerical_threshold": "TO_BE_PREREGISTERED_BEFORE_EXECUTION"
+    },
+    "MULTI_DOF_RATIO_CONSISTENT_WITH_REFERENCE": {
+      "metric": "ratios of all estimable three-component enabled-zeroed effects versus the selected external reference covector",
+      "criterion": "Predeclared ratio/vector similarity test and tolerance pass without dominant-axis reduction",
+      "numerical_threshold": "TO_BE_PREREGISTERED_BEFORE_EXECUTION"
+    },
+    "multiple_tendon_rule": "For the broad promotor population, select one tendon-specific hypothesis or preregister a biologically justified combination rule before execution; no post-hoc averaging or best-fit tendon selection."
+  },
+  "unresolved_blockers": [
+    "Per-population frozen survey report is absent from this checkout, preventing faithful active/silent and spike/rate extraction.",
+    "MaleCNS-to-FlyGym activation/coordinate signs require independent validation for every candidate.",
+    "Decoder vectors and gains remain UNASSIGNED.",
+    "Transfer from FlyMimic tendon mechanics to MaleCNS population action is unvalidated.",
+    "Local differential evidence does not establish finite-angle or pose-independent behavior.",
+    "Broad tergopleural/pleural promotor annotation binds to three distinct external tendons; selection or combination must be independently preregistered."
+  ],
+  "scientific_limitations": [
+    "Candidate status is not interface admission.",
+    "No claim of biological ground truth, natural function, necessity, sufficiency, locomotion, gait, balance, stabilization, or righting is made.",
+    "No confidence score or overall candidate ranking is produced.",
+    "The historical logical action, joint, and sign are metadata only and were excluded from qualification."
+  ],
+  "execution_ledger": {
+    "analysis_only_file_reads": true,
+    "json_authored": true,
+    "json_validation_planned": true,
+    "neural_simulations_executed": 0,
+    "behavioral_simulations_executed": 0,
+    "mujoco_dynamics_executed": 0,
+    "mj_step_calls": 0,
+    "perturbations_executed": 0,
+    "forces_applied": 0,
+    "pose_sweeps_executed": 0,
+    "live_fly_executions": 0,
+    "future_causal_experiment_executed": false
+  }
+}
