@@ -1,0 +1,154 @@
+{
+  "schema": "LF-PROXIMAL-MOTOR-RECRUITMENT-CRN-CLARIFICATION.1",
+  "document_type": "PROSPECTIVE_NON_OVERWRITING_RNG_SCHEDULING_CLARIFICATION_ONLY",
+  "status": "FROZEN_BEFORE_RECRUITMENT_EXECUTION_AND_RUNTIME_MODIFICATION",
+  "created_utc_date": "2026-09-27",
+  "prospective_timing": {
+    "created_before_any_recruitment_execution": true,
+    "created_before_any_recruitment_neural_runtime_step": true,
+    "created_before_any_candidate_outcome_generation_or_inspection": true,
+    "outcome_information_used_to_select_schedule": false
+  },
+  "purpose": "Resolve prospectively the common-random-number ambiguity identified by the RNG-semantics audit by freezing a condition-independent external-sensory draw schedule. This artifact clarifies the existing preregistered design; it does not execute it or implement the required runtime change.",
+  "parent_artifacts": {
+    "original_frozen_recruitment_preregistration": {
+      "path": "malecns_backend/embodiment/interface_output/lf_proximal_motor_recruitment/lf_proximal_motor_recruitment_preregistration.json",
+      "sha256": "994789847840cc53287b1bcbfff34e86fdc880f7b4d00c7cbc00f54f68ed812c",
+      "modified_by_this_clarification": false
+    },
+    "rng_semantics_audit": {
+      "path": "malecns_backend/embodiment/interface_output/lf_proximal_motor_recruitment/lf_proximal_motor_recruitment_rng_semantics_audit.json",
+      "sha256": "93bbddeb564bf017e7c1b0ca962b9244cad890d45907ffc17d670c8c0fdafee0",
+      "resolution_selected": "Audit option 3: fixed dense-index draws with explicit eligibility rules, retaining the existing MaleCNSBrain.rng generator."
+    },
+    "frozen_pre_extraction_addendum": {
+      "path": "malecns_backend/embodiment/interface_output/lf_proximal_motor_recruitment/lf_proximal_motor_recruitment_pre_extraction_addendum.json",
+      "sha256": "2dbfff3e8db3ea26a57a028dc0b50b24d186cedfb51f95e4fcc5fbde319b1588",
+      "relevance": "Preserves the prospective, outcome-independent boundary and frozen replay-source conventions; it is not altered or superseded by this RNG clarification.",
+      "modified_by_this_clarification": false
+    }
+  },
+  "tracked_source_identities": {
+    "source_commit_at_clarification": "7b93254e702c345c7586e975ed90d738809153c4",
+    "files": [
+      {
+        "path": "malecns_backend/neural.py",
+        "sha256": "bf05e587c137ba50f050c2cdcdc2bcbb718389e309ec8f40414253b33a0823e9",
+        "role": "MaleCNSBrain RNG ownership, external-event draw, refractory logic, and neural transition semantics"
+      },
+      {
+        "path": "malecns_backend/embodiment/sensory.py",
+        "sha256": "d245ac2b91294fef7629375e5734a6788e4749dc5b768ff082cdeb2cfd9f39ea",
+        "role": "frozen sensory encoder and rate computation"
+      },
+      {
+        "path": "malecns_backend/embodiment/six_tibia_causal.py",
+        "sha256": "ee2a2f3a3d5fed38ccc6d44f9d29cb0b0af57a36af56a6015e84180538037b1b",
+        "role": "selected six-channel runtime composition and RNG-state provenance"
+      },
+      {
+        "path": "malecns_backend/embodiment/motor.py",
+        "sha256": "a64e75a0097c2927d35d94401d5c26f948fb83c86b63e5f6e527ed7d70efb12f",
+        "role": "frozen motor observer behavior"
+      }
+    ]
+  },
+  "frozen_sensory_mapping_and_interface_identities": [
+    {
+      "path": "malecns_backend/interface_map.json",
+      "sha256": "24b7229bea6f24ff0e65fe09b202d42dc06819fe234194e3c3ab95b596319e0b",
+      "role": "neuron-ID to dense-index interface mapping"
+    },
+    {
+      "path": "malecns_backend/embodiment/six_leg_map.json",
+      "sha256": "575186602ac1e5a6e3b2c6d680309880266f5d80e18fff44f989440f6cd0a4bc",
+      "role": "frozen six tibial sensory population membership"
+    }
+  ],
+  "authorized_crn_resolution": {
+    "rng_ownership": "RNG ownership remains with the existing MaleCNSBrain.rng NumPy generator. No separate RNG stream, pre-generated random table, stateless generator, or other random provider is permitted.",
+    "bit_generator": "PCG64 as supplied by the tracked NumPy default_rng implementation; the PCG64 implementation is unchanged.",
+    "draw_count_per_neural_timestep": 392,
+    "population_scope": "The validated union of the frozen LF, LM, LH, RF, RM, and RH sensory populations only.",
+    "slot_order": "Map the 392 slots deterministically to the 392 unique sensory members in strictly increasing dense-neuron-index order.",
+    "neuronwise_pairing": "Dense neuron i receives the same RNG slot and underlying random variate in every condition originating from the same seed and branch point at the same neural timestep.",
+    "unconditional_slot_consumption": "Consume all 392 slots at every neural timestep regardless of whether encoded external_drive is zero, the neuron is refractory, or the neuron is otherwise ineligible to receive an external sensory event at that timestep.",
+    "zero_drive_rule": "For a zero-drive neuron, consume and discard its assigned variate; that slot cannot produce an external sensory event.",
+    "refractory_or_ineligible_rule": "For a refractory or otherwise ineligible neuron, consume and discard its assigned variate; that slot cannot produce an external sensory event.",
+    "eligible_positive_drive_rule": "For an eligible positive-drive neuron, compare that neuron's assigned dense-index variate using the existing unchanged event-probability rule.",
+    "unchanged_event_probability_rule": "The existing comparison probability external_drive[dense_index] * (dt / 1000) remains unchanged.",
+    "unchanged_semantics": "The encoder, rate computation, event-probability equation, refractory semantics, neural transition semantics, PCG64 implementation, and all unrelated runtime behavior remain unchanged except for this fixed external-sensory RNG draw schedule.",
+    "crn_objective": "The objective is identical underlying random variates mapped to the same (seed, neural timestep, dense sensory neuron) across conditions, not identical stochastic event outcomes across conditions.",
+    "permitted_causal_divergence": "Event outcomes may diverge causally because condition-specific rates, eligibility, and refractory state may differ.",
+    "branch_point_ms": 250.0,
+    "branch_rng_copy_rule": "After the 250.0-ms branch point, every branch begins from an exact copy of the same complete MaleCNSBrain.rng bit-generator state.",
+    "post_step_rng_alignment": "Because every branch consumes exactly 392 variates in the same dense-index order at every neural timestep, MaleCNSBrain.rng state and stream position must remain identical across branches after each corresponding timestep, assuming no unauthorized consumer is introduced."
+  },
+  "fail_closed_conditions": [
+    "The frozen sensory population does not resolve to exactly 392 unique dense indices.",
+    "Dense-index ordering differs from the ordering derived from the frozen mapping.",
+    "Another MaleCNSBrain.rng consumer exists or is introduced that makes cross-condition consumption condition-dependent.",
+    "Any branch consumes other than exactly 392 external-sensory variates in any neural timestep.",
+    "Corresponding branches do not begin with identical complete RNG state.",
+    "Corresponding post-step RNG states differ.",
+    "The neuron-to-variate mapping cannot be verified.",
+    "Any required provenance path, SHA-256 identity, source identity, mapping identity, or bit-generator identity differs."
+  ],
+  "failure_policy": "Abort before interpreting or inspecting recruitment outcomes. Do not retry, substitute a seed, or accept partial branch results.",
+  "scientific_interpretation": {
+    "change_made": "This clarification changes the RNG scheduling semantics needed to implement the preregistered common-random-number design. The tracked compact eligible-recipient-only schedule must not be used for this assay.",
+    "does_not_change": [
+      "the intervention",
+      "candidate decoder weights or coordinate signs",
+      "endpoints",
+      "statistical criteria",
+      "sensory encoder rates",
+      "event probabilities",
+      "refractory or neural transition semantics",
+      "the active physical motor interface"
+    ],
+    "does_not_require_identical_event_outcomes": true,
+    "schedule_selected_using_recruitment_outcomes": false,
+    "runtime_implementation_in_this_artifact": false,
+    "runner_implementation_in_this_artifact": false
+  },
+  "future_implementation_requirements_not_executed_here": [
+    "Implement only the fixed external-sensory RNG draw schedule in a separately reviewed change.",
+    "Verify the exact 392-member unique ordered dense-index mapping before any neural step.",
+    "Verify branch-point RNG-state equality and corresponding post-step RNG-state equality.",
+    "Verify per-timestep draw count and neuron-to-variate slot mapping without using candidate outcomes.",
+    "Reject any unauthorized MaleCNSBrain.rng consumer or condition-dependent consumption."
+  ],
+  "static_validation_scope": {
+    "permitted_now": [
+      "JSON syntax and schema-shape inspection",
+      "SHA-256 identity checks for referenced tracked files and frozen artifacts",
+      "Git diff checks proving that only this new clarification artifact is added",
+      "textual checks that the clarification contains the authorized fixed schedule and zero-execution ledger"
+    ],
+    "forbidden_now": [
+      "runtime modification or runtime testing",
+      "recruitment execution",
+      "neural stepping",
+      "candidate outcome generation or inspection",
+      "M8 execution or rerun",
+      "physics, FlyGym, or MuJoCo execution"
+    ]
+  },
+  "zero_execution_ledger": {
+    "recruitment_executions": 0,
+    "recruitment_neural_runtime_steps": 0,
+    "candidate_outcomes_generated": 0,
+    "candidate_outcomes_inspected": 0,
+    "physics_steps": 0,
+    "simulation_steps": 0,
+    "m8_reruns": 0
+  },
+  "authorization_boundary": {
+    "clarification_frozen": true,
+    "recruitment_execution_authorized_by_this_artifact": false,
+    "runtime_change_implemented": false,
+    "runner_implemented": false,
+    "frozen_artifacts_overwritten": false
+  }
+}
