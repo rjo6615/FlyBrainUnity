@@ -133,6 +133,78 @@ def test_wrong_artifact_hash_rejected_before_brain_creation(tmp_path, monkeypatc
         runner.provenance_gate(**paths)
 
 
+def test_canonical_lf_preregistration_and_exact_crlf_checkout_both_pass(tmp_path, monkeypatch):
+    paths, _ = _fixture_artifacts(tmp_path, monkeypatch)
+    canonical = b'{\n  "frozen_evidence_dependencies": []\n}\n'
+    paths["preregistration"].write_bytes(canonical)
+    runner.EXPECTED["preregistration"] = hashlib.sha256(canonical).hexdigest()
+    runner.provenance_gate(**paths)
+
+    paths["preregistration"].write_bytes(canonical.replace(b"\n", b"\r\n"))
+    _, provenance = runner.provenance_gate(**paths)
+    assert provenance["sha256"]["preregistration"] == hashlib.sha256(canonical).hexdigest()
+
+
+@pytest.mark.parametrize("mutation", [
+    lambda value: value.replace(b"dependencies", b"dependencieX"),
+    lambda value: value.replace(b": []", b":  []"),
+    lambda value: value.replace(b"  ", b"\t", 1),
+])
+def test_canonical_text_rejects_non_line_ending_changes(tmp_path, monkeypatch, mutation):
+    paths, _ = _fixture_artifacts(tmp_path, monkeypatch)
+    canonical = b'{\n  "frozen_evidence_dependencies": []\n}\n'
+    runner.EXPECTED["preregistration"] = hashlib.sha256(canonical).hexdigest()
+    paths["preregistration"].write_bytes(mutation(canonical.replace(b"\n", b"\r\n")))
+    with pytest.raises(runner.RecruitmentFailure, match="preregistration SHA-256"):
+        runner.provenance_gate(**paths)
+
+
+@pytest.mark.parametrize("artifact", ["clarification", "addendum"])
+def test_other_protocol_text_uses_canonical_lf_identity(tmp_path, monkeypatch, artifact):
+    paths, manifest = _fixture_artifacts(tmp_path, monkeypatch)
+    canonical = b'{\n  "protocol": "unchanged"\n}\n'
+    runner.EXPECTED[artifact] = hashlib.sha256(canonical).hexdigest()
+    paths[artifact].write_bytes(canonical.replace(b"\n", b"\r\n"))
+    if artifact == "addendum":
+        manifest["addendum_canonical_lf_sha256"] = runner.EXPECTED[artifact]
+        paths["manifest"].write_text(json.dumps(manifest))
+        runner.EXPECTED["manifest"] = runner.sha256_file(paths["manifest"])
+    runner.provenance_gate(**paths)
+
+
+def test_frozen_tracked_text_dependency_uses_canonical_lf_identity(tmp_path, monkeypatch):
+    paths, _ = _fixture_artifacts(tmp_path, monkeypatch)
+    dependency_lf = b"first line\nsecond line\n"
+    dependency = tmp_path / "dependency.py"
+    dependency.write_bytes(dependency_lf.replace(b"\n", b"\r\n"))
+    prereg_data = {"frozen_evidence_dependencies": [{
+        "path": "dependency.py", "sha256": hashlib.sha256(dependency_lf).hexdigest()
+    }]}
+    prereg_lf = (json.dumps(prereg_data, indent=2) + "\n").encode()
+    paths["preregistration"].write_bytes(prereg_lf)
+    runner.EXPECTED["preregistration"] = hashlib.sha256(prereg_lf).hexdigest()
+    monkeypatch.setattr(runner, "REPO", tmp_path)
+    runner.provenance_gate(**paths)
+
+    dependency.write_bytes(dependency.read_bytes().replace(b"second", b"changed"))
+    with pytest.raises(runner.RecruitmentFailure, match="frozen dependency mismatch"):
+        runner.provenance_gate(**paths)
+
+
+def test_replay_and_extraction_artifacts_remain_raw_byte_exact(tmp_path, monkeypatch):
+    paths, _ = _fixture_artifacts(tmp_path, monkeypatch)
+    # CRLF/LF equivalence is deliberately not extended to extraction text.
+    for artifact in ("manifest", "report"):
+        original = paths[artifact].read_bytes()
+        paths[artifact].write_bytes(original + b"\r\n")
+        with pytest.raises(runner.RecruitmentFailure, match=f"{artifact} SHA-256"):
+            runner.provenance_gate(**paths)
+        paths[artifact].write_bytes(original)
+    paths["replay"].write_bytes(paths["replay"].read_bytes() + b"\x00")
+    with pytest.raises(runner.RecruitmentFailure, match="replay SHA-256"):
+        runner.provenance_gate(**paths)
+
+
 @pytest.mark.parametrize("mutation", ["shape", "dtype", "nonfinite"])
 def test_invalid_replay_rejected(tmp_path, monkeypatch, mutation):
     paths, manifest = _fixture_artifacts(tmp_path, monkeypatch)
@@ -206,3 +278,25 @@ def test_provenance_failure_occurs_before_brain_factory(tmp_path):
     with pytest.raises(runner.RecruitmentFailure):
         runner.provenance_gate(replay=tmp_path / "missing")
     assert calls == []  # no factory is accepted or reachable by the gate
+
+
+def test_check_ready_provenance_failure_precedes_runtime_setup(tmp_path, monkeypatch):
+    paths, _ = _fixture_artifacts(tmp_path, monkeypatch)
+    paths["preregistration"].write_bytes(b"changed")
+    runtime_calls = []
+    monkeypatch.setattr(runner, "load_six_tibia_interfaces",
+                        lambda: runtime_calls.append("interfaces"))
+    with pytest.raises(runner.RecruitmentFailure, match="preregistration SHA-256"):
+        runner.check_ready(**paths)
+    assert runtime_calls == []
+
+
+def test_check_ready_performs_zero_neural_execution(tmp_path, monkeypatch):
+    paths, _ = _fixture_artifacts(tmp_path, monkeypatch)
+    monkeypatch.setattr(runner, "load_six_tibia_interfaces", lambda: object())
+    monkeypatch.setattr(runner, "frozen_sensory_indices", lambda interfaces: np.arange(392))
+    monkeypatch.setattr(runner, "execute_assay",
+                        lambda *args, **kwargs: pytest.fail("scientific execution called"))
+    result = runner.check_ready(**paths)
+    assert result["status"] == "READY_FOR_SCIENTIFIC_EXECUTION"
+    assert result["neural_runtime_steps"] == 0
