@@ -1,0 +1,224 @@
+{
+  "schema": "LF-PROXIMAL-MOTOR-RECRUITMENT-RNG-SEMANTICS-AUDIT.1",
+  "document_type": "STATIC_OUTCOME_INDEPENDENT_RNG_SEMANTICS_AUDIT_ONLY",
+  "status": "CLARIFICATION_REQUIRED_BEFORE_RUNTIME_CHANGE_OR_EXECUTION",
+  "audit_scope": {
+    "purpose": "Trace the currently tracked MaleCNSBrain NumPy generator and evaluate common-random-number schedules without implementing or executing the recruitment assay.",
+    "source_commit": "9856627533ab6c3af4114b42e40162795e084622",
+    "issue_documentation_commit_supplied_by_requester": "432a6b81c61aa41e6289af04e71852ee60f9649e",
+    "issue_documentation_commit_locally_resolvable": false,
+    "method": "Static inspection of tracked implementation and frozen protocol artifacts only; comments were not treated as implementation evidence.",
+    "outcome_independence": "No candidate outcome exists or was inspected, and no option was evaluated using recruitment behavior."
+  },
+  "tracked_identities": {
+    "sources": [
+      {"path": "malecns_backend/neural.py", "sha256": "bf05e587c137ba50f050c2cdcdc2bcbb718389e309ec8f40414253b33a0823e9"},
+      {"path": "malecns_backend/embodiment/sensory.py", "sha256": "d245ac2b91294fef7629375e5734a6788e4749dc5b768ff082cdeb2cfd9f39ea"},
+      {"path": "malecns_backend/embodiment/six_tibia_causal.py", "sha256": "ee2a2f3a3d5fed38ccc6d44f9d29cb0b0af57a36af56a6015e84180538037b1b"},
+      {"path": "malecns_backend/embodiment/motor.py", "sha256": "a64e75a0097c2927d35d94401d5c26f948fb83c86b63e5f6e527ed7d70efb12f"}
+    ],
+    "frozen_preregistration": {"path": "malecns_backend/embodiment/interface_output/lf_proximal_motor_recruitment/lf_proximal_motor_recruitment_preregistration.json", "sha256": "994789847840cc53287b1bcbfff34e86fdc880f7b4d00c7cbc00f54f68ed812c", "read_in_full": true, "modified": false},
+    "frozen_pre_extraction_addendum": {"path": "malecns_backend/embodiment/interface_output/lf_proximal_motor_recruitment/lf_proximal_motor_recruitment_pre_extraction_addendum.json", "sha256": "2dbfff3e8db3ea26a57a028dc0b50b24d186cedfb51f95e4fcc5fbde319b1588", "modified": false},
+    "readiness_audit_v2": {"path": "malecns_backend/embodiment/interface_output/lf_proximal_motor_recruitment/lf_proximal_motor_recruitment_implementation_readiness_audit_v2.json", "sha256": "26f4341101a0d3f88623325f9bb183cef9f74907188ca1dbbb81090066182813"}
+  },
+  "complete_relevant_generator_audit": {
+    "generator_identity_and_initialization": {
+      "call_site": "malecns_backend/neural.py:125 in MaleCNSBrain.reset",
+      "operation": "self.rng = numpy.random.default_rng(seed)",
+      "bit_generator_under_the_tracked_NumPy_default": "PCG64",
+      "ordering": "reset installs the generator before resetting all neural arrays, delay-ring state, time, diagnostics, and intervention state; none of those reset operations consumes it.",
+      "runtime_composition": "SixTibiaRuntime.__init__ calls brain.reset(seed) at six_tibia_causal.py:105 and only hashes the resulting state at line 106."
+    },
+    "consumers": [
+      {
+        "consumer": "external sensory-event Bernoulli trials",
+        "call_site": "malecns_backend/neural.py:169 in MaleCNSBrain.step",
+        "call": "self.rng.random(len(driven))",
+        "draw_shape": "one-dimensional array with shape (len(driven),)",
+        "draw_count_per_neural_step": "len(flatnonzero(candidate_available & (external_drive > 0))); it may be zero and is not fixed across conditions",
+        "recipient_selection": "driven is numpy.flatnonzero of a dense Boolean mask, hence recipients and variate assignment are in strictly increasing dense-neuron-index order among only eligible positive-drive neurons",
+        "assignment": "random variate j is compared with external_drive[driven[j]] * (dt/1000) and assigned to dense index driven[j]",
+        "zero_drive_rule": "external_drive <= 0 excludes the neuron before drawing; exactly zero receives no draw and cannot be forced",
+        "refractory_rule": "At step entry, refractory is computed as self.refractory > 0. Those ordinary refractory neurons are excluded by available = ~refractory, even though their refractory timers are decremented immediately afterward. Thus a neuron whose timer becomes zero during this decrement remains unavailable for this whole step and receives no draw.",
+        "withheld_rule": "For external_drive_withheld_indices only, candidate_available is overwritten from the separate shadow refractory state after that state is tested and decremented. A shadow-refractory withheld neuron receives no draw; an otherwise candidate-available withheld neuron receives a canonical draw and a successful candidate is then removed from delivery.",
+        "event_rule": "forced[driven] is the comparison result; successful ordinary events reset voltage and set refractory_ms. Successful withheld candidates set shadow refractory_ms, are recorded as candidates, and are cleared from forced before neural delivery.",
+        "state_transition_order": [
+          "Read and deliver the current delay-ring slot.",
+          "Snapshot ordinary refractory membership using refractory > 0.",
+          "Decrement those refractory timers and reset their voltages.",
+          "Construct ordinary availability from the pre-decrement snapshot.",
+          "Test/decrement shadow refractory state for withheld indices and construct candidate availability.",
+          "Select positive-drive candidate recipients, draw, compare, and record candidate external events.",
+          "Apply withholding, set forced-event voltage/refractory state, integrate available non-forced neurons, and detect threshold spikes.",
+          "Update spike counts/traces/adaptation and decays/recovery, gate transmission, enqueue propagated spikes, advance ring head and time."
+        ]
+      }
+    ],
+    "non_consuming_rng_accesses_in_selected_runtime": [
+      "six_tibia_causal.py:44 serializes bit_generator.state to compute a digest.",
+      "six_tibia_causal.py:106,115,138 record state digests after reset and around a control step; these accesses do not advance the generator."
+    ],
+    "other_stochastic_neural_mechanisms_sharing_generator": false,
+    "sharing_basis": "The tracked MaleCNS implementation has exactly one self.rng draw call: neural.py:169. Synaptic delivery, membrane integration, threshold firing, adaptation, depression, delay-ring propagation, motor observation, and encoding contain no access to brain.rng.",
+    "separate_rngs_outside_selected_assay": "Other modules define tactile-encoder or standalone proprioceptive RNGs, but SixTibiaRuntime feeds encoded rates to MaleCNSBrain and the preregistered neural-only assay does not call those samplers. They are not consumers of this MaleCNSBrain generator.",
+    "isolation_feasibility": "External-event randomness can be isolated without changing any unrelated stochastic mechanism because no unrelated mechanism currently consumes brain.rng. Introducing a new stream would nevertheless change external-event sequences and reset/state-copy/provenance semantics and therefore requires an authorized runtime modification.",
+    "six_population_application_order": "SixTibiaRuntime encodes and assigns LF, LM, LH, RF, RM, RH, but set_external_drive only writes a dense vector. MaleCNSBrain subsequently orders actual recipients globally by increasing dense index, not by leg assignment order.",
+    "sensory_population_size": 392,
+    "sensory_population_size_derivation": "23 + 80 + 93 + 13 + 83 + 100 frozen members; a future implementation must also validate uniqueness before treating this as 392 distinct dense indices."
+  },
+  "contradiction": {
+    "frozen_text": "Each copied branch begins with bit-identical RNG state. Because every condition assigns the same six populations in the same dense-index order, RNG consumption count/order must remain identical even though rates differ.",
+    "actual_behavior": "Population assignment does not determine draw membership. Positive drive and branch-local refractory/shadow-refractory membership determine driven, and only driven receives draws.",
+    "encoder_interaction": "SensoryEncoder.encode sets every rate <= 5 Hz to exactly zero before clipping. The LF bound interventions change the LF positive-rate mask, so they can immediately change draw count and dense-index-to-variate mapping.",
+    "refractory_interaction": "Condition-dependent successful events and downstream threshold spikes change later refractory membership. This can produce further branch-dependent exclusions and therefore further draw-count and assignment divergence.",
+    "conclusion": "Bit-identical branch-point generator state alone does not imply identical subsequent generator position, draw count, draw order, or neuron-to-variate assignment under the tracked transition."
+  },
+  "scientific_crn_requirement": {
+    "purpose": "Hold stochastic external-event noise paired across conditions so post-branch differences are attributable to the preregistered LF intervention rather than reassignment of unrelated random numbers.",
+    "distinctions": {
+      "A_identical_generator_state_or_consumption_position": "Required explicitly at the branch point and, by the frozen count/order sentence, intended to remain aligned after equal numbers of neural steps. It is insufficient by itself because a compact recipient list can assign the same stream position to different neurons.",
+      "B_same_variate_for_same_dense_neuron_and_step": "The operative scientific CRN property. It preserves neuronwise pairing when probabilities, positive-rate masks, and refractory states differ. It also implies a condition-independent conceptual variate schedule.",
+      "C_identical_stochastic_event_outcomes": "Not required and generally impossible under the intervention: the same variate compared with different rates may legitimately yield different outcomes, and refractory eligibility may causally suppress an otherwise successful event.",
+      "D_identical_draw_count_only": "Necessary for a stateful shared schedule but not sufficient; permutations or compacted eligibility lists can preserve count while assigning stream values to different dense neurons.",
+      "interpretive_limit": "B is the narrow scientific implication of the preregistration's stated causal purpose plus its same-population/dense-order rationale. The frozen text does not specify which mechanism must realize B."
+    }
+  },
+  "evaluated_resolutions": [
+    {
+      "id": 1,
+      "name": "current eligible-recipient-only drawing",
+      "schedule": "Draw one value for each increasing dense index satisfying candidate_available and external_drive > 0.",
+      "satisfies_frozen_scientific_crn_intent": false,
+      "corresponding_neurons_receive_corresponding_variates": false,
+      "condition_independent_draw_count_and_order": false,
+      "changes_existing_stochastic_semantics": false,
+      "changes_unrelated_rng_consumers": false,
+      "runtime_modification_required": false,
+      "outcome_independent_implementation_possible": true,
+      "reproducibility": "Reproduces current runtime for a branch in isolation but not paired neuronwise CRN after divergent eligibility.",
+      "fail_closed": "Reject before execution because the invariant cannot be asserted."
+    },
+    {
+      "id": 2,
+      "name": "fixed draws for every member of the six sensory populations",
+      "schedule": "At every 0.5-ms neural step draw one value per validated member of the union of the six frozen sensory populations, in increasing dense-index order, regardless of rate or refractory state.",
+      "satisfies_frozen_scientific_crn_intent": true,
+      "corresponding_neurons_receive_corresponding_variates": true,
+      "condition_independent_draw_count_and_order": true,
+      "changes_existing_stochastic_semantics": true,
+      "changes_unrelated_rng_consumers": false,
+      "runtime_modification_required": true,
+      "outcome_independent_implementation_possible": true,
+      "reproducibility": "Simple stateful PCG64 replay; expected 392 draws per step after uniqueness validation, but external events no longer match legacy compact-draw sequences.",
+      "fail_closed": "Require exact frozen index set/order, uniqueness, fixed vector length at every step, matching per-step/final RNG digests across conditions, and abort on any deviation.",
+      "underspecification": "Without explicit zero-rate and refractory discard rules, this option states the allocation but not the complete event semantics."
+    },
+    {
+      "id": 3,
+      "name": "fixed dense-index draws with explicit eligibility rules",
+      "schedule": "Use option 2, map slot i permanently to the ith increasing dense index, and consume but discard the mapped variate when rate <= 0 or that neuron is unavailable under the existing pre-decrement ordinary/shadow refractory test. Otherwise compare it with the unchanged rate * dt/1000 threshold.",
+      "satisfies_frozen_scientific_crn_intent": true,
+      "corresponding_neurons_receive_corresponding_variates": true,
+      "condition_independent_draw_count_and_order": true,
+      "changes_existing_stochastic_semantics": true,
+      "changes_unrelated_rng_consumers": false,
+      "runtime_modification_required": true,
+      "outcome_independent_implementation_possible": true,
+      "reproducibility": "Fully specified stateful schedule, easy to digest and replay; preserves the event probability and refractory eligibility rules but not legacy variate assignment.",
+      "fail_closed": "In addition to option 2 checks, log per-index variate identity or a schedule digest and verify that zero-rate/refractory entries never generate events while still occupying slots.",
+      "assessment": "Narrowest direct repair if continued use of the existing MaleCNS generator is selected."
+    },
+    {
+      "id": 4,
+      "name": "pre-generated seed-by-step-by-dense-index uniforms",
+      "schedule": "Before scientific stepping, generate and freeze a tensor for each seed covering every neural step and frozen sensory dense index; branches read the same cell and apply option 3 eligibility rules.",
+      "satisfies_frozen_scientific_crn_intent": true,
+      "corresponding_neurons_receive_corresponding_variates": true,
+      "condition_independent_draw_count_and_order": true,
+      "changes_existing_stochastic_semantics": true,
+      "changes_unrelated_rng_consumers": false,
+      "runtime_modification_required": true,
+      "outcome_independent_implementation_possible": true,
+      "reproducibility": "Strongest byte-frozen schedule and independent of branch execution order, but adds an input artifact, generator/version/shape/hash provenance, storage, and indexing risks.",
+      "fail_closed": "Freeze and verify tensor hash, dtype, shape, generator algorithm/version, seed derivation, step origin, dense-index table and bounds before any runtime step; abort on missing or extra access."
+    },
+    {
+      "id": 5,
+      "name": "counter-based or stateless seed-step-index mapping",
+      "schedule": "Define a versioned, domain-separated function (seed, absolute neural step, dense index) -> uniform and apply option 3 eligibility rules.",
+      "satisfies_frozen_scientific_crn_intent": true,
+      "corresponding_neurons_receive_corresponding_variates": true,
+      "condition_independent_draw_count_and_order": true,
+      "changes_existing_stochastic_semantics": true,
+      "changes_unrelated_rng_consumers": false,
+      "runtime_modification_required": true,
+      "outcome_independent_implementation_possible": true,
+      "reproducibility": "Execution-order independent and random-access, but requires freezing the exact counter algorithm, key construction, integer-to-uniform conversion, version, and test vectors; there is no meaningful mutable consumption position to compare.",
+      "fail_closed": "Reject unknown algorithm/version/domain, duplicate keys, noncanonical step/index inputs, or failed frozen test vectors."
+    },
+    {
+      "id": 6,
+      "name": "separate RNG stream dedicated to external sensory events",
+      "schedule": "Move external trials to a separately named, deterministically seeded and copied stream; pair this with option 3, 4, or 5 because stream separation alone does not repair compact eligibility-dependent assignment.",
+      "satisfies_frozen_scientific_crn_intent": "only when combined with a fixed neuronwise schedule",
+      "corresponding_neurons_receive_corresponding_variates": "not by itself",
+      "condition_independent_draw_count_and_order": "not by itself",
+      "changes_existing_stochastic_semantics": true,
+      "changes_unrelated_rng_consumers": false,
+      "runtime_modification_required": true,
+      "outcome_independent_implementation_possible": true,
+      "reproducibility": "Clear ownership and future-proofs unrelated stochastic mechanisms, but requires a frozen seed-derivation/stream-version contract and creates different external-event sequences.",
+      "fail_closed": "Assert that only the external-event path accesses the stream; copy/digest its full state; reject any additional owner or missing stream metadata."
+    },
+    {
+      "id": 7,
+      "name": "assay-owned CRN provider injected at the external-event boundary",
+      "schedule": "Add a narrowly scoped external-uniform provider interface to MaleCNSBrain; the ordinary default retains current compact draws, while this preregistered assay supplies option 3, 4, or 5 with frozen identity and schedule metadata.",
+      "satisfies_frozen_scientific_crn_intent": true,
+      "corresponding_neurons_receive_corresponding_variates": true,
+      "condition_independent_draw_count_and_order": true,
+      "changes_existing_stochastic_semantics": "yes for this assay, while allowing the unrelated default runtime path to remain byte-compatible",
+      "changes_unrelated_rng_consumers": false,
+      "runtime_modification_required": true,
+      "outcome_independent_implementation_possible": true,
+      "reproducibility": "Clean architectural isolation and explicit provenance, but more interface and validation surface than a direct fixed-draw runtime change.",
+      "fail_closed": "Provider must declare schedule/version/index digest and exact step; brain rejects absent, repeated, short, long, or mismatched vectors."
+    }
+  ],
+  "clarification_assessment": {
+    "can_new_non_overwriting_pre_execution_clarification_resolve_contradiction": true,
+    "reason": "The hypotheses, intervention values, seeds, replay, endpoints, and decision rules need not change. A prospective clarification can make the already stated CRN causal-control objective executable by freezing the missing allocation and eligibility semantics before any outcome exists.",
+    "original_artifacts_must_remain_unchanged": true,
+    "clarification_alone_changes_runtime": false,
+    "subsequent_runtime_modification_required": true,
+    "why_no_clarification_created_now": "The scientific intent rules out option 1 and requires neuronwise pairing, but neither the frozen protocol nor the tracked architecture uniquely chooses stateful dense draws, a frozen tensor, or a stateless mapping, nor whether the stream remains brain.rng or becomes separately owned. That prospective design choice requires explicit authorization.",
+    "recommended_minimal_choice": "Option 3 using the existing MaleCNSBrain generator: one stateful draw for every validated frozen sensory member at every neural step in increasing dense-index order, with zero-rate and pre-step-refractory variates consumed then discarded. This adds no random artifact or algorithm and affects no unrelated consumer because none exists.",
+    "exact_unresolved_decision": "Authorize (or reject in favor of option 4, 5, or 7) the recommended stateful 392-slot-per-step schedule, and explicitly decide whether those draws remain owned by copied MaleCNSBrain.rng or use a new externally seeded stream. Stream separation does not itself solve CRN mapping.",
+    "contingent_narrow_clarification_text_if_recommended_choice_is_authorized": [
+      "Objective: Common random numbers mean that, for a fixed seed, neural timestep, and member of the frozen union of the six sensory populations, every condition is assigned the same uniform variate. Event outcomes need not match when the intervention changes rate or when causal history changes eligibility.",
+      "Schedule and mapping: At every 0.5-ms neural step, including prefix and post-branch steps, consume exactly one PCG64 uniform from the MaleCNSBrain external-event generator for every distinct member of the frozen six-population union, ordered by strictly increasing dense neural index. Validate that the frozen memberships are unique and total 392; otherwise abort before stepping. Slot j is permanently assigned to ordered dense index j for that step.",
+      "Zero-rate and refractory rules: A mapped variate is consumed even when external_drive <= 0 or the neuron is unavailable. If external_drive <= 0, discard it and generate no external event. If unavailable under the existing step-entry ordinary refractory test, or under the existing step-entry shadow-refractory test for a withheld neuron, discard it and generate no external event. Eligibility tests, timer decrement ordering, probability rate_hz*0.5/1000, withholding, and all later neural transitions remain unchanged.",
+      "Ownership: This schedule uses MaleCNSBrain.rng exclusively for external sensory-event trials; no other tracked stochastic neural mechanism owns that generator. No separate stream, pre-generated table, or stateless mapping is permitted under this choice.",
+      "Branch copy: At 250.0 ms deep-copy every mutable field already enumerated by the original preregistration, including the complete PCG64 bit-generator state, delay ring contents/head, time, all neural arrays and counters, ordinary and shadow refractory state, external drive, last-event diagnostics, transmission gate state, diagnostic observer state, and candidate filtered-rate observer state.",
+      "Cross-condition invariants: Before branching all copied-state digests must match. For equal post-branch neural-step counts, draw count, draw order, per-step slot-to-dense-index mapping, and generator-state digest must match across conditions. The uniform mapped to a seed/step/dense-index tuple must be identical across conditions.",
+      "Permitted causal divergence: Encoded LF rates and positive-rate masks may differ only as preregistered. Consequently comparisons, external candidate/delivered events, ordinary or shadow refractory membership, neural state, spikes, and later candidate activity may diverge causally. Such outcome divergence is not an RNG-parity failure when the mapped variates and schedule remain identical.",
+      "Validation and fail-closed: Before scientific execution verify source and frozen-artifact hashes, unique ordered membership and total, PCG64 identity, fixed 392-draw advancement for every neural step, frozen deterministic test vectors, exact branch-copy digests, and matched per-step/final generator digests across conditions. Abort the full seed triplet before interpreting outcomes on any missing/extra draw, mapping mismatch, generator mismatch, state-copy mismatch, noncanonical index, or access by another RNG consumer. Do not retry, substitute a seed, or inspect candidate outcomes from an invalid triplet."
+    ]
+  },
+  "disposition": {
+    "runner_implemented": false,
+    "runtime_rng_semantics_modified": false,
+    "clarification_artifact_created": false,
+    "recruitment_may_execute": false,
+    "next_required_action": "Make and freeze the unresolved schedule/ownership decision in a new non-overwriting clarification; only then authorize a separately reviewed runtime modification and runner implementation."
+  },
+  "zero_scientific_execution_ledger": {
+    "recruitment_executions": 0,
+    "neural_runtime_steps": 0,
+    "physics_steps": 0,
+    "simulation_steps": 0,
+    "m8_reruns": 0,
+    "candidate_outcomes_inspected": 0,
+    "candidate_outcome_artifacts_created": 0
+  }
+}
