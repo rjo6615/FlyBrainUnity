@@ -7,6 +7,7 @@ from dataclasses import dataclass
 import json
 import math
 from pathlib import Path
+import copy
 
 import numpy as np
 
@@ -137,6 +138,59 @@ class MaleCNSBrain:
         # their newly generated events are not placed on the delivery ring.
         self.transmission_withheld_indices = np.empty(0, np.intp)
         self._last_transmission_withheld = np.empty(0, np.int32)
+        # The ordinary runtime deliberately retains its historical compact
+        # eligible-neuron draw path.  A frozen-index schedule is opt-in and is
+        # used only by protocols which have prospectively specified it.
+        self._external_rng_schedule_indices = None
+        self._external_rng_expected_state = None
+        self._external_rng_step_draws = 0
+        self._last_external_rng_indices = np.empty(0, np.int32)
+        self._last_external_rng_uniforms = np.empty(0, np.float64)
+
+    @staticmethod
+    def _rng_states_equal(left, right):
+        return json.dumps(left, sort_keys=True, separators=(",", ":")) == json.dumps(
+            right, sort_keys=True, separators=(",", ":"))
+
+    def configure_external_rng_schedule(self, dense_indices):
+        """Enable the frozen 392-slot sensory schedule for this brain.
+
+        This is intentionally an explicit assay-only switch.  It fails closed
+        rather than changing the stochastic semantics of ordinary callers.
+        """
+        indices = np.asarray(dense_indices, dtype=np.intp)
+        if (indices.ndim != 1 or len(indices) != 392 or
+                np.any(indices < 0) or np.any(indices >= self.n) or
+                not np.all(indices[1:] > indices[:-1])):
+            raise ValueError("external RNG schedule must be 392 unique, increasing dense indices")
+        if not isinstance(self.rng.bit_generator, np.random.PCG64):
+            raise RuntimeError("frozen external RNG schedule requires PCG64")
+        self._external_rng_schedule_indices = indices.copy()
+        self._external_rng_expected_state = copy.deepcopy(self.rng.bit_generator.state)
+        self._external_rng_step_draws = 0
+
+    def _external_event_trials(self, candidate_available, p):
+        """Return the external forced-event mask without changing its equation."""
+        forced = np.zeros(self.n, dtype=bool)
+        schedule = self._external_rng_schedule_indices
+        if schedule is None:
+            driven = np.flatnonzero(candidate_available & (self.external_drive > 0))
+            uniforms = self.rng.random(len(driven))
+            forced[driven] = uniforms < self.external_drive[driven] * (p.dt / 1000)
+            self._last_external_rng_indices = driven.astype(np.int32)
+        else:
+            if not self._rng_states_equal(self.rng.bit_generator.state,
+                                          self._external_rng_expected_state):
+                raise RuntimeError("unauthorized MaleCNSBrain.rng consumption detected")
+            uniforms = self.rng.random(392)
+            eligible = candidate_available[schedule] & (self.external_drive[schedule] > 0)
+            forced[schedule[eligible]] = (uniforms[eligible] <
+                self.external_drive[schedule[eligible]] * (p.dt / 1000))
+            self._external_rng_expected_state = copy.deepcopy(self.rng.bit_generator.state)
+            self._external_rng_step_draws = 392
+            self._last_external_rng_indices = schedule.astype(np.int32, copy=True)
+        self._last_external_rng_uniforms = np.asarray(uniforms, dtype=np.float64).copy()
+        return forced
 
     def set_external_drive(self, indices, rates_or_drive): self.external_drive[np.asarray(indices, dtype=np.intp)] = rates_or_drive
     def clear_external_drive(self): self.external_drive.fill(0)
@@ -158,15 +212,13 @@ class MaleCNSBrain:
         refractory = self.refractory > 0
         self.refractory[refractory] -= p.dt; self.v[refractory] = p.v_reset
         available = ~refractory
-        forced = np.zeros(self.n, dtype=bool)
         candidate_available = available.copy()
         withheld = self.external_drive_withheld_indices
         if len(withheld):
             shadow_active = self._withheld_external_refractory[withheld] > 0
             self._withheld_external_refractory[withheld[shadow_active]] -= p.dt
             candidate_available[withheld] = ~shadow_active
-        driven = np.flatnonzero(candidate_available & (self.external_drive > 0))
-        forced[driven] = self.rng.random(len(driven)) < self.external_drive[driven] * (p.dt / 1000)
+        forced = self._external_event_trials(candidate_available, p)
         # Draw every canonical external event before applying an optional
         # sensory-delivery intervention.  This retains common random numbers
         # for later populations instead of changing RNG consumption/order.

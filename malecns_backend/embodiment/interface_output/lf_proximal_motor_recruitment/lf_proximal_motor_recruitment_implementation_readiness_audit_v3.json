@@ -1,0 +1,93 @@
+{
+  "schema": "LF-PROXIMAL-MOTOR-RECRUITMENT-IMPLEMENTATION-READINESS-AUDIT.3",
+  "document_type": "NON_OVERWRITING_IMPLEMENTATION_AUDIT_ONLY",
+  "status": "IMPLEMENTED_NOT_AUTHORITATIVELY_READY_IN_CODEX",
+  "created_utc_date": "2026-09-27",
+  "frozen_artifact_identities": {
+    "preregistration_sha256": "994789847840cc53287b1bcbfff34e86fdc880f7b4d00c7cbc00f54f68ed812c",
+    "rng_semantics_audit_sha256": "93bbddeb564bf017e7c1b0ca962b9244cad890d45907ffc17d670c8c0fdafee0",
+    "crn_clarification_sha256": "3c5cc199480903f3942ca476b808e19533ab1a0397dba88429102e598cabf057",
+    "pre_extraction_addendum_sha256": "2dbfff3e8db3ea26a57a028dc0b50b24d186cedfb51f95e4fcc5fbde319b1588",
+    "expected_replay_sha256": "0515c8df205b613c84d2d727fec3cdd1914aa44b66ff0db35b37431f71cf131b",
+    "expected_manifest_sha256": "21dc70c74e10f913cad20d15f6fc48e0695df945ab6b612c1ddaacf60bde26f3",
+    "expected_extraction_report_sha256": "b9d931dcad1ccd533dcdae5864b545c313eaeb6e70fc183d0619ef86ae206c1a",
+    "expected_source_m8_sha256": "4e39bb83dd4455d56a4d88f717615530602317efaf83a6ed241b13af89dc2a5b"
+  },
+  "implementation_source_hashes_before_audit_file": {
+    "malecns_backend/neural.py": "b2755ce887c1a7578ea4147858da518ae5d76794f715d231c3022e1b078b0567",
+    "malecns_backend/embodiment/lf_proximal_motor_recruitment.py": "5222f353bde3df65745bb91dc75f32a4b937dabf6484d4a48e71c98de64a1d05",
+    "tests/test_lf_proximal_motor_recruitment.py": "c72ebfae88da33abaac4b5378e4706058e4524d63a90b873e84d70765fb9a4bd",
+    "malecns_backend/embodiment/sensory.py": "d245ac2b91294fef7629375e5734a6788e4749dc5b768ff082cdeb2cfd9f39ea",
+    "malecns_backend/embodiment/motor.py": "a64e75a0097c2927d35d94401d5c26f948fb83c86b63e5f6e527ed7d70efb12f",
+    "malecns_backend/embodiment/six_tibia.py": "5fefc84d9abdf7b9fc1ddbe65c35a6576812ed4d43f364c8a634091bdf6a1bad",
+    "malecns_backend/interface_map.json": "24b7229bea6f24ff0e65fe09b202d42dc06819fe234194e3c3ab95b596319e0b",
+    "malecns_backend/embodiment/six_leg_map.json": "575186602ac1e5a6e3b2c6d680309880266f5d80e18fff44f989440f6cd0a4bc"
+  },
+  "crn_implementation": {
+    "scope": "explicit opt-in MaleCNSBrain external-event schedule; ordinary runtime retains compact historical draws",
+    "owner": "MaleCNSBrain.rng",
+    "bit_generator": "PCG64",
+    "draws_per_neural_timestep": 392,
+    "mapping": "unique frozen six-population union in strictly increasing dense-index order",
+    "zero_drive_and_ineligible": "assigned variate consumed and discarded",
+    "eligible_positive_drive": "assigned variate uses unchanged external_drive * dt / 1000 comparison",
+    "unauthorized_consumer_detection": "the complete expected PCG64 state is checked at every scheduled step entry",
+    "cross_condition_verification": "slot indices, uniform-vector digests, and post-step RNG-state digests are checked at corresponding steps"
+  },
+  "state_copy_coverage": [
+    "membrane voltage",
+    "excitatory and inhibitory conductance",
+    "ordinary refractory state",
+    "activity trace",
+    "adaptation",
+    "depression resources",
+    "bias",
+    "threshold offsets",
+    "cumulative spike counts",
+    "delay ring contents and head",
+    "time",
+    "last spikes",
+    "external candidate and delivered-event diagnostics",
+    "withheld external refractory state",
+    "external drive",
+    "transmission gate and diagnostics",
+    "fixed RNG schedule diagnostics",
+    "complete PCG64 state",
+    "candidate observer last counts and filtered rates",
+    "sensory prefix history"
+  ],
+  "provenance_gates": [
+    "byte SHA-256 of preregistration, clarification, addendum, replay, manifest, and extraction report",
+    "manifest source-M8 SHA-256 and size",
+    "manifest schema, extraction validation, exact-copy policy and source selection",
+    "replay shape [1000,6], float64 dtype, finite values, radians, exact 1-ms timestamps and frozen channel order",
+    "392 unique increasing mapped dense indices before runtime construction"
+  ],
+  "cli_safety": {
+    "import": "zero execution",
+    "help": "zero execution",
+    "default": "prints inert usage and executes zero steps",
+    "check_ready": "provenance, replay, mapping, and static readiness only; no brain creation",
+    "execute": "sole CLI action that calls the scientific runtime after every provenance gate passes"
+  },
+  "tests": {
+    "kind": "synthetic implementation tests only; not scientific evidence",
+    "coverage": "CRN draws/mapping/discards/pairing/alignment/unauthorized use, provenance identities and replay/manifest semantics, exact state branching and mismatch rejection, inert CLI paths",
+    "environment_result": "NOT_RUN: NumPy is absent from this Codex environment and network package installation is blocked",
+    "syntax_check": "PASSED with python -m py_compile"
+  },
+  "remaining_limitations": [
+    "The authoritative replay, manifest, and extraction report exist only on LegendaryPC and are absent here.",
+    "Consequently --check-ready cannot pass in Codex and no authoritative runtime-readiness claim is made.",
+    "The scientific assay was not executed and its outcome remains unknown."
+  ],
+  "scientific_execution_ledger": {
+    "recruitment_executions": 0,
+    "neural_runtime_steps": 0,
+    "physics_steps": 0,
+    "simulation_steps": 0,
+    "m8_reruns": 0,
+    "candidate_outcomes_generated": 0,
+    "candidate_outcomes_inspected": 0
+  }
+}
