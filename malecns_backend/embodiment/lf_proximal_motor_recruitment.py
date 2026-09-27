@@ -40,6 +40,9 @@ EXPECTED = {
     "report": "b9d931dcad1ccd533dcdae5864b545c313eaeb6e70fc183d0619ef86ae206c1a",
     "source_m8": "4e39bb83dd4455d56a4d88f717615530602317efaf83a6ed241b13af89dc2a5b",
 }
+# These identities were frozen from Git's canonical LF blob bytes.  A checkout
+# may represent each LF as CRLF, but no other byte transformation is allowed.
+CANONICAL_LF_ARTIFACTS = frozenset({"preregistration", "clarification", "addendum"})
 CHANNELS = ("joint_LFTibia", "joint_LMTibia", "joint_LHTibia",
             "joint_RFTibia", "joint_RMTibia", "joint_RHTibia")
 CONDITIONS = ("CONTROL_REPLAY", "LF_MIN_BOUND", "LF_MAX_BOUND")
@@ -58,6 +61,18 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+def canonical_lf_sha256(path: Path) -> str:
+    """Hash canonical Git text bytes, tolerating only checkout CRLF expansion."""
+    return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+
+
+def _verified_identity(path: Path, expected: str, *, canonical_lf: bool) -> str:
+    """Return the frozen identity after applying the artifact's declared policy."""
+    actual = canonical_lf_sha256(path) if canonical_lf else sha256_file(path)
+    _require(actual == expected, "SHA-256 mismatch")
+    return actual
+
+
 def _require(condition: bool, message: str) -> None:
     if not condition:
         raise RecruitmentFailure(message)
@@ -73,10 +88,12 @@ def provenance_gate(*, preregistration=PREREGISTRATION, clarification=CLARIFICAT
     identities: dict[str, str] = {}
     for name, path in paths.items():
         try:
-            identities[name] = sha256_file(path)
+            identities[name] = _verified_identity(
+                path, EXPECTED[name], canonical_lf=name in CANONICAL_LF_ARTIFACTS)
         except OSError as exc:
             raise RecruitmentFailure(f"cannot read required {name}: {exc}") from exc
-        _require(identities[name] == EXPECTED[name], f"{name} SHA-256 mismatch")
+        except RecruitmentFailure as exc:
+            raise RecruitmentFailure(f"{name} {exc}") from exc
 
     # Verify every unchanged dependency frozen by the parent protocol.  The
     # sole exception is neural.py: its old identity is necessarily superseded
@@ -93,7 +110,10 @@ def provenance_gate(*, preregistration=PREREGISTRATION, clarification=CLARIFICAT
                  "invalid frozen dependency record")
         dependency_path = REPO / relative
         try:
-            actual = sha256_file(dependency_path)
+            # Every dependency named by this frozen preregistration is a
+            # Git-tracked text/source artifact whose recorded digest is its
+            # canonical repository LF identity.
+            actual = canonical_lf_sha256(dependency_path)
         except OSError as exc:
             raise RecruitmentFailure(f"cannot read frozen dependency {relative}: {exc}") from exc
         _require(actual == dependency["sha256"], f"frozen dependency mismatch: {relative}")

@@ -1,0 +1,46 @@
+{
+  "schema": "LF-PROXIMAL-MOTOR-RECRUITMENT-PROVENANCE-PORTABILITY-AUDIT.1",
+  "status": "IMPLEMENTATION_ONLY_NO_SCIENTIFIC_EXECUTION",
+  "purpose": "Non-overwriting audit of cross-platform frozen-input identity verification",
+  "observed_issue": {
+    "platform": "LegendaryPC Windows checkout",
+    "artifact": "lf_proximal_motor_recruitment_preregistration.json",
+    "working_tree_raw_sha256": "17ebefd5a48ef4c340f05959ea7594b4b6f72f2d313496727a7ab1567dcd0485",
+    "working_tree_crlf_sequences": 148,
+    "canonical_git_lf_sha256": "994789847840cc53287b1bcbfff34e86fdc880f7b4d00c7cbc00f54f68ed812c",
+    "runner_expected_sha256": "994789847840cc53287b1bcbfff34e86fdc880f7b4d00c7cbc00f54f68ed812c",
+    "finding": "The tracked scientific content is unchanged; checkout CRLF expansion alone changed physical working-tree bytes."
+  },
+  "verification_rules": {
+    "canonical_git_text": "For explicitly classified Git-tracked protocol text and frozen dependency text/source, replace CRLF byte pairs with LF in memory and require the resulting SHA-256 to equal the pre-existing frozen canonical LF digest. Bare CR, whitespace changes, encoding changes, and all other content changes remain failures.",
+    "raw_bytes": "Hash physical bytes without transformation and require exact equality with the pre-existing frozen raw SHA-256."
+  },
+  "artifact_classification": [
+    {"artifact": "original preregistration", "class": "canonical_git_text", "semantics": "canonical LF SHA-256"},
+    {"artifact": "CRN clarification", "class": "canonical_git_text", "semantics": "canonical LF SHA-256"},
+    {"artifact": "pre-extraction addendum JSON", "class": "canonical_git_text", "semantics": "canonical LF SHA-256"},
+    {"artifact": "frozen dependency source and JSON files named by the preregistration", "class": "canonical_git_text", "semantics": "canonical LF SHA-256; neural.py remains the prospectively documented exception"},
+    {"artifact": "sensory replay .npy", "class": "raw_bytes", "semantics": "exact raw SHA-256"},
+    {"artifact": "extraction manifest", "class": "raw_bytes", "semantics": "exact raw SHA-256 plus frozen semantic fields"},
+    {"artifact": "extraction report", "class": "raw_bytes", "semantics": "exact raw SHA-256"},
+    {"artifact": "source-M8 export", "class": "raw_bytes", "semantics": "exact raw SHA-256 and size attested by the exact-byte manifest; source is not reopened by this runner"}
+  ],
+  "regression_coverage": [
+    "canonical LF protocol text passes",
+    "exact CRLF checkout representation passes",
+    "one-character, whitespace, and other content changes fail",
+    "clarification, addendum, and frozen dependency text use canonical LF identity",
+    "replay, manifest, and report preserve exact raw-byte identity",
+    "provenance failure precedes runtime setup",
+    "check-ready performs zero neural execution"
+  ],
+  "scientific_execution_ledger": {
+    "recruitment_executions": 0,
+    "neural_runtime_steps": 0,
+    "physics_steps": 0,
+    "simulation_steps": 0,
+    "M8_reruns": 0,
+    "candidate_outcomes_generated": 0,
+    "candidate_outcomes_inspected": 0
+  }
+}
