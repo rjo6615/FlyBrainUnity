@@ -1,0 +1,104 @@
+{
+  "schema": "LF-PROXIMAL-MOTOR-RECRUITMENT-IMPLEMENTATION-READINESS-AUDIT.2",
+  "document_type": "STATIC_IMPLEMENTATION_READINESS_AUDIT_ONLY",
+  "status": "BLOCKED_RUNTIME_COMMON_RANDOM_NUMBERS_CONTRADICTION",
+  "supersedes": {
+    "path": "malecns_backend/embodiment/interface_output/lf_proximal_motor_recruitment/lf_proximal_motor_recruitment_implementation_readiness_audit.json",
+    "scope": "The prior environment-specific conclusion that locally absent scientific artifacts prevent static implementation.",
+    "replacement_conclusion": "Local absence is not a static implementation blocker because LegendaryPC can enforce the supplied frozen identities and manifest contract at runtime. A separate contradiction between the frozen protocol and the tracked neural runtime is the blocker."
+  },
+  "authoritative_artifact_contract_not_locally_inspected": {
+    "replay": {
+      "path": "malecns_backend/embodiment/interface_output/lf_proximal_motor_recruitment_sensory_replay/lf_proximal_motor_recruitment_sensory_replay.npy",
+      "size": 48128,
+      "sha256": "0515c8df205b613c84d2d727fec3cdd1914aa44b66ff0db35b37431f71cf131b",
+      "shape": [1000, 6],
+      "dtype": "float64",
+      "units": "radians",
+      "cadence_ms": 1.0
+    },
+    "manifest": {
+      "filename": "lf_proximal_motor_recruitment_sensory_replay_manifest.json",
+      "sha256": "21dc70c74e10f913cad20d15f6fc48e0695df945ab6b612c1ddaacf60bde26f3",
+      "schema": "LF-PROXIMAL-MOTOR-RECRUITMENT-SENSORY-REPLAY.1"
+    },
+    "report": {
+      "filename": "LF_PROXIMAL_MOTOR_RECRUITMENT_SENSORY_REPLAY_REPORT.md",
+      "sha256": "b9d931dcad1ccd533dcdae5864b545c313eaeb6e70fc183d0619ef86ae206c1a"
+    },
+    "source_m8_sha256": "4e39bb83dd4455d56a4d88f717615530602317efaf83a6ed241b13af89dc2a5b",
+    "canonical_addendum_sha256": "2dbfff3e8db3ea26a57a028dc0b50b24d186cedfb51f95e4fcc5fbde319b1588",
+    "codex_runtime_provenance_established": false
+  },
+  "frozen_specification_identities": {
+    "preregistration": {
+      "path": "malecns_backend/embodiment/interface_output/lf_proximal_motor_recruitment/lf_proximal_motor_recruitment_preregistration.json",
+      "sha256": "994789847840cc53287b1bcbfff34e86fdc880f7b4d00c7cbc00f54f68ed812c"
+    },
+    "pre_extraction_addendum": {
+      "path": "malecns_backend/embodiment/interface_output/lf_proximal_motor_recruitment/lf_proximal_motor_recruitment_pre_extraction_addendum.json",
+      "sha256": "2dbfff3e8db3ea26a57a028dc0b50b24d186cedfb51f95e4fcc5fbde319b1588"
+    }
+  },
+  "tracked_source_files": [
+    {"path": "malecns_backend/neural.py", "sha256": "bf05e587c137ba50f050c2cdcdc2bcbb718389e309ec8f40414253b33a0823e9"},
+    {"path": "malecns_backend/embodiment/sensory.py", "sha256": "d245ac2b91294fef7629375e5734a6788e4749dc5b768ff082cdeb2cfd9f39ea"},
+    {"path": "malecns_backend/embodiment/six_tibia_causal.py", "sha256": "ee2a2f3a3d5fed38ccc6d44f9d29cb0b0af57a36af56a6015e84180538037b1b"},
+    {"path": "malecns_backend/embodiment/motor.py", "sha256": "a64e75a0097c2927d35d94401d5c26f948fb83c86b63e5f6e527ed7d70efb12f"},
+    {"path": "malecns_backend/interface_map.json", "sha256": "24b7229bea6f24ff0e65fe09b202d42dc06819fe234194e3c3ab95b596319e0b"},
+    {"path": "malecns_backend/embodiment/six_leg_map.json", "sha256": "575186602ac1e5a6e3b2c6d680309880266f5d80e18fff44f989440f6cd0a4bc"}
+  ],
+  "frozen_dependency_audit": {
+    "all_nine_preregistered_dependencies_present": true,
+    "all_nine_preregistered_dependencies_match_sha256": true
+  },
+  "genuine_implementation_blocker": {
+    "frozen_protocol_requirement": "Each copied branch begins with bit-identical RNG state. Because every condition assigns the same six populations in the same dense-index order, RNG consumption count/order must remain identical even though rates differ.",
+    "tracked_runtime_behavior": [
+      "MaleCNSBrain.step constructs candidate_available from the branch's current refractory state.",
+      "It then constructs driven with flatnonzero(candidate_available & (external_drive > 0)).",
+      "It draws rng.random(len(driven)); therefore both the number of draws and the mapping of draws to dense indices depend on the branch-specific positive-rate mask and refractory state."
+    ],
+    "why_conditions_can_diverge": [
+      "The unchanged encoder sets rates less than or equal to 5 Hz to exactly zero.",
+      "LF_MIN_BOUND and LF_MAX_BOUND produce different LF positive-rate masks by construction.",
+      "Different rates can produce different external events and refractory states, which can further change candidate_available and subsequent RNG draw count/order."
+    ],
+    "conclusion": "Copying the bit-generator state at 250.0 ms is supported, but the current tracked transition implementation does not guarantee the frozen requirement of identical post-branch RNG consumption count/order. Implementing fixed per-population draws, pre-generating random variates, drawing for zero-rate or refractory neurons, or using a separate shared random stream would change the neural transition/RNG semantics and is not authorized by the frozen protocol.",
+    "failure_policy": "Do not guess, modify MaleCNSBrain, or create a runner that falsely asserts common-random-number equivalence."
+  },
+  "otherwise_statically_supported": [
+    "Frozen artifact byte identities and manifest fields can be encoded as mandatory LegendaryPC pre-initialization gates.",
+    "Seeds 1, 2, and 3 and one shared replay can be represented without modifying the replay.",
+    "One [0,250) prefix per seed and a 250.0-ms branch point are supported by the 0.5-ms tracked timestep.",
+    "Mutable neural arrays, pending delay ring/head, time, diagnostic state, intervention state, NumPy bit-generator state, cumulative counts, and 40-ms observer state are exposed for explicit deep copy and byte-level digesting.",
+    "The frozen interventions can be applied upstream of the unchanged sensory encoder.",
+    "A neural-only implementation can avoid FlyGym, MuJoCo, physics, M8, decoding, and the active 11-channel physical motor interface."
+  ],
+  "resolution_required_before_runner_implementation": {
+    "question": "How must common random numbers be defined given that current MaleCNSBrain.step consumes a branch-dependent number/order of RNG draws?",
+    "acceptable_resolution_process": "Freeze an explicit protocol clarification or authorized runtime change before implementation. It must specify the exact draw schedule and its relationship to refractory neurons and zero-rate encoder members without selecting a rule after inspecting recruitment outcomes.",
+    "not_permitted": [
+      "Inferring a draw schedule from desired outcomes",
+      "Silently accepting branch-dependent RNG consumption",
+      "Changing the cutoff, rates, refractory behavior, seed, or intervention",
+      "Implementing a private runner-only neural transition that differs from tracked MaleCNSBrain.step"
+    ]
+  },
+  "disposition": {
+    "runner_created": false,
+    "runner_tests_created": false,
+    "legendarypc_readiness_check_command_available": false,
+    "scientific_execution_command_available": false,
+    "scientific_readiness_claimed": false
+  },
+  "scientific_execution_ledger": {
+    "recruitment_executions": 0,
+    "neural_runtime_steps": 0,
+    "physics_steps": 0,
+    "simulation_steps": 0,
+    "m8_reruns": 0,
+    "candidate_outcomes_inspected": false,
+    "scientific_outcome_artifacts_created": 0
+  }
+}
