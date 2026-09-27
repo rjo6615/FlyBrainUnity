@@ -1,0 +1,148 @@
+{
+  "schema": "LF-PROXIMAL-MOTOR-RECRUITMENT-PREREGISTRATION.1",
+  "document_type": "PREREGISTRATION_AND_IMPLEMENTATION_PLAN_ONLY",
+  "status": "PREREGISTERED_NOT_EXECUTED",
+  "scientific_question": "Under controlled changes to the existing six-tibia modeled proprioceptive-input pathway, can the current MaleCNS neural runtime recruit any of five anatomically identified left-front proximal motor populations that were OBSERVED_SILENT in the frozen 1000-ms spontaneous survey?",
+  "frozen_evidence_dependencies": [
+    {"path": "malecns_backend/embodiment/interface_output/lf_proximal_candidate_mapping_review/lf_proximal_candidate_activity_evidence_addendum.json", "sha256": "aac7497241695842e39387ed93bd2562f39087cd59021d2b482889113ec64002", "role": "authoritative candidate identities and activity evidence"},
+    {"path": "malecns_backend/embodiment/interface_output/lf_proximal_candidate_mapping_review/lf_proximal_candidate_mapping_review_preregistration.json", "sha256": "6966b0d78622e0a478311b7a47b1195c8d2189a14c44e4d05d619137c0cf17b9", "role": "authoritative candidate-review preregistration"},
+    {"path": "codex_evidence_transfer/motor_population_activity_survey_report.json", "sha256": "9a2cf19a7f634c7ab15fd0041cdf38e465bb3ffc8821d7d83d846284a50cebfa", "role": "frozen 1000-ms survey report"},
+    {"path": "malecns_backend/interface_map.json", "sha256": "24b7229bea6f24ff0e65fe09b202d42dc06819fe234194e3c3ab95b596319e0b", "role": "dense-index resolution"},
+    {"path": "malecns_backend/embodiment/six_leg_map.json", "sha256": "575186602ac1e5a6e3b2c6d680309880266f5d80e18fff44f989440f6cd0a4bc", "role": "six tibial sensory mappings"},
+    {"path": "malecns_backend/embodiment/sensory.py", "sha256": "d245ac2b91294fef7629375e5734a6788e4749dc5b768ff082cdeb2cfd9f39ea", "role": "modeled proprioceptive transduction"},
+    {"path": "malecns_backend/embodiment/six_tibia_causal.py", "sha256": "ee2a2f3a3d5fed38ccc6d44f9d29cb0b0af57a36af56a6015e84180538037b1b", "role": "validated six-channel runtime composition"},
+    {"path": "malecns_backend/neural.py", "sha256": "bf05e587c137ba50f050c2cdcdc2bcbb718389e309ec8f40414253b33a0823e9", "role": "MaleCNS external-drive and neural transition implementation"},
+    {"path": "malecns_backend/embodiment/motor.py", "sha256": "a64e75a0097c2927d35d94401d5c26f948fb83c86b63e5f6e527ed7d70efb12f", "role": "40-ms filtered-rate observer"}
+  ],
+  "sensory_pathway_implementation_audit": {
+    "selected_runtime": "The validated SixTibiaRuntime is the implementation boundary for this assay.",
+    "physically_measured_variables": {
+      "neural_input_sources": "Six FlyGym tibia joint positions in radians, ordered LF, LM, LH, RF, RM, RH and observed once per 1.0-ms control sample.",
+      "other_observations": "Body pose, joint state and contact may be measured/logged by the embodiment runtime, but SixTibiaRuntime.step constructs neural input only from the six tibia angles.",
+      "contact_classification": "PHYSICALLY_OBSERVED_ONLY_NOT_NEURAL_SENSORY_INPUT in this selected runtime; no contact-derived value is passed to SensoryEncoder or MaleCNSBrain.set_external_drive. Separate tactile experiments do not make contact active here."
+    },
+    "modeled_sensory_transduction": {
+      "per_channel_population_code": "x=(q-(-1.35))/(1.30-(-1.35)); preferred_k=(k+0.5)/n; rate_k=120*exp(-(x-preferred_k)^2/(2*0.25^2)) Hz; rates <=5 Hz become 0; remaining rates are clipped to [0,120] Hz; no added baseline.",
+      "sample_cadence_ms": 1.0,
+      "neural_timestep_ms": 0.5,
+      "external_event_probability_per_neural_step": "rate_hz * 0.5 / 1000 for each available driven neuron; events are stochastic under the brain RNG and refractory state.",
+      "delivery": "At each control sample external drive is cleared, then all six encoded rate vectors are assigned by dense index through MaleCNSBrain.set_external_drive."
+    },
+    "external_drive_recipients": [
+      {"leg": "LF", "population": "chordotonal T1 left", "member_count": 23},
+      {"leg": "LM", "population": "chordotonal T2 left", "member_count": 80},
+      {"leg": "LH", "population": "chordotonal T3 left", "member_count": 93},
+      {"leg": "RF", "population": "chordotonal T1 right", "member_count": 13},
+      {"leg": "RM", "population": "chordotonal T2 right", "member_count": 83},
+      {"leg": "RH", "population": "chordotonal T3 right", "member_count": 100}
+    ],
+    "feedback_dependencies": "In the validated embodied loop, decoded activity from the existing admitted motor channels can change joint targets, physics, later measured tibia angles, and therefore later sensory rates. To isolate sensory recruitment and avoid condition-dependent physical feedback, this neural-only assay will replay a single frozen six-angle history and will not step FlyGym/MuJoCo. The control replays it unchanged; perturbations replace only the LF angle supplied to the existing encoder during the intervention. Candidate outputs are never decoded.",
+    "audit_conclusion": "The current selected neural-input pathway has exactly six tibial proprioceptive channels. Contact is not a neural sensory input in it."
+  },
+  "candidate_populations": [
+    {"name": "Tergopleural/Pleural promotor MN T1 left", "neuron_ids": [800061, 801173, 807281, 934091], "dense_neural_indices": [142836, 143654, 148512, 162856], "member_count": 4, "identity_ambiguity": "AMBIGUOUS_BROAD_PROMOTOR_LABEL", "prior_status": "OBSERVED_SILENT", "prior_spike_increments": 0},
+    {"name": "Pleural remotor/abductor MN T1 left", "neuron_ids": [802509, 803803], "dense_neural_indices": [144657, 145652], "member_count": 2, "identity_ambiguity": "AMBIGUOUS_COMPOUND_LABEL", "prior_status": "OBSERVED_SILENT", "prior_spike_increments": 0},
+    {"name": "Sternal adductor MN T1 left", "neuron_ids": [813480], "dense_neural_indices": [153568], "member_count": 1, "identity_ambiguity": "AMBIGUOUS", "prior_status": "OBSERVED_SILENT", "prior_spike_increments": 0},
+    {"name": "Sternal anterior rotator MN T1 left", "neuron_ids": [806923, 919509], "dense_neural_indices": [148218, 162458], "member_count": 2, "identity_ambiguity": "UNIQUE", "prior_status": "OBSERVED_SILENT", "prior_spike_increments": 0},
+    {"name": "Sternal posterior rotator MN T1 left", "neuron_ids": [801915, 804851, 808640, 1050335829], "dense_neural_indices": [144222, 146498, 149652, 164685], "member_count": 4, "identity_ambiguity": "UNIQUE", "prior_status": "OBSERVED_SILENT", "prior_spike_increments": 0}
+  ],
+  "implementation_precondition_fail_closed": {
+    "required_before_scientific_execution": "Create and freeze an input-only 1000-ms, six-angle spontaneous sensory-history artifact from the validated runtime, including units, 1-ms timestamps, source run/commit, seed, shape, finite/range checks and SHA-256. Creating that replay is preparation, not part of this preregistration and has not occurred here.",
+    "if_unavailable_or_invalid": "Do not execute the recruitment assay and label the attempt INCONCLUSIVE with INPUT_REPLAY_NOT_FROZEN. Do not synthesize, interpolate, tune, or substitute a trajectory.",
+    "reason": "The authoritative activity addendum establishes silence and identities but does not itself freeze a reusable six-angle time series. A defensible unchanged spontaneous baseline therefore cannot be guessed."
+  },
+  "numerical_protocol": {
+    "seeds": [1, 2, 3],
+    "conditions_per_seed": ["CONTROL_REPLAY", "LF_MIN_BOUND", "LF_MAX_BOUND"],
+    "runtime_ms": 1000.0,
+    "neural_timestep_ms": 0.5,
+    "sensory_sample_ms": 1.0,
+    "baseline_period_ms": [0.0, 250.0],
+    "intervention_period_ms": [250.0, 750.0],
+    "post_intervention_period_ms": [750.0, 1000.0],
+    "window_convention": "left-closed, right-open; 500, 1000, and 500 neural steps respectively",
+    "manipulation": {
+      "variable": "LF LegSensoryFrame.tibia_angle_rad supplied upstream of the unchanged SensoryEncoder",
+      "control": "unmodified frozen LF angle replay",
+      "LF_MIN_BOUND": -1.35,
+      "LF_MAX_BOUND": 1.3,
+      "onset": "one-step transition at exactly 250.0 ms",
+      "offset": "return to the frozen replay value at exactly 750.0 ms",
+      "justification": "These are the encoder's already-implemented documented angle bounds, not values selected after observing candidate outcomes.",
+      "unchanged_channels": "LM, LH, RF, RM and RH always replay their frozen values; LF also replays its frozen value outside intervention."
+    },
+    "exact_transduction_consequences": {
+      "LF_MIN_BOUND": "normalized_angle x=0.0; for LF member k of n=23, rate_k=120*exp(-(((k+0.5)/23)^2)/(2*0.25^2)) Hz, then the existing <=5-Hz cutoff and [0,120]-Hz clip.",
+      "LF_MAX_BOUND": "normalized_angle x=1.0; for LF member k of n=23, rate_k=120*exp(-((1-(k+0.5)/23)^2)/(2*0.25^2)) Hz, then the existing <=5-Hz cutoff and [0,120]-Hz clip.",
+      "all_other_samples": "Apply the identical existing formula to the replayed angle; no direct event forcing and no candidate-targeted drive."
+    }
+  },
+  "pairing_and_state_copy": {
+    "procedure": "For each seed, initialize one validated MaleCNS brain and run the shared replay prefix [0,250) once. At 250.0 ms, deep-copy all mutable neural state separately for all three conditions: v, conductances, refractory state, activity trace, adaptation, depression resources, bias/threshold configuration references, cumulative spike counts, delay ring contents and head, time, last-spike/external-event diagnostics, withheld-event state, external-drive vector, transmission gate state, and NumPy bit-generator state. Also copy candidate filtered-rate observer state. Then branch conditions.",
+    "common_random_numbers": "Each copied branch begins with bit-identical RNG state. Because every condition assigns the same six populations in the same dense-index order, RNG consumption count/order must remain identical even though rates differ.",
+    "verification": "Before intervention, require byte-identical digests for every copied state field, RNG JSON, cumulative counts, pending ring, sensory history, and candidate observer state. Log digests. Any mismatch invalidates the entire seed triplet.",
+    "post_intervention": "Branches remain separate after 750 ms; each returns to the same replayed sensory values but retains its causally changed neural state."
+  },
+  "endpoints_and_decision_rule": {
+    "primary_measure": "Actual cumulative spike-count increments for each member neuron during [250,750) ms, derived with unsigned-wrap-safe differences and cross-checked against timestamped fired-neuron events.",
+    "secondary_measures": ["member-level and population filtered rates using the existing 40-ms Euler low-pass", "baseline [0,250) and post [750,1000) spike increments", "active member count and fraction", "latency from intervention onset to first candidate spike", "delivered external-event counts and rates for every sensory member"],
+    "per_seed_population_response": "A perturbation responds only if intervention population spike increments are at least 2 AND exceed its paired CONTROL_REPLAY intervention count by at least 1. A one-neuron population uses the same population rule; no fraction threshold is added. Multiple-member populations require at least one member with an actual increment, and active fraction is descriptive.",
+    "final_label_rule_per_population_condition": {
+      "RECRUITED_UNDER_TEST_CONDITION": "The per-seed response rule is true in at least 2 of 3 seeds, no failure criterion applies, and at least one responding seed has an event-timestamp/count cross-check match.",
+      "NOT_RECRUITED_UNDER_TEST_CONDITION": "The per-seed response rule is true in at most 1 of 3 seeds and all three seed triplets are valid.",
+      "INCONCLUSIVE": "Any required input/provenance/state-copy/logging check fails, fewer than three valid paired seed triplets remain, or counts and event timestamps disagree."
+    },
+    "baseline_comparison": "Report each perturbation minus its paired control for baseline, intervention, and post windows. Shared-prefix baseline values must be exactly equal; a baseline mismatch is failure, not a covariate. Recruitment is not defined by nonzero filtered rate.",
+    "broad_promotor_handling": "The four-neuron broad promotor annotation is analyzed only as the frozen repository population and per member. No tendon subtype, coordinate, or biological action is inferred; its positive label must retain IDENTITY_AMBIGUOUS_BROAD_POPULATION.",
+    "multiplicity": "There are 10 separately labeled population-by-perturbation outcomes. No condition or population is selected, pooled, or dropped post hoc; no omnibus ANY_RECRUITED claim may omit the denominator 10. The fixed replicated count rule controls interpretation rather than null-hypothesis p-values. Any optional inferential analysis is secondary only and must Holm-adjust one family of 10 tests at family-wise alpha 0.05."
+  },
+  "exclusions_and_failure_criteria": [
+    "Any frozen dependency or future input-replay SHA-256 mismatch",
+    "Any non-finite state, rate, angle, or timestamp; wrong dimensions; nonmonotonic or missing 1-ms sensory samples",
+    "Any candidate neuron missing, duplicated, remapped, or directly externally driven",
+    "Any state-copy, shared-prefix, RNG-order, spike-count/event, or window-boundary check failure",
+    "Any decoder-vector, coordinate-sign, body mapping, contact-drive, neural-parameter, connection, weight, threshold, gain, or timestep change",
+    "Any FlyGym/MuJoCo step or candidate physical contribution during the assay",
+    "Any adaptive retry, magnitude change, seed replacement, extra condition, threshold change, or exclusion based on observed recruitment"
+  ],
+  "required_logging": {
+    "candidate_member_level": ["population name", "neuron ID", "dense neural index", "cumulative count at every neural step", "spike increment at every neural step", "exact timing of every increment", "filtered rate at every 1-ms observation"],
+    "candidate_population_level": ["total spike increments", "active member count", "active member fraction", "mean and peak filtered rate", "baseline activity", "intervention-window activity", "post-intervention activity", "first-spike latency"],
+    "sensory": ["all six input angles at every 1-ms sample", "normalized angles", "per-neuron encoded rates", "per-neuron external candidate events", "per-neuron delivered external events", "dense indices", "population names"],
+    "provenance_and_integrity": ["condition", "seed", "all window boundaries", "dependency hashes", "input-replay hash", "git commit", "runtime/configuration digest", "pre-branch and branch-state digests", "RNG state digests", "failure flags"]
+  },
+  "physical_interface_separation": {
+    "active_physical_motor_interface_channel_count": 11,
+    "active_interface_changed": false,
+    "candidate_decoder_vectors_assigned": false,
+    "candidate_coordinate_signs_assigned": false,
+    "flymimic_mechanical_hypotheses_applied": false,
+    "candidate_physical_contribution": 0.0,
+    "body_or_actuator_execution": false,
+    "statement": "Candidate activity is read-only neural output. Existing admitted-11 definitions remain frozen, but no decoder or physical embodiment is executed in this neural replay assay."
+  },
+  "interpretation_boundaries": {
+    "scientific_layers": ["connectome-derived neural structure/dynamics", "modeled tibial sensory transduction", "observed candidate neural activity", "engineered motor decoding", "external FlyMimic mechanical reference", "FlyGym/MuJoCo physical embodiment"],
+    "positive": "A positive label establishes condition-dependent activity only in the current MaleCNS runtime under that tested modeled sensory condition. It does not establish biological function, natural gait role, muscle action, decoder correctness, balance, stabilization, reflex behavior, locomotor function, or fully biological sensorimotor behavior.",
+    "negative": "A negative label means not recruited under that tested condition only. It does not establish permanent silence, absence of biological function, incorrect anatomical identity, or inability to recruit under other inputs.",
+    "inconclusive": "An inconclusive label is a protocol/evidence limitation and carries no activity conclusion."
+  },
+  "execution_prohibitions": ["Do not execute this experiment during preregistration review.", "Do not directly inject spikes or current into any candidate population.", "Do not invent a sensory modality or use contact-derived neural drive.", "Do not run physics, FlyGym, MuJoCo, or Live Fly as part of the assay.", "Do not add candidate decoding, signs, forces, actuation, or feedback.", "Do not inspect outcomes before freezing implementation, replay input, manifests, and hashes."],
+  "planned_artifacts": [
+    "lf_proximal_motor_recruitment_input_manifest.json",
+    "lf_proximal_motor_recruitment_input_angles.npz",
+    "lf_proximal_motor_recruitment_execution_manifest.json",
+    "lf_proximal_motor_recruitment_raw.npz",
+    "lf_proximal_motor_recruitment_report.json",
+    "LF_PROXIMAL_MOTOR_RECRUITMENT_REPORT.md"
+  ],
+  "execution_ledger": {
+    "scientific_executions": 0,
+    "neural_steps": 0,
+    "physics_steps": 0,
+    "conditions_run": 0,
+    "candidate_stimulations": 0,
+    "results_observed": false,
+    "note": "Only static source/evidence inspection, preregistration writing, JSON validation, and hashing were performed."
+  }
+}
