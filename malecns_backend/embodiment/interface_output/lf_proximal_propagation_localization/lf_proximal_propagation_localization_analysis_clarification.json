@@ -1,0 +1,65 @@
+{
+  "divergence_rule": {
+    "conditions": [
+      "LF_MIN_BOUND versus paired CONTROL_REPLAY",
+      "LF_MAX_BOUND versus paired CONTROL_REPLAY"
+    ],
+    "deterministic_definition": "For each paired seed and prespecified stage, divergence is present if the complete recorded per-neuron observation for the intervention branch is not exactly identical to the corresponding CONTROL_REPLAY observation. Event-based stages are compared by neuron identity and event time/step; count summaries may be reported but do not replace the underlying event observations.",
+    "first_difference_reporting": "When divergence is present, report the first differing neural time/step and the neuron or neurons responsible where applicable.",
+    "pairing": "within seed",
+    "per_neuron_data_preserved": true,
+    "per_seed_data_preserved": true,
+    "population_summary_rule": "Population summaries are descriptive only and must not replace the frozen per-neuron, per-seed observations.",
+    "reason_no_statistical_threshold": "The frozen design contains three paired seeds and this follow-up is a deterministic mechanistic localization analysis. No post-outcome significance threshold will be introduced.",
+    "statistical_threshold": null
+  },
+  "execution_control": {
+    "neural_steps_at_freeze": 0,
+    "physics_steps_at_freeze": 0,
+    "scientific_execution_authorized_by_this_file": false,
+    "simulation_steps_at_freeze": 0
+  },
+  "localization_rule": "The manipulation check is reported separately. For each intervention and seed, propagation localization begins at delivered LF external sensory events. The earliest downstream prespecified stage satisfying the deterministic divergence definition is reported as the earliest observed propagation stage for that paired branch.",
+  "no_change_assertions": {
+    "candidate_motor_populations_changed": false,
+    "intervention_bounds_changed": false,
+    "model_configuration_changed": false,
+    "neural_dynamics_changed": false,
+    "observation_populations_changed": false,
+    "prespecified_stages_changed": false,
+    "replay_changed": false,
+    "rng_semantics_changed": false,
+    "seeds_changed": false
+  },
+  "parent_preregistration": {
+    "canonical_lf_sha256": "5fe860393c5a7ad974b9ca38afefd5ec8970335ffdf9d0cdff902d74fd853fb0",
+    "git_commit": "a73ee120ff856ff9586865c435a1d88f9a5a08ed",
+    "path": "malecns_backend/embodiment/interface_output/lf_proximal_propagation_localization/lf_proximal_propagation_localization_preregistration.json"
+  },
+  "purpose": "Prospectively clarify the analysis semantics of the already frozen observation ladder before any neural execution of the follow-up. This clarification does not change the intervention, replay, seeds, model, RNG policy, observation populations, or recorded stages.",
+  "reporting_rule": "Report paired CONTROL_REPLAY versus LF_MIN_BOUND and CONTROL_REPLAY versus LF_MAX_BOUND observations for every prespecified stage. Do not stop reporting after the first divergent stage.",
+  "schema": "LF-PROXIMAL-PROPAGATION-LOCALIZATION-ANALYSIS-CLARIFICATION.1",
+  "stage_semantics": {
+    "23 LF sensory-neuron neural activity": {
+      "role": "NEURAL_PROPAGATION_STAGE"
+    },
+    "268-neuron runtime-admitted one-hop population": {
+      "role": "NEURAL_PROPAGATION_STAGE"
+    },
+    "complete 477-neuron anatomical one-hop population": {
+      "role": "NEURAL_PROPAGATION_STAGE"
+    },
+    "delivered LF external sensory events": {
+      "interpretation": "This is the first downstream stochastic realization of the encoded LF rates and therefore the first stage considered when localizing propagation beyond the manipulation itself.",
+      "role": "FIRST_PROPAGATION_STAGE"
+    },
+    "encoded LF sensory rates": {
+      "interpretation": "Condition-dependent divergence at this stage is expected by experimental construction because LF_MIN_BOUND and LF_MAX_BOUND replace the LF replay angle during the frozen intervention window. It verifies that the intended encoded input differs, but is not evidence that the perturbation propagated through the neural model.",
+      "role": "MANIPULATION_CHECK"
+    },
+    "previously preregistered candidate motor neurons": {
+      "role": "NEURAL_PROPAGATION_STAGE"
+    }
+  },
+  "status": "FROZEN_BEFORE_FOLLOWUP_NEURAL_EXECUTION"
+}
