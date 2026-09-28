@@ -47,7 +47,7 @@ EXPECTED = {
     "manifest": "21dc70c74e10f913cad20d15f6fc48e0695df945ab6b612c1ddaacf60bde26f3",
     "report": "b9d931dcad1ccd533dcdae5864b545c313eaeb6e70fc183d0619ef86ae206c1a",
     "source_m8": "4e39bb83dd4455d56a4d88f717615530602317efaf83a6ed241b13af89dc2a5b",
-    "execution_authorization": "b87d1cf1b542233fca43766ce062159b1cebc2600a96f991ba40982c2c072948",
+    "execution_authorization": "3ae8c97725474b03d3b607dd6e10cd359145f8270d83a46fc706617beadd8475",
 }
 # These identities were frozen from Git's canonical LF blob bytes.  A checkout
 # may represent each LF as CRLF, but no other byte transformation is allowed.
@@ -161,12 +161,12 @@ def execution_authorization_gate(
     implementation = frozen_chain.get("scientific_implementation", {})
     _require(
         implementation.get("git_commit")
-        == "86692687be0a431b0eb008f80ac6a16105f5b4ec",
+        == "b8f1a2452c311147e797752a74620f3d4b495374",
         "execution authorization implementation commit mismatch",
     )
     _require(
         implementation.get("git_tree")
-        == "d56b84e4022b2676efa44b179cfb434068882cfa",
+        == "10b376ec72437a518189413ae650727cd0dcf65d",
         "execution authorization implementation tree mismatch",
     )
 

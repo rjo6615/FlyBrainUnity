@@ -12,8 +12,8 @@
                                                         "canonical_lf_sha256":  "e5b367779a58a53c0dda654b8ba4d63ad3e61942e911e7c506b0ebca8ffe112b"
                                                     },
                          "scientific_implementation":  {
-                                                           "git_commit":  "86692687be0a431b0eb008f80ac6a16105f5b4ec",
-                                                           "git_tree":  "d56b84e4022b2676efa44b179cfb434068882cfa"
+                                                           "git_commit":  "b8f1a2452c311147e797752a74620f3d4b495374",
+                                                           "git_tree":  "10b376ec72437a518189413ae650727cd0dcf65d"
                                                        }
                      },
     "validation":  {

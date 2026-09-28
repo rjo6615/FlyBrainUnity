@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    "CONTROL_REPLAY",
+    "LF_MIN_BOUND",
+    "LF_MAX_BOUND"
+  ],
+  "schema": "LF-PROXIMAL-PROPAGATION-LOCALIZATION-RESULT.1",
+  "seeds": [
+    1,
+    2,
+    3
+  ]
+}
