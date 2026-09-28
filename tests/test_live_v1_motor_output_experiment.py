@@ -3,10 +3,12 @@ import json
 import subprocess
 import sys
 from collections import OrderedDict
+from pathlib import Path
 
 import pytest
 
 from malecns_backend.embodiment import live_v1_motor_output_experiment as exp
+from malecns_backend.embodiment import _windows_m8_live_condition as live
 
 
 def test_import_default_help_and_validation_are_zero_transition(monkeypatch, capsys):
@@ -45,10 +47,10 @@ def test_existing_gates_only_zero_final_contributions():
         adapter.enabled_gate(decoded, tuple(reversed(names)))
 
 
-def test_no_decoder_equation_or_runtime_file_changes_are_required():
+def test_observational_hook_added_without_decoder_change():
     design = exp.design()
     assert "decoder change" in design["prohibitions"]
-    assert exp.readiness()["existing_runtime_hook_added"] is False
+    assert exp.readiness()["existing_runtime_hook_added"] is True
 
 
 def _neural(index=1):
@@ -112,3 +114,33 @@ def test_module_help_in_fresh_process_is_successful_and_inert():
         check=False, capture_output=True, text=True)
     assert result.returncode == 0
     assert "performs zero transitions" in result.stdout
+
+
+def test_runtime_observer_receives_deterministic_detached_read_only_records():
+    np = pytest.importorskip("numpy")
+    source = np.arange(3, dtype=np.float64)
+    nested = {"first": source, "second": {"values": [1, 2]}}
+    records = []
+    live._observe(records.append, nested)
+    source[0] = 99
+
+    record = records[0]
+    assert tuple(record) == ("first", "second")
+    assert record["first"].tolist() == [0.0, 1.0, 2.0]
+    assert record["second"]["values"] == (1, 2)
+    with pytest.raises(ValueError):
+        record["first"][0] = -1
+    with pytest.raises(TypeError):
+        record["second"]["values"] = ()
+
+
+def test_none_observer_is_noop_and_hook_is_optional():
+    class ExplosiveMapping(dict):
+        def items(self):
+            raise AssertionError("telemetry copied with observer disabled")
+
+    assert live._observe(None, ExplosiveMapping()) is None
+    source = Path(live.__file__).read_text()
+    signature = source[source.index("def _scientific_transition_kernel("):
+                       source.index(") -> Mapping[str, Any]:")]
+    assert "telemetry_observer: Any | None = None" in signature

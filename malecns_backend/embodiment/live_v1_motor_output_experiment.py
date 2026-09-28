@@ -154,7 +154,7 @@ def readiness() -> dict[str, Any]:
         "scientific_execution_authorized": False, "scientific_run_executed": False,
         "neural_transitions": 0, "physics_transitions": 0,
         "channel_count": len(MOTOR_CHANNELS), "action_count": ACTION_COUNT,
-        "existing_runtime_hook_added": False,
+        "existing_runtime_hook_added": True,
         "telemetry_contract_implemented": True}
 
 
