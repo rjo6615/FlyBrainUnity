@@ -1,0 +1,54 @@
+{
+  "classifications": {
+    "activity": [
+      "OBSERVED_ACTIVE",
+      "OBSERVED_INACTIVE"
+    ],
+    "decoder": [
+      "DECODER_OUTPUT",
+      "NO_DECODER_OUTPUT"
+    ],
+    "physics": [
+      "PHYSICALLY_DIVERGENT",
+      "NOT_PHYSICALLY_DIVERGENT"
+    ]
+  },
+  "conditions": [
+    "live_v1_enabled",
+    "matched_control_final_11_zeroed"
+  ],
+  "execution_authorization": {
+    "artifact": "prospective_execution_authorization.json",
+    "present": false,
+    "required": true,
+    "rule": "must be created prospectively in a separate reviewed change"
+  },
+  "experiment": "Live Fly v1 11-channel motor-output observability assay",
+  "motor_channels": [
+    {"action_index": 5, "coordinate_sign": 1, "joint": "joint_LFTibia"},
+    {"action_index": 12, "coordinate_sign": 1, "joint": "joint_LMTibia"},
+    {"action_index": 19, "coordinate_sign": 1, "joint": "joint_LHTibia"},
+    {"action_index": 26, "coordinate_sign": 1, "joint": "joint_RFTibia"},
+    {"action_index": 33, "coordinate_sign": 1, "joint": "joint_RMTibia"},
+    {"action_index": 40, "coordinate_sign": 1, "joint": "joint_RHTibia"},
+    {"action_index": 3, "coordinate_sign": -1, "joint": "joint_LFFemur"},
+    {"action_index": 10, "coordinate_sign": -1, "joint": "joint_LMFemur"},
+    {"action_index": 17, "coordinate_sign": -1, "joint": "joint_LHFemur"},
+    {"action_index": 31, "coordinate_sign": -1, "joint": "joint_RMFemur"},
+    {"action_index": 38, "coordinate_sign": -1, "joint": "joint_RHFemur"}
+  ],
+  "observation": {
+    "neural_fields": ["neural_transition_index", "neural_time_ms", "per_neuron_spike_increments", "per_neuron_filtered_rate_hz", "population_mean_filtered_rate_hz", "pooled_positive_rate_hz", "pooled_negative_rate_hz", "positive_activation", "negative_activation", "raw_signed_contribution_rad", "final_contribution_rad", "range_clamped", "slew_limited", "commanded_joint_targets", "encoded_sensory_rates", "scheduled_sensory_candidate_events", "delivered_external_sensory_events"],
+    "physics_fields": ["physics_transition_index", "physics_time_ms", "commanded_joint_targets", "measured_joint_positions", "qpos", "qvel", "root_position", "root_quaternion", "contact_information"],
+    "state_mutation_permitted": false
+  },
+  "prior_work": {
+    "ancestry_verified": false,
+    "commit": "ea81974f59ce9a67a382c20d605b385765f10b33",
+    "object_available_at_implementation": false
+  },
+  "prohibitions": ["new intervention", "decoder change", "population change", "sensory change", "dynamics change", "physics change", "Unity change", "TCP transport change", "scientific interpretation beyond observation"],
+  "schema": "LIVE-V1-MOTOR-OUTPUT-EXPERIMENT-DESIGN.1",
+  "status": "IMPLEMENTED_NOT_AUTHORIZED",
+  "timing": {"neural_dt_ms": 0.5, "physics_dt_ms": 0.1, "physics_per_neural_transition": 5}
+}
