@@ -1,5 +1,6 @@
 import importlib
 import json
+import math
 import subprocess
 import sys
 from collections import OrderedDict
@@ -53,21 +54,23 @@ def test_observational_hook_added_without_decoder_change():
     assert exp.readiness()["existing_runtime_hook_added"] is True
 
 
-def _neural(index=1):
-    values = [index, index * .5, [[0]], [[0.0]], [0.0] * 11, [0.0] * 11,
+def _neural(index=1, timestamp=None):
+    values = [index, index * .5 if timestamp is None else timestamp,
+              [[0]], [[0.0]], [0.0] * 11, [0.0] * 11,
               [0.0] * 11, [0.0] * 11, [0.0] * 11, [0.0] * 11,
               [0.0] * 11, [False] * 11, [False] * 11, [0.0] * 42,
               [0.0] * 6, None, []]
     return OrderedDict(zip(exp.NEURAL_FIELDS, values))
 
 
-def _physics(index=1):
-    values = [index, index * .1, [0.0] * 42, [0.0] * 42, [0.0] * 49,
+def _physics(index=1, timestamp=None):
+    values = [index, index * .1 if timestamp is None else timestamp,
+              [0.0] * 42, [0.0] * 42, [0.0] * 49,
               [0.0] * 48, [0.0] * 3, [1.0, 0.0, 0.0, 0.0], []]
     return OrderedDict(zip(exp.PHYSICS_FIELDS, values))
 
 
-def test_telemetry_validation_is_passive_and_cadence_exact():
+def test_individual_telemetry_validation_is_passive_and_checks_shape_and_order():
     neural = _neural(); physics = _physics()
     before = json.dumps([neural, physics])
     exp.validate_neural_record(neural)
@@ -75,9 +78,80 @@ def test_telemetry_validation_is_passive_and_cadence_exact():
     assert json.dumps([neural, physics]) == before
     exp.validate_neural_record(_neural(2), previous_index=1)
     exp.validate_physics_record(_physics(2), previous_index=1)
-    bad = _neural(2); bad["neural_time_ms"] = 1.1
-    with pytest.raises(ValueError, match="cadence"):
-        exp.validate_neural_record(bad, previous_index=1)
+    bad_shape = _neural(); bad_shape["commanded_joint_targets"] = [0.0] * 41
+    with pytest.raises(ValueError, match="42"):
+        exp.validate_neural_record(bad_shape)
+    bad_order = OrderedDict(reversed(tuple(_physics().items())))
+    with pytest.raises(ValueError, match="inventory/order"):
+        exp.validate_physics_record(bad_order)
+
+
+def _accumulated_records(count=20):
+    now_seconds = 0.0
+    physics = []
+    neural = []
+    for physics_index in range(1, count + 1):
+        now_seconds += 0.0001
+        now_ms = now_seconds * 1000.0
+        physics.append(_physics(physics_index, now_ms))
+        if physics_index % 5 == 0:
+            neural.append(_neural(physics_index // 5, now_ms))
+    return neural, physics
+
+
+def test_authentic_accumulated_clock_and_exact_sampling_are_accepted():
+    neural, physics = _accumulated_records()
+    assert physics[9]["physics_time_ms"] != 10 * .1
+    assert neural[1]["neural_time_ms"] == physics[9]["physics_time_ms"]
+    exp.validate_telemetry_clocks(neural, physics)
+
+
+def test_one_ulp_neural_clock_mutation_is_rejected():
+    neural, physics = _accumulated_records()
+    neural[1]["neural_time_ms"] = math.nextafter(
+        neural[1]["neural_time_ms"], math.inf)
+    with pytest.raises(ValueError, match="exactly"):
+        exp.validate_telemetry_clocks(neural, physics)
+
+
+def test_wrong_physics_transition_sample_is_rejected():
+    neural, physics = _accumulated_records()
+    neural[1]["neural_time_ms"] = physics[10]["physics_time_ms"]
+    with pytest.raises(ValueError, match="sampled physics"):
+        exp.validate_telemetry_clocks(neural, physics)
+
+
+@pytest.mark.parametrize("stream", ["neural", "physics"])
+def test_non_contiguous_indices_are_rejected(stream):
+    neural, physics = _accumulated_records()
+    records = neural if stream == "neural" else physics
+    records[1][f"{stream}_transition_index"] += 1
+    with pytest.raises(ValueError, match="non-contiguous"):
+        exp.validate_telemetry_clocks(neural, physics)
+
+
+@pytest.mark.parametrize("stream", ["neural", "physics"])
+def test_non_finite_timestamps_are_rejected(stream):
+    neural, physics = _accumulated_records()
+    records = neural if stream == "neural" else physics
+    records[1][f"{stream}_time_ms"] = math.inf
+    with pytest.raises(ValueError, match="non-finite"):
+        exp.validate_telemetry_clocks(neural, physics)
+
+
+@pytest.mark.parametrize("stream", ["neural", "physics"])
+def test_non_monotonic_timestamps_are_rejected(stream):
+    neural, physics = _accumulated_records()
+    records = neural if stream == "neural" else physics
+    records[1][f"{stream}_time_ms"] = records[0][f"{stream}_time_ms"]
+    with pytest.raises(ValueError, match="strictly increasing"):
+        exp.validate_telemetry_clocks(neural, physics)
+
+
+def test_neural_count_must_match_available_complete_physics_groups():
+    neural, physics = _accumulated_records()
+    with pytest.raises(ValueError, match="count"):
+        exp.validate_telemetry_clocks(neural[:-1], physics)
 
 
 def test_fail_closed_provenance_and_authorization(tmp_path):
@@ -90,6 +164,8 @@ def test_fail_closed_provenance_and_authorization(tmp_path):
     fake.write_text("{}")
     with pytest.raises(PermissionError, match="not authorized"):
         exp.assert_execution_authorized(fake)
+    with pytest.raises(PermissionError, match="not authorized"):
+        exp.main(["--execute"])
 
 
 def test_result_schema_has_only_permitted_classes_and_all_outputs():
