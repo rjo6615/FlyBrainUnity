@@ -11,6 +11,7 @@ import itertools
 import json
 import math
 import time
+from types import MappingProxyType
 from typing import Any, Mapping, Sequence
 
 
@@ -29,6 +30,46 @@ def _digest(brain: Any) -> str:
     """Return the validated MaleCNS state digest used by M5/M6."""
     from .tactile_motor_loop_audit import _state_tuple
     return _state_tuple(brain)
+
+
+def _readonly_telemetry(value: Any) -> Any:
+    """Return a recursively detached, non-writable telemetry representation."""
+    import numpy as np
+
+    if isinstance(value, np.ndarray):
+        copied = value.copy()
+        copied.flags.writeable = False
+        return copied
+    if isinstance(value, Mapping):
+        return MappingProxyType({key: _readonly_telemetry(item)
+                                 for key, item in value.items()})
+    if isinstance(value, (list, tuple)):
+        return tuple(_readonly_telemetry(item) for item in value)
+    if isinstance(value, np.generic):
+        return value.item()
+    return value
+
+
+def _observe(observer: Any, record: Mapping[str, Any]) -> None:
+    """Call an optional observer with no reference to writable runtime state."""
+    if observer is not None:
+        observer(_readonly_telemetry(record))
+
+
+def _observed_neuron_increments(channel: Mapping[str, Any],
+                                observed: Mapping[str, Any]) -> tuple[int, ...]:
+    """Return increments in the observer's unique dense-neuron order."""
+    increments = []
+    for dense_index in channel["observer"].used:
+        value = 0
+        for population_name, population in observed["neurons"].items():
+            indices = channel["populations"].get(population_name, ())
+            positions = [int(index) for index in indices]
+            if int(dense_index) in positions:
+                value = int(population["increments"][positions.index(int(dense_index))])
+                break
+        increments.append(value)
+    return tuple(increments)
 
 
 def _pre_intervention_snapshot(*, brain: Any, physics: Any, commands: Any,
@@ -75,7 +116,8 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                   isolated_candidate_telemetry: bool = False,
                   identity_diagnostics: bool = False,
                   pause_at_states: bool = False,
-                  continuous: bool = False) -> Mapping[str, Any]:
+                  continuous: bool = False,
+                  telemetry_observer: Any | None = None) -> Mapping[str, Any]:
     """Create, run, close, and summarize one fresh frozen runtime.
 
     The optional arguments are used by M7 to reuse this exact M6C embodiment.
@@ -266,6 +308,7 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                                            for leg in LEG_ORDER])
                 phase["neural_stepping"] += time.perf_counter() - neural_started
                 decode_started = time.perf_counter(); raw_values, mapped_values = {}, {}
+                observed_channels = {} if telemetry_observer is not None else None
                 for name, channel in channels.items():
                     observed = channel["observer"].update(brain.spike_counts, NEURAL_DT_MS)
                     channel["last_observed"] = observed
@@ -278,6 +321,9 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                     channel["peak_observer"] = max(channel["peak_observer"], peak_observer); channel["peak_raw"] = max(channel["peak_raw"], abs(raw))
                     if increments and channel["first_activity_ms"] is None: channel["first_activity_ms"] = now_ms
                     if raw and channel["first_decoder_output_ms"] is None: channel["first_decoder_output_ms"] = now_ms
+                    if observed_channels is not None:
+                        observed_channels[name] = {"observed": observed, "positive": pos,
+                            "negative": neg, "raw": raw}
                 if m10b_extended_telemetry:
                     m10b_mapped_motor.append([mapped_values[name] for name in admitted_names])
                 contributions = gate(raw_values, condition, admitted_names)
@@ -303,6 +349,9 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                     channel["saturation"] |= result.range_clamped_target != result.candidate_target
                     channel["slew_limited"] |= result.slew_limited_target != result.range_clamped_target
                     if result.admitted_neural_contribution and channel["first_admitted_contribution_ms"] is None: channel["first_admitted_contribution_ms"] = now_ms
+                    if observed_channels is not None:
+                        observed_channels[name].update({"result": result,
+                            "final": physical_contribution})
                     if detailed_motor_telemetry:
                         used = channel["observer"].used
                         previous_counts = channel["observer"].last_counts
@@ -343,6 +392,43 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                 assert_started = time.perf_counter(); cached_admission_assertion(neural_vector, cached_table)
                 phase["admission_assertion"] += time.perf_counter() - assert_started
                 phase["observer_decoder"] += time.perf_counter() - decode_started
+                if telemetry_observer is not None:
+                    from .isolated_tier_b_motor_validation import activation
+                    _observe(telemetry_observer, {
+                        "neural_transition_index": step // stride,
+                        "neural_time_ms": now_ms,
+                        "per_neuron_spike_increments": {name:
+                            _observed_neuron_increments(channels[name], values["observed"])
+                            for name, values in observed_channels.items()},
+                        "per_neuron_filtered_rate_hz": {name: tuple(map(float,
+                            channels[name]["observer"].filtered_hz))
+                            for name in admitted_names},
+                        "population_mean_filtered_rate_hz": {name: {
+                            population: float(rate) for population, rate in
+                            values["observed"]["filtered_hz"].items()}
+                            for name, values in observed_channels.items()},
+                        "pooled_positive_rate_hz": {name: float(values["positive"])
+                            for name, values in observed_channels.items()},
+                        "pooled_negative_rate_hz": {name: float(values["negative"])
+                            for name, values in observed_channels.items()},
+                        "positive_activation": {name: float(activation(values["positive"]))
+                            for name, values in observed_channels.items()},
+                        "negative_activation": {name: float(activation(values["negative"]))
+                            for name, values in observed_channels.items()},
+                        "raw_signed_contribution_rad": {name: float(values["raw"])
+                            for name, values in observed_channels.items()},
+                        "final_contribution_rad": {name: float(values["final"])
+                            for name, values in observed_channels.items()},
+                        "range_clamped": {name: values["result"].range_clamped_target !=
+                            values["result"].candidate_target
+                            for name, values in observed_channels.items()},
+                        "slew_limited": {name: values["result"].slew_limited_target !=
+                            values["result"].range_clamped_target
+                            for name, values in observed_channels.items()},
+                        "commanded_joint_targets": commands,
+                        "encoded_sensory_rates": sensory_values,
+                        "scheduled_sensory_candidate_events": tuple(sorted(candidates)),
+                        "delivered_external_sensory_events": delivered})
                 if compact_telemetry:
                     # The compact fields are the immutable historical 11-channel
                     # contract.  An isolated candidate is deliberately outside
@@ -361,11 +447,20 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                         "neural_decoder_outputs": legacy_decoder,
                         "neural_admitted_contributions": legacy_admitted,
                     }, now_ms)
+            contact_information = None
             if m8_extended_telemetry:
                 contact_flags, foot_xyz = sample_contacts(physics, contact_identity)
                 if not np.all(np.isfinite(foot_xyz)):
                     raise RuntimeError("authoritative Tarsus5 body identity unavailable")
                 m8_contacts.append(contact_flags); m8_feet.append(foot_xyz)
+                contact_information = {"tarsal_contact": contact_flags,
+                    "tarsus5_world_position": foot_xyz}
+            elif telemetry_observer is not None:
+                contact_flags, foot_xyz = sample_contacts(physics, contact_identity)
+                if not np.all(np.isfinite(foot_xyz)):
+                    raise RuntimeError("authoritative Tarsus5 body identity unavailable")
+                contact_information = {"tarsal_contact": contact_flags,
+                    "tarsus5_world_position": foot_xyz}
             if m9b_extended_telemetry:
                 quat = np.asarray(physics.data.qpos[3:7], dtype=float)
                 norm = float(np.linalg.norm(quat))
@@ -384,6 +479,13 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                 detailed_physical_vectors.append(list(neural_vector))
             telemetry_started = time.perf_counter(); arrays = (physics.data.qpos, physics.data.qvel, physics.data.ctrl)
             finite = all(np.all(np.isfinite(a)) for a in arrays); instability |= not finite
+            if telemetry_observer is not None and step:
+                _observe(telemetry_observer, {"physics_transition_index": step,
+                    "physics_time_ms": now_ms, "commanded_joint_targets": commands,
+                    "measured_joint_positions": measured, "qpos": physics.data.qpos,
+                    "qvel": physics.data.qvel, "root_position": physics.data.qpos[:3],
+                    "root_quaternion": physics.data.qpos[3:7],
+                    "contact_information": contact_information})
             if compact_telemetry:
                 telemetry.record("physics", {"physics_time_ms": now_ms,
                     "physics_qpos": physics.data.qpos, "physics_qvel": physics.data.qvel,
