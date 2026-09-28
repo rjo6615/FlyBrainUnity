@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
@@ -111,10 +112,11 @@ def validate_neural_record(record: Mapping[str, Any], previous_index: int | None
     if tuple(record) != NEURAL_FIELDS:
         raise ValueError("neural telemetry field inventory/order mismatch")
     index = record["neural_transition_index"]
-    if not isinstance(index, int) or index < 1 or (previous_index is not None and index != previous_index + 1):
+    expected_index = 1 if previous_index is None else previous_index + 1
+    if not isinstance(index, int) or index != expected_index:
         raise ValueError("non-contiguous neural transition index")
-    if record["neural_time_ms"] != index * NEURAL_DT_MS:
-        raise ValueError("neural timestamp/cadence mismatch")
+    if not math.isfinite(record["neural_time_ms"]):
+        raise ValueError("non-finite neural timestamp")
     if len(record["commanded_joint_targets"]) != ACTION_COUNT:
         raise ValueError("neural target vector is not 42 entries")
 
@@ -123,12 +125,56 @@ def validate_physics_record(record: Mapping[str, Any], previous_index: int | Non
     if tuple(record) != PHYSICS_FIELDS:
         raise ValueError("physics telemetry field inventory/order mismatch")
     index = record["physics_transition_index"]
-    if not isinstance(index, int) or index < 1 or (previous_index is not None and index != previous_index + 1):
+    expected_index = 1 if previous_index is None else previous_index + 1
+    if not isinstance(index, int) or index != expected_index:
         raise ValueError("non-contiguous physics transition index")
-    if abs(record["physics_time_ms"] - index * PHYSICS_DT_MS) > 1e-12:
-        raise ValueError("physics timestamp/cadence mismatch")
+    if not math.isfinite(record["physics_time_ms"]):
+        raise ValueError("non-finite physics timestamp")
     if len(record["commanded_joint_targets"]) != ACTION_COUNT or len(record["measured_joint_positions"]) != ACTION_COUNT:
         raise ValueError("physics joint vector is not 42 entries")
+
+
+def validate_telemetry_clocks(
+    neural_records: Sequence[Mapping[str, Any]],
+    physics_records: Sequence[Mapping[str, Any]],
+) -> None:
+    """Validate that neural clocks are exact samples of the physics clock.
+
+    Physics telemetry starts at transition one.  A neural transition is
+    emitted after every fifth physics transition and carries the very same
+    sampled ``now_ms`` object value; no idealized decimal clock is inferred.
+    """
+    previous_index = None
+    previous_time = None
+    for record in physics_records:
+        validate_physics_record(record, previous_index)
+        index = record["physics_transition_index"]
+        timestamp = record["physics_time_ms"]
+        if previous_time is not None and timestamp <= previous_time:
+            raise ValueError("physics timestamps are not strictly increasing")
+        previous_index, previous_time = index, timestamp
+
+    previous_index = None
+    previous_time = None
+    for record in neural_records:
+        validate_neural_record(record, previous_index)
+        index = record["neural_transition_index"]
+        timestamp = record["neural_time_ms"]
+        if previous_time is not None and timestamp <= previous_time:
+            raise ValueError("neural timestamps are not strictly increasing")
+        previous_index, previous_time = index, timestamp
+
+    expected_neural_count = len(physics_records) // 5
+    if len(neural_records) != expected_neural_count:
+        raise ValueError("neural count is inconsistent with physics transition count")
+
+    for neural in neural_records:
+        neural_index = neural["neural_transition_index"]
+        physics = physics_records[5 * neural_index - 1]
+        if physics["physics_transition_index"] != 5 * neural_index:
+            raise ValueError("neural/physics transition association mismatch")
+        if neural["neural_time_ms"] != physics["physics_time_ms"]:
+            raise ValueError("neural timestamp is not exactly its sampled physics timestamp")
 
 
 def result_schema() -> dict[str, Any]:
