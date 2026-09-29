@@ -1,0 +1,12 @@
+{
+  "provenance": {
+    "analysis_specification_sha256": "5a2394b587ec2ea2f11f6ddfc33ac73704d87731244fd281c2f19ebd0220efa4",
+    "design_sha256": "7e93038953308574a01c9612ce44d702bf79e0d558ea24628cb91a72d9f9db66",
+    "execution_contract_sha256": "5a821012e77b7080d20b5bac0e99c11788bf2480237cbbab915d75f135018fe7",
+    "passivity_validation_sha256": "6bb7cda0e343e495773360e0a6f55e0967190860f3d701b783f87980763a2f14",
+    "validated_runtime_sha256": "fa716a14e1502bc5ad18e735022aa4d41363786b987311ddc5850e8502afbf3d"
+  },
+  "result_path": "live_v1_motor_output_experiment_result.json",
+  "schema": "LIVE-V1-MOTOR-OUTPUT-EXECUTION-ATTEMPT.1",
+  "status": "EXECUTION_ATTEMPT_CLAIMED"
+}
