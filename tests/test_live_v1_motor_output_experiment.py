@@ -220,3 +220,381 @@ def test_none_observer_is_noop_and_hook_is_optional():
     signature = source[source.index("def _scientific_transition_kernel("):
                        source.index(") -> Mapping[str, Any]:")]
     assert "telemetry_observer: Any | None = None" in signature
+
+
+def _fake_experiment3_run(*, control=False):
+    from malecns_backend.embodiment import (
+        _windows_live_v1_motor_output_experiment_adapter as adapter,
+    )
+
+    names = adapter.CHANNEL_NAMES
+
+    neural = []
+    for index in range(1, 1001):
+        time_ms = index * 0.5
+
+        spikes = {name: [0, 0] for name in names}
+        rates = {name: [0.0, 0.0] for name in names}
+        population = {name: 0.0 for name in names}
+        positive_rate = {name: 0.0 for name in names}
+        negative_rate = {name: 0.0 for name in names}
+        positive_activation = {name: 0.0 for name in names}
+        negative_activation = {name: 0.0 for name in names}
+        raw = {name: 0.0 for name in names}
+        final = {name: 0.0 for name in names}
+        clamped = {name: False for name in names}
+        slew = {name: False for name in names}
+
+        # Give only the first frozen channel a known synthetic signal.
+        channel = names[0]
+
+        if index == 2:
+            spikes[channel] = [1, 0]
+            rates[channel] = [10.0, 0.0]
+            population[channel] = 5.0
+            positive_rate[channel] = 10.0
+            positive_activation[channel] = 0.25
+
+        if index >= 2:
+            raw[channel] = 0.1
+
+        if index in (2, 3):
+            clamped[channel] = True
+
+        if index in (2, 3, 4):
+            slew[channel] = True
+
+        commands = [0.0] * 42
+
+        if index >= 2 and not control:
+            final[channel] = 0.05
+            commands[adapter.CHANNEL_INDEX[channel]] = 0.05
+
+        neural.append({
+            "neural_transition_index": index,
+            "neural_time_ms": time_ms,
+            "per_neuron_spike_increments": spikes,
+            "per_neuron_filtered_rate_hz": rates,
+            "population_mean_filtered_rate_hz": population,
+            "pooled_positive_rate_hz": positive_rate,
+            "pooled_negative_rate_hz": negative_rate,
+            "positive_activation": positive_activation,
+            "negative_activation": negative_activation,
+            "raw_signed_contribution_rad": raw,
+            "final_contribution_rad": final,
+            "range_clamped": clamped,
+            "slew_limited": slew,
+            "commanded_joint_targets": commands,
+            "encoded_sensory_rates": [0.0] * 6,
+            "scheduled_sensory_candidate_events": None,
+            "delivered_external_sensory_events": [],
+        })
+
+    physics = []
+    controlled_index = adapter.CHANNEL_INDEX[names[0]]
+
+    for index in range(1, 5001):
+        time_ms = index * 0.1
+        measured = [0.0] * 42
+        commands = [0.0] * 42
+
+        # Command divergence begins at neural t=1.0 ms.
+        if index >= 10 and not control:
+            commands[controlled_index] = 0.05
+
+        # Physical response divergence begins at 1.2 ms.
+        if index >= 12 and not control:
+            measured[controlled_index] = 0.001
+
+        # A baseline-only joint moves identically in both conditions.
+        baseline_index = adapter.BASELINE_ONLY_INDICES[0]
+        if index >= 20:
+            measured[baseline_index] = 0.002
+
+        physics.append({
+            "physics_transition_index": index,
+            "physics_time_ms": time_ms,
+            "commanded_joint_targets": commands,
+            "measured_joint_positions": measured,
+            "qpos": [0.0] * 49,
+            "qvel": [0.0] * 48,
+            "root_position": [0.0] * 3,
+            "root_quaternion": [1.0, 0.0, 0.0, 0.0],
+            "contact_information": [],
+        })
+
+    initial = [0.0] * 42
+
+    return {
+        "condition": (
+            "matched_control_final_11_zeroed"
+            if control
+            else "live_v1_enabled"
+        ),
+        "neural": neural,
+        "physics": physics,
+        "runtime_result": {
+            "physics_steps": 5000,
+            "neural_steps": 1000,
+            "physics_instability": False,
+            "unauthorized_contribution_count": 0,
+            "initial_physical_state_audit": {
+                "joint_configuration": initial,
+            },
+        },
+    }
+
+
+def test_fake_analysis_obeys_frozen_activity_decoder_and_occupancy_rules():
+    from malecns_backend.embodiment import (
+        _windows_live_v1_motor_output_experiment_adapter as adapter,
+    )
+
+    run = _fake_experiment3_run(control=False)
+    channel = adapter.CHANNEL_NAMES[0]
+
+    metrics = adapter._condition_channel_metrics(
+        run["neural"],
+        channel,
+    )
+
+    assert metrics["first_motor_population_activity_time_ms"] == 1.0
+    assert metrics["first_nonzero_decoder_output_time_ms"] == 1.0
+    assert metrics["activity_classification"] == "OBSERVED_ACTIVE"
+    assert metrics["decoder_classification"] == "DECODER_OUTPUT"
+
+    assert metrics["nonzero_output_duty_fraction"] == 999 / 1000
+    assert metrics["range_clamp_occupancy"] == 2 / 1000
+    assert metrics["slew_limit_occupancy"] == 3 / 1000
+
+    assert metrics["spike_increment_distribution"] == [
+        {"increment": 0, "count": 1999},
+        {"increment": 1, "count": 1},
+    ]
+
+    assert len(metrics["raw_contribution_distribution"]) == 1000
+    assert len(metrics["final_contribution_distribution"]) == 1000
+    assert len(metrics["filtered_rate_distribution"]) == 2000
+    assert len(metrics["positive_negative_directional_balance"]) == 1000
+
+    balance = metrics["positive_negative_directional_balance"][1]
+    assert balance["neural_time_ms"] == 1.0
+    assert balance["activation_difference"] == 0.25
+
+
+def test_fake_control_preserves_decoder_activity_but_zeros_final_output():
+    from malecns_backend.embodiment import (
+        _windows_live_v1_motor_output_experiment_adapter as adapter,
+    )
+
+    run = _fake_experiment3_run(control=True)
+    channel = adapter.CHANNEL_NAMES[0]
+
+    metrics = adapter._condition_channel_metrics(
+        run["neural"],
+        channel,
+    )
+
+    # The matched control is downstream of neural activity and decoder output.
+    assert metrics["first_motor_population_activity_time_ms"] == 1.0
+    assert metrics["first_nonzero_decoder_output_time_ms"] == 1.0
+    assert metrics["decoder_classification"] == "DECODER_OUTPUT"
+
+    assert metrics["nonzero_output_duty_fraction"] == 0.0
+    assert set(metrics["final_contribution_distribution"]) == {0.0}
+
+
+def test_fake_exact_physical_divergence_and_command_response_lag():
+    from malecns_backend.embodiment import (
+        _windows_live_v1_motor_output_experiment_adapter as adapter,
+    )
+
+    enabled = _fake_experiment3_run(control=False)
+    control = _fake_experiment3_run(control=True)
+
+    channel = adapter.CHANNEL_NAMES[0]
+    action_index = adapter.CHANNEL_INDEX[channel]
+
+    first = adapter._first_physical_divergence(
+        enabled["physics"],
+        control["physics"],
+        action_index,
+    )
+    assert first == pytest.approx(1.2)
+
+    lag = adapter._command_response_lag(
+        enabled["neural"],
+        control["neural"],
+        enabled["physics"],
+        control["physics"],
+        action_index,
+    )
+
+    assert lag["first_command_divergence_time_ms"] == 1.0
+    assert lag["first_measured_response_divergence_time_ms"] == pytest.approx(1.2)
+    assert lag["command_to_measured_response_lag_ms"] == pytest.approx(0.2)
+
+
+def test_fake_channel_result_classifies_exact_physical_divergence():
+    from malecns_backend.embodiment import (
+        _windows_live_v1_motor_output_experiment_adapter as adapter,
+    )
+
+    enabled = _fake_experiment3_run(control=False)
+    control = _fake_experiment3_run(control=True)
+
+    results = adapter._channel_results(enabled, control)
+    first = adapter.CHANNEL_NAMES[0]
+    second = adapter.CHANNEL_NAMES[1]
+
+    assert results[first]["enabled_control_physical_divergence"] is True
+    assert results[first]["physics_classification"] == "PHYSICALLY_DIVERGENT"
+    assert results[first]["first_physical_divergence_time_ms"] == pytest.approx(1.2)
+
+    assert results[second]["enabled_control_physical_divergence"] is False
+    assert results[second]["physics_classification"] == "NOT_PHYSICALLY_DIVERGENT"
+    assert results[second]["first_physical_divergence_time_ms"] is None
+
+
+def test_fake_baseline_only_joint_report_is_descriptive_and_complete():
+    from malecns_backend.embodiment import (
+        _windows_live_v1_motor_output_experiment_adapter as adapter,
+    )
+
+    enabled = _fake_experiment3_run(control=False)
+    control = _fake_experiment3_run(control=True)
+
+    report = adapter._passive_motion_report(enabled, control)
+
+    assert report["joint_count"] == 31
+    assert len(report["joints"]) == 31
+
+    first = report["joints"][0]
+    assert first["action_index"] == adapter.BASELINE_ONLY_INDICES[0]
+
+    for condition in (
+        "live_v1_enabled",
+        "matched_control_final_11_zeroed",
+    ):
+        values = first["conditions"][condition]
+        assert values["initial_position"] == 0.0
+        assert values["maximum_measured_position"] == 0.002
+        assert values["final_measured_position"] == 0.002
+        assert values["net_change_from_initial"] == 0.002
+        assert values["ever_changed_from_initial_exactly"] is True
+
+    # It moved, but identically, so it is not an enabled/control divergence.
+    assert first["first_enabled_control_exact_divergence_time_ms"] is None
+
+
+def test_fake_pairing_rejects_transition_index_mismatch():
+    from malecns_backend.embodiment import (
+        _windows_live_v1_motor_output_experiment_adapter as adapter,
+    )
+
+    enabled = _fake_experiment3_run(control=False)
+    control = _fake_experiment3_run(control=True)
+
+    control["physics"][100]["physics_transition_index"] += 1
+
+    with pytest.raises(RuntimeError, match="paired physics index mismatch"):
+        adapter._verify_pairing(enabled, control)
+
+
+def test_result_writer_is_deterministic_and_exclusive(tmp_path):
+    path = tmp_path / "result.json"
+    result = {
+        "schema": "LIVE-V1-MOTOR-OUTPUT-RESULT.1",
+        "status": "SYNTHETIC_TEST_ONLY",
+        "value": 1.25,
+    }
+
+    receipt = exp.write_result_exclusive(result, path)
+
+    expected = exp.canonical_json(result).encode("utf-8")
+
+    import hashlib
+
+    assert path.read_bytes() == expected
+    assert receipt["path"] == path.as_posix()
+    assert receipt["size_bytes"] == len(expected)
+    assert receipt["sha256"] == hashlib.sha256(expected).hexdigest()
+
+    before = path.read_bytes()
+
+    with pytest.raises(FileExistsError, match="canonical result already exists"):
+        exp.write_result_exclusive(
+            {"status": "SHOULD_NOT_OVERWRITE"},
+            path,
+        )
+
+    assert path.read_bytes() == before
+
+
+def test_preexisting_result_fails_closed(tmp_path):
+    path = tmp_path / "existing_result.json"
+    path.write_text('{"preserved": true}\n', encoding="utf-8")
+
+    before = path.read_bytes()
+
+    with pytest.raises(FileExistsError, match="canonical result already exists"):
+        exp.assert_result_available(path)
+
+    assert path.read_bytes() == before
+
+
+def test_missing_result_path_is_available(tmp_path):
+    path = tmp_path / "not_created.json"
+
+    assert exp.assert_result_available(path) is None
+    assert not path.exists()
+
+
+def test_execution_attempt_marker_is_deterministic_and_exclusive(tmp_path):
+    path = tmp_path / "attempt.json"
+    provenance = {
+        "design_sha256": "a" * 64,
+        "execution_contract_sha256": "b" * 64,
+    }
+
+    receipt = exp.claim_execution_attempt(provenance, path)
+
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    assert payload["schema"] == "LIVE-V1-MOTOR-OUTPUT-EXECUTION-ATTEMPT.1"
+    assert payload["status"] == "EXECUTION_ATTEMPT_CLAIMED"
+    assert payload["provenance"] == provenance
+    assert payload["result_path"] == exp.RESULT_PATH.name
+
+    expected = exp.canonical_json(payload).encode("utf-8")
+
+    import hashlib
+
+    assert path.read_bytes() == expected
+    assert receipt["path"] == path.as_posix()
+    assert receipt["size_bytes"] == len(expected)
+    assert receipt["sha256"] == hashlib.sha256(expected).hexdigest()
+
+    before = path.read_bytes()
+
+    with pytest.raises(FileExistsError, match="execution attempt already claimed"):
+        exp.claim_execution_attempt(
+            {"design_sha256": "SHOULD_NOT_REPLACE"},
+            path,
+        )
+
+    assert path.read_bytes() == before
+
+
+def test_unauthorized_execute_cannot_claim_attempt(monkeypatch, tmp_path):
+    from malecns_backend.embodiment import (
+        _windows_live_v1_motor_output_experiment_adapter as adapter,
+    )
+
+    attempt = tmp_path / "attempt.json"
+
+    monkeypatch.setattr(exp, "ATTEMPT_PATH", attempt)
+
+    with pytest.raises(PermissionError, match="not authorized"):
+        adapter.execute()
+
+    assert not attempt.exists()

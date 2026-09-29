@@ -11,6 +11,7 @@ import argparse
 import hashlib
 import json
 import math
+import os
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
@@ -18,6 +19,8 @@ HERE = Path(__file__).resolve().parent
 OUTPUT_DIR = HERE / "interface_output" / "live_v1_motor_output_experiment"
 DESIGN_PATH = OUTPUT_DIR / "implementation_design.json"
 AUTHORIZATION_PATH = OUTPUT_DIR / "prospective_execution_authorization.json"
+ATTEMPT_PATH = OUTPUT_DIR / "live_v1_motor_output_experiment_execution_attempt.json"
+RESULT_PATH = OUTPUT_DIR / "live_v1_motor_output_experiment_result.json"
 
 FROZEN_PRIOR_COMMIT = "ea81974f59ce9a67a382c20d605b385765f10b33"
 PRIOR_OBJECT_AVAILABLE_AT_IMPLEMENTATION = False
@@ -60,6 +63,75 @@ PHYSICS_FIELDS = (
 
 def canonical_json(value: Any) -> str:
     return json.dumps(value, indent=2, sort_keys=True, allow_nan=False) + "\n"
+
+
+def assert_result_available(path: Path = RESULT_PATH) -> None:
+    """Fail before runtime construction if a canonical result already exists."""
+    if path.exists():
+        raise FileExistsError(
+            f"Experiment 3 canonical result already exists: {path}"
+        )
+
+
+def claim_execution_attempt(
+    provenance: Mapping[str, Any],
+    path: Path = ATTEMPT_PATH,
+) -> dict[str, Any]:
+    """Consume the one scientific attempt before the first transition."""
+    marker = {
+        "schema": "LIVE-V1-MOTOR-OUTPUT-EXECUTION-ATTEMPT.1",
+        "status": "EXECUTION_ATTEMPT_CLAIMED",
+        "result_path": RESULT_PATH.name,
+        "provenance": dict(provenance),
+    }
+
+    payload = canonical_json(marker).encode("utf-8")
+    digest = hashlib.sha256(payload).hexdigest()
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+
+    try:
+        with path.open("xb") as handle:
+            handle.write(payload)
+            handle.flush()
+            os.fsync(handle.fileno())
+    except FileExistsError:
+        raise FileExistsError(
+            f"Experiment 3 execution attempt already claimed: {path}"
+        ) from None
+
+    return {
+        "path": path.as_posix(),
+        "size_bytes": len(payload),
+        "sha256": digest,
+    }
+
+
+def write_result_exclusive(
+    result: Mapping[str, Any],
+    path: Path = RESULT_PATH,
+) -> dict[str, Any]:
+    """Serialize completely, then create the canonical result exactly once."""
+    payload = canonical_json(result).encode("utf-8")
+    digest = hashlib.sha256(payload).hexdigest()
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+
+    try:
+        with path.open("xb") as handle:
+            handle.write(payload)
+            handle.flush()
+            os.fsync(handle.fileno())
+    except FileExistsError:
+        raise FileExistsError(
+            f"Experiment 3 canonical result already exists: {path}"
+        ) from None
+
+    return {
+        "path": path.as_posix(),
+        "size_bytes": len(payload),
+        "sha256": digest,
+    }
 
 
 def design() -> dict[str, Any]:
@@ -209,12 +281,30 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--validate", action="store_true",
                         help="validate static readiness; performs zero transitions")
     parser.add_argument("--execute", action="store_true",
-                        help="reserved; always unauthorized in this revision")
+                        help="execute only after prospective authorization")
     args = parser.parse_args(argv)
+
     if args.execute:
-        assert_execution_authorized()
+        # This check is deliberately before authorization and before importing
+        # the execution adapter.  A preserved canonical result therefore blocks
+        # any later attempt before a scientific runtime can be constructed.
+        assert_result_available()
+
+        from . import _windows_live_v1_motor_output_experiment_adapter as adapter
+
+        result = adapter.execute()
+        written = write_result_exclusive(result)
+
+        print(canonical_json({
+            "schema": "LIVE-V1-MOTOR-OUTPUT-EXECUTION-RECEIPT.1",
+            "status": "SCIENTIFIC_EXECUTION_COMPLETE",
+            "result": written,
+        }), end="")
+        return 0
+
     if args.validate:
         print(canonical_json(readiness()), end="")
+
     return 0
 
 
