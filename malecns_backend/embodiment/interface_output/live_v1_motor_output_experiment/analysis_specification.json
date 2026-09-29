@@ -1,0 +1,95 @@
+{
+  "analysis_prohibitions": [
+    "no statistical significance threshold",
+    "no post-outcome tolerance selection",
+    "no post-outcome metric redefinition",
+    "no channel removal after observing outcome",
+    "no rerun because an outcome is uninteresting",
+    "no biological-function inference from divergence alone",
+    "no claim that matched-control divergence proves behavioral necessity"
+  ],
+  "baseline_only_joint_analysis": {
+    "indices": "all action-vector indices 0..41 not belonging to the frozen 11 Live Fly v1 motor channels",
+    "initial_position_source": "initial_physical_state_audit.joint_configuration",
+    "interpretation": "descriptive passive-motion report only; no new motor-control attribution is permitted",
+    "joint_count": 31,
+    "paired_field": "first enabled/control exact measured-position divergence time_ms",
+    "per_condition_fields": [
+      "initial_position",
+      "minimum_measured_position",
+      "maximum_measured_position",
+      "final_measured_position",
+      "net_change_from_initial",
+      "ever_changed_from_initial_exactly"
+    ]
+  },
+  "channel_metric_definitions": {
+    "command_to_measured_response_lag_ms": "find the first paired neural transition where commanded_joint_targets differ exactly between enabled and matched control at the channel's action index; then find the first paired physics transition at or after that timestamp where measured_joint_positions differ exactly at that action index; lag is response_time_ms minus command_time_ms; null if either event is absent",
+    "enabled_control_physical_divergence": "true iff at least one paired physics transition has an exact enabled/control measured-position difference at the channel's frozen action index",
+    "filtered_rate_distribution": "sorted complete empirical multiset of all finite per-neuron filtered-rate samples for that channel across all neural transitions; no binning, rounding, or downsampling",
+    "final_contribution_distribution": "sorted complete 1000-sample empirical multiset of final_contribution_rad for the channel; no binning or rounding",
+    "first_motor_population_activity_time_ms": "first neural record in that condition where any recorded per-neuron spike increment for the channel is greater than zero; null if none",
+    "first_nonzero_decoder_output_time_ms": "first neural record in that condition where raw_signed_contribution_rad for the channel is not exactly 0.0; null if none",
+    "first_physical_divergence_time_ms": "first paired physics transition where enabled and matched-control measured_joint_positions differ exactly at the channel's frozen action index; null if none",
+    "nonzero_output_duty_fraction": "number of neural transitions with final_contribution_rad not exactly 0.0 divided by total neural transitions",
+    "positive_negative_directional_balance": "time-aligned neural-transition records containing pooled positive rate Hz, pooled negative rate Hz, positive activation, negative activation, and activation_difference defined exactly as positive_activation minus negative_activation before coordinate sign",
+    "range_clamp_occupancy": "number of neural transitions with range_clamped true divided by total neural transitions",
+    "raw_contribution_distribution": "sorted complete 1000-sample empirical multiset of raw_signed_contribution_rad for the channel; no binning or rounding",
+    "slew_limit_occupancy": "number of neural transitions with slew_limited true divided by total neural transitions",
+    "spike_increment_distribution": "exact integer frequency table over every per-neuron spike increment observed for that channel across all neural transitions; no bin merging"
+  },
+  "classification_rules": {
+    "DECODER_OUTPUT": "at least one raw_signed_contribution_rad not exactly 0.0",
+    "NOT_PHYSICALLY_DIVERGENT": "no paired measured-position difference at the channel action index",
+    "NO_DECODER_OUTPUT": "all raw_signed_contribution_rad values exactly 0.0",
+    "OBSERVED_ACTIVE": "at least one per-neuron spike increment greater than zero",
+    "OBSERVED_INACTIVE": "no per-neuron spike increment greater than zero",
+    "PHYSICALLY_DIVERGENT": "at least one paired measured-position difference at the channel action index"
+  },
+  "experiment": "Live Fly v1 11-channel motor-output observability assay",
+  "numerical_comparison": {
+    "absolute_tolerance": 0.0,
+    "floating_point_divergence_rule": "exact inequality",
+    "post_outcome_threshold_selection_permitted": false,
+    "relative_tolerance": 0.0,
+    "round_before_comparison": false
+  },
+  "pairing": {
+    "between_condition_comparison": "compare records having the same transition index",
+    "condition_number_scientific_effect": false,
+    "condition_number_use": "progress reporting only",
+    "conditions": [
+      "live_v1_enabled",
+      "matched_control_final_11_zeroed"
+    ],
+    "fresh_runtime_per_condition": true,
+    "neural_physics_clock_rule": "neural transition N must exactly equal the timestamp of physics transition 5*N within each condition",
+    "same_duration_ms": 500,
+    "same_initialization": true,
+    "same_seed": 1
+  },
+  "parent_execution_contract": {
+    "git_commit": "2e3fcdc632e451300fd15eada74245fd4aad6ed9",
+    "path": "malecns_backend/embodiment/interface_output/live_v1_motor_output_experiment/scientific_execution_contract.json",
+    "sha256": "5a821012e77b7080d20b5bac0e99c11788bf2480237cbbab915d75f135018fe7"
+  },
+  "raw_telemetry_preservation": {
+    "conditions": 2,
+    "downsampling_permitted": false,
+    "expected_neural_records_per_condition": 1000,
+    "expected_physics_records_per_condition": 5000,
+    "require_clock_validation_before_analysis": true,
+    "required": true,
+    "rounding_permitted": false,
+    "serialization_format": "implementation-defined before authorization, but must preserve all recorded values without scientific transformation"
+  },
+  "runtime_state_at_freeze": {
+    "experiment_3_result_observed": false,
+    "experiment_3_scientific_execution_performed": false,
+    "neural_transitions": 0,
+    "physics_transitions": 0,
+    "scientific_execution_authorized": false
+  },
+  "schema": "LIVE-V1-MOTOR-OUTPUT-ANALYSIS-SPECIFICATION.1",
+  "status": "PROSPECTIVELY_FROZEN_NOT_AUTHORIZED"
+}
