@@ -305,20 +305,23 @@ def test_record_propagation_step_rejects_external_withholding():
 def test_execute_cli_requires_authorization_before_execute_assay(
     monkeypatch,
     capsys,
+    tmp_path,
 ):
     calls = []
 
+    fake_result = {
+        "schema": "LF-PROXIMAL-PROPAGATION-LOCALIZATION-RESULT.1",
+        "seeds": [1, 2, 3],
+        "conditions": [
+            "CONTROL_REPLAY",
+            "LF_MIN_BOUND",
+            "LF_MAX_BOUND",
+        ],
+    }
+
     def fake_execute_assay(replay, provenance):
         calls.append((replay, provenance))
-        return {
-            "schema": "LF-PROXIMAL-PROPAGATION-LOCALIZATION-RESULT.1",
-            "seeds": [1, 2, 3],
-            "conditions": [
-                "CONTROL_REPLAY",
-                "LF_MIN_BOUND",
-                "LF_MAX_BOUND",
-            ],
-        }
+        return fake_result
 
     monkeypatch.setattr(
         runner,
@@ -326,7 +329,19 @@ def test_execute_cli_requires_authorization_before_execute_assay(
         fake_execute_assay,
     )
 
-    exit_code = runner.main(["--execute"])
+    canonical = (
+        runner.SPEC_DIR
+        / "lf_proximal_propagation_localization_result.json"
+    )
+    canonical_before = canonical.read_bytes()
+
+    output_path = tmp_path / "fake_result.json"
+
+    exit_code = runner.main([
+        "--execute",
+        "--output",
+        str(output_path),
+    ])
 
     captured = capsys.readouterr()
 
@@ -335,10 +350,118 @@ def test_execute_cli_requires_authorization_before_execute_assay(
     assert "SCIENTIFIC_EXECUTION_COMPLETE" in captured.out
     assert '"scientific_execution_authorized": true' in captured.out
 
+    assert output_path.is_file()
+    assert runner.json.loads(
+        output_path.read_text(encoding="utf-8")
+    ) == fake_result
+
+    # Tests must never mutate the canonical scientific result.
+    assert canonical.read_bytes() == canonical_before
+
+
+def test_result_writer_refuses_to_replace_existing_file(tmp_path):
+    output_path = tmp_path / "existing_result.json"
+    sentinel = b"existing-scientific-result\n"
+    output_path.write_bytes(sentinel)
+
+    with pytest.raises(FileExistsError):
+        runner._write_result_exclusive(
+            output_path,
+            {
+                "schema": "TEST",
+                "status": "FAKE",
+            },
+        )
+
+    assert output_path.read_bytes() == sentinel
+
+
+def test_result_writer_creates_new_strict_utf8_file(tmp_path):
+    output_path = tmp_path / "new_result.json"
+    payload = {
+        "schema": "TEST",
+        "status": "FAKE",
+    }
+
+    runner._write_result_exclusive(
+        output_path,
+        payload,
+    )
+
+    raw = output_path.read_bytes()
+
+    assert not raw.startswith(b"\xef\xbb\xbf")
+    assert raw.endswith(b"\n")
+    assert runner.json.loads(raw.decode("utf-8")) == payload
+
+
+
+def test_execute_cli_refuses_existing_output_before_execute_assay(
+    monkeypatch,
+    capsys,
+    tmp_path,
+):
+    calls = []
+
+    def forbidden_execute_assay(*args, **kwargs):
+        calls.append((args, kwargs))
+        raise AssertionError(
+            "execute_assay reached despite pre-existing output"
+        )
+
+    def forbidden_provenance(*args, **kwargs):
+        calls.append(("provenance", args, kwargs))
+        raise AssertionError(
+            "provenance gate reached despite pre-existing output"
+        )
+
+    def forbidden_authorization(*args, **kwargs):
+        calls.append(("authorization", args, kwargs))
+        raise AssertionError(
+            "authorization gate reached despite pre-existing output"
+        )
+
+    monkeypatch.setattr(
+        runner,
+        "execute_assay",
+        forbidden_execute_assay,
+    )
+    monkeypatch.setattr(
+        runner,
+        "provenance_gate",
+        forbidden_provenance,
+    )
+    monkeypatch.setattr(
+        runner,
+        "execution_authorization_gate",
+        forbidden_authorization,
+    )
+
+    output_path = tmp_path / "existing_result.json"
+    sentinel = b"already-preserved-scientific-result\n"
+    output_path.write_bytes(sentinel)
+
+    exit_code = runner.main([
+        "--execute",
+        "--output",
+        str(output_path),
+    ])
+
+    captured = capsys.readouterr()
+
+    assert exit_code == 1
+    assert calls == []
+    assert output_path.read_bytes() == sentinel
+    assert "FAIL_CLOSED" in captured.out
+    assert "refusing to overwrite existing scientific result" in captured.out
+    assert '"neural_runtime_steps": 0' in captured.out
+
+
 
 def test_execute_cli_fails_closed_when_authorization_is_rejected(
     monkeypatch,
     capsys,
+    tmp_path,
 ):
     def forbidden_execute_assay(*args, **kwargs):
         raise AssertionError(
@@ -361,7 +484,13 @@ def test_execute_cli_fails_closed_when_authorization_is_rejected(
         rejected_authorization,
     )
 
-    exit_code = runner.main(["--execute"])
+    output_path = tmp_path / "authorization_rejected_result.json"
+
+    exit_code = runner.main([
+        "--execute",
+        "--output",
+        str(output_path),
+    ])
 
     captured = capsys.readouterr()
 
@@ -370,3 +499,4 @@ def test_execute_cli_fails_closed_when_authorization_is_rejected(
     assert '"scientific_execution_authorized": false' in captured.out
     assert '"neural_runtime_steps": 0' in captured.out
     assert "SHA-256 mismatch" in captured.out
+    assert not output_path.exists()

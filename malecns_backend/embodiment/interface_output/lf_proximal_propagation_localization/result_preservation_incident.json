@@ -1,0 +1,52 @@
+{
+  "affected_artifact": "malecns_backend/embodiment/interface_output/lf_proximal_propagation_localization/lf_proximal_propagation_localization_result.json",
+  "canonical_result_state": {
+    "content_scope": [
+      "schema",
+      "seeds",
+      "conditions"
+    ],
+    "full_scientific_result_preserved": false,
+    "sha256": "84f756d368ffc09475bcdff2695f4c88aedd289161779f1ff9cb9bdad91a7ee5",
+    "size_bytes": 199
+  },
+  "classification": "NON_SCIENTIFIC_PROVENANCE_INCIDENT",
+  "established_incident_sequence": [
+    "The scientific Experiment 2 execution completed successfully.",
+    "A full scientific result containing paired-divergence and per-seed data was observed after execution.",
+    "A later happy-path CLI unit test monkeypatched execute_assay.",
+    "The mocked execute_assay returned only schema, seeds, and conditions.",
+    "That test invoked main with --execute and no --output path.",
+    "The CLI therefore selected the canonical scientific result path.",
+    "The result writer used non-exclusive Path.write_text semantics.",
+    "The canonical artifact subsequently contained the same 199-byte stub structure produced by the mocked assay."
+  ],
+  "experiment": "LF proximal propagation localization",
+  "git_evidence": {
+    "original_full_result_preserved_in_that_commit": false,
+    "result_commit": "ea81974f59ce9a67a382c20d605b385765f10b33",
+    "result_commit_contains_same_stub": true
+  },
+  "limitations": [
+    "The original full result is not known to be recoverable from Git.",
+    "This incident record does not reconstruct missing scientific data.",
+    "A future deterministic reconstruction run requires separate prospective authorization."
+  ],
+  "pre_fix_file_identity": {
+    "runner_sha256": "2b56062bed074a0c0f6d0eabe061c6a5dcce37ec8ef1e0c0c743029f87124e00",
+    "test_sha256": "24b499fd280e87995b0dafe27af950d261b59454dfb7d8bdc9366248eef38c7c"
+  },
+  "remediation": {
+    "existing_result_replacement_permitted": false,
+    "mocked_cli_tests_use_temporary_output_paths": true,
+    "scientific_result_writer_uses_exclusive_creation": true
+  },
+  "schema": "LF-PROXIMAL-PROPAGATION-RESULT-PRESERVATION-INCIDENT.1",
+  "scope": {
+    "result_preservation_and_provenance_affected": true,
+    "scientific_algorithm_changed_by_incident": false,
+    "scientific_recovery_authorized": false,
+    "scientific_recovery_performed": false
+  },
+  "status": "DOCUMENTED_RECOVERY_NOT_AUTHORIZED"
+}

@@ -1307,6 +1307,31 @@ def check_ready(**paths) -> dict[str, Any]:
         "neural_runtime_steps": 0,
     }
 
+
+def _write_result_exclusive(output_path: Path, result: dict[str, Any]) -> None:
+    """Write one scientific result without permitting replacement."""
+    serialized = (
+        json.dumps(
+            result,
+            sort_keys=True,
+            allow_nan=False,
+            indent=2,
+        )
+        + "\n"
+    )
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    # Exclusive creation is deliberate. Scientific results must never be
+    # silently truncated or replaced by a later run or test.
+    with output_path.open(
+        "x",
+        encoding="utf-8",
+        newline="\n",
+    ) as handle:
+        handle.write(serialized)
+
+
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     actions = parser.add_mutually_exclusive_group()
@@ -1346,7 +1371,19 @@ def main(argv=None) -> int:
             "report": args.replay_dir / EXTRACTION_REPORT.name,
         }
 
+        output_path = (
+            args.output
+            or SPEC_DIR / "lf_proximal_propagation_localization_result.json"
+        )
+
         try:
+            # Refuse before constructing or advancing the scientific assay.
+            # The exclusive writer below remains a second line of defense.
+            if output_path.exists():
+                raise FileExistsError(
+                    f"refusing to overwrite existing scientific result: {output_path}"
+                )
+
             replay, provenance = provenance_gate(**paths)
             authorization = execution_authorization_gate()
 
@@ -1355,22 +1392,9 @@ def main(argv=None) -> int:
                 provenance,
             )
 
-            output_path = (
-                args.output
-                or SPEC_DIR / "lf_proximal_propagation_localization_result.json"
-            )
-
-            output_path.parent.mkdir(parents=True, exist_ok=True)
-
-            output_path.write_text(
-                json.dumps(
-                    result,
-                    sort_keys=True,
-                    allow_nan=False,
-                    indent=2,
-                )
-                + "\n",
-                encoding="utf-8",
+            _write_result_exclusive(
+                output_path,
+                result,
             )
 
             print(json.dumps({
