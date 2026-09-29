@@ -1,0 +1,78 @@
+{
+  "attempt": 2,
+  "candidates": [
+    {
+      "action_index": 24,
+      "coordinate_sign": -1,
+      "joint": "joint_RFFemur"
+    },
+    {
+      "action_index": 6,
+      "coordinate_sign": -1,
+      "joint": "joint_LFTarsus1"
+    },
+    {
+      "action_index": 27,
+      "coordinate_sign": -1,
+      "joint": "joint_RFTarsus1"
+    }
+  ],
+  "flygym_version": "1.2.1",
+  "git_commit": "196782f959993e7d5985e3a01dc8a48dabc749d4",
+  "machine": {
+    "machine": "AMD64",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+    "release": "11",
+    "system": "Windows"
+  },
+  "mujoco_version": "3.2.7",
+  "numpy_version": "2.0.2",
+  "preregistration_path": "malecns_backend\\embodiment\\interface_output\\candidate_motor_channel_future_preregistration.json",
+  "preregistration_sha256": "16cf491729aae39b8552a79b67993feef5661ee2240317d37c2d385e9e21893d",
+  "prior_attempts": [
+    {
+      "attempt": 1,
+      "directory": ".",
+      "reason": "legacy-layout attempt; STARTED without final_manifest is aborted",
+      "status": "ABORTED_INFRASTRUCTURE_ERROR"
+    }
+  ],
+  "python_version": "3.12.10",
+  "schema": "THREE-CANDIDATE-EXECUTION-MANIFEST.1",
+  "seed": 1,
+  "source_hashes": {
+    "malecns_backend\\embodiment\\_windows_candidate_motor_channel_experiment_adapter.py": {
+      "byte_size": 18300,
+      "sha256": "df745d483cdea0ab05317a0c63089f4b0c8f078f4e03f5b399f2b6abfb168f36"
+    },
+    "malecns_backend\\embodiment\\_windows_m7d_corrected_spontaneous_adapter.py": {
+      "byte_size": 11647,
+      "sha256": "5c907c217806cd8e15e1a594e0c0a8ac4007a97975881f9e2211691fe7c14a82"
+    },
+    "malecns_backend\\embodiment\\_windows_m8_live_condition.py": {
+      "byte_size": 35649,
+      "sha256": "c31d0ebbd305a5ce16ee5a35d042fbf36ff18caa6412eca9e1c88502d8f6c30c"
+    },
+    "malecns_backend\\embodiment\\candidate_motor_channel_experiment.py": {
+      "byte_size": 9513,
+      "sha256": "471b5e53ca10d1dd6c104134150f59f9dcf1e26587df19bb550c6c177cb7bc5a"
+    },
+    "malecns_backend\\embodiment\\motor.py": {
+      "byte_size": 6055,
+      "sha256": "686185bc28f62d860fdee5ccb3e11ed4b15ad6cefc4165cb49ff470081f89828"
+    },
+    "malecns_backend\\embodiment\\tactile_motor_matched_control.py": {
+      "byte_size": 12985,
+      "sha256": "967afaf2f6cde59956cee5b3c3c2d3a1c49ce5d007d7b8d92924615bf66d5048"
+    }
+  },
+  "start_timestamp_utc": "2026-09-25T15:44:09.256577+00:00",
+  "status": "STARTED",
+  "timestep_configuration": {
+    "duration_ms": 1000,
+    "neural_dt_ms": 0.5,
+    "physics_dt_ms": 0.1,
+    "physics_to_neural_transition_ratio": 5
+  }
+}

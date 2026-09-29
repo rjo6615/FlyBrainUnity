@@ -1,0 +1,69 @@
+{
+  "candidates": [
+    {
+      "action_index": 24,
+      "coordinate_sign": -1,
+      "joint": "joint_RFFemur"
+    },
+    {
+      "action_index": 6,
+      "coordinate_sign": -1,
+      "joint": "joint_LFTarsus1"
+    },
+    {
+      "action_index": 27,
+      "coordinate_sign": -1,
+      "joint": "joint_RFTarsus1"
+    }
+  ],
+  "flygym_version": "1.2.1",
+  "git_commit": "8c0f132f33307d8b7e99c247c49b5bebed5f9129",
+  "machine": {
+    "machine": "AMD64",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+    "release": "11",
+    "system": "Windows"
+  },
+  "mujoco_version": "3.2.7",
+  "numpy_version": "2.0.2",
+  "preregistration_path": "malecns_backend\\embodiment\\interface_output\\candidate_motor_channel_future_preregistration.json",
+  "preregistration_sha256": "16cf491729aae39b8552a79b67993feef5661ee2240317d37c2d385e9e21893d",
+  "python_version": "3.12.10",
+  "schema": "THREE-CANDIDATE-EXECUTION-MANIFEST.1",
+  "seed": 1,
+  "source_hashes": {
+    "malecns_backend\\embodiment\\_windows_candidate_motor_channel_experiment_adapter.py": {
+      "byte_size": 16421,
+      "sha256": "f1b482138cd82f726f32b8cf005d2a04fa796ae8e35795c40419eb48e4993174"
+    },
+    "malecns_backend\\embodiment\\_windows_m7d_corrected_spontaneous_adapter.py": {
+      "byte_size": 11647,
+      "sha256": "5c907c217806cd8e15e1a594e0c0a8ac4007a97975881f9e2211691fe7c14a82"
+    },
+    "malecns_backend\\embodiment\\_windows_m8_live_condition.py": {
+      "byte_size": 33919,
+      "sha256": "1f3589cb17c593965d6732db9c7eef2857ac5f8acd6b3eae982c4e5498d1980e"
+    },
+    "malecns_backend\\embodiment\\candidate_motor_channel_experiment.py": {
+      "byte_size": 7941,
+      "sha256": "6fa745e46b5397f383614754b740d541e3c030a968646431debed5692cb42799"
+    },
+    "malecns_backend\\embodiment\\motor.py": {
+      "byte_size": 6055,
+      "sha256": "686185bc28f62d860fdee5ccb3e11ed4b15ad6cefc4165cb49ff470081f89828"
+    },
+    "malecns_backend\\embodiment\\tactile_motor_matched_control.py": {
+      "byte_size": 12985,
+      "sha256": "967afaf2f6cde59956cee5b3c3c2d3a1c49ce5d007d7b8d92924615bf66d5048"
+    }
+  },
+  "start_timestamp_utc": "2026-09-25T14:58:47.562933+00:00",
+  "status": "STARTED",
+  "timestep_configuration": {
+    "duration_ms": 1000,
+    "neural_dt_ms": 0.5,
+    "physics_dt_ms": 0.1,
+    "physics_to_neural_transition_ratio": 5
+  }
+}

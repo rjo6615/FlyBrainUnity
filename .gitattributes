@@ -41,3 +41,5 @@ malecns_backend/embodiment/interface_output/m11_motor_channel_dissection/m11_rep
 malecns_backend/embodiment/interface_output/m11_motor_channel_dissection/m11_manifest.json -text
 malecns_backend/embodiment/interface_output/m11c_motor_channel_analysis/m11c_analysis.json -text
 malecns_backend/embodiment/interface_output/m11c_motor_channel_analysis/m11c_manifest.json -text
+malecns_backend/embodiment/interface_output/candidate_motor_channel_experiment/attempt_004/candidate_motor_channel_raw.npz filter=lfs diff=lfs merge=lfs -text
+malecns_backend/embodiment/interface_output/live_v1_motor_output_experiment/live_v1_motor_output_experiment_result.json filter=lfs diff=lfs merge=lfs -text
