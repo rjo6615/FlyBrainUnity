@@ -56,8 +56,6 @@ def derive_v2(protocol: Mapping[str, Any], records: Sequence[Mapping[str, Any]],
             "handling": "baseline_plus_neural_contribution",
         })
     value["admitted_motor_interfaces"] = list(V2_MOTOR)
-    # Deliberately retain the canonical six-tibia sensory inventory verbatim.
-    value["admitted_sensory_interfaces"] = list(protocol["admitted_sensory_interfaces"])
     value["motor_output_count"] = 17
     value["sensory_proprioceptive_input_count"] = 6
     validate_v2(value, rows)
@@ -79,7 +77,7 @@ def validate_v2(protocol: Mapping[str, Any], table: Sequence[Mapping[str, Any]])
               historical == expected_historical and len(historical) == 11,
               motor - historical == NEW_ACTION_INDICES,
               tuple(protocol.get("admitted_motor_interfaces", ())) == V2_MOTOR,
-              tuple(protocol.get("admitted_sensory_interfaces", ())) == TIER_A,
+              tuple(row["actuator"] for row in protocol["sensory_interfaces"]) == TIER_A,
               all(table[index]["actuator"] == definition["actuator"] and
                   table[index]["coordinate_sign"] == 1
                   for definition in SUPPLEMENTAL_MOTOR_CHANNELS.values()
@@ -92,7 +90,7 @@ def assert_v2_physical_admission(vector: Sequence[float],
                                  table: Sequence[Mapping[str, Any]]) -> None:
     """Reject every nonzero output not authorized by validated v2 metadata."""
     validate_v2({"admitted_motor_interfaces": V2_MOTOR,
-                 "admitted_sensory_interfaces": TIER_A}, table)
+                 "sensory_interfaces": [{"actuator": name} for name in TIER_A]}, table)
     if len(vector) != 42:
         raise RuntimeError("v2 action-vector shape failure")
     for row, value in zip(table, vector):
