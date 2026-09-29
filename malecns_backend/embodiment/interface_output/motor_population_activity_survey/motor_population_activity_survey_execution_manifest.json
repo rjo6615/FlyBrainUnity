@@ -1,0 +1,20 @@
+{
+  "admitted_motor_channels": 11,
+  "environment": {
+    "flygym": "1.2.1",
+    "mujoco": "3.2.7",
+    "numpy": "2.0.2",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10"
+  },
+  "extra_forces_applied": false,
+  "git_commit": "cd81fa2f7730e972adc7ba78bfcdab53057a9fd9",
+  "inventory_sha256": "b0fbbe9d7bf5d83ee2b7b6d8d458be92105344c7bef24729e9e2969edaabc5cb",
+  "neural_transitions": 2000,
+  "physical_action_entries": 42,
+  "physics_transitions": 10000,
+  "preregistration_sha256": "8cf9e38219316886a69e5970c5d521283cf652e8a747fba77d99cd4ccc0eaff5",
+  "schema": "MOTOR-POPULATION-ACTIVITY-SURVEY-EXECUTION.1",
+  "status": "COMPLETE",
+  "stimulation_applied": false
+}

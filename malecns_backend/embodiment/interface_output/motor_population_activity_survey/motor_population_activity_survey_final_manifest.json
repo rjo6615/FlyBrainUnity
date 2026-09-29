@@ -1,0 +1,9 @@
+{
+  "artifacts": {
+    "motor_population_activity_survey_execution_manifest.json": "10e6cfbaf9a5529910a411271b00c5f33b5fe2ee62c29b4f4837b8fc90a18cae",
+    "motor_population_activity_survey_raw.npz": "1af4046577e61f41ba4d8dd68a7b8511c87cffe6168fe99cff298866042f5b43",
+    "motor_population_activity_survey_report.json": "9a2cf19a7f634c7ab15fd0041cdf38e465bb3ffc8821d7d83d846284a50cebfa"
+  },
+  "schema": "MOTOR-POPULATION-ACTIVITY-SURVEY-FINAL.1",
+  "status": "COMPLETE"
+}
