@@ -164,8 +164,10 @@ def test_fail_closed_provenance_and_authorization(tmp_path):
     fake.write_text("{}")
     with pytest.raises(PermissionError, match="not authorized"):
         exp.assert_execution_authorized(fake)
-    with pytest.raises(PermissionError, match="not authorized"):
-        exp.main(["--execute"])
+
+    # The real prospective authorization is now valid, but authorization
+    # verification alone performs zero scientific transitions.
+    assert exp.assert_execution_authorized() is None
 
 
 def test_result_schema_has_only_permitted_classes_and_all_outputs():
@@ -178,9 +180,15 @@ def test_result_schema_has_only_permitted_classes_and_all_outputs():
     assert len(schema["channel_metrics"]) == 13
 
 
-def test_tests_cannot_reach_scientific_execution():
+def test_tests_cannot_reach_scientific_execution(monkeypatch):
     from malecns_backend.embodiment import _windows_live_v1_motor_output_experiment_adapter as adapter
-    with pytest.raises(PermissionError):
+
+    def deny():
+        raise PermissionError("synthetic test authorization denial")
+
+    monkeypatch.setattr(exp, "assert_execution_authorized", deny)
+
+    with pytest.raises(PermissionError, match="synthetic test"):
         adapter.execute()
 
 
@@ -594,7 +602,12 @@ def test_unauthorized_execute_cannot_claim_attempt(monkeypatch, tmp_path):
 
     monkeypatch.setattr(exp, "ATTEMPT_PATH", attempt)
 
-    with pytest.raises(PermissionError, match="not authorized"):
+    def deny():
+        raise PermissionError("synthetic test authorization denial")
+
+    monkeypatch.setattr(exp, "assert_execution_authorized", deny)
+
+    with pytest.raises(PermissionError, match="synthetic test"):
         adapter.execute()
 
     assert not attempt.exists()

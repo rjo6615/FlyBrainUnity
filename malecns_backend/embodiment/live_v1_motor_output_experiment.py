@@ -173,11 +173,144 @@ def verify_design(path: Path = DESIGN_PATH) -> str:
 
 
 def assert_execution_authorized(path: Path = AUTHORIZATION_PATH) -> None:
-    """Unconditionally fail closed in this implementation revision."""
-    # Merely placing a file at the prospective path must never authorize a run.
-    # A future reviewed change must add a frozen identity and verifier.
-    del path
-    raise PermissionError("Experiment 3 scientific execution is not authorized")
+    """Verify the prospective authorization and frozen scientific identity."""
+    import subprocess
+
+    expected_authorization_sha256 = (
+        "69092890105036327154c711747c56506119e958"
+        "44f2c3ca1d2d2192198578f5"
+    )
+    authorized_commit = "fabf9dc9f3ae3e02bc7ab09786f4f60210278994"
+    expected_experiment_module_sha256 = (
+        "515ffdcf163d321c3156adaeb494df4935f20226"
+        "b07cd259e9150133dd2abcea"
+    )
+    expected_adapter_sha256 = (
+        "ed67f94b43df078810145f68ca1abe7467d06aa4"
+        "3d926a3c5f84dc1ffa5766cc"
+    )
+
+    def canonical_bytes(value: bytes) -> bytes:
+        return value.replace(b"\r\n", b"\n")
+
+    def canonical_sha256_file(file_path: Path) -> str:
+        return hashlib.sha256(
+            canonical_bytes(file_path.read_bytes())
+        ).hexdigest()
+
+    if not path.is_file():
+        raise PermissionError(
+            "Experiment 3 scientific execution is not authorized"
+        )
+
+    if canonical_sha256_file(path) != expected_authorization_sha256:
+        raise PermissionError(
+            "Experiment 3 scientific execution is not authorized: "
+            "authorization identity mismatch"
+        )
+
+    try:
+        authorization = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        raise PermissionError(
+            "Experiment 3 scientific execution is not authorized: "
+            "invalid authorization artifact"
+        ) from exc
+
+    scope = authorization.get("authorization_scope", {})
+    implementation = authorization.get("authorized_implementation", {})
+    state = authorization.get("state_at_authorization", {})
+
+    if (
+        authorization.get("schema")
+        != "LIVE-V1-MOTOR-OUTPUT-PROSPECTIVE-AUTHORIZATION.1"
+        or authorization.get("status")
+        != "AUTHORIZED_PROSPECTIVELY_NOT_YET_EXECUTED"
+        or scope.get("authorized_scientific_attempts") != 1
+        or scope.get("rerun_after_attempt_claim_permitted") is not False
+        or scope.get("rerun_after_failure_permitted") is not False
+        or scope.get("result_overwrite_permitted") is not False
+        or implementation.get("git_commit") != authorized_commit
+        or state.get("scientific_result_exists") is not False
+        or state.get("execution_attempt_marker_exists") is not False
+        or state.get("experiment_3_result_observed") is not False
+        or state.get("experiment_3_scientific_execution_performed") is not False
+    ):
+        raise PermissionError(
+            "Experiment 3 scientific execution is not authorized: "
+            "authorization content mismatch"
+        )
+
+    if ATTEMPT_PATH.exists():
+        raise PermissionError(
+            "Experiment 3 scientific authorization has already been consumed"
+        )
+
+    if RESULT_PATH.exists():
+        raise PermissionError(
+            "Experiment 3 canonical scientific result already exists"
+        )
+
+    adapter_path = HERE / "_windows_live_v1_motor_output_experiment_adapter.py"
+    if canonical_sha256_file(adapter_path) != expected_adapter_sha256:
+        raise RuntimeError(
+            "Experiment 3 authorized execution-adapter identity mismatch"
+        )
+
+    # The only permitted post-authorization source change is this verifier.
+    # Reconstruct the current module with the original fail-closed verifier
+    # taken directly from the authorized Git object, then require byte identity
+    # with the prospectively authorized experiment-module object.
+    repo_root = HERE.parent.parent
+    relative_module = (
+        "malecns_backend/embodiment/"
+        "live_v1_motor_output_experiment.py"
+    )
+
+    try:
+        frozen_source = subprocess.check_output(
+            ["git", "show", f"{authorized_commit}:{relative_module}"],
+            cwd=repo_root,
+        )
+    except (OSError, subprocess.CalledProcessError) as exc:
+        raise RuntimeError(
+            "cannot resolve prospectively authorized Experiment 3 Git object"
+        ) from exc
+
+    frozen_source = canonical_bytes(frozen_source)
+
+    if hashlib.sha256(frozen_source).hexdigest() != expected_experiment_module_sha256:
+        raise RuntimeError(
+            "prospectively authorized Experiment 3 module identity mismatch"
+        )
+
+    current_source = canonical_bytes(Path(__file__).read_bytes())
+
+    gate_start_marker = b"def assert_execution_authorized("
+    next_function_marker = b"\ndef validate_neural_record("
+
+    frozen_start = frozen_source.index(gate_start_marker)
+    frozen_end = frozen_source.index(
+        next_function_marker,
+        frozen_start,
+    )
+    current_start = current_source.index(gate_start_marker)
+    current_end = current_source.index(
+        next_function_marker,
+        current_start,
+    )
+
+    frozen_gate = frozen_source[frozen_start:frozen_end]
+    reconstructed = (
+        current_source[:current_start]
+        + frozen_gate
+        + current_source[current_end:]
+    )
+
+    if hashlib.sha256(reconstructed).hexdigest() != expected_experiment_module_sha256:
+        raise RuntimeError(
+            "Experiment 3 module changed outside the authorized gate verifier"
+        )
 
 
 def validate_neural_record(record: Mapping[str, Any], previous_index: int | None = None) -> None:
