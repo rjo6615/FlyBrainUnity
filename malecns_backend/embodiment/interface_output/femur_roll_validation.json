@@ -23,13 +23,120 @@
       },
       "biological_coordinate_sign": null,
       "biological_direction_resolved": false,
-      "blocking_reason": "forward-kinematics evidence has not been collected",
-      "classification": "MECHANICAL_DIRECTION_UNRESOLVED",
+      "blocking_reason": "mechanical direction is resolved, but existing evidence does not relate Fe reductor MN action to FlyGym coordinate sign",
+      "classification": "BIOLOGICAL_DIRECTION_UNRESOLVED",
       "expected_compiled_actuator_name": "actuator_position_joint_LFFemur_roll",
       "expected_transmitted_joint_name": "joint_LFFemur_roll",
       "identity_valid": true,
-      "mechanical_coordinate_direction_resolved": false,
-      "mechanics": null,
+      "mechanical_coordinate_direction_resolved": true,
+      "mechanics": {
+        "actuator_id": 4,
+        "actuator_name": "0/actuator_position_joint_LFFemur_roll",
+        "endpoint_body_id": 20,
+        "endpoint_body_name": "0/LFTarsus5",
+        "epsilon_rad": 0.0001,
+        "joint_id": 5,
+        "joint_name": "0/joint_LFFemur_roll",
+        "local_joint_axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "mechanical_coordinate_direction_resolved": true,
+        "negative": {
+          "endpoint_displacement_from_neutral": [
+            1.25692840358127e-07,
+            -1.7895584006333287e-07,
+            -3.274410431686192e-07
+          ],
+          "endpoint_position": [
+            1.8831700676294734,
+            0.16636426732654672,
+            1.8639875759983622
+          ],
+          "relative_segment_rotation_rad": 9.999999973779312e-05,
+          "requested_delta_rad": -0.0001,
+          "resulting_qpos_rad": -0.0001,
+          "segment_transform_xmat": [
+            -0.35836794775346054,
+            -3.583679489480205e-05,
+            -0.9335804264972019,
+            -9.999999983333334e-05,
+            0.999999995,
+            0.0,
+            0.9335804218292998,
+            9.335804249412345e-05,
+            -0.3583679495453003
+          ],
+          "world_rotation_axis_direction": [
+            0.9335804264972017,
+            1.2907220668825254e-12,
+            0.3583679495453003
+          ]
+        },
+        "neutral_endpoint_position": [
+          1.883169941936633,
+          0.16636444628238678,
+          1.8639879034394053
+        ],
+        "neutral_qpos_rad": 0.0,
+        "owning_body_id": 14,
+        "owning_body_name": "0/LFFemur",
+        "owning_body_transform_xmat_neutral": [
+          -0.3583679495453004,
+          -0.0,
+          -0.9335804264972017,
+          0.0,
+          1.0,
+          -0.0,
+          0.9335804264972017,
+          0.0,
+          -0.3583679495453004
+        ],
+        "positive": {
+          "endpoint_displacement_from_neutral": [
+            -1.2568642571153532e-07,
+            1.7899091284134805e-07,
+            3.274243345341432e-07
+          ],
+          "endpoint_position": [
+            1.8831698162502073,
+            0.16636462527329962,
+            1.8639882308637399
+          ],
+          "relative_segment_rotation_rad": 9.999999973779312e-05,
+          "requested_delta_rad": 0.0001,
+          "resulting_qpos_rad": 0.0001,
+          "segment_transform_xmat": [
+            -0.35836794775346054,
+            3.583679489480205e-05,
+            -0.9335804264972019,
+            9.999999983333334e-05,
+            0.999999995,
+            0.0,
+            0.9335804218292998,
+            -9.335804249412345e-05,
+            -0.3583679495453003
+          ],
+          "world_rotation_axis_direction": [
+            -0.9335804264972017,
+            1.2907220668825254e-12,
+            -0.3583679495453003
+          ]
+        },
+        "positive_minus_negative_endpoint_displacement": [
+          -2.513792660696623e-07,
+          3.579467529046809e-07,
+          6.548653777027624e-07
+        ],
+        "qpos_index": 11,
+        "transmitted_joint_id": 5,
+        "world_joint_axis_neutral": [
+          -0.9335804264972017,
+          0.0,
+          -0.3583679495453005
+        ]
+      },
       "opposite_direction_population": {
         "exact_names": [],
         "present_in_source": false,
@@ -37,7 +144,7 @@
         "synthesized": false
       },
       "statuses": [
-        "MECHANICAL_DIRECTION_UNRESOLVED",
+        "BIOLOGICAL_DIRECTION_UNRESOLVED",
         "SOURCE_HAS_NO_ANTAGONIST_POPULATION"
       ]
     },
@@ -60,13 +167,120 @@
       },
       "biological_coordinate_sign": null,
       "biological_direction_resolved": false,
-      "blocking_reason": "forward-kinematics evidence has not been collected",
-      "classification": "MECHANICAL_DIRECTION_UNRESOLVED",
+      "blocking_reason": "mechanical direction is resolved, but existing evidence does not relate Fe reductor MN action to FlyGym coordinate sign",
+      "classification": "BIOLOGICAL_DIRECTION_UNRESOLVED",
       "expected_compiled_actuator_name": "actuator_position_joint_LHFemur_roll",
       "expected_transmitted_joint_name": "joint_LHFemur_roll",
       "identity_valid": true,
-      "mechanical_coordinate_direction_resolved": false,
-      "mechanics": null,
+      "mechanical_coordinate_direction_resolved": true,
+      "mechanics": {
+        "actuator_id": 18,
+        "actuator_name": "2/actuator_position_joint_LHFemur_roll",
+        "endpoint_body_id": 28,
+        "endpoint_body_name": "2/LHTarsus5",
+        "epsilon_rad": 0.0001,
+        "joint_id": 16,
+        "joint_name": "2/joint_LHFemur_roll",
+        "local_joint_axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "mechanical_coordinate_direction_resolved": true,
+        "negative": {
+          "endpoint_displacement_from_neutral": [
+            2.356933670455419e-08,
+            1.9478490154156702e-08,
+            6.052618317653469e-08
+          ],
+          "endpoint_position": [
+            -2.1802306172996535,
+            1.1789821630532458,
+            1.4861497433794144
+          ],
+          "relative_segment_rotation_rad": 9.99999952969009e-05,
+          "requested_delta_rad": -0.0001,
+          "resulting_qpos_rad": -0.0001,
+          "segment_transform_xmat": [
+            0.15043373242843328,
+            -0.49998495912670704,
+            0.8528685319524435,
+            -0.08673748585911059,
+            -0.8660340818631809,
+            -0.492403876506104,
+            0.9848077480881695,
+            9.848077513707754e-05,
+            -0.1736481776669303
+          ],
+          "world_rotation_axis_direction": [
+            -0.8528685319522483,
+            0.4924038765062413,
+            0.17364817766749865
+          ]
+        },
+        "neutral_endpoint_position": [
+          -2.18023064086899,
+          1.1789821435747556,
+          1.4861496828532312
+        ],
+        "neutral_qpos_rad": 0.0,
+        "owning_body_id": 22,
+        "owning_body_name": "2/LHFemur",
+        "owning_body_transform_xmat_neutral": [
+          0.1503837331804352,
+          -0.5,
+          0.8528685319524434,
+          -0.08682408883346515,
+          -0.8660254037844388,
+          -0.492403876506104,
+          0.9848077530122081,
+          0.0,
+          -0.1736481776669303
+        ],
+        "positive": {
+          "endpoint_displacement_from_neutral": [
+            -2.356669437375558e-08,
+            -1.9472918610929923e-08,
+            -6.052900447528486e-08
+          ],
+          "endpoint_position": [
+            -2.1802306644356846,
+            1.178982124101837,
+            1.4861496223242268
+          ],
+          "relative_segment_rotation_rad": 9.999999307645472e-05,
+          "requested_delta_rad": 0.0001,
+          "resulting_qpos_rad": 0.0001,
+          "segment_transform_xmat": [
+            0.15033373242859993,
+            -0.500015035873293,
+            0.8528685319524436,
+            -0.08691069093957882,
+            -0.866016717045443,
+            -0.49240387650610407,
+            0.9848077480881696,
+            -9.848077513713305e-05,
+            -0.1736481776669302
+          ],
+          "world_rotation_axis_direction": [
+            0.8528685319522028,
+            -0.4924038765067068,
+            -0.17364817766640228
+          ]
+        },
+        "positive_minus_negative_endpoint_displacement": [
+          -4.713603107830977e-08,
+          -3.8951408765086626e-08,
+          -1.2105518765181955e-07
+        ],
+        "qpos_index": 22,
+        "transmitted_joint_id": 16,
+        "world_joint_axis_neutral": [
+          0.8528685319524434,
+          -0.492403876506104,
+          -0.17364817766693053
+        ]
+      },
       "opposite_direction_population": {
         "exact_names": [],
         "present_in_source": false,
@@ -74,7 +288,7 @@
         "synthesized": false
       },
       "statuses": [
-        "MECHANICAL_DIRECTION_UNRESOLVED",
+        "BIOLOGICAL_DIRECTION_UNRESOLVED",
         "SOURCE_HAS_NO_ANTAGONIST_POPULATION"
       ]
     },
@@ -99,13 +313,120 @@
       },
       "biological_coordinate_sign": null,
       "biological_direction_resolved": false,
-      "blocking_reason": "forward-kinematics evidence has not been collected",
-      "classification": "MECHANICAL_DIRECTION_UNRESOLVED",
+      "blocking_reason": "mechanical direction is resolved, but existing evidence does not relate Fe reductor MN action to FlyGym coordinate sign",
+      "classification": "BIOLOGICAL_DIRECTION_UNRESOLVED",
       "expected_compiled_actuator_name": "actuator_position_joint_LMFemur_roll",
       "expected_transmitted_joint_name": "joint_LMFemur_roll",
       "identity_valid": true,
-      "mechanical_coordinate_direction_resolved": false,
-      "mechanics": null,
+      "mechanical_coordinate_direction_resolved": true,
+      "mechanics": {
+        "actuator_id": 11,
+        "actuator_name": "1/actuator_position_joint_LMFemur_roll",
+        "endpoint_body_id": 36,
+        "endpoint_body_name": "1/LMTarsus5",
+        "epsilon_rad": 0.0001,
+        "joint_id": 27,
+        "joint_name": "1/joint_LMFemur_roll",
+        "local_joint_axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "mechanical_coordinate_direction_resolved": true,
+        "negative": {
+          "endpoint_displacement_from_neutral": [
+            3.547078972904183e-08,
+            1.1416620093740448e-08,
+            -6.474687186397432e-08
+          ],
+          "endpoint_position": [
+            -0.060717556545072736,
+            2.150759409417892,
+            1.490600265557103
+          ],
+          "relative_segment_rotation_rad": 9.999999751734703e-05,
+          "requested_delta_rad": -0.0001,
+          "resulting_qpos_rad": -0.0001,
+          "segment_transform_xmat": [
+            9.999999983337227e-05,
+            -0.999999995,
+            -5.551115123125783e-17,
+            -0.17364817679868927,
+            -1.7364817737730576e-05,
+            -0.9848077530122081,
+            0.9848077480881694,
+            9.848077513707754e-05,
+            -0.17364817766693016
+          ],
+          "world_rotation_axis_direction": [
+            -1.7905330653760308e-13,
+            0.9848077530122731,
+            0.17364817766656204
+          ]
+        },
+        "neutral_endpoint_position": [
+          -0.060717592015862465,
+          2.150759398001272,
+          1.4906003303039748
+        ],
+        "neutral_qpos_rad": 0.0,
+        "owning_body_id": 30,
+        "owning_body_name": "1/LMFemur",
+        "owning_body_transform_xmat_neutral": [
+          -5.551115123125783e-17,
+          -1.0,
+          0.0,
+          -0.1736481776669302,
+          0.0,
+          -0.9848077530122082,
+          0.9848077530122082,
+          0.0,
+          -0.1736481776669302
+        ],
+        "positive": {
+          "endpoint_displacement_from_neutral": [
+            -3.547736411591007e-08,
+            -1.1416004586095596e-08,
+            6.474337843620503e-08
+          ],
+          "endpoint_position": [
+            -0.06071762749322658,
+            2.150759386585267,
+            1.4906003950473532
+          ],
+          "relative_segment_rotation_rad": 9.999999751734703e-05,
+          "requested_delta_rad": 0.0001,
+          "resulting_qpos_rad": 0.0001,
+          "segment_transform_xmat": [
+            -9.999999983331676e-05,
+            -0.999999995,
+            5.551115123125783e-17,
+            -0.17364817679868927,
+            1.7364817737730576e-05,
+            -0.9848077530122081,
+            0.9848077480881694,
+            -9.848077513707754e-05,
+            -0.1736481776669301
+          ],
+          "world_rotation_axis_direction": [
+            -4.523923672885768e-13,
+            -0.984807753012273,
+            -0.17364817766656201
+          ]
+        },
+        "positive_minus_negative_endpoint_displacement": [
+          -7.09481538449519e-08,
+          -2.2832624679836044e-08,
+          1.2949025030017935e-07
+        ],
+        "qpos_index": 33,
+        "transmitted_joint_id": 27,
+        "world_joint_axis_neutral": [
+          0.0,
+          -0.984807753012208,
+          -0.17364817766693028
+        ]
+      },
       "opposite_direction_population": {
         "exact_names": [],
         "present_in_source": false,
@@ -113,7 +434,7 @@
         "synthesized": false
       },
       "statuses": [
-        "MECHANICAL_DIRECTION_UNRESOLVED",
+        "BIOLOGICAL_DIRECTION_UNRESOLVED",
         "SOURCE_HAS_NO_ANTAGONIST_POPULATION"
       ]
     },
@@ -144,13 +465,120 @@
       },
       "biological_coordinate_sign": null,
       "biological_direction_resolved": false,
-      "blocking_reason": "forward-kinematics evidence has not been collected",
-      "classification": "MECHANICAL_DIRECTION_UNRESOLVED",
+      "blocking_reason": "mechanical direction is resolved, but existing evidence does not relate Fe reductor MN action to FlyGym coordinate sign",
+      "classification": "BIOLOGICAL_DIRECTION_UNRESOLVED",
       "expected_compiled_actuator_name": "actuator_position_joint_RFFemur_roll",
       "expected_transmitted_joint_name": "joint_RFFemur_roll",
       "identity_valid": true,
-      "mechanical_coordinate_direction_resolved": false,
-      "mechanics": null,
+      "mechanical_coordinate_direction_resolved": true,
+      "mechanics": {
+        "actuator_id": 25,
+        "actuator_name": "3/actuator_position_joint_RFFemur_roll",
+        "endpoint_body_id": 60,
+        "endpoint_body_name": "3/RFTarsus5",
+        "epsilon_rad": 0.0001,
+        "joint_id": 60,
+        "joint_name": "3/joint_RFFemur_roll",
+        "local_joint_axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "mechanical_coordinate_direction_resolved": true,
+        "negative": {
+          "endpoint_displacement_from_neutral": [
+            -1.2568642571153532e-07,
+            -1.7899091284134805e-07,
+            3.274243345341432e-07
+          ],
+          "endpoint_position": [
+            1.8831698162502073,
+            -0.16636462527329962,
+            1.8639882308637399
+          ],
+          "relative_segment_rotation_rad": 9.999999973779312e-05,
+          "requested_delta_rad": -0.0001,
+          "resulting_qpos_rad": -0.0001,
+          "segment_transform_xmat": [
+            -0.35836794775346054,
+            -3.583679489480205e-05,
+            -0.9335804264972019,
+            -9.999999983333334e-05,
+            0.999999995,
+            0.0,
+            0.9335804218292998,
+            9.335804249412345e-05,
+            -0.3583679495453003
+          ],
+          "world_rotation_axis_direction": [
+            0.9335804264972017,
+            1.2907220668825254e-12,
+            0.3583679495453003
+          ]
+        },
+        "neutral_endpoint_position": [
+          1.883169941936633,
+          -0.16636444628238678,
+          1.8639879034394053
+        ],
+        "neutral_qpos_rad": 0.0,
+        "owning_body_id": 54,
+        "owning_body_name": "3/RFFemur",
+        "owning_body_transform_xmat_neutral": [
+          -0.3583679495453004,
+          -0.0,
+          -0.9335804264972017,
+          0.0,
+          1.0,
+          -0.0,
+          0.9335804264972017,
+          0.0,
+          -0.3583679495453004
+        ],
+        "positive": {
+          "endpoint_displacement_from_neutral": [
+            1.25692840358127e-07,
+            1.7895584006333287e-07,
+            -3.274410431686192e-07
+          ],
+          "endpoint_position": [
+            1.8831700676294734,
+            -0.16636426732654672,
+            1.8639875759983622
+          ],
+          "relative_segment_rotation_rad": 9.999999973779312e-05,
+          "requested_delta_rad": 0.0001,
+          "resulting_qpos_rad": 0.0001,
+          "segment_transform_xmat": [
+            -0.35836794775346054,
+            3.583679489480205e-05,
+            -0.9335804264972019,
+            9.999999983333334e-05,
+            0.999999995,
+            0.0,
+            0.9335804218292998,
+            -9.335804249412345e-05,
+            -0.3583679495453003
+          ],
+          "world_rotation_axis_direction": [
+            -0.9335804264972017,
+            1.2907220668825254e-12,
+            -0.3583679495453003
+          ]
+        },
+        "positive_minus_negative_endpoint_displacement": [
+          2.513792660696623e-07,
+          3.579467529046809e-07,
+          -6.548653777027624e-07
+        ],
+        "qpos_index": 66,
+        "transmitted_joint_id": 60,
+        "world_joint_axis_neutral": [
+          -0.9335804264972017,
+          0.0,
+          -0.3583679495453005
+        ]
+      },
       "opposite_direction_population": {
         "exact_names": [],
         "present_in_source": false,
@@ -158,7 +586,7 @@
         "synthesized": false
       },
       "statuses": [
-        "MECHANICAL_DIRECTION_UNRESOLVED",
+        "BIOLOGICAL_DIRECTION_UNRESOLVED",
         "SOURCE_HAS_NO_ANTAGONIST_POPULATION"
       ]
     },
@@ -181,13 +609,120 @@
       },
       "biological_coordinate_sign": null,
       "biological_direction_resolved": false,
-      "blocking_reason": "forward-kinematics evidence has not been collected",
-      "classification": "MECHANICAL_DIRECTION_UNRESOLVED",
+      "blocking_reason": "mechanical direction is resolved, but existing evidence does not relate Fe reductor MN action to FlyGym coordinate sign",
+      "classification": "BIOLOGICAL_DIRECTION_UNRESOLVED",
       "expected_compiled_actuator_name": "actuator_position_joint_RHFemur_roll",
       "expected_transmitted_joint_name": "joint_RHFemur_roll",
       "identity_valid": true,
-      "mechanical_coordinate_direction_resolved": false,
-      "mechanics": null,
+      "mechanical_coordinate_direction_resolved": true,
+      "mechanics": {
+        "actuator_id": 39,
+        "actuator_name": "5/actuator_position_joint_RHFemur_roll",
+        "endpoint_body_id": 44,
+        "endpoint_body_name": "5/RHTarsus5",
+        "epsilon_rad": 0.0001,
+        "joint_id": 38,
+        "joint_name": "5/joint_RHFemur_roll",
+        "local_joint_axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "mechanical_coordinate_direction_resolved": true,
+        "negative": {
+          "endpoint_displacement_from_neutral": [
+            -2.356669437375558e-08,
+            1.9472918610929923e-08,
+            -6.052900447528486e-08
+          ],
+          "endpoint_position": [
+            -2.1802306644356846,
+            -1.178982124101837,
+            1.4861496223242268
+          ],
+          "relative_segment_rotation_rad": 9.999999307645472e-05,
+          "requested_delta_rad": -0.0001,
+          "resulting_qpos_rad": -0.0001,
+          "segment_transform_xmat": [
+            0.15033373242859993,
+            0.500015035873293,
+            0.8528685319524436,
+            0.08691069093957882,
+            -0.866016717045443,
+            0.49240387650610407,
+            0.9848077480881696,
+            9.848077513713305e-05,
+            -0.1736481776669302
+          ],
+          "world_rotation_axis_direction": [
+            -0.8528685319522028,
+            -0.4924038765067068,
+            0.17364817766640228
+          ]
+        },
+        "neutral_endpoint_position": [
+          -2.18023064086899,
+          -1.1789821435747556,
+          1.4861496828532312
+        ],
+        "neutral_qpos_rad": 0.0,
+        "owning_body_id": 38,
+        "owning_body_name": "5/RHFemur",
+        "owning_body_transform_xmat_neutral": [
+          0.1503837331804352,
+          0.5,
+          0.8528685319524434,
+          0.08682408883346515,
+          -0.8660254037844388,
+          0.492403876506104,
+          0.9848077530122081,
+          0.0,
+          -0.1736481776669303
+        ],
+        "positive": {
+          "endpoint_displacement_from_neutral": [
+            2.356933670455419e-08,
+            -1.9478490154156702e-08,
+            6.052618317653469e-08
+          ],
+          "endpoint_position": [
+            -2.1802306172996535,
+            -1.1789821630532458,
+            1.4861497433794144
+          ],
+          "relative_segment_rotation_rad": 9.99999952969009e-05,
+          "requested_delta_rad": 0.0001,
+          "resulting_qpos_rad": 0.0001,
+          "segment_transform_xmat": [
+            0.15043373242843328,
+            0.49998495912670704,
+            0.8528685319524435,
+            0.08673748585911059,
+            -0.8660340818631809,
+            0.492403876506104,
+            0.9848077480881695,
+            -9.848077513707754e-05,
+            -0.1736481776669303
+          ],
+          "world_rotation_axis_direction": [
+            0.8528685319522483,
+            0.4924038765062413,
+            -0.17364817766749865
+          ]
+        },
+        "positive_minus_negative_endpoint_displacement": [
+          4.713603107830977e-08,
+          -3.8951408765086626e-08,
+          1.2105518765181955e-07
+        ],
+        "qpos_index": 44,
+        "transmitted_joint_id": 38,
+        "world_joint_axis_neutral": [
+          0.8528685319524434,
+          0.492403876506104,
+          -0.17364817766693053
+        ]
+      },
       "opposite_direction_population": {
         "exact_names": [],
         "present_in_source": false,
@@ -195,7 +730,7 @@
         "synthesized": false
       },
       "statuses": [
-        "MECHANICAL_DIRECTION_UNRESOLVED",
+        "BIOLOGICAL_DIRECTION_UNRESOLVED",
         "SOURCE_HAS_NO_ANTAGONIST_POPULATION"
       ]
     },
@@ -220,13 +755,120 @@
       },
       "biological_coordinate_sign": null,
       "biological_direction_resolved": false,
-      "blocking_reason": "forward-kinematics evidence has not been collected",
-      "classification": "MECHANICAL_DIRECTION_UNRESOLVED",
+      "blocking_reason": "mechanical direction is resolved, but existing evidence does not relate Fe reductor MN action to FlyGym coordinate sign",
+      "classification": "BIOLOGICAL_DIRECTION_UNRESOLVED",
       "expected_compiled_actuator_name": "actuator_position_joint_RMFemur_roll",
       "expected_transmitted_joint_name": "joint_RMFemur_roll",
       "identity_valid": true,
-      "mechanical_coordinate_direction_resolved": false,
-      "mechanics": null,
+      "mechanical_coordinate_direction_resolved": true,
+      "mechanics": {
+        "actuator_id": 32,
+        "actuator_name": "4/actuator_position_joint_RMFemur_roll",
+        "endpoint_body_id": 52,
+        "endpoint_body_name": "4/RMTarsus5",
+        "epsilon_rad": 0.0001,
+        "joint_id": 49,
+        "joint_name": "4/joint_RMFemur_roll",
+        "local_joint_axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "mechanical_coordinate_direction_resolved": true,
+        "negative": {
+          "endpoint_displacement_from_neutral": [
+            -3.547736411591007e-08,
+            1.1416004586095596e-08,
+            6.474337843620503e-08
+          ],
+          "endpoint_position": [
+            -0.06071762749322658,
+            -2.150759386585267,
+            1.4906003950473532
+          ],
+          "relative_segment_rotation_rad": 9.999999751734703e-05,
+          "requested_delta_rad": -0.0001,
+          "resulting_qpos_rad": -0.0001,
+          "segment_transform_xmat": [
+            -9.999999983331676e-05,
+            0.999999995,
+            5.551115123125783e-17,
+            0.17364817679868927,
+            1.7364817737730576e-05,
+            0.9848077530122081,
+            0.9848077480881694,
+            9.848077513707754e-05,
+            -0.1736481776669301
+          ],
+          "world_rotation_axis_direction": [
+            4.523923672885768e-13,
+            -0.984807753012273,
+            0.17364817766656201
+          ]
+        },
+        "neutral_endpoint_position": [
+          -0.060717592015862465,
+          -2.150759398001272,
+          1.4906003303039748
+        ],
+        "neutral_qpos_rad": 0.0,
+        "owning_body_id": 46,
+        "owning_body_name": "4/RMFemur",
+        "owning_body_transform_xmat_neutral": [
+          -5.551115123125783e-17,
+          1.0,
+          0.0,
+          0.1736481776669302,
+          0.0,
+          0.9848077530122082,
+          0.9848077530122082,
+          0.0,
+          -0.1736481776669302
+        ],
+        "positive": {
+          "endpoint_displacement_from_neutral": [
+            3.547078972904183e-08,
+            -1.1416620093740448e-08,
+            -6.474687186397432e-08
+          ],
+          "endpoint_position": [
+            -0.060717556545072736,
+            -2.150759409417892,
+            1.490600265557103
+          ],
+          "relative_segment_rotation_rad": 9.999999751734703e-05,
+          "requested_delta_rad": 0.0001,
+          "resulting_qpos_rad": 0.0001,
+          "segment_transform_xmat": [
+            9.999999983337227e-05,
+            0.999999995,
+            -5.551115123125783e-17,
+            0.17364817679868927,
+            -1.7364817737730576e-05,
+            0.9848077530122081,
+            0.9848077480881694,
+            -9.848077513707754e-05,
+            -0.17364817766693016
+          ],
+          "world_rotation_axis_direction": [
+            1.7905330653760308e-13,
+            0.9848077530122731,
+            -0.17364817766656204
+          ]
+        },
+        "positive_minus_negative_endpoint_displacement": [
+          7.09481538449519e-08,
+          -2.2832624679836044e-08,
+          -1.2949025030017935e-07
+        ],
+        "qpos_index": 55,
+        "transmitted_joint_id": 49,
+        "world_joint_axis_neutral": [
+          0.0,
+          0.984807753012208,
+          -0.17364817766693028
+        ]
+      },
       "opposite_direction_population": {
         "exact_names": [],
         "present_in_source": false,
@@ -234,16 +876,16 @@
         "synthesized": false
       },
       "statuses": [
-        "MECHANICAL_DIRECTION_UNRESOLVED",
+        "BIOLOGICAL_DIRECTION_UNRESOLVED",
         "SOURCE_HAS_NO_ANTAGONIST_POPULATION"
       ]
     }
   },
   "interpretation_boundary": "Mechanical coordinate direction does not establish the sign relating Fe reductor MN activity to that coordinate.",
-  "run_status": "STATIC_IDENTITY_ONLY",
+  "run_status": "MECHANICAL_VALIDATION_COMPLETE_FAIL_CLOSED",
   "schema": "SIX-FEMUR-ROLL-VALIDATION.1",
   "scientific_operations": {
-    "forward_kinematics_calls": 0,
+    "forward_kinematics_calls": 18,
     "malecns_transitions": 0,
     "neural_runtime_constructed": false,
     "physics_steps": 0
@@ -255,11 +897,11 @@
     "neural_experiment_run": false
   },
   "source_hashes": {
-    "fly-brain-main/public/data/bodymap.json": "10630cd4c7a6cc2c1dcfcbee4a602d307f06766f316b185f631406813a58da9d",
-    "malecns_backend/embodiment/interface_output/flymimic_flygym_proximal_registration/flymimic_flygym_proximal_registration_result.json": "a06b342390d6132a37b50766085390adb1a9eb8c1c34849f1f56dd69578e0684",
-    "malecns_backend/embodiment/interface_output/full_leg_interface_audit.json": "758850ea659e49fd93a36a9606bea07a1d329739fbf6be8089060ee6d706c52e",
-    "malecns_backend/embodiment/interface_output/motor_population_activity_survey/motor_population_inventory.json": "b0fbbe9d7bf5d83ee2b7b6d8d458be92105344c7bef24729e9e2969edaabc5cb",
-    "malecns_backend/embodiment/interface_output/whole_leg_motor_mapping_audit.json": "722ee9b3b1d6a0fad2bf8ef0f02fc63f49277c5f44e3bccf27898e6c4ea673d9",
-    "malecns_backend/interface_map.json": "24b7229bea6f24ff0e65fe09b202d42dc06819fe234194e3c3ab95b596319e0b"
+    "fly-brain-main\\public\\data\\bodymap.json": "10630cd4c7a6cc2c1dcfcbee4a602d307f06766f316b185f631406813a58da9d",
+    "malecns_backend\\embodiment\\interface_output\\flymimic_flygym_proximal_registration\\flymimic_flygym_proximal_registration_result.json": "8c8cc389dddc51b3ef465d4dd385ee7c23e25e900824d53ee6b082847377403b",
+    "malecns_backend\\embodiment\\interface_output\\full_leg_interface_audit.json": "d71cd9d9d7b17ed91625ca570102ab969997d333e03c05794e43c6caff7cac4d",
+    "malecns_backend\\embodiment\\interface_output\\motor_population_activity_survey\\motor_population_inventory.json": "0d6e51a3749a8b98df25bdd364056612ec24d222849f6f62db17f6c77ac21b29",
+    "malecns_backend\\embodiment\\interface_output\\whole_leg_motor_mapping_audit.json": "722ee9b3b1d6a0fad2bf8ef0f02fc63f49277c5f44e3bccf27898e6c4ea673d9",
+    "malecns_backend\\interface_map.json": "d0eb9df5f4664fe93ab7d181bcd51f9b451a32b548aea014246b82fc2aa5b644"
   }
 }
