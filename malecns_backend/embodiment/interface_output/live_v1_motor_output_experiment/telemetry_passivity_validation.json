@@ -1,0 +1,97 @@
+{
+  "artifact_classification": "NON_SCIENTIFIC_IMPLEMENTATION_VALIDATION",
+  "description": "Provenance-only record of completed real-runtime passivity validation for the Experiment 3 telemetry observer.",
+  "implementation_identity": {
+    "git_commit": "ceac71d1c83cb32b297c336f3fd5bda4b9fe972d",
+    "git_tree": "6e31d21257bd7285388f75f607dae2357ca6cec5",
+    "runtime_file": {
+      "path": "malecns_backend/embodiment/_windows_m8_live_condition.py",
+      "sha256": "fa716a14e1502bc5ad18e735022aa4d41363786b987311ddc5850e8502afbf3d"
+    },
+    "experiment_3_validation_module": {
+      "path": "malecns_backend/embodiment/live_v1_motor_output_experiment.py",
+      "sha256": "cc260cfcc032640809cf1f75cc42c15391b1b173ed95c866073ce3483453e0ac"
+    },
+    "focused_test_file": {
+      "path": "tests/test_live_v1_motor_output_experiment.py",
+      "sha256": "d1449a02c5fa121348e701b1f11df27fad2090c3c7638e808b5f7abdce8d7a46"
+    }
+  },
+  "environment": {
+    "python": "3.12.10",
+    "numpy": "2.0.2",
+    "flygym": "1.2.1",
+    "mujoco": "3.2.7"
+  },
+  "validation_design": {
+    "type": "implementation-equivalence validation",
+    "scientific_experiment_3_execution": false,
+    "executions": {
+      "A": "telemetry_observer=None",
+      "B": "telemetry_observer enabled with a record-only callback"
+    },
+    "fresh_execution_for_each_configuration": true,
+    "matched_control_experiment_3_condition_executed": false,
+    "experiment_3_result_artifact_generated": false,
+    "intervention_changed": false,
+    "runtime_configuration": "existing enabled Live Fly v1 runtime configuration"
+  },
+  "smoke_validation": {
+    "physics_transitions_per_run": 100,
+    "neural_transitions_per_run": 20,
+    "states_compared": 101,
+    "A_B_STATE_IDENTICAL": true,
+    "FIRST_MISMATCH_TRANSITION": null,
+    "TELEMETRY_NEURAL_RECORDS": 20,
+    "TELEMETRY_PHYSICS_RECORDS": 100,
+    "STATUS": "PASSIVE_TELEMETRY_A_B_SMOKE_PASS"
+  },
+  "long_validation": {
+    "physics_transitions_per_run": 5000,
+    "neural_transitions_per_run": 1000,
+    "states_compared": 5001,
+    "A_B_STATE_IDENTICAL": true,
+    "FIRST_MISMATCH_TRANSITION": null,
+    "TELEMETRY_NEURAL_RECORDS": 1000,
+    "TELEMETRY_PHYSICS_RECORDS": 5000,
+    "CROSS_STREAM_CLOCK_VALID": true,
+    "EXPERIMENT_3_SCIENTIFIC_EXECUTION": false,
+    "STATUS": "PASSIVE_TELEMETRY_LONG_EQUIVALENCE_PASS"
+  },
+  "state_comparison": {
+    "included": [
+      "yielded runtime state",
+      "MaleCNS fingerprint containing the applicable mutable neural arrays/state",
+      "MaleCNS RNG bit-generator state"
+    ],
+    "universal_mathematical_proof": false,
+    "permitted_interpretation": "Under the frozen implementation and environment recorded in this artifact, enabling the telemetry observer produced no observed change in the scientific runtime trajectory across the tested 5000-physics-transition / 1000-neural-transition Live Fly v1 validation run."
+  },
+  "clock_validation": {
+    "physics_telemetry_clock": "actual accumulated MuJoCo physics clock",
+    "neural_time_semantics": "a sample of the physics clock every fifth transition",
+    "transition_correspondence": "neural N corresponds to physics transition 5*N",
+    "matched_timestamp_requirement": "matched neural and physics timestamps were required to be exactly equal",
+    "synthetic_index_times_used": false,
+    "synthetic_index_times_excluded": [
+      "index*0.5",
+      "index*0.1"
+    ],
+    "cross_stream_validation_passed": true
+  },
+  "limitations": [
+    "This validates the tested implementation, environment, and run window.",
+    "It does not establish biological correctness of the decoder.",
+    "It does not establish that all possible future runtime trajectories are unaffected.",
+    "The six per-leg proprioceptive RNG objects were not separately exposed as standalone state snapshots, although their sampled event consequences were included in the compared runtime trajectory.",
+    "This is not scientific Experiment 3 data."
+  ],
+  "scientific_scope": {
+    "is_experiment_3_result": false,
+    "is_experiment_3_replicate": false,
+    "is_experiment_3_intervention": false,
+    "is_scientific_outcome": false
+  },
+  "STATUS": "PASSIVE_TELEMETRY_VALIDATED_FOR_AUTHORIZATION_REVIEW",
+  "EXPERIMENT_3_STATUS": "NOT_READY_UNAUTHORIZED"
+}
