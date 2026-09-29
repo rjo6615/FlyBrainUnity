@@ -1,12 +1,19 @@
 """Command-line entry point for continuous headless Live Fly."""
-from .headless import run
+from .headless import LatestLiveTelemetry, create_live_session, run
 from .server import PoseServer
 
 
 def main() -> int:
+    telemetry = LatestLiveTelemetry()
     with PoseServer() as publisher:
         print(f"LIVE pose server=127.0.0.1:{publisher.bound_port} session={publisher.session_id}")
-        run(pose_publisher=publisher)
+        run(
+            session_factory=lambda: create_live_session(
+                telemetry_observer=telemetry,
+            ),
+            pose_publisher=publisher,
+            live_telemetry=telemetry,
+        )
     return 0
 
 

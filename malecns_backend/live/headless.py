@@ -4,9 +4,48 @@ from __future__ import annotations
 from dataclasses import dataclass
 import sys
 import time
-from typing import Callable, TextIO
+from typing import Any, Callable, Mapping, TextIO
 
 from malecns_backend.embodiment.scientific_session import ScientificSession
+
+
+class LatestLiveTelemetry:
+    """Bounded passive view of the newest Live Fly neural and physics telemetry."""
+
+    def __init__(self) -> None:
+        self.latest_neural: Mapping[str, Any] | None = None
+        self.latest_physics: Mapping[str, Any] | None = None
+        self.neural_records = 0
+        self.physics_records = 0
+
+    def __call__(self, record: Mapping[str, Any]) -> None:
+        # The scientific kernel supplies recursively read-only telemetry.
+        # Keep only the newest record of each kind: memory usage never grows
+        # with Live Fly runtime.
+        if "neural_transition_index" in record:
+            self.latest_neural = record
+            self.neural_records += 1
+            return
+        if "physics_transition_index" in record:
+            self.latest_physics = record
+            self.physics_records += 1
+            return
+        raise RuntimeError("unrecognized Live Fly telemetry record")
+
+    def status_text(self) -> str:
+        record = self.latest_neural
+        if record is None:
+            return "motors=[waiting] sensory_events=0"
+
+        contributions = record.get("final_contribution_rad", {})
+        active = [
+            f"{str(name).removeprefix('joint_')}={float(value):+.4f}"
+            for name, value in contributions.items()
+            if float(value) != 0.0
+        ]
+        delivered = record.get("delivered_external_sensory_events", ())
+        motor_text = ",".join(active) if active else "none"
+        return f"motors=[{motor_text}] sensory_events={len(delivered)}"
 
 
 @dataclass(frozen=True)
@@ -25,7 +64,9 @@ class RunSummary:
         return self.execution_wall_seconds
 
 
-def create_live_session() -> ScientificSession:
+def create_live_session(
+        *, telemetry_observer: Callable[[Mapping[str, Any]], None] | None = None
+        ) -> ScientificSession:
     """Build the enabled, unassisted M7D session without artifact writers."""
     from malecns_backend.embodiment import _windows_m7d_corrected_spontaneous_adapter as adapter
     from malecns_backend.embodiment import _windows_m8_live_condition as kernel
@@ -40,14 +81,15 @@ def create_live_session() -> ScientificSession:
         contribution_gate=adapter.gate_contributions, compact_telemetry=False,
         runtime_factory=adapter._runtime, proprioception_only=True,
         fixed_initial_baseline=True, m8_extended_telemetry=False,
-        continuous=True,
+        continuous=True, telemetry_observer=telemetry_observer,
     )
 
 
 def run(*, session_factory: Callable[[], ScientificSession] = create_live_session,
         telemetry_interval: float = 1.0, max_transitions: int | None = None,
         clock: Callable[[], float] = time.monotonic,
-        output: TextIO = sys.stdout, pose_publisher=None) -> RunSummary:
+        output: TextIO = sys.stdout, pose_publisher=None,
+        live_telemetry: LatestLiveTelemetry | None = None) -> RunSummary:
     """Run until interrupted; ``max_transitions`` exists only for tests."""
     if telemetry_interval <= 0:
         raise ValueError("telemetry_interval must be positive")
@@ -86,9 +128,14 @@ def run(*, session_factory: Callable[[], ScientificSession] = create_live_sessio
                 wall = now - run_started
                 rtf = (sim_seconds - initial_sim_seconds) / wall if wall else 0.0
                 x, y, z = state.root_position_xyz
+                telemetry_text = (
+                    f" {live_telemetry.status_text()}"
+                    if live_telemetry is not None else ""
+                )
                 print(f"LIVE sim={sim_seconds:.3f}s run_wall={wall:.3f}s RTF={rtf:.2f}x "
                       f"physics={physics} neural={neural} root=({x:.4f},{y:.4f},{z:.4f}) "
-                      f"finite={state.finite}", file=output, flush=True)
+                      f"finite={state.finite}{telemetry_text}",
+                      file=output, flush=True)
                 last_report = now
         reason = "test transition limit"
     except KeyboardInterrupt:
