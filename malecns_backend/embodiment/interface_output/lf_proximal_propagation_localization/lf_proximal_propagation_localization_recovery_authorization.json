@@ -1,0 +1,78 @@
+{
+  "classification": "POST_OUTCOME_RESULT_RECONSTRUCTION",
+  "experiment": "lf_proximal_propagation_localization",
+  "frozen_scientific_inputs": {
+    "analysis_clarification_sha256": "e5b367779a58a53c0dda654b8ba4d63ad3e61942e911e7c506b0ebca8ffe112b",
+    "conditions": [
+      "CONTROL_REPLAY",
+      "LF_MIN_BOUND",
+      "LF_MAX_BOUND"
+    ],
+    "followup_preregistration_sha256": "5fe860393c5a7ad974b9ca38afefd5ec8970335ffdf9d0cdff902d74fd853fb0",
+    "replay_sha256": "0515c8df205b613c84d2d727fec3cdd1914aa44b66ff0db35b37431f71cf131b",
+    "seeds": [
+      1,
+      2,
+      3
+    ]
+  },
+  "historical_state": {
+    "experiment_2_outcome_previously_observed": true,
+    "independent_replicate": false,
+    "new_hypothesis_test": false,
+    "new_scientific_evidence_claimed_by_rerun": false,
+    "original_full_result_lost_after_execution": true,
+    "original_scientific_execution_completed": true
+  },
+  "interpretation_constraints": {
+    "change_preregistered_analysis": false,
+    "label_recovery_as_independent_replicate": false,
+    "label_recovery_as_new_experiment": false,
+    "permitted_description": "Deterministic result reconstruction after documented post-execution storage loss.",
+    "tune_based_on_previously_observed_outcome": false
+  },
+  "original_execution_authorization": {
+    "already_consumed": true,
+    "authorization_count": 1,
+    "must_not_be_reused": true,
+    "sha256": "3ae8c97725474b03d3b607dd6e10cd359145f8270d83a46fc706617beadd8475"
+  },
+  "preservation_incident": {
+    "contaminated_canonical_result_sha256": "84f756d368ffc09475bcdff2695f4c88aedd289161779f1ff9cb9bdad91a7ee5",
+    "contaminated_canonical_result_size_bytes": 199,
+    "incident_artifact_sha256": "adb08b403a661c9d700402700de85c891be2e6547cd2ba450acde3663b684ff0",
+    "remediation_commit": "25e922c89c7ba241fc88f80c57e7106797e82512",
+    "remediation_tree": "1e092c6d07bb3101bb329854377c6fa4ecdd487f"
+  },
+  "purpose": "Authorize exactly one deterministic reconstruction execution solely to replace scientific result data lost after the original authorized execution through the documented result-preservation incident.",
+  "recovery_scope": {
+    "analysis_changes_authorized": false,
+    "authorization_count": 1,
+    "canonical_199_byte_result_must_remain_unchanged": true,
+    "endpoint_changes_authorized": false,
+    "existing_output_overwrite_authorized": false,
+    "intervention_changes_authorized": false,
+    "output_artifact": "malecns_backend/embodiment/interface_output/lf_proximal_propagation_localization/lf_proximal_propagation_localization_result_recovery.json",
+    "population_changes_authorized": false,
+    "protocol_changes_authorized": false,
+    "recovery_execution_authorized": true,
+    "replay_changes_authorized": false,
+    "rng_policy_changes_authorized": false,
+    "scientific_implementation_changes_authorized": false,
+    "seed_changes_authorized": false
+  },
+  "runtime_state_at_recovery_authorization": {
+    "canonical_contaminated_result_preserved": true,
+    "recovery_execution_performed": false,
+    "recovery_result_exists": false
+  },
+  "schema": "LF-PROXIMAL-PROPAGATION-LOCALIZATION-RECOVERY-AUTHORIZATION.1",
+  "scientific_implementation_identity": {
+    "authorized_execute_assay_sha256": "8de9efbe62cd695205b3b79d105d7f87b4866083eeab738599da41fddc22e98d",
+    "current_execute_assay_sha256": "8de9efbe62cd695205b3b79d105d7f87b4866083eeab738599da41fddc22e98d",
+    "execute_assay_byte_identical_to_authorized_version": true,
+    "original_authorized_commit": "b8f1a2452c311147e797752a74620f3d4b495374",
+    "original_authorized_tree": "10b376ec72437a518189413ae650727cd0dcf65d"
+  },
+  "status": "RESULT_RECONSTRUCTION_AUTHORIZED"
+}
