@@ -1,0 +1,265 @@
+{
+  "candidate_channels": {
+    "joint_LFFemur_roll": {
+      "action_index": 4,
+      "annotation": {
+        "actuator": "femur_twist_T1_left",
+        "body_ids": [
+          804941,
+          805598,
+          812111,
+          814163
+        ],
+        "dense_indices": [
+          146571,
+          147111,
+          152467,
+          154103
+        ],
+        "exact_name": "Fe reductor MN T1 left",
+        "side": "left",
+        "source_direction": 1,
+        "thoracic_segment": "T1"
+      },
+      "biological_coordinate_sign": null,
+      "biological_direction_resolved": false,
+      "blocking_reason": "forward-kinematics evidence has not been collected",
+      "classification": "MECHANICAL_DIRECTION_UNRESOLVED",
+      "expected_compiled_actuator_name": "actuator_position_joint_LFFemur_roll",
+      "expected_transmitted_joint_name": "joint_LFFemur_roll",
+      "identity_valid": true,
+      "mechanical_coordinate_direction_resolved": false,
+      "mechanics": null,
+      "opposite_direction_population": {
+        "exact_names": [],
+        "present_in_source": false,
+        "status": "SOURCE_HAS_NO_ANTAGONIST_POPULATION",
+        "synthesized": false
+      },
+      "statuses": [
+        "MECHANICAL_DIRECTION_UNRESOLVED",
+        "SOURCE_HAS_NO_ANTAGONIST_POPULATION"
+      ]
+    },
+    "joint_LHFemur_roll": {
+      "action_index": 18,
+      "annotation": {
+        "actuator": "femur_twist_T3_left",
+        "body_ids": [
+          800578,
+          820350
+        ],
+        "dense_indices": [
+          143222,
+          157619
+        ],
+        "exact_name": "Fe reductor MN T3 left",
+        "side": "left",
+        "source_direction": 1,
+        "thoracic_segment": "T3"
+      },
+      "biological_coordinate_sign": null,
+      "biological_direction_resolved": false,
+      "blocking_reason": "forward-kinematics evidence has not been collected",
+      "classification": "MECHANICAL_DIRECTION_UNRESOLVED",
+      "expected_compiled_actuator_name": "actuator_position_joint_LHFemur_roll",
+      "expected_transmitted_joint_name": "joint_LHFemur_roll",
+      "identity_valid": true,
+      "mechanical_coordinate_direction_resolved": false,
+      "mechanics": null,
+      "opposite_direction_population": {
+        "exact_names": [],
+        "present_in_source": false,
+        "status": "SOURCE_HAS_NO_ANTAGONIST_POPULATION",
+        "synthesized": false
+      },
+      "statuses": [
+        "MECHANICAL_DIRECTION_UNRESOLVED",
+        "SOURCE_HAS_NO_ANTAGONIST_POPULATION"
+      ]
+    },
+    "joint_LMFemur_roll": {
+      "action_index": 11,
+      "annotation": {
+        "actuator": "femur_twist_T2_left",
+        "body_ids": [
+          804025,
+          820764,
+          1050607195
+        ],
+        "dense_indices": [
+          145834,
+          157722,
+          164719
+        ],
+        "exact_name": "Fe reductor MN T2 left",
+        "side": "left",
+        "source_direction": 1,
+        "thoracic_segment": "T2"
+      },
+      "biological_coordinate_sign": null,
+      "biological_direction_resolved": false,
+      "blocking_reason": "forward-kinematics evidence has not been collected",
+      "classification": "MECHANICAL_DIRECTION_UNRESOLVED",
+      "expected_compiled_actuator_name": "actuator_position_joint_LMFemur_roll",
+      "expected_transmitted_joint_name": "joint_LMFemur_roll",
+      "identity_valid": true,
+      "mechanical_coordinate_direction_resolved": false,
+      "mechanics": null,
+      "opposite_direction_population": {
+        "exact_names": [],
+        "present_in_source": false,
+        "status": "SOURCE_HAS_NO_ANTAGONIST_POPULATION",
+        "synthesized": false
+      },
+      "statuses": [
+        "MECHANICAL_DIRECTION_UNRESOLVED",
+        "SOURCE_HAS_NO_ANTAGONIST_POPULATION"
+      ]
+    },
+    "joint_RFFemur_roll": {
+      "action_index": 25,
+      "annotation": {
+        "actuator": "femur_twist_T1_right",
+        "body_ids": [
+          803830,
+          806898,
+          811652,
+          813566,
+          817595,
+          835074
+        ],
+        "dense_indices": [
+          145673,
+          148197,
+          152104,
+          153634,
+          156464,
+          158647
+        ],
+        "exact_name": "Fe reductor MN T1 right",
+        "side": "right",
+        "source_direction": 1,
+        "thoracic_segment": "T1"
+      },
+      "biological_coordinate_sign": null,
+      "biological_direction_resolved": false,
+      "blocking_reason": "forward-kinematics evidence has not been collected",
+      "classification": "MECHANICAL_DIRECTION_UNRESOLVED",
+      "expected_compiled_actuator_name": "actuator_position_joint_RFFemur_roll",
+      "expected_transmitted_joint_name": "joint_RFFemur_roll",
+      "identity_valid": true,
+      "mechanical_coordinate_direction_resolved": false,
+      "mechanics": null,
+      "opposite_direction_population": {
+        "exact_names": [],
+        "present_in_source": false,
+        "status": "SOURCE_HAS_NO_ANTAGONIST_POPULATION",
+        "synthesized": false
+      },
+      "statuses": [
+        "MECHANICAL_DIRECTION_UNRESOLVED",
+        "SOURCE_HAS_NO_ANTAGONIST_POPULATION"
+      ]
+    },
+    "joint_RHFemur_roll": {
+      "action_index": 39,
+      "annotation": {
+        "actuator": "femur_twist_T3_right",
+        "body_ids": [
+          801693,
+          902962
+        ],
+        "dense_indices": [
+          144056,
+          159225
+        ],
+        "exact_name": "Fe reductor MN T3 right",
+        "side": "right",
+        "source_direction": 1,
+        "thoracic_segment": "T3"
+      },
+      "biological_coordinate_sign": null,
+      "biological_direction_resolved": false,
+      "blocking_reason": "forward-kinematics evidence has not been collected",
+      "classification": "MECHANICAL_DIRECTION_UNRESOLVED",
+      "expected_compiled_actuator_name": "actuator_position_joint_RHFemur_roll",
+      "expected_transmitted_joint_name": "joint_RHFemur_roll",
+      "identity_valid": true,
+      "mechanical_coordinate_direction_resolved": false,
+      "mechanics": null,
+      "opposite_direction_population": {
+        "exact_names": [],
+        "present_in_source": false,
+        "status": "SOURCE_HAS_NO_ANTAGONIST_POPULATION",
+        "synthesized": false
+      },
+      "statuses": [
+        "MECHANICAL_DIRECTION_UNRESOLVED",
+        "SOURCE_HAS_NO_ANTAGONIST_POPULATION"
+      ]
+    },
+    "joint_RMFemur_roll": {
+      "action_index": 32,
+      "annotation": {
+        "actuator": "femur_twist_T2_right",
+        "body_ids": [
+          821769,
+          823132,
+          905145
+        ],
+        "dense_indices": [
+          157927,
+          158100,
+          159968
+        ],
+        "exact_name": "Fe reductor MN T2 right",
+        "side": "right",
+        "source_direction": 1,
+        "thoracic_segment": "T2"
+      },
+      "biological_coordinate_sign": null,
+      "biological_direction_resolved": false,
+      "blocking_reason": "forward-kinematics evidence has not been collected",
+      "classification": "MECHANICAL_DIRECTION_UNRESOLVED",
+      "expected_compiled_actuator_name": "actuator_position_joint_RMFemur_roll",
+      "expected_transmitted_joint_name": "joint_RMFemur_roll",
+      "identity_valid": true,
+      "mechanical_coordinate_direction_resolved": false,
+      "mechanics": null,
+      "opposite_direction_population": {
+        "exact_names": [],
+        "present_in_source": false,
+        "status": "SOURCE_HAS_NO_ANTAGONIST_POPULATION",
+        "synthesized": false
+      },
+      "statuses": [
+        "MECHANICAL_DIRECTION_UNRESOLVED",
+        "SOURCE_HAS_NO_ANTAGONIST_POPULATION"
+      ]
+    }
+  },
+  "interpretation_boundary": "Mechanical coordinate direction does not establish the sign relating Fe reductor MN activity to that coordinate.",
+  "run_status": "STATIC_IDENTITY_ONLY",
+  "schema": "SIX-FEMUR-ROLL-VALIDATION.1",
+  "scientific_operations": {
+    "forward_kinematics_calls": 0,
+    "malecns_transitions": 0,
+    "neural_runtime_constructed": false,
+    "physics_steps": 0
+  },
+  "scope": {
+    "active_11_channel_interface_modified": false,
+    "channels_admitted": 0,
+    "execution_authorization_created": false,
+    "neural_experiment_run": false
+  },
+  "source_hashes": {
+    "fly-brain-main/public/data/bodymap.json": "10630cd4c7a6cc2c1dcfcbee4a602d307f06766f316b185f631406813a58da9d",
+    "malecns_backend/embodiment/interface_output/flymimic_flygym_proximal_registration/flymimic_flygym_proximal_registration_result.json": "a06b342390d6132a37b50766085390adb1a9eb8c1c34849f1f56dd69578e0684",
+    "malecns_backend/embodiment/interface_output/full_leg_interface_audit.json": "758850ea659e49fd93a36a9606bea07a1d329739fbf6be8089060ee6d706c52e",
+    "malecns_backend/embodiment/interface_output/motor_population_activity_survey/motor_population_inventory.json": "b0fbbe9d7bf5d83ee2b7b6d8d458be92105344c7bef24729e9e2969edaabc5cb",
+    "malecns_backend/embodiment/interface_output/whole_leg_motor_mapping_audit.json": "722ee9b3b1d6a0fad2bf8ef0f02fc63f49277c5f44e3bccf27898e6c4ea673d9",
+    "malecns_backend/interface_map.json": "24b7229bea6f24ff0e65fe09b202d42dc06819fe234194e3c3ab95b596319e0b"
+  }
+}
