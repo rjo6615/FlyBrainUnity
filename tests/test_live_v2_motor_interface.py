@@ -1,9 +1,11 @@
 """Deterministic Live Fly v2 interface tests; no scientific run is executed."""
+import copy
 from types import SimpleNamespace
 
 import pytest
 
 from malecns_backend.embodiment import live_v2_motor_interface as v2
+from malecns_backend.embodiment import _windows_m7d_corrected_spontaneous_adapter as adapter
 from malecns_backend.embodiment import _windows_m8_live_condition as kernel
 from malecns_backend.embodiment.integrated_whole_leg_readiness import TIER_A
 from malecns_backend.embodiment.tactile_motor_matched_control import MatchedControlPipeline
@@ -26,7 +28,7 @@ def _v1_metadata():
               "coordinate_sign": 1 if index in HISTORICAL_INDICES[:6] else -1}
              for index, name in enumerate(names)]
     protocol = {"admitted_motor_interfaces": list(v2.HISTORICAL_MOTOR),
-                "admitted_sensory_interfaces": list(TIER_A)}
+                "sensory_interfaces": [{"actuator": name} for name in TIER_A]}
     records = [{"name": name} for name in names]
     return protocol, records, table
 
@@ -42,7 +44,20 @@ def test_v2_derivation_preserves_v1_and_admits_only_six_femur_roll_channels():
     old = {row["action_index"] for row in rows if row["actuator"] in v2.HISTORICAL_MOTOR}
     admitted = {row["action_index"] for row in rows if row["neural_motor_admission"]}
     assert admitted - old == v2.NEW_ACTION_INDICES
-    assert tuple(derived["admitted_sensory_interfaces"]) == TIER_A
+    assert tuple(row["actuator"] for row in derived["sensory_interfaces"]) == TIER_A
+
+
+def test_v2_derivation_accepts_real_canonical_protocol_without_mutation():
+    protocol, records, table = adapter._protocol()
+    original = copy.deepcopy(protocol)
+
+    derived, _, rows = v2.derive_v2(protocol, records, table)
+
+    assert protocol == original
+    assert sum(row["neural_motor_admission"] for row in rows) == 17
+    assert sum(row["neural_sensory_admission"] for row in rows) == 6
+    assert derived["sensory_interfaces"] == original["sensory_interfaces"]
+    assert tuple(row["actuator"] for row in derived["sensory_interfaces"]) == TIER_A
 
 
 def test_supplemental_population_contract_and_real_malecns_resolution():
