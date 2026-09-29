@@ -1,0 +1,99 @@
+{
+  "analysis_scope": {
+    "baseline_only_joint_count": 31,
+    "per_channel": [
+      "first_motor_population_activity_time_ms",
+      "first_nonzero_decoder_output_time_ms",
+      "first_physical_divergence_time_ms",
+      "spike_increment_distribution",
+      "filtered_rate_distribution",
+      "positive_negative_directional_balance",
+      "raw_contribution_distribution",
+      "final_contribution_distribution",
+      "nonzero_output_duty_fraction",
+      "range_clamp_occupancy",
+      "slew_limit_occupancy",
+      "command_to_measured_response_lag_ms",
+      "enabled_control_physical_divergence"
+    ],
+    "report_passive_motion": true
+  },
+  "authorization": {
+    "authorization_artifact": "prospective_execution_authorization.json",
+    "rule": "implementation must be completed, tested, and frozen before prospective scientific execution authorization is created",
+    "scientific_execution_authorized": false
+  },
+  "conditions": [
+    {
+      "final_11_contribution_policy": "UNCHANGED",
+      "name": "live_v1_enabled",
+      "underlying_runtime_condition": "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT"
+    },
+    {
+      "final_11_contribution_policy": "ZERO_AFTER_EXISTING_DECODER_PIPELINE",
+      "name": "matched_control_final_11_zeroed",
+      "underlying_runtime_condition": "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT"
+    }
+  ],
+  "experiment": "Live Fly v1 11-channel motor-output observability assay",
+  "matched_control_semantics": {
+    "fresh_runtime_per_condition": true,
+    "only_difference": "the final applied contribution of each of the existing 11 Live Fly v1 motor channels is zeroed in the matched control",
+    "same_decoder": true,
+    "same_initialization": true,
+    "same_motor_populations": true,
+    "same_neural_dynamics": true,
+    "same_protocol": true,
+    "same_range_and_slew_pipeline": true,
+    "same_seed": true,
+    "same_sensory_system": true
+  },
+  "observation": {
+    "action_vector_width": 42,
+    "channel_count": 11,
+    "clock_rule": "neural transition N must have exactly the same timestamp as physics transition 5*N",
+    "passive_telemetry_hook": true,
+    "state_mutation_by_observer_permitted": false
+  },
+  "prohibitions": [
+    "no motor population changes",
+    "no decoder changes",
+    "no sensory changes",
+    "no neural dynamics changes",
+    "no physics changes",
+    "no runtime assistance",
+    "no Unity changes",
+    "no TCP transport changes",
+    "no tuning after observing Experiment 3 outcome"
+  ],
+  "runtime_inheritance": {
+    "contribution_gate": "_windows_m7d_corrected_spontaneous_adapter.gate_contributions",
+    "duration_ms": 500,
+    "expected_neural_transitions": 1000,
+    "expected_physics_transitions": 5000,
+    "fixed_initial_baseline": true,
+    "neural_dt_ms": 0.5,
+    "physics_dt_ms": 0.1,
+    "proprioception_only": true,
+    "protocol_factory": "_windows_m7d_corrected_spontaneous_adapter._protocol",
+    "runtime_factory": "_windows_m7d_corrected_spontaneous_adapter._runtime",
+    "seed": 1,
+    "shared_kernel": "_windows_m8_live_condition.run_condition",
+    "source": "canonical Live Fly v1 / M7D corrected spontaneous runtime",
+    "spawn_position": [
+      0.0,
+      0.0,
+      0.6045752232266313
+    ],
+    "underlying_m7d_condition": "CORRECTED_SPONTANEOUS_NEURAL_EMBODIMENT"
+  },
+  "runtime_state_at_freeze": {
+    "experiment_3_result_observed": false,
+    "experiment_3_scientific_execution_performed": false,
+    "neural_transitions": 0,
+    "physics_transitions": 0
+  },
+  "schema": "LIVE-V1-MOTOR-OUTPUT-SCIENTIFIC-EXECUTION-CONTRACT.1",
+  "scientific_question": "Characterize the existing 11 Live Fly v1 neural motor outputs and determine whether removing only their final applied contributions produces measurable physical divergence.",
+  "status": "PROSPECTIVELY_FROZEN_NOT_AUTHORIZED"
+}
