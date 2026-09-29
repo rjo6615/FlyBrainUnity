@@ -1,0 +1,9 @@
+{
+  "authorization_sha256": "7440bdcc7fe49d74a83327d585257530324c3442ab4c0d7d032c9129b72cee59",
+  "execute_assay_sha256": "8de9efbe62cd695205b3b79d105d7f87b4866083eeab738599da41fddc22e98d",
+  "independent_replicate": false,
+  "meaning": "Exclusive durable claim consuming the one-time recovery authorization before scientific execution can begin.",
+  "output_artifact": "malecns_backend/embodiment/interface_output/lf_proximal_propagation_localization/lf_proximal_propagation_localization_result_recovery.json",
+  "schema": "LF-PROXIMAL-PROPAGATION-LOCALIZATION-RECOVERY-ATTEMPT.1",
+  "status": "RECOVERY_EXECUTION_ATTEMPT_CLAIMED"
+}
