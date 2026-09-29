@@ -15,6 +15,62 @@ from types import MappingProxyType
 from typing import Any, Mapping, Sequence
 
 
+UNIDIRECTIONAL_POSITIVE = "unidirectional_positive"
+
+
+def compute_unidirectional_positive_contribution(rate_hz: float, bound: float,
+                                                  coordinate_sign: int) -> float:
+    """Decode an annotation-backed one-sided population without an antagonist."""
+    from .isolated_tier_b_motor_validation import activation
+
+    if coordinate_sign not in (-1, 1):
+        raise ValueError("coordinate sign must be +1 or -1")
+    return float(coordinate_sign) * float(bound) * activation(float(rate_hz))
+
+
+def _resolve_supplemental_channels(definitions: Mapping[str, Mapping[str, Any]] | None,
+                                   data: Any, table_by_name: Mapping[str, Mapping[str, Any]],
+                                   historical_names: Sequence[str]) -> dict[str, dict[str, Any]]:
+    """Validate and resolve optional channels while keeping v1 construction separate."""
+    if definitions is None:
+        return {}
+    resolved: dict[str, dict[str, Any]] = {}
+    used_indices: set[int] = set()
+    for name, source in definitions.items():
+        if not isinstance(name, str) or source.get("actuator") != name:
+            raise ValueError("supplemental channel key/actuator mismatch")
+        if name in historical_names:
+            raise ValueError(f"supplemental channel overlaps historical channel: {name}")
+        if name in resolved:
+            raise ValueError(f"duplicate supplemental channel: {name}")
+        row = table_by_name.get(name)
+        index = source.get("action_index")
+        if row is None or not isinstance(index, int) or row["action_index"] != index:
+            raise ValueError(f"incorrect supplemental action index: {name}")
+        if index in used_indices:
+            raise ValueError(f"duplicate supplemental action index: {index}")
+        used_indices.add(index)
+        if source.get("decoder_mode") != UNIDIRECTIONAL_POSITIVE:
+            raise ValueError(f"unsupported supplemental decoder mode: {name}")
+        sign = source.get("coordinate_sign")
+        if sign not in (-1, 1) or isinstance(sign, bool):
+            raise ValueError(f"invalid supplemental coordinate sign: {name}")
+        body_ids = tuple(source.get("body_ids", ()))
+        if not body_ids or len(body_ids) != len(set(body_ids)):
+            raise ValueError(f"invalid supplemental body IDs: {name}")
+        try:
+            dense = tuple(int(data.body_id_to_index[int(body_id)]) for body_id in body_ids)
+        except (KeyError, TypeError, ValueError) as exc:
+            raise ValueError(f"supplemental body ID missing from MaleCNS: {name}") from exc
+        population = source.get("population_name")
+        if not isinstance(population, str) or not population:
+            raise ValueError(f"missing supplemental population name: {name}")
+        resolved[name] = {**dict(source), "body_ids": body_ids,
+                          "populations": {population: dense},
+                          "positive": (population,), "negative": ()}
+    return resolved
+
+
 def _legacy_neural_telemetry(*, admitted_names: Sequence[str], channels: Mapping[str, Any],
                              raw_values: Mapping[str, float], contributions: Mapping[str, float],
                              isolated_candidate_telemetry: bool) -> tuple[list[float], list[float], list[float]]:
@@ -117,7 +173,8 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                   identity_diagnostics: bool = False,
                   pause_at_states: bool = False,
                   continuous: bool = False,
-                  telemetry_observer: Any | None = None) -> Mapping[str, Any]:
+                  telemetry_observer: Any | None = None,
+                  supplemental_motor_channels: Mapping[str, Mapping[str, Any]] | None = None) -> Mapping[str, Any]:
     """Create, run, close, and summarize one fresh frozen runtime.
 
     The optional arguments are used by M7 to reuse this exact M6C embodiment.
@@ -147,7 +204,6 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
     run_duration_ms = float(DURATION_MS if duration_ms is None else duration_ms)
     gate = contribution_gate or gate_contributions
     started = time.perf_counter(); data = load_malecns(); tibia = load_six_tibia_interfaces()
-    sim, physics, obs, _, _ = (runtime_factory or _make_live)(flygym, tibia)
     phase = {"initialization": 0., "neural_stepping": 0., "mujoco_stepping": 0.,
         "sensory": 0., "observer_decoder": 0., "telemetry_hash": 0.,
         "admission_assertion": 0., "reduction_analysis": 0.}
@@ -158,6 +214,13 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
         raise ValueError("isolated candidate telemetry requires detailed motor telemetry")
     by_record = {r["name"]: r for r in cached_records}
     table_by_name = {r["actuator"]: r for r in cached_table}
+    historical_names = tuple(name for name in admitted_names
+                             if supplemental_motor_channels is None or name not in supplemental_motor_channels)
+    supplemental = _resolve_supplemental_channels(
+        supplemental_motor_channels, data, table_by_name, historical_names)
+    if set(admitted_names) != set(historical_names) | set(supplemental):
+        raise ValueError("supplemental definitions do not match admitted motor inventory")
+    sim, physics, obs, _, _ = (runtime_factory or _make_live)(flygym, tibia)
     m6b_interfaces = {x["physical_joint"]: x for x in json.loads(
         __import__("pathlib").Path(__file__).with_name("interface_output").joinpath(
             "isolated_tier_b_motor_validation.json").read_text())["interfaces"]}
@@ -169,19 +232,28 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
             metadata = resolve_joint_metadata(physics, by_record[name])
             baseline = float(_joint_positions(obs)[index])
             bound = safe_contribution_bound(metadata.joint_min, metadata.joint_max, baseline)
-            if name in TIER_A:
+            if name in supplemental:
+                definition = supplemental[name]
+                populations = definition["populations"]
+                positive, negative = definition["positive"], definition["negative"]
+                sign = int(definition["coordinate_sign"])
+                decoder_mode = UNIDIRECTIONAL_POSITIVE
+            elif name in TIER_A:
                 interface = tibia[row["leg"]]
                 populations = {p.name: p.dense_indices for p in interface.motor_populations}
                 positive = tuple(p.name for p in interface.motor_populations if p.direction == 1)
                 negative = tuple(p.name for p in interface.motor_populations if p.direction == -1)
                 sign = 1
+                decoder_mode = "historical_antagonist"
             else:
                 interface = m6b_interfaces[name]
                 populations, positive, negative = _population_index(interface, data)
                 sign = int(row["coordinate_sign"])
+                decoder_mode = "historical_antagonist"
             observer = MotorActivityObserver(populations, OBSERVER_TAU_MS); observer.reset(brain.spike_counts)
             channels[name] = {"index": index, "metadata": metadata, "bound": bound,
                 "populations": populations, "positive": positive, "negative": negative, "sign": sign,
+                "decoder_mode": decoder_mode,
                 "observer": observer, "pipeline": MatchedControlPipeline(True,
                     MotorSafety(metadata.joint_min, metadata.joint_max, bound, SLEW_RAD_S)),
                 "spikes": 0, "peak_observer": 0., "peak_raw": 0., "peak_admitted": 0.,
@@ -313,8 +385,14 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                     observed = channel["observer"].update(brain.spike_counts, NEURAL_DT_MS)
                     channel["last_observed"] = observed
                     pos = _rate(channel["positive"], observed["filtered_hz"], channel["populations"])
-                    neg = _rate(channel["negative"], observed["filtered_hz"], channel["populations"])
-                    raw = compute_raw_contribution(pos, neg, channel["bound"], channel["sign"]); raw_values[name] = raw
+                    if channel["decoder_mode"] == UNIDIRECTIONAL_POSITIVE:
+                        neg = 0.0
+                        raw = compute_unidirectional_positive_contribution(
+                            pos, channel["bound"], channel["sign"])
+                    else:
+                        neg = _rate(channel["negative"], observed["filtered_hz"], channel["populations"])
+                        raw = compute_raw_contribution(pos, neg, channel["bound"], channel["sign"])
+                    raw_values[name] = raw
                     increments = sum(observed["increments"].values()); channel["spikes"] += increments
                     peak_observer = max([abs(x) for x in observed["filtered_hz"].values()] or [0.])
                     mapped_values[name] = peak_observer
@@ -397,6 +475,8 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                     _observe(telemetry_observer, {
                         "neural_transition_index": step // stride,
                         "neural_time_ms": now_ms,
+                        "decoder_mode": {name: channels[name]["decoder_mode"]
+                            for name in admitted_names},
                         "per_neuron_spike_increments": {name:
                             _observed_neuron_increments(channels[name], values["observed"])
                             for name, values in observed_channels.items()},
