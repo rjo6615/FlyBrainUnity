@@ -7,6 +7,7 @@ require a distinct explicit flag.
 from __future__ import annotations
 
 import argparse
+import ast
 import copy
 import hashlib
 import json
@@ -35,6 +36,21 @@ REPLAY = REPLAY_DIR / "lf_proximal_motor_recruitment_sensory_replay.npy"
 MANIFEST = REPLAY_DIR / "lf_proximal_motor_recruitment_sensory_replay_manifest.json"
 EXTRACTION_REPORT = REPLAY_DIR / "LF_PROXIMAL_MOTOR_RECRUITMENT_SENSORY_REPLAY_REPORT.md"
 EXECUTION_AUTHORIZATION = SPEC_DIR / "lf_proximal_propagation_localization_execution_authorization.json"
+RECOVERY_AUTHORIZATION = SPEC_DIR / "lf_proximal_propagation_localization_recovery_authorization.json"
+CANONICAL_RESULT = SPEC_DIR / "lf_proximal_propagation_localization_result.json"
+RECOVERY_RESULT = SPEC_DIR / "lf_proximal_propagation_localization_result_recovery.json"
+RECOVERY_ATTEMPT = SPEC_DIR / "lf_proximal_propagation_localization_recovery_attempt.json"
+RESULT_PRESERVATION_INCIDENT = SPEC_DIR / "result_preservation_incident.json"
+
+RECOVERY_AUTHORIZED_EXECUTE_ASSAY_SHA256 = (
+    "8de9efbe62cd695205b3b79d105d7f87"
+    "b4866083eeab738599da41fddc22e98d"
+)
+CONTAMINATED_CANONICAL_RESULT_SHA256 = (
+    "84f756d368ffc09475bcdff2695f4c88"
+    "aedd289161779f1ff9cb9bdad91a7ee5"
+)
+CONTAMINATED_CANONICAL_RESULT_SIZE = 199
 
 EXPECTED = {
     "preregistration": "5fe860393c5a7ad974b9ca38afefd5ec8970335ffdf9d0cdff902d74fd853fb0",
@@ -48,6 +64,8 @@ EXPECTED = {
     "report": "b9d931dcad1ccd533dcdae5864b545c313eaeb6e70fc183d0619ef86ae206c1a",
     "source_m8": "4e39bb83dd4455d56a4d88f717615530602317efaf83a6ed241b13af89dc2a5b",
     "execution_authorization": "3ae8c97725474b03d3b607dd6e10cd359145f8270d83a46fc706617beadd8475",
+    "recovery_authorization": "7440bdcc7fe49d74a83327d585257530324c3442ab4c0d7d032c9129b72cee59",
+    "result_preservation_incident": "adb08b403a661c9d700402700de85c891be2e6547cd2ba450acde3663b684ff0",
 }
 # These identities were frozen from Git's canonical LF blob bytes.  A checkout
 # may represent each LF as CRLF, but no other byte transformation is allowed.
@@ -78,6 +96,29 @@ def sha256_file(path: Path) -> str:
 def canonical_lf_sha256(path: Path) -> str:
     """Hash canonical Git text bytes, tolerating only checkout CRLF expansion."""
     return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+
+
+def _top_level_function_sha256(path: Path, function_name: str) -> str:
+    """Hash one top-level function after normalizing checkout newlines."""
+    source = path.read_text(encoding="utf-8")
+    tree = ast.parse(source)
+    lines = source.splitlines(keepends=True)
+
+    for node in tree.body:
+        if (
+            isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
+            and node.name == function_name
+        ):
+            function_source = "".join(
+                lines[node.lineno - 1:node.end_lineno]
+            )
+            return hashlib.sha256(
+                function_source.encode("utf-8")
+            ).hexdigest()
+
+    raise RecruitmentFailure(
+        f"cannot locate top-level function: {function_name}"
+    )
 
 
 def _verified_identity(path: Path, expected: str, *, canonical_lf: bool) -> str:
@@ -219,6 +260,292 @@ def execution_authorization_gate(
     _require(
         runtime.get("experiment_2_result_observed") is False,
         "execution authorization was created after observing Experiment 2",
+    )
+
+    return {
+        "identity": identity,
+        "authorization": data,
+    }
+
+
+def recovery_authorization_gate(
+    authorization=RECOVERY_AUTHORIZATION,
+) -> dict[str, Any]:
+    """Validate the separately frozen post-outcome recovery authorization."""
+    path = Path(authorization)
+
+    try:
+        identity = canonical_lf_sha256(path)
+    except OSError as exc:
+        raise RecruitmentFailure(
+            f"cannot read recovery authorization: {exc}"
+        ) from exc
+
+    _require(
+        identity == EXPECTED["recovery_authorization"],
+        "recovery authorization SHA-256 mismatch",
+    )
+
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        raise RecruitmentFailure(
+            f"invalid recovery authorization: {exc}"
+        ) from exc
+
+    _require(
+        data.get("schema")
+        == "LF-PROXIMAL-PROPAGATION-LOCALIZATION-RECOVERY-AUTHORIZATION.1",
+        "recovery authorization schema mismatch",
+    )
+    _require(
+        data.get("status") == "RESULT_RECONSTRUCTION_AUTHORIZED",
+        "result reconstruction is not authorized",
+    )
+    _require(
+        data.get("classification")
+        == "POST_OUTCOME_RESULT_RECONSTRUCTION",
+        "recovery authorization classification mismatch",
+    )
+    _require(
+        data.get("experiment")
+        == "lf_proximal_propagation_localization",
+        "recovery authorization experiment mismatch",
+    )
+
+    historical = data.get("historical_state", {})
+    _require(
+        historical.get("original_scientific_execution_completed") is True,
+        "recovery authorization does not record completed original execution",
+    )
+    _require(
+        historical.get("experiment_2_outcome_previously_observed") is True,
+        "recovery authorization does not record observed Experiment 2 outcome",
+    )
+    _require(
+        historical.get("original_full_result_lost_after_execution") is True,
+        "recovery authorization does not record result loss",
+    )
+    for field in (
+        "independent_replicate",
+        "new_hypothesis_test",
+        "new_scientific_evidence_claimed_by_rerun",
+    ):
+        _require(
+            historical.get(field) is False,
+            f"recovery authorization unexpectedly sets {field}",
+        )
+
+    original = data.get("original_execution_authorization", {})
+    _require(
+        original.get("sha256") == EXPECTED["execution_authorization"],
+        "original execution authorization identity mismatch",
+    )
+    _require(
+        original.get("authorization_count") == 1,
+        "original execution authorization count mismatch",
+    )
+    _require(
+        original.get("already_consumed") is True,
+        "original execution authorization is not marked consumed",
+    )
+    _require(
+        original.get("must_not_be_reused") is True,
+        "original execution authorization is not protected from reuse",
+    )
+
+    scientific = data.get("scientific_implementation_identity", {})
+    _require(
+        scientific.get("original_authorized_commit")
+        == "b8f1a2452c311147e797752a74620f3d4b495374",
+        "recovery scientific implementation commit mismatch",
+    )
+    _require(
+        scientific.get("original_authorized_tree")
+        == "10b376ec72437a518189413ae650727cd0dcf65d",
+        "recovery scientific implementation tree mismatch",
+    )
+    _require(
+        scientific.get("authorized_execute_assay_sha256")
+        == RECOVERY_AUTHORIZED_EXECUTE_ASSAY_SHA256,
+        "authorized execute_assay identity mismatch",
+    )
+    _require(
+        scientific.get("current_execute_assay_sha256")
+        == RECOVERY_AUTHORIZED_EXECUTE_ASSAY_SHA256,
+        "recovery current execute_assay identity mismatch",
+    )
+    _require(
+        scientific.get("execute_assay_byte_identical_to_authorized_version")
+        is True,
+        "recovery authorization does not establish execute_assay identity",
+    )
+
+    inputs = data.get("frozen_scientific_inputs", {})
+    _require(
+        inputs.get("followup_preregistration_sha256")
+        == EXPECTED["preregistration"],
+        "recovery preregistration identity mismatch",
+    )
+    _require(
+        inputs.get("analysis_clarification_sha256")
+        == EXPECTED["analysis_clarification"],
+        "recovery analysis clarification identity mismatch",
+    )
+    _require(
+        inputs.get("replay_sha256") == EXPECTED["replay"],
+        "recovery replay identity mismatch",
+    )
+    _require(
+        inputs.get("seeds") == list(SEEDS),
+        "recovery seed set mismatch",
+    )
+    _require(
+        inputs.get("conditions") == list(CONDITIONS),
+        "recovery condition set mismatch",
+    )
+
+    incident = data.get("preservation_incident", {})
+    _require(
+        incident.get("remediation_commit")
+        == "25e922c89c7ba241fc88f80c57e7106797e82512",
+        "recovery remediation commit mismatch",
+    )
+    _require(
+        incident.get("remediation_tree")
+        == "1e092c6d07bb3101bb329854377c6fa4ecdd487f",
+        "recovery remediation tree mismatch",
+    )
+    _require(
+        incident.get("incident_artifact_sha256")
+        == EXPECTED["result_preservation_incident"],
+        "recovery incident-artifact identity mismatch",
+    )
+    _require(
+        incident.get("contaminated_canonical_result_size_bytes")
+        == CONTAMINATED_CANONICAL_RESULT_SIZE,
+        "contaminated canonical result size declaration mismatch",
+    )
+    _require(
+        incident.get("contaminated_canonical_result_sha256")
+        == CONTAMINATED_CANONICAL_RESULT_SHA256,
+        "contaminated canonical result identity declaration mismatch",
+    )
+
+    scope = data.get("recovery_scope", {})
+    _require(
+        scope.get("recovery_execution_authorized") is True,
+        "recovery execution is not authorized",
+    )
+    _require(
+        scope.get("authorization_count") == 1,
+        "recovery authorization count mismatch",
+    )
+    _require(
+        scope.get("output_artifact")
+        == (
+            "malecns_backend/embodiment/interface_output/"
+            "lf_proximal_propagation_localization/"
+            "lf_proximal_propagation_localization_result_recovery.json"
+        ),
+        "recovery output artifact mismatch",
+    )
+    _require(
+        scope.get("canonical_199_byte_result_must_remain_unchanged") is True,
+        "recovery does not protect the contaminated canonical result",
+    )
+    _require(
+        scope.get("existing_output_overwrite_authorized") is False,
+        "recovery unexpectedly permits output overwrite",
+    )
+
+    for field in (
+        "protocol_changes_authorized",
+        "analysis_changes_authorized",
+        "endpoint_changes_authorized",
+        "population_changes_authorized",
+        "intervention_changes_authorized",
+        "seed_changes_authorized",
+        "replay_changes_authorized",
+        "rng_policy_changes_authorized",
+        "scientific_implementation_changes_authorized",
+    ):
+        _require(
+            scope.get(field) is False,
+            f"recovery authorization unexpectedly permits {field}",
+        )
+
+    interpretation = data.get("interpretation_constraints", {})
+    for field in (
+        "label_recovery_as_independent_replicate",
+        "label_recovery_as_new_experiment",
+        "tune_based_on_previously_observed_outcome",
+        "change_preregistered_analysis",
+    ):
+        _require(
+            interpretation.get(field) is False,
+            f"recovery interpretation constraint mismatch for {field}",
+        )
+
+    runtime = data.get("runtime_state_at_recovery_authorization", {})
+    _require(
+        runtime.get("recovery_execution_performed") is False,
+        "recovery authorization was created after recovery execution",
+    )
+    _require(
+        runtime.get("recovery_result_exists") is False,
+        "recovery result already existed at authorization",
+    )
+    _require(
+        runtime.get("canonical_contaminated_result_preserved") is True,
+        "canonical contaminated result was not preserved at authorization",
+    )
+
+    try:
+        original_authorization_identity = sha256_file(
+            EXECUTION_AUTHORIZATION
+        )
+        incident_identity = canonical_lf_sha256(
+            RESULT_PRESERVATION_INCIDENT
+        )
+        canonical_bytes = CANONICAL_RESULT.read_bytes()
+    except OSError as exc:
+        raise RecruitmentFailure(
+            f"cannot validate recovery preservation state: {exc}"
+        ) from exc
+
+    _require(
+        original_authorization_identity == EXPECTED["execution_authorization"],
+        "original execution authorization file changed",
+    )
+    _require(
+        incident_identity == EXPECTED["result_preservation_incident"],
+        "result-preservation incident file changed",
+    )
+    _require(
+        len(canonical_bytes) == CONTAMINATED_CANONICAL_RESULT_SIZE,
+        "contaminated canonical result size changed",
+    )
+    _require(
+        hashlib.sha256(canonical_bytes).hexdigest()
+        == CONTAMINATED_CANONICAL_RESULT_SHA256,
+        "contaminated canonical result bytes changed",
+    )
+    _require(
+        not RECOVERY_RESULT.exists(),
+        "recovery result already exists",
+    )
+    _require(
+        not RECOVERY_ATTEMPT.exists(),
+        "recovery authorization already consumed by an execution attempt",
+    )
+    _require(
+        _top_level_function_sha256(
+            Path(__file__),
+            "execute_assay",
+        )
+        == RECOVERY_AUTHORIZED_EXECUTE_ASSAY_SHA256,
+        "current execute_assay differs from the originally authorized version",
     )
 
     return {
@@ -1332,6 +1659,51 @@ def _write_result_exclusive(output_path: Path, result: dict[str, Any]) -> None:
         handle.write(serialized)
 
 
+def _write_recovery_attempt_exclusive(
+    path: Path,
+    authorization_identity: str,
+) -> None:
+    """Durably consume the one-time recovery authorization before execution."""
+    payload = {
+        "schema": (
+            "LF-PROXIMAL-PROPAGATION-LOCALIZATION-"
+            "RECOVERY-ATTEMPT.1"
+        ),
+        "status": "RECOVERY_EXECUTION_ATTEMPT_CLAIMED",
+        "authorization_sha256": authorization_identity,
+        "execute_assay_sha256": RECOVERY_AUTHORIZED_EXECUTE_ASSAY_SHA256,
+        "independent_replicate": False,
+        "output_artifact": (
+            "malecns_backend/embodiment/interface_output/"
+            "lf_proximal_propagation_localization/"
+            "lf_proximal_propagation_localization_result_recovery.json"
+        ),
+        "meaning": (
+            "Exclusive durable claim consuming the one-time recovery "
+            "authorization before scientific execution can begin."
+        ),
+    }
+
+    serialized = (
+        json.dumps(
+            payload,
+            sort_keys=True,
+            allow_nan=False,
+            indent=2,
+        )
+        + "\n"
+    )
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+
+    with path.open(
+        "x",
+        encoding="utf-8",
+        newline="\n",
+    ) as handle:
+        handle.write(serialized)
+
+
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     actions = parser.add_mutually_exclusive_group()
@@ -1345,6 +1717,11 @@ def main(argv=None) -> int:
         action="store_true",
         help="reserved; scientific execution is not yet authorized",
     )
+    actions.add_argument(
+        "--recover-result",
+        action="store_true",
+        help="perform the separately authorized one-time result reconstruction",
+    )
     parser.add_argument("--replay-dir", type=Path, default=REPLAY_DIR)
     parser.add_argument(
         "--output",
@@ -1353,10 +1730,87 @@ def main(argv=None) -> int:
     )
     args = parser.parse_args(argv)
 
-    if not args.check_ready and not args.execute:
+    if not args.check_ready and not args.execute and not args.recover_result:
         parser.print_usage()
         print("No action selected; zero scientific steps executed.")
         return 0
+
+    if args.recover_result:
+        paths = {
+            "preregistration": PREREGISTRATION,
+            "parent_preregistration": PARENT_PREREGISTRATION,
+            "parent_result": PARENT_RESULT,
+            "clarification": CLARIFICATION,
+            "addendum": ADDENDUM,
+            "analysis_clarification": ANALYSIS_CLARIFICATION,
+            "replay": args.replay_dir / REPLAY.name,
+            "manifest": args.replay_dir / MANIFEST.name,
+            "report": args.replay_dir / EXTRACTION_REPORT.name,
+        }
+
+        output_path = RECOVERY_RESULT
+        scientific_execution_started = False
+        scientific_execution_completed = False
+
+        try:
+            if args.output is not None:
+                raise RecruitmentFailure(
+                    "--output is not permitted with --recover-result; "
+                    "the recovery authorization fixes the output path"
+                )
+
+            if output_path.exists():
+                raise FileExistsError(
+                    f"refusing to overwrite existing recovery result: {output_path}"
+                )
+
+            authorization = recovery_authorization_gate()
+            replay, provenance = provenance_gate(**paths)
+
+            _write_recovery_attempt_exclusive(
+                RECOVERY_ATTEMPT,
+                authorization["identity"],
+            )
+
+            scientific_execution_started = True
+            result = execute_assay(
+                replay,
+                provenance,
+            )
+            scientific_execution_completed = True
+
+            _write_result_exclusive(
+                output_path,
+                result,
+            )
+
+            print(json.dumps({
+                "status": "RESULT_RECONSTRUCTION_COMPLETE",
+                "recovery_execution_authorized": True,
+                "authorization_sha256": authorization["identity"],
+                "independent_replicate": False,
+                "recovery_attempt": str(RECOVERY_ATTEMPT),
+                "output": str(output_path),
+                "seeds": result["seeds"],
+                "conditions": result["conditions"],
+            }, sort_keys=True))
+
+            return 0
+
+        except (RecruitmentFailure, OSError, ValueError) as exc:
+            print(json.dumps({
+                "status": "FAIL_CLOSED",
+                "error": str(exc),
+                "recovery_execution_authorized": False,
+                "scientific_execution_started": scientific_execution_started,
+                "scientific_execution_completed": scientific_execution_completed,
+                "neural_runtime_steps": (
+                    0
+                    if not scientific_execution_started
+                    else None
+                ),
+            }, sort_keys=True))
+            return 1
 
     if args.execute:
         paths = {

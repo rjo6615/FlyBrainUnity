@@ -500,3 +500,259 @@ def test_execute_cli_fails_closed_when_authorization_is_rejected(
     assert '"neural_runtime_steps": 0' in captured.out
     assert "SHA-256 mismatch" in captured.out
     assert not output_path.exists()
+
+
+def test_recovery_attempt_writer_refuses_existing_claim(tmp_path):
+    attempt = tmp_path / "recovery_attempt.json"
+    sentinel = b"existing-recovery-claim\n"
+    attempt.write_bytes(sentinel)
+
+    try:
+        runner._write_recovery_attempt_exclusive(
+            attempt,
+            runner.EXPECTED["recovery_authorization"],
+        )
+    except FileExistsError:
+        pass
+    else:
+        raise AssertionError(
+            "existing recovery-attempt claim was overwritten"
+        )
+
+    assert attempt.read_bytes() == sentinel
+
+
+def test_recovery_cli_rejects_custom_output_before_any_gate(
+    monkeypatch,
+    capsys,
+    tmp_path,
+):
+    calls = []
+
+    def forbidden_gate(*args, **kwargs):
+        calls.append(("gate", args, kwargs))
+        raise AssertionError("recovery gate must not be reached")
+
+    def forbidden_execute(*args, **kwargs):
+        calls.append(("execute", args, kwargs))
+        raise AssertionError("execute_assay must not be reached")
+
+    monkeypatch.setattr(
+        runner,
+        "RECOVERY_RESULT",
+        tmp_path / "recovery_result.json",
+    )
+    monkeypatch.setattr(
+        runner,
+        "RECOVERY_ATTEMPT",
+        tmp_path / "recovery_attempt.json",
+    )
+    monkeypatch.setattr(
+        runner,
+        "recovery_authorization_gate",
+        forbidden_gate,
+    )
+    monkeypatch.setattr(
+        runner,
+        "execute_assay",
+        forbidden_execute,
+    )
+
+    custom_output = tmp_path / "forbidden_custom_result.json"
+
+    exit_code = runner.main([
+        "--recover-result",
+        "--output",
+        str(custom_output),
+    ])
+
+    captured = capsys.readouterr()
+
+    assert exit_code == 1
+    assert calls == []
+    assert not custom_output.exists()
+    assert "FAIL_CLOSED" in captured.out
+    assert '"scientific_execution_started": false' in captured.out
+    assert '"neural_runtime_steps": 0' in captured.out
+
+
+def test_recovery_cli_refuses_existing_result_before_any_gate(
+    monkeypatch,
+    capsys,
+    tmp_path,
+):
+    calls = []
+
+    output = tmp_path / "recovery_result.json"
+    sentinel = b"already-preserved-recovery-result\n"
+    output.write_bytes(sentinel)
+
+    def forbidden_gate(*args, **kwargs):
+        calls.append(("gate", args, kwargs))
+        raise AssertionError("recovery gate must not be reached")
+
+    def forbidden_execute(*args, **kwargs):
+        calls.append(("execute", args, kwargs))
+        raise AssertionError("execute_assay must not be reached")
+
+    monkeypatch.setattr(runner, "RECOVERY_RESULT", output)
+    monkeypatch.setattr(
+        runner,
+        "RECOVERY_ATTEMPT",
+        tmp_path / "recovery_attempt.json",
+    )
+    monkeypatch.setattr(
+        runner,
+        "recovery_authorization_gate",
+        forbidden_gate,
+    )
+    monkeypatch.setattr(
+        runner,
+        "execute_assay",
+        forbidden_execute,
+    )
+
+    exit_code = runner.main(["--recover-result"])
+    captured = capsys.readouterr()
+
+    assert exit_code == 1
+    assert calls == []
+    assert output.read_bytes() == sentinel
+    assert "FAIL_CLOSED" in captured.out
+    assert "refusing to overwrite existing recovery result" in captured.out
+    assert '"scientific_execution_started": false' in captured.out
+    assert '"neural_runtime_steps": 0' in captured.out
+
+
+def test_recovery_cli_claims_attempt_before_mocked_assay(
+    monkeypatch,
+    capsys,
+    tmp_path,
+):
+    output = tmp_path / "recovery_result.json"
+    attempt = tmp_path / "recovery_attempt.json"
+
+    canonical_before = runner.CANONICAL_RESULT.read_bytes()
+    calls = []
+
+    def fake_authorization_gate():
+        calls.append("authorization")
+        return {
+            "identity": runner.EXPECTED["recovery_authorization"],
+            "authorization": {},
+        }
+
+    def fake_provenance_gate(**kwargs):
+        calls.append("provenance")
+        return "mock-replay", {"mock": "provenance"}
+
+    def fake_execute_assay(replay, provenance):
+        calls.append("execute")
+        assert attempt.exists()
+        assert replay == "mock-replay"
+        assert provenance == {"mock": "provenance"}
+
+        return {
+            "schema": "LF-PROXIMAL-PROPAGATION-LOCALIZATION-RESULT.1",
+            "seeds": list(runner.SEEDS),
+            "conditions": list(runner.CONDITIONS),
+        }
+
+    monkeypatch.setattr(runner, "RECOVERY_RESULT", output)
+    monkeypatch.setattr(runner, "RECOVERY_ATTEMPT", attempt)
+    monkeypatch.setattr(
+        runner,
+        "recovery_authorization_gate",
+        fake_authorization_gate,
+    )
+    monkeypatch.setattr(
+        runner,
+        "provenance_gate",
+        fake_provenance_gate,
+    )
+    monkeypatch.setattr(
+        runner,
+        "execute_assay",
+        fake_execute_assay,
+    )
+
+    exit_code = runner.main(["--recover-result"])
+    captured = capsys.readouterr()
+
+    assert exit_code == 0
+    assert calls == ["authorization", "provenance", "execute"]
+    assert attempt.exists()
+    assert output.exists()
+    assert runner.CANONICAL_RESULT.read_bytes() == canonical_before
+    assert "RESULT_RECONSTRUCTION_COMPLETE" in captured.out
+    assert '"independent_replicate": false' in captured.out
+
+
+def test_failed_recovery_consumes_claim_before_mocked_assay_failure(
+    monkeypatch,
+    capsys,
+    tmp_path,
+):
+    output = tmp_path / "recovery_result.json"
+    attempt = tmp_path / "recovery_attempt.json"
+
+    canonical_before = runner.CANONICAL_RESULT.read_bytes()
+    execute_calls = []
+
+    def fake_authorization_gate():
+        return {
+            "identity": runner.EXPECTED["recovery_authorization"],
+            "authorization": {},
+        }
+
+    def fake_provenance_gate(**kwargs):
+        return "mock-replay", {"mock": "provenance"}
+
+    def failing_execute_assay(replay, provenance):
+        execute_calls.append((replay, provenance))
+        assert attempt.exists()
+        raise runner.RecruitmentFailure(
+            "mocked failure after recovery claim"
+        )
+
+    monkeypatch.setattr(runner, "RECOVERY_RESULT", output)
+    monkeypatch.setattr(runner, "RECOVERY_ATTEMPT", attempt)
+    monkeypatch.setattr(
+        runner,
+        "recovery_authorization_gate",
+        fake_authorization_gate,
+    )
+    monkeypatch.setattr(
+        runner,
+        "provenance_gate",
+        fake_provenance_gate,
+    )
+    monkeypatch.setattr(
+        runner,
+        "execute_assay",
+        failing_execute_assay,
+    )
+
+    first_exit = runner.main(["--recover-result"])
+    first = capsys.readouterr()
+
+    assert first_exit == 1
+    assert len(execute_calls) == 1
+    assert attempt.exists()
+    assert not output.exists()
+    assert runner.CANONICAL_RESULT.read_bytes() == canonical_before
+    assert '"scientific_execution_started": true' in first.out
+    assert '"scientific_execution_completed": false' in first.out
+    assert '"neural_runtime_steps": null' in first.out
+
+    second_exit = runner.main(["--recover-result"])
+    second = capsys.readouterr()
+
+    assert second_exit == 1
+    assert len(execute_calls) == 1
+    assert attempt.exists()
+    assert not output.exists()
+    assert runner.CANONICAL_RESULT.read_bytes() == canonical_before
+    assert "FAIL_CLOSED" in second.out
+    assert '"scientific_execution_started": false' in second.out
+    assert '"neural_runtime_steps": 0' in second.out
