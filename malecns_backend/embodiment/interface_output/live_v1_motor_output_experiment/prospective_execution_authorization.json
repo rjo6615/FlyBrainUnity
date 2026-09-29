@@ -1,0 +1,71 @@
+{
+  "attempt_semantics": {
+    "attempt_marker": "live_v1_motor_output_experiment_execution_attempt.json",
+    "canonical_result": "live_v1_motor_output_experiment_result.json",
+    "canonical_result_is_exclusive_create": true,
+    "deleting_marker_to_enable_rerun_permitted": false,
+    "marker_created_before_first_scientific_transition": true,
+    "marker_is_exclusive_create": true
+  },
+  "authorization_scope": {
+    "authorized_scientific_attempts": 1,
+    "conditions": [
+      "live_v1_enabled",
+      "matched_control_final_11_zeroed"
+    ],
+    "duration_ms": 500,
+    "expected_neural_transitions_per_condition": 1000,
+    "expected_physics_transitions_per_condition": 5000,
+    "rerun_after_attempt_claim_permitted": false,
+    "rerun_after_failure_permitted": false,
+    "rerun_for_uninteresting_outcome_permitted": false,
+    "result_overwrite_permitted": false,
+    "seed": 1
+  },
+  "authorized_implementation": {
+    "execution_adapter": {
+      "path": "malecns_backend/embodiment/_windows_live_v1_motor_output_experiment_adapter.py",
+      "sha256": "ed67f94b43df078810145f68ca1abe7467d06aa43d926a3c5f84dc1ffa5766cc"
+    },
+    "experiment_module": {
+      "path": "malecns_backend/embodiment/live_v1_motor_output_experiment.py",
+      "sha256": "515ffdcf163d321c3156adaeb494df4935f20226b07cd259e9150133dd2abcea"
+    },
+    "focused_test_module": {
+      "path": "tests/test_live_v1_motor_output_experiment.py",
+      "sha256": "4b9795996291d51168bf38e199fbcf84e0a68ebf2373aa041a53b5b1084f7241",
+      "tests_passed_before_authorization": 32
+    },
+    "git_commit": "fabf9dc9f3ae3e02bc7ab09786f4f60210278994",
+    "git_tree": "3adeebcff5a7cfb9754cf01f9aac026ad9c31507"
+  },
+  "experiment": "Live Fly v1 11-channel motor-output observability assay",
+  "frozen_scientific_inputs": {
+    "analysis_specification_sha256": "5a2394b587ec2ea2f11f6ddfc33ac73704d87731244fd281c2f19ebd0220efa4",
+    "design_sha256": "7e93038953308574a01c9612ce44d702bf79e0d558ea24628cb91a72d9f9db66",
+    "execution_contract_sha256": "5a821012e77b7080d20b5bac0e99c11788bf2480237cbbab915d75f135018fe7",
+    "passivity_validation_canonical_sha256": "6bb7cda0e343e495773360e0a6f55e0967190860f3d701b783f87980763a2f14",
+    "validated_runtime_raw_sha256": "fa716a14e1502bc5ad18e735022aa4d41363786b987311ddc5850e8502afbf3d"
+  },
+  "future_gate_change_rule": {
+    "authorization_artifact_must_be_identity_locked": true,
+    "purpose": "A later separately reviewed change may replace only the currently fail-closed assert_execution_authorized verifier.",
+    "required_verification": "The enabled gate must prove that the execution adapter and all frozen scientific inputs retain their authorized identities, and must reconstruct the experiment module with the original fail-closed verifier before comparing it to the authorized experiment-module SHA-256.",
+    "scientific_implementation_changes_permitted": false
+  },
+  "interpretation_limits": [
+    "authorization does not alter the frozen scientific question",
+    "authorization does not permit post-outcome tuning",
+    "authorization does not permit new motor populations",
+    "authorization does not permit decoder, sensory, neural, physics, Unity, or TCP changes",
+    "physical divergence alone does not establish biological necessity or behavioral function"
+  ],
+  "schema": "LIVE-V1-MOTOR-OUTPUT-PROSPECTIVE-AUTHORIZATION.1",
+  "state_at_authorization": {
+    "execution_attempt_marker_exists": false,
+    "experiment_3_result_observed": false,
+    "experiment_3_scientific_execution_performed": false,
+    "scientific_result_exists": false
+  },
+  "status": "AUTHORIZED_PROSPECTIVELY_NOT_YET_EXECUTED"
+}
