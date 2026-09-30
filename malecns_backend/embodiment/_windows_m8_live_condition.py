@@ -16,6 +16,7 @@ from typing import Any, Mapping, Sequence
 
 
 UNIDIRECTIONAL_POSITIVE = "unidirectional_positive"
+ANTAGONIST_PAIR = "antagonist_pair"
 
 
 def compute_unidirectional_positive_contribution(rate_hz: float, bound: float,
@@ -36,6 +37,35 @@ def _resolve_supplemental_channels(definitions: Mapping[str, Mapping[str, Any]] 
         return {}
     resolved: dict[str, dict[str, Any]] = {}
     used_indices: set[int] = set()
+    used_body_ids: dict[int, str] = {}
+
+    def resolve_population_map(name: str, populations: Mapping[str, Sequence[int]],
+                               direction: str) -> tuple[dict[str, tuple[int, ...]], tuple[str, ...], set[int]]:
+        if not isinstance(populations, Mapping) or not populations:
+            raise ValueError(f"empty supplemental {direction} populations: {name}")
+        dense_by_population: dict[str, tuple[int, ...]] = {}
+        names: list[str] = []
+        all_ids: set[int] = set()
+        for population, raw_ids in populations.items():
+            if not isinstance(population, str) or not population:
+                raise ValueError(f"invalid supplemental population name: {name}")
+            body_ids = tuple(int(body_id) for body_id in raw_ids)
+            if not body_ids or len(body_ids) != len(set(body_ids)):
+                raise ValueError(f"invalid supplemental body IDs: {name}")
+            overlap = all_ids.intersection(body_ids)
+            if overlap:
+                raise ValueError(f"duplicate supplemental body IDs within channel: {name}")
+            try:
+                dense = tuple(int(data.body_id_to_index[body_id]) for body_id in body_ids)
+            except (KeyError, TypeError, ValueError) as exc:
+                raise ValueError(f"supplemental body ID missing from MaleCNS: {name}") from exc
+            if len(dense) != len(set(dense)):
+                raise ValueError(f"supplemental body IDs do not resolve uniquely: {name}")
+            dense_by_population[population] = dense
+            names.append(population)
+            all_ids.update(body_ids)
+        return dense_by_population, tuple(names), all_ids
+
     for name, source in definitions.items():
         if not isinstance(name, str) or source.get("actuator") != name:
             raise ValueError("supplemental channel key/actuator mismatch")
@@ -50,26 +80,48 @@ def _resolve_supplemental_channels(definitions: Mapping[str, Mapping[str, Any]] 
         if index in used_indices:
             raise ValueError(f"duplicate supplemental action index: {index}")
         used_indices.add(index)
-        if source.get("decoder_mode") != UNIDIRECTIONAL_POSITIVE:
+        mode = source.get("decoder_mode")
+        if mode not in (UNIDIRECTIONAL_POSITIVE, ANTAGONIST_PAIR):
             raise ValueError(f"unsupported supplemental decoder mode: {name}")
         sign = source.get("coordinate_sign")
         if sign not in (-1, 1) or isinstance(sign, bool):
             raise ValueError(f"invalid supplemental coordinate sign: {name}")
-        body_ids = tuple(source.get("body_ids", ()))
-        if not body_ids or len(body_ids) != len(set(body_ids)):
-            raise ValueError(f"invalid supplemental body IDs: {name}")
-        try:
-            dense = tuple(int(data.body_id_to_index[int(body_id)]) for body_id in body_ids)
-        except (KeyError, TypeError, ValueError) as exc:
-            raise ValueError(f"supplemental body ID missing from MaleCNS: {name}") from exc
-        population = source.get("population_name")
-        if not isinstance(population, str) or not population:
-            raise ValueError(f"missing supplemental population name: {name}")
-        resolved[name] = {**dict(source), "body_ids": body_ids,
-                          "populations": {population: dense},
-                          "positive": (population,), "negative": ()}
-    return resolved
 
+        if mode == UNIDIRECTIONAL_POSITIVE:
+            body_ids = tuple(int(body_id) for body_id in source.get("body_ids", ()))
+            population = source.get("population_name")
+            if not isinstance(population, str) or not population:
+                raise ValueError(f"missing supplemental population name: {name}")
+            population_map, positive, channel_ids = resolve_population_map(
+                name, {population: body_ids}, "positive")
+            negative: tuple[str, ...] = ()
+        else:
+            positive_map, positive, positive_ids = resolve_population_map(
+                name, source.get("positive_populations", {}), "positive")
+            negative_map, negative, negative_ids = resolve_population_map(
+                name, source.get("negative_populations", {}), "negative")
+            overlap = positive_ids & negative_ids
+            if overlap:
+                raise ValueError(f"supplemental positive/negative body ID overlap: {name}")
+            population_map = {**positive_map, **negative_map}
+            if len(population_map) != len(positive_map) + len(negative_map):
+                raise ValueError(f"supplemental population name overlap: {name}")
+            channel_ids = positive_ids | negative_ids
+
+        cross_overlap = [body_id for body_id in channel_ids if body_id in used_body_ids]
+        if cross_overlap:
+            raise ValueError(
+                f"supplemental body ID reused by {name} and {used_body_ids[cross_overlap[0]]}")
+        for body_id in channel_ids:
+            used_body_ids[body_id] = name
+
+        resolved[name] = {
+            **dict(source),
+            "populations": population_map,
+            "positive": positive,
+            "negative": negative,
+        }
+    return resolved
 
 def _legacy_neural_telemetry(*, admitted_names: Sequence[str], channels: Mapping[str, Any],
                              raw_values: Mapping[str, float], contributions: Mapping[str, float],
@@ -237,7 +289,7 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                 populations = definition["populations"]
                 positive, negative = definition["positive"], definition["negative"]
                 sign = int(definition["coordinate_sign"])
-                decoder_mode = UNIDIRECTIONAL_POSITIVE
+                decoder_mode = str(definition["decoder_mode"])
             elif name in TIER_A:
                 interface = tibia[row["leg"]]
                 populations = {p.name: p.dense_indices for p in interface.motor_populations}

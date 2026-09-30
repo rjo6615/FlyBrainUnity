@@ -107,6 +107,30 @@ def create_live_v2_session(*, telemetry_observer=None, runtime_factory=None) -> 
     )
 
 
+def create_live_v3_session(*, telemetry_observer=None, runtime_factory=None) -> ScientificSession:
+    """Build continuous Live Fly v3 with 20 motor and six sensory channels."""
+    from malecns_backend.embodiment import _windows_m7d_corrected_spontaneous_adapter as adapter
+    from malecns_backend.embodiment import _windows_m8_live_condition as kernel
+    from malecns_backend.embodiment import live_v2_motor_interface as v2
+    from malecns_backend.embodiment import live_v3_motor_interface as v3
+    from malecns_backend.embodiment import m7d_corrected_spontaneous as m7d
+
+    v1_protocol, records, v1_table = adapter._protocol()
+    v2_protocol, records, v2_table = v2.derive_v2(v1_protocol, records, v1_table)
+    protocol, records, table = v3.derive_v3(v2_protocol, records, v2_table)
+    return kernel.create_scientific_session(
+        protocol=protocol, condition=m7d.CONDITIONS[0], condition_number=1,
+        progress=lambda *_: "", cached_admission_assertion=v3.assert_v3_physical_admission,
+        cached_records=records, cached_table=table, condition_names=m7d.CONDITIONS,
+        contribution_gate=v3.gate_contributions, compact_telemetry=False,
+        runtime_factory=runtime_factory or adapter._runtime, proprioception_only=True,
+        fixed_initial_baseline=True, m8_extended_telemetry=False, continuous=True,
+        motor_channel_names=v3.V3_MOTOR,
+        supplemental_motor_channels=v3.SUPPLEMENTAL_MOTOR_CHANNELS,
+        telemetry_observer=telemetry_observer,
+    )
+
+
 def run(*, session_factory: Callable[[], ScientificSession] = create_live_session,
         telemetry_interval: float = 1.0, max_transitions: int | None = None,
         clock: Callable[[], float] = time.monotonic,
