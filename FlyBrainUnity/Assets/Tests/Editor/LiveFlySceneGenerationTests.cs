@@ -39,7 +39,11 @@ public sealed class LiveFlySceneGenerationTests
         Assert.IsNotNull(ground.sharedMaterial);
         Assert.That(ground.sharedMaterial.name, Does.Contain("LiveFlyGround"));
         Assert.That(ground.sharedMaterial.shader.name, Is.EqualTo("Universal Render Pipeline/Lit"));
-        Assert.That(ground.sharedMaterial.GetColor("_BaseColor"), Is.EqualTo(LiveFlySceneGenerator.GroundColor).Using(ColorComparer));
+        var groundColor = ground.sharedMaterial.GetColor("_BaseColor");
+        Assert.That(groundColor.r, Is.EqualTo(LiveFlySceneGenerator.GroundColor.r).Within(.001f));
+        Assert.That(groundColor.g, Is.EqualTo(LiveFlySceneGenerator.GroundColor.g).Within(.001f));
+        Assert.That(groundColor.b, Is.EqualTo(LiveFlySceneGenerator.GroundColor.b).Within(.001f));
+        Assert.That(groundColor.a, Is.EqualTo(LiveFlySceneGenerator.GroundColor.a).Within(.001f));
 
         Assert.AreEqual(0, rigs[0].GetComponentsInChildren<Rigidbody>(true).Length);
         Assert.AreEqual(0, rigs[0].GetComponentsInChildren<ArticulationBody>(true).Length);
@@ -87,11 +91,4 @@ public sealed class LiveFlySceneGenerationTests
         }
     }
 
-    static bool ColorComparer(Color a, Color b)
-    {
-        return Mathf.Abs(a.r - b.r) < .001f &&
-               Mathf.Abs(a.g - b.g) < .001f &&
-               Mathf.Abs(a.b - b.b) < .001f &&
-               Mathf.Abs(a.a - b.a) < .001f;
-    }
 }
