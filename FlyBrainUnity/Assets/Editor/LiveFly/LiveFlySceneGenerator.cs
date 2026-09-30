@@ -8,6 +8,8 @@ using UnityEngine;
 public static class LiveFlySceneGenerator
 {
     public const string ScenePath = "Assets/Scenes/LiveFly.unity";
+    public const string GroundMaterialPath = "Assets/Materials/LiveFlyGround.mat";
+    public static readonly Color GroundColor = new Color(.22f, .20f, .18f, 1f);
 
     [MenuItem("FlyBrain/Live Fly/Create Live Fly Scene")]
     public static void CreateLiveFlyScene()
@@ -32,16 +34,20 @@ public static class LiveFlySceneGenerator
         ground.name = "Visual Ground — PRESENTATION REFERENCE ONLY";
         ground.transform.SetParent(environment, false);
         ground.transform.localScale = Vector3.one * .08f;
-        UnityEngine.Object.DestroyImmediate(ground.GetComponent<Collider>());
+        var groundCollider = ground.GetComponent<Collider>();
+        if (groundCollider != null) UnityEngine.Object.DestroyImmediate(groundCollider);
+        ground.GetComponent<Renderer>().sharedMaterial = EnsureGroundMaterial();
 
-        var cameraRig = Child(top.transform, "Camera Rig — PRESENTATION FOLLOW");
+        var cameraRig = Child(top.transform, "Camera Rig — PRESENTATION WORLD/FOLLOW");
         var cameraObject = Child(cameraRig, "Main Camera");
         cameraObject.tag = "MainCamera";
         var camera = cameraObject.gameObject.AddComponent<Camera>();
         camera.nearClipPlane = .001f;
         camera.farClipPlane = 100f;
         cameraObject.gameObject.AddComponent<AudioListener>();
-        cameraObject.gameObject.AddComponent<M7FReplayCamera>().Configure(rig.ScientificRoot, M7FScientificFlyBuilder.ApproximateVisualRadius);
+        var replayCamera = cameraObject.gameObject.AddComponent<M7FReplayCamera>();
+        replayCamera.Configure(rig.ScientificRoot, M7FScientificFlyBuilder.ApproximateVisualRadius);
+        replayCamera.SetMode(M7FCameraMode.WorldFixed);
 
         var lighting = Child(top.transform, "Lighting");
         var lightObject = Child(lighting, "Directional Light");
@@ -54,9 +60,40 @@ public static class LiveFlySceneGenerator
         EditorSceneManager.MarkSceneDirty(scene);
         if (!EditorSceneManager.SaveScene(scene, ScenePath))
             throw new InvalidOperationException("Unity could not save the Live Fly scene at " + ScenePath);
+        AssetDatabase.SaveAssets();
         Selection.activeGameObject = top;
         Debug.Log("Created Live Fly presentation scene. No scientific transition or canonical export was executed.");
         return top;
+    }
+
+    public static Material EnsureGroundMaterial()
+    {
+        var existing = AssetDatabase.LoadAssetAtPath<Material>(GroundMaterialPath);
+        if (existing != null)
+        {
+            existing.color = GroundColor;
+            if (existing.HasProperty("_BaseColor")) existing.SetColor("_BaseColor", GroundColor);
+            EditorUtility.SetDirty(existing);
+            return existing;
+        }
+
+        const string folder = "Assets/Materials";
+        if (!AssetDatabase.IsValidFolder(folder))
+            AssetDatabase.CreateFolder("Assets", "Materials");
+
+        var shader = Shader.Find("Universal Render Pipeline/Lit");
+        if (shader == null)
+            throw new InvalidOperationException("Universal Render Pipeline/Lit shader is required for the Live Fly ground.");
+
+        var material = new Material(shader)
+        {
+            name = "LiveFlyGround",
+            color = GroundColor
+        };
+        if (material.HasProperty("_BaseColor")) material.SetColor("_BaseColor", GroundColor);
+        AssetDatabase.CreateAsset(material, GroundMaterialPath);
+        AssetDatabase.SaveAssets();
+        return material;
     }
 
     public static void Validate(GameObject top, M7FFlyRig expectedRig)
