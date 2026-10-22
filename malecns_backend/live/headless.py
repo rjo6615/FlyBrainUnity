@@ -7,6 +7,7 @@ import time
 from typing import Any, Callable, Mapping, TextIO
 
 from malecns_backend.embodiment.scientific_session import ScientificSession
+from .motor_diagnostics import CandidateMotorDiagnostics
 
 
 class LatestLiveTelemetry:
@@ -17,12 +18,14 @@ class LatestLiveTelemetry:
         self.latest_physics: Mapping[str, Any] | None = None
         self.neural_records = 0
         self.physics_records = 0
+        self.candidate_diagnostics = CandidateMotorDiagnostics()
 
     def __call__(self, record: Mapping[str, Any]) -> None:
         # The scientific kernel supplies recursively read-only telemetry.
         # Keep only the newest record of each kind: memory usage never grows
         # with Live Fly runtime.
         if "neural_transition_index" in record:
+            self.candidate_diagnostics.observe(record)
             self.latest_neural = record
             self.neural_records += 1
             return
@@ -45,7 +48,9 @@ class LatestLiveTelemetry:
         ]
         delivered = record.get("delivered_external_sensory_events", ())
         motor_text = ",".join(active) if active else "none"
-        return f"motors=[{motor_text}] sensory_events={len(delivered)}"
+        candidates = self.candidate_diagnostics.status_text()
+        return (f"motors=[{motor_text}] sensory_events={len(delivered)}"
+                + (f" {candidates}" if candidates else ""))
 
 
 @dataclass(frozen=True)
@@ -196,6 +201,10 @@ def run(*, session_factory: Callable[[], ScientificSession] = create_live_sessio
         print(f"LIVE final init_wall={initialization_wall:.3f}s run_wall={wall:.3f}s "
               f"sim={sim_seconds:.3f}s RTF={rtf:.2f}x "
               f"physics={physics} neural={neural} reason={reason}", file=output, flush=True)
+        if live_telemetry is not None:
+            candidates = live_telemetry.candidate_diagnostics.status_text()
+            if candidates:
+                print(f"LIVE final {candidates}", file=output, flush=True)
     if pending_error is not None:
         raise pending_error
     return RunSummary(sim_seconds, initialization_wall, wall, rtf, physics, neural, reason)
