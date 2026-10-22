@@ -85,3 +85,47 @@ Only run one publisher at a time on port 8765.
    duration. Absence alone does not prove a mechanical failure.
 7. Stop and restart Unity; expect the same Python session ID and later simulation
    time. Stop Unity and Ctrl+C Python; expect normal shutdown.
+
+## Passive v3 candidate diagnostics
+
+Run `python -m malecns_backend.live --motor-interface v3`. Each periodic
+status now includes `candidates=[...]` for RFFemur, LFTarsus1, and RFTarsus1,
+even when their output is zero. A final candidate summary is printed on Ctrl+C.
+
+- `pos_hz` / `neg_hz`: latest pooled positive/negative filtered rates.
+- `populations`: latest filtered rate for each exact annotated population.
+- `raw_rad` / `final_rad`: latest raw decoder and final contribution.
+- `samples`: cumulative complete neural telemetry records for that channel.
+- `spikes`: cumulative observed spike increments across its unique neurons.
+- `pos_steps` / `neg_steps`: updates with a positive filtered pool rate.
+- `raw_steps` / `final_steps`: updates with nonzero raw/final output.
+- `peak_final_rad`: maximum absolute final contribution since launch.
+
+These counters update on every neural record, independently of terminal cadence.
+Filtered rates can persist after a spike; rate-active steps are not spike counts.
+Nonzero counters include arbitrarily small residual output; use the peak to judge
+magnitude. Missing fields display `unavailable`, not silence. v1/v2 omit the
+candidate section because those channels are not admitted. Storage retains only
+three channel summaries and the latest record, with no growing history.
+
+### Manual candidate investigation
+
+1. Launch v3 and wait for initialization. Confirm all three candidates appear,
+   including those with zero rates/output, and `samples` increases.
+2. Let it run for at least 10 **simulated** seconds (about three wall minutes at
+   the previously observed speed). Keep the `sim=` value with the results.
+3. Check `spikes` and population rates. Zero spikes across observed samples
+   indicate no observed firing in that window. Nonzero positive/negative rates
+   with zero raw output can indicate decoder cancellation or its zero-response
+   region; they do not by themselves establish a wiring fault.
+4. If `raw_steps>0` but `final_steps=0`, investigate the downstream output path.
+   If `final_steps>0`, brief output occurred even if the latest sample is zero;
+   inspect `peak_final_rad` for its magnitude.
+5. Confirm Unity still receives poses and advances time. Press Ctrl+C in Python;
+   save the final candidate summary and last simulation time for comparison.
+6. Optionally launch v1 or v2 after stopping v3; expect the existing motor status
+   without candidate diagnostics. Only one publisher may use port 8765.
+
+Diagnostics consume the existing read-only observer records. They add no neural
+stimulation, admission changes, decoder tuning, or physics changes. Python
+formatting and counting may add wall-time overhead.
