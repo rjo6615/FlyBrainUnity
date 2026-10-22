@@ -51,3 +51,37 @@ The wire quaternion is explicitly decoded from `[w,x,y,z]` before conversion.
 
 Unity Stop only cancels/closes its TCP client. It never terminates or resets the
 manually managed Python process.
+
+## Motor interface selection
+
+The terminal launcher defaults to the original 11-channel v1 session. Select an
+expanded inventory explicitly from the repository root:
+
+```sh
+python -m malecns_backend.live --motor-interface v2
+python -m malecns_backend.live --motor-interface v3
+```
+
+v2 admits 17 motor channels; v3 admits 20, including `joint_RFFemur`,
+`joint_LFTarsus1`, and `joint_RFTarsus1`. All versions retain the six tibia
+proprioceptive sensory inputs. Admission does not guarantee nonzero neural
+output or visible movement. The startup line reports the selected inventory.
+Only run one publisher at a time on port 8765.
+
+### Manual checks for interface selection
+
+1. Run `python -m malecns_backend.live --help`; expect v1/v2/v3 choices and exit.
+2. Run `python -m malecns_backend.live --motor-interface v4`; expect an argument
+   error and no session or pose server started.
+3. Run the command without options; expect `motor_interface=v1 motor_channels=11
+   sensory_channels=6`. Stop with Ctrl+C after initialization.
+4. Run with `--motor-interface v2`; expect 17 motor channels and six sensory
+   channels. Stop it before the next check.
+5. Run with `--motor-interface v3`; expect 20 motor channels and six sensory
+   channels. Wait for initialization, then press Play in the Unity Live Fly scene.
+   Expect **Receiving**, advancing simulation time, and no transport errors.
+6. Observe the terminal motor contributions for the three candidate joints.
+   Record any nonzero contributions; if absent, record the simulated observation
+   duration. Absence alone does not prove a mechanical failure.
+7. Stop and restart Unity; expect the same Python session ID and later simulation
+   time. Stop Unity and Ctrl+C Python; expect normal shutdown.
