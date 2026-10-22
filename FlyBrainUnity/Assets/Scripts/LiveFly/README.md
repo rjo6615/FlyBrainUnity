@@ -129,3 +129,59 @@ three channel summaries and the latest record, with no growing history.
 Diagnostics consume the existing read-only observer records. They add no neural
 stimulation, admission changes, decoder tuning, or physics changes. Python
 formatting and counting may add wall-time overhead.
+
+## Optional upstream neuron investigation
+
+For silent candidate populations, enable an independent identity/readout check
+and per-neuron state measurements:
+
+```sh
+python -m malecns_backend.live --motor-interface v3 --upstream-diagnostics
+```
+
+The option requires v3. Without the flag, no probe is constructed. With it, the
+probe checks exact population membership, body ID to dense-index round trips,
+and observer index membership. On every neural update it compares the observer's
+cumulative counts directly against the raw brain counts at those indices. A
+mismatch stops the run with an explicit error instead of reporting silence.
+
+Periodic `upstream_samples=... identity=verified readout=verified upstream=[...]`
+text summarizes cumulative raw spikes, peak absolute excitatory/inhibitory
+synaptic state, and minimum sampled threshold gap for each candidate. On Ctrl+C,
+`LIVE final upstream={...}` contains the full JSON report for every neuron,
+including body ID, dense index, annotated population, anatomical incoming edge
+count, static effective positive/negative incoming edge counts, voltage extrema,
+conductance extrema, input-active update counts, and latest external drive.
+
+Effective graph counts use the runtime's filtered weights, presynaptic signs and
+PSP scale. They do not incorporate dynamic depression or establish that those
+presynaptic neurons fired. Input-active updates count nonzero sampled synaptic
+state, including decaying residuals; they are not counts of new delivery events.
+
+Voltage and conductance are sampled **after** integration, spike reset and
+synaptic decay. The threshold gap is threshold plus adaptation and offset minus
+post-step voltage. It is not a pre-reset voltage peak, and cannot establish how
+close a neuron came to threshold immediately before a spike. In current-based
+configurations the `g_exc`/`g_inh` arrays represent synaptic state rather than
+conductance. These measurements do not change neural inputs or equations.
+
+### Manual upstream tests
+
+1. Run the command above; allow additional initialization time for the one-time
+   incoming graph scan. Confirm `identity=verified readout=verified` and rising
+   `upstream_samples`. If a mismatch is reported, save the complete exception.
+2. Run at least 10 simulated seconds. Confirm Unity still receives poses.
+3. Stop Unity, then Ctrl+C Python. Save the last `LIVE final` timing line and the
+   complete `LIVE final upstream={...}` line (redirect terminal output to a file
+   if copying the long JSON line is inconvenient).
+4. Zero effective incoming edges indicates no static incoming pathway under the
+   current weight/sign filters. Nonzero edges with zero input-state peaks means
+   no input was observed at the post-step sampling points. Nonzero input-state
+   peaks with zero raw spikes supports input arriving without observed firing;
+   compare voltage and threshold-gap measurements before inferring a cause.
+5. Run v3 without the flag after stopping the first process. Expect the existing
+   candidate counters and no upstream section. `--upstream-diagnostics` with v1
+   or v2 must report an argument error before opening the pose server.
+
+The probe retains fixed per-neuron summaries and no time-series history. It may
+reduce wall-clock speed; compare runs using simulation time.

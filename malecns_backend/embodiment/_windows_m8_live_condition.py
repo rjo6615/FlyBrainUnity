@@ -226,6 +226,7 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                   pause_at_states: bool = False,
                   continuous: bool = False,
                   telemetry_observer: Any | None = None,
+                  motor_state_probe_factory: Any | None = None,
                   supplemental_motor_channels: Mapping[str, Mapping[str, Any]] | None = None) -> Mapping[str, Any]:
     """Create, run, close, and summarize one fresh frozen runtime.
 
@@ -311,6 +312,10 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                 "spikes": 0, "peak_observer": 0., "peak_raw": 0., "peak_admitted": 0.,
                 "first_activity_ms": None, "first_decoder_output_ms": None,
                 "first_admitted_contribution_ms": None, "saturation": False, "slew_limited": False}
+        if motor_state_probe_factory is not None and telemetry_observer is None:
+            raise ValueError("motor state probe requires a telemetry observer")
+        motor_state_probe = (motor_state_probe_factory(brain, channels)
+                             if motor_state_probe_factory is not None else None)
         tactile = TactileContactEncoder(config=TactileContactConfig(seed=SEED))
         encoders = {leg: SensoryEncoder(tibia[leg]) for leg in LEG_ORDER}; rngs = proprio_rngs(SEED)
         commands = _joint_positions(obs); baseline_commands = commands.copy()
@@ -525,6 +530,8 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                 if telemetry_observer is not None:
                     from .isolated_tier_b_motor_validation import activation
                     _observe(telemetry_observer, {
+                        **({"candidate_upstream_state": motor_state_probe.sample(brain)}
+                           if motor_state_probe is not None else {}),
                         "neural_transition_index": step // stride,
                         "neural_time_ms": now_ms,
                         "decoder_mode": {name: channels[name]["decoder_mode"]

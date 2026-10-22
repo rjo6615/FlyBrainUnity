@@ -23,6 +23,7 @@ class LiveCliTests(unittest.TestCase):
             ([], "v1", 11), (["--motor-interface", "v1"], "v1", 11),
             (["--motor-interface", "v2"], "v2", 17),
             (["--motor-interface", "v3"], "v3", 20),
+            (["--motor-interface", "v3", "--upstream-diagnostics"], "v3", 20),
         ):
             with self.subTest(arguments=arguments):
                 factories = {name: Mock(return_value=object()) for name in ("v1", "v2", "v3")}
@@ -50,7 +51,8 @@ class LiveCliTests(unittest.TestCase):
                 output = io.StringIO()
                 with patch.dict(sys.modules, modules), contextlib.redirect_stdout(output):
                     self.assertEqual(self.cli.main(arguments), 0)
-                factories[selected].assert_called_once_with(telemetry_observer=telemetry)
+                options = {"upstream_diagnostics": True} if "--upstream-diagnostics" in arguments else {}
+                factories[selected].assert_called_once_with(telemetry_observer=telemetry, **options)
                 for name, factory in factories.items():
                     if name != selected:
                         factory.assert_not_called()
@@ -64,7 +66,9 @@ class LiveCliTests(unittest.TestCase):
             if name.startswith("malecns_backend"):
                 self.fail("argument parsing imported scientific runtime")
             return original_import(name, *args, **kwargs)
-        for arguments, expected_code in ((["--help"], 0), (["--motor-interface", "v4"], 2)):
+        for arguments, expected_code in ((["--help"], 0), (["--motor-interface", "v4"], 2),
+                (["--upstream-diagnostics"], 2),
+                (["--motor-interface", "v2", "--upstream-diagnostics"], 2)):
             with self.subTest(arguments=arguments), patch("builtins.__import__", guarded_import):
                 with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
                     with self.assertRaises(SystemExit) as result:

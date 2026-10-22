@@ -49,8 +49,12 @@ class LatestLiveTelemetry:
         delivered = record.get("delivered_external_sensory_events", ())
         motor_text = ",".join(active) if active else "none"
         candidates = self.candidate_diagnostics.status_text()
+        upstream = ""
+        if record.get("candidate_upstream_state"):
+            from .upstream_diagnostics import status_text
+            upstream = " " + status_text(record["candidate_upstream_state"])
         return (f"motors=[{motor_text}] sensory_events={len(delivered)}"
-                + (f" {candidates}" if candidates else ""))
+                + (f" {candidates}" if candidates else "") + upstream)
 
 
 @dataclass(frozen=True)
@@ -112,7 +116,8 @@ def create_live_v2_session(*, telemetry_observer=None, runtime_factory=None) -> 
     )
 
 
-def create_live_v3_session(*, telemetry_observer=None, runtime_factory=None) -> ScientificSession:
+def create_live_v3_session(*, telemetry_observer=None, runtime_factory=None,
+                           upstream_diagnostics=False) -> ScientificSession:
     """Build continuous Live Fly v3 with 20 motor and six sensory channels."""
     from malecns_backend.embodiment import _windows_m7d_corrected_spontaneous_adapter as adapter
     from malecns_backend.embodiment import _windows_m8_live_condition as kernel
@@ -123,7 +128,14 @@ def create_live_v3_session(*, telemetry_observer=None, runtime_factory=None) -> 
     v1_protocol, records, v1_table = adapter._protocol()
     v2_protocol, records, v2_table = v2.derive_v2(v1_protocol, records, v1_table)
     protocol, records, table = v3.derive_v3(v2_protocol, records, v2_table)
+    probe_options = {}
+    if upstream_diagnostics:
+        if telemetry_observer is None:
+            raise ValueError("upstream diagnostics require a telemetry observer")
+        from .upstream_diagnostics import CandidateUpstreamProbe
+        probe_options["motor_state_probe_factory"] = CandidateUpstreamProbe
     return kernel.create_scientific_session(
+        **probe_options,
         protocol=protocol, condition=m7d.CONDITIONS[0], condition_number=1,
         progress=lambda *_: "", cached_admission_assertion=v3.assert_v3_physical_admission,
         cached_records=records, cached_table=table, condition_names=m7d.CONDITIONS,
@@ -205,6 +217,11 @@ def run(*, session_factory: Callable[[], ScientificSession] = create_live_sessio
             candidates = live_telemetry.candidate_diagnostics.status_text()
             if candidates:
                 print(f"LIVE final {candidates}", file=output, flush=True)
+            record = live_telemetry.latest_neural
+            if record is not None and record.get("candidate_upstream_state"):
+                from .upstream_diagnostics import report_json
+                print("LIVE final upstream=" + report_json(record["candidate_upstream_state"]),
+                      file=output, flush=True)
     if pending_error is not None:
         raise pending_error
     return RunSummary(sim_seconds, initialization_wall, wall, rtf, physics, neural, reason)
