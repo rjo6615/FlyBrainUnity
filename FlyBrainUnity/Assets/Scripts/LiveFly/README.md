@@ -314,3 +314,36 @@ recruitment demonstrates responsiveness under this stimulus only; it does not
 establish balance, walking, a unique cause, or a remedy for the live posture.
 One seed is exploratory evidence; do not infer reliable effects from a small
 count difference. Share the JSON after completion. Full CNS execution can be slow.
+
+To trace recruitment through selected sensory-to-motor pathways in those same
+three conditions, enable the existing upstream probe in the offline assay:
+
+```bash
+python -u -m malecns_backend.live.sensory_coverage --neural --pathway-diagnostics --duration-s 10 --output v3-recruitment-pathways.json
+```
+
+`--pathway-diagnostics` requires `--neural`. This is optional and adds per-step
+measurement overhead. Allow all three conditions to finish; no Unity or Ctrl+C
+is needed. Each condition creates fresh observers and a fresh probe after the
+seed reset, preventing measurements from accumulating across conditions.
+
+Manual checks for each `neural_conditions[*].pathway_diagnostics`:
+
+- `samples` equals `neural_steps`; all three identity/readout verification flags
+  are true. Candidate motor spike counts agree with `candidate_motors`.
+- `channels.joint_RFTarsus1` identifies the selected positive sensory path and
+  ordered `sensory_path_spikes` for each motor. Look up intermediate body IDs in
+  `pathway_nodes` to compare spikes, voltage gap, excitation/inhibition peaks,
+  and active presynaptic sources between conditions.
+- Sensory path nodes contain encoded-rate peaks, rate-sample counts, and actual
+  delivered-event counts. Compare these with the per-condition `sensory` rows.
+- Silent intermediates with excitation and a remaining threshold gap indicate
+  subthreshold activity in that condition. A zero-excitation node suggests
+  inspecting its presynaptic activity. Neither observation establishes a unique
+  causal bottleneck or justifies changing thresholds or weights.
+
+The report reuses the live probe: selected shortest positive paths are structural
+examples, not exhaustive or proven causal routes. Inhibitory/disinhibitory routes
+may also matter. Voltage is sampled after spike reset and conductance decay, so
+its maximum is not a pre-spike peak. The two other candidate channels remain in
+the report for comparison. Share `v3-recruitment-pathways.json` after completion.
