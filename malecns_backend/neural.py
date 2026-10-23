@@ -71,8 +71,11 @@ def region_scales(data, config):
     # from one or more regions.  An absent region has no effect on per-neuron
     # scaling, but taking its median produces warnings and a NaN diagnostic.
     # Use the neutral size reference for such regions explicitly.
+    # ratenet.js regionSizeRef selects the upper middle element for even
+    # populations; np.median would average the two and weaken scaled inputs.
     med = np.asarray([
-        np.median(values) if (values := size[(regions == r) & (size > 0)]).size else 1.0
+        np.partition(values, len(values) // 2)[len(values) // 2]
+        if (values := size[(regions == r) & (size > 0)]).size else 1.0
         for r in range(3)
     ], np.float32)
     ratio = np.where(size > 0, size / med[regions], 1)
