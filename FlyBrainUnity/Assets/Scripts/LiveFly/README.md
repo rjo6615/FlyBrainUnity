@@ -275,3 +275,42 @@ minutes, then Ctrl+C once and wait for the prompt. Confirm the final timing line
 records at least 10 simulated seconds and that `LIVE final upstream={...}`
 contains `pathway_nodes` and `pathway_edges`. Check Unity receiving during the
 run and verify v3 without the optional flag still omits these diagnostics.
+
+### Offline proprioceptive coverage and recruitment assay
+
+Run from the repository root after installing the normal Python backend dependencies.
+This assay does not require Unity, FlyGym, or MuJoCo. It does not change the live launcher.
+
+Fast encoder-only coverage (no full CNS load):
+
+```bash
+python -m malecns_backend.live.sensory_coverage --output v3-sensory-coverage.json
+```
+
+Expected: six legs, 392 sensory neurons, each with a positive peak rate somewhere
+on the 101-point grid through its audited joint range. Preferred angles reflect
+frozen population-list order, **not measured individual biological tuning**.
+The sampled grid is a coverage calculation, not a simulated physical movement.
+
+Matched open-loop neural comparison:
+
+```bash
+python -u -m malecns_backend.live.sensory_coverage --neural --duration-s 10 --output v3-sensory-recruitment.json
+```
+
+Allow initialization and all three conditions to finish; no Ctrl+C is needed.
+Each condition resets the CNS and per-leg sensory RNGs to seed 1, uses the
+unchanged default neural configuration and the live two-stage sensory event
+pathway, and runs for 10 **simulated** seconds. The three conditions are:
+fixed range midpoint, slow full-range sweep up, and slow full-range sweep down.
+All six legs follow the same normalized schedule. The midpoint is an engineered
+control, not a replay of the measured resting posture. This is a prescribed
+sensory-input intervention; physics and motor commands are absent.
+
+Manual review: compare `neural_conditions[*].sensory` delivered events and spikes,
+then compare per-neuron `candidate_motors` spikes across the same-duration
+conditions. Zero motor spikes are a valid result, not a test failure. Increased
+recruitment demonstrates responsiveness under this stimulus only; it does not
+establish balance, walking, a unique cause, or a remedy for the live posture.
+One seed is exploratory evidence; do not infer reliable effects from a small
+count difference. Share the JSON after completion. Full CNS execution can be slow.
