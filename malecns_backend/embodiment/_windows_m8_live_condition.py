@@ -531,7 +531,9 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                 if telemetry_observer is not None:
                     from .isolated_tier_b_motor_validation import activation
                     _observe(telemetry_observer, {
-                        **({"candidate_upstream_state": motor_state_probe.sample(brain)}
+                        **({"candidate_upstream_state": motor_state_probe.sample(brain,
+                               encoded_sensory={index: rate for leg in LEG_ORDER
+                                   for index, rate in zip(sensory_indices[leg], sensory_values[leg])})}
                            if motor_state_probe is not None else {}),
                         "neural_transition_index": step // stride,
                         "neural_time_ms": now_ms,
