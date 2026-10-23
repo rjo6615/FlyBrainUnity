@@ -13,6 +13,7 @@ from malecns_backend.embodiment.motor import MotorActivityObserver
 from malecns_backend.embodiment._windows_m8_live_condition import _readonly_telemetry
 from malecns_backend.live.upstream_diagnostics import CandidateUpstreamProbe, report_json, status_text
 from malecns_backend.live import headless
+from malecns_backend.live.presynaptic_trace import PresynapticTrace, excitatory_paths
 
 
 NAME = "joint_RFFemur"
@@ -40,6 +41,51 @@ def fixture():
 
 
 class UpstreamDiagnosticsTests(unittest.TestCase):
+    def test_sensory_paths_respect_direction_sign_and_weight_filter(self):
+        brain, _ = fixture()
+        paths = excitatory_paths(brain, {"LF": (0,)}, [2, 3])
+        self.assertEqual(paths[2], {"status": "positive_path", "source_leg": "LF",
+                                    "hops": 1, "body_ids": (101, 103)})
+        self.assertEqual(paths[3]["status"], "no_positive_path")
+        self.assertEqual(excitatory_paths(brain, {"RF": (1,)}, [2])[2]["status"], "no_positive_path")
+        self.assertEqual(excitatory_paths(brain, {"RF": (2,)}, [0])[0]["status"], "no_positive_path")
+        self.assertEqual(excitatory_paths(brain, None, [2])[2]["status"], "unavailable")
+
+    def test_paths_handle_cycles_multiple_sources_and_zero_hops(self):
+        brain = SimpleNamespace(n=5, indptr=np.array([0, 2, 3, 4, 5, 5]),
+            indices=np.array([1, 3, 2, 1, 4]), weights=np.ones(5),
+            pre_sign=np.array([1, 1, 1, -1, 1]), config=SimpleNamespace(psp_scale=1.),
+            data=SimpleNamespace(body_ids=np.array([101, 102, 103, 104, 105])))
+        paths = excitatory_paths(brain, {"LF": (0,)}, [2, 4])
+        self.assertEqual(paths[2]["body_ids"], (101, 102, 103))
+        self.assertEqual(paths[4]["status"], "no_positive_path")
+        paths = excitatory_paths(brain, {"LF": (0,), "RF": (2,)}, [2])
+        self.assertEqual((paths[2]["source_leg"], paths[2]["hops"]), ("RF", 0))
+        with self.assertRaisesRegex(ValueError, "outside"):
+            excitatory_paths(brain, {"LF": (5,)}, [2])
+
+    def test_presynaptic_trace_counts_sources_without_double_counting_edges(self):
+        brain, _ = fixture()
+        trace = PresynapticTrace(brain, np.array([0, 0, 1]), np.array([2., 3., -1.]),
+                                 np.array([2, 2, 2]))
+        silent = trace.sample(brain, 2)
+        self.assertEqual(silent["exc_representative_source"]["selection"], "largest_silent_weight")
+        brain.spike_counts[0] = 3
+        brain.spike_counts[1] = 2
+        result = trace.sample(brain, 2)
+        self.assertEqual((result["exc_source_neurons"], result["exc_active_sources"],
+                          result["exc_source_spikes"], result["inh_source_spikes"]), (1, 1, 3, 2))
+        source = result["exc_representative_source"]
+        self.assertEqual((source["body_id"], source["abs_effective_weight"], source["spikes"]), (101, 5., 3))
+        self.assertEqual(trace.sample(brain, 3)["exc_representative_source"], None)
+        brain.spike_counts[0] = 4
+        trace2 = PresynapticTrace(brain, np.array([0]), np.array([2.]), np.array([2]))
+        brain.spike_counts[0] = 6
+        self.assertEqual(trace2.sample(brain, 2)["exc_source_spikes"], 2)
+        brain.spike_counts[0] = 0
+        with self.assertRaisesRegex(RuntimeError, "decreased"):
+            trace2.sample(brain, 2)
+
     def test_exact_identity_and_effective_edge_orientation(self):
         brain, channels = fixture()
         probe = CandidateUpstreamProbe(brain, channels, DEFINITIONS)
@@ -71,7 +117,7 @@ class UpstreamDiagnosticsTests(unittest.TestCase):
     def test_real_runtime_dynamics_and_rng_identical_with_probe(self):
         plain, plain_channels = fixture()
         watched, channels = fixture()
-        probe = CandidateUpstreamProbe(watched, channels, DEFINITIONS)
+        probe = CandidateUpstreamProbe(watched, channels, DEFINITIONS, sensory_sources={"LF": (0,)})
         for brain in (plain, watched):
             brain.set_external_drive([0, 1], 2000.)
         first = None
@@ -90,6 +136,8 @@ class UpstreamDiagnosticsTests(unittest.TestCase):
         self.assertGreater(row["peak_abs_g_exc"], 0.)
         self.assertGreater(row["peak_abs_g_inh"], 0.)
         self.assertGreater(row["exc_steps"], 0)
+        self.assertGreater(row["presynaptic"]["exc_source_spikes"], 0)
+        self.assertEqual(row["sensory_path"]["hops"], 1)
         self.assertEqual(first["samples"], 1)
         self.assertEqual(probe.samples, 30)
         self.assertEqual(len(probe.rows[NAME]), 2)

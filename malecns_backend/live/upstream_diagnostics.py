@@ -3,6 +3,7 @@ import json
 from collections.abc import Mapping
 
 import numpy as np
+from .presynaptic_trace import PresynapticTrace, excitatory_paths
 
 
 class CandidateUpstreamProbe:
@@ -13,7 +14,7 @@ class CandidateUpstreamProbe:
     No runtime arrays, RNG, weights, or observer state are modified.
     """
 
-    def __init__(self, brain, channels, definitions=None):
+    def __init__(self, brain, channels, definitions=None, *, sensory_sources=None):
         if definitions is None:
             from malecns_backend.embodiment.live_v3_motor_interface import CANDIDATE_MOTOR_CHANNELS
             definitions = CANDIDATE_MOTOR_CHANNELS
@@ -56,10 +57,13 @@ class CandidateUpstreamProbe:
         pres = np.searchsorted(brain.indptr, slots, side="right") - 1
         effective = brain.weights[slots] * brain.pre_sign[pres] * brain.config.psp_scale
         targets = brain.indices[slots]
+        self.presynaptic = PresynapticTrace(brain, pres, effective, targets)
+        paths = excitatory_paths(brain, sensory_sources, watched)
         for rows in self.rows.values():
             for row in rows:
                 values = effective[targets == row["dense_index"]]
                 row.update(incoming_edges=len(values),
+                           sensory_path=paths[row["dense_index"]],
                            effective_exc_edges=int(np.count_nonzero(values > 0)),
                            effective_inh_edges=int(np.count_nonzero(values < 0)))
 
@@ -82,6 +86,7 @@ class CandidateUpstreamProbe:
                 if not all(np.isfinite(x) for x in (v, threshold, exc, inh)):
                     raise RuntimeError(f"nonfinite upstream state: {name}/{index}")
                 row.update(v=v, threshold=threshold, g_exc=exc, g_inh=inh,
+                           presynaptic=self.presynaptic.sample(brain, index),
                            external_drive=float(brain.external_drive[index]),
                            spikes=count - row["initial_spikes"])
                 row["exc_steps"] += exc != 0.
@@ -108,6 +113,15 @@ def status_text(state):
             f"exc_peak={max(row['peak_abs_g_exc'] for row in rows):.3g} "
             f"inh_peak={max(row['peak_abs_g_inh'] for row in rows):.3g} "
             f"min_gap={min(row['min_post_step_threshold_gap'] for row in rows):.3g})")
+        # Sum across targets: a shared presynaptic neuron is counted once per
+        # target, so these are source-to-target incidences, not unique neurons.
+        if rows and "presynaptic" in rows[0]:
+            exc_active = sum(row["presynaptic"]["exc_active_sources"] for row in rows)
+            inh_active = sum(row["presynaptic"]["inh_active_sources"] for row in rows)
+            paths = sum(row["sensory_path"]["status"] == "positive_path" for row in rows)
+            coverage = ("unavailable" if any(row["sensory_path"]["status"] == "unavailable" for row in rows)
+                        else f"{paths}/{len(rows)}")
+            parts[-1] += f" inputs(exc_active_inputs={exc_active},inh_active_inputs={inh_active},sensory_reached={coverage})"
     return f"upstream_samples={state['samples']} identity=verified readout=verified upstream=[" + "; ".join(parts) + "]"
 
 
