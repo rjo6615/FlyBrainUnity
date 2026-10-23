@@ -1,0 +1,245 @@
+{
+  "schema": "neuromodulation-scope-v1",
+  "provenance": "STATIC_REFERENCE_MODEL_AUDIT",
+  "lif_simulation": false,
+  "body_simulation": false,
+  "min_synapses": 6,
+  "oa_neurons": 37,
+  "ipc_neurons": 16,
+  "unique_direct_oa_targets": 10004,
+  "direct_target_superclasses": {
+    "visual_centrifugal": 169,
+    "visual_projection": 742,
+    "ol_intrinsic": 2990,
+    "cb_intrinsic": 5773,
+    "descending_neuron": 227,
+    "ascending_neuron": 80,
+    "ol_sensory": 4,
+    "cb_motor": 4,
+    "cb_sensory": 15
+  },
+  "reference_parameters": {
+    "akhHalf": 0.4,
+    "akhWidth": 0.15,
+    "akhTau": 5000,
+    "ipcHalf": 0.4,
+    "ipcWidth": 0.15,
+    "ipcDrive": 4,
+    "ipcFed": 5,
+    "dilpTau": 10000,
+    "akhDrive": 3,
+    "insDrive": 1,
+    "oaTau": 2000,
+    "sfa": 0.5,
+    "oaFed": 2,
+    "oaStarved": 12,
+    "targetShift": 2,
+    "targetHalf": 400,
+    "locoDrive": 6
+  },
+  "calibration_index_population_verified": true,
+  "interpretation": "Held reference oaFed rate applied to raw OA synapse counts. No dynamic tone, spike prediction, receptor validation, or causal claim. Missing direct OA input does not exclude indirect effects.",
+  "watched": [
+    {
+      "body_id": "817210",
+      "dense_index": 156216,
+      "type": "Ta levator MN",
+      "direct_oa_sources": [],
+      "anatomical_synapses": 0,
+      "held_reference_fed_shift_mv": 0,
+      "is_modulatory_cell": false
+    },
+    {
+      "body_id": "820110",
+      "dense_index": 157553,
+      "type": "Ta levator MN",
+      "direct_oa_sources": [],
+      "anatomical_synapses": 0,
+      "held_reference_fed_shift_mv": 0,
+      "is_modulatory_cell": false
+    },
+    {
+      "body_id": "820896",
+      "dense_index": 157751,
+      "type": "Ta levator MN",
+      "direct_oa_sources": [],
+      "anatomical_synapses": 0,
+      "held_reference_fed_shift_mv": 0,
+      "is_modulatory_cell": false
+    },
+    {
+      "body_id": "825721",
+      "dense_index": 158308,
+      "type": "Ta depressor MN",
+      "direct_oa_sources": [],
+      "anatomical_synapses": 0,
+      "held_reference_fed_shift_mv": 0,
+      "is_modulatory_cell": false
+    },
+    {
+      "body_id": "1050248133",
+      "dense_index": 164672,
+      "type": "Ta depressor MN",
+      "direct_oa_sources": [],
+      "anatomical_synapses": 0,
+      "held_reference_fed_shift_mv": 0,
+      "is_modulatory_cell": false
+    },
+    {
+      "body_id": "1050380236",
+      "dense_index": 164694,
+      "type": "Ta depressor MN",
+      "direct_oa_sources": [],
+      "anatomical_synapses": 0,
+      "held_reference_fed_shift_mv": 0,
+      "is_modulatory_cell": false
+    },
+    {
+      "body_id": "1050815462",
+      "dense_index": 164739,
+      "type": "Ta depressor MN",
+      "direct_oa_sources": [],
+      "anatomical_synapses": 0,
+      "held_reference_fed_shift_mv": 0,
+      "is_modulatory_cell": false
+    },
+    {
+      "body_id": "801079",
+      "dense_index": 143581,
+      "type": "Sternotrochanter MN",
+      "direct_oa_sources": [],
+      "anatomical_synapses": 0,
+      "held_reference_fed_shift_mv": 0,
+      "is_modulatory_cell": false
+    },
+    {
+      "body_id": "1050111955",
+      "dense_index": 164626,
+      "type": "Ta levator MN",
+      "direct_oa_sources": [],
+      "anatomical_synapses": 0,
+      "held_reference_fed_shift_mv": 0,
+      "is_modulatory_cell": false
+    },
+    {
+      "body_id": "815843",
+      "dense_index": 155342,
+      "type": "SNpp51",
+      "direct_oa_sources": [],
+      "anatomical_synapses": 0,
+      "held_reference_fed_shift_mv": 0,
+      "is_modulatory_cell": false
+    },
+    {
+      "body_id": "815569",
+      "dense_index": 155136,
+      "type": "SNpp39",
+      "direct_oa_sources": [],
+      "anatomical_synapses": 0,
+      "held_reference_fed_shift_mv": 0,
+      "is_modulatory_cell": false
+    },
+    {
+      "body_id": "135305",
+      "dense_index": 99387,
+      "type": "SApp23",
+      "direct_oa_sources": [],
+      "anatomical_synapses": 0,
+      "held_reference_fed_shift_mv": 0,
+      "is_modulatory_cell": false
+    },
+    {
+      "body_id": "902679",
+      "dense_index": 159141,
+      "type": "IN17A007",
+      "direct_oa_sources": [],
+      "anatomical_synapses": 0,
+      "held_reference_fed_shift_mv": 0,
+      "is_modulatory_cell": false
+    },
+    {
+      "body_id": "800567",
+      "dense_index": 143212,
+      "type": "INXXX036",
+      "direct_oa_sources": [],
+      "anatomical_synapses": 0,
+      "held_reference_fed_shift_mv": 0,
+      "is_modulatory_cell": false
+    },
+    {
+      "body_id": "46348",
+      "dense_index": 32427,
+      "type": "AN17A014",
+      "direct_oa_sources": [],
+      "anatomical_synapses": 0,
+      "held_reference_fed_shift_mv": 0,
+      "is_modulatory_cell": false
+    },
+    {
+      "body_id": "905447",
+      "dense_index": 160077,
+      "type": "IN18B014",
+      "direct_oa_sources": [],
+      "anatomical_synapses": 0,
+      "held_reference_fed_shift_mv": 0,
+      "is_modulatory_cell": false
+    },
+    {
+      "body_id": "800022",
+      "dense_index": 142813,
+      "type": "IN19B010",
+      "direct_oa_sources": [],
+      "anatomical_synapses": 0,
+      "held_reference_fed_shift_mv": 0,
+      "is_modulatory_cell": false
+    },
+    {
+      "body_id": "903285",
+      "dense_index": 159324,
+      "type": "IN03A007",
+      "direct_oa_sources": [],
+      "anatomical_synapses": 0,
+      "held_reference_fed_shift_mv": 0,
+      "is_modulatory_cell": false
+    },
+    {
+      "body_id": "801128",
+      "dense_index": 143620,
+      "type": "IN23B008",
+      "direct_oa_sources": [],
+      "anatomical_synapses": 0,
+      "held_reference_fed_shift_mv": 0,
+      "is_modulatory_cell": false
+    },
+    {
+      "body_id": "56710",
+      "dense_index": 41313,
+      "type": "AN01A021",
+      "direct_oa_sources": [],
+      "anatomical_synapses": 0,
+      "held_reference_fed_shift_mv": 0,
+      "is_modulatory_cell": false
+    },
+    {
+      "body_id": "919576",
+      "dense_index": 162461,
+      "type": "IN17A016",
+      "direct_oa_sources": [],
+      "anatomical_synapses": 0,
+      "held_reference_fed_shift_mv": 0,
+      "is_modulatory_cell": false
+    }
+  ],
+  "calibration_context": {
+    "fed_energy": 0.85,
+    "calibration_seconds": 60
+  },
+  "source_sha256": {
+    "neurons.flyn": "91630046af02826299834179bb07726d1ed9b7dd1426e90315c011e42011f6e7",
+    "graph.flyg": "ed3df5a7ec8610bdaa7f42b49d0970bca3afa7c9e041ff1c025c6d2f9173fff5",
+    "meta.json": "580c2d5a210469a6ab1184ae2187dcc4ce8217c6f74043bd2e585c7b110ec36a",
+    "neuromod.json": "e7d08a7a72e65423219fd2266595f73d3f7550ce6df0e43bef343e400b97e9b3",
+    "brain_params.json": "a78e844e583e892aefb9c3a2005e84f5ca278b384fcfbbcd67933d6543696518",
+    "src/sim/neuromod.js": "a801d96c0f1de3e95b52b4881e17ed7ed5dc087156b6ef3cfbaac5d2011c77e4"
+  }
+}
