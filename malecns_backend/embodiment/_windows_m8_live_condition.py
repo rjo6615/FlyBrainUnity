@@ -314,7 +314,8 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
                 "first_admitted_contribution_ms": None, "saturation": False, "slew_limited": False}
         if motor_state_probe_factory is not None and telemetry_observer is None:
             raise ValueError("motor state probe requires a telemetry observer")
-        motor_state_probe = (motor_state_probe_factory(brain, channels)
+        motor_state_probe = (motor_state_probe_factory(brain, channels,
+                                 sensory_sources={leg: tibia[leg].sensor.dense_indices for leg in LEG_ORDER})
                              if motor_state_probe_factory is not None else None)
         tactile = TactileContactEncoder(config=TactileContactConfig(seed=SEED))
         encoders = {leg: SensoryEncoder(tibia[leg]) for leg in LEG_ORDER}; rngs = proprio_rngs(SEED)

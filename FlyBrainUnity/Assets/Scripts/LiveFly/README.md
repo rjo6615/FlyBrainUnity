@@ -185,3 +185,47 @@ conductance. These measurements do not change neural inputs or equations.
 
 The probe retains fixed per-neuron summaries and no time-series history. It may
 reduce wall-clock speed; compare runs using simulation time.
+
+### Direct presynaptic activity and sensory paths
+
+The same `--upstream-diagnostics` command now also traces each candidate's
+effective direct inputs. Periodic `inputs(...)` summaries compare the channels:
+`exc_active_inputs` / `inh_active_inputs` count active source-to-target pairs
+(shared sources count once for each target); `sensory_reached` counts candidate
+neurons with a positive-edge structural path from any of the six currently
+configured tibia sensory populations. Missing source configuration is reported
+as unavailable.
+
+The final `LIVE final upstream={...}` report adds two fields per motor neuron:
+
+- `presynaptic`: unique excitatory/inhibitory source counts, how many sources
+  fired, their cumulative spikes since probe construction, and a representative
+  source's exact body ID, dense index, type, count, and static effective weight.
+  The representative maximizes spike count times absolute static weight. When
+  all sources are silent, it identifies the largest static source weight instead.
+  Parallel edges from one source are combined before counting or ranking.
+- `sensory_path`: a shortest directed path over positive effective edges from
+  any current sensory source, with source leg, hop count, and body IDs. Equal
+  shortest paths use source/graph iteration order; the chosen source leg does
+  not establish biological dominance or prove that other legs lack paths.
+- `sensory_path_spikes`: cumulative raw spike increments since probe
+  construction for each body ID in the reported path, in the same order. Use
+  these to locate the first silent node on that chosen route; an empty tuple
+  means no path is available. A path's active nodes still do not establish
+  causal transmission along its particular edges.
+
+Positive-only paths exclude inhibitory and disinhibitory mechanisms. A
+`no_positive_path` result therefore does not mean no functional network route
+exists. A positive path does not prove that its neurons fired or that an input
+was sufficient to recruit the motor neuron. Presynaptic spike counts are source
+events, not delivered events: synaptic delay, depression, and event withholding
+can separate them from motor-neuron input. Static ranking is not a causal
+contribution estimate. The existing measured `g_exc`/`g_inh` peaks remain the
+evidence that synaptic state changed at the target.
+
+Manual test: after initialization, confirm each channel includes `inputs(...)`.
+Run for at least 10 simulated seconds, then Ctrl+C and save the final upstream
+JSON and timing line. Compare RFTarsus1 and LFTarsus1: are the right-side
+excitatory sources silent, and are positive sensory paths present? For active
+inputs, inspect the representative source IDs and counts. Initialization adds
+a read-only graph search; default v3 without the diagnostic flag is unchanged.
