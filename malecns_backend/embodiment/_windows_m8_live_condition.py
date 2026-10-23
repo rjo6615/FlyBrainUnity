@@ -622,12 +622,17 @@ def _scientific_transition_kernel(*, protocol: Mapping[str, Any], condition: str
             telemetry_started = time.perf_counter(); arrays = (physics.data.qpos, physics.data.qvel, physics.data.ctrl)
             finite = all(np.all(np.isfinite(a)) for a in arrays); instability |= not finite
             if telemetry_observer is not None and step:
+                contact_observation = contact_information
+                if getattr(telemetry_observer, "collect_distal_contact", False):
+                    from malecns_backend.live.contact_readiness import sample_distal_contact
+                    contact_observation = dict(contact_information, distal_contact_readiness=
+                        sample_distal_contact(physics, contact_identity, _forces(obs)))
                 _observe(telemetry_observer, {"physics_transition_index": step,
                     "physics_time_ms": now_ms, "commanded_joint_targets": commands,
                     "measured_joint_positions": measured, "qpos": physics.data.qpos,
                     "qvel": physics.data.qvel, "root_position": physics.data.qpos[:3],
                     "root_quaternion": physics.data.qpos[3:7],
-                    "contact_information": contact_information})
+                    "contact_information": contact_observation})
             if compact_telemetry:
                 telemetry.record("physics", {"physics_time_ms": now_ms,
                     "physics_qpos": physics.data.qpos, "physics_qvel": physics.data.qvel,
