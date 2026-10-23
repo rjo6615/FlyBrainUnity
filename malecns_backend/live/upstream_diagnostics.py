@@ -59,6 +59,12 @@ class CandidateUpstreamProbe:
         targets = brain.indices[slots]
         self.presynaptic = PresynapticTrace(brain, pres, effective, targets)
         paths = excitatory_paths(brain, sensory_sources, watched)
+        self.path_indices = {
+            target: np.asarray([brain.data.body_id_to_index[body] for body in path.get("body_ids", ())], dtype=np.intp)
+            for target, path in paths.items()}
+        self.path_initial_counts = {
+            target: brain.spike_counts[indices].astype(np.int64)
+            for target, indices in self.path_indices.items()}
         for rows in self.rows.values():
             for row in rows:
                 values = effective[targets == row["dense_index"]]
@@ -87,6 +93,9 @@ class CandidateUpstreamProbe:
                     raise RuntimeError(f"nonfinite upstream state: {name}/{index}")
                 row.update(v=v, threshold=threshold, g_exc=exc, g_inh=inh,
                            presynaptic=self.presynaptic.sample(brain, index),
+                           sensory_path_spikes=tuple(map(int,
+                               brain.spike_counts[self.path_indices[index]].astype(np.int64)
+                               - self.path_initial_counts[index])),
                            external_drive=float(brain.external_drive[index]),
                            spikes=count - row["initial_spikes"])
                 row["exc_steps"] += exc != 0.

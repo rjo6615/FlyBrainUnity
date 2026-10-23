@@ -208,6 +208,11 @@ The final `LIVE final upstream={...}` report adds two fields per motor neuron:
   any current sensory source, with source leg, hop count, and body IDs. Equal
   shortest paths use source/graph iteration order; the chosen source leg does
   not establish biological dominance or prove that other legs lack paths.
+- `sensory_path_spikes`: cumulative raw spike increments since probe
+  construction for each body ID in the reported path, in the same order. Use
+  these to locate the first silent node on that chosen route; an empty tuple
+  means no path is available. A path's active nodes still do not establish
+  causal transmission along its particular edges.
 
 Positive-only paths exclude inhibitory and disinhibitory mechanisms. A
 `no_positive_path` result therefore does not mean no functional network route
