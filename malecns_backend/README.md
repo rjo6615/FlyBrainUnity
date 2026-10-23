@@ -44,7 +44,8 @@ zero. This only implements that graph removal—not the excluded slow neuromodul
 
 For edge `k` in presynaptic row `j` targeting `q`, the stored magnitude is
 `count[k] * min(boostCap, clamp(size[q]/regionalMedian,1/20,20)^(-sizeAlpha))`, or zero below the
-cutoff or when `q` is sensory. Inhibitory rows additionally multiply magnitude by `inhGain`. At
+cutoff or when `q` is sensory. The regional reference selects the upper middle positive size
+for even populations, matching `ratenet.js`; it does not average the middle pair. Inhibitory rows additionally multiply magnitude by `inhGain`. At
 arrival, signed input is `magnitude * gradedSign[j] * wSyn * resource[j]`.
 
 State uses contiguous NumPy arrays for voltage, excitatory/inhibitory synaptic state, refractory
@@ -64,3 +65,6 @@ threshold offset, plus a sparse delayed-spike ring. CSR propagation is source-ro
   fourth subsequent step (2.0 ms effective discrete delay).
 * Noise and WASM-only background events default to zero and are intentionally not exposed by this
   milestone runtime. No endogenous drive, neuromodulator dynamics, body, or behavior is present.
+
+The focused live-v3 scaling/integration audit and canonical size comparison are in
+[`embodiment/NEURAL_SCALING_AUDIT.md`](embodiment/NEURAL_SCALING_AUDIT.md).
