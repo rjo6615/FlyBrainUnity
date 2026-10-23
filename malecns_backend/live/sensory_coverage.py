@@ -52,7 +52,8 @@ def encoder_coverage(interfaces, points=101):
     return result
 
 
-def run_condition(brain, interfaces, targets, condition, duration_s, seed=1):
+def run_condition(brain, interfaces, targets, condition, duration_s, seed=1, *,
+                  pathway_definitions=None):
     """Use the same two-stage event pathway as the live scientific kernel."""
     from malecns_backend.embodiment.proprioceptive_activation import proprio_rngs, sample_candidates
     if not math.isfinite(duration_s) or duration_s <= 0:
@@ -63,40 +64,74 @@ def run_condition(brain, interfaces, targets, condition, duration_s, seed=1):
     angle_at(condition, 0., (0., 1.))  # Validate before mutating the brain.
     brain.reset(seed)
     brain.clear_external_drive()
+    probe = None
+    channels = {}
+    if pathway_definitions is not None:
+        from malecns_backend.embodiment.motor import MotorActivityObserver
+        from .upstream_diagnostics import CandidateUpstreamProbe
+        for name, definition in pathway_definitions.items():
+            populations = {population: tuple(brain.data.body_id_to_index[body] for body in bodies)
+                           for direction in ("positive_populations", "negative_populations")
+                           for population, bodies in definition[direction].items()}
+            resolved = tuple(index for indices in populations.values() for index in indices)
+            if resolved != tuple(targets[name]):
+                raise ValueError("pathway targets must match reported motor targets")
+            observer = MotorActivityObserver(populations)
+            observer.reset(brain.spike_counts)
+            channels[name] = {"populations": populations, "observer": observer}
+        probe = CandidateUpstreamProbe(brain, channels, pathway_definitions,
+                    sensory_sources={leg: interface.sensor.dense_indices
+                                     for leg, interface in interfaces.items()})
+    pathway_state = None
     rngs = proprio_rngs(seed)
     encoders = {leg: SensoryEncoder(interface) for leg, interface in interfaces.items()}
     delivered = np.zeros(brain.n, dtype=np.int64)
     for step in range(steps):
         candidates = set()
+        encoded_rates = {} if probe is not None else None
         brain.clear_external_drive()
         for leg, encoder in encoders.items():
             q = angle_at(condition, step / (steps - 1), interfaces[leg].joint_range_rad)
             encoded = encoder.encode(LegSensoryFrame(step * brain.config.dt / 1000, q))
+            if encoded_rates is not None:
+                encoded_rates.update(zip(map(int, encoded.indices), map(float, encoded.rates_hz)))
             local = sample_candidates(encoded.rates_hz, rngs[leg], dt_ms=brain.config.dt)
             candidates.update(int(encoded.indices[i]) for i in local)
         if candidates:
             brain.set_external_drive(tuple(sorted(candidates)), 1000. / brain.config.dt)
         brain.step()
         np.add.at(delivered, brain._last_external_delivered, 1)
+        if probe is not None:
+            for channel in channels.values():
+                channel["observer"].update(brain.spike_counts, brain.config.dt)
+            pathway_state = probe.sample(brain, encoded_sensory=encoded_rates)
     def row(index):
         return {"body_id": int(brain.data.body_ids[index]), "dense_index": int(index),
                 "spikes": int(brain.spike_counts[index])}
-    return {"condition": condition, "neural_steps": steps,
+    result = {"condition": condition, "neural_steps": steps,
             "actual_duration_s": steps * brain.config.dt / 1000,
             "sensory": {leg: [dict(row(int(i)), delivered_events=int(delivered[i]))
                                for i in interface.sensor.dense_indices]
                         for leg, interface in interfaces.items()},
             "candidate_motors": {name: [row(i) for i in indices] for name, indices in targets.items()}}
 
+    if pathway_state is not None:
+        result["pathway_diagnostics"] = pathway_state
+    return result
+
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--neural", action="store_true", help="also load the full CNS and run three matched conditions")
+    parser.add_argument("--pathway-diagnostics", action="store_true",
+                        help="requires --neural; sample existing candidate/intermediate probe each step")
     parser.add_argument("--duration-s", type=float, default=10., help="simulated seconds PER neural condition")
     args = parser.parse_args(argv)
     if not math.isfinite(args.duration_s) or args.duration_s <= 0:
         parser.error("--duration-s must be finite and positive")
+    if args.pathway_diagnostics and not args.neural:
+        parser.error("--pathway-diagnostics requires --neural")
     interfaces = load_six_tibia_interfaces()
     report = {"schema": "proprioceptive-coverage-v1", "provenance": "MODELED_ANGLE_INTERVENTION",
               "physics_running": False, "seed": 1,
@@ -122,7 +157,8 @@ def main(argv=None):
         for condition in ("midpoint", "sweep_up", "sweep_down"):
             print(f"Running {condition} ({args.duration_s:g} simulated seconds)", flush=True)
             report["neural_conditions"].append(run_condition(
-                brain, interfaces, targets, condition, args.duration_s))
+                brain, interfaces, targets, condition, args.duration_s,
+                pathway_definitions=CANDIDATE_MOTOR_CHANNELS if args.pathway_diagnostics else None))
     args.output.write_text(json.dumps(report, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     print(f"Saved {args.output}", flush=True)
     return 0
