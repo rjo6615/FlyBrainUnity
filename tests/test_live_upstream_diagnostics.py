@@ -41,6 +41,54 @@ def fixture():
 
 
 class UpstreamDiagnosticsTests(unittest.TestCase):
+    def test_path_intermediate_state_sensory_rates_and_edge_metadata(self):
+        brain, channels = fixture()
+        # Positive chain: sensor 101 -> intermediate 102 -> motor 103.
+        brain.indptr = np.array([0, 1, 2, 2, 2])
+        brain.indices = np.array([1, 2])
+        brain.weights = np.array([6., 8.])
+        brain.pre_sign[1] = 1.
+        brain.data.synapse_counts = np.array([6, 8])
+        probe = CandidateUpstreamProbe(brain, channels, DEFINITIONS, sensory_sources={"LF": (0,)})
+        brain.spike_counts[0] = 3
+        brain.g_exc[1] = 2.
+        brain.v[1] = -51.
+        brain._last_external_candidates = np.array([0])
+        brain._last_external_delivered = np.array([0])
+        state = probe.sample(brain, encoded_sensory={0: 0.})
+        nodes = {row["body_id"]: row for row in state["pathway_nodes"]}
+        self.assertEqual(set(nodes), {101, 102})
+        self.assertEqual((nodes[101]["spikes"], nodes[101]["peak_encoded_rate_hz"],
+                          nodes[101]["encoded_positive_steps"], nodes[101]["external_delivered_steps"]), (3, 0., 0, 1))
+        self.assertEqual((nodes[102]["spikes"], nodes[102]["peak_abs_g_exc"],
+                          nodes[102]["max_v"], nodes[102]["min_post_step_threshold_gap"]), (0, 2., -51., 6.))
+        self.assertEqual([(edge["pre_body_id"], edge["post_body_id"], edge["anatomical_synapses"])
+                          for edge in state["pathway_edges"]], [(101, 102, 6), (102, 103, 8)])
+        probe.sample(brain, encoded_sensory={0: 25.})
+        second = probe.sample(brain)
+        sensor = next(row for row in second["pathway_nodes"] if row["body_id"] == 101)
+        self.assertEqual((sensor["encoded_rate_samples"], sensor["encoded_positive_steps"],
+                          sensor["peak_encoded_rate_hz"], sensor["encoded_rate_hz"]), (2, 1, 25., None))
+        self.assertEqual(nodes[101]["encoded_rate_samples"], 1)
+        self.assertIn("silent_intermediates=1", status_text(second))
+
+    def test_shared_path_nodes_are_sampled_once_and_bad_rates_fail(self):
+        brain, channels = fixture()
+        brain.indptr = np.array([0, 1, 3, 3, 3])
+        brain.indices = np.array([1, 2, 3])
+        brain.weights = np.array([6., 7., 8.])
+        brain.pre_sign[1] = 1.
+        brain.data.synapse_counts = np.array([6, 7, 8])
+        probe = CandidateUpstreamProbe(brain, channels, DEFINITIONS, sensory_sources={"LF": (0,)})
+        brain.g_exc[1] = 1.
+        first = probe.sample(brain, encoded_sensory={0: 0.})
+        self.assertEqual(len(first["pathway_nodes"]), 2)
+        intermediate = next(row for row in first["pathway_nodes"] if not row["is_sensory"])
+        self.assertEqual(intermediate["exc_steps"], 1)
+        self.assertEqual(len(first["pathway_edges"]), 3)
+        with self.assertRaisesRegex(RuntimeError, "invalid encoded"):
+            probe.sample(brain, encoded_sensory={0: float('nan')})
+
     def test_sensory_paths_respect_direction_sign_and_weight_filter(self):
         brain, _ = fixture()
         paths = excitatory_paths(brain, {"LF": (0,)}, [2, 3])
@@ -161,6 +209,7 @@ class UpstreamDiagnosticsTests(unittest.TestCase):
                      clock=lambda: 0., output=output, live_telemetry=telemetry)
         self.assertIn('LIVE final upstream={', output.getvalue())
         self.assertIn('"body_id": 103', output.getvalue())
+        self.assertIn('"pathway_nodes"', output.getvalue())
 
     def test_v3_factory_probe_is_opt_in_and_requires_observer(self):
         base = "malecns_backend.embodiment."

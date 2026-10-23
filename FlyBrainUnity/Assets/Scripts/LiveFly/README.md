@@ -229,3 +229,49 @@ JSON and timing line. Compare RFTarsus1 and LFTarsus1: are the right-side
 excitatory sources silent, and are positive sensory paths present? For active
 inputs, inspect the representative source IDs and counts. Initialization adds
 a read-only graph search; default v3 without the diagnostic flag is unchanged.
+
+### States at intermediate and sensory pathway nodes
+
+The optional probe now samples each distinct non-motor node on the selected
+paths once per neural update. This reuses the motor state sampler; it does not
+admit those nodes as motor outputs or alter their inputs. The final JSON adds:
+
+- `pathway_nodes`: exact body IDs, dense indices and types, raw spike counts,
+  incoming effective-edge inventory, input-source activity, excitatory/inhibitory
+  state peaks, voltage extrema and sampled threshold gaps for sensory and
+  intermediate nodes. Shared nodes appear once, even across multiple paths.
+- For sensory nodes, `encoded_rate_samples`, latest `encoded_rate_hz`,
+  `peak_encoded_rate_hz` and `encoded_positive_steps` describe the existing
+  encoder's rates after its cutoff. Unavailable rates are null, distinct from
+  observed zero rates. `external_candidate_steps` counts the brain's external
+  candidate-event updates before withholding; `external_delivered_steps` counts
+  its delivered external-event updates. These counters are separate from raw
+  spikes, which can also arise from neural integration.
+- `pathway_edges`: each selected directed edge's anatomical synapse count and
+  summed static effective weight. This excludes dynamic depression and is not
+  a measurement of delivered current.
+- `pathway_identity_verified`: every additional path node's body ID round trip
+  passed. The existing `readout_verified` flag compares motor observers with raw
+  counts; path nodes are measured directly without installing motor observers.
+
+The periodic line ends with `pathway_nodes=... silent_intermediates=...`.
+For the recorded right-front routes, inspect nodes `902679` and `46348` and
+edges from sensory neuron `815843` in the final report. Excitatory-state peaks
+above zero with no spikes support subthreshold recruitment at that node. Zero
+encoded rates explain why a selected sensory source has no external drive from
+that encoder during the observed window. Positive encoded rates with no
+delivered events require examining sampling and refractory behavior; they do
+not alone prove a bug. These conclusions apply to the selected routes and
+observed window, not every possible pathway or behavioral condition.
+
+Manual run from Git Bash (avoids a `tee` pipeline losing shutdown output):
+
+```sh
+python -u -m malecns_backend.live --motor-interface v3 --upstream-diagnostics > v3-pathway-nodes.txt 2>&1
+```
+
+The terminal stays blank while output goes to the file. Allow roughly six wall
+minutes, then Ctrl+C once and wait for the prompt. Confirm the final timing line
+records at least 10 simulated seconds and that `LIVE final upstream={...}`
+contains `pathway_nodes` and `pathway_edges`. Check Unity receiving during the
+run and verify v3 without the optional flag still omits these diagnostics.
