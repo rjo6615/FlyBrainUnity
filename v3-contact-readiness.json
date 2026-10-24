@@ -1,0 +1,152 @@
+{
+  "schema": "live-contact-readiness-v1",
+  "samples": 20001,
+  "first_time_ms": 0.1,
+  "last_time_ms": 2000.0999999997964,
+  "engineering_threshold": 1e-12,
+  "tactile_delivery_enabled": false,
+  "interpretation": "Observational coincidence, not force attribution or threshold calibration. Tarsus5-ground contacts only; other collision sources can generate forces. Onset counts include initial observed contact. No matched causal comparison has run.",
+  "legs": {
+    "LF": {
+      "force_row": 5,
+      "identity_samples": 20001,
+      "ground_contact_samples": 19970,
+      "force_positive_samples": 19970,
+      "contact_with_force_samples": 19970,
+      "contact_without_force_samples": 0,
+      "force_without_ground_contact_samples": 0,
+      "neither_samples": 31,
+      "ground_contact_onsets": 14,
+      "peak_force_magnitude": 7.4617058920897446,
+      "first_geom_pairs": [
+        [
+          0,
+          19
+        ]
+      ],
+      "status": "CONTACT_AND_FORCE_OBSERVED_REQUIRES_MATCHED_CALIBRATION"
+    },
+    "LM": {
+      "force_row": 11,
+      "identity_samples": 20001,
+      "ground_contact_samples": 19947,
+      "force_positive_samples": 19947,
+      "contact_with_force_samples": 19947,
+      "contact_without_force_samples": 0,
+      "force_without_ground_contact_samples": 0,
+      "neither_samples": 54,
+      "ground_contact_onsets": 2,
+      "peak_force_magnitude": 6.627287223656703,
+      "first_geom_pairs": [
+        [
+          0,
+          35
+        ],
+        [
+          0,
+          35
+        ]
+      ],
+      "status": "CONTACT_AND_FORCE_OBSERVED_REQUIRES_MATCHED_CALIBRATION"
+    },
+    "LH": {
+      "force_row": 17,
+      "identity_samples": 20001,
+      "ground_contact_samples": 19947,
+      "force_positive_samples": 19947,
+      "contact_with_force_samples": 19947,
+      "contact_without_force_samples": 0,
+      "force_without_ground_contact_samples": 0,
+      "neither_samples": 54,
+      "ground_contact_onsets": 9,
+      "peak_force_magnitude": 5.01868174758349,
+      "first_geom_pairs": [
+        [
+          0,
+          27
+        ],
+        [
+          0,
+          27
+        ],
+        [
+          0,
+          27
+        ]
+      ],
+      "status": "CONTACT_AND_FORCE_OBSERVED_REQUIRES_MATCHED_CALIBRATION"
+    },
+    "RF": {
+      "force_row": 23,
+      "identity_samples": 20001,
+      "ground_contact_samples": 19903,
+      "force_positive_samples": 19903,
+      "contact_with_force_samples": 19903,
+      "contact_without_force_samples": 0,
+      "force_without_ground_contact_samples": 0,
+      "neither_samples": 98,
+      "ground_contact_onsets": 14,
+      "peak_force_magnitude": 5.164071469401442,
+      "first_geom_pairs": [
+        [
+          0,
+          59
+        ],
+        [
+          0,
+          59
+        ]
+      ],
+      "status": "CONTACT_AND_FORCE_OBSERVED_REQUIRES_MATCHED_CALIBRATION"
+    },
+    "RM": {
+      "force_row": 29,
+      "identity_samples": 20001,
+      "ground_contact_samples": 19944,
+      "force_positive_samples": 19944,
+      "contact_with_force_samples": 19944,
+      "contact_without_force_samples": 0,
+      "force_without_ground_contact_samples": 0,
+      "neither_samples": 57,
+      "ground_contact_onsets": 2,
+      "peak_force_magnitude": 6.719064281905487,
+      "first_geom_pairs": [
+        [
+          0,
+          51
+        ],
+        [
+          0,
+          51
+        ],
+        [
+          0,
+          51
+        ]
+      ],
+      "status": "CONTACT_AND_FORCE_OBSERVED_REQUIRES_MATCHED_CALIBRATION"
+    },
+    "RH": {
+      "force_row": 35,
+      "identity_samples": 20001,
+      "ground_contact_samples": 19939,
+      "force_positive_samples": 19939,
+      "contact_with_force_samples": 19939,
+      "contact_without_force_samples": 0,
+      "force_without_ground_contact_samples": 0,
+      "neither_samples": 62,
+      "ground_contact_onsets": 11,
+      "peak_force_magnitude": 4.912063238391991,
+      "first_geom_pairs": [
+        [
+          0,
+          43
+        ]
+      ],
+      "status": "CONTACT_AND_FORCE_OBSERVED_REQUIRES_MATCHED_CALIBRATION"
+    }
+  },
+  "completed": true,
+  "requested_duration_s": 2.0,
+  "error": null
+}
