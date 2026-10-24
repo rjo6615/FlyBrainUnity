@@ -1,0 +1,135 @@
+{
+  "schema": "live-contact-context-checkpoint-v1",
+  "date": "2026-10-24",
+  "baseline": "5df78a6c4b46b0c6e8197c8ca768b69a17e54d5b",
+  "implementation_commit": "80aba8d702307490cef76af6379b47658d38acf4",
+  "raw_artifact": "live-contact-context-v1.json.gz",
+  "gzip_sha256": "58503e86220b9e86b3d48b7980358f2d59a352fbeaa018cbda098d1b3a43fb97",
+  "raw_json_sha256": "704c3cf82653a2e81b2b77efd81b24b395b93a72b5e744374c74f12d052ca728",
+  "gzip_bytes": 52515839,
+  "raw_json_bytes": 197773063,
+  "protocol": {
+    "schema": "live-contact-context-v1",
+    "physics_steps": 20000,
+    "physics_dt_s": 0.0001,
+    "duration_s": 2.0,
+    "neural_seed": 1,
+    "engineering_threshold": 1e-12,
+    "reconstruction_rtol": 1e-10,
+    "reconstruction_atol": 1e-14,
+    "tactile_delivery_enabled": false,
+    "automatic_retries": 0,
+    "runtime": "create_live_v3_session + unchanged adapter._runtime"
+  },
+  "environment": {
+    "flygym": "1.2.1",
+    "mujoco": "3.2.7",
+    "numpy": "2.0.2"
+  },
+  "run_status": "COMPLETE",
+  "physics_states": 20001,
+  "physics_transitions": 20000,
+  "neural_updates_verified_by_driver": 4000,
+  "total_contact_records": 333454,
+  "compiled_explicit_contact_pairs": 2268,
+  "evaluation": {
+    "accepted": true,
+    "accepted_legs": [
+      "LF",
+      "LM",
+      "LH",
+      "RF",
+      "RM",
+      "RH"
+    ],
+    "checks": {
+      "fixed_protocol": true,
+      "completed": true,
+      "prerequisite": true,
+      "source_integrity": true,
+      "exact_identity": true,
+      "supported_context": true,
+      "complete_fixed_schedule": true,
+      "immutable_context": true,
+      "passive_observer": true,
+      "no_external_forcing": true,
+      "finite_physics_and_zero_adhesion": true
+    },
+    "legs": {
+      "LF": {
+        "positive_samples": 19970,
+        "negative_samples": 31,
+        "ambiguous_samples": 0,
+        "force_disagreements": 0,
+        "reconstruction_disagreements": 0,
+        "telemetry_disagreements": 0,
+        "ground_positive_samples": 19970,
+        "calibration_surface_positive_samples": 0,
+        "accepted": true,
+        "status": "OBSERVATIONAL_CONTEXT_ACCEPTED"
+      },
+      "LM": {
+        "positive_samples": 19946,
+        "negative_samples": 55,
+        "ambiguous_samples": 0,
+        "force_disagreements": 0,
+        "reconstruction_disagreements": 0,
+        "telemetry_disagreements": 0,
+        "ground_positive_samples": 19946,
+        "calibration_surface_positive_samples": 0,
+        "accepted": true,
+        "status": "OBSERVATIONAL_CONTEXT_ACCEPTED"
+      },
+      "LH": {
+        "positive_samples": 19946,
+        "negative_samples": 55,
+        "ambiguous_samples": 0,
+        "force_disagreements": 0,
+        "reconstruction_disagreements": 0,
+        "telemetry_disagreements": 0,
+        "ground_positive_samples": 19946,
+        "calibration_surface_positive_samples": 0,
+        "accepted": true,
+        "status": "OBSERVATIONAL_CONTEXT_ACCEPTED"
+      },
+      "RF": {
+        "positive_samples": 19902,
+        "negative_samples": 99,
+        "ambiguous_samples": 0,
+        "force_disagreements": 0,
+        "reconstruction_disagreements": 0,
+        "telemetry_disagreements": 0,
+        "ground_positive_samples": 19902,
+        "calibration_surface_positive_samples": 0,
+        "accepted": true,
+        "status": "OBSERVATIONAL_CONTEXT_ACCEPTED"
+      },
+      "RM": {
+        "positive_samples": 19943,
+        "negative_samples": 58,
+        "ambiguous_samples": 0,
+        "force_disagreements": 0,
+        "reconstruction_disagreements": 0,
+        "telemetry_disagreements": 0,
+        "ground_positive_samples": 19943,
+        "calibration_surface_positive_samples": 0,
+        "accepted": true,
+        "status": "OBSERVATIONAL_CONTEXT_ACCEPTED"
+      },
+      "RH": {
+        "positive_samples": 19938,
+        "negative_samples": 63,
+        "ambiguous_samples": 0,
+        "force_disagreements": 0,
+        "reconstruction_disagreements": 0,
+        "telemetry_disagreements": 0,
+        "ground_positive_samples": 19938,
+        "calibration_surface_positive_samples": 0,
+        "accepted": true,
+        "status": "OBSERVATIONAL_CONTEXT_ACCEPTED"
+      }
+    },
+    "status": "OBSERVATIONAL_CONTEXT_ACCEPTED"
+  },
+  "interpretation": "Passive sampled-context attribution only; no causal intervention, sensory admission, biological validation, balance or gait claim."
+}

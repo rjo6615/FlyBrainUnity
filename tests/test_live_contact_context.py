@@ -1,6 +1,7 @@
 """Synthetic attribution/integrity cases; full live physics is a separate record."""
 import copy
 import gzip
+import hashlib
 import json
 from types import SimpleNamespace
 from unittest.mock import Mock, patch
@@ -179,7 +180,8 @@ def test_capture_does_not_mutate_physics_observation_action_or_rng():
     recorder = context.PassiveRecorder()
     recorder.context = dict(identity=identity())
     before = copy.deepcopy((data, obs, action, np.random.get_state()))
-    with patch.object(context.batch.single, '_pairs', return_value=()), \
+    with patch.dict('sys.modules', {'mujoco': Mock()}), \
+            patch.object(context.batch.single, '_pairs', return_value=()), \
             patch.object(context, 'configuration', return_value=configuration()):
         recorder.capture(physics, obs, action)
     assert recorder.samples[0]['observer_state_before_sha256'] == recorder.samples[0]['observer_state_after_sha256']
@@ -209,9 +211,25 @@ def test_bounded_live_driver_retains_partial_error_and_closes(monkeypatch):
     session.initialize.return_value = SimpleNamespace(time_ms=0.)
     session.step.side_effect = [SimpleNamespace(physics_transitions=1, neural_transitions=0), KeyboardInterrupt()]
     with patch('malecns_backend.live.headless.create_live_v3_session', return_value=session), \
-            patch('malecns_backend.embodiment._windows_m7d_corrected_spontaneous_adapter._environment'):
+            patch('malecns_backend.embodiment._windows_m7d_corrected_spontaneous_adapter._environment'), \
+            patch.object(context.importlib.metadata, 'version', return_value='synthetic'):
         r = context.build_report(live=True, progress=lambda *_: None)
     assert r['run_status'] == 'ERROR' and 'KeyboardInterrupt' in r['error']
     assert not r['evaluation']['accepted']
     assert session.step.call_count == 2
     session.close.assert_called_once()
+
+
+def test_archived_live_evidence_hashes_sources_and_full_replay():
+    folder = context.ROOT / 'docs/evidence'
+    manifest = json.loads((folder / 'live-contact-context-checkpoint.json').read_text())
+    packed = (folder / manifest['raw_artifact']).read_bytes()
+    raw = gzip.decompress(packed)
+    assert hashlib.sha256(packed).hexdigest() == manifest['gzip_sha256']
+    assert hashlib.sha256(raw).hexdigest() == manifest['raw_json_sha256']
+    r = json.loads(raw)
+    assert r['sources_before'] == r['sources_after'] == context.source_hashes()
+    assert r['evaluation'] == context.evaluate(r)
+    assert manifest['evaluation'] == r['evaluation']
+    assert manifest['physics_states'] == len(r['samples'])
+    assert manifest['protocol'] == context.PROTOCOL
