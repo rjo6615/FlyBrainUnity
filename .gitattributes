@@ -46,3 +46,4 @@ malecns_backend/embodiment/interface_output/live_v1_motor_output_experiment/live
 # Full live-context solver/contact trace; retain exact compressed evidence bytes.
 docs/evidence/live-contact-context-v1.json.gz filter=lfs diff=lfs merge=lfs -text
 docs/evidence/matched-tactile-v1.json.gz filter=lfs diff=lfs merge=lfs -text
+docs/evidence/tactile-recovery-v1/*.json.gz filter=lfs diff=lfs merge=lfs -text
