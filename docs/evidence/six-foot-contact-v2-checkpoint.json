@@ -1,0 +1,180 @@
+{
+  "protocol": "six-foot-contact-calibration-v2.1",
+  "date": "2026-10-24",
+  "baseline": "93e740477a6ad02f61bc341d313a7a77c53a46fd",
+  "environment": {
+    "flygym": "1.2.1",
+    "mujoco": "3.2.7",
+    "numpy": "2.0.2"
+  },
+  "runs": [
+    {
+      "raw_artifact": "six-foot-v2-live.json.gz",
+      "raw_json_sha256": "9d533394345ca504174a0ecbef6e436f4d6c391c370745eefd1d90419635b4ce",
+      "gzip_sha256": "dd9f6bc4cc577e331360150efcbeea78311c06de6d3e229e376865264472e21b",
+      "implementation_commit": "f925f34",
+      "schema": "six-foot-contact-calibration-v2",
+      "run_status": "COMPLETE",
+      "accepted_legs": [],
+      "legs": {
+        "LF": {
+          "accepted": false,
+          "failed_checks": [
+            "exact_identity_table",
+            "finite_force_measurements"
+          ],
+          "control_samples": 501,
+          "control_contact_samples": 0,
+          "control_max_force": 0.0,
+          "control_min_sphere_clearance": 999997.951777589,
+          "positive_samples": 501,
+          "positive_contact_samples": 51
+        },
+        "LH": {
+          "accepted": false,
+          "failed_checks": [
+            "exact_identity_table",
+            "finite_force_measurements"
+          ],
+          "control_samples": 501,
+          "control_contact_samples": 0,
+          "control_max_force": 0.0,
+          "control_min_sphere_clearance": 1000002.1087701172,
+          "positive_samples": 501,
+          "positive_contact_samples": 87
+        },
+        "LM": {
+          "accepted": false,
+          "failed_checks": [
+            "exact_identity_table",
+            "finite_force_measurements"
+          ],
+          "control_samples": 501,
+          "control_contact_samples": 0,
+          "control_max_force": 0.0,
+          "control_min_sphere_clearance": 999999.9428614923,
+          "positive_samples": 501,
+          "positive_contact_samples": 97
+        },
+        "RF": {
+          "accepted": false,
+          "failed_checks": [
+            "exact_identity_table",
+            "finite_force_measurements"
+          ],
+          "control_samples": 501,
+          "control_contact_samples": 0,
+          "control_max_force": 0.0,
+          "control_min_sphere_clearance": 999997.9517783022,
+          "positive_samples": 501,
+          "positive_contact_samples": 52
+        },
+        "RH": {
+          "accepted": false,
+          "failed_checks": [
+            "exact_identity_table",
+            "finite_force_measurements"
+          ],
+          "control_samples": 501,
+          "control_contact_samples": 0,
+          "control_max_force": 0.0,
+          "control_min_sphere_clearance": 1000002.1087740079,
+          "positive_samples": 501,
+          "positive_contact_samples": 88
+        },
+        "RM": {
+          "accepted": false,
+          "failed_checks": [
+            "exact_identity_table",
+            "finite_force_measurements"
+          ],
+          "control_samples": 501,
+          "control_contact_samples": 0,
+          "control_max_force": 0.0,
+          "control_min_sphere_clearance": 999999.9428686748,
+          "positive_samples": 501,
+          "positive_contact_samples": 97
+        }
+      }
+    },
+    {
+      "raw_artifact": "six-foot-v2_1-live.json.gz",
+      "raw_json_sha256": "3255f1fb8650201f30cdd8172de4492afb6f1e85c39c2dbf92627e6a0634babb",
+      "gzip_sha256": "84a138a1032859a5868e3879468b6f9eaa91020a8c78af45701ab5bfb6cfd766",
+      "implementation_commit": "ee091cb",
+      "schema": "six-foot-contact-calibration-v2.1",
+      "run_status": "COMPLETE",
+      "accepted_legs": [
+        "LF",
+        "LM",
+        "LH",
+        "RF",
+        "RM",
+        "RH"
+      ],
+      "legs": {
+        "LF": {
+          "accepted": true,
+          "failed_checks": [],
+          "control_samples": 501,
+          "control_contact_samples": 0,
+          "control_max_force": 0.0,
+          "control_min_sphere_clearance": 999997.951777589,
+          "positive_samples": 501,
+          "positive_contact_samples": 51
+        },
+        "LH": {
+          "accepted": true,
+          "failed_checks": [],
+          "control_samples": 501,
+          "control_contact_samples": 0,
+          "control_max_force": 0.0,
+          "control_min_sphere_clearance": 1000002.1087701172,
+          "positive_samples": 501,
+          "positive_contact_samples": 87
+        },
+        "LM": {
+          "accepted": true,
+          "failed_checks": [],
+          "control_samples": 501,
+          "control_contact_samples": 0,
+          "control_max_force": 0.0,
+          "control_min_sphere_clearance": 999999.9428614923,
+          "positive_samples": 501,
+          "positive_contact_samples": 97
+        },
+        "RF": {
+          "accepted": true,
+          "failed_checks": [],
+          "control_samples": 501,
+          "control_contact_samples": 0,
+          "control_max_force": 0.0,
+          "control_min_sphere_clearance": 999997.9517783022,
+          "positive_samples": 501,
+          "positive_contact_samples": 52
+        },
+        "RH": {
+          "accepted": true,
+          "failed_checks": [],
+          "control_samples": 501,
+          "control_contact_samples": 0,
+          "control_max_force": 0.0,
+          "control_min_sphere_clearance": 1000002.1087740079,
+          "positive_samples": 501,
+          "positive_contact_samples": 88
+        },
+        "RM": {
+          "accepted": true,
+          "failed_checks": [],
+          "control_samples": 501,
+          "control_contact_samples": 0,
+          "control_max_force": 0.0,
+          "control_min_sphere_clearance": 999999.9428686748,
+          "positive_samples": 501,
+          "positive_contact_samples": 97
+        }
+      }
+    }
+  ],
+  "interpretation": "v2 rejected and preserved; v2.1 corrects namespace and observation precision only. Isolated assay acceptance does not establish ordinary live-v3 contact validity or enable tactile delivery."
+}
