@@ -1,0 +1,154 @@
+{
+  "checkpoint_date": "2026-10-24",
+  "repository_baseline": "94b40e767e6a9b5366eb0ecc37a7adb55df12aa6",
+  "provenance": "Derived summary of user-uploaded simulation measurements; complete raw evidence remains in source files.",
+  "source_files": {
+    "v3-contact-readiness.json": {
+      "sha256": "dc3e11aee7d089ee6c95d6e87d7b1703a2b9dadf9576ad5e821ef4fce5d5a3df"
+    },
+    "six-foot-contact-calibration.json": {
+      "sha256": "d539b9ae63b84ac74c9a276fbd94a2c4a69f8f421a4f6d3bd4f39c9ec1363160"
+    }
+  },
+  "passive_survey": {
+    "completed": true,
+    "samples": 20001,
+    "tactile_delivery_enabled": false,
+    "per_leg_mismatches": {
+      "LF": 0,
+      "LM": 0,
+      "LH": 0,
+      "RF": 0,
+      "RM": 0,
+      "RH": 0
+    }
+  },
+  "calibration": {
+    "run_status": "COMPLETE",
+    "all_six_accepted": false,
+    "accepted_legs": [],
+    "legs": {
+      "LF": {
+        "accepted": false,
+        "failed_checks": [
+          "control_never_touches_target_surface"
+        ],
+        "conditions": {
+          "control": {
+            "samples": 501,
+            "exact_contact_samples": 44,
+            "contact_force_mismatches": 0,
+            "first_exact_contact_ms": 2.9
+          },
+          "contact": {
+            "samples": 501,
+            "exact_contact_samples": 46,
+            "contact_force_mismatches": 0,
+            "first_exact_contact_ms": 2.5
+          }
+        }
+      },
+      "LM": {
+        "accepted": false,
+        "failed_checks": [
+          "control_never_touches_target_surface"
+        ],
+        "conditions": {
+          "control": {
+            "samples": 501,
+            "exact_contact_samples": 92,
+            "contact_force_mismatches": 0,
+            "first_exact_contact_ms": 3.1
+          },
+          "contact": {
+            "samples": 501,
+            "exact_contact_samples": 92,
+            "contact_force_mismatches": 0,
+            "first_exact_contact_ms": 2.8
+          }
+        }
+      },
+      "LH": {
+        "accepted": false,
+        "failed_checks": [
+          "control_never_touches_target_surface"
+        ],
+        "conditions": {
+          "control": {
+            "samples": 501,
+            "exact_contact_samples": 80,
+            "contact_force_mismatches": 0,
+            "first_exact_contact_ms": 3.4
+          },
+          "contact": {
+            "samples": 501,
+            "exact_contact_samples": 82,
+            "contact_force_mismatches": 0,
+            "first_exact_contact_ms": 3.1
+          }
+        }
+      },
+      "RF": {
+        "accepted": false,
+        "failed_checks": [
+          "control_never_touches_target_surface"
+        ],
+        "conditions": {
+          "control": {
+            "samples": 501,
+            "exact_contact_samples": 45,
+            "contact_force_mismatches": 0,
+            "first_exact_contact_ms": 2.9
+          },
+          "contact": {
+            "samples": 501,
+            "exact_contact_samples": 46,
+            "contact_force_mismatches": 0,
+            "first_exact_contact_ms": 2.5
+          }
+        }
+      },
+      "RM": {
+        "accepted": false,
+        "failed_checks": [
+          "control_never_touches_target_surface"
+        ],
+        "conditions": {
+          "control": {
+            "samples": 501,
+            "exact_contact_samples": 91,
+            "contact_force_mismatches": 0,
+            "first_exact_contact_ms": 3.1
+          },
+          "contact": {
+            "samples": 501,
+            "exact_contact_samples": 89,
+            "contact_force_mismatches": 0,
+            "first_exact_contact_ms": 2.8
+          }
+        }
+      },
+      "RH": {
+        "accepted": false,
+        "failed_checks": [
+          "control_never_touches_target_surface"
+        ],
+        "conditions": {
+          "control": {
+            "samples": 501,
+            "exact_contact_samples": 79,
+            "contact_force_mismatches": 0,
+            "first_exact_contact_ms": 3.4
+          },
+          "contact": {
+            "samples": 501,
+            "exact_contact_samples": 83,
+            "contact_force_mismatches": 0,
+            "first_exact_contact_ms": 3.1
+          }
+        }
+      }
+    }
+  },
+  "next_decision": "Version a clean negative-control design. Do not weaken acceptance, tune neural parameters or enable tactile delivery on these data."
+}
