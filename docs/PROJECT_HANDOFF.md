@@ -1,8 +1,8 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-24. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for the negative-control update: `newBrain` at
-`93e740477a6ad02f61bc341d313a7a77c53a46fd`, which merges PR #256.
+Verified baseline for the live-context update: `newBrain` at
+`5df78a6c4b46b0c6e8197c8ca768b69a17e54d5b`, which merges PR #257.
 Fetch and inspect current state before starting work.
 
 ## What the user wants
@@ -40,6 +40,9 @@ limitations visible. Read root `AGENTS.md` for enduring workflow requirements.
 - `live/sensory_coverage.py`: offline midpoint/up/down prescribed-angle experiment,
   optional pathway diagnostics, no physical body or motor commands.
 - `live/contact_readiness.py`: bounded passive live-v3 exact Tarsus5/force survey.
+- `live/contact_context.py`: fixed two-second passive live-v3 solver-force
+  attribution audit with exact body/sensor ownership, complete raw evidence and
+  strict observational context checks. It never enables tactile delivery.
 - `embodiment/tactile_contact.py`: existing contact-only onset encoder. Engineering
   threshold 1e-12 model force units, maximum modeled rate 120 Hz, 20-ms linear
   onset pulse, no sustained-contact retrigger. These are not biological measurements.
@@ -156,10 +159,40 @@ under `docs/evidence/six-foot-v2*.json.gz` and
 `docs/evidence/six-foot-contact-v2-checkpoint.json`. See
 `docs/SIX_FOOT_NEGATIVE_CONTROL_RESULTS.md` for counts and limits.
 
-Immediate next decision: design how this isolated calibration transfers to the
-intended supported live-body context, including unselected collisions, before a
-separate matched tactile-delivery-enabled/withheld experiment. No delivery is
-enabled by this update; acceptance here alone does not establish that transfer.
+The context-transfer prerequisite was investigated by the following separate
+observational protocol. Isolated acceptance by itself did not establish transfer.
+
+## Latest update — normal supported live-v3 context observed
+
+The protocol in `docs/LIVE_CONTACT_CONTEXT_V1.md` was committed at 80aba8d before
+its single two-second live-v3 CNS/physics experiment. The existing kernel and
+normal corrected support/collision context ran unchanged, with no tactile input.
+All 20000 physics transitions / 4000 neural updates completed; 20001 raw states
+and 333454 complete contact records are preserved through Git LFS in
+`docs/evidence/live-contact-context-v1.json.gz`. Hashes and complete evaluation
+are in `docs/evidence/live-contact-context-checkpoint.json`.
+
+All six feet passed exact sensor/body/geom ownership, force reconstruction,
+telemetry conversion, immutable-context and full-window correspondence checks.
+Positive/negative state counts LF/LM/LH/RF/RM/RH were 19970/31, 19946/55,
+19946/55, 19902/99, 19943/58, 19938/63. No ambiguous direct sources or force,
+reconstruction or telemetry disagreements occurred. All distal positive sources
+were ordinary ground; the calibration surface had no positive coverage. Do not
+generalize this result to unobserved collisions, other seeds/poses or continuous
+geometry between physics samples. This remains observational, not causal.
+
+127 tests plus 9 subtests passed, including full archived-evidence hash/source
+verification and replay of every reported check. A separate paired ten-transition
+physics-only implementation smoke test showed exact observed/unobserved parity;
+its held-joint context is not scientific live-v3 evidence. See
+`docs/LIVE_CONTACT_CONTEXT_RESULTS.md` for details and Git Bash commands.
+
+Immediate next task: design and separately version a matched tactile-delivery
+enabled/withheld experiment in the tested supported context, reusing the encoder
+and independent/common candidate sampling, with pre-intervention equivalence and
+verified delivery/readout boundaries. Define treatment of unobserved contact
+sources explicitly. No tactile delivery is enabled by this update. Acceptance
+does not establish balance, gait or biological transduction.
 
 ## Completed predecessor task — negative-control design requirements
 

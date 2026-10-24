@@ -1,0 +1,22 @@
+{
+  "check": "paired ten-transition physics-only observer passivity smoke",
+  "date": "2026-10-24",
+  "passed": true,
+  "fresh_bodies": 2,
+  "states_per_body": 11,
+  "neural_steps": 0,
+  "exact_qpos_qvel_force_parity": true,
+  "all_contact_reconstruction_and_telemetry_checks": true,
+  "scope": "Implementation check only; held reset joint commands, not live-v3 scientific evidence.",
+  "source_sha256_lf": {
+    "docs/LIVE_CONTACT_CONTEXT_V1.md": "0f5a85501b760618290c858795fefdde4ff292d5e731e9bbd1936c86245c19ab",
+    "malecns_backend/live/contact_context.py": "2d3fbc8fafe6d35444aa0c82fd89699deed7bb1fe852d7ce84585b90fac2360b",
+    "malecns_backend/live/headless.py": "072ac4ded9df2db39d25ad4b71f1b8cae891b020068b26b6546a64f9b25811a1",
+    "malecns_backend/neural.py": "8acebd58cdc221cc815646474bb337c3dc7bd05cccde685ac713f23ca51c7e0c",
+    "malecns_backend/embodiment/_windows_m8_live_condition.py": "9afea2d32e9ea935cc6cd221874d74b50ffa35895d327f8ae96ea6c9ed36bc2c",
+    "malecns_backend/embodiment/_windows_m7d_corrected_spontaneous_adapter.py": "cec995856be96a8c632e098e92153eb9c7b95d396b98d8d0499eb5f013ae9e17",
+    "malecns_backend/embodiment/m7c_b4_stability.py": "ffe6e84923c5e10e83872dc1dd835255894f9b416dc697c235e95abf5edaa8a6",
+    "malecns_backend/embodiment/tactile_contact.py": "10fb5edb8c9d59036a703d4ebe1bfac9c67e986f0d42d1ea412666f7404011f9",
+    "malecns_backend/embodiment/live_v3_motor_interface.py": "6bf362442405994dc8ddfaf7a0fd8a29d499dad85c72277bd1fe9c3ab3044e05"
+  }
+}
