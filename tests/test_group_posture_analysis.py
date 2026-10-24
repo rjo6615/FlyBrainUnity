@@ -130,3 +130,23 @@ def test_npz_numeric_roundtrip_and_no_extra_fields(tmp_path,synthetic):
     np.savez(bad,unknown=np.array([1.]))
     with pytest.raises(ValueError): study.read_npz(bad)
     with pytest.raises(ValueError): study.write_npz(tmp_path/'object.npz',dict(ON_P={'bad':np.array([object()])}))
+
+
+def test_archived_analysis_outputs_math_and_original_raw_hashes():
+    from malecns_backend.live import group_posture_review as review
+    report=review.verify(study.ROOT/'docs/evidence/group-posture-analysis-v1/analysis.json',progress=lambda _:None)
+    assert report['source_integrity'] and report['scientific_transitions']==0
+    assert report['evaluation']['active_balance_proven'] is False
+
+
+@pytest.mark.parametrize('defect',['source','status','protocol'])
+def test_reviewer_rejects_incomplete_or_wrong_source_before_artifact_access(tmp_path,defect):
+    from malecns_backend.live import group_posture_review as review
+    report=dict(protocol=study.PROTOCOL,run_status='COMPLETE',scientific_transitions=0,
+        source_integrity=True,sources_before=study.sources(),sources_after=study.sources())
+    if defect=='source': report['sources_after']={}
+    if defect=='status': report['run_status']='ERROR'
+    if defect=='protocol': report['protocol']={}
+    path=tmp_path/'report.json'
+    path.write_text(json.dumps(report))
+    with pytest.raises(ValueError): review.verify(path)
