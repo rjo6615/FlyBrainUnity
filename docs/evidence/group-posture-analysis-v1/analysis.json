@@ -1,0 +1,732 @@
+{
+  "protocol": {
+    "schema": "group-posture-analysis-v1",
+    "steps": 20000,
+    "dt_s": 0.0001,
+    "policies": [
+      "ON_P",
+      "T_P",
+      "C_P",
+      "Y_P"
+    ],
+    "controls": {
+      "ON_P": "ON_C",
+      "T_P": "T_C",
+      "C_P": "C_C",
+      "Y_P": "Y_C"
+    },
+    "post_start_index": 5201,
+    "interaction_order": [
+      "Y_P",
+      "-T_P",
+      "-C_P",
+      "ON_P"
+    ],
+    "position_resolution_mm": 0.005,
+    "scientific_transitions": 0,
+    "ordinary_live_mode_changed": false
+  },
+  "run_status": "COMPLETE",
+  "sources_before": {
+    "docs/LIVE_CONTACT_CONTEXT_V1.md": "0f5a85501b760618290c858795fefdde4ff292d5e731e9bbd1936c86245c19ab",
+    "malecns_backend/live/contact_context.py": "2d3fbc8fafe6d35444aa0c82fd89699deed7bb1fe852d7ce84585b90fac2360b",
+    "malecns_backend/live/headless.py": "072ac4ded9df2db39d25ad4b71f1b8cae891b020068b26b6546a64f9b25811a1",
+    "malecns_backend/neural.py": "8acebd58cdc221cc815646474bb337c3dc7bd05cccde685ac713f23ca51c7e0c",
+    "malecns_backend/embodiment/_windows_m8_live_condition.py": "9afea2d32e9ea935cc6cd221874d74b50ffa35895d327f8ae96ea6c9ed36bc2c",
+    "malecns_backend/embodiment/_windows_m7d_corrected_spontaneous_adapter.py": "cec995856be96a8c632e098e92153eb9c7b95d396b98d8d0499eb5f013ae9e17",
+    "malecns_backend/embodiment/m7c_b4_stability.py": "ffe6e84923c5e10e83872dc1dd835255894f9b416dc697c235e95abf5edaa8a6",
+    "malecns_backend/embodiment/tactile_contact.py": "10fb5edb8c9d59036a703d4ebe1bfac9c67e986f0d42d1ea412666f7404011f9",
+    "malecns_backend/embodiment/live_v3_motor_interface.py": "6bf362442405994dc8ddfaf7a0fd8a29d499dad85c72277bd1fe9c3ab3044e05",
+    "docs/MATCHED_TACTILE_DELIVERY_V1.md": "d02b80baacfdcae84bf2654d8c09088ceb05239c3dfdc126800b2cfd15e8c3f2",
+    "malecns_backend/live/tactile_boundary.py": "9a5f9b53fc9324dae533c8126de33b3b18aba867275dde2e2909b667829a4f43",
+    "malecns_backend/live/matched_tactile_delivery.py": "939adea4bd9850de7f895f134fe52d7b46a2b4a228c8d65074ed8dfa15fae7df",
+    "malecns_backend/embodiment/proprioceptive_activation.py": "0d6117d668e62d23de08c8148240c770785cabb8a6148669349c4f258b7c0a92",
+    "malecns_backend/embodiment/sensory.py": "d245ac2b91294fef7629375e5734a6788e4749dc5b768ff082cdeb2cfd9f39ea",
+    "malecns_backend/embodiment/m5d_tarsal_contact_load.py": "b764daae10f3c722700be1d598494c248116d4db943df0cf035382e85e73de24",
+    "malecns_backend/embodiment/m5c_leg_sensory_inventory.py": "53145f80be02fd6733afdb74c640ac77a9f30a735ce4ec560356b179b478491e",
+    "malecns_backend/interface_map.json": "24b7229bea6f24ff0e65fe09b202d42dc06819fe234194e3c3ab95b596319e0b",
+    "docs/TACTILE_DISTURBANCE_RECOVERY_V1.md": "3cf485d653474b5783bddad83674b26e3279f7ed59a003ee8474a8e26a369826",
+    "malecns_backend/live/tactile_recovery.py": "b799895f9f2227b988c36c9ed66c7e1d5adfa68fa32fb5619ef26d850df118b4",
+    "malecns_backend/live/tactile_recovery_metrics.py": "0f0edee2564d45e29504b522f0d376779e0e3ae3c8181ad5cfbdac40f9998fdf",
+    "malecns_backend/embodiment/m9b_external_perturbation.py": "ce6f2d7931be69f5b17f59d71448e93a3d379be2b02576002628148a2e4b3750",
+    "malecns_backend/embodiment/m10c_m10b_analysis.py": "627f2541206aa071b7748eca6b604f2ee95293bf88fc2bcf435499f1aa06a907",
+    "docs/TACTILE_MOTOR_YOKE_V1.md": "4098e61ebfc51650d716ceaf8c03d3b568dee100c2f4d0cd791b4e980b6c344b",
+    "malecns_backend/live/tactile_motor_yoke.py": "19d8d38e508f2fd71dd5098d00d0e90c3aafe533d74fc38ba5c3d0c16cc95eac",
+    "docs/TIBIA_COMMAND_DISSECTION_V1.md": "1912ca2549142eb7326104f89b8af5795d1047146097c18752a726d9b72c57f9",
+    "malecns_backend/live/tibia_command_dissection.py": "377f63ab8c21045deab3e91eb69d50e26f170f6720a75f6a66f766eae2ea0017",
+    "malecns_backend/embodiment/m11_motor_channel_dissection.py": "47a6c09f7a670eeba72043f6dddb19fb2d6ca0fb6dbc2324cb13b01bf91574c5",
+    "docs/COMPLEMENT_COMMAND_DISSECTION_V1.md": "18dffe95ce219c22636f4cd27fab987033bc72811d22b8a1dbeec1d04496fe85",
+    "malecns_backend/live/complement_command_dissection.py": "a24ca36c1c97528d8c19cbc8d74deaae4f0ec975337cdcbe005c23e14340c056",
+    "docs/GROUP_POSTURE_ANALYSIS_V1.md": "22c547b5f7958bb061c0c8039beff21b41c0fe1762e3958b267f1e36b62c291f",
+    "malecns_backend/live/group_posture_analysis.py": "8d881e2448d40793244b40ea99a3b6c5c7c0d1474e450d28f80a64286f02b71b",
+    "malecns_backend/live/protocol.py": "6bb277dba884b97399cc31ac92ab346d2a33b6d87e99a90ec84e1887f21ad789"
+  },
+  "implementation_commit": "e7f808faf03ae27142b8c743c85aca7655768160",
+  "scientific_transitions": 0,
+  "environment": {
+    "numpy": "2.0.2",
+    "matplotlib": "3.11.2"
+  },
+  "references": {
+    "ON_C": {
+      "path": "docs/evidence/matched-tactile-v1.json.gz",
+      "arm": "ENABLED",
+      "gzip_sha256": "6da71dd069ad5d1b46cdc7d078f815e74b3ba38f8f4daac5cf7a40097e94e444",
+      "raw_json_sha256": "5283035fe0069448118eddacc54cbaa413535a441547cd19e0c962006d2e5711",
+      "gzip_bytes": 143669202,
+      "raw_json_bytes": 566098712
+    },
+    "ON_P": {
+      "path": "docs/evidence/tactile-recovery-v1/ON_P.json.gz",
+      "gzip_sha256": "39877c14b6a525a499060f78602cb22c85d4c5ab6654d714e0fa3abdff0a0d19",
+      "raw_json_sha256": "2a1136a40eea69ef31107ef194ff4e06bffb217b105dcddd6b720e2b5d17d345",
+      "gzip_bytes": 72465416,
+      "raw_json_bytes": 271851465,
+      "manifest_path": "docs/evidence/tactile-recovery-v1/manifest.json",
+      "manifest_sha256": "b1f6b995566fbdbae7bda92dcb5810453f9ab5279a411ecb18e97b83104426c8"
+    },
+    "T_P": {
+      "path": "docs/evidence/tibia-command-dissection-v1/T_P.json.gz",
+      "gzip_sha256": "726ef1b5a9bc821c73f3a3bb1caa2585d7b52064055d981e1c4091af5477190d",
+      "raw_json_sha256": "5a86adcaf24c3bb591101e7287d08212bf86f2e4f2979e6fedd15b6029f9129b",
+      "gzip_bytes": 72863885,
+      "raw_json_bytes": 285601700,
+      "manifest_path": "docs/evidence/tibia-command-dissection-v1/manifest.json",
+      "manifest_sha256": "aa1db9f4109bd52b474c469f1bfce3cb89b5cad9284db92bfe3fb05cb9dd147f"
+    },
+    "T_C": {
+      "path": "docs/evidence/tibia-command-dissection-v1/T_C.json.gz",
+      "gzip_sha256": "d49ed4ab3a29973bdcfc9eea48790e6f432704d547e4d62e34aaaf22fb84b884",
+      "raw_json_sha256": "c0913cb9abdfd4a9f8b7b906778476f411e4f14afb50f4da514535277449c599",
+      "gzip_bytes": 73174581,
+      "raw_json_bytes": 288858342,
+      "manifest_path": "docs/evidence/tibia-command-dissection-v1/manifest.json",
+      "manifest_sha256": "aa1db9f4109bd52b474c469f1bfce3cb89b5cad9284db92bfe3fb05cb9dd147f"
+    },
+    "C_P": {
+      "path": "docs/evidence/complement-command-dissection-v1/C_P.json.gz",
+      "gzip_sha256": "4a19c9b3209615589e5d2b5a7dcc5eca03dec26d007bb210d8346d3024de308d",
+      "raw_json_sha256": "6193b90994361114020ba4f285e1ddb37177faf42bb52046e5e6bbe5a7f1a3f2",
+      "gzip_bytes": 73732066,
+      "raw_json_bytes": 290340587,
+      "manifest_path": "docs/evidence/complement-command-dissection-v1/manifest.json",
+      "manifest_sha256": "b463ec51a6fa4c37d6971b7ccb705a0c7a444d6afb3a119aca657b33f269c7c3"
+    },
+    "C_C": {
+      "path": "docs/evidence/complement-command-dissection-v1/C_C.json.gz",
+      "gzip_sha256": "1ba996ee20e550e35fb5518880fa313ad5ce9d0378014e9f8f6ec71ee651b822",
+      "raw_json_sha256": "483516c66cadacb04b365b38636bb72d1afd1d482b56440819e01942f12c3a9e",
+      "gzip_bytes": 73174873,
+      "raw_json_bytes": 288859194,
+      "manifest_path": "docs/evidence/complement-command-dissection-v1/manifest.json",
+      "manifest_sha256": "b463ec51a6fa4c37d6971b7ccb705a0c7a444d6afb3a119aca657b33f269c7c3"
+    },
+    "Y_P": {
+      "path": "docs/evidence/tactile-motor-yoke-v1/Y_P.json.gz",
+      "gzip_sha256": "c23a5670517cb651108c9623bae7729e59fe49964f5fdb6641b59bf37b11df97",
+      "raw_json_sha256": "3ad25c6122e4d8250ae8890c2d29d51d148589d06c1a8001d4cc2eb86b2f3fe6",
+      "gzip_bytes": 73488681,
+      "raw_json_bytes": 288832991,
+      "manifest_path": "docs/evidence/tactile-motor-yoke-v1/manifest.json",
+      "manifest_sha256": "7a65a0570de1e43c3df4ffe72d647a2c09d1b67f7380619fe3dba9a0b55b1245"
+    },
+    "Y_C": {
+      "path": "docs/evidence/tactile-motor-yoke-v1/Y_C.json.gz",
+      "gzip_sha256": "c628ff99c37b9e1cca8a71dddb9095802b3b326d507ba29e90df6c6966f65952",
+      "raw_json_sha256": "b8d50ad3a40ed0731ef73b4beb72bc5263b857f4a36eeec68a3e3c1816d283ec",
+      "gzip_bytes": 73174215,
+      "raw_json_bytes": 288857382,
+      "manifest_path": "docs/evidence/tactile-motor-yoke-v1/manifest.json",
+      "manifest_sha256": "7a65a0570de1e43c3df4ffe72d647a2c09d1b67f7380619fe3dba9a0b55b1245"
+    }
+  },
+  "expected_frozen_responses": {
+    "ON_P": {
+      "baseline_qualified": true,
+      "resolved_perturbation": true,
+      "relative_band_exited": true,
+      "recovery_status": "NOT_RECOVERED_IN_WINDOW",
+      "recovery_entry_ms": null,
+      "recovery_confirmation_ms": null,
+      "post_peak_orientation_deg": 12.798550033587087,
+      "post_mean_orientation_deg": 5.76365716192831,
+      "post_orientation_integral_deg_s": 8.529557420943338,
+      "post_peak_position_deviation_mm": 0.4668341582412759,
+      "post_peak_height_error_mm": 0.19526976008225272,
+      "post_peak_linear_speed_error_mm_s": 11.501193823830627,
+      "post_peak_angular_speed_error_rad_s": 6.950711497178972,
+      "post_below_three_support_samples": 19,
+      "post_rollover_samples": 0,
+      "post_low_height_samples": 0,
+      "minimum_support_contacts": 2,
+      "post_absolute_tilt_peak_deg": 7.32309825888078
+    },
+    "T_P": {
+      "baseline_qualified": true,
+      "resolved_perturbation": true,
+      "relative_band_exited": true,
+      "recovery_status": "NOT_RECOVERED_IN_WINDOW",
+      "recovery_entry_ms": null,
+      "recovery_confirmation_ms": null,
+      "post_peak_orientation_deg": 9.881201534996256,
+      "post_mean_orientation_deg": 3.7255242296729083,
+      "post_orientation_integral_deg_s": 5.513539242201458,
+      "post_peak_position_deviation_mm": 0.37246647593346205,
+      "post_peak_height_error_mm": 0.13042081322135446,
+      "post_peak_linear_speed_error_mm_s": 11.774171309141257,
+      "post_peak_angular_speed_error_rad_s": 8.090276285217318,
+      "post_below_three_support_samples": 15,
+      "post_rollover_samples": 0,
+      "post_low_height_samples": 0,
+      "minimum_support_contacts": 2,
+      "post_absolute_tilt_peak_deg": 9.667408794114527
+    },
+    "C_P": {
+      "baseline_qualified": true,
+      "resolved_perturbation": true,
+      "relative_band_exited": true,
+      "recovery_status": "NOT_RECOVERED_IN_WINDOW",
+      "recovery_entry_ms": null,
+      "recovery_confirmation_ms": null,
+      "post_peak_orientation_deg": 6.0944364656245,
+      "post_mean_orientation_deg": 2.3373584558244946,
+      "post_orientation_integral_deg_s": 3.4591776351675794,
+      "post_peak_position_deviation_mm": 0.20222755529396694,
+      "post_peak_height_error_mm": 0.08022392365456199,
+      "post_peak_linear_speed_error_mm_s": 19.454490124974953,
+      "post_peak_angular_speed_error_rad_s": 7.866205861074236,
+      "post_below_three_support_samples": 10,
+      "post_rollover_samples": 0,
+      "post_low_height_samples": 0,
+      "minimum_support_contacts": 2,
+      "post_absolute_tilt_peak_deg": 14.78110499954504
+    },
+    "Y_P": {
+      "baseline_qualified": true,
+      "resolved_perturbation": true,
+      "relative_band_exited": true,
+      "recovery_status": "NOT_RECOVERED_IN_WINDOW",
+      "recovery_entry_ms": null,
+      "recovery_confirmation_ms": null,
+      "post_peak_orientation_deg": 1.4478191184275573,
+      "post_mean_orientation_deg": 0.45309832281315315,
+      "post_orientation_integral_deg_s": 0.6705498719983028,
+      "post_peak_position_deviation_mm": 0.04889661256771174,
+      "post_peak_height_error_mm": 0.024743824399809877,
+      "post_peak_linear_speed_error_mm_s": 10.009844384216573,
+      "post_peak_angular_speed_error_rad_s": 6.838539007301999,
+      "post_below_three_support_samples": 3,
+      "post_rollover_samples": 0,
+      "post_low_height_samples": 0,
+      "minimum_support_contacts": 2,
+      "post_absolute_tilt_peak_deg": 9.94798023554943
+    }
+  },
+  "evaluation": {
+    "integrity_passed": true,
+    "checks": {
+      "all_controls_equal": true,
+      "pre_force_matching": true,
+      "saved_responses_reproduced": true
+    },
+    "protocol": {
+      "schema": "group-posture-analysis-v1",
+      "steps": 20000,
+      "dt_s": 0.0001,
+      "policies": [
+        "ON_P",
+        "T_P",
+        "C_P",
+        "Y_P"
+      ],
+      "controls": {
+        "ON_P": "ON_C",
+        "T_P": "T_C",
+        "C_P": "C_C",
+        "Y_P": "Y_C"
+      },
+      "post_start_index": 5201,
+      "interaction_order": [
+        "Y_P",
+        "-T_P",
+        "-C_P",
+        "ON_P"
+      ],
+      "position_resolution_mm": 0.005,
+      "scientific_transitions": 0,
+      "ordinary_live_mode_changed": false
+    },
+    "inventory": {
+      "model_coordinates": 42,
+      "admitted_motor_coordinates": 20,
+      "admitted": [
+        {
+          "name": "joint_LFFemur",
+          "action_index": 3
+        },
+        {
+          "name": "joint_LFFemur_roll",
+          "action_index": 4
+        },
+        {
+          "name": "joint_LFTibia",
+          "action_index": 5
+        },
+        {
+          "name": "joint_LFTarsus1",
+          "action_index": 6
+        },
+        {
+          "name": "joint_LMFemur",
+          "action_index": 10
+        },
+        {
+          "name": "joint_LMFemur_roll",
+          "action_index": 11
+        },
+        {
+          "name": "joint_LMTibia",
+          "action_index": 12
+        },
+        {
+          "name": "joint_LHFemur",
+          "action_index": 17
+        },
+        {
+          "name": "joint_LHFemur_roll",
+          "action_index": 18
+        },
+        {
+          "name": "joint_LHTibia",
+          "action_index": 19
+        },
+        {
+          "name": "joint_RFFemur",
+          "action_index": 24
+        },
+        {
+          "name": "joint_RFFemur_roll",
+          "action_index": 25
+        },
+        {
+          "name": "joint_RFTibia",
+          "action_index": 26
+        },
+        {
+          "name": "joint_RFTarsus1",
+          "action_index": 27
+        },
+        {
+          "name": "joint_RMFemur",
+          "action_index": 31
+        },
+        {
+          "name": "joint_RMFemur_roll",
+          "action_index": 32
+        },
+        {
+          "name": "joint_RMTibia",
+          "action_index": 33
+        },
+        {
+          "name": "joint_RHFemur",
+          "action_index": 38
+        },
+        {
+          "name": "joint_RHFemur_roll",
+          "action_index": 39
+        },
+        {
+          "name": "joint_RHTibia",
+          "action_index": 40
+        }
+      ],
+      "breakdown": {
+        "tibia": 6,
+        "femur": 6,
+        "femur_roll": 6,
+        "front_tarsus": 2
+      },
+      "remaining": [
+        {
+          "name": "joint_LFCoxa",
+          "action_index": 0
+        },
+        {
+          "name": "joint_LFCoxa_roll",
+          "action_index": 1
+        },
+        {
+          "name": "joint_LFCoxa_yaw",
+          "action_index": 2
+        },
+        {
+          "name": "joint_LMCoxa",
+          "action_index": 7
+        },
+        {
+          "name": "joint_LMCoxa_roll",
+          "action_index": 8
+        },
+        {
+          "name": "joint_LMCoxa_yaw",
+          "action_index": 9
+        },
+        {
+          "name": "joint_LMTarsus1",
+          "action_index": 13
+        },
+        {
+          "name": "joint_LHCoxa",
+          "action_index": 14
+        },
+        {
+          "name": "joint_LHCoxa_roll",
+          "action_index": 15
+        },
+        {
+          "name": "joint_LHCoxa_yaw",
+          "action_index": 16
+        },
+        {
+          "name": "joint_LHTarsus1",
+          "action_index": 20
+        },
+        {
+          "name": "joint_RFCoxa",
+          "action_index": 21
+        },
+        {
+          "name": "joint_RFCoxa_roll",
+          "action_index": 22
+        },
+        {
+          "name": "joint_RFCoxa_yaw",
+          "action_index": 23
+        },
+        {
+          "name": "joint_RMCoxa",
+          "action_index": 28
+        },
+        {
+          "name": "joint_RMCoxa_roll",
+          "action_index": 29
+        },
+        {
+          "name": "joint_RMCoxa_yaw",
+          "action_index": 30
+        },
+        {
+          "name": "joint_RMTarsus1",
+          "action_index": 34
+        },
+        {
+          "name": "joint_RHCoxa",
+          "action_index": 35
+        },
+        {
+          "name": "joint_RHCoxa_roll",
+          "action_index": 36
+        },
+        {
+          "name": "joint_RHCoxa_yaw",
+          "action_index": 37
+        },
+        {
+          "name": "joint_RHTarsus1",
+          "action_index": 41
+        }
+      ],
+      "remaining_breakdown": {
+        "coxa": 18,
+        "middle_hind_tarsus": 4
+      },
+      "proprioceptive_populations": 6,
+      "proprioceptive_neurons": 392,
+      "experimental_tactile_populations": 6,
+      "experimental_tactile_neurons": 1877,
+      "ordinary_live_tactile_enabled": false,
+      "interpretation": "Motor admission count, not percent biological mapping or project completion."
+    },
+    "responses": {
+      "ON_P": {
+        "baseline_qualified": true,
+        "resolved_perturbation": true,
+        "relative_band_exited": true,
+        "recovery_status": "NOT_RECOVERED_IN_WINDOW",
+        "recovery_entry_ms": null,
+        "recovery_confirmation_ms": null,
+        "post_peak_orientation_deg": 12.798550033587087,
+        "post_mean_orientation_deg": 5.76365716192831,
+        "post_orientation_integral_deg_s": 8.529557420943338,
+        "post_peak_position_deviation_mm": 0.4668341582412759,
+        "post_peak_height_error_mm": 0.19526976008225272,
+        "post_peak_linear_speed_error_mm_s": 11.501193823830627,
+        "post_peak_angular_speed_error_rad_s": 6.950711497178972,
+        "post_below_three_support_samples": 19,
+        "post_rollover_samples": 0,
+        "post_low_height_samples": 0,
+        "minimum_support_contacts": 2,
+        "post_absolute_tilt_peak_deg": 7.32309825888078
+      },
+      "T_P": {
+        "baseline_qualified": true,
+        "resolved_perturbation": true,
+        "relative_band_exited": true,
+        "recovery_status": "NOT_RECOVERED_IN_WINDOW",
+        "recovery_entry_ms": null,
+        "recovery_confirmation_ms": null,
+        "post_peak_orientation_deg": 9.881201534996256,
+        "post_mean_orientation_deg": 3.7255242296729083,
+        "post_orientation_integral_deg_s": 5.513539242201458,
+        "post_peak_position_deviation_mm": 0.37246647593346205,
+        "post_peak_height_error_mm": 0.13042081322135446,
+        "post_peak_linear_speed_error_mm_s": 11.774171309141257,
+        "post_peak_angular_speed_error_rad_s": 8.090276285217318,
+        "post_below_three_support_samples": 15,
+        "post_rollover_samples": 0,
+        "post_low_height_samples": 0,
+        "minimum_support_contacts": 2,
+        "post_absolute_tilt_peak_deg": 9.667408794114527
+      },
+      "C_P": {
+        "baseline_qualified": true,
+        "resolved_perturbation": true,
+        "relative_band_exited": true,
+        "recovery_status": "NOT_RECOVERED_IN_WINDOW",
+        "recovery_entry_ms": null,
+        "recovery_confirmation_ms": null,
+        "post_peak_orientation_deg": 6.0944364656245,
+        "post_mean_orientation_deg": 2.3373584558244946,
+        "post_orientation_integral_deg_s": 3.4591776351675794,
+        "post_peak_position_deviation_mm": 0.20222755529396694,
+        "post_peak_height_error_mm": 0.08022392365456199,
+        "post_peak_linear_speed_error_mm_s": 19.454490124974953,
+        "post_peak_angular_speed_error_rad_s": 7.866205861074236,
+        "post_below_three_support_samples": 10,
+        "post_rollover_samples": 0,
+        "post_low_height_samples": 0,
+        "minimum_support_contacts": 2,
+        "post_absolute_tilt_peak_deg": 14.78110499954504
+      },
+      "Y_P": {
+        "baseline_qualified": true,
+        "resolved_perturbation": true,
+        "relative_band_exited": true,
+        "recovery_status": "NOT_RECOVERED_IN_WINDOW",
+        "recovery_entry_ms": null,
+        "recovery_confirmation_ms": null,
+        "post_peak_orientation_deg": 1.4478191184275573,
+        "post_mean_orientation_deg": 0.45309832281315315,
+        "post_orientation_integral_deg_s": 0.6705498719983028,
+        "post_peak_position_deviation_mm": 0.04889661256771174,
+        "post_peak_height_error_mm": 0.024743824399809877,
+        "post_peak_linear_speed_error_mm_s": 10.009844384216573,
+        "post_peak_angular_speed_error_rad_s": 6.838539007301999,
+        "post_below_three_support_samples": 3,
+        "post_rollover_samples": 0,
+        "post_low_height_samples": 0,
+        "minimum_support_contacts": 2,
+        "post_absolute_tilt_peak_deg": 9.94798023554943
+      }
+    },
+    "time_aligned": {
+      "ON_P": {
+        "absolute_tilt_peak": {
+          "value": 7.32309825888078,
+          "index": 19987,
+          "time_ms": 1998.7
+        },
+        "relative_rotation_peak": {
+          "value": 12.798550033587087,
+          "index": 20000,
+          "time_ms": 2000.0
+        },
+        "relative_up_peak": {
+          "value": 7.788051787580303,
+          "index": 7742,
+          "time_ms": 774.2
+        },
+        "at_absolute_tilt_peak": {
+          "relative_rotation_deg": 12.708274511322962,
+          "control_tilt_deg": 4.018218497869427
+        },
+        "at_relative_rotation_peak": {
+          "absolute_tilt_deg": 7.306163375416803,
+          "control_tilt_deg": 4.1156589580297105,
+          "relative_up_deg": 7.5423730558527975
+        }
+      },
+      "T_P": {
+        "absolute_tilt_peak": {
+          "value": 9.667408794114527,
+          "index": 17852,
+          "time_ms": 1785.2
+        },
+        "relative_rotation_peak": {
+          "value": 9.881201534996256,
+          "index": 9113,
+          "time_ms": 911.3000000000001
+        },
+        "relative_up_peak": {
+          "value": 7.067780326908039,
+          "index": 8855,
+          "time_ms": 885.5
+        },
+        "at_absolute_tilt_peak": {
+          "relative_rotation_deg": 4.809154230521764,
+          "control_tilt_deg": 5.756181131922282
+        },
+        "at_relative_rotation_peak": {
+          "absolute_tilt_deg": 5.496533269472091,
+          "control_tilt_deg": 7.385417817315567,
+          "relative_up_deg": 6.695906384551119
+        }
+      },
+      "C_P": {
+        "absolute_tilt_peak": {
+          "value": 14.78110499954504,
+          "index": 7776,
+          "time_ms": 777.6
+        },
+        "relative_rotation_peak": {
+          "value": 6.0944364656245,
+          "index": 9137,
+          "time_ms": 913.7
+        },
+        "relative_up_peak": {
+          "value": 5.34117148320762,
+          "index": 9110,
+          "time_ms": 911.0
+        },
+        "at_absolute_tilt_peak": {
+          "relative_rotation_deg": 4.288839767724469,
+          "control_tilt_deg": 10.512604113024544
+        },
+        "at_relative_rotation_peak": {
+          "absolute_tilt_deg": 12.32230286038595,
+          "control_tilt_deg": 7.273953982907633,
+          "relative_up_deg": 5.320127171039033
+        }
+      },
+      "Y_P": {
+        "absolute_tilt_peak": {
+          "value": 9.94798023554943,
+          "index": 7741,
+          "time_ms": 774.1
+        },
+        "relative_rotation_peak": {
+          "value": 1.4478191184275573,
+          "index": 9576,
+          "time_ms": 957.6
+        },
+        "relative_up_peak": {
+          "value": 1.3752193665886063,
+          "index": 9584,
+          "time_ms": 958.4000000000001
+        },
+        "at_absolute_tilt_peak": {
+          "relative_rotation_deg": 0.6875312083940051,
+          "control_tilt_deg": 10.572152949821112
+        },
+        "at_relative_rotation_peak": {
+          "absolute_tilt_deg": 7.634092985957837,
+          "control_tilt_deg": 7.925231501757444,
+          "relative_up_deg": 1.3566113553004637
+        }
+      }
+    },
+    "position_interaction": {
+      "peak_norm": {
+        "value": 0.2635701243931089,
+        "index": 9119,
+        "time_ms": 911.9000000000001
+      },
+      "xyz_at_peak": [
+        0.00359307837477184,
+        -0.2626812330940551,
+        0.021327682494315325
+      ],
+      "mean_norm": 0.12557572524793548,
+      "signed_xyz_integral": [
+        0.04713962773080168,
+        0.058251771198292175,
+        0.0670093506290447
+      ],
+      "resolution_label": "RESOLVED_ROOT_VECTOR_NONADDITIVITY"
+    },
+    "dimensionless_up_interaction": {
+      "peak_norm": {
+        "value": 0.17387535065935103,
+        "index": 9408,
+        "time_ms": 940.8000000000001
+      },
+      "xyz_at_peak": [
+        0.13744767631267124,
+        0.10505400807270439,
+        0.017447900475976996
+      ],
+      "mean_norm": 0.06765504506982319,
+      "signed_xyz_integral": [
+        0.06341335150137992,
+        -0.0290061409744915,
+        0.004441443482882834
+      ]
+    },
+    "active_balance_proven": false,
+    "scientific_transitions": 0,
+    "limits": "One frozen deterministic history; vector interaction is not a statistical test or independent channel contribution. Full orientation includes heading; relative up excludes pure yaw."
+  },
+  "artifacts": {
+    "aligned-traces.npz": {
+      "path": "aligned-traces.npz",
+      "sha256": "fac29df0782663bdd5b7e0d15667a5c91489f1c575fae7956016adbb8e6fada4",
+      "bytes": 16667467
+    },
+    "posture.png": {
+      "path": "posture.png",
+      "sha256": "4b8b68ab39ccb8e3f1796267c955476446ed811eac5c995bff33f278c52081f2",
+      "bytes": 539355
+    },
+    "interaction.png": {
+      "path": "interaction.png",
+      "sha256": "b1517cabd045d8b7303f355745a72de0aed5ab2c8109b73107254e744a796dff",
+      "bytes": 448471
+    }
+  },
+  "sources_after": {
+    "docs/LIVE_CONTACT_CONTEXT_V1.md": "0f5a85501b760618290c858795fefdde4ff292d5e731e9bbd1936c86245c19ab",
+    "malecns_backend/live/contact_context.py": "2d3fbc8fafe6d35444aa0c82fd89699deed7bb1fe852d7ce84585b90fac2360b",
+    "malecns_backend/live/headless.py": "072ac4ded9df2db39d25ad4b71f1b8cae891b020068b26b6546a64f9b25811a1",
+    "malecns_backend/neural.py": "8acebd58cdc221cc815646474bb337c3dc7bd05cccde685ac713f23ca51c7e0c",
+    "malecns_backend/embodiment/_windows_m8_live_condition.py": "9afea2d32e9ea935cc6cd221874d74b50ffa35895d327f8ae96ea6c9ed36bc2c",
+    "malecns_backend/embodiment/_windows_m7d_corrected_spontaneous_adapter.py": "cec995856be96a8c632e098e92153eb9c7b95d396b98d8d0499eb5f013ae9e17",
+    "malecns_backend/embodiment/m7c_b4_stability.py": "ffe6e84923c5e10e83872dc1dd835255894f9b416dc697c235e95abf5edaa8a6",
+    "malecns_backend/embodiment/tactile_contact.py": "10fb5edb8c9d59036a703d4ebe1bfac9c67e986f0d42d1ea412666f7404011f9",
+    "malecns_backend/embodiment/live_v3_motor_interface.py": "6bf362442405994dc8ddfaf7a0fd8a29d499dad85c72277bd1fe9c3ab3044e05",
+    "docs/MATCHED_TACTILE_DELIVERY_V1.md": "d02b80baacfdcae84bf2654d8c09088ceb05239c3dfdc126800b2cfd15e8c3f2",
+    "malecns_backend/live/tactile_boundary.py": "9a5f9b53fc9324dae533c8126de33b3b18aba867275dde2e2909b667829a4f43",
+    "malecns_backend/live/matched_tactile_delivery.py": "939adea4bd9850de7f895f134fe52d7b46a2b4a228c8d65074ed8dfa15fae7df",
+    "malecns_backend/embodiment/proprioceptive_activation.py": "0d6117d668e62d23de08c8148240c770785cabb8a6148669349c4f258b7c0a92",
+    "malecns_backend/embodiment/sensory.py": "d245ac2b91294fef7629375e5734a6788e4749dc5b768ff082cdeb2cfd9f39ea",
+    "malecns_backend/embodiment/m5d_tarsal_contact_load.py": "b764daae10f3c722700be1d598494c248116d4db943df0cf035382e85e73de24",
+    "malecns_backend/embodiment/m5c_leg_sensory_inventory.py": "53145f80be02fd6733afdb74c640ac77a9f30a735ce4ec560356b179b478491e",
+    "malecns_backend/interface_map.json": "24b7229bea6f24ff0e65fe09b202d42dc06819fe234194e3c3ab95b596319e0b",
+    "docs/TACTILE_DISTURBANCE_RECOVERY_V1.md": "3cf485d653474b5783bddad83674b26e3279f7ed59a003ee8474a8e26a369826",
+    "malecns_backend/live/tactile_recovery.py": "b799895f9f2227b988c36c9ed66c7e1d5adfa68fa32fb5619ef26d850df118b4",
+    "malecns_backend/live/tactile_recovery_metrics.py": "0f0edee2564d45e29504b522f0d376779e0e3ae3c8181ad5cfbdac40f9998fdf",
+    "malecns_backend/embodiment/m9b_external_perturbation.py": "ce6f2d7931be69f5b17f59d71448e93a3d379be2b02576002628148a2e4b3750",
+    "malecns_backend/embodiment/m10c_m10b_analysis.py": "627f2541206aa071b7748eca6b604f2ee95293bf88fc2bcf435499f1aa06a907",
+    "docs/TACTILE_MOTOR_YOKE_V1.md": "4098e61ebfc51650d716ceaf8c03d3b568dee100c2f4d0cd791b4e980b6c344b",
+    "malecns_backend/live/tactile_motor_yoke.py": "19d8d38e508f2fd71dd5098d00d0e90c3aafe533d74fc38ba5c3d0c16cc95eac",
+    "docs/TIBIA_COMMAND_DISSECTION_V1.md": "1912ca2549142eb7326104f89b8af5795d1047146097c18752a726d9b72c57f9",
+    "malecns_backend/live/tibia_command_dissection.py": "377f63ab8c21045deab3e91eb69d50e26f170f6720a75f6a66f766eae2ea0017",
+    "malecns_backend/embodiment/m11_motor_channel_dissection.py": "47a6c09f7a670eeba72043f6dddb19fb2d6ca0fb6dbc2324cb13b01bf91574c5",
+    "docs/COMPLEMENT_COMMAND_DISSECTION_V1.md": "18dffe95ce219c22636f4cd27fab987033bc72811d22b8a1dbeec1d04496fe85",
+    "malecns_backend/live/complement_command_dissection.py": "a24ca36c1c97528d8c19cbc8d74deaae4f0ec975337cdcbe005c23e14340c056",
+    "docs/GROUP_POSTURE_ANALYSIS_V1.md": "22c547b5f7958bb061c0c8039beff21b41c0fe1762e3958b267f1e36b62c291f",
+    "malecns_backend/live/group_posture_analysis.py": "8d881e2448d40793244b40ea99a3b6c5c7c0d1474e450d28f80a64286f02b71b",
+    "malecns_backend/live/protocol.py": "6bb277dba884b97399cc31ac92ab346d2a33b6d87e99a90ec84e1887f21ad789"
+  },
+  "source_integrity": true
+}

@@ -1,8 +1,8 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-24. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for the complementary-command update: `newBrain` at
-`2b1111e4dad1e8a39b1c359270f3b438ff257460`, which merges PR #262.
+Verified baseline for the frozen-posture analysis update: `newBrain` at
+`feb2f007b2013696dfa41d1c420b7b3c1c4e849e`, which merges PR #263.
 Fetch and inspect current state before starting work.
 
 ## What the user wants
@@ -398,6 +398,55 @@ from disturbance-relative trajectory error. Declare any root-vector interaction
 estimand and fixed windows before computation; do not add peak norms as channel
 contributions. No new CNS/physics runs are needed. Use those results to decide
 the next motor/sensory roadmap step without parameter tuning or winner searches.
+
+## Latest update — frozen posture analysis and mapping status
+
+Analysis protocol/analyzer/tests committed at e7f808f before computing new timing
+and vector interactions. All original outcomes/protocols remain unchanged. Full
+frozen source/raw/evaluation chains validated, then eight root traces reduced to
+20001 states each. All four unpushed controls match exactly; pre-force histories
+and all old response summaries reproduce. Zero new CNS/physics transitions.
+
+Absolute tilt and distance from a moving control explain the mixed results. Full
+closed loop has absolute peak tilt 7.323098 deg at 1998.7 ms and relative orientation
+peak 12.798550 at 2000 ms, while relative body-up peaks 7.788052 at 774.2 ms. At the
+complementary replay's absolute peak 14.781105 deg (777.6 ms), its control is already
+tilted 10.512604 deg and full relative error is only 4.288840 deg. Full orientation
+includes heading; do not subtract angle metrics to calculate yaw. Last-state
+relative maximum leaves behavior beyond the fixed window unknown.
+
+Predeclared signed root-vector interaction (all replay - tibia - complement +
+closed loop, each pushed minus own control) peaks 0.263570 model mm at 911.9 ms,
+xyz [0.003593,-0.262681,0.021328], exceeding inherited .005 model-mm resolution.
+Dimensionless body-up-vector interaction peaks .173875 at 940.8 ms. Group effects
+are non-additive and context-dependent, not percentages explained or statistical
+significance. No general balance/gait/intent/passive-support proof or recovery.
+
+Evidence/report/plots: `docs/evidence/group-posture-analysis-v1/`; prospective
+specification/results: `docs/GROUP_POSTURE_ANALYSIS_V1.md` and
+`docs/GROUP_POSTURE_ANALYSIS_RESULTS.md`. `docs/LEG_MAPPING_STATUS.md` answers the
+user's mapping question: 20/42 model coordinates admitted (6 tibia, 6 femur, 6
+femur roll, 2 front Tarsus1), remaining 18 coxa + 4 middle/hind Tarsus1. Structural
+coordinate names are known; motor admission is not percentage biological mapping.
+Six tibia proprioceptive/experimental tactile populations remain as before;
+ordinary live tactile remains off. No additional interface admitted in this work.
+
+75 focused tests passed; 2 previous archived simulation/TCP tests explicitly
+excluded, while full upstream evaluations were recomputed during actual analysis.
+New saved numeric-artifact math and all original compressed/raw hashes verified.
+Separate legacy tactile-contact remains 6 passed / 1 unchanged metadata hash failure.
+Charts visually inspected; no new Unity Editor run, physics, neural tuning or raw
+evidence change. User can run `live.group_posture_review --report
+docs/evidence/group-posture-analysis-v1/analysis.json` and open posture/interaction
+PNGs in VS Code; no further Unity run is needed for this update.
+
+Immediate next task: return to the 42-coordinate motor-admission roadmap. Audit
+the existing ordered admission/candidate/reference reports for each remaining 22
+coordinates: body-ID/population mapping, completeness/antagonism, mechanical sign
+provenance, existing validation and exact missing prerequisites. Identify the next
+defensible separate admission protocol from reference evidence, not activity or
+effect ranking. Preserve calibrated physiology, all locks/nulls/tradeoffs and the
+distinction between structural mapping, validated admission and emergent behavior.
 
 ## Completed predecessor task — negative-control design requirements
 
