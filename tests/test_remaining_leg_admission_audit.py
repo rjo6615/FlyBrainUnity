@@ -104,3 +104,23 @@ def test_exclusive_failure_output_and_no_execution_flags(tmp_path,monkeypatch):
     with pytest.raises(FileExistsError): audit.main(['--output-dir',str(output)])
     assert (output/'audit.json').read_bytes()==raw
     with pytest.raises(SystemExit): audit.main(['--output-dir',str(output),'--execute'])
+
+
+def test_saved_complete_matrix_recomputes_and_keeps_zero_admissions():
+    from malecns_backend.embodiment import remaining_leg_admission_review as review
+    saved,now=review.verify(audit.ROOT/'docs/evidence/remaining-leg-admission-audit-v1_1/audit.json')
+    assert len(saved['rows'])==22 and now['current_motor_count']==20
+    assert all(not row['admission_ready'] and row['coordinate_sign_assigned_by_audit'] is None for row in saved['rows'])
+    assert saved['counts']==dict(SHARED_AXIS_BINDING_REQUIRED=12,
+        ANATOMICAL_ACTION_SIGN_BRIDGE_REQUIRED=6,EXACT_TARGET_POPULATION_MAPPING_REQUIRED=4)
+    assert len(saved['lf_reference']['covector_transform_checks'])==7
+    assert all(row['max_absolute_error']<=1e-12 for row in saved['lf_reference']['covector_transform_checks'])
+
+
+def test_reviewer_rejects_failed_or_admitting_report(tmp_path):
+    from malecns_backend.embodiment import remaining_leg_admission_review as review
+    path=tmp_path/'bad.json'
+    for record in (dict(schema='old',audit_integrity_passed=True,new_admissions=0,scientific_transitions=0),
+                   dict(schema=audit.SCHEMA,audit_integrity_passed=True,new_admissions=1,scientific_transitions=0)):
+        path.write_text(json.dumps(record))
+        with pytest.raises(ValueError): review.verify(path)

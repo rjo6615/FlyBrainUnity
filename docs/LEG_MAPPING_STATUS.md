@@ -37,11 +37,19 @@ all-command replay. They affect posture and trajectory differently. The frozen
 time-aligned analysis in `GROUP_POSTURE_ANALYSIS_RESULTS.md` explains this without
 new physics, parameter tuning or declaring general balance.
 
-Immediate next mapping task: inspect the existing ordered admission table and
-candidate/reference reports for each remaining coordinate. Record anatomical
+Remaining-coordinate admission requires the existing ordered table and
+candidate/reference reports for each coordinate: anatomical
 body-ID/population evidence, completeness/antagonist requirements, mechanical
 sign provenance, existing validation and exact missing prerequisites. Select
 the next defensible admission protocol from that evidence, not outcome rankings
 or a desire to make every joint move. Any implementation/validation change is a
 separate predeclared update. Preserve calibrated physiology, source/artifact locks,
 null exposures, failed results and the distinction between mapping and behavior.
+
+The 22-row read-only audit is now complete; see
+`REMAINING_LEG_ADMISSION_RESULTS.md`. It found 12 shared-axis binding blockers,
+six unresolved anatomical action-sign bridges and four missing exact Tarsus1
+target mappings. No remaining channel was admitted. Next work is the independently
+reference-backed LF proximal population activation/sign and multi-axis binding
+prerequisites in `LF_PROXIMAL_ADMISSION_PREREQUISITES_V1.md`. Existing local
+geometry and older neural recruitment nulls do not by themselves justify admission.
