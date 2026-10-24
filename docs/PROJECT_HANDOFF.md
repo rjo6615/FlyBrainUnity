@@ -1,8 +1,8 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-24. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for the disturbance/recovery update: `newBrain` at
-`b0a94c6ba484b301db4cf5fbddc618235fcbba20`, which merges PR #259.
+Verified baseline for the motor-command-yoke update: `newBrain` at
+`b1d768ecdaf0d5655a1f84e09e8fb081ccb9823b`, which merges PR #260.
 Fetch and inspect current state before starting work.
 
 ## What the user wants
@@ -268,6 +268,44 @@ separately design/preregister a motor-application control with exact replayed
 command provenance and matched state/sampling to distinguish active motor
 application from passive mechanics and withdrawal effects. Do not tune neural
 parameters, increase the pulse or broaden normal live mode to obtain a pass.
+
+## Latest update — motor-command yoke control completed
+
+Protocol/runner committed at 220899c before two fresh fixed two-second trials Y_C
+then Y_P. All tactile/CNS/decoder computation continues, but each outgoing physical
+action uses the exact same-transition archived undisturbed ENABLED command.
+Y_C exactly reproduced the entire original trajectory/contact/encoder and all
+4000 neural records. Y_P uses the unchanged 500..520 ms Thorax pulse. All initial,
+pre-push, common RNG, input/readout, contact, applied-command and force checks pass.
+Y_P altered 14720 proposed outgoing actions, first at transition 5280 (528.0 ms).
+
+The prospective YOKING_REDUCES_RESPONSE label is supported: peak/mean orientation
+deviation was 1.447819/0.453098 deg yoked versus 12.798550/5.763657 closed loop,
+each against its own undisturbed control. Peak absolute tilt was nevertheless
+higher yoked (9.947980 vs 7.323098 deg). Neither rolled over or crossed the low-
+height limit; neither met sustained recovery within two seconds. Baseline active
+actuation remains, so this is not a fully passive-body test or proof of balance.
+Keep both relative-response and absolute-tilt results visible. No tuning/retries.
+
+Protocol/results: `docs/TACTILE_MOTOR_YOKE_V1.md` and
+`docs/TACTILE_MOTOR_YOKE_RESULTS.md`; complete traces/manifest in
+`docs/evidence/tactile-motor-yoke-v1/`. Recorded replay:
+`live.tactile_motor_yoke_replay --manifest docs/evidence/tactile-motor-yoke-v1/manifest.json
+--condition BOTH --speed 0.1`, comparing Y_P and original ON_P. Explicit resets
+are not physical jumps. Ordinary live mode remains tactile-disabled.
+Validation: 252 tests plus 9 subtests passed, including full saved analysis and
+actual recorded-pose TCP checks. Fresh Windows CRLF checkout failures were resolved
+by restoring original Git blob bytes and protecting five provenance-sensitive
+paths with -text; no scientific content or expected hash changed. The separate
+legacy metadata-related artifact failure remains 6 passed / 1 failed. Unity
+Editor was not run by the agent.
+
+Immediate next task: separately preregister admitted motor-command dissection
+using the existing M11 infrastructure in this exact 20-motor tactile context,
+with matched disturbed/undisturbed controls and a channel-selection rule chosen
+before outcomes. Track absolute tilt and disturbance-relative response separately.
+No neural parameter tuning or channel search until a favorable result appears.
+Baseline active commands/passive mechanical support remain unresolved components.
 
 ## Completed predecessor task — negative-control design requirements
 
