@@ -1,6 +1,7 @@
 """Synthetic evidence tests; these do not substitute for FlyGym physics."""
 import copy
 import json
+from types import SimpleNamespace
 from unittest.mock import patch
 
 import numpy as np
@@ -100,6 +101,19 @@ def test_masks_exclude_every_pair_except_positive_target():
                    if masks[i, 0] & masks[j, 1] or masks[j, 0] & masks[i, 1]]
         assert allowed == ([(2, 7)] if contact else [])
     with pytest.raises(ValueError): v2.collision_masks(3, 1, 1, True)
+
+
+def test_observer_promotes_float32_before_norm_and_refreshes_observation():
+    forces = np.zeros((36, 3), dtype=np.float32)
+    forces[11] = [.1234567, .9876543, .0001234]  # LM Tarsus5
+    physics = SimpleNamespace(
+        model=SimpleNamespace(geom_rbound=np.array([.1, .04]),
+                              geom_contype=np.zeros(2), geom_conaffinity=np.zeros(2), npair=0),
+        data=SimpleNamespace(geom_xpos=np.array([[0., 0., 1.], [1000000., 0., 0.]]), time=0.))
+    sim = SimpleNamespace(physics=physics, get_observation=lambda: {'contact_forces': forces})
+    with patch.object(v2.single, '_pairs', return_value=()):
+        sample = v2._sample(sim, 'LM', {'tarsus_geom': {'id': 0}, 'surface_geom': {'id': 1}})
+    assert sample['magnitude'] == np.linalg.norm(np.asarray(sample['raw_tarsus5_vector'], dtype=np.float64))
 
 
 def test_all_twelve_arms_attempted_once_and_partial_samples_preserved():

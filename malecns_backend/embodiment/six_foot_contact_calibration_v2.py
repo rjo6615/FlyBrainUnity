@@ -12,7 +12,7 @@ import numpy as np
 from . import six_foot_contact_calibration as v1
 
 single = v1.single
-SCHEMA = 'six-foot-contact-calibration-v2'
+SCHEMA = 'six-foot-contact-calibration-v2.1'
 REMOTE_POSITION = (1000000., 0., 0.)
 PROTOCOL = {
     'schema': SCHEMA, 'duration_s': v1.DURATION_S, 'timestep_s': v1.TIMESTEP_S,
@@ -43,7 +43,7 @@ def _sample(sim, leg, condition):
     physics = single._physics(sim)
     obs = sim.get_observation()  # refresh after placement/forward, including reset
     tid, sid = condition['tarsus_geom']['id'], condition['surface_geom']['id']
-    vector = np.asarray(obs['contact_forces'])[v1.LEGS.index(leg) * 6 + single.DISTAL_OFFSET]
+    vector = np.asarray(obs['contact_forces'], dtype=np.float64)[v1.LEGS.index(leg) * 6 + single.DISTAL_OFFSET]
     metadata = single.contact_metadata(single._pairs(physics), tid, sid)
     positions = np.asarray(physics.data.geom_xpos)[[tid, sid]].copy()
     radii = np.asarray(physics.model.geom_rbound)[[tid, sid]].copy()
@@ -66,7 +66,7 @@ def run_condition(flygym, leg, *, contact):
     try:
         placements = [f'{l}{s}' for l in v1.LEGS for s in
                       ('Tibia', 'Tarsus1', 'Tarsus2', 'Tarsus3', 'Tarsus4', 'Tarsus5')]
-        fly = flygym.Fly(enable_adhesion=False, control='position',
+        fly = flygym.Fly(name='calibration', enable_adhesion=False, control='position',
                          floor_collisions=[], self_collisions=[],
                          contact_sensor_placements=placements)
         arena = single._make_arena(flygym)
@@ -226,7 +226,8 @@ def build_report(*, live=False, progress=print):
                    for r in results.values() for c in PROTOCOL['conditions'])
     sources = [Path(__file__), Path(single.__file__), Path(v1.__file__),
                Path(__file__).with_name('tactile_contact.py'),
-               Path(__file__).parents[2] / 'docs/SIX_FOOT_NEGATIVE_CONTROL_V2.md']
+               Path(__file__).parents[2] / 'docs/SIX_FOOT_NEGATIVE_CONTROL_V2.md',
+               Path(__file__).parents[2] / 'docs/SIX_FOOT_NEGATIVE_CONTROL_V2_1.md']
     return {'schema': SCHEMA, 'protocol': PROTOCOL.copy(), 'legs': results,
             'run_status': 'COMPLETE' if complete else 'INCOMPLETE',
             'accepted_legs': accepted, 'all_six_accepted': len(accepted) == 6,
