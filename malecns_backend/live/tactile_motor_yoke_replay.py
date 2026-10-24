@@ -46,16 +46,24 @@ def load_verified(path):
 
 
 def replay(clips,condition='BOTH',*,speed=.1,loop=True,server_factory=PoseServer,clock=time.monotonic,sleep=time.sleep):
-    if not 0<speed<=1: raise ValueError('speed must be in (0,1]')
     if condition not in ('BOTH','Y_C','Y_P','ON_P'): raise ValueError('unknown clip')
     identities=('Y_P','ON_P') if condition=='BOTH' else (condition,)
+    descriptions={i:('Undisturbed recorded motor commands applied.' if i.startswith('Y')
+                    else 'Original closed-loop motor commands applied.') for i in identities}
+    return replay_clips(clips,identities,descriptions,speed=speed,loop=loop,
+                        server_factory=server_factory,clock=clock,sleep=sleep)
+
+
+def replay_clips(clips,identities,descriptions,*,speed=.1,loop=True,server_factory=PoseServer,clock=time.monotonic,sleep=time.sleep):
+    if not 0<speed<=1: raise ValueError('speed must be in (0,1]')
+    if not identities or any(i not in clips or i not in descriptions for i in identities):
+        raise ValueError('measured clip and explicit description required for every identity')
     print('RECORDED motor-application control; no CNS or physics is running.',flush=True)
     with server_factory() as server:
         while True:
             for identity in identities:
                 print(f'REPLAY RESET -> {identity}: saved t=0, NOT a physical jump.',flush=True)
-                print('Tactile enabled. '+('Undisturbed recorded motor commands applied.' if identity.startswith('Y')
-                      else 'Original closed-loop motor commands applied.'),flush=True)
+                print('Tactile enabled. '+descriptions[identity],flush=True)
                 start=clock()
                 for index,sample in enumerate(clips[identity]):
                     delay=start+sample['time_s']/speed-clock()

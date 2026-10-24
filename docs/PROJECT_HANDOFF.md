@@ -1,8 +1,8 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-24. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for the motor-command-yoke update: `newBrain` at
-`b1d768ecdaf0d5655a1f84e09e8fb081ccb9823b`, which merges PR #260.
+Verified baseline for the tibia-command dissection update: `newBrain` at
+`8be2f45728ddd5927bed6a6f21a7bb5da29845db`, which merges PR #261.
 Fetch and inspect current state before starting work.
 
 ## What the user wants
@@ -306,6 +306,50 @@ with matched disturbed/undisturbed controls and a channel-selection rule chosen
 before outcomes. Track absolute tilt and disturbance-relative response separately.
 No neural parameter tuning or channel search until a favorable result appears.
 Baseline active commands/passive mechanical support remain unresolved components.
+
+## Latest update — anatomical tibia command-group dissection completed
+
+Protocol/runner/tests committed at 9f58379 before fresh fixed two-second T_C then
+T_P trials. All six tibias selected by existing M11 anatomical mapping and exact
+v3 indices 5/12/19/26/33/40, not outcome ranking. Only those six applied actions
+follow the undisturbed recording; other 36 coordinates (including 14 admitted
+motors) exactly retain their contemporaneous native proposals. CNS/tactile/
+decoder computation remains active. All integrity checks pass; T_C reproduces
+the complete original control trajectory/contact/encoder and all neural records.
+Same pulse/seed/window/physiology/metrics; no tuning or retries.
+
+Peak/mean orientation deviation is 9.881202/3.725524 deg tibia-only versus
+12.798550/5.763657 full closed-loop and 1.447819/0.453098 all-command-yoked,
+each relative to its own undisturbed control. The predeclared primary label is
+SELECTIVE_YOKING_REDUCES_RESPONSE. Absolute tilt is nevertheless worse than full
+closed loop (9.667409 vs 7.323098 deg), as are peak linear/angular velocity errors.
+No rollover or low-height crossing, but no sustained recovery. Not a balance proof.
+
+T_P replaces 14720 outgoing transitions from transition 5280 (528 ms); per-channel
+LF/LM/LH/RF/RM/RH exposure counts are 14385/14560/14425/0/14695/14720. Preserve RF
+tibia zero command-intervention exposure: it is not proof of silent motor neurons
+or an individual causal contribution. Group effects can be non-additive and other
+motors can compensate. Existing M11 classification helpers and yoke/kernel reused.
+
+Complete evidence: `docs/evidence/tibia-command-dissection-v1/`; protocol/results
+and manual Git Bash review: `docs/TIBIA_COMMAND_DISSECTION_V1.md` and
+`docs/TIBIA_COMMAND_DISSECTION_RESULTS.md`. Recorded Unity command:
+`live.tibia_command_replay --manifest docs/evidence/tibia-command-dissection-v1/manifest.json
+--condition BOTH --speed 0.1`, T_P versus original ON_P; ALL adds T_C and Y_P.
+Shared pose-stream helper preserves the earlier replay CLI; clip resets are not
+physical jumps. Ordinary live tactile mode remains disabled.
+Validation: 275 tests plus 9 subtests passed across the focused matrix and final
+new archived-evidence/TCP check. All saved new/upstream source/hash/evaluation
+checks replayed; actual recorded T_P/ON_P/Y_P endpoint poses passed local TCP.
+The separate legacy tactile-contact suite remains 6 passed / 1 unchanged metadata
+hash failure. No Unity Editor run, neural tuning or duplicate scientific trial.
+
+Immediate next task: separately preregister the complementary 14 admitted motor
+channels, defined as the fixed inventory minus these six tibias, with matched
+disturbed/undisturbed controls and tibias retaining native closed-loop commands.
+Complete the group comparison before interpreting interactions or individual
+channel contributions. Preserve all tradeoffs/nulls; do not tune neural parameters
+or select channels from outcome rankings to obtain a favorable result.
 
 ## Completed predecessor task — negative-control design requirements
 
