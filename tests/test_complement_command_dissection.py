@@ -117,3 +117,69 @@ def test_exclusive_dry_cli_and_no_selection_tuning(tmp_path):
     with pytest.raises(FileExistsError): study.main(['--live','--output-dir',str(path)])
     assert (path/'manifest.json').read_bytes()==raw
     with pytest.raises(SystemExit): study.main(['--output-dir',str(path),'--channel','winner'])
+
+
+def test_recorded_replay_distinguishes_complement_and_closed_loop(capsys):
+    from malecns_backend.live import complement_command_replay as replay
+    clips={i:[dict(time_s=0.,qpos=[0.,0.,.6,1.,0.,0.,0.],joint_positions=[.2]*42)] for i in ('C_P','ON_P')}
+    server=Mock()
+    server.__enter__=Mock(return_value=server)
+    server.__exit__=Mock(return_value=False)
+    replay.replay_clips(clips,('C_P','ON_P'),replay.DESCRIPTIONS,loop=False,
+        server_factory=lambda:server,clock=lambda:0.,sleep=lambda _:None)
+    assert server.publish.call_count==2
+    assert server.publish.call_args.args[0].joint_positions==tuple([.2]*42)
+    output=capsys.readouterr().out
+    assert '14 complementary' in output and 'six tibias closed-loop' in output and 'NOT a physical jump' in output
+    with pytest.raises(ValueError): replay.replay_clips(clips,('missing',),{})
+
+
+def test_archived_complement_evidence_and_actual_tcp():
+    import socket
+    from malecns_backend.live import complement_command_replay as replay
+    from malecns_backend.live.tactile_motor_yoke_replay import PoseServer,replay_snapshot
+    from malecns_backend.live.protocol import validate_pose
+    manifest,clips=replay.load_verified(study.ROOT/'docs/evidence/complement-command-dissection-v1/manifest.json')
+    assert manifest['run_status']=='COMPLETE' and manifest['evaluation']['active_balance_proven'] is False
+    assert manifest['sources_before']==manifest['sources_after']==study.sources()
+    with PoseServer(port=0) as server:
+        with socket.create_connection(('127.0.0.1',server.bound_port),timeout=2.) as client:
+            client.settimeout(2.)
+            with client.makefile('rb') as stream:
+                assert json.loads(stream.readline())['type']=='hello'
+                for number,identity in enumerate(('C_P','T_P','ON_P','Y_P')):
+                    sample=clips[identity][-1]
+                    assert server.publish(replay_snapshot(sample,20000),now=number+1.)
+                    packet=json.loads(stream.readline())
+                    validate_pose(packet)
+                    assert packet['joint_positions']==sample['joint_positions']
+
+
+@pytest.mark.parametrize('defect',[None,'inherited','sources','protocol','inventory'])
+def test_versioned_source_audit_cannot_bypass_other_strict_checks(monkeypatch,defect):
+    own={'version':'locked'}
+    inventory={n:dict(action_index=study.v3.V3_MOTOR.index(n)) for n in study.v3.V3_MOTOR}
+    for n,i in study.SELECTED: inventory[n]['action_index']=i
+    if defect=='inventory': inventory[study.SELECTED[0][0]]['action_index']=0
+    arm=dict(samples=[],neural=[],sources_before=own,sources_after={} if defect=='sources' else own,
+        initial=dict(motor_inventory=inventory),dissection_protocol={} if defect=='protocol' else study.PROTOCOL)
+    response=dict(post_peak_orientation_deg=1.,post_mean_orientation_deg=1.,baseline_qualified=True,
+                  resolved_perturbation=True,relative_band_exited=True)
+    manifest=dict(protocol=study.PROTOCOL,sources_before=own,sources_after=own,
+        prerequisite=dict(verified=True,recovery_prerequisite={},closed_loop_response=response,
+                          all_yoke_response=response,tibia_response=response),
+        artifacts={i:dict(path=i,h=1) for i in study.CONDITIONS})
+    monkeypatch.setattr(study,'sources',lambda:own)
+    monkeypatch.setattr(study.recovery,'read_gzip',lambda _: (arm,{'h':1}))
+    monkeypatch.setattr(study.recovery,'arm_audit',lambda *_:dict(checks={
+        'source_integrity':False,'strict_existing_requirement':defect!='inherited'}))
+    monkeypatch.setattr(study,'command_audit',lambda *_:dict(passed=True,altered_transitions=0))
+    monkeypatch.setattr(study.recovery,'prefix_checks',lambda *_:dict(prefix=True))
+    monkeypatch.setattr(study.yoke,'matching',lambda *_:True)
+    monkeypatch.setattr(study.recovery,'support_counts',lambda _:[])
+    monkeypatch.setattr(study.recovery.metrics,'trace',lambda *_:{})
+    monkeypatch.setattr(study.recovery.metrics,'response',lambda *_:response)
+    result=study.analyze('.',manifest,dict(neural=[]))
+    assert result['integrity_passed'] is (defect is None)
+    assert result['audits']['C_P']['inherited_recovery_audit']['checks']['source_integrity'] is False
+    assert 'NO_SELECTED_COMMAND_INTERVENTION_EXPOSURE' in result['primary']['interpretation_limits']

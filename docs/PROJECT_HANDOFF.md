@@ -1,8 +1,8 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-24. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for the tibia-command dissection update: `newBrain` at
-`8be2f45728ddd5927bed6a6f21a7bb5da29845db`, which merges PR #261.
+Verified baseline for the complementary-command update: `newBrain` at
+`2b1111e4dad1e8a39b1c359270f3b438ff257460`, which merges PR #262.
 Fetch and inspect current state before starting work.
 
 ## What the user wants
@@ -18,6 +18,8 @@ Each update uses a new branch from latest `newBrain` and a PR back to `newBrain`
 The user reviews/merges. Include files changed, tests actually run, manual Git
 Bash instructions and expected outcomes. Keep negative results and experimental
 limitations visible. Read root `AGENTS.md` for enduring workflow requirements.
+The user explicitly wants a copy-paste Git Bash run block in every final update;
+provide post-merge/pull replay commands directly, not just a documentation link.
 
 ## Current runtime and code map
 
@@ -350,6 +352,52 @@ disturbed/undisturbed controls and tibias retaining native closed-loop commands.
 Complete the group comparison before interpreting interactions or individual
 channel contributions. Preserve all tradeoffs/nulls; do not tune neural parameters
 or select channels from outcome rankings to obtain a favorable result.
+
+## Latest update — complementary 14-motor command group completed
+
+Protocol/runner/tests committed at 939459a before fresh fixed two-second C_C then
+C_P trials. The group is the exact v3 inventory minus the six tibias: six femur,
+six femur-roll and LF/RF Tarsus1 channels. Only those 14 commands use archived
+undisturbed actions; other 28 coordinates (including all six tibias) exactly retain
+native proposals. All CNS/sensory/readout/decoder computation continues. No neural
+tuning, force/window/seed/acceptance changes or retries. All integrity checks pass;
+C_C exactly reproduces the entire original control trajectory and neural records.
+
+Complementary replay peak/mean orientation deviation is 6.094436/2.337358 deg
+versus full closed-loop 12.798550/5.763657, tibia-only 9.881202/3.725524 and all-
+command-yoked 1.447819/0.453098, each against its own undisturbed control. Primary
+label SELECTIVE_YOKING_REDUCES_RESPONSE. Peak absolute tilt is nevertheless highest
+in the complementary replay (14.781105 vs 7.323098 deg closed loop), and peak
+linear-velocity error increases to 19.454490 vs 11.501194 model mm/s. No rollover
+or low-height crossing, but no sustained recovery. Preserve the mixed tradeoffs.
+
+All four group contexts are now measured. Full closed loop has the lowest peak
+absolute tilt and largest orientation departure from its undisturbed trajectory.
+This supports a modeled posture-related motor-application effect, not general
+balance, gait, intent, individual-channel necessity or fully passive support.
+Group comparisons are context-dependent and non-additive; do not infer fractions
+explained from differences of peak norms. C_P alters 14720 outgoing actions from
+transition 5280 (528 ms). RF Tarsus1 has zero command-intervention exposure; preserve
+this and the earlier RF tibia null, without claiming silent neurons.
+
+Full evidence: `docs/evidence/complement-command-dissection-v1/`; prospective
+protocol/results and manual Git Bash instructions:
+`docs/COMPLEMENT_COMMAND_DISSECTION_V1.md` and
+`docs/COMPLEMENT_COMMAND_DISSECTION_RESULTS.md`. Replay:
+`live.complement_command_replay --manifest docs/evidence/complement-command-dissection-v1/manifest.json
+--condition BOTH --speed 0.1`, C_P versus original ON_P; ALL includes C_C/T_P/Y_P.
+Reuse the shared output-only measured-pose loop. Ordinary live tactile stays off.
+Validation: 298 tests plus 9 subtests passed across the focused matrix and final
+new/upstream archived-evidence/actual-TCP check. Actual saved C_P/T_P/ON_P/Y_P poses
+passed local TCP. Separate legacy tactile-contact remains 6 passed / 1 unchanged
+metadata-hash failure. Real dry CLI returned NOT_RUN/1; no Unity Editor run.
+
+Immediate next task: separately preregister a saved-evidence time-aligned posture
+analysis of the four frozen contexts, distinguishing absolute tilt/world state
+from disturbance-relative trajectory error. Declare any root-vector interaction
+estimand and fixed windows before computation; do not add peak norms as channel
+contributions. No new CNS/physics runs are needed. Use those results to decide
+the next motor/sensory roadmap step without parameter tuning or winner searches.
 
 ## Completed predecessor task — negative-control design requirements
 
