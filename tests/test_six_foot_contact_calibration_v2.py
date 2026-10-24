@@ -1,6 +1,9 @@
 """Synthetic evidence tests; these do not substitute for FlyGym physics."""
 import copy
+import gzip
+import hashlib
 import json
+from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
 
@@ -157,3 +160,28 @@ def test_dry_unavailable_and_overwrite_protection(tmp_path):
     assert report['accepted_legs'] == []
     assert report['legs']['LF']['evidence']['control']['run_status'] == 'UNAVAILABLE'
     with pytest.raises(SystemExit): v2.main(['--output', str(path), '--duration-s', '1'])
+
+
+def test_archived_physics_evidence_hashes_and_strict_reevaluation():
+    root = Path(__file__).parents[1]
+    directory = root / 'docs/evidence'
+    manifest = json.loads((directory / 'six-foot-contact-v2-checkpoint.json').read_text())
+    for run in manifest['runs']:
+        packed = (directory / run['raw_artifact']).read_bytes()
+        raw = gzip.decompress(packed)
+        assert hashlib.sha256(packed).hexdigest() == run['gzip_sha256']
+        assert hashlib.sha256(raw).hexdigest() == run['raw_json_sha256']
+        report = json.loads(raw)
+        assert report['accepted_legs'] == run['accepted_legs']
+        for leg, value in report['legs'].items():
+            # Historical evidence must be checked against its declared version.
+            # All remaining protocol fields and acceptance rules are identical.
+            assert value['evidence']['protocol'] == dict(v2.PROTOCOL, schema=report['schema'])
+            with patch.dict(v2.PROTOCOL, schema=report['schema']):
+                result = v2.evaluate_leg(value['evidence'], leg)
+            assert result['accepted'] == value['evaluation']['accepted']
+            assert result['checks'] == value['evaluation']['checks']
+        if report['schema'] == v2.SCHEMA:
+            for name, expected in report['source_sha256_lf'].items():
+                path = root / ('docs' if name.endswith('.md') else 'malecns_backend/embodiment') / name
+                assert hashlib.sha256(path.read_bytes().replace(b'\r\n', b'\n')).hexdigest() == expected

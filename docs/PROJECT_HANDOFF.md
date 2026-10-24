@@ -1,8 +1,9 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-24. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline: `newBrain` at `94b40e767e6a9b5366eb0ecc37a7adb55df12aa6`,
-which merges PR #255. Fetch and inspect current state before starting work.
+Verified baseline for the negative-control update: `newBrain` at
+`93e740477a6ad02f61bc341d313a7a77c53a46fd`, which merges PR #256.
+Fetch and inspect current state before starting work.
 
 ## What the user wants
 
@@ -136,7 +137,31 @@ The raw uploads may not be committed; look in the user's repository/root outputs
 before requesting files. If unavailable, retain the checkpoint and distinguish
 what cannot be independently rechecked. Do not rerun an unchanged failed protocol.
 
-## Immediate next task — revise the negative-control protocol
+## Latest update — separately versioned isolated control implemented
+
+`embodiment/six_foot_contact_calibration_v2.py` implements the predeclared
+collision-isolation protocol in `docs/SIX_FOOT_NEGATIVE_CONTROL_V2.md`. Both arms
+exclude ground, self and other-foot collisions. The negative surface is remote
+and collision-disabled; the positive permits only the exact selected pair.
+This changes physical support/collision context and does not validate ordinary
+live-v3 contact. Original v1 sources/evidence/acceptance remain intact.
+
+Actual local physics completed both twelve-arm runs. Initial v2 rejected all feet
+for implementation integrity defects (auto-generated namespaces and float32 norm
+precision). The separately documented v2.1 correction fixes those contracts,
+without weakening checks or changing physical/neural parameters. It was committed
+before its justified verification repeat. All six pass v2.1 in the isolated assay.
+Full rejected and accepted evidence, hashes, environment and checks are preserved
+under `docs/evidence/six-foot-v2*.json.gz` and
+`docs/evidence/six-foot-contact-v2-checkpoint.json`. See
+`docs/SIX_FOOT_NEGATIVE_CONTROL_RESULTS.md` for counts and limits.
+
+Immediate next decision: design how this isolated calibration transfers to the
+intended supported live-body context, including unselected collisions, before a
+separate matched tactile-delivery-enabled/withheld experiment. No delivery is
+enabled by this update; acceptance here alone does not establish that transfer.
+
+## Completed predecessor task — negative-control design requirements
 
 1. Inspect the actual legacy calibration runner, six-foot wrapper/evaluator,
    latest raw report if available, and existing tests/provenance locks.
