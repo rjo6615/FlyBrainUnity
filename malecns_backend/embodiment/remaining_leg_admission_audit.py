@@ -28,13 +28,14 @@ PATHS=dict(mapping=BASE+'whole_leg_motor_mapping_audit.json',interface='malecns_
     activity=BASE+'lf_proximal_candidate_mapping_review/lf_proximal_candidate_activity_evidence_addendum.json',
     recruitment=BASE+'lf_proximal_motor_recruitment/lf_proximal_motor_recruitment_result.json')
 SOURCES=('docs/REMAINING_LEG_ADMISSION_AUDIT_V1.md',
+    'docs/REMAINING_LEG_ADMISSION_AUDIT_V1_1.md',
     'malecns_backend/embodiment/remaining_leg_admission_audit.py',
     'malecns_backend/codec.py','malecns_backend/live/protocol.py',
     'malecns_backend/embodiment/live_v3_motor_interface.py',
     'malecns_backend/embodiment/live_v2_motor_interface.py',
     'malecns_backend/embodiment/whole_leg_motor_mapping_audit.py',
     'malecns_backend/embodiment/coxa_yaw_anatomical_sign_bridge.py')
-SCHEMA='remaining-leg-admission-audit-v1'
+SCHEMA='remaining-leg-admission-audit-v1.1'
 
 
 def sha(raw): return hashlib.sha256(raw).hexdigest()
@@ -63,19 +64,27 @@ def frozen_record(path,expected):
 
 
 def resolve_population(name,expected_ids,populations,muscles,body_ids):
-    p=populations[name]
-    source=muscles[name]
+    aliases=populations[name] if isinstance(populations[name],list) else [populations[name]]
+    sources=muscles[name] if isinstance(muscles[name],list) else [muscles[name]]
+    p=aliases[0]
+    source=sources[0]
     ids=p['body_ids']; dense=p['dense_indices']
+    def metadata_key(row): return (row['name'],row['actuator'],row['dir'])
+    actual_annotations=[metadata_key(a['bodymap_metadata']) for a in aliases]
+    expected_annotations=[metadata_key(s) for s in sources]
     checks=dict(exact_body_ids=ids==expected_ids,count=p['count']==len(ids)==len(dense)>0,
         body_integer=all(type(b) is int for b in ids),
         unique=len(ids)==len(set(ids)) and len(dense)==len(set(dense)),
         dense_integer=all(type(i) is int and 0<=i<len(body_ids) for i in dense),
-        metadata=p['bodymap_metadata']=={k:source[k] for k in ('name','actuator','dir')},
-        exact_bodymap_indices=dense==source['idx'])
+        all_alias_identities=all(a['body_ids']==ids and a['dense_indices']==dense and a['count']==p['count'] for a in aliases),
+        metadata=sorted(actual_annotations)==sorted(expected_annotations) and len(set(actual_annotations))==len(actual_annotations),
+        all_directions_equal=all(s['dir']==source['dir'] for s in sources),
+        exact_bodymap_indices=all(dense==s['idx'] for s in sources))
     checks['body_id_dense_inversion']=checks['dense_integer'] and all(int(body_ids[i])==b for b,i in zip(ids,dense))
     if not all(checks.values()): raise ValueError('population identity mismatch: '+name)
     return dict(name=name,body_ids=ids,dense_indices=dense,count=p['count'],direction=source['dir'],
-        annotation_actuator=source['actuator'],checks=checks)
+        annotation_actuators=sorted({s['actuator'] for s in sources}),
+        exact_annotation_aliases=[dict(name=n,actuator=a,direction=d) for n,a,d in sorted(actual_annotations)],checks=checks)
 
 
 def row_record(row,admission,populations,muscles,body_ids,geometric):
@@ -110,8 +119,9 @@ def row_record(row,admission,populations,muscles,body_ids,geometric):
                   'Current-context decoder/causal admission prerequisites not satisfied.']
     elif joint=='Tarsus1':
         actuator=f"tarsus_{row['segment']}_{row['side']}"
-        exact=[p for p in muscles.values() if p.get('actuator')==actuator]
-        related=[p['name'] for p in muscles.values() if p.get('actuator')==f"tarsus2_{row['segment']}_{row['side']}"]
+        annotations=[p for group in muscles.values() for p in (group if isinstance(group,list) else [group])]
+        exact=[p for p in annotations if p.get('actuator')==actuator]
+        related=sorted({p['name'] for p in annotations if p.get('actuator')==f"tarsus2_{row['segment']}_{row['side']}"})
         if candidates or exact: raise ValueError('missing Tarsus1 annotation evidence changed; re-audit required')
         status='EXACT_TARGET_POPULATION_MAPPING_REQUIRED'
         blockers=['No exact current tarsus_T2/T3 population mapping for this Tarsus1 target.',
@@ -179,10 +189,10 @@ def build():
     freezes.append(frozen_record(PATHS['registration'],data['registration_manifest']['result']['sha256']))
     count,body_ids,*_=decode_neurons(ROOT/PATHS['neurons'])
     if count!=len(body_ids) or len(set(body_ids))!=count: raise ValueError('neuron body-ID index not unique')
-    populations={p['name']:p for p in data['interface']['populations']}
-    muscles={p['name']:p for p in data['bodymap']['muscles']}
-    if len(populations)!=len(data['interface']['populations']) or len(muscles)!=len(data['bodymap']['muscles']):
-        raise ValueError('duplicate exact population names')
+    populations={}
+    muscles={}
+    for p in data['interface']['populations']: populations.setdefault(p['name'],[]).append(p)
+    for p in data['bodymap']['muscles']: muscles.setdefault(p['name'],[]).append(p)
     mapping={r['actuator']:r for r in data['mapping']['per_actuator']}
     rows=[row_record(mapping[r['actuator']],r,populations,muscles,body_ids,data['bridge']) for r in table if not r['neural_motor_admission']]
     if len(rows)!=22 or sum(r['neural_motor_admission'] for r in table)!=20: raise ValueError('20/22 partition mismatch')

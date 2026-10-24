@@ -24,6 +24,22 @@ def test_body_id_dense_index_is_independently_verified(identity):
     assert result['body_ids']==[20,40] and result['dense_indices']==[1,3]
 
 
+def test_multi_target_aliases_retain_ambiguity_without_weakening_identity(identity):
+    populations,muscles,ids=identity
+    p=populations['exact']; s=muscles['exact']
+    second=copy.deepcopy(p); second['bodymap_metadata']['actuator']='coxa_abduct_T1_left'
+    other=copy.deepcopy(s); other['actuator']='coxa_abduct_T1_left'
+    populations['exact']=[p,second];muscles['exact']=[s,other]
+    result=audit.resolve_population('exact',[20,40],populations,muscles,ids)
+    assert result['annotation_actuators']==['coxa_T1_left','coxa_abduct_T1_left']
+    assert len(result['exact_annotation_aliases'])==2
+    second['body_ids']=[20,30]
+    with pytest.raises(ValueError): audit.resolve_population('exact',[20,40],populations,muscles,ids)
+    second['body_ids']=[20,40]
+    muscles['exact']=[s]
+    with pytest.raises(ValueError): audit.resolve_population('exact',[20,40],populations,muscles,ids)
+
+
 @pytest.mark.parametrize('defect',['body','dense','duplicate','count','metadata','float','bodymap'])
 def test_identity_defects_fail_closed(identity,defect):
     populations,muscles,ids=identity

@@ -1,0 +1,7 @@
+{
+  "schema": "remaining-leg-admission-audit-v1",
+  "audit_integrity_passed": false,
+  "scientific_transitions": 0,
+  "new_admissions": 0,
+  "error": "ValueError: duplicate exact population names"
+}
