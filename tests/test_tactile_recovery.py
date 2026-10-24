@@ -4,6 +4,7 @@ import gzip
 import json
 from types import SimpleNamespace
 from unittest.mock import patch
+from unittest.mock import Mock
 
 import numpy as np
 import pytest
@@ -11,6 +12,8 @@ import pytest
 from malecns_backend.live import tactile_recovery as recovery
 from malecns_backend.live import tactile_recovery_metrics as metrics
 from malecns_backend.live.tactile_boundary import Trial
+from malecns_backend.live import tactile_recovery_replay as recorded
+from malecns_backend.live.protocol import pose,validate_pose
 
 
 def force_arm(pushed=True):
@@ -209,3 +212,47 @@ def test_versioned_force_requirement_replaces_only_the_old_no_force_flag(monkeyp
     legacy['checks']['unchanged_strict_requirement']=True
     arm['neural'][999]['delivered']=[1877]  # withdrawal one tick too early
     assert not recovery.arm_audit(arm,'OFF_P',info)['checks']['phase_gate']
+
+
+def test_recorded_replay_labels_resets_and_streams_exact_measured_poses(capsys):
+    samples=[dict(time_s=i*.0001,qpos=[i*.01,0.,.6,1.,0.,0.,0.],joint_positions=[i*.001]*42) for i in range(3)]
+    manifest=dict(artifacts={i:dict(path=f'{i}.json.gz') for i in recovery.FRESH},
+                  evaluation=dict(integrity_passed=True,contrast={'active_balance_proven':False}))
+    server=Mock()
+    server.__enter__=Mock(return_value=server)
+    server.__exit__=Mock(return_value=False)
+    with patch.object(recorded.recovery,'read_gzip',return_value=({'samples':samples},{})):
+        recorded.replay('manifest.json',manifest,{'samples':samples},'PUSHED',loop=False,
+                        server_factory=lambda:server,clock=lambda:0.,sleep=lambda _:None)
+    assert server.publish.call_count==6
+    last=server.publish.call_args.args[0]
+    assert last.joint_positions==tuple(samples[-1]['joint_positions'])
+    assert last.root_position_xyz==tuple(samples[-1]['qpos'][:3])
+    validate_pose(pose('recorded',0,last.time_ms/1000,last.root_position_xyz,last.root_quaternion_wxyz,last.joint_positions))
+    output=capsys.readouterr().out
+    assert 'OFF_P' in output and 'ON_P' in output and 'NOT a simulated jump' in output
+
+
+def test_replay_refuses_unverified_manifest_and_invalid_speed():
+    with pytest.raises(ValueError): recorded.replay('manifest.json',{'evaluation':{}},{},'ALL')
+    with pytest.raises(ValueError): recorded.replay('manifest.json',{}, {},'PUSHED',speed=float('nan'))
+
+
+def test_archived_recovery_full_analysis_and_actual_pose_tcp():
+    import socket
+    path=recovery.ROOT/'docs/evidence/tactile-recovery-v1/manifest.json'
+    manifest,baseline=recorded.load_verified(path)
+    assert manifest['run_status']=='COMPLETE'
+    assert manifest['sources_before']==manifest['sources_after']==recovery.sources()
+    assert manifest['evaluation']['active_balance_proven'] is False
+    with recorded.PoseServer(port=0) as server:
+        with socket.create_connection(('127.0.0.1',server.bound_port),timeout=2.) as client:
+            client.settimeout(2.)
+            with client.makefile('rb') as stream:
+                assert json.loads(stream.readline())['type']=='hello'
+                for index in (0,len(baseline['samples'])-1):
+                    snapshot=recorded.replay_snapshot(baseline['samples'][index],index)
+                    assert server.publish(snapshot,now=float(index))
+                    packet=json.loads(stream.readline())
+                    validate_pose(packet)
+                    assert packet['joint_positions']==list(snapshot.joint_positions)

@@ -1,8 +1,8 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-24. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for the matched-delivery update: `newBrain` at
-`def9f2479ccbb31d81a61db9ee5fc1ca02718ccf`, which merges PR #258.
+Verified baseline for the disturbance/recovery update: `newBrain` at
+`b0a94c6ba484b301db4cf5fbddc618235fcbba20`, which merges PR #259.
 Fetch and inspect current state before starting work.
 
 ## What the user wants
@@ -235,6 +235,39 @@ the saved arms through the existing output-only protocol without rerunning CNS.
 The standard live-v3 launcher remains tactile-disabled. Unity Editor was not run
 by the agent; an actual two-pose TCP smoke check passed. Preserve the right-front
 tarsus null result and distinguish passive mechanical motion from motor spikes.
+
+## Latest update — matched-state disturbance/recovery completed
+
+Protocol, runner and metrics were committed at ce2dde9 before the three fresh
+two-second runs OFF_C, OFF_P, ON_P. ON_C reuses the fully verified archived
+matched-pair ENABLED trace. All cells share exact neural/physical history through
+500 ms. OFF withdraws tactile from 500.5 ms; P adds the unchanged historical M9B
+Thorax pulse [0, 1.024, 0], outgoing transitions 5000..5199. Existing kernel,
+encoder, physiology, support, collision and common 2269-slot RNG schedule remain
+fixed. All integrity checks passed, including full prefix matching, exact wrench
+and sensor attribution. No retries, parameter tuning or weakened acceptance.
+
+Functional outcome is adverse: continued tactile had peak/mean orientation
+deviation 12.798550/5.763657 deg versus withdrawn 3.418028/1.340016, each relative
+to its own undisturbed control. The prospective label is amplified orientation
+response. Both baselines qualified, both pulses resolved and exited recovery
+bands, but neither met the fixed 100 ms sustained return within two seconds.
+Neither rolled over or crossed the low-height limit. This does not establish
+beneficial balance, gait or biological validation. Keep the adverse result.
+
+Full fresh traces and evaluation: `docs/evidence/tactile-recovery-v1/`; prospective
+criteria: `docs/TACTILE_DISTURBANCE_RECOVERY_V1.md`; results/manual Git Bash checks:
+`docs/TACTILE_DISTURBANCE_RECOVERY_RESULTS.md`. Ordinary live tactile remains off.
+`live.tactile_recovery_replay --manifest docs/evidence/tactile-recovery-v1/manifest.json
+--condition PUSHED --speed 0.1` streams measured clips with explicit reset and
+intervention labels; a clip reset is not a simulated jump. Unity Editor was not
+run by the agent. Preserve the known predecessor artifact-hash test failure.
+
+Immediate next task: review recorded pushed and undisturbed conditions, then
+separately design/preregister a motor-application control with exact replayed
+command provenance and matched state/sampling to distinguish active motor
+application from passive mechanics and withdrawal effects. Do not tune neural
+parameters, increase the pulse or broaden normal live mode to obtain a pass.
 
 ## Completed predecessor task — negative-control design requirements
 
