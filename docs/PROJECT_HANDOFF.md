@@ -1,8 +1,8 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-24. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for the frozen-posture analysis update: `newBrain` at
-`feb2f007b2013696dfa41d1c420b7b3c1c4e849e`, which merges PR #263.
+Verified baseline for the remaining-admission audit update: `newBrain` at
+`d747f8007959b961e648d9cc92afd50ea4a9e587`, which merges PR #264.
 Fetch and inspect current state before starting work.
 
 ## What the user wants
@@ -447,6 +447,57 @@ provenance, existing validation and exact missing prerequisites. Identify the ne
 defensible separate admission protocol from reference evidence, not activity or
 effect ranking. Preserve calibrated physiology, all locks/nulls/tradeoffs and the
 distinction between structural mapping, validated admission and emergent behavior.
+
+## Latest update — remaining 22 admission coordinates audited
+
+Data-only current-v3 projection confirms 20/42 admitted motors. All remaining
+22 rows have exact action/annotation/neuron identity and blocker records in
+`docs/evidence/remaining-leg-admission-audit-v1_1/`. Results:
+12 Coxa/Coxa_roll shared-axis ambiguities; 6 Coxa_yaw anatomical sign bridges
+unresolved; 4 middle/hind Tarsus1 exact target mappings absent. Tarsus2 annotations
+are different targets and are not promoted/mirrored. Newly admitted channels = 0.
+
+Initial audit v1 (source commit 0128b86) failed on an incorrect global population-
+name uniqueness assumption; its error output is preserved under v1. The separately
+documented v1.1 correction committed at 2996dcc before generation validates every
+selected alias against identical complete body-ID/dense-index identities and
+exhaustive metadata, retaining multi-target ambiguity. No last-wins selection or
+pool union. The exact immutable neurons.flyn index was decoded; no brain/physics
+runtime or scientific transition was constructed/executed by the auditor.
+
+All six old yaw anterior projections remain zero, classifications unresolved and
+coordinate signs null. Existing LF-only local registration has seven covectors
+whose transforms reproduce within 1e-12; it explicitly does not establish MaleCNS
+coordinate signs/decoder weights or admission. Five LF candidate identities are
+checked. Existing three-seed recruitment null decisions remain older 11-motor
+context records, not inevitable silence in current tactile/v3 context.
+
+Three old raw freeze checks fail in CRLF representation; canonical LF bytes match
+both unchanged expected hashes and original Git blobs. Audit records raw failure
+separately (all_original_raw_freezes_satisfied=false), not as a passed prerequisite.
+No artifact/hash/verifier is altered; future scientific execution must satisfy
+the original raw prerequisites independently. Admission remains blocked regardless.
+
+Relevant matrix: 55 passed / 5 historical failures, all five reproduced on primary
+checkout without new code. One assumes NOT_RUN despite frozen COMPLETE, three
+call preflight against occupied frozen output, one double-converts CRLF. No old
+test/code/artifact changed to hide these failures. All 15 new audit tests pass;
+actual v1.1 generation and user review command pass. Zero new admissions/steps.
+
+Read `docs/REMAINING_LEG_ADMISSION_RESULTS.md` and
+`docs/LF_PROXIMAL_ADMISSION_PREREQUISITES_V1.md`. Review:
+`embodiment.remaining_leg_admission_review --report
+docs/evidence/remaining-leg-admission-audit-v1_1/audit.json`; open matrix.md and plan
+in VS Code. No Unity run. Include exact Git Bash commands in every final update.
+
+Immediate next task: LF proximal reference-backed population-to-muscle activation/
+sign binding and multi-axis mapping prerequisites, using the five exact populations
+and seven LF-only local tendon records. Resolve broad promotor multi-tendon hypotheses
+without averaging/ranking by outcome. Do not infer a coordinate sign from names,
+neurotransmitter alone or geometric dominance. Only after independent reference and
+numeric/application gates are specified, create a separate bounded validation
+protocol in the current context. Never tune neural parameters to obtain activity,
+reinterpret frozen yaw nulls, mirror front tarsi or flip current admission flags.
 
 ## Completed predecessor task — negative-control design requirements
 
