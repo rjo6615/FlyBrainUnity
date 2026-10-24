@@ -1,8 +1,8 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-24. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for the live-context update: `newBrain` at
-`5df78a6c4b46b0c6e8197c8ca768b69a17e54d5b`, which merges PR #257.
+Verified baseline for the disturbance/recovery update: `newBrain` at
+`b0a94c6ba484b301db4cf5fbddc618235fcbba20`, which merges PR #259.
 Fetch and inspect current state before starting work.
 
 ## What the user wants
@@ -187,12 +187,87 @@ physics-only implementation smoke test showed exact observed/unobserved parity;
 its held-joint context is not scientific live-v3 evidence. See
 `docs/LIVE_CONTACT_CONTEXT_RESULTS.md` for details and Git Bash commands.
 
-Immediate next task: design and separately version a matched tactile-delivery
+The next task at that checkpoint was to design and separately version matched tactile-delivery
 enabled/withheld experiment in the tested supported context, reusing the encoder
 and independent/common candidate sampling, with pre-intervention equivalence and
 verified delivery/readout boundaries. Define treatment of unobserved contact
 sources explicitly. No tactile delivery is enabled by this update. Acceptance
 does not establish balance, gait or biological transduction.
+
+## Latest update — matched tactile delivery changed the simulated body
+
+The fixed two-second WITHHELD/ENABLED protocol and instance-local external-input
+adapter were committed at 24af69f before execution. Both fresh live-v3 arms ran
+20000 physics transitions / 4000 neural updates, keeping normal supported physics,
+20 motor interfaces and all physiological/encoder parameters fixed. They use a
+prospectively common 2269-slot CNS external RNG schedule in both arms; this is an
+explicit assay context. No locked kernel/neural/encoder source or ordinary live
+default was changed. Six complete tactile populations (1877 neurons) are sampled
+in both arms; only the input delivery mask differs. No retries or tuning ran.
+
+All paired integrity and calibrated-context checks passed. First eligible tactile
+event / CNS divergence was 0.5 ms; non-input state divergence 2.5 ms; non-input
+spike divergence 5.5 ms; motor spike/decoder/command divergence 14.5 ms; physical,
+joint and contact-force divergence 14.6 ms. Excluding all 2269 input neurons
+distinguishes downstream effects from directly driven sensory spikes.
+
+WITHHELD delivered zero tactile events; ENABLED delivered 64431 over the fixed
+window. Later contact/candidate totals legitimately diverge in closed loop. The
+previously investigated right-front femur motor readout had 0/56 spikes
+(WITHHELD/ENABLED), left-front tarsus 0/9, right-front tarsus 0/0. Full-window A/B
+joint differences reached 15.10 degrees at left-middle tibia; maximum root
+separation was 0.291869 model mm. These are simulated effects, not balance/gait
+or biological validation. No positive calibration-surface coverage was observed.
+
+Full raw pair is in Git LFS at `docs/evidence/matched-tactile-v1.json.gz`; hashes,
+full checks, counts and descriptive magnitudes are in
+`docs/evidence/matched-tactile-checkpoint.json`. See
+`docs/MATCHED_TACTILE_DELIVERY_V1.md` for prospective criteria and
+`docs/MATCHED_TACTILE_DELIVERY_RESULTS.md` for actual checks and Unity commands.
+The older tactile-contact artifact hash test fails unchanged in origin/newBrain
+because d03f2a6 added live metadata without changing biological populations;
+neither the expected hash nor the artifact was refreshed in this update.
+
+Immediate next task: review the paired recorded Unity poses and intervention
+evidence, then design any ordinary live tactile mode or next motor/balance
+experiment separately. `live.tactile_replay --condition BOTH --speed 0.1` streams
+the saved arms through the existing output-only protocol without rerunning CNS.
+The standard live-v3 launcher remains tactile-disabled. Unity Editor was not run
+by the agent; an actual two-pose TCP smoke check passed. Preserve the right-front
+tarsus null result and distinguish passive mechanical motion from motor spikes.
+
+## Latest update — matched-state disturbance/recovery completed
+
+Protocol, runner and metrics were committed at ce2dde9 before the three fresh
+two-second runs OFF_C, OFF_P, ON_P. ON_C reuses the fully verified archived
+matched-pair ENABLED trace. All cells share exact neural/physical history through
+500 ms. OFF withdraws tactile from 500.5 ms; P adds the unchanged historical M9B
+Thorax pulse [0, 1.024, 0], outgoing transitions 5000..5199. Existing kernel,
+encoder, physiology, support, collision and common 2269-slot RNG schedule remain
+fixed. All integrity checks passed, including full prefix matching, exact wrench
+and sensor attribution. No retries, parameter tuning or weakened acceptance.
+
+Functional outcome is adverse: continued tactile had peak/mean orientation
+deviation 12.798550/5.763657 deg versus withdrawn 3.418028/1.340016, each relative
+to its own undisturbed control. The prospective label is amplified orientation
+response. Both baselines qualified, both pulses resolved and exited recovery
+bands, but neither met the fixed 100 ms sustained return within two seconds.
+Neither rolled over or crossed the low-height limit. This does not establish
+beneficial balance, gait or biological validation. Keep the adverse result.
+
+Full fresh traces and evaluation: `docs/evidence/tactile-recovery-v1/`; prospective
+criteria: `docs/TACTILE_DISTURBANCE_RECOVERY_V1.md`; results/manual Git Bash checks:
+`docs/TACTILE_DISTURBANCE_RECOVERY_RESULTS.md`. Ordinary live tactile remains off.
+`live.tactile_recovery_replay --manifest docs/evidence/tactile-recovery-v1/manifest.json
+--condition PUSHED --speed 0.1` streams measured clips with explicit reset and
+intervention labels; a clip reset is not a simulated jump. Unity Editor was not
+run by the agent. Preserve the known predecessor artifact-hash test failure.
+
+Immediate next task: review recorded pushed and undisturbed conditions, then
+separately design/preregister a motor-application control with exact replayed
+command provenance and matched state/sampling to distinguish active motor
+application from passive mechanics and withdrawal effects. Do not tune neural
+parameters, increase the pulse or broaden normal live mode to obtain a pass.
 
 ## Completed predecessor task — negative-control design requirements
 
