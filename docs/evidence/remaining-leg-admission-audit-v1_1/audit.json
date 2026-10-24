@@ -1,0 +1,2814 @@
+{
+  "schema": "remaining-leg-admission-audit-v1.1",
+  "audit_integrity_passed": true,
+  "scientific_transitions": 0,
+  "new_admissions": 0,
+  "current_motor_count": 20,
+  "model_coordinates": 42,
+  "remaining_count": 22,
+  "source_hashes_before": {
+    "malecns_backend/embodiment/interface_output/whole_leg_motor_mapping_audit.json": {
+      "raw_sha256": "722ee9b3b1d6a0fad2bf8ef0f02fc63f49277c5f44e3bccf27898e6c4ea673d9",
+      "canonical_content_sha256": "722ee9b3b1d6a0fad2bf8ef0f02fc63f49277c5f44e3bccf27898e6c4ea673d9"
+    },
+    "malecns_backend/interface_map.json": {
+      "raw_sha256": "d0eb9df5f4664fe93ab7d181bcd51f9b451a32b548aea014246b82fc2aa5b644",
+      "canonical_content_sha256": "24b7229bea6f24ff0e65fe09b202d42dc06819fe234194e3c3ab95b596319e0b"
+    },
+    "fly-brain-main/public/data/bodymap.json": {
+      "raw_sha256": "10630cd4c7a6cc2c1dcfcbee4a602d307f06766f316b185f631406813a58da9d",
+      "canonical_content_sha256": "10630cd4c7a6cc2c1dcfcbee4a602d307f06766f316b185f631406813a58da9d"
+    },
+    "fly-brain-main/public/data/neurons.flyn": {
+      "raw_sha256": "91630046af02826299834179bb07726d1ed9b7dd1426e90315c011e42011f6e7",
+      "canonical_content_sha256": "91630046af02826299834179bb07726d1ed9b7dd1426e90315c011e42011f6e7"
+    },
+    "malecns_backend/embodiment/interface_output/coxa_yaw_sign_validation/coxa_yaw_sign_validation_result.json": {
+      "raw_sha256": "5c6360ee8e04814d3b27ca2d743337511f0b5d4afe935df4933429ecc485cd26",
+      "canonical_content_sha256": "33e713e9cbf138fc6fcd21587a625e6c8b979d7b6ed1a15489f3262483d1210c"
+    },
+    "malecns_backend/embodiment/interface_output/coxa_yaw_sign_validation/COXA_YAW_SIGN_VALIDATION_FREEZE.json": {
+      "raw_sha256": "4af323b538215e700af1dc3179a7ad4b402377019c7e5c41b5e4ded4900f98b0",
+      "canonical_content_sha256": "588b2cc7533ec5b8dafc8745b03ce8f94f45970776bcf1bea76167ebf2fed315"
+    },
+    "malecns_backend/embodiment/interface_output/coxa_yaw_anatomical_sign_bridge/coxa_yaw_anatomical_sign_bridge_result.json": {
+      "raw_sha256": "0dc656898a2efd8cbe8b4681f0b2c6eae30e8cb16595ae5d2b42762d8c1b38b7",
+      "canonical_content_sha256": "4da8a7407e207ca3812aae85b591a9d80c304e837b69f3f17e338f84c38dd7e7"
+    },
+    "malecns_backend/embodiment/interface_output/coxa_yaw_anatomical_sign_bridge/COXA_YAW_ANATOMICAL_SIGN_BRIDGE_FREEZE.json": {
+      "raw_sha256": "c234482cf976431973385a90abf6245af10cd720798b042c2eff271fd878cfad",
+      "canonical_content_sha256": "d6ba33b4ce226c90f808dd31dfd54c58e3767c2062ba74d182d8d15fd8fa3e72"
+    },
+    "malecns_backend/embodiment/interface_output/flymimic_flygym_proximal_registration/flymimic_flygym_proximal_registration_result.json": {
+      "raw_sha256": "8c8cc389dddc51b3ef465d4dd385ee7c23e25e900824d53ee6b082847377403b",
+      "canonical_content_sha256": "a06b342390d6132a37b50766085390adb1a9eb8c1c34849f1f56dd69578e0684"
+    },
+    "malecns_backend/embodiment/interface_output/flymimic_flygym_proximal_registration/flymimic_flygym_proximal_registration_manifest.json": {
+      "raw_sha256": "abf9d0d76a017b3f848c991bf9e4553199d5912c43dcd88ce21fc81f458a0190",
+      "canonical_content_sha256": "afaa1f3f6c55367bdf564cd897d33f4b027d0f42f8041e7223e4220a2eabd20e"
+    },
+    "malecns_backend/embodiment/interface_output/lf_proximal_candidate_mapping_review/lf_proximal_candidate_mapping_review_preregistration.json": {
+      "raw_sha256": "0c9a60e14c144fe81437ff982077c7b2cbd419dc21b9cf9b856d30466186fb54",
+      "canonical_content_sha256": "6966b0d78622e0a478311b7a47b1195c8d2189a14c44e4d05d619137c0cf17b9"
+    },
+    "malecns_backend/embodiment/interface_output/lf_proximal_candidate_mapping_review/lf_proximal_candidate_activity_evidence_addendum.json": {
+      "raw_sha256": "7241f5e2ab5964d5952cd1034f2bbbf464bd9a502871172080d0da92c166ec3c",
+      "canonical_content_sha256": "aac7497241695842e39387ed93bd2562f39087cd59021d2b482889113ec64002"
+    },
+    "malecns_backend/embodiment/interface_output/lf_proximal_motor_recruitment/lf_proximal_motor_recruitment_result.json": {
+      "raw_sha256": "e48bcaf1673871252284d118831410beccf74895d9bdc950d9f9d6c200cb94b9",
+      "canonical_content_sha256": "33165b89c117b6ca2ee9852cf7c64e2da879f2484cdb05fb3db2fa32978e4401"
+    },
+    "docs/REMAINING_LEG_ADMISSION_AUDIT_V1.md": {
+      "raw_sha256": "4e86e5ad13fa977e1f446217f1f4e0af65f861b6146435795651b78eda5c4d54",
+      "canonical_content_sha256": "4e86e5ad13fa977e1f446217f1f4e0af65f861b6146435795651b78eda5c4d54"
+    },
+    "docs/REMAINING_LEG_ADMISSION_AUDIT_V1_1.md": {
+      "raw_sha256": "a1b4b67b9966ffb8b6c4c0e4fdb6c71d7e76ddc4054d18998ae712b18b589d2a",
+      "canonical_content_sha256": "a1b4b67b9966ffb8b6c4c0e4fdb6c71d7e76ddc4054d18998ae712b18b589d2a"
+    },
+    "malecns_backend/embodiment/remaining_leg_admission_audit.py": {
+      "raw_sha256": "99e02108bffa3cbbaf7a3a3bbfc34e2a572e1d33f9c69f968d3ba073ef60717f",
+      "canonical_content_sha256": "99e02108bffa3cbbaf7a3a3bbfc34e2a572e1d33f9c69f968d3ba073ef60717f"
+    },
+    "malecns_backend/codec.py": {
+      "raw_sha256": "1c423da153d3cbe85b9a36a964adf2ba7dcfdf0bf3c6f2d7a888b19390c23fc7",
+      "canonical_content_sha256": "f9e252263c5c4d29d7a2cc13ba867254b933bf89951e6b0906c591fcec9d8d65"
+    },
+    "malecns_backend/live/protocol.py": {
+      "raw_sha256": "6afe610c86a0c31f815cf1acbf5a913c36ffa8e422107ce628fa82e417498825",
+      "canonical_content_sha256": "6bb277dba884b97399cc31ac92ab346d2a33b6d87e99a90ec84e1887f21ad789"
+    },
+    "malecns_backend/embodiment/live_v3_motor_interface.py": {
+      "raw_sha256": "7cc82c8e667932c404441f82672761e038d838e0204c611592719667d84e7205",
+      "canonical_content_sha256": "6bf362442405994dc8ddfaf7a0fd8a29d499dad85c72277bd1fe9c3ab3044e05"
+    },
+    "malecns_backend/embodiment/live_v2_motor_interface.py": {
+      "raw_sha256": "b421c990b9ee2ad3f9bda30291257e5c0699d7da8d0a62d3eab439164a1a89fb",
+      "canonical_content_sha256": "6472a46b3012b3fd94bc202b8ec974783c41ae9065fabd0892a7de42dd81760b"
+    },
+    "malecns_backend/embodiment/whole_leg_motor_mapping_audit.py": {
+      "raw_sha256": "bbc21b2204fc89e405ac4d90dc0f5fe09f09737222bf7c55cab2a6f25b1db2cf",
+      "canonical_content_sha256": "fd211b9ff42e39f47242bac1ce51bf4f05b4bd8514ba021839dedbc826b8c9cc"
+    },
+    "malecns_backend/embodiment/coxa_yaw_anatomical_sign_bridge.py": {
+      "raw_sha256": "7e472d271782f01b766c165716f526b33309c4205cd792a1843bcad80aedebc8",
+      "canonical_content_sha256": "af040e56cada41163ab7df51473403306f96b72564dbd35cf827e5c52a71299f"
+    }
+  },
+  "source_hashes_after": {
+    "malecns_backend/embodiment/interface_output/whole_leg_motor_mapping_audit.json": {
+      "raw_sha256": "722ee9b3b1d6a0fad2bf8ef0f02fc63f49277c5f44e3bccf27898e6c4ea673d9",
+      "canonical_content_sha256": "722ee9b3b1d6a0fad2bf8ef0f02fc63f49277c5f44e3bccf27898e6c4ea673d9"
+    },
+    "malecns_backend/interface_map.json": {
+      "raw_sha256": "d0eb9df5f4664fe93ab7d181bcd51f9b451a32b548aea014246b82fc2aa5b644",
+      "canonical_content_sha256": "24b7229bea6f24ff0e65fe09b202d42dc06819fe234194e3c3ab95b596319e0b"
+    },
+    "fly-brain-main/public/data/bodymap.json": {
+      "raw_sha256": "10630cd4c7a6cc2c1dcfcbee4a602d307f06766f316b185f631406813a58da9d",
+      "canonical_content_sha256": "10630cd4c7a6cc2c1dcfcbee4a602d307f06766f316b185f631406813a58da9d"
+    },
+    "fly-brain-main/public/data/neurons.flyn": {
+      "raw_sha256": "91630046af02826299834179bb07726d1ed9b7dd1426e90315c011e42011f6e7",
+      "canonical_content_sha256": "91630046af02826299834179bb07726d1ed9b7dd1426e90315c011e42011f6e7"
+    },
+    "malecns_backend/embodiment/interface_output/coxa_yaw_sign_validation/coxa_yaw_sign_validation_result.json": {
+      "raw_sha256": "5c6360ee8e04814d3b27ca2d743337511f0b5d4afe935df4933429ecc485cd26",
+      "canonical_content_sha256": "33e713e9cbf138fc6fcd21587a625e6c8b979d7b6ed1a15489f3262483d1210c"
+    },
+    "malecns_backend/embodiment/interface_output/coxa_yaw_sign_validation/COXA_YAW_SIGN_VALIDATION_FREEZE.json": {
+      "raw_sha256": "4af323b538215e700af1dc3179a7ad4b402377019c7e5c41b5e4ded4900f98b0",
+      "canonical_content_sha256": "588b2cc7533ec5b8dafc8745b03ce8f94f45970776bcf1bea76167ebf2fed315"
+    },
+    "malecns_backend/embodiment/interface_output/coxa_yaw_anatomical_sign_bridge/coxa_yaw_anatomical_sign_bridge_result.json": {
+      "raw_sha256": "0dc656898a2efd8cbe8b4681f0b2c6eae30e8cb16595ae5d2b42762d8c1b38b7",
+      "canonical_content_sha256": "4da8a7407e207ca3812aae85b591a9d80c304e837b69f3f17e338f84c38dd7e7"
+    },
+    "malecns_backend/embodiment/interface_output/coxa_yaw_anatomical_sign_bridge/COXA_YAW_ANATOMICAL_SIGN_BRIDGE_FREEZE.json": {
+      "raw_sha256": "c234482cf976431973385a90abf6245af10cd720798b042c2eff271fd878cfad",
+      "canonical_content_sha256": "d6ba33b4ce226c90f808dd31dfd54c58e3767c2062ba74d182d8d15fd8fa3e72"
+    },
+    "malecns_backend/embodiment/interface_output/flymimic_flygym_proximal_registration/flymimic_flygym_proximal_registration_result.json": {
+      "raw_sha256": "8c8cc389dddc51b3ef465d4dd385ee7c23e25e900824d53ee6b082847377403b",
+      "canonical_content_sha256": "a06b342390d6132a37b50766085390adb1a9eb8c1c34849f1f56dd69578e0684"
+    },
+    "malecns_backend/embodiment/interface_output/flymimic_flygym_proximal_registration/flymimic_flygym_proximal_registration_manifest.json": {
+      "raw_sha256": "abf9d0d76a017b3f848c991bf9e4553199d5912c43dcd88ce21fc81f458a0190",
+      "canonical_content_sha256": "afaa1f3f6c55367bdf564cd897d33f4b027d0f42f8041e7223e4220a2eabd20e"
+    },
+    "malecns_backend/embodiment/interface_output/lf_proximal_candidate_mapping_review/lf_proximal_candidate_mapping_review_preregistration.json": {
+      "raw_sha256": "0c9a60e14c144fe81437ff982077c7b2cbd419dc21b9cf9b856d30466186fb54",
+      "canonical_content_sha256": "6966b0d78622e0a478311b7a47b1195c8d2189a14c44e4d05d619137c0cf17b9"
+    },
+    "malecns_backend/embodiment/interface_output/lf_proximal_candidate_mapping_review/lf_proximal_candidate_activity_evidence_addendum.json": {
+      "raw_sha256": "7241f5e2ab5964d5952cd1034f2bbbf464bd9a502871172080d0da92c166ec3c",
+      "canonical_content_sha256": "aac7497241695842e39387ed93bd2562f39087cd59021d2b482889113ec64002"
+    },
+    "malecns_backend/embodiment/interface_output/lf_proximal_motor_recruitment/lf_proximal_motor_recruitment_result.json": {
+      "raw_sha256": "e48bcaf1673871252284d118831410beccf74895d9bdc950d9f9d6c200cb94b9",
+      "canonical_content_sha256": "33165b89c117b6ca2ee9852cf7c64e2da879f2484cdb05fb3db2fa32978e4401"
+    },
+    "docs/REMAINING_LEG_ADMISSION_AUDIT_V1.md": {
+      "raw_sha256": "4e86e5ad13fa977e1f446217f1f4e0af65f861b6146435795651b78eda5c4d54",
+      "canonical_content_sha256": "4e86e5ad13fa977e1f446217f1f4e0af65f861b6146435795651b78eda5c4d54"
+    },
+    "docs/REMAINING_LEG_ADMISSION_AUDIT_V1_1.md": {
+      "raw_sha256": "a1b4b67b9966ffb8b6c4c0e4fdb6c71d7e76ddc4054d18998ae712b18b589d2a",
+      "canonical_content_sha256": "a1b4b67b9966ffb8b6c4c0e4fdb6c71d7e76ddc4054d18998ae712b18b589d2a"
+    },
+    "malecns_backend/embodiment/remaining_leg_admission_audit.py": {
+      "raw_sha256": "99e02108bffa3cbbaf7a3a3bbfc34e2a572e1d33f9c69f968d3ba073ef60717f",
+      "canonical_content_sha256": "99e02108bffa3cbbaf7a3a3bbfc34e2a572e1d33f9c69f968d3ba073ef60717f"
+    },
+    "malecns_backend/codec.py": {
+      "raw_sha256": "1c423da153d3cbe85b9a36a964adf2ba7dcfdf0bf3c6f2d7a888b19390c23fc7",
+      "canonical_content_sha256": "f9e252263c5c4d29d7a2cc13ba867254b933bf89951e6b0906c591fcec9d8d65"
+    },
+    "malecns_backend/live/protocol.py": {
+      "raw_sha256": "6afe610c86a0c31f815cf1acbf5a913c36ffa8e422107ce628fa82e417498825",
+      "canonical_content_sha256": "6bb277dba884b97399cc31ac92ab346d2a33b6d87e99a90ec84e1887f21ad789"
+    },
+    "malecns_backend/embodiment/live_v3_motor_interface.py": {
+      "raw_sha256": "7cc82c8e667932c404441f82672761e038d838e0204c611592719667d84e7205",
+      "canonical_content_sha256": "6bf362442405994dc8ddfaf7a0fd8a29d499dad85c72277bd1fe9c3ab3044e05"
+    },
+    "malecns_backend/embodiment/live_v2_motor_interface.py": {
+      "raw_sha256": "b421c990b9ee2ad3f9bda30291257e5c0699d7da8d0a62d3eab439164a1a89fb",
+      "canonical_content_sha256": "6472a46b3012b3fd94bc202b8ec974783c41ae9065fabd0892a7de42dd81760b"
+    },
+    "malecns_backend/embodiment/whole_leg_motor_mapping_audit.py": {
+      "raw_sha256": "bbc21b2204fc89e405ac4d90dc0f5fe09f09737222bf7c55cab2a6f25b1db2cf",
+      "canonical_content_sha256": "fd211b9ff42e39f47242bac1ce51bf4f05b4bd8514ba021839dedbc826b8c9cc"
+    },
+    "malecns_backend/embodiment/coxa_yaw_anatomical_sign_bridge.py": {
+      "raw_sha256": "7e472d271782f01b766c165716f526b33309c4205cd792a1843bcad80aedebc8",
+      "canonical_content_sha256": "af040e56cada41163ab7df51473403306f96b72564dbd35cf827e5c52a71299f"
+    }
+  },
+  "legacy_frozen_checks": [
+    {
+      "path": "malecns_backend/embodiment/interface_output/coxa_yaw_sign_validation/coxa_yaw_sign_validation_result.json",
+      "expected_sha256": "33e713e9cbf138fc6fcd21587a625e6c8b979d7b6ed1a15489f3262483d1210c",
+      "actual_raw_sha256": "5c6360ee8e04814d3b27ca2d743337511f0b5d4afe935df4933429ecc485cd26",
+      "raw_lock_passed": false,
+      "canonical_content_verified": true,
+      "interpretation": "RAW_LOCK_FAILED_CHECKOUT_CRLF_ONLY; original prerequisite has NOT passed"
+    },
+    {
+      "path": "malecns_backend/embodiment/interface_output/coxa_yaw_anatomical_sign_bridge/coxa_yaw_anatomical_sign_bridge_result.json",
+      "expected_sha256": "4da8a7407e207ca3812aae85b591a9d80c304e837b69f3f17e338f84c38dd7e7",
+      "actual_raw_sha256": "0dc656898a2efd8cbe8b4681f0b2c6eae30e8cb16595ae5d2b42762d8c1b38b7",
+      "raw_lock_passed": false,
+      "canonical_content_verified": true,
+      "interpretation": "RAW_LOCK_FAILED_CHECKOUT_CRLF_ONLY; original prerequisite has NOT passed"
+    },
+    {
+      "path": "malecns_backend/embodiment/interface_output/flymimic_flygym_proximal_registration/flymimic_flygym_proximal_registration_result.json",
+      "expected_sha256": "a06b342390d6132a37b50766085390adb1a9eb8c1c34849f1f56dd69578e0684",
+      "actual_raw_sha256": "8c8cc389dddc51b3ef465d4dd385ee7c23e25e900824d53ee6b082847377403b",
+      "raw_lock_passed": false,
+      "canonical_content_verified": true,
+      "interpretation": "RAW_LOCK_FAILED_CHECKOUT_CRLF_ONLY; original prerequisite has NOT passed"
+    }
+  ],
+  "all_original_raw_freezes_satisfied": false,
+  "counts": {
+    "SHARED_AXIS_BINDING_REQUIRED": 12,
+    "ANATOMICAL_ACTION_SIGN_BRIDGE_REQUIRED": 6,
+    "EXACT_TARGET_POPULATION_MAPPING_REQUIRED": 4
+  },
+  "rows": [
+    {
+      "actuator": "joint_LFCoxa",
+      "action_index": 0,
+      "leg": "LF",
+      "joint_class": "Coxa",
+      "current_admission": {
+        "actuator": "joint_LFCoxa",
+        "leg": "LF",
+        "joint_class": "Coxa",
+        "action_index": 0,
+        "tier": "C",
+        "sensory_status": "WITHHELD_NO_VALIDATED_M6C_MAPPING",
+        "motor_status": "AMBIGUOUS",
+        "validation_source": "M6A",
+        "neural_motor_admission": false,
+        "neural_sensory_admission": false,
+        "coordinate_sign": null,
+        "coordinate_sign_status": "NOT_VALIDATED",
+        "reason": "withheld by whole-leg unsupported-interface policy",
+        "handling": "baseline_only_zero_neural_contribution"
+      },
+      "historical_mapping_status": "AMBIGUOUS",
+      "historical_decoder_readiness": "AMBIGUOUS_DIRECTION",
+      "unique_mapping": false,
+      "candidate_physical_axes": [
+        "joint_LFCoxa",
+        "joint_LFCoxa_roll"
+      ],
+      "shared_axis_conflict": true,
+      "candidates": [
+        {
+          "name": "Pleural remotor/abductor MN T1 left",
+          "body_ids": [
+            802509,
+            803803
+          ],
+          "dense_indices": [
+            144657,
+            145652
+          ],
+          "count": 2,
+          "direction": -1,
+          "annotation_actuators": [
+            "coxa_T1_left",
+            "coxa_abduct_T1_left"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Pleural remotor/abductor MN T1 left",
+              "actuator": "coxa_T1_left",
+              "direction": -1
+            },
+            {
+              "name": "Pleural remotor/abductor MN T1 left",
+              "actuator": "coxa_abduct_T1_left",
+              "direction": -1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        },
+        {
+          "name": "Tergopleural/Pleural promotor MN T1 left",
+          "body_ids": [
+            800061,
+            801173,
+            807281,
+            934091
+          ],
+          "dense_indices": [
+            142836,
+            143654,
+            148512,
+            162856
+          ],
+          "count": 4,
+          "direction": 1,
+          "annotation_actuators": [
+            "coxa_T1_left"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Tergopleural/Pleural promotor MN T1 left",
+              "actuator": "coxa_T1_left",
+              "direction": 1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        }
+      ],
+      "opposing_pool_overlap": [],
+      "evidence": {},
+      "status": "SHARED_AXIS_BINDING_REQUIRED",
+      "blockers": [
+        "Shared population-to-Coxa/Coxa_roll decomposition unresolved.",
+        "Unique anatomical action/sign and validated multi-axis decoder/admission unavailable."
+      ],
+      "admission_ready": false,
+      "coordinate_sign_assigned_by_audit": null
+    },
+    {
+      "actuator": "joint_LFCoxa_roll",
+      "action_index": 1,
+      "leg": "LF",
+      "joint_class": "Coxa_roll",
+      "current_admission": {
+        "actuator": "joint_LFCoxa_roll",
+        "leg": "LF",
+        "joint_class": "Coxa_roll",
+        "action_index": 1,
+        "tier": "C",
+        "sensory_status": "WITHHELD_NO_VALIDATED_M6C_MAPPING",
+        "motor_status": "AMBIGUOUS",
+        "validation_source": "M6A",
+        "neural_motor_admission": false,
+        "neural_sensory_admission": false,
+        "coordinate_sign": null,
+        "coordinate_sign_status": "NOT_VALIDATED",
+        "reason": "withheld by whole-leg unsupported-interface policy",
+        "handling": "baseline_only_zero_neural_contribution"
+      },
+      "historical_mapping_status": "AMBIGUOUS",
+      "historical_decoder_readiness": "AMBIGUOUS_DIRECTION",
+      "unique_mapping": false,
+      "candidate_physical_axes": [
+        "joint_LFCoxa",
+        "joint_LFCoxa_roll"
+      ],
+      "shared_axis_conflict": true,
+      "candidates": [
+        {
+          "name": "Pleural remotor/abductor MN T1 left",
+          "body_ids": [
+            802509,
+            803803
+          ],
+          "dense_indices": [
+            144657,
+            145652
+          ],
+          "count": 2,
+          "direction": -1,
+          "annotation_actuators": [
+            "coxa_T1_left",
+            "coxa_abduct_T1_left"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Pleural remotor/abductor MN T1 left",
+              "actuator": "coxa_T1_left",
+              "direction": -1
+            },
+            {
+              "name": "Pleural remotor/abductor MN T1 left",
+              "actuator": "coxa_abduct_T1_left",
+              "direction": -1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        },
+        {
+          "name": "Sternal adductor MN T1 left",
+          "body_ids": [
+            813480
+          ],
+          "dense_indices": [
+            153568
+          ],
+          "count": 1,
+          "direction": 1,
+          "annotation_actuators": [
+            "coxa_abduct_T1_left"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Sternal adductor MN T1 left",
+              "actuator": "coxa_abduct_T1_left",
+              "direction": 1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        }
+      ],
+      "opposing_pool_overlap": [],
+      "evidence": {},
+      "status": "SHARED_AXIS_BINDING_REQUIRED",
+      "blockers": [
+        "Shared population-to-Coxa/Coxa_roll decomposition unresolved.",
+        "Unique anatomical action/sign and validated multi-axis decoder/admission unavailable."
+      ],
+      "admission_ready": false,
+      "coordinate_sign_assigned_by_audit": null
+    },
+    {
+      "actuator": "joint_LFCoxa_yaw",
+      "action_index": 2,
+      "leg": "LF",
+      "joint_class": "Coxa_yaw",
+      "current_admission": {
+        "actuator": "joint_LFCoxa_yaw",
+        "leg": "LF",
+        "joint_class": "Coxa_yaw",
+        "action_index": 2,
+        "tier": "B",
+        "sensory_status": "WITHHELD_NO_VALIDATED_M6C_MAPPING",
+        "motor_status": "SUPPORTED",
+        "validation_source": "M6B_P3",
+        "neural_motor_admission": false,
+        "neural_sensory_admission": false,
+        "coordinate_sign": null,
+        "coordinate_sign_status": "SIGN_UNRESOLVED",
+        "reason": "withheld: physical coordinate sign unresolved",
+        "handling": "baseline_only_zero_neural_contribution"
+      },
+      "historical_mapping_status": "SUPPORTED",
+      "historical_decoder_readiness": "DIRECTIONALLY_RESOLVABLE",
+      "unique_mapping": true,
+      "candidate_physical_axes": [
+        "joint_LFCoxa_yaw"
+      ],
+      "shared_axis_conflict": false,
+      "candidates": [
+        {
+          "name": "Sternal anterior rotator MN T1 left",
+          "body_ids": [
+            806923,
+            919509
+          ],
+          "dense_indices": [
+            148218,
+            162458
+          ],
+          "count": 2,
+          "direction": 1,
+          "annotation_actuators": [
+            "coxa_twist_T1_left"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Sternal anterior rotator MN T1 left",
+              "actuator": "coxa_twist_T1_left",
+              "direction": 1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        },
+        {
+          "name": "Sternal posterior rotator MN T1 left",
+          "body_ids": [
+            801915,
+            804851,
+            808640,
+            1050335829
+          ],
+          "dense_indices": [
+            144222,
+            146498,
+            149652,
+            164685
+          ],
+          "count": 4,
+          "direction": -1,
+          "annotation_actuators": [
+            "coxa_twist_T1_left"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Sternal posterior rotator MN T1 left",
+              "actuator": "coxa_twist_T1_left",
+              "direction": -1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        }
+      ],
+      "opposing_pool_overlap": [],
+      "evidence": {
+        "recorded_mechanical_valid": true,
+        "recorded_geometry_identity": true,
+        "anatomical_classification": "ANATOMICAL_SIGN_GEOMETRICALLY_UNRESOLVED",
+        "positive_anterior_projection": 0.0,
+        "negative_anterior_projection": 0.0,
+        "anterior_coordinate_sign": null,
+        "historical_active_motors": 11
+      },
+      "status": "ANATOMICAL_ACTION_SIGN_BRIDGE_REQUIRED",
+      "blockers": [
+        "Mechanical coordinate rotation recorded; biological anterior/posterior-to-coordinate sign unresolved.",
+        "Frozen anterior-projection null must not be reinterpreted with a favorable metric.",
+        "Current-context decoder/causal admission prerequisites not satisfied."
+      ],
+      "admission_ready": false,
+      "coordinate_sign_assigned_by_audit": null
+    },
+    {
+      "actuator": "joint_LMCoxa",
+      "action_index": 7,
+      "leg": "LM",
+      "joint_class": "Coxa",
+      "current_admission": {
+        "actuator": "joint_LMCoxa",
+        "leg": "LM",
+        "joint_class": "Coxa",
+        "action_index": 7,
+        "tier": "C",
+        "sensory_status": "WITHHELD_NO_VALIDATED_M6C_MAPPING",
+        "motor_status": "AMBIGUOUS",
+        "validation_source": "M6A",
+        "neural_motor_admission": false,
+        "neural_sensory_admission": false,
+        "coordinate_sign": null,
+        "coordinate_sign_status": "NOT_VALIDATED",
+        "reason": "withheld by whole-leg unsupported-interface policy",
+        "handling": "baseline_only_zero_neural_contribution"
+      },
+      "historical_mapping_status": "AMBIGUOUS",
+      "historical_decoder_readiness": "AMBIGUOUS_DIRECTION",
+      "unique_mapping": false,
+      "candidate_physical_axes": [
+        "joint_LMCoxa",
+        "joint_LMCoxa_roll"
+      ],
+      "shared_axis_conflict": true,
+      "candidates": [
+        {
+          "name": "Pleural remotor/abductor MN T2 left",
+          "body_ids": [
+            800541,
+            902492,
+            905421
+          ],
+          "dense_indices": [
+            143189,
+            159087,
+            160070
+          ],
+          "count": 3,
+          "direction": -1,
+          "annotation_actuators": [
+            "coxa_T2_left",
+            "coxa_abduct_T2_left"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Pleural remotor/abductor MN T2 left",
+              "actuator": "coxa_T2_left",
+              "direction": -1
+            },
+            {
+              "name": "Pleural remotor/abductor MN T2 left",
+              "actuator": "coxa_abduct_T2_left",
+              "direction": -1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        }
+      ],
+      "opposing_pool_overlap": [],
+      "evidence": {},
+      "status": "SHARED_AXIS_BINDING_REQUIRED",
+      "blockers": [
+        "Shared population-to-Coxa/Coxa_roll decomposition unresolved.",
+        "Unique anatomical action/sign and validated multi-axis decoder/admission unavailable."
+      ],
+      "admission_ready": false,
+      "coordinate_sign_assigned_by_audit": null
+    },
+    {
+      "actuator": "joint_LMCoxa_roll",
+      "action_index": 8,
+      "leg": "LM",
+      "joint_class": "Coxa_roll",
+      "current_admission": {
+        "actuator": "joint_LMCoxa_roll",
+        "leg": "LM",
+        "joint_class": "Coxa_roll",
+        "action_index": 8,
+        "tier": "C",
+        "sensory_status": "WITHHELD_NO_VALIDATED_M6C_MAPPING",
+        "motor_status": "AMBIGUOUS",
+        "validation_source": "M6A",
+        "neural_motor_admission": false,
+        "neural_sensory_admission": false,
+        "coordinate_sign": null,
+        "coordinate_sign_status": "NOT_VALIDATED",
+        "reason": "withheld by whole-leg unsupported-interface policy",
+        "handling": "baseline_only_zero_neural_contribution"
+      },
+      "historical_mapping_status": "AMBIGUOUS",
+      "historical_decoder_readiness": "AMBIGUOUS_DIRECTION",
+      "unique_mapping": false,
+      "candidate_physical_axes": [
+        "joint_LMCoxa",
+        "joint_LMCoxa_roll"
+      ],
+      "shared_axis_conflict": true,
+      "candidates": [
+        {
+          "name": "Pleural remotor/abductor MN T2 left",
+          "body_ids": [
+            800541,
+            902492,
+            905421
+          ],
+          "dense_indices": [
+            143189,
+            159087,
+            160070
+          ],
+          "count": 3,
+          "direction": -1,
+          "annotation_actuators": [
+            "coxa_T2_left",
+            "coxa_abduct_T2_left"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Pleural remotor/abductor MN T2 left",
+              "actuator": "coxa_T2_left",
+              "direction": -1
+            },
+            {
+              "name": "Pleural remotor/abductor MN T2 left",
+              "actuator": "coxa_abduct_T2_left",
+              "direction": -1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        },
+        {
+          "name": "Sternal adductor MN T2 left",
+          "body_ids": [
+            816018
+          ],
+          "dense_indices": [
+            155465
+          ],
+          "count": 1,
+          "direction": 1,
+          "annotation_actuators": [
+            "coxa_abduct_T2_left"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Sternal adductor MN T2 left",
+              "actuator": "coxa_abduct_T2_left",
+              "direction": 1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        }
+      ],
+      "opposing_pool_overlap": [],
+      "evidence": {},
+      "status": "SHARED_AXIS_BINDING_REQUIRED",
+      "blockers": [
+        "Shared population-to-Coxa/Coxa_roll decomposition unresolved.",
+        "Unique anatomical action/sign and validated multi-axis decoder/admission unavailable."
+      ],
+      "admission_ready": false,
+      "coordinate_sign_assigned_by_audit": null
+    },
+    {
+      "actuator": "joint_LMCoxa_yaw",
+      "action_index": 9,
+      "leg": "LM",
+      "joint_class": "Coxa_yaw",
+      "current_admission": {
+        "actuator": "joint_LMCoxa_yaw",
+        "leg": "LM",
+        "joint_class": "Coxa_yaw",
+        "action_index": 9,
+        "tier": "B",
+        "sensory_status": "WITHHELD_NO_VALIDATED_M6C_MAPPING",
+        "motor_status": "SUPPORTED",
+        "validation_source": "M6B_P3",
+        "neural_motor_admission": false,
+        "neural_sensory_admission": false,
+        "coordinate_sign": null,
+        "coordinate_sign_status": "SIGN_UNRESOLVED",
+        "reason": "withheld: physical coordinate sign unresolved",
+        "handling": "baseline_only_zero_neural_contribution"
+      },
+      "historical_mapping_status": "SUPPORTED",
+      "historical_decoder_readiness": "DIRECTIONALLY_RESOLVABLE",
+      "unique_mapping": true,
+      "candidate_physical_axes": [
+        "joint_LMCoxa_yaw"
+      ],
+      "shared_axis_conflict": false,
+      "candidates": [
+        {
+          "name": "Sternal anterior rotator MN T2 left",
+          "body_ids": [
+            832490,
+            903689
+          ],
+          "dense_indices": [
+            158604,
+            159489
+          ],
+          "count": 2,
+          "direction": 1,
+          "annotation_actuators": [
+            "coxa_twist_T2_left"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Sternal anterior rotator MN T2 left",
+              "actuator": "coxa_twist_T2_left",
+              "direction": 1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        },
+        {
+          "name": "Sternal posterior rotator MN T2 left",
+          "body_ids": [
+            801768,
+            803226,
+            803704,
+            1051054875
+          ],
+          "dense_indices": [
+            144111,
+            145207,
+            145573,
+            164763
+          ],
+          "count": 4,
+          "direction": -1,
+          "annotation_actuators": [
+            "coxa_twist_T2_left"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Sternal posterior rotator MN T2 left",
+              "actuator": "coxa_twist_T2_left",
+              "direction": -1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        }
+      ],
+      "opposing_pool_overlap": [],
+      "evidence": {
+        "recorded_mechanical_valid": true,
+        "recorded_geometry_identity": true,
+        "anatomical_classification": "ANATOMICAL_SIGN_GEOMETRICALLY_UNRESOLVED",
+        "positive_anterior_projection": 0.0,
+        "negative_anterior_projection": 0.0,
+        "anterior_coordinate_sign": null,
+        "historical_active_motors": 11
+      },
+      "status": "ANATOMICAL_ACTION_SIGN_BRIDGE_REQUIRED",
+      "blockers": [
+        "Mechanical coordinate rotation recorded; biological anterior/posterior-to-coordinate sign unresolved.",
+        "Frozen anterior-projection null must not be reinterpreted with a favorable metric.",
+        "Current-context decoder/causal admission prerequisites not satisfied."
+      ],
+      "admission_ready": false,
+      "coordinate_sign_assigned_by_audit": null
+    },
+    {
+      "actuator": "joint_LMTarsus1",
+      "action_index": 13,
+      "leg": "LM",
+      "joint_class": "Tarsus1",
+      "current_admission": {
+        "actuator": "joint_LMTarsus1",
+        "leg": "LM",
+        "joint_class": "Tarsus1",
+        "action_index": 13,
+        "tier": "D",
+        "sensory_status": "WITHHELD_NO_VALIDATED_M6C_MAPPING",
+        "motor_status": "UNMAPPED",
+        "validation_source": "M6A",
+        "neural_motor_admission": false,
+        "neural_sensory_admission": false,
+        "coordinate_sign": null,
+        "coordinate_sign_status": "NOT_VALIDATED",
+        "reason": "withheld by whole-leg unsupported-interface policy",
+        "handling": "baseline_only_zero_neural_contribution"
+      },
+      "historical_mapping_status": "UNMAPPED",
+      "historical_decoder_readiness": "INSUFFICIENT_EVIDENCE",
+      "unique_mapping": false,
+      "candidate_physical_axes": [
+        "joint_LMTarsus1"
+      ],
+      "shared_axis_conflict": false,
+      "candidates": [],
+      "opposing_pool_overlap": [],
+      "evidence": {
+        "exact_annotation_actuator": "tarsus_T2_left",
+        "exact_population_count": 0,
+        "related_tarsus2_not_candidates": [
+          "ltm MN T2 left",
+          "ltm1-tibia MN T2 left",
+          "ltm2-femur MN T2 left"
+        ]
+      },
+      "status": "EXACT_TARGET_POPULATION_MAPPING_REQUIRED",
+      "blockers": [
+        "No exact current tarsus_T2/T3 population mapping for this Tarsus1 target.",
+        "Tarsus2 annotations/front-leg pools cannot substitute for this coordinate.",
+        "Identity, opposing pools, sign, decoder and mechanical/causal admission remain prerequisites."
+      ],
+      "admission_ready": false,
+      "coordinate_sign_assigned_by_audit": null
+    },
+    {
+      "actuator": "joint_LHCoxa",
+      "action_index": 14,
+      "leg": "LH",
+      "joint_class": "Coxa",
+      "current_admission": {
+        "actuator": "joint_LHCoxa",
+        "leg": "LH",
+        "joint_class": "Coxa",
+        "action_index": 14,
+        "tier": "C",
+        "sensory_status": "WITHHELD_NO_VALIDATED_M6C_MAPPING",
+        "motor_status": "AMBIGUOUS",
+        "validation_source": "M6A",
+        "neural_motor_admission": false,
+        "neural_sensory_admission": false,
+        "coordinate_sign": null,
+        "coordinate_sign_status": "NOT_VALIDATED",
+        "reason": "withheld by whole-leg unsupported-interface policy",
+        "handling": "baseline_only_zero_neural_contribution"
+      },
+      "historical_mapping_status": "AMBIGUOUS",
+      "historical_decoder_readiness": "AMBIGUOUS_DIRECTION",
+      "unique_mapping": false,
+      "candidate_physical_axes": [
+        "joint_LHCoxa",
+        "joint_LHCoxa_roll"
+      ],
+      "shared_axis_conflict": true,
+      "candidates": [
+        {
+          "name": "Pleural remotor/abductor MN T3 left",
+          "body_ids": [
+            800175,
+            902310
+          ],
+          "dense_indices": [
+            142922,
+            159019
+          ],
+          "count": 2,
+          "direction": -1,
+          "annotation_actuators": [
+            "coxa_T3_left",
+            "coxa_abduct_T3_left"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Pleural remotor/abductor MN T3 left",
+              "actuator": "coxa_T3_left",
+              "direction": -1
+            },
+            {
+              "name": "Pleural remotor/abductor MN T3 left",
+              "actuator": "coxa_abduct_T3_left",
+              "direction": -1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        }
+      ],
+      "opposing_pool_overlap": [],
+      "evidence": {},
+      "status": "SHARED_AXIS_BINDING_REQUIRED",
+      "blockers": [
+        "Shared population-to-Coxa/Coxa_roll decomposition unresolved.",
+        "Unique anatomical action/sign and validated multi-axis decoder/admission unavailable."
+      ],
+      "admission_ready": false,
+      "coordinate_sign_assigned_by_audit": null
+    },
+    {
+      "actuator": "joint_LHCoxa_roll",
+      "action_index": 15,
+      "leg": "LH",
+      "joint_class": "Coxa_roll",
+      "current_admission": {
+        "actuator": "joint_LHCoxa_roll",
+        "leg": "LH",
+        "joint_class": "Coxa_roll",
+        "action_index": 15,
+        "tier": "C",
+        "sensory_status": "WITHHELD_NO_VALIDATED_M6C_MAPPING",
+        "motor_status": "AMBIGUOUS",
+        "validation_source": "M6A",
+        "neural_motor_admission": false,
+        "neural_sensory_admission": false,
+        "coordinate_sign": null,
+        "coordinate_sign_status": "NOT_VALIDATED",
+        "reason": "withheld by whole-leg unsupported-interface policy",
+        "handling": "baseline_only_zero_neural_contribution"
+      },
+      "historical_mapping_status": "AMBIGUOUS",
+      "historical_decoder_readiness": "AMBIGUOUS_DIRECTION",
+      "unique_mapping": false,
+      "candidate_physical_axes": [
+        "joint_LHCoxa",
+        "joint_LHCoxa_roll"
+      ],
+      "shared_axis_conflict": true,
+      "candidates": [
+        {
+          "name": "Pleural remotor/abductor MN T3 left",
+          "body_ids": [
+            800175,
+            902310
+          ],
+          "dense_indices": [
+            142922,
+            159019
+          ],
+          "count": 2,
+          "direction": -1,
+          "annotation_actuators": [
+            "coxa_T3_left",
+            "coxa_abduct_T3_left"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Pleural remotor/abductor MN T3 left",
+              "actuator": "coxa_T3_left",
+              "direction": -1
+            },
+            {
+              "name": "Pleural remotor/abductor MN T3 left",
+              "actuator": "coxa_abduct_T3_left",
+              "direction": -1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        },
+        {
+          "name": "Sternal adductor MN T3 left",
+          "body_ids": [
+            904184
+          ],
+          "dense_indices": [
+            159664
+          ],
+          "count": 1,
+          "direction": 1,
+          "annotation_actuators": [
+            "coxa_abduct_T3_left"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Sternal adductor MN T3 left",
+              "actuator": "coxa_abduct_T3_left",
+              "direction": 1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        }
+      ],
+      "opposing_pool_overlap": [],
+      "evidence": {},
+      "status": "SHARED_AXIS_BINDING_REQUIRED",
+      "blockers": [
+        "Shared population-to-Coxa/Coxa_roll decomposition unresolved.",
+        "Unique anatomical action/sign and validated multi-axis decoder/admission unavailable."
+      ],
+      "admission_ready": false,
+      "coordinate_sign_assigned_by_audit": null
+    },
+    {
+      "actuator": "joint_LHCoxa_yaw",
+      "action_index": 16,
+      "leg": "LH",
+      "joint_class": "Coxa_yaw",
+      "current_admission": {
+        "actuator": "joint_LHCoxa_yaw",
+        "leg": "LH",
+        "joint_class": "Coxa_yaw",
+        "action_index": 16,
+        "tier": "B",
+        "sensory_status": "WITHHELD_NO_VALIDATED_M6C_MAPPING",
+        "motor_status": "SUPPORTED",
+        "validation_source": "M6B_P3",
+        "neural_motor_admission": false,
+        "neural_sensory_admission": false,
+        "coordinate_sign": null,
+        "coordinate_sign_status": "SIGN_UNRESOLVED",
+        "reason": "withheld: physical coordinate sign unresolved",
+        "handling": "baseline_only_zero_neural_contribution"
+      },
+      "historical_mapping_status": "SUPPORTED",
+      "historical_decoder_readiness": "DIRECTIONALLY_RESOLVABLE",
+      "unique_mapping": true,
+      "candidate_physical_axes": [
+        "joint_LHCoxa_yaw"
+      ],
+      "shared_axis_conflict": false,
+      "candidates": [
+        {
+          "name": "Sternal anterior rotator MN T3 left",
+          "body_ids": [
+            801548,
+            802215
+          ],
+          "dense_indices": [
+            143949,
+            144439
+          ],
+          "count": 2,
+          "direction": 1,
+          "annotation_actuators": [
+            "coxa_twist_T3_left"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Sternal anterior rotator MN T3 left",
+              "actuator": "coxa_twist_T3_left",
+              "direction": 1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        },
+        {
+          "name": "Sternal posterior rotator MN T3 left",
+          "body_ids": [
+            801492,
+            801715,
+            802964,
+            818399
+          ],
+          "dense_indices": [
+            143901,
+            144071,
+            144997,
+            156887
+          ],
+          "count": 4,
+          "direction": -1,
+          "annotation_actuators": [
+            "coxa_twist_T3_left"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Sternal posterior rotator MN T3 left",
+              "actuator": "coxa_twist_T3_left",
+              "direction": -1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        }
+      ],
+      "opposing_pool_overlap": [],
+      "evidence": {
+        "recorded_mechanical_valid": true,
+        "recorded_geometry_identity": true,
+        "anatomical_classification": "ANATOMICAL_SIGN_GEOMETRICALLY_UNRESOLVED",
+        "positive_anterior_projection": 0.0,
+        "negative_anterior_projection": 0.0,
+        "anterior_coordinate_sign": null,
+        "historical_active_motors": 11
+      },
+      "status": "ANATOMICAL_ACTION_SIGN_BRIDGE_REQUIRED",
+      "blockers": [
+        "Mechanical coordinate rotation recorded; biological anterior/posterior-to-coordinate sign unresolved.",
+        "Frozen anterior-projection null must not be reinterpreted with a favorable metric.",
+        "Current-context decoder/causal admission prerequisites not satisfied."
+      ],
+      "admission_ready": false,
+      "coordinate_sign_assigned_by_audit": null
+    },
+    {
+      "actuator": "joint_LHTarsus1",
+      "action_index": 20,
+      "leg": "LH",
+      "joint_class": "Tarsus1",
+      "current_admission": {
+        "actuator": "joint_LHTarsus1",
+        "leg": "LH",
+        "joint_class": "Tarsus1",
+        "action_index": 20,
+        "tier": "D",
+        "sensory_status": "WITHHELD_NO_VALIDATED_M6C_MAPPING",
+        "motor_status": "UNMAPPED",
+        "validation_source": "M6A",
+        "neural_motor_admission": false,
+        "neural_sensory_admission": false,
+        "coordinate_sign": null,
+        "coordinate_sign_status": "NOT_VALIDATED",
+        "reason": "withheld by whole-leg unsupported-interface policy",
+        "handling": "baseline_only_zero_neural_contribution"
+      },
+      "historical_mapping_status": "UNMAPPED",
+      "historical_decoder_readiness": "INSUFFICIENT_EVIDENCE",
+      "unique_mapping": false,
+      "candidate_physical_axes": [
+        "joint_LHTarsus1"
+      ],
+      "shared_axis_conflict": false,
+      "candidates": [],
+      "opposing_pool_overlap": [],
+      "evidence": {
+        "exact_annotation_actuator": "tarsus_T3_left",
+        "exact_population_count": 0,
+        "related_tarsus2_not_candidates": [
+          "ltm MN T3 left",
+          "ltm1-tibia MN T3 left",
+          "ltm2-femur MN T3 left"
+        ]
+      },
+      "status": "EXACT_TARGET_POPULATION_MAPPING_REQUIRED",
+      "blockers": [
+        "No exact current tarsus_T2/T3 population mapping for this Tarsus1 target.",
+        "Tarsus2 annotations/front-leg pools cannot substitute for this coordinate.",
+        "Identity, opposing pools, sign, decoder and mechanical/causal admission remain prerequisites."
+      ],
+      "admission_ready": false,
+      "coordinate_sign_assigned_by_audit": null
+    },
+    {
+      "actuator": "joint_RFCoxa",
+      "action_index": 21,
+      "leg": "RF",
+      "joint_class": "Coxa",
+      "current_admission": {
+        "actuator": "joint_RFCoxa",
+        "leg": "RF",
+        "joint_class": "Coxa",
+        "action_index": 21,
+        "tier": "C",
+        "sensory_status": "WITHHELD_NO_VALIDATED_M6C_MAPPING",
+        "motor_status": "AMBIGUOUS",
+        "validation_source": "M6A",
+        "neural_motor_admission": false,
+        "neural_sensory_admission": false,
+        "coordinate_sign": null,
+        "coordinate_sign_status": "NOT_VALIDATED",
+        "reason": "withheld by whole-leg unsupported-interface policy",
+        "handling": "baseline_only_zero_neural_contribution"
+      },
+      "historical_mapping_status": "AMBIGUOUS",
+      "historical_decoder_readiness": "AMBIGUOUS_DIRECTION",
+      "unique_mapping": false,
+      "candidate_physical_axes": [
+        "joint_RFCoxa",
+        "joint_RFCoxa_roll"
+      ],
+      "shared_axis_conflict": true,
+      "candidates": [
+        {
+          "name": "Pleural remotor/abductor MN T1 right",
+          "body_ids": [
+            803314,
+            805313
+          ],
+          "dense_indices": [
+            145278,
+            146868
+          ],
+          "count": 2,
+          "direction": -1,
+          "annotation_actuators": [
+            "coxa_T1_right",
+            "coxa_abduct_T1_right"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Pleural remotor/abductor MN T1 right",
+              "actuator": "coxa_T1_right",
+              "direction": -1
+            },
+            {
+              "name": "Pleural remotor/abductor MN T1 right",
+              "actuator": "coxa_abduct_T1_right",
+              "direction": -1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        },
+        {
+          "name": "Tergopleural/Pleural promotor MN T1 right",
+          "body_ids": [
+            801824,
+            802072,
+            805745,
+            810535
+          ],
+          "dense_indices": [
+            144158,
+            144338,
+            147231,
+            151224
+          ],
+          "count": 4,
+          "direction": 1,
+          "annotation_actuators": [
+            "coxa_T1_right"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Tergopleural/Pleural promotor MN T1 right",
+              "actuator": "coxa_T1_right",
+              "direction": 1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        }
+      ],
+      "opposing_pool_overlap": [],
+      "evidence": {},
+      "status": "SHARED_AXIS_BINDING_REQUIRED",
+      "blockers": [
+        "Shared population-to-Coxa/Coxa_roll decomposition unresolved.",
+        "Unique anatomical action/sign and validated multi-axis decoder/admission unavailable."
+      ],
+      "admission_ready": false,
+      "coordinate_sign_assigned_by_audit": null
+    },
+    {
+      "actuator": "joint_RFCoxa_roll",
+      "action_index": 22,
+      "leg": "RF",
+      "joint_class": "Coxa_roll",
+      "current_admission": {
+        "actuator": "joint_RFCoxa_roll",
+        "leg": "RF",
+        "joint_class": "Coxa_roll",
+        "action_index": 22,
+        "tier": "C",
+        "sensory_status": "WITHHELD_NO_VALIDATED_M6C_MAPPING",
+        "motor_status": "AMBIGUOUS",
+        "validation_source": "M6A",
+        "neural_motor_admission": false,
+        "neural_sensory_admission": false,
+        "coordinate_sign": null,
+        "coordinate_sign_status": "NOT_VALIDATED",
+        "reason": "withheld by whole-leg unsupported-interface policy",
+        "handling": "baseline_only_zero_neural_contribution"
+      },
+      "historical_mapping_status": "AMBIGUOUS",
+      "historical_decoder_readiness": "AMBIGUOUS_DIRECTION",
+      "unique_mapping": false,
+      "candidate_physical_axes": [
+        "joint_RFCoxa",
+        "joint_RFCoxa_roll"
+      ],
+      "shared_axis_conflict": true,
+      "candidates": [
+        {
+          "name": "Pleural remotor/abductor MN T1 right",
+          "body_ids": [
+            803314,
+            805313
+          ],
+          "dense_indices": [
+            145278,
+            146868
+          ],
+          "count": 2,
+          "direction": -1,
+          "annotation_actuators": [
+            "coxa_T1_right",
+            "coxa_abduct_T1_right"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Pleural remotor/abductor MN T1 right",
+              "actuator": "coxa_T1_right",
+              "direction": -1
+            },
+            {
+              "name": "Pleural remotor/abductor MN T1 right",
+              "actuator": "coxa_abduct_T1_right",
+              "direction": -1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        },
+        {
+          "name": "Sternal adductor MN T1 right",
+          "body_ids": [
+            815854
+          ],
+          "dense_indices": [
+            155349
+          ],
+          "count": 1,
+          "direction": 1,
+          "annotation_actuators": [
+            "coxa_abduct_T1_right"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Sternal adductor MN T1 right",
+              "actuator": "coxa_abduct_T1_right",
+              "direction": 1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        }
+      ],
+      "opposing_pool_overlap": [],
+      "evidence": {},
+      "status": "SHARED_AXIS_BINDING_REQUIRED",
+      "blockers": [
+        "Shared population-to-Coxa/Coxa_roll decomposition unresolved.",
+        "Unique anatomical action/sign and validated multi-axis decoder/admission unavailable."
+      ],
+      "admission_ready": false,
+      "coordinate_sign_assigned_by_audit": null
+    },
+    {
+      "actuator": "joint_RFCoxa_yaw",
+      "action_index": 23,
+      "leg": "RF",
+      "joint_class": "Coxa_yaw",
+      "current_admission": {
+        "actuator": "joint_RFCoxa_yaw",
+        "leg": "RF",
+        "joint_class": "Coxa_yaw",
+        "action_index": 23,
+        "tier": "B",
+        "sensory_status": "WITHHELD_NO_VALIDATED_M6C_MAPPING",
+        "motor_status": "SUPPORTED",
+        "validation_source": "M6B_P3",
+        "neural_motor_admission": false,
+        "neural_sensory_admission": false,
+        "coordinate_sign": null,
+        "coordinate_sign_status": "SIGN_UNRESOLVED",
+        "reason": "withheld: physical coordinate sign unresolved",
+        "handling": "baseline_only_zero_neural_contribution"
+      },
+      "historical_mapping_status": "SUPPORTED",
+      "historical_decoder_readiness": "DIRECTIONALLY_RESOLVABLE",
+      "unique_mapping": true,
+      "candidate_physical_axes": [
+        "joint_RFCoxa_yaw"
+      ],
+      "shared_axis_conflict": false,
+      "candidates": [
+        {
+          "name": "Sternal anterior rotator MN T1 right",
+          "body_ids": [
+            801469,
+            801918
+          ],
+          "dense_indices": [
+            143884,
+            144225
+          ],
+          "count": 2,
+          "direction": 1,
+          "annotation_actuators": [
+            "coxa_twist_T1_right"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Sternal anterior rotator MN T1 right",
+              "actuator": "coxa_twist_T1_right",
+              "direction": 1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        },
+        {
+          "name": "Sternal posterior rotator MN T1 right",
+          "body_ids": [
+            805410,
+            808011
+          ],
+          "dense_indices": [
+            146951,
+            149136
+          ],
+          "count": 2,
+          "direction": -1,
+          "annotation_actuators": [
+            "coxa_twist_T1_right"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Sternal posterior rotator MN T1 right",
+              "actuator": "coxa_twist_T1_right",
+              "direction": -1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        }
+      ],
+      "opposing_pool_overlap": [],
+      "evidence": {
+        "recorded_mechanical_valid": true,
+        "recorded_geometry_identity": true,
+        "anatomical_classification": "ANATOMICAL_SIGN_GEOMETRICALLY_UNRESOLVED",
+        "positive_anterior_projection": 0.0,
+        "negative_anterior_projection": 0.0,
+        "anterior_coordinate_sign": null,
+        "historical_active_motors": 11
+      },
+      "status": "ANATOMICAL_ACTION_SIGN_BRIDGE_REQUIRED",
+      "blockers": [
+        "Mechanical coordinate rotation recorded; biological anterior/posterior-to-coordinate sign unresolved.",
+        "Frozen anterior-projection null must not be reinterpreted with a favorable metric.",
+        "Current-context decoder/causal admission prerequisites not satisfied."
+      ],
+      "admission_ready": false,
+      "coordinate_sign_assigned_by_audit": null
+    },
+    {
+      "actuator": "joint_RMCoxa",
+      "action_index": 28,
+      "leg": "RM",
+      "joint_class": "Coxa",
+      "current_admission": {
+        "actuator": "joint_RMCoxa",
+        "leg": "RM",
+        "joint_class": "Coxa",
+        "action_index": 28,
+        "tier": "C",
+        "sensory_status": "WITHHELD_NO_VALIDATED_M6C_MAPPING",
+        "motor_status": "AMBIGUOUS",
+        "validation_source": "M6A",
+        "neural_motor_admission": false,
+        "neural_sensory_admission": false,
+        "coordinate_sign": null,
+        "coordinate_sign_status": "NOT_VALIDATED",
+        "reason": "withheld by whole-leg unsupported-interface policy",
+        "handling": "baseline_only_zero_neural_contribution"
+      },
+      "historical_mapping_status": "AMBIGUOUS",
+      "historical_decoder_readiness": "AMBIGUOUS_DIRECTION",
+      "unique_mapping": false,
+      "candidate_physical_axes": [
+        "joint_RMCoxa",
+        "joint_RMCoxa_roll"
+      ],
+      "shared_axis_conflict": true,
+      "candidates": [
+        {
+          "name": "Pleural remotor/abductor MN T2 right",
+          "body_ids": [
+            800776,
+            803499,
+            902719
+          ],
+          "dense_indices": [
+            143362,
+            145416,
+            159157
+          ],
+          "count": 3,
+          "direction": -1,
+          "annotation_actuators": [
+            "coxa_T2_right",
+            "coxa_abduct_T2_right"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Pleural remotor/abductor MN T2 right",
+              "actuator": "coxa_T2_right",
+              "direction": -1
+            },
+            {
+              "name": "Pleural remotor/abductor MN T2 right",
+              "actuator": "coxa_abduct_T2_right",
+              "direction": -1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        }
+      ],
+      "opposing_pool_overlap": [],
+      "evidence": {},
+      "status": "SHARED_AXIS_BINDING_REQUIRED",
+      "blockers": [
+        "Shared population-to-Coxa/Coxa_roll decomposition unresolved.",
+        "Unique anatomical action/sign and validated multi-axis decoder/admission unavailable."
+      ],
+      "admission_ready": false,
+      "coordinate_sign_assigned_by_audit": null
+    },
+    {
+      "actuator": "joint_RMCoxa_roll",
+      "action_index": 29,
+      "leg": "RM",
+      "joint_class": "Coxa_roll",
+      "current_admission": {
+        "actuator": "joint_RMCoxa_roll",
+        "leg": "RM",
+        "joint_class": "Coxa_roll",
+        "action_index": 29,
+        "tier": "C",
+        "sensory_status": "WITHHELD_NO_VALIDATED_M6C_MAPPING",
+        "motor_status": "AMBIGUOUS",
+        "validation_source": "M6A",
+        "neural_motor_admission": false,
+        "neural_sensory_admission": false,
+        "coordinate_sign": null,
+        "coordinate_sign_status": "NOT_VALIDATED",
+        "reason": "withheld by whole-leg unsupported-interface policy",
+        "handling": "baseline_only_zero_neural_contribution"
+      },
+      "historical_mapping_status": "AMBIGUOUS",
+      "historical_decoder_readiness": "AMBIGUOUS_DIRECTION",
+      "unique_mapping": false,
+      "candidate_physical_axes": [
+        "joint_RMCoxa",
+        "joint_RMCoxa_roll"
+      ],
+      "shared_axis_conflict": true,
+      "candidates": [
+        {
+          "name": "Pleural remotor/abductor MN T2 right",
+          "body_ids": [
+            800776,
+            803499,
+            902719
+          ],
+          "dense_indices": [
+            143362,
+            145416,
+            159157
+          ],
+          "count": 3,
+          "direction": -1,
+          "annotation_actuators": [
+            "coxa_T2_right",
+            "coxa_abduct_T2_right"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Pleural remotor/abductor MN T2 right",
+              "actuator": "coxa_T2_right",
+              "direction": -1
+            },
+            {
+              "name": "Pleural remotor/abductor MN T2 right",
+              "actuator": "coxa_abduct_T2_right",
+              "direction": -1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        },
+        {
+          "name": "Sternal adductor MN T2 right",
+          "body_ids": [
+            909371
+          ],
+          "dense_indices": [
+            161306
+          ],
+          "count": 1,
+          "direction": 1,
+          "annotation_actuators": [
+            "coxa_abduct_T2_right"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Sternal adductor MN T2 right",
+              "actuator": "coxa_abduct_T2_right",
+              "direction": 1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        }
+      ],
+      "opposing_pool_overlap": [],
+      "evidence": {},
+      "status": "SHARED_AXIS_BINDING_REQUIRED",
+      "blockers": [
+        "Shared population-to-Coxa/Coxa_roll decomposition unresolved.",
+        "Unique anatomical action/sign and validated multi-axis decoder/admission unavailable."
+      ],
+      "admission_ready": false,
+      "coordinate_sign_assigned_by_audit": null
+    },
+    {
+      "actuator": "joint_RMCoxa_yaw",
+      "action_index": 30,
+      "leg": "RM",
+      "joint_class": "Coxa_yaw",
+      "current_admission": {
+        "actuator": "joint_RMCoxa_yaw",
+        "leg": "RM",
+        "joint_class": "Coxa_yaw",
+        "action_index": 30,
+        "tier": "B",
+        "sensory_status": "WITHHELD_NO_VALIDATED_M6C_MAPPING",
+        "motor_status": "SUPPORTED",
+        "validation_source": "M6B_P3",
+        "neural_motor_admission": false,
+        "neural_sensory_admission": false,
+        "coordinate_sign": null,
+        "coordinate_sign_status": "SIGN_UNRESOLVED",
+        "reason": "withheld: physical coordinate sign unresolved",
+        "handling": "baseline_only_zero_neural_contribution"
+      },
+      "historical_mapping_status": "SUPPORTED",
+      "historical_decoder_readiness": "DIRECTIONALLY_RESOLVABLE",
+      "unique_mapping": true,
+      "candidate_physical_axes": [
+        "joint_RMCoxa_yaw"
+      ],
+      "shared_axis_conflict": false,
+      "candidates": [
+        {
+          "name": "Sternal anterior rotator MN T2 right",
+          "body_ids": [
+            801813,
+            801946
+          ],
+          "dense_indices": [
+            144149,
+            144246
+          ],
+          "count": 2,
+          "direction": 1,
+          "annotation_actuators": [
+            "coxa_twist_T2_right"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Sternal anterior rotator MN T2 right",
+              "actuator": "coxa_twist_T2_right",
+              "direction": 1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        },
+        {
+          "name": "Sternal posterior rotator MN T2 right",
+          "body_ids": [
+            800962,
+            801761,
+            802521,
+            818996
+          ],
+          "dense_indices": [
+            143498,
+            144107,
+            144664,
+            157163
+          ],
+          "count": 4,
+          "direction": -1,
+          "annotation_actuators": [
+            "coxa_twist_T2_right"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Sternal posterior rotator MN T2 right",
+              "actuator": "coxa_twist_T2_right",
+              "direction": -1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        }
+      ],
+      "opposing_pool_overlap": [],
+      "evidence": {
+        "recorded_mechanical_valid": true,
+        "recorded_geometry_identity": true,
+        "anatomical_classification": "ANATOMICAL_SIGN_GEOMETRICALLY_UNRESOLVED",
+        "positive_anterior_projection": 0.0,
+        "negative_anterior_projection": 0.0,
+        "anterior_coordinate_sign": null,
+        "historical_active_motors": 11
+      },
+      "status": "ANATOMICAL_ACTION_SIGN_BRIDGE_REQUIRED",
+      "blockers": [
+        "Mechanical coordinate rotation recorded; biological anterior/posterior-to-coordinate sign unresolved.",
+        "Frozen anterior-projection null must not be reinterpreted with a favorable metric.",
+        "Current-context decoder/causal admission prerequisites not satisfied."
+      ],
+      "admission_ready": false,
+      "coordinate_sign_assigned_by_audit": null
+    },
+    {
+      "actuator": "joint_RMTarsus1",
+      "action_index": 34,
+      "leg": "RM",
+      "joint_class": "Tarsus1",
+      "current_admission": {
+        "actuator": "joint_RMTarsus1",
+        "leg": "RM",
+        "joint_class": "Tarsus1",
+        "action_index": 34,
+        "tier": "D",
+        "sensory_status": "WITHHELD_NO_VALIDATED_M6C_MAPPING",
+        "motor_status": "UNMAPPED",
+        "validation_source": "M6A",
+        "neural_motor_admission": false,
+        "neural_sensory_admission": false,
+        "coordinate_sign": null,
+        "coordinate_sign_status": "NOT_VALIDATED",
+        "reason": "withheld by whole-leg unsupported-interface policy",
+        "handling": "baseline_only_zero_neural_contribution"
+      },
+      "historical_mapping_status": "UNMAPPED",
+      "historical_decoder_readiness": "INSUFFICIENT_EVIDENCE",
+      "unique_mapping": false,
+      "candidate_physical_axes": [
+        "joint_RMTarsus1"
+      ],
+      "shared_axis_conflict": false,
+      "candidates": [],
+      "opposing_pool_overlap": [],
+      "evidence": {
+        "exact_annotation_actuator": "tarsus_T2_right",
+        "exact_population_count": 0,
+        "related_tarsus2_not_candidates": [
+          "ltm MN T2 right",
+          "ltm1-tibia MN T2 right",
+          "ltm2-femur MN T2 right"
+        ]
+      },
+      "status": "EXACT_TARGET_POPULATION_MAPPING_REQUIRED",
+      "blockers": [
+        "No exact current tarsus_T2/T3 population mapping for this Tarsus1 target.",
+        "Tarsus2 annotations/front-leg pools cannot substitute for this coordinate.",
+        "Identity, opposing pools, sign, decoder and mechanical/causal admission remain prerequisites."
+      ],
+      "admission_ready": false,
+      "coordinate_sign_assigned_by_audit": null
+    },
+    {
+      "actuator": "joint_RHCoxa",
+      "action_index": 35,
+      "leg": "RH",
+      "joint_class": "Coxa",
+      "current_admission": {
+        "actuator": "joint_RHCoxa",
+        "leg": "RH",
+        "joint_class": "Coxa",
+        "action_index": 35,
+        "tier": "C",
+        "sensory_status": "WITHHELD_NO_VALIDATED_M6C_MAPPING",
+        "motor_status": "AMBIGUOUS",
+        "validation_source": "M6A",
+        "neural_motor_admission": false,
+        "neural_sensory_admission": false,
+        "coordinate_sign": null,
+        "coordinate_sign_status": "NOT_VALIDATED",
+        "reason": "withheld by whole-leg unsupported-interface policy",
+        "handling": "baseline_only_zero_neural_contribution"
+      },
+      "historical_mapping_status": "AMBIGUOUS",
+      "historical_decoder_readiness": "AMBIGUOUS_DIRECTION",
+      "unique_mapping": false,
+      "candidate_physical_axes": [
+        "joint_RHCoxa",
+        "joint_RHCoxa_roll"
+      ],
+      "shared_axis_conflict": true,
+      "candidates": [
+        {
+          "name": "Pleural remotor/abductor MN T3 right",
+          "body_ids": [
+            800290,
+            800553
+          ],
+          "dense_indices": [
+            142999,
+            143200
+          ],
+          "count": 2,
+          "direction": -1,
+          "annotation_actuators": [
+            "coxa_T3_right",
+            "coxa_abduct_T3_right"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Pleural remotor/abductor MN T3 right",
+              "actuator": "coxa_T3_right",
+              "direction": -1
+            },
+            {
+              "name": "Pleural remotor/abductor MN T3 right",
+              "actuator": "coxa_abduct_T3_right",
+              "direction": -1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        }
+      ],
+      "opposing_pool_overlap": [],
+      "evidence": {},
+      "status": "SHARED_AXIS_BINDING_REQUIRED",
+      "blockers": [
+        "Shared population-to-Coxa/Coxa_roll decomposition unresolved.",
+        "Unique anatomical action/sign and validated multi-axis decoder/admission unavailable."
+      ],
+      "admission_ready": false,
+      "coordinate_sign_assigned_by_audit": null
+    },
+    {
+      "actuator": "joint_RHCoxa_roll",
+      "action_index": 36,
+      "leg": "RH",
+      "joint_class": "Coxa_roll",
+      "current_admission": {
+        "actuator": "joint_RHCoxa_roll",
+        "leg": "RH",
+        "joint_class": "Coxa_roll",
+        "action_index": 36,
+        "tier": "C",
+        "sensory_status": "WITHHELD_NO_VALIDATED_M6C_MAPPING",
+        "motor_status": "AMBIGUOUS",
+        "validation_source": "M6A",
+        "neural_motor_admission": false,
+        "neural_sensory_admission": false,
+        "coordinate_sign": null,
+        "coordinate_sign_status": "NOT_VALIDATED",
+        "reason": "withheld by whole-leg unsupported-interface policy",
+        "handling": "baseline_only_zero_neural_contribution"
+      },
+      "historical_mapping_status": "AMBIGUOUS",
+      "historical_decoder_readiness": "AMBIGUOUS_DIRECTION",
+      "unique_mapping": false,
+      "candidate_physical_axes": [
+        "joint_RHCoxa",
+        "joint_RHCoxa_roll"
+      ],
+      "shared_axis_conflict": true,
+      "candidates": [
+        {
+          "name": "Pleural remotor/abductor MN T3 right",
+          "body_ids": [
+            800290,
+            800553
+          ],
+          "dense_indices": [
+            142999,
+            143200
+          ],
+          "count": 2,
+          "direction": -1,
+          "annotation_actuators": [
+            "coxa_T3_right",
+            "coxa_abduct_T3_right"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Pleural remotor/abductor MN T3 right",
+              "actuator": "coxa_T3_right",
+              "direction": -1
+            },
+            {
+              "name": "Pleural remotor/abductor MN T3 right",
+              "actuator": "coxa_abduct_T3_right",
+              "direction": -1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        },
+        {
+          "name": "Sternal adductor MN T3 right",
+          "body_ids": [
+            807854
+          ],
+          "dense_indices": [
+            148997
+          ],
+          "count": 1,
+          "direction": 1,
+          "annotation_actuators": [
+            "coxa_abduct_T3_right"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Sternal adductor MN T3 right",
+              "actuator": "coxa_abduct_T3_right",
+              "direction": 1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        }
+      ],
+      "opposing_pool_overlap": [],
+      "evidence": {},
+      "status": "SHARED_AXIS_BINDING_REQUIRED",
+      "blockers": [
+        "Shared population-to-Coxa/Coxa_roll decomposition unresolved.",
+        "Unique anatomical action/sign and validated multi-axis decoder/admission unavailable."
+      ],
+      "admission_ready": false,
+      "coordinate_sign_assigned_by_audit": null
+    },
+    {
+      "actuator": "joint_RHCoxa_yaw",
+      "action_index": 37,
+      "leg": "RH",
+      "joint_class": "Coxa_yaw",
+      "current_admission": {
+        "actuator": "joint_RHCoxa_yaw",
+        "leg": "RH",
+        "joint_class": "Coxa_yaw",
+        "action_index": 37,
+        "tier": "B",
+        "sensory_status": "WITHHELD_NO_VALIDATED_M6C_MAPPING",
+        "motor_status": "SUPPORTED",
+        "validation_source": "M6B_P3",
+        "neural_motor_admission": false,
+        "neural_sensory_admission": false,
+        "coordinate_sign": null,
+        "coordinate_sign_status": "SIGN_UNRESOLVED",
+        "reason": "withheld: physical coordinate sign unresolved",
+        "handling": "baseline_only_zero_neural_contribution"
+      },
+      "historical_mapping_status": "SUPPORTED",
+      "historical_decoder_readiness": "DIRECTIONALLY_RESOLVABLE",
+      "unique_mapping": true,
+      "candidate_physical_axes": [
+        "joint_RHCoxa_yaw"
+      ],
+      "shared_axis_conflict": false,
+      "candidates": [
+        {
+          "name": "Sternal anterior rotator MN T3 right",
+          "body_ids": [
+            800316,
+            906235
+          ],
+          "dense_indices": [
+            143020,
+            160329
+          ],
+          "count": 2,
+          "direction": 1,
+          "annotation_actuators": [
+            "coxa_twist_T3_right"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Sternal anterior rotator MN T3 right",
+              "actuator": "coxa_twist_T3_right",
+              "direction": 1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        },
+        {
+          "name": "Sternal posterior rotator MN T3 right",
+          "body_ids": [
+            903642,
+            903643,
+            907256,
+            1050493413
+          ],
+          "dense_indices": [
+            159477,
+            159478,
+            160551,
+            164710
+          ],
+          "count": 4,
+          "direction": -1,
+          "annotation_actuators": [
+            "coxa_twist_T3_right"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Sternal posterior rotator MN T3 right",
+              "actuator": "coxa_twist_T3_right",
+              "direction": -1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        }
+      ],
+      "opposing_pool_overlap": [],
+      "evidence": {
+        "recorded_mechanical_valid": true,
+        "recorded_geometry_identity": true,
+        "anatomical_classification": "ANATOMICAL_SIGN_GEOMETRICALLY_UNRESOLVED",
+        "positive_anterior_projection": 0.0,
+        "negative_anterior_projection": 0.0,
+        "anterior_coordinate_sign": null,
+        "historical_active_motors": 11
+      },
+      "status": "ANATOMICAL_ACTION_SIGN_BRIDGE_REQUIRED",
+      "blockers": [
+        "Mechanical coordinate rotation recorded; biological anterior/posterior-to-coordinate sign unresolved.",
+        "Frozen anterior-projection null must not be reinterpreted with a favorable metric.",
+        "Current-context decoder/causal admission prerequisites not satisfied."
+      ],
+      "admission_ready": false,
+      "coordinate_sign_assigned_by_audit": null
+    },
+    {
+      "actuator": "joint_RHTarsus1",
+      "action_index": 41,
+      "leg": "RH",
+      "joint_class": "Tarsus1",
+      "current_admission": {
+        "actuator": "joint_RHTarsus1",
+        "leg": "RH",
+        "joint_class": "Tarsus1",
+        "action_index": 41,
+        "tier": "D",
+        "sensory_status": "WITHHELD_NO_VALIDATED_M6C_MAPPING",
+        "motor_status": "UNMAPPED",
+        "validation_source": "M6A",
+        "neural_motor_admission": false,
+        "neural_sensory_admission": false,
+        "coordinate_sign": null,
+        "coordinate_sign_status": "NOT_VALIDATED",
+        "reason": "withheld by whole-leg unsupported-interface policy",
+        "handling": "baseline_only_zero_neural_contribution"
+      },
+      "historical_mapping_status": "UNMAPPED",
+      "historical_decoder_readiness": "INSUFFICIENT_EVIDENCE",
+      "unique_mapping": false,
+      "candidate_physical_axes": [
+        "joint_RHTarsus1"
+      ],
+      "shared_axis_conflict": false,
+      "candidates": [],
+      "opposing_pool_overlap": [],
+      "evidence": {
+        "exact_annotation_actuator": "tarsus_T3_right",
+        "exact_population_count": 0,
+        "related_tarsus2_not_candidates": [
+          "ltm MN T3 right",
+          "ltm1-tibia MN T3 right",
+          "ltm2-femur MN T3 right"
+        ]
+      },
+      "status": "EXACT_TARGET_POPULATION_MAPPING_REQUIRED",
+      "blockers": [
+        "No exact current tarsus_T2/T3 population mapping for this Tarsus1 target.",
+        "Tarsus2 annotations/front-leg pools cannot substitute for this coordinate.",
+        "Identity, opposing pools, sign, decoder and mechanical/causal admission remain prerequisites."
+      ],
+      "admission_ready": false,
+      "coordinate_sign_assigned_by_audit": null
+    }
+  ],
+  "lf_reference": {
+    "registration_verdict": "REGISTRATION_ESTABLISHED",
+    "scope": {
+      "registration_type": "LOCAL_DIFFERENTIAL_REGISTRATION_AT_TWO_DOCUMENTED_REFERENCE_CONFIGURATIONS",
+      "is_finite_angle_mapping": false,
+      "is_pose_independent_mapping": false,
+      "statements": [
+        "This is a local differential registration at the two documented reference configurations.",
+        "It is not a finite-angle or pose-independent mapping.",
+        "FlyMimic mechanics are not biological ground truth.",
+        "Geometry is not a decoder weight.",
+        "This does not establish coordinate signs for MaleCNS populations.",
+        "This does not justify interface admission.",
+        "This is left-front evidence only."
+      ],
+      "evidence_laterality": "LEFT_FRONT_ONLY",
+      "active_malecns_motor_interface_channels": 11,
+      "active_motor_interface_modified": false,
+      "mappings_modified": false,
+      "decoder_weights_modified": false,
+      "coordinate_signs_modified": false
+    },
+    "covector_transform_checks": [
+      {
+        "tendon": "LFC_pleural_promotor_tendon",
+        "max_absolute_error": 1.734723475976807e-18
+      },
+      {
+        "tendon": "LFC_pleural_remotor_and_abductor_tendon",
+        "max_absolute_error": 0.0
+      },
+      {
+        "tendon": "LFC_sternal_adductor_tendon",
+        "max_absolute_error": 6.938893903907228e-18
+      },
+      {
+        "tendon": "LFC_sternal_anterior_rotator_tendon",
+        "max_absolute_error": 0.0
+      },
+      {
+        "tendon": "LFC_sternal_posterior_rotator_tendon",
+        "max_absolute_error": 0.0
+      },
+      {
+        "tendon": "LFC_tergopleural_promotor_a_tendon",
+        "max_absolute_error": 3.469446951953614e-18
+      },
+      {
+        "tendon": "LFC_tergopleural_promotor_b_tendon",
+        "max_absolute_error": 0.0
+      }
+    ],
+    "candidate_identities": [
+      {
+        "name": "Tergopleural/Pleural promotor MN T1 left",
+        "body_ids": [
+          800061,
+          801173,
+          807281,
+          934091
+        ],
+        "dense_indices": [
+          142836,
+          143654,
+          148512,
+          162856
+        ],
+        "count": 4,
+        "direction": 1,
+        "annotation_actuators": [
+          "coxa_T1_left"
+        ],
+        "exact_annotation_aliases": [
+          {
+            "name": "Tergopleural/Pleural promotor MN T1 left",
+            "actuator": "coxa_T1_left",
+            "direction": 1
+          }
+        ],
+        "checks": {
+          "exact_body_ids": true,
+          "count": true,
+          "body_integer": true,
+          "unique": true,
+          "dense_integer": true,
+          "all_alias_identities": true,
+          "metadata": true,
+          "all_directions_equal": true,
+          "exact_bodymap_indices": true,
+          "body_id_dense_inversion": true
+        }
+      },
+      {
+        "name": "Pleural remotor/abductor MN T1 left",
+        "body_ids": [
+          802509,
+          803803
+        ],
+        "dense_indices": [
+          144657,
+          145652
+        ],
+        "count": 2,
+        "direction": -1,
+        "annotation_actuators": [
+          "coxa_T1_left",
+          "coxa_abduct_T1_left"
+        ],
+        "exact_annotation_aliases": [
+          {
+            "name": "Pleural remotor/abductor MN T1 left",
+            "actuator": "coxa_T1_left",
+            "direction": -1
+          },
+          {
+            "name": "Pleural remotor/abductor MN T1 left",
+            "actuator": "coxa_abduct_T1_left",
+            "direction": -1
+          }
+        ],
+        "checks": {
+          "exact_body_ids": true,
+          "count": true,
+          "body_integer": true,
+          "unique": true,
+          "dense_integer": true,
+          "all_alias_identities": true,
+          "metadata": true,
+          "all_directions_equal": true,
+          "exact_bodymap_indices": true,
+          "body_id_dense_inversion": true
+        }
+      },
+      {
+        "name": "Sternal adductor MN T1 left",
+        "body_ids": [
+          813480
+        ],
+        "dense_indices": [
+          153568
+        ],
+        "count": 1,
+        "direction": 1,
+        "annotation_actuators": [
+          "coxa_abduct_T1_left"
+        ],
+        "exact_annotation_aliases": [
+          {
+            "name": "Sternal adductor MN T1 left",
+            "actuator": "coxa_abduct_T1_left",
+            "direction": 1
+          }
+        ],
+        "checks": {
+          "exact_body_ids": true,
+          "count": true,
+          "body_integer": true,
+          "unique": true,
+          "dense_integer": true,
+          "all_alias_identities": true,
+          "metadata": true,
+          "all_directions_equal": true,
+          "exact_bodymap_indices": true,
+          "body_id_dense_inversion": true
+        }
+      },
+      {
+        "name": "Sternal anterior rotator MN T1 left",
+        "body_ids": [
+          806923,
+          919509
+        ],
+        "dense_indices": [
+          148218,
+          162458
+        ],
+        "count": 2,
+        "direction": 1,
+        "annotation_actuators": [
+          "coxa_twist_T1_left"
+        ],
+        "exact_annotation_aliases": [
+          {
+            "name": "Sternal anterior rotator MN T1 left",
+            "actuator": "coxa_twist_T1_left",
+            "direction": 1
+          }
+        ],
+        "checks": {
+          "exact_body_ids": true,
+          "count": true,
+          "body_integer": true,
+          "unique": true,
+          "dense_integer": true,
+          "all_alias_identities": true,
+          "metadata": true,
+          "all_directions_equal": true,
+          "exact_bodymap_indices": true,
+          "body_id_dense_inversion": true
+        }
+      },
+      {
+        "name": "Sternal posterior rotator MN T1 left",
+        "body_ids": [
+          801915,
+          804851,
+          808640,
+          1050335829
+        ],
+        "dense_indices": [
+          144222,
+          146498,
+          149652,
+          164685
+        ],
+        "count": 4,
+        "direction": -1,
+        "annotation_actuators": [
+          "coxa_twist_T1_left"
+        ],
+        "exact_annotation_aliases": [
+          {
+            "name": "Sternal posterior rotator MN T1 left",
+            "actuator": "coxa_twist_T1_left",
+            "direction": -1
+          }
+        ],
+        "checks": {
+          "exact_body_ids": true,
+          "count": true,
+          "body_integer": true,
+          "unique": true,
+          "dense_integer": true,
+          "all_alias_identities": true,
+          "metadata": true,
+          "all_directions_equal": true,
+          "exact_bodymap_indices": true,
+          "body_id_dense_inversion": true
+        }
+      }
+    ],
+    "historical_recruitment_decisions": {
+      "Tergopleural/Pleural promotor MN T1 left": {
+        "LF_MIN_BOUND": {
+          "label": "NOT_RECRUITED_UNDER_TEST_CONDITION",
+          "per_seed_response": [
+            false,
+            false,
+            false
+          ],
+          "event_count_crosscheck": [
+            true,
+            true,
+            true
+          ]
+        },
+        "LF_MAX_BOUND": {
+          "label": "NOT_RECRUITED_UNDER_TEST_CONDITION",
+          "per_seed_response": [
+            false,
+            false,
+            false
+          ],
+          "event_count_crosscheck": [
+            true,
+            true,
+            true
+          ]
+        }
+      },
+      "Pleural remotor/abductor MN T1 left": {
+        "LF_MIN_BOUND": {
+          "label": "NOT_RECRUITED_UNDER_TEST_CONDITION",
+          "per_seed_response": [
+            false,
+            false,
+            false
+          ],
+          "event_count_crosscheck": [
+            true,
+            true,
+            true
+          ]
+        },
+        "LF_MAX_BOUND": {
+          "label": "NOT_RECRUITED_UNDER_TEST_CONDITION",
+          "per_seed_response": [
+            false,
+            false,
+            false
+          ],
+          "event_count_crosscheck": [
+            true,
+            true,
+            true
+          ]
+        }
+      },
+      "Sternal adductor MN T1 left": {
+        "LF_MIN_BOUND": {
+          "label": "NOT_RECRUITED_UNDER_TEST_CONDITION",
+          "per_seed_response": [
+            false,
+            false,
+            false
+          ],
+          "event_count_crosscheck": [
+            true,
+            true,
+            true
+          ]
+        },
+        "LF_MAX_BOUND": {
+          "label": "NOT_RECRUITED_UNDER_TEST_CONDITION",
+          "per_seed_response": [
+            false,
+            false,
+            false
+          ],
+          "event_count_crosscheck": [
+            true,
+            true,
+            true
+          ]
+        }
+      },
+      "Sternal anterior rotator MN T1 left": {
+        "LF_MIN_BOUND": {
+          "label": "NOT_RECRUITED_UNDER_TEST_CONDITION",
+          "per_seed_response": [
+            false,
+            false,
+            false
+          ],
+          "event_count_crosscheck": [
+            true,
+            true,
+            true
+          ]
+        },
+        "LF_MAX_BOUND": {
+          "label": "NOT_RECRUITED_UNDER_TEST_CONDITION",
+          "per_seed_response": [
+            false,
+            false,
+            false
+          ],
+          "event_count_crosscheck": [
+            true,
+            true,
+            true
+          ]
+        }
+      },
+      "Sternal posterior rotator MN T1 left": {
+        "LF_MIN_BOUND": {
+          "label": "NOT_RECRUITED_UNDER_TEST_CONDITION",
+          "per_seed_response": [
+            false,
+            false,
+            false
+          ],
+          "event_count_crosscheck": [
+            true,
+            true,
+            true
+          ]
+        },
+        "LF_MAX_BOUND": {
+          "label": "NOT_RECRUITED_UNDER_TEST_CONDITION",
+          "per_seed_response": [
+            false,
+            false,
+            false
+          ],
+          "event_count_crosscheck": [
+            true,
+            true,
+            true
+          ]
+        }
+      }
+    },
+    "historical_context": "11 admitted motors; seeds 1,2,3; LF_MIN_BOUND/LF_MAX_BOUND sensory replay",
+    "interpretation": "Recorded older-context nulls, not evidence of inevitable silence in current v3/tactile context.",
+    "remaining": [
+      "LF-only local differential mechanics are not population activation signs or decoder weights.",
+      "Broad promotor maps to three tendon hypotheses; no unsupported averaging or dominant-axis selection.",
+      "Independent population-to-muscle activation/binding and sign/decoder/admission validation still required."
+    ]
+  },
+  "next_workstream": "Reference-backed LF proximal activation/sign and multi-axis population-to-muscle binding prerequisites; no admission or rerun of frozen zero-projection assay.",
+  "limitations": [
+    "No current admission gate passed merely because historical content can be read.",
+    "Canonical Git-content correspondence does not satisfy failed original raw-byte prerequisites.",
+    "No activity-based ranking, new signs, weights, gains, neural drive or stimulation."
+  ]
+}
