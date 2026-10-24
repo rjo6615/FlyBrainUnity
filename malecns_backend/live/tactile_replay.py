@@ -23,31 +23,36 @@ def replay(report, condition, *, speed=.1, loop=True, server_factory=PoseServer,
         raise ValueError('unrecognized recorded experiment protocol')
     if not report.get('evaluation', {}).get('integrity_passed'):
         raise ValueError('review inconclusive evidence offline; Unity replay requires verified pair integrity')
-    arm = report['arms'][condition]
-    if arm['run_status'] != 'COMPLETE' or len(arm['samples']) != experiment.PROTOCOL['physics_steps'] + 1:
-        raise ValueError('complete recorded arm required')
+    conditions = experiment.CONDITIONS if condition == 'BOTH' else (condition,)
+    for selected in conditions:
+        arm = report['arms'][selected]
+        if arm['run_status'] != 'COMPLETE' or len(arm['samples']) != experiment.PROTOCOL['physics_steps'] + 1:
+            raise ValueError('complete recorded arm required')
     print(f'RECORDED {condition}, {speed:g}x playback. No CNS or physics is running.', flush=True)
     print(json.dumps(report['evaluation']['milestones'], indent=2), flush=True)
     with server_factory() as server:
         while True:
-            start = clock()
-            for index, sample in enumerate(arm['samples']):
-                due = start + sample['time_s'] / speed
-                wait = due - clock()
-                if wait > 0:
-                    sleep(wait)
-                # Downsampling affects display only; recorded states remain intact.
-                server.publish(replay_snapshot(sample, index), now=clock())
+            for selected in conditions:
+                print(f'RECORDED CONDITION: {selected}', flush=True)
+                start = clock()
+                for index, sample in enumerate(report['arms'][selected]['samples']):
+                    due = start + sample['time_s'] / speed
+                    wait = due - clock()
+                    if wait > 0:
+                        sleep(wait)
+                    # Downsampling affects display only; recorded states remain intact.
+                    server.publish(replay_snapshot(sample, index), now=clock())
+                if loop or selected != conditions[-1]:
+                    sleep(1.)
             if not loop:
                 break
-            sleep(1.)
             print(f'RECORDED {condition}: replaying the same saved trajectory.', flush=True)
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--input', type=Path, required=True)
-    parser.add_argument('--condition', choices=experiment.CONDITIONS, required=True)
+    parser.add_argument('--condition', choices=(*experiment.CONDITIONS, 'BOTH'), required=True)
     parser.add_argument('--speed', type=float, default=.1)
     parser.add_argument('--once', action='store_true')
     args = parser.parse_args(argv)

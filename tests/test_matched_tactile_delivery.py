@@ -1,6 +1,7 @@
 """Real small-graph neural boundary tests and synthetic paired-evidence tests."""
 import copy
 import gzip
+import hashlib
 import json
 from types import SimpleNamespace
 from unittest.mock import Mock, patch
@@ -195,3 +196,43 @@ def test_replay_uses_recorded_measured_pose_and_existing_protocol(synthetic_pair
     server.__exit__ = Mock(return_value=False)
     tactile_replay.replay(synthetic_pair,'ENABLED',loop=False,server_factory=lambda:server,clock=lambda:1.,sleep=lambda _:None)
     assert server.publish.call_count == 11
+    server.publish.reset_mock()
+    tactile_replay.replay(synthetic_pair,'BOTH',loop=False,server_factory=lambda:server,clock=lambda:1.,sleep=lambda _:None)
+    assert server.publish.call_count == 22
+
+
+def test_arm_interruption_preserves_partial_trace_and_closes():
+    trial = Mock(samples=[{'time_s':0.}], neural=[], context={'partial':True}, initial=None)
+    session = Mock()
+    session.initialize.return_value = SimpleNamespace(time_ms=0.)
+    session.step.side_effect = KeyboardInterrupt()
+    with patch.object(experiment, 'Trial', return_value=trial), \
+            patch.object(experiment, 'create_session', return_value=session):
+        result = experiment.run_arm('WITHHELD', lambda *_:None)
+    assert result['run_status'] == 'ERROR' and 'KeyboardInterrupt' in result['error']
+    assert result['samples'] == [{'time_s':0.}]
+    session.close.assert_called_once()
+    trial.detach.assert_called_once()
+
+
+def test_both_arms_attempted_once_without_retry_on_failure():
+    with patch.object(experiment, 'prerequisites', return_value={'verified':True}), \
+            patch('malecns_backend.embodiment._windows_m7d_corrected_spontaneous_adapter._environment'), \
+            patch.object(experiment.importlib.metadata, 'version', return_value='synthetic'), \
+            patch.object(experiment, 'run_arm', side_effect=[{'run_status':'ERROR'}, {'run_status':'COMPLETE'}]) as run:
+        result = experiment.build_report(live=True, progress=lambda *_:None)
+    assert [call.args[0] for call in run.call_args_list] == list(experiment.CONDITIONS)
+    assert run.call_count == 2 and result['run_status'] == 'INCOMPLETE'
+    assert not result['evaluation']['integrity_passed']
+
+
+def test_archived_pair_full_replay_and_source_hashes():
+    folder = experiment.ROOT/'docs/evidence'
+    manifest = json.loads((folder/'matched-tactile-checkpoint.json').read_text())
+    packed = (folder/manifest['raw_artifact']).read_bytes()
+    raw = gzip.decompress(packed)
+    assert hashlib.sha256(packed).hexdigest() == manifest['gzip_sha256']
+    assert hashlib.sha256(raw).hexdigest() == manifest['raw_json_sha256']
+    report = json.loads(raw)
+    assert report['sources_before'] == report['sources_after'] == experiment.source_hashes()
+    assert report['evaluation'] == experiment.evaluate(report) == manifest['evaluation']

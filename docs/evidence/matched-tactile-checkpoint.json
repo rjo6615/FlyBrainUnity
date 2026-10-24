@@ -1,0 +1,454 @@
+{
+  "schema": "matched-tactile-checkpoint-v1",
+  "date": "2026-10-24",
+  "baseline": "def9f2479ccbb31d81a61db9ee5fc1ca02718ccf",
+  "implementation_commit": "24af69f0e9d7ee8d6fce1a06b0eab3df65b5bc45",
+  "raw_artifact": "matched-tactile-v1.json.gz",
+  "gzip_sha256": "6da71dd069ad5d1b46cdc7d078f815e74b3ba38f8f4daac5cf7a40097e94e444",
+  "raw_json_sha256": "5283035fe0069448118eddacc54cbaa413535a441547cd19e0c962006d2e5711",
+  "gzip_bytes": 143669202,
+  "raw_json_bytes": 566098712,
+  "protocol": {
+    "schema": "matched-tactile-delivery-v1",
+    "conditions": [
+      "WITHHELD",
+      "ENABLED"
+    ],
+    "duration_s": 2.0,
+    "physics_steps": 20000,
+    "neural_steps": 4000,
+    "physics_dt_s": 0.0001,
+    "neural_dt_ms": 0.5,
+    "seed": 1,
+    "threshold": 1e-12,
+    "maximum_modeled_rate_hz": 120.0,
+    "transient_ms": 20.0,
+    "tactile_neurons": 1877,
+    "proprioceptive_neurons": 392,
+    "common_external_slots": 2269,
+    "automatic_retries": 0,
+    "ordinary_live_tactile_enabled": false
+  },
+  "environment": {
+    "flygym": "1.2.1",
+    "mujoco": "3.2.7",
+    "numpy": "2.0.2"
+  },
+  "run_status": "COMPLETE",
+  "evaluation": {
+    "integrity_passed": true,
+    "outcome": "PHYSICAL_DIVERGENCE_OBSERVED",
+    "checks": {
+      "fixed_protocol": true,
+      "prerequisite": true,
+      "sources_unchanged": true,
+      "complete_pair": true,
+      "matched_initial_neural_observer_encoder_inventory": true,
+      "matched_initial_physics": true,
+      "complete_disjoint_input_inventory": true,
+      "WITHHELD_calibrated_context": true,
+      "WITHHELD_gate": true,
+      "WITHHELD_neural_schedule": true,
+      "WITHHELD_readout": true,
+      "ENABLED_calibrated_context": true,
+      "ENABLED_gate": true,
+      "ENABLED_neural_schedule": true,
+      "ENABLED_readout": true,
+      "common_external_uniforms_full_window": true,
+      "matched_pre_delivery_neural_and_offers": true,
+      "matched_pre_delivery_physics": true,
+      "matched_encoder_candidates_before_feedback": true
+    },
+    "milestones": {
+      "first_eligible_tactile_ms": 0.5,
+      "first_cns_divergence_ms": 0.5,
+      "first_non_input_state_divergence_ms": 2.5,
+      "first_non_input_spike_divergence_ms": 5.5,
+      "first_motor_spike_divergence_ms": 14.5,
+      "first_decoder_divergence_ms": 14.5,
+      "first_motor_command_divergence_ms": 14.5,
+      "first_physical_divergence_ms": 14.599999999999968,
+      "first_joint_divergence_ms": 14.599999999999968,
+      "first_contact_force_feedback_divergence_ms": 14.599999999999968
+    },
+    "arms": {
+      "WITHHELD": {
+        "context_evaluation": {
+          "accepted": true,
+          "accepted_legs": [
+            "LF",
+            "LM",
+            "LH",
+            "RF",
+            "RM",
+            "RH"
+          ],
+          "checks": {
+            "fixed_protocol": true,
+            "completed": true,
+            "prerequisite": true,
+            "source_integrity": true,
+            "exact_identity": true,
+            "supported_context": true,
+            "complete_fixed_schedule": true,
+            "immutable_context": true,
+            "passive_observer": true,
+            "no_external_forcing": true,
+            "finite_physics_and_zero_adhesion": true
+          },
+          "legs": {
+            "LF": {
+              "positive_samples": 19970,
+              "negative_samples": 31,
+              "ambiguous_samples": 0,
+              "force_disagreements": 0,
+              "reconstruction_disagreements": 0,
+              "telemetry_disagreements": 0,
+              "ground_positive_samples": 19970,
+              "calibration_surface_positive_samples": 0,
+              "accepted": true,
+              "status": "OBSERVATIONAL_CONTEXT_ACCEPTED"
+            },
+            "LM": {
+              "positive_samples": 19946,
+              "negative_samples": 55,
+              "ambiguous_samples": 0,
+              "force_disagreements": 0,
+              "reconstruction_disagreements": 0,
+              "telemetry_disagreements": 0,
+              "ground_positive_samples": 19946,
+              "calibration_surface_positive_samples": 0,
+              "accepted": true,
+              "status": "OBSERVATIONAL_CONTEXT_ACCEPTED"
+            },
+            "LH": {
+              "positive_samples": 19946,
+              "negative_samples": 55,
+              "ambiguous_samples": 0,
+              "force_disagreements": 0,
+              "reconstruction_disagreements": 0,
+              "telemetry_disagreements": 0,
+              "ground_positive_samples": 19946,
+              "calibration_surface_positive_samples": 0,
+              "accepted": true,
+              "status": "OBSERVATIONAL_CONTEXT_ACCEPTED"
+            },
+            "RF": {
+              "positive_samples": 19902,
+              "negative_samples": 99,
+              "ambiguous_samples": 0,
+              "force_disagreements": 0,
+              "reconstruction_disagreements": 0,
+              "telemetry_disagreements": 0,
+              "ground_positive_samples": 19902,
+              "calibration_surface_positive_samples": 0,
+              "accepted": true,
+              "status": "OBSERVATIONAL_CONTEXT_ACCEPTED"
+            },
+            "RM": {
+              "positive_samples": 19943,
+              "negative_samples": 58,
+              "ambiguous_samples": 0,
+              "force_disagreements": 0,
+              "reconstruction_disagreements": 0,
+              "telemetry_disagreements": 0,
+              "ground_positive_samples": 19943,
+              "calibration_surface_positive_samples": 0,
+              "accepted": true,
+              "status": "OBSERVATIONAL_CONTEXT_ACCEPTED"
+            },
+            "RH": {
+              "positive_samples": 19938,
+              "negative_samples": 63,
+              "ambiguous_samples": 0,
+              "force_disagreements": 0,
+              "reconstruction_disagreements": 0,
+              "telemetry_disagreements": 0,
+              "ground_positive_samples": 19938,
+              "calibration_surface_positive_samples": 0,
+              "accepted": true,
+              "status": "OBSERVATIONAL_CONTEXT_ACCEPTED"
+            }
+          },
+          "status": "OBSERVATIONAL_CONTEXT_ACCEPTED"
+        },
+        "tactile": {
+          "LF": {
+            "offered": 575,
+            "eligible": 575,
+            "delivered": 0
+          },
+          "LM": {
+            "offered": 607,
+            "eligible": 607,
+            "delivered": 0
+          },
+          "LH": {
+            "offered": 1229,
+            "eligible": 1229,
+            "delivered": 0
+          },
+          "RF": {
+            "offered": 773,
+            "eligible": 773,
+            "delivered": 0
+          },
+          "RM": {
+            "offered": 840,
+            "eligible": 840,
+            "delivered": 0
+          },
+          "RH": {
+            "offered": 2454,
+            "eligible": 2454,
+            "delivered": 0
+          }
+        },
+        "motor_spikes": {
+          "joint_LFTibia": 0,
+          "joint_LMTibia": 2,
+          "joint_LHTibia": 0,
+          "joint_RFTibia": 0,
+          "joint_RMTibia": 3,
+          "joint_RHTibia": 18,
+          "joint_LFFemur": 0,
+          "joint_LMFemur": 8,
+          "joint_LHFemur": 0,
+          "joint_RMFemur": 33,
+          "joint_RHFemur": 21,
+          "joint_LFFemur_roll": 0,
+          "joint_LMFemur_roll": 14,
+          "joint_LHFemur_roll": 0,
+          "joint_RFFemur_roll": 0,
+          "joint_RMFemur_roll": 0,
+          "joint_RHFemur_roll": 1,
+          "joint_RFFemur": 0,
+          "joint_LFTarsus1": 0,
+          "joint_RFTarsus1": 0
+        }
+      },
+      "ENABLED": {
+        "context_evaluation": {
+          "accepted": true,
+          "accepted_legs": [
+            "LF",
+            "LM",
+            "LH",
+            "RF",
+            "RM",
+            "RH"
+          ],
+          "checks": {
+            "fixed_protocol": true,
+            "completed": true,
+            "prerequisite": true,
+            "source_integrity": true,
+            "exact_identity": true,
+            "supported_context": true,
+            "complete_fixed_schedule": true,
+            "immutable_context": true,
+            "passive_observer": true,
+            "no_external_forcing": true,
+            "finite_physics_and_zero_adhesion": true
+          },
+          "legs": {
+            "LF": {
+              "positive_samples": 17576,
+              "negative_samples": 2425,
+              "ambiguous_samples": 0,
+              "force_disagreements": 0,
+              "reconstruction_disagreements": 0,
+              "telemetry_disagreements": 0,
+              "ground_positive_samples": 17576,
+              "calibration_surface_positive_samples": 0,
+              "accepted": true,
+              "status": "OBSERVATIONAL_CONTEXT_ACCEPTED"
+            },
+            "LM": {
+              "positive_samples": 19910,
+              "negative_samples": 91,
+              "ambiguous_samples": 0,
+              "force_disagreements": 0,
+              "reconstruction_disagreements": 0,
+              "telemetry_disagreements": 0,
+              "ground_positive_samples": 19910,
+              "calibration_surface_positive_samples": 0,
+              "accepted": true,
+              "status": "OBSERVATIONAL_CONTEXT_ACCEPTED"
+            },
+            "LH": {
+              "positive_samples": 16358,
+              "negative_samples": 3643,
+              "ambiguous_samples": 0,
+              "force_disagreements": 0,
+              "reconstruction_disagreements": 0,
+              "telemetry_disagreements": 0,
+              "ground_positive_samples": 16358,
+              "calibration_surface_positive_samples": 0,
+              "accepted": true,
+              "status": "OBSERVATIONAL_CONTEXT_ACCEPTED"
+            },
+            "RF": {
+              "positive_samples": 1523,
+              "negative_samples": 18478,
+              "ambiguous_samples": 0,
+              "force_disagreements": 0,
+              "reconstruction_disagreements": 0,
+              "telemetry_disagreements": 0,
+              "ground_positive_samples": 1523,
+              "calibration_surface_positive_samples": 0,
+              "accepted": true,
+              "status": "OBSERVATIONAL_CONTEXT_ACCEPTED"
+            },
+            "RM": {
+              "positive_samples": 18604,
+              "negative_samples": 1397,
+              "ambiguous_samples": 0,
+              "force_disagreements": 0,
+              "reconstruction_disagreements": 0,
+              "telemetry_disagreements": 0,
+              "ground_positive_samples": 18604,
+              "calibration_surface_positive_samples": 0,
+              "accepted": true,
+              "status": "OBSERVATIONAL_CONTEXT_ACCEPTED"
+            },
+            "RH": {
+              "positive_samples": 19834,
+              "negative_samples": 167,
+              "ambiguous_samples": 0,
+              "force_disagreements": 0,
+              "reconstruction_disagreements": 0,
+              "telemetry_disagreements": 0,
+              "ground_positive_samples": 19834,
+              "calibration_surface_positive_samples": 0,
+              "accepted": true,
+              "status": "OBSERVATIONAL_CONTEXT_ACCEPTED"
+            }
+          },
+          "status": "OBSERVATIONAL_CONTEXT_ACCEPTED"
+        },
+        "tactile": {
+          "LF": {
+            "offered": 11472,
+            "eligible": 8557,
+            "delivered": 8557
+          },
+          "LM": {
+            "offered": 6718,
+            "eligible": 5051,
+            "delivered": 5051
+          },
+          "LH": {
+            "offered": 27854,
+            "eligible": 21060,
+            "delivered": 21060
+          },
+          "RF": {
+            "offered": 1627,
+            "eligible": 1255,
+            "delivered": 1255
+          },
+          "RM": {
+            "offered": 14902,
+            "eligible": 11483,
+            "delivered": 11483
+          },
+          "RH": {
+            "offered": 22531,
+            "eligible": 17025,
+            "delivered": 17025
+          }
+        },
+        "motor_spikes": {
+          "joint_LFTibia": 55,
+          "joint_LMTibia": 145,
+          "joint_LHTibia": 61,
+          "joint_RFTibia": 0,
+          "joint_RMTibia": 76,
+          "joint_RHTibia": 74,
+          "joint_LFFemur": 187,
+          "joint_LMFemur": 407,
+          "joint_LHFemur": 149,
+          "joint_RMFemur": 307,
+          "joint_RHFemur": 404,
+          "joint_LFFemur_roll": 163,
+          "joint_LMFemur_roll": 9,
+          "joint_LHFemur_roll": 10,
+          "joint_RFFemur_roll": 0,
+          "joint_RMFemur_roll": 18,
+          "joint_RHFemur_roll": 18,
+          "joint_RFFemur": 56,
+          "joint_LFTarsus1": 9,
+          "joint_RFTarsus1": 0
+        }
+      }
+    }
+  },
+  "descriptive_physical_magnitudes": {
+    "scope": "Posthoc full-window descriptive magnitudes; not acceptance thresholds.",
+    "maximum_root_separation_model_mm": 0.29186901830205536,
+    "final_root_separation_model_mm": 0.20311741717655188,
+    "joint_max_abs_difference_rad": {
+      "joint_LFCoxa": 0.032322196289896965,
+      "joint_LFCoxa_roll": 0.026157439046073705,
+      "joint_LFCoxa_yaw": 0.03716942714527249,
+      "joint_LFFemur": 0.1532883644104004,
+      "joint_LFFemur_roll": 0.2353519620373845,
+      "joint_LFTibia": 0.0764474868774414,
+      "joint_LFTarsus1": 0.1094348132610321,
+      "joint_LMCoxa": 0.04271229915320873,
+      "joint_LMCoxa_roll": 0.015129446983337402,
+      "joint_LMCoxa_yaw": 0.08248138427734375,
+      "joint_LMFemur": 0.20010173320770264,
+      "joint_LMFemur_roll": 0.0777082690037787,
+      "joint_LMTibia": 0.26352763175964355,
+      "joint_LMTarsus1": 0.05650360882282257,
+      "joint_LHCoxa": 0.038007721304893494,
+      "joint_LHCoxa_roll": 0.02737259864807129,
+      "joint_LHCoxa_yaw": 0.04773062467575073,
+      "joint_LHFemur": 0.18879270553588867,
+      "joint_LHFemur_roll": 0.17706651613116264,
+      "joint_LHTibia": 0.21450352668762207,
+      "joint_LHTarsus1": 0.020001128315925598,
+      "joint_RFCoxa": 0.01336622890084982,
+      "joint_RFCoxa_roll": 0.008565842639654875,
+      "joint_RFCoxa_yaw": 0.010375363752245903,
+      "joint_RFFemur": 0.1272265911102295,
+      "joint_RFFemur_roll": 0.0055165395606309175,
+      "joint_RFTibia": 0.006078183650970459,
+      "joint_RFTarsus1": 0.003632187843322754,
+      "joint_RMCoxa": 0.04266721196472645,
+      "joint_RMCoxa_roll": 0.02366769313812256,
+      "joint_RMCoxa_yaw": 0.058974817395210266,
+      "joint_RMFemur": 0.16202902793884277,
+      "joint_RMFemur_roll": 0.09606463590171188,
+      "joint_RMTibia": 0.23455262184143066,
+      "joint_RMTarsus1": 0.031448996043764055,
+      "joint_RHCoxa": 0.03834378719329834,
+      "joint_RHCoxa_roll": 0.027639150619506836,
+      "joint_RHCoxa_yaw": 0.044901952147483826,
+      "joint_RHFemur": 0.17376863956451416,
+      "joint_RHFemur_roll": 0.21916591376066208,
+      "joint_RHTibia": 0.2158365249633789,
+      "joint_RHTarsus1": 0.01844996213912964
+    },
+    "largest_joint_differences_degrees": {
+      "joint_LMTibia": 15.099021084905287,
+      "joint_LFFemur_roll": 13.484674124865304,
+      "joint_RMTibia": 13.438875305241988,
+      "joint_RHFemur_roll": 12.55728187161411,
+      "joint_RHTibia": 12.366521945171646,
+      "joint_LHTibia": 12.290146769872564,
+      "joint_LMFemur": 11.464984786054153,
+      "joint_LHFemur": 10.817025230062553,
+      "joint_LHFemur_roll": 10.14516406740073,
+      "joint_RHFemur": 9.956209658776677
+    }
+  },
+  "pose_wire_smoke": {
+    "passed": true,
+    "actual_tcp_poses_verified": 2,
+    "cns_or_physics_steps": 0,
+    "unity_editor_run": false
+  }
+}

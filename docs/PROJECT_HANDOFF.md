@@ -1,8 +1,8 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-24. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for the live-context update: `newBrain` at
-`5df78a6c4b46b0c6e8197c8ca768b69a17e54d5b`, which merges PR #257.
+Verified baseline for the matched-delivery update: `newBrain` at
+`def9f2479ccbb31d81a61db9ee5fc1ca02718ccf`, which merges PR #258.
 Fetch and inspect current state before starting work.
 
 ## What the user wants
@@ -187,12 +187,54 @@ physics-only implementation smoke test showed exact observed/unobserved parity;
 its held-joint context is not scientific live-v3 evidence. See
 `docs/LIVE_CONTACT_CONTEXT_RESULTS.md` for details and Git Bash commands.
 
-Immediate next task: design and separately version a matched tactile-delivery
+The next task at that checkpoint was to design and separately version matched tactile-delivery
 enabled/withheld experiment in the tested supported context, reusing the encoder
 and independent/common candidate sampling, with pre-intervention equivalence and
 verified delivery/readout boundaries. Define treatment of unobserved contact
 sources explicitly. No tactile delivery is enabled by this update. Acceptance
 does not establish balance, gait or biological transduction.
+
+## Latest update — matched tactile delivery changed the simulated body
+
+The fixed two-second WITHHELD/ENABLED protocol and instance-local external-input
+adapter were committed at 24af69f before execution. Both fresh live-v3 arms ran
+20000 physics transitions / 4000 neural updates, keeping normal supported physics,
+20 motor interfaces and all physiological/encoder parameters fixed. They use a
+prospectively common 2269-slot CNS external RNG schedule in both arms; this is an
+explicit assay context. No locked kernel/neural/encoder source or ordinary live
+default was changed. Six complete tactile populations (1877 neurons) are sampled
+in both arms; only the input delivery mask differs. No retries or tuning ran.
+
+All paired integrity and calibrated-context checks passed. First eligible tactile
+event / CNS divergence was 0.5 ms; non-input state divergence 2.5 ms; non-input
+spike divergence 5.5 ms; motor spike/decoder/command divergence 14.5 ms; physical,
+joint and contact-force divergence 14.6 ms. Excluding all 2269 input neurons
+distinguishes downstream effects from directly driven sensory spikes.
+
+WITHHELD delivered zero tactile events; ENABLED delivered 64431 over the fixed
+window. Later contact/candidate totals legitimately diverge in closed loop. The
+previously investigated right-front femur motor readout had 0/56 spikes
+(WITHHELD/ENABLED), left-front tarsus 0/9, right-front tarsus 0/0. Full-window A/B
+joint differences reached 15.10 degrees at left-middle tibia; maximum root
+separation was 0.291869 model mm. These are simulated effects, not balance/gait
+or biological validation. No positive calibration-surface coverage was observed.
+
+Full raw pair is in Git LFS at `docs/evidence/matched-tactile-v1.json.gz`; hashes,
+full checks, counts and descriptive magnitudes are in
+`docs/evidence/matched-tactile-checkpoint.json`. See
+`docs/MATCHED_TACTILE_DELIVERY_V1.md` for prospective criteria and
+`docs/MATCHED_TACTILE_DELIVERY_RESULTS.md` for actual checks and Unity commands.
+The older tactile-contact artifact hash test fails unchanged in origin/newBrain
+because d03f2a6 added live metadata without changing biological populations;
+neither the expected hash nor the artifact was refreshed in this update.
+
+Immediate next task: review the paired recorded Unity poses and intervention
+evidence, then design any ordinary live tactile mode or next motor/balance
+experiment separately. `live.tactile_replay --condition BOTH --speed 0.1` streams
+the saved arms through the existing output-only protocol without rerunning CNS.
+The standard live-v3 launcher remains tactile-disabled. Unity Editor was not run
+by the agent; an actual two-pose TCP smoke check passed. Preserve the right-front
+tarsus null result and distinguish passive mechanical motion from motor spikes.
 
 ## Completed predecessor task — negative-control design requirements
 
