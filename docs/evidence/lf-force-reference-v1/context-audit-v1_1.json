@@ -1,0 +1,23 @@
+{
+  "schema": "lf-force-reference-v1-context-audit-v1.1",
+  "original_report": "docs/evidence/lf-force-reference-v1/validation.json",
+  "original_raw_sha256": "5f632b45ea9e5e4948a40bed97539a6428706b4fa7385b7e408c8918153a1f9f",
+  "original_size_bytes": 143158,
+  "original_protocol_commit": "8228e84d56dca5b16814ab47a8951268e8f05273",
+  "classification": "FIXTURE_ARRAY_CHECKS_PASSED_TOTAL_OPERATION_PROVENANCE_REJECTED",
+  "discovery": "Strict saved-review test forbidding mj_forward failed through original audit inventory enumeration and FlyGym construction.",
+  "path": [
+    "remaining_leg_admission_audit.build",
+    "_windows_m7d_corrected_spontaneous_adapter._protocol",
+    "_windows_m7_spontaneous_locomotion_adapter._inventory",
+    "full_leg_interface.enumerate_live_actuators",
+    "FlyGym SingleFlySimulation construction",
+    "dm_control Physics initialization mj_forward"
+  ],
+  "unaccounted_native_forward_call_count": null,
+  "count_interpretation": "18 records only fixture API calls; additional initialization calls were not measured in the original campaign.",
+  "full_matrix_at_discovery": {"passed": 71, "failed": 1},
+  "original_report_modified": false,
+  "neural_or_integration_transition_evidence": "No such transitions identified; model construction and non-integrating forward dynamics are a separate boundary.",
+  "correction": "Separately versioned construction-free static reference replay; same fixed fixture conditions and numerical acceptance."
+}

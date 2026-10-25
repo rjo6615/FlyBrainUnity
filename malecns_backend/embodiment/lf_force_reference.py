@@ -6,6 +6,7 @@ import numpy as np
 from . import remaining_leg_admission_audit as audit
 from . import lf_anatomical_crosswalk as crosswalk
 from . import lf_proximal_binding_review as binding
+from . import lf_force_static_reference as static
 
 ROOT = audit.ROOT
 FIXTURE = 'docs/fixtures/lf-force-reference-v1.xml'
@@ -16,11 +17,10 @@ TENDONS = ('LFC_pleural_remotor_and_abductor_tendon', 'LFC_sternal_adductor_tend
 
 
 def load_reference():
-    _, now = crosswalk.verify(ROOT/(crosswalk.DIRECTORY+'crosswalk.json'))
-    read = lambda p: json.loads((ROOT/p).read_text(encoding='utf-8'))
-    reg = read(audit.PATHS['registration'])
-    candidates = read(audit.PATHS['candidates'])
-    identities = read(crosswalk.UPSTREAM)['lf_reference']['candidate_identities']
+    verified = static.load()
+    reg = verified['registration']
+    candidates = verified['candidates']
+    identities = verified['lf']['candidate_identities']
     all_rows = binding.reference_rows(reg, candidates['candidate_population_inventory'], identities)
     selected = [r for r in all_rows if len(r['tendon_hypotheses']) == 1]
     if tuple(r['tendon_hypotheses'][0]['tendon'] for r in selected) != TENDONS:
@@ -30,7 +30,7 @@ def load_reference():
         R_G=np.asarray([mechanics[t]['flygym_covector']['values'] for t in TENDONS]).T.tolist(),
         R_M=np.asarray([mechanics[t]['flymimic_covector']['values'] for t in TENDONS]).T.tolist(),
         J=reg['local_differential_registration']['J_GM'],
-        original_raw_freezes_satisfied=now['current_original_raw_freezes_satisfied'])
+        original_raw_freezes_satisfied=verified['original_raw_freezes_satisfied'])
 
 
 class ReferenceForceAdapter:

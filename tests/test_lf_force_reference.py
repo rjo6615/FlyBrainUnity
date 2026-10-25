@@ -125,16 +125,20 @@ def test_failed_output_and_existing_namespace_are_preserved(tmp_path, monkeypatc
 
 def test_saved_native_campaign_rechecks_without_forward_dynamics(monkeypatch):
     import mujoco
+    from malecns_backend.embodiment import _windows_m7_spontaneous_locomotion_adapter as old
     def forbidden(*a, **k): raise AssertionError('saved review must not rerun native dynamics')
     monkeypatch.setattr(mujoco, 'mj_forward', forbidden)
-    saved, _ = validation.verify(force.ROOT/'docs/evidence/lf-force-reference-v1/validation.json')
+    monkeypatch.setattr(mujoco, 'mj_step', forbidden)
+    monkeypatch.setattr(old, 'enumerate_live_actuators', forbidden)
+    assert validation.main(['--preflight']) == 0
+    saved, _ = validation.verify(force.ROOT/'docs/evidence/lf-force-reference-v1_1/validation.json')
     assert saved['evaluation']['passed']
     assert saved['native_forward_calls'] == 18 and saved['integration_steps'] == saved['neural_transitions'] == 0
 
 
-@pytest.mark.parametrize('defect', ['force', 'axis_order', 'state', 'clear', 'mass', 'missing_case'])
+@pytest.mark.parametrize('defect', ['force', 'axis_order', 'state', 'clear', 'mass', 'missing_case', 'api_count'])
 def test_saved_record_tampering_fails(defect, reference):
-    raw = json.loads((force.ROOT/'docs/evidence/lf-force-reference-v1/validation.json').read_text(encoding='utf-8'))
+    raw = json.loads((force.ROOT/'docs/evidence/lf-force-reference-v1_1/validation.json').read_text(encoding='utf-8'))
     applied = raw['cases'][1]['snapshots']['applied']
     if defect == 'force': applied['qfrc_applied'][6] = .01
     if defect == 'axis_order': raw['cases'][1]['metadata'].reverse()
@@ -142,4 +146,13 @@ def test_saved_record_tampering_fails(defect, reference):
     if defect == 'clear': raw['cases'][1]['snapshots']['cleared']['qfrc_applied'][7] = .01
     if defect == 'mass': applied['mass_matrix'][0][0] = float('nan')
     if defect == 'missing_case': raw['cases'].pop()
+    if defect == 'api_count': raw['observed_python_api_calls']['mj_forward'] = 19
     assert not validation.evaluate(raw, reference)['passed']
+
+
+def test_v1_is_preserved_but_operation_provenance_is_not_accepted(reference):
+    path = force.ROOT/'docs/evidence/lf-force-reference-v1/validation.json'
+    assert force.audit.sha(path.read_bytes()) == '5f632b45ea9e5e4948a40bed97539a6428706b4fa7385b7e408c8918153a1f9f'
+    original = json.loads(path.read_text(encoding='utf-8'))
+    assert original['evaluation']['passed']
+    assert not validation.evaluate(original, reference)['passed']

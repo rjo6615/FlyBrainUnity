@@ -1,0 +1,6120 @@
+{
+  "schema": "lf-force-reference-validation-v1",
+  "status": "COMPLETE",
+  "reference": {
+    "basis": [
+      "joint_LFCoxa_yaw",
+      "joint_LFCoxa",
+      "joint_LFCoxa_roll"
+    ],
+    "tendons": [
+      "LFC_pleural_remotor_and_abductor_tendon",
+      "LFC_sternal_adductor_tendon",
+      "LFC_sternal_anterior_rotator_tendon",
+      "LFC_sternal_posterior_rotator_tendon"
+    ],
+    "hypotheses": [
+      {
+        "identity": {
+          "name": "Pleural remotor/abductor MN T1 left",
+          "body_ids": [
+            802509,
+            803803
+          ],
+          "dense_indices": [
+            144657,
+            145652
+          ],
+          "count": 2,
+          "direction": -1,
+          "annotation_actuators": [
+            "coxa_T1_left",
+            "coxa_abduct_T1_left"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Pleural remotor/abductor MN T1 left",
+              "actuator": "coxa_T1_left",
+              "direction": -1
+            },
+            {
+              "name": "Pleural remotor/abductor MN T1 left",
+              "actuator": "coxa_abduct_T1_left",
+              "direction": -1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        },
+        "tendon_hypotheses": [
+          {
+            "tendon": "LFC_pleural_remotor_and_abductor_tendon",
+            "tensile_torque_coefficient": [
+              0.035471495483644505,
+              0.025593975794095825,
+              -0.016985333948516177
+            ],
+            "conditional_positive_tension_component_signs": [
+              1,
+              1,
+              -1
+            ]
+          }
+        ],
+        "binding_status": "SINGLE_CLASS_HYPOTHESIS_NOT_INDEPENDENT_CROSSWALK",
+        "per_neuron_tendon_assignments": [
+          {
+            "body_id": 802509,
+            "dense_index": 144657,
+            "tendon": null
+          },
+          {
+            "body_id": 803803,
+            "dense_index": 145652,
+            "tendon": null
+          }
+        ],
+        "spike_to_activation": null,
+        "activation_to_force": null,
+        "force_to_position_target": null,
+        "decoder_vector": null,
+        "gain": null,
+        "admission_ready": false
+      },
+      {
+        "identity": {
+          "name": "Sternal adductor MN T1 left",
+          "body_ids": [
+            813480
+          ],
+          "dense_indices": [
+            153568
+          ],
+          "count": 1,
+          "direction": 1,
+          "annotation_actuators": [
+            "coxa_abduct_T1_left"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Sternal adductor MN T1 left",
+              "actuator": "coxa_abduct_T1_left",
+              "direction": 1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        },
+        "tendon_hypotheses": [
+          {
+            "tendon": "LFC_sternal_adductor_tendon",
+            "tensile_torque_coefficient": [
+              -0.11388808872259532,
+              0.05623004695075151,
+              -0.004274084963245932
+            ],
+            "conditional_positive_tension_component_signs": [
+              -1,
+              1,
+              -1
+            ]
+          }
+        ],
+        "binding_status": "SINGLE_CLASS_HYPOTHESIS_NOT_INDEPENDENT_CROSSWALK",
+        "per_neuron_tendon_assignments": [
+          {
+            "body_id": 813480,
+            "dense_index": 153568,
+            "tendon": null
+          }
+        ],
+        "spike_to_activation": null,
+        "activation_to_force": null,
+        "force_to_position_target": null,
+        "decoder_vector": null,
+        "gain": null,
+        "admission_ready": false
+      },
+      {
+        "identity": {
+          "name": "Sternal anterior rotator MN T1 left",
+          "body_ids": [
+            806923,
+            919509
+          ],
+          "dense_indices": [
+            148218,
+            162458
+          ],
+          "count": 2,
+          "direction": 1,
+          "annotation_actuators": [
+            "coxa_twist_T1_left"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Sternal anterior rotator MN T1 left",
+              "actuator": "coxa_twist_T1_left",
+              "direction": 1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        },
+        "tendon_hypotheses": [
+          {
+            "tendon": "LFC_sternal_anterior_rotator_tendon",
+            "tensile_torque_coefficient": [
+              -0.08352962239815168,
+              -0.010627837399356571,
+              0.0275734905338182
+            ],
+            "conditional_positive_tension_component_signs": [
+              -1,
+              -1,
+              1
+            ]
+          }
+        ],
+        "binding_status": "SINGLE_CLASS_HYPOTHESIS_NOT_INDEPENDENT_CROSSWALK",
+        "per_neuron_tendon_assignments": [
+          {
+            "body_id": 806923,
+            "dense_index": 148218,
+            "tendon": null
+          },
+          {
+            "body_id": 919509,
+            "dense_index": 162458,
+            "tendon": null
+          }
+        ],
+        "spike_to_activation": null,
+        "activation_to_force": null,
+        "force_to_position_target": null,
+        "decoder_vector": null,
+        "gain": null,
+        "admission_ready": false
+      },
+      {
+        "identity": {
+          "name": "Sternal posterior rotator MN T1 left",
+          "body_ids": [
+            801915,
+            804851,
+            808640,
+            1050335829
+          ],
+          "dense_indices": [
+            144222,
+            146498,
+            149652,
+            164685
+          ],
+          "count": 4,
+          "direction": -1,
+          "annotation_actuators": [
+            "coxa_twist_T1_left"
+          ],
+          "exact_annotation_aliases": [
+            {
+              "name": "Sternal posterior rotator MN T1 left",
+              "actuator": "coxa_twist_T1_left",
+              "direction": -1
+            }
+          ],
+          "checks": {
+            "exact_body_ids": true,
+            "count": true,
+            "body_integer": true,
+            "unique": true,
+            "dense_integer": true,
+            "all_alias_identities": true,
+            "metadata": true,
+            "all_directions_equal": true,
+            "exact_bodymap_indices": true,
+            "body_id_dense_inversion": true
+          }
+        },
+        "tendon_hypotheses": [
+          {
+            "tendon": "LFC_sternal_posterior_rotator_tendon",
+            "tensile_torque_coefficient": [
+              -0.008295719862404953,
+              0.0325514695284908,
+              0.05126777650224741
+            ],
+            "conditional_positive_tension_component_signs": [
+              -1,
+              1,
+              1
+            ]
+          }
+        ],
+        "binding_status": "SINGLE_CLASS_HYPOTHESIS_NOT_INDEPENDENT_CROSSWALK",
+        "per_neuron_tendon_assignments": [
+          {
+            "body_id": 801915,
+            "dense_index": 144222,
+            "tendon": null
+          },
+          {
+            "body_id": 804851,
+            "dense_index": 146498,
+            "tendon": null
+          },
+          {
+            "body_id": 808640,
+            "dense_index": 149652,
+            "tendon": null
+          },
+          {
+            "body_id": 1050335829,
+            "dense_index": 164685,
+            "tendon": null
+          }
+        ],
+        "spike_to_activation": null,
+        "activation_to_force": null,
+        "force_to_position_target": null,
+        "decoder_vector": null,
+        "gain": null,
+        "admission_ready": false
+      }
+    ],
+    "R_G": [
+      [
+        0.035471495483644505,
+        -0.11388808872259532,
+        -0.08352962239815168,
+        -0.008295719862404953
+      ],
+      [
+        0.025593975794095825,
+        0.05623004695075151,
+        -0.010627837399356571,
+        0.0325514695284908
+      ],
+      [
+        -0.016985333948516177,
+        -0.004274084963245932,
+        0.0275734905338182,
+        0.05126777650224741
+      ]
+    ],
+    "R_M": [
+      [
+        0.035471495483644505,
+        -0.11388808872259532,
+        -0.08352962239815168,
+        -0.008295719862404953
+      ],
+      [
+        0.022239505129753537,
+        0.054622916267989666,
+        -0.0056561506950755305,
+        0.04099371056487475
+      ],
+      [
+        -0.004238497676878344,
+        -0.060771646660133675,
+        -0.008958592971012133,
+        0.03711802611507457
+      ]
+    ],
+    "J": [
+      [
+        1.0,
+        0.0,
+        0.42204510709887066
+      ],
+      [
+        0.0,
+        0.9846749074454697,
+        -0.15810656416268676
+      ],
+      [
+        0.0,
+        0.17439990437857375,
+        0.8926814896381424
+      ]
+    ],
+    "original_raw_freezes_satisfied": false
+  },
+  "source_hashes_before": {
+    "docs/LF_ANATOMICAL_CROSSWALK_V1.md": "ede8a8c57bde1bf4a28a86008df990b9b09f42475976404c4c54f3af1164685d",
+    "docs/LF_FORCE_REFERENCE_V1.md": "f71c2aa223f179d21e434677e5b9136b9d63ac4271a0dd27cf82b331c4be56da",
+    "docs/REMAINING_LEG_ADMISSION_AUDIT_V1.md": "4e86e5ad13fa977e1f446217f1f4e0af65f861b6146435795651b78eda5c4d54",
+    "docs/REMAINING_LEG_ADMISSION_AUDIT_V1_1.md": "a1b4b67b9966ffb8b6c4c0e4fdb6c71d7e76ddc4054d18998ae712b18b589d2a",
+    "docs/evidence/lf-anatomical-crosswalk-v1/annotations.feather": "2177e246113e4cfbf1e7772ec37c6da1955ff22e8063d0b1f833101f99a9a3b2",
+    "docs/evidence/lf-anatomical-crosswalk-v1/crosswalk.json": "c8ddf150481daaf9bd8266065b18366b2eb83090453895a391338af94f2b86a6",
+    "docs/evidence/remaining-leg-admission-audit-v1_1/audit.json": "ff64e64941b54872f2d59564d1db6c6422ef25c74067d53acbe23b59ab998c04",
+    "docs/fixtures/lf-force-reference-v1.xml": "84971c7e1fd0b32b956d2033a879ae1820600b15636b307aa7edbbb06c7aaeb9",
+    "fly-brain-main/public/data/bodymap.json": "10630cd4c7a6cc2c1dcfcbee4a602d307f06766f316b185f631406813a58da9d",
+    "fly-brain-main/public/data/neurons.flyn": "91630046af02826299834179bb07726d1ed9b7dd1426e90315c011e42011f6e7",
+    "fly-brain-main/scripts/prep_bodymap.py": "9e571af9aeb13bb28639c69fdbe0942be8aa41a10346e2359134b899ca16b683",
+    "malecns_backend/codec.py": "f9e252263c5c4d29d7a2cc13ba867254b933bf89951e6b0906c591fcec9d8d65",
+    "malecns_backend/embodiment/_windows_m8_live_condition.py": "9afea2d32e9ea935cc6cd221874d74b50ffa35895d327f8ae96ea6c9ed36bc2c",
+    "malecns_backend/embodiment/body.py": "096d2dcc95efd3bb60d0df8b925d80f6831fc17e37bce1d010a089cf794952a0",
+    "malecns_backend/embodiment/coxa_yaw_anatomical_sign_bridge.py": "af040e56cada41163ab7df51473403306f96b72564dbd35cf827e5c52a71299f",
+    "malecns_backend/embodiment/interface_output/coxa_yaw_anatomical_sign_bridge/COXA_YAW_ANATOMICAL_SIGN_BRIDGE_FREEZE.json": "d6ba33b4ce226c90f808dd31dfd54c58e3767c2062ba74d182d8d15fd8fa3e72",
+    "malecns_backend/embodiment/interface_output/coxa_yaw_anatomical_sign_bridge/coxa_yaw_anatomical_sign_bridge_result.json": "4da8a7407e207ca3812aae85b591a9d80c304e837b69f3f17e338f84c38dd7e7",
+    "malecns_backend/embodiment/interface_output/coxa_yaw_sign_validation/COXA_YAW_SIGN_VALIDATION_FREEZE.json": "588b2cc7533ec5b8dafc8745b03ce8f94f45970776bcf1bea76167ebf2fed315",
+    "malecns_backend/embodiment/interface_output/coxa_yaw_sign_validation/coxa_yaw_sign_validation_result.json": "33e713e9cbf138fc6fcd21587a625e6c8b979d7b6ed1a15489f3262483d1210c",
+    "malecns_backend/embodiment/interface_output/flymimic_flygym_proximal_registration/flymimic_flygym_proximal_registration_manifest.json": "afaa1f3f6c55367bdf564cd897d33f4b027d0f42f8041e7223e4220a2eabd20e",
+    "malecns_backend/embodiment/interface_output/flymimic_flygym_proximal_registration/flymimic_flygym_proximal_registration_result.json": "a06b342390d6132a37b50766085390adb1a9eb8c1c34849f1f56dd69578e0684",
+    "malecns_backend/embodiment/interface_output/lf_proximal_candidate_mapping_review/lf_proximal_candidate_activity_evidence_addendum.json": "aac7497241695842e39387ed93bd2562f39087cd59021d2b482889113ec64002",
+    "malecns_backend/embodiment/interface_output/lf_proximal_candidate_mapping_review/lf_proximal_candidate_mapping_review_preregistration.json": "6966b0d78622e0a478311b7a47b1195c8d2189a14c44e4d05d619137c0cf17b9",
+    "malecns_backend/embodiment/interface_output/lf_proximal_motor_recruitment/lf_proximal_motor_recruitment_result.json": "33165b89c117b6ca2ee9852cf7c64e2da879f2484cdb05fb3db2fa32978e4401",
+    "malecns_backend/embodiment/interface_output/whole_leg_motor_mapping_audit.json": "722ee9b3b1d6a0fad2bf8ef0f02fc63f49277c5f44e3bccf27898e6c4ea673d9",
+    "malecns_backend/embodiment/lf_anatomical_crosswalk.py": "b56a151b356aece7c2d03f325c5864d67ad73f6a055b255085a494fbbd3e4a4f",
+    "malecns_backend/embodiment/lf_force_reference.py": "77bb8b3c3a4e3ec12c4a73ee0d07edb135adcba81782029e388059fd3fea09a8",
+    "malecns_backend/embodiment/lf_force_reference_validation.py": "f7810561029d57a2ea1350289373fb0735103d6a99ff18e25d346ff3bfcf14ac",
+    "malecns_backend/embodiment/live_v2_motor_interface.py": "6472a46b3012b3fd94bc202b8ec974783c41ae9065fabd0892a7de42dd81760b",
+    "malecns_backend/embodiment/live_v3_motor_interface.py": "6bf362442405994dc8ddfaf7a0fd8a29d499dad85c72277bd1fe9c3ab3044e05",
+    "malecns_backend/embodiment/motor.py": "a64e75a0097c2927d35d94401d5c26f948fb83c86b63e5f6e527ed7d70efb12f",
+    "malecns_backend/embodiment/remaining_leg_admission_audit.py": "99e02108bffa3cbbaf7a3a3bbfc34e2a572e1d33f9c69f968d3ba073ef60717f",
+    "malecns_backend/embodiment/remaining_leg_admission_review.py": "7a9e700cfa2eb905df6afa2a0cfd967bc40cd8edb7bc292b44fa3728479c5bcc",
+    "malecns_backend/embodiment/six_tibia_physics_diagnostic.py": "cc9218cda878be89d29bdf2cb852751eedbf5d08205423b31d64ab7dc9c3273b",
+    "malecns_backend/embodiment/whole_leg_motor_mapping_audit.py": "fd211b9ff42e39f47242bac1ce51bf4f05b4bd8514ba021839dedbc826b8c9cc",
+    "malecns_backend/interface_map.json": "24b7229bea6f24ff0e65fe09b202d42dc06819fe234194e3c3ab95b596319e0b",
+    "malecns_backend/live/protocol.py": "6bb277dba884b97399cc31ac92ab346d2a33b6d87e99a90ec84e1887f21ad789"
+  },
+  "protocol_commit": "8228e84d56dca5b16814ab47a8951268e8f05273",
+  "environment": {
+    "python": "3.12.10",
+    "numpy": "2.0.2",
+    "mujoco": "3.2.7"
+  },
+  "integration_steps": 0,
+  "neural_transitions": 0,
+  "new_admissions": 0,
+  "current_motor_count": 20,
+  "native_forward_calls": 18,
+  "model_dimensions": {
+    "nq": 11,
+    "nv": 10,
+    "nu": 0,
+    "nbody": 6
+  },
+  "cases": [
+    {
+      "name": "ZERO",
+      "tensions": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "snapshots": {
+        "baseline": {
+          "qpos": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qvel": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qacc": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_applied": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "xfrc_applied": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "qfrc_bias": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_passive": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_constraint": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_actuator": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actuator_force": [],
+          "ctrl": [],
+          "mass_matrix": [
+            [
+              6.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -0.4000000000000001,
+              0.0,
+              0.0,
+              0.10000000000000003,
+              0.0
+            ],
+            [
+              0.0,
+              6.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.4,
+              0.1,
+              -0.09999999999999998,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              6.0,
+              0.4000000000000001,
+              -0.4,
+              0.0,
+              0.0,
+              0.2,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -1.0,
+              0.4000000000000001,
+              0.6400000000000001,
+              -0.04000000000000001,
+              -0.1,
+              0.0,
+              0.09000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0,
+              -0.4,
+              -0.04000000000000001,
+              0.7599999999999999,
+              -0.07,
+              0.0,
+              -0.020000000000000004,
+              0.08000000000000002,
+              0.0
+            ],
+            [
+              -0.4000000000000001,
+              0.4,
+              0.0,
+              -0.1,
+              -0.07,
+              0.5999999999999999,
+              0.034999999999999996,
+              -0.009999999999999998,
+              -0.010000000000000002,
+              0.025
+            ],
+            [
+              0.0,
+              0.1,
+              0.0,
+              0.0,
+              0.0,
+              0.034999999999999996,
+              0.034999999999999996,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -0.09999999999999998,
+              0.2,
+              0.09000000000000004,
+              -0.020000000000000004,
+              -0.009999999999999998,
+              0.0,
+              0.06000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              0.10000000000000003,
+              0.0,
+              0.0,
+              0.0,
+              0.08000000000000002,
+              -0.010000000000000002,
+              0.0,
+              0.0,
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.025,
+              0.0,
+              0.0,
+              0.0,
+              0.025
+            ]
+          ],
+          "time": 0.0,
+          "ncon": 0,
+          "nefc": 0
+        },
+        "applied": {
+          "qpos": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qvel": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qacc": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_applied": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "xfrc_applied": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "qfrc_bias": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_passive": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_constraint": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_actuator": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actuator_force": [],
+          "ctrl": [],
+          "mass_matrix": [
+            [
+              6.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -0.4000000000000001,
+              0.0,
+              0.0,
+              0.10000000000000003,
+              0.0
+            ],
+            [
+              0.0,
+              6.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.4,
+              0.1,
+              -0.09999999999999998,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              6.0,
+              0.4000000000000001,
+              -0.4,
+              0.0,
+              0.0,
+              0.2,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -1.0,
+              0.4000000000000001,
+              0.6400000000000001,
+              -0.04000000000000001,
+              -0.1,
+              0.0,
+              0.09000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0,
+              -0.4,
+              -0.04000000000000001,
+              0.7599999999999999,
+              -0.07,
+              0.0,
+              -0.020000000000000004,
+              0.08000000000000002,
+              0.0
+            ],
+            [
+              -0.4000000000000001,
+              0.4,
+              0.0,
+              -0.1,
+              -0.07,
+              0.5999999999999999,
+              0.034999999999999996,
+              -0.009999999999999998,
+              -0.010000000000000002,
+              0.025
+            ],
+            [
+              0.0,
+              0.1,
+              0.0,
+              0.0,
+              0.0,
+              0.034999999999999996,
+              0.034999999999999996,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -0.09999999999999998,
+              0.2,
+              0.09000000000000004,
+              -0.020000000000000004,
+              -0.009999999999999998,
+              0.0,
+              0.06000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              0.10000000000000003,
+              0.0,
+              0.0,
+              0.0,
+              0.08000000000000002,
+              -0.010000000000000002,
+              0.0,
+              0.0,
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.025,
+              0.0,
+              0.0,
+              0.0,
+              0.025
+            ]
+          ],
+          "time": 0.0,
+          "ncon": 0,
+          "nefc": 0
+        },
+        "cleared": {
+          "qpos": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qvel": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qacc": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_applied": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "xfrc_applied": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "qfrc_bias": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_passive": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_constraint": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_actuator": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actuator_force": [],
+          "ctrl": [],
+          "mass_matrix": [
+            [
+              6.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -0.4000000000000001,
+              0.0,
+              0.0,
+              0.10000000000000003,
+              0.0
+            ],
+            [
+              0.0,
+              6.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.4,
+              0.1,
+              -0.09999999999999998,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              6.0,
+              0.4000000000000001,
+              -0.4,
+              0.0,
+              0.0,
+              0.2,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -1.0,
+              0.4000000000000001,
+              0.6400000000000001,
+              -0.04000000000000001,
+              -0.1,
+              0.0,
+              0.09000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0,
+              -0.4,
+              -0.04000000000000001,
+              0.7599999999999999,
+              -0.07,
+              0.0,
+              -0.020000000000000004,
+              0.08000000000000002,
+              0.0
+            ],
+            [
+              -0.4000000000000001,
+              0.4,
+              0.0,
+              -0.1,
+              -0.07,
+              0.5999999999999999,
+              0.034999999999999996,
+              -0.009999999999999998,
+              -0.010000000000000002,
+              0.025
+            ],
+            [
+              0.0,
+              0.1,
+              0.0,
+              0.0,
+              0.0,
+              0.034999999999999996,
+              0.034999999999999996,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -0.09999999999999998,
+              0.2,
+              0.09000000000000004,
+              -0.020000000000000004,
+              -0.009999999999999998,
+              0.0,
+              0.06000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              0.10000000000000003,
+              0.0,
+              0.0,
+              0.0,
+              0.08000000000000002,
+              -0.010000000000000002,
+              0.0,
+              0.0,
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.025,
+              0.0,
+              0.0,
+              0.0,
+              0.025
+            ]
+          ],
+          "time": 0.0,
+          "ncon": 0,
+          "nefc": 0
+        }
+      },
+      "metadata": [
+        {
+          "resolved": true,
+          "dof_index": 7,
+          "joint_id": 2,
+          "joint_name": "joint_LFCoxa_yaw",
+          "joint_type": "hinge",
+          "body_id": 3,
+          "body_name": "fixture_yaw_link",
+          "qpos_address_range": [
+            8,
+            9
+          ],
+          "dof_address_range": [
+            7,
+            8
+          ],
+          "actuators": [],
+          "is_six_tibia_actuator": false,
+          "six_tibia_actuator_matches": [],
+          "joint_limited": false,
+          "joint_range_rad": null
+        },
+        {
+          "resolved": true,
+          "dof_index": 8,
+          "joint_id": 3,
+          "joint_name": "joint_LFCoxa",
+          "joint_type": "hinge",
+          "body_id": 4,
+          "body_name": "fixture_pitch_link",
+          "qpos_address_range": [
+            9,
+            10
+          ],
+          "dof_address_range": [
+            8,
+            9
+          ],
+          "actuators": [],
+          "is_six_tibia_actuator": false,
+          "six_tibia_actuator_matches": [],
+          "joint_limited": false,
+          "joint_range_rad": null
+        },
+        {
+          "resolved": true,
+          "dof_index": 9,
+          "joint_id": 4,
+          "joint_name": "joint_LFCoxa_roll",
+          "joint_type": "hinge",
+          "body_id": 5,
+          "body_name": "fixture_roll_link",
+          "qpos_address_range": [
+            10,
+            11
+          ],
+          "dof_address_range": [
+            9,
+            10
+          ],
+          "actuators": [],
+          "is_six_tibia_actuator": false,
+          "six_tibia_actuator_matches": [],
+          "joint_limited": false,
+          "joint_range_rad": null
+        }
+      ],
+      "projected_torque": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "REMOTOR",
+      "tensions": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "snapshots": {
+        "baseline": {
+          "qpos": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qvel": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qacc": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_applied": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "xfrc_applied": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "qfrc_bias": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_passive": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_constraint": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_actuator": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actuator_force": [],
+          "ctrl": [],
+          "mass_matrix": [
+            [
+              6.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -0.4000000000000001,
+              0.0,
+              0.0,
+              0.10000000000000003,
+              0.0
+            ],
+            [
+              0.0,
+              6.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.4,
+              0.1,
+              -0.09999999999999998,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              6.0,
+              0.4000000000000001,
+              -0.4,
+              0.0,
+              0.0,
+              0.2,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -1.0,
+              0.4000000000000001,
+              0.6400000000000001,
+              -0.04000000000000001,
+              -0.1,
+              0.0,
+              0.09000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0,
+              -0.4,
+              -0.04000000000000001,
+              0.7599999999999999,
+              -0.07,
+              0.0,
+              -0.020000000000000004,
+              0.08000000000000002,
+              0.0
+            ],
+            [
+              -0.4000000000000001,
+              0.4,
+              0.0,
+              -0.1,
+              -0.07,
+              0.5999999999999999,
+              0.034999999999999996,
+              -0.009999999999999998,
+              -0.010000000000000002,
+              0.025
+            ],
+            [
+              0.0,
+              0.1,
+              0.0,
+              0.0,
+              0.0,
+              0.034999999999999996,
+              0.034999999999999996,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -0.09999999999999998,
+              0.2,
+              0.09000000000000004,
+              -0.020000000000000004,
+              -0.009999999999999998,
+              0.0,
+              0.06000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              0.10000000000000003,
+              0.0,
+              0.0,
+              0.0,
+              0.08000000000000002,
+              -0.010000000000000002,
+              0.0,
+              0.0,
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.025,
+              0.0,
+              0.0,
+              0.0,
+              0.025
+            ]
+          ],
+          "time": 0.0,
+          "ncon": 0,
+          "nefc": 0
+        },
+        "applied": {
+          "qpos": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qvel": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qacc": [
+            0.0023601459132858715,
+            -0.006441350453987094,
+            -0.023814619177238358,
+            -0.10675421657481841,
+            -0.06125410754486367,
+            0.03532459880937961,
+            -0.016920740369416484,
+            0.8054387933770605,
+            0.6122307158890026,
+            -0.7147379567500267
+          ],
+          "qfrc_applied": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.035471495483644505,
+            0.025593975794095825,
+            -0.016985333948516177
+          ],
+          "xfrc_applied": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "qfrc_bias": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_passive": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_constraint": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_actuator": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actuator_force": [],
+          "ctrl": [],
+          "mass_matrix": [
+            [
+              6.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -0.4000000000000001,
+              0.0,
+              0.0,
+              0.10000000000000003,
+              0.0
+            ],
+            [
+              0.0,
+              6.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.4,
+              0.1,
+              -0.09999999999999998,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              6.0,
+              0.4000000000000001,
+              -0.4,
+              0.0,
+              0.0,
+              0.2,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -1.0,
+              0.4000000000000001,
+              0.6400000000000001,
+              -0.04000000000000001,
+              -0.1,
+              0.0,
+              0.09000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0,
+              -0.4,
+              -0.04000000000000001,
+              0.7599999999999999,
+              -0.07,
+              0.0,
+              -0.020000000000000004,
+              0.08000000000000002,
+              0.0
+            ],
+            [
+              -0.4000000000000001,
+              0.4,
+              0.0,
+              -0.1,
+              -0.07,
+              0.5999999999999999,
+              0.034999999999999996,
+              -0.009999999999999998,
+              -0.010000000000000002,
+              0.025
+            ],
+            [
+              0.0,
+              0.1,
+              0.0,
+              0.0,
+              0.0,
+              0.034999999999999996,
+              0.034999999999999996,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -0.09999999999999998,
+              0.2,
+              0.09000000000000004,
+              -0.020000000000000004,
+              -0.009999999999999998,
+              0.0,
+              0.06000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              0.10000000000000003,
+              0.0,
+              0.0,
+              0.0,
+              0.08000000000000002,
+              -0.010000000000000002,
+              0.0,
+              0.0,
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.025,
+              0.0,
+              0.0,
+              0.0,
+              0.025
+            ]
+          ],
+          "time": 0.0,
+          "ncon": 0,
+          "nefc": 0
+        },
+        "cleared": {
+          "qpos": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qvel": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qacc": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_applied": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "xfrc_applied": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "qfrc_bias": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_passive": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_constraint": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_actuator": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actuator_force": [],
+          "ctrl": [],
+          "mass_matrix": [
+            [
+              6.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -0.4000000000000001,
+              0.0,
+              0.0,
+              0.10000000000000003,
+              0.0
+            ],
+            [
+              0.0,
+              6.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.4,
+              0.1,
+              -0.09999999999999998,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              6.0,
+              0.4000000000000001,
+              -0.4,
+              0.0,
+              0.0,
+              0.2,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -1.0,
+              0.4000000000000001,
+              0.6400000000000001,
+              -0.04000000000000001,
+              -0.1,
+              0.0,
+              0.09000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0,
+              -0.4,
+              -0.04000000000000001,
+              0.7599999999999999,
+              -0.07,
+              0.0,
+              -0.020000000000000004,
+              0.08000000000000002,
+              0.0
+            ],
+            [
+              -0.4000000000000001,
+              0.4,
+              0.0,
+              -0.1,
+              -0.07,
+              0.5999999999999999,
+              0.034999999999999996,
+              -0.009999999999999998,
+              -0.010000000000000002,
+              0.025
+            ],
+            [
+              0.0,
+              0.1,
+              0.0,
+              0.0,
+              0.0,
+              0.034999999999999996,
+              0.034999999999999996,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -0.09999999999999998,
+              0.2,
+              0.09000000000000004,
+              -0.020000000000000004,
+              -0.009999999999999998,
+              0.0,
+              0.06000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              0.10000000000000003,
+              0.0,
+              0.0,
+              0.0,
+              0.08000000000000002,
+              -0.010000000000000002,
+              0.0,
+              0.0,
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.025,
+              0.0,
+              0.0,
+              0.0,
+              0.025
+            ]
+          ],
+          "time": 0.0,
+          "ncon": 0,
+          "nefc": 0
+        }
+      },
+      "metadata": [
+        {
+          "resolved": true,
+          "dof_index": 7,
+          "joint_id": 2,
+          "joint_name": "joint_LFCoxa_yaw",
+          "joint_type": "hinge",
+          "body_id": 3,
+          "body_name": "fixture_yaw_link",
+          "qpos_address_range": [
+            8,
+            9
+          ],
+          "dof_address_range": [
+            7,
+            8
+          ],
+          "actuators": [],
+          "is_six_tibia_actuator": false,
+          "six_tibia_actuator_matches": [],
+          "joint_limited": false,
+          "joint_range_rad": null
+        },
+        {
+          "resolved": true,
+          "dof_index": 8,
+          "joint_id": 3,
+          "joint_name": "joint_LFCoxa",
+          "joint_type": "hinge",
+          "body_id": 4,
+          "body_name": "fixture_pitch_link",
+          "qpos_address_range": [
+            9,
+            10
+          ],
+          "dof_address_range": [
+            8,
+            9
+          ],
+          "actuators": [],
+          "is_six_tibia_actuator": false,
+          "six_tibia_actuator_matches": [],
+          "joint_limited": false,
+          "joint_range_rad": null
+        },
+        {
+          "resolved": true,
+          "dof_index": 9,
+          "joint_id": 4,
+          "joint_name": "joint_LFCoxa_roll",
+          "joint_type": "hinge",
+          "body_id": 5,
+          "body_name": "fixture_roll_link",
+          "qpos_address_range": [
+            10,
+            11
+          ],
+          "dof_address_range": [
+            9,
+            10
+          ],
+          "actuators": [],
+          "is_six_tibia_actuator": false,
+          "six_tibia_actuator_matches": [],
+          "joint_limited": false,
+          "joint_range_rad": null
+        }
+      ],
+      "projected_torque": [
+        0.035471495483644505,
+        0.025593975794095825,
+        -0.016985333948516177
+      ]
+    },
+    {
+      "name": "ADDUCTOR",
+      "tensions": [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "snapshots": {
+        "baseline": {
+          "qpos": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qvel": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qacc": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_applied": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "xfrc_applied": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "qfrc_bias": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_passive": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_constraint": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_actuator": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actuator_force": [],
+          "ctrl": [],
+          "mass_matrix": [
+            [
+              6.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -0.4000000000000001,
+              0.0,
+              0.0,
+              0.10000000000000003,
+              0.0
+            ],
+            [
+              0.0,
+              6.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.4,
+              0.1,
+              -0.09999999999999998,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              6.0,
+              0.4000000000000001,
+              -0.4,
+              0.0,
+              0.0,
+              0.2,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -1.0,
+              0.4000000000000001,
+              0.6400000000000001,
+              -0.04000000000000001,
+              -0.1,
+              0.0,
+              0.09000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0,
+              -0.4,
+              -0.04000000000000001,
+              0.7599999999999999,
+              -0.07,
+              0.0,
+              -0.020000000000000004,
+              0.08000000000000002,
+              0.0
+            ],
+            [
+              -0.4000000000000001,
+              0.4,
+              0.0,
+              -0.1,
+              -0.07,
+              0.5999999999999999,
+              0.034999999999999996,
+              -0.009999999999999998,
+              -0.010000000000000002,
+              0.025
+            ],
+            [
+              0.0,
+              0.1,
+              0.0,
+              0.0,
+              0.0,
+              0.034999999999999996,
+              0.034999999999999996,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -0.09999999999999998,
+              0.2,
+              0.09000000000000004,
+              -0.020000000000000004,
+              -0.009999999999999998,
+              0.0,
+              0.06000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              0.10000000000000003,
+              0.0,
+              0.0,
+              0.0,
+              0.08000000000000002,
+              -0.010000000000000002,
+              0.0,
+              0.0,
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.025,
+              0.0,
+              0.0,
+              0.0,
+              0.025
+            ]
+          ],
+          "time": 0.0,
+          "ncon": 0,
+          "nefc": 0
+        },
+        "applied": {
+          "qpos": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qvel": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qacc": [
+            0.00818630924451176,
+            0.014318637575045584,
+            0.05232826110780834,
+            0.35273515439474606,
+            -0.1789592938476407,
+            0.02530231759908702,
+            -0.06621271067064584,
+            -2.633236729719024,
+            1.3996236542020493,
+            -0.1962657161289243
+          ],
+          "qfrc_applied": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.11388808872259532,
+            0.05623004695075151,
+            -0.004274084963245932
+          ],
+          "xfrc_applied": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "qfrc_bias": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_passive": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_constraint": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_actuator": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actuator_force": [],
+          "ctrl": [],
+          "mass_matrix": [
+            [
+              6.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -0.4000000000000001,
+              0.0,
+              0.0,
+              0.10000000000000003,
+              0.0
+            ],
+            [
+              0.0,
+              6.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.4,
+              0.1,
+              -0.09999999999999998,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              6.0,
+              0.4000000000000001,
+              -0.4,
+              0.0,
+              0.0,
+              0.2,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -1.0,
+              0.4000000000000001,
+              0.6400000000000001,
+              -0.04000000000000001,
+              -0.1,
+              0.0,
+              0.09000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0,
+              -0.4,
+              -0.04000000000000001,
+              0.7599999999999999,
+              -0.07,
+              0.0,
+              -0.020000000000000004,
+              0.08000000000000002,
+              0.0
+            ],
+            [
+              -0.4000000000000001,
+              0.4,
+              0.0,
+              -0.1,
+              -0.07,
+              0.5999999999999999,
+              0.034999999999999996,
+              -0.009999999999999998,
+              -0.010000000000000002,
+              0.025
+            ],
+            [
+              0.0,
+              0.1,
+              0.0,
+              0.0,
+              0.0,
+              0.034999999999999996,
+              0.034999999999999996,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -0.09999999999999998,
+              0.2,
+              0.09000000000000004,
+              -0.020000000000000004,
+              -0.009999999999999998,
+              0.0,
+              0.06000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              0.10000000000000003,
+              0.0,
+              0.0,
+              0.0,
+              0.08000000000000002,
+              -0.010000000000000002,
+              0.0,
+              0.0,
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.025,
+              0.0,
+              0.0,
+              0.0,
+              0.025
+            ]
+          ],
+          "time": 0.0,
+          "ncon": 0,
+          "nefc": 0
+        },
+        "cleared": {
+          "qpos": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qvel": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qacc": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_applied": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "xfrc_applied": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "qfrc_bias": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_passive": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_constraint": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_actuator": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actuator_force": [],
+          "ctrl": [],
+          "mass_matrix": [
+            [
+              6.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -0.4000000000000001,
+              0.0,
+              0.0,
+              0.10000000000000003,
+              0.0
+            ],
+            [
+              0.0,
+              6.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.4,
+              0.1,
+              -0.09999999999999998,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              6.0,
+              0.4000000000000001,
+              -0.4,
+              0.0,
+              0.0,
+              0.2,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -1.0,
+              0.4000000000000001,
+              0.6400000000000001,
+              -0.04000000000000001,
+              -0.1,
+              0.0,
+              0.09000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0,
+              -0.4,
+              -0.04000000000000001,
+              0.7599999999999999,
+              -0.07,
+              0.0,
+              -0.020000000000000004,
+              0.08000000000000002,
+              0.0
+            ],
+            [
+              -0.4000000000000001,
+              0.4,
+              0.0,
+              -0.1,
+              -0.07,
+              0.5999999999999999,
+              0.034999999999999996,
+              -0.009999999999999998,
+              -0.010000000000000002,
+              0.025
+            ],
+            [
+              0.0,
+              0.1,
+              0.0,
+              0.0,
+              0.0,
+              0.034999999999999996,
+              0.034999999999999996,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -0.09999999999999998,
+              0.2,
+              0.09000000000000004,
+              -0.020000000000000004,
+              -0.009999999999999998,
+              0.0,
+              0.06000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              0.10000000000000003,
+              0.0,
+              0.0,
+              0.0,
+              0.08000000000000002,
+              -0.010000000000000002,
+              0.0,
+              0.0,
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.025,
+              0.0,
+              0.0,
+              0.0,
+              0.025
+            ]
+          ],
+          "time": 0.0,
+          "ncon": 0,
+          "nefc": 0
+        }
+      },
+      "metadata": [
+        {
+          "resolved": true,
+          "dof_index": 7,
+          "joint_id": 2,
+          "joint_name": "joint_LFCoxa_yaw",
+          "joint_type": "hinge",
+          "body_id": 3,
+          "body_name": "fixture_yaw_link",
+          "qpos_address_range": [
+            8,
+            9
+          ],
+          "dof_address_range": [
+            7,
+            8
+          ],
+          "actuators": [],
+          "is_six_tibia_actuator": false,
+          "six_tibia_actuator_matches": [],
+          "joint_limited": false,
+          "joint_range_rad": null
+        },
+        {
+          "resolved": true,
+          "dof_index": 8,
+          "joint_id": 3,
+          "joint_name": "joint_LFCoxa",
+          "joint_type": "hinge",
+          "body_id": 4,
+          "body_name": "fixture_pitch_link",
+          "qpos_address_range": [
+            9,
+            10
+          ],
+          "dof_address_range": [
+            8,
+            9
+          ],
+          "actuators": [],
+          "is_six_tibia_actuator": false,
+          "six_tibia_actuator_matches": [],
+          "joint_limited": false,
+          "joint_range_rad": null
+        },
+        {
+          "resolved": true,
+          "dof_index": 9,
+          "joint_id": 4,
+          "joint_name": "joint_LFCoxa_roll",
+          "joint_type": "hinge",
+          "body_id": 5,
+          "body_name": "fixture_roll_link",
+          "qpos_address_range": [
+            10,
+            11
+          ],
+          "dof_address_range": [
+            9,
+            10
+          ],
+          "actuators": [],
+          "is_six_tibia_actuator": false,
+          "six_tibia_actuator_matches": [],
+          "joint_limited": false,
+          "joint_range_rad": null
+        }
+      ],
+      "projected_torque": [
+        -0.11388808872259532,
+        0.05623004695075151,
+        -0.004274084963245932
+      ]
+    },
+    {
+      "name": "ANTERIOR",
+      "tensions": [
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "snapshots": {
+        "baseline": {
+          "qpos": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qvel": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qacc": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_applied": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "xfrc_applied": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "qfrc_bias": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_passive": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_constraint": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_actuator": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actuator_force": [],
+          "ctrl": [],
+          "mass_matrix": [
+            [
+              6.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -0.4000000000000001,
+              0.0,
+              0.0,
+              0.10000000000000003,
+              0.0
+            ],
+            [
+              0.0,
+              6.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.4,
+              0.1,
+              -0.09999999999999998,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              6.0,
+              0.4000000000000001,
+              -0.4,
+              0.0,
+              0.0,
+              0.2,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -1.0,
+              0.4000000000000001,
+              0.6400000000000001,
+              -0.04000000000000001,
+              -0.1,
+              0.0,
+              0.09000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0,
+              -0.4,
+              -0.04000000000000001,
+              0.7599999999999999,
+              -0.07,
+              0.0,
+              -0.020000000000000004,
+              0.08000000000000002,
+              0.0
+            ],
+            [
+              -0.4000000000000001,
+              0.4,
+              0.0,
+              -0.1,
+              -0.07,
+              0.5999999999999999,
+              0.034999999999999996,
+              -0.009999999999999998,
+              -0.010000000000000002,
+              0.025
+            ],
+            [
+              0.0,
+              0.1,
+              0.0,
+              0.0,
+              0.0,
+              0.034999999999999996,
+              0.034999999999999996,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -0.09999999999999998,
+              0.2,
+              0.09000000000000004,
+              -0.020000000000000004,
+              -0.009999999999999998,
+              0.0,
+              0.06000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              0.10000000000000003,
+              0.0,
+              0.0,
+              0.0,
+              0.08000000000000002,
+              -0.010000000000000002,
+              0.0,
+              0.0,
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.025,
+              0.0,
+              0.0,
+              0.0,
+              0.025
+            ]
+          ],
+          "time": 0.0,
+          "ncon": 0,
+          "nefc": 0
+        },
+        "applied": {
+          "qpos": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qvel": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qacc": [
+            -0.0010565139865666537,
+            0.013472836935490538,
+            0.047534077999806246,
+            0.25296892643611296,
+            0.009508172915436564,
+            -0.051043659662718475,
+            0.012549839847031216,
+            -1.9129438470355404,
+            -0.23586552861124033,
+            1.1539832810154464
+          ],
+          "qfrc_applied": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.08352962239815168,
+            -0.010627837399356571,
+            0.0275734905338182
+          ],
+          "xfrc_applied": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "qfrc_bias": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_passive": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_constraint": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_actuator": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actuator_force": [],
+          "ctrl": [],
+          "mass_matrix": [
+            [
+              6.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -0.4000000000000001,
+              0.0,
+              0.0,
+              0.10000000000000003,
+              0.0
+            ],
+            [
+              0.0,
+              6.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.4,
+              0.1,
+              -0.09999999999999998,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              6.0,
+              0.4000000000000001,
+              -0.4,
+              0.0,
+              0.0,
+              0.2,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -1.0,
+              0.4000000000000001,
+              0.6400000000000001,
+              -0.04000000000000001,
+              -0.1,
+              0.0,
+              0.09000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0,
+              -0.4,
+              -0.04000000000000001,
+              0.7599999999999999,
+              -0.07,
+              0.0,
+              -0.020000000000000004,
+              0.08000000000000002,
+              0.0
+            ],
+            [
+              -0.4000000000000001,
+              0.4,
+              0.0,
+              -0.1,
+              -0.07,
+              0.5999999999999999,
+              0.034999999999999996,
+              -0.009999999999999998,
+              -0.010000000000000002,
+              0.025
+            ],
+            [
+              0.0,
+              0.1,
+              0.0,
+              0.0,
+              0.0,
+              0.034999999999999996,
+              0.034999999999999996,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -0.09999999999999998,
+              0.2,
+              0.09000000000000004,
+              -0.020000000000000004,
+              -0.009999999999999998,
+              0.0,
+              0.06000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              0.10000000000000003,
+              0.0,
+              0.0,
+              0.0,
+              0.08000000000000002,
+              -0.010000000000000002,
+              0.0,
+              0.0,
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.025,
+              0.0,
+              0.0,
+              0.0,
+              0.025
+            ]
+          ],
+          "time": 0.0,
+          "ncon": 0,
+          "nefc": 0
+        },
+        "cleared": {
+          "qpos": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qvel": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qacc": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_applied": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "xfrc_applied": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "qfrc_bias": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_passive": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_constraint": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_actuator": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actuator_force": [],
+          "ctrl": [],
+          "mass_matrix": [
+            [
+              6.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -0.4000000000000001,
+              0.0,
+              0.0,
+              0.10000000000000003,
+              0.0
+            ],
+            [
+              0.0,
+              6.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.4,
+              0.1,
+              -0.09999999999999998,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              6.0,
+              0.4000000000000001,
+              -0.4,
+              0.0,
+              0.0,
+              0.2,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -1.0,
+              0.4000000000000001,
+              0.6400000000000001,
+              -0.04000000000000001,
+              -0.1,
+              0.0,
+              0.09000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0,
+              -0.4,
+              -0.04000000000000001,
+              0.7599999999999999,
+              -0.07,
+              0.0,
+              -0.020000000000000004,
+              0.08000000000000002,
+              0.0
+            ],
+            [
+              -0.4000000000000001,
+              0.4,
+              0.0,
+              -0.1,
+              -0.07,
+              0.5999999999999999,
+              0.034999999999999996,
+              -0.009999999999999998,
+              -0.010000000000000002,
+              0.025
+            ],
+            [
+              0.0,
+              0.1,
+              0.0,
+              0.0,
+              0.0,
+              0.034999999999999996,
+              0.034999999999999996,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -0.09999999999999998,
+              0.2,
+              0.09000000000000004,
+              -0.020000000000000004,
+              -0.009999999999999998,
+              0.0,
+              0.06000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              0.10000000000000003,
+              0.0,
+              0.0,
+              0.0,
+              0.08000000000000002,
+              -0.010000000000000002,
+              0.0,
+              0.0,
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.025,
+              0.0,
+              0.0,
+              0.0,
+              0.025
+            ]
+          ],
+          "time": 0.0,
+          "ncon": 0,
+          "nefc": 0
+        }
+      },
+      "metadata": [
+        {
+          "resolved": true,
+          "dof_index": 7,
+          "joint_id": 2,
+          "joint_name": "joint_LFCoxa_yaw",
+          "joint_type": "hinge",
+          "body_id": 3,
+          "body_name": "fixture_yaw_link",
+          "qpos_address_range": [
+            8,
+            9
+          ],
+          "dof_address_range": [
+            7,
+            8
+          ],
+          "actuators": [],
+          "is_six_tibia_actuator": false,
+          "six_tibia_actuator_matches": [],
+          "joint_limited": false,
+          "joint_range_rad": null
+        },
+        {
+          "resolved": true,
+          "dof_index": 8,
+          "joint_id": 3,
+          "joint_name": "joint_LFCoxa",
+          "joint_type": "hinge",
+          "body_id": 4,
+          "body_name": "fixture_pitch_link",
+          "qpos_address_range": [
+            9,
+            10
+          ],
+          "dof_address_range": [
+            8,
+            9
+          ],
+          "actuators": [],
+          "is_six_tibia_actuator": false,
+          "six_tibia_actuator_matches": [],
+          "joint_limited": false,
+          "joint_range_rad": null
+        },
+        {
+          "resolved": true,
+          "dof_index": 9,
+          "joint_id": 4,
+          "joint_name": "joint_LFCoxa_roll",
+          "joint_type": "hinge",
+          "body_id": 5,
+          "body_name": "fixture_roll_link",
+          "qpos_address_range": [
+            10,
+            11
+          ],
+          "dof_address_range": [
+            9,
+            10
+          ],
+          "actuators": [],
+          "is_six_tibia_actuator": false,
+          "six_tibia_actuator_matches": [],
+          "joint_limited": false,
+          "joint_range_rad": null
+        }
+      ],
+      "projected_torque": [
+        -0.08352962239815168,
+        -0.010627837399356571,
+        0.0275734905338182
+      ]
+    },
+    {
+      "name": "POSTERIOR",
+      "tensions": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "snapshots": {
+        "baseline": {
+          "qpos": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qvel": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qacc": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_applied": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "xfrc_applied": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "qfrc_bias": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_passive": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_constraint": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_actuator": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actuator_force": [],
+          "ctrl": [],
+          "mass_matrix": [
+            [
+              6.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -0.4000000000000001,
+              0.0,
+              0.0,
+              0.10000000000000003,
+              0.0
+            ],
+            [
+              0.0,
+              6.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.4,
+              0.1,
+              -0.09999999999999998,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              6.0,
+              0.4000000000000001,
+              -0.4,
+              0.0,
+              0.0,
+              0.2,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -1.0,
+              0.4000000000000001,
+              0.6400000000000001,
+              -0.04000000000000001,
+              -0.1,
+              0.0,
+              0.09000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0,
+              -0.4,
+              -0.04000000000000001,
+              0.7599999999999999,
+              -0.07,
+              0.0,
+              -0.020000000000000004,
+              0.08000000000000002,
+              0.0
+            ],
+            [
+              -0.4000000000000001,
+              0.4,
+              0.0,
+              -0.1,
+              -0.07,
+              0.5999999999999999,
+              0.034999999999999996,
+              -0.009999999999999998,
+              -0.010000000000000002,
+              0.025
+            ],
+            [
+              0.0,
+              0.1,
+              0.0,
+              0.0,
+              0.0,
+              0.034999999999999996,
+              0.034999999999999996,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -0.09999999999999998,
+              0.2,
+              0.09000000000000004,
+              -0.020000000000000004,
+              -0.009999999999999998,
+              0.0,
+              0.06000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              0.10000000000000003,
+              0.0,
+              0.0,
+              0.0,
+              0.08000000000000002,
+              -0.010000000000000002,
+              0.0,
+              0.0,
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.025,
+              0.0,
+              0.0,
+              0.0,
+              0.025
+            ]
+          ],
+          "time": 0.0,
+          "ncon": 0,
+          "nefc": 0
+        },
+        "applied": {
+          "qpos": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qvel": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qacc": [
+            -0.004630101089349259,
+            0.004043065721244545,
+            -0.00033916537939587214,
+            0.013059454824740066,
+            -0.0903239286685703,
+            -0.09900986142853453,
+            0.08745824508212155,
+            -0.19659180560474457,
+            0.7850059063325201,
+            2.1497209215184307
+          ],
+          "qfrc_applied": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.008295719862404953,
+            0.0325514695284908,
+            0.05126777650224741
+          ],
+          "xfrc_applied": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "qfrc_bias": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_passive": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_constraint": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_actuator": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actuator_force": [],
+          "ctrl": [],
+          "mass_matrix": [
+            [
+              6.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -0.4000000000000001,
+              0.0,
+              0.0,
+              0.10000000000000003,
+              0.0
+            ],
+            [
+              0.0,
+              6.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.4,
+              0.1,
+              -0.09999999999999998,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              6.0,
+              0.4000000000000001,
+              -0.4,
+              0.0,
+              0.0,
+              0.2,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -1.0,
+              0.4000000000000001,
+              0.6400000000000001,
+              -0.04000000000000001,
+              -0.1,
+              0.0,
+              0.09000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0,
+              -0.4,
+              -0.04000000000000001,
+              0.7599999999999999,
+              -0.07,
+              0.0,
+              -0.020000000000000004,
+              0.08000000000000002,
+              0.0
+            ],
+            [
+              -0.4000000000000001,
+              0.4,
+              0.0,
+              -0.1,
+              -0.07,
+              0.5999999999999999,
+              0.034999999999999996,
+              -0.009999999999999998,
+              -0.010000000000000002,
+              0.025
+            ],
+            [
+              0.0,
+              0.1,
+              0.0,
+              0.0,
+              0.0,
+              0.034999999999999996,
+              0.034999999999999996,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -0.09999999999999998,
+              0.2,
+              0.09000000000000004,
+              -0.020000000000000004,
+              -0.009999999999999998,
+              0.0,
+              0.06000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              0.10000000000000003,
+              0.0,
+              0.0,
+              0.0,
+              0.08000000000000002,
+              -0.010000000000000002,
+              0.0,
+              0.0,
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.025,
+              0.0,
+              0.0,
+              0.0,
+              0.025
+            ]
+          ],
+          "time": 0.0,
+          "ncon": 0,
+          "nefc": 0
+        },
+        "cleared": {
+          "qpos": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qvel": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qacc": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_applied": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "xfrc_applied": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "qfrc_bias": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_passive": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_constraint": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_actuator": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actuator_force": [],
+          "ctrl": [],
+          "mass_matrix": [
+            [
+              6.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -0.4000000000000001,
+              0.0,
+              0.0,
+              0.10000000000000003,
+              0.0
+            ],
+            [
+              0.0,
+              6.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.4,
+              0.1,
+              -0.09999999999999998,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              6.0,
+              0.4000000000000001,
+              -0.4,
+              0.0,
+              0.0,
+              0.2,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -1.0,
+              0.4000000000000001,
+              0.6400000000000001,
+              -0.04000000000000001,
+              -0.1,
+              0.0,
+              0.09000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0,
+              -0.4,
+              -0.04000000000000001,
+              0.7599999999999999,
+              -0.07,
+              0.0,
+              -0.020000000000000004,
+              0.08000000000000002,
+              0.0
+            ],
+            [
+              -0.4000000000000001,
+              0.4,
+              0.0,
+              -0.1,
+              -0.07,
+              0.5999999999999999,
+              0.034999999999999996,
+              -0.009999999999999998,
+              -0.010000000000000002,
+              0.025
+            ],
+            [
+              0.0,
+              0.1,
+              0.0,
+              0.0,
+              0.0,
+              0.034999999999999996,
+              0.034999999999999996,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -0.09999999999999998,
+              0.2,
+              0.09000000000000004,
+              -0.020000000000000004,
+              -0.009999999999999998,
+              0.0,
+              0.06000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              0.10000000000000003,
+              0.0,
+              0.0,
+              0.0,
+              0.08000000000000002,
+              -0.010000000000000002,
+              0.0,
+              0.0,
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.025,
+              0.0,
+              0.0,
+              0.0,
+              0.025
+            ]
+          ],
+          "time": 0.0,
+          "ncon": 0,
+          "nefc": 0
+        }
+      },
+      "metadata": [
+        {
+          "resolved": true,
+          "dof_index": 7,
+          "joint_id": 2,
+          "joint_name": "joint_LFCoxa_yaw",
+          "joint_type": "hinge",
+          "body_id": 3,
+          "body_name": "fixture_yaw_link",
+          "qpos_address_range": [
+            8,
+            9
+          ],
+          "dof_address_range": [
+            7,
+            8
+          ],
+          "actuators": [],
+          "is_six_tibia_actuator": false,
+          "six_tibia_actuator_matches": [],
+          "joint_limited": false,
+          "joint_range_rad": null
+        },
+        {
+          "resolved": true,
+          "dof_index": 8,
+          "joint_id": 3,
+          "joint_name": "joint_LFCoxa",
+          "joint_type": "hinge",
+          "body_id": 4,
+          "body_name": "fixture_pitch_link",
+          "qpos_address_range": [
+            9,
+            10
+          ],
+          "dof_address_range": [
+            8,
+            9
+          ],
+          "actuators": [],
+          "is_six_tibia_actuator": false,
+          "six_tibia_actuator_matches": [],
+          "joint_limited": false,
+          "joint_range_rad": null
+        },
+        {
+          "resolved": true,
+          "dof_index": 9,
+          "joint_id": 4,
+          "joint_name": "joint_LFCoxa_roll",
+          "joint_type": "hinge",
+          "body_id": 5,
+          "body_name": "fixture_roll_link",
+          "qpos_address_range": [
+            10,
+            11
+          ],
+          "dof_address_range": [
+            9,
+            10
+          ],
+          "actuators": [],
+          "is_six_tibia_actuator": false,
+          "six_tibia_actuator_matches": [],
+          "joint_limited": false,
+          "joint_range_rad": null
+        }
+      ],
+      "projected_torque": [
+        -0.008295719862404953,
+        0.0325514695284908,
+        0.05126777650224741
+      ]
+    },
+    {
+      "name": "MIXED",
+      "tensions": [
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "snapshots": {
+        "baseline": {
+          "qpos": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qvel": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qacc": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_applied": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "xfrc_applied": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "qfrc_bias": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_passive": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_constraint": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_actuator": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actuator_force": [],
+          "ctrl": [],
+          "mass_matrix": [
+            [
+              6.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -0.4000000000000001,
+              0.0,
+              0.0,
+              0.10000000000000003,
+              0.0
+            ],
+            [
+              0.0,
+              6.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.4,
+              0.1,
+              -0.09999999999999998,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              6.0,
+              0.4000000000000001,
+              -0.4,
+              0.0,
+              0.0,
+              0.2,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -1.0,
+              0.4000000000000001,
+              0.6400000000000001,
+              -0.04000000000000001,
+              -0.1,
+              0.0,
+              0.09000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0,
+              -0.4,
+              -0.04000000000000001,
+              0.7599999999999999,
+              -0.07,
+              0.0,
+              -0.020000000000000004,
+              0.08000000000000002,
+              0.0
+            ],
+            [
+              -0.4000000000000001,
+              0.4,
+              0.0,
+              -0.1,
+              -0.07,
+              0.5999999999999999,
+              0.034999999999999996,
+              -0.009999999999999998,
+              -0.010000000000000002,
+              0.025
+            ],
+            [
+              0.0,
+              0.1,
+              0.0,
+              0.0,
+              0.0,
+              0.034999999999999996,
+              0.034999999999999996,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -0.09999999999999998,
+              0.2,
+              0.09000000000000004,
+              -0.020000000000000004,
+              -0.009999999999999998,
+              0.0,
+              0.06000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              0.10000000000000003,
+              0.0,
+              0.0,
+              0.0,
+              0.08000000000000002,
+              -0.010000000000000002,
+              0.0,
+              0.0,
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.025,
+              0.0,
+              0.0,
+              0.0,
+              0.025
+            ]
+          ],
+          "time": 0.0,
+          "ncon": 0,
+          "nefc": 0
+        },
+        "applied": {
+          "qpos": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qvel": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qacc": [
+            -0.0007392954786969012,
+            0.019696674596888477,
+            0.0555218688800534,
+            0.35246517270549343,
+            -0.18798597279202917,
+            -0.11581029767368498,
+            0.05953408453971789,
+            -2.7465583573966477,
+            1.460976265947365,
+            2.7383910350280467
+          ],
+          "qfrc_applied": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.11901910715140526,
+            0.05909410890287308,
+            0.06556451843385905
+          ],
+          "xfrc_applied": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "qfrc_bias": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_passive": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_constraint": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_actuator": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actuator_force": [],
+          "ctrl": [],
+          "mass_matrix": [
+            [
+              6.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -0.4000000000000001,
+              0.0,
+              0.0,
+              0.10000000000000003,
+              0.0
+            ],
+            [
+              0.0,
+              6.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.4,
+              0.1,
+              -0.09999999999999998,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              6.0,
+              0.4000000000000001,
+              -0.4,
+              0.0,
+              0.0,
+              0.2,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -1.0,
+              0.4000000000000001,
+              0.6400000000000001,
+              -0.04000000000000001,
+              -0.1,
+              0.0,
+              0.09000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0,
+              -0.4,
+              -0.04000000000000001,
+              0.7599999999999999,
+              -0.07,
+              0.0,
+              -0.020000000000000004,
+              0.08000000000000002,
+              0.0
+            ],
+            [
+              -0.4000000000000001,
+              0.4,
+              0.0,
+              -0.1,
+              -0.07,
+              0.5999999999999999,
+              0.034999999999999996,
+              -0.009999999999999998,
+              -0.010000000000000002,
+              0.025
+            ],
+            [
+              0.0,
+              0.1,
+              0.0,
+              0.0,
+              0.0,
+              0.034999999999999996,
+              0.034999999999999996,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -0.09999999999999998,
+              0.2,
+              0.09000000000000004,
+              -0.020000000000000004,
+              -0.009999999999999998,
+              0.0,
+              0.06000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              0.10000000000000003,
+              0.0,
+              0.0,
+              0.0,
+              0.08000000000000002,
+              -0.010000000000000002,
+              0.0,
+              0.0,
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.025,
+              0.0,
+              0.0,
+              0.0,
+              0.025
+            ]
+          ],
+          "time": 0.0,
+          "ncon": 0,
+          "nefc": 0
+        },
+        "cleared": {
+          "qpos": [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qvel": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qacc": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_applied": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "xfrc_applied": [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "qfrc_bias": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_passive": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_constraint": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "qfrc_actuator": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "actuator_force": [],
+          "ctrl": [],
+          "mass_matrix": [
+            [
+              6.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -0.4000000000000001,
+              0.0,
+              0.0,
+              0.10000000000000003,
+              0.0
+            ],
+            [
+              0.0,
+              6.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.4,
+              0.1,
+              -0.09999999999999998,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              6.0,
+              0.4000000000000001,
+              -0.4,
+              0.0,
+              0.0,
+              0.2,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -1.0,
+              0.4000000000000001,
+              0.6400000000000001,
+              -0.04000000000000001,
+              -0.1,
+              0.0,
+              0.09000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0,
+              -0.4,
+              -0.04000000000000001,
+              0.7599999999999999,
+              -0.07,
+              0.0,
+              -0.020000000000000004,
+              0.08000000000000002,
+              0.0
+            ],
+            [
+              -0.4000000000000001,
+              0.4,
+              0.0,
+              -0.1,
+              -0.07,
+              0.5999999999999999,
+              0.034999999999999996,
+              -0.009999999999999998,
+              -0.010000000000000002,
+              0.025
+            ],
+            [
+              0.0,
+              0.1,
+              0.0,
+              0.0,
+              0.0,
+              0.034999999999999996,
+              0.034999999999999996,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -0.09999999999999998,
+              0.2,
+              0.09000000000000004,
+              -0.020000000000000004,
+              -0.009999999999999998,
+              0.0,
+              0.06000000000000004,
+              0.0,
+              0.0
+            ],
+            [
+              0.10000000000000003,
+              0.0,
+              0.0,
+              0.0,
+              0.08000000000000002,
+              -0.010000000000000002,
+              0.0,
+              0.0,
+              0.05,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.025,
+              0.0,
+              0.0,
+              0.0,
+              0.025
+            ]
+          ],
+          "time": 0.0,
+          "ncon": 0,
+          "nefc": 0
+        }
+      },
+      "metadata": [
+        {
+          "resolved": true,
+          "dof_index": 7,
+          "joint_id": 2,
+          "joint_name": "joint_LFCoxa_yaw",
+          "joint_type": "hinge",
+          "body_id": 3,
+          "body_name": "fixture_yaw_link",
+          "qpos_address_range": [
+            8,
+            9
+          ],
+          "dof_address_range": [
+            7,
+            8
+          ],
+          "actuators": [],
+          "is_six_tibia_actuator": false,
+          "six_tibia_actuator_matches": [],
+          "joint_limited": false,
+          "joint_range_rad": null
+        },
+        {
+          "resolved": true,
+          "dof_index": 8,
+          "joint_id": 3,
+          "joint_name": "joint_LFCoxa",
+          "joint_type": "hinge",
+          "body_id": 4,
+          "body_name": "fixture_pitch_link",
+          "qpos_address_range": [
+            9,
+            10
+          ],
+          "dof_address_range": [
+            8,
+            9
+          ],
+          "actuators": [],
+          "is_six_tibia_actuator": false,
+          "six_tibia_actuator_matches": [],
+          "joint_limited": false,
+          "joint_range_rad": null
+        },
+        {
+          "resolved": true,
+          "dof_index": 9,
+          "joint_id": 4,
+          "joint_name": "joint_LFCoxa_roll",
+          "joint_type": "hinge",
+          "body_id": 5,
+          "body_name": "fixture_roll_link",
+          "qpos_address_range": [
+            10,
+            11
+          ],
+          "dof_address_range": [
+            9,
+            10
+          ],
+          "actuators": [],
+          "is_six_tibia_actuator": false,
+          "six_tibia_actuator_matches": [],
+          "joint_limited": false,
+          "joint_range_rad": null
+        }
+      ],
+      "projected_torque": [
+        -0.11901910715140526,
+        0.05909410890287308,
+        0.06556451843385905
+      ]
+    }
+  ],
+  "source_hashes_after": {
+    "docs/LF_ANATOMICAL_CROSSWALK_V1.md": "ede8a8c57bde1bf4a28a86008df990b9b09f42475976404c4c54f3af1164685d",
+    "docs/LF_FORCE_REFERENCE_V1.md": "f71c2aa223f179d21e434677e5b9136b9d63ac4271a0dd27cf82b331c4be56da",
+    "docs/REMAINING_LEG_ADMISSION_AUDIT_V1.md": "4e86e5ad13fa977e1f446217f1f4e0af65f861b6146435795651b78eda5c4d54",
+    "docs/REMAINING_LEG_ADMISSION_AUDIT_V1_1.md": "a1b4b67b9966ffb8b6c4c0e4fdb6c71d7e76ddc4054d18998ae712b18b589d2a",
+    "docs/evidence/lf-anatomical-crosswalk-v1/annotations.feather": "2177e246113e4cfbf1e7772ec37c6da1955ff22e8063d0b1f833101f99a9a3b2",
+    "docs/evidence/lf-anatomical-crosswalk-v1/crosswalk.json": "c8ddf150481daaf9bd8266065b18366b2eb83090453895a391338af94f2b86a6",
+    "docs/evidence/remaining-leg-admission-audit-v1_1/audit.json": "ff64e64941b54872f2d59564d1db6c6422ef25c74067d53acbe23b59ab998c04",
+    "docs/fixtures/lf-force-reference-v1.xml": "84971c7e1fd0b32b956d2033a879ae1820600b15636b307aa7edbbb06c7aaeb9",
+    "fly-brain-main/public/data/bodymap.json": "10630cd4c7a6cc2c1dcfcbee4a602d307f06766f316b185f631406813a58da9d",
+    "fly-brain-main/public/data/neurons.flyn": "91630046af02826299834179bb07726d1ed9b7dd1426e90315c011e42011f6e7",
+    "fly-brain-main/scripts/prep_bodymap.py": "9e571af9aeb13bb28639c69fdbe0942be8aa41a10346e2359134b899ca16b683",
+    "malecns_backend/codec.py": "f9e252263c5c4d29d7a2cc13ba867254b933bf89951e6b0906c591fcec9d8d65",
+    "malecns_backend/embodiment/_windows_m8_live_condition.py": "9afea2d32e9ea935cc6cd221874d74b50ffa35895d327f8ae96ea6c9ed36bc2c",
+    "malecns_backend/embodiment/body.py": "096d2dcc95efd3bb60d0df8b925d80f6831fc17e37bce1d010a089cf794952a0",
+    "malecns_backend/embodiment/coxa_yaw_anatomical_sign_bridge.py": "af040e56cada41163ab7df51473403306f96b72564dbd35cf827e5c52a71299f",
+    "malecns_backend/embodiment/interface_output/coxa_yaw_anatomical_sign_bridge/COXA_YAW_ANATOMICAL_SIGN_BRIDGE_FREEZE.json": "d6ba33b4ce226c90f808dd31dfd54c58e3767c2062ba74d182d8d15fd8fa3e72",
+    "malecns_backend/embodiment/interface_output/coxa_yaw_anatomical_sign_bridge/coxa_yaw_anatomical_sign_bridge_result.json": "4da8a7407e207ca3812aae85b591a9d80c304e837b69f3f17e338f84c38dd7e7",
+    "malecns_backend/embodiment/interface_output/coxa_yaw_sign_validation/COXA_YAW_SIGN_VALIDATION_FREEZE.json": "588b2cc7533ec5b8dafc8745b03ce8f94f45970776bcf1bea76167ebf2fed315",
+    "malecns_backend/embodiment/interface_output/coxa_yaw_sign_validation/coxa_yaw_sign_validation_result.json": "33e713e9cbf138fc6fcd21587a625e6c8b979d7b6ed1a15489f3262483d1210c",
+    "malecns_backend/embodiment/interface_output/flymimic_flygym_proximal_registration/flymimic_flygym_proximal_registration_manifest.json": "afaa1f3f6c55367bdf564cd897d33f4b027d0f42f8041e7223e4220a2eabd20e",
+    "malecns_backend/embodiment/interface_output/flymimic_flygym_proximal_registration/flymimic_flygym_proximal_registration_result.json": "a06b342390d6132a37b50766085390adb1a9eb8c1c34849f1f56dd69578e0684",
+    "malecns_backend/embodiment/interface_output/lf_proximal_candidate_mapping_review/lf_proximal_candidate_activity_evidence_addendum.json": "aac7497241695842e39387ed93bd2562f39087cd59021d2b482889113ec64002",
+    "malecns_backend/embodiment/interface_output/lf_proximal_candidate_mapping_review/lf_proximal_candidate_mapping_review_preregistration.json": "6966b0d78622e0a478311b7a47b1195c8d2189a14c44e4d05d619137c0cf17b9",
+    "malecns_backend/embodiment/interface_output/lf_proximal_motor_recruitment/lf_proximal_motor_recruitment_result.json": "33165b89c117b6ca2ee9852cf7c64e2da879f2484cdb05fb3db2fa32978e4401",
+    "malecns_backend/embodiment/interface_output/whole_leg_motor_mapping_audit.json": "722ee9b3b1d6a0fad2bf8ef0f02fc63f49277c5f44e3bccf27898e6c4ea673d9",
+    "malecns_backend/embodiment/lf_anatomical_crosswalk.py": "b56a151b356aece7c2d03f325c5864d67ad73f6a055b255085a494fbbd3e4a4f",
+    "malecns_backend/embodiment/lf_force_reference.py": "77bb8b3c3a4e3ec12c4a73ee0d07edb135adcba81782029e388059fd3fea09a8",
+    "malecns_backend/embodiment/lf_force_reference_validation.py": "f7810561029d57a2ea1350289373fb0735103d6a99ff18e25d346ff3bfcf14ac",
+    "malecns_backend/embodiment/live_v2_motor_interface.py": "6472a46b3012b3fd94bc202b8ec974783c41ae9065fabd0892a7de42dd81760b",
+    "malecns_backend/embodiment/live_v3_motor_interface.py": "6bf362442405994dc8ddfaf7a0fd8a29d499dad85c72277bd1fe9c3ab3044e05",
+    "malecns_backend/embodiment/motor.py": "a64e75a0097c2927d35d94401d5c26f948fb83c86b63e5f6e527ed7d70efb12f",
+    "malecns_backend/embodiment/remaining_leg_admission_audit.py": "99e02108bffa3cbbaf7a3a3bbfc34e2a572e1d33f9c69f968d3ba073ef60717f",
+    "malecns_backend/embodiment/remaining_leg_admission_review.py": "7a9e700cfa2eb905df6afa2a0cfd967bc40cd8edb7bc292b44fa3728479c5bcc",
+    "malecns_backend/embodiment/six_tibia_physics_diagnostic.py": "cc9218cda878be89d29bdf2cb852751eedbf5d08205423b31d64ab7dc9c3273b",
+    "malecns_backend/embodiment/whole_leg_motor_mapping_audit.py": "fd211b9ff42e39f47242bac1ce51bf4f05b4bd8514ba021839dedbc826b8c9cc",
+    "malecns_backend/interface_map.json": "24b7229bea6f24ff0e65fe09b202d42dc06819fe234194e3c3ab95b596319e0b",
+    "malecns_backend/live/protocol.py": "6bb277dba884b97399cc31ac92ab346d2a33b6d87e99a90ec84e1887f21ad789"
+  },
+  "evaluation": {
+    "checks": {
+      "schema": true,
+      "complete": true,
+      "source_unchanged": true,
+      "reference": true,
+      "operations": true,
+      "dimensions": true,
+      "version": true,
+      "case_inventory": true
+    },
+    "cases": [
+      {
+        "name": "ZERO",
+        "checks": {
+          "exact_metadata": true,
+          "adapter_projection": true,
+          "snapshots_complete": true,
+          "baseline_force": true,
+          "baseline_state": true,
+          "baseline_other_forces_zero": true,
+          "baseline_dynamics": true,
+          "baseline_zero_acceleration": true,
+          "applied_force": true,
+          "applied_state": true,
+          "applied_other_forces_zero": true,
+          "applied_dynamics": true,
+          "cleared_force": true,
+          "cleared_state": true,
+          "cleared_other_forces_zero": true,
+          "cleared_dynamics": true,
+          "cleared_zero_acceleration": true,
+          "virtual_work": true
+        },
+        "maximum_force_error": 0.0,
+        "maximum_dynamics_residual": 0.0,
+        "work_error": 0.0,
+        "passed": true
+      },
+      {
+        "name": "REMOTOR",
+        "checks": {
+          "exact_metadata": true,
+          "adapter_projection": true,
+          "snapshots_complete": true,
+          "baseline_force": true,
+          "baseline_state": true,
+          "baseline_other_forces_zero": true,
+          "baseline_dynamics": true,
+          "baseline_zero_acceleration": true,
+          "applied_force": true,
+          "applied_state": true,
+          "applied_other_forces_zero": true,
+          "applied_dynamics": true,
+          "cleared_force": true,
+          "cleared_state": true,
+          "cleared_other_forces_zero": true,
+          "cleared_dynamics": true,
+          "cleared_zero_acceleration": true,
+          "virtual_work": true
+        },
+        "maximum_force_error": 3.469446951953614e-18,
+        "maximum_dynamics_residual": 4.163336342344337e-17,
+        "work_error": 0.0,
+        "passed": true
+      },
+      {
+        "name": "ADDUCTOR",
+        "checks": {
+          "exact_metadata": true,
+          "adapter_projection": true,
+          "snapshots_complete": true,
+          "baseline_force": true,
+          "baseline_state": true,
+          "baseline_other_forces_zero": true,
+          "baseline_dynamics": true,
+          "baseline_zero_acceleration": true,
+          "applied_force": true,
+          "applied_state": true,
+          "applied_other_forces_zero": true,
+          "applied_dynamics": true,
+          "cleared_force": true,
+          "cleared_state": true,
+          "cleared_other_forces_zero": true,
+          "cleared_dynamics": true,
+          "cleared_zero_acceleration": true,
+          "virtual_work": true
+        },
+        "maximum_force_error": 8.673617379884035e-18,
+        "maximum_dynamics_residual": 5.551115123125783e-17,
+        "work_error": 0.0,
+        "passed": true
+      },
+      {
+        "name": "ANTERIOR",
+        "checks": {
+          "exact_metadata": true,
+          "adapter_projection": true,
+          "snapshots_complete": true,
+          "baseline_force": true,
+          "baseline_state": true,
+          "baseline_other_forces_zero": true,
+          "baseline_dynamics": true,
+          "baseline_zero_acceleration": true,
+          "applied_force": true,
+          "applied_state": true,
+          "applied_other_forces_zero": true,
+          "applied_dynamics": true,
+          "cleared_force": true,
+          "cleared_state": true,
+          "cleared_other_forces_zero": true,
+          "cleared_dynamics": true,
+          "cleared_zero_acceleration": true,
+          "virtual_work": true
+        },
+        "maximum_force_error": 6.938893903907228e-18,
+        "maximum_dynamics_residual": 5.551115123125783e-17,
+        "work_error": 0.0,
+        "passed": true
+      },
+      {
+        "name": "POSTERIOR",
+        "checks": {
+          "exact_metadata": true,
+          "adapter_projection": true,
+          "snapshots_complete": true,
+          "baseline_force": true,
+          "baseline_state": true,
+          "baseline_other_forces_zero": true,
+          "baseline_dynamics": true,
+          "baseline_zero_acceleration": true,
+          "applied_force": true,
+          "applied_state": true,
+          "applied_other_forces_zero": true,
+          "applied_dynamics": true,
+          "cleared_force": true,
+          "cleared_state": true,
+          "cleared_other_forces_zero": true,
+          "cleared_dynamics": true,
+          "cleared_zero_acceleration": true,
+          "virtual_work": true
+        },
+        "maximum_force_error": 6.938893903907228e-18,
+        "maximum_dynamics_residual": 6.938893903907228e-18,
+        "work_error": 1.0842021724855044e-19,
+        "passed": true
+      },
+      {
+        "name": "MIXED",
+        "checks": {
+          "exact_metadata": true,
+          "adapter_projection": true,
+          "snapshots_complete": true,
+          "baseline_force": true,
+          "baseline_state": true,
+          "baseline_other_forces_zero": true,
+          "baseline_dynamics": true,
+          "baseline_zero_acceleration": true,
+          "applied_force": true,
+          "applied_state": true,
+          "applied_other_forces_zero": true,
+          "applied_dynamics": true,
+          "cleared_force": true,
+          "cleared_state": true,
+          "cleared_other_forces_zero": true,
+          "cleared_dynamics": true,
+          "cleared_zero_acceleration": true,
+          "virtual_work": true
+        },
+        "maximum_force_error": 6.938893903907228e-18,
+        "maximum_dynamics_residual": 7.806255641895632e-17,
+        "work_error": 4.336808689942018e-19,
+        "passed": true
+      }
+    ],
+    "passed": true
+  }
+}

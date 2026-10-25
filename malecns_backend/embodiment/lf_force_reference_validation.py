@@ -10,11 +10,14 @@ import numpy as np
 from . import lf_force_reference as force
 
 ROOT = force.ROOT
-SCHEMA = 'lf-force-reference-validation-v1'
+SCHEMA = 'lf-force-reference-validation-v1.1'
 CASES = (('ZERO', (0., 0., 0., 0.)), ('REMOTOR', (1., 0., 0., 0.)),
          ('ADDUCTOR', (0., 1., 0., 0.)), ('ANTERIOR', (0., 0., 1., 0.)),
          ('POSTERIOR', (0., 0., 0., 1.)), ('MIXED', (.25, .5, .75, 1.)))
-SOURCES = ('docs/LF_FORCE_REFERENCE_V1.md', force.FIXTURE,
+SOURCES = ('docs/LF_FORCE_REFERENCE_V1.md', 'docs/LF_FORCE_REFERENCE_V1_1.md', force.FIXTURE,
+           'malecns_backend/embodiment/lf_force_static_reference.py',
+           'malecns_backend/embodiment/_windows_m7_spontaneous_locomotion_adapter.py',
+           'malecns_backend/embodiment/integrated_whole_leg_readiness.py',
            'malecns_backend/embodiment/lf_force_reference.py',
            'malecns_backend/embodiment/lf_force_reference_validation.py',
            'malecns_backend/embodiment/six_tibia_physics_diagnostic.py',
@@ -88,7 +91,6 @@ def execute(ready):
             row['error'] = f'{type(exc).__name__}: {exc}'
             report['status'] = 'INCOMPLETE'
     report['source_hashes_after'] = source_hashes()
-    report['evaluation'] = evaluate(report, ready['reference'])
     return report
 
 
@@ -106,6 +108,7 @@ def evaluate(report, reference):
         operations=report.get('native_forward_calls') == 18 and report.get('integration_steps') == 0
             and report.get('neural_transitions') == 0 and report.get('new_admissions') == 0
             and report.get('current_motor_count') == 20,
+        observed_api_calls=report.get('observed_python_api_calls') == dict(mj_forward=18, mj_step=0),
         dimensions=report.get('model_dimensions') == dict(nq=11, nv=10, nu=0, nbody=6),
         version=report.get('environment', {}).get('mujoco') == '3.2.7',
         case_inventory=[r.get('name') for r in report.get('cases', [])] == [c[0] for c in CASES])
@@ -188,11 +191,28 @@ def main(argv=None):
     if args.execute:
         if args.output_dir is None: parser.error('--execute requires a fresh --output-dir')
         args.output_dir.mkdir(parents=True, exist_ok=False)
+        native = None
+        observed = dict(mj_forward=0, mj_step=0)
         try:
+            import mujoco as native
+            original_forward, original_step = native.mj_forward, native.mj_step
+            def counted_forward(*a, **k):
+                observed['mj_forward'] += 1
+                return original_forward(*a, **k)
+            def forbidden_step(*a, **k):
+                observed['mj_step'] += 1
+                raise RuntimeError('time integration is forbidden in this fixture protocol')
+            native.mj_forward, native.mj_step = counted_forward, forbidden_step
             report = execute(preflight())
+            report['observed_python_api_calls'] = dict(observed)
+            report['evaluation'] = evaluate(report, report['reference'])
         except Exception as exc:
             report = dict(schema=SCHEMA, status='INTEGRITY_ERROR', integration_steps=0,
-                          neural_transitions=0, new_admissions=0, error=f'{type(exc).__name__}: {exc}')
+                          neural_transitions=0, new_admissions=0, observed_python_api_calls=dict(observed),
+                          error=f'{type(exc).__name__}: {exc}')
+        finally:
+            if native is not None:
+                native.mj_forward, native.mj_step = original_forward, original_step
         with (args.output_dir/'validation.json').open('x', encoding='utf-8') as stream:
             json.dump(report, stream, indent=2, allow_nan=False)
             stream.write('\n')
@@ -209,7 +229,7 @@ def main(argv=None):
         print('PREFLIGHT PASSED: current 20/42; 4 class hypotheses; native forward calls 0; CNS/integration 0.')
         print('Original raw scientific prerequisites:', ready['reference']['original_raw_freezes_satisfied'])
         return 0
-    print('FIXTURE VERIFIED: 6 cases; 18 recorded native forward calls; integration/CNS transitions 0.')
+    print('FIXTURE VERIFIED: 6 cases; 18 recorded explicit native fixture forward calls; integration/CNS transitions 0.')
     print('Current 20/42; new admissions 0; no neural activation/force calibration or moving-fly transfer.')
     print('Original raw scientific prerequisites:', report['reference']['original_raw_freezes_satisfied'])
     return 0
