@@ -28,7 +28,7 @@ for neural emergence.
 | Source force/activation checks | Declared source/fixture checks pass; source Euler transient failures remain preserved |
 | Native actuator replacement isolation | Selective suppression/preservation passed at the declared fixed inputs, without advancing the fly |
 | Endpoint API | Explicit initial/terminal/interior sampling contract independently verified; no tolerance fitted to old residues |
-| Synthetic coupled validation | V1 remains **INTEGRITY_FAILURE**; a separately versioned implementation must consume the explicit endpoint contract and be tested |
+| Synthetic coupled validation | V2 passes the declared same-model numerical/ownership checks using explicit endpoint roles; V1 remains **INTEGRITY_FAILURE**, unchanged |
 | Moving-fly muscle transfer | Physical units/geometry/velocity/length, raw prerequisites and anatomical/neural conversion remain unresolved gates |
 | Independent neural balance/walking | Not established |
 
@@ -39,17 +39,14 @@ would inspect the same interface; these engineering updates do not introduce new
 Unity behavior. For a Unity test of the NEW muscle interface, the remaining
 sequence is:
 
-1. Validate a separately specified corrected synthetic coupling implementation,
-   preserving the failed V1 and keeping exact authoritative terminal-state commit,
-   force ownership, physical error budgets and all planned windows/grids.
-2. Resolve source-to-body transfer prerequisites: physical units and registered
+1. Resolve source-to-body transfer prerequisites: physical units and registered
    geometry/length/velocity dependence, original raw-source requirements, exact
    anatomical population-to-muscle interpretation and neural-to-activation law.
    Reference fidelity does not by itself calibrate biological force or gain.
-3. Run a bounded headless native experiment under a predeclared replacement/support
+2. Run a bounded headless native experiment under a predeclared replacement/support
    context, using the existing transition kernel. Record integrity and all outcomes
    before deciding what can be replayed or tested in Unity.
-4. Inspect that supported experiment in Unity with a concrete observation goal
+3. Inspect that supported experiment in Unity with a concrete observation goal
    and the relevant matched comparison, rather than expecting a visual change
    from code/reference tests alone.
 
