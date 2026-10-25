@@ -1,0 +1,798 @@
+{
+  "schema": "lf-transfer-prerequisites-v1",
+  "classification": "TRANSFER_REVIEW_VERIFIED_PHYSICAL_ANATOMICAL_NEURAL_RAW_GATES_OPEN",
+  "source_hashes": {
+    "docs/LF_ANATOMICAL_CROSSWALK_V1.md": "ede8a8c57bde1bf4a28a86008df990b9b09f42475976404c4c54f3af1164685d",
+    "docs/LF_FORCE_REFERENCE_V1.md": "f71c2aa223f179d21e434677e5b9136b9d63ac4271a0dd27cf82b331c4be56da",
+    "docs/LF_FORCE_REFERENCE_V1_1.md": "8e9184085bcea8bca1ea0c804318632afc9e7023b93ef7aa6d2a812dd8c8ab4e",
+    "docs/REMAINING_LEG_ADMISSION_AUDIT_V1.md": "4e86e5ad13fa977e1f446217f1f4e0af65f861b6146435795651b78eda5c4d54",
+    "docs/REMAINING_LEG_ADMISSION_AUDIT_V1_1.md": "a1b4b67b9966ffb8b6c4c0e4fdb6c71d7e76ddc4054d18998ae712b18b589d2a",
+    "docs/evidence/lf-anatomical-crosswalk-v1/annotations.feather": "2177e246113e4cfbf1e7772ec37c6da1955ff22e8063d0b1f833101f99a9a3b2",
+    "docs/evidence/lf-anatomical-crosswalk-v1/crosswalk.json": "c8ddf150481daaf9bd8266065b18366b2eb83090453895a391338af94f2b86a6",
+    "docs/evidence/remaining-leg-admission-audit-v1_1/audit.json": "ff64e64941b54872f2d59564d1db6c6422ef25c74067d53acbe23b59ab998c04",
+    "docs/fixtures/lf-force-reference-v1.xml": "84971c7e1fd0b32b956d2033a879ae1820600b15636b307aa7edbbb06c7aaeb9",
+    "fly-brain-main/public/data/bodymap.json": "10630cd4c7a6cc2c1dcfcbee4a602d307f06766f316b185f631406813a58da9d",
+    "fly-brain-main/public/data/neurons.flyn": "91630046af02826299834179bb07726d1ed9b7dd1426e90315c011e42011f6e7",
+    "fly-brain-main/scripts/prep_bodymap.py": "9e571af9aeb13bb28639c69fdbe0942be8aa41a10346e2359134b899ca16b683",
+    "malecns_backend/codec.py": "f9e252263c5c4d29d7a2cc13ba867254b933bf89951e6b0906c591fcec9d8d65",
+    "malecns_backend/embodiment/_windows_m7_spontaneous_locomotion_adapter.py": "470a23f78fbecd63db31ff4287aea6c5f28d05839e7b7cd21afd0edb20b0b7eb",
+    "malecns_backend/embodiment/_windows_m8_live_condition.py": "9afea2d32e9ea935cc6cd221874d74b50ffa35895d327f8ae96ea6c9ed36bc2c",
+    "malecns_backend/embodiment/body.py": "096d2dcc95efd3bb60d0df8b925d80f6831fc17e37bce1d010a089cf794952a0",
+    "malecns_backend/embodiment/coxa_yaw_anatomical_sign_bridge.py": "af040e56cada41163ab7df51473403306f96b72564dbd35cf827e5c52a71299f",
+    "malecns_backend/embodiment/integrated_whole_leg_readiness.py": "7ab4279118cbe577a4247ddfc7a0928210e474a536671987d1dc04bafa4278ff",
+    "malecns_backend/embodiment/interface_output/coxa_yaw_anatomical_sign_bridge/COXA_YAW_ANATOMICAL_SIGN_BRIDGE_FREEZE.json": "d6ba33b4ce226c90f808dd31dfd54c58e3767c2062ba74d182d8d15fd8fa3e72",
+    "malecns_backend/embodiment/interface_output/coxa_yaw_anatomical_sign_bridge/coxa_yaw_anatomical_sign_bridge_result.json": "4da8a7407e207ca3812aae85b591a9d80c304e837b69f3f17e338f84c38dd7e7",
+    "malecns_backend/embodiment/interface_output/coxa_yaw_sign_validation/COXA_YAW_SIGN_VALIDATION_FREEZE.json": "588b2cc7533ec5b8dafc8745b03ce8f94f45970776bcf1bea76167ebf2fed315",
+    "malecns_backend/embodiment/interface_output/coxa_yaw_sign_validation/coxa_yaw_sign_validation_result.json": "33e713e9cbf138fc6fcd21587a625e6c8b979d7b6ed1a15489f3262483d1210c",
+    "malecns_backend/embodiment/interface_output/flymimic_flygym_proximal_registration/flymimic_flygym_proximal_registration_manifest.json": "afaa1f3f6c55367bdf564cd897d33f4b027d0f42f8041e7223e4220a2eabd20e",
+    "malecns_backend/embodiment/interface_output/flymimic_flygym_proximal_registration/flymimic_flygym_proximal_registration_result.json": "a06b342390d6132a37b50766085390adb1a9eb8c1c34849f1f56dd69578e0684",
+    "malecns_backend/embodiment/interface_output/lf_proximal_candidate_mapping_review/lf_proximal_candidate_activity_evidence_addendum.json": "aac7497241695842e39387ed93bd2562f39087cd59021d2b482889113ec64002",
+    "malecns_backend/embodiment/interface_output/lf_proximal_candidate_mapping_review/lf_proximal_candidate_mapping_review_preregistration.json": "6966b0d78622e0a478311b7a47b1195c8d2189a14c44e4d05d619137c0cf17b9",
+    "malecns_backend/embodiment/interface_output/lf_proximal_motor_recruitment/lf_proximal_motor_recruitment_result.json": "33165b89c117b6ca2ee9852cf7c64e2da879f2484cdb05fb3db2fa32978e4401",
+    "malecns_backend/embodiment/interface_output/whole_leg_motor_mapping_audit.json": "722ee9b3b1d6a0fad2bf8ef0f02fc63f49277c5f44e3bccf27898e6c4ea673d9",
+    "malecns_backend/embodiment/lf_anatomical_crosswalk.py": "b56a151b356aece7c2d03f325c5864d67ad73f6a055b255085a494fbbd3e4a4f",
+    "malecns_backend/embodiment/lf_force_reference.py": "95048a9a52cd717b939aa252ab1f964c536980827aeb466ada4bff9c7a7301de",
+    "malecns_backend/embodiment/lf_force_reference_validation.py": "a5786e554d74243a77decf0977d7ab751b37c19ac1c47700e18ba2d7dff241df",
+    "malecns_backend/embodiment/lf_force_static_reference.py": "f8254034e3ea01359bdf7d90a04fc62ffc114441a8dd80b407c786475d5c07ae",
+    "malecns_backend/embodiment/live_v2_motor_interface.py": "6472a46b3012b3fd94bc202b8ec974783c41ae9065fabd0892a7de42dd81760b",
+    "malecns_backend/embodiment/live_v3_motor_interface.py": "6bf362442405994dc8ddfaf7a0fd8a29d499dad85c72277bd1fe9c3ab3044e05",
+    "malecns_backend/embodiment/motor.py": "a64e75a0097c2927d35d94401d5c26f948fb83c86b63e5f6e527ed7d70efb12f",
+    "malecns_backend/embodiment/remaining_leg_admission_audit.py": "99e02108bffa3cbbaf7a3a3bbfc34e2a572e1d33f9c69f968d3ba073ef60717f",
+    "malecns_backend/embodiment/remaining_leg_admission_review.py": "7a9e700cfa2eb905df6afa2a0cfd967bc40cd8edb7bc292b44fa3728479c5bcc",
+    "malecns_backend/embodiment/six_tibia_physics_diagnostic.py": "cc9218cda878be89d29bdf2cb852751eedbf5d08205423b31d64ab7dc9c3273b",
+    "malecns_backend/embodiment/whole_leg_motor_mapping_audit.py": "fd211b9ff42e39f47242bac1ce51bf4f05b4bd8514ba021839dedbc826b8c9cc",
+    "malecns_backend/interface_map.json": "24b7229bea6f24ff0e65fe09b202d42dc06819fe234194e3c3ab95b596319e0b",
+    "malecns_backend/live/protocol.py": "6bb277dba884b97399cc31ac92ab346d2a33b6d87e99a90ec84e1887f21ad789",
+    "docs/LF_POSE_FORCE_V1.md": "2fce67ed6c268c3d43e2ade611e66756750779320add374a3a907f8f0a517728",
+    "docs/LF_POSE_FORCE_V1_1.md": "6c00c97ef8a96d58719e45a5f60840f660a27161c2a895e6800452c311049c2c",
+    "malecns_backend/embodiment/lf_pose_force.py": "d1b946cd66a17118c6abc38d6847e50118c4abc032b60e0ddb12e02de10a7cae",
+    "docs/evidence/lf-pose-force-v1/input-manifest.json": "b36cd7537e3c7e51b259abee60b9102021aeaa482bc26bea6537896980579c85",
+    "docs/LF_ACTIVATION_TRANSIENT_V1.md": "1e15c51ef4860c2794bd5fa4bc1986800cfff53ae58ccecd613a9c668f8d89b4",
+    "malecns_backend/embodiment/lf_activation_transient.py": "6be3c632878bdfe60c460e334d48abfd1caea254711534ba37d3ebb937ca8bf1",
+    "docs/evidence/lf-activation-transient-v1/source-binding.json": "76a001238d94dc17afb84b5c64be32ab0896a6bdca9a8d6cd9f71030f6315073",
+    "docs/fixtures/lf-activation-transient-v1.xml": "a728cbcfa19ff517925ea2627a55b01db32ca26dd8a9567d11f70140a6e1903e",
+    "docs/evidence/lf-pose-force-v1_1/run/validation.json": "24332543da1d4b8a1c475bef518c334058cb95c9ecad8c5a4173c0043d0449fe",
+    "docs/LF_ACTIVATION_INTEGRATOR_V1.md": "97845acdc8ab7d341427b3fa77f5374122be4d6561cbb61eb72bba6f48876095",
+    "malecns_backend/embodiment/lf_activation_integrator.py": "b99e950cafe5b501e3305d4165aebcec622aa92c2dd34d68fc421cb169196bfe",
+    "malecns_backend/embodiment/lf_activation_integrator_validation.py": "52f441ed4c88c8851f945328eacd1cec66e20b4b0868879fc5165c45a59301e9",
+    "docs/evidence/lf-activation-transient-v1/run/validation.json": "539c26fb35d15824d970b482d36af579186e2ed4fe1bf707c03c4e592a90e5fc",
+    "malecns_backend/embodiment/interface_output/full_leg_interface_audit.json": "758850ea659e49fd93a36a9606bea07a1d329739fbf6be8089060ee6d706c52e",
+    "malecns_backend/embodiment/interface_output/candidate_motor_channel_experiment/attempt_004/candidate_motor_channel_report.json": "0629d05f9bf4c21cd911ac5f43f8f4518db3be5706daaf4d2f23991463645199",
+    "docs/evidence/lf-activation-integrator-v1/run/validation.json": "cd545ca6863b2d2468da067b258d9aac0ecb7f3ab8a953f15c0d6574f62eb49b",
+    "docs/LF_ACTUATION_CONTRACT_V1.md": "45659576404d194c5f19266a121e78a5e80d24c328d4f4df24f0c32ce7097b9f",
+    "malecns_backend/embodiment/lf_actuation_contract.py": "771664e95187a1a98b88d625994af2a8087ff801cba89349736585670d760c05",
+    "malecns_backend/embodiment/full_leg_interface.py": "8292a716ad5e5dba2bce6c463063852f4f7770b7294e8658c96156d53217fcfc",
+    "malecns_backend/embodiment/tactile_motor_loop_audit.py": "6ceae36b7aed31b99fe75de591b6253ec494d50e97d1198bfc6958d19a3f943f",
+    "docs/evidence/lf-native-isolation-v1/input-manifest.json": "eef0319929e7f285ee9fb568035d57b88c26667432d7f6142cfc4ffa864d41c7",
+    "docs/evidence/lf-actuation-contract-v1/audit.json": "385c57724f1ec3a937ad35bd86cfe76d4cb004b92d7aa52335d010c83bd81fc4",
+    "docs/evidence/lf-native-isolation-v1/run/validation.json": "d6219a063538b270517ce0f9a9b86ea0bb7a3a135cc37ce93755323f9f9f0e54",
+    "docs/LF_NATIVE_ISOLATION_V1.md": "798316864f853da1049e27039503d6e6bfa43d558cad6ec13c304a5e7ce85b6a",
+    "docs/LF_NATIVE_ISOLATION_V1_1.md": "e4f7cd44046a1145e349616e773ff95f2041a4f21de649ab4e229f8879de771a",
+    "malecns_backend/embodiment/lf_native_isolation.py": "e806acbe5f60b416938a257707ef9a65226452624cd513ebd990b5a15edf63aa",
+    "malecns_backend/embodiment/candidate_motor_channel_experiment.py": "fc564155356f88fd79495c56e077cf25b1cb5222620841513db442d559c2d980",
+    "malecns_backend/embodiment/m8_contact_kinematics.py": "b2026c5bccf97cfed31c268317ad2a8bf4c0fa5000a8c60e38f93e7b80503079",
+    "docs/fixtures/lf-synthetic-coupling-v1.xml": "4d0abde1f122e14fa22c022eb389c6f83bfe3cfa6cdc760ce1455c8c2d30352e",
+    "docs/evidence/lf-native-isolation-v1_1/run/validation.json": "ee3ddfe2e9d298d3b3f269ab04c114d7f3a332ebc68ea20c184deb7b1df2a628",
+    "docs/LF_SYNTHETIC_COUPLING_V1.md": "f4d019818159627a64e5e7fcbf311ae3867ba06b9f413cf511eb21c5f0fc1b7e",
+    "malecns_backend/embodiment/lf_synthetic_coupling.py": "284778a3d7c16241c68b7d8e20a9f7932f0d407b28bc7366e0ec6900933157db",
+    "docs/evidence/lf-synthetic-coupling-v1/run/validation.json": "12805789411e5b7b2aa9dbaea0f4e18e5075671a9945501970d9e952f99d822e",
+    "docs/evidence/lf-endpoint-contract-v1/input-manifest.json": "ed0fc589e4fe002c6ca5a692c65448b6bdb716e409116c765234e799609dde31",
+    "docs/evidence/lf-endpoint-contract-v1/run/contract.json": "1f79cb1435fbc149c3691d800f6106bc985fbb53de5e6a672f349306ce72908d",
+    "docs/LF_ENDPOINT_CONTRACT_V1.md": "233a7c87a0d1057fddb5cfcf2d56400a76faddd6b1a3c7004c723fc1df18652f",
+    "malecns_backend/embodiment/lf_activation_endpoint.py": "510a9495304bbe223393fc2c99eb584e96d6f851b71a0e1051c03498d774307a",
+    "docs/LF_SYNTHETIC_COUPLING_V2.md": "b237635615e2e1290c54315873224e3cd6a47dfb6e1a1f2d3117b7b0b58a39a1",
+    "malecns_backend/embodiment/lf_synthetic_coupling_v2.py": "bfea5f6124367058eb6cbbed4f9934523ebb2ba3f603d11f45c167bc48e4e751",
+    "docs/evidence/lf-transfer-prerequisites-v1/source-context.json": "cd229d0e78fde88e27127e2c6dedd4c3d35f0546d74ffe839f93f5ec369d0bf9",
+    "docs/LF_TRANSFER_PREREQUISITES_V1.md": "be1114b64e2eb7332663f9e0240aacf05fba7c7c0275ac58fcdeedfc49f4c62e",
+    "malecns_backend/embodiment/lf_transfer_prerequisites.py": "37d049f1c8def1085d5ea733f1d16d1e3b10a796e8fb5f8ea61dec76b6b62de6",
+    "docs/evidence/lf-synthetic-coupling-v2/run/validation.json": "49e7443266c0b2a40129cf2600a99a468f3242764afa1a94e48ce55e72a1d891"
+  },
+  "execution_scope": "STATIC_SAVED_EVIDENCE_REVIEW_NO_NATIVE_OR_SOLVER_OR_CNS_CALLS",
+  "current_motor_count": 20,
+  "model_coordinates": 42,
+  "new_admissions": 0,
+  "physical_transitions": 0,
+  "cns_transitions": 0,
+  "production_transfer_enabled": false,
+  "synthetic_prerequisite": {
+    "classification": "SYNTHETIC_COUPLING_V2_VERIFIED_TRANSFER_BLOCKED",
+    "cases": 9,
+    "historical_v1_classification": "INTEGRITY_FAILURE"
+  },
+  "current_original_raw_freezes_satisfied": false,
+  "source_context": "docs/evidence/lf-transfer-prerequisites-v1/source-context.json",
+  "source_context_scope": "PINNED_SNAPSHOT_NOT_LIVE_EXTERNAL_CLONE_CHECK",
+  "selected_parameters": [
+    {
+      "tendon": "LFC_pleural_remotor_and_abductor_tendon",
+      "explicit_peak_force": 28.7481,
+      "peak_force_semantics": "EXPLICIT_SOURCE_MODEL_PARAMETER_NOT_AUTOMATIC_ACC0_SCALE",
+      "source_force_SI_unit": null,
+      "target_force_conversion": null,
+      "normalized_range": [
+        0.743435,
+        1.72008
+      ],
+      "lengthrange": [
+        0.216122,
+        0.299608
+      ],
+      "dynprm": [
+        0.0001,
+        0.0004,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "gainprm": [
+        0.743435,
+        1.72008,
+        28.7481,
+        1.0,
+        0.0,
+        2.0,
+        10.0,
+        0.353216,
+        1.4,
+        0.0
+      ],
+      "biasprm": [
+        0.743435,
+        1.72008,
+        28.7481,
+        1.0,
+        0.0,
+        2.0,
+        10.0,
+        0.353216,
+        1.4,
+        0.0
+      ],
+      "ctrlrange": [
+        0.0001,
+        1.0
+      ],
+      "biological_force_calibration": false
+    },
+    {
+      "tendon": "LFC_sternal_adductor_tendon",
+      "explicit_peak_force": 12.9,
+      "peak_force_semantics": "EXPLICIT_SOURCE_MODEL_PARAMETER_NOT_AUTOMATIC_ACC0_SCALE",
+      "source_force_SI_unit": null,
+      "target_force_conversion": null,
+      "normalized_range": [
+        0.244283,
+        1.48664
+      ],
+      "lengthrange": [
+        0.0972302,
+        0.259683
+      ],
+      "dynprm": [
+        0.0001,
+        0.0004,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "gainprm": [
+        0.244283,
+        1.48664,
+        12.9,
+        1.0,
+        0.0,
+        2.0,
+        10.0,
+        0.446817,
+        1.4,
+        0.0
+      ],
+      "biasprm": [
+        0.244283,
+        1.48664,
+        12.9,
+        1.0,
+        0.0,
+        2.0,
+        10.0,
+        0.446817,
+        1.4,
+        0.0
+      ],
+      "ctrlrange": [
+        0.0001,
+        1.0
+      ],
+      "biological_force_calibration": false
+    },
+    {
+      "tendon": "LFC_sternal_anterior_rotator_tendon",
+      "explicit_peak_force": 10.5807,
+      "peak_force_semantics": "EXPLICIT_SOURCE_MODEL_PARAMETER_NOT_AUTOMATIC_ACC0_SCALE",
+      "source_force_SI_unit": null,
+      "target_force_conversion": null,
+      "normalized_range": [
+        0.185296,
+        1.73386
+      ],
+      "lengthrange": [
+        0.126048,
+        0.202925
+      ],
+      "dynprm": [
+        0.0001,
+        0.0004,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "gainprm": [
+        0.185296,
+        1.73386,
+        10.5807,
+        1.0,
+        0.0,
+        2.0,
+        10.0,
+        3.11328,
+        1.4,
+        0.0
+      ],
+      "biasprm": [
+        0.185296,
+        1.73386,
+        10.5807,
+        1.0,
+        0.0,
+        2.0,
+        10.0,
+        3.11328,
+        1.4,
+        0.0
+      ],
+      "ctrlrange": [
+        0.0001,
+        1.0
+      ],
+      "biological_force_calibration": false
+    },
+    {
+      "tendon": "LFC_sternal_posterior_rotator_tendon",
+      "explicit_peak_force": 157.429,
+      "peak_force_semantics": "EXPLICIT_SOURCE_MODEL_PARAMETER_NOT_AUTOMATIC_ACC0_SCALE",
+      "source_force_SI_unit": null,
+      "target_force_conversion": null,
+      "normalized_range": [
+        0.610817,
+        1.40821
+      ],
+      "lengthrange": [
+        0.0715242,
+        0.147229
+      ],
+      "dynprm": [
+        0.0001,
+        0.0004,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "gainprm": [
+        0.610817,
+        1.40821,
+        157.429,
+        1.0,
+        0.0,
+        2.0,
+        10.0,
+        0.0752654,
+        1.4,
+        0.0
+      ],
+      "biasprm": [
+        0.610817,
+        1.40821,
+        157.429,
+        1.0,
+        0.0,
+        2.0,
+        10.0,
+        0.0752654,
+        1.4,
+        0.0
+      ],
+      "ctrlrange": [
+        0.0001,
+        1.0
+      ],
+      "biological_force_calibration": false
+    }
+  ],
+  "population_hypotheses": [
+    {
+      "identity": {
+        "name": "Tergopleural/Pleural promotor MN T1 left",
+        "body_ids": [
+          800061,
+          801173,
+          807281,
+          934091
+        ],
+        "dense_indices": [
+          142836,
+          143654,
+          148512,
+          162856
+        ],
+        "count": 4,
+        "direction": 1,
+        "annotation_actuators": [
+          "coxa_T1_left"
+        ],
+        "exact_annotation_aliases": [
+          {
+            "name": "Tergopleural/Pleural promotor MN T1 left",
+            "actuator": "coxa_T1_left",
+            "direction": 1
+          }
+        ],
+        "checks": {
+          "exact_body_ids": true,
+          "count": true,
+          "body_integer": true,
+          "unique": true,
+          "dense_integer": true,
+          "all_alias_identities": true,
+          "metadata": true,
+          "all_directions_equal": true,
+          "exact_bodymap_indices": true,
+          "body_id_dense_inversion": true
+        }
+      },
+      "tendon_hypotheses": [
+        {
+          "tendon": "LFC_pleural_promotor_tendon",
+          "tensile_torque_coefficient": [
+            -0.03065742097227428,
+            -0.0217502730208869,
+            -0.011054200186017507
+          ],
+          "conditional_positive_tension_component_signs": [
+            -1,
+            -1,
+            -1
+          ]
+        },
+        {
+          "tendon": "LFC_tergopleural_promotor_a_tendon",
+          "tensile_torque_coefficient": [
+            -0.040057275498351676,
+            -0.03061836122122686,
+            0.04031447492516933
+          ],
+          "conditional_positive_tension_component_signs": [
+            -1,
+            -1,
+            1
+          ]
+        },
+        {
+          "tendon": "LFC_tergopleural_promotor_b_tendon",
+          "tensile_torque_coefficient": [
+            -0.00786424703389068,
+            -0.018199131200033455,
+            0.005633535853960252
+          ],
+          "conditional_positive_tension_component_signs": [
+            -1,
+            -1,
+            1
+          ]
+        }
+      ],
+      "binding_status": "MULTIPLE_TENDON_HYPOTHESES_UNRESOLVED",
+      "per_neuron_tendon_assignments": [
+        {
+          "body_id": 800061,
+          "dense_index": 142836,
+          "tendon": null
+        },
+        {
+          "body_id": 801173,
+          "dense_index": 143654,
+          "tendon": null
+        },
+        {
+          "body_id": 807281,
+          "dense_index": 148512,
+          "tendon": null
+        },
+        {
+          "body_id": 934091,
+          "dense_index": 162856,
+          "tendon": null
+        }
+      ],
+      "spike_to_activation": null,
+      "activation_to_force": null,
+      "force_to_position_target": null,
+      "decoder_vector": null,
+      "gain": null,
+      "admission_ready": false
+    },
+    {
+      "identity": {
+        "name": "Pleural remotor/abductor MN T1 left",
+        "body_ids": [
+          802509,
+          803803
+        ],
+        "dense_indices": [
+          144657,
+          145652
+        ],
+        "count": 2,
+        "direction": -1,
+        "annotation_actuators": [
+          "coxa_T1_left",
+          "coxa_abduct_T1_left"
+        ],
+        "exact_annotation_aliases": [
+          {
+            "name": "Pleural remotor/abductor MN T1 left",
+            "actuator": "coxa_T1_left",
+            "direction": -1
+          },
+          {
+            "name": "Pleural remotor/abductor MN T1 left",
+            "actuator": "coxa_abduct_T1_left",
+            "direction": -1
+          }
+        ],
+        "checks": {
+          "exact_body_ids": true,
+          "count": true,
+          "body_integer": true,
+          "unique": true,
+          "dense_integer": true,
+          "all_alias_identities": true,
+          "metadata": true,
+          "all_directions_equal": true,
+          "exact_bodymap_indices": true,
+          "body_id_dense_inversion": true
+        }
+      },
+      "tendon_hypotheses": [
+        {
+          "tendon": "LFC_pleural_remotor_and_abductor_tendon",
+          "tensile_torque_coefficient": [
+            0.035471495483644505,
+            0.025593975794095825,
+            -0.016985333948516177
+          ],
+          "conditional_positive_tension_component_signs": [
+            1,
+            1,
+            -1
+          ]
+        }
+      ],
+      "binding_status": "SINGLE_CLASS_HYPOTHESIS_NOT_INDEPENDENT_CROSSWALK",
+      "per_neuron_tendon_assignments": [
+        {
+          "body_id": 802509,
+          "dense_index": 144657,
+          "tendon": null
+        },
+        {
+          "body_id": 803803,
+          "dense_index": 145652,
+          "tendon": null
+        }
+      ],
+      "spike_to_activation": null,
+      "activation_to_force": null,
+      "force_to_position_target": null,
+      "decoder_vector": null,
+      "gain": null,
+      "admission_ready": false
+    },
+    {
+      "identity": {
+        "name": "Sternal adductor MN T1 left",
+        "body_ids": [
+          813480
+        ],
+        "dense_indices": [
+          153568
+        ],
+        "count": 1,
+        "direction": 1,
+        "annotation_actuators": [
+          "coxa_abduct_T1_left"
+        ],
+        "exact_annotation_aliases": [
+          {
+            "name": "Sternal adductor MN T1 left",
+            "actuator": "coxa_abduct_T1_left",
+            "direction": 1
+          }
+        ],
+        "checks": {
+          "exact_body_ids": true,
+          "count": true,
+          "body_integer": true,
+          "unique": true,
+          "dense_integer": true,
+          "all_alias_identities": true,
+          "metadata": true,
+          "all_directions_equal": true,
+          "exact_bodymap_indices": true,
+          "body_id_dense_inversion": true
+        }
+      },
+      "tendon_hypotheses": [
+        {
+          "tendon": "LFC_sternal_adductor_tendon",
+          "tensile_torque_coefficient": [
+            -0.11388808872259532,
+            0.05623004695075151,
+            -0.004274084963245932
+          ],
+          "conditional_positive_tension_component_signs": [
+            -1,
+            1,
+            -1
+          ]
+        }
+      ],
+      "binding_status": "SINGLE_CLASS_HYPOTHESIS_NOT_INDEPENDENT_CROSSWALK",
+      "per_neuron_tendon_assignments": [
+        {
+          "body_id": 813480,
+          "dense_index": 153568,
+          "tendon": null
+        }
+      ],
+      "spike_to_activation": null,
+      "activation_to_force": null,
+      "force_to_position_target": null,
+      "decoder_vector": null,
+      "gain": null,
+      "admission_ready": false
+    },
+    {
+      "identity": {
+        "name": "Sternal anterior rotator MN T1 left",
+        "body_ids": [
+          806923,
+          919509
+        ],
+        "dense_indices": [
+          148218,
+          162458
+        ],
+        "count": 2,
+        "direction": 1,
+        "annotation_actuators": [
+          "coxa_twist_T1_left"
+        ],
+        "exact_annotation_aliases": [
+          {
+            "name": "Sternal anterior rotator MN T1 left",
+            "actuator": "coxa_twist_T1_left",
+            "direction": 1
+          }
+        ],
+        "checks": {
+          "exact_body_ids": true,
+          "count": true,
+          "body_integer": true,
+          "unique": true,
+          "dense_integer": true,
+          "all_alias_identities": true,
+          "metadata": true,
+          "all_directions_equal": true,
+          "exact_bodymap_indices": true,
+          "body_id_dense_inversion": true
+        }
+      },
+      "tendon_hypotheses": [
+        {
+          "tendon": "LFC_sternal_anterior_rotator_tendon",
+          "tensile_torque_coefficient": [
+            -0.08352962239815168,
+            -0.010627837399356571,
+            0.0275734905338182
+          ],
+          "conditional_positive_tension_component_signs": [
+            -1,
+            -1,
+            1
+          ]
+        }
+      ],
+      "binding_status": "SINGLE_CLASS_HYPOTHESIS_NOT_INDEPENDENT_CROSSWALK",
+      "per_neuron_tendon_assignments": [
+        {
+          "body_id": 806923,
+          "dense_index": 148218,
+          "tendon": null
+        },
+        {
+          "body_id": 919509,
+          "dense_index": 162458,
+          "tendon": null
+        }
+      ],
+      "spike_to_activation": null,
+      "activation_to_force": null,
+      "force_to_position_target": null,
+      "decoder_vector": null,
+      "gain": null,
+      "admission_ready": false
+    },
+    {
+      "identity": {
+        "name": "Sternal posterior rotator MN T1 left",
+        "body_ids": [
+          801915,
+          804851,
+          808640,
+          1050335829
+        ],
+        "dense_indices": [
+          144222,
+          146498,
+          149652,
+          164685
+        ],
+        "count": 4,
+        "direction": -1,
+        "annotation_actuators": [
+          "coxa_twist_T1_left"
+        ],
+        "exact_annotation_aliases": [
+          {
+            "name": "Sternal posterior rotator MN T1 left",
+            "actuator": "coxa_twist_T1_left",
+            "direction": -1
+          }
+        ],
+        "checks": {
+          "exact_body_ids": true,
+          "count": true,
+          "body_integer": true,
+          "unique": true,
+          "dense_integer": true,
+          "all_alias_identities": true,
+          "metadata": true,
+          "all_directions_equal": true,
+          "exact_bodymap_indices": true,
+          "body_id_dense_inversion": true
+        }
+      },
+      "tendon_hypotheses": [
+        {
+          "tendon": "LFC_sternal_posterior_rotator_tendon",
+          "tensile_torque_coefficient": [
+            -0.008295719862404953,
+            0.0325514695284908,
+            0.05126777650224741
+          ],
+          "conditional_positive_tension_component_signs": [
+            -1,
+            1,
+            1
+          ]
+        }
+      ],
+      "binding_status": "SINGLE_CLASS_HYPOTHESIS_NOT_INDEPENDENT_CROSSWALK",
+      "per_neuron_tendon_assignments": [
+        {
+          "body_id": 801915,
+          "dense_index": 144222,
+          "tendon": null
+        },
+        {
+          "body_id": 804851,
+          "dense_index": 146498,
+          "tendon": null
+        },
+        {
+          "body_id": 808640,
+          "dense_index": 149652,
+          "tendon": null
+        },
+        {
+          "body_id": 1050335829,
+          "dense_index": 164685,
+          "tendon": null
+        }
+      ],
+      "spike_to_activation": null,
+      "activation_to_force": null,
+      "force_to_position_target": null,
+      "decoder_vector": null,
+      "gain": null,
+      "admission_ready": false
+    }
+  ],
+  "dimensional_ledger": {
+    "source_base_length_SI": null,
+    "source_base_mass_SI": null,
+    "source_base_time_SI": null,
+    "target_base_length_SI": null,
+    "target_base_mass_SI": null,
+    "target_base_time_SI": 1.0,
+    "force_conversion": null,
+    "torque_conversion": null,
+    "rule": "F_unit=M_unit*L_unit/T_unit^2; torque_unit=M_unit*L_unit^2/T_unit^2",
+    "observation_division_by_1000_is_force_calibration": false
+  },
+  "gates": [
+    {
+      "gate": "software_coupling",
+      "status": "VERIFIED_SYNTHETIC_ONLY",
+      "evidence": "docs/evidence/lf-synthetic-coupling-v2/run/validation.json",
+      "limit": "Constant reference coefficients and synthetic inertias; no physical transfer."
+    },
+    {
+      "gate": "units_and_parameter_lineage",
+      "status": "UNRESOLVED",
+      "evidence": "docs/evidence/lf-transfer-prerequisites-v1/source-context.json",
+      "limit": "Source gravity -9801, mesh scale 1000 and target gravity -9810 are clues; mass/time/force conversion lineage is not established."
+    },
+    {
+      "gate": "finite_angle_target_registration",
+      "status": "MODELED_NOT_TARGET_VALIDATED",
+      "evidence": "docs/evidence/lf-pose-force-v1_1/run/validation.json",
+      "limit": "15 source poses and modeled rotation/covector map; not actual target tendon attachment/length registration."
+    },
+    {
+      "gate": "moving_length_velocity_force",
+      "status": "SOURCE_LAW_ONLY",
+      "evidence": "docs/evidence/lf-activation-transient-v1/source-binding.json",
+      "limit": "Source lengthrange/gain/bias are preserved; frozen-pose zero-velocity forces do not supply target moving lengths/velocities."
+    },
+    {
+      "gate": "population_to_tendon",
+      "status": "UNRESOLVED",
+      "evidence": "docs/evidence/lf-anatomical-crosswalk-v1/crosswalk.json",
+      "limit": "13 exact neurons, 12 recorded MANC body matches; seven hypotheses including three promotor alternatives; no individual tendon assignments."
+    },
+    {
+      "gate": "neural_to_activation",
+      "status": "UNRESOLVED",
+      "evidence": "docs/evidence/lf-proximal-binding-review-v1/review.json",
+      "limit": "No supported proximal spike-to-activation conversion; existing position-decoder scale does not establish it."
+    },
+    {
+      "gate": "original_raw_prerequisites",
+      "status": "UNRESOLVED",
+      "evidence": "docs/evidence/remaining-leg-admission-audit-v1_1/audit.json",
+      "limit": "Original failed scientific raw locks are retained; canonical content correspondence is not a waiver."
+    }
+  ],
+  "next_task": "Source-unit and parameter-conversion lineage audit; no moving-fly coupling."
+}

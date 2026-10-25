@@ -1,8 +1,8 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-25. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for the LF synthetic-coupling V2 update: `newBrain` at
-`7c8d358` (merged PR #275).
+Verified baseline for the LF transfer-prerequisite review: `newBrain` at
+`98fb1f5` (merged PR #276).
 Fetch and inspect current state before starting work.
 
 ## What the user wants
@@ -1156,6 +1156,50 @@ docs/evidence/lf-synthetic-coupling-v2/run/validation.json. Pull prior scientifi
 inputs, both synthetic V1/V2 records AND historical M6C integrated_whole_leg_readiness
 artifact. Expected V2 VERIFIED_TRANSFER_BLOCKED,9PASS, historicalV1INTEGRITY_FAILURE,
 20/42/0new and next transfer review. No solver/native/CNS execution in saved review.
+
+## Latest update — transfer evidence inventoried; unit/parameter lineage next
+
+Read-only LF transfer-prerequisites V1 adds a source-context snapshot and saved
+review. Reuses static identity authority and V2 preflight/evaluator. Exact original
+XML optionally rechecked with the existing binding inspector; no compilation in
+this path. V2 nine-case acceptance remains synthetic only; failed V1 unchanged.
+Selected peak forces28.7481/12.9/10.5807/157.429 are explicit source parameters,
+not the default automatic acc0 scale. Source gravity-9801, mesh scale1000 and
+FlyGym scaled gravity-9810 do not establish a complete physical conversion.
+Observation actuator_force/1000 is not a calibrated force-transfer rule. Paper
+arXiv2509.06426v2 section6 describes estimated/optimized force/velocity properties,
+not directly measured physiology. See protocol for primary links and access limits.
+
+Physical source/target force/torque conversions stay null. Target clock seconds is
+supported by the pinned FlyGym source. Modeled finite-angle rotations/source
+finite differences do not validate target attachment/length/velocity registration.
+All5populations/7hypotheses/13exactIDs/nullindividualbindings retained; neural
+activation conversion unresolved. Original raw scientific prerequisites remain
+false, recorded and current, with no hash refresh. Current20/42,newadmissions0.
+No moving-fly coupling, activation solve, physics transition, CNS or Unity run in
+the review. Broader legacy crosswalk regression includes native model inventory,
+not a new integration experiment. No production/neuronal parameters changed.
+
+New20static/tamper tests prohibit native construction/forward/step/muscle dynamics,
+solver execution and live-audit fallback during actual saved reconstruction.
+Initial test11pass/9errors was sandbox temp-directory access, resolved by local
+scratch. Broader first49pass/1fail was missing original B4/M7 raw NPZs excluded
+by sparse checkout; restored exact original LFS files, no source/hash waiver,
+and failed legacy case then passed. See RESULTS for final checks and Git Bash.
+Final combined batch50passed27.74s; Git Bash saved replay passed. No new experiment.
+Normal saved replay needs existing scientific LFS prerequisites, no external clone.
+Optional source-model check does not certify upstream conversion lineage/assets.
+
+Immediate next task: SOURCE-UNIT AND PARAMETER-CONVERSION LINEAGE AUDIT. Locate
+original OpenSim model, MyoConverter revision/configuration and post-conversion
+edits corresponding to exact locked XML. Trace dimensional conventions for both
+models (length/mass/time/inertia/force/moment arm/torque) and four peak forces,
+length ranges, activation constants. Preserve missing lineage; no assumed unity
+conversion, fitted multiplier, changed raw lock, motor gain or behavioral tuning.
+This may justify a modeled transfer without claiming measured biology. Then
+separately predeclare a length/velocity and finite-angle target-registration assay;
+anatomical/neural/raw gates still apply before bounded headless native coupling.
+No new Unity behavior to inspect yet. Report roadmap and Git Bash every update.
 
 ## Completed predecessor task — negative-control design requirements
 
