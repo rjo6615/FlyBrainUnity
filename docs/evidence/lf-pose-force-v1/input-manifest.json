@@ -1,0 +1,292 @@
+{
+  "schema": "lf-pose-force-inputs-v1",
+  "model_name": "best_combined_cvt3.xml",
+  "xml_sha256": "a72d4a3167a6f6382d31936d32f2481db5895441a0cc2d02cdbd0452a6209a81",
+  "xml_bytes": 50143,
+  "assets": {
+    "meshes/stl/A1A2.stl": {
+      "sha256": "a8645b7b026f2736b08772bc2bca08ca79adc417bd613ed4d487c02ffcaa2903",
+      "bytes": 144334
+    },
+    "meshes/stl/A3.stl": {
+      "sha256": "5717f47f1c426bdfa5d6f44e1d41bd4e8d997cda43075f0258d6162c8fe4c124",
+      "bytes": 140084
+    },
+    "meshes/stl/A4.stl": {
+      "sha256": "ffc7a77b712b9f8f54982da0b65435680f4602184231f27b6c34d485cfcec0f5",
+      "bytes": 143384
+    },
+    "meshes/stl/A5.stl": {
+      "sha256": "3e80fdb1fa9db4da41df9015162cdcc22e724a0e5ddb47400d025a3f5b88debb",
+      "bytes": 158834
+    },
+    "meshes/stl/A6.stl": {
+      "sha256": "153bb1b802fd14c90bcbd9c56425bac7d49a1ef205afd5e18ac8c71b54ea336f",
+      "bytes": 203134
+    },
+    "meshes/stl/Haustellum.stl": {
+      "sha256": "09fda52eeef008ff4b6513d8fcc2906d3cbe8911393ff4e77ef687a66240b47d",
+      "bytes": 215634
+    },
+    "meshes/stl/Head.stl": {
+      "sha256": "27b97b890db42105b0a692b03d6b7ee014498da7f52b1523d8d5701264b31992",
+      "bytes": 864784
+    },
+    "meshes/stl/LArista.stl": {
+      "sha256": "89279377fa06a9d0a611b5fa46f3353bc528121a19c7e52b419bb754cf3696f4",
+      "bytes": 568884
+    },
+    "meshes/stl/LEye.stl": {
+      "sha256": "b4371603242f501020032c8f86d2bec9feef5501b8f3a347408ac49d16030fee",
+      "bytes": 238084
+    },
+    "meshes/stl/LFCoxa.stl": {
+      "sha256": "9195e39b45975b58a631a281e53c3b8a6b3f0d8ee8dee09be7aad3342e7aa3bb",
+      "bytes": 103984
+    },
+    "meshes/stl/LFFemur.stl": {
+      "sha256": "d4012dff9598fcf021d451b04d0b2bfce666fa8bc5369c7a6844699ff806f3cc",
+      "bytes": 842284
+    },
+    "meshes/stl/LFTarsus1.stl": {
+      "sha256": "ad61cfec64816d669f1f4f89bddb818471344dd69f6443c184a3aa674ea2b62a",
+      "bytes": 24484
+    },
+    "meshes/stl/LFTarsus2.stl": {
+      "sha256": "a5c00b6a936c0d61a70a9726082e569f9b7f72bce17bfce67cd406bb7ed840e5",
+      "bytes": 19784
+    },
+    "meshes/stl/LFTarsus3.stl": {
+      "sha256": "c154a96be4927b0db54cbc713681e00ae62021a05d55ca3649c3e40069c65acb",
+      "bytes": 17484
+    },
+    "meshes/stl/LFTarsus4.stl": {
+      "sha256": "622606f09a1a6598125bd534af675cfe50a8aae465b38fdf9148dda8b06a58f9",
+      "bytes": 14884
+    },
+    "meshes/stl/LFTarsus5.stl": {
+      "sha256": "7f7e9f98c416f01c1114f38d22ba3fc0c7ed4ee2c5f799a2c59a447fbff308b3",
+      "bytes": 18084
+    },
+    "meshes/stl/LFTibia.stl": {
+      "sha256": "e48e96e254ac932ecb707364c31f4d1867ab2dd947a3fc257a3291bae5d10d5f",
+      "bytes": 53684
+    },
+    "meshes/stl/LFTrochanter.stl": {
+      "sha256": "9eece5e88d044b53517bfe231edddbe8acc3f5cb50bbd2230168f799cfaee9f2",
+      "bytes": 34784
+    },
+    "meshes/stl/LFuniculus.stl": {
+      "sha256": "3bf5a160aee8a87bb9776cf3b4e2cce26fa9c7586737054e0d7e06a91c2cddbf",
+      "bytes": 869484
+    },
+    "meshes/stl/LHCoxa.stl": {
+      "sha256": "cf8352af3217f5febd0574215b799faa38113ec8055079e751983071da53d4bc",
+      "bytes": 199084
+    },
+    "meshes/stl/LHFemur.stl": {
+      "sha256": "9a8f7703c5939807d8894dc1e750997bdfb00b2a7c1698ab3e193544d07ba11b",
+      "bytes": 165884
+    },
+    "meshes/stl/LHTarsus1.stl": {
+      "sha256": "bef10a44d00419f04f5373a6d80f8aa5a248e84f9b2a07408d35671ef8bc46d8",
+      "bytes": 38934
+    },
+    "meshes/stl/LHTarsus2.stl": {
+      "sha256": "41cab7b9105f99d4db311c90fcbdda95b2cb53595b4a37b6ab494469eb0740b8",
+      "bytes": 98684
+    },
+    "meshes/stl/LHTarsus3.stl": {
+      "sha256": "cfde4d0b603b0848dbc4ce85ab2e2954942da05da3429f2fb694819d3e77a0d1",
+      "bytes": 129584
+    },
+    "meshes/stl/LHTarsus4.stl": {
+      "sha256": "c2eed9e0aa475353694d4cc209435bb5716d5a5862161bc1fd76a57bd72717c2",
+      "bytes": 130984
+    },
+    "meshes/stl/LHTarsus5.stl": {
+      "sha256": "33556f4a7f538fc2d3e14913f50e756f6f88a33439dab455b3f5f300da5287ed",
+      "bytes": 147084
+    },
+    "meshes/stl/LHTibia.stl": {
+      "sha256": "15b3fcb4b0c14d12883daffc14f99415329f99614f14f1fd8cfd5e7b1fda4b37",
+      "bytes": 37484
+    },
+    "meshes/stl/LHaltere.stl": {
+      "sha256": "f10ce437255a1aede388e6375e32a6ea2d917c1cebb0347e95c93938a82afe46",
+      "bytes": 41284
+    },
+    "meshes/stl/LMCoxa.stl": {
+      "sha256": "1f531dd264b421f50218f948ca0520daedcec95b326848344472b87f99df38c4",
+      "bytes": 130384
+    },
+    "meshes/stl/LMFemur.stl": {
+      "sha256": "cc7de1d5c273692c1092af22c64ac523ab9065e54c9867ae0e840028fe1f4489",
+      "bytes": 41384
+    },
+    "meshes/stl/LMTarsus1.stl": {
+      "sha256": "46c584345e52741d3e93c6053b63de72d84262a1db82651e9fe146ed4cfabd6a",
+      "bytes": 46284
+    },
+    "meshes/stl/LMTarsus2.stl": {
+      "sha256": "6f0482bbc912995884caab40380645ac4846ae1b6d38b78f7d1190514cdaa399",
+      "bytes": 77884
+    },
+    "meshes/stl/LMTarsus3.stl": {
+      "sha256": "bbb9f6caa201c9d177b4007011dabf0c87ad2d722f55f6aeef4c8cf98b772883",
+      "bytes": 92884
+    },
+    "meshes/stl/LMTarsus4.stl": {
+      "sha256": "cef9504a68c0b054795dc1feaaad683df05cd47601db4c8a141bc6dc427fff61",
+      "bytes": 159584
+    },
+    "meshes/stl/LMTarsus5.stl": {
+      "sha256": "83eaa926ff3a7b8452e2432033e4573752097ee08c9b3513b70482c084e29f7f",
+      "bytes": 49384
+    },
+    "meshes/stl/LMTibia.stl": {
+      "sha256": "121eb0503627adcb96f71701d1d12be0e6dafb8a842dd672cb23918094dae186",
+      "bytes": 33884
+    },
+    "meshes/stl/LPedicel.stl": {
+      "sha256": "6dfd2255f674a937a85f12916ddc4af193b79757f4f29e48070a776d825a5616",
+      "bytes": 860484
+    },
+    "meshes/stl/LWing.stl": {
+      "sha256": "9247992a96ba2f6ea69a13b2949c0be0ea51738bb0044cdaed34b262a926f256",
+      "bytes": 996734
+    },
+    "meshes/stl/RArista.stl": {
+      "sha256": "025fe9065e92ab6be2dc311aeb6d38258c284b02724393b46d60b64c46d35cef",
+      "bytes": 580484
+    },
+    "meshes/stl/REye.stl": {
+      "sha256": "b9bb1a0137254acbf0c204d2ee9b55ab63f6dc4415dce55bfec95b225de97a3d",
+      "bytes": 164784
+    },
+    "meshes/stl/RFCoxa.stl": {
+      "sha256": "e1849a7dbe5273cfd86ace2c14af0130775d00381e926e1736ed592cac63550a",
+      "bytes": 42884
+    },
+    "meshes/stl/RFFemur.stl": {
+      "sha256": "77ee2146a08d8ef175bdc5bcb3a5a155a3e5317103e17e28903e415316ed5837",
+      "bytes": 60834
+    },
+    "meshes/stl/RFTarsus1.stl": {
+      "sha256": "055adb1a90f1430b9edfd54f050da921ad816e3c212a66cc99a83118485cf805",
+      "bytes": 24484
+    },
+    "meshes/stl/RFTarsus2.stl": {
+      "sha256": "4dfacd1cfd62d6984b93a7809d2e64527e97a5e9ccb95bc4729415fdcedb6cdd",
+      "bytes": 19784
+    },
+    "meshes/stl/RFTarsus3.stl": {
+      "sha256": "402b2d148d2f079aa100ae2cc799919d4cf64fcfdb2e112ae05221a3247b86c0",
+      "bytes": 17484
+    },
+    "meshes/stl/RFTarsus4.stl": {
+      "sha256": "1d9790cfd7949942e973e6de356989f90468acb0c9808458661d85afd6953c73",
+      "bytes": 14884
+    },
+    "meshes/stl/RFTarsus5.stl": {
+      "sha256": "716f7a121e190f7c46df2b63968ea29cacc7d9951b864d657ed5b96f50f8bf3f",
+      "bytes": 18084
+    },
+    "meshes/stl/RFTibia.stl": {
+      "sha256": "bd073bc9a7f598dbe1487d838da35273be58d84822222bd971ba5fabd88845ed",
+      "bytes": 61834
+    },
+    "meshes/stl/RFTrochanter.stl": {
+      "sha256": "a47df0bfd23d89aa8f1aa9a3652d86cc2fdfe39e9410485baa6bbe2140491c1b",
+      "bytes": 19584
+    },
+    "meshes/stl/RFuniculus.stl": {
+      "sha256": "b0e4d9699f1f70d276186c9c7a90c51720c21ad56e99ceb70fd4219642d36275",
+      "bytes": 856284
+    },
+    "meshes/stl/RHCoxa.stl": {
+      "sha256": "de2abbee97410931b6aecd8e904d622a225f1cfd1b475eb8c49da1b161eac736",
+      "bytes": 199084
+    },
+    "meshes/stl/RHFemur.stl": {
+      "sha256": "219ef48acfab0bb2920e8a3d57537c23b0a4fcc133feff18fc72477baf550880",
+      "bytes": 165884
+    },
+    "meshes/stl/RHTarsus1.stl": {
+      "sha256": "55a3db5944bb43a4bf970fcddba0b77a9cff1b37319b9d5b35d7c7ac933f06ec",
+      "bytes": 38934
+    },
+    "meshes/stl/RHTarsus2.stl": {
+      "sha256": "ab7262e6d880ef8aee6208d03275ffaa8517b311dee5972a35d749af2dbdfbc2",
+      "bytes": 98684
+    },
+    "meshes/stl/RHTarsus3.stl": {
+      "sha256": "9d4d07ebfdc32a8301c9e0a47c7c066fc144d5e75a947a0f69b6ef4fc4fdaf1e",
+      "bytes": 129584
+    },
+    "meshes/stl/RHTarsus4.stl": {
+      "sha256": "dbb7b4b0dff7ce16ad67d799c5d8ac1c3067c2ca8a7a09c35bd1be552abf46c6",
+      "bytes": 130984
+    },
+    "meshes/stl/RHTarsus5.stl": {
+      "sha256": "e4fbc4cf0ab91e6ca120f3b2a0e4f3b376c553f963759be9b067f1307b285f92",
+      "bytes": 147084
+    },
+    "meshes/stl/RHTibia.stl": {
+      "sha256": "94830552615cb5cacaeb4eddaabde518bc1ab79fbc76e42a8cc654a54f8c6815",
+      "bytes": 37484
+    },
+    "meshes/stl/RHaltere.stl": {
+      "sha256": "79f6fd1b7e390c68a518c5785c5a264d4fce6b6190f0c459e67b8a86e5b1d39d",
+      "bytes": 41284
+    },
+    "meshes/stl/RMCoxa.stl": {
+      "sha256": "3b1dadc1ac39b49ca1e7a67e5ce73b20765398d6ee36c58bd7a2da31b6495727",
+      "bytes": 130384
+    },
+    "meshes/stl/RMFemur.stl": {
+      "sha256": "a09baaa03751f7e75b29dff72cbb41b8e6d4281e726aa25714d9568c8a24b484",
+      "bytes": 41384
+    },
+    "meshes/stl/RMTarsus1.stl": {
+      "sha256": "a52ffb792c22345983f1d2d068836765682975e3f209ad056cd08c62060ae5e1",
+      "bytes": 46284
+    },
+    "meshes/stl/RMTarsus2.stl": {
+      "sha256": "3f52c7f9a5ce869098b8e29a7bc9a0d308b4833d4d17064c92a1ba4a58898502",
+      "bytes": 77884
+    },
+    "meshes/stl/RMTarsus3.stl": {
+      "sha256": "e70d291cdd958d0a5a2ed6e3554b369b7170a6b9a110f912017c331afafa1d72",
+      "bytes": 92884
+    },
+    "meshes/stl/RMTarsus4.stl": {
+      "sha256": "6e2d9ec053490b0649c756b9d1ca47394806d162f463659ed6117c16788ab40a",
+      "bytes": 159584
+    },
+    "meshes/stl/RMTarsus5.stl": {
+      "sha256": "f6ac243379d2694e6161e28c2c9dc406cf6ac91363ac6bf7eb7e42da225b2f15",
+      "bytes": 49384
+    },
+    "meshes/stl/RMTibia.stl": {
+      "sha256": "5ae92d36789ae2666c52ebe56614de609c7a78b56610b3886662008fdf4b02dd",
+      "bytes": 33884
+    },
+    "meshes/stl/RPedicel.stl": {
+      "sha256": "e555a9108c30c70b9c5e5117577153ecec2eecb66c857b78540a4c02b191f538",
+      "bytes": 837884
+    },
+    "meshes/stl/RWing.stl": {
+      "sha256": "a00cd68f368e9a51832a05ba869cade1ac65fa7b502c7c3e9f62da417b53ea43",
+      "bytes": 996734
+    },
+    "meshes/stl/Rostrum.stl": {
+      "sha256": "672c49f10fc9294c047eaa017afd30c68037036446cb4a2b34f52455fa72854e",
+      "bytes": 189384
+    },
+    "meshes/stl/Thorax.stl": {
+      "sha256": "61a091c49c87895f735fb63e42898128888a6f53ee60900bbf61f92edf5e42e6",
+      "bytes": 281534
+    }
+  }
+}
