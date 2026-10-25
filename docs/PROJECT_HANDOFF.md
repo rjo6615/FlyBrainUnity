@@ -1,8 +1,8 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-25. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for the LF endpoint-contract update: `newBrain` at
-`5d92fc5` (merged PR #274).
+Verified baseline for the LF synthetic-coupling V2 update: `newBrain` at
+`7c8d358` (merged PR #275).
 Fetch and inspect current state before starting work.
 
 ## What the user wants
@@ -1087,6 +1087,75 @@ synthetic-coupling-v1/run/validation.json for exact historical failure provenanc
 other new records are ordinary Git text. Expected ENDPOINT CONTRACT VERIFIED,
 coupling NOT revalidated, historical INTEGRITY_FAILURE,20/42/0new, and next task.
 No solver/native/CNS execution in saved review. Read RESULTS and new UNITY roadmap.
+
+## Latest update — synthetic coupling V2 accepted; physical transfer remains blocked
+
+Fresh7c8d358 baseline. V2protocol/adapter/runner/tests committedc15e80c before ONE
+new nine-case campaign. Inherits V1constructor/guard/metadata/apply/clear/failure
+latch and uses independently verified endpoint API. No module-global integrator
+replacement. Exact endpoint sample/after/internal terminal/committed state agree;
+EVERY raw dense sample retained separately with content hash. Original V1source,
+protocol/evaluator and raw record untouched; V1 stays INTEGRITY_FAILURE.
+
+Same synthetic rotors/inertias/source law/Radau/projection/foreign forces/grids/
+whole10ms/threeconditions/DOP853 as V1. V2 requires its own schema and reuses ALL
+V1non-schema physical/source/state/force/solver/numerical/refinement check results,
+plus exact endpoint role/source/raw-data checks. No old guard removal or epsilon/
+tolerance/window/force/gain/neural/seed change. V1schema check still rejects a V2
+record, while V2 explicitly validates its namespace before composing acceptance.
+
+SYNTHETIC_COUPLING_V2_VERIFIED_TRANSFER_BLOCKED:all9cases pass, bothpulse refinement
+pass. Pulse qerrors100/50/25us1.875e-7/9.48254397e-8/5.30977412e-8;
+verrors1.32577981e-4/6.12092629e-5/2.89579314e-5;E.132577981/.061209263/.028957931.
+Budgets unchangedq1e-5/v1e-3/a.01/bounds and E_fine<=.75E_coarse+1e-12. No
+production timestep selected. Still1/2/11raw dense mismatches atpulse grids with
+max4.3368e-19/1.3878e-17/1.1102e-16; preserved, not committed or thresholded away.
+Read-only saved comparison:ALL2100physical/activation/control/force/time/commit/
+phase transitions and continuous reference records are EXACTLY identical V1/V2.
+This corrects data semantics, not dynamics. Native/CNS production unchanged.
+
+Actual3models/2100synthetic body mj_step/2112explicitforward/0reset or explicit
+step1/step2/Euler/RK/implicit outside native step internals/0CNS-FlyGym run. Foreign
+sentinel generalized.125/body torque.25 remain exact after clearing only owned
+forces. Source/mass/nativeEuler/time/state/prefixchecks pass. New LFS
+docs/evidence/lf-synthetic-coupling-v2/run/validation.json,26710381bytes,
+SHA49e7443266c0b2a40129cf2600a99a468f3242764afa1a94e48ce55e72a1d891.
+Endpointcontract canonical1f79cb... and failedV1raw128057... are preflight locks.
+
+89tests passed81.68s (16V2+27V1synthetic+22endpoint+24integrator). Before campaign,
+firstdev1fail/1pass/4setup errors: sparse checkout had an LFS pointer for required
+historical184MB integrated_whole_leg_readiness.json, so existing M6C rawlock failed.
+Hydrated original from sharedcache without hash/code waiver; then6passed/10deselected
+18.75s. No native campaign had run at setup failure. Initial full worktree also
+hit diskfull copying duplicated Unity assets; Git removed failed checkout. Known
+clean delivered endpointworktree converted to sparse omitting duplicateUnity
+workingcopies; all Git/LFS history and non-Unity science code/evidence retained,
+primarycheckout/useredits untouched. New V2checkout is sparse too. Exact Git Bash
+saved V2review passed with no native/solver/CNS calls; whitespace/LFS checks pass.
+No dependencies, Unity behavior, production physiology/neuronal parameter changes.
+Current20/42,0newadmissions; original raw scientific prerequisites remain false.
+
+Immediate next task: SOURCE-TO-BODY TRANSFER PREREQUISITE REVIEW. Inventory existing
+source/model evidence for units/scale, finite-angle registration, muscle length/
+velocity dependence, exact candidate population/tendon interpretation and neural
+activation conversion. Distinguish reference fidelity from biological calibration;
+do not invent force scale, infer individual binding from names or tune movement.
+Original raw locks stay unresolved until supported explicitly; no hash refresh.
+Use read-only evidence/source review first, not another synthetic solver campaign.
+Record missing/inconclusive evidence and a bounded next decision. Keep production
+and moving-FlyGym muscle coupling disconnected pending physical/neural/raw gates.
+
+UNITY_AND_BALANCE_ROADMAP.md now marks synthetic V2 software gate complete. Next
+meaningful new Unity muscle-interface test requires supported transfer plus bounded
+headless evidence; stable-looking current position-assisted fly is not independent
+neural balance. Continue roadmap+Git Bash after every update,20/42 is not overall
+project completion. No new Unity behavior to inspect yet.
+
+Git Bash review malecns_backend.embodiment.lf_synthetic_coupling_v2 --report
+docs/evidence/lf-synthetic-coupling-v2/run/validation.json. Pull prior scientific LFS
+inputs, both synthetic V1/V2 records AND historical M6C integrated_whole_leg_readiness
+artifact. Expected V2 VERIFIED_TRANSFER_BLOCKED,9PASS, historicalV1INTEGRITY_FAILURE,
+20/42/0new and next transfer review. No solver/native/CNS execution in saved review.
 
 ## Completed predecessor task — negative-control design requirements
 
