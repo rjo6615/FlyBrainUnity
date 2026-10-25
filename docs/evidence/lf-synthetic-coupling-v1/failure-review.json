@@ -1,0 +1,139 @@
+{
+  "schema": "lf-synthetic-coupling-v1-failure-review",
+  "record_sha256": "12805789411e5b7b2aa9dbaea0f4e18e5075671a9945501970d9e952f99d822e",
+  "original_classification": "INTEGRITY_FAILURE",
+  "acceptance_changed": false,
+  "campaign_repeated": false,
+  "cases": [
+    {
+      "dt": 0.0001,
+      "condition": "RELAX_ZERO",
+      "original_integrity_passed": true,
+      "original_solver_guard": true,
+      "original_numerical_acceptance": true,
+      "nonidentical_dense_endpoints": 0,
+      "maximum_dense_endpoint_difference": 0.0,
+      "committed_state_matches_authoritative_terminal": true,
+      "maximum_position_error": 2.4226652961067033e-07,
+      "maximum_velocity_error": 1.4128580992645023e-08
+    },
+    {
+      "dt": 0.0001,
+      "condition": "FLOOR_BASELINE",
+      "original_integrity_passed": true,
+      "original_solver_guard": true,
+      "original_numerical_acceptance": true,
+      "nonidentical_dense_endpoints": 0,
+      "maximum_dense_endpoint_difference": 0.0,
+      "committed_state_matches_authoritative_terminal": true,
+      "maximum_position_error": 2.4234397193495215e-07,
+      "maximum_velocity_error": 3.183217578417441e-16
+    },
+    {
+      "dt": 0.0001,
+      "condition": "PULSE",
+      "original_integrity_passed": false,
+      "original_solver_guard": false,
+      "original_numerical_acceptance": true,
+      "nonidentical_dense_endpoints": 1,
+      "maximum_dense_endpoint_difference": 4.336808689942018e-19,
+      "committed_state_matches_authoritative_terminal": true,
+      "maximum_position_error": 1.8750000000051955e-07,
+      "maximum_velocity_error": 0.00013257798060273968
+    },
+    {
+      "dt": 5e-05,
+      "condition": "RELAX_ZERO",
+      "original_integrity_passed": true,
+      "original_solver_guard": true,
+      "original_numerical_acceptance": true,
+      "nonidentical_dense_endpoints": 0,
+      "maximum_dense_endpoint_difference": 0.0,
+      "committed_state_matches_authoritative_terminal": true,
+      "maximum_position_error": 1.211376735430923e-07,
+      "maximum_velocity_error": 6.262270248473707e-09
+    },
+    {
+      "dt": 5e-05,
+      "condition": "FLOOR_BASELINE",
+      "original_integrity_passed": true,
+      "original_solver_guard": true,
+      "original_numerical_acceptance": true,
+      "nonidentical_dense_endpoints": 0,
+      "maximum_dense_endpoint_difference": 0.0,
+      "committed_state_matches_authoritative_terminal": true,
+      "maximum_position_error": 1.2117198596811474e-07,
+      "maximum_velocity_error": 3.3046482217358175e-16
+    },
+    {
+      "dt": 5e-05,
+      "condition": "PULSE",
+      "original_integrity_passed": false,
+      "original_solver_guard": false,
+      "original_numerical_acceptance": true,
+      "nonidentical_dense_endpoints": 2,
+      "maximum_dense_endpoint_difference": 1.3877787807814457e-17,
+      "committed_state_matches_authoritative_terminal": true,
+      "maximum_position_error": 9.482543965399581e-08,
+      "maximum_velocity_error": 6.120926294117188e-05
+    },
+    {
+      "dt": 2.5e-05,
+      "condition": "RELAX_ZERO",
+      "original_integrity_passed": true,
+      "original_solver_guard": true,
+      "original_numerical_acceptance": true,
+      "nonidentical_dense_endpoints": 0,
+      "maximum_dense_endpoint_difference": 0.0,
+      "committed_state_matches_authoritative_terminal": true,
+      "maximum_position_error": 6.057003494481383e-08,
+      "maximum_velocity_error": 2.9133377307810626e-09
+    },
+    {
+      "dt": 2.5e-05,
+      "condition": "FLOOR_BASELINE",
+      "original_integrity_passed": true,
+      "original_solver_guard": true,
+      "original_numerical_acceptance": true,
+      "nonidentical_dense_endpoints": 0,
+      "maximum_dense_endpoint_difference": 0.0,
+      "committed_state_matches_authoritative_terminal": true,
+      "maximum_position_error": 6.058599298482817e-08,
+      "maximum_velocity_error": 3.634245682171411e-16
+    },
+    {
+      "dt": 2.5e-05,
+      "condition": "PULSE",
+      "original_integrity_passed": false,
+      "original_solver_guard": false,
+      "original_numerical_acceptance": true,
+      "nonidentical_dense_endpoints": 11,
+      "maximum_dense_endpoint_difference": 1.1102230246251565e-16,
+      "committed_state_matches_authoritative_terminal": true,
+      "maximum_position_error": 5.309774116460278e-08,
+      "maximum_velocity_error": 2.895793137803679e-05
+    }
+  ],
+  "refinement": [
+    {
+      "coarse": 0.0001,
+      "fine": 5e-05,
+      "coarse_error": 0.13257798060273968,
+      "fine_error": 0.06120926294117188,
+      "passed": true
+    },
+    {
+      "coarse": 5e-05,
+      "fine": 2.5e-05,
+      "coarse_error": 0.06120926294117188,
+      "fine_error": 0.02895793137803679,
+      "passed": true
+    }
+  ],
+  "scipy_radau_source_sha256": "232f08010ccaa736e16ca34afc888c69365352df58fffbf7aecba6f863a456c6",
+  "scipy_version": "1.18.1",
+  "interpretation": "Dense interpolation and solver terminal state are separately computed; V1 exact-equality failure is retained.",
+  "next": "Specify and test endpoint ownership semantics independently before any new acceptance protocol or experiment.",
+  "current_motor_count": 20,
+  "new_admissions": 0
+}
