@@ -46,7 +46,29 @@ shares. Bulk raw imaging would still require segmentation and an independently
 supported bridge to the exact target assets; downloading images alone does not
 resolve that bridge. No authors or third parties were contacted.
 
-## Additional upstream engineering lead
+## Repository contents checked after the user's pointer
+
+The complete public recursive Git tree at
+`9ea1131626cd76f7203b74076ef8f0e9cab30bef` contains 119 blobs and reports
+`truncated=false`; its metadata is preserved in
+`evidence/lf-reference-acquisition-v1/flymimic-tree.json`. The existing local clone
+has the same HEAD. Its two untracked registration exports were left untouched.
+The tree includes OpenSim models, converted MJCF, mesh STL files/archive and the
+conversion PDF; no independently labeled source-to-target correspondence bundle
+was identified in that tree. This scope is one exact main revision, not every
+historical commit, private repository or file in the world.
+
+The user was right that attachment information exists in this repository:
+both existing OpenSim files contain 37 `PathPoint` entries, with named source
+paths. These are **source-model attachment annotations**. They do not identify
+corresponding attachment locations on our exact locked target meshes. That is
+the remaining distinction; we do not need another copy of the same source sites.
+Local read-only archive inspection found 138 entries in `meshes/stl.zip`, all
+non-directory entries STL, and six policy/checkpoint entries in
+`logs/demo_model.zip`. Neither archive supplies a separate landmark/annotation
+bundle. No archives were extracted and no local FlyMimic files were changed.
+
+## Additional upstream engineering lead (scope)
 
 [FlyGym issue #276](https://github.com/NeLy-EPFL/flygym/issues/276) was accessible
 through the connected GitHub tool (open; last updated 2026-06-24 at retrieval).
@@ -93,13 +115,14 @@ experiment precedes a meaningful Unity test of the new muscle interface.
 
 ## Validation and manual review
 
-This update changes documentation and one reference snapshot only. Validation
+This update changes documentation, two reference snapshots and their byte-preserving
+Git attributes only. Validation
 checks whitespace, local documentation links, JSON decoding and recorded motor
 totals. It executes no physics, CNS, native kinematics or mocked experiment.
 Historical scientific evidence is not regenerated or overwritten.
 
 Executed results: Markdown fence/local-link checks passed for all three changed
-Markdown files (one relative Markdown link); snapshot JSON and motor-total checks
+Markdown files (one relative Markdown link); both snapshot JSON and motor-total checks
 passed; `git diff --check` passed; Git Bash file-presence/JSON/whitespace checks
 passed using the existing validated Python environment. Static inline progress
 markup checks passed for 20/42 accessible values; no browser layout test was run.

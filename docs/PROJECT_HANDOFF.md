@@ -14,6 +14,12 @@ FlyGym issue276 provides a distinct-rig compatibility warning; retrieved body an
 metadata preserved in `evidence/lf-reference-acquisition-v1/flygym-276-snapshot.json`.
 Its mesh/body claims were not reproduced against our locked assets and do not
 authorize target attachments, dependency changes or body substitution.
+After the user's repository pointer, full public FlyMimic main tree at9ea1131
+was inspected (119blobs,not truncated), along with local ZIP contents and OpenSim
+PathPoint inventory. Both OpenSim models contain37source path points; these exist
+but do not establish exact target correspondence. Mesh ZIP has only STL payloads;
+demo ZIP has policy files. Public tree metadata preserved separately in
+`evidence/lf-reference-acquisition-v1/flymimic-tree.json`; no local source edits.
 
 Immediate next action: request an accessible model-development/anatomical
 annotation artifact or authoritative revision/download meeting the existing
