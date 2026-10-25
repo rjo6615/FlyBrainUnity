@@ -1,0 +1,757 @@
+{
+  "schema": "lf-unit-lineage-v1",
+  "source_hashes": {
+    "docs/evidence/lf-unit-lineage-v1/source-extracts.json": "cb945fca39d5952aee7d16aa32bae808da0b2a5f468aa80c15de41fe50df66c4",
+    "docs/evidence/lf-transfer-prerequisites-v1/run/review.json": "647d8025b104012f37baef7cc6f43b705d60266644dfa45e3bb95c3d9ffaa8d0",
+    "docs/LF_UNIT_LINEAGE_V1.md": "108b252b7fa064026cd01aeda223c2b6dd3295130f594d03a33c6b9c79ed1c40",
+    "malecns_backend/embodiment/lf_unit_lineage.py": "e8970056ac0cbd2795559c7e05ca957b24f8bfe5de1195d29bc3e82b4fd0c237",
+    "docs/evidence/lf-native-isolation-v1/input-manifest.json": "eef0319929e7f285ee9fb568035d57b88c26667432d7f6142cfc4ffa864d41c7"
+  },
+  "current_motor_count": 20,
+  "model_coordinates": 42,
+  "new_admissions": 0,
+  "physics_transitions": 0,
+  "cns_transitions": 0,
+  "execution_scope": "STATIC_SOURCE_AND_SAVED_REPORT_AUDIT_NO_NATIVE_SOLVER_CONVERTER_OR_CNS",
+  "current_original_raw_freezes_satisfied": false,
+  "source_repository": {
+    "remote": "https://github.com/rjo6615/FlyMimic.git",
+    "head": "9ea1131626cd76f7203b74076ef8f0e9cab30bef",
+    "tracked_status": "",
+    "tracked_paths": [
+      ".gitignore",
+      ".pre-commit-config.yaml",
+      "LICENSE",
+      "README.md",
+      "docs/kr_vs_ppo.gif",
+      "flymimic/__init__.py",
+      "flymimic/assets/mocap/qpos/0001.npy",
+      "flymimic/assets/mocap/qpos/0002.npy",
+      "flymimic/assets/mocap/qvel/0001.npy",
+      "flymimic/assets/mocap/qvel/0002.npy",
+      "flymimic/assets/mocap/xipos/0001.npy",
+      "flymimic/assets/mocap/xipos/0002.npy",
+      "flymimic/assets/mocap/xivel/0001.npy",
+      "flymimic/assets/mocap/xivel/0002.npy",
+      "flymimic/assets/models/best_combined_arm_cvt3.xml",
+      "flymimic/assets/models/best_combined_arm_damping_cvt3.xml",
+      "flymimic/assets/models/best_combined_arm_damping_stiff_cvt3.xml",
+      "flymimic/assets/models/best_combined_arm_stiff_cvt3.xml",
+      "flymimic/assets/models/best_combined_cvt3.xml",
+      "flymimic/assets/models/best_combined_cvt3_torque.xml",
+      "flymimic/assets/models/meshes/stl.zip",
+      "flymimic/assets/models/meshes/stl/A1A2.stl",
+      "flymimic/assets/models/meshes/stl/A3.stl",
+      "flymimic/assets/models/meshes/stl/A4.stl",
+      "flymimic/assets/models/meshes/stl/A5.stl",
+      "flymimic/assets/models/meshes/stl/A6.stl",
+      "flymimic/assets/models/meshes/stl/Haustellum.stl",
+      "flymimic/assets/models/meshes/stl/Head.stl",
+      "flymimic/assets/models/meshes/stl/LArista.stl",
+      "flymimic/assets/models/meshes/stl/LEye.stl",
+      "flymimic/assets/models/meshes/stl/LFCoxa.stl",
+      "flymimic/assets/models/meshes/stl/LFFemur.stl",
+      "flymimic/assets/models/meshes/stl/LFTarsus1.stl",
+      "flymimic/assets/models/meshes/stl/LFTarsus2.stl",
+      "flymimic/assets/models/meshes/stl/LFTarsus3.stl",
+      "flymimic/assets/models/meshes/stl/LFTarsus4.stl",
+      "flymimic/assets/models/meshes/stl/LFTarsus5.stl",
+      "flymimic/assets/models/meshes/stl/LFTibia.stl",
+      "flymimic/assets/models/meshes/stl/LFTrochanter.stl",
+      "flymimic/assets/models/meshes/stl/LFuniculus.stl",
+      "flymimic/assets/models/meshes/stl/LHCoxa.stl",
+      "flymimic/assets/models/meshes/stl/LHFemur.stl",
+      "flymimic/assets/models/meshes/stl/LHTarsus1.stl",
+      "flymimic/assets/models/meshes/stl/LHTarsus2.stl",
+      "flymimic/assets/models/meshes/stl/LHTarsus3.stl",
+      "flymimic/assets/models/meshes/stl/LHTarsus4.stl",
+      "flymimic/assets/models/meshes/stl/LHTarsus5.stl",
+      "flymimic/assets/models/meshes/stl/LHTibia.stl",
+      "flymimic/assets/models/meshes/stl/LHaltere.stl",
+      "flymimic/assets/models/meshes/stl/LMCoxa.stl",
+      "flymimic/assets/models/meshes/stl/LMFemur.stl",
+      "flymimic/assets/models/meshes/stl/LMTarsus1.stl",
+      "flymimic/assets/models/meshes/stl/LMTarsus2.stl",
+      "flymimic/assets/models/meshes/stl/LMTarsus3.stl",
+      "flymimic/assets/models/meshes/stl/LMTarsus4.stl",
+      "flymimic/assets/models/meshes/stl/LMTarsus5.stl",
+      "flymimic/assets/models/meshes/stl/LMTibia.stl",
+      "flymimic/assets/models/meshes/stl/LPedicel.stl",
+      "flymimic/assets/models/meshes/stl/LWing.stl",
+      "flymimic/assets/models/meshes/stl/RArista.stl",
+      "flymimic/assets/models/meshes/stl/REye.stl",
+      "flymimic/assets/models/meshes/stl/RFCoxa.stl",
+      "flymimic/assets/models/meshes/stl/RFFemur.stl",
+      "flymimic/assets/models/meshes/stl/RFTarsus1.stl",
+      "flymimic/assets/models/meshes/stl/RFTarsus2.stl",
+      "flymimic/assets/models/meshes/stl/RFTarsus3.stl",
+      "flymimic/assets/models/meshes/stl/RFTarsus4.stl",
+      "flymimic/assets/models/meshes/stl/RFTarsus5.stl",
+      "flymimic/assets/models/meshes/stl/RFTibia.stl",
+      "flymimic/assets/models/meshes/stl/RFTrochanter.stl",
+      "flymimic/assets/models/meshes/stl/RFuniculus.stl",
+      "flymimic/assets/models/meshes/stl/RHCoxa.stl",
+      "flymimic/assets/models/meshes/stl/RHFemur.stl",
+      "flymimic/assets/models/meshes/stl/RHTarsus1.stl",
+      "flymimic/assets/models/meshes/stl/RHTarsus2.stl",
+      "flymimic/assets/models/meshes/stl/RHTarsus3.stl",
+      "flymimic/assets/models/meshes/stl/RHTarsus4.stl",
+      "flymimic/assets/models/meshes/stl/RHTarsus5.stl",
+      "flymimic/assets/models/meshes/stl/RHTibia.stl",
+      "flymimic/assets/models/meshes/stl/RHaltere.stl",
+      "flymimic/assets/models/meshes/stl/RMCoxa.stl",
+      "flymimic/assets/models/meshes/stl/RMFemur.stl",
+      "flymimic/assets/models/meshes/stl/RMTarsus1.stl",
+      "flymimic/assets/models/meshes/stl/RMTarsus2.stl",
+      "flymimic/assets/models/meshes/stl/RMTarsus3.stl",
+      "flymimic/assets/models/meshes/stl/RMTarsus4.stl",
+      "flymimic/assets/models/meshes/stl/RMTarsus5.stl",
+      "flymimic/assets/models/meshes/stl/RMTibia.stl",
+      "flymimic/assets/models/meshes/stl/RPedicel.stl",
+      "flymimic/assets/models/meshes/stl/RWing.stl",
+      "flymimic/assets/models/meshes/stl/Rostrum.stl",
+      "flymimic/assets/models/meshes/stl/Thorax.stl",
+      "flymimic/assets/models/opensim/best_combined.osim",
+      "flymimic/assets/models/opensim/best_combined_full.osim",
+      "flymimic/assets/models/opensim/best_combined_full.pdf",
+      "flymimic/config/eval_config.yaml",
+      "flymimic/config/train_arm.yaml",
+      "flymimic/config/train_arm_damp.yaml",
+      "flymimic/config/train_arm_damp_stiff.yaml",
+      "flymimic/config/train_arm_stiff.yaml",
+      "flymimic/config/train_torque.yaml",
+      "flymimic/envs/dmcontrol_wrapper.py",
+      "flymimic/evaluation/evaluate_rollout.py",
+      "flymimic/tasks/fly/__init__.py",
+      "flymimic/tasks/fly/mocap_tracking_muscle.py",
+      "flymimic/tasks/fly/mocap_tracking_torque.py",
+      "flymimic/train/train_muscle.py",
+      "flymimic/train/train_torque.py",
+      "flymimic/utils/read_tensorboard.py",
+      "logs/demo_model.zip",
+      "pyproject.toml",
+      "scripts/eval_rollout.py",
+      "scripts/retrain_models.sh",
+      "scripts/train_muscle.py",
+      "scripts/train_one_seed.sh",
+      "scripts/train_seeds.sh",
+      "scripts/train_torque.py",
+      "tests/test_assets.py",
+      "tests/test_play_mode_rewards.py"
+    ],
+    "scope": "LOCAL_FORK_TRACKED_SNAPSHOT_NOT_FRESH_UPSTREAM_AUTHENTICATION"
+  },
+  "source_files": {
+    "opensim": {
+      "location": "FlyMimic",
+      "path": "flymimic/assets/models/opensim/best_combined.osim",
+      "raw_sha256": "0692e3f1b1a6ac5f5db6e9e4f0181a70be9add00ce3f1bb13160153fc7297749",
+      "bytes": 490818,
+      "git_blob_oid": "a1acbe4d9b63ce59a81e2105c728ba5d07a96f5d",
+      "introduced_commit": "97d77223100135cea0e39a8493767255dfc2b65d",
+      "raw_bytes_equal_committed_blob": false,
+      "extract": {
+        "model": "neuromechfly_new",
+        "declared_length_units": "m",
+        "declared_force_units": "N",
+        "gravity": [
+          0.0,
+          -9806.65,
+          0.0
+        ],
+        "body_count": 71,
+        "raw_body_mass_sum": 0.0024942719507646226,
+        "representative_bodies": [
+          {
+            "name": "LFCoxa",
+            "mass": 9.738523157743083e-06,
+            "inertia": [
+              1.821460855589643e-07,
+              1.8293795950338054e-07,
+              3.6679615931766035e-08,
+              -7.209055145926253e-25,
+              1.4418110291852507e-23,
+              -2.8836220583705013e-24
+            ]
+          },
+          {
+            "name": "Thorax",
+            "mass": 0.0007647451333331036,
+            "inertia": [
+              0.0001327412574461525,
+              0.00014787855104233822,
+              0.00013056478126883655,
+              -6.1369202805886554e-21,
+              4.269161934322543e-21,
+              -1.4008187596995844e-21
+            ]
+          }
+        ],
+        "selected": [
+          {
+            "name": "LFC_pleural_remotor_and_abductor",
+            "model": "Millard2012EquilibriumMuscle",
+            "parameters": {
+              "max_isometric_force": 16.073374433046375,
+              "optimal_fiber_length": 0.17504030464423312,
+              "tendon_slack_length": 0.06469705235576687,
+              "max_contraction_velocity": 62.17201205732953,
+              "activation_time_constant": 0.0001,
+              "deactivation_time_constant": 0.0004
+            }
+          },
+          {
+            "name": "LFC_sternal_adductor",
+            "model": "Millard2012EquilibriumMuscle",
+            "parameters": {
+              "max_isometric_force": 9.079973193705554,
+              "optimal_fiber_length": 0.14616210238408217,
+              "tendon_slack_length": 0.05636690761591781,
+              "max_contraction_velocity": 13.622140336693155,
+              "activation_time_constant": 0.0001,
+              "deactivation_time_constant": 0.0004
+            }
+          },
+          {
+            "name": "LFC_sternal_anterior_rotator",
+            "model": "Millard2012EquilibriumMuscle",
+            "parameters": {
+              "max_isometric_force": 50.19042056028233,
+              "optimal_fiber_length": 0.06355075601270867,
+              "tendon_slack_length": 0.15499443398729135,
+              "max_contraction_velocity": 48.7076021290509,
+              "activation_time_constant": 0.0001,
+              "deactivation_time_constant": 0.0004
+            }
+          },
+          {
+            "name": "LFC_sternal_posterior_rotator",
+            "model": "Millard2012EquilibriumMuscle",
+            "parameters": {
+              "max_isometric_force": 98.16552432448182,
+              "optimal_fiber_length": 0.10659815486394372,
+              "tendon_slack_length": 0.014682512136056286,
+              "max_contraction_velocity": 19.063244896117165,
+              "activation_time_constant": 0.0001,
+              "deactivation_time_constant": 0.0004
+            }
+          }
+        ]
+      }
+    },
+    "opensim_full": {
+      "location": "FlyMimic",
+      "path": "flymimic/assets/models/opensim/best_combined_full.osim",
+      "raw_sha256": "35cf098309a88c20cf3339dc7d7c83facc615cbac2ee75af71112db472e54707",
+      "bytes": 491132,
+      "git_blob_oid": "8dfbf064ba827f60abeafcbc815fa9ba0218120d",
+      "introduced_commit": "97d77223100135cea0e39a8493767255dfc2b65d",
+      "raw_bytes_equal_committed_blob": true,
+      "extract": {
+        "model": "neuromechfly_new",
+        "declared_length_units": "m",
+        "declared_force_units": "N",
+        "gravity": [
+          0.0,
+          -9806.65,
+          0.0
+        ],
+        "body_count": 71,
+        "raw_body_mass_sum": 0.0024942719507646226,
+        "representative_bodies": [
+          {
+            "name": "LFCoxa",
+            "mass": 9.738523157743083e-06,
+            "inertia": [
+              1.821460855589643e-07,
+              1.8293795950338054e-07,
+              3.6679615931766035e-08,
+              -7.209055145926253e-25,
+              1.4418110291852507e-23,
+              -2.8836220583705013e-24
+            ]
+          },
+          {
+            "name": "Thorax",
+            "mass": 0.0007647451333331036,
+            "inertia": [
+              0.0001327412574461525,
+              0.00014787855104233822,
+              0.00013056478126883655,
+              -6.1369202805886554e-21,
+              4.269161934322543e-21,
+              -1.4008187596995844e-21
+            ]
+          }
+        ],
+        "selected": [
+          {
+            "name": "LFC_pleural_remotor_and_abductor",
+            "model": "Millard2012EquilibriumMuscle",
+            "parameters": {
+              "max_isometric_force": 16.073374433046375,
+              "optimal_fiber_length": 0.17504030464423312,
+              "tendon_slack_length": 0.06469705235576687,
+              "max_contraction_velocity": 62.17201205732953,
+              "activation_time_constant": 0.0001,
+              "deactivation_time_constant": 0.0004
+            }
+          },
+          {
+            "name": "LFC_sternal_adductor",
+            "model": "Millard2012EquilibriumMuscle",
+            "parameters": {
+              "max_isometric_force": 9.079973193705554,
+              "optimal_fiber_length": 0.14616210238408217,
+              "tendon_slack_length": 0.05636690761591781,
+              "max_contraction_velocity": 13.622140336693155,
+              "activation_time_constant": 0.0001,
+              "deactivation_time_constant": 0.0004
+            }
+          },
+          {
+            "name": "LFC_sternal_anterior_rotator",
+            "model": "Millard2012EquilibriumMuscle",
+            "parameters": {
+              "max_isometric_force": 50.19042056028233,
+              "optimal_fiber_length": 0.06355075601270867,
+              "tendon_slack_length": 0.15499443398729135,
+              "max_contraction_velocity": 48.7076021290509,
+              "activation_time_constant": 0.0001,
+              "deactivation_time_constant": 0.0004
+            }
+          },
+          {
+            "name": "LFC_sternal_posterior_rotator",
+            "model": "Millard2012EquilibriumMuscle",
+            "parameters": {
+              "max_isometric_force": 98.16552432448182,
+              "optimal_fiber_length": 0.10659815486394372,
+              "tendon_slack_length": 0.014682512136056286,
+              "max_contraction_velocity": 19.063244896117165,
+              "activation_time_constant": 0.0001,
+              "deactivation_time_constant": 0.0004
+            }
+          }
+        ]
+      }
+    },
+    "source_mjcf": {
+      "location": "FlyMimic",
+      "path": "flymimic/assets/models/best_combined_cvt3.xml",
+      "raw_sha256": "a72d4a3167a6f6382d31936d32f2481db5895441a0cc2d02cdbd0452a6209a81",
+      "bytes": 50143,
+      "git_blob_oid": "9cd9120415f5f006bbe168834c998f67e0354c89",
+      "introduced_commit": "97d77223100135cea0e39a8493767255dfc2b65d",
+      "raw_bytes_equal_committed_blob": false,
+      "extract": {
+        "binding": {
+          "raw_sha256": "a72d4a3167a6f6382d31936d32f2481db5895441a0cc2d02cdbd0452a6209a81",
+          "muscle_default": {
+            "ctrllimited": "true",
+            "ctrlrange": "0 1",
+            "dyntype": "muscle",
+            "gaintype": "muscle",
+            "biastype": "muscle",
+            "dynprm": "0.01 0.04 0 0 0 0 0 0 0 0",
+            "gainprm": "0.75 1.05 -1 200 0.5 1.6 1.5 1.3 1.2 0",
+            "biasprm": "0.75 1.05 -1 200 0.5 1.6 1.5 1.3 1.2 0"
+          },
+          "bindings": [
+            {
+              "tendon": "LFC_pleural_remotor_and_abductor_tendon",
+              "actuator_attributes": {
+                "name": "LFC_pleural_remotor_and_abductor",
+                "class": "muscle",
+                "tendon": "LFC_pleural_remotor_and_abductor_tendon",
+                "ctrlrange": "0.0001 1",
+                "lengthrange": "0.216122 0.299608",
+                "dynprm": "0.0001 0.0004 0 0 0 0 0 0 0 0",
+                "gainprm": "0.743435 1.72008 28.7481 1 0 2 10 0.353216 1.4 0",
+                "biasprm": "0.743435 1.72008 28.7481 1 0 2 10 0.353216 1.4 0"
+              },
+              "tendon_sites": [
+                {
+                  "site": "LFC_pleural_remotor_and_abductor_LFC_Miller29_p1"
+                },
+                {
+                  "site": "LFC_pleural_remotor_and_abductor_LFC_Miller29_p296"
+                }
+              ]
+            },
+            {
+              "tendon": "LFC_sternal_adductor_tendon",
+              "actuator_attributes": {
+                "name": "LFC_sternal_adductor",
+                "class": "muscle",
+                "tendon": "LFC_sternal_adductor_tendon",
+                "ctrlrange": "0.0001 1",
+                "lengthrange": "0.0972302 0.259683",
+                "dynprm": "0.0001 0.0004 0 0 0 0 0 0 0 0",
+                "gainprm": "0.244283 1.48664 12.9 1 0 2 10 0.446817 1.4 0",
+                "biasprm": "0.244283 1.48664 12.9 1 0 2 10 0.446817 1.4 0"
+              },
+              "tendon_sites": [
+                {
+                  "site": "LFC_sternal_adductor_LFC_Miller33_p1"
+                },
+                {
+                  "site": "LFC_sternal_adductor_LFC_Miller33_p296"
+                }
+              ]
+            },
+            {
+              "tendon": "LFC_sternal_anterior_rotator_tendon",
+              "actuator_attributes": {
+                "name": "LFC_sternal_anterior_rotator",
+                "class": "muscle",
+                "tendon": "LFC_sternal_anterior_rotator_tendon",
+                "ctrlrange": "0.0001 1",
+                "lengthrange": "0.126048 0.202925",
+                "dynprm": "0.0001 0.0004 0 0 0 0 0 0 0 0",
+                "gainprm": "0.185296 1.73386 10.5807 1 0 2 10 3.11328 1.4 0",
+                "biasprm": "0.185296 1.73386 10.5807 1 0 2 10 3.11328 1.4 0"
+              },
+              "tendon_sites": [
+                {
+                  "site": "LFC_sternal_anterior_rotator_LFC_Miller31_p1"
+                },
+                {
+                  "site": "LFC_sternal_anterior_rotator_LFC_Miller31_p296"
+                }
+              ]
+            },
+            {
+              "tendon": "LFC_sternal_posterior_rotator_tendon",
+              "actuator_attributes": {
+                "name": "LFC_sternal_posterior_rotator",
+                "class": "muscle",
+                "tendon": "LFC_sternal_posterior_rotator_tendon",
+                "ctrlrange": "0.0001 1",
+                "lengthrange": "0.0715242 0.147229",
+                "dynprm": "0.0001 0.0004 0 0 0 0 0 0 0 0",
+                "gainprm": "0.610817 1.40821 157.429 1 0 2 10 0.0752654 1.4 0",
+                "biasprm": "0.610817 1.40821 157.429 1 0 2 10 0.0752654 1.4 0"
+              },
+              "tendon_sites": [
+                {
+                  "site": "LFC_sternal_posterior_rotator_LFC_Miller32_p1"
+                },
+                {
+                  "site": "LFC_sternal_posterior_rotator_LFC_Miller32_p296"
+                }
+              ]
+            }
+          ],
+          "inspection": "XML_ONLY_NOT_COMPILED_OR_SIMULATED"
+        },
+        "option": {
+          "timestep": "1e-04",
+          "gravity": "0 0 -9801"
+        },
+        "raw_body_mass_sum": 0.002494271478,
+        "representative_bodies": [
+          {
+            "name": "Thorax",
+            "inertial": {
+              "pos": "-0.494322 0.00632413 -0.092333",
+              "quat": "0.707107 0 0 0.707107",
+              "mass": "0.000764745",
+              "diaginertia": "0.000147879 0.000132741 0.000130565"
+            }
+          },
+          {
+            "name": "LFCoxa",
+            "inertial": {
+              "pos": "0.00455966 -0.0113278 -0.215003",
+              "quat": "0.707107 0 0 0.707107",
+              "mass": "9.73852e-06",
+              "diaginertia": "1.82938e-07 1.82146e-07 3.66796e-08"
+            }
+          }
+        ]
+      }
+    },
+    "conversion_pdf": {
+      "location": "FlyMimic",
+      "path": "flymimic/assets/models/opensim/best_combined_full.pdf",
+      "raw_sha256": "f6b0cca57471401fdad40e46dd4f75250b78a1646135de2a8d9cc1a2748aa05d",
+      "bytes": 1452250,
+      "git_blob_oid": "6d536587e199e7aefa80d8364eb1271db4efaaf6",
+      "introduced_commit": "97d77223100135cea0e39a8493767255dfc2b65d",
+      "raw_bytes_equal_committed_blob": true
+    },
+    "package_declaration": {
+      "location": "FlyMimic",
+      "path": "pyproject.toml",
+      "raw_sha256": "220941ef6225bbcb80b56b8925f98c84746e369a97915ead0b236037f024d148",
+      "bytes": 1522,
+      "git_blob_oid": "12daef4ccf00472272c120ed7499b38eebe49ebd",
+      "introduced_commit": "97d77223100135cea0e39a8493767255dfc2b65d",
+      "raw_bytes_equal_committed_blob": false,
+      "declared_native_dependencies": [
+        "dm_control==1.0.30",
+        "mujoco==3.3.2"
+      ]
+    },
+    "target_mjcf": {
+      "location": "validated_environment",
+      "path": "flygym/data/mjcf/neuromechfly_seqik_kinorder_ypr.xml",
+      "raw_sha256": "413b3a1dcb7537d08122e16f256f27ec0d8bb9f52c58670345b6c24c9e72e05a",
+      "bytes": 47382,
+      "extract": {
+        "compiler": {
+          "autolimits": "true",
+          "boundmass": "1e-06",
+          "boundinertia": "1e-12",
+          "angle": "radian",
+          "eulerseq": "XYZ",
+          "fusestatic": "true"
+        },
+        "raw_geom_mass_sum": 0.001,
+        "representative_geoms": [
+          {
+            "name": "Thorax",
+            "class": "nmf",
+            "type": "mesh",
+            "contype": "0",
+            "conaffinity": "0",
+            "group": "1",
+            "pos": "0 0 0",
+            "quat": "1 0 0 0",
+            "mesh": "mesh_Thorax",
+            "mass": "0.0003071677023684708"
+          },
+          {
+            "name": "LFCoxa",
+            "class": "nmf",
+            "type": "mesh",
+            "contype": "0",
+            "conaffinity": "0",
+            "condim": "3",
+            "group": "2",
+            "friction": "1 0 0",
+            "solref": "-1000000 -10000",
+            "margin": "0.0",
+            "pos": "0 0 0",
+            "quat": "1 0 0 0",
+            "mesh": "mesh_LFCoxa",
+            "fluidcoef": "0 0 0 0 0",
+            "mass": "4.522004066249335e-06"
+          }
+        ],
+        "scope": "RAW_XML_GEOM_MASSES_NOT_COMPILED_BODY_MASS_OR_UNIT_CALIBRATION"
+      }
+    }
+  },
+  "classification": "LINEAGE_AUDIT_VERIFIED_CONVERSION_AND_PHYSICAL_SCALE_UNRESOLVED",
+  "comparisons": [
+    {
+      "muscle": "LFC_pleural_remotor_and_abductor",
+      "opensim_parameters": {
+        "max_isometric_force": 16.073374433046375,
+        "optimal_fiber_length": 0.17504030464423312,
+        "tendon_slack_length": 0.06469705235576687,
+        "max_contraction_velocity": 62.17201205732953,
+        "activation_time_constant": 0.0001,
+        "deactivation_time_constant": 0.0004
+      },
+      "full_model_parameters_equal": true,
+      "mjcf_peak_force": 28.7481,
+      "numeric_peak_ratio_not_unit_conversion": 1.7885541159854257,
+      "mjcf_lengthrange": [
+        0.216122,
+        0.299608
+      ],
+      "mjcf_normalized_length_range": [
+        0.743435,
+        1.72008
+      ],
+      "mjcf_vmax_parameter": 10.0,
+      "mjcf_activation_constants": [
+        0.0001,
+        0.0004
+      ],
+      "activation_constants_numerically_equal": true,
+      "interpretation": "MODEL_PARAMETER_COMPARISON_NOT_ONE_TO_ONE_PHYSIOLOGY_OR_PROVEN_CONVERSION"
+    },
+    {
+      "muscle": "LFC_sternal_adductor",
+      "opensim_parameters": {
+        "max_isometric_force": 9.079973193705554,
+        "optimal_fiber_length": 0.14616210238408217,
+        "tendon_slack_length": 0.05636690761591781,
+        "max_contraction_velocity": 13.622140336693155,
+        "activation_time_constant": 0.0001,
+        "deactivation_time_constant": 0.0004
+      },
+      "full_model_parameters_equal": true,
+      "mjcf_peak_force": 12.9,
+      "numeric_peak_ratio_not_unit_conversion": 1.4207090400820321,
+      "mjcf_lengthrange": [
+        0.0972302,
+        0.259683
+      ],
+      "mjcf_normalized_length_range": [
+        0.244283,
+        1.48664
+      ],
+      "mjcf_vmax_parameter": 10.0,
+      "mjcf_activation_constants": [
+        0.0001,
+        0.0004
+      ],
+      "activation_constants_numerically_equal": true,
+      "interpretation": "MODEL_PARAMETER_COMPARISON_NOT_ONE_TO_ONE_PHYSIOLOGY_OR_PROVEN_CONVERSION"
+    },
+    {
+      "muscle": "LFC_sternal_anterior_rotator",
+      "opensim_parameters": {
+        "max_isometric_force": 50.19042056028233,
+        "optimal_fiber_length": 0.06355075601270867,
+        "tendon_slack_length": 0.15499443398729135,
+        "max_contraction_velocity": 48.7076021290509,
+        "activation_time_constant": 0.0001,
+        "deactivation_time_constant": 0.0004
+      },
+      "full_model_parameters_equal": true,
+      "mjcf_peak_force": 10.5807,
+      "numeric_peak_ratio_not_unit_conversion": 0.21081114447510585,
+      "mjcf_lengthrange": [
+        0.126048,
+        0.202925
+      ],
+      "mjcf_normalized_length_range": [
+        0.185296,
+        1.73386
+      ],
+      "mjcf_vmax_parameter": 10.0,
+      "mjcf_activation_constants": [
+        0.0001,
+        0.0004
+      ],
+      "activation_constants_numerically_equal": true,
+      "interpretation": "MODEL_PARAMETER_COMPARISON_NOT_ONE_TO_ONE_PHYSIOLOGY_OR_PROVEN_CONVERSION"
+    },
+    {
+      "muscle": "LFC_sternal_posterior_rotator",
+      "opensim_parameters": {
+        "max_isometric_force": 98.16552432448182,
+        "optimal_fiber_length": 0.10659815486394372,
+        "tendon_slack_length": 0.014682512136056286,
+        "max_contraction_velocity": 19.063244896117165,
+        "activation_time_constant": 0.0001,
+        "deactivation_time_constant": 0.0004
+      },
+      "full_model_parameters_equal": true,
+      "mjcf_peak_force": 157.429,
+      "numeric_peak_ratio_not_unit_conversion": 1.603709663686259,
+      "mjcf_lengthrange": [
+        0.0715242,
+        0.147229
+      ],
+      "mjcf_normalized_length_range": [
+        0.610817,
+        1.40821
+      ],
+      "mjcf_vmax_parameter": 10.0,
+      "mjcf_activation_constants": [
+        0.0001,
+        0.0004
+      ],
+      "activation_constants_numerically_equal": true,
+      "interpretation": "MODEL_PARAMETER_COMPARISON_NOT_ONE_TO_ONE_PHYSIOLOGY_OR_PROVEN_CONVERSION"
+    }
+  ],
+  "numeric_peak_ratios_all_identical": false,
+  "tracked_conversion_records": {
+    "conversion_log": [],
+    "intermediate_xml": [],
+    "converter_revision_or_config": [],
+    "step_validation_inputs": []
+  },
+  "absence_scope": "RECORDED_LOCAL_TRACKED_TREE_ONLY_NOT_GLOBAL_OR_UPSTREAM_ABSENCE",
+  "conversion_pdf": {
+    "file": "flymimic/assets/models/opensim/best_combined_full.pdf",
+    "raw_sha256": "f6b0cca57471401fdad40e46dd4f75250b78a1646135de2a8d9cc1a2748aa05d",
+    "inspection": {
+      "pages": 63,
+      "visual_pages": [
+        1,
+        50,
+        51,
+        52,
+        53
+      ],
+      "text_pages": [
+        1,
+        2,
+        47
+      ],
+      "kinetics_overview_pages": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63
+      ],
+      "title_model": "best_combined_full",
+      "printed_units": {
+        "length": "cm",
+        "force": "N"
+      },
+      "printed_aggregate_errors": {
+        "endpoint_mean": 6.9522,
+        "endpoint_std": 6.9838,
+        "moment_arm_mean": 0.0375,
+        "moment_arm_std": 0.0447,
+        "force_Fmax_mean": 0.1759,
+        "force_Fmax_std": 0.0909
+      },
+      "scope": "PRINTED_SOURCE_REPORT_FACTS_NOT_RECOMPUTED_OR_ADOPTED_AS_ACCEPTANCE",
+      "interpretation": "Four named source force-length plots exist; title/name/plot similarity does not bind the report to locked XML.",
+      "exact_source_xml_hash_or_converter_revision_established": false
+    },
+    "exact_locked_xml_hash_link": false,
+    "establishes_locked_xml_validation": false
+  },
+  "unit_ledger": {
+    "opensim_declared_length": "m",
+    "opensim_declared_force": "N",
+    "opensim_gravity": [
+      0.0,
+      -9806.65,
+      0.0
+    ],
+    "source_mjcf_gravity": "0 0 -9801",
+    "target_clock_seconds": 1.0,
+    "resolved_source_length_SI": null,
+    "resolved_source_mass_SI": null,
+    "resolved_source_time_SI": null,
+    "resolved_target_length_SI": null,
+    "resolved_target_mass_SI": null,
+    "physical_force_conversion": null,
+    "physical_torque_conversion": null,
+    "source_to_target_moment_arm_conversion": null,
+    "source_to_target_velocity_conversion": null,
+    "rule": "F=M*L/T^2; torque=M*L^2/T^2; inertia=M*L^2; length=L; velocity=L/T",
+    "note": "Declarations preserved literally; scaled gravity needs lineage. No factor inferred from names, force ratios, masses or printed PDF units."
+  },
+  "converter_revision": null,
+  "converter_configuration": null,
+  "post_conversion_edit_history": null,
+  "original_OpenSim_input_to_locked_XML_proven": false,
+  "production_transfer_enabled": false,
+  "next_task": "Predeclare non-actuating native target orientation-registration assay; force scaling remains blocked pending authoritative conversion lineage."
+}

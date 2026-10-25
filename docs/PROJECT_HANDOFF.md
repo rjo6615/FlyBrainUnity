@@ -1,8 +1,8 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-25. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for the LF transfer-prerequisite review: `newBrain` at
-`98fb1f5` (merged PR #276).
+Verified baseline for the LF unit/conversion-lineage audit: `newBrain` at
+`6dcbc4f` (merged PR #277).
 Fetch and inspect current state before starting work.
 
 ## What the user wants
@@ -1200,6 +1200,61 @@ This may justify a modeled transfer without claiming measured biology. Then
 separately predeclare a length/velocity and finite-angle target-registration assay;
 anatomical/neural/raw gates still apply before bounded headless native coupling.
 No new Unity behavior to inspect yet. Report roadmap and Git Bash every update.
+
+## Latest update — unit/conversion lineage audited; force scale unresolved
+
+Fresh6dcbc4f baseline. LF_UNIT_LINEAGE_V1.md fixes read-only audit rules. New
+lf_unit_lineage.py reuses transfer.verify and its original authorities/evaluators;
+no model construction, solve, integration, converter or CNS execution. All prior
+source/physiology/failure locks remain unchanged. No parameters/dependencies changed.
+Snapshot records local rjo6615/FlyMimic HEAD9ea1131626cd76f7203b74076ef8f0e9cab30bef,
+tracked file inventory, raw file hashes, Git blob IDs and introduction commits.
+Two included OpenSim files and locked MJCF/PDF were introduced in
+`97d77223100135cea0e39a8493767255dfc2b65d`; shared provenance, not proven derivation.
+External source clone and untracked registration exports preserved untouched.
+
+Both OpenSim files have the same four selected parameter sets, declare m/N and
+gravity(0,-9806.65,0). Peak forces16.07337443/9.07997319/50.19042056/98.16552432
+versus MJCF28.7481/12.9/10.5807/157.429 give distinct numeric ratios
+1.78855412/1.42070904/.210811144/1.60370966. These are not force-unit conversions.
+Activation constants match numerically100us/400us; this is not biological evidence.
+Do not equate OpenSim fiber/slack lengths to MuJoCo actuator lengthrange or infer
+velocity conversion from different model parameters. Target raw geom masses are
+recorded separately from compiled body masses; no mass-ratio calibration.
+
+Found local63page best_combined_full.pdf. Text inspected1/2/47; rendered overview
+48-63 and full pages1/50-53. Four named force-length plots exist. Printed aggregate
+endpoint/moment-arm/force errors and cm/N labels retained only as source-report
+facts, not recomputed or adopted as acceptance. No exact locked-XML hash binding,
+converter revision/config or post-conversion history established. Tracked-tree
+search found no conversion log, cvt1/2, Step1/2/3 inputs or converter revision/config
+under recorded patterns. Scope is local tracked tree, not global absence. Author's
+linked original-muscle repo inaccessible. Generic MyoConverter docs describe
+independent moment-arm/kinetics optimization; no exact revision can be inferred.
+Source pyproject declares MuJoCo3.3.2/dm_control1.0.30; our validated3.2.7/1.0.27
+environment unchanged. Current source-law checks retain their recorded context.
+
+Audit classification LINEAGE_AUDIT_VERIFIED_CONVERSION_AND_PHYSICAL_SCALE_UNRESOLVED.
+Physical conversions, exact conversion chain and production transfer remain
+null/false. Original raw prerequisites remain false;20/42,newadmissions0.
+50tests passed42.88s (14new +20transfer +16binding). Actual saved reconstruction
+tested with native constructor/forward/step/dynamics, solver and live-audit entry
+points forbidden. Optional source-root raw/XML verification passed. See RESULTS
+for Git Bash replay and final delivery checks. Saved Git Bash verification,
+whitespace and LFS-pointer checks passed. No new Unity behavior.
+
+Immediate next task: PREDECLARE AND IMPLEMENT A NON-ACTUATING NATIVE TARGET
+ORIENTATION-REGISTRATION ASSAY. Reuse the existing15source poses/rotation map and
+native-isolation exact LF identity/resolution authorities. Specify target body
+frames, joint ordering/limits, reference offsets and whole pose set before running;
+compare measured native frames and finite-angle derivatives. Zero applied muscle
+forces, zero integration/CNS, no tuned pose/window/tolerance to pass. Preserve
+failed/inconclusive geometry. It can progress an independent geometry gate without
+claiming physical force scaling, anatomical binding or neural conversion. Do not
+enable moving-fly force transfer or rewrite original raw locks. Authoritative
+converter/unit lineage remains required before choosing a physical force scale.
+Continue roadmap+copy-paste Git Bash every update; current runtime20/42 is not
+overall completion and stable position assistance is not independent neural balance.
 
 ## Completed predecessor task — negative-control design requirements
 

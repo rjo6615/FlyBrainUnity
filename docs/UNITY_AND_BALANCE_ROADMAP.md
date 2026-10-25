@@ -29,7 +29,8 @@ for neural emergence.
 | Native actuator replacement isolation | Selective suppression/preservation passed at the declared fixed inputs, without advancing the fly |
 | Endpoint API | Explicit initial/terminal/interior sampling contract independently verified; no tolerance fitted to old residues |
 | Synthetic coupled validation | V2 passes the declared same-model numerical/ownership checks using explicit endpoint roles; V1 remains **INTEGRITY_FAILURE**, unchanged |
-| Transfer prerequisite inventory | V1 read-only review complete; explicit source parameters identified, unsupported conversions remain null; next is exact source-unit/conversion lineage |
+| Transfer prerequisite inventory | V1 complete; explicit source parameters identified; unsupported conversions remain null |
+| Unit/conversion-lineage audit | V1 complete with unresolved result: OpenSim sources and conversion PDF found, exact conversion chain and physical scale unproven; no force multiplier chosen |
 | Moving-fly muscle transfer | Physical units/geometry/velocity/length, raw prerequisites and anatomical/neural conversion remain unresolved gates |
 | Independent neural balance/walking | Not established |
 
@@ -40,9 +41,10 @@ would inspect the same interface; these engineering updates do not introduce new
 Unity behavior. For a Unity test of the NEW muscle interface, the remaining
 sequence is:
 
-1. The transfer inventory is complete; next audit exact source units and parameter
-   conversion lineage (OpenSim, MyoConverter and post-conversion edits), before
-   choosing a modeled physical conversion. Resolve source-to-body prerequisites:
+1. The transfer inventory and unit-lineage audit are complete; physical scaling
+   remains unresolved pending authoritative conversion records. Next independently
+   test native target orientation registration under a separately declared,
+   non-actuating assay with no integration. Resolve source-to-body prerequisites:
    physical units and registered
    geometry/length/velocity dependence, original raw-source requirements, exact
    anatomical population-to-muscle interpretation and neural-to-activation law.
