@@ -1,8 +1,8 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-25. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for the LF native target-orientation assay: `newBrain` at
-`9553c77` (merged PR #278).
+Verified baseline for the LF route/attachment audit: `newBrain` at
+`4702f8e` (merged PR #279).
 Fetch and inspect current state before starting work.
 
 ## What the user wants
@@ -1303,6 +1303,57 @@ enable moving-fly force coupling. Record a bounded next decision for non-actuati
 length/velocity registration only if supported. Original physical-unit/converter
 lineage, anatomical binding, neural activation and raw scientific gates remain.
 Continue roadmap+Git Bash per update; no new Unity behavior to inspect yet.
+
+## Latest update — four source routes inventoried; target attachments unresolved
+
+Fresh4702f8e baseline. LF_ROUTE_ATTACHMENT_V1 fixes static audit rules; new
+lf_route_attachment.py reuses binding/model-asset inspectors, unit-lineage and
+saved native orientation evaluator. No new native construction/kinematics/forces,
+integration, solver or CNS; orientation campaign not rerun. Existing model/source/
+raw failure/physiology locks unchanged, no dependency or neural parameter change.
+
+Four selected two-site routes give8unique source site definitions, ordered Thorax
+thenLFCoxa, explicit local positions. Source XML defines46worldbody sites total;
+do not count tendon references/default templates as new site definitions. Source
+Coxa compiledbody19 is inherited from locked pose record; source Thorax/site IDs
+not established here remain null. Target Thorax3/Coxa13 are inventory counterparts,
+NOT endpoint ownership/correspondence; all target site IDs/coordinates/transforms,
+correspondence authorities and length/velocity registration remain null.
+
+Target XML0sites/0tendons; accepted compiled native model37sites/0tendons and none
+of8exact source endpoint names. Existing Femur-body-origin sign landmark is not
+a muscle-insertion authority. Active target LFCoxa usesRFCoxa.stl atscale
+1000/-1000/1000, not installed-unusedLFCoxa.stl. Source/active-target Thorax meshes
+have5629/5629facets with unequal ordered vertex data; sourceLF/active-targetRFcoxa
+have2078/3679facets. Raw/ordered-vertex inequality is NOT a homology/shape verdict;
+no alignment fit, nearest-point correspondence or physical scale adopted.
+
+Snapshot/raw mesh summaries and saved audit retain original manifests. Optional
+exact original XML/full71asset manifest check passed. All earlier geometry evidence
+remains accepted within its scope. Audit classification
+ROUTE_AUDIT_VERIFIED_TARGET_ATTACHMENTS_UNRESOLVED. Original raw prerequisitesfalse;
+production20/42,newadmissions0; independent balance/gait not established.
+
+Initial50tests passed49.72s:20newaudit/16binding/14unit-lineage. Counterpart-ID field
+then clarified before final delivery so it cannot be read as attachment ownership;
+development draft retained in local scratch, fresh final review same findings.
+Final50tests passed59.04s; Git Bash saved replay, whitespace and LFS-pointer checks
+passed, commands recorded in RESULTS. Native/solver/live-audit
+entry points forbidden during actual static reconstruction. No new Unity behavior.
+
+Immediate next task: PREDECLARE PAIRED SOURCE ENDPOINT / NATIVE BODY-FRAME
+OBSERVATIONS. Compile locked source only under original XML/assets manifest; resolve
+8source site IDs and owner-body IDs exactly. On the entire existing15pose schedule
+and inherited differences, record source endpoint world positions/body frames,
+independently reconstruct two-point lengths/derivatives versus existing native
+source tendon-length/moment-arm evidence. Record target Thorax/Coxa body/mesh
+frames at mapped poses, WITHOUT target muscle sites or transplanted coordinates.
+Fix complete observations/budgets before execution; no fitting poses/window/
+tolerances, force application, integration or CNS. Preserve null/failed geometry.
+This validates an observer and frame/translation context, not anatomical endpoint
+correspondence, unit scale, neural conversion or admission. Physical-unit/converter
+lineage, anatomical bindings and original raw scientific gates remain unresolved.
+No moving-fly muscle coupling. Continue roadmap and Git Bash every update.
 
 ## Completed predecessor task — negative-control design requirements
 

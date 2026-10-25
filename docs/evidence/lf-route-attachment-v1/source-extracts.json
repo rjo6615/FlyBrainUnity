@@ -1,0 +1,753 @@
+{
+  "schema": "lf-route-attachment-source-extracts-v1",
+  "scope": "STATIC_XML_AND_BINARY_STL_INVENTORY_NO_ALIGNMENT_NO_NATIVE_EXECUTION",
+  "files": {
+    "source_xml": {
+      "location": "FlyMimic",
+      "path": "best_combined_cvt3.xml",
+      "kind": "xml",
+      "raw_sha256": "a72d4a3167a6f6382d31936d32f2481db5895441a0cc2d02cdbd0452a6209a81",
+      "bytes": 50143,
+      "extract": {
+        "raw_sha256": "a72d4a3167a6f6382d31936d32f2481db5895441a0cc2d02cdbd0452a6209a81",
+        "bodies": [
+          {
+            "body": {
+              "name": "Thorax",
+              "pos": "0 0 4",
+              "quat": "1 0.00039815 0 0"
+            },
+            "geom": {
+              "name": "Thorax_geom",
+              "type": "mesh",
+              "rgba": "0.54902 0.392157 0.117647 0.4",
+              "mesh": "Thorax_geom_Thorax"
+            },
+            "mesh": {
+              "name": "Thorax_geom_Thorax",
+              "file": "./meshes/stl/Thorax.stl",
+              "scale": "1000 1000 1000"
+            }
+          },
+          {
+            "body": {
+              "name": "LFCoxa",
+              "pos": "-0.1306 0.1995 -0.2305"
+            },
+            "geom": {
+              "name": "LFCoxa_geom",
+              "type": "mesh",
+              "rgba": "0.670588 0.509804 0.196078 0.4",
+              "mesh": "LFCoxa_geom_LFCoxa"
+            },
+            "mesh": {
+              "name": "LFCoxa_geom_LFCoxa",
+              "file": "./meshes/stl/LFCoxa.stl",
+              "scale": "1000 1000 1000"
+            }
+          }
+        ],
+        "sites": [
+          {
+            "attributes": {
+              "name": "LFC_tergopleural_promotor_a_LFC_Miller28a_p1",
+              "pos": "-0.114654 0.257882 -0.0767316"
+            },
+            "owner_body": "Thorax"
+          },
+          {
+            "attributes": {
+              "name": "LFC_tergopleural_promotor_a_LFC_Miller28a_p296",
+              "pos": "-0.0536972 0.195885 -0.156875"
+            },
+            "owner_body": "Thorax"
+          },
+          {
+            "attributes": {
+              "name": "LFC_tergopleural_promotor_b_LFC_Miller28b_p1",
+              "pos": "-0.0240142 0.173429 0.0948372"
+            },
+            "owner_body": "Thorax"
+          },
+          {
+            "attributes": {
+              "name": "LFC_tergopleural_promotor_b_LFC_Miller28b_p296",
+              "pos": "-0.0488125 0.190386 -0.14598"
+            },
+            "owner_body": "Thorax"
+          },
+          {
+            "attributes": {
+              "name": "LFC_pleural_remotor_and_abductor_LFC_Miller29_p1",
+              "pos": "-0.142657 0.360402 -0.0136161"
+            },
+            "owner_body": "Thorax"
+          },
+          {
+            "attributes": {
+              "name": "LFC_pleural_promotor_LFC_Miller30_p1",
+              "pos": "-0.0711132 0.0949424 -0.189604"
+            },
+            "owner_body": "Thorax"
+          },
+          {
+            "attributes": {
+              "name": "LFC_sternal_anterior_rotator_LFC_Miller31_p1",
+              "pos": "-0.115085 -0.00351255 -0.261577"
+            },
+            "owner_body": "Thorax"
+          },
+          {
+            "attributes": {
+              "name": "LFC_sternal_posterior_rotator_LFC_Miller32_p1",
+              "pos": "-0.19309 0.155095 -0.212373"
+            },
+            "owner_body": "Thorax"
+          },
+          {
+            "attributes": {
+              "name": "LFC_sternal_adductor_LFC_Miller33_p1",
+              "pos": "-0.224526 0.00517388 -0.283581"
+            },
+            "owner_body": "Thorax"
+          },
+          {
+            "attributes": {
+              "name": "LFC_tergopleural_promotor_a_LFC_Miller28a_p396",
+              "pos": "0.0245106 -0.0407481 0.0471896"
+            },
+            "owner_body": "LFCoxa"
+          },
+          {
+            "attributes": {
+              "name": "LFC_tergopleural_promotor_b_LFC_Miller28b_p396",
+              "pos": "0.0143019 -0.0150923 0.00156441"
+            },
+            "owner_body": "LFCoxa"
+          },
+          {
+            "attributes": {
+              "name": "LFC_pleural_remotor_and_abductor_LFC_Miller29_p296",
+              "pos": "-0.0146505 0.0607293 -0.00146763"
+            },
+            "owner_body": "LFCoxa"
+          },
+          {
+            "attributes": {
+              "name": "LFC_pleural_promotor_LFC_Miller30_p296",
+              "pos": "0.0237058 -0.0286361 -0.0128408"
+            },
+            "owner_body": "LFCoxa"
+          },
+          {
+            "attributes": {
+              "name": "LFC_sternal_anterior_rotator_LFC_Miller31_p296",
+              "pos": "-0.000252024 -0.0417953 -0.0781376"
+            },
+            "owner_body": "LFCoxa"
+          },
+          {
+            "attributes": {
+              "name": "LFC_sternal_posterior_rotator_LFC_Miller32_p296",
+              "pos": "-0.0235126 0.0447151 -0.0653978"
+            },
+            "owner_body": "LFCoxa"
+          },
+          {
+            "attributes": {
+              "name": "LFC_sternal_adductor_LFC_Miller33_p296",
+              "pos": "0.0171012 -0.0661154 -0.10726"
+            },
+            "owner_body": "LFCoxa"
+          },
+          {
+            "attributes": {
+              "name": "LFF_trochanter_flexor_b_lff_thco_flexb_p1",
+              "pos": "0.0170207 -0.0595734 -0.149676"
+            },
+            "owner_body": "LFCoxa"
+          },
+          {
+            "attributes": {
+              "name": "LFF_trochanter_flexor_b_lff_thco_flexb_p222",
+              "pos": "0.00538458 -0.000688346 -0.323979"
+            },
+            "owner_body": "LFCoxa"
+          },
+          {
+            "attributes": {
+              "name": "LFF_sterno-tergo-trochanter_extensor_a_lff_thco_stta_p1",
+              "pos": "-0.0259722 0.0507932 -0.138759"
+            },
+            "owner_body": "LFCoxa"
+          },
+          {
+            "attributes": {
+              "name": "LFF_sterno-tergo-trochanter_extensor_a_lff_thco_stta_p222",
+              "pos": "-0.0352248 0.0126312 -0.373938"
+            },
+            "owner_body": "LFCoxa"
+          },
+          {
+            "attributes": {
+              "name": "LFF_sterno-tergo-trochanter_extensor_b_LFF_sterno-tergo-trochanter_extensor_b_p1",
+              "pos": "-0.0208632 -0.0709668 -0.178621"
+            },
+            "owner_body": "LFCoxa"
+          },
+          {
+            "attributes": {
+              "name": "LFF_sterno-tergo-trochanter_extensor_b_LFF_sterno-tergo-trochanter_extensor_b_p222",
+              "pos": "-0.0389383 -0.00938934 -0.362884"
+            },
+            "owner_body": "LFCoxa"
+          },
+          {
+            "attributes": {
+              "name": "LFF_accesory_trochanter_flexor_LFF_roll_f_p1",
+              "pos": "-0.0193081 0.0479785 -0.207105"
+            },
+            "owner_body": "LFCoxa"
+          },
+          {
+            "attributes": {
+              "name": "LFF_trochanter_extensor_LFF_roll_e_p1",
+              "pos": "-0.0381487 0.0404632 -0.339836"
+            },
+            "owner_body": "LFCoxa"
+          },
+          {
+            "attributes": {
+              "name": "LFF_trochanter_flexor_a_LFF_flexa_p1",
+              "pos": "0.0311254 0.014358 -0.0559144"
+            },
+            "owner_body": "LFCoxa"
+          },
+          {
+            "attributes": {
+              "name": "m_coxa_marker",
+              "pos": "0 0 0",
+              "size": "0.01",
+              "group": "4",
+              "rgba": "1 0.1 0.5 0.5"
+            },
+            "owner_body": "LFCoxa"
+          },
+          {
+            "attributes": {
+              "name": "LFF_trochanter_flexor_b_lff_thco_flexb_p322",
+              "pos": "-0.0170405 -0.00472335 -0.0228887"
+            },
+            "owner_body": "LFTrochanter"
+          },
+          {
+            "attributes": {
+              "name": "LFF_sterno-tergo-trochanter_extensor_a_lff_thco_stta_p322",
+              "pos": "0.0222687 -0.00812877 0.0211095"
+            },
+            "owner_body": "LFTrochanter"
+          },
+          {
+            "attributes": {
+              "name": "LFF_sterno-tergo-trochanter_extensor_b_LFF_sterno-tergo-trochanter_extensor_b_p322",
+              "pos": "0.00657561 -0.0279958 0.0341395"
+            },
+            "owner_body": "LFTrochanter"
+          },
+          {
+            "attributes": {
+              "name": "LFF_accesory_trochanter_flexor_LFF_roll_f_p222",
+              "pos": "-0.00549219 -0.0199954 -0.0253338"
+            },
+            "owner_body": "LFTrochanter"
+          },
+          {
+            "attributes": {
+              "name": "LFF_trochanter_extensor_LFF_roll_e_p222",
+              "pos": "0.0102047 0.013626 0.00768368"
+            },
+            "owner_body": "LFTrochanter"
+          },
+          {
+            "attributes": {
+              "name": "LFF_trochanter_flexor_a_LFF_flexa_p222",
+              "pos": "-0.0121828 -0.0117695 -0.0403746"
+            },
+            "owner_body": "LFTrochanter"
+          },
+          {
+            "attributes": {
+              "name": "m_trochanter_marker",
+              "pos": "0 0 0",
+              "size": "0.01",
+              "group": "4",
+              "rgba": "1 0.1 0.5 0.5"
+            },
+            "owner_body": "LFTrochanter"
+          },
+          {
+            "attributes": {
+              "name": "LFTibia_flex_93434_bifemlh_r-P1",
+              "pos": "-0.0415201 0.0475376 -0.0877767"
+            },
+            "owner_body": "LFFemur"
+          },
+          {
+            "attributes": {
+              "name": "LFTibia_flex_93434_bifemlh_r-P2",
+              "pos": "-0.0151968 0.110902 -0.546627"
+            },
+            "owner_body": "LFFemur"
+          },
+          {
+            "attributes": {
+              "name": "LFTibia_extensor_93932_bifemlh_r-P1",
+              "pos": "0.0276828 0.0384591 -0.0895311"
+            },
+            "owner_body": "LFFemur"
+          },
+          {
+            "attributes": {
+              "name": "LFTibia_extensor_93932_bifemlh_r-P2",
+              "pos": "0.0267536 0.105256 -0.597078"
+            },
+            "owner_body": "LFFemur"
+          },
+          {
+            "attributes": {
+              "name": "m_femur_marker",
+              "pos": "0 0 0",
+              "size": "0.01",
+              "group": "4",
+              "rgba": "1 0.1 0.5 0.5"
+            },
+            "owner_body": "LFFemur"
+          },
+          {
+            "attributes": {
+              "name": "LFTibia_flex_93434_pp21995",
+              "pos": "-0.0108694 0.0114727 -0.0107331"
+            },
+            "owner_body": "LFTibia"
+          },
+          {
+            "attributes": {
+              "name": "LFTibia_extensor_93932_pp21995",
+              "pos": "0.035 0.002 0.000927515"
+            },
+            "owner_body": "LFTibia"
+          },
+          {
+            "attributes": {
+              "name": "m_tibia_marker",
+              "pos": "0 0 0",
+              "size": "0.01",
+              "group": "4",
+              "rgba": "1 0.1 0.5 0.5"
+            },
+            "owner_body": "LFTibia"
+          },
+          {
+            "attributes": {
+              "name": "m_tarsus1_marker",
+              "pos": "0 0 0",
+              "size": "0.01",
+              "group": "4",
+              "rgba": "1 0.1 0.5 0.5"
+            },
+            "owner_body": "LFTarsus1"
+          },
+          {
+            "attributes": {
+              "name": "m_tarsus2_marker",
+              "pos": "0 0 0",
+              "size": "0.01",
+              "group": "4",
+              "rgba": "1 0.1 0.5 0.5"
+            },
+            "owner_body": "LFTarsus2"
+          },
+          {
+            "attributes": {
+              "name": "m_tarsus3_marker",
+              "pos": "0 0 0",
+              "size": "0.01",
+              "group": "4",
+              "rgba": "1 0.1 0.5 0.5"
+            },
+            "owner_body": "LFTarsus3"
+          },
+          {
+            "attributes": {
+              "name": "m_tarsus4_marker",
+              "pos": "0 0 0",
+              "size": "0.01",
+              "group": "4",
+              "rgba": "1 0.1 0.5 0.5"
+            },
+            "owner_body": "LFTarsus4"
+          },
+          {
+            "attributes": {
+              "name": "m_tarsus5_marker",
+              "pos": "0 0 0",
+              "size": "0.01",
+              "group": "4",
+              "rgba": "1 0.1 0.5 0.5"
+            },
+            "owner_body": "LFTarsus5"
+          }
+        ],
+        "tendon_count": 15,
+        "routes": [
+          {
+            "tendon": "LFC_pleural_remotor_and_abductor_tendon",
+            "actuator_attributes": {
+              "name": "LFC_pleural_remotor_and_abductor",
+              "class": "muscle",
+              "tendon": "LFC_pleural_remotor_and_abductor_tendon",
+              "ctrlrange": "0.0001 1",
+              "lengthrange": "0.216122 0.299608",
+              "dynprm": "0.0001 0.0004 0 0 0 0 0 0 0 0",
+              "gainprm": "0.743435 1.72008 28.7481 1 0 2 10 0.353216 1.4 0",
+              "biasprm": "0.743435 1.72008 28.7481 1 0 2 10 0.353216 1.4 0"
+            },
+            "sites": [
+              {
+                "attributes": {
+                  "name": "LFC_pleural_remotor_and_abductor_LFC_Miller29_p1",
+                  "pos": "-0.142657 0.360402 -0.0136161"
+                },
+                "owner_body": "Thorax",
+                "local_position": [
+                  -0.142657,
+                  0.360402,
+                  -0.0136161
+                ],
+                "compiled_site_id": null
+              },
+              {
+                "attributes": {
+                  "name": "LFC_pleural_remotor_and_abductor_LFC_Miller29_p296",
+                  "pos": "-0.0146505 0.0607293 -0.00146763"
+                },
+                "owner_body": "LFCoxa",
+                "local_position": [
+                  -0.0146505,
+                  0.0607293,
+                  -0.00146763
+                ],
+                "compiled_site_id": null
+              }
+            ]
+          },
+          {
+            "tendon": "LFC_sternal_adductor_tendon",
+            "actuator_attributes": {
+              "name": "LFC_sternal_adductor",
+              "class": "muscle",
+              "tendon": "LFC_sternal_adductor_tendon",
+              "ctrlrange": "0.0001 1",
+              "lengthrange": "0.0972302 0.259683",
+              "dynprm": "0.0001 0.0004 0 0 0 0 0 0 0 0",
+              "gainprm": "0.244283 1.48664 12.9 1 0 2 10 0.446817 1.4 0",
+              "biasprm": "0.244283 1.48664 12.9 1 0 2 10 0.446817 1.4 0"
+            },
+            "sites": [
+              {
+                "attributes": {
+                  "name": "LFC_sternal_adductor_LFC_Miller33_p1",
+                  "pos": "-0.224526 0.00517388 -0.283581"
+                },
+                "owner_body": "Thorax",
+                "local_position": [
+                  -0.224526,
+                  0.00517388,
+                  -0.283581
+                ],
+                "compiled_site_id": null
+              },
+              {
+                "attributes": {
+                  "name": "LFC_sternal_adductor_LFC_Miller33_p296",
+                  "pos": "0.0171012 -0.0661154 -0.10726"
+                },
+                "owner_body": "LFCoxa",
+                "local_position": [
+                  0.0171012,
+                  -0.0661154,
+                  -0.10726
+                ],
+                "compiled_site_id": null
+              }
+            ]
+          },
+          {
+            "tendon": "LFC_sternal_anterior_rotator_tendon",
+            "actuator_attributes": {
+              "name": "LFC_sternal_anterior_rotator",
+              "class": "muscle",
+              "tendon": "LFC_sternal_anterior_rotator_tendon",
+              "ctrlrange": "0.0001 1",
+              "lengthrange": "0.126048 0.202925",
+              "dynprm": "0.0001 0.0004 0 0 0 0 0 0 0 0",
+              "gainprm": "0.185296 1.73386 10.5807 1 0 2 10 3.11328 1.4 0",
+              "biasprm": "0.185296 1.73386 10.5807 1 0 2 10 3.11328 1.4 0"
+            },
+            "sites": [
+              {
+                "attributes": {
+                  "name": "LFC_sternal_anterior_rotator_LFC_Miller31_p1",
+                  "pos": "-0.115085 -0.00351255 -0.261577"
+                },
+                "owner_body": "Thorax",
+                "local_position": [
+                  -0.115085,
+                  -0.00351255,
+                  -0.261577
+                ],
+                "compiled_site_id": null
+              },
+              {
+                "attributes": {
+                  "name": "LFC_sternal_anterior_rotator_LFC_Miller31_p296",
+                  "pos": "-0.000252024 -0.0417953 -0.0781376"
+                },
+                "owner_body": "LFCoxa",
+                "local_position": [
+                  -0.000252024,
+                  -0.0417953,
+                  -0.0781376
+                ],
+                "compiled_site_id": null
+              }
+            ]
+          },
+          {
+            "tendon": "LFC_sternal_posterior_rotator_tendon",
+            "actuator_attributes": {
+              "name": "LFC_sternal_posterior_rotator",
+              "class": "muscle",
+              "tendon": "LFC_sternal_posterior_rotator_tendon",
+              "ctrlrange": "0.0001 1",
+              "lengthrange": "0.0715242 0.147229",
+              "dynprm": "0.0001 0.0004 0 0 0 0 0 0 0 0",
+              "gainprm": "0.610817 1.40821 157.429 1 0 2 10 0.0752654 1.4 0",
+              "biasprm": "0.610817 1.40821 157.429 1 0 2 10 0.0752654 1.4 0"
+            },
+            "sites": [
+              {
+                "attributes": {
+                  "name": "LFC_sternal_posterior_rotator_LFC_Miller32_p1",
+                  "pos": "-0.19309 0.155095 -0.212373"
+                },
+                "owner_body": "Thorax",
+                "local_position": [
+                  -0.19309,
+                  0.155095,
+                  -0.212373
+                ],
+                "compiled_site_id": null
+              },
+              {
+                "attributes": {
+                  "name": "LFC_sternal_posterior_rotator_LFC_Miller32_p296",
+                  "pos": "-0.0235126 0.0447151 -0.0653978"
+                },
+                "owner_body": "LFCoxa",
+                "local_position": [
+                  -0.0235126,
+                  0.0447151,
+                  -0.0653978
+                ],
+                "compiled_site_id": null
+              }
+            ]
+          }
+        ],
+        "scope": "XML_DEFINITION_OWNERSHIP_NOT_COMPILED_INDEX_OR_ANATOMICAL_FUNCTION"
+      }
+    },
+    "source_thorax": {
+      "location": "FlyMimic",
+      "path": "meshes/stl/Thorax.stl",
+      "kind": "mesh",
+      "raw_sha256": "61a091c49c87895f735fb63e42898128888a6f53ee60900bbf61f92edf5e42e6",
+      "bytes": 281534,
+      "extract": {
+        "triangles": 5629,
+        "ordered_vertices_sha256": "874809018cbb56211ba709bef13b3b6e7e2d3ada7fc4951d057f1ac4b1594b14",
+        "minimum": [
+          -0.0010289106285199523,
+          -0.00046949501847848296,
+          -0.000634848780464381
+        ],
+        "maximum": [
+          4.026740134577267e-05,
+          0.00048214319394901395,
+          0.00045018308446742594
+        ],
+        "scope": "ORDERED_NUMERIC_VERTICES_NOT_SHAPE_HOMOLOGY_OR_PHYSICAL_UNITS"
+      }
+    },
+    "source_coxa": {
+      "location": "FlyMimic",
+      "path": "meshes/stl/LFCoxa.stl",
+      "kind": "mesh",
+      "raw_sha256": "9195e39b45975b58a631a281e53c3b8a6b3f0d8ee8dee09be7aad3342e7aa3bb",
+      "bytes": 103984,
+      "extract": {
+        "triangles": 2078,
+        "ordered_vertices_sha256": "289d7c2f2c7d98cc323327fc61015bd8627ac249c77c1151c91d96e988e0137e",
+        "minimum": [
+          -7.141159585444257e-05,
+          -8.567621989641339e-05,
+          -0.0004399096651468426
+        ],
+        "maximum": [
+          8.05309900897555e-05,
+          6.30207359790802e-05,
+          9.904725629894529e-06
+        ],
+        "scope": "ORDERED_NUMERIC_VERTICES_NOT_SHAPE_HOMOLOGY_OR_PHYSICAL_UNITS"
+      }
+    },
+    "target_xml": {
+      "location": "validated_environment",
+      "path": "flygym/data/mjcf/neuromechfly_seqik_kinorder_ypr.xml",
+      "kind": "xml",
+      "raw_sha256": "413b3a1dcb7537d08122e16f256f27ec0d8bb9f52c58670345b6c24c9e72e05a",
+      "bytes": 47382,
+      "extract": {
+        "raw_sha256": "413b3a1dcb7537d08122e16f256f27ec0d8bb9f52c58670345b6c24c9e72e05a",
+        "bodies": [
+          {
+            "body": {
+              "name": "Thorax",
+              "pos": "0.4956452548503876 0.0 1.2966440916061401",
+              "quat": "1 0 0 0"
+            },
+            "geom": {
+              "name": "Thorax",
+              "class": "nmf",
+              "type": "mesh",
+              "contype": "0",
+              "conaffinity": "0",
+              "group": "1",
+              "pos": "0 0 0",
+              "quat": "1 0 0 0",
+              "mesh": "mesh_Thorax",
+              "mass": "0.0003071677023684708"
+            },
+            "mesh": {
+              "name": "mesh_Thorax",
+              "class": "nmf",
+              "file": "../mesh/Thorax.stl",
+              "scale": "1000 1000 1000"
+            }
+          },
+          {
+            "body": {
+              "name": "LFCoxa",
+              "pos": "-0.16059550642967224 0.1715880036354065 -0.23021531105041504",
+              "quat": "1 0 0 0"
+            },
+            "geom": {
+              "name": "LFCoxa",
+              "class": "nmf",
+              "type": "mesh",
+              "contype": "0",
+              "conaffinity": "0",
+              "condim": "3",
+              "group": "2",
+              "friction": "1 0 0",
+              "solref": "-1000000 -10000",
+              "margin": "0.0",
+              "pos": "0 0 0",
+              "quat": "1 0 0 0",
+              "mesh": "mesh_LFCoxa",
+              "fluidcoef": "0 0 0 0 0",
+              "mass": "4.522004066249335e-06"
+            },
+            "mesh": {
+              "name": "mesh_LFCoxa",
+              "class": "nmf",
+              "file": "../mesh/RFCoxa.stl",
+              "scale": "1000 -1000 1000"
+            }
+          }
+        ],
+        "sites": [],
+        "tendon_count": 0,
+        "routes": [],
+        "scope": "XML_DEFINITION_OWNERSHIP_NOT_COMPILED_INDEX_OR_ANATOMICAL_FUNCTION"
+      }
+    },
+    "target_thorax": {
+      "location": "validated_environment",
+      "path": "flygym/data/mesh/Thorax.stl",
+      "kind": "mesh",
+      "raw_sha256": "0ac93168a38e8feb80f544ee25c2c03272072f00048f041b77966ad450fb0fc9",
+      "bytes": 281534,
+      "extract": {
+        "triangles": 5629,
+        "ordered_vertices_sha256": "f111fd0261b8bdb86914bab566cdcd00aa17932f65221f8218c00b3ba542102c",
+        "minimum": [
+          -0.0010249079205095768,
+          -0.0004677488759625703,
+          -0.0006372668431140482
+        ],
+        "maximum": [
+          4.317010461818427e-05,
+          0.0004838948370888829,
+          0.00044547009747475386
+        ],
+        "scope": "ORDERED_NUMERIC_VERTICES_NOT_SHAPE_HOMOLOGY_OR_PHYSICAL_UNITS"
+      }
+    },
+    "target_active_coxa": {
+      "location": "validated_environment",
+      "path": "flygym/data/mesh/RFCoxa.stl",
+      "kind": "mesh",
+      "raw_sha256": "fb8aecfd0cf4ea7bbe4e7bb0512fb984eaaf5ec09b92a457200c14bec4121d5e",
+      "bytes": 184034,
+      "extract": {
+        "triangles": 3679,
+        "ordered_vertices_sha256": "9419743ea2b7e6ae0190115b2b869134dcecdf33f8976de90130afde305f76fc",
+        "minimum": [
+          -6.765920988982543e-05,
+          -6.789102189941332e-05,
+          -0.0004272801452316344
+        ],
+        "maximum": [
+          8.407361019635573e-05,
+          0.00010563309479039162,
+          3.363884752616286e-05
+        ],
+        "scope": "ORDERED_NUMERIC_VERTICES_NOT_SHAPE_HOMOLOGY_OR_PHYSICAL_UNITS"
+      }
+    },
+    "target_unused_left_coxa": {
+      "location": "validated_environment",
+      "path": "flygym/data/mesh/LFCoxa.stl",
+      "kind": "mesh",
+      "raw_sha256": "ab910d0111cf8fecc6dc11268b4e21c91c58440ef7ae55e432cfc12400e181e6",
+      "bytes": 184034,
+      "extract": {
+        "triangles": 3679,
+        "ordered_vertices_sha256": "1e7465add78954811bb07255bf55fa6c43b70f34bbbaf7c9df65eec1ff944db5",
+        "minimum": [
+          -6.27068875473924e-05,
+          -8.881061512511224e-05,
+          -0.000427094055339694
+        ],
+        "maximum": [
+          8.902601985028014e-05,
+          8.365952817257494e-05,
+          3.298322553746402e-05
+        ],
+        "scope": "ORDERED_NUMERIC_VERTICES_NOT_SHAPE_HOMOLOGY_OR_PHYSICAL_UNITS"
+      }
+    }
+  }
+}
