@@ -1,0 +1,308 @@
+{
+  "schema": "lf-route-attachment-v1",
+  "classification": "ROUTE_AUDIT_VERIFIED_TARGET_ATTACHMENTS_UNRESOLVED",
+  "source_hashes": {
+    "docs/evidence/lf-route-attachment-v1/source-extracts.json": "2c2a30ec54b1cc374eeb301e1cf87305799a07fc0fb936b9a0a3e7c95c3685f4",
+    "docs/LF_ROUTE_ATTACHMENT_V1.md": "78f07ea6ece79233e4fa3c6245cd77f35dfc69d9d6bd18682480f6e0252142b9",
+    "malecns_backend/embodiment/lf_route_attachment.py": "5fd879c793449423f79b23f01b58d069511829608ecec96b37884dd70b4956e0",
+    "malecns_backend/embodiment/coxa_yaw_anatomical_sign_bridge.py": "af040e56cada41163ab7df51473403306f96b72564dbd35cf827e5c52a71299f",
+    "malecns_backend/embodiment/interface_output/coxa_yaw_anatomical_sign_bridge/coxa_yaw_anatomical_sign_bridge_preregistration.json": "90fff49d72547ae65c4f7af380a3c0eed2ef3a8bc102b81098ae594f033f13f3",
+    "docs/evidence/lf-target-orientation-v1/run/validation.json": "5daa911adc01cc42e4f40576a47ff87024497ec23309e3a01645b66815db27c9"
+  },
+  "current_motor_count": 20,
+  "model_coordinates": 42,
+  "new_admissions": 0,
+  "physics_transitions": 0,
+  "cns_transitions": 0,
+  "production_transfer_enabled": false,
+  "current_original_raw_freezes_satisfied": false,
+  "source_model_scope": "XML_DEFINITION_OWNERSHIP_NOT_COMPILED_INDEX_OR_ANATOMICAL_FUNCTION",
+  "source_route_count": 4,
+  "endpoints": [
+    {
+      "tendon": "LFC_pleural_remotor_and_abductor_tendon",
+      "route_order": 0,
+      "source_site": {
+        "attributes": {
+          "name": "LFC_pleural_remotor_and_abductor_LFC_Miller29_p1",
+          "pos": "-0.142657 0.360402 -0.0136161"
+        },
+        "owner_body": "Thorax",
+        "local_position": [
+          -0.142657,
+          0.360402,
+          -0.0136161
+        ],
+        "compiled_site_id": null
+      },
+      "source_compiled_owner_id_from_prior_pose_record": null,
+      "target_body_counterpart_inventory_id": 3,
+      "target_site_id": null,
+      "target_local_position": null,
+      "correspondence_authority": null,
+      "attachment_transform": null,
+      "length_velocity_registration": null,
+      "same_name_body_is_endpoint_correspondence": false
+    },
+    {
+      "tendon": "LFC_pleural_remotor_and_abductor_tendon",
+      "route_order": 1,
+      "source_site": {
+        "attributes": {
+          "name": "LFC_pleural_remotor_and_abductor_LFC_Miller29_p296",
+          "pos": "-0.0146505 0.0607293 -0.00146763"
+        },
+        "owner_body": "LFCoxa",
+        "local_position": [
+          -0.0146505,
+          0.0607293,
+          -0.00146763
+        ],
+        "compiled_site_id": null
+      },
+      "source_compiled_owner_id_from_prior_pose_record": 19,
+      "target_body_counterpart_inventory_id": 13,
+      "target_site_id": null,
+      "target_local_position": null,
+      "correspondence_authority": null,
+      "attachment_transform": null,
+      "length_velocity_registration": null,
+      "same_name_body_is_endpoint_correspondence": false
+    },
+    {
+      "tendon": "LFC_sternal_adductor_tendon",
+      "route_order": 0,
+      "source_site": {
+        "attributes": {
+          "name": "LFC_sternal_adductor_LFC_Miller33_p1",
+          "pos": "-0.224526 0.00517388 -0.283581"
+        },
+        "owner_body": "Thorax",
+        "local_position": [
+          -0.224526,
+          0.00517388,
+          -0.283581
+        ],
+        "compiled_site_id": null
+      },
+      "source_compiled_owner_id_from_prior_pose_record": null,
+      "target_body_counterpart_inventory_id": 3,
+      "target_site_id": null,
+      "target_local_position": null,
+      "correspondence_authority": null,
+      "attachment_transform": null,
+      "length_velocity_registration": null,
+      "same_name_body_is_endpoint_correspondence": false
+    },
+    {
+      "tendon": "LFC_sternal_adductor_tendon",
+      "route_order": 1,
+      "source_site": {
+        "attributes": {
+          "name": "LFC_sternal_adductor_LFC_Miller33_p296",
+          "pos": "0.0171012 -0.0661154 -0.10726"
+        },
+        "owner_body": "LFCoxa",
+        "local_position": [
+          0.0171012,
+          -0.0661154,
+          -0.10726
+        ],
+        "compiled_site_id": null
+      },
+      "source_compiled_owner_id_from_prior_pose_record": 19,
+      "target_body_counterpart_inventory_id": 13,
+      "target_site_id": null,
+      "target_local_position": null,
+      "correspondence_authority": null,
+      "attachment_transform": null,
+      "length_velocity_registration": null,
+      "same_name_body_is_endpoint_correspondence": false
+    },
+    {
+      "tendon": "LFC_sternal_anterior_rotator_tendon",
+      "route_order": 0,
+      "source_site": {
+        "attributes": {
+          "name": "LFC_sternal_anterior_rotator_LFC_Miller31_p1",
+          "pos": "-0.115085 -0.00351255 -0.261577"
+        },
+        "owner_body": "Thorax",
+        "local_position": [
+          -0.115085,
+          -0.00351255,
+          -0.261577
+        ],
+        "compiled_site_id": null
+      },
+      "source_compiled_owner_id_from_prior_pose_record": null,
+      "target_body_counterpart_inventory_id": 3,
+      "target_site_id": null,
+      "target_local_position": null,
+      "correspondence_authority": null,
+      "attachment_transform": null,
+      "length_velocity_registration": null,
+      "same_name_body_is_endpoint_correspondence": false
+    },
+    {
+      "tendon": "LFC_sternal_anterior_rotator_tendon",
+      "route_order": 1,
+      "source_site": {
+        "attributes": {
+          "name": "LFC_sternal_anterior_rotator_LFC_Miller31_p296",
+          "pos": "-0.000252024 -0.0417953 -0.0781376"
+        },
+        "owner_body": "LFCoxa",
+        "local_position": [
+          -0.000252024,
+          -0.0417953,
+          -0.0781376
+        ],
+        "compiled_site_id": null
+      },
+      "source_compiled_owner_id_from_prior_pose_record": 19,
+      "target_body_counterpart_inventory_id": 13,
+      "target_site_id": null,
+      "target_local_position": null,
+      "correspondence_authority": null,
+      "attachment_transform": null,
+      "length_velocity_registration": null,
+      "same_name_body_is_endpoint_correspondence": false
+    },
+    {
+      "tendon": "LFC_sternal_posterior_rotator_tendon",
+      "route_order": 0,
+      "source_site": {
+        "attributes": {
+          "name": "LFC_sternal_posterior_rotator_LFC_Miller32_p1",
+          "pos": "-0.19309 0.155095 -0.212373"
+        },
+        "owner_body": "Thorax",
+        "local_position": [
+          -0.19309,
+          0.155095,
+          -0.212373
+        ],
+        "compiled_site_id": null
+      },
+      "source_compiled_owner_id_from_prior_pose_record": null,
+      "target_body_counterpart_inventory_id": 3,
+      "target_site_id": null,
+      "target_local_position": null,
+      "correspondence_authority": null,
+      "attachment_transform": null,
+      "length_velocity_registration": null,
+      "same_name_body_is_endpoint_correspondence": false
+    },
+    {
+      "tendon": "LFC_sternal_posterior_rotator_tendon",
+      "route_order": 1,
+      "source_site": {
+        "attributes": {
+          "name": "LFC_sternal_posterior_rotator_LFC_Miller32_p296",
+          "pos": "-0.0235126 0.0447151 -0.0653978"
+        },
+        "owner_body": "LFCoxa",
+        "local_position": [
+          -0.0235126,
+          0.0447151,
+          -0.0653978
+        ],
+        "compiled_site_id": null
+      },
+      "source_compiled_owner_id_from_prior_pose_record": 19,
+      "target_body_counterpart_inventory_id": 13,
+      "target_site_id": null,
+      "target_local_position": null,
+      "correspondence_authority": null,
+      "attachment_transform": null,
+      "length_velocity_registration": null,
+      "same_name_body_is_endpoint_correspondence": false
+    }
+  ],
+  "target_xml_site_count": 0,
+  "target_xml_tendon_count": 0,
+  "target_compiled_tendon_count": 0,
+  "target_compiled_site_names": [
+    "unnamed_site_0",
+    "LFTibia_site",
+    "LFTarsus1_site",
+    "LFTarsus2_site",
+    "LFTarsus3_site",
+    "LFTarsus4_site",
+    "LFTarsus5_site",
+    "LHTibia_site",
+    "LHTarsus1_site",
+    "LHTarsus2_site",
+    "LHTarsus3_site",
+    "LHTarsus4_site",
+    "LHTarsus5_site",
+    "LMTibia_site",
+    "LMTarsus1_site",
+    "LMTarsus2_site",
+    "LMTarsus3_site",
+    "LMTarsus4_site",
+    "LMTarsus5_site",
+    "RHTibia_site",
+    "RHTarsus1_site",
+    "RHTarsus2_site",
+    "RHTarsus3_site",
+    "RHTarsus4_site",
+    "RHTarsus5_site",
+    "RMTibia_site",
+    "RMTarsus1_site",
+    "RMTarsus2_site",
+    "RMTarsus3_site",
+    "RMTarsus4_site",
+    "RMTarsus5_site",
+    "RFTibia_site",
+    "RFTarsus1_site",
+    "RFTarsus2_site",
+    "RFTarsus3_site",
+    "RFTarsus4_site",
+    "RFTarsus5_site"
+  ],
+  "exact_source_site_names_found_in_compiled_target": [],
+  "mesh_comparisons": [
+    {
+      "body": "Thorax",
+      "source_mesh": "meshes/stl/Thorax.stl",
+      "target_active_mesh": "flygym/data/mesh/Thorax.stl",
+      "source_scale": "1000 1000 1000",
+      "target_scale": "1000 1000 1000",
+      "raw_bytes_identical": false,
+      "ordered_vertices_identical": false,
+      "source_facets": 5629,
+      "target_facets": 5629,
+      "anatomical_homology": null,
+      "point_correspondence": null,
+      "interpretation": "ASSET_IDENTITY_COMPARISON_NOT_ANATOMICAL_NONHOMOLOGY_OR_ALIGNMENT_TEST"
+    },
+    {
+      "body": "LFCoxa",
+      "source_mesh": "meshes/stl/LFCoxa.stl",
+      "target_active_mesh": "flygym/data/mesh/RFCoxa.stl",
+      "source_scale": "1000 1000 1000",
+      "target_scale": "1000 -1000 1000",
+      "raw_bytes_identical": false,
+      "ordered_vertices_identical": false,
+      "source_facets": 2078,
+      "target_facets": 3679,
+      "anatomical_homology": null,
+      "point_correspondence": null,
+      "interpretation": "ASSET_IDENTITY_COMPARISON_NOT_ANATOMICAL_NONHOMOLOGY_OR_ALIGNMENT_TEST"
+    }
+  ],
+  "landmark_authority": {
+    "anterior_axis": "Thorax local +X transformed to world by baseline Thorax xmat",
+    "formula": "dot(landmark_perturbed_world - landmark_baseline_world, anterior_axis_world)",
+    "frame": "compiled Thorax body frame at the fresh neutral baseline",
+    "landmark": "origin of the named Femur body (the coxa distal child landmark)",
+    "selection_policy": "The same proximal distal-coxa landmark and projection formula are fixed for all six legs before perturbation; no alternative landmark or axis may be selected from results."
+  },
+  "landmark_scope": "FEMUR_BODY_ORIGIN_SIGN_METRIC_NOT_A_MUSCLE_ATTACHMENT_AUTHORITY",
+  "physical_force_conversion": null,
+  "length_scale_conversion": null,
+  "velocity_conversion": null,
+  "next_task": "Predeclare paired source endpoint/native body-frame observations; verify source two-point lengths and derivatives without assigning target muscle sites."
+}
