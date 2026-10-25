@@ -92,3 +92,12 @@ model properties, not biological calibration. Failed v1 sparse-format interpreta
 is preserved. No finite-angle anatomical FlyGym registration or cross-body force
 scale is established; no production change or new admission. Next validate activation
 transients/baseline semantics and establish physical/units transfer before coupling.
+
+Source activation-transient v1 completed nine fixed-length cases; see
+LF_ACTIVATION_TRANSIENT_RESULTS.md. Implementation integrity passes, but pulse
+activation fails full-window numerical acceptance at all three predeclared Euler
+grids (100/50/25us). The100us pulse overshoots activation to1.9993; finer grids
+remain inaccurate despite bounded states. Baseline and passive preload are retained,
+not zeroed to obtain a pass. No timestep is selected and production remains20/42.
+Next separately validate reference-faithful activation integration with unchanged
+law/parameters, then resolve force-unit/geometry and application prerequisites.
