@@ -53,3 +53,12 @@ target mappings. No remaining channel was admitted. Next work is the independent
 reference-backed LF proximal population activation/sign and multi-axis binding
 prerequisites in `LF_PROXIMAL_ADMISSION_PREREQUISITES_V1.md`. Existing local
 geometry and older neural recruitment nulls do not by themselves justify admission.
+
+The LF reference-binding review is now complete; see
+`LF_PROXIMAL_BINDING_RESULTS.md`. Exact original FlyMimic source confirms seven
+muscle-actuator/tendon contracts. Conditional tensile torque is T*R for the frozen
+R=-dL/dq convention. This resolves a reference force convention, not the absent
+neuron-to-muscle or force-to-position decoder transfer. All three broad-promotor
+hypotheses and all per-neuron unassigned bindings remain explicit. Current admission
+stays 20/42. Next obtain an independent neuron-to-muscle crosswalk and specify the
+intended force versus engineered position interface before numerical validation.

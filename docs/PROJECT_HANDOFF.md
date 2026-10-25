@@ -1,8 +1,8 @@
 # FlyBrainUnity — local Codex handoff
 
-Checkpoint: 2026-10-24. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for the remaining-admission audit update: `newBrain` at
-`d747f8007959b961e648d9cc92afd50ea4a9e587`, which merges PR #264.
+Checkpoint: 2026-10-25. Repository: `rjo6615/FlyBrainUnity`.
+Verified baseline for the LF reference-binding update: `newBrain` at
+`e5964d07b18f7d6f1815a8bb5506be65e31f0fd5`, which merges PR #265.
 Fetch and inspect current state before starting work.
 
 ## What the user wants
@@ -498,6 +498,49 @@ neurotransmitter alone or geometric dominance. Only after independent reference 
 numeric/application gates are specified, create a separate bounded validation
 protocol in the current context. Never tune neural parameters to obtain activity,
 reinterpret frozen yaw nulls, mirror front tarsi or flip current admission flags.
+
+## Latest update — LF proximal muscle-reference semantics reviewed
+
+Protocol/code/tests committed at aeb4824 before generating
+`docs/evidence/lf-proximal-binding-review-v1/review.json`. Static XML inspection
+verifies the original local FlyMimic source-model raw hash against the frozen
+registration (a72d4a31...). All seven LF tendon actuators have the recorded muscle
+activation/gain/bias semantics and unit gear. No XML compilation, mesh loading,
+physics/CNS transitions, force application, dependencies or current decoder change.
+
+Reference R=-dL/dq gives tau=T*R for positive tensile magnitude T; the scalar
+pulling-force sign must not flip R a second time. Virtual-work/reference algebra
+tests pass. This is conditional local generalized torque, not neuron-to-angle
+sign, acceleration, decoder gain or biological validation. Current shared kernel
+uses position commands; force-to-target transfer remains absent.
+
+Complete existing admission reviewer rechecks five populations/13 neurons and
+every alias, seven local covectors and original raw failures/nulls. All three
+broad-promotor alternatives remain separate (even roll signs differ). All
+per-neuron tendon assignments, spike-to-activation, activation-to-force,
+force-to-position transfers, decoder vectors and gains remain unassigned. Four
+single-class hypotheses are not independently established specimen crosswalks.
+Current admission remains 20/42; no new channel or ordinary tactile mode enabled.
+
+31 focused tests pass (16 new plus 15 existing audit tests). Initial sandbox run
+had 26 pass/5 temp-directory setup errors; writable fresh --basetemp resolves the
+execution issue without changing code/scientific criteria. Actual generation and
+saved-report verification pass; original raw-freeze flags remain false. No new
+Unity run. See `LF_PROXIMAL_BINDING_REVIEW_V1.md` for primary sources/access limits
+and `LF_PROXIMAL_BINDING_RESULTS.md` for all changed files, tests and Git Bash code.
+Review CLI: `embodiment.lf_proximal_binding_review --model
+"$HOME/Documents/FlyMimic/flymimic/assets/models/best_combined_cvt3.xml" --report
+docs/evidence/lf-proximal-binding-review-v1/review.json`.
+
+Immediate next evidence requirement: independently traceable neuron-to-muscle/
+tendon crosswalk, especially the four broad-promotor neurons versus three model
+tendons, and an explicit force-interface versus engineered position-target design.
+Do not repeat the same audit or infer bindings from labels/order/activity. Without
+new independent evidence, report the unresolved blocker rather than enabling
+channels. Specify activation/passive dynamics, units, supported pose/range and
+transfer validation before a separate numerical/application experiment. Original
+raw scientific prerequisites must pass independently; canonical agreement does
+not waive them. No numerical bounded admission experiment is ready yet.
 
 ## Completed predecessor task — negative-control design requirements
 
