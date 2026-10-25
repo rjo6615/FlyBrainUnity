@@ -91,7 +91,17 @@ def test_failure_output_is_exclusive_and_retained(tmp_path, monkeypatch):
 
 
 def saved():
-    return json.loads((audit.ROOT/(audit.DIRECTORY+'run/validation.json')).read_text(encoding='utf-8'))
+    return audit.load_report(audit.ROOT/(audit.DIRECTORY+'run/validation.json'))
+
+
+def test_lossless_nonfinite_metadata_does_not_change_values_or_array_identity():
+    original = dict(limits=[-float('inf'), float('inf'), float('nan')], ordinary=[0., .125, -3.5])
+    text = json.dumps(audit.encode_nonfinite(original), allow_nan=False)
+    assert 'native_nonfinite' in text and 'Infinity' not in text
+    restored = json.loads(text, object_hook=audit.decode_nonfinite)
+    assert np.isneginf(restored['limits'][0]) and np.isposinf(restored['limits'][1]) and np.isnan(restored['limits'][2])
+    assert restored['ordinary'] == original['ordinary']
+    assert audit._canonical_array_identity(restored['limits']) == audit._canonical_array_identity(original['limits'])
 
 
 def test_saved_review_has_no_native_work(monkeypatch):

@@ -15,10 +15,11 @@ from .m8_contact_kinematics import compiled_name, namespace_component
 from .six_tibia_physics_diagnostic import resolve_dof
 
 ROOT = contract.ROOT
-DIRECTORY = 'docs/evidence/lf-native-isolation-v1/'
-MANIFEST = DIRECTORY+'input-manifest.json'
+DIRECTORY = 'docs/evidence/lf-native-isolation-v1_1/'
+MANIFEST = 'docs/evidence/lf-native-isolation-v1/input-manifest.json'
+FAILED_RECORD = 'docs/evidence/lf-native-isolation-v1/run/validation.json'
 PRIOR = contract.DIRECTORY+'audit.json'
-SCHEMA = 'lf-native-isolation-v1'
+SCHEMA = 'lf-native-isolation-v1.1'
 ARMS = ('BASELINE', 'CTRL_ZERO_ONLY', 'NEUTRALIZED')
 PROBES = ('CENTER', 'YAW_PLUS', 'YAW_MINUS', 'PITCH_PLUS', 'PITCH_MINUS',
           'ROLL_PLUS', 'ROLL_MINUS', 'VELOCITY_PLUS', 'VELOCITY_MINUS')
@@ -31,15 +32,37 @@ STATE = ('qpos', 'qvel', 'act', 'ctrl', 'qfrc_applied', 'xfrc_applied')
 
 def sources():
     result = contract.sources()
-    for p in (MANIFEST, PRIOR, 'docs/LF_NATIVE_ISOLATION_V1.md',
+    for p in (MANIFEST, PRIOR, FAILED_RECORD, 'docs/LF_NATIVE_ISOLATION_V1.md', 'docs/LF_NATIVE_ISOLATION_V1_1.md',
               'malecns_backend/embodiment/lf_native_isolation.py',
               'malecns_backend/embodiment/candidate_motor_channel_experiment.py',
               'malecns_backend/embodiment/m8_contact_kinematics.py',
               'malecns_backend/embodiment/six_tibia_physics_diagnostic.py'):
-        result[p] = contract.force.audit.sha((ROOT/p).read_bytes().replace(b'\r\n', b'\n'))
+        raw = (ROOT/p).read_bytes()
+        result[p] = contract.force.audit.sha(raw if p == FAILED_RECORD else raw.replace(b'\r\n', b'\n'))
     if result[PRIOR] != '385c57724f1ec3a937ad35bd86cfe76d4cb004b92d7aa52335d010c83bd81fc4':
         raise ValueError('original static contract record changed')
+    if result[FAILED_RECORD] != 'd6219a063538b270517ce0f9a9b86ea0bb7a3a135cc37ce93755323f9f9f0e54':
+        raise ValueError('original failed serialization record changed')
     return result
+
+
+def encode_nonfinite(value):
+    if isinstance(value, np.generic): value = value.item()
+    if isinstance(value, float) and not np.isfinite(value):
+        return dict(native_nonfinite='nan' if np.isnan(value) else '+inf' if value > 0 else '-inf')
+    if isinstance(value, dict): return {k: encode_nonfinite(v) for k, v in value.items()}
+    if isinstance(value, (list, tuple)): return [encode_nonfinite(v) for v in value]
+    return value
+
+
+def decode_nonfinite(value):
+    if set(value) == {'native_nonfinite'}:
+        return {'nan': float('nan'), '+inf': float('inf'), '-inf': -float('inf')}[value['native_nonfinite']]
+    return value
+
+
+def load_report(path):
+    return json.loads(Path(path).read_text(encoding='utf-8'), object_hook=decode_nonfinite)
 
 
 def installed_inputs():
@@ -360,13 +383,14 @@ def main(argv=None):
             report['evaluation'] = evaluate(report, report['ready'])
         except Exception as exc:
             report = dict(schema=SCHEMA, status='ERROR', error=f'{type(exc).__name__}: {exc}')
+        serialized = json.dumps(encode_nonfinite(report), indent=2, allow_nan=False)+'\n'
         with (args.output_dir/'validation.json').open('x', encoding='utf-8') as stream:
-            json.dump(report, stream, indent=2, allow_nan=False); stream.write('\n')
+            stream.write(serialized)
         if not report.get('evaluation', {}).get('passed'):
             print('NATIVE ISOLATION FAILED; evidence retained.', report.get('error', report.get('evaluation')))
             return 1
     elif args.report:
-        report = json.loads(args.report.read_text(encoding='utf-8'))
+        report = load_report(args.report)
         actual = evaluate(report, preflight())
         if not actual['passed'] or actual != report['evaluation']:
             raise ValueError('saved native isolation/source verification failed')
