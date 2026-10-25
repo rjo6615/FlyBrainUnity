@@ -1,8 +1,8 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-25. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for the LF activation-integrator update: `newBrain` at
-`a5b8cdd` (merged PR #270).
+Verified baseline for the LF actuation-contract update: `newBrain` at
+`5a3c8c4` (merged PR #271).
 Fetch and inspect current state before starting work.
 
 ## What the user wants
@@ -812,6 +812,71 @@ Git Bash review module: malecns_backend.embodiment.lf_activation_integrator_vali
 record and prior transient/pose records plus original annotations through LFS.
 Expected INTEGRATOR EVIDENCE VERIFIED: ALL_NUMERICALLY_ACCEPTED and9PASS lines;
 production20/42,0newadmissions, oldrawFalse. No repeat or Unity run needed.
+
+## Latest update — selective LF actuation/state-ownership design audited
+
+Protocol/audit/tests committed a96a469 before generating a separate static record,
+fresh baseline5a3c8c4. STATIC_CONTRACT_VERIFIED_COUPLING_BLOCKED, NOT coupling or
+new admission. No native model construction, forward/integration, numerical solver,
+CNS or model/state mutation in the audit. Old evidence/source locks unchanged.
+
+Exact historical M5A target basis yaw/pitch/roll uses action2/0/1, actuator2/0/1,
+joint1/2/3, qpos7/8/9 and DOFs6/7/8; NOT synthetic fixture DOFs7/8/9. All39 other
+joint controls preserved in the design:20admitted+19baseline position controls.
+Unadmitted coordinates still have physical position-control springs. A separate
+later signature has48actuator names including six adhesion controls at recorded
+name IDs42..47, na0. Its full array values are unavailable; M5A body IDs/activation
+addresses also missing. Nulls stay null, snapshots not asserted equivalent or
+current. Four source fixture activation addresses0..3 are separately scoped, never
+FlyGym data.act addresses or individual neuron-tendon assignments.
+
+Design proposes neutralizing only selected full gain/bias rows AFTER a current
+native identity and fixed-gain/affine-bias check; preserve other45actuator rows,
+ordering, sensors, passive mechanics and controls. No actual gain change here.
+ctrl0 alone cannot remove spring bias; no global group disable or removal/reindex.
+Future matched arms must share the explicit replacement context. External source
+activation vector owns its own integration; native body path owns qpos/qvel/time
+exclusively. Proposed left-endpoint total tension held per body interval is a
+first-order coupling DESIGN, not validated by fixed-length Radau results. Commit
+external state once after successful body advancement, clear only owned force,
+preserve foreign forces outside targets, reject duplicate owners/competing target
+forces. Stop/retain state on failure without rollback or retry claims.
+
+New record docs/evidence/lf-actuation-contract-v1/audit.json:77299 canonical LF
+bytes, canonical SHA256385c57724f1ec3a937ad35bd86cfe76d4cb004b92d7aa52335d010c83bd81fc4.
+Ordinary Git text, not LFS or a raw-lock waiver. Includes all42rows, target/retained
+partition, source states, separate snapshot scopes, proposed plan, six explicit
+blockers and source hashes before/after. Read LF_ACTUATION_CONTRACT_V1.md and
+LF_ACTUATION_CONTRACT_RESULTS.md.
+
+165tests passed in81.58s (26new+139prior); predecessor native fixture implementation
+tests included, no new moving-fly/CNS experiment.24development checks passed with
+2saved-review tests deselected. New audit/review tests forbid model/forward/step,
+live enumeration, native muscle derivative, numerical solvers and CNS initialization.
+Exact Windows Git Bash saved review passed; no physics or integration. No dependency,
+Unity/production/neural changes. Current20/42,0newadmissions; oldrawflagFalse.
+
+Immediate next bounded update: separately specify CURRENT native inventory capture
+and selective-neutralization/preservation audit with NO integration. Declare exact
+initializer/reset/forward accounting and fixed q/qvel/control probes before outcomes.
+Record complete native names/IDs/body/qpos/DOF/activation/transmission/force support,
+gain/bias/control/sensor/state identities. Test the isolated proposed three-row
+neutralization against original baseline, verify zero selected actuation across
+all declared probes and exact preservation elsewhere. Do not use historical IDs
+without native re-resolution, suppress all controls or apply muscle forces yet.
+Preserve partial/failing records, no retries or automatic hash refresh.
+
+Passing that engineering isolation audit would still not waive coupled numerical
+accuracy, physical units/geometry/velocity transfer, original raw prerequisites,
+individual tendon binding or neural conversion. Remain disconnected from production
+pending those gates. No Unity run needed yet. Continue roadmap updates after EVERY
+run, including what the result cannot establish,20/42 and the next concrete task.
+
+Git Bash review module malecns_backend.embodiment.lf_actuation_contract --report
+docs/evidence/lf-actuation-contract-v1/audit.json. Pull prior annotations, pose,
+transient and integrator LFS records. Expect STATIC CONTRACT VERIFIED; coupling
+BLOCKED plus target table/partition and roadmap. BLOCKED is the intended readiness
+result, not a broken review command. No new native run required for this review.
 
 ## Completed predecessor task — negative-control design requirements
 
