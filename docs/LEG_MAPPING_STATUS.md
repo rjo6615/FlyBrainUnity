@@ -148,3 +148,15 @@ read-only failure review are preserved; see LF_SYNTHETIC_COUPLING_RESULTS.md.
 Production remains20/42. Next independently specify/test endpoint ownership/API
 semantics before a separately versioned correction/protocol, not fit an epsilon
 to this data or advance to physical transfer. No Unity or FlyGym coupling yet.
+
+Endpoint contract v1 now independently verifies explicit initial/terminal/interior
+sampling roles using a constructed counterexample and two analytic linear-mock
+Radau solves. Exact authoritative terminal state is preserved, every original
+dense value retained, near-end interior timestamps are not snapped. No epsilon,
+old guard change or coupled/native/CNS repeat. Historical synthetic V1 remains
+INTEGRITY_FAILURE; current production20/42. Next separately specify corrected
+synthetic coupling consuming this contract before new outcomes. Physical units/
+geometry/velocity/length, original raw prerequisites and anatomical/neural transfer
+remain before a new Unity muscle-interface experiment. Independent balance is not
+established by the current assisted observations.
+See UNITY_AND_BALANCE_ROADMAP.md and LF_ENDPOINT_CONTRACT_RESULTS.md.

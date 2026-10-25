@@ -1,8 +1,8 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-25. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for the LF synthetic-coupling update: `newBrain` at
-`c665480` (merged PR #273).
+Verified baseline for the LF endpoint-contract update: `newBrain` at
+`5d92fc5` (merged PR #274).
 Fetch and inspect current state before starting work.
 
 ## What the user wants
@@ -1023,6 +1023,70 @@ native-isolation V1/V1.1 and prior pose/transient/integrator/annotation LFS inpu
 Expect SYNTHETIC RECORD VERIFIED: INTEGRITY_FAILURE (experiment NOT accepted),
 all9 numericalPASS,3PULSE solver-guardFAIL,20/42/0new and next endpoint-contract
 task. Successful static review is not scientific acceptance. No Unity run yet.
+
+## Latest update — endpoint state/interpolation contract independently verified
+
+User asked how far to next Unity test, whether moving toward independent balance,
+and the current milestone. See new UNITY_AND_BALANCE_ROADMAP.md. Milestone is a
+trustworthy LF proximal muscle-force interface, not established neural balance.
+Current20/42; stable appearance includes engineered position-control assistance.
+A new meaningful Unity muscle-interface run requires corrected coupled validation,
+supported physical/anatomical/neural transfer and raw prerequisites, then bounded
+headless evidence. Several engineering/research gates; no reliable calendar/PR
+count. Keep providing roadmap updates after every run and copy-paste Git Bash.
+
+Fresh baseline5d92fc5. Contract/wrapper/manifest/tests committed93e7eb8 BEFORE one
+fixed implementation/reference check. New lf_activation_endpoint wrapper delegates
+once to the UNCHANGED existing integrator/native derivative/solver settings. It
+returns exact supplied initial at offset==0, exact authoritative stored solver
+terminal at offset==duration, untouched dense values for all interiors including
+nextafter(duration,0). Every original dense value retained in interpolated_samples,
+with explicit sample_kinds. Deep copied, no state commit/body time write, no epsilon/
+np.isclose/snap/clamp/gain/ODE/tolerance change. Historical callers not connected.
+
+Independent constructed return-object counterexample has deliberately large
+boundary differences/distinct interiors; NOT an ODE or physics simulation and not
+derived from the old14 residues. Two actual Radau solves use analytic LINEAR MOCK
+law with fixed taus/initial/controls/durations .0001/.001s and allsample error<=1e-8.
+Observed maxerrors1.97091510e-11/6.87648827e-11; terminalerrors1.07691633e-14/
+1.40554235e-13. Allpolicy/reference checks pass. SciPy1.18.1/NumPy2.0.2 plus
+radau.py/ivp.py raw identities pinned before check. No native muscle/model/step,
+CNS, FlyGym force application, Unity or dependency change in the check.
+
+Classification ENDPOINT_CONTRACT_VERIFIED_COUPLING_NOT_REVALIDATED. Historical
+synthetic V1 rawhash and original integrator/protocol/evaluator verified unchanged;
+V1 stays INTEGRITY_FAILURE. No coupled experiment repeat or acceptance change.
+Do not treat endpoint API verification as physical/neural/biological validation.
+
+New ordinary-Git docs/evidence/lf-endpoint-contract-v1/run/contract.json,
+24186canonical LF bytes,SHA1f79cb1435fbc149c3691d800f6106bc985fbb53de5e6a672f349306ce72908d.
+Development14passes/1malformed-test failure/7deselected: constructed terminal lists
+aliased, so a test mutation changed both after/internalterminal consistently. Fixed
+independent test buffers before reference check, no policy/solver change; then
+15passed/7deselected. Final focused regression73passed55.63s (22new+24integrator+
+27synthetic). Exact Git Bash static review.89s. Existing native fixture tests are
+separate from the new two linear-mock checks; no new native/CNS campaign. Tests
+reject invalid authority/nonfinite/status/time/shape, verify copy/no-snap/single
+delegation, analytic solution, exclusive failure output and static saved review.
+
+Immediate next task: separately SPECIFY a corrected synthetic coupling implementation/
+protocol using explicit endpoint roles, exact authoritative terminal commit and
+retained dense diagnostics. Reuse existing model/reference/projection/ownership
+mechanics where possible, preserve all physical numerical budgets/window/grids
+and historical failedV1. Commit before any NEW outcomes, no old guard removal or
+retroactive passing classification. The endpoint wrapper is not wired into the
+old synthetic runner or production. Physical force units/geometry/velocity/length,
+original raw prerequisites, individual binding and neural conversion remain later
+gates before moving-FlyGym muscle coupling. Balance/walking still need causal tests
+with explicitly declared mechanical assistance; neural contribution != independent
+balance.20/42 coordinate coverage is not project-completion percentage.
+
+Git Bash review malecns_backend.embodiment.lf_activation_endpoint --report
+docs/evidence/lf-endpoint-contract-v1/run/contract.json. Only LFS dependency is old
+synthetic-coupling-v1/run/validation.json for exact historical failure provenance;
+other new records are ordinary Git text. Expected ENDPOINT CONTRACT VERIFIED,
+coupling NOT revalidated, historical INTEGRITY_FAILURE,20/42/0new, and next task.
+No solver/native/CNS execution in saved review. Read RESULTS and new UNITY roadmap.
 
 ## Completed predecessor task — negative-control design requirements
 
