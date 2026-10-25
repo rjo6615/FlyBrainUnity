@@ -124,3 +124,16 @@ states remain separate from body state. No model mutation or physics/CNS executi
 in the audit; production stays20/42. Next separately specify/capture the current
 native inventory and audit selective-neutralization/preservation with declared
 forward probes and no integration. Physical/neural/raw scientific gates remain.
+
+Native selective isolation v1.1 now passes27 declared forward-only observations
+on the current live/contact initializer, with34explicit forwards/3resets/0integration
+or CNS. Three target position actuators and their target generalized contributions
+are zero after selective gain/bias suppression; all45 retained actuator forces,
+other model parameters and final restored model identity are preserved. Current
+body13/LFCoxa, target yaw/pitch/roll DOFs6/7/8, no native activation states. V1's
+incomplete export due infinite compiled limits remains failed; V1.1 only corrects
+lossless metadata encoding with unchanged probes/criteria. Read
+LF_NATIVE_ISOLATION_RESULTS.md. Production still20/42; no muscle/neuronal changes.
+Next separately validate synthetic coupled-state/force-buffer ownership and
+numerical convergence. Biological force units/registration, original raw gates,
+individual binding and neural conversion remain before moving-fly coupling.

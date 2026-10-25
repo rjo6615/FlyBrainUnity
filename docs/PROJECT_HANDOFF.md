@@ -1,8 +1,8 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-25. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for the LF actuation-contract update: `newBrain` at
-`5a3c8c4` (merged PR #271).
+Verified baseline for the LF native-isolation update: `newBrain` at
+`a50ef0b` (merged PR #272).
 Fetch and inspect current state before starting work.
 
 ## What the user wants
@@ -877,6 +877,82 @@ docs/evidence/lf-actuation-contract-v1/audit.json. Pull prior annotations, pose,
 transient and integrator LFS records. Expect STATIC CONTRACT VERIFIED; coupling
 BLOCKED plus target table/partition and roadmap. BLOCKED is the intended readiness
 result, not a broken review command. No new native run required for this review.
+
+## Latest update — native LF position-actuator isolation verified
+
+Fresh baselinea50ef0b. V1 prospective protocol/manifest/runner/tests committed
+b4efd68 before first native campaign. Reused exact _make_live(flygym,{}) from
+tactile_motor_loop_audit: position fly, disabled adhesion, existing contact arena,
+reset/surface placement. No new initializer/controller or simulation step.
+
+V1 reached27observations/restored model identity but strict JSON writing failed on
+unbounded native limit -inf. Original partial export preserved unchanged in LFS:
+docs/evidence/lf-native-isolation-v1/run/validation.json,2353546bytes,
+SHA d6219a063538b270517ce0f9a9b86ea0bb7a3a135cc37ce93755323f9f9f0e54.
+Its counters/evaluation were not serialized, so V1 is scientifically inconclusive/
+SERIALIZATION_FAILED. No repaired history or inferred missing counts. Separately
+specified V1.1 correction committed14d3f04 BEFORE second bounded campaign: lossless
+native_nonfinite tags for inf/nan metadata, decoded before numeric/hash checks.
+No probes/physics/acceptance/tolerance/neural change; nonfinite physical outputs
+still fail. No third campaign. Read LF_NATIVE_ISOLATION_V1.md and V1_1.md.
+
+V1.1 NATIVE_ISOLATION_VERIFIED_COUPLING_BLOCKED.9fixed inputs*3arms BASELINE,
+CTRL_ZERO_ONLY,NEUTRALIZED. Center,+/-.05rad yaw/pitch/roll, two declared velocity
+patterns; all42 position controls follow declared probe qpos+/-.01rad offsets;
+adhesion0.34explicit mj_forward (7initializer+27probes),3mj_resetData;0native
+step/step1/step2/Euler/RK/implicit/CNS transitions. Compiler internal native work
+outside Python counters. Fresh MjData per probe, state/time unchanged by forward.
+
+Current native capture nq94/nv93/nu48/na0/nbody72/nsensor175. Exact body13=0/LFCoxa.
+Basis yaw/pitch/roll: action/actuator2/0/1,joint1/2/3,qpos7/8/9,DOF6/7/8;
+actadr-1/actnum0. Full48actuator/joint/body/activation/control/sensor tables and
+force support captured, matched against reused full model/option/name identities.
+Uses existing DOF/name observer and validated CSR moment conversion/saved checker.
+Package manifest pins196scientific source/asset/native files,62482705bytes, prior
+to outcomes. MuJoCo3.2.7/FlyGym1.2.1/dm_control1.0.27/NumPy2.0.2/SciPy1.18.1;
+no environment/dependency change.
+
+Only three selected full gain/bias rows zeroed in isolated native model; all45other
+rows/model fields unchanged, exact model identity restored. Every probe: selected
+force and target total qfrc_actuator exactly0;45retained forces exactbaseline,
+outside-target generalized difference0, passive force and complete momentmatrix
+exactbaseline. Selected baseline forces approx+.45/+.45/-.45 (yaw/pitch/roll),
+so suppression nonvacuous. ctrl0-only pitch atcenter=-14.92256510nativeunits;
+control0 is not spring removal. This is mechanical engineering evidence, not
+biological force calibration or independent balance; qacc/constraint/sensor
+outputs may differ while body state/time is not advanced.
+
+Complete V1.1 LFS record docs/evidence/lf-native-isolation-v1_1/run/validation.json,
+2455324bytes,SHA ee3ddfe2e9d298d3b3f269ab04c114d7f3a332ebc68ea20c184deb7b1df2a628.
+188tests passed103.57s (23new+165prior).12development checks passed/10deselected;
+after V1failure, one encoding test passed/22deselected beforeV1.1. New saved-review/
+preflight tests forbid model/data/reset/forward/integration/FlyGym/CNS/solver work.
+Exact Windows Git Bash saved review passed. No Unity run, muscle-force application,
+neural/gain tuning for activity, source physiology or production changes.20/42,
+0newadmissions; raw scientific prerequisites remain false. See RESULTS.md.
+
+Immediate next gate: separately specify a SYNTHETIC coupled-state/force-buffer
+ownership and numerical convergence experiment for the proposed left-endpoint
+split scheme. Reuse existing source ODE/Radau/projection conventions, but do not
+reuse the zero-DOF adapter on a moving body. Declare synthetic units and mechanics,
+independent reference, entire window/grid/criteria and operation counts before
+outcomes. Test single external activation/body time ownership, owned force clearing
+and foreign-force preservation, no double actuation/integration. Keep failed grids
+and distinguish solver error from model mismatch. No production/FlyGym muscle
+coupling or force-unit assumptions yet. Physical/geometry/velocity transfer,
+original raw prerequisites, individual binding and neural conversion remain gates.
+
+Continue roadmap update after EVERY run: current20/42 is motor-coordinate coverage,
+not project-completion percentage. Native isolation is complete only at declared
+instantaneous probes. Coupled numerics and physical/neural validity precede moving-
+fly muscle experiments; causal balance/walking tests remain later. No Unity run yet.
+
+Git Bash review: malecns_backend.embodiment.lf_native_isolation --report
+docs/evidence/lf-native-isolation-v1_1/run/validation.json. Pull both native-isolation
+V1/V1.1 records via docs/evidence/lf-native-isolation-v1*/run/validation.json plus
+prior annotations/pose/transient/integrator LFS dependencies. Expect NATIVE ISOLATION
+EVIDENCE VERIFIED, COUPLING_BLOCKED,34forwards/3resets/0integration,20/42,oldrawFalse.
+Original V1 malformed JSON stays preserved as failure, never use it for review.
 
 ## Completed predecessor task — negative-control design requirements
 
