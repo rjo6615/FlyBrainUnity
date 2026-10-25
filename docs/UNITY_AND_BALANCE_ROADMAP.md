@@ -34,6 +34,7 @@ for neural emergence.
 | Native LF orientation registration | V1 measured kinematics agree with the modeled map at all15declared poses;196samples in range, no integration/CNS; attachment/length/velocity transfer still unvalidated |
 | Source routes / target attachments | Four source paths/eight sites inventoried; native target has no tendons or matching source muscle-site definitions; attachment correspondence remains unresolved; active LF mesh is mirrored RFCoxa |
 | Paired endpoint/body-frame observer | V1.1 verifies source endpoint reconstruction, all105source lengths and derivatives;106target frames recorded, no target sites/forces; original V1namespace setup failure preserved |
+| Target attachment decision | Current reviewed evidence supports0/8target endpoint correspondences; registration not authorized. Exact reference request prepared; next acquire/qualify independent anatomical or landmark data |
 | Moving-fly muscle transfer | Physical units/geometry/velocity/length, raw prerequisites and anatomical/neural conversion remain unresolved gates |
 | Independent neural balance/walking | Not established |
 
@@ -49,9 +50,11 @@ sequence is:
    orientation now agrees at the declared probes. Source route/attachment audit
    identifies the target endpoint gap. Paired source endpoint and target body-frame
    observations have now validated a geometric observer in V1.1 without
-   assigning target muscle sites or choosing physical scale. Next decide what
-   independent anatomical/landmark evidence supports target endpoint registration;
-   preserve null correspondence where it is missing.
+   assigning target muscle sites or choosing physical scale. The registration
+   decision now identifies a reference-data requirement: acquire/qualify independent
+   anatomical/landmark correspondence tied to the exact source/target assets.
+   Further pose sweeps cannot supply that missing authority. Preserve null target
+   correspondence while it is missing.
    Resolve source-to-body prerequisites:
    physical units and registered
    geometry/length/velocity dependence, original raw-source requirements, exact
