@@ -137,3 +137,14 @@ LF_NATIVE_ISOLATION_RESULTS.md. Production still20/42; no muscle/neuronal change
 Next separately validate synthetic coupled-state/force-buffer ownership and
 numerical convergence. Biological force units/registration, original raw gates,
 individual binding and neural conversion remain before moving-fly coupling.
+
+Synthetic split-coupling v1 completed all9cases/2100native rotor steps, with
+preserved foreign force buffers and numerical budgets/pulse refinement passing.
+The original verdict remains INTEGRITY_FAILURE: three pulse cases fail exact
+equality of dense-output endpoint and solver terminal state (14total differences,
+maximum1.110223e-16). Committed external states match authoritative terminal states
+exactly, but no guard was relaxed or acceptance changed. Full raw evidence and
+read-only failure review are preserved; see LF_SYNTHETIC_COUPLING_RESULTS.md.
+Production remains20/42. Next independently specify/test endpoint ownership/API
+semantics before a separately versioned correction/protocol, not fit an epsilon
+to this data or advance to physical transfer. No Unity or FlyGym coupling yet.

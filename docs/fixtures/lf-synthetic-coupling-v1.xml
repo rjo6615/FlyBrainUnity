@@ -1,0 +1,23 @@
+<mujoco model="lf_synthetic_coupling_v1">
+  <compiler angle="radian"/>
+  <option timestep="0.0001" integrator="Euler" gravity="0 0 0"/>
+  <default><joint damping="0" frictionloss="0" stiffness="0" armature="0" limited="false"/></default>
+  <worldbody>
+    <body name="synthetic_sentinel">
+      <joint name="unselected_hinge" axis="0 0 1"/>
+      <inertial pos="0 0 0" mass="1" diaginertia="1 1 1"/>
+    </body>
+    <body name="synthetic_yaw">
+      <joint name="joint_LFCoxa_yaw" axis="1 0 0"/>
+      <inertial pos="0 0 0" mass="1" diaginertia="2 2 2"/>
+    </body>
+    <body name="synthetic_pitch">
+      <joint name="joint_LFCoxa" axis="0 1 0"/>
+      <inertial pos="0 0 0" mass="1" diaginertia="3 3 3"/>
+    </body>
+    <body name="synthetic_roll">
+      <joint name="joint_LFCoxa_roll" axis="0 0 1"/>
+      <inertial pos="0 0 0" mass="1" diaginertia="4 4 4"/>
+    </body>
+  </worldbody>
+</mujoco>

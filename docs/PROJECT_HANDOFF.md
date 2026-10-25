@@ -1,8 +1,8 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-25. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for the LF native-isolation update: `newBrain` at
-`a50ef0b` (merged PR #272).
+Verified baseline for the LF synthetic-coupling update: `newBrain` at
+`c665480` (merged PR #273).
 Fetch and inspect current state before starting work.
 
 ## What the user wants
@@ -953,6 +953,76 @@ V1/V1.1 records via docs/evidence/lf-native-isolation-v1*/run/validation.json pl
 prior annotations/pose/transient/integrator LFS dependencies. Expect NATIVE ISOLATION
 EVIDENCE VERIFIED, COUPLING_BLOCKED,34forwards/3resets/0integration,20/42,oldrawFalse.
 Original V1 malformed JSON stays preserved as failure, never use it for review.
+
+## Latest update — synthetic coupling numerical checks pass; integrity failure retained
+
+Prospective protocol/fixture/runner/tests committed a0a5013 before ONE nine-case
+campaign, fresh baselinec665480. Four independent zero-actuator/activation/contact
+rotors with inertias[1,2,3,4], synthetic dimensionless units. Existing source native
+activation law/Radau solver and R_G projection reused; frozen source gain/bias and
+coefficients explicitly reinterpreted in synthetic units, not a moving muscle or
+source/FlyGym physical registration. Independent DOP853 integrates SAME analytic
+rotor/activation equations. Full10ms,100/50/25us,RELAX_ZERO/FLOOR_BASELINE/PULSE.
+
+Actual3models,2100synthetic body mj_step,2112explicit forward,0reset or explicit
+step1/step2/Euler/RK/implicit outside native mj_step internals,0CNS/FlyGym run.
+Exact foreign sentinel generalized force.125/body z-torque.25 preserved after
+owned target-force clearing. Native q/v/time solely advanced by mj_step; external
+activation committed once from stored solver terminal state. All ownership,
+native semi-implicit algebra/time/source/mass checks pass; matched prefix exact
+through2ms. Failure tests before/after native step retain uncertain state, latch
+failed, prohibit retry and do not claim rollback/external activation commit.
+
+Original campaign verdict **INTEGRITY_FAILURE** remains unchanged. All9 numerical
+budgets pass (q<=1e-5,v<=1e-3,a<=.01/bounds); both predeclared pulse refinement
+ratios pass. PULSE qerrors100/50/25us=1.875e-7/9.48254e-8/5.30977e-8;
+verrors=1.32577981e-4/6.12092629e-5/2.89579314e-5. E=.132577981/.061209263/
+.028957931. No production timestep selected or physical-transfer claim.
+
+Failure is V1's extra bitwise dense-endpoint versus solver terminal-state guard:
+1/2/11nonidentical PULSE endpoints, max differences4.33680869e-19/1.38777878e-17/
+1.11022302e-16. All committed activations are EXACT solver terminal/internal
+endpoint values. Source inspection of installed SciPy1.18.1 Radau shows separate
+y_new=y+Z[-1] and Q=Z.T@P dense polynomial computation; API describes cubic dense
+output. The bitwise assumption was in our new audit. No epsilon/threshold/guard
+change after outcomes, no experiment retry or reclassification. Read-only diagnosis
+does not rescue scientific integrity. The original runner/evaluator stays unchanged.
+
+Original LFS docs/evidence/lf-synthetic-coupling-v1/run/validation.json,
+25551077bytes,SHA12805789411e5b7b2aa9dbaea0f4e18e5075671a9945501970d9e952f99d822e.
+Separate lf_synthetic_coupling_review module checks exact raw hash, source locks,
+reproduces original evaluation and reports diagnostics without models/solvers/CNS.
+failure-review.json is descriptive postmortem, acceptance_changedFalse and
+campaign_repeatedFalse. Installed radau.py SHA232f08010ccaa736e16ca34afc888c69365352df58fffbf7aecba6f863a456c6.
+Original runner --report rejects integrity failure; use the separate failure review
+to verify this negative record, not --execute or a rerun. Exact Git Bash review
+passed, printing original INTEGRITY_FAILURE and three PULSE solver guard FAILs.
+
+Development14tests passed/11deselected28.20s before campaign. Postmortem adds
+negative-result review/diagnostic tests.9focused corruption checks passed/18
+deselected3.28s after strengthening them to require a NEW evaluation difference
+for each corruption, rather than inherit the existing failed verdict. Full matrix
+result:215passed154.89s (27new+188prior); this does not reclassify scientific failure.
+No production/neural/source-physiology or
+dependency change, Unity run or new admission.20/42,raw prerequisitesFalse.
+
+Immediate next task: independently SPECIFY/TEST SOLVER ENDPOINT OWNERSHIP/API
+SEMANTICS before any new acceptance protocol. Use SciPy/source evidence and
+analytic/constructed unit tests, not a tolerance fitted to these14 residues.
+Distinguish authoritative terminal state from separately evaluated interpolation;
+retain exact commit identity and all original failed data. A correction must be
+separately versioned before new outcomes. Do not silently remove the failed guard,
+label this campaign accepted, repeat until pass or advance to physical force
+transfer. No moving FlyGym/production muscle coupling. Biological units/geometry/
+velocity/length, original raw prerequisites, individual binding and neural
+conversion remain later gates; balance/walking still require causal evidence.
+
+Git Bash: malecns_backend.embodiment.lf_synthetic_coupling_review --report
+docs/evidence/lf-synthetic-coupling-v1/run/validation.json. Pull new record plus
+native-isolation V1/V1.1 and prior pose/transient/integrator/annotation LFS inputs.
+Expect SYNTHETIC RECORD VERIFIED: INTEGRITY_FAILURE (experiment NOT accepted),
+all9 numericalPASS,3PULSE solver-guardFAIL,20/42/0new and next endpoint-contract
+task. Successful static review is not scientific acceptance. No Unity run yet.
 
 ## Completed predecessor task — negative-control design requirements
 
