@@ -1,8 +1,8 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-25. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for paired LF endpoint/frame observations: `newBrain` at
-`a734b56` (merged PR #280).
+Verified baseline for LF attachment-registration decision: `newBrain` at
+`3e842c2` (merged PR #281).
 Fetch and inspect current state before starting work.
 
 ## What the user wants
@@ -1408,6 +1408,56 @@ evidence needed. Source observer acceptance is not target anatomy or physiology.
 Physical-unit/converter lineage, neural-to-activation, individual binding and
 original raw scientific gates remain unresolved; no moving-fly muscle coupling.
 Continue roadmap + Git Bash every update,20/42 is not overall completion.
+
+## Latest update — target attachment decision requires independent reference data
+
+Fresh3e842c2. Read-only LF_ATTACHMENT_DECISION_V1 review reuses original accepted
+endpoint V1.1 preflight/evaluator and all source/route/mesh/identity authorities.
+No native construction/kinematics/forward, force application, fit, solver or CNS.
+V1.1observer remains accepted; original failed V1 raw lock/criteria unchanged.
+
+ATTACHMENT_DECISION_VERIFIED_REFERENCE_REQUIRED:0/8target correspondences supported
+in reviewed corpus; NO_TARGET_ENDPOINT_REGISTRATION_AUTHORIZED_FROM_REVIEWED_EVIDENCE.
+All target coordinates/transforms remain null. Source sites4/11,8/15,6/13,7/14,
+source bodies2/19 and target carrier inventory3/13 retained. Carrier IDs are not
+point assignments. Active target LFCoxa still mirrored RFCoxa. No mesh substituted.
+Six candidate arguments rejected as insufficient current authority: rotation-only,
+local-coordinate copy, body-origin/frame alignment, surface/ICP fit, LF/RF symmetry
+assumption and Femur-origin sign landmark. A mathematical frame transform can be
+defined without establishing anatomical point correspondence; no transform fitted.
+
+Dated reference-review.json records reviewed paper3.1/3.2/A.2/A.3, author website/
+code and inaccessible original-muscle repo link. Paper A.2 describes foreleg mesh
+replacement in source model; not exact locked-target attachment attestation. Scope
+is reviewed sources/local corpus, not global absence. Local untracked source export
+also inspected: rawa4e9b492... differs from cited64c31c... while canonical content
+matches64c31c...; source reference mechanics only, not independent target endpoints.
+No historical hash refresh/raw waiver or external file modification. See RESULTS.
+
+Saved decision.json plus reference-request.json are independently reconstructed.
+Request is NOT executable mapping or admission: source/target model/mesh locks,
+eight exact source IDs, missing target annotation/frame/laterality/uncertainty
+fields. Completed citation strings or coordinates never auto-authorize mapping;
+new reference material requires a separately versioned scientific review.
+Final58tests passed67.17s (18decision+20route+20endpointV1.1); prior57passed67.01s
+before source-export provenance check. Native/solver/live-audit entry points are
+forbidden in real saved reconstruction. Git Bash saved replay, whitespace and
+LFS-pointer checks passed; commands recorded in RESULTS.
+Production20/42,newadmissions0, original raw prerequisitesfalse; no new Unity mode.
+
+Immediate next task: REFERENCE ACQUISITION AND QUALIFICATION. Seek authoritative
+anatomical annotation/model-development artifacts with independently labeled
+source-target attachment/landmark correspondences tied to the exact assets in
+docs/evidence/lf-attachment-decision-v1/run/reference-request.json. Inspect official
+publication/data/repository links; preserve raw files, revisions/hashes, coordinate
+frames/length conventions and laterality/reflection/provenance/uncertainty. Do not
+repeat pose campaigns or fit transforms to obtain favorable lengths/forces. No
+author/third-party messages without explicit user authorization. If bounded source
+qualification cannot obtain the artifact, report the specific evidence/access
+blocker and request the missing input; do not generate another observer-only PR
+as a substitute. Physical units/converter lineage, neuronal binding/activation,
+nonzero-velocity physiology and original raw gates remain. Keep target points null
+and moving-fly muscle coupling disabled until supported. Continue roadmap+Git Bash.
 
 ## Completed predecessor task — negative-control design requirements
 
