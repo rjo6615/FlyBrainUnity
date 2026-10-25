@@ -101,3 +101,14 @@ remain inaccurate despite bounded states. Baseline and passive preload are retai
 not zeroed to obtain a pass. No timestep is selected and production remains20/42.
 Next separately validate reference-faithful activation integration with unchanged
 law/parameters, then resolve force-unit/geometry and application prerequisites.
+
+Separately versioned activation integrator v1 now passes all nine same-window,
+same-external-grid cases using Radau and the unchanged native source law. Maximum
+pulse error is 1.7643e-10 against the original archived DOP853 reference; all Euler
+failures remain unchanged. See LF_ACTIVATION_INTEGRATOR_RESULTS.md. This clears
+the fixed-length numerical integration gate only, not a mapping/admission or
+biological-force gate. Current production remains 20/42, new admissions 0. Next
+design/static-audit the selective LF actuator replacement and activation/body
+state-ownership contract before any moving-fly coupling. Physical units/geometry,
+original raw prerequisites, individual binding and neural conversion remain open.
+After each run, report this roadmap position and the next concrete gate.
