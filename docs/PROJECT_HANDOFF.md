@@ -1,8 +1,8 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-25. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for the LF unit/conversion-lineage audit: `newBrain` at
-`6dcbc4f` (merged PR #277).
+Verified baseline for the LF native target-orientation assay: `newBrain` at
+`9553c77` (merged PR #278).
 Fetch and inspect current state before starting work.
 
 ## What the user wants
@@ -1255,6 +1255,54 @@ enable moving-fly force transfer or rewrite original raw locks. Authoritative
 converter/unit lineage remains required before choosing a physical force scale.
 Continue roadmap+copy-paste Git Bash every update; current runtime20/42 is not
 overall completion and stable position assistance is not independent neural balance.
+
+## Latest update — native LF orientation convention verified; force transfer blocked
+
+Fresh9553c77 baseline. Protocol/runner/tests committedb967c8a BEFORE one native
+kinematics campaign. Reuses original fifteen source poses/derivatives/map/evaluator,
+native factory/identity/inventory/address/accounting authorities and existing unit
+lineage verifier. Original source model not rerun, no fitted frame alignment or
+changed axes/offsets/bounds/thresholds. Pure mj_kinematics in probe phase; no body
+integration, activation solve, force application or CNS. Position parameters stay
+unchanged; initialization can compute forces, unused zero controls are not actuator
+suppression or equilibrium. New protocol LF_TARGET_ORIENTATION_V1.md.
+
+TARGET_ORIENTATION_GEOMETRY_VERIFIED_TRANSFER_BLOCKED: all15poses/196samples pass
+all integrity/numerical/range checks. Native Thorax3, LFCoxa13, ancestry13/3/2/1;
+yaw/pitch/roll joint1/2/3,qpos7/8/9,DOFs6/7/8,actions2/0/1. Reference basiserror0.
+Max rotation/basis/targetFD/J/chainFD errors1.110223e-15/2.220446e-16/1.471678e-11/
+2.220446e-16/2.176255e-10 vs fixed1e-10/1e-10/1e-7/1e-7/1e-7. Maximum basis/J
+conditions1.05912589/1.59832895<100. Full raw states/frames retained, alltime0.
+Initialization7forwards/3resets; probes196kinematics/0forward/0reset; every explicit
+integration/CNS count0. Full before/after model and initialized-state identities
+match original accepted native context. Installed source manifest unchanged.
+
+New LFS docs/evidence/lf-target-orientation-v1/run/validation.json,7931285bytes,
+rawSHA5daa911adc01cc42e4f40576a47ff87024497ec23309e3a01645b66815db27c9.
+Prior raw results, source/physiology locks and failed evidence untouched. Original
+raw scientific prerequisites remain false. Production20/42,newadmissions0.
+Geometry does not validate anatomical attachments, lengths/velocities, physical
+force scale or neural activation; no independent balance/gait or new Unity behavior.
+
+Before campaign37tests passed/11prospective saved-report tests skipped43.77s;
+initial34pass/3setup errors from missing scratch parent resolved without scientific
+changes. After campaign71passed58.58s (orientation/source-pose/native-isolation).
+Then corrected5synthetic ownership fixtures to resolve native Thorax index rather
+than assumebody1 and assert valid base fixture;5passed0.97s. No runner/evaluator/
+protocol/campaign change. Windows Git Bash saved verification, whitespace and
+LFS-pointer checks passed; commands documented in RESULTS.
+
+Immediate next task: SOURCE ROUTE / TARGET ATTACHMENT AND LENGTH-VELOCITY
+PREREQUISITE AUDIT. Inventory four selected source tendon routes and exact
+site/body ownership using the locked original model and source manifest, reusing
+existing reference inspectors. Inspect available target attachment/landmark
+authorities; native orientation agreement alone does not supply target muscle
+sites or length correspondence. Preserve missing or ambiguous correspondences;
+do not invent attachments, scale source paths, convert force from ratios or
+enable moving-fly force coupling. Record a bounded next decision for non-actuating
+length/velocity registration only if supported. Original physical-unit/converter
+lineage, anatomical binding, neural activation and raw scientific gates remain.
+Continue roadmap+Git Bash per update; no new Unity behavior to inspect yet.
 
 ## Completed predecessor task — negative-control design requirements
 
