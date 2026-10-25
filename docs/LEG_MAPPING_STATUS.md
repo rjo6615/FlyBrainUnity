@@ -72,3 +72,13 @@ class-level anatomical support. Next scope is a separately specified LF muscle-
 force reference adapter/isolated validation using those four modeled class
 hypotheses, while leaving the broad promotor unassigned and production admission
 at 20/42. Numerical force/activation/application gates remain to be specified.
+
+The isolated local force-reference adapter now passes six fixed synthetic native
+MuJoCo fixture cases; see `LF_FORCE_REFERENCE_RESULTS.md`. V1.1 observes exactly
+18 explicit forward calls and zero integration/CNS transitions; saved review is
+dynamics-free. V1's inherited model-construction side effect and failed operation
+provenance are preserved. Projection/DOF isolation/clearing work at the exact
+reference pose, not arbitrary moving poses. No neural force law, biological scale
+or new admission is established. Current production remains 20/42. Next specify
+pose-dependent mechanics, activation/passive terms, units and selective actuation
+replacement before a separately bounded neural-coupling experiment.

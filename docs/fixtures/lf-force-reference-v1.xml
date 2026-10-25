@@ -1,0 +1,29 @@
+<mujoco model="lf_force_reference_v1">
+  <compiler angle="radian"/>
+  <option timestep="0.0001" gravity="0 0 0"/>
+  <default>
+    <joint damping="0" frictionloss="0" limited="false"/>
+  </default>
+  <worldbody>
+    <body name="fixture_root">
+      <freejoint name="fixture_free"/>
+      <inertial pos="0 0 0" mass="2" diaginertia="0.2 0.3 0.4"/>
+      <body name="fixture_sentinel" pos="0 0.2 0">
+        <joint name="unselected_hinge" axis="0 0 1"/>
+        <inertial pos="0.1 0 0" mass="1" diaginertia="0.01 0.02 0.025"/>
+      </body>
+      <body name="fixture_yaw_link" pos="0 0 0.3">
+        <joint name="joint_LFCoxa_yaw" axis="1 0 0"/>
+        <inertial pos="0.1 0 0" mass="1" diaginertia="0.01 0.02 0.025"/>
+        <body name="fixture_pitch_link" pos="0.1 0 0">
+          <joint name="joint_LFCoxa" axis="0 1 0"/>
+          <inertial pos="0 0.1 0" mass="1" diaginertia="0.01 0.02 0.025"/>
+          <body name="fixture_roll_link" pos="0 0.1 0">
+            <joint name="joint_LFCoxa_roll" axis="0 0 1"/>
+            <inertial pos="0 0 0.1" mass="1" diaginertia="0.01 0.02 0.025"/>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>
