@@ -1,8 +1,8 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-25. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for the LF route/attachment audit: `newBrain` at
-`4702f8e` (merged PR #279).
+Verified baseline for paired LF endpoint/frame observations: `newBrain` at
+`a734b56` (merged PR #280).
 Fetch and inspect current state before starting work.
 
 ## What the user wants
@@ -1354,6 +1354,60 @@ This validates an observer and frame/translation context, not anatomical endpoin
 correspondence, unit scale, neural conversion or admission. Physical-unit/converter
 lineage, anatomical bindings and original raw scientific gates remain unresolved.
 No moving-fly muscle coupling. Continue roadmap and Git Bash every update.
+
+## Latest update — paired endpoint observer verified after versioned namespace fix
+
+Fresha734b56. V1protocol/runner/tests committeddc0097b before attempt. V1stopped
+during target metadata validation: full compiled mesh name was compared with raw
+XML name, ignoring attachment prefix. One sourcecompile/targetinitializer7forward/
+3reset, ZEROkinematics/integration/CNS. V1 remains ENDPOINT_FRAME_INTEGRITY_FAILURE;
+raw631895bytes SHA4de986daefb60a8528f7fb361cc0dfe0d7120af109140ace52bf4804ca28d598.
+Original V1protocol/runner/raw unchanged. Installed dm_control MJCF attachment-only
+test independently demonstrates fly/mesh_Thorax versus mesh_Thorax, no compilation.
+
+V1.1protocol/runner committed0155b10 before ONE new campaign. Uses existing
+namespace helper, full raw+terminal mesh names, same full geom/mesh namespace and
+numeric body/geom/mesh IDs. Reuses V1observers/algebra/evaluator non-schema guards;
+no module-global monkeypatch. V1schema still rejects V1.1; own schema validated.
+Full source model/state matches original V1compilation, target matches original
+native baseline. No model/parameter/pose/epsilon/budget/physiology/neural change.
+
+ENDPOINT_FRAME_V1_1_OBSERVER_VERIFIED_TRANSFER_BLOCKED:all15poses/211samples in
+range, all integrity/numeric checks pass.105source/106targetkinematics; initializer
+7forward/3reset;0probe forward/reset/integration/CNS. Total both attempts14initial
+forwards/6resets/211kinematics; zero integration/CNS. No extra native diagnostic
+campaign. Source native IDs Thorax2/Coxa19, geoms1/18; sites4/11,8/15,6/13,7/14
+for remotor/adductor/anterior/posterior. Target bodies3/13,geoms2/12. Compiled site
+ownership/local coordinates and exact two-SITE tendon routes verified.
+
+Max endpoint/length/gradient/orientation/compiled-geom errors4.440892e-16/0/
+1.888907e-10/0/3.108624e-15 vs1e-10/1e-10/1e-7/1e-10/1e-10. World/local endpoint
+observer reproduces all old105source tendon lengths exactly. Velocitieszero;
+length gradients are NOT a nonzero-velocity law/target velocity registration.
+Source/target thorax-relative co xa origins and compiled mesh preprocessing frames
+recorded separately, without physical equality, scale or fitted transform.
+No target endpoints/sites, force application, alignment or muscle coupling.
+
+V1.1record9131610bytes rawSHAa317d87446c5879b564f21ecd7ffa88572d7b5370e098293c032c695131eae10
+at docs/evidence/lf-endpoint-frames-v1_1/run/validation.json. Original raw scientific
+prerequisites remain false. Current20/42,newadmissions0; no new Unity behavior.
+BeforeV1 tests29pass/12prospectiveskip57.48s. BeforeV1.1 14pass/25skip26.83s;
+12completed-record tests inapplicable to incomplete V1,13V1.1prospective. Explicit
+test asserts original failedV1/zero probes, rather than claiming a V1pass. Final
+automated70pass/12skip89.47s; skips only completed-V1-data cases inapplicable to
+setup failure. Explicit V1failure and allV1.1archive checks passed. Git Bash saved
+replay, whitespace and LFS-pointer checks passed; commands in RESULTS.
+
+Immediate next task: TARGET-ATTACHMENT REGISTRATION DECISION REVIEW. Use paired
+frames, exact source/active-target asset evidence and independent anatomical
+landmarks to decide whether any explicit modeled endpoint correspondence is
+supported. No fitted transform selected to make lengths/forces pass, no matching-
+name attachment inference, no unit/force scale chosen from ratios. Preserve null
+target endpoints if authority is missing and identify the additional reference
+evidence needed. Source observer acceptance is not target anatomy or physiology.
+Physical-unit/converter lineage, neural-to-activation, individual binding and
+original raw scientific gates remain unresolved; no moving-fly muscle coupling.
+Continue roadmap + Git Bash every update,20/42 is not overall completion.
 
 ## Completed predecessor task — negative-control design requirements
 
