@@ -71,3 +71,5 @@ malecns_backend/embodiment/tactile_contact_calibration.py -text
 malecns_backend/embodiment/interface_output/tactile_contact_calibration.json -text
 malecns_backend/embodiment/six_leg_map.json -text
 malecns_backend/embodiment/interface_output/m5d_tarsal_contact_load_audit.json -text
+docs/evidence/lf-reference-acquisition-v1/flygym-276-snapshot.json -text
+docs/evidence/lf-reference-acquisition-v1/flymimic-tree.json -text
