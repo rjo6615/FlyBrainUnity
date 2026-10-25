@@ -1,8 +1,8 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-25. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for the LF force-reference fixture update: `newBrain` at
-`29a8e3ce91bc99b556ed6c857a4f3ebaa34fa524`, which merges PR #267.
+Verified baseline for the LF pose/source-force update: `newBrain` at
+`0eba0003a0a4d18ae166be590cd3b8e15550cd58`, which merges PR #268.
 Fetch and inspect current state before starting work.
 
 ## What the user wants
@@ -643,6 +643,61 @@ finite-angle reuse, peak-force/gain transfer or new admission from fixture succe
 Original raw and remaining biological/application prerequisites must independently
 pass before bounded neural coupling. Preserve broad-promotor uncertainty and
 historical nulls. Do not tune neural parameters or gains to produce activity.
+
+## Latest update — pose-dependent rotation/source-force reference
+
+Protocol/code/XML+71-asset locks committed at 51a22f3 before v1. Original source
+XML hash unchanged, assets 13961614 bytes. Validated MuJoCo3.2.7 reused without
+environment/source changes. Four class hypotheses only; broad promotors unassigned.
+New declared map Q_G=Q_M(q)*Q_M(qref)^T, target intrinsic XYZ. J=inverse(B_G)*B_M,
+R_G=inverse(J)^T*R_M. This is a modeled rotational correspondence, NOT anatomical
+finite-angle registration to actual FlyGym, attachment/mass or translation matching.
+
+Fixed 15 source poses: center, +/- .05 on each axis, 8 corners. Activation0/.5/1,
+six +/-1e-6 derivative probes per pose, two central activation derivatives. Exactly
+137 explicit mj_forward calls; observed mj_step0, no integrated observation/CNS.
+Compiler-internal model validation is not counted as explicit API calls. Preserve
+all nonselected/passive source forces. No production actuator replacement or gain.
+
+V1 completed but failed moment/total-force checks: raw actuator_moment is sparse,
+despite a misleading dense-sized allocation. Rotation and muscle-function checks
+passed; archived length differences independently matched frozen R_M2.765e-11.
+Preserve failed v1 raw in LFS. Sparse-decoding correction committed at 7b9bbad
+before justified v1.1 repeat. Native mju_sparse2dense plus archived raw CSR metadata;
+saved review independently reconstructs with SciPy CSR. Same poses/epsilon/criteria.
+
+V1.1 all checks pass: maximum tendon FD error1.889e-10, axes8.922e-11,
+JacobianFD2.221e-10, native force reconstruction1.777e-15, work5.552e-17.
+Central frozen J/R reproduce1e-10. J changes up to .02433096925 over sampled poses;
+four R_G column component changes max .006291/.002568/.003326/.003562, descriptive
+only, not a continuous-pose envelope or new gains. Total99 tests pass (25 new+74
+prior); saved Git Bash review5.10s, strict no model construction/dynamics. Old
+raw prerequisites false; current20/42, new admissions0. No Unity/neural experiment.
+
+Central zero-activation source anterior-rotator tension11.60235359 native units
+is passive; full activation total18.45632371. Others central passive0. Native
+selected control floor.0001 means rawctrl0 at activation0 has derivative+2/s.
+At activation.5 ctrl0/1 gives -1562.1875/+4000/s. Source tau_act/deact .0001/.0004s
+before state factors are model choices, not measured MaleCNS physiology. No
+activation transient/integration stability or biological force units established.
+
+Evidence: `docs/evidence/lf-pose-force-v1/input-manifest.json`, failed
+`lf-pose-force-v1/run/validation.json`, accepted `lf-pose-force-v1_1/run/validation.json`.
+Both native records in LFS. Specs LF_POSE_FORCE_V1.md/V1_1.md; full outcomes and
+manual commands LF_POSE_FORCE_RESULTS.md. Review `embodiment.lf_pose_force --report
+docs/evidence/lf-pose-force-v1_1/run/validation.json`, without dynamics or external
+meshes. LFS pull both pose records + existing annotations.feather. Always include
+copy-paste Git Bash block in delivery; no Unity run for saved review.
+
+Immediate next scope: separately specify bounded source activation-transient/
+integration validation and zero-input/passive-preload baseline semantics. Establish
+force/mass/length units and physical registration before current-body application.
+Do not blindly copy source peak forces/time constants or existing 17Hz rate scale
+as physiology. Future matched arms must retain identical passive/preload context.
+Selective removal of exact3coxa position actuators must precede torques while
+other39controls stay intact; do not globally disable20motors or double actuate.
+No moving-fly neural coupling/admission until independent raw and numeric/application
+gates pass; preserve broad-promotor ambiguity/nulls and never tune for movement.
 
 ## Completed predecessor task — negative-control design requirements
 
