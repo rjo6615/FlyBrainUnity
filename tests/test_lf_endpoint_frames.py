@@ -73,7 +73,20 @@ def test_failed_preflight_retains_error_and_forbids_overwrite(tmp_path):
 def saved():
     path = endpoint.ROOT/(endpoint.DIRECTORY+'run/validation.json')
     if not path.exists(): pytest.skip('prospective saved-evidence tests; campaign not yet executed')
-    return endpoint.n.load_report(path)
+    record = endpoint.n.load_report(path)
+    if record['status'] != 'COMPLETE':
+        pytest.skip('completed-record tests inapplicable to preserved V1 setup failure; explicit failure test below')
+    return record
+
+
+def test_archived_v1_setup_failure_cannot_be_reclassified_as_observer_success():
+    path = endpoint.ROOT/(endpoint.DIRECTORY+'run/validation.json')
+    if not path.exists(): pytest.skip('campaign not yet executed')
+    record = endpoint.n.load_report(path)
+    assert record['status'] == 'INCOMPLETE' and record['cases'] == []
+    result = endpoint.evaluate(record, record['ready'])
+    assert result == record['evaluation'] and result['classification'] == 'ENDPOINT_FRAME_INTEGRITY_FAILURE'
+    assert not any(record['api_calls']['probes'].values())
 
 
 def test_saved_campaign_reconstructs_without_reexecution(saved):
