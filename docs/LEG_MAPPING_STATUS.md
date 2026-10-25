@@ -160,3 +160,15 @@ geometry/velocity/length, original raw prerequisites and anatomical/neural trans
 remain before a new Unity muscle-interface experiment. Independent balance is not
 established by the current assisted observations.
 See UNITY_AND_BALANCE_ROADMAP.md and LF_ENDPOINT_CONTRACT_RESULTS.md.
+
+Separately versioned synthetic coupling V2 now passes all9same-model cases and
+both refinement checks using explicit endpoint roles. All original raw interpolants
+are retained (including14dense/terminal differences); exact authoritative commit
+and all physical budgets/force/time ownership checks pass. Original V1 remains
+INTEGRITY_FAILURE. Whole saved physical/activation/reference trajectories are
+identical between V1/V2; no dynamics/neural/source-physiology tuning. Read
+LF_SYNTHETIC_COUPLING_V2_RESULTS.md. Production stays20/42,0newadmissions. Next
+review physical units/scale/finite-angle geometry/length/velocity and population/
+tendon/neural conversion prerequisites before any moving-FlyGym muscle transfer.
+Original raw gates remain separate. A bounded headless experiment must precede
+a meaningful new Unity muscle-interface test; independent balance is unproven.
