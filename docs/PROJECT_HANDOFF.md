@@ -1,8 +1,8 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-25. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for the LF reference-binding update: `newBrain` at
-`e5964d07b18f7d6f1815a8bb5506be65e31f0fd5`, which merges PR #265.
+Verified baseline for the LF anatomical crosswalk update: `newBrain` at
+`c6495bb8d7de6e8a2d7792d63d3f9467645f951f`, which merges PR #266.
 Fetch and inspect current state before starting work.
 
 ## What the user wants
@@ -541,6 +541,55 @@ channels. Specify activation/passive dynamics, units, supported pose/range and
 transfer validation before a separate numerical/application experiment. Original
 raw scientific prerequisites must pass independently; canonical agreement does
 not waive them. No numerical bounded admission experiment is ready yet.
+
+## Latest update — independent LF anatomical source crosswalk
+
+New primary reference acquisition, not another replay of the same saved audit.
+Official MaleCNS v1.0 raw annotations are separately archived in Git LFS at
+`docs/evidence/lf-anatomical-crosswalk-v1/annotations.feather`, raw SHA
+2177e246113e4cfbf1e7772ec37c6da1955ff22e8063d0b1f833101f99a9a3b2,
+14483314 bytes / 211577 source rows. Dataset CC-BY attribution recorded. The
+existing runtime remains unchanged; this broader source table does not add cells.
+
+Exact source pools reproduce five LF classes / all 13 existing body IDs, types,
+side fallback, motor superclass, front-leg subclass, T1 and exit nerves. Full
+selected source rows are in crosswalk.json. Twelve recorded mancBodyid matches
+are retained as published annotations, not independently revalidated morphology.
+Body 1050335829 has null mancBodyid; its mancGroup 21241 is not a substitute ID.
+No individual FANC MN number, tendon, sign or gain is assigned to any body ID.
+
+Full author-hosted 46-page Azevedo anatomical appendix was downloaded and relevant
+figures/captions visually inspected (PDF pages 15-19), resolving the previous
+web-reader size limit. Figure A2 explicitly says each of its four promotor MN
+targets is uncertain even within the original two-muscle grouping. FANC is a
+different specimen; atlas numbering, names/counts/nerve agreement do not establish
+a MaleCNS-to-FANC individual match or a split into FlyMimic's three tendons.
+Four other classes have single-class anatomical support, still modeled hypotheses
+when transferred to the simulation. No complete individual tendon crosswalk found.
+
+Source research was inspected before the written report; no claim of prospective
+physiological experimentation. 45 focused tests pass (14 new / 16 LF reference /
+15 audit), including actual full official-byte and upstream identity verification.
+Actual generation and saved-review CLI pass. No new CNS/physics/Unity trial,
+dependencies, neural tuning or admission; current 20/42 and old raw failures remain.
+See `LF_ANATOMICAL_CROSSWALK_V1.md` and `LF_ANATOMICAL_CROSSWALK_RESULTS.md`.
+Git Bash: LFS pull new annotations.feather, then run
+`embodiment.lf_anatomical_crosswalk --report
+docs/evidence/lf-anatomical-crosswalk-v1/crosswalk.json`. Include full copy-paste
+commands in every delivery. Local PDF/rendered pages remain untracked in this
+update's tmp/pdfs; source URL, hash and locators recorded in tracked reports.
+
+Immediate next engineering scope: separately specify an LF muscle-force reference
+adapter and isolated force-projection/isolation validation using four explicit
+class-to-muscle hypotheses, keeping broad promotors unassigned and production
+20-motor behavior intact. Do not repeat the same audit to force a promotor split.
+Reuse existing observer/registration, distinguish torque from position targets,
+and prevent double actuation. Specify force units, activation/passive dynamics,
+supported reference pose/range and numerical/application gates before scientific
+coupling. Synthetic known-tension fixtures establish software/reference mechanics,
+not biological gain or neural recruitment. No production admission or bounded CNS
+experiment until original raw and remaining scientific prerequisites independently
+pass. Preserve all historical nulls and never tune to get activity.
 
 ## Completed predecessor task — negative-control design requirements
 
