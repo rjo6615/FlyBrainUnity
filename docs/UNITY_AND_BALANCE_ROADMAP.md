@@ -3,6 +3,36 @@
 Checkpoint2026-10-25. This is a roadmap, not a new experimental acceptance
 protocol or a claim that the milestones below are already complete.
 
+## At a glance
+
+Motor coverage: **20/42 admitted coordinates — 47.6%**.
+
+```text
+Motor coverage   [##########-----------] 20/42
+```
+
+This is motor coverage only, not overall project completion or biological
+validation. Tibia, femur and femur roll each contribute 6/6; front Tarsus1
+contributes 2/6; coxa/roll/yaw contribute 0/18. Remaining: 22 coordinates.
+
+| Roadmap gate | Current position |
+|---|---|
+| Existing 20-coordinate runtime and controlled sensory observations | Available within recorded conditions; ordinary live tactile disabled |
+| LF source mechanics / numerical interface | Scoped reference and synthetic checks verified; historical failures retained |
+| LF target attachment anatomy — active gate | Reference required; 0/8 supported endpoint correspondences in the reviewed corpus |
+| Physical scaling, neural binding and activation | Unresolved; cannot infer these from a geometry check |
+| Bounded moving-body muscle experiment, then Unity review | Pending prerequisites; no new Unity behavior from current document/reference checks |
+| Independent neural balance, then walking | Not established |
+
+Latest continuation: [reference acquisition V1](LF_REFERENCE_ACQUISITION_V1.md)
+followed publication/data/code leads and found an upstream rig-compatibility
+discussion. No qualifying target annotation artifact was acquired. Some data
+shares could not be inspected with the browsing tool; that is an access limit,
+not evidence of absence. Next input is an accessible, revisioned anatomical
+attachment/landmark bundle tied to the exact assets in the existing request.
+Another pose sweep or saved-report replay cannot supply it. This research gate
+has no defensible completion percentage or fixed number of remaining PRs.
+
 ## The milestone we are working toward
 
 A trustworthy **left-front proximal muscle-force interface**: supported neural

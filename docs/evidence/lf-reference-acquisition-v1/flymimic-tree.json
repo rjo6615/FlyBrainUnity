@@ -1,0 +1,1115 @@
+{
+  "capture_date": "2026-10-25",
+  "capture_method": "GitHub connector recursive tree response; Git object metadata, not raw HTTP bytes",
+  "repository": "gizemozd/FlyMimic",
+  "revision": "9ea1131626cd76f7203b74076ef8f0e9cab30bef",
+  "truncated": false,
+  "tree": [
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b10ec56bca8d465af0969c601aa109e73c72bd4b",
+      "size": 4443,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/b10ec56bca8d465af0969c601aa109e73c72bd4b"
+    },
+    {
+      "path": ".pre-commit-config.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "28a4e2ecb334882df00d17845b78865a789d6f1e",
+      "size": 436,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/28a4e2ecb334882df00d17845b78865a789d6f1e"
+    },
+    {
+      "path": "LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+      "size": 11357,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "848577902a386f1d668d608fa23c9f6193a3844d",
+      "size": 3420,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/848577902a386f1d668d608fa23c9f6193a3844d"
+    },
+    {
+      "path": "docs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "da1ec828e468372e2c145698eb6daa5926580528",
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/trees/da1ec828e468372e2c145698eb6daa5926580528"
+    },
+    {
+      "path": "docs/kr_vs_ppo.gif",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e0eaf1a63d671166a3e898a487503400b3f21c44",
+      "size": 318495,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/e0eaf1a63d671166a3e898a487503400b3f21c44"
+    },
+    {
+      "path": "flymimic",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "26a6901c0739e6c06e4e56d1c7ac2159938fba20",
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/trees/26a6901c0739e6c06e4e56d1c7ac2159938fba20"
+    },
+    {
+      "path": "flymimic/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d610069cb8b06d263fe6603aaee839abb5029790",
+      "size": 90,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/d610069cb8b06d263fe6603aaee839abb5029790"
+    },
+    {
+      "path": "flymimic/assets",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "02fd7a999d884a714fbc52dae7fbccacdf03d418",
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/trees/02fd7a999d884a714fbc52dae7fbccacdf03d418"
+    },
+    {
+      "path": "flymimic/assets/mocap",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1b6259cb9d852751aa20cbf27fcd1ac484e7a392",
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/trees/1b6259cb9d852751aa20cbf27fcd1ac484e7a392"
+    },
+    {
+      "path": "flymimic/assets/mocap/qpos",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "bf758a60fd8cdfa48b51f3eab56b9ad8e032018e",
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/trees/bf758a60fd8cdfa48b51f3eab56b9ad8e032018e"
+    },
+    {
+      "path": "flymimic/assets/mocap/qpos/0001.npy",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b9bf3e3095857d70a053c5d65b0c1bda450fddf1",
+      "size": 216608,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/b9bf3e3095857d70a053c5d65b0c1bda450fddf1"
+    },
+    {
+      "path": "flymimic/assets/mocap/qpos/0002.npy",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "42e3421cef232604a032d541a5fbd06f642b7918",
+      "size": 12728,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/42e3421cef232604a032d541a5fbd06f642b7918"
+    },
+    {
+      "path": "flymimic/assets/mocap/qvel",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d5afcfe0a42d85321c6026ec041da0ff4357b152",
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/trees/d5afcfe0a42d85321c6026ec041da0ff4357b152"
+    },
+    {
+      "path": "flymimic/assets/mocap/qvel/0001.npy",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "22402ec22c8e77336fb2f2b193201c1612fa6aa2",
+      "size": 216608,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/22402ec22c8e77336fb2f2b193201c1612fa6aa2"
+    },
+    {
+      "path": "flymimic/assets/mocap/qvel/0002.npy",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "24efaac81a464ce5caafee90008fd283e4c31979",
+      "size": 12728,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/24efaac81a464ce5caafee90008fd283e4c31979"
+    },
+    {
+      "path": "flymimic/assets/mocap/xipos",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ca644a486f89d994b3b1553c4b80ea0c24e60b98",
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/trees/ca644a486f89d994b3b1553c4b80ea0c24e60b98"
+    },
+    {
+      "path": "flymimic/assets/mocap/xipos/0001.npy",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cedbff79ddcc902863ef9ffcadbdda688c07dd26",
+      "size": 433088,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/cedbff79ddcc902863ef9ffcadbdda688c07dd26"
+    },
+    {
+      "path": "flymimic/assets/mocap/xipos/0002.npy",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98611fcfa1ddeeea47c7fb5349fa0ee7113c9eff",
+      "size": 21728,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/98611fcfa1ddeeea47c7fb5349fa0ee7113c9eff"
+    },
+    {
+      "path": "flymimic/assets/mocap/xivel",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "2dc5f3f3a63c2503c7464caa15a42a7013d05304",
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/trees/2dc5f3f3a63c2503c7464caa15a42a7013d05304"
+    },
+    {
+      "path": "flymimic/assets/mocap/xivel/0001.npy",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e35c734f86694cbc62d598d88e1ca3ee203f025a",
+      "size": 866048,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/e35c734f86694cbc62d598d88e1ca3ee203f025a"
+    },
+    {
+      "path": "flymimic/assets/mocap/xivel/0002.npy",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4e4c5fa2694e58efc7f885c96a61b463f9d41d2",
+      "size": 43328,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/d4e4c5fa2694e58efc7f885c96a61b463f9d41d2"
+    },
+    {
+      "path": "flymimic/assets/models",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "243020688bbe21aff9466a8d7e826ddf1c231003",
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/trees/243020688bbe21aff9466a8d7e826ddf1c231003"
+    },
+    {
+      "path": "flymimic/assets/models/best_combined_arm_cvt3.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e8e74f1cea81565b74dd26714950754eff9f10aa",
+      "size": 49643,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/e8e74f1cea81565b74dd26714950754eff9f10aa"
+    },
+    {
+      "path": "flymimic/assets/models/best_combined_arm_damping_cvt3.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "30987510ad19d6871f6ac3ca86e34045b80ba355",
+      "size": 49600,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/30987510ad19d6871f6ac3ca86e34045b80ba355"
+    },
+    {
+      "path": "flymimic/assets/models/best_combined_arm_damping_stiff_cvt3.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cb32d696aa1d91f7b52c948a3ba804bb13e86ca8",
+      "size": 49670,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/cb32d696aa1d91f7b52c948a3ba804bb13e86ca8"
+    },
+    {
+      "path": "flymimic/assets/models/best_combined_arm_stiff_cvt3.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7e258152e644e42d5998889c5e630826bacbb4ca",
+      "size": 49655,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/7e258152e644e42d5998889c5e630826bacbb4ca"
+    },
+    {
+      "path": "flymimic/assets/models/best_combined_cvt3.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9cd9120415f5f006bbe168834c998f67e0354c89",
+      "size": 49596,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/9cd9120415f5f006bbe168834c998f67e0354c89"
+    },
+    {
+      "path": "flymimic/assets/models/best_combined_cvt3_torque.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a5f246e0425c3d6cdef41c8940b7e1c749a32ac0",
+      "size": 38130,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/a5f246e0425c3d6cdef41c8940b7e1c749a32ac0"
+    },
+    {
+      "path": "flymimic/assets/models/meshes",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e522699c3fddddc95717e08b549d9685da8c05d9",
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/trees/e522699c3fddddc95717e08b549d9685da8c05d9"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl.zip",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9eb06f9596c3ee8d77bfd6125c71c2c118dc16eb",
+      "size": 7295073,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/9eb06f9596c3ee8d77bfd6125c71c2c118dc16eb"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7513f526cce339fb524aeff8478b7b7414a50bdb",
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/trees/7513f526cce339fb524aeff8478b7b7414a50bdb"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/A1A2.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "e64e3a2e5277a0cf66fac2e6ecfd126b09d4fdc6",
+      "size": 144334,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/e64e3a2e5277a0cf66fac2e6ecfd126b09d4fdc6"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/A3.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "7c7728fbcafc4bc475c046dccdc69a1421089158",
+      "size": 140084,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/7c7728fbcafc4bc475c046dccdc69a1421089158"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/A4.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "dcbaca141161e6d93d07623f55f223beb9eb72c8",
+      "size": 143384,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/dcbaca141161e6d93d07623f55f223beb9eb72c8"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/A5.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "cce4b60d3ce23b8213e17df11f8e27ea17110e66",
+      "size": 158834,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/cce4b60d3ce23b8213e17df11f8e27ea17110e66"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/A6.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "e52d2aea94c69c2f8553965d09bc71b1ca1cf03c",
+      "size": 203134,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/e52d2aea94c69c2f8553965d09bc71b1ca1cf03c"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/Haustellum.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "120bd7a3fded38362f1ed1755a00a78813ca510c",
+      "size": 215634,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/120bd7a3fded38362f1ed1755a00a78813ca510c"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/Head.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "d287740354c65e53b3c17362757defcd596de222",
+      "size": 864784,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/d287740354c65e53b3c17362757defcd596de222"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LArista.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "dca1e61598d2eed0966a3afe590b5c0885159fb2",
+      "size": 568884,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/dca1e61598d2eed0966a3afe590b5c0885159fb2"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LEye.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "b14a16aa2859db7602c30f310bd4bb5b50ad5bfa",
+      "size": 238084,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/b14a16aa2859db7602c30f310bd4bb5b50ad5bfa"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LFCoxa.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "fa8b7ffba77e33406b339e8e9e8a23788c8672c7",
+      "size": 103984,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/fa8b7ffba77e33406b339e8e9e8a23788c8672c7"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LFFemur.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "5c89144e215ae7fc33d5c72a1a5ad63d74b5d3df",
+      "size": 842284,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/5c89144e215ae7fc33d5c72a1a5ad63d74b5d3df"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LFTarsus1.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "bae3462578996ed113520796e5bdd49120db487f",
+      "size": 24484,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/bae3462578996ed113520796e5bdd49120db487f"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LFTarsus2.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "500dd5b3e967b52d4d3b1fa432059dac045942b1",
+      "size": 19784,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/500dd5b3e967b52d4d3b1fa432059dac045942b1"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LFTarsus3.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "357194402e093e40c3050bef5244d7ca1050d522",
+      "size": 17484,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/357194402e093e40c3050bef5244d7ca1050d522"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LFTarsus4.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "2f293647af25c66a782b8e693f8d2efa61b3ad51",
+      "size": 14884,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/2f293647af25c66a782b8e693f8d2efa61b3ad51"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LFTarsus5.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "d99c63823f565d4e1bcaed36a4be3b3ef8df63a8",
+      "size": 18084,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/d99c63823f565d4e1bcaed36a4be3b3ef8df63a8"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LFTibia.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "8f6b174b502a4eb3c91704ddb33ff421e7db5333",
+      "size": 53684,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/8f6b174b502a4eb3c91704ddb33ff421e7db5333"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LFTrochanter.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "007217a9b9cd556cb1f6ba2ee2021ff716036eab",
+      "size": 34784,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/007217a9b9cd556cb1f6ba2ee2021ff716036eab"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LFuniculus.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "946d5c32c962515c1acf5ab047b2f95a4c882de9",
+      "size": 869484,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/946d5c32c962515c1acf5ab047b2f95a4c882de9"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LHCoxa.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "6e9e0ddcd829623cd1b39009f69182638a283bb8",
+      "size": 199084,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/6e9e0ddcd829623cd1b39009f69182638a283bb8"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LHFemur.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "ba1560bb9967a1769c4a009f1714b7db17637a8b",
+      "size": 165884,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/ba1560bb9967a1769c4a009f1714b7db17637a8b"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LHTarsus1.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "47cf6fcca52e8abf6f7bfffca04c500275031e1b",
+      "size": 38934,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/47cf6fcca52e8abf6f7bfffca04c500275031e1b"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LHTarsus2.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "07dbda6964e892189f00d768eb02fde2f652635e",
+      "size": 98684,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/07dbda6964e892189f00d768eb02fde2f652635e"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LHTarsus3.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "671f4c063cc0fe8f79bb39bbd4077047691f6462",
+      "size": 129584,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/671f4c063cc0fe8f79bb39bbd4077047691f6462"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LHTarsus4.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "159432c84d835ec5025d4c891fa7421191cbbfac",
+      "size": 130984,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/159432c84d835ec5025d4c891fa7421191cbbfac"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LHTarsus5.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "d9040504ae016e0514bb8999ebe739157daad2ab",
+      "size": 147084,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/d9040504ae016e0514bb8999ebe739157daad2ab"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LHTibia.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "5611e3381a0e6e86faaf9f74846c5ec03197c5b0",
+      "size": 37484,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/5611e3381a0e6e86faaf9f74846c5ec03197c5b0"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LHaltere.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "6735551e5a7cc604a9ca121b32f2f0a3e2951110",
+      "size": 41284,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/6735551e5a7cc604a9ca121b32f2f0a3e2951110"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LMCoxa.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "a59ee83facb1404f878219b9f13fa5b7c8c1b83a",
+      "size": 130384,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/a59ee83facb1404f878219b9f13fa5b7c8c1b83a"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LMFemur.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "da1db378d811a840f1747a0e10eaf83917caf14f",
+      "size": 41384,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/da1db378d811a840f1747a0e10eaf83917caf14f"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LMTarsus1.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "4468a37378e7edfa043d6a8131f363a05944194b",
+      "size": 46284,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/4468a37378e7edfa043d6a8131f363a05944194b"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LMTarsus2.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "cd929755da0465ae8eab297d9159ac8312fd0c0b",
+      "size": 77884,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/cd929755da0465ae8eab297d9159ac8312fd0c0b"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LMTarsus3.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "dafb77abf647492b7a15118928f29b358cb50bb4",
+      "size": 92884,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/dafb77abf647492b7a15118928f29b358cb50bb4"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LMTarsus4.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "cf171fde319d87f1c4f22615818ef09f96ffbd33",
+      "size": 159584,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/cf171fde319d87f1c4f22615818ef09f96ffbd33"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LMTarsus5.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "a620e2b81eb95de5165a01162f9032172e257826",
+      "size": 49384,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/a620e2b81eb95de5165a01162f9032172e257826"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LMTibia.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "f06f063c8d738315730ee2d95838ce48ed64ae71",
+      "size": 33884,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/f06f063c8d738315730ee2d95838ce48ed64ae71"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LPedicel.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "0004cfbaaca387dacbabbe035e1fc0bdd11669c5",
+      "size": 860484,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/0004cfbaaca387dacbabbe035e1fc0bdd11669c5"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/LWing.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "4fdc78fa44fee507ffff9691224bd2ed43705f7d",
+      "size": 996734,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/4fdc78fa44fee507ffff9691224bd2ed43705f7d"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RArista.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "e419640951dc790fecdbe583dc744de9398009c1",
+      "size": 580484,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/e419640951dc790fecdbe583dc744de9398009c1"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/REye.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "1afdb52246fd6b5406283e587527a623ba5fc5d3",
+      "size": 164784,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/1afdb52246fd6b5406283e587527a623ba5fc5d3"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RFCoxa.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "f1cdd6d69f5e2cf4871fae62819e7944ea2ee538",
+      "size": 42884,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/f1cdd6d69f5e2cf4871fae62819e7944ea2ee538"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RFFemur.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "e6d2a4217d34e51fd86d939992b64b3250e44e17",
+      "size": 60834,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/e6d2a4217d34e51fd86d939992b64b3250e44e17"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RFTarsus1.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "e2e5fef1bad8d16e83d31bde483facc767024ad6",
+      "size": 24484,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/e2e5fef1bad8d16e83d31bde483facc767024ad6"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RFTarsus2.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "a8ee99a5f6871124dd18beebab1916656b5ca5ec",
+      "size": 19784,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/a8ee99a5f6871124dd18beebab1916656b5ca5ec"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RFTarsus3.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "bfde8c2b0d270d0185b094f768f9e58069ef65c0",
+      "size": 17484,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/bfde8c2b0d270d0185b094f768f9e58069ef65c0"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RFTarsus4.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "c916a0d31b6ec25f2e0efd163db8198eeed87777",
+      "size": 14884,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/c916a0d31b6ec25f2e0efd163db8198eeed87777"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RFTarsus5.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "7cc75e63add977de30185283cc3024d49cf4bab3",
+      "size": 18084,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/7cc75e63add977de30185283cc3024d49cf4bab3"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RFTibia.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "aa0ca1e5d2745f70c72e8e9ec19d6ef6154aa7a9",
+      "size": 61834,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/aa0ca1e5d2745f70c72e8e9ec19d6ef6154aa7a9"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RFTrochanter.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "0ef82e03d133256e74dbb041f4596ebc3161ad8a",
+      "size": 19584,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/0ef82e03d133256e74dbb041f4596ebc3161ad8a"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RFuniculus.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "aa9524db4959df06646696f2cd38ccddfdc1704b",
+      "size": 856284,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/aa9524db4959df06646696f2cd38ccddfdc1704b"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RHCoxa.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "a7ac31d6d8e4d6561abf6087c9232af50128eea1",
+      "size": 199084,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/a7ac31d6d8e4d6561abf6087c9232af50128eea1"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RHFemur.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "7a40193a10ea7d269800d2cf2203fbd0ff9e1092",
+      "size": 165884,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/7a40193a10ea7d269800d2cf2203fbd0ff9e1092"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RHTarsus1.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "149a2f173aaa6f12401c17a6e21e7b2cfc31b824",
+      "size": 38934,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/149a2f173aaa6f12401c17a6e21e7b2cfc31b824"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RHTarsus2.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "6167cef0c3258a1aafdea5c94a975db0d6c4cd44",
+      "size": 98684,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/6167cef0c3258a1aafdea5c94a975db0d6c4cd44"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RHTarsus3.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "cf63186978c3c3668297928836749290f49a99d8",
+      "size": 129584,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/cf63186978c3c3668297928836749290f49a99d8"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RHTarsus4.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "af0fc75e00edd67de31a9e29ae9f1f0ed414cd53",
+      "size": 130984,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/af0fc75e00edd67de31a9e29ae9f1f0ed414cd53"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RHTarsus5.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "1b1f949df2257c62bafebb5185695c4265ead910",
+      "size": 147084,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/1b1f949df2257c62bafebb5185695c4265ead910"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RHTibia.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "7c96b27c5e0a139fa10716b9208c76108bfaffff",
+      "size": 37484,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/7c96b27c5e0a139fa10716b9208c76108bfaffff"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RHaltere.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "9b058e3a924c304e26b99530f26d4838af05eb5c",
+      "size": 41284,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/9b058e3a924c304e26b99530f26d4838af05eb5c"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RMCoxa.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "bc037db00fe6c65364fc099a8f4673a801c18c09",
+      "size": 130384,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/bc037db00fe6c65364fc099a8f4673a801c18c09"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RMFemur.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "903e2b2082aa9a3c536d0d4adb12d5f5c7738715",
+      "size": 41384,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/903e2b2082aa9a3c536d0d4adb12d5f5c7738715"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RMTarsus1.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "e75f1e19d1c2945fd1a1094fd365313e8842721b",
+      "size": 46284,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/e75f1e19d1c2945fd1a1094fd365313e8842721b"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RMTarsus2.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "be36721f9b956880ba0bdb5ebc9e0b9f521119ab",
+      "size": 77884,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/be36721f9b956880ba0bdb5ebc9e0b9f521119ab"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RMTarsus3.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "162d7a1d35a11b5c456ed7e0b4047123f4053509",
+      "size": 92884,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/162d7a1d35a11b5c456ed7e0b4047123f4053509"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RMTarsus4.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "b1eedbc4a06389e3b1e2ab81afe84b00e9d000ef",
+      "size": 159584,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/b1eedbc4a06389e3b1e2ab81afe84b00e9d000ef"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RMTarsus5.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "c00cd374e915de9977a16bb539eef554fe464435",
+      "size": 49384,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/c00cd374e915de9977a16bb539eef554fe464435"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RMTibia.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "2a64649cbae92e459dbf5e4908b3b16e91316071",
+      "size": 33884,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/2a64649cbae92e459dbf5e4908b3b16e91316071"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RPedicel.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "7b3e05fa01441700337bfd2da30f62988ec0dfb6",
+      "size": 837884,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/7b3e05fa01441700337bfd2da30f62988ec0dfb6"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/RWing.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "933f90382ea22fd55ef6ccc3bf17f3eacfd2f7ca",
+      "size": 996734,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/933f90382ea22fd55ef6ccc3bf17f3eacfd2f7ca"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/Rostrum.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "a715a0c7a62a81d60da721b4198b7d94a8d08150",
+      "size": 189384,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/a715a0c7a62a81d60da721b4198b7d94a8d08150"
+    },
+    {
+      "path": "flymimic/assets/models/meshes/stl/Thorax.stl",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "6c6c68c0bacee84aef0c73bfe120e20f62ac6cab",
+      "size": 281534,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/6c6c68c0bacee84aef0c73bfe120e20f62ac6cab"
+    },
+    {
+      "path": "flymimic/assets/models/opensim",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "66127481b443b7d59fb98d51f239d4250925f798",
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/trees/66127481b443b7d59fb98d51f239d4250925f798"
+    },
+    {
+      "path": "flymimic/assets/models/opensim/best_combined.osim",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a1acbe4d9b63ce59a81e2105c728ba5d07a96f5d",
+      "size": 483413,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/a1acbe4d9b63ce59a81e2105c728ba5d07a96f5d"
+    },
+    {
+      "path": "flymimic/assets/models/opensim/best_combined_full.osim",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8dfbf064ba827f60abeafcbc815fa9ba0218120d",
+      "size": 491132,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/8dfbf064ba827f60abeafcbc815fa9ba0218120d"
+    },
+    {
+      "path": "flymimic/assets/models/opensim/best_combined_full.pdf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6d536587e199e7aefa80d8364eb1271db4efaaf6",
+      "size": 1452250,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/6d536587e199e7aefa80d8364eb1271db4efaaf6"
+    },
+    {
+      "path": "flymimic/config",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6c63fca6c3dc0b09c8a74e119159ab21655721b7",
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/trees/6c63fca6c3dc0b09c8a74e119159ab21655721b7"
+    },
+    {
+      "path": "flymimic/config/eval_config.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e41f9261c4c0621ad2e16ebfa14ca167b9145ce3",
+      "size": 465,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/e41f9261c4c0621ad2e16ebfa14ca167b9145ce3"
+    },
+    {
+      "path": "flymimic/config/train_arm.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "817b3d42efdb1af18679bd66e00dee30f67291f1",
+      "size": 388,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/817b3d42efdb1af18679bd66e00dee30f67291f1"
+    },
+    {
+      "path": "flymimic/config/train_arm_damp.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "09618be7f5148b7952603ceac6e0c45db29a8599",
+      "size": 342,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/09618be7f5148b7952603ceac6e0c45db29a8599"
+    },
+    {
+      "path": "flymimic/config/train_arm_damp_stiff.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f08d340c22aff276d3373c680ac5762d229335f1",
+      "size": 354,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/f08d340c22aff276d3373c680ac5762d229335f1"
+    },
+    {
+      "path": "flymimic/config/train_arm_stiff.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "88e6758d7495f2485583032715b9faa6f6028507",
+      "size": 338,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/88e6758d7495f2485583032715b9faa6f6028507"
+    },
+    {
+      "path": "flymimic/config/train_torque.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1599471bdf0101f948a293d91f3159a9c3322402",
+      "size": 378,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/1599471bdf0101f948a293d91f3159a9c3322402"
+    },
+    {
+      "path": "flymimic/envs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "10806eb607a578467bf902b1b288c0ed84ddceee",
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/trees/10806eb607a578467bf902b1b288c0ed84ddceee"
+    },
+    {
+      "path": "flymimic/envs/dmcontrol_wrapper.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "22e404981fb520639f5b97e0e02274448596fc3b",
+      "size": 3737,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/22e404981fb520639f5b97e0e02274448596fc3b"
+    },
+    {
+      "path": "flymimic/evaluation",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4becfec44aaf00adba287a513f7d72bc1c3a14ba",
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/trees/4becfec44aaf00adba287a513f7d72bc1c3a14ba"
+    },
+    {
+      "path": "flymimic/evaluation/evaluate_rollout.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ace01cd956e6a9b28fd8eab34276fd34641e97e2",
+      "size": 15893,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/ace01cd956e6a9b28fd8eab34276fd34641e97e2"
+    },
+    {
+      "path": "flymimic/tasks",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8dd45dde30f1b8a9ca427ac6584ebfc218abebef",
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/trees/8dd45dde30f1b8a9ca427ac6584ebfc218abebef"
+    },
+    {
+      "path": "flymimic/tasks/fly",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "46189a3c4412f4277a44ef3353ce7b11d7bfacff",
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/trees/46189a3c4412f4277a44ef3353ce7b11d7bfacff"
+    },
+    {
+      "path": "flymimic/tasks/fly/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dd9da79f1d57385ddffaef25b915edc4fca7dd7e",
+      "size": 166,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/dd9da79f1d57385ddffaef25b915edc4fca7dd7e"
+    },
+    {
+      "path": "flymimic/tasks/fly/mocap_tracking_muscle.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bf9d92c40b2feeda1a4db37dc2778572645792cc",
+      "size": 7585,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/bf9d92c40b2feeda1a4db37dc2778572645792cc"
+    },
+    {
+      "path": "flymimic/tasks/fly/mocap_tracking_torque.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "00af3759bdbb09f988a1666e2ce01e6262c72c4a",
+      "size": 6938,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/00af3759bdbb09f988a1666e2ce01e6262c72c4a"
+    },
+    {
+      "path": "flymimic/train",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "15a4f6a0d916cabcd95890dbf10a196f9c03794d",
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/trees/15a4f6a0d916cabcd95890dbf10a196f9c03794d"
+    },
+    {
+      "path": "flymimic/train/train_muscle.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bdda92817554bdbc951e413328c39ce566e18791",
+      "size": 5057,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/bdda92817554bdbc951e413328c39ce566e18791"
+    },
+    {
+      "path": "flymimic/train/train_torque.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d83d926541ebdbbf2fe204c3c96d49b5321c4d7d",
+      "size": 5016,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/d83d926541ebdbbf2fe204c3c96d49b5321c4d7d"
+    },
+    {
+      "path": "flymimic/utils",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c970c6214571edf2b0949b2de383cfb40d0fa59c",
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/trees/c970c6214571edf2b0949b2de383cfb40d0fa59c"
+    },
+    {
+      "path": "flymimic/utils/read_tensorboard.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6bb6e1f8dc9bd1acd85e030a601fd06c0f03817e",
+      "size": 3880,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/6bb6e1f8dc9bd1acd85e030a601fd06c0f03817e"
+    },
+    {
+      "path": "logs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1721d08f9aeb7361a3782c6bca21e8664a5310e9",
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/trees/1721d08f9aeb7361a3782c6bca21e8664a5310e9"
+    },
+    {
+      "path": "logs/demo_model.zip",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "42ad0253e2103c136b0b06bb30f2f256d4a416df",
+      "size": 10630172,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/42ad0253e2103c136b0b06bb30f2f256d4a416df"
+    },
+    {
+      "path": "pyproject.toml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "12daef4ccf00472272c120ed7499b38eebe49ebd",
+      "size": 1450,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/12daef4ccf00472272c120ed7499b38eebe49ebd"
+    },
+    {
+      "path": "scripts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a549edfd030cf396635eb0cf0b0e4800ccc00142",
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/trees/a549edfd030cf396635eb0cf0b0e4800ccc00142"
+    },
+    {
+      "path": "scripts/eval_rollout.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6bf0c797cc62a3a8706166e1e106b65f5aa6a4df",
+      "size": 1875,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/6bf0c797cc62a3a8706166e1e106b65f5aa6a4df"
+    },
+    {
+      "path": "scripts/retrain_models.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "8507bc861512af9c1555a6b9377af0c4d9dcc4fe",
+      "size": 989,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/8507bc861512af9c1555a6b9377af0c4d9dcc4fe"
+    },
+    {
+      "path": "scripts/train_muscle.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e2ee84db6517d8fab1b708941732b92baa480c68",
+      "size": 305,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/e2ee84db6517d8fab1b708941732b92baa480c68"
+    },
+    {
+      "path": "scripts/train_one_seed.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "7666028dbe8219344967afd4aba2f8f0c1e43411",
+      "size": 495,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/7666028dbe8219344967afd4aba2f8f0c1e43411"
+    },
+    {
+      "path": "scripts/train_seeds.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "2ae650631446bc71e83fbe522dbca21f5eac3513",
+      "size": 503,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/2ae650631446bc71e83fbe522dbca21f5eac3513"
+    },
+    {
+      "path": "scripts/train_torque.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a2f7c19876b89e1c9c06bf6060dbcab858a615d0",
+      "size": 276,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/a2f7c19876b89e1c9c06bf6060dbcab858a615d0"
+    },
+    {
+      "path": "tests",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9b52cf3d4eef0c11cfdaa8be2300088cf91dcd6e",
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/trees/9b52cf3d4eef0c11cfdaa8be2300088cf91dcd6e"
+    },
+    {
+      "path": "tests/test_assets.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "da2a7fa0f7910e66f579d8b8066df15f0feacb0d",
+      "size": 698,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/da2a7fa0f7910e66f579d8b8066df15f0feacb0d"
+    },
+    {
+      "path": "tests/test_play_mode_rewards.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ead60b9b6357396d6d4e94aa78ba6c0b880f632c",
+      "size": 1342,
+      "url": "https://api.github.com/repos/gizemozd/FlyMimic/git/blobs/ead60b9b6357396d6d4e94aa78ba6c0b880f632c"
+    }
+  ]
+}
