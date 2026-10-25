@@ -6,6 +6,7 @@ import numpy as np
 import pytest
 
 from malecns_backend.embodiment import lf_synthetic_coupling as audit
+from malecns_backend.embodiment import lf_synthetic_coupling_review as review
 
 
 @pytest.fixture(scope='module')
@@ -135,13 +136,13 @@ def saved(): return audit.upstream.load_report(audit.ROOT/(audit.DIRECTORY+'run/
 
 def test_saved_review_executes_no_native_reference_or_cns(monkeypatch):
     forbid_computation(monkeypatch)
-    assert audit.main(['--report', str(audit.ROOT/(audit.DIRECTORY+'run/validation.json'))]) == 0
+    assert review.main(['--report', str(audit.ROOT/(audit.DIRECTORY+'run/validation.json'))]) == 0
 
 
 def test_saved_full_window_errors_and_all_grids_are_retained():
     report = saved()
     actual = audit.evaluate(report, report['ready'])
-    assert actual['integrity_passed'] and len(actual['cases']) == 9
+    assert actual == report['evaluation'] and len(actual['cases']) == 9
     for case, result in zip(report['cases'], actual['cases']):
         stride = round(case['dt']/audit.schedule.DTS[-1])
         ref = np.asarray(report['references'][case['condition']]['states'])[::stride]
@@ -150,6 +151,21 @@ def test_saved_full_window_errors_and_all_grids_are_retained():
         assert result['maximum_position_error'] == np.max(np.abs(q-ref[:, 4:8]))
         assert result['maximum_velocity_error'] == np.max(np.abs(v-ref[:, 8:]))
         assert result['numerical_acceptance'] == all(result['numerical_checks'].values())
+
+
+def test_failed_exact_dense_guard_is_preserved_and_not_reclassified():
+    summary = review.diagnostics(saved())
+    assert summary['original_classification'] == 'INTEGRITY_FAILURE'
+    assert not summary['acceptance_changed'] and not summary['campaign_repeated']
+    assert all(r['committed_state_matches_authoritative_terminal'] for r in summary['cases'])
+    assert [r['nonidentical_dense_endpoints'] for r in summary['cases'] if r['condition'] == 'PULSE'] == [1, 2, 11]
+    assert all(not r['original_solver_guard'] for r in summary['cases'] if r['condition'] == 'PULSE')
+
+
+def test_failure_review_rejects_raw_record_tampering(tmp_path):
+    original = audit.ROOT/(audit.DIRECTORY+'run/validation.json')
+    path = tmp_path/'changed.json'; path.write_bytes(original.read_bytes()+b' ')
+    with pytest.raises(ValueError, match='raw evidence hash'): review.verify(path)
 
 
 @pytest.mark.parametrize('defect', ['drop', 'time', 'foreign', 'owned', 'activation', 'step_counter', 'mass', 'solver', 'metadata'])
@@ -164,4 +180,6 @@ def test_saved_corruption_is_rejected(defect):
     if defect == 'mass': report['calibrations'][0]['mass'][0][0] = 2.
     if defect == 'solver': row['solver']['solver']['success'] = False
     if defect == 'metadata': report['cases'][0]['metadata'][0]['body_id'] = 1
-    assert not audit.evaluate(report, report['ready'])['integrity_passed']
+    # The unmodified campaign is already failed; corruption must cause a NEW
+    # evaluation difference, rather than merely inherit that existing verdict.
+    assert audit.evaluate(report, report['ready']) != report['evaluation']
