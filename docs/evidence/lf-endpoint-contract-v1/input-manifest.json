@@ -1,0 +1,17 @@
+{
+  "schema": "lf-endpoint-inputs-v1",
+  "versions": {
+    "numpy": "2.0.2",
+    "scipy": "1.18.1"
+  },
+  "files": {
+    "scipy/integrate/_ivp/radau.py": {
+      "bytes": 20721,
+      "sha256": "232f08010ccaa736e16ca34afc888c69365352df58fffbf7aecba6f863a456c6"
+    },
+    "scipy/integrate/_ivp/ivp.py": {
+      "bytes": 32775,
+      "sha256": "27b55eb57d7eb31685f884e9a5496954e285ac5d1f0d5018e0d84c750ab2a1ca"
+    }
+  }
+}
