@@ -14,9 +14,9 @@ from . import lf_force_reference_validation as prior
 from . import lf_proximal_binding_review as binding
 
 ROOT = force.ROOT
-DIRECTORY = 'docs/evidence/lf-pose-force-v1/'
-MANIFEST = DIRECTORY+'input-manifest.json'
-SCHEMA = 'lf-pose-force-v1'
+DIRECTORY = 'docs/evidence/lf-pose-force-v1_1/'
+MANIFEST = 'docs/evidence/lf-pose-force-v1/input-manifest.json'
+SCHEMA = 'lf-pose-force-v1.1'
 SOURCE_BASIS = ('joint_LFCoxa_yaw', 'joint_LFCoxa_pitch', 'joint_LFCoxa_roll')
 EPSILON = 1e-6
 OFFSETS = [(0., 0., 0.)]+[tuple(sign*.05 if i == axis else 0. for i in range(3))
@@ -72,7 +72,7 @@ def transfer(q_world, q_reference, bm, rm):
 
 def sources():
     result = prior.source_hashes()
-    for p in ('docs/LF_POSE_FORCE_V1.md', 'malecns_backend/embodiment/lf_pose_force.py', MANIFEST):
+    for p in ('docs/LF_POSE_FORCE_V1.md', 'docs/LF_POSE_FORCE_V1_1.md', 'malecns_backend/embodiment/lf_pose_force.py', MANIFEST):
         result[p] = force.audit.sha((ROOT/p).read_bytes().replace(b'\r\n', b'\n'))
     return result
 
@@ -89,13 +89,43 @@ def preflight(model=None):
     return dict(source_hashes=hashes, reference=reference, inputs=frozen, qref=qref)
 
 
+def dense_moments(mj, model, data):
+    raw = dict(values=np.asarray(data.actuator_moment).reshape(-1).tolist(),
+               rownnz=np.asarray(data.moment_rownnz).tolist(),
+               rowadr=np.asarray(data.moment_rowadr).tolist(),
+               colind=np.asarray(data.moment_colind).tolist())
+    dense = np.zeros((model.nu, model.nv))
+    mj.mju_sparse2dense(dense, np.asarray(data.actuator_moment).reshape(-1),
+                       data.moment_rownnz, data.moment_rowadr, data.moment_colind)
+    return dense, raw
+
+
+def saved_sparse_matrix(raw, nu, nv):
+    from scipy.sparse import csr_matrix
+    values, columns, pointers = [], [], [0]
+    if len(raw['rownnz']) != nu or len(raw['rowadr']) != nu or len(raw['values']) != len(raw['colind']):
+        raise ValueError('invalid sparse descriptor shapes')
+    for count, start in zip(raw['rownnz'], raw['rowadr']):
+        if type(count) is not int or type(start) is not int or min(count, start) < 0 or start+count > len(raw['values']):
+            raise ValueError('invalid sparse row descriptor')
+        cols = raw['colind'][start:start+count]
+        vals = raw['values'][start:start+count]
+        if (any(type(c) is not int or not 0 <= c < nv for c in cols)
+                or len(set(cols)) != len(cols) or not np.isfinite(vals).all()):
+            raise ValueError('invalid sparse columns/values')
+        values.extend(vals)
+        columns.extend(cols)
+        pointers.append(len(values))
+    return csr_matrix((values, columns, pointers), shape=(nu, nv)).toarray()
+
+
 def _observe(mj, model, qpos, activation, control, ids, jids, tids, actids, body):
     data = mj.MjData(model)
     data.qpos[:] = qpos
     data.act[actids] = activation
     data.ctrl[ids] = control
     mj.mj_forward(model, data)
-    moments = np.asarray(data.actuator_moment).reshape(model.nu, model.nv).copy()
+    moments, sparse = dense_moments(mj, model, data)
     clipped = np.clip(data.ctrl[ids], model.actuator_ctrlrange[ids, 0], model.actuator_ctrlrange[ids, 1])
     gain = [mj.mju_muscleGain(data.actuator_length[i], data.actuator_velocity[i],
         model.actuator_lengthrange[i], model.actuator_acc0[i], model.actuator_gainprm[i, :9]) for i in ids]
@@ -105,7 +135,7 @@ def _observe(mj, model, qpos, activation, control, ids, jids, tids, actids, body
            for i, a, c in zip(ids, actids, clipped)]
     row = {key: np.asarray(getattr(data, key)).tolist() for key in
         ('qpos', 'qvel', 'act', 'ctrl', 'act_dot', 'actuator_force', 'ten_length', 'qfrc_actuator', 'qfrc_applied', 'xfrc_applied')}
-    row.update(time=float(data.time), moments=moments.tolist(), effective_control=clipped.tolist(),
+    row.update(time=float(data.time), moments=moments.tolist(), moment_sparse=sparse, effective_control=clipped.tolist(),
         gain=gain, bias=bias, dynamics=dyn, B_M=data.xaxis[jids].T.tolist(),
         rotation=data.xmat[body].reshape(3, 3).tolist(), ncon=int(data.ncon))
     return row
@@ -226,6 +256,9 @@ def evaluate(report, ready):
                     not np.any(np.delete(np.asarray(s['ctrl']), ids)) for s in observations)
                 result['checks']['external_force_zero'] = all(not np.any(s['qfrc_applied'])
                     and not np.any(s['xfrc_applied']) for s in observations)
+                result['checks']['sparse_transmission'] = all(np.max(np.abs(
+                    saved_sparse_matrix(s['moment_sparse'], meta['nu'], meta['nv'])-np.asarray(s['moments']))) <= 1e-12
+                    for s in observations)
                 for s in observations:
                     mom, f = np.asarray(s['moments']), np.asarray(s['actuator_force'])
                     arrays = [np.asarray(s[k], dtype=float) for k in ('qpos', 'qvel', 'act', 'ctrl', 'act_dot', 'moments', 'actuator_force', 'ten_length', 'gain', 'bias', 'dynamics')]

@@ -41,7 +41,7 @@ def test_nonrotations_are_rejected(bad):
 
 
 def test_singular_target_or_source_basis_is_not_substituted():
-    with pytest.raises(ValueError):
+    with pytest.warns(UserWarning, match='Gimbal lock'), pytest.raises(ValueError):
         pose.rotation_map(Rotation.from_euler('XYZ', [0., np.pi/2, 0.]).as_matrix(), np.eye(3))
     with pytest.raises((ValueError, np.linalg.LinAlgError)):
         pose.transfer(np.eye(3), np.eye(3), np.zeros((3, 3)), np.ones((3, 4)))
@@ -104,3 +104,34 @@ def test_saved_corruption_cannot_pass(defect):
     if defect == 'counter': report['observed_api_calls']['mj_forward'] += 1
     if defect == 'activation': report['poses'][0]['samples'][1]['act'][0] = .7
     assert not pose.evaluate(report, report['ready'])['passed']
+
+
+def test_native_sparse_conversion_is_not_a_dense_reshape():
+    import mujoco
+    from types import SimpleNamespace
+    data = SimpleNamespace(actuator_moment=np.array([3., 5., 7., 0., 0., 0.]),
+        moment_rownnz=np.array([1, 2], dtype=np.int32), moment_rowadr=np.array([0, 1], dtype=np.int32),
+        moment_colind=np.array([2, 0, 1, 0, 0, 0], dtype=np.int32))
+    dense, raw = pose.dense_moments(mujoco, SimpleNamespace(nu=2, nv=3), data)
+    expected = np.array([[0., 0., 3.], [5., 7., 0.]])
+    assert np.array_equal(dense, expected)
+    assert not np.array_equal(dense, data.actuator_moment.reshape(2, 3))
+    assert np.array_equal(pose.saved_sparse_matrix(raw, 2, 3), expected)
+
+
+@pytest.mark.parametrize('defect', ['negative', 'column', 'duplicate', 'nan'])
+def test_sparse_descriptor_corruption_fails(defect):
+    raw = dict(values=[3., 5., 7.], rownnz=[1, 2], rowadr=[0, 1], colind=[2, 0, 1])
+    if defect == 'negative': raw['rowadr'][0] = -1
+    if defect == 'column': raw['colind'][0] = 9
+    if defect == 'duplicate': raw['colind'][2] = 0
+    if defect == 'nan': raw['values'][0] = float('nan')
+    with pytest.raises(ValueError): pose.saved_sparse_matrix(raw, 2, 3)
+
+
+def test_preserved_v1_failed_record_is_unchanged():
+    path = pose.ROOT/'docs/evidence/lf-pose-force-v1/run/validation.json'
+    assert pose.force.audit.sha(path.read_bytes()) == '5413ad619c1f8b3fb08b2468c9dc3667cd715365246f7ca933e5ebc10aba6252'
+    original = json.loads(path.read_text(encoding='utf-8'))
+    assert not original['evaluation']['passed']
+    assert original['observed_api_calls'] == dict(mj_forward=137, mj_step=0)
