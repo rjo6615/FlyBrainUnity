@@ -1,8 +1,8 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-25. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for the LF anatomical crosswalk update: `newBrain` at
-`c6495bb8d7de6e8a2d7792d63d3f9467645f951f`, which merges PR #266.
+Verified baseline for the LF force-reference fixture update: `newBrain` at
+`29a8e3ce91bc99b556ed6c857a4f3ebaa34fa524`, which merges PR #267.
 Fetch and inspect current state before starting work.
 
 ## What the user wants
@@ -590,6 +590,59 @@ coupling. Synthetic known-tension fixtures establish software/reference mechanic
 not biological gain or neural recruitment. No production admission or bounded CNS
 experiment until original raw and remaining scientific prerequisites independently
 pass. Preserve all historical nulls and never tune to get activity.
+
+## Latest update — isolated LF force-reference adapter validated
+
+Initial protocol/fixture/adapter/tests committed at 8228e84 before archived v1.
+Four explicit single-class tendon hypotheses project known nonnegative tensions
+through frozen R_G; no broad promotor, per-neuron tendon assignment, neural gain or
+activation law. Synthetic fixture has free root + sentinel hinge + three LF-named
+reference hinges; DOFs 7/8/9, qpos 8/9/10, not logical action indices 2/0/1.
+Require exact reference pose/time, zero actuators/passive/contact forces, and exact
+force ownership. Apply/clear reject pose/velocity/foreign force/double application.
+No production runner or position actuator behavior changed; current 20/42.
+
+V1 array checks passed but strict review-boundary test exposed inherited side
+effect: audit.build -> corrected _protocol -> old._inventory ->
+enumerate_live_actuators constructs FlyGym and calls mj_forward during model init.
+Its calls were outside the fixture counter. V1 operation/construction-free-review
+provenance is rejected and raw evidence preserved, with context-audit-v1_1.json.
+No CNS/integration transitions identified. Older audit/crosswalk implementations
+remain untouched; their inventory calls can construct a native model despite
+earlier data-only phrasing. Do not infer zero construction from zero transitions.
+
+V1.1 correction committed at 276c4f1 before justified fixed repeat. New local
+static loader reuses original snapshot/frozen_record/codec/inspect_lf/row_record/
+crosswalk validators plus locked build_live_protocol and pure v2/v3 metadata
+derivations; no live enumeration or fabricated physical records. All exact LF
+records/aliases/nulls/covectors and 22 remaining rows reproduce. This is static
+admission verification, not newly compiled current-fly physical validation.
+
+Six native fixture conditions all pass. Across preflight/execution, Python API
+instrumentation observes exactly 18 mj_forward and 0 mj_step calls; compiler-
+internal calculations are not counted as API calls. No integration or CNS.
+Complete matrices/accelerations/poses/forces preserved in
+`docs/evidence/lf-force-reference-v1_1/validation.json`. Max projection error
+8.674e-18, dynamics residual 7.807e-17, virtual-work error 4.337e-19 under declared
+1e-12/1e-10 implementation tolerances. Old raw prerequisites remain false.
+
+74 focused tests pass (29 new, 45 previous). Discovery matrix was 71 pass/1 strict
+boundary failure; corrected path keeps that test and also forbids enumeration and
+integration. Exact saved-review command passed in Windows Git Bash. No dependency
+changes, Unity Editor or neural/fly behavioral experiment. Saved review is now
+verified without dynamics. See LF_FORCE_REFERENCE_V1.md, V1_1.md and RESULTS.md.
+Git Bash after pull/LFS: `embodiment.lf_force_reference_validation --report
+docs/evidence/lf-force-reference-v1_1/validation.json`. Include full copy-paste
+commands every delivery. V1 remains preserved and is rejected by v1.1 review.
+
+Immediate next scope: separately specify pose-dependent mechanical transfer and
+activation/passive tension/units, plus selective actuator replacement preventing
+double actuation in a moving fly. Current adapter deliberately supports only the
+exact synthetic reference pose and nu=0, not production attachment. No arbitrary
+finite-angle reuse, peak-force/gain transfer or new admission from fixture success.
+Original raw and remaining biological/application prerequisites must independently
+pass before bounded neural coupling. Preserve broad-promotor uncertainty and
+historical nulls. Do not tune neural parameters or gains to produce activity.
 
 ## Completed predecessor task — negative-control design requirements
 
