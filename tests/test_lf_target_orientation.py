@@ -50,11 +50,14 @@ def original_native():
 @pytest.mark.parametrize('defect', ['body', 'qpos', 'action', 'thorax_duplicate', 'ancestry'])
 def test_exact_native_identity_cannot_be_replaced_by_matching_names(original_native, defect):
     inv, _ = copy.deepcopy(original_native)
-    arrays = dict(body_parentid=[0]+[1]*71)
+    thorax = next(i for i, name in enumerate(inv['names']['body']) if target.native.namespace_component(name) == 'Thorax')
+    arrays = dict(body_parentid=[0]*len(inv['names']['body']))
+    arrays['body_parentid'][13] = thorax
+    assert target.exact_frames(inv, arrays)['thorax_id'] == thorax
     if defect == 'body': target.native.targets(inv)[0]['body_id'] = 14
     if defect == 'qpos': target.native.targets(inv)[0]['qpos_range'] = [8, 9]
     if defect == 'action': target.native.targets(inv)[0]['action_index'] = 0
-    if defect == 'thorax_duplicate': inv['names']['body'][2] = inv['names']['body'][1]
+    if defect == 'thorax_duplicate': inv['names']['body'][2] = inv['names']['body'][thorax]
     if defect == 'ancestry': arrays['body_parentid'][13] = 0
     with pytest.raises(ValueError): target.exact_frames(inv, arrays)
 
