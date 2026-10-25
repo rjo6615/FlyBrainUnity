@@ -82,3 +82,13 @@ reference pose, not arbitrary moving poses. No neural force law, biological scal
 or new admission is established. Current production remains 20/42. Next specify
 pose-dependent mechanics, activation/passive terms, units and selective actuation
 replacement before a separately bounded neural-coupling experiment.
+
+Pose/source-force reference v1.1 now passes 15 fixed source poses under an explicitly
+modeled rotational correspondence, with native tendon derivatives and active/
+passive/activation-dynamics checks. See `LF_POSE_FORCE_RESULTS.md`. The source
+anterior rotator has passive preload at zero activation, and positive control floors
+make raw zero control distinct from a zero-activation equilibrium. These are source
+model properties, not biological calibration. Failed v1 sparse-format interpretation
+is preserved. No finite-angle anatomical FlyGym registration or cross-body force
+scale is established; no production change or new admission. Next validate activation
+transients/baseline semantics and establish physical/units transfer before coupling.
