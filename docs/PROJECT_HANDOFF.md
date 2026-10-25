@@ -1,9 +1,28 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-25. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for LF attachment-registration decision: `newBrain` at
-`3e842c2` (merged PR #281).
+Verified baseline for reference acquisition V1: `origin/newBrain` at
+`1f42b02` (merged PR #282).
 Fetch and inspect current state before starting work.
+
+Latest continuation: `LF_REFERENCE_ACQUISITION_V1.md` records a bounded official
+publication/data/code acquisition review. No qualifying target annotation bundle
+was acquired; no new physics/CNS or observer campaign. Original development repo
+returned GitHub API404; raw-imaging shares were JS-only, empty in extraction or
+inaccessible to the browsing tool. These are access limits, not absence proofs.
+FlyGym issue276 provides a distinct-rig compatibility warning; retrieved body and
+metadata preserved in `evidence/lf-reference-acquisition-v1/flygym-276-snapshot.json`.
+Its mesh/body claims were not reproduced against our locked assets and do not
+authorize target attachments, dependency changes or body substitution.
+
+Immediate next action: request an accessible model-development/anatomical
+annotation artifact or authoritative revision/download meeting the existing
+reference-request.json. That remains the active research blocker. No author
+outreach without user authorization; no observer-only PR or guessed fit as a
+substitute. Motor coverage20/42 (47.6% coverage, not project completion), new
+admissions0, target correspondence0/8, target points null, muscle coupling disabled.
+Roadmap now includes a compact progress display and separates numerical checks
+from anatomy/physical/neural gates and independent balance/walking.
 
 ## What the user wants
 
