@@ -62,3 +62,13 @@ neuron-to-muscle or force-to-position decoder transfer. All three broad-promotor
 hypotheses and all per-neuron unassigned bindings remain explicit. Current admission
 stays 20/42. Next obtain an independent neuron-to-muscle crosswalk and specify the
 intended force versus engineered position interface before numerical validation.
+
+New independent reference research in `LF_ANATOMICAL_CROSSWALK_RESULTS.md` verifies
+all 13 LF body IDs against the original official MaleCNS v1.0 annotation table,
+including 12 recorded MANC body matches and one explicitly missing match. The
+full FANC atlas Figure A2 explicitly leaves individual promotor targets uncertain;
+names/counts cannot resolve its split into model tendons. Four other classes have
+class-level anatomical support. Next scope is a separately specified LF muscle-
+force reference adapter/isolated validation using those four modeled class
+hypotheses, while leaving the broad promotor unassigned and production admission
+at 20/42. Numerical force/activation/application gates remain to be specified.
