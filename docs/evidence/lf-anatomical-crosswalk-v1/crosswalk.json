@@ -1,0 +1,1065 @@
+{
+  "schema": "lf-anatomical-crosswalk-v1",
+  "status": "CLASS_REFERENCE_VERIFIED_TENDON_BINDING_UNRESOLVED",
+  "source_hashes": {
+    "docs/LF_ANATOMICAL_CROSSWALK_V1.md": "ede8a8c57bde1bf4a28a86008df990b9b09f42475976404c4c54f3af1164685d",
+    "malecns_backend/embodiment/lf_anatomical_crosswalk.py": "b56a151b356aece7c2d03f325c5864d67ad73f6a055b255085a494fbbd3e4a4f",
+    "malecns_backend/embodiment/remaining_leg_admission_review.py": "7a9e700cfa2eb905df6afa2a0cfd967bc40cd8edb7bc292b44fa3728479c5bcc",
+    "fly-brain-main/scripts/prep_bodymap.py": "9e571af9aeb13bb28639c69fdbe0942be8aa41a10346e2359134b899ca16b683",
+    "docs/evidence/remaining-leg-admission-audit-v1_1/audit.json": "ff64e64941b54872f2d59564d1db6c6422ef25c74067d53acbe23b59ab998c04"
+  },
+  "official_source": {
+    "path": "docs/evidence/lf-anatomical-crosswalk-v1/annotations.feather",
+    "sha256": "2177e246113e4cfbf1e7772ec37c6da1955ff22e8063d0b1f833101f99a9a3b2",
+    "size_bytes": 14483314,
+    "total_rows": 211577,
+    "schema": [
+      {
+        "name": "assignedOlHex1",
+        "type": "double"
+      },
+      {
+        "name": "assignedOlHex2",
+        "type": "double"
+      },
+      {
+        "name": "bodyId",
+        "type": "int64"
+      },
+      {
+        "name": "flywireType",
+        "type": "string"
+      },
+      {
+        "name": "group",
+        "type": "double"
+      },
+      {
+        "name": "instance",
+        "type": "string"
+      },
+      {
+        "name": "somaSide",
+        "type": "string"
+      },
+      {
+        "name": "statusLabel",
+        "type": "dictionary<values=string, indices=int8, ordered=1>"
+      },
+      {
+        "name": "superclass",
+        "type": "string"
+      },
+      {
+        "name": "type",
+        "type": "string"
+      },
+      {
+        "name": "vfbId",
+        "type": "string"
+      },
+      {
+        "name": "hemibrainType",
+        "type": "string"
+      },
+      {
+        "name": "itoleeHl",
+        "type": "string"
+      },
+      {
+        "name": "supertype",
+        "type": "string"
+      },
+      {
+        "name": "birthtime",
+        "type": "string"
+      },
+      {
+        "name": "mancBodyid",
+        "type": "double"
+      },
+      {
+        "name": "mancGroup",
+        "type": "double"
+      },
+      {
+        "name": "mancType",
+        "type": "string"
+      },
+      {
+        "name": "subclass",
+        "type": "string"
+      },
+      {
+        "name": "synonyms",
+        "type": "string"
+      },
+      {
+        "name": "class",
+        "type": "string"
+      },
+      {
+        "name": "rootSide",
+        "type": "string"
+      },
+      {
+        "name": "somaNeuromere",
+        "type": "string"
+      },
+      {
+        "name": "trumanHl",
+        "type": "string"
+      },
+      {
+        "name": "dimorphism",
+        "type": "string"
+      },
+      {
+        "name": "matchingNotes",
+        "type": "string"
+      },
+      {
+        "name": "entryNerve",
+        "type": "string"
+      },
+      {
+        "name": "mancSerial",
+        "type": "double"
+      },
+      {
+        "name": "mcnsSerial",
+        "type": "double"
+      },
+      {
+        "name": "serialMotif",
+        "type": "string"
+      },
+      {
+        "name": "fruDsx",
+        "type": "string"
+      },
+      {
+        "name": "exitNerve",
+        "type": "string"
+      },
+      {
+        "name": "receptorType",
+        "type": "string"
+      },
+      {
+        "name": "somaLocation",
+        "type": "list<item: int64>"
+      },
+      {
+        "name": "tosomaLocation",
+        "type": "list<item: int64>"
+      },
+      {
+        "name": "status",
+        "type": "string"
+      }
+    ],
+    "attribution": "MaleCNS consortium; CC-BY; https://male-cns.janelia.org/download/"
+  },
+  "neurons": [
+    {
+      "body_id": 800061,
+      "dense_index": 142836,
+      "population": "Tergopleural/Pleural promotor MN T1 left",
+      "annotation_actuators": [
+        "coxa_T1_left"
+      ],
+      "original_annotation": {
+        "assignedOlHex1": null,
+        "assignedOlHex2": null,
+        "bodyId": 800061,
+        "flywireType": null,
+        "group": 800061.0,
+        "instance": "Tergopleural/Pleural promotor MN_L",
+        "somaSide": "L",
+        "statusLabel": "Reviewed",
+        "superclass": "vnc_motor",
+        "type": "Tergopleural/Pleural promotor MN",
+        "vfbId": "VFB_jrmc0nm6",
+        "hemibrainType": null,
+        "itoleeHl": null,
+        "supertype": null,
+        "birthtime": "early",
+        "mancBodyid": 12686.0,
+        "mancGroup": 12686.0,
+        "mancType": "Tergopleural/Pleural promotor MN",
+        "subclass": "fl",
+        "synonyms": null,
+        "class": null,
+        "rootSide": null,
+        "somaNeuromere": "T1",
+        "trumanHl": "TBD",
+        "dimorphism": null,
+        "matchingNotes": null,
+        "entryNerve": null,
+        "mancSerial": null,
+        "mcnsSerial": null,
+        "serialMotif": null,
+        "fruDsx": null,
+        "exitNerve": "DProN",
+        "receptorType": null,
+        "somaLocation": [
+          63010,
+          54630,
+          66030
+        ],
+        "tosomaLocation": null,
+        "status": "Traced"
+      },
+      "recorded_manc_body_match": 12686,
+      "atlas_class_reference": {
+        "figure": "A2",
+        "pdf_pages": [
+          15,
+          16
+        ],
+        "fanc_mn_set": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "individual_fanc_mn": null,
+      "model_tendon": null,
+      "decoder_vector": null,
+      "gain": null,
+      "admission_ready": false
+    },
+    {
+      "body_id": 801173,
+      "dense_index": 143654,
+      "population": "Tergopleural/Pleural promotor MN T1 left",
+      "annotation_actuators": [
+        "coxa_T1_left"
+      ],
+      "original_annotation": {
+        "assignedOlHex1": null,
+        "assignedOlHex2": null,
+        "bodyId": 801173,
+        "flywireType": null,
+        "group": 801173.0,
+        "instance": "Tergopleural/Pleural promotor MN_L",
+        "somaSide": "L",
+        "statusLabel": "Reviewed",
+        "superclass": "vnc_motor",
+        "type": "Tergopleural/Pleural promotor MN",
+        "vfbId": "VFB_jrmc0nm4",
+        "hemibrainType": null,
+        "itoleeHl": null,
+        "supertype": null,
+        "birthtime": "early",
+        "mancBodyid": 19319.0,
+        "mancGroup": 12628.0,
+        "mancType": "Tergopleural/Pleural promotor MN",
+        "subclass": "fl",
+        "synonyms": null,
+        "class": null,
+        "rootSide": null,
+        "somaNeuromere": "T1",
+        "trumanHl": "TBD",
+        "dimorphism": null,
+        "matchingNotes": null,
+        "entryNerve": null,
+        "mancSerial": null,
+        "mcnsSerial": null,
+        "serialMotif": null,
+        "fruDsx": null,
+        "exitNerve": "DProN",
+        "receptorType": null,
+        "somaLocation": [
+          59114,
+          52504,
+          65932
+        ],
+        "tosomaLocation": null,
+        "status": "Traced"
+      },
+      "recorded_manc_body_match": 19319,
+      "atlas_class_reference": {
+        "figure": "A2",
+        "pdf_pages": [
+          15,
+          16
+        ],
+        "fanc_mn_set": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "individual_fanc_mn": null,
+      "model_tendon": null,
+      "decoder_vector": null,
+      "gain": null,
+      "admission_ready": false
+    },
+    {
+      "body_id": 807281,
+      "dense_index": 148512,
+      "population": "Tergopleural/Pleural promotor MN T1 left",
+      "annotation_actuators": [
+        "coxa_T1_left"
+      ],
+      "original_annotation": {
+        "assignedOlHex1": null,
+        "assignedOlHex2": null,
+        "bodyId": 807281,
+        "flywireType": null,
+        "group": 805745.0,
+        "instance": "Tergopleural/Pleural promotor MN_L",
+        "somaSide": "L",
+        "statusLabel": "Reviewed",
+        "superclass": "vnc_motor",
+        "type": "Tergopleural/Pleural promotor MN",
+        "vfbId": "VFB_jrmc0nm0",
+        "hemibrainType": null,
+        "itoleeHl": null,
+        "supertype": null,
+        "birthtime": "early",
+        "mancBodyid": 12396.0,
+        "mancGroup": 12396.0,
+        "mancType": "Tergopleural/Pleural promotor MN",
+        "subclass": "fl",
+        "synonyms": null,
+        "class": null,
+        "rootSide": null,
+        "somaNeuromere": "T1",
+        "trumanHl": "08A",
+        "dimorphism": null,
+        "matchingNotes": null,
+        "entryNerve": null,
+        "mancSerial": null,
+        "mcnsSerial": null,
+        "serialMotif": null,
+        "fruDsx": null,
+        "exitNerve": "DProN",
+        "receptorType": null,
+        "somaLocation": [
+          56560,
+          56694,
+          63010
+        ],
+        "tosomaLocation": null,
+        "status": "Traced"
+      },
+      "recorded_manc_body_match": 12396,
+      "atlas_class_reference": {
+        "figure": "A2",
+        "pdf_pages": [
+          15,
+          16
+        ],
+        "fanc_mn_set": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "individual_fanc_mn": null,
+      "model_tendon": null,
+      "decoder_vector": null,
+      "gain": null,
+      "admission_ready": false
+    },
+    {
+      "body_id": 934091,
+      "dense_index": 162856,
+      "population": "Tergopleural/Pleural promotor MN T1 left",
+      "annotation_actuators": [
+        "coxa_T1_left"
+      ],
+      "original_annotation": {
+        "assignedOlHex1": null,
+        "assignedOlHex2": null,
+        "bodyId": 934091,
+        "flywireType": null,
+        "group": 810535.0,
+        "instance": "Tergopleural/Pleural promotor MN_L",
+        "somaSide": "L",
+        "statusLabel": "Reviewed",
+        "superclass": "vnc_motor",
+        "type": "Tergopleural/Pleural promotor MN",
+        "vfbId": "VFB_jrmc0nm1",
+        "hemibrainType": null,
+        "itoleeHl": null,
+        "supertype": null,
+        "birthtime": null,
+        "mancBodyid": 13490.0,
+        "mancGroup": 13464.0,
+        "mancType": "Tergopleural/Pleural promotor MN",
+        "subclass": "fl",
+        "synonyms": null,
+        "class": null,
+        "rootSide": null,
+        "somaNeuromere": "T1",
+        "trumanHl": "08A",
+        "dimorphism": null,
+        "matchingNotes": null,
+        "entryNerve": null,
+        "mancSerial": null,
+        "mcnsSerial": null,
+        "serialMotif": null,
+        "fruDsx": null,
+        "exitNerve": "DProN",
+        "receptorType": null,
+        "somaLocation": [
+          57432,
+          56951,
+          62725
+        ],
+        "tosomaLocation": null,
+        "status": "Traced"
+      },
+      "recorded_manc_body_match": 13490,
+      "atlas_class_reference": {
+        "figure": "A2",
+        "pdf_pages": [
+          15,
+          16
+        ],
+        "fanc_mn_set": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "individual_fanc_mn": null,
+      "model_tendon": null,
+      "decoder_vector": null,
+      "gain": null,
+      "admission_ready": false
+    },
+    {
+      "body_id": 802509,
+      "dense_index": 144657,
+      "population": "Pleural remotor/abductor MN T1 left",
+      "annotation_actuators": [
+        "coxa_T1_left",
+        "coxa_abduct_T1_left"
+      ],
+      "original_annotation": {
+        "assignedOlHex1": null,
+        "assignedOlHex2": null,
+        "bodyId": 802509,
+        "flywireType": null,
+        "group": 802509.0,
+        "instance": "Pleural remotor/abductor MN_L",
+        "somaSide": "L",
+        "statusLabel": "Reviewed",
+        "superclass": "vnc_motor",
+        "type": "Pleural remotor/abductor MN",
+        "vfbId": "VFB_jrmc1ko2",
+        "hemibrainType": null,
+        "itoleeHl": null,
+        "supertype": null,
+        "birthtime": "early",
+        "mancBodyid": 12096.0,
+        "mancGroup": 16419.0,
+        "mancType": "Pleural remotor/abductor MN",
+        "subclass": "fl",
+        "synonyms": null,
+        "class": null,
+        "rootSide": null,
+        "somaNeuromere": "T1",
+        "trumanHl": "TBD",
+        "dimorphism": null,
+        "matchingNotes": null,
+        "entryNerve": null,
+        "mancSerial": 12096.0,
+        "mcnsSerial": 800776.0,
+        "serialMotif": null,
+        "fruDsx": null,
+        "exitNerve": "ProAN",
+        "receptorType": null,
+        "somaLocation": [
+          60244,
+          55726,
+          64098
+        ],
+        "tosomaLocation": null,
+        "status": "Traced"
+      },
+      "recorded_manc_body_match": 12096,
+      "atlas_class_reference": {
+        "figure": "A4",
+        "pdf_pages": [
+          18,
+          19
+        ],
+        "fanc_mn_set": [
+          12,
+          13
+        ]
+      },
+      "individual_fanc_mn": null,
+      "model_tendon": null,
+      "decoder_vector": null,
+      "gain": null,
+      "admission_ready": false
+    },
+    {
+      "body_id": 803803,
+      "dense_index": 145652,
+      "population": "Pleural remotor/abductor MN T1 left",
+      "annotation_actuators": [
+        "coxa_T1_left",
+        "coxa_abduct_T1_left"
+      ],
+      "original_annotation": {
+        "assignedOlHex1": null,
+        "assignedOlHex2": null,
+        "bodyId": 803803,
+        "flywireType": null,
+        "group": 803803.0,
+        "instance": "Pleural remotor/abductor MN_L",
+        "somaSide": "L",
+        "statusLabel": "Reviewed",
+        "superclass": "vnc_motor",
+        "type": "Pleural remotor/abductor MN",
+        "vfbId": "VFB_jrmc1ko3",
+        "hemibrainType": null,
+        "itoleeHl": null,
+        "supertype": null,
+        "birthtime": "early",
+        "mancBodyid": 13628.0,
+        "mancGroup": 13628.0,
+        "mancType": "Pleural remotor/abductor MN",
+        "subclass": "fl",
+        "synonyms": null,
+        "class": null,
+        "rootSide": null,
+        "somaNeuromere": "T1",
+        "trumanHl": "TBD",
+        "dimorphism": null,
+        "matchingNotes": null,
+        "entryNerve": null,
+        "mancSerial": 13628.0,
+        "mcnsSerial": 800541.0,
+        "serialMotif": null,
+        "fruDsx": null,
+        "exitNerve": "ProAN",
+        "receptorType": null,
+        "somaLocation": [
+          63160,
+          56098,
+          66291
+        ],
+        "tosomaLocation": null,
+        "status": "Traced"
+      },
+      "recorded_manc_body_match": 13628,
+      "atlas_class_reference": {
+        "figure": "A4",
+        "pdf_pages": [
+          18,
+          19
+        ],
+        "fanc_mn_set": [
+          12,
+          13
+        ]
+      },
+      "individual_fanc_mn": null,
+      "model_tendon": null,
+      "decoder_vector": null,
+      "gain": null,
+      "admission_ready": false
+    },
+    {
+      "body_id": 813480,
+      "dense_index": 153568,
+      "population": "Sternal adductor MN T1 left",
+      "annotation_actuators": [
+        "coxa_abduct_T1_left"
+      ],
+      "original_annotation": {
+        "assignedOlHex1": null,
+        "assignedOlHex2": null,
+        "bodyId": 813480,
+        "flywireType": null,
+        "group": 813480.0,
+        "instance": "Sternal adductor MN_L",
+        "somaSide": "L",
+        "statusLabel": "Reviewed",
+        "superclass": "vnc_motor",
+        "type": "Sternal adductor MN",
+        "vfbId": "VFB_jrmc1a6v",
+        "hemibrainType": null,
+        "itoleeHl": null,
+        "supertype": null,
+        "birthtime": null,
+        "mancBodyid": 155853.0,
+        "mancGroup": 21718.0,
+        "mancType": "Sternal adductor MN",
+        "subclass": "fl",
+        "synonyms": null,
+        "class": null,
+        "rootSide": null,
+        "somaNeuromere": "T1",
+        "trumanHl": "TBD",
+        "dimorphism": null,
+        "matchingNotes": null,
+        "entryNerve": null,
+        "mancSerial": 13817.0,
+        "mcnsSerial": null,
+        "serialMotif": null,
+        "fruDsx": null,
+        "exitNerve": "ProAN",
+        "receptorType": null,
+        "somaLocation": [
+          58336,
+          55328,
+          63190
+        ],
+        "tosomaLocation": null,
+        "status": "Traced"
+      },
+      "recorded_manc_body_match": 155853,
+      "atlas_class_reference": {
+        "figure": "A3",
+        "pdf_pages": [
+          17
+        ],
+        "fanc_mn_set": [
+          7
+        ]
+      },
+      "individual_fanc_mn": null,
+      "model_tendon": null,
+      "decoder_vector": null,
+      "gain": null,
+      "admission_ready": false
+    },
+    {
+      "body_id": 806923,
+      "dense_index": 148218,
+      "population": "Sternal anterior rotator MN T1 left",
+      "annotation_actuators": [
+        "coxa_twist_T1_left"
+      ],
+      "original_annotation": {
+        "assignedOlHex1": null,
+        "assignedOlHex2": null,
+        "bodyId": 806923,
+        "flywireType": null,
+        "group": 801918.0,
+        "instance": "Sternal anterior rotator MN_L",
+        "somaSide": "L",
+        "statusLabel": "Reviewed",
+        "superclass": "vnc_motor",
+        "type": "Sternal anterior rotator MN",
+        "vfbId": "VFB_jrmc1a71",
+        "hemibrainType": null,
+        "itoleeHl": null,
+        "supertype": null,
+        "birthtime": null,
+        "mancBodyid": 26566.0,
+        "mancGroup": null,
+        "mancType": "Sternal anterior rotator MN",
+        "subclass": "fl",
+        "synonyms": null,
+        "class": null,
+        "rootSide": null,
+        "somaNeuromere": "T1",
+        "trumanHl": "TBD",
+        "dimorphism": null,
+        "matchingNotes": null,
+        "entryNerve": null,
+        "mancSerial": null,
+        "mcnsSerial": null,
+        "serialMotif": null,
+        "fruDsx": null,
+        "exitNerve": "VProN",
+        "receptorType": null,
+        "somaLocation": [
+          62094,
+          54154,
+          64646
+        ],
+        "tosomaLocation": null,
+        "status": "Traced"
+      },
+      "recorded_manc_body_match": 26566,
+      "atlas_class_reference": {
+        "figure": "A3",
+        "pdf_pages": [
+          17
+        ],
+        "fanc_mn_set": [
+          5,
+          6
+        ]
+      },
+      "individual_fanc_mn": null,
+      "model_tendon": null,
+      "decoder_vector": null,
+      "gain": null,
+      "admission_ready": false
+    },
+    {
+      "body_id": 919509,
+      "dense_index": 162458,
+      "population": "Sternal anterior rotator MN T1 left",
+      "annotation_actuators": [
+        "coxa_twist_T1_left"
+      ],
+      "original_annotation": {
+        "assignedOlHex1": null,
+        "assignedOlHex2": null,
+        "bodyId": 919509,
+        "flywireType": null,
+        "group": 801469.0,
+        "instance": "Sternal anterior rotator MN_L",
+        "somaSide": "L",
+        "statusLabel": "Reviewed",
+        "superclass": "vnc_motor",
+        "type": "Sternal anterior rotator MN",
+        "vfbId": "VFB_jrmc1a73",
+        "hemibrainType": null,
+        "itoleeHl": null,
+        "supertype": null,
+        "birthtime": null,
+        "mancBodyid": 17176.0,
+        "mancGroup": null,
+        "mancType": "Sternal anterior rotator MN",
+        "subclass": "fl",
+        "synonyms": null,
+        "class": null,
+        "rootSide": null,
+        "somaNeuromere": "T1",
+        "trumanHl": "TBD",
+        "dimorphism": null,
+        "matchingNotes": null,
+        "entryNerve": null,
+        "mancSerial": null,
+        "mcnsSerial": null,
+        "serialMotif": null,
+        "fruDsx": null,
+        "exitNerve": "VProN",
+        "receptorType": null,
+        "somaLocation": [
+          61576,
+          55176,
+          63756
+        ],
+        "tosomaLocation": null,
+        "status": "Traced"
+      },
+      "recorded_manc_body_match": 17176,
+      "atlas_class_reference": {
+        "figure": "A3",
+        "pdf_pages": [
+          17
+        ],
+        "fanc_mn_set": [
+          5,
+          6
+        ]
+      },
+      "individual_fanc_mn": null,
+      "model_tendon": null,
+      "decoder_vector": null,
+      "gain": null,
+      "admission_ready": false
+    },
+    {
+      "body_id": 801915,
+      "dense_index": 144222,
+      "population": "Sternal posterior rotator MN T1 left",
+      "annotation_actuators": [
+        "coxa_twist_T1_left"
+      ],
+      "original_annotation": {
+        "assignedOlHex1": null,
+        "assignedOlHex2": null,
+        "bodyId": 801915,
+        "flywireType": null,
+        "group": null,
+        "instance": "Sternal posterior rotator MN_L",
+        "somaSide": "L",
+        "statusLabel": "Reviewed",
+        "superclass": "vnc_motor",
+        "type": "Sternal posterior rotator MN",
+        "vfbId": "VFB_jrmc1a7t",
+        "hemibrainType": null,
+        "itoleeHl": null,
+        "supertype": null,
+        "birthtime": "early",
+        "mancBodyid": 19667.0,
+        "mancGroup": 13942.0,
+        "mancType": "Sternal posterior rotator MN",
+        "subclass": "fl",
+        "synonyms": null,
+        "class": null,
+        "rootSide": null,
+        "somaNeuromere": "T1",
+        "trumanHl": "20B.21B.22B",
+        "dimorphism": null,
+        "matchingNotes": null,
+        "entryNerve": null,
+        "mancSerial": 11400.0,
+        "mcnsSerial": 800962.0,
+        "serialMotif": null,
+        "fruDsx": null,
+        "exitNerve": "ProAN",
+        "receptorType": null,
+        "somaLocation": [
+          62838,
+          61748,
+          82046
+        ],
+        "tosomaLocation": null,
+        "status": "Traced"
+      },
+      "recorded_manc_body_match": 19667,
+      "atlas_class_reference": {
+        "figure": "A4",
+        "pdf_pages": [
+          18,
+          19
+        ],
+        "fanc_mn_set": [
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "individual_fanc_mn": null,
+      "model_tendon": null,
+      "decoder_vector": null,
+      "gain": null,
+      "admission_ready": false
+    },
+    {
+      "body_id": 804851,
+      "dense_index": 146498,
+      "population": "Sternal posterior rotator MN T1 left",
+      "annotation_actuators": [
+        "coxa_twist_T1_left"
+      ],
+      "original_annotation": {
+        "assignedOlHex1": null,
+        "assignedOlHex2": null,
+        "bodyId": 804851,
+        "flywireType": null,
+        "group": null,
+        "instance": "Sternal posterior rotator MN_L",
+        "somaSide": "L",
+        "statusLabel": "Reviewed",
+        "superclass": "vnc_motor",
+        "type": "Sternal posterior rotator MN",
+        "vfbId": "VFB_jrmc1a7v",
+        "hemibrainType": null,
+        "itoleeHl": null,
+        "supertype": null,
+        "birthtime": "early",
+        "mancBodyid": 17546.0,
+        "mancGroup": 24747.0,
+        "mancType": "Sternal posterior rotator MN",
+        "subclass": "fl",
+        "synonyms": null,
+        "class": null,
+        "rootSide": null,
+        "somaNeuromere": "T1",
+        "trumanHl": "20B.21B.22B",
+        "dimorphism": null,
+        "matchingNotes": null,
+        "entryNerve": null,
+        "mancSerial": 11529.0,
+        "mcnsSerial": 804851.0,
+        "serialMotif": null,
+        "fruDsx": null,
+        "exitNerve": "ProAN",
+        "receptorType": null,
+        "somaLocation": [
+          63220,
+          59938,
+          80214
+        ],
+        "tosomaLocation": null,
+        "status": "Traced"
+      },
+      "recorded_manc_body_match": 17546,
+      "atlas_class_reference": {
+        "figure": "A4",
+        "pdf_pages": [
+          18,
+          19
+        ],
+        "fanc_mn_set": [
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "individual_fanc_mn": null,
+      "model_tendon": null,
+      "decoder_vector": null,
+      "gain": null,
+      "admission_ready": false
+    },
+    {
+      "body_id": 808640,
+      "dense_index": 149652,
+      "population": "Sternal posterior rotator MN T1 left",
+      "annotation_actuators": [
+        "coxa_twist_T1_left"
+      ],
+      "original_annotation": {
+        "assignedOlHex1": null,
+        "assignedOlHex2": null,
+        "bodyId": 808640,
+        "flywireType": null,
+        "group": 805410.0,
+        "instance": "Sternal posterior rotator MN_L",
+        "somaSide": "L",
+        "statusLabel": "Reviewed",
+        "superclass": "vnc_motor",
+        "type": "Sternal posterior rotator MN",
+        "vfbId": "VFB_jrmc1a7p",
+        "hemibrainType": null,
+        "itoleeHl": null,
+        "supertype": null,
+        "birthtime": "early",
+        "mancBodyid": 29689.0,
+        "mancGroup": 25767.0,
+        "mancType": "Sternal posterior rotator MN",
+        "subclass": "fl",
+        "synonyms": null,
+        "class": null,
+        "rootSide": null,
+        "somaNeuromere": "T1",
+        "trumanHl": "20B.21B.22B",
+        "dimorphism": null,
+        "matchingNotes": null,
+        "entryNerve": null,
+        "mancSerial": 11400.0,
+        "mcnsSerial": 800962.0,
+        "serialMotif": null,
+        "fruDsx": null,
+        "exitNerve": "ProAN",
+        "receptorType": null,
+        "somaLocation": [
+          60650,
+          62764,
+          81544
+        ],
+        "tosomaLocation": null,
+        "status": "Traced"
+      },
+      "recorded_manc_body_match": 29689,
+      "atlas_class_reference": {
+        "figure": "A4",
+        "pdf_pages": [
+          18,
+          19
+        ],
+        "fanc_mn_set": [
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "individual_fanc_mn": null,
+      "model_tendon": null,
+      "decoder_vector": null,
+      "gain": null,
+      "admission_ready": false
+    },
+    {
+      "body_id": 1050335829,
+      "dense_index": 164685,
+      "population": "Sternal posterior rotator MN T1 left",
+      "annotation_actuators": [
+        "coxa_twist_T1_left"
+      ],
+      "original_annotation": {
+        "assignedOlHex1": null,
+        "assignedOlHex2": null,
+        "bodyId": 1050335829,
+        "flywireType": null,
+        "group": 808011.0,
+        "instance": "Sternal posterior rotator MN_L",
+        "somaSide": "L",
+        "statusLabel": "Reviewed",
+        "superclass": "vnc_motor",
+        "type": "Sternal posterior rotator MN",
+        "vfbId": "VFB_jrmc1a7i",
+        "hemibrainType": null,
+        "itoleeHl": null,
+        "supertype": null,
+        "birthtime": "early",
+        "mancBodyid": null,
+        "mancGroup": 21241.0,
+        "mancType": "Sternal posterior rotator MN",
+        "subclass": "fl",
+        "synonyms": null,
+        "class": null,
+        "rootSide": null,
+        "somaNeuromere": "T1",
+        "trumanHl": "20B.21B.22B",
+        "dimorphism": null,
+        "matchingNotes": null,
+        "entryNerve": null,
+        "mancSerial": 21241.0,
+        "mcnsSerial": null,
+        "serialMotif": null,
+        "fruDsx": null,
+        "exitNerve": "ProAN",
+        "receptorType": null,
+        "somaLocation": [
+          61784,
+          62264,
+          81966
+        ],
+        "tosomaLocation": null,
+        "status": "Traced"
+      },
+      "recorded_manc_body_match": null,
+      "atlas_class_reference": {
+        "figure": "A4",
+        "pdf_pages": [
+          18,
+          19
+        ],
+        "fanc_mn_set": [
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "individual_fanc_mn": null,
+      "model_tendon": null,
+      "decoder_vector": null,
+      "gain": null,
+      "admission_ready": false
+    }
+  ],
+  "recorded_manc_body_match_count": 12,
+  "unresolved_promotor_count": 4,
+  "model_tendon_assignment_count": 0,
+  "current_motor_count": 20,
+  "model_coordinates": 42,
+  "new_admissions": 0,
+  "scientific_transitions": 0,
+  "atlas_review": {
+    "url": "https://faculty.washington.edu/tuthill/docs/azevedo24_appendix.pdf",
+    "sha256": "822c298e50da9fee3ce75f1dabda040574eac9fc854fdf92837856a82c8515f6",
+    "review": "Human text/visual inspection of page 1 and Figures A2-A4, PDF pages 15-19; not automated anatomical matching",
+    "limitation": "Figure A2 explicitly leaves individual promotor targets uncertain; FANC is a separate specimen"
+  },
+  "current_original_raw_freezes_satisfied": false
+}
