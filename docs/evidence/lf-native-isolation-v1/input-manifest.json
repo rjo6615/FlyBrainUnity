@@ -1,0 +1,796 @@
+{
+  "schema": "lf-native-isolation-inputs-v1",
+  "versions": {
+    "mujoco": "3.2.7",
+    "flygym": "1.2.1",
+    "dm_control": "1.0.27",
+    "numpy": "2.0.2",
+    "scipy": "1.18.1"
+  },
+  "files": {
+    "dm_control/mjcf/physics.py": {
+      "sha256": "664a348c1e4388cdad0d1f10ef96930a5bb56ff052136a65e667ea5926eb8c18",
+      "bytes": 25026
+    },
+    "dm_control/mujoco/engine.py": {
+      "sha256": "58d6ff0e59dd0fe0fb14ab75c4e257820c6f9442bd83f9693c8da606e48955ae",
+      "bytes": 40538
+    },
+    "dm_control/mujoco/wrapper/core.py": {
+      "sha256": "d55cdfa420a234d89c3436e1125036eb60b8e483e57edadcd04d12c44d514f86",
+      "bytes": 24859
+    },
+    "dm_control/rl/control.py": {
+      "sha256": "3ac4b726242ea31f28235cfc94ff87ebbd7238bc71a673024281c74b9aef1606",
+      "bytes": 12621
+    },
+    "flygym/__init__.py": {
+      "sha256": "36661ed890578d8f4e49cb765c0ebc8c1e3528b64764c79df80ee31b46fdbdda",
+      "bytes": 623
+    },
+    "flygym/arena/__init__.py": {
+      "sha256": "cbfd834b7168ffb66e0c173631671e3ff5b7f1a7e524ee5e6fe8fe8271ba37ee",
+      "bytes": 187
+    },
+    "flygym/arena/base.py": {
+      "sha256": "b26f2eb9b31cfa1bb8ad394003ce16a5cc0f0e5b4ad9d7be1030d2c6b77bf5be",
+      "bytes": 9734
+    },
+    "flygym/arena/complex_terrain.py": {
+      "sha256": "3e22c74e5e9182f17fe138c3169d3c50b1537a8138511056dd62addc53f1615a",
+      "bytes": 15568
+    },
+    "flygym/arena/sensory_environment.py": {
+      "sha256": "dc3c5d04e80807870fed9dd699697947bf56cbb93cfe5f3c62bd241adcde74d2",
+      "bytes": 7768
+    },
+    "flygym/arena/tethered.py": {
+      "sha256": "37eb26feaa0599f45957e57581f90d4c24aca4c9ede50c2bc7cad1999b7f9248",
+      "bytes": 4267
+    },
+    "flygym/camera.py": {
+      "sha256": "f8f30be8fd5419787038a17131fec8d0c331958cf4e221f904a2c6e652806340",
+      "bytes": 24530
+    },
+    "flygym/config.yaml": {
+      "sha256": "97c7a3c1d4131121213868fd1565d5e370ebd456b0b9adfbe9cc456f0f8de7f0",
+      "bytes": 7123
+    },
+    "flygym/core.py": {
+      "sha256": "dbc67bfe6813d063311fd732948c30d2ba6c24c1939024c7f6259f0c08b945d6",
+      "bytes": 19250
+    },
+    "flygym/data/behavior/210902_pr_fly1.pkl": {
+      "sha256": "c298b00ce434f96093c2bb0b6aab2f32542ea995333f2b9b83d7fc8a184249cb",
+      "bytes": 1597456
+    },
+    "flygym/data/behavior/contact_mask.csv": {
+      "sha256": "05c922fc53e5c52f1db623258532650a05d59a5f7792b44404584cb91acbd80d",
+      "bytes": 1249401
+    },
+    "flygym/data/behavior/position_data.csv": {
+      "sha256": "178d1bec7109c15428fc34d7776663555af7880437f3f0bd33658980792eebe2",
+      "bytes": 16245408
+    },
+    "flygym/data/behavior/single_steps_untethered.pkl": {
+      "sha256": "1e5b28bb6b3f50ac95a04773ea37af28d05e26d03bd90fdba57fa1b3eacfaf8c",
+      "bytes": 18024
+    },
+    "flygym/data/mesh/A1A2.stl": {
+      "sha256": "aed84b41c264a93755678df79a99ce8ea399cf2674fdd6a8fe7e2dcfec6c6d6b",
+      "bytes": 144334
+    },
+    "flygym/data/mesh/A3.stl": {
+      "sha256": "07c5b43e2f91a9262cbfbcea4d0beabb0e5a1381afe01260df95548bf3cfefbc",
+      "bytes": 140084
+    },
+    "flygym/data/mesh/A4.stl": {
+      "sha256": "010667e71500c425eea1307004833c5990a0f76ceb0b57957e39c52bd9e6a52d",
+      "bytes": 143384
+    },
+    "flygym/data/mesh/A5.stl": {
+      "sha256": "0b83e74ef96eac7c944c74062b224e1ecaef356ed490dad1a2c6a78f2618d008",
+      "bytes": 158834
+    },
+    "flygym/data/mesh/A6.stl": {
+      "sha256": "6ec06369174ff0fec5ce2dd5129aa5291ae81d1b624c0cb3e2e1986bf76c7ea7",
+      "bytes": 203134
+    },
+    "flygym/data/mesh/Haustellum.stl": {
+      "sha256": "9498e99c33324fbc6b3381ceb1bb13b874f919b9deccc7a5cfce618fb42d742f",
+      "bytes": 215634
+    },
+    "flygym/data/mesh/Head.stl": {
+      "sha256": "aafc2196f1bdcd94f29378b6aec39943d6c4baddeed24502fb0381f8e0430150",
+      "bytes": 4117984
+    },
+    "flygym/data/mesh/LAntenna.stl": {
+      "sha256": "57d00b56fc3ff0d0204b09a045e407f30fbe85fee10d0728c65b1130942d7e42",
+      "bytes": 87334
+    },
+    "flygym/data/mesh/LArista.stl": {
+      "sha256": "b5b435f31f4d5cf05fb53880c3f46fcfeea58d3d9a9eb52048b0b36a4e3d738f",
+      "bytes": 2718884
+    },
+    "flygym/data/mesh/LEye.stl": {
+      "sha256": "85d1f097fba8c815c2bf6a89eac48e6a2494a927684c5a84b102c4b544116fc0",
+      "bytes": 1133584
+    },
+    "flygym/data/mesh/LFCoxa.stl": {
+      "sha256": "ab910d0111cf8fecc6dc11268b4e21c91c58440ef7ae55e432cfc12400e181e6",
+      "bytes": 184034
+    },
+    "flygym/data/mesh/LFFemur.stl": {
+      "sha256": "50e4e7baf2852a369f0dda2a2c9708a68c45893b3019a79dd74799e8e2ea64c9",
+      "bytes": 80984
+    },
+    "flygym/data/mesh/LFTarsus1.stl": {
+      "sha256": "29085dda732699c4a3110458303adf2eec667f7db6e42166d408c260ae6acf5e",
+      "bytes": 89584
+    },
+    "flygym/data/mesh/LFTarsus2.stl": {
+      "sha256": "996735c15a7e8e0c022babf5500224fa6e23de0e277305279d4b6787d56335d8",
+      "bytes": 89884
+    },
+    "flygym/data/mesh/LFTarsus3.stl": {
+      "sha256": "edd3137f00db0d4c8830eaa08d9b9206fefc1f90311200365c37264a6ca3c08e",
+      "bytes": 152584
+    },
+    "flygym/data/mesh/LFTarsus4.stl": {
+      "sha256": "8370f6944a607adbc29eb6a2cec06a5da8d67fc060e0abd4a560755e3b5cd6f8",
+      "bytes": 164234
+    },
+    "flygym/data/mesh/LFTarsus5.stl": {
+      "sha256": "1e8fc058a866f6a6bb6fb0430229297996e5e0639bede2e8fa169958e871a039",
+      "bytes": 142184
+    },
+    "flygym/data/mesh/LFTibia.stl": {
+      "sha256": "8138fe5f1fc52588dca6677bb338d39451813ac96159f78d6cf677eba73f3862",
+      "bytes": 85534
+    },
+    "flygym/data/mesh/LFuniculus.stl": {
+      "sha256": "d2a6d35751922fb8b1ce07b269bc432f33d7f8f6d243b2dd1801e021b91d8156",
+      "bytes": 26584
+    },
+    "flygym/data/mesh/LHaltere.stl": {
+      "sha256": "13d77fcca66fca90db5cf00b33a7369ae80366fe39974df3667e709882e64ed6",
+      "bytes": 41284
+    },
+    "flygym/data/mesh/LHCoxa.stl": {
+      "sha256": "c6fc7487ba8a057731af02dec60860d5c6e3abd5818612ffd61a6e405d3d16a6",
+      "bytes": 199084
+    },
+    "flygym/data/mesh/LHFemur.stl": {
+      "sha256": "01f790eb37bfb8fcba791106665d14e5921f226101d84dd65786534d43cf3ac1",
+      "bytes": 165884
+    },
+    "flygym/data/mesh/LHTarsus1.stl": {
+      "sha256": "61af16259215525e092d61426b874c7855485a9c7cfa91eecfc2fe99281a2dc6",
+      "bytes": 38934
+    },
+    "flygym/data/mesh/LHTarsus2.stl": {
+      "sha256": "da796bc3ad5d355b9e941aeeb6ad96c7fb00dee7421995605dcc81cd6fd7af12",
+      "bytes": 98684
+    },
+    "flygym/data/mesh/LHTarsus3.stl": {
+      "sha256": "4864f883168d6397ac96666605504a512187ad8c0befde812e0c570bca2962b1",
+      "bytes": 129584
+    },
+    "flygym/data/mesh/LHTarsus4.stl": {
+      "sha256": "925687a8b26ab3695ffc9d57507ec201381a1b104b7b0248fde95467939d9466",
+      "bytes": 130984
+    },
+    "flygym/data/mesh/LHTarsus5.stl": {
+      "sha256": "82a1aedb3f34ba510f143fe5fe0a1dfedeb8872edfef147945aa0a0938b1f6fc",
+      "bytes": 147084
+    },
+    "flygym/data/mesh/LHTibia.stl": {
+      "sha256": "2853873ade9abeb35da5f1a6c822d223bbe19a50d8ed77921bb77743b4782a60",
+      "bytes": 37484
+    },
+    "flygym/data/mesh/LMCoxa.stl": {
+      "sha256": "9d63a3ac0de274b899016e2a918ad460df00c4f2bae014eed32c3e5f7fa1537f",
+      "bytes": 130384
+    },
+    "flygym/data/mesh/LMFemur.stl": {
+      "sha256": "9619105028e5006d891b12dfced77aafa3c41a599edbf49d14691907ce2eb502",
+      "bytes": 41384
+    },
+    "flygym/data/mesh/LMTarsus1.stl": {
+      "sha256": "b7f50bfe1e75dfa65110a4f80e0216858a7a75712115b04605f344c8e837b1ae",
+      "bytes": 46284
+    },
+    "flygym/data/mesh/LMTarsus2.stl": {
+      "sha256": "2dbb000ae11ef58de0023ccbdbfc8f1c5ff7b7517824a58d3e204f3ee00770c4",
+      "bytes": 77884
+    },
+    "flygym/data/mesh/LMTarsus3.stl": {
+      "sha256": "8f1814f0054382e037279f04d0bb998e36ccaabd57ec418d35dd6f7e47bd51bb",
+      "bytes": 92884
+    },
+    "flygym/data/mesh/LMTarsus4.stl": {
+      "sha256": "0cb0ed43055e24d14fa580ac36cb5ae2bf0c0fa9f353615c146291e0b8d1ba9a",
+      "bytes": 159584
+    },
+    "flygym/data/mesh/LMTarsus5.stl": {
+      "sha256": "3e9a76e4c0c4e829705271846f93a3aa056a0e87bc99996519722eeb841c1b70",
+      "bytes": 49384
+    },
+    "flygym/data/mesh/LMTibia.stl": {
+      "sha256": "dc1ad6da6db91ba703150e6150f59a498f9dbd311b1ec0678da3f896c421dab5",
+      "bytes": 33884
+    },
+    "flygym/data/mesh/LPedicel.stl": {
+      "sha256": "de6616286ac1e8df5561e0d747110dbaf28103bee7117aaf2fbc21322fede382",
+      "bytes": 864484
+    },
+    "flygym/data/mesh/LWing.stl": {
+      "sha256": "80dbf9e0903b67923b11659a785a059641b48b38003b6b2d8768e366dbbe3287",
+      "bytes": 996734
+    },
+    "flygym/data/mesh/RAntenna.stl": {
+      "sha256": "9238f5af4bff6d42bece3d8d48fdca0ccd84fe7ee16453d6f7ce6cac439cf600",
+      "bytes": 87334
+    },
+    "flygym/data/mesh/RArista.stl": {
+      "sha256": "cf4701d9502a6287578378aa5a894ed0579ff34185ac37446d7f4812294a9e3d",
+      "bytes": 2662884
+    },
+    "flygym/data/mesh/REye.stl": {
+      "sha256": "a6057f98a73a8b91cc65a1cae0c83b3f0a66def10f9a15b6a271c4bb4b5af0a6",
+      "bytes": 2616284
+    },
+    "flygym/data/mesh/RFCoxa.stl": {
+      "sha256": "fb8aecfd0cf4ea7bbe4e7bb0512fb984eaaf5ec09b92a457200c14bec4121d5e",
+      "bytes": 184034
+    },
+    "flygym/data/mesh/RFFemur.stl": {
+      "sha256": "9deda28d4c0cb903792468a4fcacb36e07c0ac8deefd3c836703686ebc901a2e",
+      "bytes": 80984
+    },
+    "flygym/data/mesh/RFTarsus1.stl": {
+      "sha256": "a8cc8e23209eb6405d50e5fdc40a4e28f0a74c9cca3da880e36e58e0c6843bf8",
+      "bytes": 89584
+    },
+    "flygym/data/mesh/RFTarsus2.stl": {
+      "sha256": "5a916893bb14604ff8600e7607864be6328e04d6db3907882b08b828ee7f1649",
+      "bytes": 89884
+    },
+    "flygym/data/mesh/RFTarsus3.stl": {
+      "sha256": "d0288babd00488f735e1caa392bee5da7524edcf063b8eb059b9b152c606be44",
+      "bytes": 152584
+    },
+    "flygym/data/mesh/RFTarsus4.stl": {
+      "sha256": "e0343859c3eab8fa79579e5f0c48aa0dafde245ae0c2bf54472d7ca483d07c20",
+      "bytes": 164234
+    },
+    "flygym/data/mesh/RFTarsus5.stl": {
+      "sha256": "e4dd5405ec5b22d28c08b6b50e99b9de28ba54768817a49c2f966e80a8eeb30b",
+      "bytes": 142184
+    },
+    "flygym/data/mesh/RFTibia.stl": {
+      "sha256": "cfea07f978588affdc760ac9eb047c4bb03f6f5976151178de883bd8cc9b5858",
+      "bytes": 85534
+    },
+    "flygym/data/mesh/RFuniculus.stl": {
+      "sha256": "5b9fbc5111e5da82d1c1c106d2e4036205e464a9227f24fbdbe587c95e631377",
+      "bytes": 26784
+    },
+    "flygym/data/mesh/RHaltere.stl": {
+      "sha256": "01bf5200bcba3051660926a092466b06464b801d21fd93645a68993ecacf929a",
+      "bytes": 41284
+    },
+    "flygym/data/mesh/RHCoxa.stl": {
+      "sha256": "0298272dc088ebcb964eb9ac4d13b16121e1ee90ba45337781bdadfba096dbaf",
+      "bytes": 199084
+    },
+    "flygym/data/mesh/RHFemur.stl": {
+      "sha256": "fb717ea9d5a2eb436262bfc42688f5297bc972290d12d7b5b6dd83dfdfba25dd",
+      "bytes": 165884
+    },
+    "flygym/data/mesh/RHTarsus1.stl": {
+      "sha256": "28c6287e3349116c21fd264b9d775d2d68207db98e7032e3203158fd61c36fa1",
+      "bytes": 38934
+    },
+    "flygym/data/mesh/RHTarsus2.stl": {
+      "sha256": "ffce858b2321c5871ef0109c44e6aa2f17db27ef136dcff998385cad583f4686",
+      "bytes": 98684
+    },
+    "flygym/data/mesh/RHTarsus3.stl": {
+      "sha256": "4335fffd3834d9964e86199c056243ba05fff27b58c5de34c91784e838a8ccdd",
+      "bytes": 129584
+    },
+    "flygym/data/mesh/RHTarsus4.stl": {
+      "sha256": "1a0d68dddf33caaaf9278f1650b2018690b68453732d0e46e862f5e522889753",
+      "bytes": 130984
+    },
+    "flygym/data/mesh/RHTarsus5.stl": {
+      "sha256": "4043963e5561f033e887491dfa4085fa5c43233b48d6796c99fb8c49932fb874",
+      "bytes": 147084
+    },
+    "flygym/data/mesh/RHTibia.stl": {
+      "sha256": "688cda77697232e5c2cd62bcfcb1b994693c2518d2ee8862d546863e92954992",
+      "bytes": 37484
+    },
+    "flygym/data/mesh/RMCoxa.stl": {
+      "sha256": "25fc3f1dcb1c767bd42cdf82321c05c0f4d92bc09ee448cbe1acef9263a37449",
+      "bytes": 130384
+    },
+    "flygym/data/mesh/RMFemur.stl": {
+      "sha256": "939eb30b456bb3dc72ca081542760c6acf5c75a7316b6463453cc282a978f97d",
+      "bytes": 41384
+    },
+    "flygym/data/mesh/RMTarsus1.stl": {
+      "sha256": "cb1606bb2b6d3a3713fde86f4fca6c737b74c8be45e7584e569d95ffab8af8c9",
+      "bytes": 46284
+    },
+    "flygym/data/mesh/RMTarsus2.stl": {
+      "sha256": "49272c7e82f7c28a09bc79d339d22c15e3585ecd21de88748417bd8409310afb",
+      "bytes": 77884
+    },
+    "flygym/data/mesh/RMTarsus3.stl": {
+      "sha256": "b80f1f7d2380e8b85bc7958399ac5d3dd0c0b9c8cfb655cb7517d0086d098c0d",
+      "bytes": 92884
+    },
+    "flygym/data/mesh/RMTarsus4.stl": {
+      "sha256": "53b914a75fb54c27a1fc03f4210bc273795de76f336a5429ce89cf31ca927a89",
+      "bytes": 159584
+    },
+    "flygym/data/mesh/RMTarsus5.stl": {
+      "sha256": "222297c3ea6c513db2dabb82d4efe831409b2d0f2a32e38500ac9266c7279214",
+      "bytes": 49384
+    },
+    "flygym/data/mesh/RMTibia.stl": {
+      "sha256": "17662ff1636431e5c5399e71dbe31fb48b389f06b2a40783bcc1c513cade8b8f",
+      "bytes": 33884
+    },
+    "flygym/data/mesh/Rostrum.stl": {
+      "sha256": "9616109271847e638de093e85553903b81e4db67b06d237a70abae5994d1c4c9",
+      "bytes": 189384
+    },
+    "flygym/data/mesh/RPedicel.stl": {
+      "sha256": "1bf370fed2fca4b1a1c275a78a1ece1ac3df6e62a542a9331238d23dd5fd46a5",
+      "bytes": 862884
+    },
+    "flygym/data/mesh/RWing.stl": {
+      "sha256": "7c6fad3ec5ce3b59f9a448ff6d8aff2857979afc56d846fbb22c483bf4e44edc",
+      "bytes": 996734
+    },
+    "flygym/data/mesh/Thorax.stl": {
+      "sha256": "0ac93168a38e8feb80f544ee25c2c03272072f00048f041b77966ad450fb0fc9",
+      "bytes": 281534
+    },
+    "flygym/data/mjcf/clean_xml.py": {
+      "sha256": "afb64466b0780ea90bb6dc55141387bba476acd0e3f425a49d42997fe765e0a9",
+      "bytes": 13635
+    },
+    "flygym/data/mjcf/neuromechfly_deepfly3d_kinorder_ryp.xml": {
+      "sha256": "413b3a1dcb7537d08122e16f256f27ec0d8bb9f52c58670345b6c24c9e72e05a",
+      "bytes": 47382
+    },
+    "flygym/data/mjcf/neuromechfly_seqik_kinorder_ypr.xml": {
+      "sha256": "413b3a1dcb7537d08122e16f256f27ec0d8bb9f52c58670345b6c24c9e72e05a",
+      "bytes": 47382
+    },
+    "flygym/data/mjcf/neuromechfly_seqik_kinorder_ypr_capsuletarsus.xml": {
+      "sha256": "fbefb7a715a272787d19fd1aa129273fe524d940dca3cc57dc7f2a8936d0dda3",
+      "bytes": 44120
+    },
+    "flygym/data/pose/pose_stretch.yaml": {
+      "sha256": "99207214c9b98a376deefb960546f3030e37fc22788e83e5be23e8c4024dff1a",
+      "bytes": 916
+    },
+    "flygym/data/pose/pose_tripod.yaml": {
+      "sha256": "8d71c1536c2a0fc55bfb574999eab5bff3568c3f38fe032a4b594a0bcb59a640",
+      "bytes": 3603
+    },
+    "flygym/data/pose/pose_zero.yaml": {
+      "sha256": "339b4ca89a5c727872505812c55ccc5411d858ee2b40aa466aeb5c18018093b2",
+      "bytes": 888
+    },
+    "flygym/data/test_data/plume_tracking/plume_short.hdf5": {
+      "sha256": "40a7605793fde5e0afda1f0d94e7bfedd5abcbd8af57683758f81d5f87b9ee7e",
+      "bytes": 2092411
+    },
+    "flygym/data/trained_models/head_stabilization/all_dofs_model.ckpt": {
+      "sha256": "2e7e27463306b2fbe13357a9c45065be2e85e6e9a3811567f1be618e97a3cd7d",
+      "bytes": 41867
+    },
+    "flygym/data/trained_models/head_stabilization/joint_angle_scaler_params.pkl": {
+      "sha256": "9da8ba3c98361f275cb452d927c26fc39905a9a883ec5f12494943dfda4fbae8",
+      "bytes": 530
+    },
+    "flygym/data/vision/ommatidia_id_map.npy": {
+      "sha256": "270baa562cd56b74c91fd3d0a218548aaf41c00df3401ebf521a0461adadf21d",
+      "bytes": 460928
+    },
+    "flygym/data/vision/pale_mask.npy": {
+      "sha256": "1489f64d82dbf35d488448d0a86afa7314be1f29a58ffc7ce4c454a5d492bb3f",
+      "bytes": 849
+    },
+    "flygym/examples/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "flygym/examples/head_stabilization/__init__.py": {
+      "sha256": "e60531fce59b4377390d3d1ba1d66db2fb2cc27a27c725a4eabaa9f3fe2e994b",
+      "bytes": 172
+    },
+    "flygym/examples/head_stabilization/check_videos.py": {
+      "sha256": "08b27bb0be7f8d67174cf8b8bee9b6f1b93bb6e01c6604cf58326c0c768366cd",
+      "bytes": 1887
+    },
+    "flygym/examples/head_stabilization/closed_loop_deployment.py": {
+      "sha256": "116ff56b1737b7eb18eeb3d7c9a6690fb28a2c4d37d631929de7437672b55518",
+      "bytes": 11960
+    },
+    "flygym/examples/head_stabilization/collect_training_data.py": {
+      "sha256": "80d010e27c96f33b28f01e8533716db5eb864698bf62be5338b636b456615f77",
+      "bytes": 7158
+    },
+    "flygym/examples/head_stabilization/data.py": {
+      "sha256": "07561ed64da7387d57dd56bbc8a279d573b5fa382f2d9ff3451996696fbdcfed",
+      "bytes": 6950
+    },
+    "flygym/examples/head_stabilization/model.py": {
+      "sha256": "73baa164e0ba775c4017ecdd9dfb2ebc5d97f9b1d34bd237c84aa460c8c86c76",
+      "bytes": 4928
+    },
+    "flygym/examples/head_stabilization/README.md": {
+      "sha256": "60d880b8308bc97d14446b23475ea6e131b206abca7bb5a20cff5561faccbda3",
+      "bytes": 1701
+    },
+    "flygym/examples/head_stabilization/tests/test_dataset.py": {
+      "sha256": "2818d0f8eb5007fe209a688e4127ad196c4ab9e8a88c3f967730fabd8fac23f6",
+      "bytes": 2649
+    },
+    "flygym/examples/head_stabilization/tests/test_model.py": {
+      "sha256": "467d38c12a97646893ac17aaeb550398ddb2574f3e89c396b3dbe345311bb765",
+      "bytes": 5912
+    },
+    "flygym/examples/head_stabilization/tests/test_training_trials.py": {
+      "sha256": "8028e4539d8b0a207197d9b098a755fb939cb75404668bf1d85f54573d4bd09e",
+      "bytes": 2054
+    },
+    "flygym/examples/head_stabilization/train_proprioception_model.py": {
+      "sha256": "ad37852f6330e6c6d328ccf1176672f7687f2876f6afcc859ba44de958c32bd3",
+      "bytes": 11004
+    },
+    "flygym/examples/head_stabilization/util.py": {
+      "sha256": "918c5b7183ad5e2b5a1e7a7704c1e3403dd96a7c9213c91198d436e05a322c35",
+      "bytes": 572
+    },
+    "flygym/examples/head_stabilization/viz.py": {
+      "sha256": "ac73f83a6e3f887fdc87a2c4f982c047256b158462f18522e77523b0ace0b6bb",
+      "bytes": 15317
+    },
+    "flygym/examples/locomotion/__init__.py": {
+      "sha256": "e5af434543aba12967b63b9f9a8a1ceaa53e1a9b7eaff3718b4e009bc722ed84",
+      "bytes": 288
+    },
+    "flygym/examples/locomotion/colorable_fly.py": {
+      "sha256": "df861215fbecf1f705453080e286fde5f8d5387db7f0c7f6603b1e0309cd1e38",
+      "bytes": 3337
+    },
+    "flygym/examples/locomotion/controller_comparison.py": {
+      "sha256": "15d79ad1ce8fa613f0a513151fac39e6acb16ab070edb1a97315e203ffadcf4e",
+      "bytes": 23982
+    },
+    "flygym/examples/locomotion/cpg_controller.py": {
+      "sha256": "d19bdd8b4e9198d6687f35a9993a2f74f4ce8aded6b5fbaa360d6805de9757ed",
+      "bytes": 6577
+    },
+    "flygym/examples/locomotion/hybrid_controller.py": {
+      "sha256": "d88d330b16fd87945b844d1131883e2de5a8856379456dee63decd4f3b544a2d",
+      "bytes": 9119
+    },
+    "flygym/examples/locomotion/README.md": {
+      "sha256": "de0db4f5bfa0afc15dc37448486519e21f03933c1a52555b4d5dbd4da41528a6",
+      "bytes": 2156
+    },
+    "flygym/examples/locomotion/rule_based_controller.py": {
+      "sha256": "2c23a4665c7052a5428fff58e7dd1b13880e067d224c6ed179e875c506dab0ff",
+      "bytes": 10880
+    },
+    "flygym/examples/locomotion/steps.py": {
+      "sha256": "5a6bfe2594736b05fd80259a63efd7d21d4f541248c71dd1ca33f98407df3cdb",
+      "bytes": 5416
+    },
+    "flygym/examples/locomotion/tests/test_cpg.py": {
+      "sha256": "8ea8ae2d6606e0121dca5b6918715dad044e4ecf0c962e08d7592f0918d8871e",
+      "bytes": 1880
+    },
+    "flygym/examples/locomotion/tests/test_hybrid_turning.py": {
+      "sha256": "c08fc7e33b96077cb0eb863b09674bdbeb4193e836ac7f08bd2b3aff22a81b07",
+      "bytes": 2084
+    },
+    "flygym/examples/locomotion/tests/test_rules.py": {
+      "sha256": "5a5862518cad232915920e6d611bdcf628adb7ba16f4e7c202b47c4d797c7104",
+      "bytes": 4002
+    },
+    "flygym/examples/locomotion/turning_controller.py": {
+      "sha256": "e09f721dcb31ac90eef0b5cc9f858e66bc72b60bd88a803ba32e2c8e214bc5a8",
+      "bytes": 21084
+    },
+    "flygym/examples/locomotion/turning_fly.py": {
+      "sha256": "37c61171dec7725e5f70add51e8077effd03eb27187d31c3471d62b07d22adbe",
+      "bytes": 20880
+    },
+    "flygym/examples/locomotion/visualize_cardinal_vectors.py": {
+      "sha256": "1584922258fea5b6473ea84671248b379da35773797fc56ea0586998e4605882",
+      "bytes": 4428
+    },
+    "flygym/examples/locomotion/viz.py": {
+      "sha256": "2ec015ed1857bef60174d7ab63e735531c8062bbca34c2c67f756e10c5e7e235",
+      "bytes": 1463
+    },
+    "flygym/examples/olfaction/__init__.py": {
+      "sha256": "5cce3f2c808f0dadea77640a9935d4179d4635f6ed16efd2452a19381712c724",
+      "bytes": 181
+    },
+    "flygym/examples/olfaction/plume_tracking_arena.py": {
+      "sha256": "a9095102cdbf184d2207e75e1d932b60692f08582d3a048287a696cf02249ebe",
+      "bytes": 6548
+    },
+    "flygym/examples/olfaction/plume_tracking_controller.py": {
+      "sha256": "b86b37f50b685b829c9cd1bdc7ef6688f5d6e0755cd790a6f57789b5f3735dc4",
+      "bytes": 10449
+    },
+    "flygym/examples/olfaction/plume_tracking_task.py": {
+      "sha256": "cc5b4f3681348e49b96e2b06665e7135f0ccb5d162e19500b31a2bd14624e70d",
+      "bytes": 9768
+    },
+    "flygym/examples/olfaction/README.md": {
+      "sha256": "f9312621d0249d40cb0bfa4f7a76df7de998711e74c4536ae41ad2b27cab8bf4",
+      "bytes": 2513
+    },
+    "flygym/examples/olfaction/save_plume_tracking_snapshot.py": {
+      "sha256": "44f4598db9a4c7fa843755be852a3098aeda816ef939613c005e4e407a02be2f",
+      "bytes": 1019
+    },
+    "flygym/examples/olfaction/simple_odor_taxis.py": {
+      "sha256": "1d4218ff41638399beccaff734a4066083e85ce7aee96c9640b51ee0d516b792",
+      "bytes": 7582
+    },
+    "flygym/examples/olfaction/simulate_plume_dataset.py": {
+      "sha256": "d8fe6caaa331e4238f9df8336adac40731f682e9ac757b8ad42c3c7da9d87352",
+      "bytes": 8070
+    },
+    "flygym/examples/olfaction/tests/test_plume_simulation.py": {
+      "sha256": "37c83c28beb84ce661baaacb71fda95e28fb663b24cbd011d02d2febe061637e",
+      "bytes": 1275
+    },
+    "flygym/examples/olfaction/tests/test_plume_tracking_arena.py": {
+      "sha256": "1af1a93491e809a42b53c5ce00e86bd626226d648cea6fbe499c8a57670d18e4",
+      "bytes": 985
+    },
+    "flygym/examples/olfaction/tests/test_plume_tracking_controller.py": {
+      "sha256": "2310d039a50a0be21e5db38ed0891940f93cb17d1f41a5caf7047b7afff16736",
+      "bytes": 1315
+    },
+    "flygym/examples/olfaction/tests/test_plume_tracking_task.py": {
+      "sha256": "22b689ce4629feb0f76461f49cb8a84bbff1cbc559754348767f557b167e03a4",
+      "bytes": 3491
+    },
+    "flygym/examples/olfaction/tests/test_simple_odor_taxis.py": {
+      "sha256": "386f156a319cfab0d637ec2d10c735b123376a1760a8d889f26faa3b08b5dc6b",
+      "bytes": 2447
+    },
+    "flygym/examples/olfaction/track_plume_closed_loop.py": {
+      "sha256": "63dac05d1181bd2f8603ccae76889b4f990fc728474e83a403c08881403a8420",
+      "bytes": 6308
+    },
+    "flygym/examples/olfaction/visualize_plume_tracking_results.py": {
+      "sha256": "83b8471414f89b9d736c7e7ef6c9fba32d5c33d3f0065d3926aec058d2155d53",
+      "bytes": 4051
+    },
+    "flygym/examples/path_integration/__init__.py": {
+      "sha256": "f75f8405705b604a881c1f9188325dbc68780c5a7ed53a73f0ce52efab9e5096",
+      "bytes": 241
+    },
+    "flygym/examples/path_integration/arena.py": {
+      "sha256": "bd7caa0fbb86670b7926654835a7f9faedeb2cddb2beedb63c7446912797503f",
+      "bytes": 1466
+    },
+    "flygym/examples/path_integration/build_models.py": {
+      "sha256": "484b6211a0aa78cef86be2657a72ae31c3f807601f5b11f4377cb4c19b0ef976",
+      "bytes": 11088
+    },
+    "flygym/examples/path_integration/controller.py": {
+      "sha256": "e6b4a0f27e70d98b045f2c374e2429abd51470472c34860801ed8c0f0a895cd7",
+      "bytes": 6798
+    },
+    "flygym/examples/path_integration/exploration.py": {
+      "sha256": "0b89845722c51e11330bc6218e22e20191db8d1d7067feca0b7861dfe70e4811",
+      "bytes": 6785
+    },
+    "flygym/examples/path_integration/model.py": {
+      "sha256": "dccdd00444b072b2e7ac071a20f5b5268469a34f57e4e3f4c6e45980d7efe540",
+      "bytes": 4221
+    },
+    "flygym/examples/path_integration/README.md": {
+      "sha256": "48c81d4e44408b80f336bdab485392da8f1b420fd6c457f377f8b1b6947d0bd0",
+      "bytes": 1184
+    },
+    "flygym/examples/path_integration/tests/test_exploration.py": {
+      "sha256": "1ed8d03414a14b8d8cd770edad2599d267acb8b65bf7e53b687a71657ccdab73",
+      "bytes": 4172
+    },
+    "flygym/examples/path_integration/tests/test_integration.py": {
+      "sha256": "777fa51a423f3eb623c137ff1859a4b733503285fe2e9c6581237ac7f731e262",
+      "bytes": 11573
+    },
+    "flygym/examples/path_integration/util.py": {
+      "sha256": "24755f7084b37e2020c4ffb835ccd68d7d8cd4beef261cc2fd51911fc9d4d00f",
+      "bytes": 8113
+    },
+    "flygym/examples/path_integration/viz.py": {
+      "sha256": "de4ac0a644ea5e85514f1c814b82f4f4b84b42cbea4fabd0f0992682e47b1738",
+      "bytes": 8734
+    },
+    "flygym/examples/README.md": {
+      "sha256": "7538c6f93f534dc78128a2de1a436bba2164eef32a6e72b1ea8c7cd4062e8918",
+      "bytes": 1430
+    },
+    "flygym/examples/vision/__init__.py": {
+      "sha256": "9b1046f8ab382247904cf324356b74f3316ac577d1cbfbbe68e13123d6068a5f",
+      "bytes": 287
+    },
+    "flygym/examples/vision/arena.py": {
+      "sha256": "f0622c671b5bd19781644054e94fd1f990e3e01dfb55fdea39ac42e8cf6050ce",
+      "bytes": 18956
+    },
+    "flygym/examples/vision/concatenate_fly_following_video.sh": {
+      "sha256": "e0f65c063c51085feb16e28e4fc0b61f43f0b5cacb33fac08df25738845771c7",
+      "bytes": 902
+    },
+    "flygym/examples/vision/follow_fly_closed_loop.py": {
+      "sha256": "4d3c4209f1d3575a5c862f752bbdf8e8356835972577ecbccad22ca1aff1c03a",
+      "bytes": 11994
+    },
+    "flygym/examples/vision/README.md": {
+      "sha256": "579b38f8c2c96437a231e17694d5fa9c6ea12183b034fe64c80aefb125673f2b",
+      "bytes": 2673
+    },
+    "flygym/examples/vision/realistic_vision.py": {
+      "sha256": "04ed5cd7468a75e67a057c3c1f4df2efdaf8c25d5741b654ad3f5fc074a5a37a",
+      "bytes": 5480
+    },
+    "flygym/examples/vision/record_baseline_response.py": {
+      "sha256": "8fbf33111240fc13c01222962c28224b70cc57cba23ef0c842ea04cfac86c9c4",
+      "bytes": 5700
+    },
+    "flygym/examples/vision/save_fly_following_snapshot.py": {
+      "sha256": "7766329a4558358fd61790cf75d2a623d316c2e3f07e9421a21ca3f0b5ed3d59",
+      "bytes": 3956
+    },
+    "flygym/examples/vision/simple_visual_taxis.py": {
+      "sha256": "7acb133820fc373f53dbd3cf178c5a99a6dc1449e7556676cd5ef9fdf49c5a29",
+      "bytes": 7258
+    },
+    "flygym/examples/vision/tests/test_retina_mapper.py": {
+      "sha256": "fc9b0fa7d3592e9ead4f32fbf1f40da0a8d310ac7b160d386196db1037c16648",
+      "bytes": 321
+    },
+    "flygym/examples/vision/vision_network.py": {
+      "sha256": "cc9d3278fd58e34cfb20a8085f12358a26b3fe1e4572454a4fdd7bc5b9386121",
+      "bytes": 13434
+    },
+    "flygym/examples/vision/viz.py": {
+      "sha256": "4ff4e16798f582d741cb2153de399bbb4d8788d6a7eb3cfb0bad5044e2225009",
+      "bytes": 10200
+    },
+    "flygym/fly.py": {
+      "sha256": "28f69407082911ffa0bdc5f2d154d53ebee8cf734b632cf38d945f39c8120c59",
+      "bytes": 58482
+    },
+    "flygym/preprogrammed.py": {
+      "sha256": "957ee5251d6dff722c86c54d957355766a61c6728b1ff3452561443e7fe24077",
+      "bytes": 6738
+    },
+    "flygym/simulation.py": {
+      "sha256": "2aa9115b75846189664e3c06d8cabd999140af6bf20a6a514bac06c8b8634b5d",
+      "bytes": 15503
+    },
+    "flygym/state/__init__.py": {
+      "sha256": "bee8e18f95a9e23a6fa3638c2150b3a187d0e676f86da23c7b4b357ccf2b9d80",
+      "bytes": 70
+    },
+    "flygym/state/base.py": {
+      "sha256": "90ac241f532d7591dc4e68cd58be66fff713a4b39473577e32b97e7833f67a62",
+      "bytes": 574
+    },
+    "flygym/state/kinematic_pose.py": {
+      "sha256": "40d275c91bd2f32cfd792ac934100ba6ad457d31cf901069832e79d967879fec",
+      "bytes": 1028
+    },
+    "flygym/tests/test_arena.py": {
+      "sha256": "4dce3d9662f2f4f0305b1c75c199cf160d093fa1e8e420e84bd0d9c94b7dfd24",
+      "bytes": 778
+    },
+    "flygym/tests/test_basic.py": {
+      "sha256": "5ddd37eb49986587a277fd5d7500abcc6f3f489f1ba6cbf8221cfcf488e1d605",
+      "bytes": 1503
+    },
+    "flygym/tests/test_check_env.py": {
+      "sha256": "865ff54fa427ba7b9c879b48351a995d7d94654c17af89fbcfc925d3401016c3",
+      "bytes": 5213
+    },
+    "flygym/tests/test_flip_detection.py": {
+      "sha256": "48d896351813b41dfebaf87b3f70669c9fa48945953d11c90a5047f59a64a251",
+      "bytes": 2356
+    },
+    "flygym/tests/test_odor.py": {
+      "sha256": "bde8951c9c768329ba76b3fcf80b5a8be265896e494deabb8477482fe006b17e",
+      "bytes": 3234
+    },
+    "flygym/tests/test_pose.py": {
+      "sha256": "5d03310ecc5f758c48b7d4812a1ace6eaa2fb129b839ad66a8032beae3c05e70",
+      "bytes": 2606
+    },
+    "flygym/tests/test_vision.py": {
+      "sha256": "98c74b58bd3ed893c262f47ab11fa5e1a86221da8bbc231f5c460b57e80a8e45",
+      "bytes": 2010
+    },
+    "flygym/util.py": {
+      "sha256": "0a022af04cda681af1df474089027542370f2a5ffe40f23308892a2edefac206",
+      "bytes": 2849
+    },
+    "flygym/vision/__init__.py": {
+      "sha256": "c5d3952b8e61b841605eba8f3ac32ab3285ffed832110c52ec78c5ff21b8be70",
+      "bytes": 116
+    },
+    "flygym/vision/retina.py": {
+      "sha256": "2a7f32bcaf2d131bec890ae76f61f9d45d1c3cd752d2c3666f17541adca055bd",
+      "bytes": 11104
+    },
+    "flygym/vision/visualize.py": {
+      "sha256": "4187d59982ff33b995f185b441b608ee2ea12e077ca71dc6c5c1b4ad4b78574c",
+      "bytes": 8481
+    },
+    "mujoco/_callbacks.cp312-win_amd64.pyd": {
+      "sha256": "a6b93b66f90f2dec18e8f08c22a73867c5647eb0e2104b13228d91286da20304",
+      "bytes": 259072
+    },
+    "mujoco/_constants.cp312-win_amd64.pyd": {
+      "sha256": "5e3eeff5a82c7646160d3b35fb01a9947feb27d6c6b5ab4caa3bbee2e62214af",
+      "bytes": 167424
+    },
+    "mujoco/_enums.cp312-win_amd64.pyd": {
+      "sha256": "bdef0f345c3bc301c0713cb2e0aca7461ea5ab79855e7e536b5587889edb1d54",
+      "bytes": 2212864
+    },
+    "mujoco/_errors.cp312-win_amd64.pyd": {
+      "sha256": "c416a21f0ad58bb42a4ab40d5da6bf85becd082d30563535b1ee643695fd9243",
+      "bytes": 156672
+    },
+    "mujoco/_functions.cp312-win_amd64.pyd": {
+      "sha256": "dc8d65a29b58c525db156f25c2065a41f845d94629762f365a6d1291387d2f02",
+      "bytes": 957952
+    },
+    "mujoco/_render.cp312-win_amd64.pyd": {
+      "sha256": "18f454b048441c452d7372615766793fc1c79a0c645d389f4eb4223518ba7843",
+      "bytes": 457728
+    },
+    "mujoco/_rollout.cp312-win_amd64.pyd": {
+      "sha256": "386f709fc90f37fc8bf6b28ba93b7b1cba3a2e543dc183b963685411faf6bb40",
+      "bytes": 271872
+    },
+    "mujoco/_simulate.cp312-win_amd64.pyd": {
+      "sha256": "015af6f103c0c6afed7082ee4b5df3fb969ca31d61782f7646f5d44434c20c45",
+      "bytes": 489984
+    },
+    "mujoco/_specs.cp312-win_amd64.pyd": {
+      "sha256": "1811b72b4b108a96347e9abcc054fab22e5c7d130099cea572aeb0fe6204a12b",
+      "bytes": 2209792
+    },
+    "mujoco/_structs.cp312-win_amd64.pyd": {
+      "sha256": "992762ec514f8645984c92861171cbcb4facb2d19968dcd4c22c86900f76a9f7",
+      "bytes": 4816384
+    },
+    "mujoco/mujoco.dll": {
+      "sha256": "20048fc39e6db3dd27610eaa377052db822d861206bd4186926d3d8002b8bc78",
+      "bytes": 4006400
+    }
+  }
+}
