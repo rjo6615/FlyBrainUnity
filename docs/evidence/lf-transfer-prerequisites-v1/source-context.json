@@ -1,0 +1,163 @@
+{
+  "schema": "lf-transfer-source-context-v1",
+  "inspection": "STATIC_XML_AND_CODE_SNAPSHOT_NO_COMPILATION",
+  "source_model": {
+    "relative_path": "flymimic/assets/models/best_combined_cvt3.xml",
+    "bytes": 50143,
+    "compiler": {
+      "angle": "radian",
+      "autolimits": "true"
+    },
+    "option": {
+      "timestep": "1e-04",
+      "gravity": "0 0 -9801"
+    },
+    "mesh_scales": [
+      "1000 1000 1000"
+    ],
+    "raw_sha256": "a72d4a3167a6f6382d31936d32f2481db5895441a0cc2d02cdbd0452a6209a81",
+    "muscle_default": {
+      "ctrllimited": "true",
+      "ctrlrange": "0 1",
+      "dyntype": "muscle",
+      "gaintype": "muscle",
+      "biastype": "muscle",
+      "dynprm": "0.01 0.04 0 0 0 0 0 0 0 0",
+      "gainprm": "0.75 1.05 -1 200 0.5 1.6 1.5 1.3 1.2 0",
+      "biasprm": "0.75 1.05 -1 200 0.5 1.6 1.5 1.3 1.2 0"
+    },
+    "bindings": [
+      {
+        "tendon": "LFC_pleural_remotor_and_abductor_tendon",
+        "actuator_attributes": {
+          "name": "LFC_pleural_remotor_and_abductor",
+          "class": "muscle",
+          "tendon": "LFC_pleural_remotor_and_abductor_tendon",
+          "ctrlrange": "0.0001 1",
+          "lengthrange": "0.216122 0.299608",
+          "dynprm": "0.0001 0.0004 0 0 0 0 0 0 0 0",
+          "gainprm": "0.743435 1.72008 28.7481 1 0 2 10 0.353216 1.4 0",
+          "biasprm": "0.743435 1.72008 28.7481 1 0 2 10 0.353216 1.4 0"
+        },
+        "tendon_sites": [
+          {
+            "site": "LFC_pleural_remotor_and_abductor_LFC_Miller29_p1"
+          },
+          {
+            "site": "LFC_pleural_remotor_and_abductor_LFC_Miller29_p296"
+          }
+        ]
+      },
+      {
+        "tendon": "LFC_sternal_adductor_tendon",
+        "actuator_attributes": {
+          "name": "LFC_sternal_adductor",
+          "class": "muscle",
+          "tendon": "LFC_sternal_adductor_tendon",
+          "ctrlrange": "0.0001 1",
+          "lengthrange": "0.0972302 0.259683",
+          "dynprm": "0.0001 0.0004 0 0 0 0 0 0 0 0",
+          "gainprm": "0.244283 1.48664 12.9 1 0 2 10 0.446817 1.4 0",
+          "biasprm": "0.244283 1.48664 12.9 1 0 2 10 0.446817 1.4 0"
+        },
+        "tendon_sites": [
+          {
+            "site": "LFC_sternal_adductor_LFC_Miller33_p1"
+          },
+          {
+            "site": "LFC_sternal_adductor_LFC_Miller33_p296"
+          }
+        ]
+      },
+      {
+        "tendon": "LFC_sternal_anterior_rotator_tendon",
+        "actuator_attributes": {
+          "name": "LFC_sternal_anterior_rotator",
+          "class": "muscle",
+          "tendon": "LFC_sternal_anterior_rotator_tendon",
+          "ctrlrange": "0.0001 1",
+          "lengthrange": "0.126048 0.202925",
+          "dynprm": "0.0001 0.0004 0 0 0 0 0 0 0 0",
+          "gainprm": "0.185296 1.73386 10.5807 1 0 2 10 3.11328 1.4 0",
+          "biasprm": "0.185296 1.73386 10.5807 1 0 2 10 3.11328 1.4 0"
+        },
+        "tendon_sites": [
+          {
+            "site": "LFC_sternal_anterior_rotator_LFC_Miller31_p1"
+          },
+          {
+            "site": "LFC_sternal_anterior_rotator_LFC_Miller31_p296"
+          }
+        ]
+      },
+      {
+        "tendon": "LFC_sternal_posterior_rotator_tendon",
+        "actuator_attributes": {
+          "name": "LFC_sternal_posterior_rotator",
+          "class": "muscle",
+          "tendon": "LFC_sternal_posterior_rotator_tendon",
+          "ctrlrange": "0.0001 1",
+          "lengthrange": "0.0715242 0.147229",
+          "dynprm": "0.0001 0.0004 0 0 0 0 0 0 0 0",
+          "gainprm": "0.610817 1.40821 157.429 1 0 2 10 0.0752654 1.4 0",
+          "biasprm": "0.610817 1.40821 157.429 1 0 2 10 0.0752654 1.4 0"
+        },
+        "tendon_sites": [
+          {
+            "site": "LFC_sternal_posterior_rotator_LFC_Miller32_p1"
+          },
+          {
+            "site": "LFC_sternal_posterior_rotator_LFC_Miller32_p296"
+          }
+        ]
+      }
+    ],
+    "inspection": "XML_ONLY_NOT_COMPILED_OR_SIMULATED"
+  },
+  "files": {
+    "flygym/simulation.py": {
+      "raw_sha256": "2aa9115b75846189664e3c06d8cabd999140af6bf20a6a514bac06c8b8634b5d",
+      "bytes": 15503,
+      "excerpts": [
+        {
+          "line": 26,
+          "text": "Simulation timestep in seconds."
+        },
+        {
+          "line": 28,
+          "text": "Gravity in (x, y, z) axes. Note that the gravity is -9.81 * 1000"
+        },
+        {
+          "line": 29,
+          "text": "due to the scaling of the model."
+        },
+        {
+          "line": 329,
+          "text": "Simulation timestep in seconds."
+        },
+        {
+          "line": 331,
+          "text": "Gravity in (x, y, z) axes. Note that the gravity is -9.81 * 1000"
+        },
+        {
+          "line": 332,
+          "text": "due to the scaling of the model."
+        }
+      ]
+    },
+    "flymimic/tasks/fly/mocap_tracking_muscle.py": {
+      "raw_sha256": "080b0b6298dfc13d129dd79ffaded39b8eada66511c3667b44485c9d34193f32",
+      "bytes": 7828,
+      "excerpts": [
+        {
+          "line": 46,
+          "text": "def muscle_forces(self):"
+        },
+        {
+          "line": 47,
+          "text": "return np.clip(self.data.actuator_force.copy() / 1000, -10, 10)"
+        }
+      ]
+    }
+  }
+}
