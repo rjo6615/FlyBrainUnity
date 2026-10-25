@@ -1,0 +1,599 @@
+{
+  "schema": "lf-proximal-binding-review-v1",
+  "status": "REFERENCE_SEMANTICS_ONLY_ADMISSION_BLOCKED",
+  "current_motor_count": 20,
+  "model_coordinates": 42,
+  "new_admissions": 0,
+  "scientific_transitions": 0,
+  "source_hashes": {
+    "docs/evidence/remaining-leg-admission-audit-v1_1/audit.json": "ff64e64941b54872f2d59564d1db6c6422ef25c74067d53acbe23b59ab998c04",
+    "docs/LF_PROXIMAL_BINDING_REVIEW_V1.md": "60062cc8c2b43a7f7126e51b5bf1fe38e790a877e50d61b5625f3b33426b4f9d",
+    "malecns_backend/embodiment/lf_proximal_binding_review.py": "526451b98a9cbc24f3bcf5cbd89bfd858f12e406c21b9bea0a1122106740edb6",
+    "malecns_backend/embodiment/remaining_leg_admission_review.py": "7a9e700cfa2eb905df6afa2a0cfd967bc40cd8edb7bc292b44fa3728479c5bcc",
+    "malecns_backend/embodiment/motor.py": "a64e75a0097c2927d35d94401d5c26f948fb83c86b63e5f6e527ed7d70efb12f",
+    "malecns_backend/embodiment/_windows_m8_live_condition.py": "9afea2d32e9ea935cc6cd221874d74b50ffa35895d327f8ae96ea6c9ed36bc2c"
+  },
+  "source_model": {
+    "raw_sha256": "a72d4a3167a6f6382d31936d32f2481db5895441a0cc2d02cdbd0452a6209a81",
+    "muscle_default": {
+      "ctrllimited": "true",
+      "ctrlrange": "0 1",
+      "dyntype": "muscle",
+      "gaintype": "muscle",
+      "biastype": "muscle",
+      "dynprm": "0.01 0.04 0 0 0 0 0 0 0 0",
+      "gainprm": "0.75 1.05 -1 200 0.5 1.6 1.5 1.3 1.2 0",
+      "biasprm": "0.75 1.05 -1 200 0.5 1.6 1.5 1.3 1.2 0"
+    },
+    "bindings": [
+      {
+        "tendon": "LFC_pleural_promotor_tendon",
+        "actuator_attributes": {
+          "name": "LFC_pleural_promotor",
+          "class": "muscle",
+          "tendon": "LFC_pleural_promotor_tendon",
+          "ctrlrange": "0.0001 1",
+          "lengthrange": "0.0912448 0.135751",
+          "dynprm": "0.0001 0.0004 0 0 0 0 0 0 0 0",
+          "gainprm": "0.859265 1.59552 30.6427 1 0 2 10 0.283134 1.4 0",
+          "biasprm": "0.859265 1.59552 30.6427 1 0 2 10 0.283134 1.4 0"
+        },
+        "tendon_sites": [
+          {
+            "site": "LFC_pleural_promotor_LFC_Miller30_p1"
+          },
+          {
+            "site": "LFC_pleural_promotor_LFC_Miller30_p296"
+          }
+        ]
+      },
+      {
+        "tendon": "LFC_pleural_remotor_and_abductor_tendon",
+        "actuator_attributes": {
+          "name": "LFC_pleural_remotor_and_abductor",
+          "class": "muscle",
+          "tendon": "LFC_pleural_remotor_and_abductor_tendon",
+          "ctrlrange": "0.0001 1",
+          "lengthrange": "0.216122 0.299608",
+          "dynprm": "0.0001 0.0004 0 0 0 0 0 0 0 0",
+          "gainprm": "0.743435 1.72008 28.7481 1 0 2 10 0.353216 1.4 0",
+          "biasprm": "0.743435 1.72008 28.7481 1 0 2 10 0.353216 1.4 0"
+        },
+        "tendon_sites": [
+          {
+            "site": "LFC_pleural_remotor_and_abductor_LFC_Miller29_p1"
+          },
+          {
+            "site": "LFC_pleural_remotor_and_abductor_LFC_Miller29_p296"
+          }
+        ]
+      },
+      {
+        "tendon": "LFC_sternal_adductor_tendon",
+        "actuator_attributes": {
+          "name": "LFC_sternal_adductor",
+          "class": "muscle",
+          "tendon": "LFC_sternal_adductor_tendon",
+          "ctrlrange": "0.0001 1",
+          "lengthrange": "0.0972302 0.259683",
+          "dynprm": "0.0001 0.0004 0 0 0 0 0 0 0 0",
+          "gainprm": "0.244283 1.48664 12.9 1 0 2 10 0.446817 1.4 0",
+          "biasprm": "0.244283 1.48664 12.9 1 0 2 10 0.446817 1.4 0"
+        },
+        "tendon_sites": [
+          {
+            "site": "LFC_sternal_adductor_LFC_Miller33_p1"
+          },
+          {
+            "site": "LFC_sternal_adductor_LFC_Miller33_p296"
+          }
+        ]
+      },
+      {
+        "tendon": "LFC_sternal_anterior_rotator_tendon",
+        "actuator_attributes": {
+          "name": "LFC_sternal_anterior_rotator",
+          "class": "muscle",
+          "tendon": "LFC_sternal_anterior_rotator_tendon",
+          "ctrlrange": "0.0001 1",
+          "lengthrange": "0.126048 0.202925",
+          "dynprm": "0.0001 0.0004 0 0 0 0 0 0 0 0",
+          "gainprm": "0.185296 1.73386 10.5807 1 0 2 10 3.11328 1.4 0",
+          "biasprm": "0.185296 1.73386 10.5807 1 0 2 10 3.11328 1.4 0"
+        },
+        "tendon_sites": [
+          {
+            "site": "LFC_sternal_anterior_rotator_LFC_Miller31_p1"
+          },
+          {
+            "site": "LFC_sternal_anterior_rotator_LFC_Miller31_p296"
+          }
+        ]
+      },
+      {
+        "tendon": "LFC_sternal_posterior_rotator_tendon",
+        "actuator_attributes": {
+          "name": "LFC_sternal_posterior_rotator",
+          "class": "muscle",
+          "tendon": "LFC_sternal_posterior_rotator_tendon",
+          "ctrlrange": "0.0001 1",
+          "lengthrange": "0.0715242 0.147229",
+          "dynprm": "0.0001 0.0004 0 0 0 0 0 0 0 0",
+          "gainprm": "0.610817 1.40821 157.429 1 0 2 10 0.0752654 1.4 0",
+          "biasprm": "0.610817 1.40821 157.429 1 0 2 10 0.0752654 1.4 0"
+        },
+        "tendon_sites": [
+          {
+            "site": "LFC_sternal_posterior_rotator_LFC_Miller32_p1"
+          },
+          {
+            "site": "LFC_sternal_posterior_rotator_LFC_Miller32_p296"
+          }
+        ]
+      },
+      {
+        "tendon": "LFC_tergopleural_promotor_a_tendon",
+        "actuator_attributes": {
+          "name": "LFC_tergopleural_promotor_a",
+          "class": "muscle",
+          "tendon": "LFC_tergopleural_promotor_a_tendon",
+          "ctrlrange": "0.0001 1",
+          "lengthrange": "0.157941 0.213637",
+          "dynprm": "0.0001 0.0004 0 0 0 0 0 0 0 0",
+          "gainprm": "0.774703 1.39095 14.2319 1 0 2 10 0.358728 1.4 0",
+          "biasprm": "0.774703 1.39095 14.2319 1 0 2 10 0.358728 1.4 0"
+        },
+        "tendon_sites": [
+          {
+            "site": "LFC_tergopleural_promotor_a_LFC_Miller28a_p1"
+          },
+          {
+            "site": "LFC_tergopleural_promotor_a_LFC_Miller28a_p296"
+          },
+          {
+            "site": "LFC_tergopleural_promotor_a_LFC_Miller28a_p396"
+          }
+        ]
+      },
+      {
+        "tendon": "LFC_tergopleural_promotor_b_tendon",
+        "actuator_attributes": {
+          "name": "LFC_tergopleural_promotor_b",
+          "class": "muscle",
+          "tendon": "LFC_tergopleural_promotor_b_tendon",
+          "ctrlrange": "0.0001 1",
+          "lengthrange": "0.339805 0.361902",
+          "dynprm": "0.0001 0.0004 0 0 0 0 0 0 0 0",
+          "gainprm": "0.944598 1.01483 67.764 1 0 2 10 4.08279 1.4 0",
+          "biasprm": "0.944598 1.01483 67.764 1 0 2 10 4.08279 1.4 0"
+        },
+        "tendon_sites": [
+          {
+            "site": "LFC_tergopleural_promotor_b_LFC_Miller28b_p1"
+          },
+          {
+            "site": "LFC_tergopleural_promotor_b_LFC_Miller28b_p296"
+          },
+          {
+            "site": "LFC_tergopleural_promotor_b_LFC_Miller28b_p396"
+          }
+        ]
+      }
+    ],
+    "inspection": "XML_ONLY_NOT_COMPILED_OR_SIMULATED"
+  },
+  "populations": [
+    {
+      "identity": {
+        "name": "Tergopleural/Pleural promotor MN T1 left",
+        "body_ids": [
+          800061,
+          801173,
+          807281,
+          934091
+        ],
+        "dense_indices": [
+          142836,
+          143654,
+          148512,
+          162856
+        ],
+        "count": 4,
+        "direction": 1,
+        "annotation_actuators": [
+          "coxa_T1_left"
+        ],
+        "exact_annotation_aliases": [
+          {
+            "name": "Tergopleural/Pleural promotor MN T1 left",
+            "actuator": "coxa_T1_left",
+            "direction": 1
+          }
+        ],
+        "checks": {
+          "exact_body_ids": true,
+          "count": true,
+          "body_integer": true,
+          "unique": true,
+          "dense_integer": true,
+          "all_alias_identities": true,
+          "metadata": true,
+          "all_directions_equal": true,
+          "exact_bodymap_indices": true,
+          "body_id_dense_inversion": true
+        }
+      },
+      "tendon_hypotheses": [
+        {
+          "tendon": "LFC_pleural_promotor_tendon",
+          "tensile_torque_coefficient": [
+            -0.03065742097227428,
+            -0.0217502730208869,
+            -0.011054200186017507
+          ],
+          "conditional_positive_tension_component_signs": [
+            -1,
+            -1,
+            -1
+          ]
+        },
+        {
+          "tendon": "LFC_tergopleural_promotor_a_tendon",
+          "tensile_torque_coefficient": [
+            -0.040057275498351676,
+            -0.03061836122122686,
+            0.04031447492516933
+          ],
+          "conditional_positive_tension_component_signs": [
+            -1,
+            -1,
+            1
+          ]
+        },
+        {
+          "tendon": "LFC_tergopleural_promotor_b_tendon",
+          "tensile_torque_coefficient": [
+            -0.00786424703389068,
+            -0.018199131200033455,
+            0.005633535853960252
+          ],
+          "conditional_positive_tension_component_signs": [
+            -1,
+            -1,
+            1
+          ]
+        }
+      ],
+      "binding_status": "MULTIPLE_TENDON_HYPOTHESES_UNRESOLVED",
+      "per_neuron_tendon_assignments": [
+        {
+          "body_id": 800061,
+          "dense_index": 142836,
+          "tendon": null
+        },
+        {
+          "body_id": 801173,
+          "dense_index": 143654,
+          "tendon": null
+        },
+        {
+          "body_id": 807281,
+          "dense_index": 148512,
+          "tendon": null
+        },
+        {
+          "body_id": 934091,
+          "dense_index": 162856,
+          "tendon": null
+        }
+      ],
+      "spike_to_activation": null,
+      "activation_to_force": null,
+      "force_to_position_target": null,
+      "decoder_vector": null,
+      "gain": null,
+      "admission_ready": false
+    },
+    {
+      "identity": {
+        "name": "Pleural remotor/abductor MN T1 left",
+        "body_ids": [
+          802509,
+          803803
+        ],
+        "dense_indices": [
+          144657,
+          145652
+        ],
+        "count": 2,
+        "direction": -1,
+        "annotation_actuators": [
+          "coxa_T1_left",
+          "coxa_abduct_T1_left"
+        ],
+        "exact_annotation_aliases": [
+          {
+            "name": "Pleural remotor/abductor MN T1 left",
+            "actuator": "coxa_T1_left",
+            "direction": -1
+          },
+          {
+            "name": "Pleural remotor/abductor MN T1 left",
+            "actuator": "coxa_abduct_T1_left",
+            "direction": -1
+          }
+        ],
+        "checks": {
+          "exact_body_ids": true,
+          "count": true,
+          "body_integer": true,
+          "unique": true,
+          "dense_integer": true,
+          "all_alias_identities": true,
+          "metadata": true,
+          "all_directions_equal": true,
+          "exact_bodymap_indices": true,
+          "body_id_dense_inversion": true
+        }
+      },
+      "tendon_hypotheses": [
+        {
+          "tendon": "LFC_pleural_remotor_and_abductor_tendon",
+          "tensile_torque_coefficient": [
+            0.035471495483644505,
+            0.025593975794095825,
+            -0.016985333948516177
+          ],
+          "conditional_positive_tension_component_signs": [
+            1,
+            1,
+            -1
+          ]
+        }
+      ],
+      "binding_status": "SINGLE_CLASS_HYPOTHESIS_NOT_INDEPENDENT_CROSSWALK",
+      "per_neuron_tendon_assignments": [
+        {
+          "body_id": 802509,
+          "dense_index": 144657,
+          "tendon": null
+        },
+        {
+          "body_id": 803803,
+          "dense_index": 145652,
+          "tendon": null
+        }
+      ],
+      "spike_to_activation": null,
+      "activation_to_force": null,
+      "force_to_position_target": null,
+      "decoder_vector": null,
+      "gain": null,
+      "admission_ready": false
+    },
+    {
+      "identity": {
+        "name": "Sternal adductor MN T1 left",
+        "body_ids": [
+          813480
+        ],
+        "dense_indices": [
+          153568
+        ],
+        "count": 1,
+        "direction": 1,
+        "annotation_actuators": [
+          "coxa_abduct_T1_left"
+        ],
+        "exact_annotation_aliases": [
+          {
+            "name": "Sternal adductor MN T1 left",
+            "actuator": "coxa_abduct_T1_left",
+            "direction": 1
+          }
+        ],
+        "checks": {
+          "exact_body_ids": true,
+          "count": true,
+          "body_integer": true,
+          "unique": true,
+          "dense_integer": true,
+          "all_alias_identities": true,
+          "metadata": true,
+          "all_directions_equal": true,
+          "exact_bodymap_indices": true,
+          "body_id_dense_inversion": true
+        }
+      },
+      "tendon_hypotheses": [
+        {
+          "tendon": "LFC_sternal_adductor_tendon",
+          "tensile_torque_coefficient": [
+            -0.11388808872259532,
+            0.05623004695075151,
+            -0.004274084963245932
+          ],
+          "conditional_positive_tension_component_signs": [
+            -1,
+            1,
+            -1
+          ]
+        }
+      ],
+      "binding_status": "SINGLE_CLASS_HYPOTHESIS_NOT_INDEPENDENT_CROSSWALK",
+      "per_neuron_tendon_assignments": [
+        {
+          "body_id": 813480,
+          "dense_index": 153568,
+          "tendon": null
+        }
+      ],
+      "spike_to_activation": null,
+      "activation_to_force": null,
+      "force_to_position_target": null,
+      "decoder_vector": null,
+      "gain": null,
+      "admission_ready": false
+    },
+    {
+      "identity": {
+        "name": "Sternal anterior rotator MN T1 left",
+        "body_ids": [
+          806923,
+          919509
+        ],
+        "dense_indices": [
+          148218,
+          162458
+        ],
+        "count": 2,
+        "direction": 1,
+        "annotation_actuators": [
+          "coxa_twist_T1_left"
+        ],
+        "exact_annotation_aliases": [
+          {
+            "name": "Sternal anterior rotator MN T1 left",
+            "actuator": "coxa_twist_T1_left",
+            "direction": 1
+          }
+        ],
+        "checks": {
+          "exact_body_ids": true,
+          "count": true,
+          "body_integer": true,
+          "unique": true,
+          "dense_integer": true,
+          "all_alias_identities": true,
+          "metadata": true,
+          "all_directions_equal": true,
+          "exact_bodymap_indices": true,
+          "body_id_dense_inversion": true
+        }
+      },
+      "tendon_hypotheses": [
+        {
+          "tendon": "LFC_sternal_anterior_rotator_tendon",
+          "tensile_torque_coefficient": [
+            -0.08352962239815168,
+            -0.010627837399356571,
+            0.0275734905338182
+          ],
+          "conditional_positive_tension_component_signs": [
+            -1,
+            -1,
+            1
+          ]
+        }
+      ],
+      "binding_status": "SINGLE_CLASS_HYPOTHESIS_NOT_INDEPENDENT_CROSSWALK",
+      "per_neuron_tendon_assignments": [
+        {
+          "body_id": 806923,
+          "dense_index": 148218,
+          "tendon": null
+        },
+        {
+          "body_id": 919509,
+          "dense_index": 162458,
+          "tendon": null
+        }
+      ],
+      "spike_to_activation": null,
+      "activation_to_force": null,
+      "force_to_position_target": null,
+      "decoder_vector": null,
+      "gain": null,
+      "admission_ready": false
+    },
+    {
+      "identity": {
+        "name": "Sternal posterior rotator MN T1 left",
+        "body_ids": [
+          801915,
+          804851,
+          808640,
+          1050335829
+        ],
+        "dense_indices": [
+          144222,
+          146498,
+          149652,
+          164685
+        ],
+        "count": 4,
+        "direction": -1,
+        "annotation_actuators": [
+          "coxa_twist_T1_left"
+        ],
+        "exact_annotation_aliases": [
+          {
+            "name": "Sternal posterior rotator MN T1 left",
+            "actuator": "coxa_twist_T1_left",
+            "direction": -1
+          }
+        ],
+        "checks": {
+          "exact_body_ids": true,
+          "count": true,
+          "body_integer": true,
+          "unique": true,
+          "dense_integer": true,
+          "all_alias_identities": true,
+          "metadata": true,
+          "all_directions_equal": true,
+          "exact_bodymap_indices": true,
+          "body_id_dense_inversion": true
+        }
+      },
+      "tendon_hypotheses": [
+        {
+          "tendon": "LFC_sternal_posterior_rotator_tendon",
+          "tensile_torque_coefficient": [
+            -0.008295719862404953,
+            0.0325514695284908,
+            0.05126777650224741
+          ],
+          "conditional_positive_tension_component_signs": [
+            -1,
+            1,
+            1
+          ]
+        }
+      ],
+      "binding_status": "SINGLE_CLASS_HYPOTHESIS_NOT_INDEPENDENT_CROSSWALK",
+      "per_neuron_tendon_assignments": [
+        {
+          "body_id": 801915,
+          "dense_index": 144222,
+          "tendon": null
+        },
+        {
+          "body_id": 804851,
+          "dense_index": 146498,
+          "tendon": null
+        },
+        {
+          "body_id": 808640,
+          "dense_index": 149652,
+          "tendon": null
+        },
+        {
+          "body_id": 1050335829,
+          "dense_index": 164685,
+          "tendon": null
+        }
+      ],
+      "spike_to_activation": null,
+      "activation_to_force": null,
+      "force_to_position_target": null,
+      "decoder_vector": null,
+      "gain": null,
+      "admission_ready": false
+    }
+  ],
+  "upstream_recorded_raw_freezes_satisfied": false,
+  "current_original_raw_freezes_satisfied": false,
+  "conditional_equation": "tau_G = T * R_G; T >= 0; R = -dL/dq",
+  "scope": "LF_ONLY_LOCAL_REFERENCE; no neuron-to-tendon or force-to-position transfer established"
+}
