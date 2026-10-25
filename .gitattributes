@@ -63,6 +63,7 @@ docs/evidence/lf-synthetic-coupling-v1/run/validation.json filter=lfs diff=lfs m
 docs/fixtures/lf-synthetic-coupling-v1.xml -text
 docs/evidence/lf-synthetic-coupling-v2/run/validation.json filter=lfs diff=lfs merge=lfs -text
 docs/evidence/lf-target-orientation-v1/run/validation.json filter=lfs diff=lfs merge=lfs -text
+docs/evidence/lf-endpoint-frames-v1/run/validation.json filter=lfs diff=lfs merge=lfs -text
 # Preserve canonical Git bytes used by existing tactile provenance checks.
 malecns_backend/embodiment/tactile_contact.py -text
 malecns_backend/embodiment/tactile_contact_calibration.py -text
