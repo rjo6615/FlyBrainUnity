@@ -1,8 +1,8 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-25. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for the LF activation-transient update: `newBrain` at
-`f1ba6775f5955f92b99b35bb9c4969df14825422`, which merges PR #269.
+Verified baseline for the LF activation-integrator update: `newBrain` at
+`a5b8cdd` (merged PR #270).
 Fetch and inspect current state before starting work.
 
 ## What the user wants
@@ -20,6 +20,8 @@ Bash instructions and expected outcomes. Keep negative results and experimental
 limitations visible. Read root `AGENTS.md` for enduring workflow requirements.
 The user explicitly wants a copy-paste Git Bash run block in every final update;
 provide post-merge/pull replay commands directly, not just a documentation link.
+The user also requests a roadmap update after EVERY run: what ran, what its result
+establishes and its limits, current motor count, active gate and next concrete gate.
 
 ## Current runtime and code map
 
@@ -752,6 +754,64 @@ Do not add clamps or tune source/neural parameters/timesteps for a pass. Integra
 fidelity is not biological calibration or movement evidence. Force units/physical
 registration, exact selective actuator replacement, original raw prerequisites,
 individual binding and neural conversion remain gates before moving-fly coupling.
+
+## Latest update — source-law activation integrator validated at fixed lengths
+
+Prospective protocol/solver/assay/tests committed at e1dadc7 before one nine-case
+campaign, fresh baseline a5b8cdd. Same 100/50/25us external intervals and 10ms full
+window, controls/initial states/passive preload/fixture/source parameters as the
+old transient campaign. Radau rtol1e-9/atol1e-12, max_step=external interval; native
+mju_muscleDynamics unchanged. No clamp, tuned time constants, grid search or retry.
+
+All nine cases pass integrity and numerical acceptance: ALL_NUMERICALLY_ACCEPTED.
+Full-window pulse errors 1.76429649e-10/1.24318000e-10/1.82032167e-12; all floor
+baselines stationary, matched pulse prefix through2ms exact. Every case compared
+at all401 archived25us reference timestamps plus macro states, with bounds also
+checked on internal accepted Radau nodes. Criteria unchanged error<=.01 and bounds
+[-1e-12,1+1e-12]. Not a continuous-time error theorem or biological calibration.
+
+Reused exact prior DOP853 archive/hash, verified all coarse reference slices and
+old numerical decisions. Old Euler PULSE failures stay FAIL; no historical record
+modified. Pure interval solver returns copied state; zero-DOF adapter commits state
+and time once, with native forward before/after for correctly aligned force and
+derivative. 2100 interval solves/commits,4212 explicit mj_forward,0mj_step,CNS or
+body/joint transitions. Strict zero-DOF/exact identity/address checks prevent use
+as an unspecified moving-body split integrator; no production hook.
+
+New LFS evidence docs/evidence/lf-activation-integrator-v1/run/validation.json,
+7841130bytes,SHA256 cd545ca6863b2d2468da067b258d9aac0ecb7f3ab8a953f15c0d6574f62eb49b.
+All accepted internal nodes, dense samples and solver costs retained. Existing
+plotting tool optionally overlays new Radau results and all prior Euler failures;
+comparison.png visually inspected. Read LF_ACTIVATION_INTEGRATOR_V1.md and
+LF_ACTIVATION_INTEGRATOR_RESULTS.md for exact conditions and limitations.
+
+139 implementation/reference tests passed in55.65s (24new+115prior). Includes
+actual native single-interval ownership/timing checks, analytic mocked linear
+solver plumbing separately, corruption/output protection and strictly model/native/
+solver-free static review. Development scratch-parent setup error fixed before
+campaign; full result passed. Exact Git Bash saved review5.61s, no new integration.
+No dependencies, neuron/gain/production changes, Unity run or new motor admission.
+Current20/42; original raw scientific prerequisites remain false.
+
+Immediate next update: DESIGN AND STATIC AUDIT of selective LF actuator replacement
+and activation/body state ownership, using exact coordinate/actuator/activation IDs,
+identifying existing position controls to replace and controls to preserve. Prevent
+double actuation and double integration. Keep disconnected from production. Specify
+required physical-unit/geometry registration, old raw prerequisites, individual
+tendon-binding and neural-conversion gates before moving-fly coupling; do not claim
+those gates passed from this source-law numerical result. No Unity run yet.
+
+Every run/final update must include a roadmap checkpoint. Admission20/42 is a
+coordinate inventory, not overall project completion. Previous causal tactile/
+disturbance/yoke observations remain bounded evidence, not established gait or
+independent balance. Continue toward richer supported motor/sensory interfaces,
+then causal balance/locomotion tests without scripted behavior substitution.
+
+Git Bash review module: malecns_backend.embodiment.lf_activation_integrator_validation
+--report docs/evidence/lf-activation-integrator-v1/run/validation.json. Pull the new
+record and prior transient/pose records plus original annotations through LFS.
+Expected INTEGRATOR EVIDENCE VERIFIED: ALL_NUMERICALLY_ACCEPTED and9PASS lines;
+production20/42,0newadmissions, oldrawFalse. No repeat or Unity run needed.
 
 ## Completed predecessor task — negative-control design requirements
 
