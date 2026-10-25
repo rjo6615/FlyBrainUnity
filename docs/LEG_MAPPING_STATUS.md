@@ -112,3 +112,15 @@ design/static-audit the selective LF actuator replacement and activation/body
 state-ownership contract before any moving-fly coupling. Physical units/geometry,
 original raw prerequisites, individual binding and neural conversion remain open.
 After each run, report this roadmap position and the next concrete gate.
+
+Selective LF actuation contract v1 now verifies the STATIC design, with coupling
+explicitly blocked; see LF_ACTUATION_CONTRACT_RESULTS.md. M5A recorded yaw/pitch/
+roll target action IDs2/0/1 map to DOFs6/7/8, distinct from synthetic fixture DOFs.
+The design preserves39 joint controls (all20 admissions plus19 baseline position
+controls) and separately accounts for six adhesion actuators in a later historical
+48-actuator signature. Missing native body/activation/transmission values remain
+missing; no identity equivalence between snapshots is assumed. Source activation
+states remain separate from body state. No model mutation or physics/CNS execution
+in the audit; production stays20/42. Next separately specify/capture the current
+native inventory and audit selective-neutralization/preservation with declared
+forward probes and no integration. Physical/neural/raw scientific gates remain.
