@@ -31,6 +31,7 @@ for neural emergence.
 | Synthetic coupled validation | V2 passes the declared same-model numerical/ownership checks using explicit endpoint roles; V1 remains **INTEGRITY_FAILURE**, unchanged |
 | Transfer prerequisite inventory | V1 complete; explicit source parameters identified; unsupported conversions remain null |
 | Unit/conversion-lineage audit | V1 complete with unresolved result: OpenSim sources and conversion PDF found, exact conversion chain and physical scale unproven; no force multiplier chosen |
+| Native LF orientation registration | V1 measured kinematics agree with the modeled map at all15declared poses;196samples in range, no integration/CNS; attachment/length/velocity transfer still unvalidated |
 | Moving-fly muscle transfer | Physical units/geometry/velocity/length, raw prerequisites and anatomical/neural conversion remain unresolved gates |
 | Independent neural balance/walking | Not established |
 
@@ -42,9 +43,10 @@ Unity behavior. For a Unity test of the NEW muscle interface, the remaining
 sequence is:
 
 1. The transfer inventory and unit-lineage audit are complete; physical scaling
-   remains unresolved pending authoritative conversion records. Next independently
-   test native target orientation registration under a separately declared,
-   non-actuating assay with no integration. Resolve source-to-body prerequisites:
+   remains unresolved pending authoritative conversion records. Native target
+   orientation now agrees at the declared probes. Next audit exact source tendon
+   routes and target attachment/landmark evidence for length/velocity registration.
+   Resolve source-to-body prerequisites:
    physical units and registered
    geometry/length/velocity dependence, original raw-source requirements, exact
    anatomical population-to-muscle interpretation and neural-to-activation law.
