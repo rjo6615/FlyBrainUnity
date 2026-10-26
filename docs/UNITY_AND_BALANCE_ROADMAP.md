@@ -19,6 +19,7 @@ contributes 2/6; coxa/roll/yaw contribute 0/18. Remaining: 22 coordinates.
 |---|---|
 | Existing 20-coordinate runtime and controlled sensory observations | Available within recorded conditions; ordinary live tactile disabled |
 | LF source mechanics / numerical interface | Scoped reference and synthetic checks verified; historical failures retained |
+| Three historical motor/sign/registration raw locks | Checkout-byte defect fixed; guarded repair verifies original hashes3/3 in isolated checkout; historical failures retained |
 | LF target attachment anatomy — active gate | Reference required; 0/8 supported endpoint correspondences in the reviewed corpus |
 | Physical scaling, neural binding and activation | Unresolved; cannot infer these from a geometry check |
 | Bounded moving-body muscle experiment, then Unity review | Pending prerequisites; no new Unity behavior from current document/reference checks |
@@ -32,6 +33,13 @@ not evidence of absence. Next input is an accessible, revisioned anatomical
 attachment/landmark bundle tied to the exact assets in the existing request.
 Another pose sweep or saved-report replay cannot supply it. This research gate
 has no defensible completion percentage or fixed number of remaining PRs.
+
+Independent engineering maintenance now addresses a reproducible Windows newline
+defect; see [motor-freeze checkout repair](MOTOR_FREEZE_CHECKOUT_V1.md). The three
+original hashes are satisfied by restoring their exact committed bytes, without
+changing any expected hash or interpreting canonical equivalence as a raw pass.
+This removes a checkout integrity obstacle while the anatomical reference gate
+remains blocked. It adds no motor channels and no new Unity behavior.
 
 ## The milestone we are working toward
 
