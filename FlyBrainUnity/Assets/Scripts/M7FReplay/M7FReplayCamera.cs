@@ -17,6 +17,45 @@ namespace FlyBrain.M7FReplay
 
         public M7FCameraMode CurrentMode => mode;
 
+        /// <summary>Frame the current rendered pose, then hold a fixed world view.
+        /// Does not move the target or change any scientific transform.</summary>
+        public bool FrameRenderedTarget(Transform viewTarget)
+        {
+            var camera = GetComponent<Camera>();
+            if (camera == null || viewTarget == null) return false;
+            var found = false;
+            var bounds = new Bounds();
+            foreach (var renderer in viewTarget.GetComponentsInChildren<Renderer>())
+            {
+                if (!renderer.enabled || !renderer.gameObject.activeInHierarchy) continue;
+                if (!found) { bounds = renderer.bounds; found = true; }
+                else bounds.Encapsulate(renderer.bounds);
+            }
+            if (!found) return false;
+
+            // A bounding sphere fits at every view angle. Use the narrower field
+            // of view, including portrait windows, with a 15% presentation margin.
+            var radius = Mathf.Max(.001f, bounds.extents.magnitude) * 1.15f;
+            var aspect = Mathf.Max(.01f, camera.aspect);
+            if (camera.orthographic)
+            {
+                camera.orthographicSize = radius / Mathf.Min(1f, aspect);
+                distance = Mathf.Max(Vector3.Distance(transform.position, bounds.center), radius + camera.nearClipPlane);
+            }
+            else
+            {
+                var verticalHalfAngle = camera.fieldOfView * Mathf.Deg2Rad * .5f;
+                var horizontalHalfAngle = Mathf.Atan(Mathf.Tan(verticalHalfAngle) * aspect);
+                distance = Mathf.Max(radius / Mathf.Sin(Mathf.Min(verticalHalfAngle, horizontalHalfAngle)),
+                    radius + camera.nearClipPlane);
+            }
+            camera.farClipPlane = Mathf.Max(camera.farClipPlane, distance + radius);
+            target = viewTarget;
+            transform.position = bounds.center - transform.forward * distance;
+            SetMode(M7FCameraMode.WorldFixed);
+            return true;
+        }
+
         void LateUpdate()
         {
             var keyboard = Keyboard.current;
