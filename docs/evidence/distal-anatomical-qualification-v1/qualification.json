@@ -1,0 +1,1092 @@
+{
+  "schema": "distal-anatomical-qualification-v1",
+  "status": "NO_SUFFICIENT_DISTAL_TARGET_AUTHORITY_IN_REVIEWED_SOURCES",
+  "baseline": "2bcd10312ee64618a91ea23d6e6e586c4a93280d",
+  "retrieved_date": "2026-10-25",
+  "attribution": "Cheong et al., Organization of circuits linking descending input to motor output in the Drosophila Male Adult Nerve Cord connectome, eLife13:RP96084, doi:10.7554/eLife.96084.3",
+  "sources": [
+    {
+      "filename": "elife-96084-supp3-v1.csv",
+      "url": "https://cdn.elifesciences.org/articles/96084/elife-96084-supp3-v1.csv",
+      "bytes": 67297,
+      "sha256": "c46e3cec1a5114b8d981d5f0383012c8e7fcdebd6c4e3eaffe4ac3ba1def2e94",
+      "data_rows": 834,
+      "columns": [
+        "class",
+        "bodyid",
+        "group",
+        "subclass",
+        "type",
+        "systematic_type",
+        "exit_nerve",
+        "target",
+        "synonyms",
+        "match_certainty(1-5)",
+        "publication_match",
+        "line_match",
+        "match_notes"
+      ]
+    },
+    {
+      "filename": "elife-96084-supp6-v1.csv",
+      "url": "https://cdn.elifesciences.org/articles/96084/elife-96084-supp6-v1.csv",
+      "bytes": 24898,
+      "sha256": "b56b0563f6a6000b2a43fbc7ebec46297668e8e3b6c6d596843d5ad5aab83a65",
+      "data_rows": 264,
+      "columns": [
+        "bodyid",
+        "group",
+        "serial",
+        "type",
+        "class",
+        "subclass",
+        "soma_neuromere",
+        "soma_side",
+        "plot_name",
+        "target"
+      ]
+    }
+  ],
+  "upstream_reference": {
+    "path": "docs/evidence/distal-tarsus-reference-v1_3/run/reference.json",
+    "raw_sha256": "95a1c2fc3538436676a906186d427ab1ff38c1da4882fbd80ef7bf06962231a3",
+    "total_retained_rows": 43
+  },
+  "paper_review": {
+    "url": "https://elifesciences.org/articles/96084",
+    "locators": [
+      "Results: Serial leg motor neurons; Figure7D",
+      "Standard leg connectome description; Figure13",
+      "Supplementary files3and6"
+    ],
+    "finding": "T2/T3 tarsus levator/depressor serial homologs were not identified in the published MANC study; matching IDs/limb-level labels do not fill that target gap."
+  },
+  "banc_derivation_review": {
+    "repository": "htem/bancpipeline",
+    "revision": "5c333c12f0b9e03873f88cf4e23cad34c0bb49c1",
+    "paths": [
+      "banc/curation/banc_meta_annotation_update_from_matching.R",
+      "banc/annotations/franken-annotations-fix.R",
+      "manc/manc-meta.R"
+    ],
+    "scope": "Evidence of metadata transfer/target-name derivation, not proof of the exact captured-row build history or independent per-cell muscle tracing"
+  },
+  "join_policy": "EXACT_MANC_BODY_ID_TO_bodyid_ONLY; group and serial remain distinct namespaces; blank certainty/publication/line fields remain blank",
+  "counts": {
+    "distal_banc_rows": 20,
+    "distinct_manc_body_references": 21,
+    "light_level_body_references_found": 21,
+    "limb_only_targets": 16,
+    "other_named_muscle_targets": 5,
+    "named_tarsus_rows_in_serial_table": 0
+  },
+  "cohort": [
+    {
+      "banc_id": "720575941409042603",
+      "side": "left",
+      "segment": "T2",
+      "banc_type": "tarsus_depressor_dipalpha_ventralU",
+      "malecns_reference_body_id": 822185,
+      "references": [
+        {
+          "origin": "BANC_manc_match",
+          "manc_body_id": "13036",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "13036",
+              "group": "13036",
+              "subclass": "ml",
+              "type": "MNml81",
+              "systematic_type": "MNml81",
+              "exit_nerve": "MesoLN_L",
+              "target": "middle leg",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": []
+        },
+        {
+          "origin": "MaleCNS_v10_recorded_mancBodyid",
+          "manc_body_id": "103416",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "103416",
+              "group": "103416",
+              "subclass": "ml",
+              "type": "MNml77",
+              "systematic_type": "MNml77",
+              "exit_nerve": "MesoLN_L",
+              "target": "middle leg",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": []
+        }
+      ],
+      "anatomical_target_qualified": false,
+      "admission_ready": false
+    },
+    {
+      "banc_id": "720575941425056084",
+      "side": "right",
+      "segment": "T2",
+      "banc_type": "tarsus_depressor_B",
+      "malecns_reference_body_id": 817990,
+      "references": [
+        {
+          "origin": "BANC_manc_match",
+          "manc_body_id": "15616",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "15616",
+              "group": "15616",
+              "subclass": "ml",
+              "type": "MNml80",
+              "systematic_type": "MNml80",
+              "exit_nerve": "MesoLN_R",
+              "target": "middle leg",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": []
+        },
+        {
+          "origin": "MaleCNS_v10_recorded_mancBodyid",
+          "manc_body_id": "35950",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "35950",
+              "group": "20511",
+              "subclass": "ml",
+              "type": "MNml78",
+              "systematic_type": "MNml78",
+              "exit_nerve": "MesoLN_R",
+              "target": "middle leg",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": []
+        }
+      ],
+      "anatomical_target_qualified": false,
+      "admission_ready": false
+    },
+    {
+      "banc_id": "720575941435859232",
+      "side": "left",
+      "segment": "T3",
+      "banc_type": "tarsus_depressor_B",
+      "malecns_reference_body_id": 1050272154,
+      "references": [
+        {
+          "origin": "BANC_manc_match",
+          "manc_body_id": "14339",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "14339",
+              "group": "10968",
+              "subclass": "hl",
+              "type": "MNhl68",
+              "systematic_type": "MNhl68",
+              "exit_nerve": "MetaLN_L",
+              "target": "hind leg",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": []
+        }
+      ],
+      "anatomical_target_qualified": false,
+      "admission_ready": false
+    },
+    {
+      "banc_id": "720575941436891103",
+      "side": "right",
+      "segment": "T2",
+      "banc_type": "tarsus_levator_D",
+      "malecns_reference_body_id": 801477,
+      "references": [
+        {
+          "origin": "BANC_manc_match",
+          "manc_body_id": "200065",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "200065",
+              "group": "103416",
+              "subclass": "ml",
+              "type": "MNml77",
+              "systematic_type": "MNml77",
+              "exit_nerve": "MesoLN_R",
+              "target": "middle leg",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": []
+        },
+        {
+          "origin": "MaleCNS_v10_recorded_mancBodyid",
+          "manc_body_id": "14828",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "14828",
+              "group": "13036",
+              "subclass": "ml",
+              "type": "MNml81",
+              "systematic_type": "MNml81",
+              "exit_nerve": "MesoLN_R",
+              "target": "middle leg",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": []
+        }
+      ],
+      "anatomical_target_qualified": false,
+      "admission_ready": false
+    },
+    {
+      "banc_id": "720575941478122659",
+      "side": "left",
+      "segment": "T2",
+      "banc_type": "tarsus_depressor_B",
+      "malecns_reference_body_id": null,
+      "references": [
+        {
+          "origin": "BANC_manc_match",
+          "manc_body_id": "167919",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "167919",
+              "group": "20511",
+              "subclass": "ml",
+              "type": "MNml78",
+              "systematic_type": "MNml78",
+              "exit_nerve": "MesoLN_L",
+              "target": "middle leg",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": []
+        }
+      ],
+      "anatomical_target_qualified": false,
+      "admission_ready": false
+    },
+    {
+      "banc_id": "720575941479728291",
+      "side": "left",
+      "segment": "T3",
+      "banc_type": "tarsus_depressor_A",
+      "malecns_reference_body_id": 1050239701,
+      "references": [
+        {
+          "origin": "BANC_manc_match",
+          "manc_body_id": "29474",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "29474",
+              "group": "13740",
+              "subclass": "hl",
+              "type": "MNhl64",
+              "systematic_type": "MNhl64",
+              "exit_nerve": "MetaLN_L",
+              "target": "hind leg",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": []
+        }
+      ],
+      "anatomical_target_qualified": false,
+      "admission_ready": false
+    },
+    {
+      "banc_id": "720575941480482755",
+      "side": "left",
+      "segment": "T3",
+      "banc_type": "tarsus_depressor_B",
+      "malecns_reference_body_id": 823405,
+      "references": [
+        {
+          "origin": "BANC_manc_match",
+          "manc_body_id": "14339",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "14339",
+              "group": "10968",
+              "subclass": "hl",
+              "type": "MNhl68",
+              "systematic_type": "MNhl68",
+              "exit_nerve": "MetaLN_L",
+              "target": "hind leg",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": []
+        },
+        {
+          "origin": "MaleCNS_v10_recorded_mancBodyid",
+          "manc_body_id": "19074",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "19074",
+              "group": "12725",
+              "subclass": "hl",
+              "type": "Acc. ti flexor MN",
+              "systematic_type": "MNhl27",
+              "exit_nerve": "MetaLN_L",
+              "target": "Acc. ti flexor",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": [
+            {
+              "bodyid": "19074",
+              "group": "12725",
+              "serial": "12725",
+              "type": "Acc. ti flexor MN",
+              "class": "motor neuron",
+              "subclass": "hl",
+              "soma_neuromere": "T3",
+              "soma_side": "LHS",
+              "plot_name": "Acc. ti flexor MN(42)",
+              "target": "Acc. ti flexor"
+            }
+          ]
+        }
+      ],
+      "anatomical_target_qualified": false,
+      "admission_ready": false
+    },
+    {
+      "banc_id": "720575941481071802",
+      "side": "right",
+      "segment": "T2",
+      "banc_type": "tarsus_levator_D",
+      "malecns_reference_body_id": 801477,
+      "references": [
+        {
+          "origin": "BANC_manc_match",
+          "manc_body_id": "14828",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "14828",
+              "group": "13036",
+              "subclass": "ml",
+              "type": "MNml81",
+              "systematic_type": "MNml81",
+              "exit_nerve": "MesoLN_R",
+              "target": "middle leg",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": []
+        },
+        {
+          "origin": "MaleCNS_v10_recorded_mancBodyid",
+          "manc_body_id": "14828",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "14828",
+              "group": "13036",
+              "subclass": "ml",
+              "type": "MNml81",
+              "systematic_type": "MNml81",
+              "exit_nerve": "MesoLN_R",
+              "target": "middle leg",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": []
+        }
+      ],
+      "anatomical_target_qualified": false,
+      "admission_ready": false
+    },
+    {
+      "banc_id": "720575941482859718",
+      "side": "left",
+      "segment": "T3",
+      "banc_type": "tarsus_depressor_B",
+      "malecns_reference_body_id": 823405,
+      "references": [
+        {
+          "origin": "BANC_manc_match",
+          "manc_body_id": "27757",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "27757",
+              "group": "19744",
+              "subclass": "hl",
+              "type": "MNhl61",
+              "systematic_type": "MNhl61",
+              "exit_nerve": "MetaLN_L",
+              "target": "hind leg",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": []
+        },
+        {
+          "origin": "MaleCNS_v10_recorded_mancBodyid",
+          "manc_body_id": "19074",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "19074",
+              "group": "12725",
+              "subclass": "hl",
+              "type": "Acc. ti flexor MN",
+              "systematic_type": "MNhl27",
+              "exit_nerve": "MetaLN_L",
+              "target": "Acc. ti flexor",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": [
+            {
+              "bodyid": "19074",
+              "group": "12725",
+              "serial": "12725",
+              "type": "Acc. ti flexor MN",
+              "class": "motor neuron",
+              "subclass": "hl",
+              "soma_neuromere": "T3",
+              "soma_side": "LHS",
+              "plot_name": "Acc. ti flexor MN(42)",
+              "target": "Acc. ti flexor"
+            }
+          ]
+        }
+      ],
+      "anatomical_target_qualified": false,
+      "admission_ready": false
+    },
+    {
+      "banc_id": "720575941485233616",
+      "side": "right",
+      "segment": "T2",
+      "banc_type": "tarsus_depressor_B",
+      "malecns_reference_body_id": 817990,
+      "references": [
+        {
+          "origin": "BANC_manc_match",
+          "manc_body_id": "15616",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "15616",
+              "group": "15616",
+              "subclass": "ml",
+              "type": "MNml80",
+              "systematic_type": "MNml80",
+              "exit_nerve": "MesoLN_R",
+              "target": "middle leg",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": []
+        },
+        {
+          "origin": "MaleCNS_v10_recorded_mancBodyid",
+          "manc_body_id": "35950",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "35950",
+              "group": "20511",
+              "subclass": "ml",
+              "type": "MNml78",
+              "systematic_type": "MNml78",
+              "exit_nerve": "MesoLN_R",
+              "target": "middle leg",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": []
+        }
+      ],
+      "anatomical_target_qualified": false,
+      "admission_ready": false
+    },
+    {
+      "banc_id": "720575941503128626",
+      "side": "right",
+      "segment": "T3",
+      "banc_type": "tarsus_depressor_dipalpha_ventralU",
+      "malecns_reference_body_id": 800358,
+      "references": [
+        {
+          "origin": "BANC_manc_match",
+          "manc_body_id": "13740",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "13740",
+              "group": "13740",
+              "subclass": "hl",
+              "type": "MNhl64",
+              "systematic_type": "MNhl64",
+              "exit_nerve": "MetaLN_R",
+              "target": "hind leg",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": []
+        },
+        {
+          "origin": "MaleCNS_v10_recorded_mancBodyid",
+          "manc_body_id": "13740",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "13740",
+              "group": "13740",
+              "subclass": "hl",
+              "type": "MNhl64",
+              "systematic_type": "MNhl64",
+              "exit_nerve": "MetaLN_R",
+              "target": "hind leg",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": []
+        }
+      ],
+      "anatomical_target_qualified": false,
+      "admission_ready": false
+    },
+    {
+      "banc_id": "720575941519179480",
+      "side": "left",
+      "segment": "T3",
+      "banc_type": "tarsus_levator_D",
+      "malecns_reference_body_id": null,
+      "references": [
+        {
+          "origin": "BANC_manc_match",
+          "manc_body_id": "18286",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "18286",
+              "group": "14596",
+              "subclass": "hl",
+              "type": "Pleural remotor/abductor MN",
+              "systematic_type": "MNhl31",
+              "exit_nerve": "MetaLN_L",
+              "target": "Pleural remotor/abductor",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": [
+            {
+              "bodyid": "18286",
+              "group": "14596",
+              "serial": "12096",
+              "type": "Pleural remotor/abductor MN",
+              "class": "motor neuron",
+              "subclass": "hl",
+              "soma_neuromere": "T3",
+              "soma_side": "LHS",
+              "plot_name": "Pleural remotor/abductor MN(14)",
+              "target": "Pleural remotor/abductor"
+            }
+          ]
+        }
+      ],
+      "anatomical_target_qualified": false,
+      "admission_ready": false
+    },
+    {
+      "banc_id": "720575941539565916",
+      "side": "right",
+      "segment": "T3",
+      "banc_type": "tarsus_levator_D",
+      "malecns_reference_body_id": 869369,
+      "references": [
+        {
+          "origin": "BANC_manc_match",
+          "manc_body_id": "13144",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "13144",
+              "group": "13144",
+              "subclass": "hl",
+              "type": "MNhl65",
+              "systematic_type": "MNhl65",
+              "exit_nerve": "MetaLN_R",
+              "target": "hind leg",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": []
+        },
+        {
+          "origin": "MaleCNS_v10_recorded_mancBodyid",
+          "manc_body_id": "13144",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "13144",
+              "group": "13144",
+              "subclass": "hl",
+              "type": "MNhl65",
+              "systematic_type": "MNhl65",
+              "exit_nerve": "MetaLN_R",
+              "target": "hind leg",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": []
+        }
+      ],
+      "anatomical_target_qualified": false,
+      "admission_ready": false
+    },
+    {
+      "banc_id": "720575941552926747",
+      "side": "right",
+      "segment": "T3",
+      "banc_type": "tarsus_depressor_B",
+      "malecns_reference_body_id": 808453,
+      "references": [
+        {
+          "origin": "BANC_manc_match",
+          "manc_body_id": "20593",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "20593",
+              "group": "12725",
+              "subclass": "hl",
+              "type": "Acc. ti flexor MN",
+              "systematic_type": "MNhl27",
+              "exit_nerve": "MetaLN_R",
+              "target": "Acc. ti flexor",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": [
+            {
+              "bodyid": "20593",
+              "group": "12725",
+              "serial": "12725",
+              "type": "Acc. ti flexor MN",
+              "class": "motor neuron",
+              "subclass": "hl",
+              "soma_neuromere": "T3",
+              "soma_side": "RHS",
+              "plot_name": "Acc. ti flexor MN(42)",
+              "target": "Acc. ti flexor"
+            }
+          ]
+        },
+        {
+          "origin": "MaleCNS_v10_recorded_mancBodyid",
+          "manc_body_id": "10866",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "10866",
+              "group": "10866",
+              "subclass": "hl",
+              "type": "Tr extensor MN",
+              "systematic_type": "MNhl37",
+              "exit_nerve": "MetaLN_R",
+              "target": "Tr extensor",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": [
+            {
+              "bodyid": "10866",
+              "group": "10866",
+              "serial": "10866",
+              "type": "Tr extensor MN",
+              "class": "motor neuron",
+              "subclass": "hl",
+              "soma_neuromere": "T3",
+              "soma_side": "RHS",
+              "plot_name": "Tr extensor MN(12)",
+              "target": "Tr extensor"
+            }
+          ]
+        }
+      ],
+      "anatomical_target_qualified": false,
+      "admission_ready": false
+    },
+    {
+      "banc_id": "720575941577004881",
+      "side": "left",
+      "segment": "T2",
+      "banc_type": "tarsus_levator_D",
+      "malecns_reference_body_id": null,
+      "references": [
+        {
+          "origin": "BANC_manc_match",
+          "manc_body_id": "13036",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "13036",
+              "group": "13036",
+              "subclass": "ml",
+              "type": "MNml81",
+              "systematic_type": "MNml81",
+              "exit_nerve": "MesoLN_L",
+              "target": "middle leg",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": []
+        }
+      ],
+      "anatomical_target_qualified": false,
+      "admission_ready": false
+    },
+    {
+      "banc_id": "720575941610064102",
+      "side": "right",
+      "segment": "T3",
+      "banc_type": "tarsus_depressor_B",
+      "malecns_reference_body_id": 1050091102,
+      "references": [
+        {
+          "origin": "BANC_manc_match",
+          "manc_body_id": "12758",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "12758",
+              "group": "12758",
+              "subclass": "hl",
+              "type": "Acc. ti flexor MN",
+              "systematic_type": "MNhl26",
+              "exit_nerve": "MetaLN_R",
+              "target": "Acc. ti flexor",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": [
+            {
+              "bodyid": "12758",
+              "group": "12758",
+              "serial": "12758",
+              "type": "Acc. ti flexor MN",
+              "class": "motor neuron",
+              "subclass": "hl",
+              "soma_neuromere": "T3",
+              "soma_side": "RHS",
+              "plot_name": "Acc. ti flexor MN(42)",
+              "target": "Acc. ti flexor"
+            }
+          ]
+        },
+        {
+          "origin": "MaleCNS_v10_recorded_mancBodyid",
+          "manc_body_id": "11480",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "11480",
+              "group": "11480",
+              "subclass": "hl",
+              "type": "MNhl67",
+              "systematic_type": "MNhl67",
+              "exit_nerve": "MetaLN_R",
+              "target": "hind leg",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": []
+        }
+      ],
+      "anatomical_target_qualified": false,
+      "admission_ready": false
+    },
+    {
+      "banc_id": "720575941611707923",
+      "side": "left",
+      "segment": "T2",
+      "banc_type": "tarsus_depressor_B",
+      "malecns_reference_body_id": null,
+      "references": [
+        {
+          "origin": "BANC_manc_match",
+          "manc_body_id": "30709",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "30709",
+              "group": "20511",
+              "subclass": "ml",
+              "type": "MNml78",
+              "systematic_type": "MNml78",
+              "exit_nerve": "MesoLN_L",
+              "target": "middle leg",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": []
+        }
+      ],
+      "anatomical_target_qualified": false,
+      "admission_ready": false
+    },
+    {
+      "banc_id": "720575941623403116",
+      "side": "left",
+      "segment": "T2",
+      "banc_type": "tarsus_depressor_B",
+      "malecns_reference_body_id": 1050046221,
+      "references": [
+        {
+          "origin": "BANC_manc_match",
+          "manc_body_id": "167919",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "167919",
+              "group": "20511",
+              "subclass": "ml",
+              "type": "MNml78",
+              "systematic_type": "MNml78",
+              "exit_nerve": "MesoLN_L",
+              "target": "middle leg",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": []
+        },
+        {
+          "origin": "MaleCNS_v10_recorded_mancBodyid",
+          "manc_body_id": "25956",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "25956",
+              "group": "15616",
+              "subclass": "ml",
+              "type": "MNml80",
+              "systematic_type": "MNml80",
+              "exit_nerve": "MesoLN_L",
+              "target": "middle leg",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": []
+        }
+      ],
+      "anatomical_target_qualified": false,
+      "admission_ready": false
+    },
+    {
+      "banc_id": "720575941624174844",
+      "side": "left",
+      "segment": "T3",
+      "banc_type": "tarsus_depressor_dipalpha_ventralU",
+      "malecns_reference_body_id": null,
+      "references": [
+        {
+          "origin": "BANC_manc_match",
+          "manc_body_id": "29474",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "29474",
+              "group": "13740",
+              "subclass": "hl",
+              "type": "MNhl64",
+              "systematic_type": "MNhl64",
+              "exit_nerve": "MetaLN_L",
+              "target": "hind leg",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": []
+        }
+      ],
+      "anatomical_target_qualified": false,
+      "admission_ready": false
+    },
+    {
+      "banc_id": "720575941627243372",
+      "side": "right",
+      "segment": "T2",
+      "banc_type": "tarsus_depressor_dipalpha_ventralU",
+      "malecns_reference_body_id": null,
+      "references": [
+        {
+          "origin": "BANC_manc_match",
+          "manc_body_id": "32253",
+          "light_level_rows": [
+            {
+              "class": "motor neuron",
+              "bodyid": "32253",
+              "group": "17964",
+              "subclass": "ml",
+              "type": "MNml79",
+              "systematic_type": "MNml79",
+              "exit_nerve": "MesoLN_R",
+              "target": "middle leg",
+              "synonyms": "",
+              "match_certainty(1-5)": "",
+              "publication_match": "",
+              "line_match": "",
+              "match_notes": ""
+            }
+          ],
+          "serial_rows": []
+        }
+      ],
+      "anatomical_target_qualified": false,
+      "admission_ready": false
+    }
+  ],
+  "current_motor_count": 20,
+  "new_admissions": 0,
+  "scientific_transitions": 0,
+  "limitation": "Bounded source qualification, not proof that newer independent anatomy does not exist. Existing BANC labels are retained as hypotheses, not falsified or promoted.",
+  "next_workstream": "User selected controlled balance-contribution test design with existing20motors; anatomy remains blocked separately."
+}

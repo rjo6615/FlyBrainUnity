@@ -1,0 +1,416 @@
+{
+  "schema": "balance-contribution-protocol-v1",
+  "status": "SPECIFIED_NOT_IMPLEMENTED_NOT_RUN",
+  "baseline": "2bcd10312ee64618a91ea23d6e6e586c4a93280d",
+  "scientific_experiment_executed": false,
+  "runner_implemented": false,
+  "native_initialization_executed": false,
+  "execution_prerequisites_verified": false,
+  "user_selected_workstream": "controlled balance-contribution test using existing20motors",
+  "question": "Effect of continued20-channel decoder input versus post-onset pre-safety withdrawal on posture after a fixed push under unchanged position assistance",
+  "conditions": [
+    {
+      "id": "NC",
+      "push": false,
+      "withdraw": false
+    },
+    {
+      "id": "WC",
+      "push": false,
+      "withdraw": true
+    },
+    {
+      "id": "NP",
+      "push": true,
+      "withdraw": false
+    },
+    {
+      "id": "WP",
+      "push": true,
+      "withdraw": true
+    }
+  ],
+  "fresh_instances_per_condition": true,
+  "seed": 1,
+  "duration_s": 2.0,
+  "physics_dt_s": 0.0001,
+  "neural_dt_ms": 0.5,
+  "physics_transitions_per_arm": 20000,
+  "physics_states_per_arm": 20001,
+  "neural_updates_per_arm": 4000,
+  "total_physics_transitions": 80000,
+  "total_physics_states": 80004,
+  "total_neural_updates": 16000,
+  "automatic_retries": 0,
+  "stop_on_fall": false,
+  "motors": [
+    {
+      "name": "joint_LFTibia",
+      "action_index": 5
+    },
+    {
+      "name": "joint_LMTibia",
+      "action_index": 12
+    },
+    {
+      "name": "joint_LHTibia",
+      "action_index": 19
+    },
+    {
+      "name": "joint_RFTibia",
+      "action_index": 26
+    },
+    {
+      "name": "joint_RMTibia",
+      "action_index": 33
+    },
+    {
+      "name": "joint_RHTibia",
+      "action_index": 40
+    },
+    {
+      "name": "joint_LFFemur",
+      "action_index": 3
+    },
+    {
+      "name": "joint_LMFemur",
+      "action_index": 10
+    },
+    {
+      "name": "joint_LHFemur",
+      "action_index": 17
+    },
+    {
+      "name": "joint_RMFemur",
+      "action_index": 31
+    },
+    {
+      "name": "joint_RHFemur",
+      "action_index": 38
+    },
+    {
+      "name": "joint_LFFemur_roll",
+      "action_index": 4
+    },
+    {
+      "name": "joint_LMFemur_roll",
+      "action_index": 11
+    },
+    {
+      "name": "joint_LHFemur_roll",
+      "action_index": 18
+    },
+    {
+      "name": "joint_RFFemur_roll",
+      "action_index": 25
+    },
+    {
+      "name": "joint_RMFemur_roll",
+      "action_index": 32
+    },
+    {
+      "name": "joint_RHFemur_roll",
+      "action_index": 39
+    },
+    {
+      "name": "joint_RFFemur",
+      "action_index": 24
+    },
+    {
+      "name": "joint_LFTarsus1",
+      "action_index": 6
+    },
+    {
+      "name": "joint_RFTarsus1",
+      "action_index": 27
+    }
+  ],
+  "unadmitted_baseline_only": [
+    {
+      "name": "joint_LFCoxa",
+      "action_index": 0
+    },
+    {
+      "name": "joint_LFCoxa_roll",
+      "action_index": 1
+    },
+    {
+      "name": "joint_LFCoxa_yaw",
+      "action_index": 2
+    },
+    {
+      "name": "joint_LMCoxa",
+      "action_index": 7
+    },
+    {
+      "name": "joint_LMCoxa_roll",
+      "action_index": 8
+    },
+    {
+      "name": "joint_LMCoxa_yaw",
+      "action_index": 9
+    },
+    {
+      "name": "joint_LMTarsus1",
+      "action_index": 13
+    },
+    {
+      "name": "joint_LHCoxa",
+      "action_index": 14
+    },
+    {
+      "name": "joint_LHCoxa_roll",
+      "action_index": 15
+    },
+    {
+      "name": "joint_LHCoxa_yaw",
+      "action_index": 16
+    },
+    {
+      "name": "joint_LHTarsus1",
+      "action_index": 20
+    },
+    {
+      "name": "joint_RFCoxa",
+      "action_index": 21
+    },
+    {
+      "name": "joint_RFCoxa_roll",
+      "action_index": 22
+    },
+    {
+      "name": "joint_RFCoxa_yaw",
+      "action_index": 23
+    },
+    {
+      "name": "joint_RMCoxa",
+      "action_index": 28
+    },
+    {
+      "name": "joint_RMCoxa_roll",
+      "action_index": 29
+    },
+    {
+      "name": "joint_RMCoxa_yaw",
+      "action_index": 30
+    },
+    {
+      "name": "joint_RMTarsus1",
+      "action_index": 34
+    },
+    {
+      "name": "joint_RHCoxa",
+      "action_index": 35
+    },
+    {
+      "name": "joint_RHCoxa_roll",
+      "action_index": 36
+    },
+    {
+      "name": "joint_RHCoxa_yaw",
+      "action_index": 37
+    },
+    {
+      "name": "joint_RHTarsus1",
+      "action_index": 41
+    }
+  ],
+  "mechanical_assistance": {
+    "policy": "same42position_actuators; existing gains/bias/ranges/safety; fixed measured initial targets; zero adhesion; no force-muscle transplant",
+    "independent_balance_claim_allowed": false
+  },
+  "sensory": {
+    "proprioceptive_neurons": 392,
+    "tactile_delivery": false,
+    "source": "existing six tibia encoders and per-leg PCG64 samplers",
+    "external_rng_schedule": "existing configure_external_rng_schedule(sorted392dense_indices), once before tick1, identical in all arms",
+    "ordinary_live_rng_semantics_changed": false,
+    "assay_only_conditioning_change": true,
+    "draw_stream_matching": "all392CNS external uniforms and per-leg candidate RNG states each neural tick; delivered events may diverge after feedback"
+  },
+  "initialization": {
+    "init_pose": "tripod",
+    "spawn_position": [
+      0.0,
+      0.0,
+      0.6045752232266313
+    ],
+    "spawn_orientation": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "policy": "measure fresh native/CNS initial state in each actual run; ledger construction/reset/forward/settling separately; no unrecorded extra inventory model or duplicate CNS preflight",
+    "constructor_internal_operations": "must not infer zero from zero clock; distinguish measured and unmeasured operations"
+  },
+  "withdrawal": {
+    "first_neural_update": 1001,
+    "first_state_index": 5005,
+    "time_ms": 500.5,
+    "gate": "all20raw decoder inputs become0before unchanged MatchedControlPipeline",
+    "final_contribution_gate": null,
+    "safety_history_reset": false,
+    "decoder_and_neural_updates_continue": true,
+    "slew_rad_s": 4.0,
+    "max_offset_rad": 0.25,
+    "conservative_return_updates": 126,
+    "conservative_return_time_ms": 563.0,
+    "record_residual_target_offset": true,
+    "do_not_equate_pre_slew_admitted_input_with_actual_target": true
+  },
+  "force": {
+    "authority": "m9b_external_perturbation.force_at_transition",
+    "world_force": [
+      0.0,
+      1.024,
+      0.0
+    ],
+    "torque": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "application": "unique exact Thorax body COM",
+    "start_outgoing_transition": 5000,
+    "stop_outgoing_transition_exclusive": 5200,
+    "active_transitions": 200,
+    "impulse_native_force_s": 0.02048,
+    "first_forced_state": 5001,
+    "last_forced_state": 5200,
+    "first_cleared_state": 5201,
+    "all_other_body_wrenches_and_generalized_forces_zero": true
+  },
+  "matching": {
+    "all_arms_full_prefix_last_state": 5000,
+    "all_arms_prefix_last_neural_tick": 1000,
+    "within_push_class_physical_prefix_last_state": 5005,
+    "first_proposed_withdrawal_command_state": 5005,
+    "first_possible_physical_effect_state": 5006,
+    "post_intervention_state_equality_required": false,
+    "full_stream_rng_hash_equality_required": true
+  },
+  "endpoint": {
+    "last_state": 20000,
+    "last_neural_update": 4000,
+    "terminal_command": "retain and mark terminal/unapplied",
+    "last_applied_outgoing_transition": 19999
+  },
+  "analysis": {
+    "baseline_state_range_inclusive": [
+      4000,
+      5000
+    ],
+    "cleared_force_state_range_inclusive": [
+      5201,
+      20000
+    ],
+    "recovery_bands": {
+      "orientation_deg": 5.0,
+      "height_mm": 0.05,
+      "linear_speed_mm_s": 1.0,
+      "angular_speed_rad_s": 1.0,
+      "minimum_up_z": 0.5,
+      "minimum_height_fraction": 0.5,
+      "minimum_ground_contacts": 3,
+      "dwell_steps": 1000
+    },
+    "resolution": {
+      "orientation_deg": 0.25,
+      "position_mm": 0.005
+    },
+    "dwell_states": 1001,
+    "primary": "whole-window pushed absolute world-up tilt peak and mean; compare NP with WP",
+    "primary_label_resolution_deg": 0.25,
+    "primary_label_rule": "strictly lower/higher on BOTH peak and mean by more than0.25degrees; else mixed/unresolved; descriptive only",
+    "relative_comparisons": [
+      "NP-NC",
+      "WP-WC"
+    ],
+    "factorial_vector": "(NP-NC)-(WP-WC), root and world-up vectors",
+    "full_trajectories_required": true,
+    "withdrawal_transient_included": true,
+    "tradeoff_metrics": [
+      "relative orientation",
+      "root position and height",
+      "world linear/angular velocity",
+      "support losses",
+      "rollover",
+      "low height",
+      "recovery",
+      "no-push posture"
+    ],
+    "physics_clock_atol_s": 1e-10,
+    "neural_clock_atol_ms": 1e-08,
+    "force_reconstruction_rtol": 1e-10,
+    "force_reconstruction_atol": 1e-14
+  },
+  "integrity": {
+    "required": [
+      "source/raw prerequisite locks",
+      "exact20/22motor isolation",
+      "compiled model/config/identity equality",
+      "initial/prefix equality",
+      "RNG schedule audit",
+      "planned force and action audit",
+      "unchanged safety/range/slew",
+      "finite/full fixed-window telemetry",
+      "state/transition endpoint ownership"
+    ],
+    "behavioral_success_required": false,
+    "fail_label": "INCONCLUSIVE_INTEGRITY",
+    "null_or_failed_recovery_preserved": true
+  },
+  "unity": {
+    "eligible_now": false,
+    "gate": "complete valid raw poses and all declared integrity gates; null/negative results still eligible with honest labels",
+    "transport": "existing validated pose replay only; not a new Unity controller"
+  },
+  "next_step": "Implement adapter/recorder/evaluator and synthetic boundary checks; commit implementation before one bounded four-arm experiment",
+  "source_fingerprint_policy": "new protocol records canonical-LF source-code fingerprints; all pre-existing scientific raw locks remain unchanged",
+  "source_code_sha256": {
+    "malecns_backend/neural.py": "8acebd58cdc221cc815646474bb337c3dc7bd05cccde685ac713f23ca51c7e0c",
+    "malecns_backend/embodiment/_windows_m8_live_condition.py": "9afea2d32e9ea935cc6cd221874d74b50ffa35895d327f8ae96ea6c9ed36bc2c",
+    "malecns_backend/embodiment/scientific_session.py": "b6d6e71983545506b675ad4f9f86a70bdd04e97f3d4f557c64c49931348f1de8",
+    "malecns_backend/embodiment/_windows_m7d_corrected_spontaneous_adapter.py": "cec995856be96a8c632e098e92153eb9c7b95d396b98d8d0499eb5f013ae9e17",
+    "malecns_backend/embodiment/lf_force_static_reference.py": "f8254034e3ea01359bdf7d90a04fc62ffc114441a8dd80b407c786475d5c07ae",
+    "malecns_backend/embodiment/lf_actuation_contract.py": "771664e95187a1a98b88d625994af2a8087ff801cba89349736585670d760c05",
+    "malecns_backend/embodiment/full_leg_interface.py": "8292a716ad5e5dba2bce6c463063852f4f7770b7294e8658c96156d53217fcfc",
+    "malecns_backend/embodiment/live_v2_motor_interface.py": "6472a46b3012b3fd94bc202b8ec974783c41ae9065fabd0892a7de42dd81760b",
+    "malecns_backend/embodiment/live_v3_motor_interface.py": "6bf362442405994dc8ddfaf7a0fd8a29d499dad85c72277bd1fe9c3ab3044e05",
+    "malecns_backend/embodiment/sensory.py": "d245ac2b91294fef7629375e5734a6788e4749dc5b768ff082cdeb2cfd9f39ea",
+    "malecns_backend/embodiment/six_tibia.py": "5fefc84d9abdf7b9fc1ddbe65c35a6576812ed4d43f364c8a634091bdf6a1bad",
+    "malecns_backend/embodiment/proprioceptive_activation.py": "0d6117d668e62d23de08c8148240c770785cabb8a6148669349c4f258b7c0a92",
+    "malecns_backend/embodiment/motor.py": "a64e75a0097c2927d35d94401d5c26f948fb83c86b63e5f6e527ed7d70efb12f",
+    "malecns_backend/embodiment/tactile_motor_matched_control.py": "0d75267b0203d9ad97e69bf9f75d57fdc5057beec682d925176479c00e8a2bc8",
+    "malecns_backend/embodiment/isolated_tier_b_motor_validation.py": "7201b247b7ab346da0aa74d8e86af2d364b26ecf20f561de694821d33717c843",
+    "malecns_backend/embodiment/m9b_external_perturbation.py": "ce6f2d7931be69f5b17f59d71448e93a3d379be2b02576002628148a2e4b3750",
+    "malecns_backend/live/contact_context.py": "2d3fbc8fafe6d35444aa0c82fd89699deed7bb1fe852d7ce84585b90fac2360b",
+    "malecns_backend/live/tactile_recovery_metrics.py": "0f0edee2564d45e29504b522f0d376779e0e3ae3c8181ad5cfbdac40f9998fdf",
+    "malecns_backend/live/tactile_boundary.py": "9a5f9b53fc9324dae533c8126de33b3b18aba867275dde2e2909b667829a4f43",
+    "malecns_backend/live/group_posture_analysis.py": "8d881e2448d40793244b40ea99a3b6c5c7c0d1474e450d28f80a64286f02b71b"
+  },
+  "design_document": {
+    "path": "docs/BALANCE_CONTRIBUTION_V1.md",
+    "canonical_lf_sha256": "01e3881c15ffb374f85bb165c9085c0a0ae2290f12814485acec5834d69a2cc4"
+  },
+  "expected_environment": {
+    "python": "3.12",
+    "flygym": "1.2.1",
+    "mujoco": "3.2.7",
+    "dm_control": "1.0.27",
+    "numpy": "2.0.2",
+    "dependency_changes_allowed": false
+  },
+  "neural_data_prerequisites": {
+    "existing_calibration_and_raw_locks_required": true,
+    "new_hash_is_not_a_waiver": true,
+    "record_and_match": [
+      "original graph/neuron artifact identities",
+      "decoded body-ID/dense order",
+      "CSR structure",
+      "weights/delays",
+      "complete ModelConfig"
+    ],
+    "verified_in_this_update": false
+  }
+}

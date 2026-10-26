@@ -86,3 +86,6 @@ docs/evidence/distal-tarsus-reference-v1_1/run/reference.json -text
 docs/evidence/distal-tarsus-reference-v1_1/run/error.json -text
 docs/evidence/distal-tarsus-reference-v1_2/run/reference.json -text
 docs/evidence/distal-tarsus-reference-v1_3/run/reference.json -text
+docs/evidence/distal-anatomical-qualification-v1/*.csv -text
+docs/evidence/distal-anatomical-qualification-v1/qualification.json -text
+docs/evidence/balance-contribution-v1/protocol.json -text

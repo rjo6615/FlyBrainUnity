@@ -53,6 +53,15 @@ documented. Motor count20/42 and the LF attachment gate are unchanged.
 
 ## The milestone we are working toward
 
+The user selected an independent near-term milestone: a controlled test of the
+existing20motors' neural contribution to posture under declared position-control
+assistance. [Protocol V1](BALANCE_CONTRIBUTION_V1.md) is now specified, not
+implemented/run. Next build/test its adapter/evaluator, execute its fixed four
+arms once after prerequisite checks, then review valid saved poses in Unity.
+This can proceed while new motor anatomy is blocked; no42-channel completion
+or independent-balance claim is required for an honest controlled contribution
+test. The LF muscle interface remains a separate longer-term milestone below.
+
 A trustworthy **left-front proximal muscle-force interface**: supported neural
 populations feed an explicit activation model, source mechanics map force into
 the intended body coordinates, and existing position actuation is replaced only
