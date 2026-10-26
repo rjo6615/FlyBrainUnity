@@ -1,0 +1,43 @@
+{
+  "schema": "balance-loader-source-prerequisites-v1",
+  "orientation_source": {
+    "verified": false,
+    "path": "fly-brain-main/public/data/graph_w3.bin",
+    "expected": {
+      "sha256": "c34efca42d074786e8fb4fe4b6723d5b15aa4d69be17b0cf457321cb2ac6e030",
+      "bytes": 63726728,
+      "revision": "2bcd10312ee64618a91ea23d6e6e586c4a93280d",
+      "path": "fly-brain-main/public/data/graph_w3.bin",
+      "authority": "original scientific baseline Git blob"
+    },
+    "error": "FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\legen\\\\Documents\\\\FlyBrainUnity\\\\.worktrees\\\\live-balance-v1\\\\fly-brain-main\\\\public\\\\data\\\\graph_w3.bin'"
+  },
+  "original_preflight": {
+    "environment": {
+      "verified": true,
+      "observed": {
+        "python": "3.12",
+        "flygym": "1.2.1",
+        "mujoco": "3.2.7",
+        "dm_control": "1.0.27",
+        "numpy": "2.0.2"
+      },
+      "mismatches": {}
+    },
+    "scientific_transitions": 0,
+    "native_constructions": 0,
+    "cns_initializations": 0,
+    "checks": {
+      "design": true,
+      "original_authorities": true,
+      "original_neural_data": true
+    },
+    "errors": {},
+    "verified": true
+  },
+  "verified": false,
+  "scientific_transitions": 0,
+  "native_constructions": 0,
+  "cns_initializations": 0,
+  "scientific_execution_authorized_by_this_check": false
+}

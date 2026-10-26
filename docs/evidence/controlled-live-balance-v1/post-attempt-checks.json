@@ -1,0 +1,32 @@
+{
+  "schema": "controlled-live-balance-post-attempt-checks-v1",
+  "date": "2026-10-26",
+  "final_git_bash_tests": {
+    "passed": 48,
+    "failed": 0,
+    "seconds": 39.36,
+    "suites": [
+      "tests/test_controlled_live_balance.py",
+      "tests/test_balance_source_prerequisites.py"
+    ]
+  },
+  "source_guard_initial": {
+    "passed": 9,
+    "seconds": 0.94
+  },
+  "source_guard_and_saved_record": {
+    "passed": 11,
+    "seconds": 0.48
+  },
+  "offline_refusal_exactly_reconstructed": true,
+  "expected_offline_exit": 1,
+  "executed_implementation_commit": "2055e06a08c6382ebb3ee1d433626e7b610241fc",
+  "executed_sources_unchanged": true,
+  "source_guard_before": false,
+  "source_guard_after": true,
+  "scientific_retries": 0,
+  "additional_scientific_transitions": 0,
+  "behavior_unmeasured": true,
+  "retained_report_sha256": "3288347677cd61aacdc7111c1ef94e9b0525734530c26bd9ede5204e03cb8036",
+  "new_checker_sha256": "ca6cdc5ae19e0a47dd555563eac2838aa1860cd42387483e592ea2034f1a53ce"
+}
