@@ -1,5 +1,16 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current desktop continuation2026-10-26: PR288 is merged; accepted recorded data
+and Unity transport are available. [Frame Current Fly](LIVE_FLY_CAMERA_FRAMING_V1.md)
+adds an explicit presentation-only fit of the actual received pose, holding a
+fixed world view. Full-body human review is next; no scientific rerun is needed.
+Then predeclare a controlled live experiment with explicit assistance and matched
+controls. A continuous20motor live viewer already exists but does not establish
+causal or independent balance. No neural/force/assistance/acceptance changes here.
+Coverage20/42; recorded outcome MIXED_OR_UNRESOLVED. Older dated checkpoints below
+retain their original implementation/review status rather than defining current
+readiness. Desktop interpreter:fly-brain-interactive/.venv/Scripts/python.exe.
+
 Latest 2026-10-26 completed checkpoint: V1.1 NC/WC/NP/WP all complete,
 80,000 real physics transitions / 16,000 neural updates / 80,004 states; all
 integrity checks accepted. Behavioral label MIXED_OR_UNRESOLVED under position

@@ -1,5 +1,22 @@
 # FlyBrainUnity — local Codex handoff
 
+## Desktop camera continuation — 2026-10-26
+
+PR288 is now merged at7e14bc0; its open-review status below is historical.
+New presentation-only `Frame Current Fly` menu fits current active renderer bounds
+and freezes the world camera without changing scientific rig poses or saving the
+scene. Use after receiving a pose in Play; full-body human review remains pending.
+See LIVE_FLY_CAMERA_FRAMING_V1.md for desktop commands, checks and limitations.
+The desktop environment actually available is fly-brain-interactive/.venv with
+Python3.12.10/NumPy2.0.2; the laptop's ignored .cache venv is absent here.
+Existing replay/transport/console checks27pass; Unity camera/scene EditMode6pass.
+No new scientific experiment or manual full-body review occurred in this update.
+Keep executed process source/spec/protocol and accepted/failed evidence unchanged.
+Next after visual review: separately predeclare the controlled live experiment
+and assistance policy, reusing existing20motor kernel/transport. Existing
+continuous live viewing is not itself a matched balance assay. Motor20/42;
+independent balance and gait remain unproven. Preserve primary local files.
+
 Latest 2026-10-26 completed checkpoint: V1.1 NC/WC/NP/WP all complete,
 80,000 real physics transitions / 16,000 neural updates / 80,004 states; all
 integrity checks accepted. Behavioral label MIXED_OR_UNRESOLVED under position

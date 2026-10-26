@@ -11,6 +11,27 @@ public static class LiveFlySceneGenerator
     public const string GroundMaterialPath = "Assets/Materials/LiveFlyGround.mat";
     public static readonly Color GroundColor = new Color(.22f, .20f, .18f, 1f);
 
+    [MenuItem("FlyBrain/Live Fly/Frame Current Fly")]
+    public static void FrameCurrentFly()
+    {
+        var clients = UnityEngine.Object.FindObjectsByType<LiveFlyClient>(FindObjectsSortMode.None);
+        var camera = Camera.main;
+        var view = camera == null ? null : camera.GetComponent<M7FReplayCamera>();
+        if (clients.Length != 1 || clients[0].Rig == null || view == null)
+        {
+            Debug.LogWarning("Frame Current Fly requires one Live Fly client with a rig and a Main Camera with M7FReplayCamera. Open LiveFly and wait for a pose.");
+            return;
+        }
+        if (!Application.isPlaying) Undo.RecordObjects(new UnityEngine.Object[] { view, camera, camera.transform }, "Frame Current Fly");
+        if (!view.FrameRenderedTarget(clients[0].Rig.ScientificRoot))
+        {
+            Debug.LogWarning("No active fly renderers are available to frame.");
+            return;
+        }
+        if (!Application.isPlaying) EditorSceneManager.MarkSceneDirty(camera.gameObject.scene);
+        Debug.Log("Framed the current fly pose in a fixed world camera. Only presentation changed; frame again if the fly leaves view.");
+    }
+
     [MenuItem("FlyBrain/Live Fly/Create Live Fly Scene")]
     public static void CreateLiveFlyScene()
     {

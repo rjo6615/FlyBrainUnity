@@ -9,6 +9,87 @@ using UnityEngine;
 
 public sealed class LiveFlySceneGenerationTests
 {
+    // SendMessage of a lifecycle callback asserts ShouldRunBehaviour in EditMode.
+    // Invoke the actual callback directly without changing runtime execution mode.
+    static void TickCamera(M7FReplayCamera view)
+    {
+        typeof(M7FReplayCamera).GetMethod("LateUpdate",
+            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
+            .Invoke(view, null);
+    }
+
+    [TestCase(1.777778f, false)]
+    [TestCase(.5625f, false)]
+    [TestCase(.5625f, true)]
+    public void FrameRenderedTargetFitsOffsetPoseAndKeepsWorldReference(float aspect, bool orthographic)
+    {
+        var target = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        var cameraObject = new GameObject("framing test camera");
+        try
+        {
+            target.transform.position = new Vector3(.4f, .7f, -.2f);
+            target.transform.localScale = new Vector3(.12f, .04f, .2f);
+            target.transform.rotation = Quaternion.Euler(13f, 37f, 9f);
+            var position = target.transform.position;
+            var rotation = target.transform.rotation;
+            var scale = target.transform.localScale;
+            var camera = cameraObject.AddComponent<Camera>();
+            camera.aspect = aspect;
+            camera.orthographic = orthographic;
+            camera.nearClipPlane = .001f;
+            cameraObject.transform.rotation = Quaternion.Euler(25f, 35f, 0f);
+            var view = cameraObject.AddComponent<M7FReplayCamera>();
+            Assert.That(view.FrameRenderedTarget(target.transform), Is.True);
+            var bounds = target.GetComponent<Renderer>().bounds;
+            for (var x = -1; x <= 1; x += 2)
+            for (var y = -1; y <= 1; y += 2)
+            for (var z = -1; z <= 1; z += 2)
+            {
+                var corner = bounds.center + Vector3.Scale(bounds.extents, new Vector3(x, y, z));
+                var point = camera.WorldToViewportPoint(corner);
+                Assert.That(point.x, Is.InRange(0f, 1f));
+                Assert.That(point.y, Is.InRange(0f, 1f));
+                Assert.That(point.z, Is.InRange(camera.nearClipPlane, camera.farClipPlane));
+            }
+            Assert.That(target.transform.position, Is.EqualTo(position));
+            Assert.That(target.transform.rotation, Is.EqualTo(rotation));
+            Assert.That(target.transform.localScale, Is.EqualTo(scale));
+            Assert.That(view.CurrentMode, Is.EqualTo(M7FCameraMode.WorldFixed));
+            var fixedPosition = cameraObject.transform.position;
+            var fixedRotation = cameraObject.transform.rotation;
+            target.transform.position += Vector3.right;
+            TickCamera(view);
+            Assert.That(cameraObject.transform.position, Is.EqualTo(fixedPosition));
+            Assert.That(cameraObject.transform.rotation, Is.EqualTo(fixedRotation));
+        }
+        finally
+        {
+            Object.DestroyImmediate(cameraObject);
+            Object.DestroyImmediate(target);
+        }
+    }
+
+    [Test]
+    public void FrameRenderedTargetWithoutGeometryLeavesCameraUnchanged()
+    {
+        var target = new GameObject("empty framing target");
+        var cameraObject = new GameObject("framing camera");
+        try
+        {
+            cameraObject.AddComponent<Camera>();
+            var view = cameraObject.AddComponent<M7FReplayCamera>();
+            var before = cameraObject.transform.position;
+            Assert.That(view.FrameRenderedTarget(target.transform), Is.False);
+            Assert.That(cameraObject.transform.position, Is.EqualTo(before));
+            Assert.That(view.FrameRenderedTarget(null), Is.False);
+        }
+        finally
+        {
+            Object.DestroyImmediate(cameraObject);
+            Object.DestroyImmediate(target);
+        }
+    }
+
     [Test]
     public void SharedBuilderCreatesSavedOutputOnlyLiveFlySceneWithoutChangingCanonicalRig()
     {
@@ -71,7 +152,7 @@ public sealed class LiveFlySceneGenerationTests
 
             var orbitStart = cameraObject.transform.position;
             targetObject.transform.position += new Vector3(1f, .5f, -.25f);
-            replayCamera.SendMessage("LateUpdate");
+            TickCamera(replayCamera);
             Assert.That(cameraObject.transform.position, Is.Not.EqualTo(orbitStart));
 
             replayCamera.SetMode(M7FCameraMode.WorldFixed);
@@ -79,7 +160,7 @@ public sealed class LiveFlySceneGenerationTests
             var lockedRotation = cameraObject.transform.rotation;
 
             targetObject.transform.position += new Vector3(2f, 0f, 1f);
-            replayCamera.SendMessage("LateUpdate");
+            TickCamera(replayCamera);
 
             Assert.That(cameraObject.transform.position, Is.EqualTo(lockedPosition));
             Assert.That(cameraObject.transform.rotation, Is.EqualTo(lockedRotation));
