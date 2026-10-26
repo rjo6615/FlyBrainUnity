@@ -73,3 +73,7 @@ malecns_backend/embodiment/six_leg_map.json -text
 malecns_backend/embodiment/interface_output/m5d_tarsal_contact_load_audit.json -text
 docs/evidence/lf-reference-acquisition-v1/flygym-276-snapshot.json -text
 docs/evidence/lf-reference-acquisition-v1/flymimic-tree.json -text
+# Preserve the original bytes named by the motor/sign/registration freezes.
+malecns_backend/embodiment/interface_output/coxa_yaw_sign_validation/coxa_yaw_sign_validation_result.json -text
+malecns_backend/embodiment/interface_output/coxa_yaw_anatomical_sign_bridge/coxa_yaw_anatomical_sign_bridge_result.json -text
+malecns_backend/embodiment/interface_output/flymimic_flygym_proximal_registration/flymimic_flygym_proximal_registration_result.json -text
