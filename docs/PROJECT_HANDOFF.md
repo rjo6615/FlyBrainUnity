@@ -1,9 +1,38 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-25. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for motor-freeze checkout repair V1: `origin/newBrain` at
-`42b9637` (merged PR #283).
+Verified baseline for distal tarsus reference research: `origin/newBrain` at
+`9d74d2c` (merged PR #284).
 Fetch and inspect current state before starting work.
+
+Latest independent reference work: `DISTAL_TARSUS_REFERENCE_RESULTS.md`. Two
+generation-pinned BANC/MaleCNSv0.9 mirror snapshots acquired separately; current
+BANC mirror differs from paper file, and publication archive returned403. Raw
+sources, metadata/generations/checksums and code/schema revisions preserved.
+43broad-query rows retained (30BANC tarsus types+13external-label controls), complete
+original source fields, exact runtime indices, aliases and missing/many-to-one/
+action/MANC/NBLAST disagreements. Match ID values are unvalidated reference leads,
+not confidence or proven homology. All proposed populations/actuators/signs/gains
+null; admission remains20/42. New source does not fill LF target attachments.
+
+Right-middle levator801477(MNml81) has duplicate BANC and conflicting MANC/NBLAST
+references. Right-hind869369(MNhl65)/800358(MNhl64) have concordant recorded MANC
+references but incomplete population/function qualification. Other references
+conflict with current long-tendon/proximal labels. Do not reassign them or mirror
+missing left levator references. Next qualify exact cross-dataset anatomy/morphology,
+v0.9/v1.0 correspondence and complete antagonist membership for all four distal
+coordinates, then mechanical/action sign and a separate admission protocol.
+
+V1NaN partial JSON, V1.1datetime error, V1.2complete but boundary-limited report
+preserved. Strict test exposed old admission.verify -> live inventory/model
+construction; V1-V1.2not construction-free and constructor operations unmeasured.
+V1.3 reuses existing lf_force_static_reference.load; actual43-row reconstruction
+passes with FlyGym/MuJoCo/neural imports, legacy enumeration, audit.build and
+transition kernel forbidden. Do not relax that boundary. Accepted namespace:
+evidence/distal-tarsus-reference-v1_3/run/. 39tests passed18.80s (24new+15existing);
+the broader legacy audit regression itself constructs a model. No CNS/moving-fly
+assay. Original three raw locks true here; historical failures and primary edits
+preserved. Continue Git Bash and roadmap status after each run.
 
 Latest independent engineering fix: `MOTOR_FREEZE_CHECKOUT_V1.md`. Three old
 motor/sign/registration result Git blobs exactly match their unchanged original

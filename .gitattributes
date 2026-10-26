@@ -77,3 +77,12 @@ docs/evidence/lf-reference-acquisition-v1/flymimic-tree.json -text
 malecns_backend/embodiment/interface_output/coxa_yaw_sign_validation/coxa_yaw_sign_validation_result.json -text
 malecns_backend/embodiment/interface_output/coxa_yaw_anatomical_sign_bridge/coxa_yaw_anatomical_sign_bridge_result.json -text
 malecns_backend/embodiment/interface_output/flymimic_flygym_proximal_registration/flymimic_flygym_proximal_registration_result.json -text
+docs/evidence/distal-tarsus-reference-v1/banc_888_meta.feather filter=lfs diff=lfs merge=lfs -text
+docs/evidence/distal-tarsus-reference-v1/malecns_09_meta.feather filter=lfs diff=lfs merge=lfs -text
+docs/evidence/distal-tarsus-reference-v1/source-provenance.json -text
+docs/evidence/distal-tarsus-reference-v1/run/reference.json -text
+docs/evidence/distal-tarsus-reference-v1/run/serialization-failure.json -text
+docs/evidence/distal-tarsus-reference-v1_1/run/reference.json -text
+docs/evidence/distal-tarsus-reference-v1_1/run/error.json -text
+docs/evidence/distal-tarsus-reference-v1_2/run/reference.json -text
+docs/evidence/distal-tarsus-reference-v1_3/run/reference.json -text

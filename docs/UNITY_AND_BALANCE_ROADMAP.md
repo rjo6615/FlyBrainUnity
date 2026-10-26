@@ -20,6 +20,7 @@ contributes 2/6; coxa/roll/yaw contribute 0/18. Remaining: 22 coordinates.
 | Existing 20-coordinate runtime and controlled sensory observations | Available within recorded conditions; ordinary live tactile disabled |
 | LF source mechanics / numerical interface | Scoped reference and synthetic checks verified; historical failures retained |
 | Three historical motor/sign/registration raw locks | Checkout-byte defect fixed; guarded repair verifies original hashes3/3 in isolated checkout; historical failures retained |
+| Middle/hind distal target references | New generation-pinned BANC leads43rows; conflicts/missing/duplicate references retained; no new population admission |
 | LF target attachment anatomy — active gate | Reference required; 0/8 supported endpoint correspondences in the reviewed corpus |
 | Physical scaling, neural binding and activation | Unresolved; cannot infer these from a geometry check |
 | Bounded moving-body muscle experiment, then Unity review | Pending prerequisites; no new Unity behavior from current document/reference checks |
@@ -40,6 +41,15 @@ original hashes are satisfied by restoring their exact committed bytes, without
 changing any expected hash or interpreting canonical equivalence as a raw pass.
 This removes a checkout integrity obstacle while the anatomical reference gate
 remains blocked. It adds no motor channels and no new Unity behavior.
+
+An independent distal workstream now has new primary-source annotation leads;
+see [distal tarsus reference findings](DISTAL_TARSUS_REFERENCE_RESULTS.md). These
+narrow the exact neurons and disagreements needing anatomical review, including
+right-middle801477 and right-hind869369/800358. The four missing distal populations
+remain unqualified. Next establish homologous function, dataset-version identity
+and full antagonist membership, preserving every conflicting candidate. V1.3 is
+strictly static; earlier serialization and construction-boundary failures remain
+documented. Motor count20/42 and the LF attachment gate are unchanged.
 
 ## The milestone we are working toward
 
