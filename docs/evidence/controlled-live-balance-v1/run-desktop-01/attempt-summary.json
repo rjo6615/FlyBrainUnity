@@ -1,0 +1,47 @@
+{
+  "schema": "controlled-live-balance-retained-attempt-v1",
+  "status": "INCOMPLETE",
+  "scientific_integrity": "INCONCLUSIVE_INTEGRITY",
+  "implementation_commit": "2055e06a08c6382ebb3ee1d433626e7b610241fc",
+  "report_sha256": "3288347677cd61aacdc7111c1ef94e9b0525734530c26bd9ede5204e03cb8036",
+  "started_arms": [
+    "NC"
+  ],
+  "unstarted_arms": [
+    "WC",
+    "NP",
+    "WP"
+  ],
+  "states": 0,
+  "scientific_physics_transitions": 0,
+  "neural_updates": 0,
+  "initialization_completed": false,
+  "initialization_operations": {
+    "call:malecns_backend.loader.load_malecns": 1
+  },
+  "accounting_scope": "observed Python/C API entries; native internal calls unobservable",
+  "error": "ValueError: MaleCNS validation failed:\n- graph_w3.bin unavailable for graph orientation source comparison",
+  "behavior": null,
+  "display_offers": 0,
+  "display_sent_frames": 0,
+  "visual_review": "NO_NEW_POSES_EMITTED",
+  "original_preflight_verified": true,
+  "original_preflight_gap": "loader validation also requires original graph_w3.bin, which was excluded from sparse checkout",
+  "raw_artifact": {
+    "path": "NC.json.gz",
+    "sha256": "6ac0e14fafd70d6e49dd4a68d06ea245f5ff03fe9fce08ea3cbf825525ac5adf"
+  },
+  "display_artifact": {
+    "path": "NC.display.json.gz",
+    "sha256": "9c7414a90d28603381d2f7d35962dc8d00d1d059c345da1c99eb40237213e84d"
+  },
+  "retry_executed": false,
+  "executed_sources_unchanged": true,
+  "next_gate": "separately versioned complete-source-prerequisite correction before any fresh bounded four-arm attempt",
+  "old_accepted_balance_record_unchanged": true,
+  "new_motor_admissions": 0,
+  "motor_coverage": [
+    20,
+    42
+  ]
+}

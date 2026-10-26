@@ -1,5 +1,36 @@
 # FlyBrainUnity — local Codex handoff
 
+## Live V1 actual attempt retained — 2026-10-26
+
+ONE attempt at committed2055e06: INCOMPLETE/INCONCLUSIVE_INTEGRITY. NC failed
+inside original loader validation: graph_w3.bin unavailable for graph orientation
+source comparison. Isolated sparse checkout omitted it.0states/physics/neural,
+0display poses; WC/NP/WP unstarted. Original loader call1observed; initialization
+did not complete. Full partial raw/display/OS receipts and exact saved refusal
+retained in evidence/controlled-live-balance-v1/run-desktop-01/. No retry.
+Old accepted V1.1 recording remains unchanged. Behavior of live V1 is unmeasured.
+
+Historical base.preflight checks7core artifacts but misses this additional source.
+New SEPARATE balance_source_prerequisites.py verifies original graph_w3 Git bytes
+from frozen baseline2bcd103 without decoding/constructing a CNS; combines all old
+checks. Before-hydration failure retained; restored exact63,726,728byte source
+SHAc34efca42d074786e8fb4fe4b6723d5b15aa4d69be17b0cf457321cb2ac6e030;
+combined check now passes. No expected hash/source/result change. Executed runner,
+observer and implementation contract at2055e06 remain immutable after this attempt.
+
+Final new live tests37pass36.07s; earlier broader114pass181.06s; source guard plus
+actual retained failure reconstruction11pass0.48s. Git Bash/source checks in
+CONTROLLED_LIVE_BALANCE_IMPLEMENTATION_RESULTS.md; no new fly run in those commands.
+User confirmed full-body replay visible/no issues and Unity ready. New attempt
+emitted no poses, so no new Unity visual result is claimed.
+
+IMMEDIATE NEXT: prospective/versioned V1.1 complete-loader-source prerequisite
+correction, requiring the new guard and binding it into each worker's explicit
+source identity. Test/commit before ONE fresh bounded four-arm attempt, no old
+control reuse, registry tricks, source/hash relaxation or behavior tuning. Do not
+rerun frozen V1 merely because the file is now present.20/42,0new admissions;
+independent balance/gait remain unproven under current position assistance.
+
 ## Controlled live adapter — 2026-10-26
 
 New controlled_live_balance.py and balance_live_observer.py implement the fixed

@@ -1,0 +1,3 @@
+LIVE_PROVISIONAL_NOT_YET_AUDITED NC: binding output-only display before initialization
+NC: LIVE_PROVISIONAL display_session=b47b728c-46bf-4383-b2d2-6a8af27b90a4
+NC: fresh native/CNS initialization; position assistance unchanged
