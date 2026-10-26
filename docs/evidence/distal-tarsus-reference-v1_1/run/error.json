@@ -1,0 +1,6 @@
+{
+  "status": "EXTRACTION_FAILED",
+  "error": "Object of type datetime is not JSON serializable",
+  "new_admissions": 0,
+  "scientific_transitions": 0
+}

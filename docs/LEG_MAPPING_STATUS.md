@@ -172,3 +172,12 @@ review physical units/scale/finite-angle geometry/length/velocity and population
 tendon/neural conversion prerequisites before any moving-FlyGym muscle transfer.
 Original raw gates remain separate. A bounded headless experiment must precede
 a meaningful new Unity muscle-interface test; independent balance is unproven.
+
+Independent distal reference research now archives generation-pinned BANC and
+MaleCNSv0.9 metadata, checked against unchanged v1.0/runtime identities. See
+`DISTAL_TARSUS_REFERENCE_RESULTS.md`:43scoped rows retain all originals, missing
+matches, shared references and conflicting MANC/action labels. Specific right-side
+levator leads801477/869369 and depressor800358 are not complete motor populations
+or validated homologous function. No tarsus2/claw pool is reassigned, no left pool
+mirrored, no admission/sign/gain changed. Accepted static V1.3 and earlier failures
+are separate. Four middle/hind Tarsus1 coordinates remain blocked; current20/42.

@@ -1,0 +1,84 @@
+{
+  "schema": "distal-tarsus-source-provenance-v1",
+  "retrieved_date": "2026-10-25",
+  "attribution": "Bates, Phelps, Kim, Yang et al. BANC consortium; Distributed control circuits across a brain-and-cord connectome, Nature2026, doi:10.1038/s41586-026-10735-w",
+  "scope": "GENERATION_PINNED_MUTABLE_MIRROR_SNAPSHOTS_NOT_CLAIMED_IDENTICAL_TO_PUBLICATION_DEPOSIT",
+  "sources": [
+    {
+      "filename": "banc_888_meta.feather",
+      "raw_sha256": "86ccf5df0c67419f8c5f43e93a7ed38d23a080e9f7fde26737290252f3780098",
+      "bytes": 57503026,
+      "gcs_metadata": {
+        "kind": "storage#object",
+        "id": "lee-lab_brain-and-nerve-cord-fly-connectome/compiled_data/banc_888/banc_888_meta.feather/1787336614757441",
+        "selfLink": "https://www.googleapis.com/storage/v1/b/lee-lab_brain-and-nerve-cord-fly-connectome/o/compiled_data%2Fbanc_888%2Fbanc_888_meta.feather",
+        "mediaLink": "https://storage.googleapis.com/download/storage/v1/b/lee-lab_brain-and-nerve-cord-fly-connectome/o/compiled_data%2Fbanc_888%2Fbanc_888_meta.feather?generation=1787336614757441&alt=media",
+        "name": "compiled_data/banc_888/banc_888_meta.feather",
+        "bucket": "lee-lab_brain-and-nerve-cord-fly-connectome",
+        "generation": "1787336614757441",
+        "metageneration": "1",
+        "contentType": "application/octet-stream",
+        "storageClass": "STANDARD",
+        "size": "57503026",
+        "md5Hash": "jCuTpgjHFj7J2U1o4HVv9A==",
+        "contentLanguage": "en",
+        "crc32c": "nRxVEg==",
+        "etag": "CMGIkeCrspYDEAE=",
+        "timeCreated": "2026-08-21T18:23:34.893Z",
+        "updated": "2026-08-21T18:23:34.893Z",
+        "timeStorageClassUpdated": "2026-08-21T18:23:34.893Z",
+        "timeFinalized": "2026-08-21T18:23:34.893Z"
+      },
+      "generation_pinned_download": "https://storage.googleapis.com/lee-lab_brain-and-nerve-cord-fly-connectome/compiled_data/banc_888/banc_888_meta.feather?generation=1787336614757441"
+    },
+    {
+      "filename": "malecns_09_meta.feather",
+      "raw_sha256": "1a75ae60fca67f76a97b95bab6c384f65b4f9115afd4834648146d16d46c75a4",
+      "bytes": 16593866,
+      "gcs_metadata": {
+        "kind": "storage#object",
+        "id": "lee-lab_brain-and-nerve-cord-fly-connectome/compiled_data/malecns_09/malecns_09_meta.feather/1778087827887849",
+        "selfLink": "https://www.googleapis.com/storage/v1/b/lee-lab_brain-and-nerve-cord-fly-connectome/o/compiled_data%2Fmalecns_09%2Fmalecns_09_meta.feather",
+        "mediaLink": "https://storage.googleapis.com/download/storage/v1/b/lee-lab_brain-and-nerve-cord-fly-connectome/o/compiled_data%2Fmalecns_09%2Fmalecns_09_meta.feather?generation=1778087827887849&alt=media",
+        "name": "compiled_data/malecns_09/malecns_09_meta.feather",
+        "bucket": "lee-lab_brain-and-nerve-cord-fly-connectome",
+        "generation": "1778087827887849",
+        "metageneration": "1",
+        "contentType": "application/octet-stream",
+        "storageClass": "STANDARD",
+        "size": "16593866",
+        "md5Hash": "3laSCCvkS0wmjoJD4AZp6g==",
+        "contentLanguage": "en",
+        "crc32c": "S+q+yQ==",
+        "etag": "COmt8aqVpZQDEAE=",
+        "timeCreated": "2026-05-06T17:17:08.003Z",
+        "updated": "2026-05-06T17:17:08.003Z",
+        "timeStorageClassUpdated": "2026-05-06T17:17:08.003Z",
+        "timeFinalized": "2026-05-06T17:17:08.003Z",
+        "metadata": {
+          "goog-reserved-file-mtime": "1778065747"
+        }
+      },
+      "generation_pinned_download": "https://storage.googleapis.com/lee-lab_brain-and-nerve-cord-fly-connectome/compiled_data/malecns_09/malecns_09_meta.feather?generation=1778087827887849"
+    }
+  ],
+  "publication_archive_access": "HTTP403; no archive file acquired",
+  "documented_publication_banc_file": {
+    "bytes": 51450978,
+    "md5": "8c8babff28b21c57ecc999e664560ef5",
+    "rows": 188162,
+    "columns": 79
+  },
+  "schema_reference": {
+    "repository": "htem/BANC-project",
+    "revision": "e31a2e26b9937dca72e5ca1c1960df6454d76114",
+    "path": "manuscript/print/dataverse/documentation/banc_888_meta.md",
+    "git_blob": "85f0806e26f00af4271511562a5a2ebcbdc5b14d"
+  },
+  "producer_reference": {
+    "repository": "htem/bancpipeline",
+    "revision": "5c333c12f0b9e03873f88cf4e23cad34c0bb49c1",
+    "path": "banc/share/banc-data.R"
+  },
+  "qualification": "MATCH_COLUMNS_ARE_REFERENCE_LEADS_NOT_CONFIRMED_RUNTIME_FUNCTION; schema description of match flags differs from observed decimal ID values; no per-row confidence inferred"
+}

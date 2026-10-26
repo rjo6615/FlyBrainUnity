@@ -1,0 +1,11 @@
+{
+  "status": "V1_STRICT_JSON_SERIALIZATION_FAILED_PARTIAL_REPORT_NOT_ACCEPTED",
+  "error": "IEEE NaN in original source field; strict JSON encoder refused non-finite float",
+  "partial_file": "reference.json",
+  "partial_bytes": 3927,
+  "partial_raw_sha256": "85f336e15ea0a469af934ee9ab8ed765aec381c26438b8151e5e2a464ad14418",
+  "scientific_transitions": 0,
+  "new_admissions": 0,
+  "recovery_protocol": "docs/DISTAL_TARSUS_REFERENCE_V1_1.md",
+  "raw_sources_unchanged": true
+}
