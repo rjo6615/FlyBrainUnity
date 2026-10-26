@@ -1,5 +1,34 @@
 # FlyBrainUnity — local Codex handoff
 
+## Continuation checkpoint — 2026-10-26
+
+Balance-contribution V1 adapter/recorder/evaluator is implemented separately in
+`malecns_backend/live/balance_contribution.py`. See
+`BALANCE_CONTRIBUTION_IMPLEMENTATION_V1.md` for actual checks, failures and Git
+Bash commands. Original design/JSON remain immutable historical specifications.
+New engineering checks23passed; existing neural runtime checks13passed after a
+Node sandbox-permission rerun. Full synthetic four-arm null acceptance is an
+evaluator test only. No actual native body/full connectome experiment or Unity
+replay was run. Coverage20/42, newadmissions0, LF target correspondence0/8.
+
+EXECUTION BLOCKED: legacy desktop venv points at missing Python3.10; bundled
+Python3.12/NumPy2.3.5 lacks FlyGym/MuJoCo/dm_control/pyarrow. Do not install or
+upgrade dependencies incidentally. Original cached LFS prerequisites were
+hydrated only in the isolated worktree; initial M6C pointer failure is explained,
+not waived. Static authority now reaches missingpyarrow; later locks unverified.
+Seven original neural/calibration identities verify (binary/data raw; calibration
+text canonicalLF with actual raw hash retained). Preserve all refusal reports.
+
+Next: restore/access validated Python3.12, NumPy2.0.2, FlyGym1.2.1, MuJoCo3.2.7,
+dm_control1.0.27 environment and its existing reference dependencies; complete
+construction-free prerequisite checks. Commit tested implementation before the
+single bounded NC/WC/NP/WP execution. Real native recorder/factory/initialization
+instrumentation remains unverified; synthetic tests are not runtime readiness.
+No retries/tuning or new motor admissions. Preserve the primary checkout's local
+live_v1_motor_output_experiment_result.json change. Continue roadmap+GitBash.
+
+The checkpoint below records the preceding design delivery and earlier history.
+
 Checkpoint: 2026-10-25. Repository: `rjo6615/FlyBrainUnity`.
 Verified baseline for balance-contribution protocol design: `origin/newBrain` at
 `2bcd103` (merged PR #285).

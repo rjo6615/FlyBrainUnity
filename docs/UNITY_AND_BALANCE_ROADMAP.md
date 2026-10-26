@@ -1,5 +1,18 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Latest continuation2026-10-26: [balance implementation V1](BALANCE_CONTRIBUTION_IMPLEMENTATION_V1.md)
+adds the isolated adapter/recorder/evaluator;23synthetic engineering checks and
+13existing neural reference checks pass. No actual four-arm experiment or Unity
+replay ran. Legacy desktop Python launcher is broken; required physics packages
+andpyarrow are absent from the bundled test runtime. Original static prerequisites
+remain incomplete. Next restore/access the validated environment, pass those
+gates, then perform the single committed fixed NC/WC/NP/WP execution. Motor
+coverage20/42; newadmissions0; LF target correspondences0/8. Independent neural
+balance/walking remain unestablished. A synthetic null acceptance tests the
+evaluator only; it is not observed fly behavior or native runtime readiness.
+
+The dated sections below retain earlier milestone context.
+
 Checkpoint2026-10-25. This is a roadmap, not a new experimental acceptance
 protocol or a claim that the milestones below are already complete.
 
