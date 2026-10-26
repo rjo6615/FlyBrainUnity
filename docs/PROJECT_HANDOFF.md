@@ -1,9 +1,44 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-25. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for distal tarsus reference research: `origin/newBrain` at
-`9d74d2c` (merged PR #284).
+Verified baseline for balance-contribution protocol design: `origin/newBrain` at
+`2bcd103` (merged PR #285).
 Fetch and inspect current state before starting work.
+
+USER-SELECTED NEXT WORKSTREAM: controlled balance-contribution test using the
+existing20motors. Design completed in BALANCE_CONTRIBUTION_V1.md plus machine-
+readable evidence/balance-contribution-v1/protocol.json. Status explicitly
+SPECIFIED_NOT_IMPLEMENTED_NOT_RUN: no new runner or native/CNS initialization.
+Next implement/test the isolated session adapter, recorder and evaluator using
+existing kernels/encoders/safety/observers; commit implementation before a single
+bounded four-arm experiment. Do not resume repeated anatomical audits as the
+default main task; missing independent anatomy remains a separate blocker.
+
+Protocol: fresh NC,WC,NP,WP in that order, seed1,2s,20kphysics/4kneural per arm,
+current20motor authority; all42position actuators keep identical assisted policy.
+Only392tibia proprioceptive input, tactile off; existing assay-only392-slot common
+CNS RNG and existing per-leg samplers, no parameter changes. At neural1001/state
+5005/time500.5ms W zeros decoder inputs BEFORE unchanged safety/range/slew;
+do not use final_contribution_gate to hard-zero final targets or reset history.
+Residual target offset returns naturally; record it separately from pre-slew
+admitted input. Pulse[0,1.024,0] at Thorax COM outgoing5000..5199. All-arm prefix
+through state5000, same-push-class physical prefix through5005; first possible
+withdrawal physical effect5006. Terminal update4000 at2000ms is retained but
+unapplied (no outgoing transition20000). Fixed cleared window5201..20000 and
+inherited bands/resolution; no fall truncation/retries/tuning. Baseline assistance
+can support posture; no independent balance/gait claim. Null/negative results
+with valid complete integrity may be replayed in Unity; do not require success.
+Capture initialization operations separately; no hidden extra inventory model.
+
+Distal qualification used exact original eLife96084 supp3/6 CSVs. For20T2/T3 BANC
+rows, all21distinct MANC body refs found;16limb-only targets,5other named muscles,
+no named tarsal serial rows. Primary Figure7D explicitly leaves those T2/T3 targets
+unresolved. IDs/groups/serial/type namespaces and blank match fields kept distinct.
+Reviewed BANC metadata transfer/derivation does not establish independent anatomy.
+No new motor admissions, old sources/hashes changed or author messages. See
+DISTAL_ANATOMICAL_QUALIFICATION_RESULTS.md and new qualification.json.
+Static source/manifest/timing checks and pure safety reference checks are the
+only validation in this update; no new physics/CNS experiment or mocked fly run.
 
 Latest independent reference work: `DISTAL_TARSUS_REFERENCE_RESULTS.md`. Two
 generation-pinned BANC/MaleCNSv0.9 mirror snapshots acquired separately; current

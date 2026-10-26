@@ -181,3 +181,10 @@ levator leads801477/869369 and depressor800358 are not complete motor population
 or validated homologous function. No tarsus2/claw pool is reassigned, no left pool
 mirrored, no admission/sign/gain changed. Accepted static V1.3 and earlier failures
 are separate. Four middle/hind Tarsus1 coordinates remain blocked; current20/42.
+
+Primary-source distal qualification now confirms the reviewed MANC tables do not
+supply the missing muscle target authority (21body references found,16limb-only,
+5other named muscle targets; no named tarsal serial groups). See
+DISTAL_ANATOMICAL_QUALIFICATION_RESULTS.md. BANC functional labels remain leads,
+not new assignments. The user selected a controlled balance-contribution design
+with existing20motors as the next active workstream; anatomy remains unresolved.
