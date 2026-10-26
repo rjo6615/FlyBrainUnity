@@ -1,5 +1,28 @@
 # FlyBrainUnity — local Codex handoff
 
+## Controlled live balance design — 2026-10-26
+
+PR289 merged at03098a0. CONTROLLED_LIVE_BALANCE_V1.md and separate machine-readable
+evidence/controlled-live-balance-v1/protocol.json specify prospective live
+observation of ONE new bounded NC/WC/NP/WP campaign. DESIGN_ONLY: no new runtime,
+native initialization, experiment or Unity review in this update. Known prior
+result remains MIXED_OR_UNRESOLVED; no improved behavior promised by a viewer.
+Scientific settings,20/42motor authority,42actuator assistance,392proprio RNG,
+force/withdrawal/timing/bands/budget and all original integrity criteria unchanged.
+All streamed output must be provisional until complete offline audit, distinct
+from accepted saved replay. Journal emitted/attempted display observations
+separately; client presence, input, disconnects and FPS must not control science.
+New worker/controller identity must be explicit, not masquerade as frozen V1.1.
+No old source/spec/expected hash/result edits. Static design checks only.
+
+IMMEDIATE NEXT: implement/test the dedicated instance-local live observation and
+fresh-process lifecycle/report adapter using existing Trial/create_session,
+ScientificSession, PoseServer and original auditors; commit before any native
+attempt. Prior full-body human review remains unconfirmed; complete it before
+the bounded live execution. Reduced assistance/independent balance is a separate
+future scientific question. Desktop commands and actual checks in
+CONTROLLED_LIVE_BALANCE_DESIGN_RESULTS.md. No new live-run command exists yet.
+
 ## Desktop camera continuation — 2026-10-26
 
 PR288 is now merged at7e14bc0; its open-review status below is historical.

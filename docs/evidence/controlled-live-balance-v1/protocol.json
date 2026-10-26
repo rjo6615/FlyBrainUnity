@@ -1,0 +1,192 @@
+{
+  "schema": "controlled-live-balance-design-v1",
+  "status": "DESIGN_ONLY_NOT_IMPLEMENTED_NOT_RUN",
+  "created": "2026-10-26",
+  "baseline_commit": "03098a073254908648cf0afb734e8e0971d36792",
+  "question": "Observe the fixed assisted20motor contribution assay during computation, without altering scientific transitions or evidence; not an improved-balance hypothesis",
+  "known_prior_behavior": "MIXED_OR_UNRESOLVED",
+  "runner_implemented": false,
+  "native_execution_in_this_update": false,
+  "unity_visual_review_in_this_update": false,
+  "conditions": [
+    "NC",
+    "WC",
+    "NP",
+    "WP"
+  ],
+  "process_per_arm": true,
+  "seed": 1,
+  "physics_dt_s": 0.0001,
+  "neural_dt_ms": 0.5,
+  "duration_s_per_arm": 2,
+  "physics_transitions_per_arm": 20000,
+  "states_per_arm": 20001,
+  "neural_updates_per_arm": 4000,
+  "physics_transitions_total": 80000,
+  "states_total": 80004,
+  "neural_updates_total": 16000,
+  "automatic_retries": 0,
+  "resume": false,
+  "reuse_previous_controls": false,
+  "early_stop_on_fall": false,
+  "scientific_parameters_changed": false,
+  "assistance_changed": false,
+  "assistance": {
+    "position_actuators": 42,
+    "baseline_plus_neural_coordinates": 20,
+    "fixed_initial_baseline_coordinates": 22,
+    "original_gains_biases_ranges_slew_friction_damping": true
+  },
+  "senses": {
+    "tibia_proprioceptive_neurons": 392,
+    "fixed_cns_rng_slots": 392,
+    "tactile_enabled": false
+  },
+  "withdrawal": {
+    "first_neural_update": 1001,
+    "first_proposed_state": 5005,
+    "time_ms": 500.5,
+    "before_safety": true,
+    "hard_zero_final_targets": false,
+    "reset_safety_history": false,
+    "first_possible_physical_effect_state": 5006,
+    "baseline_return_off_updates_bound": 126,
+    "baseline_return_time_ms_bound": 563.0
+  },
+  "push": {
+    "force_world": [
+      0,
+      1.024,
+      0
+    ],
+    "torque_world": [
+      0,
+      0,
+      0
+    ],
+    "body": "exact_native_Thorax_COM",
+    "outgoing_start": 5000,
+    "outgoing_stop_exclusive": 5200,
+    "impulse_native_force_s": 0.02048
+  },
+  "analysis": {
+    "baseline_states_inclusive": [
+      4000,
+      5000
+    ],
+    "cleared_force_states_inclusive": [
+      5201,
+      20000
+    ],
+    "inherited_bands_and_descriptors": true,
+    "favorable_behavior_required": false
+  },
+  "live_observation": {
+    "authority": "Python_MuJoCo",
+    "wire_protocol": "live_fly_pose",
+    "wire_version": 1,
+    "host": "127.0.0.1",
+    "port": 8765,
+    "maximum_wall_publish_hz": 30,
+    "realtime_speed_guaranteed": false,
+    "sleep_for_display": false,
+    "new_session_each_arm": true,
+    "raw_state_downsampling": false,
+    "newest_only_display_allowed": true,
+    "client_controls_science": false,
+    "status_during_acquisition": "LIVE_PROVISIONAL_NOT_YET_AUDITED",
+    "socket_bind_before_native_initialization": true,
+    "midrun_transport_fault_policy": "record_disable_publication_continue_science_no_restart",
+    "journal_offered_packets": true,
+    "publication_proves_receipt": false
+  },
+  "integrity": {
+    "reuse_original_per_arm_auditor": true,
+    "reuse_original_prefix_rng_checks": true,
+    "new_source_identity_recorded_separately": true,
+    "scientific_and_display_status_separate": true,
+    "no_clients_status": "VISUAL_REVIEW_UNCONFIRMED",
+    "cross_record_exact_comparison": "diagnostic_no_tolerance_or_retry",
+    "old_replay_gate_unchanged": true
+  },
+  "execution_gates": {
+    "implemented_and_tested": false,
+    "implementation_committed": false,
+    "environment_verified_in_this_update": false,
+    "original_prerequisites_verified_in_this_update": false,
+    "prior_full_body_human_review_confirmed": false
+  },
+  "new_motor_admissions": 0,
+  "motor_coverage": [
+    20,
+    42
+  ],
+  "independent_balance_proven": false,
+  "gait_proven": false,
+  "inherited_reference_locks": {
+    "docs/BALANCE_CONTRIBUTION_V1.md": {
+      "sha256": "f719277855e408025d142108eed164f9a827e89f12533b6fd4521ec22b6a7715",
+      "canonical_lf_sha256": "01e3881c15ffb374f85bb165c9085c0a0ae2290f12814485acec5834d69a2cc4"
+    },
+    "docs/evidence/balance-contribution-v1/protocol.json": {
+      "sha256": "2ea0a8b94476cdc4a1c7040dfa3d5a40048e4242491ec42bb4af3761be998a20",
+      "canonical_lf_sha256": "2ea0a8b94476cdc4a1c7040dfa3d5a40048e4242491ec42bb4af3761be998a20"
+    },
+    "docs/BALANCE_CONTRIBUTION_PROCESS_V1_1.md": {
+      "sha256": "78b2cf670fbd07fdbde33bd8dcc91cc8ba8db2a60570b5c9c60e8e4066c8ddcf",
+      "canonical_lf_sha256": "97c50728e9a771dc012da50c2c45fd75cd400f97c2bf43ddd7ce4495bba942fa"
+    },
+    "docs/evidence/balance-contribution-process-v1_1/protocol.json": {
+      "sha256": "72fcfe8a7cf6671ad70b2ebd854fcfc4807b8996cf27843a84762760022e983f",
+      "canonical_lf_sha256": "3b87bd24cd3a036bb7fa50fed642f09c839dd4529d1cb6b18bebfc9f185a341b"
+    },
+    "malecns_backend/live/balance_contribution.py": {
+      "sha256": "6f6fc4bda1e2b428aa00365d3b7c89ffdc79052cce0d11d31b96808b19af42ed",
+      "canonical_lf_sha256": "4bb42c8d13b06b5c72f81ba46a5fbc4a98657445588ffe78712ab4b02a7c03c1"
+    },
+    "malecns_backend/live/balance_contribution_process.py": {
+      "sha256": "d2fe0bc92df07486b318533638c08187eb759cb7922fbdbf60d3958e0798e01c",
+      "canonical_lf_sha256": "e2f9e257a8e1dc3f8a9fa50f4086f52a79087693b66941cc6c474aa293aaa173"
+    },
+    "malecns_backend/live/balance_contribution_replay.py": {
+      "sha256": "54d993d90e556749881f807d01a12090ad7734dd5beb9e6e9ddcd5e86e5beb9a",
+      "canonical_lf_sha256": "eeb2de0a4810201953ac0d6591296b98084ff573f1a0c9a6a9c8a1efffaab2ef"
+    },
+    "malecns_backend/live/server.py": {
+      "sha256": "30cf5f546a2d9acaf6c81936d3b4ece7c476692f1ebe7988f0986c054ca63569",
+      "canonical_lf_sha256": "66cb3490054c424ed0efb44f7d549862ee9fc5327ab19e56f6a398a00c959daf"
+    },
+    "malecns_backend/live/protocol.py": {
+      "sha256": "6afe610c86a0c31f815cf1acbf5a913c36ffa8e422107ce628fa82e417498825",
+      "canonical_lf_sha256": "6bb277dba884b97399cc31ac92ab346d2a33b6d87e99a90ec84e1887f21ad789"
+    },
+    "docs/evidence/balance-contribution-process-v1_1/run-desktop-01/report.json": {
+      "sha256": "5ba4d7656250deea407e8c7f2f76e6822f2231b106a1c2a9fbbefefd2df27251",
+      "canonical_lf_sha256": "5ba4d7656250deea407e8c7f2f76e6822f2231b106a1c2a9fbbefefd2df27251"
+    },
+    "docs/evidence/balance-contribution-process-v1_1/run-desktop-01/accepted-result-summary.json": {
+      "sha256": "169115ca67ed93a4133896d88ea13d95998877268d6f36ea03cb182ebbdf875a",
+      "canonical_lf_sha256": "169115ca67ed93a4133896d88ea13d95998877268d6f36ea03cb182ebbdf875a"
+    }
+  },
+  "accepted_reference_raw_arm_artifacts": {
+    "NC": {
+      "path": "NC.json.gz",
+      "sha256": "e5781051f9488dfd817495d0a8b71fe0a992d81b7a10a2a57746492887d3de61"
+    },
+    "WC": {
+      "path": "WC.json.gz",
+      "sha256": "fcafc20e45408f2d6fe8d20a690615edd6f13e38c633fc90045ba02b32cf1ed8"
+    },
+    "NP": {
+      "path": "NP.json.gz",
+      "sha256": "b29b795753e989c3916bc8ce489de826b37bfd6e3d1b74f61d78aac3b4d0766d"
+    },
+    "WP": {
+      "path": "WP.json.gz",
+      "sha256": "2b4af70dbc09d19a8196c63bf67ba3db155902dc6cef93c76c1c4999c26e5b43"
+    }
+  },
+  "accepted_reference_integrity": "INTEGRITY_ACCEPTED",
+  "implementation_next": "dedicated versioned instance-local lifecycle/observer/controller; engineering tests and commit before one new bounded attempt"
+}

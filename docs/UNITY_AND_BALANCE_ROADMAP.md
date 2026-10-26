@@ -1,5 +1,25 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current continuation2026-10-26: camera PR289 merged. Controlled live observation
+is now separately [specified](CONTROLLED_LIVE_BALANCE_V1.md), not implemented or
+run. It will display the existing assisted20motor four-arm experiment during
+computation with provisional labels, full raw recording and strict original
+integrity; real-time speed is not guaranteed. Next implement/test its isolated
+worker/lifecycle/observer and commit before one bounded campaign. Full-body human
+review of the accepted recording remains unconfirmed. Independent balance needs
+a separately justified assistance comparison; no servo/neural tuning here.
+
+```text
+Recorded assay          [done]
+Unity replay connection [done]
+Full-body human review  [pending confirmation]
+Controlled-live design  [specified]
+Live adapter and checks [next]
+Bounded live experiment [not run]
+Independent balance    [not established]
+Motor coverage         [##########-----------] 20/42
+```
+
 Current desktop continuation2026-10-26: PR288 is merged; accepted recorded data
 and Unity transport are available. [Frame Current Fly](LIVE_FLY_CAMERA_FRAMING_V1.md)
 adds an explicit presentation-only fit of the actual received pose, holding a
