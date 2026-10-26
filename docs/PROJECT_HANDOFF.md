@@ -1,5 +1,25 @@
 # FlyBrainUnity — local Codex handoff
 
+## Controlled live V1.1 engineering — 2026-10-26
+
+New controlled_live_balance_v1_1.py and CONTROLLED_LIVE_BALANCE_V1_1.md/protocol
+require the complete original source guard in parent and EVERY worker before
+initialization and after acquisition. Own schema/source identity; unchanged
+V1 run_arm/observer and original scientific auditors/proof/behavior. Prior V1
+failed report/executed source manifest locked; preserve all prior source/results.
+67engineering checks pass81.59s (synthetic/miniature neural fixtures plus actual
+OS/sockets, no new native fly/full-CNS experiment). Real construction-free
+prerequisites verify; both original source/compressed graphs included up front.
+An early policy-versus-package schema comparison refused real preflight before
+execution; corrected with real-receipt test, not parameter/acceptance relaxation.
+Development01/02preflights retained. See CONTROLLED_LIVE_BALANCE_V1_1_RESULTS.md.
+
+Commit tested code/spec/tests BEFORE ONE new fixed NC/WC/NP/WP attempt. No prior
+control reuse, retries or tuned behavior. User previously confirmed full-body
+old replay visible/no issues, Unity in Play and old replay stopped. Live output
+remains provisional until full offline audit; no new visual result claimed here.
+20/42,0new admissions, assistance unchanged; independent balance/gait unproven.
+
 ## Live V1 actual attempt retained — 2026-10-26
 
 ONE attempt at committed2055e06: INCOMPLETE/INCONCLUSIVE_INTEGRITY. NC failed

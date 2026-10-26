@@ -1,5 +1,13 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+2026-10-26 V1.1:complete original-source checks now mandatory in controller,
+each worker before initialization and after acquisition. New schema, frozen V1
+driver/observer/scientific kernel reused unchanged.67engineering checks pass;
+real construction-free source/data/environment gates verify. Commit first,
+then ONE fresh four-arm attempt is next. Prior V1 initialization refusal remains
+retained. No new live pose or behavioral claim at this implementation checkpoint.
+Motor20/42,0new admissions; position assistance unchanged. See V1_1_RESULTS.
+
 Actual live V1 result2026-10-26: initial NC stopped in original loader validation
 before poses because the isolated checkout lacked original graph_w3.bin.0states/
 scientific transitions/neural updates; WC/NP/WP unstarted. Raw failure retained,
