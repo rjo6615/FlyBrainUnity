@@ -1,5 +1,23 @@
 # FlyBrainUnity — local Codex handoff
 
+## Controlled live adapter — 2026-10-26
+
+New controlled_live_balance.py and balance_live_observer.py implement the fixed
+prospective design with explicit source/schema identity, instance-local output
+observation and fresh per-arm processes. All original scientific APIs/auditors
+and42actuator assistance remain unchanged. See
+CONTROLLED_LIVE_BALANCE_IMPLEMENTATION_RESULTS.md for engineering checks, exact
+prerequisites, pending native status and commands. Broader suite114pass; targeted
+final stop/cleanup suite37pass before source-lock audit. User confirmed full-body
+recorded review with no unexpected issues, Unity in Play, prior replay stopped.
+Commit tested implementation BEFORE one new bounded NC/WC/NP/WP attempt, into
+evidence/controlled-live-balance-v1/run-desktop-01. No retry/tuning. Live poses are
+provisional; science/display status separate. Do not modify frozen old science or
+the new execution contract after the attempt. Default --output is preflight only.
+Original prerequisites verify after targeted LFS hydration. No new motor admission;
+20/42; independent balance/gait unproven. Native results will supersede this
+pre-execution checkpoint in the next top entry without erasing failures.
+
 ## Controlled live balance design — 2026-10-26
 
 PR289 merged at03098a0. CONTROLLED_LIVE_BALANCE_V1.md and separate machine-readable

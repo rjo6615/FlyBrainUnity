@@ -1,5 +1,15 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+2026-10-26 live adapter checkpoint: existing20motor/42assisted-actuator experiment
+now has an isolated controller/observer under its own schema, with original
+scientific audits unchanged. Broader114tests and targeted37stop/cleanup tests pass;
+original construction-free prerequisites verify. User confirmed full-body replay
+review, Unity ready and old replay stopped. Commit implementation, then ONE bounded
+live NC/WC/NP/WP campaign is next. Live poses remain provisional until offline
+audit; local publication cannot establish human visual review or independent
+balance. See CONTROLLED_LIVE_BALANCE_IMPLEMENTATION_RESULTS.md for actual status.
+No new admissions:20/42. Older design-only statuses below are historical.
+
 Current continuation2026-10-26: camera PR289 merged. Controlled live observation
 is now separately [specified](CONTROLLED_LIVE_BALANCE_V1.md), not implemented or
 run. It will display the existing assisted20motor four-arm experiment during
