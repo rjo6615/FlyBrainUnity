@@ -1,0 +1,29 @@
+{
+  "schema": "balance-replay-engineering-checks-v1",
+  "native_scientific_runs": 0,
+  "runs": [
+    {
+      "scope": "initial saved-pose adapter",
+      "passed": 16,
+      "seconds": 1.12
+    },
+    {
+      "scope": "adapter and original pose transport after full limitation labels",
+      "passed": 24,
+      "seconds": 1.51
+    },
+    {
+      "scope": "lossless compact buffers and original pose transport",
+      "passed": 24,
+      "seconds": 1.66
+    }
+  ],
+  "interpretation": "Synthetic/address/packet/socket checks only. Native assay and Unity Editor visual testing are separate.",
+  "final_combined_check": {
+    "command": "python -m pytest -q -p no:cacheprovider tests/test_balance_contribution_replay.py tests/test_live_pose_transport.py tests/test_balance_contribution_console.py",
+    "passed": 27,
+    "seconds": 6.07,
+    "native_physics_executed": false,
+    "cns_models_constructed": 0
+  }
+}

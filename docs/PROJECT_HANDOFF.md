@@ -1,5 +1,21 @@
 # FlyBrainUnity — local Codex handoff
 
+Latest 2026-10-26 completed checkpoint: V1.1 NC/WC/NP/WP all complete,
+80,000 real physics transitions / 16,000 neural updates / 80,004 states; all
+integrity checks accepted. Behavioral label MIXED_OR_UNRESOLVED under position
+assistance, one seed, 20/42 motors, zero new admissions. Original failed V1
+retained. Offline all-packet verification passed; Unity LiveFly Play connected
+and applied advancing poses (64/64 rig bindings). Default camera crops the fly:
+full-body visual review remains pending framing; Blender import errors did not
+block this smoke test. No independent balance or gait claim. See
+[BALANCE_CONTRIBUTION_PROCESS_RESULTS.md](BALANCE_CONTRIBUTION_PROCESS_RESULTS.md)
+and [replay guide](BALANCE_CONTRIBUTION_UNITY_REPLAY_V1.md). PR288 remains the
+single active review; user merges. Frozen executed process source/spec/protocol
+must stay unchanged to preserve evidence identity. Separate console wrapper
+fixes final-print int64 error without rerunning the assay.
+
+Earlier dated checkpoints below preserve their historical status.
+
 ## V1.1 process-boundary continuation — 2026-10-26
 
 User requests a Unity-distance update after EVERY run. Report actual tests/

@@ -1,0 +1,23 @@
+{
+  "schema": "balance-unity-visual-check-v1",
+  "date": "2026-10-26",
+  "editor": "6000.3.10f1",
+  "scene": "Assets/Scenes/LiveFly.unity",
+  "source_report_sha256": "5ba4d7656250deea407e8c7f2f76e6822f2231b106a1c2a9fbbefefd2df27251",
+  "transport_smoke": "PASS",
+  "observations": [
+    "Play mode entered",
+    "TCP connected yes",
+    "Rig bound 64/64",
+    "received and applied counters advanced between two observations",
+    "saved fly pose visibly applied",
+    "Play mode stopped afterward"
+  ],
+  "limitations": [
+    "Default camera crops upper body; not a satisfactory full-body balance review",
+    "Blender missing import errors present on cold project import; did not block Play or existing rig",
+    "No new CNS or physics experiment during replay",
+    "Recorded replay only; one seed with position assistance, 20/42 motor coordinates"
+  ],
+  "full_body_visual_review": "PENDING_CAMERA_FRAMING"
+}

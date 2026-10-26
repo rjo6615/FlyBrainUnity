@@ -25,6 +25,8 @@ venv/
 __pycache__/
 *.pyc
 .pytest_cache/
+# Local editor operational output can contain licensing/machine identifiers.
+/docs/evidence/balance-contribution-process-v1_1/run-desktop-01/unity-editor.log.txt
 
 # MaleCNS generated runtime cache (scientific source data lives elsewhere)
 /.cache/malecns-*/
