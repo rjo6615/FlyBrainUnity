@@ -1,5 +1,14 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+V1.1 continuation2026-10-26: [process-boundary results](BALANCE_CONTRIBUTION_PROCESS_RESULTS.md).
+72engineering/reference checks pass. Each planned arm now gets genuinely fresh
+process-global state; all original identity/prefix/RNG/safety/force auditors stay
+strict. No native V1.1 run at this implementation checkpoint. Unity distance:
+environment passed; process engineering passed; full four-arm native integrity
+pending; verified saved-pose replay adapter pending. User wants this gate/status
+update after every run. Current20/42 motors,0new admissions; independent neural
+balance and walking remain unestablished. Older failures remain preserved below.
+
 Desktop result2026-10-26: [environment and bounded attempt](BALANCE_DESKTOP_ENVIRONMENT_V1.md).
 Pinned Python3.12 environment is installed separately; pip/import checks,
 37focused tests and6checkout regressions pass. Static original authorities pass.

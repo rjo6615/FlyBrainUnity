@@ -1,5 +1,31 @@
 # FlyBrainUnity — local Codex handoff
 
+## V1.1 process-boundary continuation — 2026-10-26
+
+User requests a Unity-distance update after EVERY run. Report actual tests/
+native counts, integrity versus behavior, remaining replay gates and20/42 motor
+coverage without an arbitrary completion percentage or independent-balance claim.
+
+New `live/balance_contribution_process.py` uses a fresh process per fixed arm;
+old V1 driver/auditors remain unchanged. Prospective protocol/specification are
+BALANCE_CONTRIBUTION_PROCESS_V1_1.md and evidence/balance-contribution-process-v1_1/
+protocol.json. See BALANCE_CONTRIBUTION_PROCESS_RESULTS.md for latest results.
+72engineering/reference checks passed106.78s; includes actual OS child smoke
+tests with fake registries/data, original auditor/analysis equivalence, stop and
+incomplete guards, calibrated JS/Python parity and checkout locks. Earlier
+66pass/2source-hash failures from editing the protocol doc during tests retained.
+No native V1.1 execution at this implementation checkpoint. Commit first, then
+one fresh bounded NC/WC/NP/WP attempt under unchanged original scientific rules.
+No registry reset/name stripping, old controls, lowered guards, tuning or retries.
+
+Unity distance: environment ready; process engineering validated; full four-arm
+native integrity and verified saved-pose replay still pending. Replay may show
+valid null/negative outcomes. Independent balance/walking and42-coordinate coverage
+are not prerequisites or results of this assisted20-coordinate contribution test.
+
+Current draftPR288 is the active review; continue related corrections there as
+agreed with the user rather than making additional superseding drafts.
+
 ## Desktop continuation — 2026-10-26, after the first bounded attempt
 
 Read `BALANCE_DESKTOP_ENVIRONMENT_V1.md` first. Environment blocker is resolved:
