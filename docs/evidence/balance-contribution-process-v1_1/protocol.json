@@ -1,0 +1,20 @@
+{
+  "schema": "balance-contribution-process-v1.1",
+  "conditions": [
+    "NC",
+    "WC",
+    "NP",
+    "WP"
+  ],
+  "process_per_arm": true,
+  "automatic_retries": 0,
+  "reuse_previous_control": false,
+  "physics_transitions_per_arm": 20000,
+  "neural_updates_per_arm": 4000,
+  "original_design_raw_sha256": "2ea0a8b94476cdc4a1c7040dfa3d5a40048e4242491ec42bb4af3761be998a20",
+  "previous_attempt_report": "docs/evidence/balance-contribution-execution-v1/run-desktop-01/report.json",
+  "previous_attempt_report_sha256": "44332e62f513fc291ba216a78c0ccb3ff89608963df0587b0866e0e324917cac",
+  "scientific_parameters_changed": false,
+  "question": "Same V1 neural contribution question, after correcting cross-arm process-global naming state; no relaxed identity/prefix checks",
+  "native_execution_in_this_specification": false
+}

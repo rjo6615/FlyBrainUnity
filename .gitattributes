@@ -1,5 +1,7 @@
 # Scientific result artifacts locked by raw-byte SHA-256 must not be transformed.
 malecns_backend/embodiment/interface_output/sensory_feedback_boundary_100ms.json -text
+malecns_backend/embodiment/interface_output/tactile_motor_closed_loop_100ms.json -text
+malecns_backend/embodiment/interface_output/tactile_motor_matched_control_preflight.json -text
 malecns_backend/embodiment/interface_output/proprioceptive_activation_100ms.json -text
 malecns_backend/embodiment/interface_output/proprioceptive_closed_loop_100ms.json -text
 malecns_backend/embodiment/interface_output/post_feedback_motor_pathway_audit.json -text
@@ -89,3 +91,12 @@ docs/evidence/distal-tarsus-reference-v1_3/run/reference.json -text
 docs/evidence/distal-anatomical-qualification-v1/*.csv -text
 docs/evidence/distal-anatomical-qualification-v1/qualification.json -text
 docs/evidence/balance-contribution-v1/protocol.json -text
+docs/evidence/balance-contribution-implementation-v1/**/*.json -text
+docs/evidence/balance-contribution-execution-v1/**/*.json -text
+docs/evidence/balance-contribution-execution-v1/**/*.json.gz filter=lfs diff=lfs merge=lfs -text
+docs/evidence/balance-desktop-environment-v1/**/*.json -text
+docs/evidence/balance-desktop-environment-v1/*.txt -text
+docs/evidence/balance-contribution-process-v1_1/**/*.json -text
+docs/evidence/balance-contribution-process-v1_1/protocol.json -text
+docs/evidence/balance-contribution-process-v1_1/**/*.txt -text
+docs/evidence/balance-contribution-process-v1_1/**/*.json.gz filter=lfs diff=lfs merge=lfs -text

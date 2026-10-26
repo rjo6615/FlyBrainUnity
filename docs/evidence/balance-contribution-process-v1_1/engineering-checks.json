@@ -1,0 +1,38 @@
+{
+  "schema": "balance-process-engineering-checks-v1.1",
+  "native_scientific_runs": 0,
+  "runs": [
+    {
+      "scope": "initial process tests",
+      "passed": 22,
+      "seconds": 45.8
+    },
+    {
+      "scope": "OS process/stop smoke subset",
+      "passed": 8,
+      "deselected": 17,
+      "seconds": 4.43
+    },
+    {
+      "scope": "regression during protocol-document edit",
+      "passed": 66,
+      "failed": 2,
+      "seconds": 87.41,
+      "failure": "Source-hash fixtures invalidated by editing prospective protocol text while tests ran; guard retained; no native execution."
+    },
+    {
+      "scope": "final frozen regression",
+      "passed": 72,
+      "failed": 0,
+      "seconds": 106.78,
+      "files": [
+        "tests/test_balance_contribution_process.py",
+        "tests/test_balance_contribution.py",
+        "tests/test_neural_runtime.py",
+        "tests/test_calibrated_neural_parity.py",
+        "tests/test_balance_checkout_locks.py"
+      ]
+    }
+  ],
+  "interpretation": "Engineering/synthetic/reference validation only, including real OS subprocesses with fake registry/data. No full connectome or moving-fly assay in these tests."
+}

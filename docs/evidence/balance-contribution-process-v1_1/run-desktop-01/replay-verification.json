@@ -1,0 +1,37 @@
+{
+  "schema": "balance-recorded-pose-verification-v1",
+  "accepted": true,
+  "saved_evaluation_reconstructed": true,
+  "native_imports_forbidden": true,
+  "cns_construction_forbidden": true,
+  "poses": {
+    "NC": {
+      "states": 20001,
+      "encoded_pose_sha256": "9d9bf15ac8a22fc456880d7f944ce7a7938ee8d054b3161b5f58c56fd6bdc0e1",
+      "initial_time_s": 0.0,
+      "final_time_s": 1.9999999999997962
+    },
+    "WC": {
+      "states": 20001,
+      "encoded_pose_sha256": "ff97a3746a567f25d0ec66ebf3125da89a8fc80595b4e9950295e86d26688208",
+      "initial_time_s": 0.0,
+      "final_time_s": 1.9999999999997962
+    },
+    "NP": {
+      "states": 20001,
+      "encoded_pose_sha256": "2abf4ba8663b9284c323018c59aa37507c8cc6b99d45745bb5f03ab0a7e32fb2",
+      "initial_time_s": 0.0,
+      "final_time_s": 1.9999999999997962
+    },
+    "WP": {
+      "states": 20001,
+      "encoded_pose_sha256": "fecac6ec9cafb25be8dfa78a73a240782347d287c5a72e834e5a482e4fa6e0e4",
+      "initial_time_s": 0.0,
+      "final_time_s": 1.9999999999997962
+    }
+  },
+  "total_packets": 80004,
+  "transport": "unchanged live_fly_pose v1 / replay_snapshot / PoseServer",
+  "independent_balance_proven": false,
+  "unity_editor_visual_test": "NOT_YET_RUN"
+}

@@ -1,0 +1,605 @@
+{
+  "schema": "balance-desktop-attempt-checkpoint-v1",
+  "executed_commit": "266285f16452476d84e97ede070841b4acf673ed",
+  "status": "INCOMPLETE",
+  "integrity": "INCONCLUSIVE_INTEGRITY",
+  "scientific_experiment_started": true,
+  "static_preflight_counts_are_not_run_totals": true,
+  "NC": {
+    "status": "COMPLETE",
+    "states": 20001,
+    "physics_transitions": 20000,
+    "neural_updates": 4000,
+    "last_state_time_s": 1.9999999999997962,
+    "last_neural_time_ms": 2000.0,
+    "individual_arm_audit_present": true,
+    "initialization_operations": {
+      "call:dm_control._render.executor.render_executor.__init__": 1,
+      "c_call:mujoco._functions.mj_versionString": 2,
+      "c_call:mujoco._functions.mj_version": 1,
+      "call:dm_control.mjcf.physics.__init__": 10,
+      "call:malecns_backend.loader.load_malecns": 1,
+      "call:flygym.fly.__init__": 1,
+      "call:dm_control.mjcf.element.__init__": 7480,
+      "call:dm_control.mjcf.namescope.__init__": 2,
+      "call:dm_control.mjcf.attribute.__init__": 57657,
+      "call:flygym.state.kinematic_pose.__init__": 1,
+      "call:flygym.arena.base.__init__": 2,
+      "call:flygym.simulation.__init__": 2,
+      "call:dm_control.mjcf.debugging.__init__": 1,
+      "call:dm_control.mujoco.wrapper.core.__init__": 2,
+      "call:dm_control.mujoco.engine.__init__": 1,
+      "call:dm_control.mjcf.physics.forward": 7,
+      "call:dm_control.mujoco.engine.forward": 7,
+      "c_call:mujoco._functions.mj_forward": 7,
+      "call:dm_control.mujoco.index.__init__": 501,
+      "call:dm_control.rl.control.reset_context": 4,
+      "call:dm_control.mujoco.engine.reset": 3,
+      "c_call:mujoco._functions.mj_resetData": 3,
+      "call:flygym.simulation.reset": 2,
+      "call:flygym.fly.reset": 1,
+      "c_call:mujoco._functions.mj_id2name": 2111,
+      "c_call:mujoco._functions.mj_contactForce": 3,
+      "call:malecns_backend.neural.__init__": 2,
+      "call:malecns_backend.neural.reset": 2
+    }
+  },
+  "WC": {
+    "status": "ERROR",
+    "error": "ValueError: recorded/native motor ID or address disagreement",
+    "states": 1,
+    "scientific_physics_transitions": 0,
+    "neural_updates": 0,
+    "initialization_operations": {
+      "call:malecns_backend.loader.load_malecns": 1,
+      "call:flygym.fly.__init__": 1,
+      "call:dm_control.mjcf.element.__init__": 7480,
+      "call:dm_control.mjcf.namescope.__init__": 2,
+      "call:dm_control.mjcf.attribute.__init__": 57657,
+      "call:flygym.state.kinematic_pose.__init__": 1,
+      "call:flygym.arena.base.__init__": 2,
+      "call:flygym.simulation.__init__": 2,
+      "call:dm_control.mjcf.debugging.__init__": 1,
+      "call:dm_control.mujoco.wrapper.core.__init__": 2,
+      "call:dm_control.mujoco.engine.__init__": 1,
+      "call:dm_control.mjcf.physics.forward": 7,
+      "call:dm_control.mujoco.engine.forward": 7,
+      "c_call:mujoco._functions.mj_forward": 7,
+      "call:dm_control.mujoco.index.__init__": 501,
+      "call:dm_control.rl.control.reset_context": 4,
+      "call:dm_control.mujoco.engine.reset": 3,
+      "c_call:mujoco._functions.mj_resetData": 3,
+      "call:flygym.simulation.reset": 2,
+      "call:flygym.fly.reset": 1,
+      "call:dm_control.mjcf.physics.__init__": 9,
+      "c_call:mujoco._functions.mj_id2name": 1437,
+      "c_call:mujoco._functions.mj_contactForce": 3
+    }
+  },
+  "unstarted_conditions": [
+    "NP",
+    "WP"
+  ],
+  "names_only_mismatches": [
+    {
+      "coordinate": "joint_LFCoxa",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_LFCoxa",
+      "actual": "1/actuator_position_joint_LFCoxa"
+    },
+    {
+      "coordinate": "joint_LFCoxa",
+      "field": "joint_name",
+      "recorded": "0/joint_LFCoxa",
+      "actual": "1/joint_LFCoxa"
+    },
+    {
+      "coordinate": "joint_LFCoxa_roll",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_LFCoxa_roll",
+      "actual": "1/actuator_position_joint_LFCoxa_roll"
+    },
+    {
+      "coordinate": "joint_LFCoxa_roll",
+      "field": "joint_name",
+      "recorded": "0/joint_LFCoxa_roll",
+      "actual": "1/joint_LFCoxa_roll"
+    },
+    {
+      "coordinate": "joint_LFCoxa_yaw",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_LFCoxa_yaw",
+      "actual": "1/actuator_position_joint_LFCoxa_yaw"
+    },
+    {
+      "coordinate": "joint_LFCoxa_yaw",
+      "field": "joint_name",
+      "recorded": "0/joint_LFCoxa_yaw",
+      "actual": "1/joint_LFCoxa_yaw"
+    },
+    {
+      "coordinate": "joint_LFFemur",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_LFFemur",
+      "actual": "1/actuator_position_joint_LFFemur"
+    },
+    {
+      "coordinate": "joint_LFFemur",
+      "field": "joint_name",
+      "recorded": "0/joint_LFFemur",
+      "actual": "1/joint_LFFemur"
+    },
+    {
+      "coordinate": "joint_LFFemur_roll",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_LFFemur_roll",
+      "actual": "1/actuator_position_joint_LFFemur_roll"
+    },
+    {
+      "coordinate": "joint_LFFemur_roll",
+      "field": "joint_name",
+      "recorded": "0/joint_LFFemur_roll",
+      "actual": "1/joint_LFFemur_roll"
+    },
+    {
+      "coordinate": "joint_LFTibia",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_LFTibia",
+      "actual": "1/actuator_position_joint_LFTibia"
+    },
+    {
+      "coordinate": "joint_LFTibia",
+      "field": "joint_name",
+      "recorded": "0/joint_LFTibia",
+      "actual": "1/joint_LFTibia"
+    },
+    {
+      "coordinate": "joint_LFTarsus1",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_LFTarsus1",
+      "actual": "1/actuator_position_joint_LFTarsus1"
+    },
+    {
+      "coordinate": "joint_LFTarsus1",
+      "field": "joint_name",
+      "recorded": "0/joint_LFTarsus1",
+      "actual": "1/joint_LFTarsus1"
+    },
+    {
+      "coordinate": "joint_LMCoxa",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_LMCoxa",
+      "actual": "1/actuator_position_joint_LMCoxa"
+    },
+    {
+      "coordinate": "joint_LMCoxa",
+      "field": "joint_name",
+      "recorded": "0/joint_LMCoxa",
+      "actual": "1/joint_LMCoxa"
+    },
+    {
+      "coordinate": "joint_LMCoxa_roll",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_LMCoxa_roll",
+      "actual": "1/actuator_position_joint_LMCoxa_roll"
+    },
+    {
+      "coordinate": "joint_LMCoxa_roll",
+      "field": "joint_name",
+      "recorded": "0/joint_LMCoxa_roll",
+      "actual": "1/joint_LMCoxa_roll"
+    },
+    {
+      "coordinate": "joint_LMCoxa_yaw",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_LMCoxa_yaw",
+      "actual": "1/actuator_position_joint_LMCoxa_yaw"
+    },
+    {
+      "coordinate": "joint_LMCoxa_yaw",
+      "field": "joint_name",
+      "recorded": "0/joint_LMCoxa_yaw",
+      "actual": "1/joint_LMCoxa_yaw"
+    },
+    {
+      "coordinate": "joint_LMFemur",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_LMFemur",
+      "actual": "1/actuator_position_joint_LMFemur"
+    },
+    {
+      "coordinate": "joint_LMFemur",
+      "field": "joint_name",
+      "recorded": "0/joint_LMFemur",
+      "actual": "1/joint_LMFemur"
+    },
+    {
+      "coordinate": "joint_LMFemur_roll",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_LMFemur_roll",
+      "actual": "1/actuator_position_joint_LMFemur_roll"
+    },
+    {
+      "coordinate": "joint_LMFemur_roll",
+      "field": "joint_name",
+      "recorded": "0/joint_LMFemur_roll",
+      "actual": "1/joint_LMFemur_roll"
+    },
+    {
+      "coordinate": "joint_LMTibia",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_LMTibia",
+      "actual": "1/actuator_position_joint_LMTibia"
+    },
+    {
+      "coordinate": "joint_LMTibia",
+      "field": "joint_name",
+      "recorded": "0/joint_LMTibia",
+      "actual": "1/joint_LMTibia"
+    },
+    {
+      "coordinate": "joint_LMTarsus1",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_LMTarsus1",
+      "actual": "1/actuator_position_joint_LMTarsus1"
+    },
+    {
+      "coordinate": "joint_LMTarsus1",
+      "field": "joint_name",
+      "recorded": "0/joint_LMTarsus1",
+      "actual": "1/joint_LMTarsus1"
+    },
+    {
+      "coordinate": "joint_LHCoxa",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_LHCoxa",
+      "actual": "1/actuator_position_joint_LHCoxa"
+    },
+    {
+      "coordinate": "joint_LHCoxa",
+      "field": "joint_name",
+      "recorded": "0/joint_LHCoxa",
+      "actual": "1/joint_LHCoxa"
+    },
+    {
+      "coordinate": "joint_LHCoxa_roll",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_LHCoxa_roll",
+      "actual": "1/actuator_position_joint_LHCoxa_roll"
+    },
+    {
+      "coordinate": "joint_LHCoxa_roll",
+      "field": "joint_name",
+      "recorded": "0/joint_LHCoxa_roll",
+      "actual": "1/joint_LHCoxa_roll"
+    },
+    {
+      "coordinate": "joint_LHCoxa_yaw",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_LHCoxa_yaw",
+      "actual": "1/actuator_position_joint_LHCoxa_yaw"
+    },
+    {
+      "coordinate": "joint_LHCoxa_yaw",
+      "field": "joint_name",
+      "recorded": "0/joint_LHCoxa_yaw",
+      "actual": "1/joint_LHCoxa_yaw"
+    },
+    {
+      "coordinate": "joint_LHFemur",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_LHFemur",
+      "actual": "1/actuator_position_joint_LHFemur"
+    },
+    {
+      "coordinate": "joint_LHFemur",
+      "field": "joint_name",
+      "recorded": "0/joint_LHFemur",
+      "actual": "1/joint_LHFemur"
+    },
+    {
+      "coordinate": "joint_LHFemur_roll",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_LHFemur_roll",
+      "actual": "1/actuator_position_joint_LHFemur_roll"
+    },
+    {
+      "coordinate": "joint_LHFemur_roll",
+      "field": "joint_name",
+      "recorded": "0/joint_LHFemur_roll",
+      "actual": "1/joint_LHFemur_roll"
+    },
+    {
+      "coordinate": "joint_LHTibia",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_LHTibia",
+      "actual": "1/actuator_position_joint_LHTibia"
+    },
+    {
+      "coordinate": "joint_LHTibia",
+      "field": "joint_name",
+      "recorded": "0/joint_LHTibia",
+      "actual": "1/joint_LHTibia"
+    },
+    {
+      "coordinate": "joint_LHTarsus1",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_LHTarsus1",
+      "actual": "1/actuator_position_joint_LHTarsus1"
+    },
+    {
+      "coordinate": "joint_LHTarsus1",
+      "field": "joint_name",
+      "recorded": "0/joint_LHTarsus1",
+      "actual": "1/joint_LHTarsus1"
+    },
+    {
+      "coordinate": "joint_RFCoxa",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_RFCoxa",
+      "actual": "1/actuator_position_joint_RFCoxa"
+    },
+    {
+      "coordinate": "joint_RFCoxa",
+      "field": "joint_name",
+      "recorded": "0/joint_RFCoxa",
+      "actual": "1/joint_RFCoxa"
+    },
+    {
+      "coordinate": "joint_RFCoxa_roll",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_RFCoxa_roll",
+      "actual": "1/actuator_position_joint_RFCoxa_roll"
+    },
+    {
+      "coordinate": "joint_RFCoxa_roll",
+      "field": "joint_name",
+      "recorded": "0/joint_RFCoxa_roll",
+      "actual": "1/joint_RFCoxa_roll"
+    },
+    {
+      "coordinate": "joint_RFCoxa_yaw",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_RFCoxa_yaw",
+      "actual": "1/actuator_position_joint_RFCoxa_yaw"
+    },
+    {
+      "coordinate": "joint_RFCoxa_yaw",
+      "field": "joint_name",
+      "recorded": "0/joint_RFCoxa_yaw",
+      "actual": "1/joint_RFCoxa_yaw"
+    },
+    {
+      "coordinate": "joint_RFFemur",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_RFFemur",
+      "actual": "1/actuator_position_joint_RFFemur"
+    },
+    {
+      "coordinate": "joint_RFFemur",
+      "field": "joint_name",
+      "recorded": "0/joint_RFFemur",
+      "actual": "1/joint_RFFemur"
+    },
+    {
+      "coordinate": "joint_RFFemur_roll",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_RFFemur_roll",
+      "actual": "1/actuator_position_joint_RFFemur_roll"
+    },
+    {
+      "coordinate": "joint_RFFemur_roll",
+      "field": "joint_name",
+      "recorded": "0/joint_RFFemur_roll",
+      "actual": "1/joint_RFFemur_roll"
+    },
+    {
+      "coordinate": "joint_RFTibia",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_RFTibia",
+      "actual": "1/actuator_position_joint_RFTibia"
+    },
+    {
+      "coordinate": "joint_RFTibia",
+      "field": "joint_name",
+      "recorded": "0/joint_RFTibia",
+      "actual": "1/joint_RFTibia"
+    },
+    {
+      "coordinate": "joint_RFTarsus1",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_RFTarsus1",
+      "actual": "1/actuator_position_joint_RFTarsus1"
+    },
+    {
+      "coordinate": "joint_RFTarsus1",
+      "field": "joint_name",
+      "recorded": "0/joint_RFTarsus1",
+      "actual": "1/joint_RFTarsus1"
+    },
+    {
+      "coordinate": "joint_RMCoxa",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_RMCoxa",
+      "actual": "1/actuator_position_joint_RMCoxa"
+    },
+    {
+      "coordinate": "joint_RMCoxa",
+      "field": "joint_name",
+      "recorded": "0/joint_RMCoxa",
+      "actual": "1/joint_RMCoxa"
+    },
+    {
+      "coordinate": "joint_RMCoxa_roll",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_RMCoxa_roll",
+      "actual": "1/actuator_position_joint_RMCoxa_roll"
+    },
+    {
+      "coordinate": "joint_RMCoxa_roll",
+      "field": "joint_name",
+      "recorded": "0/joint_RMCoxa_roll",
+      "actual": "1/joint_RMCoxa_roll"
+    },
+    {
+      "coordinate": "joint_RMCoxa_yaw",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_RMCoxa_yaw",
+      "actual": "1/actuator_position_joint_RMCoxa_yaw"
+    },
+    {
+      "coordinate": "joint_RMCoxa_yaw",
+      "field": "joint_name",
+      "recorded": "0/joint_RMCoxa_yaw",
+      "actual": "1/joint_RMCoxa_yaw"
+    },
+    {
+      "coordinate": "joint_RMFemur",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_RMFemur",
+      "actual": "1/actuator_position_joint_RMFemur"
+    },
+    {
+      "coordinate": "joint_RMFemur",
+      "field": "joint_name",
+      "recorded": "0/joint_RMFemur",
+      "actual": "1/joint_RMFemur"
+    },
+    {
+      "coordinate": "joint_RMFemur_roll",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_RMFemur_roll",
+      "actual": "1/actuator_position_joint_RMFemur_roll"
+    },
+    {
+      "coordinate": "joint_RMFemur_roll",
+      "field": "joint_name",
+      "recorded": "0/joint_RMFemur_roll",
+      "actual": "1/joint_RMFemur_roll"
+    },
+    {
+      "coordinate": "joint_RMTibia",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_RMTibia",
+      "actual": "1/actuator_position_joint_RMTibia"
+    },
+    {
+      "coordinate": "joint_RMTibia",
+      "field": "joint_name",
+      "recorded": "0/joint_RMTibia",
+      "actual": "1/joint_RMTibia"
+    },
+    {
+      "coordinate": "joint_RMTarsus1",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_RMTarsus1",
+      "actual": "1/actuator_position_joint_RMTarsus1"
+    },
+    {
+      "coordinate": "joint_RMTarsus1",
+      "field": "joint_name",
+      "recorded": "0/joint_RMTarsus1",
+      "actual": "1/joint_RMTarsus1"
+    },
+    {
+      "coordinate": "joint_RHCoxa",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_RHCoxa",
+      "actual": "1/actuator_position_joint_RHCoxa"
+    },
+    {
+      "coordinate": "joint_RHCoxa",
+      "field": "joint_name",
+      "recorded": "0/joint_RHCoxa",
+      "actual": "1/joint_RHCoxa"
+    },
+    {
+      "coordinate": "joint_RHCoxa_roll",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_RHCoxa_roll",
+      "actual": "1/actuator_position_joint_RHCoxa_roll"
+    },
+    {
+      "coordinate": "joint_RHCoxa_roll",
+      "field": "joint_name",
+      "recorded": "0/joint_RHCoxa_roll",
+      "actual": "1/joint_RHCoxa_roll"
+    },
+    {
+      "coordinate": "joint_RHCoxa_yaw",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_RHCoxa_yaw",
+      "actual": "1/actuator_position_joint_RHCoxa_yaw"
+    },
+    {
+      "coordinate": "joint_RHCoxa_yaw",
+      "field": "joint_name",
+      "recorded": "0/joint_RHCoxa_yaw",
+      "actual": "1/joint_RHCoxa_yaw"
+    },
+    {
+      "coordinate": "joint_RHFemur",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_RHFemur",
+      "actual": "1/actuator_position_joint_RHFemur"
+    },
+    {
+      "coordinate": "joint_RHFemur",
+      "field": "joint_name",
+      "recorded": "0/joint_RHFemur",
+      "actual": "1/joint_RHFemur"
+    },
+    {
+      "coordinate": "joint_RHFemur_roll",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_RHFemur_roll",
+      "actual": "1/actuator_position_joint_RHFemur_roll"
+    },
+    {
+      "coordinate": "joint_RHFemur_roll",
+      "field": "joint_name",
+      "recorded": "0/joint_RHFemur_roll",
+      "actual": "1/joint_RHFemur_roll"
+    },
+    {
+      "coordinate": "joint_RHTibia",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_RHTibia",
+      "actual": "1/actuator_position_joint_RHTibia"
+    },
+    {
+      "coordinate": "joint_RHTibia",
+      "field": "joint_name",
+      "recorded": "0/joint_RHTibia",
+      "actual": "1/joint_RHTibia"
+    },
+    {
+      "coordinate": "joint_RHTarsus1",
+      "field": "actuator_name",
+      "recorded": "0/actuator_position_joint_RHTarsus1",
+      "actual": "1/actuator_position_joint_RHTarsus1"
+    },
+    {
+      "coordinate": "joint_RHTarsus1",
+      "field": "joint_name",
+      "recorded": "0/joint_RHTarsus1",
+      "actual": "1/joint_RHTarsus1"
+    }
+  ],
+  "numeric_ID_and_address_disagreements": 0,
+  "interpretation": "Incomplete implementation qualification; no matched balance comparison, biological null, or accepted Unity replay.",
+  "unity_replay_eligible": false,
+  "retries": 0,
+  "saved_evaluation_reconstructed": true,
+  "saved_replay_native_imports_and_cns_construction_forbidden": true,
+  "raw_artifacts": {
+    "NC": {
+      "path": "NC.json.gz",
+      "sha256": "83b41b2118378f67ac1921da4d4e59bcdb8db92982390b8804ba75bc496b4b3e"
+    },
+    "WC": {
+      "path": "WC.json.gz",
+      "sha256": "260bcc7ebed23872b2d2dde25c19befa4a16eee08b28ccd758e7d694fa0b551a"
+    }
+  }
+}

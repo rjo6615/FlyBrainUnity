@@ -1,5 +1,56 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Latest 2026-10-26 completed checkpoint: V1.1 NC/WC/NP/WP all complete,
+80,000 real physics transitions / 16,000 neural updates / 80,004 states; all
+integrity checks accepted. Behavioral label MIXED_OR_UNRESOLVED under position
+assistance, one seed, 20/42 motors, zero new admissions. Original failed V1
+retained. Offline all-packet verification passed; Unity LiveFly Play connected
+and applied advancing poses (64/64 rig bindings). Default camera crops the fly:
+full-body visual review remains pending framing; Blender import errors did not
+block this smoke test. No independent balance or gait claim. See
+[BALANCE_CONTRIBUTION_PROCESS_RESULTS.md](BALANCE_CONTRIBUTION_PROCESS_RESULTS.md)
+and [replay guide](BALANCE_CONTRIBUTION_UNITY_REPLAY_V1.md). PR288 remains the
+single active review; user merges. Frozen executed process source/spec/protocol
+must stay unchanged to preserve evidence identity. Separate console wrapper
+fixes final-print int64 error without rerunning the assay.
+
+Earlier dated checkpoints below preserve their historical status.
+
+V1.1 continuation2026-10-26: [process-boundary results](BALANCE_CONTRIBUTION_PROCESS_RESULTS.md).
+72engineering/reference checks pass. Each planned arm now gets genuinely fresh
+process-global state; all original identity/prefix/RNG/safety/force auditors stay
+strict. No native V1.1 run at this implementation checkpoint. Unity distance:
+environment passed; process engineering passed; full four-arm native integrity
+pending; verified saved-pose replay adapter pending. User wants this gate/status
+update after every run. Current20/42 motors,0new admissions; independent neural
+balance and walking remain unestablished. Older failures remain preserved below.
+
+Desktop result2026-10-26: [environment and bounded attempt](BALANCE_DESKTOP_ENVIRONMENT_V1.md).
+Pinned Python3.12 environment is installed separately; pip/import checks,
+37focused tests and6checkout regressions pass. Static original authorities pass.
+The first ACTUAL native/CNS attempt completed NC20000physics/4000neural; WC stopped
+at initialization because the historical0/... names differ from fresh instance
+1/... names. NP/WP did not start. Full NC/partial WC and error are preserved;
+INCOMPLETE/INCONCLUSIVE_INTEGRITY, no accepted Unity replay or balance comparison.
+Next gate is a separately versioned instance/process-lifecycle correction with
+strict actual-model identity checks, tests and commit before a justified new run.
+No retry or new motor admission; coverage20/42, LF target correspondences0/8,
+independent balance/walking unestablished. The earlier environment blocker below
+is historical and has now been resolved.
+
+Latest continuation2026-10-26: [balance implementation V1](BALANCE_CONTRIBUTION_IMPLEMENTATION_V1.md)
+adds the isolated adapter/recorder/evaluator;23synthetic engineering checks and
+13existing neural reference checks pass. No actual four-arm experiment or Unity
+replay ran. Legacy desktop Python launcher is broken; required physics packages
+andpyarrow are absent from the bundled test runtime. Original static prerequisites
+remain incomplete. Next restore/access the validated environment, pass those
+gates, then perform the single committed fixed NC/WC/NP/WP execution. Motor
+coverage20/42; newadmissions0; LF target correspondences0/8. Independent neural
+balance/walking remain unestablished. A synthetic null acceptance tests the
+evaluator only; it is not observed fly behavior or native runtime readiness.
+
+The dated sections below retain earlier milestone context.
+
 Checkpoint2026-10-25. This is a roadmap, not a new experimental acceptance
 protocol or a claim that the milestones below are already complete.
 

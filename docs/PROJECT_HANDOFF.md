@@ -1,5 +1,115 @@
 # FlyBrainUnity — local Codex handoff
 
+Latest 2026-10-26 completed checkpoint: V1.1 NC/WC/NP/WP all complete,
+80,000 real physics transitions / 16,000 neural updates / 80,004 states; all
+integrity checks accepted. Behavioral label MIXED_OR_UNRESOLVED under position
+assistance, one seed, 20/42 motors, zero new admissions. Original failed V1
+retained. Offline all-packet verification passed; Unity LiveFly Play connected
+and applied advancing poses (64/64 rig bindings). Default camera crops the fly:
+full-body visual review remains pending framing; Blender import errors did not
+block this smoke test. No independent balance or gait claim. See
+[BALANCE_CONTRIBUTION_PROCESS_RESULTS.md](BALANCE_CONTRIBUTION_PROCESS_RESULTS.md)
+and [replay guide](BALANCE_CONTRIBUTION_UNITY_REPLAY_V1.md). PR288 remains the
+single active review; user merges. Frozen executed process source/spec/protocol
+must stay unchanged to preserve evidence identity. Separate console wrapper
+fixes final-print int64 error without rerunning the assay.
+
+Earlier dated checkpoints below preserve their historical status.
+
+## V1.1 process-boundary continuation — 2026-10-26
+
+User requests a Unity-distance update after EVERY run. Report actual tests/
+native counts, integrity versus behavior, remaining replay gates and20/42 motor
+coverage without an arbitrary completion percentage or independent-balance claim.
+
+New `live/balance_contribution_process.py` uses a fresh process per fixed arm;
+old V1 driver/auditors remain unchanged. Prospective protocol/specification are
+BALANCE_CONTRIBUTION_PROCESS_V1_1.md and evidence/balance-contribution-process-v1_1/
+protocol.json. See BALANCE_CONTRIBUTION_PROCESS_RESULTS.md for latest results.
+72engineering/reference checks passed106.78s; includes actual OS child smoke
+tests with fake registries/data, original auditor/analysis equivalence, stop and
+incomplete guards, calibrated JS/Python parity and checkout locks. Earlier
+66pass/2source-hash failures from editing the protocol doc during tests retained.
+No native V1.1 execution at this implementation checkpoint. Commit first, then
+one fresh bounded NC/WC/NP/WP attempt under unchanged original scientific rules.
+No registry reset/name stripping, old controls, lowered guards, tuning or retries.
+
+Unity distance: environment ready; process engineering validated; full four-arm
+native integrity and verified saved-pose replay still pending. Replay may show
+valid null/negative outcomes. Independent balance/walking and42-coordinate coverage
+are not prerequisites or results of this assisted20-coordinate contribution test.
+
+Current draftPR288 is the active review; continue related corrections there as
+agreed with the user rather than making additional superseding drafts.
+
+## Desktop continuation — 2026-10-26, after the first bounded attempt
+
+Read `BALANCE_DESKTOP_ENVIRONMENT_V1.md` first. Environment blocker is resolved:
+new ignored `.cache/malecns-balance-python312-v1/Scripts/python.exe` under the
+PRIMARY Documents/FlyBrainUnity checkout is Python3.12.14, FlyGym1.2.1,
+MuJoCo3.2.7, dm_control1.0.27, NumPy2.0.2, SciPy1.15.3, pyarrow25.0.1.
+pip check/imports and37focused tests pass. Old Python3.10 venv is unchanged.
+Hashed136-wheel lock, desktop inventory and receipt are preserved in new evidence.
+
+Original static authorities pass after cached LFS hydration and guarded original
+Git-byte restoration of two CRLF-converted JSONs in the isolated worktree only.
+Original backups/locks retained; new -text attributes plus6real checkout tests.
+Do not refresh expected hashes or repair the user's primary edits incidentally.
+
+ONE ACTUAL ATTEMPT: `docs/evidence/balance-contribution-execution-v1/run-desktop-01/`
+at committed implementation266285f. NC completed20000physics/4000neural,20001states.
+WC failed during initialization:1initial state,0scientific transitions/updates.
+NP/WP unstarted. Status INCOMPLETE/INCONCLUSIVE_INTEGRITY; behavior null (not a
+measured biological null); Unity ineligible. Saved evaluation/hash replay passes
+with native imports/CNS construction forbidden. No automatic retry occurred.
+
+WC discrepancy is84absolute-name fields only: current FlyGym instance1/... versus
+historical M5A0/...; all numeric joint/actuator IDs and address comparisons match.
+Installed1.2.1 source preserves an existing-name registry across fresh instances.
+The adapter's historical absolute instance-name assumption is defective. Actual
+native inventory validation passed before the extra comparison rejected WC.
+Raw initial/context/prefix comparisons also contain names; deleting only the
+first guard is not an end-to-end fix. No identity, physiology or mapping waived.
+
+Next concrete gate: prospective/versioned instance/process-lifecycle correction,
+prefer fresh process per arm while keeping actual-model resolution and strict
+original checks; tests and commit before any justified new four-arm attempt.
+No registry reset, guessed IDs, mere name stripping, resume-from-WC or repeat
+until favorable output. That correction/new attempt is NOT implemented/run here.
+20/42 motors,0new admissions, LF target0/8; no balance/gait claim. Roadmap+GitBash.
+
+Older checkpoints below retain their dated facts; their environment-blocked and
+native-not-run statements describe the earlier implementation delivery.
+
+## Continuation checkpoint — 2026-10-26
+
+Balance-contribution V1 adapter/recorder/evaluator is implemented separately in
+`malecns_backend/live/balance_contribution.py`. See
+`BALANCE_CONTRIBUTION_IMPLEMENTATION_V1.md` for actual checks, failures and Git
+Bash commands. Original design/JSON remain immutable historical specifications.
+New engineering checks23passed; existing neural runtime checks13passed after a
+Node sandbox-permission rerun. Full synthetic four-arm null acceptance is an
+evaluator test only. No actual native body/full connectome experiment or Unity
+replay was run. Coverage20/42, newadmissions0, LF target correspondence0/8.
+
+EXECUTION BLOCKED: legacy desktop venv points at missing Python3.10; bundled
+Python3.12/NumPy2.3.5 lacks FlyGym/MuJoCo/dm_control/pyarrow. Do not install or
+upgrade dependencies incidentally. Original cached LFS prerequisites were
+hydrated only in the isolated worktree; initial M6C pointer failure is explained,
+not waived. Static authority now reaches missingpyarrow; later locks unverified.
+Seven original neural/calibration identities verify (binary/data raw; calibration
+text canonicalLF with actual raw hash retained). Preserve all refusal reports.
+
+Next: restore/access validated Python3.12, NumPy2.0.2, FlyGym1.2.1, MuJoCo3.2.7,
+dm_control1.0.27 environment and its existing reference dependencies; complete
+construction-free prerequisite checks. Commit tested implementation before the
+single bounded NC/WC/NP/WP execution. Real native recorder/factory/initialization
+instrumentation remains unverified; synthetic tests are not runtime readiness.
+No retries/tuning or new motor admissions. Preserve the primary checkout's local
+live_v1_motor_output_experiment_result.json change. Continue roadmap+GitBash.
+
+The checkpoint below records the preceding design delivery and earlier history.
+
 Checkpoint: 2026-10-25. Repository: `rjo6615/FlyBrainUnity`.
 Verified baseline for balance-contribution protocol design: `origin/newBrain` at
 `2bcd103` (merged PR #285).
