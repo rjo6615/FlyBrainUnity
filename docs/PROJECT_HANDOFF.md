@@ -1,9 +1,32 @@
 # FlyBrainUnity — local Codex handoff
 
 Checkpoint: 2026-10-25. Repository: `rjo6615/FlyBrainUnity`.
-Verified baseline for reference acquisition V1: `origin/newBrain` at
-`1f42b02` (merged PR #282).
+Verified baseline for motor-freeze checkout repair V1: `origin/newBrain` at
+`42b9637` (merged PR #283).
 Fetch and inspect current state before starting work.
+
+Latest independent engineering fix: `MOTOR_FREEZE_CHECKOUT_V1.md`. Three old
+motor/sign/registration result Git blobs exactly match their unchanged original
+freeze/manifest hashes, but Windows CRLF conversion breaks working-copy raw checks.
+Exact -text attributes now preserve future checkouts. New `motor_freeze_checkout`
+CLI is read-only by default; explicit --repair requires an exclusive backup
+directory, exact original Git/hash/index agreement and CRLF-only working changes.
+It refuses scientific/staged edits, backs up all three originals, rechecks and
+atomically restores original Git bytes. No new hashes, criteria or source results.
+
+Actual isolated-worktree repair verified original three locks3/3; existing saved
+22-row audit still reports recorded rawFalse/currentTrue,20/42,0new admissions,
+0scientific transitions and unchanged12/6/4 blocker counts. Historical failed
+reports remain intact. This fixes checkout provenance only, not biological
+function, target correspondence, physical scaling or neural activation. The
+primary checkout/local edits were not repaired or overwritten by the agent.
+Users with existing CRLF files need the documented guarded command after pull;
+an attributes-only pull need not rematerialize unchanged files.
+
+Active research blocker remains the same LF target attachment/landmark reference
+bundle. No observer campaign or guessed mapping substitutes for it. Independent
+maintenance was selected after user continuation; new anatomy/data is still needed
+before advancing the new moving-body muscle interface or admitting channels.
 
 Latest continuation: `LF_REFERENCE_ACQUISITION_V1.md` records a bounded official
 publication/data/code acquisition review. No qualifying target annotation bundle
