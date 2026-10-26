@@ -1,5 +1,18 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Desktop result2026-10-26: [environment and bounded attempt](BALANCE_DESKTOP_ENVIRONMENT_V1.md).
+Pinned Python3.12 environment is installed separately; pip/import checks,
+37focused tests and6checkout regressions pass. Static original authorities pass.
+The first ACTUAL native/CNS attempt completed NC20000physics/4000neural; WC stopped
+at initialization because the historical0/... names differ from fresh instance
+1/... names. NP/WP did not start. Full NC/partial WC and error are preserved;
+INCOMPLETE/INCONCLUSIVE_INTEGRITY, no accepted Unity replay or balance comparison.
+Next gate is a separately versioned instance/process-lifecycle correction with
+strict actual-model identity checks, tests and commit before a justified new run.
+No retry or new motor admission; coverage20/42, LF target correspondences0/8,
+independent balance/walking unestablished. The earlier environment blocker below
+is historical and has now been resolved.
+
 Latest continuation2026-10-26: [balance implementation V1](BALANCE_CONTRIBUTION_IMPLEMENTATION_V1.md)
 adds the isolated adapter/recorder/evaluator;23synthetic engineering checks and
 13existing neural reference checks pass. No actual four-arm experiment or Unity

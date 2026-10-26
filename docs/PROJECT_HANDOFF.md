@@ -1,5 +1,44 @@
 # FlyBrainUnity — local Codex handoff
 
+## Desktop continuation — 2026-10-26, after the first bounded attempt
+
+Read `BALANCE_DESKTOP_ENVIRONMENT_V1.md` first. Environment blocker is resolved:
+new ignored `.cache/malecns-balance-python312-v1/Scripts/python.exe` under the
+PRIMARY Documents/FlyBrainUnity checkout is Python3.12.14, FlyGym1.2.1,
+MuJoCo3.2.7, dm_control1.0.27, NumPy2.0.2, SciPy1.15.3, pyarrow25.0.1.
+pip check/imports and37focused tests pass. Old Python3.10 venv is unchanged.
+Hashed136-wheel lock, desktop inventory and receipt are preserved in new evidence.
+
+Original static authorities pass after cached LFS hydration and guarded original
+Git-byte restoration of two CRLF-converted JSONs in the isolated worktree only.
+Original backups/locks retained; new -text attributes plus6real checkout tests.
+Do not refresh expected hashes or repair the user's primary edits incidentally.
+
+ONE ACTUAL ATTEMPT: `docs/evidence/balance-contribution-execution-v1/run-desktop-01/`
+at committed implementation266285f. NC completed20000physics/4000neural,20001states.
+WC failed during initialization:1initial state,0scientific transitions/updates.
+NP/WP unstarted. Status INCOMPLETE/INCONCLUSIVE_INTEGRITY; behavior null (not a
+measured biological null); Unity ineligible. Saved evaluation/hash replay passes
+with native imports/CNS construction forbidden. No automatic retry occurred.
+
+WC discrepancy is84absolute-name fields only: current FlyGym instance1/... versus
+historical M5A0/...; all numeric joint/actuator IDs and address comparisons match.
+Installed1.2.1 source preserves an existing-name registry across fresh instances.
+The adapter's historical absolute instance-name assumption is defective. Actual
+native inventory validation passed before the extra comparison rejected WC.
+Raw initial/context/prefix comparisons also contain names; deleting only the
+first guard is not an end-to-end fix. No identity, physiology or mapping waived.
+
+Next concrete gate: prospective/versioned instance/process-lifecycle correction,
+prefer fresh process per arm while keeping actual-model resolution and strict
+original checks; tests and commit before any justified new four-arm attempt.
+No registry reset, guessed IDs, mere name stripping, resume-from-WC or repeat
+until favorable output. That correction/new attempt is NOT implemented/run here.
+20/42 motors,0new admissions, LF target0/8; no balance/gait claim. Roadmap+GitBash.
+
+Older checkpoints below retain their dated facts; their environment-blocked and
+native-not-run statements describe the earlier implementation delivery.
+
 ## Continuation checkpoint — 2026-10-26
 
 Balance-contribution V1 adapter/recorder/evaluator is implemented separately in

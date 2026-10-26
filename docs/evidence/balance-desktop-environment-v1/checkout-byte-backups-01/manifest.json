@@ -1,0 +1,16 @@
+[
+  {
+    "path": "malecns_backend/embodiment/interface_output/tactile_motor_closed_loop_100ms.json",
+    "original_working_sha256": "2a3ddfd433632c2dd6e55261ca02741c2c73f37c22652b73651ce67331b81b4b",
+    "original_git_sha256": "d684f38cd50edf6f494f00678d33a67c8cd89b50a34fd4815d5af90f05611e09",
+    "unchanged_expected_sha256": "d684f38cd50edf6f494f00678d33a67c8cd89b50a34fd4815d5af90f05611e09",
+    "backup_sha256": "2a3ddfd433632c2dd6e55261ca02741c2c73f37c22652b73651ce67331b81b4b"
+  },
+  {
+    "path": "malecns_backend/embodiment/interface_output/tactile_motor_matched_control_preflight.json",
+    "original_working_sha256": "17223ff40b17341ea835de93ee8fa4326fcd8a9532e05921eea72d2846ce41a3",
+    "original_git_sha256": "15e83fa88aa3e7a6206ea7bb736cd1ec446874dcf44079e0b79bcbf39c594901",
+    "unchanged_expected_sha256": "15e83fa88aa3e7a6206ea7bb736cd1ec446874dcf44079e0b79bcbf39c594901",
+    "backup_sha256": "17223ff40b17341ea835de93ee8fa4326fcd8a9532e05921eea72d2846ce41a3"
+  }
+]

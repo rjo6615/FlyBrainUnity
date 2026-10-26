@@ -1,0 +1,21 @@
+{
+  "package": "flygym",
+  "version": "1.2.1",
+  "installed_source_path": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\.cache\\malecns-balance-python312-v1\\Lib\\site-packages\\flygym\\fly.py",
+  "installed_source_sha256": "28f69407082911ffa0bdc5f2d154d53ebee8cf734b632cf38d945f39c8120c59",
+  "lines": {
+    "300": "    _default_fly_name = 0",
+    "301": "    _existing_fly_names = set()",
+    "403": "        if name is None:",
+    "404": "            name = f\"{self._default_fly_name}\"",
+    "405": "            self._default_fly_name += 1",
+    "406": "",
+    "407": "            while name in self._existing_fly_names:",
+    "408": "                name = f\"{self._default_fly_name}\"",
+    "409": "                self._default_fly_name += 1",
+    "410": "",
+    "411": "        self._existing_fly_names.add(str(name))",
+    "412": "        self.model.model = str(name)"
+  },
+  "scope": "Read-only source and actual WC identity diagnosis; not anatomical or functional evidence; no registry/counter changes made."
+}

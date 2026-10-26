@@ -1,0 +1,1 @@
+{"environment":{"verified":true,"observed":{"python":"3.12","flygym":"1.2.1","mujoco":"3.2.7","dm_control":"1.0.27","numpy":"2.0.2"},"mismatches":{}},"scientific_transitions":0,"native_constructions":0,"cns_initializations":0,"checks":{"design":true,"original_authorities":true,"original_neural_data":true},"errors":{},"verified":true}

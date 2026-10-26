@@ -1,0 +1,34 @@
+{
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "executable": "C:\\Users\\legen\\Documents\\FlyBrainUnity\\.cache\\malecns-balance-python312-v1\\Scripts\\python.exe",
+  "versions": {
+    "flygym": "1.2.1",
+    "mujoco": "3.2.7",
+    "dm_control": "1.0.27",
+    "numpy": "2.0.2",
+    "scipy": "1.15.3",
+    "pyarrow": "25.0.1",
+    "pytest": "9.1.1"
+  },
+  "pip_check": "No broken requirements found.",
+  "import_check": "flygym,mujoco,dm_control,numpy,pyarrow,scipy imported successfully",
+  "focused_tests": {
+    "passed": 37,
+    "seconds": 57.82,
+    "files": [
+      "tests/test_balance_contribution.py",
+      "tests/test_neural_runtime.py",
+      "tests/test_calibrated_neural_parity.py"
+    ]
+  },
+  "static_preflight": "preflight-02/report.json; verified=true; zero native/CNS/scientific construction",
+  "source_checkout_repairs": "checkout-byte-backups-01/manifest.json; original locks unchanged; isolated worktree only",
+  "setup_files": {
+    "desktop-package-versions.json": "2e1dfb0eb4a8330ff5174e48234d8c7f3908f06d616b83962f0e18d16875895f",
+    "desktop-constraints.txt": "2d36d7ff9970ba54954510768af868f5e208614815c6aa5e5d0d1fe87bf50706",
+    "resolved-requirements.txt": "024b778c727a95cdf40bf98a613dc654ab18ad94b950cde18975d067aa20d0d5",
+    "resolve-plan.json": "16cb71479a81d148d2e7426897f03ffed8d92ee1679ed3b7349d683ef8552683",
+    "install-report.json": "72bff80c06ec746038b344f36acecafca9b7b2c5f3b8fcf2dc2e8924c617c40c"
+  },
+  "old_venv_unchanged": true
+}
