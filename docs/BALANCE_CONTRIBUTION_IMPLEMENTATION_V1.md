@@ -64,7 +64,7 @@ are no duration, force, seed, window or retry switches.
 
 ## Actual checks and failures
 
-New engineering checks: **23 passed**, including a complete synthetic 80,004-state
+New engineering checks: **23 passed in 39.892 s**, including a complete synthetic 80,004-state
 four-arm null, fixed-budget command replay, raw withdrawal versus slew, actual
 5005/5006 boundary, terminal proposal ownership, real 392-slot sampling on a small
 400-neuron fixture, candidate/CNS replay corruption rejection, world-frame and
@@ -73,7 +73,7 @@ interruption preservation, exclusive writes and raw-artifact tamper rejection.
 The synthetic fixture is manufactured evidence for the evaluator, not a FlyGym
 simulation, anatomical finding or neural-balance result.
 
-Existing neural runtime checks: **13 passed**, including JS reference parity.
+Existing neural runtime checks: **13 passed in 0.392 s**, including JS reference parity.
 These use synthetic networks, including the existing CNS-sized shape fixture;
 they do not initialize the actual connectome experiment. The first sandbox run
 had 12 passes/1 Node filesystem-permission error; an elevated rerun passed all 13.
@@ -99,8 +99,17 @@ Seven original neural/calibration source identities passed their recorded modes.
 The preserved [first static report](evidence/balance-contribution-implementation-v1/preflight-01/report.json)
 records the earlier implementation's missing packages/pyarrow and zero scientific,
 native and CNS initialization counts. Later implementation changes are not
-retroactively attributed to that report. The final separately saved refusal
-report will record the final code fingerprint and original-neural-data check.
+retroactively attributed to that report. The
+[final separately saved refusal report](evidence/balance-contribution-implementation-v1/preflight-02/report.json)
+was produced after implementation commit `04c44a2` using `--live`. It exited 1,
+status BLOCKED_PREREQUISITES, INCONCLUSIVE_INTEGRITY, original design/code check
+true, seven original neural/calibration identities true, authority check blocked
+by missing pyarrow, and environment check false. Scientific experiment started
+is false, arm inventory is empty, native/CNS initializations and scientific
+transitions are zero. It records the final code fingerprint. This is a verified
+refusal before scientific execution, not an attempted or completed fly trial.
+Saved evaluation replay exactly matched this report; committed-code verification
+passed. Git staged whitespace and implementation-document links/fences passed.
 No original failed evidence is overwritten.
 
 **No actual FlyGym/MuJoCo body, connectome initialization, four-arm experiment,
