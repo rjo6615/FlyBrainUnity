@@ -1,0 +1,613 @@
+{
+  "active_interface_count": 11,
+  "active_interface_modified": false,
+  "anatomical_coordinate_signs": null,
+  "environment_versions": {
+    "flygym": "1.2.1",
+    "mujoco": "3.2.7",
+    "numpy": "2.0.2"
+  },
+  "evidence": {
+    "joint_LFCoxa_yaw": {
+      "action_isolation": true,
+      "extra_force": false,
+      "fresh_baseline_identical": true,
+      "negative": {
+        "axis_projection_rad": -9.999999973779312e-05,
+        "baseline_identity_sha256": "612708ca2474eb790be650fbbb18078a755fb1e86873959cfcd34dae325938f4",
+        "endpoint_displacement_from_baseline": [
+          0.0,
+          2.975593835660706e-05,
+          5.208679385582116e-07
+        ],
+        "endpoint_position": [
+          1.883169941936633,
+          0.1663942022207434,
+          1.863988424307344
+        ],
+        "joint_delta_rad": -0.0001,
+        "nonzero_action_indices": [
+          2
+        ],
+        "physics_transitions": 0,
+        "segment_orientation_baseline": [
+          0.9455185755993168,
+          0.0,
+          0.3255681544571567,
+          0.0,
+          1.0,
+          0.0,
+          -0.3255681544571567,
+          0.0,
+          0.9455185755993168
+        ],
+        "segment_orientation_perturbed": [
+          0.9455185755993168,
+          0.0,
+          0.3255681544571567,
+          -3.255681539145431e-05,
+          0.9999999949999999,
+          9.455185740234526e-05,
+          -0.32556815282931595,
+          -9.999999983333334e-05,
+          0.9455185708717239
+        ],
+        "world_joint_axis_baseline": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "neural_transitions": 0,
+      "positive": {
+        "axis_projection_rad": 9.999999973779312e-05,
+        "baseline_identity_sha256": "612708ca2474eb790be650fbbb18078a755fb1e86873959cfcd34dae325938f4",
+        "endpoint_displacement_from_baseline": [
+          0.0,
+          -2.975588612100233e-05,
+          -5.238435305532363e-07
+        ],
+        "endpoint_position": [
+          1.883169941936633,
+          0.16633469039626578,
+          1.8639873795958748
+        ],
+        "joint_delta_rad": 0.0001,
+        "nonzero_action_indices": [
+          2
+        ],
+        "physics_transitions": 0,
+        "segment_orientation_baseline": [
+          0.9455185755993168,
+          0.0,
+          0.3255681544571567,
+          0.0,
+          1.0,
+          0.0,
+          -0.3255681544571567,
+          0.0,
+          0.9455185755993168
+        ],
+        "segment_orientation_perturbed": [
+          0.9455185755993168,
+          0.0,
+          0.3255681544571567,
+          3.255681539145431e-05,
+          0.9999999949999999,
+          -9.455185740234526e-05,
+          -0.32556815282931595,
+          9.999999983333334e-05,
+          0.9455185708717239
+        ],
+        "world_joint_axis_baseline": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "stimulation": false
+    },
+    "joint_LHCoxa_yaw": {
+      "action_isolation": true,
+      "extra_force": false,
+      "fresh_baseline_identical": true,
+      "negative": {
+        "axis_projection_rad": -9.999999973779312e-05,
+        "baseline_identity_sha256": "31008206f387f9383533aa817977d2a1a64cd494ee0678e265fabc76d1fcc325",
+        "endpoint_displacement_from_baseline": [
+          4.440892098500626e-16,
+          1.860627356653488e-05,
+          -0.00010919979991852458
+        ],
+        "endpoint_position": [
+          -2.1802306408689898,
+          1.1790007498483221,
+          1.4860404830533127
+        ],
+        "joint_delta_rad": -0.0001,
+        "nonzero_action_indices": [
+          16
+        ],
+        "physics_transitions": 0,
+        "segment_orientation_baseline": [
+          -0.8660254037844387,
+          -0.49999999999999994,
+          0.0,
+          0.49999999999999994,
+          -0.8660254037844387,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "segment_orientation_perturbed": [
+          -0.8660254037844387,
+          -0.49999999999999994,
+          -3.3881317890172014e-21,
+          0.49999999749999996,
+          -0.8660253994543117,
+          9.999999983333334e-05,
+          -4.999999991666667e-05,
+          8.66025402341063e-05,
+          0.999999995
+        ],
+        "world_joint_axis_baseline": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "neural_transitions": 0,
+      "positive": {
+        "axis_projection_rad": 9.999999973779312e-05,
+        "baseline_identity_sha256": "31008206f387f9383533aa817977d2a1a64cd494ee0678e265fabc76d1fcc325",
+        "endpoint_displacement_from_baseline": [
+          4.440892098500626e-16,
+          -1.8617193453973613e-05,
+          0.00010919793874553108
+        ],
+        "endpoint_position": [
+          -2.1802306408689898,
+          1.1789635263813016,
+          1.4862588807919768
+        ],
+        "joint_delta_rad": 0.0001,
+        "nonzero_action_indices": [
+          16
+        ],
+        "physics_transitions": 0,
+        "segment_orientation_baseline": [
+          -0.8660254037844387,
+          -0.49999999999999994,
+          0.0,
+          0.49999999999999994,
+          -0.8660254037844387,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "segment_orientation_perturbed": [
+          -0.8660254037844387,
+          -0.49999999999999994,
+          3.3881317890172014e-21,
+          0.49999999749999996,
+          -0.8660253994543117,
+          -9.999999983333334e-05,
+          4.999999991666667e-05,
+          -8.66025402341063e-05,
+          0.999999995
+        ],
+        "world_joint_axis_baseline": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "stimulation": false
+    },
+    "joint_LMCoxa_yaw": {
+      "action_isolation": true,
+      "extra_force": false,
+      "fresh_baseline_identical": true,
+      "negative": {
+        "axis_projection_rad": -9.99999952969009e-05,
+        "baseline_identity_sha256": "fa61a3452970ab64ee073be8f97d7c36d248da0713a755f7468ce6b2dc3544e6",
+        "endpoint_displacement_from_baseline": [
+          0.0,
+          1.760637338765747e-05,
+          -0.0002025867109327617
+        ],
+        "endpoint_position": [
+          -0.060717592015862465,
+          2.1507770043746595,
+          1.490397743593042
+        ],
+        "joint_delta_rad": -0.0001,
+        "nonzero_action_indices": [
+          9
+        ],
+        "physics_transitions": 0,
+        "segment_orientation_baseline": [
+          0.0,
+          -1.0000000000000002,
+          0.0,
+          1.0000000000000002,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0000000000000002
+        ],
+        "segment_orientation_perturbed": [
+          0.0,
+          -1.0,
+          0.0,
+          0.999999995,
+          0.0,
+          9.999999983333334e-05,
+          -9.999999983333334e-05,
+          0.0,
+          0.999999995
+        ],
+        "world_joint_axis_baseline": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "neural_transitions": 0,
+      "positive": {
+        "axis_projection_rad": 9.99999952969009e-05,
+        "baseline_identity_sha256": "fa61a3452970ab64ee073be8f97d7c36d248da0713a755f7468ce6b2dc3544e6",
+        "endpoint_displacement_from_baseline": [
+          0.0,
+          -1.762663197224512e-05,
+          0.00020258494928326876
+        ],
+        "endpoint_position": [
+          -0.060717592015862465,
+          2.1507417713692996,
+          1.490802915253258
+        ],
+        "joint_delta_rad": 0.0001,
+        "nonzero_action_indices": [
+          9
+        ],
+        "physics_transitions": 0,
+        "segment_orientation_baseline": [
+          0.0,
+          -1.0000000000000002,
+          0.0,
+          1.0000000000000002,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0000000000000002
+        ],
+        "segment_orientation_perturbed": [
+          0.0,
+          -1.0,
+          0.0,
+          0.999999995,
+          0.0,
+          -9.999999983333334e-05,
+          9.999999983333334e-05,
+          0.0,
+          0.999999995
+        ],
+        "world_joint_axis_baseline": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "stimulation": false
+    },
+    "joint_RFCoxa_yaw": {
+      "action_isolation": true,
+      "extra_force": false,
+      "fresh_baseline_identical": true,
+      "negative": {
+        "axis_projection_rad": -9.999999973779312e-05,
+        "baseline_identity_sha256": "a346633ce655cb26139a24450bb8c080656c69c8504a2bfa70a28ddd404294ac",
+        "endpoint_displacement_from_baseline": [
+          0.0,
+          2.975588612100233e-05,
+          -5.238435305532363e-07
+        ],
+        "endpoint_position": [
+          1.883169941936633,
+          -0.16633469039626578,
+          1.8639873795958748
+        ],
+        "joint_delta_rad": -0.0001,
+        "nonzero_action_indices": [
+          23
+        ],
+        "physics_transitions": 0,
+        "segment_orientation_baseline": [
+          0.9455185755993168,
+          0.0,
+          0.3255681544571567,
+          0.0,
+          1.0,
+          0.0,
+          -0.3255681544571567,
+          0.0,
+          0.9455185755993168
+        ],
+        "segment_orientation_perturbed": [
+          0.9455185755993168,
+          0.0,
+          0.3255681544571567,
+          -3.255681539145431e-05,
+          0.9999999949999999,
+          9.455185740234526e-05,
+          -0.32556815282931595,
+          -9.999999983333334e-05,
+          0.9455185708717239
+        ],
+        "world_joint_axis_baseline": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "neural_transitions": 0,
+      "positive": {
+        "axis_projection_rad": 9.999999973779312e-05,
+        "baseline_identity_sha256": "a346633ce655cb26139a24450bb8c080656c69c8504a2bfa70a28ddd404294ac",
+        "endpoint_displacement_from_baseline": [
+          0.0,
+          -2.975593835660706e-05,
+          5.208679385582116e-07
+        ],
+        "endpoint_position": [
+          1.883169941936633,
+          -0.1663942022207434,
+          1.863988424307344
+        ],
+        "joint_delta_rad": 0.0001,
+        "nonzero_action_indices": [
+          23
+        ],
+        "physics_transitions": 0,
+        "segment_orientation_baseline": [
+          0.9455185755993168,
+          0.0,
+          0.3255681544571567,
+          0.0,
+          1.0,
+          0.0,
+          -0.3255681544571567,
+          0.0,
+          0.9455185755993168
+        ],
+        "segment_orientation_perturbed": [
+          0.9455185755993168,
+          0.0,
+          0.3255681544571567,
+          3.255681539145431e-05,
+          0.9999999949999999,
+          -9.455185740234526e-05,
+          -0.32556815282931595,
+          9.999999983333334e-05,
+          0.9455185708717239
+        ],
+        "world_joint_axis_baseline": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "stimulation": false
+    },
+    "joint_RHCoxa_yaw": {
+      "action_isolation": true,
+      "extra_force": false,
+      "fresh_baseline_identical": true,
+      "negative": {
+        "axis_projection_rad": -9.999999973779312e-05,
+        "baseline_identity_sha256": "dff419c43b3a5cf8dccabfd00be57f812aa6da05b84005986af88883e13254bc",
+        "endpoint_displacement_from_baseline": [
+          4.440892098500626e-16,
+          1.8617193453973613e-05,
+          0.00010919793874553108
+        ],
+        "endpoint_position": [
+          -2.1802306408689898,
+          -1.1789635263813016,
+          1.4862588807919768
+        ],
+        "joint_delta_rad": -0.0001,
+        "nonzero_action_indices": [
+          37
+        ],
+        "physics_transitions": 0,
+        "segment_orientation_baseline": [
+          -0.8660254037844387,
+          0.49999999999999994,
+          0.0,
+          -0.49999999999999994,
+          -0.8660254037844387,
+          -0.0,
+          -0.0,
+          0.0,
+          1.0
+        ],
+        "segment_orientation_perturbed": [
+          -0.8660254037844387,
+          0.49999999999999994,
+          3.3881317890172014e-21,
+          -0.49999999749999996,
+          -0.8660253994543117,
+          9.999999983333334e-05,
+          4.999999991666667e-05,
+          8.66025402341063e-05,
+          0.999999995
+        ],
+        "world_joint_axis_baseline": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "neural_transitions": 0,
+      "positive": {
+        "axis_projection_rad": 9.999999973779312e-05,
+        "baseline_identity_sha256": "dff419c43b3a5cf8dccabfd00be57f812aa6da05b84005986af88883e13254bc",
+        "endpoint_displacement_from_baseline": [
+          4.440892098500626e-16,
+          -1.860627356653488e-05,
+          -0.00010919979991852458
+        ],
+        "endpoint_position": [
+          -2.1802306408689898,
+          -1.1790007498483221,
+          1.4860404830533127
+        ],
+        "joint_delta_rad": 0.0001,
+        "nonzero_action_indices": [
+          37
+        ],
+        "physics_transitions": 0,
+        "segment_orientation_baseline": [
+          -0.8660254037844387,
+          0.49999999999999994,
+          0.0,
+          -0.49999999999999994,
+          -0.8660254037844387,
+          -0.0,
+          -0.0,
+          0.0,
+          1.0
+        ],
+        "segment_orientation_perturbed": [
+          -0.8660254037844387,
+          0.49999999999999994,
+          -3.3881317890172014e-21,
+          -0.49999999749999996,
+          -0.8660253994543117,
+          -9.999999983333334e-05,
+          -4.999999991666667e-05,
+          -8.66025402341063e-05,
+          0.999999995
+        ],
+        "world_joint_axis_baseline": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "stimulation": false
+    },
+    "joint_RMCoxa_yaw": {
+      "action_isolation": true,
+      "extra_force": false,
+      "fresh_baseline_identical": true,
+      "negative": {
+        "axis_projection_rad": -9.99999952969009e-05,
+        "baseline_identity_sha256": "fda92edf56c427524951c342e4733c815b68dcbd92f6d94a183686edb24e9031",
+        "endpoint_displacement_from_baseline": [
+          0.0,
+          1.762663197224512e-05,
+          0.00020258494928326876
+        ],
+        "endpoint_position": [
+          -0.060717592015862465,
+          -2.1507417713692996,
+          1.490802915253258
+        ],
+        "joint_delta_rad": -0.0001,
+        "nonzero_action_indices": [
+          30
+        ],
+        "physics_transitions": 0,
+        "segment_orientation_baseline": [
+          0.0,
+          1.0000000000000002,
+          0.0,
+          -1.0000000000000002,
+          0.0,
+          -0.0,
+          -0.0,
+          0.0,
+          1.0000000000000002
+        ],
+        "segment_orientation_perturbed": [
+          0.0,
+          1.0,
+          0.0,
+          -0.999999995,
+          0.0,
+          9.999999983333334e-05,
+          9.999999983333334e-05,
+          0.0,
+          0.999999995
+        ],
+        "world_joint_axis_baseline": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "neural_transitions": 0,
+      "positive": {
+        "axis_projection_rad": 9.99999952969009e-05,
+        "baseline_identity_sha256": "fda92edf56c427524951c342e4733c815b68dcbd92f6d94a183686edb24e9031",
+        "endpoint_displacement_from_baseline": [
+          0.0,
+          -1.760637338765747e-05,
+          -0.0002025867109327617
+        ],
+        "endpoint_position": [
+          -0.060717592015862465,
+          -2.1507770043746595,
+          1.490397743593042
+        ],
+        "joint_delta_rad": 0.0001,
+        "nonzero_action_indices": [
+          30
+        ],
+        "physics_transitions": 0,
+        "segment_orientation_baseline": [
+          0.0,
+          1.0000000000000002,
+          0.0,
+          -1.0000000000000002,
+          0.0,
+          -0.0,
+          -0.0,
+          0.0,
+          1.0000000000000002
+        ],
+        "segment_orientation_perturbed": [
+          0.0,
+          1.0,
+          0.0,
+          -0.999999995,
+          0.0,
+          -9.999999983333334e-05,
+          -9.999999983333334e-05,
+          0.0,
+          0.999999995
+        ],
+        "world_joint_axis_baseline": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "stimulation": false
+    }
+  },
+  "extra_force": false,
+  "mechanical_only": true,
+  "neural_transitions": 0,
+  "physics_transitions": 0,
+  "scientific_run_executed": true,
+  "status": "MECHANICAL_DIRECTION_RESOLVED_ANATOMICAL_SIGN_UNRESOLVED",
+  "stimulation": false
+}

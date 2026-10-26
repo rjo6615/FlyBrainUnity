@@ -1,0 +1,17 @@
+[
+  {
+    "path": "malecns_backend/embodiment/interface_output/coxa_yaw_sign_validation/coxa_yaw_sign_validation_result.json",
+    "before_sha256": "5c6360ee8e04814d3b27ca2d743337511f0b5d4afe935df4933429ecc485cd26",
+    "original_expected_sha256": "33e713e9cbf138fc6fcd21587a625e6c8b979d7b6ed1a15489f3262483d1210c"
+  },
+  {
+    "path": "malecns_backend/embodiment/interface_output/coxa_yaw_anatomical_sign_bridge/coxa_yaw_anatomical_sign_bridge_result.json",
+    "before_sha256": "0dc656898a2efd8cbe8b4681f0b2c6eae30e8cb16595ae5d2b42762d8c1b38b7",
+    "original_expected_sha256": "4da8a7407e207ca3812aae85b591a9d80c304e837b69f3f17e338f84c38dd7e7"
+  },
+  {
+    "path": "malecns_backend/embodiment/interface_output/flymimic_flygym_proximal_registration/flymimic_flygym_proximal_registration_result.json",
+    "before_sha256": "8c8cc389dddc51b3ef465d4dd385ee7c23e25e900824d53ee6b082847377403b",
+    "original_expected_sha256": "a06b342390d6132a37b50766085390adb1a9eb8c1c34849f1f56dd69578e0684"
+  }
+]

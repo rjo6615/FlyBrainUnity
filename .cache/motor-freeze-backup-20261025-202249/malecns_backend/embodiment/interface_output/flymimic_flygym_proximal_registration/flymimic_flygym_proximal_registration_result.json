@@ -1,0 +1,495 @@
+{
+  "schema": "FLYMIMIC-FLYGYM-PROXIMAL-REGISTRATION-RESULT.1",
+  "status": "FROZEN",
+  "registration_verdict": "REGISTRATION_ESTABLISHED",
+  "translation_answer": "YES",
+  "claim": "The seven FlyMimic proximal muscle mechanics can be translated into the FlyGym generalized-coordinate system at the documented reference configurations without an unsupported coordinate assumption.",
+  "provenance": {
+    "flymimic": {
+      "source_model": "flymimic\\assets\\models\\best_combined_cvt3.xml",
+      "source_model_sha256": "a72d4a3167a6f6382d31936d32f2481db5895441a0cc2d02cdbd0452a6209a81",
+      "mujoco_version": "3.3.2",
+      "reference_configuration": {
+        "name": "default-pose",
+        "complete_qpos": [
+          0.1745,
+          0.4357,
+          0.2614,
+          -0.4081,
+          -2.388,
+          0.1702,
+          1.862,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "evidence_export": {
+      "path": "flymimic_flygym_registration_export.json",
+      "sha256": "64c31caefeaaf38f2b5e22f69122062ac384c1d756bd16d0cce532d776995597"
+    },
+    "flygym": {
+      "flygym_version": "1.2.1",
+      "mujoco_version": "3.2.7",
+      "reference_configuration": "documented zero generalized-coordinate configuration of the compiled authoritative rig",
+      "mjcf_filename": "neuromechfly_seqik_kinorder_ypr.xml",
+      "mjcf_sha256": "413b3a1dcb7537d08122e16f256f27ec0d8bb9f52c58670345b6c24c9e72e05a",
+      "assembled_xml_sha256": "264c8b7718875612e7cf67c23f0170895fbd54705bd731d9b0a6cab2d251e2e8",
+      "authoritative_rig_path": "FlyBrainUnity/Assets/StreamingAssets/M7FValidation/m7f_authoritative_rig.json",
+      "authoritative_rig_sha256": "d8cd7e58bb33fff5e102484d937100d7afd7dc1f4156b39dc2a27f65c0c29eb7"
+    }
+  },
+  "anatomical_bases": {
+    "matrix_convention": "Columns are the instantaneous yaw, pitch, and roll hinge axes expressed in their respective documented Thorax/world-aligned anatomical frame.",
+    "flymimic_B_M": {
+      "column_order": [
+        "joint_LFCoxa_yaw",
+        "joint_LFCoxa_pitch",
+        "joint_LFCoxa_roll"
+      ],
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.42204510709887066
+        ],
+        [
+          0.0,
+          0.9846749074454697,
+          -0.15810656416268676
+        ],
+        [
+          0.0,
+          0.17439990437857375,
+          0.8926814896381424
+        ]
+      ],
+      "determinant": 0.9065748328593193,
+      "rank": 3,
+      "condition_number_2": 1.5685909817436339
+    },
+    "flygym_B_G": {
+      "column_order": [
+        "joint_LFCoxa_yaw",
+        "joint_LFCoxa",
+        "joint_LFCoxa_roll"
+      ],
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "determinant": 1.0,
+      "rank": 3,
+      "condition_number_2": 1.0
+    }
+  },
+  "local_differential_registration": {
+    "definition": "dq_G = J_GM dq_M",
+    "J_GM": [
+      [
+        1.0,
+        0.0,
+        0.42204510709887066
+      ],
+      [
+        0.0,
+        0.9846749074454697,
+        -0.15810656416268676
+      ],
+      [
+        0.0,
+        0.17439990437857375,
+        0.8926814896381424
+      ]
+    ],
+    "covector_definition": "r_G = J_GM^(-T) r_M",
+    "J_GM_inverse_transpose": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.08118979664297586,
+        0.9846749074454697,
+        -0.19237232058220705
+      ],
+      [
+        -0.458403665872426,
+        0.17439990437857375,
+        1.0861485138957854
+      ]
+    ]
+  },
+  "muscle_mechanics": [
+    {
+      "flymimic_tendon": "LFC_pleural_promotor_tendon",
+      "moment_arm_convention": "R = -dL/dq",
+      "flymimic_covector": {
+        "basis_order": [
+          "yaw",
+          "pitch",
+          "roll"
+        ],
+        "values": [
+          -0.03065742097227428,
+          -0.02334479952917857,
+          -0.01936783346949819
+        ]
+      },
+      "flygym_covector": {
+        "basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "values": [
+          -0.03065742097227428,
+          -0.0217502730208869,
+          -0.011054200186017507
+        ]
+      },
+      "normalized_absolute_contribution_fractions": {
+        "normalization": "abs(component) / sum(abs(all components))",
+        "basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "values": [
+          0.4830839256974577,
+          0.3427296537899901,
+          0.17418642051255218
+        ]
+      },
+      "historical_mapping": {
+        "mapping_claim": "coxa/promotion",
+        "classification": "MULTI_AXIS_YAW_DOMINANT",
+        "scope": "Descriptive comparison only; not a decoder-weight or interface-admission decision."
+      }
+    },
+    {
+      "flymimic_tendon": "LFC_pleural_remotor_and_abductor_tendon",
+      "moment_arm_convention": "R = -dL/dq",
+      "flymimic_covector": {
+        "basis_order": [
+          "yaw",
+          "pitch",
+          "roll"
+        ],
+        "values": [
+          0.035471495483644505,
+          0.022239505129753537,
+          -0.004238497676878344
+        ]
+      },
+      "flygym_covector": {
+        "basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "values": [
+          0.035471495483644505,
+          0.025593975794095825,
+          -0.016985333948516177
+        ]
+      },
+      "normalized_absolute_contribution_fractions": {
+        "normalization": "abs(component) / sum(abs(all components))",
+        "basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "values": [
+          0.45446674612540444,
+          0.3279143081215252,
+          0.2176189457530704
+        ]
+      },
+      "historical_mapping": {
+        "mapping_claim": "coxa/remotion plus coxa_abduct/abduction",
+        "classification": "MULTI_AXIS_YAW_DOMINANT",
+        "scope": "Descriptive comparison only; not a decoder-weight or interface-admission decision."
+      }
+    },
+    {
+      "flymimic_tendon": "LFC_sternal_adductor_tendon",
+      "moment_arm_convention": "R = -dL/dq",
+      "flymimic_covector": {
+        "basis_order": [
+          "yaw",
+          "pitch",
+          "roll"
+        ],
+        "values": [
+          -0.11388808872259532,
+          0.054622916267989666,
+          -0.060771646660133675
+        ]
+      },
+      "flygym_covector": {
+        "basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "values": [
+          -0.11388808872259532,
+          0.05623004695075151,
+          -0.004274084963245932
+        ]
+      },
+      "normalized_absolute_contribution_fractions": {
+        "normalization": "abs(component) / sum(abs(all components))",
+        "basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "values": [
+          0.6530571622223964,
+          0.32243437663384367,
+          0.02450846114375987
+        ]
+      },
+      "historical_mapping": {
+        "mapping_claim": "coxa_abduct/adduction",
+        "classification": "MULTI_AXIS_YAW_DOMINANT",
+        "scope": "Descriptive comparison only; not a decoder-weight or interface-admission decision."
+      }
+    },
+    {
+      "flymimic_tendon": "LFC_sternal_anterior_rotator_tendon",
+      "moment_arm_convention": "R = -dL/dq",
+      "flymimic_covector": {
+        "basis_order": [
+          "yaw",
+          "pitch",
+          "roll"
+        ],
+        "values": [
+          -0.08352962239815168,
+          -0.0056561506950755305,
+          -0.008958592971012133
+        ]
+      },
+      "flygym_covector": {
+        "basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "values": [
+          -0.08352962239815168,
+          -0.010627837399356571,
+          0.0275734905338182
+        ]
+      },
+      "normalized_absolute_contribution_fractions": {
+        "normalization": "abs(component) / sum(abs(all components))",
+        "basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "values": [
+          0.6861822911166087,
+          0.0873059593343336,
+          0.2265117495490577
+        ]
+      },
+      "historical_mapping": {
+        "mapping_claim": "coxa_twist/positive rotation",
+        "classification": "MULTI_AXIS_YAW_DOMINANT",
+        "scope": "Descriptive comparison only; not a decoder-weight or interface-admission decision."
+      }
+    },
+    {
+      "flymimic_tendon": "LFC_sternal_posterior_rotator_tendon",
+      "moment_arm_convention": "R = -dL/dq",
+      "flymimic_covector": {
+        "basis_order": [
+          "yaw",
+          "pitch",
+          "roll"
+        ],
+        "values": [
+          -0.008295719862404953,
+          0.04099371056487475,
+          0.03711802611507457
+        ]
+      },
+      "flygym_covector": {
+        "basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "values": [
+          -0.008295719862404953,
+          0.0325514695284908,
+          0.05126777650224741
+        ]
+      },
+      "normalized_absolute_contribution_fractions": {
+        "normalization": "abs(component) / sum(abs(all components))",
+        "basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "values": [
+          0.09005832854596398,
+          0.35337872855809044,
+          0.5565629428959455
+        ]
+      },
+      "historical_mapping": {
+        "mapping_claim": "coxa_twist/negative rotation",
+        "classification": "MULTI_AXIS_ROLL_DOMINANT",
+        "scope": "Descriptive comparison only; not a decoder-weight or interface-admission decision."
+      }
+    },
+    {
+      "flymimic_tendon": "LFC_tergopleural_promotor_a_tendon",
+      "moment_arm_convention": "R = -dL/dq",
+      "flymimic_covector": {
+        "basis_order": [
+          "yaw",
+          "pitch",
+          "roll"
+        ],
+        "values": [
+          -0.040057275498351676,
+          -0.023118291429621574,
+          0.023922972295369122
+        ]
+      },
+      "flygym_covector": {
+        "basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "values": [
+          -0.040057275498351676,
+          -0.03061836122122686,
+          0.04031447492516933
+        ]
+      },
+      "normalized_absolute_contribution_fractions": {
+        "normalization": "abs(component) / sum(abs(all components))",
+        "basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "values": [
+          0.3609085071160681,
+          0.27586566737790774,
+          0.36322582550602417
+        ]
+      },
+      "historical_mapping": {
+        "mapping_claim": "coxa/promotion",
+        "classification": "MULTI_AXIS_NO_CLEAR_DOMINANT_AXIS",
+        "scope": "Descriptive comparison only; not a decoder-weight or interface-admission decision."
+      }
+    },
+    {
+      "flymimic_tendon": "LFC_tergopleural_promotor_b_tendon",
+      "moment_arm_convention": "R = -dL/dq",
+      "flymimic_covector": {
+        "basis_order": [
+          "yaw",
+          "pitch",
+          "roll"
+        ],
+        "values": [
+          -0.00786424703389068,
+          -0.01693773971573697,
+          0.004587288301155999
+        ]
+      },
+      "flygym_covector": {
+        "basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "values": [
+          -0.00786424703389068,
+          -0.018199131200033455,
+          0.005633535853960252
+        ]
+      },
+      "normalized_absolute_contribution_fractions": {
+        "normalization": "abs(component) / sum(abs(all components))",
+        "basis_order": [
+          "joint_LFCoxa_yaw",
+          "joint_LFCoxa",
+          "joint_LFCoxa_roll"
+        ],
+        "values": [
+          0.24810765527792045,
+          0.5741609782445594,
+          0.17773136647752016
+        ]
+      },
+      "historical_mapping": {
+        "mapping_claim": "coxa/promotion",
+        "classification": "MULTI_AXIS_PITCH_DOMINANT",
+        "scope": "Descriptive comparison only; not a decoder-weight or interface-admission decision."
+      }
+    }
+  ],
+  "scientific_scope": {
+    "registration_type": "LOCAL_DIFFERENTIAL_REGISTRATION_AT_TWO_DOCUMENTED_REFERENCE_CONFIGURATIONS",
+    "is_finite_angle_mapping": false,
+    "is_pose_independent_mapping": false,
+    "statements": [
+      "This is a local differential registration at the two documented reference configurations.",
+      "It is not a finite-angle or pose-independent mapping.",
+      "FlyMimic mechanics are not biological ground truth.",
+      "Geometry is not a decoder weight.",
+      "This does not establish coordinate signs for MaleCNS populations.",
+      "This does not justify interface admission.",
+      "This is left-front evidence only."
+    ],
+    "evidence_laterality": "LEFT_FRONT_ONLY",
+    "active_malecns_motor_interface_channels": 11,
+    "active_motor_interface_modified": false,
+    "mappings_modified": false,
+    "decoder_weights_modified": false,
+    "coordinate_signs_modified": false
+  },
+  "execution_record": {
+    "audit_rerun_or_recomputed": false,
+    "mujoco_run": false,
+    "neural_simulation_run": false,
+    "behavioral_simulation_run": false,
+    "physics_run": false,
+    "perturbations_run": false,
+    "pose_sweeps_run": false
+  }
+}
