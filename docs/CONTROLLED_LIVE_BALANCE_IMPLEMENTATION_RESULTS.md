@@ -109,7 +109,7 @@ RUN="docs/evidence/controlled-live-balance-v1/run-desktop-01" &&
 git lfs pull --include="$RUN/*.json.gz" &&
 "$PY" -m pytest -q -p no:cacheprovider \
   tests/test_controlled_live_balance.py tests/test_balance_source_prerequisites.py &&
-CHECK=".cache/malecns-live-source-check-$(date +%Y%m%d-%H%M%S).json" &&
+CHECK=".cache/malecns-live-source-checks/check-$(date +%Y%m%d-%H%M%S).json" &&
 "$PY" -m malecns_backend.live.balance_source_prerequisites --output "$CHECK"
 ```
 
