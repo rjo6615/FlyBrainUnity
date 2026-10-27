@@ -1,0 +1,19 @@
+{
+  "schema": "controlled-live-v1.1-saved-replay-verification",
+  "verified": true,
+  "saved_evaluation_exactly_reconstructed": true,
+  "packets_per_arm": {
+    "NC": 20001,
+    "WC": 20001,
+    "NP": 20001,
+    "WP": 20001
+  },
+  "total_packets": 80004,
+  "native_imports_forbidden": true,
+  "cns_and_session_construction_forbidden": true,
+  "new_scientific_transitions": 0,
+  "no_display_server_opened": true,
+  "visual_review": "UNCONFIRMED",
+  "seconds": 197.23499999998603,
+  "report_sha256": "eaf95d2b8b4b270e8368db3025919cc438054bdc93382f4987f12edfffb138f2"
+}

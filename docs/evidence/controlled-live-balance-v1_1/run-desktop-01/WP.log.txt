@@ -1,0 +1,16 @@
+LIVE_PROVISIONAL_NOT_YET_AUDITED WP: binding output-only display before initialization
+WP: LIVE_PROVISIONAL display_session=9c976c03-b23e-46cd-a807-483b943ddbff
+WP: fresh native/CNS initialization; position assistance unchanged
+WP: sim=0.1517s physics=1517/20000 neural=303/4000
+WP: sim=0.2923s physics=2923/20000 neural=584/4000
+WP: sim=0.4385s physics=4385/20000 neural=877/4000
+WP: sim=0.5849s physics=5849/20000 neural=1169/4000
+WP: sim=0.7215s physics=7215/20000 neural=1443/4000
+WP: sim=0.8565s physics=8565/20000 neural=1713/4000
+WP: sim=1.0097s physics=10097/20000 neural=2019/4000
+WP: sim=1.1630s physics=11630/20000 neural=2326/4000
+WP: sim=1.3190s physics=13190/20000 neural=2638/4000
+WP: sim=1.4717s physics=14717/20000 neural=2943/4000
+WP: sim=1.6176s physics=16176/20000 neural=3235/4000
+WP: sim=1.7695s physics=17695/20000 neural=3539/4000
+WP: sim=1.9147s physics=19147/20000 neural=3829/4000

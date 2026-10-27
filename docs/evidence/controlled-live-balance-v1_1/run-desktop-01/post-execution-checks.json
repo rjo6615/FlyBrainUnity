@@ -1,0 +1,42 @@
+{
+  "schema": "controlled-live-v1.1-post-execution-checks",
+  "date": "2026-10-26",
+  "executed_commit": "4ad0c04882713fbe94c6e9a6e2db5834e44aa995",
+  "executed_sources_unchanged": true,
+  "old_v1_executed_sources_unchanged": true,
+  "new_replay_engineering": {
+    "passed": 32,
+    "failed": 0,
+    "seconds": 1.24,
+    "scope": "new adapter plus existing playback/local sockets; synthetic poses only"
+  },
+  "actual_saved_replay_verification": {
+    "schema": "controlled-live-v1.1-saved-replay-verification",
+    "verified": true,
+    "saved_evaluation_exactly_reconstructed": true,
+    "packets_per_arm": {
+      "NC": 20001,
+      "WC": 20001,
+      "NP": 20001,
+      "WP": 20001
+    },
+    "total_packets": 80004,
+    "native_imports_forbidden": true,
+    "cns_and_session_construction_forbidden": true,
+    "new_scientific_transitions": 0,
+    "no_display_server_opened": true,
+    "visual_review": "UNCONFIRMED",
+    "seconds": 197.23499999998603,
+    "report_sha256": "eaf95d2b8b4b270e8368db3025919cc438054bdc93382f4987f12edfffb138f2"
+  },
+  "reference_exact_match_arms": [
+    "NC",
+    "WC",
+    "NP",
+    "WP"
+  ],
+  "new_scientific_experiments_after_bounded_campaign": 0,
+  "new_scientific_transitions_in_verification": 0,
+  "scientific_behavior_label": "MIXED_OR_UNRESOLVED",
+  "visual_review": "UNCONFIRMED_ZERO_LIVE_CLIENT_DELIVERY"
+}

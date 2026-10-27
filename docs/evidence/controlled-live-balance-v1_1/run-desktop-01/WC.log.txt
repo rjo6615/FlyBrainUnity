@@ -1,0 +1,16 @@
+LIVE_PROVISIONAL_NOT_YET_AUDITED WC: binding output-only display before initialization
+WC: LIVE_PROVISIONAL display_session=1f719cc8-e740-4a2e-b227-ecb901a40ac6
+WC: fresh native/CNS initialization; position assistance unchanged
+WC: sim=0.1588s physics=1588/20000 neural=317/4000
+WC: sim=0.3120s physics=3120/20000 neural=624/4000
+WC: sim=0.4651s physics=4651/20000 neural=930/4000
+WC: sim=0.6175s physics=6175/20000 neural=1235/4000
+WC: sim=0.7696s physics=7696/20000 neural=1539/4000
+WC: sim=0.9185s physics=9185/20000 neural=1837/4000
+WC: sim=1.0718s physics=10718/20000 neural=2143/4000
+WC: sim=1.2195s physics=12195/20000 neural=2439/4000
+WC: sim=1.3775s physics=13775/20000 neural=2755/4000
+WC: sim=1.5239s physics=15239/20000 neural=3047/4000
+WC: sim=1.6757s physics=16757/20000 neural=3351/4000
+WC: sim=1.8281s physics=18281/20000 neural=3656/4000
+WC: sim=1.9838s physics=19838/20000 neural=3967/4000

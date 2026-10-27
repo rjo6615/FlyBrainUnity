@@ -1,5 +1,36 @@
 # FlyBrainUnity — local Codex handoff
 
+## V1.1 native campaign completed — 2026-10-26
+
+ONE campaign at4ad0c04 COMPLETE/INTEGRITY_ACCEPTED:NC/WC/NP/WP each20kphysics/
+4kneural/20001states,total80,000/16,000/80,004. Mandatory complete original
+loader-source checks passed controller and each worker before/after acquisition.
+Frozen executed V1.1 code/protocol/doc and V1 sources remain unchanged. Original
+failed live V1 and older accepted reference intact. No retry/tuning/dependency change.
+All4full science-trace reference comparisons EXACT_MATCH(initial/context/samples/
+neural/init operations), environment/original scientific-source differencesfalse.
+
+Behavior MIXED_OR_UNRESOLVED:NPmean/peak world tilt3.8505/4.2674deg vsWP4.3072/
+4.3491;peak difference below0.25deg resolution. Own-control band return NP613.5/
+713.5ms vsWP520.1/620.1ms. No rollover/low-height/<3support in declared cleared
+window; raw startup samples retained. One-seed2s assisted test,20/42,0new admissions;
+no independent neural balance/gait. See CONTROLLED_LIVE_BALANCE_V1_1_RESULTS.md.
+
+All15,256offered/queued live packets projection-verified;sent_frames0forALLarms.
+Do not claim actual live Unity viewing. New controlled_live_balance_replay.py
+explicitly verifies the new schema before using existing projection/playback/
+transport; no scientific rerun.32new-adapter/existing replay/socket tests pass.
+Full actual saved-packet verification passed:80,004packets, saved evaluation
+exactly reconstructed in197.23s with native imports and CNS/session constructors
+forbidden. No server/human visual review in that check. Native raw/
+receipts/summary:evidence/controlled-live-balance-v1_1/run-desktop-01/.
+
+IMMEDIATE NEXT:merge/review this PR, then human Unity review via NEW saved-replay
+entry point/commands in RESULTS. Old replay adapters intentionally reject new
+schemas. No more native attempts under this protocol. After visual review, design
+a separately declared assistance-contribution experiment; current servos support
+posture and mixed output does not justify gain/drive/threshold/seed changes.
+
 ## Controlled live V1.1 engineering — 2026-10-26
 
 New controlled_live_balance_v1_1.py and CONTROLLED_LIVE_BALANCE_V1_1.md/protocol
