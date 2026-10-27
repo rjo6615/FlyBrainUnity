@@ -1,0 +1,52 @@
+{
+  "schema": "assistance-native-adapter-engineering-checks-v1",
+  "date": "2026-10-26",
+  "scope": "SYNTHETIC_AND_STATIC_ENGINEERING_NOT_SCIENTIFIC_EXECUTION",
+  "interpreter": "C:/Users/legen/Documents/FlyBrainUnity/fly-brain-interactive/.venv/Scripts/python.exe",
+  "final_suite": {
+    "passed": 75,
+    "elapsed_s": 14.89,
+    "files": [
+      "tests/test_assistance_native.py",
+      "tests/test_assistance_trial.py",
+      "tests/test_assistance_contribution_plan.py"
+    ],
+    "original_driver_cases": [
+      "test_original_spec_and_sources_remain_valid",
+      "test_driver_full_budget_no_client_original_factory_unchanged",
+      "test_stop_retains_partial_and_does_not_take_next_transition",
+      "test_stop_before_init_has_no_socket_or_native_construction",
+      "test_detach_error_cannot_discard_raw_partial_or_display_journal"
+    ]
+  },
+  "earlier_development": {
+    "initial_fixture_setup_errors": 31,
+    "cause": "synthetic actuator_group omitted; fixture corrected",
+    "intermediate_passing_counts": [
+      31,
+      65
+    ]
+  },
+  "git_bash_check": {
+    "command": "validated desktop Python -m malecns_backend.live.assistance_trial --check",
+    "exit_code": 0,
+    "result": "SOURCE_CHECK_VERIFIED_NOT_RUNTIME_READINESS"
+  },
+  "implementation_raw_sha256": "3313510078adefd58c9f230afd4edc41f9f4abef68d6b24ca577550e43ef5688",
+  "native_models_constructed": 0,
+  "cns_initializations": 0,
+  "scientific_physics_transitions": 0,
+  "scientific_neural_updates": 0,
+  "native_qualification_executed": false,
+  "campaign_executed": false,
+  "new_unity_poses": 0,
+  "full_scientific_evaluator_implemented": false,
+  "fresh_process_launcher_implemented": false,
+  "full_future_execution_prerequisites_verified": false,
+  "motor_coverage": [
+    20,
+    42
+  ],
+  "new_motor_admissions": 0,
+  "real_transport_scope": "Existing no-client observer regression uses a local socket with synthetic scientific session"
+}

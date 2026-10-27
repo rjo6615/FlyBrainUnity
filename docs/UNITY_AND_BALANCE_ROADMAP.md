@@ -1,5 +1,30 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-10-26: assistance mechanical adapter and synthetic checks complete.
+Actual native binding/force qualification and eight-arm campaign have NOT run.
+75engineering checks pass; source/design --check verified in Windows Git Bash.
+Next integrate complete eight-arm scientific evaluator and fresh OS controller/
+workers with full original guards; commit before the one bounded native attempt.
+See ASSISTANCE_NATIVE_ADAPTER_RESULTS.md. Prior prospective docs remain frozen.
+
+```text
+Accepted recorded assay       [done; behavior mixed]
+Saved Unity review            [confirmed]
+Eight-arm assistance design   [specified]
+Mechanical adapter/tests      [checked with synthetic fixtures]
+Campaign/full evaluator       [next]
+Native qualification          [not run]
+Eight-arm assistance run      [not run]
+Motor coverage                [##########-----------] 20/42
+Independent balance           [not established]
+```
+
+The milestone is measuring22baseline-servo support versus contribution from
+existing20neural inputs. No new Unity behavior in this engineering update; no
+new motor admissions, tuning or physical/biological claim. Retained20position
+actuators still assist posture. Bars describe coverage/milestones, not total
+project completion. Older dated entries below retain their historical status.
+
 Current2026-10-26: PR292 merged; user reviewed new saved V1.1 movement and reported
 normal motion/no unexpected issues. Acquisition live delivery remains unconfirmed
 (0sent). The eight-arm partial assistance-contribution protocol is now specified
