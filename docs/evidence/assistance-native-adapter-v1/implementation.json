@@ -1,0 +1,20 @@
+{
+  "schema": "assistance-native-adapter-implementation-v1",
+  "status": "MECHANICAL_COMPONENT_ONLY_CAMPAIGN_INTEGRATION_PENDING",
+  "sources_canonical_lf_sha256": {
+    "malecns_backend/live/assistance_native.py": "d726b158e2c40e8a075c31e1daffb5b5f15d3b18fbafbc328dd8e57fb869ede9",
+    "malecns_backend/live/assistance_trial.py": "b371d4dba5cf3e3fe88a207bc78758fbaa583b7ce69cb39722867290d1fceb8f",
+    "tests/test_assistance_native.py": "683af5c296631e68020e6aabc6702c8ec96c0fa6ae90ab96190625caf46019c4",
+    "tests/test_assistance_trial.py": "bde72a929ef7877a3d7fe017ee30bb6d3caa6dc03a846e97c3677ee095e09a14",
+    "docs/ASSISTANCE_NATIVE_ADAPTER_V1.md": "db673d2d0f34b079805f0ea04c5cc10de12798faaca51fb5ee2bea4385fdd867"
+  },
+  "native_qualification_executed": false,
+  "scientific_campaign_executed": false,
+  "full_scientific_evaluator_implemented": false,
+  "fresh_process_launcher_implemented": false,
+  "motor_coverage": [
+    20,
+    42
+  ],
+  "new_motor_admissions": 0
+}

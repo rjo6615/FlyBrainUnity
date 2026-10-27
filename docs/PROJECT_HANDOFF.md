@@ -1,5 +1,43 @@
 # FlyBrainUnity — local Codex handoff
 
+## Assistance mechanical component checked — 2026-10-26
+
+PR293 merged fdf60fbf4d53c65834bc773cb306113e3f0dcef6. Fresh isolated branch
+from latest origin/newBrain; primary local LiveFly.unity edit unchanged.
+New assistance_native.py implements exact actual-model20/22native binding,
+lossless complete typed model records, bounded shadow qualification/restoration,
+M0/MRevent and mechanical-only full-trace audit. New assistance_trial.py subclasses
+the frozen original Trial and uses unchanged driver's explicit factory injection.
+Original gating/encoder/safety/kernel/pulse still own all scientific steps.
+Mechanical/qualification partials are retained under a new schema; full scientific
+audit flag is FALSE. No frozen source/spec/protocol/result changed.
+
+75engineering tests pass14.89s (new70including unchanged design checks, plus5
+original driver/source/stop/partial regressions). All scientific models/sessions
+synthetic; existing no-client observer regression uses a real socket. No native
+body/CNS construction/qualification/scientific campaign. Git Bash --check passes;
+this is source/design identity only, NOT full future runtime prerequisites.
+Source manifest:evidence/assistance-native-adapter-v1/implementation.json.
+Details/files/commands/limits:ASSISTANCE_NATIVE_ADAPTER_RESULTS.md.
+
+IMMEDIATE NEXT: implement separately versioned COMPLETE eight-arm scientific
+evaluator and fresh-process controller/workers. Reuse original force/command/RNG/
+contact/recovery math with explicit piecewise context; NEVER fabricate A reports
+or waive old constant-model checks. Require all original raw/data/environment/
+graph guards before/after controller AND each worker, committed own sources,
+fixed arm order, exclusive durable raw/partial artifacts, qualification transfer,
+exact science/neural prefixes and all declared contrasts/posture-loss qualifier.
+Test failed initialization/qualification, stop, cleanup and artifact persistence.
+Do not launch the internal assistance_trial.run_arm as a standalone experiment:
+it intentionally lacks campaign gates and full scientific acceptance.
+
+After complete implementation/tests, COMMIT before ONE bounded first-A_NC-model
+shadow qualification and eight fresh arms. Actual22-coordinate native binding,
+force-law qualification, native model hashing performance and moving force audit
+are still UNVERIFIED. No extra native initialization, retry, prior-control reuse,
+fall truncation or outcome tuning.20/42,0new admissions; all20retained servos still
+assist. No new Unity run this update; independent balance/gait unproven.
+
 ## Assistance-contribution prospective design — 2026-10-26
 
 PR292 merged at3baaaa7afea3e24c716723ca633dfda0d45ee626; this update starts
