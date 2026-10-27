@@ -1,5 +1,32 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-10-26: PR292 merged; user reviewed new saved V1.1 movement and reported
+normal motion/no unexpected issues. Acquisition live delivery remains unconfirmed
+(0sent). The eight-arm partial assistance-contribution protocol is now specified
+and statically checked, NOT implemented/run. It compares original versus
+neutralized22baseline-only servos while retaining20neural position actuators,
+crossed with neural input continuation/withdrawal and fixed push/no-push.
+No changes to neural parameters, old acceptance, source locks or historical data.
+26static tests pass; no new physics/CNS. See ASSISTANCE_CONTRIBUTION_DESIGN_RESULTS.
+
+```text
+Accepted recorded assay    [done; behavior mixed]
+New saved Unity review     [confirmed by user]
+Assistance test design     [specified; 8 arms]
+Native adapter and tests   [next]
+Force-law qualification    [not run]
+Assistance campaign        [not run]
+Motor coverage             [##########-----------] 20/42
+Independent balance        [not established]
+```
+
+Next implement/test/commit the versioned adapter and model-phase audit before
+ONE bounded qualification/campaign. The first question is whether22baseline-only
+servos conceal a contribution from existing neural inputs. Retained20actuators
+still assist posture, so this comparison cannot establish fully independent
+balance by itself. These are milestone states, not percentages of total completion.
+Earlier dated entries below describe historical checkpoints.
+
 Latest2026-10-26:V1.1 fixed four-arm native campaign COMPLETE/INTEGRITY_ACCEPTED,
 80,000scientific physics/16,000neural/80,004states. All4science traces exactly
 match prior accepted reference under unchanged assistance/settings. Behavior
