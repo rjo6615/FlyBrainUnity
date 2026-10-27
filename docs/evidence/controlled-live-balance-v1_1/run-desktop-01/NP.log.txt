@@ -1,0 +1,16 @@
+LIVE_PROVISIONAL_NOT_YET_AUDITED NP: binding output-only display before initialization
+NP: LIVE_PROVISIONAL display_session=0e31b5c7-28a2-40d5-a540-46b54c3851ba
+NP: fresh native/CNS initialization; position assistance unchanged
+NP: sim=0.1563s physics=1563/20000 neural=312/4000
+NP: sim=0.3070s physics=3070/20000 neural=614/4000
+NP: sim=0.4589s physics=4589/20000 neural=917/4000
+NP: sim=0.6105s physics=6105/20000 neural=1221/4000
+NP: sim=0.7637s physics=7637/20000 neural=1527/4000
+NP: sim=0.9130s physics=9130/20000 neural=1826/4000
+NP: sim=1.0667s physics=10667/20000 neural=2133/4000
+NP: sim=1.2010s physics=12010/20000 neural=2402/4000
+NP: sim=1.3421s physics=13421/20000 neural=2684/4000
+NP: sim=1.4950s physics=14950/20000 neural=2990/4000
+NP: sim=1.6311s physics=16311/20000 neural=3262/4000
+NP: sim=1.7659s physics=17659/20000 neural=3531/4000
+NP: sim=1.8896s physics=18896/20000 neural=3779/4000

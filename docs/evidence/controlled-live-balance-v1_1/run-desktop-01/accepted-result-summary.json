@@ -1,0 +1,283 @@
+{
+  "schema": "controlled-live-balance-v1.1-accepted-summary",
+  "status": "COMPLETE",
+  "integrity": "INTEGRITY_ACCEPTED",
+  "accepted": true,
+  "implementation_commit": "4ad0c04882713fbe94c6e9a6e2db5834e44aa995",
+  "scientific_physics_transitions": 80000,
+  "states": 80004,
+  "neural_updates": 16000,
+  "per_arm": {
+    "NC": {
+      "states": 20001,
+      "neural_updates": 4000,
+      "process_boundary": {
+        "pid": 24224,
+        "parent_pid": 23624,
+        "launch_pid": 23624,
+        "controller_pid": 42440,
+        "launcher_parent_pid": 42440,
+        "mode": "windows_venv_redirector",
+        "fresh_registry": {
+          "existing_names": [],
+          "default_name": 0
+        },
+        "commit": "4ad0c04882713fbe94c6e9a6e2db5834e44aa995"
+      }
+    },
+    "WC": {
+      "states": 20001,
+      "neural_updates": 4000,
+      "process_boundary": {
+        "pid": 35756,
+        "parent_pid": 38400,
+        "launch_pid": 38400,
+        "controller_pid": 42440,
+        "launcher_parent_pid": 42440,
+        "mode": "windows_venv_redirector",
+        "fresh_registry": {
+          "existing_names": [],
+          "default_name": 0
+        },
+        "commit": "4ad0c04882713fbe94c6e9a6e2db5834e44aa995"
+      }
+    },
+    "NP": {
+      "states": 20001,
+      "neural_updates": 4000,
+      "process_boundary": {
+        "pid": 16792,
+        "parent_pid": 5152,
+        "launch_pid": 5152,
+        "controller_pid": 42440,
+        "launcher_parent_pid": 42440,
+        "mode": "windows_venv_redirector",
+        "fresh_registry": {
+          "existing_names": [],
+          "default_name": 0
+        },
+        "commit": "4ad0c04882713fbe94c6e9a6e2db5834e44aa995"
+      }
+    },
+    "WP": {
+      "states": 20001,
+      "neural_updates": 4000,
+      "process_boundary": {
+        "pid": 19136,
+        "parent_pid": 6372,
+        "launch_pid": 6372,
+        "controller_pid": 42440,
+        "launcher_parent_pid": 42440,
+        "mode": "windows_venv_redirector",
+        "fresh_registry": {
+          "existing_names": [],
+          "default_name": 0
+        },
+        "commit": "4ad0c04882713fbe94c6e9a6e2db5834e44aa995"
+      }
+    }
+  },
+  "checks": {
+    "schema": true,
+    "specification": true,
+    "complete": true,
+    "original_design": true,
+    "prerequisites": true,
+    "sources": true,
+    "review_note": true,
+    "fresh_arm_order": true,
+    "original_per_arm_integrity": true,
+    "original_cross_arm_prefix_rng_integrity": true
+  },
+  "behavior": {
+    "primary_label": "MIXED_OR_UNRESOLVED",
+    "posture": {
+      "NC": {
+        "world_tilt_peak_deg": 4.31892641719127,
+        "world_tilt_mean_deg": 3.931112417927075,
+        "world_tilt_rms_deg": 3.9385664727524143,
+        "rollover_samples": 0,
+        "below_minimum_up_samples": 0,
+        "low_height_samples": 0,
+        "below_three_ground_support_samples": 0
+      },
+      "WC": {
+        "world_tilt_peak_deg": 4.344607821061026,
+        "world_tilt_mean_deg": 4.30308749764731,
+        "world_tilt_rms_deg": 4.303153319565012,
+        "rollover_samples": 0,
+        "below_minimum_up_samples": 0,
+        "low_height_samples": 0,
+        "below_three_ground_support_samples": 0
+      },
+      "NP": {
+        "world_tilt_peak_deg": 4.2673576466519965,
+        "world_tilt_mean_deg": 3.850506381341103,
+        "world_tilt_rms_deg": 3.8592358666791604,
+        "rollover_samples": 0,
+        "below_minimum_up_samples": 0,
+        "low_height_samples": 0,
+        "below_three_ground_support_samples": 0
+      },
+      "WP": {
+        "world_tilt_peak_deg": 4.349092997445584,
+        "world_tilt_mean_deg": 4.307188750500472,
+        "world_tilt_rms_deg": 4.307276218936921,
+        "rollover_samples": 0,
+        "below_minimum_up_samples": 0,
+        "low_height_samples": 0,
+        "below_three_ground_support_samples": 0
+      }
+    },
+    "responses": {
+      "NP": {
+        "baseline_qualified": true,
+        "resolved_perturbation": true,
+        "relative_band_exited": true,
+        "recovery_status": "SUSTAINED_BAND_RETURN",
+        "recovery_entry_ms": 613.5,
+        "recovery_confirmation_ms": 713.5,
+        "post_peak_orientation_deg": 1.0070395378375434,
+        "post_mean_orientation_deg": 0.3459158346451251,
+        "post_orientation_integral_deg_s": 0.511931478241381,
+        "post_peak_position_deviation_mm": 0.04573288976550365,
+        "post_peak_height_error_mm": 0.019148468821614306,
+        "post_peak_linear_speed_error_mm_s": 4.878048378458296,
+        "post_peak_angular_speed_error_rad_s": 3.3269550585745584,
+        "post_below_three_support_samples": 0,
+        "post_rollover_samples": 0,
+        "post_low_height_samples": 0,
+        "minimum_support_contacts": 5,
+        "post_absolute_tilt_peak_deg": 4.2673576466519965
+      },
+      "WP": {
+        "baseline_qualified": true,
+        "resolved_perturbation": true,
+        "relative_band_exited": true,
+        "recovery_status": "SUSTAINED_BAND_RETURN",
+        "recovery_entry_ms": 520.1,
+        "recovery_confirmation_ms": 620.1,
+        "post_peak_orientation_deg": 0.17831689381877625,
+        "post_mean_orientation_deg": 0.013476727432488303,
+        "post_orientation_integral_deg_s": 0.01993613028095907,
+        "post_peak_position_deviation_mm": 0.0027325333688069655,
+        "post_peak_height_error_mm": 0.000985924887418832,
+        "post_peak_linear_speed_error_mm_s": 0.6766606799760039,
+        "post_peak_angular_speed_error_rad_s": 0.9106492707837094,
+        "post_below_three_support_samples": 0,
+        "post_rollover_samples": 0,
+        "post_low_height_samples": 0,
+        "minimum_support_contacts": 6,
+        "post_absolute_tilt_peak_deg": 4.349092997445584
+      }
+    },
+    "pushed_peak_NP_minus_WP_deg": -0.08173535079358718,
+    "pushed_mean_NP_minus_WP_deg": -0.45668236915936866,
+    "interpretation_limits": [
+      "ONE_SEED_ASSISTED_POSITION_CONTROL_NOT_INDEPENDENT_BALANCE_OR_GAIT"
+    ],
+    "independent_balance_proven": false,
+    "gait_proven": false
+  },
+  "pair_exposure": {
+    "NC_vs_WC": {
+      "first_actual_outgoing_command_difference": 5005,
+      "first_physical_difference_state": 5006,
+      "first_actual_command_effect_state": 5006
+    },
+    "NP_vs_WP": {
+      "first_actual_outgoing_command_difference": 5005,
+      "first_physical_difference_state": 5006,
+      "first_actual_command_effect_state": 5006
+    }
+  },
+  "display": {
+    "NC": {
+      "status": "UNCONFIRMED",
+      "projection_status": "VERIFIED",
+      "session_id": "c6e7feff-c4e8-4eb1-b7be-740dcd758033",
+      "offered": 3828,
+      "published": 3828,
+      "sent_frames": 0,
+      "replaced_frames": 3827,
+      "visual_review": "UNCONFIRMED",
+      "reason": "Local publication is not client receipt or full visual coverage"
+    },
+    "WC": {
+      "status": "UNCONFIRMED",
+      "projection_status": "VERIFIED",
+      "session_id": "1f719cc8-e740-4a2e-b227-ecb901a40ac6",
+      "offered": 3724,
+      "published": 3724,
+      "sent_frames": 0,
+      "replaced_frames": 3723,
+      "visual_review": "UNCONFIRMED",
+      "reason": "Local publication is not client receipt or full visual coverage"
+    },
+    "NP": {
+      "status": "UNCONFIRMED",
+      "projection_status": "VERIFIED",
+      "session_id": "0e31b5c7-28a2-40d5-a540-46b54c3851ba",
+      "offered": 3902,
+      "published": 3902,
+      "sent_frames": 0,
+      "replaced_frames": 3901,
+      "visual_review": "UNCONFIRMED",
+      "reason": "Local publication is not client receipt or full visual coverage"
+    },
+    "WP": {
+      "status": "UNCONFIRMED",
+      "projection_status": "VERIFIED",
+      "session_id": "9c976c03-b23e-46cd-a807-483b943ddbff",
+      "offered": 3802,
+      "published": 3802,
+      "sent_frames": 0,
+      "replaced_frames": 3801,
+      "visual_review": "UNCONFIRMED",
+      "reason": "Local publication is not client receipt or full visual coverage"
+    }
+  },
+  "reference_comparison": {
+    "NC": {
+      "status": "EXACT_MATCH",
+      "differences": {
+        "environment": false,
+        "scientific_sources": false
+      }
+    },
+    "WC": {
+      "status": "EXACT_MATCH",
+      "differences": {
+        "environment": false,
+        "scientific_sources": false
+      }
+    },
+    "NP": {
+      "status": "EXACT_MATCH",
+      "differences": {
+        "environment": false,
+        "scientific_sources": false
+      }
+    },
+    "WP": {
+      "status": "EXACT_MATCH",
+      "differences": {
+        "environment": false,
+        "scientific_sources": false
+      }
+    }
+  },
+  "pose_offers": 15256,
+  "sent_frames": 0,
+  "visual_review": "UNCONFIRMED_NO_CLIENT_DELIVERY",
+  "scientific_retry_count": 0,
+  "source_guard_required_and_verified": true,
+  "executed_sources_unchanged": true,
+  "report_sha256": "eaf95d2b8b4b270e8368db3025919cc438054bdc93382f4987f12edfffb138f2",
+  "motor_coverage": [
+    20,
+    42
+  ],
+  "new_motor_admissions": 0,
+  "prior_failure_preserved": true
+}

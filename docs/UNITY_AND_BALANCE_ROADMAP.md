@@ -1,5 +1,33 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Latest2026-10-26:V1.1 fixed four-arm native campaign COMPLETE/INTEGRITY_ACCEPTED,
+80,000scientific physics/16,000neural/80,004states. All4science traces exactly
+match prior accepted reference under unchanged assistance/settings. Behavior
+MIXED_OR_UNRESOLVED;20/42motors,0new admissions. No independent balance/gait.
+Complete source prerequisite correction is verified; prior failures preserved.
+
+Live pose projection verified15,256offers, but0sent to clients:live Unity viewing
+is unconfirmed. New integrity-gated recorded adapter allows review of these exact
+poses without rerunning science. Next:human review with the NEW command, then
+prospective assistance-contribution study. See CONTROLLED_LIVE_BALANCE_V1_1_RESULTS.
+
+```text
+Native four-arm acquisition [####] 4/4
+Scientific integrity       [accepted]
+New recorded review        [next]
+Live client delivery       [unconfirmed]
+Motor coverage             [##########-----------] 20/42
+Independent balance        [not established]
+```
+
+2026-10-26 V1.1:complete original-source checks now mandatory in controller,
+each worker before initialization and after acquisition. New schema, frozen V1
+driver/observer/scientific kernel reused unchanged.67engineering checks pass;
+real construction-free source/data/environment gates verify. Commit first,
+then ONE fresh four-arm attempt is next. Prior V1 initialization refusal remains
+retained. No new live pose or behavioral claim at this implementation checkpoint.
+Motor20/42,0new admissions; position assistance unchanged. See V1_1_RESULTS.
+
 Actual live V1 result2026-10-26: initial NC stopped in original loader validation
 before poses because the isolated checkout lacked original graph_w3.bin.0states/
 scientific transitions/neural updates; WC/NP/WP unstarted. Raw failure retained,

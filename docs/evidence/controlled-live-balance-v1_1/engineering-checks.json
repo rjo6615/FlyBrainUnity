@@ -1,0 +1,74 @@
+{
+  "schema": "controlled-live-balance-v1.1-engineering",
+  "date": "2026-10-26",
+  "checks": [
+    {
+      "suite": "initial_v1_1_engineering",
+      "passed": 18,
+      "failed": 0,
+      "seconds": 44.17
+    },
+    {
+      "suite": "final_v1_1_prior_live_source_guard",
+      "passed": 67,
+      "failed": 0,
+      "seconds": 81.59
+    }
+  ],
+  "actual_preflight_integration": "01refused a policy flag treated as package before any native run;02corrected semantic comparison verifies",
+  "fixture_scope": "synthetic sessions/miniature neural fixtures; real OS workers/sockets; no native fly/full-CNS assay at this checkpoint",
+  "preflights": {
+    "engineering-preflight-01": {
+      "sha256": "0c4f58aa5a41640db74ee2f17a6e47ea84320f0a75f171b7704939c784986bb1",
+      "status": "NOT_RUN"
+    },
+    "engineering-preflight-02": {
+      "sha256": "16ed661210e28025bafe8f3f4d0a480436091058e6d765aaf29f069dcae3f32a",
+      "status": "NOT_RUN"
+    }
+  },
+  "prior_v1_sources_unchanged": true,
+  "final_sources": {
+    "malecns_backend/neural.py": "8acebd58cdc221cc815646474bb337c3dc7bd05cccde685ac713f23ca51c7e0c",
+    "malecns_backend/embodiment/_windows_m8_live_condition.py": "9afea2d32e9ea935cc6cd221874d74b50ffa35895d327f8ae96ea6c9ed36bc2c",
+    "malecns_backend/embodiment/scientific_session.py": "b6d6e71983545506b675ad4f9f86a70bdd04e97f3d4f557c64c49931348f1de8",
+    "malecns_backend/embodiment/_windows_m7d_corrected_spontaneous_adapter.py": "cec995856be96a8c632e098e92153eb9c7b95d396b98d8d0499eb5f013ae9e17",
+    "malecns_backend/embodiment/lf_force_static_reference.py": "f8254034e3ea01359bdf7d90a04fc62ffc114441a8dd80b407c786475d5c07ae",
+    "malecns_backend/embodiment/lf_actuation_contract.py": "771664e95187a1a98b88d625994af2a8087ff801cba89349736585670d760c05",
+    "malecns_backend/embodiment/full_leg_interface.py": "8292a716ad5e5dba2bce6c463063852f4f7770b7294e8658c96156d53217fcfc",
+    "malecns_backend/embodiment/live_v2_motor_interface.py": "6472a46b3012b3fd94bc202b8ec974783c41ae9065fabd0892a7de42dd81760b",
+    "malecns_backend/embodiment/live_v3_motor_interface.py": "6bf362442405994dc8ddfaf7a0fd8a29d499dad85c72277bd1fe9c3ab3044e05",
+    "malecns_backend/embodiment/sensory.py": "d245ac2b91294fef7629375e5734a6788e4749dc5b768ff082cdeb2cfd9f39ea",
+    "malecns_backend/embodiment/six_tibia.py": "5fefc84d9abdf7b9fc1ddbe65c35a6576812ed4d43f364c8a634091bdf6a1bad",
+    "malecns_backend/embodiment/proprioceptive_activation.py": "0d6117d668e62d23de08c8148240c770785cabb8a6148669349c4f258b7c0a92",
+    "malecns_backend/embodiment/motor.py": "a64e75a0097c2927d35d94401d5c26f948fb83c86b63e5f6e527ed7d70efb12f",
+    "malecns_backend/embodiment/tactile_motor_matched_control.py": "0d75267b0203d9ad97e69bf9f75d57fdc5057beec682d925176479c00e8a2bc8",
+    "malecns_backend/embodiment/isolated_tier_b_motor_validation.py": "7201b247b7ab346da0aa74d8e86af2d364b26ecf20f561de694821d33717c843",
+    "malecns_backend/embodiment/m9b_external_perturbation.py": "ce6f2d7931be69f5b17f59d71448e93a3d379be2b02576002628148a2e4b3750",
+    "malecns_backend/live/contact_context.py": "2d3fbc8fafe6d35444aa0c82fd89699deed7bb1fe852d7ce84585b90fac2360b",
+    "malecns_backend/live/tactile_recovery_metrics.py": "0f0edee2564d45e29504b522f0d376779e0e3ae3c8181ad5cfbdac40f9998fdf",
+    "malecns_backend/live/tactile_boundary.py": "9a5f9b53fc9324dae533c8126de33b3b18aba867275dde2e2909b667829a4f43",
+    "malecns_backend/live/group_posture_analysis.py": "8d881e2448d40793244b40ea99a3b6c5c7c0d1474e450d28f80a64286f02b71b",
+    "docs/evidence/balance-contribution-v1/protocol.json": "2ea0a8b94476cdc4a1c7040dfa3d5a40048e4242491ec42bb4af3761be998a20",
+    "docs/BALANCE_CONTRIBUTION_V1.md": "01e3881c15ffb374f85bb165c9085c0a0ae2290f12814485acec5834d69a2cc4",
+    "malecns_backend/live/balance_contribution.py": "4bb42c8d13b06b5c72f81ba46a5fbc4a98657445588ffe78712ab4b02a7c03c1",
+    "docs/evidence/balance-contribution-process-v1_1/protocol.json": "3b87bd24cd3a036bb7fa50fed642f09c839dd4529d1cb6b18bebfc9f185a341b",
+    "docs/BALANCE_CONTRIBUTION_PROCESS_V1_1.md": "97c50728e9a771dc012da50c2c45fd75cd400f97c2bf43ddd7ce4495bba942fa",
+    "malecns_backend/live/balance_contribution_process.py": "e2f9e257a8e1dc3f8a9fa50f4086f52a79087693b66941cc6c474aa293aaa173",
+    "malecns_backend/live/controlled_live_balance.py": "e669df3a9ec7344764f9f3f5e57d0b83ae6bfbc43b0fde326c1cd1620e06824a",
+    "malecns_backend/live/balance_live_observer.py": "d1a983de1f3b5102d338eb9a27d10b9a1c426b30ed0361f649e6ff3f8c52f317",
+    "docs/evidence/controlled-live-balance-v1/protocol.json": "e686441582f660bdd6dd0828bb8477a0ebbf72e709d681b7f5a0c886a03ef2a4",
+    "docs/CONTROLLED_LIVE_BALANCE_V1.md": "a920de8b75ca936b309a9dd41abf9255c9686105e7ef62b8219e263385261875",
+    "docs/CONTROLLED_LIVE_BALANCE_IMPLEMENTATION_V1.md": "79f8fb116e5fdc895cf3ec7d42ec413b7bca0c00e0eb43f8b67eaaa36cd414fd",
+    "malecns_backend/live/tactile_replay.py": "7e9fbcaf55ee72b1d0fc55f03f17836fa010f63b8ffdaab6e58d5abd79d4485e",
+    "malecns_backend/live/server.py": "66cb3490054c424ed0efb44f7d549862ee9fc5327ab19e56f6a398a00c959daf",
+    "malecns_backend/live/protocol.py": "6bb277dba884b97399cc31ac92ab346d2a33b6d87e99a90ec84e1887f21ad789",
+    "malecns_backend/live/controlled_live_balance_v1_1.py": "2cce48af6218ff0409dfbd7a4dfd86c3dcb6384e7aee9fc93174753546003330",
+    "docs/evidence/controlled-live-balance-v1_1/protocol.json": "6dda8ee126e44af1c3dc174d34f17a616c5193e8a3b625ab919ab873c0fef44f",
+    "docs/CONTROLLED_LIVE_BALANCE_V1_1.md": "a8a422cf1634ccae2f127d5a78b398db8d460f0f2c8e17fb8f8815b4a0906e3d",
+    "malecns_backend/live/balance_source_prerequisites.py": "ca6cdc5ae19e0a47dd555563eac2838aa1860cd42387483e592ea2034f1a53ce"
+  },
+  "native_campaign_executed": false,
+  "scientific_parameters_changed": false,
+  "review_attestation": "Human previously confirmed full fly/all feet visible, no unexpected issue, Unity in Play and previous replay stopped"
+}
