@@ -1,0 +1,35 @@
+{
+  "schema": "assistance-contribution-static-checks-v1",
+  "date": "2026-10-26",
+  "scope": "STATIC_DESIGN_ONLY",
+  "protocol_raw_sha256": "d81cdf73ecebaf69a714bdb5bc929d7badc09f5b869068d77130fbbcdac70daa",
+  "checks": [
+    {
+      "command": "pytest -q -p no:cacheprovider tests/test_assistance_contribution_plan.py --tb=short",
+      "result": "PASSED",
+      "passed": 26,
+      "elapsed_s": 0.88
+    },
+    {
+      "command": "Windows Git Bash: validated desktop Python -m malecns_backend.live.assistance_contribution_plan --verify docs/evidence/assistance-contribution-v1/protocol.json",
+      "exit_code": 0,
+      "result": "STATIC_DESIGN_VERIFIED"
+    }
+  ],
+  "executed_physics_transitions": 0,
+  "executed_cns_updates": 0,
+  "native_qualification_executed": false,
+  "native_bindings_verified": false,
+  "full_execution_prerequisites_verified": false,
+  "user_observation": {
+    "source": "user conversation",
+    "kind": "HUMAN_REPORTED_RECORDED_UNITY_REVIEW",
+    "text": "alright looks normal with the movement. nothing wierd. mostly the same as before",
+    "live_client_delivery_confirmed": false
+  },
+  "motor_coverage": [
+    20,
+    42
+  ],
+  "new_motor_admissions": 0
+}

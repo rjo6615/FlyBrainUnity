@@ -1,5 +1,40 @@
 # FlyBrainUnity — local Codex handoff
 
+## Assistance-contribution prospective design — 2026-10-26
+
+PR292 merged at3baaaa7afea3e24c716723ca633dfda0d45ee626; this update starts
+from that latest origin/newBrain in an isolated worktree. User reviewed NEW V1.1
+saved movement: normal, nothing weird, similar to prior runs. This confirms
+recorded human review, not live delivery: acquisition sent_frames0 remains true.
+Primary checkout's local LiveFly.unity edit and all historical results untouched.
+
+ASSISTANCE_CONTRIBUTION_V1.md and evidence/assistance-contribution-v1/protocol.json
+predeclare eight fresh arms: original versus neutralized22baseline-only servos,
+neural20continued versus withdrawn, push versus no-push. Retain all20neural
+position actuators and safety;22coordinates remain unadmitted. This is partial
+assistance contribution, not removal of all support. No parameter/acceptance tuning.
+One future budget160,000physics/32,000neural/160,008states, no prior-control reuse,
+retry/resume/early fall truncation. Known reference behavior remains MIXED.
+
+Static planner/checker only:26tests pass0.88s; exact Windows Git Bash verification
+passes. No new native model/CNS construction, qualification or experiment. Native
+bindings deliberately null. Original locks checked read-only, complete future
+runtime prerequisites NOT verified by this static design. See
+ASSISTANCE_CONTRIBUTION_DESIGN_RESULTS.md for files, commands and limits.
+
+IMMEDIATE NEXT: implement separately versioned instance-local Trial/observer/
+piecewise model evaluator around existing injectable run_arm factories/kernel.
+Reuse native inventory/force projection and unchanged complete original source
+guard, never modify frozen executed V1/V1.1 sources or weaken their auditors.
+Prove exact22/20selection, boundary after sample5005, phase5006onward, force-law
+suppression and full traces with engineering tests. Commit implementation first.
+Then ONE bounded native qualification on first arm's model/shadow data (12explicit
+shadow resets/forwards,0live forward/reset/integration/CNS), followed only if valid
+by eight fresh arms. Any qualification failure stops/preserves data, no retry.
+Moving force audit still mandatory. No extra native initialization for preflight.
+20/42coverage,0new admissions; independent balance/gait unproven. No new Unity run
+in this design delivery. Older checkpoints below retain their dated status.
+
 ## V1.1 native campaign completed — 2026-10-26
 
 ONE campaign at4ad0c04 COMPLETE/INTEGRITY_ACCEPTED:NC/WC/NP/WP each20kphysics/
