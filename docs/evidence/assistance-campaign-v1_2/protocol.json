@@ -9,9 +9,19 @@
   "arm_order_changed": false,
   "budget_changed": false,
   "live_guard_changed": false,
-  "engineering_change": "SAVED_JSON_READER_DECODES_JSON_SAFE_NONFINITE_FLOAT_MARKERS_EXACTLY",
+  "engineering_change": [
+    "SAVED_JSON_READER_DECODES_JSON_SAFE_NONFINITE_FLOAT_MARKERS_EXACTLY",
+    "EVENT_JOURNAL_CLOCK_COMPARED_AT_RUNTIME_1E-12_BOUND"
+  ],
   "saved_json_reader": "json-safe-arrow-nonfinite-float-markers-decoded-exactly-v1.2",
-  "marker": {"key": "__arrow_nonfinite_float__", "NaN": "nan", "+Infinity": "inf", "-Infinity": "-inf"},
+  "marker": {
+    "key": "__arrow_nonfinite_float__",
+    "NaN": "nan",
+    "+Infinity": "inf",
+    "-Infinity": "-inf"
+  },
+  "event_journal_clock_atol_s": 1e-12,
+  "event_journal_clock_reason": "Adapter journals float(data.time), MuJoCo accumulated clock; frozen offline audit_trace compared it bit-exactly to 5005*dt while the runtime boundary and per-sample clock checks use 1e-12. Retained V1.1 A_NC journal offset -3.885780586188048e-14 s; all other journal fields matched.",
   "failed_attempts": [
     {
       "report": "docs/evidence/assistance-campaign-v1/run-desktop-01/report.json",
@@ -30,11 +40,21 @@
     "scope": "OFFLINE_READ_OF_RETAINED_FILES_NO_NATIVE_NO_CNS",
     "finding": "inventory.actuators.forcerange rows 42..47 (the six adhesion actuators) hold +/-inf; the exclusive save encodes them as json_safe markers; the transfer reader passed markers to validate_inventory. Decoding the markers exactly makes the saved qualification pass all 12 cases (minimum baseline exposure 0.45)."
   },
+  "first_offline_audit": {
+    "receipt": "docs/evidence/assistance-campaign-v1_2/retained-v1_1-a-nc-audit.json",
+    "implementation_commit": "91fe1552bac9edffc46e163df86c00b4c08be781",
+    "result": "qualification passed; A_NC identity true; scientific M0_CONSTANT_FROZEN_AUDITOR_ACCEPTED; mechanical FAILED: mechanical boundary journal mismatch (time_s only)",
+    "note": "Pre-execution engineering correction within unmerged, never-executed V1.2; receipt retained"
+  },
   "reuse_retained_arms": false,
   "retained_arm_offline_audit": "DIAGNOSTIC_ONLY_NOT_ACCEPTANCE_NO_BEHAVIOR",
   "executed_v1_and_v1_1_sources_immutable": true,
   "new_run_folder": "docs/evidence/assistance-campaign-v1_2/run-desktop-01",
-  "measured_cost_v1_1_a_nc": {"stepping_minutes": 62, "arm_raw_bytes": 560254400, "qualification_bytes": 174735229},
+  "measured_cost_v1_1_a_nc": {
+    "stepping_minutes": 62,
+    "arm_raw_bytes": 560254400,
+    "qualification_bytes": 174735229
+  },
   "automatic_retries": 0,
   "native_execution_in_this_specification": false,
   "new_attempt_requires_explicit_user_approval": true

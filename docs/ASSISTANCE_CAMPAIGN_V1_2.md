@@ -38,3 +38,16 @@ with all eight arms fresh, needs explicit user approval, and has no retry.
 Measured V1.1 cost: about 62 min stepping per arm (roughly 8-9 h for eight) and
 560 MB raw per arm plus a 175 MB qualification file. Coverage 20/42;
 independent balance and gait unproven.
+
+## Second correction found by the offline audit
+
+The first `--audit-retained` run (committed 91fe155; receipt
+`retained-v1_1-a-nc-audit.json`, retained) found A_NC identity true, scientific
+audit accepted by the frozen constant-model auditor and equal to the piecewise
+audit, qualification passed, but mechanical audit FAILED: `mechanical boundary
+journal mismatch`. Only `time_s` differed: the adapter journals MuJoCo's
+accumulated clock (0.5004999999999612), the frozen `audit_trace` compared it
+bit-exactly to 5005*dt, while the runtime boundary and per-sample clock checks
+use 1e-12. V1.2 compares the journal clock at that same 1e-12 bound, records the
+offset, then runs every other frozen journal/force/trace check unchanged. Declared
+in the amendment before any V1.2 execution.

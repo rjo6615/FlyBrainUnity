@@ -222,3 +222,19 @@ def test_cli_and_source_checkpoint(tmp_path, capsys):
     with patch.object(v.v1.guard, 'committed', return_value='head'), patch.object(base, 'git', return_value=b'changed'):
         with pytest.raises(ValueError, match='commit V1.2'):
             v.committed()
+
+
+@pytest.mark.parametrize('offset,accepted', [(-3.885780586188048e-14, True), (0., True), (2e-12, False), (-2e-12, False)])
+def test_event_journal_clock_uses_runtime_bound_and_keeps_other_checks(world, offset, accepted):
+    arm = dict(world['arms']['R_NP'])
+    event = dict(arm['assistance']['event'], time_s=5005*.0001+offset)
+    arm['assistance'] = dict(arm['assistance'], event=event)
+    if accepted:
+        result = v.audit_mechanical(arm, 'R_NP', world['qualification'])
+        assert result['passed'] and result['states'] == 20001 and result['journal_clock_offset_s'] == event['time_s']-5005*.0001
+    else:
+        with pytest.raises(ValueError, match='journal clock'):
+            v.audit_mechanical(arm, 'R_NP', world['qualification'])
+    wrong = dict(arm['assistance'], event=dict(event, operation='OBSERVE_ONLY'))
+    with pytest.raises(ValueError):
+        v.audit_mechanical(dict(arm, assistance=wrong), 'R_NP', world['qualification'])

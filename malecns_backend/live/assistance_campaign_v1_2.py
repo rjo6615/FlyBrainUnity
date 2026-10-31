@@ -30,7 +30,7 @@ from . import assistance_trial_v1_1 as adapter
 base, original, driver, mechanical, plan, ROOT = v1.base, v1.original, v1.driver, v1.mechanical, v1.plan, v1.ROOT
 SCHEMA = 'assistance-contribution-campaign-v1.2'
 AMENDMENT = 'docs/evidence/assistance-campaign-v1_2/protocol.json'
-AMENDMENT_SHA256 = 'bec748e902b70c8dac6aef8a4e63c62793af5423a5cfb9d18fc3845d550a7bb1'
+AMENDMENT_SHA256 = '51ca998d0bcb7f7df48a916d6149e5d3285e61a7bbd0a27ff03ece23da9cb67b'
 MANIFEST = 'docs/evidence/assistance-campaign-v1_2/implementation.json'
 MODULE = 'malecns_backend/live/assistance_campaign_v1_2.py'
 OWN_SOURCES = (MODULE, 'docs/ASSISTANCE_CAMPAIGN_V1_2.md', 'tests/test_assistance_campaign_v1_2.py')
@@ -38,6 +38,8 @@ ARM_IDS, FIRST, QUALIFICATION = v1.ARM_IDS, v1.FIRST, v1.QUALIFICATION
 READER = 'json-safe-arrow-nonfinite-float-markers-decoded-exactly-v1.2'
 NONFINITE_MARKER = '__arrow_nonfinite_float__'
 NONFINITE = {'NaN': math.nan, '+Infinity': math.inf, '-Infinity': -math.inf}
+BOUNDARY_TIME_S = 5005*.0001
+CLOCK_ATOL = 1e-12  # adapter runtime boundary and per-sample clock bound
 CAMPAIGN = dict(prior.CAMPAIGN, schema=SCHEMA, amendment=AMENDMENT, saved_json_reader=READER)
 preflight, verified_preflight, save = v1.preflight, v1.verified_preflight, v1.save
 
@@ -87,11 +89,53 @@ def amendment():
     if (p['scientific_parameters_changed'] or p['acceptance_changed'] or p['arm_order_changed']
             or p['budget_changed'] or p['live_guard_changed'] or p['automatic_retries'] != 0
             or p['reuse_retained_arms'] or p['saved_json_reader'] != READER
+            or p['event_journal_clock_atol_s'] != CLOCK_ATOL
             or hashlib.sha256((ROOT/p['scientific_protocol']).read_bytes()).hexdigest() != p['scientific_protocol_raw_sha256']
             or any(hashlib.sha256((ROOT/f['report']).read_bytes()).hexdigest() != f['report_sha256']
                    for f in p['failed_attempts'])):
         raise ValueError('amendment declares a scientific change or a retained failure changed')
     return p
+
+
+def audit_trace(arm_id, inv, original, event, samples):
+    """Frozen V1 trace audit; journal clock compared at the runtime 1e-12 bound.
+
+    The adapter journals float(data.time), MuJoCo's accumulated clock, which
+    differs from 5005*dt by rounding (3.9e-14 s in the retained V1.1 A_NC).
+    Its own boundary and per-sample clock checks use 1e-12; only the journal
+    comparison was bit-exact. Every other journal/force/trace check is V1's.
+    """
+    mechanical.require(abs(event['time_s']-BOUNDARY_TIME_S) <= CLOCK_ATOL, 'mechanical boundary journal clock mismatch')
+    result = mechanical.audit_trace(arm_id, inv, original, dict(event, time_s=BOUNDARY_TIME_S), samples)
+    return dict(result, journal_clock_offset_s=event['time_s']-BOUNDARY_TIME_S)
+
+
+def audit_mechanical(arm, arm_id, qualification):
+    """V1.1 mechanical evidence checks with the V1.2 journal clock comparison."""
+    evidence = arm['assistance']
+    ctx = evidence['context']
+    inv, record = ctx['inventory'], ctx['original']
+    if (arm['schema'] != adapter.SCHEMA or arm['arm_id'] != arm_id or arm['live_guard'] != guard.GUARD
+            or ctx['schema'] != mechanical.SCHEMA or ctx['live_guard'] != guard.GUARD or ctx['arm_id'] != arm_id
+            or evidence['event']['live_guard'] != guard.GUARD or inv != arm['context']['native_inventory']):
+        raise ValueError('mechanical evidence identity mismatch')
+    mechanical.validate_binding(inv, record)
+    if ctx['neutral'] != mechanical.neutral_record(record, inv):
+        raise ValueError('recorded MR does not equal independently derived MR')
+    if evidence['qualification'] != qualification or record != qualification['original']:
+        raise ValueError('actual model/qualification transfer differs from qualified first M0')
+    _, ids, neutral_config = v1.configuration_phases(arm)
+    if evidence['event']['selected_actuator_ids'] != ids:
+        raise ValueError('scientific and mechanical selected actuator IDs disagree')
+    for name in mechanical.FIELDS:
+        for phase, config in ((record, arm['context']['configuration']), (ctx['neutral'], neutral_config)):
+            if not v1.np.array_equal(mechanical.array_values(phase, name), v1.np.asarray(config['arrays'][name], dtype=float)):
+                raise ValueError('mechanical model record and guarded configuration disagree: '+name)
+    trace = audit_trace(arm_id, inv, record, evidence['event'], evidence['samples'])
+    for m, s in zip(evidence['samples'], arm['samples']):
+        if any(m[k] != s[k] for k in ('time_s', 'ctrl', 'xfrc_applied', 'qfrc_applied')):
+            raise ValueError('mechanical and scientific samples describe different states')
+    return trace
 
 
 def specification():
@@ -166,7 +210,7 @@ def audit_retained(folder):
                 and boundary['commit'] == report['implementation_commit']
                 and original.valid_boundary(boundary, report['controller_pid']))
             record['scientific'] = v1.audit_scientific(arm, arm_id)['model_context']
-            record['mechanical'] = prior.audit_mechanical(arm, arm_id, qualification)
+            record['mechanical'] = audit_mechanical(arm, arm_id, qualification)
             proof = v1.proof(arm)
             record['proof_prefix_lengths'] = dict(physical=len(proof['physical_prefix']),
                 neural=len(proof['neural_prefix']), rng=len(proof['rng']),
@@ -320,7 +364,7 @@ def evaluate(report, folder, *, loader=read_arm, display_loader=read_display,
                 raise ValueError('distinct fresh worker PIDs required')
             pids.append(boundary['pid'])
             audits[arm_id] = v1.audit_scientific(arm, arm_id)
-            mechanics[arm_id] = prior.audit_mechanical(arm, arm_id, qualification)
+            mechanics[arm_id] = audit_mechanical(arm, arm_id, qualification)
             proofs[arm_id] = v1.proof(arm)
             proofs[arm_id].update(full_boundary_prefix=[base.context.digest(s) for s in arm['samples'][:v1.FIRST_AFFECTED]],
                                   neural_boundary_prefix=[base.context.digest(n) for n in arm['neural'][:1001]])
