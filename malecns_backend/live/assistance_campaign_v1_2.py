@@ -25,22 +25,27 @@ import time
 from . import assistance_campaign as v1
 from . import assistance_campaign_v1_1 as prior
 from . import assistance_native_v1_1 as guard
-from . import assistance_trial_v1_1 as adapter
+from . import assistance_native_v1_2 as phases
+from . import assistance_trial_v1_1 as retained_adapter
+from . import assistance_trial_v1_2 as adapter
 
 base, original, driver, mechanical, plan, ROOT = v1.base, v1.original, v1.driver, v1.mechanical, v1.plan, v1.ROOT
 SCHEMA = 'assistance-contribution-campaign-v1.2'
 AMENDMENT = 'docs/evidence/assistance-campaign-v1_2/protocol.json'
-AMENDMENT_SHA256 = '51ca998d0bcb7f7df48a916d6149e5d3285e61a7bbd0a27ff03ece23da9cb67b'
+AMENDMENT_SHA256 = '6e07e1b21273bbb70e6f0ef7ea73d62e4c4544cb4a0b0f6c9e2939c9e24590b1'
 MANIFEST = 'docs/evidence/assistance-campaign-v1_2/implementation.json'
 MODULE = 'malecns_backend/live/assistance_campaign_v1_2.py'
-OWN_SOURCES = (MODULE, 'docs/ASSISTANCE_CAMPAIGN_V1_2.md', 'tests/test_assistance_campaign_v1_2.py')
+OWN_SOURCES = (MODULE, 'malecns_backend/live/assistance_native_v1_2.py',
+               'malecns_backend/live/assistance_trial_v1_2.py', 'docs/ASSISTANCE_CAMPAIGN_V1_2.md',
+               'tests/test_assistance_campaign_v1_2.py')
 ARM_IDS, FIRST, QUALIFICATION = v1.ARM_IDS, v1.FIRST, v1.QUALIFICATION
 READER = 'json-safe-arrow-nonfinite-float-markers-decoded-exactly-v1.2'
 NONFINITE_MARKER = '__arrow_nonfinite_float__'
 NONFINITE = {'NaN': math.nan, '+Infinity': math.inf, '-Infinity': -math.inf}
 BOUNDARY_TIME_S = 5005*.0001
 CLOCK_ATOL = 1e-12  # adapter runtime boundary and per-sample clock bound
-CAMPAIGN = dict(prior.CAMPAIGN, schema=SCHEMA, amendment=AMENDMENT, saved_json_reader=READER)
+CAMPAIGN = dict(prior.CAMPAIGN, schema=SCHEMA, amendment=AMENDMENT, saved_json_reader=READER,
+                model_phase_check=phases.CHECK)
 preflight, verified_preflight, save = v1.preflight, v1.verified_preflight, v1.save
 
 
@@ -89,7 +94,7 @@ def amendment():
     if (p['scientific_parameters_changed'] or p['acceptance_changed'] or p['arm_order_changed']
             or p['budget_changed'] or p['live_guard_changed'] or p['automatic_retries'] != 0
             or p['reuse_retained_arms'] or p['saved_json_reader'] != READER
-            or p['event_journal_clock_atol_s'] != CLOCK_ATOL
+            or p['event_journal_clock_atol_s'] != CLOCK_ATOL or p['model_phase_check'] != phases.CHECK
             or hashlib.sha256((ROOT/p['scientific_protocol']).read_bytes()).hexdigest() != p['scientific_protocol_raw_sha256']
             or any(hashlib.sha256((ROOT/f['report']).read_bytes()).hexdigest() != f['report_sha256']
                    for f in p['failed_attempts'])):
@@ -110,12 +115,19 @@ def audit_trace(arm_id, inv, original, event, samples):
     return dict(result, journal_clock_offset_s=event['time_s']-BOUNDARY_TIME_S)
 
 
-def audit_mechanical(arm, arm_id, qualification):
-    """V1.1 mechanical evidence checks with the V1.2 journal clock comparison."""
+def audit_mechanical(arm, arm_id, qualification, *, schema=adapter.SCHEMA, phase_check=phases.CHECK):
+    """V1.1 mechanical evidence checks with the V1.2 journal clock comparison.
+
+    New arms must carry the V1.2 snapshot phase check; the retained V1.1 arm
+    is audited under its own adapter schema (it re-hashed the model per state).
+    """
     evidence = arm['assistance']
     ctx = evidence['context']
     inv, record = ctx['inventory'], ctx['original']
-    if (arm['schema'] != adapter.SCHEMA or arm['arm_id'] != arm_id or arm['live_guard'] != guard.GUARD
+    if (arm['schema'] != schema or arm.get('model_phase_check') != phase_check
+            or ctx.get('model_phase_check') != phase_check
+            or evidence['event'].get('model_phase_check') != phase_check
+            or arm['arm_id'] != arm_id or arm['live_guard'] != guard.GUARD
             or ctx['schema'] != mechanical.SCHEMA or ctx['live_guard'] != guard.GUARD or ctx['arm_id'] != arm_id
             or evidence['event']['live_guard'] != guard.GUARD or inv != arm['context']['native_inventory']):
         raise ValueError('mechanical evidence identity mismatch')
@@ -204,13 +216,14 @@ def audit_retained(folder):
         try:
             arm = read_arm(folder, arm_id, artifact)
             boundary = arm['process_boundary']
-            record['identity'] = bool(arm['arm_id'] == arm_id and arm['schema'] == adapter.SCHEMA
+            record['identity'] = bool(arm['arm_id'] == arm_id and arm['schema'] == retained_adapter.SCHEMA
                 and arm['worker_sources_before'] == arm['worker_sources_after'] == report['sources_before']
                 and arm['complete_preflight_before'] == arm['complete_preflight_after'] == report['preflight']
                 and boundary['commit'] == report['implementation_commit']
                 and original.valid_boundary(boundary, report['controller_pid']))
             record['scientific'] = v1.audit_scientific(arm, arm_id)['model_context']
-            record['mechanical'] = audit_mechanical(arm, arm_id, qualification)
+            record['mechanical'] = audit_mechanical(arm, arm_id, qualification,
+                                                    schema=retained_adapter.SCHEMA, phase_check=None)
             proof = v1.proof(arm)
             record['proof_prefix_lengths'] = dict(physical=len(proof['physical_prefix']),
                 neural=len(proof['neural_prefix']), rng=len(proof['rng']),

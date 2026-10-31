@@ -51,3 +51,19 @@ bit-exactly to 5005*dt, while the runtime boundary and per-sample clock checks
 use 1e-12. V1.2 compares the journal clock at that same 1e-12 bound, records the
 offset, then runs every other frozen journal/force/trace check unchanged. Declared
 in the amendment before any V1.2 execution.
+
+## Third change: exact snapshot model-phase check (runtime)
+
+Measured on the retained V1.1 A_NC: a constant ~8.1 steps/s (~123 ms/step) for
+the whole arm, versus ~97 steps/s (~10 ms/step) in earlier runs on the same
+machine. The adapter re-hashed all 379 numeric model arrays (108.75 MB of BVH,
+texture and mesh data; ~55 ms) twice per state. `assistance_native_v1_2`
+snapshots recorded M0 and derived MR once, verifies each reproduces the recorded
+typed identities and options, then compares raw bytes, option values and the
+compiled name buffer exactly at every capture and boundary (~8 ms each). Byte
+equality is as strict as re-hashing (signed zeros/NaN payloads included) and
+fails fast naming changed arrays. `assistance_trial_v1_2` uses it; evidence
+format, qualification, guard and audits are unchanged. Expected ~9-10 min
+stepping per arm, about 1.3-1.6 h for eight including saving (estimate, not yet
+measured on the fly model). A GPU would not help: the cost was Python checking,
+and GPU physics would change validated numerics and dependencies.

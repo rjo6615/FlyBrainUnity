@@ -11,6 +11,8 @@ from unittest.mock import patch
 import pytest
 
 from malecns_backend.live import assistance_campaign_v1_2 as v
+from malecns_backend.live import assistance_native_v1_2 as snap
+from malecns_backend.live import assistance_trial_v1_2 as t12
 
 base, mechanical = v.base, v.mechanical
 RETAINED = v.ROOT/'docs/evidence/assistance-campaign-v1_1/run-desktop-01'
@@ -69,7 +71,7 @@ def test_amendment_locks_both_failures_and_unchanged_science():
         '953b607877ee9b790bda73429f4ab2d64e677362', '92652b5f9cbd74244367e0c4f175703a739f7c1f']
     assert not a['reuse_retained_arms'] and not a['live_guard_changed'] and a['automatic_retries'] == 0
     assert spec['scientific'] == v.v1.specification() and spec['amendment_v1_1'] == v.prior.amendment()
-    assert {k: x for k, x in v.CAMPAIGN.items() if k not in ('schema', 'amendment', 'saved_json_reader')} == {
+    assert {k: x for k, x in v.CAMPAIGN.items() if k not in ('schema', 'amendment', 'saved_json_reader', 'model_phase_check')} == {
         k: x for k, x in v.prior.CAMPAIGN.items() if k not in ('schema', 'amendment')}
     assert set(v.prior.sources()) <= set(v.sources())
     v.prior.source_check(); v.v1.source_check()
@@ -87,6 +89,11 @@ def test_retained_attempt_stays_inconclusive_without_loading_raw():
 @pytest.fixture(scope='module')
 def world():
     w = v11_fixture.world.__wrapped__()
+    for arm in w['arms'].values():
+        ev = arm['assistance']
+        arm.update(schema=t12.SCHEMA, model_phase_check=snap.CHECK, assistance=dict(ev,
+            context=dict(ev['context'], model_phase_check=snap.CHECK),
+            event=dict(ev['event'], model_phase_check=snap.CHECK)))
     report = dict(w['report'], schema=v.SCHEMA, campaign=v.CAMPAIGN, specification=v.specification(),
                   sources_before=v.sources(), sources_after=v.sources())
     for arm in w['arms'].values():
@@ -148,7 +155,7 @@ def test_worker_decodes_transfer_and_uses_v1_1_adapter(tmp_path, world):
     def run(arm_id, protocol, table, stop, *, qualification):
         seen.append(qualification)
         return dict(arm_id=arm_id, condition='WC', run_status='COMPLETE', samples=[], neural=[], assistance=None), None
-    assert v.adapter is v.prior.adapter
+    assert v.adapter is t12
     with patch.object(v, 'committed', return_value='fixture'), \
             patch.object(v.original, 'process_boundary', return_value=boundary(300)), \
             patch.object(v, 'preflight', return_value=checked()), \
@@ -238,3 +245,75 @@ def test_event_journal_clock_uses_runtime_bound_and_keeps_other_checks(world, of
     wrong = dict(arm['assistance'], event=dict(event, operation='OBSERVE_ONLY'))
     with pytest.raises(ValueError):
         v.audit_mechanical(dict(arm, assistance=wrong), 'R_NP', world['qualification'])
+
+
+# ---- V1.2 exact snapshot model-phase check on real MuJoCo (toy, not the fly) ----
+
+def toy_phases():
+    import numpy as np
+    mujoco, model, data = v11_fixture.toy()
+    original = mechanical.model_record(model, data)
+    saved = {n: np.array(getattr(model, n), copy=True) for n in mechanical.FIELDS}
+    for n in mechanical.FIELDS:
+        getattr(model, n)[[1]] = 0.
+    neutral = mechanical.model_record(model, data)
+    for n, values in saved.items():
+        getattr(model, n)[:] = values
+    return mujoco, model, data, original, neutral, snap.ModelPhases(model, data, [1], original, neutral)
+
+
+def test_snapshot_phase_equals_full_hash_identity_for_m0_and_mr():
+    mujoco, model, data, original, neutral, phases = toy_phases()
+    assert phases.phase_sha(model, 'M0') == mechanical.digest(mechanical.components(model, data)) == original['sha256']
+    with pytest.raises(ValueError, match='differs from MR'):
+        phases.phase_sha(model, 'MR')
+    for n in mechanical.FIELDS:
+        getattr(model, n)[[1]] = 0.
+    assert phases.phase_sha(model, 'MR') == mechanical.digest(mechanical.components(model, data)) == neutral['sha256']
+
+
+@pytest.mark.parametrize('write', ['geom', 'signed_zero', 'option'])
+def test_snapshot_phase_detects_any_model_write_and_names_it(write):
+    mujoco, model, data, original, neutral, phases = toy_phases()
+    if write == 'geom':
+        model.geom_size[0, 0] += 1e-12
+        match = 'geom_size'
+    elif write == 'signed_zero':
+        for n in mechanical.FIELDS:
+            getattr(model, n)[[1]] = -0.
+        with pytest.raises(ValueError, match='actuator_'):
+            phases.phase_sha(model, 'MR')  # byte-exact, as strict as the hash
+        return
+    else:
+        model.opt.timestep *= 2
+        match = 'options'
+    with pytest.raises(ValueError, match=match):
+        phases.phase_sha(model, 'M0')
+
+
+def test_snapshot_requires_actual_recorded_model_at_binding():
+    mujoco, model, data, original, neutral, phases = toy_phases()
+    model.geom_size[0, 0] += 1e-12
+    with pytest.raises(ValueError, match='recorded M0'):
+        snap.ModelPhases(model, data, [1], original, neutral)
+
+
+def test_v1_2_trial_capture_uses_snapshot_and_keeps_guard_on_real_mjdata():
+    mujoco, model, data, original, neutral, phases = toy_phases()
+    trial = t12.Trial('R_NC', {'proof': 'provided'})
+    trial.intervention = SimpleNamespace(phases=phases)
+    physics = SimpleNamespace(model=model, data=data)
+    for _ in range(50):
+        trial._capture_mechanical(physics)
+    assert {s['model_sha256'] for s in trial.mechanical_samples} == {original['sha256']}
+    model.geom_size[0, 0] += 1e-12
+    with pytest.raises(ValueError, match='geom_size'):
+        trial._capture_mechanical(physics)
+    assert len(trial.mechanical_samples) == 50
+
+
+def test_new_arms_require_snapshot_identity_but_retained_v1_1_arm_does_not(world):
+    arm = dict(world['arms']['A_WC'], model_phase_check=None)
+    with pytest.raises(ValueError, match='identity'):
+        v.audit_mechanical(arm, 'A_WC', world['qualification'])
+    assert v.CAMPAIGN['model_phase_check'] == snap.CHECK and v.retained_adapter.SCHEMA != t12.SCHEMA

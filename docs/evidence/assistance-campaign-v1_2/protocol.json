@@ -11,7 +11,8 @@
   "live_guard_changed": false,
   "engineering_change": [
     "SAVED_JSON_READER_DECODES_JSON_SAFE_NONFINITE_FLOAT_MARKERS_EXACTLY",
-    "EVENT_JOURNAL_CLOCK_COMPARED_AT_RUNTIME_1E-12_BOUND"
+    "EVENT_JOURNAL_CLOCK_COMPARED_AT_RUNTIME_1E-12_BOUND",
+    "PER_STATE_MODEL_PHASE_BY_EXACT_BYTE_SNAPSHOT_COMPARE_NOT_REHASH"
   ],
   "saved_json_reader": "json-safe-arrow-nonfinite-float-markers-decoded-exactly-v1.2",
   "marker": {
@@ -22,6 +23,8 @@
   },
   "event_journal_clock_atol_s": 1e-12,
   "event_journal_clock_reason": "Adapter journals float(data.time), MuJoCo accumulated clock; frozen offline audit_trace compared it bit-exactly to 5005*dt while the runtime boundary and per-sample clock checks use 1e-12. Retained V1.1 A_NC journal offset -3.885780586188048e-14 s; all other journal fields matched.",
+  "model_phase_check": "exact-byte-snapshot-of-recorded-M0-and-derived-MR-v1.2",
+  "model_phase_check_reason": "V1.1 re-hashed all 379 numeric model arrays (108.75 MB; BVH, textures, meshes; ~55 ms) twice per state: ~123 ms/step measured constant over the V1.1 A_NC vs ~10 ms/step without it. V1.2 snapshots recorded M0 and derived MR once, verifies each snapshot reproduces the recorded typed identities, and compares raw bytes, option values and the compiled name buffer exactly at every capture and boundary (~8 ms each). Strictness unchanged; expected ~9-10 min stepping per arm.",
   "failed_attempts": [
     {
       "report": "docs/evidence/assistance-campaign-v1/run-desktop-01/report.json",

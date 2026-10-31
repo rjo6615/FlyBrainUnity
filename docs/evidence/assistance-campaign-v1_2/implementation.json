@@ -35,16 +35,19 @@
     "stop_on_fall": false,
     "amendment": "docs/evidence/assistance-campaign-v1_2/protocol.json",
     "live_guard": "mujoco-mjSTATE_INTEGRATION-fields-v1.1",
-    "saved_json_reader": "json-safe-arrow-nonfinite-float-markers-decoded-exactly-v1.2"
+    "saved_json_reader": "json-safe-arrow-nonfinite-float-markers-decoded-exactly-v1.2",
+    "model_phase_check": "exact-byte-snapshot-of-recorded-M0-and-derived-MR-v1.2"
   },
   "amendment": {
     "path": "docs/evidence/assistance-campaign-v1_2/protocol.json",
-    "raw_sha256": "51ca998d0bcb7f7df48a916d6149e5d3285e61a7bbd0a27ff03ece23da9cb67b"
+    "raw_sha256": "6e07e1b21273bbb70e6f0ef7ea73d62e4c4544cb4a0b0f6c9e2939c9e24590b1"
   },
   "sources_canonical_lf_sha256": {
-    "malecns_backend/live/assistance_campaign_v1_2.py": "c536a09551f3731cef687c41357360344938923de441a3f3380b3ddea1948c44",
-    "docs/ASSISTANCE_CAMPAIGN_V1_2.md": "0215e77f8dfe51a28005c8c86107f831c0358289b96a4ff13e508057027ae18a",
-    "tests/test_assistance_campaign_v1_2.py": "4fb5fbd56e4aa2be394c08a4f834be285810f943bb331eb258857d520ee50776"
+    "malecns_backend/live/assistance_campaign_v1_2.py": "ad4abbdfad348a709635cc4704717c177365ce9fabc4a55332d6eafff4fee147",
+    "malecns_backend/live/assistance_native_v1_2.py": "474ada240b592e0eb5992bd8016b441e3560afe6dec602fbc7cd7f4e61c46f95",
+    "malecns_backend/live/assistance_trial_v1_2.py": "298534982c5e54016b5580ccbb0a8d036a514ba4bbca1a99de828ddca1580e00",
+    "docs/ASSISTANCE_CAMPAIGN_V1_2.md": "4caf4591c8e2787171836a2d8a7bd97d892eecbb41f0648bcb96ba489997a88d",
+    "tests/test_assistance_campaign_v1_2.py": "1e47fffeb5e517b95f345b25777a396f899eda31c2a2272119e0244b3d59a4c6"
   },
   "native_qualification_executed": false,
   "scientific_campaign_executed": false,
