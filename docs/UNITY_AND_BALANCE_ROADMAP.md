@@ -1,5 +1,21 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-10-31: eight-arm campaign controller/workers and complete piecewise
+evaluator implemented; 46 synthetic/real-process engineering tests pass. Native
+qualification and the eight-arm run have NOT run. See ASSISTANCE_CAMPAIGN_RESULTS.
+
+```text
+Accepted recorded assay       [done; behavior mixed]
+Saved Unity review            [confirmed]
+Eight-arm assistance design   [specified]
+Mechanical adapter/tests      [checked with synthetic fixtures]
+Campaign/full evaluator       [implemented; synthetic tests]
+Native qualification          [next; not run]
+Eight-arm assistance run      [not run]
+Motor coverage                [##########-----------] 20/42
+Independent balance           [not established]
+```
+
 Current2026-10-26: assistance mechanical adapter and synthetic checks complete.
 Actual native binding/force qualification and eight-arm campaign have NOT run.
 75engineering checks pass; source/design --check verified in Windows Git Bash.

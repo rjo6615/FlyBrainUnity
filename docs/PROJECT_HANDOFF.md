@@ -1,5 +1,28 @@
 # FlyBrainUnity — local Codex handoff
 
+## Eight-arm campaign/evaluator implemented — 2026-10-31
+
+Branch codex/assistance-campaign-v1 from merged PR294 (0b42311), sparse worktree;
+primary LiveFly.unity edit untouched. New assistance_campaign.py: fixed A_NC..R_WP
+fresh OS workers; complete V1.1 original prerequisites before/after controller AND
+each worker; every campaign/adapter/design/frozen source committed at HEAD;
+exclusive fsynced artifacts; first-A_NC qualification published separately
+(failed/partial retained) and re-evaluated/transferred by hash to later arms.
+Evaluator: A arms must pass the frozen constant auditor AND equal the piecewise
+audit; R arms piecewise M0 0..5005 / derived MR 5006..20000; mechanical trace,
+declared prefixes/RNG, 8 pair comparisons, posture-loss qualifier, contrasts.
+
+46 new engineering tests pass (synthetic models; two real child processes with
+a synthetic adapter). NO native model/CNS/qualification/physics run. Sparse
+worktree lacks graph_w3.bin, so the campaign must run from a full checkout.
+See ASSISTANCE_CAMPAIGN_RESULTS.md / ASSISTANCE_CAMPAIGN_V1.md.
+
+IMMEDIATE NEXT: user review/merge, then in the full primary checkout run the
+construction-free --output preflight, then ONE --live campaign (no retry/tuning).
+Per-state full-model hashing cost is unmeasured; record actual runtime/storage.
+Saved-replay entry point for the new schema is not implemented. 20/42, 0 new
+admissions; independent balance/gait unproven.
+
 ## Assistance mechanical component checked — 2026-10-26
 
 PR293 merged fdf60fbf4d53c65834bc773cb306113e3f0dcef6. Fresh isolated branch

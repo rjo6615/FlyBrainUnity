@@ -1,0 +1,53 @@
+{
+  "schema": "assistance-campaign-implementation-v1",
+  "status": "IMPLEMENTED_ENGINEERING_TESTED_NATIVE_NOT_RUN",
+  "campaign": {
+    "schema": "assistance-contribution-campaign-v1",
+    "protocol": "docs/evidence/assistance-contribution-v1/protocol.json",
+    "arm_order": [
+      "A_NC",
+      "A_WC",
+      "A_NP",
+      "A_WP",
+      "R_NC",
+      "R_WC",
+      "R_NP",
+      "R_WP"
+    ],
+    "process_per_arm": true,
+    "qualification": "FIRST_A_NC_ACTUAL_MODEL_ONCE_TRANSFERRED_UNCHANGED_TO_LATER_ARMS",
+    "complete_prerequisites": [
+      "controller_before",
+      "controller_after",
+      "worker_before",
+      "worker_after"
+    ],
+    "model_audit": {
+      "A": "FROZEN_CONSTANT_AUDITOR_AND_PIECEWISE_MUST_AGREE",
+      "R": "PIECEWISE_M0_STATES_0_5005_MR_STATES_5006_20000"
+    },
+    "physics_transitions_total": 160000,
+    "states_total": 160008,
+    "neural_updates_total": 32000,
+    "automatic_retries": 0,
+    "resume": false,
+    "reuse_previous_controls": false,
+    "stop_on_fall": false
+  },
+  "protocol": {
+    "path": "docs/evidence/assistance-contribution-v1/protocol.json",
+    "raw_sha256": "d81cdf73ecebaf69a714bdb5bc929d7badc09f5b869068d77130fbbcdac70daa"
+  },
+  "sources_canonical_lf_sha256": {
+    "malecns_backend/live/assistance_campaign.py": "8bf1582d0dcc80c7b5c8e1fa3d222db2fdad06ed36d05db957f0a094876773b4",
+    "docs/ASSISTANCE_CAMPAIGN_V1.md": "1fafb7c65af35d26d32d0c613e245ad11eb01b25ffe4c02e7e5afb5467701689",
+    "tests/test_assistance_campaign.py": "f8805d0220df2275c9072eac99364c5591ce275a16efc104582a4d81e3c8871e"
+  },
+  "native_qualification_executed": false,
+  "scientific_campaign_executed": false,
+  "motor_coverage": [
+    20,
+    42
+  ],
+  "new_motor_admissions": 0
+}
