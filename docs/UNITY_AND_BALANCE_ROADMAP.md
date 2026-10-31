@@ -1,5 +1,19 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-10-31: the ONE V1 campaign attempt stopped at A_NC binding on a
+false live-data guard alarm (0 physics/neural; preserved). Versioned V1.1 guard
+correction implemented; no new native run. See ASSISTANCE_CAMPAIGN_V1_1_RESULTS.
+
+```text
+Campaign/full evaluator       [merged]
+V1 live attempt               [failed at binding; preserved]
+V1.1 guard correction         [implemented; toy-MuJoCo + synthetic tests]
+Native qualification          [not reached]
+Eight-arm assistance run      [not run]
+Motor coverage                [##########-----------] 20/42
+Independent balance           [not established]
+```
+
 Current2026-10-31: eight-arm campaign controller/workers and complete piecewise
 evaluator implemented; 46 synthetic/real-process engineering tests pass. Native
 qualification and the eight-arm run have NOT run. See ASSISTANCE_CAMPAIGN_RESULTS.

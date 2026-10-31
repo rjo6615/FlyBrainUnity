@@ -1,0 +1,57 @@
+{
+  "schema": "assistance-campaign-implementation-v1.1",
+  "status": "IMPLEMENTED_ENGINEERING_TESTED_NATIVE_NOT_RUN",
+  "campaign": {
+    "schema": "assistance-contribution-campaign-v1.1",
+    "protocol": "docs/evidence/assistance-contribution-v1/protocol.json",
+    "arm_order": [
+      "A_NC",
+      "A_WC",
+      "A_NP",
+      "A_WP",
+      "R_NC",
+      "R_WC",
+      "R_NP",
+      "R_WP"
+    ],
+    "process_per_arm": true,
+    "qualification": "FIRST_A_NC_ACTUAL_MODEL_ONCE_TRANSFERRED_UNCHANGED_TO_LATER_ARMS",
+    "complete_prerequisites": [
+      "controller_before",
+      "controller_after",
+      "worker_before",
+      "worker_after"
+    ],
+    "model_audit": {
+      "A": "FROZEN_CONSTANT_AUDITOR_AND_PIECEWISE_MUST_AGREE",
+      "R": "PIECEWISE_M0_STATES_0_5005_MR_STATES_5006_20000"
+    },
+    "physics_transitions_total": 160000,
+    "states_total": 160008,
+    "neural_updates_total": 32000,
+    "automatic_retries": 0,
+    "resume": false,
+    "reuse_previous_controls": false,
+    "stop_on_fall": false,
+    "amendment": "docs/evidence/assistance-campaign-v1_1/protocol.json",
+    "live_guard": "mujoco-mjSTATE_INTEGRATION-fields-v1.1"
+  },
+  "amendment": {
+    "path": "docs/evidence/assistance-campaign-v1_1/protocol.json",
+    "raw_sha256": "d9cc02308be22d8b7101db1d67a610394f167d122d378cbbee014536ed06d485"
+  },
+  "sources_canonical_lf_sha256": {
+    "malecns_backend/live/assistance_campaign_v1_1.py": "d01522e18f42aca3d21ddcd9ba73f6860b5285e9185f276cab76a268c54935f5",
+    "malecns_backend/live/assistance_native_v1_1.py": "5843afa35dd8152afd26214c0549718d3ac4b9da33b74a2330913a4dc82df5b0",
+    "malecns_backend/live/assistance_trial_v1_1.py": "aa4dd34cfb2d943c29b13f1bdf39ca306c71f5e183217472c4abbd240ddf32dd",
+    "docs/ASSISTANCE_CAMPAIGN_V1_1.md": "994196caa7918792fe05cf46d25c219006b02c0775bf2072094d58f16c555aea",
+    "tests/test_assistance_campaign_v1_1.py": "d1ca46ff1b4acf67a03bf1f7512138462a55d8d51db4d066eef202ab973fac50"
+  },
+  "native_qualification_executed": false,
+  "scientific_campaign_executed": false,
+  "motor_coverage": [
+    20,
+    42
+  ],
+  "new_motor_admissions": 0
+}
