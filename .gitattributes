@@ -117,3 +117,7 @@ docs/evidence/assistance-campaign-v1_1/*.json -text
 docs/evidence/assistance-campaign-v1_1/**/*.json -text
 docs/evidence/assistance-campaign-v1_1/**/*.txt -text -whitespace
 docs/evidence/assistance-campaign-v1_1/**/*.json.gz filter=lfs diff=lfs merge=lfs -text
+docs/evidence/assistance-campaign-v1_2/*.json -text
+docs/evidence/assistance-campaign-v1_2/**/*.json -text
+docs/evidence/assistance-campaign-v1_2/**/*.txt -text -whitespace
+docs/evidence/assistance-campaign-v1_2/**/*.json.gz filter=lfs diff=lfs merge=lfs -text

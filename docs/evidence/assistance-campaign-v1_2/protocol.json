@@ -1,0 +1,41 @@
+{
+  "schema": "assistance-campaign-amendment-v1.2",
+  "date": "2026-10-31",
+  "question": "Unchanged eight-arm assistance-contribution question after exact decoding of saved non-finite floats",
+  "scientific_protocol": "docs/evidence/assistance-contribution-v1/protocol.json",
+  "scientific_protocol_raw_sha256": "d81cdf73ecebaf69a714bdb5bc929d7badc09f5b869068d77130fbbcdac70daa",
+  "scientific_parameters_changed": false,
+  "acceptance_changed": false,
+  "arm_order_changed": false,
+  "budget_changed": false,
+  "live_guard_changed": false,
+  "engineering_change": "SAVED_JSON_READER_DECODES_JSON_SAFE_NONFINITE_FLOAT_MARKERS_EXACTLY",
+  "saved_json_reader": "json-safe-arrow-nonfinite-float-markers-decoded-exactly-v1.2",
+  "marker": {"key": "__arrow_nonfinite_float__", "NaN": "nan", "+Infinity": "inf", "-Infinity": "-inf"},
+  "failed_attempts": [
+    {
+      "report": "docs/evidence/assistance-campaign-v1/run-desktop-01/report.json",
+      "report_sha256": "50ad9eae2643ead943d64cfc474d728df6e122f27883b120a2d711b3087376ba",
+      "executed_commit": "953b607877ee9b790bda73429f4ab2d64e677362",
+      "outcome": "INCOMPLETE/INCONCLUSIVE_INTEGRITY; A_NC stopped at binding on V1 live-data guard; 0 transitions"
+    },
+    {
+      "report": "docs/evidence/assistance-campaign-v1_1/run-desktop-01/report.json",
+      "report_sha256": "9ec6bad38772dbb74c61c4ed08519452dc1ea2f7c9a8c7a15b099e1d91eb2dcc",
+      "executed_commit": "92652b5f9cbd74244367e0c4f175703a739f7c1f",
+      "outcome": "ERROR/INCONCLUSIVE_INTEGRITY; A_NC COMPLETE 20001 states/4000 neural, qualification passed in memory; controller transfer failed: TypeError float() argument ... not 'dict'; 7 arms unstarted"
+    }
+  ],
+  "diagnosis": {
+    "scope": "OFFLINE_READ_OF_RETAINED_FILES_NO_NATIVE_NO_CNS",
+    "finding": "inventory.actuators.forcerange rows 42..47 (the six adhesion actuators) hold +/-inf; the exclusive save encodes them as json_safe markers; the transfer reader passed markers to validate_inventory. Decoding the markers exactly makes the saved qualification pass all 12 cases (minimum baseline exposure 0.45)."
+  },
+  "reuse_retained_arms": false,
+  "retained_arm_offline_audit": "DIAGNOSTIC_ONLY_NOT_ACCEPTANCE_NO_BEHAVIOR",
+  "executed_v1_and_v1_1_sources_immutable": true,
+  "new_run_folder": "docs/evidence/assistance-campaign-v1_2/run-desktop-01",
+  "measured_cost_v1_1_a_nc": {"stepping_minutes": 62, "arm_raw_bytes": 560254400, "qualification_bytes": 174735229},
+  "automatic_retries": 0,
+  "native_execution_in_this_specification": false,
+  "new_attempt_requires_explicit_user_approval": true
+}

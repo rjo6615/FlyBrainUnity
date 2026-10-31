@@ -1,0 +1,56 @@
+{
+  "schema": "assistance-campaign-implementation-v1.2",
+  "status": "IMPLEMENTED_ENGINEERING_TESTED_NATIVE_NOT_RUN",
+  "campaign": {
+    "schema": "assistance-contribution-campaign-v1.2",
+    "protocol": "docs/evidence/assistance-contribution-v1/protocol.json",
+    "arm_order": [
+      "A_NC",
+      "A_WC",
+      "A_NP",
+      "A_WP",
+      "R_NC",
+      "R_WC",
+      "R_NP",
+      "R_WP"
+    ],
+    "process_per_arm": true,
+    "qualification": "FIRST_A_NC_ACTUAL_MODEL_ONCE_TRANSFERRED_UNCHANGED_TO_LATER_ARMS",
+    "complete_prerequisites": [
+      "controller_before",
+      "controller_after",
+      "worker_before",
+      "worker_after"
+    ],
+    "model_audit": {
+      "A": "FROZEN_CONSTANT_AUDITOR_AND_PIECEWISE_MUST_AGREE",
+      "R": "PIECEWISE_M0_STATES_0_5005_MR_STATES_5006_20000"
+    },
+    "physics_transitions_total": 160000,
+    "states_total": 160008,
+    "neural_updates_total": 32000,
+    "automatic_retries": 0,
+    "resume": false,
+    "reuse_previous_controls": false,
+    "stop_on_fall": false,
+    "amendment": "docs/evidence/assistance-campaign-v1_2/protocol.json",
+    "live_guard": "mujoco-mjSTATE_INTEGRATION-fields-v1.1",
+    "saved_json_reader": "json-safe-arrow-nonfinite-float-markers-decoded-exactly-v1.2"
+  },
+  "amendment": {
+    "path": "docs/evidence/assistance-campaign-v1_2/protocol.json",
+    "raw_sha256": "bec748e902b70c8dac6aef8a4e63c62793af5423a5cfb9d18fc3845d550a7bb1"
+  },
+  "sources_canonical_lf_sha256": {
+    "malecns_backend/live/assistance_campaign_v1_2.py": "6ec99ba68dd542be79b2787c10c1e4b00537f20aa00a8c0e1cdf374094a39c4d",
+    "docs/ASSISTANCE_CAMPAIGN_V1_2.md": "98f932f202b2ac7a81a9d8c421263fa466849b6cf973d1ec595e7b02bf4d0b1f",
+    "tests/test_assistance_campaign_v1_2.py": "3c94c86a3220d390dffd75af1dc0fb9adf3db7a9a77f82a89bce9a17dd50f895"
+  },
+  "native_qualification_executed": false,
+  "scientific_campaign_executed": false,
+  "motor_coverage": [
+    20,
+    42
+  ],
+  "new_motor_admissions": 0
+}
