@@ -21,6 +21,14 @@ report SHA256 9ec6bad3... locked by the V1.2 amendment.
    1e-12 clock bound instead of bit-exactly (accumulated MuJoCo clock differed
    from 5005*dt by -3.9e-14 s). Found by the first offline audit.
 
+3. Per-state model identity uses exact byte comparison with snapshots of the
+   recorded M0 and derived MR (~8 ms) instead of re-hashing all 379 model
+   arrays (108.75 MB, ~55 ms) twice per state. The retained A_NC ran at a
+   constant ~8.1 steps/s (~123 ms/step) vs ~97 steps/s without per-state
+   hashing. Expected ~9-10 min stepping per arm, ~1.3-1.6 h for eight
+   (estimate; not yet measured on the fly model). Equally strict; GPU would not
+   help (Python checking cost; GPU physics would change validated numerics).
+
 ## Offline audit of the retained A_NC (diagnostic only, no behavior)
 
 - `retained-v1_1-a-nc-audit.json` (commit 91fe155): qualification passed;
@@ -28,6 +36,8 @@ report SHA256 9ec6bad3... locked by the V1.2 amendment.
   equal to piecewise; mechanical FAILED on the journal clock only. Retained.
 - `retained-v1_1-a-nc-audit-02.json` (commit ed9d806): all passed, mechanical
   20,001 states, journal clock offset -3.885780586188048e-14 s.
+- `retained-v1_1-a-nc-audit-03.json` (commit 4ec2076, after the snapshot
+  change): all passed again.
 
 Not campaign acceptance: one arm cannot exercise cross-arm prefixes/RNG or
 comparisons, display/reference diagnostics were not run, and retained arms are
@@ -48,7 +58,9 @@ Executed V1/V1.1 modules unchanged (their `--check` passes).
 
 251 passed in 592.94 s before the clock correction (V1.2 + V1.1 + V1 campaign,
 native, trial, plan, controlled-live V1/V1.1, process, prerequisites); after it,
-the V1.2 suite 15 passed in 185.34 s, which includes the real retained V1.1
+the V1.2 suite 15 passed in 185.34 s. After the snapshot change: 261 passed
+and 1 failed in 626.73 s (a V1.2 policy-equality assertion that needed the new
+field excluded; fixed), then the V1.2 suite 22 passed in 190.11 s. These include the real retained V1.1
 qualification failing through the V1.1 reader and passing through V1.2. All three
 `--check` commands verify; commit gate passes.
 
@@ -64,4 +76,4 @@ PY="$HOME/Documents/FlyBrainUnity/fly-brain-interactive/.venv/Scripts/python.exe
 
 Expected `IDENTICAL`, `V1.2 SOURCE CHECK VERIFIED`, then `"status": "NOT_RUN"`,
 `"preflight_verified": true`, `INCONCLUSIVE_INTEGRITY`, exit 0. A live attempt
-(roughly 8-9 h, ~4.5 GB raw) requires explicit approval; no retry.
+(estimated ~1.3-1.6 h, ~4.5 GB raw) requires explicit approval; no retry.

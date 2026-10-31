@@ -2,7 +2,8 @@
 
 Current2026-10-31: V1.1 attempt completed A_NC with native qualification passed,
 then stopped at a saved-JSON read-back defect (preserved). V1.2 read-back and
-journal-clock corrections implemented; offline audit of retained A_NC passes.
+journal-clock corrections and a faster exact model-phase check (est. ~1.3-1.6 h
+for eight arms, was ~8-9 h) implemented; offline audit of retained A_NC passes.
 
 ```text
 V1 live attempt               [failed at binding; preserved]
