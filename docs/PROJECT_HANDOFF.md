@@ -1,5 +1,24 @@
 # FlyBrainUnity — local Codex handoff
 
+## V1 campaign attempt failed at binding; V1.1 guard correction — 2026-10-31
+
+User-approved ONE V1 attempt at 953b607: INCOMPLETE/INCONCLUSIVE_INTEGRITY.
+A_NC stopped in adapter binding (`mechanical capture mutated native data`):
+1 state, 0 physics/neural, qualification not started, 7 arms unstarted. All
+evidence committed under evidence/assistance-campaign-v1/run-desktop-01; no retry.
+Cause: V1 guard hashed every exposed MjData buffer, including arena scratch that
+changes between reads with no call (toy MuJoCo 3.2.7 diagnosis; fly fields not
+recorded by V1). Separately versioned assistance_native/trial/campaign_v1_1 guard
+mjSTATE_INTEGRATION fields (equal to mj_getState on real toy MjData), name changed
+fields; science/acceptance unchanged; executed V1 sources and failed report locked
+by evidence/assistance-campaign-v1_1/protocol.json. See ASSISTANCE_CAMPAIGN_V1_1*.md.
+
+IMMEDIATE NEXT: review/merge; move untracked evidence copies aside before pull
+(commands in V1_1_RESULTS); V1.1 --check and construction-free preflight; a new
+live attempt to evidence/assistance-campaign-v1_1/run-desktop-01 only with explicit
+user approval. Other fly-specific failures are possible; they will be named.
+20/42, 0 new admissions; independent balance/gait unproven.
+
 ## Eight-arm campaign/evaluator implemented — 2026-10-31
 
 Branch codex/assistance-campaign-v1 from merged PR294 (0b42311), sparse worktree;
