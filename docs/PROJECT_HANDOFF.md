@@ -1,5 +1,22 @@
 # FlyBrainUnity — local Codex handoff
 
+## V1.1 attempt: A_NC complete, transfer read-back failed; V1.2 — 2026-10-31
+
+User-approved ONE V1.1 attempt at 92652b5: ERROR/INCONCLUSIVE_INTEGRITY. A_NC
+COMPLETE (20,001 states/4,000 neural/20,001 mechanical; qualification passed in
+memory; ~62 min; 560 MB raw + 175 MB qualification), then the controller's
+re-read of the saved qualification failed: json_safe +/-inf markers (adhesion
+force ranges) not decoded. 7 arms unstarted; no retry; evidence committed.
+V1.2 (assistance_campaign_v1_2) decodes markers exactly and compares the trace
+journal clock at the runtime 1e-12 bound (second defect, found by an offline
+audit of the retained A_NC). Offline audit-02: A_NC identity/scientific/
+mechanical/qualification all pass (diagnostic only, not acceptance, no reuse).
+See ASSISTANCE_CAMPAIGN_V1_2*.md; amendment locks both failures.
+
+IMMEDIATE NEXT: review/merge; move untracked V1.1 evidence aside before pull
+(commands in V1_2_RESULTS); V1.2 --check and preflight; then a fresh eight-arm
+attempt (~8-9 h, ~4.5 GB) only with explicit approval. 20/42; balance/gait unproven.
+
 ## V1 campaign attempt failed at binding; V1.1 guard correction — 2026-10-31
 
 User-approved ONE V1 attempt at 953b607: INCOMPLETE/INCONCLUSIVE_INTEGRITY.

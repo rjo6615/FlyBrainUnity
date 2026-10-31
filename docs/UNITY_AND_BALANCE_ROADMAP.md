@@ -1,5 +1,19 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-10-31: V1.1 attempt completed A_NC with native qualification passed,
+then stopped at a saved-JSON read-back defect (preserved). V1.2 read-back and
+journal-clock corrections implemented; offline audit of retained A_NC passes.
+
+```text
+V1 live attempt               [failed at binding; preserved]
+V1.1 live attempt             [A_NC complete; stopped at transfer read; preserved]
+Native qualification          [passed on actual model (V1.1 A_NC)]
+V1.2 read-back correction     [implemented; retained A_NC audit passes]
+Eight-arm assistance run      [not run]
+Motor coverage                [##########-----------] 20/42
+Independent balance           [not established]
+```
+
 Current2026-10-31: the ONE V1 campaign attempt stopped at A_NC binding on a
 false live-data guard alarm (0 physics/neural; preserved). Versioned V1.1 guard
 correction implemented; no new native run. See ASSISTANCE_CAMPAIGN_V1_1_RESULTS.
