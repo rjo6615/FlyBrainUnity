@@ -13,7 +13,7 @@ transfer then raised `TypeError: float() argument ... not 'dict'`; 7 arms
 unstarted; no retry. All 14 files committed byte-identically (raw via LFS);
 report SHA256 9ec6bad3... locked by the V1.2 amendment.
 
-## Corrections (both declared in the amendment before any V1.2 execution)
+## Changes (all three declared in the amendment before any V1.2 execution)
 
 1. Saved-JSON read-back decodes the existing save's `__arrow_nonfinite_float__`
    markers exactly (the six adhesion actuators' +/-inf force ranges).
