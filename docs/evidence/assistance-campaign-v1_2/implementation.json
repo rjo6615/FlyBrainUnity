@@ -1,0 +1,59 @@
+{
+  "schema": "assistance-campaign-implementation-v1.2",
+  "status": "IMPLEMENTED_ENGINEERING_TESTED_NATIVE_NOT_RUN",
+  "campaign": {
+    "schema": "assistance-contribution-campaign-v1.2",
+    "protocol": "docs/evidence/assistance-contribution-v1/protocol.json",
+    "arm_order": [
+      "A_NC",
+      "A_WC",
+      "A_NP",
+      "A_WP",
+      "R_NC",
+      "R_WC",
+      "R_NP",
+      "R_WP"
+    ],
+    "process_per_arm": true,
+    "qualification": "FIRST_A_NC_ACTUAL_MODEL_ONCE_TRANSFERRED_UNCHANGED_TO_LATER_ARMS",
+    "complete_prerequisites": [
+      "controller_before",
+      "controller_after",
+      "worker_before",
+      "worker_after"
+    ],
+    "model_audit": {
+      "A": "FROZEN_CONSTANT_AUDITOR_AND_PIECEWISE_MUST_AGREE",
+      "R": "PIECEWISE_M0_STATES_0_5005_MR_STATES_5006_20000"
+    },
+    "physics_transitions_total": 160000,
+    "states_total": 160008,
+    "neural_updates_total": 32000,
+    "automatic_retries": 0,
+    "resume": false,
+    "reuse_previous_controls": false,
+    "stop_on_fall": false,
+    "amendment": "docs/evidence/assistance-campaign-v1_2/protocol.json",
+    "live_guard": "mujoco-mjSTATE_INTEGRATION-fields-v1.1",
+    "saved_json_reader": "json-safe-arrow-nonfinite-float-markers-decoded-exactly-v1.2",
+    "model_phase_check": "exact-byte-snapshot-of-recorded-M0-and-derived-MR-v1.2"
+  },
+  "amendment": {
+    "path": "docs/evidence/assistance-campaign-v1_2/protocol.json",
+    "raw_sha256": "6e07e1b21273bbb70e6f0ef7ea73d62e4c4544cb4a0b0f6c9e2939c9e24590b1"
+  },
+  "sources_canonical_lf_sha256": {
+    "malecns_backend/live/assistance_campaign_v1_2.py": "ad4abbdfad348a709635cc4704717c177365ce9fabc4a55332d6eafff4fee147",
+    "malecns_backend/live/assistance_native_v1_2.py": "474ada240b592e0eb5992bd8016b441e3560afe6dec602fbc7cd7f4e61c46f95",
+    "malecns_backend/live/assistance_trial_v1_2.py": "298534982c5e54016b5580ccbb0a8d036a514ba4bbca1a99de828ddca1580e00",
+    "docs/ASSISTANCE_CAMPAIGN_V1_2.md": "4caf4591c8e2787171836a2d8a7bd97d892eecbb41f0648bcb96ba489997a88d",
+    "tests/test_assistance_campaign_v1_2.py": "1e47fffeb5e517b95f345b25777a396f899eda31c2a2272119e0244b3d59a4c6"
+  },
+  "native_qualification_executed": false,
+  "scientific_campaign_executed": false,
+  "motor_coverage": [
+    20,
+    42
+  ],
+  "new_motor_admissions": 0
+}
