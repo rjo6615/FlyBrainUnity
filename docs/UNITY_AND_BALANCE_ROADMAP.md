@@ -1,5 +1,16 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-01: pivot to posture senses. Inventory V1: hair plates are the best
+next sense (direct path to coxa MNs, not yet encoded).
+
+```text
+Stage 1 DNg100 rhythm         [NOT_REPRODUCED]
+Posture-sense inventory       [done; hair plates best candidate]
+Hair-plate encoder            [next: preregister design]
+Motor coverage                [##########-----------] 20/42 (proven)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-01: Stage 1 of the discovery program (DNg100 rhythm in our engine)
 NOT_REPRODUCED: specific but tonic front-leg recruitment, no rhythm.
 

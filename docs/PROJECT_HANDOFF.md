@@ -1,5 +1,20 @@
 # FlyBrainUnity — local Codex handoff
 
+## Posture-sense pivot: inventory V1 — 2026-11-01
+
+Stage 2 (coxa posture) was redesigned: neural joints add offsets to posture-holding
+servos, and V1.2 spikes show coxa MNs fire the same upright vs upside down (only
+tibia angle is sensed). User chose to pivot to posture senses. Data-only inventory
+(preregistered 0bbc0d9): all annotated hair plates, campaniform sensilla,
+chordotonal, JO wind/gravity, haltere and neck neurons exist in our connectome.
+Middle/hind hair plates directly contact coxa-rotator MNs (224-1,024 synapses per
+leg) and are not encoded; front-leg hair plates were missed by the nerve rule;
+leg load (CS) is barely annotated. See POSTURE_SENSE_INVENTORY_RESULTS.md.
+
+IMMEDIATE NEXT: a separately preregistered hair-plate coxa-angle encoder design
+(which joint each plate reports, fixed tuning, front-leg nerve question), then a
+matched on/off test of whether coxa MN activity starts reflecting posture.
+
 ## Stage 1 DNg100 rhythm V1: NOT_REPRODUCED — 2026-11-01
 
 Discovery program (user-approved): Stage 1 asks whether our untuned whole-CNS LIF

@@ -1,0 +1,2238 @@
+{
+ "schema": "posture-sense-inventory-result-v1",
+ "protocol_sha256": "41f7168bd3975765d3fbfbbeab7d3f84070220b81dab8b39973b3c5f09a1cb85",
+ "organs": {
+  "hair_plate": {
+   "annotated": 113,
+   "matched": 113,
+   "matched_fraction": 1.0,
+   "leg_side_assigned": 60,
+   "leg_side_assigned_fraction": 0.5309734513274337,
+   "unmatched_body_ids": [],
+   "entry_nerves": {
+    "PrN": 35,
+    "MetaLN": 26,
+    "MesoLN": 33,
+    "VProN": 12,
+    "DProN": 6,
+    "ProLN": 1
+   },
+   "types": {
+    "SNpp19": 35,
+    "SNpp45": 52,
+    "SNpp52": 26
+   },
+   "already_encoded": {
+    "tibia_angle": 0,
+    "tactile_contact": 0
+   },
+   "per_leg": {
+    "T1 left": {
+     "sensory_neurons": 1,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      }
+     }
+    },
+    "T1 right": {
+     "sensory_neurons": 0,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      }
+     }
+    },
+    "T2 left": {
+     "sensory_neurons": 18,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 14,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 2,
+       "two_hop_neurons": 15,
+       "direct_synapses": 20
+      },
+      "coxa_abduct": {
+       "direct_neurons": 2,
+       "two_hop_neurons": 15,
+       "direct_synapses": 20
+      },
+      "coxa_twist": {
+       "direct_neurons": 13,
+       "two_hop_neurons": 16,
+       "direct_synapses": 663
+      },
+      "femur": {
+       "direct_neurons": 4,
+       "two_hop_neurons": 16,
+       "direct_synapses": 212
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 16,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 14,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 15,
+       "direct_synapses": 0
+      }
+     }
+    },
+    "T2 right": {
+     "sensory_neurons": 15,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 10,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 2,
+       "two_hop_neurons": 13,
+       "direct_synapses": 32
+      },
+      "coxa_abduct": {
+       "direct_neurons": 2,
+       "two_hop_neurons": 14,
+       "direct_synapses": 32
+      },
+      "coxa_twist": {
+       "direct_neurons": 10,
+       "two_hop_neurons": 13,
+       "direct_synapses": 1024
+      },
+      "femur": {
+       "direct_neurons": 3,
+       "two_hop_neurons": 13,
+       "direct_synapses": 91
+      },
+      "femur_twist": {
+       "direct_neurons": 1,
+       "two_hop_neurons": 12,
+       "direct_synapses": 6
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 10,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 13,
+       "direct_synapses": 0
+      }
+     }
+    },
+    "T3 left": {
+     "sensory_neurons": 12,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 4,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 1,
+       "two_hop_neurons": 12,
+       "direct_synapses": 8
+      },
+      "coxa_abduct": {
+       "direct_neurons": 1,
+       "two_hop_neurons": 12,
+       "direct_synapses": 20
+      },
+      "coxa_twist": {
+       "direct_neurons": 7,
+       "two_hop_neurons": 12,
+       "direct_synapses": 331
+      },
+      "femur": {
+       "direct_neurons": 2,
+       "two_hop_neurons": 12,
+       "direct_synapses": 124
+      },
+      "femur_twist": {
+       "direct_neurons": 3,
+       "two_hop_neurons": 12,
+       "direct_synapses": 27
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 4,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 12,
+       "direct_synapses": 0
+      }
+     }
+    },
+    "T3 right": {
+     "sensory_neurons": 14,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 10,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 14,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 3,
+       "two_hop_neurons": 14,
+       "direct_synapses": 21
+      },
+      "coxa_twist": {
+       "direct_neurons": 6,
+       "two_hop_neurons": 14,
+       "direct_synapses": 224
+      },
+      "femur": {
+       "direct_neurons": 5,
+       "two_hop_neurons": 13,
+       "direct_synapses": 420
+      },
+      "femur_twist": {
+       "direct_neurons": 1,
+       "two_hop_neurons": 14,
+       "direct_synapses": 9
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 10,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 13,
+       "direct_synapses": 0
+      }
+     }
+    }
+   },
+   "all_pools": {
+    "adhere_claw": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 72,
+     "direct_synapses": 0
+    },
+    "coxa": {
+     "direct_neurons": 22,
+     "two_hop_neurons": 102,
+     "direct_synapses": 794
+    },
+    "coxa_abduct": {
+     "direct_neurons": 24,
+     "two_hop_neurons": 101,
+     "direct_synapses": 815
+    },
+    "coxa_twist": {
+     "direct_neurons": 51,
+     "two_hop_neurons": 107,
+     "direct_synapses": 2844
+    },
+    "femur": {
+     "direct_neurons": 20,
+     "two_hop_neurons": 97,
+     "direct_synapses": 1100
+    },
+    "femur_twist": {
+     "direct_neurons": 19,
+     "two_hop_neurons": 102,
+     "direct_synapses": 279
+    },
+    "tarsus": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 19,
+     "direct_synapses": 0
+    },
+    "tarsus2": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 72,
+     "direct_synapses": 0
+    },
+    "tibia": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 97,
+     "direct_synapses": 0
+    }
+   },
+   "any_pool_two_hop_neurons": 110,
+   "legs_with_two_hop_reach": 4,
+   "body_signal": "AVAILABLE_NO_ENCODER",
+   "classification": "PARTIAL"
+  },
+  "campaniform_sensilla": {
+   "annotated": 426,
+   "matched": 426,
+   "matched_fraction": 1.0,
+   "leg_side_assigned": 12,
+   "leg_side_assigned_fraction": 0.028169014084507043,
+   "unmatched_body_ids": [],
+   "entry_nerves": {
+    "ADMN": 218,
+    "DMetaN": 195,
+    "MetaLN": 4,
+    "MesoLN": 4,
+    "ProLN": 4,
+    "None": 1
+   },
+   "types": {
+    "SApp10": 37,
+    "SApp14": 7,
+    "SApp09,SApp22": 74,
+    "SApp11,SApp18": 8,
+    "SApp04": 9,
+    "SApp21": 3,
+    "SApp19": 9,
+    "SApp08": 47,
+    "SApp20": 2,
+    "SApp06,SApp15": 37,
+    "SApp13": 8,
+    "SApp01": 19,
+    "SNpp30": 8,
+    "SNpp31": 2,
+    "SNpp32": 8,
+    "SNpp05": 2,
+    "SNpp33": 7,
+    "SNpp04": 4,
+    "SNpp28": 17,
+    "SNpp16": 13,
+    "SNpp20,SApp02": 3,
+    "SNpp10": 7,
+    "SNpp06": 4,
+    "SNpp29,SNpp63": 18,
+    "SNpp07": 12,
+    "SNpp08": 4,
+    "SNpp37": 7,
+    "SNpp26": 2,
+    "SNpp11": 6,
+    "SNpp38": 6,
+    "SNpp24": 4,
+    "SNpp36": 2,
+    "SNpp34,SApp16": 3,
+    "SNpp27": 2,
+    "SApp02,SApp03": 3,
+    "SApp05": 3,
+    "SApp07": 2,
+    "SNpp53": 13,
+    "SNpp09": 4
+   },
+   "already_encoded": {
+    "tibia_angle": 0,
+    "tactile_contact": 0
+   },
+   "per_leg": {
+    "T1 left": {
+     "sensory_neurons": 2,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      }
+     }
+    },
+    "T1 right": {
+     "sensory_neurons": 2,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      }
+     }
+    },
+    "T2 left": {
+     "sensory_neurons": 2,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 1,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 1,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 2,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 1,
+       "direct_synapses": 0
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 1,
+       "direct_synapses": 0
+      }
+     }
+    },
+    "T2 right": {
+     "sensory_neurons": 2,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 1,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 1,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 1,
+       "direct_synapses": 0
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 1,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 1,
+       "direct_synapses": 0
+      }
+     }
+    },
+    "T3 left": {
+     "sensory_neurons": 2,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 2,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 1,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 2,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 2,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 2,
+       "direct_synapses": 0
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 2,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 2,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 2,
+       "direct_synapses": 0
+      }
+     }
+    },
+    "T3 right": {
+     "sensory_neurons": 2,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 2,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 2,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 2,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 2,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 2,
+       "direct_synapses": 0
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 2,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 2,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 2,
+       "direct_synapses": 0
+      }
+     }
+    }
+   },
+   "all_pools": {
+    "adhere_claw": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 63,
+     "direct_synapses": 0
+    },
+    "coxa": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 152,
+     "direct_synapses": 0
+    },
+    "coxa_abduct": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 136,
+     "direct_synapses": 0
+    },
+    "coxa_twist": {
+     "direct_neurons": 2,
+     "two_hop_neurons": 239,
+     "direct_synapses": 12
+    },
+    "femur": {
+     "direct_neurons": 9,
+     "two_hop_neurons": 259,
+     "direct_synapses": 386
+    },
+    "femur_twist": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 108,
+     "direct_synapses": 0
+    },
+    "tarsus": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 23,
+     "direct_synapses": 0
+    },
+    "tarsus2": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 63,
+     "direct_synapses": 0
+    },
+    "tibia": {
+     "direct_neurons": 6,
+     "two_hop_neurons": 235,
+     "direct_synapses": 91
+    }
+   },
+   "any_pool_two_hop_neurons": 328,
+   "legs_with_two_hop_reach": 4,
+   "body_signal": "AVAILABLE_NO_TRANSDUCTION_MODEL",
+   "classification": "PARTIAL"
+  },
+  "chordotonal_organ": {
+   "annotated": 425,
+   "matched": 425,
+   "matched_fraction": 1.0,
+   "leg_side_assigned": 392,
+   "leg_side_assigned_fraction": 0.9223529411764706,
+   "unmatched_body_ids": [],
+   "entry_nerves": {
+    "MetaLN": 193,
+    "MesoLN": 163,
+    "ProLN": 36,
+    "ProCN": 33
+   },
+   "types": {
+    "SApp23": 22,
+    "SNpp17": 12,
+    "SNpp51": 30,
+    "SNpp50": 61,
+    "SNpp39": 39,
+    "SNpp40": 30,
+    "SNpp43": 18,
+    "SNpp42": 20,
+    "SNpp47": 40,
+    "SNpp48": 10,
+    "SNpp41": 21,
+    "SNpp49": 4,
+    "SNpp58": 16,
+    "SNpp60": 41,
+    "SNpp44": 5,
+    "SNpp56": 9,
+    "SNpp57": 12,
+    "SApp23,SNpp56": 6,
+    "SNpp18": 18,
+    "SNpp46": 2,
+    "SNpp22": 2,
+    "None": 1,
+    "SNpp59": 6
+   },
+   "already_encoded": {
+    "tibia_angle": 392,
+    "tactile_contact": 0
+   },
+   "per_leg": {
+    "T1 left": {
+     "sensory_neurons": 23,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 7,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 3,
+       "two_hop_neurons": 9,
+       "direct_synapses": 87
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 7,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 1,
+       "two_hop_neurons": 8,
+       "direct_synapses": 8
+      },
+      "femur": {
+       "direct_neurons": 2,
+       "two_hop_neurons": 11,
+       "direct_synapses": 54
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 5,
+       "direct_synapses": 0
+      },
+      "tarsus": {
+       "direct_neurons": 1,
+       "two_hop_neurons": 7,
+       "direct_synapses": 8
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 7,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 4,
+       "two_hop_neurons": 8,
+       "direct_synapses": 85
+      }
+     }
+    },
+    "T1 right": {
+     "sensory_neurons": 13,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 3,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 1,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 4,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 4,
+       "direct_synapses": 0
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 3,
+       "direct_synapses": 0
+      },
+      "tarsus": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 3,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 4,
+       "direct_synapses": 0
+      }
+     }
+    },
+    "T2 left": {
+     "sensory_neurons": 80,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 75,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 5,
+       "two_hop_neurons": 40,
+       "direct_synapses": 73
+      },
+      "coxa_abduct": {
+       "direct_neurons": 5,
+       "two_hop_neurons": 40,
+       "direct_synapses": 73
+      },
+      "coxa_twist": {
+       "direct_neurons": 5,
+       "two_hop_neurons": 75,
+       "direct_synapses": 63
+      },
+      "femur": {
+       "direct_neurons": 11,
+       "two_hop_neurons": 61,
+       "direct_synapses": 190
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 35,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 75,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 24,
+       "two_hop_neurons": 45,
+       "direct_synapses": 443
+      }
+     }
+    },
+    "T2 right": {
+     "sensory_neurons": 83,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 36,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 2,
+       "two_hop_neurons": 42,
+       "direct_synapses": 18
+      },
+      "coxa_abduct": {
+       "direct_neurons": 2,
+       "two_hop_neurons": 47,
+       "direct_synapses": 18
+      },
+      "coxa_twist": {
+       "direct_neurons": 4,
+       "two_hop_neurons": 76,
+       "direct_synapses": 43
+      },
+      "femur": {
+       "direct_neurons": 13,
+       "two_hop_neurons": 60,
+       "direct_synapses": 183
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 19,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 36,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 18,
+       "two_hop_neurons": 50,
+       "direct_synapses": 344
+      }
+     }
+    },
+    "T3 left": {
+     "sensory_neurons": 93,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 56,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 2,
+       "two_hop_neurons": 35,
+       "direct_synapses": 13
+      },
+      "coxa_abduct": {
+       "direct_neurons": 2,
+       "two_hop_neurons": 35,
+       "direct_synapses": 13
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 39,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 4,
+       "two_hop_neurons": 45,
+       "direct_synapses": 73
+      },
+      "femur_twist": {
+       "direct_neurons": 2,
+       "two_hop_neurons": 32,
+       "direct_synapses": 14
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 56,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 5,
+       "two_hop_neurons": 42,
+       "direct_synapses": 47
+      }
+     }
+    },
+    "T3 right": {
+     "sensory_neurons": 100,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 61,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 13,
+       "two_hop_neurons": 49,
+       "direct_synapses": 188
+      },
+      "coxa_abduct": {
+       "direct_neurons": 13,
+       "two_hop_neurons": 49,
+       "direct_synapses": 188
+      },
+      "coxa_twist": {
+       "direct_neurons": 3,
+       "two_hop_neurons": 52,
+       "direct_synapses": 25
+      },
+      "femur": {
+       "direct_neurons": 20,
+       "two_hop_neurons": 64,
+       "direct_synapses": 500
+      },
+      "femur_twist": {
+       "direct_neurons": 4,
+       "two_hop_neurons": 45,
+       "direct_synapses": 75
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 61,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 27,
+       "two_hop_neurons": 59,
+       "direct_synapses": 356
+      }
+     }
+    }
+   },
+   "all_pools": {
+    "adhere_claw": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 276,
+     "direct_synapses": 0
+    },
+    "coxa": {
+     "direct_neurons": 25,
+     "two_hop_neurons": 199,
+     "direct_synapses": 379
+    },
+    "coxa_abduct": {
+     "direct_neurons": 22,
+     "two_hop_neurons": 200,
+     "direct_synapses": 292
+    },
+    "coxa_twist": {
+     "direct_neurons": 13,
+     "two_hop_neurons": 273,
+     "direct_synapses": 139
+    },
+    "femur": {
+     "direct_neurons": 51,
+     "two_hop_neurons": 266,
+     "direct_synapses": 1008
+    },
+    "femur_twist": {
+     "direct_neurons": 6,
+     "two_hop_neurons": 170,
+     "direct_synapses": 89
+    },
+    "tarsus": {
+     "direct_neurons": 1,
+     "two_hop_neurons": 10,
+     "direct_synapses": 8
+    },
+    "tarsus2": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 276,
+     "direct_synapses": 0
+    },
+    "tibia": {
+     "direct_neurons": 78,
+     "two_hop_neurons": 229,
+     "direct_synapses": 1275
+    }
+   },
+   "any_pool_two_hop_neurons": 346,
+   "legs_with_two_hop_reach": 6,
+   "body_signal": "AVAILABLE_EXISTING_ENCODER",
+   "classification": "READY_FOR_ENCODER_DESIGN"
+  },
+  "wind_gravity_JO": {
+   "annotated": 475,
+   "matched": 475,
+   "matched_fraction": 1.0,
+   "leg_side_assigned": 0,
+   "leg_side_assigned_fraction": 0.0,
+   "unmatched_body_ids": [],
+   "entry_nerves": {
+    "AN": 475
+   },
+   "types": {
+    "JO-ED2_a": 38,
+    "JO-EV6": 21,
+    "JO-EV1": 50,
+    "JO-EV2": 36,
+    "JO-EV3": 45,
+    "JO-ED2_c": 14,
+    "JO-CL": 19,
+    "JO-ED2_b": 21,
+    "JO-CM": 23,
+    "JO-B3": 7,
+    "JO-ED1": 18,
+    "JO-EV5": 23,
+    "JO-B4_a": 3,
+    "JO-unclear": 96,
+    "JO-CA2": 3,
+    "JO-B4_b": 12,
+    "JO-EV4": 1,
+    "JO-CA1": 8,
+    "JO-mz": 2,
+    "JO-B2": 7,
+    "JO-FD2": 4,
+    "JO-DP": 3,
+    "JO-FV": 10,
+    "JO-DA": 5,
+    "JO-B1_a": 3,
+    "JO-B1_c": 1,
+    "JO-B1_b": 1,
+    "JO-A4": 1
+   },
+   "already_encoded": {
+    "tibia_angle": 0,
+    "tactile_contact": 0
+   },
+   "per_leg": {
+    "T1 left": {
+     "sensory_neurons": 0,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      }
+     }
+    },
+    "T1 right": {
+     "sensory_neurons": 0,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      }
+     }
+    },
+    "T2 left": {
+     "sensory_neurons": 0,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      }
+     }
+    },
+    "T2 right": {
+     "sensory_neurons": 0,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      }
+     }
+    },
+    "T3 left": {
+     "sensory_neurons": 0,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      }
+     }
+    },
+    "T3 right": {
+     "sensory_neurons": 0,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      }
+     }
+    }
+   },
+   "all_pools": {
+    "adhere_claw": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 79,
+     "direct_synapses": 0
+    },
+    "coxa": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 30,
+     "direct_synapses": 0
+    },
+    "coxa_abduct": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 35,
+     "direct_synapses": 0
+    },
+    "coxa_twist": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 105,
+     "direct_synapses": 0
+    },
+    "femur": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 138,
+     "direct_synapses": 0
+    },
+    "femur_twist": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 10,
+     "direct_synapses": 0
+    },
+    "tarsus": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 1,
+     "direct_synapses": 0
+    },
+    "tarsus2": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 79,
+     "direct_synapses": 0
+    },
+    "tibia": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 111,
+     "direct_synapses": 0
+    }
+   },
+   "any_pool_two_hop_neurons": 178,
+   "legs_with_two_hop_reach": 0,
+   "body_signal": "AVAILABLE_NO_TRANSDUCTION_MODEL",
+   "classification": "PARTIAL"
+  },
+  "haltere": {
+   "annotated": 205,
+   "matched": 205,
+   "matched_fraction": 1.0,
+   "leg_side_assigned": 0,
+   "leg_side_assigned_fraction": 0.0,
+   "unmatched_body_ids": [],
+   "entry_nerves": {
+    "DMetaN": 205
+   },
+   "types": {
+    "None": 4,
+    "SApp": 148,
+    "SNpp12": 2,
+    "SNpp34": 8,
+    "SNpp23": 6,
+    "SNpp25": 7,
+    "SNpp21": 4,
+    "SNpp35": 6,
+    "SNpp14": 6,
+    "SNpp15": 6,
+    "SNpp20": 6,
+    "SNxx25": 2
+   },
+   "already_encoded": {
+    "tibia_angle": 0,
+    "tactile_contact": 0
+   },
+   "per_leg": {
+    "T1 left": {
+     "sensory_neurons": 0,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      }
+     }
+    },
+    "T1 right": {
+     "sensory_neurons": 0,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      }
+     }
+    },
+    "T2 left": {
+     "sensory_neurons": 0,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      }
+     }
+    },
+    "T2 right": {
+     "sensory_neurons": 0,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      }
+     }
+    },
+    "T3 left": {
+     "sensory_neurons": 0,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      }
+     }
+    },
+    "T3 right": {
+     "sensory_neurons": 0,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      }
+     }
+    }
+   },
+   "all_pools": {
+    "adhere_claw": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 36,
+     "direct_synapses": 0
+    },
+    "coxa": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 94,
+     "direct_synapses": 0
+    },
+    "coxa_abduct": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 65,
+     "direct_synapses": 0
+    },
+    "coxa_twist": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 121,
+     "direct_synapses": 0
+    },
+    "femur": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 148,
+     "direct_synapses": 0
+    },
+    "femur_twist": {
+     "direct_neurons": 1,
+     "two_hop_neurons": 92,
+     "direct_synapses": 6
+    },
+    "tarsus": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 18,
+     "direct_synapses": 0
+    },
+    "tarsus2": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 36,
+     "direct_synapses": 0
+    },
+    "tibia": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 136,
+     "direct_synapses": 0
+    }
+   },
+   "any_pool_two_hop_neurons": 163,
+   "legs_with_two_hop_reach": 0,
+   "body_signal": "AVAILABLE_NO_TRANSDUCTION_MODEL",
+   "classification": "PARTIAL"
+  },
+  "neck": {
+   "annotated": 2,
+   "matched": 2,
+   "matched_fraction": 1.0,
+   "leg_side_assigned": 0,
+   "leg_side_assigned_fraction": 0.0,
+   "unmatched_body_ids": [],
+   "entry_nerves": {
+    "PrN": 2
+   },
+   "types": {
+    "None": 2
+   },
+   "already_encoded": {
+    "tibia_angle": 0,
+    "tactile_contact": 0
+   },
+   "per_leg": {
+    "T1 left": {
+     "sensory_neurons": 0,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      }
+     }
+    },
+    "T1 right": {
+     "sensory_neurons": 0,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      }
+     }
+    },
+    "T2 left": {
+     "sensory_neurons": 0,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      }
+     }
+    },
+    "T2 right": {
+     "sensory_neurons": 0,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      }
+     }
+    },
+    "T3 left": {
+     "sensory_neurons": 0,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      }
+     }
+    },
+    "T3 right": {
+     "sensory_neurons": 0,
+     "joint_classes": {
+      "adhere_claw": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_abduct": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "coxa_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "femur_twist": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tarsus2": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      },
+      "tibia": {
+       "direct_neurons": 0,
+       "two_hop_neurons": 0,
+       "direct_synapses": 0
+      }
+     }
+    }
+   },
+   "all_pools": {
+    "adhere_claw": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 0,
+     "direct_synapses": 0
+    },
+    "coxa": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 0,
+     "direct_synapses": 0
+    },
+    "coxa_abduct": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 0,
+     "direct_synapses": 0
+    },
+    "coxa_twist": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 0,
+     "direct_synapses": 0
+    },
+    "femur": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 0,
+     "direct_synapses": 0
+    },
+    "femur_twist": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 0,
+     "direct_synapses": 0
+    },
+    "tarsus": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 0,
+     "direct_synapses": 0
+    },
+    "tarsus2": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 0,
+     "direct_synapses": 0
+    },
+    "tibia": {
+     "direct_neurons": 0,
+     "two_hop_neurons": 0,
+     "direct_synapses": 0
+    }
+   },
+   "any_pool_two_hop_neurons": 0,
+   "legs_with_two_hop_reach": 0,
+   "body_signal": "UNVERIFIED",
+   "classification": "PARTIAL"
+  }
+ },
+ "classification": {
+  "hair_plate": "PARTIAL",
+  "campaniform_sensilla": "PARTIAL",
+  "chordotonal_organ": "READY_FOR_ENCODER_DESIGN",
+  "wind_gravity_JO": "PARTIAL",
+  "haltere": "PARTIAL",
+  "neck": "PARTIAL"
+ },
+ "interpretation_limits": [
+  "Data-only inventory: no simulation, encoder, admission or behavioral claim.",
+  "Structural reach is not functional influence; annotations are not transduction measurements.",
+  "Body-signal declarations are engineering availability statements, not biological validation."
+ ]
+}
