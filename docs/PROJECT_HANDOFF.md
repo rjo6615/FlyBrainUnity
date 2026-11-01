@@ -1,5 +1,17 @@
 # FlyBrainUnity — local Codex handoff
 
+## Coxa hypothesis D1/D2: D1_D2_READY — 2026-11-01
+
+Preregistered (e4f2791), run once, geometry/data only. All checks pass (anterior, 18 nonzero
+action vectors, +Coxa posterior in all legs, audit identities, kernel resolver accepts
+H1/H2/H1_FLIP). +Coxa is the fore-aft DoF in every leg; front-leg roll and yaw are near
+degenerate at rest. H1: 13 channels, posterior rotators -> Coxa+ (RH: Coxa_roll), front
+remotor/abductor -> yaw (near-tie). H2: 8 channels, all rotators unassigned (cos 0 on yaw).
+D1c walking cross-check 3/6. Near-ties recorded, not acted on. See COXA_HYPOTHESIS_D1_D2_RESULTS.md.
+
+IMMEDIATE NEXT: user decision on D3 (closed-loop C0/H1/H1_FLIP/H2), which needs its own
+hash-locked protocol and a hypothesis-labelled session path (v3 refuses coxa admission).
+
 ## Coxa motor hypothesis track V1: design — 2026-11-01
 
 User chose the labelled coxa hypothesis track after Step C. Design only (no code/run):

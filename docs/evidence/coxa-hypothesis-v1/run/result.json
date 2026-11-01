@@ -1,0 +1,1944 @@
+{
+ "schema": "coxa-hypothesis-result-v1",
+ "protocol_sha256": "147228696e2656a563f19167ef9b5862fff8bb95bc012ef6a327c7a18f708538",
+ "label": "COXA_HYPOTHESIS (not admitted)",
+ "anterior_fraction": 0.9997040943412315,
+ "pools": {
+  "LF": {
+   "Pleural remotor/abductor MN T1 left": {
+    "pool": "Pleural remotor/abductor",
+    "labels": [
+     "coxa",
+     "coxa_abduct"
+    ],
+    "dense": [
+     144657,
+     145652
+    ],
+    "body_ids": [
+     802509,
+     803803
+    ]
+   },
+   "Sternal adductor MN T1 left": {
+    "pool": "Sternal adductor",
+    "labels": [
+     "coxa_abduct"
+    ],
+    "dense": [
+     153568
+    ],
+    "body_ids": [
+     813480
+    ]
+   },
+   "Sternal anterior rotator MN T1 left": {
+    "pool": "Sternal anterior rotator",
+    "labels": [
+     "coxa_twist"
+    ],
+    "dense": [
+     148218,
+     162458
+    ],
+    "body_ids": [
+     806923,
+     919509
+    ]
+   },
+   "Sternal posterior rotator MN T1 left": {
+    "pool": "Sternal posterior rotator",
+    "labels": [
+     "coxa_twist"
+    ],
+    "dense": [
+     144222,
+     146498,
+     149652,
+     164685
+    ],
+    "body_ids": [
+     801915,
+     804851,
+     808640,
+     1050335829
+    ]
+   },
+   "Tergopleural/Pleural promotor MN T1 left": {
+    "pool": "Tergopleural/Pleural promotor",
+    "labels": [
+     "coxa"
+    ],
+    "dense": [
+     142836,
+     143654,
+     148512,
+     162856
+    ],
+    "body_ids": [
+     800061,
+     801173,
+     807281,
+     934091
+    ]
+   }
+  },
+  "LM": {
+   "Pleural remotor/abductor MN T2 left": {
+    "pool": "Pleural remotor/abductor",
+    "labels": [
+     "coxa",
+     "coxa_abduct"
+    ],
+    "dense": [
+     143189,
+     159087,
+     160070
+    ],
+    "body_ids": [
+     800541,
+     902492,
+     905421
+    ]
+   },
+   "Sternal adductor MN T2 left": {
+    "pool": "Sternal adductor",
+    "labels": [
+     "coxa_abduct"
+    ],
+    "dense": [
+     155465
+    ],
+    "body_ids": [
+     816018
+    ]
+   },
+   "Sternal anterior rotator MN T2 left": {
+    "pool": "Sternal anterior rotator",
+    "labels": [
+     "coxa_twist"
+    ],
+    "dense": [
+     158604,
+     159489
+    ],
+    "body_ids": [
+     832490,
+     903689
+    ]
+   },
+   "Sternal posterior rotator MN T2 left": {
+    "pool": "Sternal posterior rotator",
+    "labels": [
+     "coxa_twist"
+    ],
+    "dense": [
+     144111,
+     145207,
+     145573,
+     164763
+    ],
+    "body_ids": [
+     801768,
+     803226,
+     803704,
+     1051054875
+    ]
+   }
+  },
+  "LH": {
+   "Pleural remotor/abductor MN T3 left": {
+    "pool": "Pleural remotor/abductor",
+    "labels": [
+     "coxa",
+     "coxa_abduct"
+    ],
+    "dense": [
+     142922,
+     159019
+    ],
+    "body_ids": [
+     800175,
+     902310
+    ]
+   },
+   "Sternal adductor MN T3 left": {
+    "pool": "Sternal adductor",
+    "labels": [
+     "coxa_abduct"
+    ],
+    "dense": [
+     159664
+    ],
+    "body_ids": [
+     904184
+    ]
+   },
+   "Sternal anterior rotator MN T3 left": {
+    "pool": "Sternal anterior rotator",
+    "labels": [
+     "coxa_twist"
+    ],
+    "dense": [
+     143949,
+     144439
+    ],
+    "body_ids": [
+     801548,
+     802215
+    ]
+   },
+   "Sternal posterior rotator MN T3 left": {
+    "pool": "Sternal posterior rotator",
+    "labels": [
+     "coxa_twist"
+    ],
+    "dense": [
+     143901,
+     144071,
+     144997,
+     156887
+    ],
+    "body_ids": [
+     801492,
+     801715,
+     802964,
+     818399
+    ]
+   }
+  },
+  "RF": {
+   "Pleural remotor/abductor MN T1 right": {
+    "pool": "Pleural remotor/abductor",
+    "labels": [
+     "coxa",
+     "coxa_abduct"
+    ],
+    "dense": [
+     145278,
+     146868
+    ],
+    "body_ids": [
+     803314,
+     805313
+    ]
+   },
+   "Sternal adductor MN T1 right": {
+    "pool": "Sternal adductor",
+    "labels": [
+     "coxa_abduct"
+    ],
+    "dense": [
+     155349
+    ],
+    "body_ids": [
+     815854
+    ]
+   },
+   "Sternal anterior rotator MN T1 right": {
+    "pool": "Sternal anterior rotator",
+    "labels": [
+     "coxa_twist"
+    ],
+    "dense": [
+     143884,
+     144225
+    ],
+    "body_ids": [
+     801469,
+     801918
+    ]
+   },
+   "Sternal posterior rotator MN T1 right": {
+    "pool": "Sternal posterior rotator",
+    "labels": [
+     "coxa_twist"
+    ],
+    "dense": [
+     146951,
+     149136
+    ],
+    "body_ids": [
+     805410,
+     808011
+    ]
+   },
+   "Tergopleural/Pleural promotor MN T1 right": {
+    "pool": "Tergopleural/Pleural promotor",
+    "labels": [
+     "coxa"
+    ],
+    "dense": [
+     144158,
+     144338,
+     147231,
+     151224
+    ],
+    "body_ids": [
+     801824,
+     802072,
+     805745,
+     810535
+    ]
+   }
+  },
+  "RM": {
+   "Pleural remotor/abductor MN T2 right": {
+    "pool": "Pleural remotor/abductor",
+    "labels": [
+     "coxa",
+     "coxa_abduct"
+    ],
+    "dense": [
+     143362,
+     145416,
+     159157
+    ],
+    "body_ids": [
+     800776,
+     803499,
+     902719
+    ]
+   },
+   "Sternal adductor MN T2 right": {
+    "pool": "Sternal adductor",
+    "labels": [
+     "coxa_abduct"
+    ],
+    "dense": [
+     161306
+    ],
+    "body_ids": [
+     909371
+    ]
+   },
+   "Sternal anterior rotator MN T2 right": {
+    "pool": "Sternal anterior rotator",
+    "labels": [
+     "coxa_twist"
+    ],
+    "dense": [
+     144149,
+     144246
+    ],
+    "body_ids": [
+     801813,
+     801946
+    ]
+   },
+   "Sternal posterior rotator MN T2 right": {
+    "pool": "Sternal posterior rotator",
+    "labels": [
+     "coxa_twist"
+    ],
+    "dense": [
+     143498,
+     144107,
+     144664,
+     157163
+    ],
+    "body_ids": [
+     800962,
+     801761,
+     802521,
+     818996
+    ]
+   }
+  },
+  "RH": {
+   "Pleural remotor/abductor MN T3 right": {
+    "pool": "Pleural remotor/abductor",
+    "labels": [
+     "coxa",
+     "coxa_abduct"
+    ],
+    "dense": [
+     142999,
+     143200
+    ],
+    "body_ids": [
+     800290,
+     800553
+    ]
+   },
+   "Sternal adductor MN T3 right": {
+    "pool": "Sternal adductor",
+    "labels": [
+     "coxa_abduct"
+    ],
+    "dense": [
+     148997
+    ],
+    "body_ids": [
+     807854
+    ]
+   },
+   "Sternal anterior rotator MN T3 right": {
+    "pool": "Sternal anterior rotator",
+    "labels": [
+     "coxa_twist"
+    ],
+    "dense": [
+     143020,
+     160329
+    ],
+    "body_ids": [
+     800316,
+     906235
+    ]
+   },
+   "Sternal posterior rotator MN T3 right": {
+    "pool": "Sternal posterior rotator",
+    "labels": [
+     "coxa_twist"
+    ],
+    "dense": [
+     159477,
+     159478,
+     160551,
+     164710
+    ],
+    "body_ids": [
+     903642,
+     903643,
+     907256,
+     1050493413
+    ]
+   }
+  }
+ },
+ "status": "D1_D2_READY",
+ "checks": {
+  "anterior": true,
+  "D1a_nonzero": true,
+  "D1b_step_b_sign": true,
+  "D2a_identity": true
+ },
+ "action_vectors": {
+  "LF": {
+   "Coxa": [
+    -1.5692247372860901,
+    0.0031280157422056143,
+    -1.1894479064494257
+   ],
+   "Coxa_roll": [
+    0.004316740656984397,
+    1.167702132229774,
+    0.0031303432133644726
+   ],
+   "Coxa_yaw": [
+    3.3306690738754696e-14,
+    1.5692306642593856,
+    -0.00019039558624145414
+   ]
+  },
+  "LM": {
+   "Coxa": [
+    -1.3652991279919258,
+    -0.04456931782857998,
+    0.2004610639281812
+   ],
+   "Coxa_roll": [
+    -0.723106782251115,
+    -0.15803695015104147,
+    -0.008472010700455446
+   ],
+   "Coxa_yaw": [
+    1.6653345369377348e-14,
+    1.1757150343405631,
+    1.0026449096443901
+   ]
+  },
+  "LH": {
+   "Coxa": [
+    -1.4041479128265588,
+    -0.22674742407232662,
+    1.2004188033845398
+   ],
+   "Coxa_roll": [
+    -0.8529655574856521,
+    -1.1743493688937345,
+    -0.2034818501201463
+   ],
+   "Coxa_yaw": [
+    0.0,
+    1.221396600601321,
+    1.0989525748977824
+   ]
+  },
+  "RF": {
+   "Coxa": [
+    -1.4906108619845537,
+    0.0005826848972712018,
+    -1.2073177950332026
+   ],
+   "Coxa_roll": [
+    -0.006367792136374728,
+    -1.205342330565709,
+    -0.0005901660062201941
+   ],
+   "Coxa_yaw": [
+    -1.1102230246251565e-14,
+    -1.4906137616556556,
+    0.005648387112522357
+   ]
+  },
+  "RM": {
+   "Coxa": [
+    -1.2374467929155475,
+    -0.02605514623670313,
+    0.24599609952601353
+   ],
+   "Coxa_roll": [
+    0.885362011429891,
+    0.23287449646988145,
+    0.01440548383261353
+   ],
+   "Coxa_yaw": [
+    0.0,
+    -1.13730418992255,
+    -1.0108331875974264
+   ]
+  },
+  "RH": {
+   "Coxa": [
+    -1.3534909594987488,
+    -0.16948345804750353,
+    1.2186297110405864
+   ],
+   "Coxa_roll": [
+    1.0204235623437086,
+    0.8416954124901399,
+    -0.17874880003454496
+   ],
+   "Coxa_yaw": [
+    0.0,
+    -1.1943439316926319,
+    -1.2379771214807045
+   ]
+  }
+ },
+ "walking_range": {
+  "LF": {
+   "Coxa": 0.5530242456987486,
+   "Coxa_roll": 0.6753792690230268,
+   "Coxa_yaw": 0.35250875749020877
+  },
+  "LM": {
+   "Coxa": 0.587698513787036,
+   "Coxa_roll": 0.16657289452131163,
+   "Coxa_yaw": 0.26523361022407577
+  },
+  "LH": {
+   "Coxa": 0.49536219829006495,
+   "Coxa_roll": 0.43617588362203774,
+   "Coxa_yaw": 0.24479687620188734
+  },
+  "RF": {
+   "Coxa": 0.5530242456987486,
+   "Coxa_roll": 0.6753792690230268,
+   "Coxa_yaw": 0.35250875749020877
+  },
+  "RM": {
+   "Coxa": 0.587698513787036,
+   "Coxa_roll": 0.16657289452131163,
+   "Coxa_yaw": 0.26523361022407577
+  },
+  "RH": {
+   "Coxa": 0.49536219829006495,
+   "Coxa_roll": 0.43617588362203774,
+   "Coxa_yaw": 0.24479687620188734
+  }
+ },
+ "assignment": {
+  "H1": {
+   "LF": {
+    "Pleural remotor/abductor MN T1 left": {
+     "pool": "Pleural remotor/abductor",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll",
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa": 0.5646409760580923,
+      "Coxa_roll": 0.7044854161166446,
+      "Coxa_yaw": 0.7071067759818389
+     },
+     "joint": "Coxa_yaw",
+     "sign": 1,
+     "status": "ASSIGNED"
+    },
+    "Sternal adductor MN T1 left": {
+     "pool": "Sternal adductor",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll",
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa": -0.001588569917847949,
+      "Coxa_roll": -0.9999895737937782,
+      "Coxa_yaw": -0.9999999926394516
+     },
+     "joint": "Coxa_yaw",
+     "sign": -1,
+     "status": "ASSIGNED"
+    },
+    "Sternal anterior rotator MN T1 left": {
+     "pool": "Sternal anterior rotator",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll",
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa": -0.7969343562950881,
+      "Coxa_roll": 0.003696743827566023,
+      "Coxa_yaw": 2.1224853204942066e-14
+     },
+     "joint": "Coxa",
+     "sign": -1,
+     "status": "ASSIGNED"
+    },
+    "Sternal posterior rotator MN T1 left": {
+     "pool": "Sternal posterior rotator",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll",
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa": 0.7969343562950881,
+      "Coxa_roll": -0.003696743827566023,
+      "Coxa_yaw": -2.1224853204942066e-14
+     },
+     "joint": "Coxa",
+     "sign": 1,
+     "status": "ASSIGNED"
+    },
+    "Tergopleural/Pleural promotor MN T1 left": {
+     "pool": "Tergopleural/Pleural promotor",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll",
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa": -0.7969343562950881,
+      "Coxa_roll": 0.003696743827566023,
+      "Coxa_yaw": 2.1224853204942066e-14
+     },
+     "joint": "Coxa",
+     "sign": -1,
+     "status": "ASSIGNED"
+    }
+   },
+   "LM": {
+    "Pleural remotor/abductor MN T2 left": {
+     "pool": "Pleural remotor/abductor",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll",
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa": 0.676415101700791,
+      "Coxa_roll": 0.5397892597480711,
+      "Coxa_yaw": 0.538029448710934
+     },
+     "joint": "Coxa",
+     "sign": 1,
+     "status": "ASSIGNED"
+    },
+    "Sternal adductor MN T2 left": {
+     "pool": "Sternal adductor",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll",
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa": 0.0322812467479451,
+      "Coxa_roll": 0.21349895567315416,
+      "Coxa_yaw": -0.7608885433231332
+     },
+     "joint": "Coxa_yaw",
+     "sign": -1,
+     "status": "ASSIGNED"
+    },
+    "Sternal anterior rotator MN T2 left": {
+     "pool": "Sternal anterior rotator",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll",
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa": -0.9888766573671801,
+      "Coxa_roll": -0.9768762476322096,
+      "Coxa_yaw": 1.0777560318151154e-14
+     },
+     "joint": "Coxa",
+     "sign": -1,
+     "status": "ASSIGNED"
+    },
+    "Sternal posterior rotator MN T2 left": {
+     "pool": "Sternal posterior rotator",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll",
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa": 0.9888766573671801,
+      "Coxa_roll": 0.9768762476322096,
+      "Coxa_yaw": -1.0777560318151154e-14
+     },
+     "joint": "Coxa",
+     "sign": 1,
+     "status": "ASSIGNED"
+    }
+   },
+   "LH": {
+    "Pleural remotor/abductor MN T3 left": {
+     "pool": "Pleural remotor/abductor",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll",
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa": 0.4473187179972266,
+      "Coxa_roll": -0.15505531217925891,
+      "Coxa_yaw": 0.5256534594402176
+     },
+     "joint": "Coxa_yaw",
+     "sign": 1,
+     "status": "ASSIGNED"
+    },
+    "Sternal adductor MN T3 left": {
+     "pool": "Sternal adductor",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll",
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa": 0.12182887102115779,
+      "Coxa_roll": 0.8012627797512927,
+      "Coxa_yaw": -0.7433862514486913
+     },
+     "joint": "Coxa_roll",
+     "sign": 1,
+     "status": "ASSIGNED"
+    },
+    "Sternal anterior rotator MN T3 left": {
+     "pool": "Sternal anterior rotator",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll",
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa": -0.7544330687161815,
+      "Coxa_roll": -0.5819814543493906,
+      "Coxa_yaw": 0.0
+     },
+     "joint": "Coxa",
+     "sign": -1,
+     "status": "ASSIGNED"
+    },
+    "Sternal posterior rotator MN T3 left": {
+     "pool": "Sternal posterior rotator",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll",
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa": 0.7544330687161815,
+      "Coxa_roll": 0.5819814543493906,
+      "Coxa_yaw": 0.0
+     },
+     "joint": "Coxa",
+     "sign": 1,
+     "status": "ASSIGNED"
+    }
+   },
+   "RF": {
+    "Pleural remotor/abductor MN T1 right": {
+     "pool": "Pleural remotor/abductor",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll",
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa": 0.5496957896652516,
+      "Coxa_roll": -0.7033612548992558,
+      "Coxa_yaw": -0.7071017046328524
+     },
+     "joint": "Coxa_yaw",
+     "sign": -1,
+     "status": "ASSIGNED"
+    },
+    "Sternal adductor MN T1 right": {
+     "pool": "Sternal adductor",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll",
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa": -0.00030376459552479125,
+      "Coxa_roll": 0.9999859255238208,
+      "Coxa_yaw": 0.9999928206689216
+     },
+     "joint": "Coxa_yaw",
+     "sign": 1,
+     "status": "ASSIGNED"
+    },
+    "Sternal anterior rotator MN T1 right": {
+     "pool": "Sternal anterior rotator",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll",
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa": -0.7770834763284622,
+      "Coxa_roll": -0.005282899597533762,
+      "Coxa_yaw": -7.448039743933084e-15
+     },
+     "joint": "Coxa",
+     "sign": -1,
+     "status": "ASSIGNED"
+    },
+    "Sternal posterior rotator MN T1 right": {
+     "pool": "Sternal posterior rotator",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll",
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa": 0.7770834763284622,
+      "Coxa_roll": 0.005282899597533762,
+      "Coxa_yaw": 7.448039743933084e-15
+     },
+     "joint": "Coxa",
+     "sign": 1,
+     "status": "ASSIGNED"
+    },
+    "Tergopleural/Pleural promotor MN T1 right": {
+     "pool": "Tergopleural/Pleural promotor",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll",
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa": -0.7770834763284622,
+      "Coxa_roll": -0.005282899597533762,
+      "Coxa_yaw": -7.448039743933084e-15
+     },
+     "joint": "Coxa",
+     "sign": -1,
+     "status": "ASSIGNED"
+    }
+   },
+   "RM": {
+    "Pleural remotor/abductor MN T2 right": {
+     "pool": "Pleural remotor/abductor",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll",
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa": 0.6787882025109854,
+      "Coxa_roll": -0.5039140349976541,
+      "Coxa_yaw": -0.5285221654196554
+     },
+     "joint": "Coxa",
+     "sign": 1,
+     "status": "ASSIGNED"
+    },
+    "Sternal adductor MN T2 right": {
+     "pool": "Sternal adductor",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll",
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa": 0.02064706019018497,
+      "Coxa_roll": -0.2543438114566554,
+      "Coxa_yaw": 0.7474432143512729
+     },
+     "joint": "Coxa_yaw",
+     "sign": 1,
+     "status": "ASSIGNED"
+    },
+    "Sternal anterior rotator MN T2 right": {
+     "pool": "Sternal anterior rotator",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll",
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa": -0.9805985421600755,
+      "Coxa_roll": 0.9669858740204882,
+      "Coxa_yaw": 0.0
+     },
+     "joint": "Coxa",
+     "sign": -1,
+     "status": "ASSIGNED"
+    },
+    "Sternal posterior rotator MN T2 right": {
+     "pool": "Sternal posterior rotator",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll",
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa": 0.9805985421600755,
+      "Coxa_roll": -0.9669858740204882,
+      "Coxa_yaw": 0.0
+     },
+     "joint": "Coxa",
+     "sign": 1,
+     "status": "ASSIGNED"
+    }
+   },
+   "RH": {
+    "Pleural remotor/abductor MN T3 right": {
+     "pool": "Pleural remotor/abductor",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll",
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa": 0.45771443434093645,
+      "Coxa_roll": -0.09468141700391038,
+      "Coxa_yaw": -0.49095155586923694
+     },
+     "joint": null,
+     "sign": 0,
+     "status": "UNASSIGNED"
+    },
+    "Sternal adductor MN T3 right": {
+     "pool": "Sternal adductor",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll",
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa": 0.09265790335476583,
+      "Coxa_roll": -0.6305822579004264,
+      "Coxa_yaw": 0.6943103487784471
+     },
+     "joint": "Coxa_yaw",
+     "sign": 1,
+     "status": "ASSIGNED"
+    },
+    "Sternal anterior rotator MN T3 right": {
+     "pool": "Sternal anterior rotator",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll",
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa": -0.7399638640936476,
+      "Coxa_roll": 0.7644820019320591,
+      "Coxa_yaw": 0.0
+     },
+     "joint": "Coxa_roll",
+     "sign": 1,
+     "status": "ASSIGNED"
+    },
+    "Sternal posterior rotator MN T3 right": {
+     "pool": "Sternal posterior rotator",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll",
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa": 0.7399638640936476,
+      "Coxa_roll": -0.7644820019320591,
+      "Coxa_yaw": 0.0
+     },
+     "joint": "Coxa_roll",
+     "sign": -1,
+     "status": "ASSIGNED"
+    }
+   }
+  },
+  "H2": {
+   "LF": {
+    "Pleural remotor/abductor MN T1 left": {
+     "pool": "Pleural remotor/abductor",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll"
+     ],
+     "cos": {
+      "Coxa": 0.5646409760580923,
+      "Coxa_roll": 0.7044854161166446
+     },
+     "joint": "Coxa_roll",
+     "sign": 1,
+     "status": "ASSIGNED"
+    },
+    "Sternal adductor MN T1 left": {
+     "pool": "Sternal adductor",
+     "candidates": [
+      "Coxa_roll"
+     ],
+     "cos": {
+      "Coxa_roll": -0.9999895737937782
+     },
+     "joint": "Coxa_roll",
+     "sign": -1,
+     "status": "ASSIGNED"
+    },
+    "Sternal anterior rotator MN T1 left": {
+     "pool": "Sternal anterior rotator",
+     "candidates": [
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa_yaw": 2.1224853204942066e-14
+     },
+     "joint": null,
+     "sign": 0,
+     "status": "UNASSIGNED"
+    },
+    "Sternal posterior rotator MN T1 left": {
+     "pool": "Sternal posterior rotator",
+     "candidates": [
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa_yaw": -2.1224853204942066e-14
+     },
+     "joint": null,
+     "sign": 0,
+     "status": "UNASSIGNED"
+    },
+    "Tergopleural/Pleural promotor MN T1 left": {
+     "pool": "Tergopleural/Pleural promotor",
+     "candidates": [
+      "Coxa"
+     ],
+     "cos": {
+      "Coxa": -0.7969343562950881
+     },
+     "joint": "Coxa",
+     "sign": -1,
+     "status": "ASSIGNED"
+    }
+   },
+   "LM": {
+    "Pleural remotor/abductor MN T2 left": {
+     "pool": "Pleural remotor/abductor",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll"
+     ],
+     "cos": {
+      "Coxa": 0.676415101700791,
+      "Coxa_roll": 0.5397892597480711
+     },
+     "joint": "Coxa",
+     "sign": 1,
+     "status": "ASSIGNED"
+    },
+    "Sternal adductor MN T2 left": {
+     "pool": "Sternal adductor",
+     "candidates": [
+      "Coxa_roll"
+     ],
+     "cos": {
+      "Coxa_roll": 0.21349895567315416
+     },
+     "joint": null,
+     "sign": 0,
+     "status": "UNASSIGNED"
+    },
+    "Sternal anterior rotator MN T2 left": {
+     "pool": "Sternal anterior rotator",
+     "candidates": [
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa_yaw": 1.0777560318151154e-14
+     },
+     "joint": null,
+     "sign": 0,
+     "status": "UNASSIGNED"
+    },
+    "Sternal posterior rotator MN T2 left": {
+     "pool": "Sternal posterior rotator",
+     "candidates": [
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa_yaw": -1.0777560318151154e-14
+     },
+     "joint": null,
+     "sign": 0,
+     "status": "UNASSIGNED"
+    }
+   },
+   "LH": {
+    "Pleural remotor/abductor MN T3 left": {
+     "pool": "Pleural remotor/abductor",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll"
+     ],
+     "cos": {
+      "Coxa": 0.4473187179972266,
+      "Coxa_roll": -0.15505531217925891
+     },
+     "joint": null,
+     "sign": 0,
+     "status": "UNASSIGNED"
+    },
+    "Sternal adductor MN T3 left": {
+     "pool": "Sternal adductor",
+     "candidates": [
+      "Coxa_roll"
+     ],
+     "cos": {
+      "Coxa_roll": 0.8012627797512927
+     },
+     "joint": "Coxa_roll",
+     "sign": 1,
+     "status": "ASSIGNED"
+    },
+    "Sternal anterior rotator MN T3 left": {
+     "pool": "Sternal anterior rotator",
+     "candidates": [
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa_yaw": 0.0
+     },
+     "joint": null,
+     "sign": 0,
+     "status": "UNASSIGNED"
+    },
+    "Sternal posterior rotator MN T3 left": {
+     "pool": "Sternal posterior rotator",
+     "candidates": [
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa_yaw": 0.0
+     },
+     "joint": null,
+     "sign": 0,
+     "status": "UNASSIGNED"
+    }
+   },
+   "RF": {
+    "Pleural remotor/abductor MN T1 right": {
+     "pool": "Pleural remotor/abductor",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll"
+     ],
+     "cos": {
+      "Coxa": 0.5496957896652516,
+      "Coxa_roll": -0.7033612548992558
+     },
+     "joint": "Coxa_roll",
+     "sign": -1,
+     "status": "ASSIGNED"
+    },
+    "Sternal adductor MN T1 right": {
+     "pool": "Sternal adductor",
+     "candidates": [
+      "Coxa_roll"
+     ],
+     "cos": {
+      "Coxa_roll": 0.9999859255238208
+     },
+     "joint": "Coxa_roll",
+     "sign": 1,
+     "status": "ASSIGNED"
+    },
+    "Sternal anterior rotator MN T1 right": {
+     "pool": "Sternal anterior rotator",
+     "candidates": [
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa_yaw": -7.448039743933084e-15
+     },
+     "joint": null,
+     "sign": 0,
+     "status": "UNASSIGNED"
+    },
+    "Sternal posterior rotator MN T1 right": {
+     "pool": "Sternal posterior rotator",
+     "candidates": [
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa_yaw": 7.448039743933084e-15
+     },
+     "joint": null,
+     "sign": 0,
+     "status": "UNASSIGNED"
+    },
+    "Tergopleural/Pleural promotor MN T1 right": {
+     "pool": "Tergopleural/Pleural promotor",
+     "candidates": [
+      "Coxa"
+     ],
+     "cos": {
+      "Coxa": -0.7770834763284622
+     },
+     "joint": "Coxa",
+     "sign": -1,
+     "status": "ASSIGNED"
+    }
+   },
+   "RM": {
+    "Pleural remotor/abductor MN T2 right": {
+     "pool": "Pleural remotor/abductor",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll"
+     ],
+     "cos": {
+      "Coxa": 0.6787882025109854,
+      "Coxa_roll": -0.5039140349976541
+     },
+     "joint": "Coxa",
+     "sign": 1,
+     "status": "ASSIGNED"
+    },
+    "Sternal adductor MN T2 right": {
+     "pool": "Sternal adductor",
+     "candidates": [
+      "Coxa_roll"
+     ],
+     "cos": {
+      "Coxa_roll": -0.2543438114566554
+     },
+     "joint": null,
+     "sign": 0,
+     "status": "UNASSIGNED"
+    },
+    "Sternal anterior rotator MN T2 right": {
+     "pool": "Sternal anterior rotator",
+     "candidates": [
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa_yaw": 0.0
+     },
+     "joint": null,
+     "sign": 0,
+     "status": "UNASSIGNED"
+    },
+    "Sternal posterior rotator MN T2 right": {
+     "pool": "Sternal posterior rotator",
+     "candidates": [
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa_yaw": 0.0
+     },
+     "joint": null,
+     "sign": 0,
+     "status": "UNASSIGNED"
+    }
+   },
+   "RH": {
+    "Pleural remotor/abductor MN T3 right": {
+     "pool": "Pleural remotor/abductor",
+     "candidates": [
+      "Coxa",
+      "Coxa_roll"
+     ],
+     "cos": {
+      "Coxa": 0.45771443434093645,
+      "Coxa_roll": -0.09468141700391038
+     },
+     "joint": null,
+     "sign": 0,
+     "status": "UNASSIGNED"
+    },
+    "Sternal adductor MN T3 right": {
+     "pool": "Sternal adductor",
+     "candidates": [
+      "Coxa_roll"
+     ],
+     "cos": {
+      "Coxa_roll": -0.6305822579004264
+     },
+     "joint": "Coxa_roll",
+     "sign": -1,
+     "status": "ASSIGNED"
+    },
+    "Sternal anterior rotator MN T3 right": {
+     "pool": "Sternal anterior rotator",
+     "candidates": [
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa_yaw": 0.0
+     },
+     "joint": null,
+     "sign": 0,
+     "status": "UNASSIGNED"
+    },
+    "Sternal posterior rotator MN T3 right": {
+     "pool": "Sternal posterior rotator",
+     "candidates": [
+      "Coxa_yaw"
+     ],
+     "cos": {
+      "Coxa_yaw": 0.0
+     },
+     "joint": null,
+     "sign": 0,
+     "status": "UNASSIGNED"
+    }
+   }
+  }
+ },
+ "channels": {
+  "H1": {
+   "joint_LFCoxa": {
+    "actuator": "joint_LFCoxa",
+    "action_index": 0,
+    "decoder_mode": "antagonist_pair",
+    "coordinate_sign": 1,
+    "positive_populations": {
+     "Sternal posterior rotator MN T1 left": [
+      801915,
+      804851,
+      808640,
+      1050335829
+     ]
+    },
+    "negative_populations": {
+     "Sternal anterior rotator MN T1 left": [
+      806923,
+      919509
+     ],
+     "Tergopleural/Pleural promotor MN T1 left": [
+      800061,
+      801173,
+      807281,
+      934091
+     ]
+    }
+   },
+   "joint_LFCoxa_yaw": {
+    "actuator": "joint_LFCoxa_yaw",
+    "action_index": 2,
+    "decoder_mode": "antagonist_pair",
+    "coordinate_sign": 1,
+    "positive_populations": {
+     "Pleural remotor/abductor MN T1 left": [
+      802509,
+      803803
+     ]
+    },
+    "negative_populations": {
+     "Sternal adductor MN T1 left": [
+      813480
+     ]
+    }
+   },
+   "joint_LMCoxa": {
+    "actuator": "joint_LMCoxa",
+    "action_index": 7,
+    "decoder_mode": "antagonist_pair",
+    "coordinate_sign": 1,
+    "positive_populations": {
+     "Pleural remotor/abductor MN T2 left": [
+      800541,
+      902492,
+      905421
+     ],
+     "Sternal posterior rotator MN T2 left": [
+      801768,
+      803226,
+      803704,
+      1051054875
+     ]
+    },
+    "negative_populations": {
+     "Sternal anterior rotator MN T2 left": [
+      832490,
+      903689
+     ]
+    }
+   },
+   "joint_LMCoxa_yaw": {
+    "actuator": "joint_LMCoxa_yaw",
+    "action_index": 9,
+    "decoder_mode": "unidirectional_positive",
+    "coordinate_sign": -1,
+    "population_name": "Sternal adductor MN T2 left",
+    "body_ids": [
+     816018
+    ]
+   },
+   "joint_LHCoxa": {
+    "actuator": "joint_LHCoxa",
+    "action_index": 14,
+    "decoder_mode": "antagonist_pair",
+    "coordinate_sign": 1,
+    "positive_populations": {
+     "Sternal posterior rotator MN T3 left": [
+      801492,
+      801715,
+      802964,
+      818399
+     ]
+    },
+    "negative_populations": {
+     "Sternal anterior rotator MN T3 left": [
+      801548,
+      802215
+     ]
+    }
+   },
+   "joint_LHCoxa_roll": {
+    "actuator": "joint_LHCoxa_roll",
+    "action_index": 15,
+    "decoder_mode": "unidirectional_positive",
+    "coordinate_sign": 1,
+    "population_name": "Sternal adductor MN T3 left",
+    "body_ids": [
+     904184
+    ]
+   },
+   "joint_LHCoxa_yaw": {
+    "actuator": "joint_LHCoxa_yaw",
+    "action_index": 16,
+    "decoder_mode": "unidirectional_positive",
+    "coordinate_sign": 1,
+    "population_name": "Pleural remotor/abductor MN T3 left",
+    "body_ids": [
+     800175,
+     902310
+    ]
+   },
+   "joint_RFCoxa": {
+    "actuator": "joint_RFCoxa",
+    "action_index": 21,
+    "decoder_mode": "antagonist_pair",
+    "coordinate_sign": 1,
+    "positive_populations": {
+     "Sternal posterior rotator MN T1 right": [
+      805410,
+      808011
+     ]
+    },
+    "negative_populations": {
+     "Sternal anterior rotator MN T1 right": [
+      801469,
+      801918
+     ],
+     "Tergopleural/Pleural promotor MN T1 right": [
+      801824,
+      802072,
+      805745,
+      810535
+     ]
+    }
+   },
+   "joint_RFCoxa_yaw": {
+    "actuator": "joint_RFCoxa_yaw",
+    "action_index": 23,
+    "decoder_mode": "antagonist_pair",
+    "coordinate_sign": 1,
+    "positive_populations": {
+     "Sternal adductor MN T1 right": [
+      815854
+     ]
+    },
+    "negative_populations": {
+     "Pleural remotor/abductor MN T1 right": [
+      803314,
+      805313
+     ]
+    }
+   },
+   "joint_RMCoxa": {
+    "actuator": "joint_RMCoxa",
+    "action_index": 28,
+    "decoder_mode": "antagonist_pair",
+    "coordinate_sign": 1,
+    "positive_populations": {
+     "Pleural remotor/abductor MN T2 right": [
+      800776,
+      803499,
+      902719
+     ],
+     "Sternal posterior rotator MN T2 right": [
+      800962,
+      801761,
+      802521,
+      818996
+     ]
+    },
+    "negative_populations": {
+     "Sternal anterior rotator MN T2 right": [
+      801813,
+      801946
+     ]
+    }
+   },
+   "joint_RMCoxa_yaw": {
+    "actuator": "joint_RMCoxa_yaw",
+    "action_index": 30,
+    "decoder_mode": "unidirectional_positive",
+    "coordinate_sign": 1,
+    "population_name": "Sternal adductor MN T2 right",
+    "body_ids": [
+     909371
+    ]
+   },
+   "joint_RHCoxa_roll": {
+    "actuator": "joint_RHCoxa_roll",
+    "action_index": 36,
+    "decoder_mode": "antagonist_pair",
+    "coordinate_sign": 1,
+    "positive_populations": {
+     "Sternal anterior rotator MN T3 right": [
+      800316,
+      906235
+     ]
+    },
+    "negative_populations": {
+     "Sternal posterior rotator MN T3 right": [
+      903642,
+      903643,
+      907256,
+      1050493413
+     ]
+    }
+   },
+   "joint_RHCoxa_yaw": {
+    "actuator": "joint_RHCoxa_yaw",
+    "action_index": 37,
+    "decoder_mode": "unidirectional_positive",
+    "coordinate_sign": 1,
+    "population_name": "Sternal adductor MN T3 right",
+    "body_ids": [
+     807854
+    ]
+   }
+  },
+  "H2": {
+   "joint_LFCoxa": {
+    "actuator": "joint_LFCoxa",
+    "action_index": 0,
+    "decoder_mode": "unidirectional_positive",
+    "coordinate_sign": -1,
+    "population_name": "Tergopleural/Pleural promotor MN T1 left",
+    "body_ids": [
+     800061,
+     801173,
+     807281,
+     934091
+    ]
+   },
+   "joint_LFCoxa_roll": {
+    "actuator": "joint_LFCoxa_roll",
+    "action_index": 1,
+    "decoder_mode": "antagonist_pair",
+    "coordinate_sign": 1,
+    "positive_populations": {
+     "Pleural remotor/abductor MN T1 left": [
+      802509,
+      803803
+     ]
+    },
+    "negative_populations": {
+     "Sternal adductor MN T1 left": [
+      813480
+     ]
+    }
+   },
+   "joint_LMCoxa": {
+    "actuator": "joint_LMCoxa",
+    "action_index": 7,
+    "decoder_mode": "unidirectional_positive",
+    "coordinate_sign": 1,
+    "population_name": "Pleural remotor/abductor MN T2 left",
+    "body_ids": [
+     800541,
+     902492,
+     905421
+    ]
+   },
+   "joint_LHCoxa_roll": {
+    "actuator": "joint_LHCoxa_roll",
+    "action_index": 15,
+    "decoder_mode": "unidirectional_positive",
+    "coordinate_sign": 1,
+    "population_name": "Sternal adductor MN T3 left",
+    "body_ids": [
+     904184
+    ]
+   },
+   "joint_RFCoxa": {
+    "actuator": "joint_RFCoxa",
+    "action_index": 21,
+    "decoder_mode": "unidirectional_positive",
+    "coordinate_sign": -1,
+    "population_name": "Tergopleural/Pleural promotor MN T1 right",
+    "body_ids": [
+     801824,
+     802072,
+     805745,
+     810535
+    ]
+   },
+   "joint_RFCoxa_roll": {
+    "actuator": "joint_RFCoxa_roll",
+    "action_index": 22,
+    "decoder_mode": "antagonist_pair",
+    "coordinate_sign": 1,
+    "positive_populations": {
+     "Sternal adductor MN T1 right": [
+      815854
+     ]
+    },
+    "negative_populations": {
+     "Pleural remotor/abductor MN T1 right": [
+      803314,
+      805313
+     ]
+    }
+   },
+   "joint_RMCoxa": {
+    "actuator": "joint_RMCoxa",
+    "action_index": 28,
+    "decoder_mode": "unidirectional_positive",
+    "coordinate_sign": 1,
+    "population_name": "Pleural remotor/abductor MN T2 right",
+    "body_ids": [
+     800776,
+     803499,
+     902719
+    ]
+   },
+   "joint_RHCoxa_roll": {
+    "actuator": "joint_RHCoxa_roll",
+    "action_index": 36,
+    "decoder_mode": "unidirectional_positive",
+    "coordinate_sign": -1,
+    "population_name": "Sternal adductor MN T3 right",
+    "body_ids": [
+     807854
+    ]
+   }
+  },
+  "H1_FLIP": {
+   "joint_LFCoxa": {
+    "actuator": "joint_LFCoxa",
+    "action_index": 0,
+    "decoder_mode": "antagonist_pair",
+    "coordinate_sign": -1,
+    "positive_populations": {
+     "Sternal posterior rotator MN T1 left": [
+      801915,
+      804851,
+      808640,
+      1050335829
+     ]
+    },
+    "negative_populations": {
+     "Sternal anterior rotator MN T1 left": [
+      806923,
+      919509
+     ],
+     "Tergopleural/Pleural promotor MN T1 left": [
+      800061,
+      801173,
+      807281,
+      934091
+     ]
+    }
+   },
+   "joint_LFCoxa_yaw": {
+    "actuator": "joint_LFCoxa_yaw",
+    "action_index": 2,
+    "decoder_mode": "antagonist_pair",
+    "coordinate_sign": -1,
+    "positive_populations": {
+     "Pleural remotor/abductor MN T1 left": [
+      802509,
+      803803
+     ]
+    },
+    "negative_populations": {
+     "Sternal adductor MN T1 left": [
+      813480
+     ]
+    }
+   },
+   "joint_LMCoxa": {
+    "actuator": "joint_LMCoxa",
+    "action_index": 7,
+    "decoder_mode": "antagonist_pair",
+    "coordinate_sign": -1,
+    "positive_populations": {
+     "Pleural remotor/abductor MN T2 left": [
+      800541,
+      902492,
+      905421
+     ],
+     "Sternal posterior rotator MN T2 left": [
+      801768,
+      803226,
+      803704,
+      1051054875
+     ]
+    },
+    "negative_populations": {
+     "Sternal anterior rotator MN T2 left": [
+      832490,
+      903689
+     ]
+    }
+   },
+   "joint_LMCoxa_yaw": {
+    "actuator": "joint_LMCoxa_yaw",
+    "action_index": 9,
+    "decoder_mode": "unidirectional_positive",
+    "coordinate_sign": 1,
+    "population_name": "Sternal adductor MN T2 left",
+    "body_ids": [
+     816018
+    ]
+   },
+   "joint_LHCoxa": {
+    "actuator": "joint_LHCoxa",
+    "action_index": 14,
+    "decoder_mode": "antagonist_pair",
+    "coordinate_sign": -1,
+    "positive_populations": {
+     "Sternal posterior rotator MN T3 left": [
+      801492,
+      801715,
+      802964,
+      818399
+     ]
+    },
+    "negative_populations": {
+     "Sternal anterior rotator MN T3 left": [
+      801548,
+      802215
+     ]
+    }
+   },
+   "joint_LHCoxa_roll": {
+    "actuator": "joint_LHCoxa_roll",
+    "action_index": 15,
+    "decoder_mode": "unidirectional_positive",
+    "coordinate_sign": -1,
+    "population_name": "Sternal adductor MN T3 left",
+    "body_ids": [
+     904184
+    ]
+   },
+   "joint_LHCoxa_yaw": {
+    "actuator": "joint_LHCoxa_yaw",
+    "action_index": 16,
+    "decoder_mode": "unidirectional_positive",
+    "coordinate_sign": -1,
+    "population_name": "Pleural remotor/abductor MN T3 left",
+    "body_ids": [
+     800175,
+     902310
+    ]
+   },
+   "joint_RFCoxa": {
+    "actuator": "joint_RFCoxa",
+    "action_index": 21,
+    "decoder_mode": "antagonist_pair",
+    "coordinate_sign": -1,
+    "positive_populations": {
+     "Sternal posterior rotator MN T1 right": [
+      805410,
+      808011
+     ]
+    },
+    "negative_populations": {
+     "Sternal anterior rotator MN T1 right": [
+      801469,
+      801918
+     ],
+     "Tergopleural/Pleural promotor MN T1 right": [
+      801824,
+      802072,
+      805745,
+      810535
+     ]
+    }
+   },
+   "joint_RFCoxa_yaw": {
+    "actuator": "joint_RFCoxa_yaw",
+    "action_index": 23,
+    "decoder_mode": "antagonist_pair",
+    "coordinate_sign": -1,
+    "positive_populations": {
+     "Sternal adductor MN T1 right": [
+      815854
+     ]
+    },
+    "negative_populations": {
+     "Pleural remotor/abductor MN T1 right": [
+      803314,
+      805313
+     ]
+    }
+   },
+   "joint_RMCoxa": {
+    "actuator": "joint_RMCoxa",
+    "action_index": 28,
+    "decoder_mode": "antagonist_pair",
+    "coordinate_sign": -1,
+    "positive_populations": {
+     "Pleural remotor/abductor MN T2 right": [
+      800776,
+      803499,
+      902719
+     ],
+     "Sternal posterior rotator MN T2 right": [
+      800962,
+      801761,
+      802521,
+      818996
+     ]
+    },
+    "negative_populations": {
+     "Sternal anterior rotator MN T2 right": [
+      801813,
+      801946
+     ]
+    }
+   },
+   "joint_RMCoxa_yaw": {
+    "actuator": "joint_RMCoxa_yaw",
+    "action_index": 30,
+    "decoder_mode": "unidirectional_positive",
+    "coordinate_sign": -1,
+    "population_name": "Sternal adductor MN T2 right",
+    "body_ids": [
+     909371
+    ]
+   },
+   "joint_RHCoxa_roll": {
+    "actuator": "joint_RHCoxa_roll",
+    "action_index": 36,
+    "decoder_mode": "antagonist_pair",
+    "coordinate_sign": -1,
+    "positive_populations": {
+     "Sternal anterior rotator MN T3 right": [
+      800316,
+      906235
+     ]
+    },
+    "negative_populations": {
+     "Sternal posterior rotator MN T3 right": [
+      903642,
+      903643,
+      907256,
+      1050493413
+     ]
+    }
+   },
+   "joint_RHCoxa_yaw": {
+    "actuator": "joint_RHCoxa_yaw",
+    "action_index": 37,
+    "decoder_mode": "unidirectional_positive",
+    "coordinate_sign": -1,
+    "population_name": "Sternal adductor MN T3 right",
+    "body_ids": [
+     807854
+    ]
+   }
+  }
+ },
+ "h2_identical_to_h1": false,
+ "D1c_swing_cross_check": {
+  "LF": {
+   "swing_pool_counts": {
+    "Coxa_yaw": 1,
+    "Coxa": 3
+   },
+   "h1_swing_joint": "Coxa",
+   "largest_walking_range": "Coxa_roll",
+   "match": false
+  },
+  "LM": {
+   "swing_pool_counts": {
+    "Coxa": 3
+   },
+   "h1_swing_joint": "Coxa",
+   "largest_walking_range": "Coxa",
+   "match": true
+  },
+  "LH": {
+   "swing_pool_counts": {
+    "Coxa_yaw": 1,
+    "Coxa": 2
+   },
+   "h1_swing_joint": "Coxa",
+   "largest_walking_range": "Coxa",
+   "match": true
+  },
+  "RF": {
+   "swing_pool_counts": {
+    "Coxa_yaw": 1,
+    "Coxa": 3
+   },
+   "h1_swing_joint": "Coxa",
+   "largest_walking_range": "Coxa_roll",
+   "match": false
+  },
+  "RM": {
+   "swing_pool_counts": {
+    "Coxa": 3
+   },
+   "h1_swing_joint": "Coxa",
+   "largest_walking_range": "Coxa",
+   "match": true
+  },
+  "RH": {
+   "swing_pool_counts": {
+    "Coxa_roll": 2
+   },
+   "h1_swing_joint": "Coxa_roll",
+   "largest_walking_range": "Coxa",
+   "match": false
+  }
+ },
+ "interpretation_limits": [
+  "Named actions are literature-name readings, not measured muscle actions; rotator = swing is a stated choice with H2 as the competing twist reading.",
+  "Action vectors are local derivatives at one standing pose; muscle moment arms and attachment geometry are not modeled.",
+  "H1/H2 are labelled hypotheses, not admissions; motor coverage remains 20/42 proven."
+ ]
+}

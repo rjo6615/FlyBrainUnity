@@ -1,5 +1,16 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-01: coxa D1/D2 D1_D2_READY: action table and two rule-built hypothesis
+bindings (H1 13 channels, H2 8). Nothing admitted.
+
+```text
+Coxa D1: action table         [D1_D2_READY; front roll/yaw near-degenerate at rest]
+Coxa D2: H1/H2 bindings       [H1 13 ch, H2 8 ch; H2 drops all rotators]
+Coxa D3: closed-loop test     [next: preregister]
+Motor coverage                [##########-----------] 20/42 (proven; coxa = hypothesis only)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-01: coxa motor hypothesis track V1 designed (labelled bindings H1/H2,
 closed-loop resistance-reflex test). Not run; no admission.
 
