@@ -1,0 +1,71 @@
+{
+  "schema": "dng100-rhythm-protocol-v1",
+  "date": "2026-11-01",
+  "question": "Does our existing calibrated whole-CNS LIF engine, untuned, reproduce the published connectome prediction that tonic DNg100 activation drives rhythmic front-leg motor neuron activity through the E1/E2 core interneurons?",
+  "reference": {
+    "citation": "Pugliese, Tuthill, Brunton et al. 2025, 'Connectome simulations identify a central pattern generator circuit for fly walking', bioRxiv 10.1101/2025.09.12.675944 (preprint, not peer reviewed)",
+    "predictions_used": [
+      "Left DNg100 tonic activation drives rhythmic activity in several front-leg motor neurons (motor rhythmicity score > 0.5 as their threshold).",
+      "Oscillation roughly matches real stepping frequency (~7-15 Hz).",
+      "DNg100 is among the highest-scoring excitatory descending neurons.",
+      "Silencing E1 (IN17A001) or E2 (INXXX466) abolishes the rhythm.",
+      "Higher DNg100 drive raises oscillation frequency."
+    ],
+    "their_model": "rate model of an isolated MANC front-leg network with randomly sampled cell parameters; they also report rhythmic spiking for the core circuit in an LIF model"
+  },
+  "status": "PREREGISTERED_BEFORE_ANY_STIMULATION_RUN",
+  "feasibility_inspection_before_registration": [
+    "Confirmed presence only: DNg100 (2, L/R), IN17A001/INXXX466/IN16B036 (6 each), 931 acetylcholine descending neurons; engine step cost ~1.6 ms per 0.5 ms step. No stimulation run was performed."
+  ],
+  "engine": {
+    "module": "malecns_backend.neural.MaleCNSBrain with ModelConfig.calibrated(); no parameter changed",
+    "neural_py_lf_sha256": "8acebd58cdc221cc815646474bb337c3dc7bd05cccde685ac713f23ca51c7e0c",
+    "brain_params_lf_sha256": "a78e844e583e892aefb9c3a2005e84f5ca278b384fcfbbcd67933d6543696518",
+    "data": "malecns_backend.cache.load_cache over the canonical sources (fingerprints verified by load_cache)",
+    "network": "whole CNS as loaded; not a front-leg sub-network"
+  },
+  "stimulus": {
+    "target": "left DNg100 (instance DNg100_L)",
+    "method": "MaleCNSBrain.set_external_drive Poisson forced-spike rate",
+    "rates_hz": [25, 50, 100, 200],
+    "duration_ms": 3000,
+    "onset_ms": 0,
+    "seeds_dng100": "1..16 (brain.reset(seed))"
+  },
+  "readout": {
+    "motor_neurons": "union of dense indices of bodymap.json muscles entries whose name ends ' T1 left'",
+    "binning": "spike counts per 1 ms bin, Gaussian smoothing sigma 5 ms, converted to Hz",
+    "analysis_window_ms": [250, 3000],
+    "active_mn": "at least 5 spikes inside the analysis window",
+    "rhythmicity_score": "preprint method: trace scaled to [-1,1]; autocorrelation over positive lags; peaks with prominence >= 0.05; raw = min(max peak height, max peak prominence); period = lag of the most prominent peak; normalized by the same score of a frequency-matched sinusoid of equal duration, clipped to [0,1]; active MN without a qualifying peak scores 0",
+    "simulation_score": "mean over active MNs; NaN (infeasible) if no active MN",
+    "condition_score": "mean of feasible seeds; NaN if none feasible",
+    "frequency": "1000/period_ms of each active MN with score > 0; simulation frequency = median; condition frequency = median over seeds"
+  },
+  "best_rate_rule": "for DNg100 and each control neuron the condition score is the maximum over the four rates (mirrors the preprint's per-neuron input adjustment)",
+  "controls": {
+    "descending_controls": "20 acetylcholine descending neurons other than DNg100, sampled without replacement by numpy default_rng(20261101) from the sorted dense-index list; 4 rates x seeds 1..4 each",
+    "baseline": "no external drive, seeds 1..16"
+  },
+  "necessity": {
+    "copy_selection": "for each of IN17A001 (E1) and INXXX466 (E2), the instance with the most total synapses onto the front-left MN set",
+    "intervention": "transmission_withheld_indices = [selected copy] (it integrates and spikes, but its events are not delivered)",
+    "conditions": "DNg100 at its best rate, seeds 1..16, E1 silenced and E2 silenced separately"
+  },
+  "acceptance": {
+    "C1_rhythm": "DNg100 best-rate score >= 0.5 AND greater than the 80th percentile of the feasible control best-rate scores",
+    "C2_frequency": "DNg100 frequency at its best rate within [5, 20] Hz",
+    "C3_necessity": "score < 0.5 with E1 silenced AND score < 0.5 with E2 silenced",
+    "C4_drive_scaling_secondary": "Spearman correlation of rate vs frequency over feasible DNg100 rates > 0 (reported; not part of the verdict)",
+    "REPRODUCED": "C1 and C2 and C3",
+    "PARTIAL": "C1 holds and C2 or C3 fails",
+    "NOT_REPRODUCED": "C1 fails",
+    "INCONCLUSIVE": "engine/data hash mismatch, or DNg100 infeasible at all rates"
+  },
+  "interpretation_limits": [
+    "Motor neuron spiking only; no body, physics or behavior.",
+    "Different from the preprint: whole-CNS spiking engine with fixed calibrated parameters, not an isolated rate network with sampled parameters. A mismatch may reflect that difference rather than either model being wrong.",
+    "A reproduction supports our engine's VNC dynamics for this pathway; it does not establish walking, coxa mappings or inter-leg coordination."
+  ],
+  "single_run": "Executed once after protocol, code and tests are committed; no retries, rates, thresholds or windows changed after seeing results."
+}

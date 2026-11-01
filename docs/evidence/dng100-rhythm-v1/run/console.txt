@@ -1,0 +1,40 @@
+[     83s] baseline score nan
+[    172s] DNg100 25 Hz score nan freq nan
+[    271s] DNg100 50 Hz score 0.158 freq 7.180026389576117
+[    402s] DNg100 100 Hz score 0.196 freq 2.82008817643936
+[    539s] DNg100 200 Hz score 0.190 freq 4.331509285516135
+[    676s] E1 silenced score 0.22385741701932768
+[    834s] E2 silenced score 0.19211229147607217
+[    930s] control 1/20 DNp01 best None
+[   1025s] control 2/20 DNge049 best None
+[   1113s] control 3/20 DNp55 best None
+[   1205s] control 4/20 DNp66 best None
+[   1294s] control 5/20 DNae003 best None
+[   1381s] control 6/20 DNp63 best None
+[   1468s] control 7/20 DNg50 best None
+[   1555s] control 8/20 DNge137 best None
+[   1732s] control 9/20 DNge019 best 0.211
+[   1825s] control 10/20 DNg107 best None
+[   1916s] control 11/20 DNp41 best None
+[   2006s] control 12/20 DNg01_b best None
+[   2099s] control 13/20 DNb03 best None
+[   2188s] control 14/20 DNg09_a best None
+[   2278s] control 15/20 DNg09_a best None
+[   2365s] control 16/20 DNge181 best None
+[   2453s] control 17/20 DNg12_c best None
+[   2540s] control 18/20 DNg12_b best None
+[   2627s] control 19/20 DNg06 best None
+[   2747s] control 20/20 DNg29 best 0.217
+{
+ "verdict": "NOT_REPRODUCED",
+ "checks": {
+  "C1_rhythm": false,
+  "C2_frequency": false,
+  "C3_necessity": true
+ },
+ "control_p80": 0.21573993442241995,
+ "dng100_best_rate_hz": 100,
+ "C4_drive_scaling_spearman": -0.5,
+ "runtime_s": 2747.1
+}
+exit=0

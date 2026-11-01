@@ -1,5 +1,16 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-01: Stage 1 of the discovery program (DNg100 rhythm in our engine)
+NOT_REPRODUCED: specific but tonic front-leg recruitment, no rhythm.
+
+```text
+Stage 1 DNg100 rhythm         [NOT_REPRODUCED; pathway present, tonic output]
+Stage 2 coxa hypotheses       [not started]
+Stage 3 emergent stepping     [blocked: no rhythm in engine as-is]
+Motor coverage                [##########-----------] 20/42 (proven)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-01: blind serial motor-fingerprint test FAILED its preregistered
 bar (real signal, 0.62 vs needed 0.70). See SERIAL_MOTOR_FINGERPRINT_RESULTS.
 
