@@ -1,5 +1,18 @@
 # FlyBrainUnity — local Codex handoff
 
+## Stage 1 DNg100 rhythm V1: NOT_REPRODUCED — 2026-11-01
+
+Discovery program (user-approved): Stage 1 asks whether our untuned whole-CNS LIF
+engine reproduces the Pugliese et al. 2025 preprint's DNg100 -> front-leg motor
+rhythm. Preregistered (2bf3541), run once: best rhythmicity 0.196 (needed 0.5),
+2.8 Hz. DNg100 does specifically recruit 12/68 front-left MNs (coxa promotor,
+tibia flexor/extensor, rotator, femur reductor) but tonically, with flexor and
+extensor co-active. E1/E2 silencing vacuous. See DNG100_RHYTHM_RESULTS.md.
+
+IMMEDIATE NEXT: user choice. Stage 3 (emergent stepping) not expected with the
+engine as-is; Stage 2 (coxa posture hypotheses) does not need a rhythm. Any
+engine-parameter follow-up is a new versioned question, never tuning to oscillate.
+
 ## Serial motor fingerprint V1: FAIL — 2026-11-01
 
 Local-only attempt to infer motor-neuron identity from connectivity. Preregistered
