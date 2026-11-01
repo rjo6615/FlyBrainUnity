@@ -1,5 +1,18 @@
 # FlyBrainUnity — local Codex handoff
 
+## Anatomy data requests drafted (not sent) — 2026-11-01
+
+User watched the V1.2 replay (fly falls). Motor coverage is the bottleneck, and
+all 22 unadmitted coordinates need anatomy absent from reviewed public sources.
+`ANATOMY_DATA_REQUESTS_V1.md` drafts Request A (FlyMimic: coxa attachment/
+landmark correspondences, rotator lines of action) and Request B (MANC/BANC/
+MaleCNS: per-neuron coxa muscle targets for 26 exact pools, T2/T3 tarsal
+homologs). Status NOT SENT; the user sends them. Replies get a separate versioned
+qualification review; nothing is admitted from a reply alone. 20/42.
+
+IMMEDIATE NEXT: user decides whether to send. While waiting, work that needs no
+new anatomy (e.g. additional seeds of V1.2, sensory work) needs its own protocol.
+
 ## V1.2 saved-pose Unity replay entry point — 2026-11-01
 
 `assistance_campaign_v1_2_replay` re-runs the unchanged V1.2 evaluator once and
