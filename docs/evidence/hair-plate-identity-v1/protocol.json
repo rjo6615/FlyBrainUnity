@@ -1,0 +1,43 @@
+{
+  "schema": "hair-plate-identity-protocol-v1",
+  "date": "2026-11-01",
+  "question": "Do the SNpp45 hair-plate neurons in our simulated connectome show the published CxHP8 output pattern (strongest direct input to posterior-moving coxa motor neurons, net inhibition of forward-moving coxa motor neurons), first in the front legs and then in the middle/hind serial copies?",
+  "reference": "Proprioceptive limit detectors contribute to sensorimotor control of the Drosophila leg, Nature Communications 2026 (preprint PMC12139860): CxHP8 is the only hair plate entering via VProN; strongest monosynaptic input to the coxa posterior module; strongest inhibition onto the coxa promote module; predicted net excitation of posterior and inhibition of anterior movement. Reconstructed in FANC (female), not MANC.",
+  "status": "PREREGISTERED_BEFORE_ANY_CONNECTIVITY_WAS_COMPUTED",
+  "feasibility_inspection_before_registration": [
+    "Annotation counts only: SNpp45 by entry nerve (VProN 12, ProLN 1, MesoLN 23, MetaLN 16) and SNpp52 (DProN 6, MesoLN 10, MetaLN 10); bodymap leg MN population names. No synapse counts between them were computed."
+  ],
+  "sources": {
+    "annotations": {"path": "docs/evidence/lf-anatomical-crosswalk-v1/annotations.feather", "sha256": "2177e246113e4cfbf1e7772ec37c6da1955ff22e8063d0b1f833101f99a9a3b2"},
+    "connectome": "malecns_backend.cache.load_cache",
+    "motor_populations": "bodymap.json muscles entries named '<population> T<seg> <side>' (deduplicated neurons per population and leg)"
+  },
+  "sensory_sets": {
+    "T1": "type SNpp45 and entryNerve VProN (CxHP8 identity in the reference); the single ProLN SNpp45 is reported, not used",
+    "T2": "type SNpp45 and entryNerve MesoLN",
+    "T3": "type SNpp45 and entryNerve MetaLN",
+    "side": "rootSide L/R, else somaSide L/R; neurons without a side are reported and excluded"
+  },
+  "motor_sets": {
+    "posterior": ["Pleural remotor/abductor MN", "Sternal posterior rotator MN"],
+    "anterior": ["Tergopleural/Pleural promotor MN", "Sternal anterior rotator MN"],
+    "note": "The reference names FANC modules, not these populations; mapping 'posterior/promote module' to these annotated populations is a declared assumption. Promotor MNs are annotated only in T1."
+  },
+  "metrics": {
+    "edges": "simulated CSR, synapse count >= 6 per edge (engine floor)",
+    "direct": "total synapses from the leg's sensory set onto each same-leg, same-side MN population",
+    "net_two_hop": "sum over interneurons k (any non-sensory, non-motor neuron) of syn(S->k) * sign(k) * syn(k->M), sign +1 acetylcholine, -1 GABA or glutamate, 0 otherwise; reported for posterior and anterior sets"
+  },
+  "acceptance": {
+    "per_leg_match": "(i) direct synapses onto the posterior set > onto the anterior set, AND (ii) the single same-leg MN population with the most direct synapses is in the posterior set, AND (iii) net_two_hop onto the anterior set < 0",
+    "CXHP8_MATCH_FRONT": "per_leg_match in both T1 legs",
+    "SERIAL_MATCH": "per_leg_match in at least 3 of the 4 T2/T3 legs",
+    "verdict": "MATCH_ALL if both; FRONT_ONLY if CXHP8_MATCH_FRONT only; SERIAL_ONLY if SERIAL_MATCH only; NO_MATCH otherwise; INCONCLUSIVE if a source hash fails or a used leg has no sensory neurons"
+  },
+  "consequence_declared_in_advance": "MATCH_ALL -> Step B encodes SNpp45 in all six legs; FRONT_ONLY -> Step B front legs only; SERIAL_ONLY or NO_MATCH -> stop and report before any encoder.",
+  "interpretation_limits": [
+    "Structural connectivity only; no simulation. Our dataset is male (MaleCNS), the reference used female FANC.",
+    "Posterior/anterior population sets are a declared mapping of the reference's modules."
+  ],
+  "single_run": "Executed once after protocol, code and tests are committed."
+}
