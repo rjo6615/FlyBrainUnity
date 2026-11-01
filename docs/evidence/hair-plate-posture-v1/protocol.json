@@ -1,0 +1,43 @@
+{
+  "schema": "hair-plate-posture-protocol-v1",
+  "date": "2026-11-01",
+  "question": "With the Step B SNpp45 coxa forward-limit encoder delivering input, does coxa motor-neuron activity become sensitive to posture (held vs released), and does it shift in the published CxHP8 reflex direction?",
+  "status": "PREREGISTERED_BEFORE_ANY_STEP_C_RUN",
+  "encoder": "malecns_backend.embodiment.hair_plate_encoder (Step B, ENCODER_READY; tuning from docs/evidence/hair-plate-encoder-v1/run/result.json), used as-is including the standing-pose saturation in LF/RF/LH and 68.5 Hz in RH",
+  "arms": {
+    "order": ["A_OFF", "A_ON", "R_OFF", "R_ON"],
+    "A": "all 42 position servos keep the original assisted policy",
+    "R": "the same 22 baseline-only rows as the V1.2 R arms (assistance_native.partition selection) have actuator_gainprm and actuator_biasprm zeroed once, after recorded physics state 5005 (assistance_native.write_rows); first affected state 5006",
+    "ON": "hair-plate encoder rates delivered from t = 0",
+    "OFF": "identical encoder, schedule and RNG draws, hair-plate delivery withheld at the CNS boundary",
+    "common": "live-v3 kernel, 20 motor channels, tibia proprioception, seed 1, 2 s (20000 physics / 4000 neural transitions), no push, no retries, fresh process per arm"
+  },
+  "input_boundary": "instance-local adapter modeled on live.tactile_boundary: one common external schedule = 392 tibia proprioceptive + 52 SNpp45 neurons; same Bernoulli equation; identical uniforms in all arms; hair-plate drive set each neural tick from current physics and cleared after the tick",
+  "integrity": {
+    "I1_complete": "all four arms COMPLETE with 20001 states and 4000 neural ticks",
+    "I2_common_rng": "identical external schedule and identical per-tick uniform digests in all arms",
+    "I3_prefix": "A_OFF and R_OFF qpos identical for states 0..5005 and first differ at a state >= 5006; same for A_ON vs R_ON",
+    "I4_intervention": "R arms record exactly one row-zeroing event at state 5005 whose model record equals the declared neutral record; A arms record none",
+    "I5_delivery": "OFF arms deliver zero hair-plate events; ON arms deliver > 0",
+    "rule": "any integrity failure -> INCONCLUSIVE_INTEGRITY; no behavioral label is assigned"
+  },
+  "readouts": {
+    "window": "neural ticks with time in (520, 2000] ms; physics states 5201..20000",
+    "coxa_mn_rate": "spikes of all bodymap coxa, coxa_abduct and coxa_twist leg MN neurons (union, all legs) / neurons / window seconds",
+    "posterior_rate": "same for Pleural remotor/abductor + Sternal posterior rotator MN neurons",
+    "anterior_rate": "same for Tergopleural/Pleural promotor + Sternal anterior rotator MN neurons",
+    "tilt": "angle between world up and thorax/root body z from qpos[3:7]; rollover = tilt > 90 deg"
+  },
+  "questions": {
+    "Q1_posture_sensitivity": "dOFF = |coxa_mn_rate(A_OFF) - coxa_mn_rate(R_OFF)|, dON = same for ON. POSTURE_SENSITIVE if dON >= 2 * dOFF and dON >= 0.5 Hz; else NOT_POSTURE_SENSITIVE",
+    "Q2_reflex_direction": "in A arms: dPost = posterior_rate(A_ON) - posterior_rate(A_OFF), dAnt = same for anterior. REFLEX_DIRECTION_CONSISTENT if dPost > 0 and dPost > dAnt; else NOT_CONSISTENT",
+    "descriptive": "per-leg coxa MN rates, hair-plate delivered events, tilt mean/peak and rollover samples per arm, R_ON vs R_OFF tilt difference, first physical divergence ON vs OFF"
+  },
+  "interpretation_limits": [
+    "One seed, assisted position control in A arms; not independent balance or gait.",
+    "Encoder tuning is modeled; the standing pose saturates it in four legs, so A_ON tests mostly a constant limit signal.",
+    "A label describes this model run; it is not biological validation of CxHP8 function."
+  ],
+  "evidence": "per-arm raw gz kept local (hashes in the report); the report, receipts and console logs are committed",
+  "single_run": "Executed once after protocol, code and tests are committed."
+}
