@@ -1,0 +1,67 @@
+{
+  "schema": "coxa-hypothesis-d3-protocol-v1",
+  "date": "2026-11-01",
+  "design": ["docs/COXA_HYPOTHESIS_TRACK_V1.md", "docs/COXA_HYPOTHESIS_D3_V1.md"],
+  "status": "PREREGISTERED_BEFORE_D3_RUN",
+  "question": "With the rule-built coxa hypothesis channels closing the hair plate -> CNS -> coxa -> hair plate loop, does the coxa move posteriorly where hair plates fire (resistance reflex), opposite under the sign-flipped control, and does H1 fit better than H2?",
+  "sources": {
+    "d2_result": {"path": "docs/evidence/coxa-hypothesis-v1/run/result.json", "sha256": "ef2fbdec3cab6bbe1ae63a6e9a534e5a0566fabab6db18d22a22ecb260d90fce", "status": "D1_D2_READY"},
+    "step_c_report": {"path": "docs/evidence/hair-plate-posture-v1/run/report.json", "sha256": "7d5bb0b20b31941fb215e7744fc0adb17645902976986f67d5d2a0741853f69e"},
+    "step_c_a_on_raw": {"path": "docs/evidence/hair-plate-posture-v1/run/A_ON.json.gz", "sha256": "8c2d90e630ae72618e44bca8ee5354fe17b47ca80345558e139fb99f4b2a7745", "location": "local, uncommitted (Reports only)"}
+  },
+  "arms": {
+    "order": ["C0", "H1", "H1_FLIP", "H2"],
+    "common": "Step C Trial for arm A_ON unchanged (assisted posture, hair plates delivered, same seed/schedule/encoder), 20000 physics steps, 4000 neural ticks, one fresh process per arm, executed once",
+    "C0": "Step C create_session (live-v3) unchanged; no coxa channels",
+    "H1": "D2 channels.H1 (13)",
+    "H1_FLIP": "D2 channels.H1_FLIP (13)",
+    "H2": "D2 channels.H2 (8)"
+  },
+  "hypothesis_session": {
+    "derivation": "v3 protocol/records/table derived exactly as live-v3; validate_v3 must pass; then a deep copy marks only the arm's coxa rows neural_motor_admission=True, coordinate_sign=definition sign, motor_status=COXA_HYPOTHESIS_<arm>, handling=baseline_plus_neural_contribution; admitted_motor_interfaces = V3_MOTOR + arm names (sorted by action index)",
+    "kernel_inputs": "motor_channel_names = V3_MOTOR + arm names; supplemental_motor_channels = v3.SUPPLEMENTAL_MOTOR_CHANNELS + arm definitions; all other create_scientific_session arguments identical to tactile_boundary.create_session",
+    "gate": "v3.gate_contributions logic over exactly V3_MOTOR + arm names",
+    "assertion": "v3.assert_v3_physical_admission logic over the derived table: 42-length finite vector, nonzero only on admitted rows, and the admitted set equals V3 + arm rows exactly",
+    "unchanged": "observer 40 ms, activation half 17 Hz, decoder modes, slew 4 rad/s, safe_contribution_bound (0.25 rad for coxa), live_v3_motor_interface module"
+  },
+  "preflight": {
+    "P1": "D2 result sha256 and status D1_D2_READY match",
+    "P2": "kernel resolver accepts v3 supplemental + arm definitions for every H arm; no coxa dense index overlaps a historical (tibia/femur) channel's dense indices",
+    "P3": "no coxa readout neuron is in the 444-neuron external schedule (Step C Trial.attach check, enforced at run time)",
+    "P4": "local Step C A_ON raw sha256 equals the committed Step C report arm_sha256.A_ON and the protocol value",
+    "P5": "derived table differs from the v3 table only in the declared rows/fields; v3 contract valid on the v3 projection",
+    "failure": "PREFLIGHT_FAILED; no arm runs"
+  },
+  "integrity": {
+    "I1": "every arm COMPLETE with 20001 samples and 4000 neural ticks",
+    "I2": "per-tick uniforms_sha256 and external schedule identical to C0 in all arms",
+    "I3": "C0 equals saved Step C A_ON in fired, uniforms_sha256 and hair_delivered at every tick and qpos at every sample",
+    "I4": "v3 channel inventory (names, indices, signs, modes, populations) identical in all arms; H arm channel names equal the D2 definitions; |commanded - baseline| <= 0.25 + 1e-9 rad on every H joint at every sample (baseline = C0 command at that index, which must be constant); every index outside V3 + H equals C0's command at every sample",
+    "I5": "each H arm equals C0 in qpos and commanded_joints at every sample before the first sample where an H joint command differs from baseline, and in fired for every tick before that sample's time",
+    "failure": "INCONCLUSIVE_INTEGRITY; no Q3/Q4 labels"
+  },
+  "measures": {
+    "window_ms": [520.0, 2000.0],
+    "firing_legs": "legs whose C0 window-mean hair_rate_hz > 0; middle legs reported but excluded if silent",
+    "delta_f": "per firing leg: window-mean hair_forward (Step B forward component, recorded per tick) in arm minus in C0",
+    "posterior_shift": "delta_f <= -0.02",
+    "anterior_shift": "delta_f >= +0.02"
+  },
+  "labels": {
+    "Q3": {
+      "RESISTANCE_CONSISTENT": ">= 3 firing legs with H1 posterior shift AND >= 3 of those same legs with H1_FLIP anterior shift",
+      "SIGN_ONLY_CONSISTENT": "H1 condition holds, FLIP condition does not",
+      "NOT_CONSISTENT": "H1 condition fails",
+      "NOT_TESTABLE": "fewer than 3 firing legs"
+    },
+    "Q4": "count of firing legs with posterior shift: H1 > H2 -> H1_FAVOURED; H2 > H1 -> H2_FAVOURED; equal -> NOT_DISTINGUISHED"
+  },
+  "descriptive": ["per-leg delta_f time courses (100 ms bins)", "hair-plate rate and delivered events", "coxa MN rates (Step C posterior/anterior sets)", "per-H-channel commanded offset mean/max and saturated / slew-limited sample fractions", "coxa joint angles", "body tilt", "first physical divergence vs C0"],
+  "predictions": "Recorded in docs/COXA_HYPOTHESIS_D3_V1.md before running; expectations, not criteria.",
+  "interpretation_limits": [
+    "One seed, assisted posture, offset-on-servo actuation: a shift is a servo setpoint shift, not muscle force or free posture.",
+    "Consistency with one published reflex does not validate the binding, admit any coordinate or show balance; motor coverage stays 20/42 proven.",
+    "D2 near-ties decide some bindings and are not revisited; H2 tests bodymap labels without rotators."
+  ],
+  "single_run": "Each arm executed once after protocol, code and tests are committed; no retries, no window changes."
+}
