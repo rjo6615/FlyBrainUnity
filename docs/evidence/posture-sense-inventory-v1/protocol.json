@@ -1,0 +1,53 @@
+{
+  "schema": "posture-sense-inventory-protocol-v1",
+  "date": "2026-11-01",
+  "question": "Which posture-relevant sensory populations exist with exact identities in the simulated MaleCNS connectome, how directly do they reach leg motor-neuron pools, what is already encoded, and what can the body model measure for each?",
+  "status": "PREREGISTERED_BEFORE_INVENTORY_RUN",
+  "feasibility_inspection_before_registration": [
+    "Read annotation column names and subclass value counts only (hair plate 113, campaniform sensilla 426, chordotonal organ 425, wind_gravity 475, haltere 205, neck 2); entryNerve values; bodymap sensor population names and sizes; the six tibia encoder populations (bodymap chordotonal per leg, 392) and six tactile populations (1877). No identity matching or connectivity was computed."
+  ],
+  "sources": {
+    "annotations": {"path": "docs/evidence/lf-anatomical-crosswalk-v1/annotations.feather", "sha256": "2177e246113e4cfbf1e7772ec37c6da1955ff22e8063d0b1f833101f99a9a3b2", "origin": "official MaleCNS v1.0 body annotations (minconf 0.5)"},
+    "interface_map_lf_sha256": "24b7229bea6f24ff0e65fe09b202d42dc06819fe234194e3c3ab95b596319e0b",
+    "connectome": "malecns_backend.cache.load_cache (source fingerprints verified)",
+    "existing_encoders": "six_tibia.load_six_tibia_interfaces (tibia angle, 392) and tactile_contact.load_tactile_populations (contact, 1877)"
+  },
+  "organs": {
+    "hair_plate": "subclass == 'hair plate'",
+    "campaniform_sensilla": "subclass == 'campaniform sensilla'",
+    "chordotonal_organ": "subclass == 'chordotonal organ'",
+    "wind_gravity_JO": "subclass == 'wind_gravity'",
+    "haltere": "subclass == 'haltere'",
+    "neck": "subclass == 'neck'"
+  },
+  "assignment": {
+    "leg_by_entry_nerve": {"ProLN": "T1", "MesoLN": "T2", "MetaLN": "T3"},
+    "side": "rootSide if 'L' or 'R', else somaSide if 'L' or 'R', else unknown",
+    "identity": "bodyId present in the simulated neuron index (exact integer); unmatched counted"
+  },
+  "reach": {
+    "graph": "simulated CSR, presynaptic rows, edges with synapse count >= 6 (the engine's min_synapses floor)",
+    "targets": "bodymap leg motor-neuron entries, grouped by leg (T<seg> <side>) and joint class (actuator prefix)",
+    "metrics": "for each organ x leg x side x joint class of the SAME leg and side: number of sensory neurons with a direct edge; with at least one two-hop path (both edges >= 6); total direct synapses",
+    "non_leg_organs": "reported against all leg MN pools pooled per joint class"
+  },
+  "body_signal_declaration": {
+    "hair_plate": "coxa/trochanter joint angles: measurable (qpos); no encoder for these joints -> AVAILABLE_NO_ENCODER",
+    "campaniform_sensilla": "cuticular strain/leg load: joint torques and contact forces are in MuJoCo data, but no validated strain-to-load transduction -> AVAILABLE_NO_TRANSDUCTION_MODEL",
+    "chordotonal_organ": "femur-tibia angle/movement: existing tibia encoder -> AVAILABLE_EXISTING_ENCODER",
+    "wind_gravity_JO": "gravity via antennal deflection: body orientation measurable, antennal mechanics not modeled -> AVAILABLE_NO_TRANSDUCTION_MODEL",
+    "haltere": "body angular velocity: root qvel measurable, haltere mechanics absent, mainly a flight sense -> AVAILABLE_NO_TRANSDUCTION_MODEL",
+    "neck": "head-thorax angle: head joint presence not verified in this inventory -> UNVERIFIED"
+  },
+  "classification": {
+    "READY_FOR_ENCODER_DESIGN": "matched >= 90%, leg organs: leg+side assigned >= 90%, two-hop reach to same-leg MN pools in >= 50% of the six legs (non-leg: any pool), and signal AVAILABLE_EXISTING_ENCODER or AVAILABLE_NO_ENCODER",
+    "PARTIAL": "matched >= 90% and any other READY condition fails",
+    "BLOCKED": "matched < 90%"
+  },
+  "interpretation_limits": [
+    "Data-only inventory: no simulation, encoder, admission or behavioral claim.",
+    "Structural reach is not functional influence; annotations are not transduction measurements.",
+    "Body-signal declarations are engineering availability statements, not biological validation."
+  ],
+  "single_run": "Executed once after protocol, code and tests are committed."
+}
