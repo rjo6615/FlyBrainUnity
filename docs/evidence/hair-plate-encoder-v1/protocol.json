@@ -1,0 +1,49 @@
+{
+  "schema": "hair-plate-encoder-protocol-v1",
+  "date": "2026-11-01",
+  "question": "Specify and statically validate a modeled CxHP8-like (SNpp45) coxa forward-limit encoder for all six legs, with tuning taken from recorded real-fly walking kinematics rather than from any simulation outcome.",
+  "status": "PREREGISTERED_BEFORE_ENCODER_SWEEP",
+  "basis": {
+    "identity": "Step A MATCH_ALL (docs/evidence/hair-plate-identity-v1/run/result.json): SNpp45 by leg nerve (T1 VProN, T2 MesoLN, T3 MetaLN) and side",
+    "physiology": "Nature Communications 2026 / PMC12139860: CxHP8 is tonically active at the anterior limits of coxa movement; no numeric thresholds available to us",
+    "kinematics": {"package": "flygym 1.2.1", "file": "flygym/data/behavior/single_steps_untethered.pkl", "sha256": "1e5b28bb6b3f50ac95a04773ea37af28d05e26d03bd90fdba57fa1b3eacfaf8c", "content": "aligned untethered real-fly walking step, 45 samples at 3 ms, FlyGym joint conventions"}
+  },
+  "feasibility_inspection_before_registration": [
+    "Body model: coxa joints are unlimited (no jnt_range) and coxa actuators have +/-1e6 ctrlrange, so no model range can set a threshold.",
+    "Head lies along +x of the Thorax frame (unit vector x 0.9997), so +x is anatomical anterior.",
+    "Standing pose: every coxa long axis points almost straight down (forward component -0.275 to 0.009).",
+    "Kinematics file keys and per-joint min/max were listed; forward components of recorded poses were not computed."
+  ],
+  "signal": {
+    "definition": "f_leg = ((x_Femur - x_Coxa) / |x_Femur - x_Coxa|) . e_x(Thorax): forward component of the coxa long axis (coxa body origin to femur body origin) in the Thorax frame, from MuJoCo body positions",
+    "anterior_check": "Head position in the Thorax frame must have x > 0.99 of its norm, else INCONCLUSIVE"
+  },
+  "tuning": {
+    "threshold": "theta_leg = 90th percentile (numpy linear) of f_leg over the 45 recorded poses, computed by forward kinematics in our body with the leg's three recorded coxa angles",
+    "saturation": "f_max_leg = maximum of f_leg over the recorded poses",
+    "rate_hz": "120 * clip((f - theta_leg) / (f_max_leg - theta_leg), 0, 1); same rate for every SNpp45 neuron of that leg; tonic, no adaptation",
+    "max_rate_source": "120 Hz, the existing tibia and tactile encoders' maximum (an engineering constant, not a hair-plate measurement)",
+    "delivery": "MaleCNSBrain.set_external_drive Poisson rates (as existing encoders); delivery is Step C, not this step"
+  },
+  "static_checks": {
+    "S1_identity": "encoder neuron sets equal Step A's per-leg SNpp45 sets",
+    "S2_tuning_defined": "theta_leg < f_max_leg for all six legs",
+    "S3_recorded_activity": "fraction of recorded poses with rate > 0 is within [0.05, 0.15] per leg (definition-consistency check)",
+    "S4_monotonic": "rate is nondecreasing in f on a 201-point grid from -1 to 1 per leg",
+    "S5_rest_pose": "rest-pose (B4 initial state) f and rate reported per leg; must be finite"
+  },
+  "descriptive": {
+    "D1_axis_direction": "per leg, change in f when each coxa joint (Coxa, Coxa_roll, Coxa_yaw) alone moves +0.1 rad from the rest pose; reports which FlyGym coxa coordinate and sign moves the coxa forward (relevant to the unresolved motor sign problem; not a motor mapping)"
+  },
+  "acceptance": {
+    "ENCODER_READY": "S1, S2, S3, S4 and S5 all pass",
+    "NOT_READY": "any of S1-S5 fails",
+    "INCONCLUSIVE": "kinematics hash, anterior check or body identity fails"
+  },
+  "interpretation_limits": [
+    "Modeled transduction: threshold from one recorded walking step, maximum rate an engineering constant; not measured hair-plate tuning.",
+    "Uniform rate per leg ignores hair-by-hair recruitment.",
+    "Static validation only; no CNS or physics experiment. Middle/hind homology rests on Step A."
+  ],
+  "single_run": "Executed once after protocol, code and tests are committed."
+}
