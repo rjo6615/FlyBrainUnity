@@ -1,5 +1,17 @@
 # FlyBrainUnity — local Codex handoff
 
+## Coxa motor hypothesis track V1: design — 2026-11-01
+
+User chose the labelled coxa hypothesis track after Step C. Design only (no code/run):
+D1 geometry action table for the 18 coxa DoFs plus a recorded-walking-range cross-check;
+D2 two rule-generated bindings (H1 name-geometry, H2 bodymap-label) resolving the shared
+remotor/abductor IDs by max |cos|; D3 closed-loop test on Step C A_ON (C0, H1, H1_FLIP,
+H2) with preregistered integrity and Q3 resistance-reflex / Q4 H1-vs-H2 labels.
+Hypothesis channels are not admissions; coverage stays 20/42. See COXA_HYPOTHESIS_TRACK_V1.md.
+
+IMMEDIATE NEXT (on approval): build and hash-lock D1/D2, run once, commit tables
+before any D3 code runs.
+
 ## Hair-plate Step C: posture-sensitive, reflex-consistent — 2026-11-01
 
 Four-arm run (preregistered 4ff134b, once): A/R posture x hair plates ON/OFF.

@@ -1,5 +1,17 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-01: coxa motor hypothesis track V1 designed (labelled bindings H1/H2,
+closed-loop resistance-reflex test). Not run; no admission.
+
+```text
+Hair plate C: on/off test     [POSTURE_SENSITIVE, REFLEX_DIRECTION_CONSISTENT]
+Coxa D1: action table         [designed]
+Coxa D2: H1/H2 bindings       [designed]
+Coxa D3: closed-loop test     [designed]
+Motor coverage                [##########-----------] 20/42 (proven; coxa = hypothesis only)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-01: hair-plate Step C: coxa MNs now sense posture and respond in the
 published reflex direction; no balance yet (coxa joints unmapped).
 
