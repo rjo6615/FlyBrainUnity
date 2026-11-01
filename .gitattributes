@@ -131,3 +131,5 @@ docs/evidence/posture-sense-inventory-v1/*.json -text
 docs/evidence/posture-sense-inventory-v1/**/*.json -text
 docs/evidence/hair-plate-identity-v1/*.json -text
 docs/evidence/hair-plate-identity-v1/**/*.json -text
+docs/evidence/hair-plate-encoder-v1/*.json -text
+docs/evidence/hair-plate-encoder-v1/**/*.json -text
