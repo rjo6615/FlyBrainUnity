@@ -1,5 +1,14 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-01: local-only project by user decision; anatomy data requests
+withdrawn, no outside contact.
+
+```text
+Anatomy data requests         [withdrawn by user; local-only project]
+Motor coverage                [##########-----------] 20/42 (blocked; no qualifying local/public anatomy)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-01: anatomy data requests drafted for the 22 blocked coordinates
 (ANATOMY_DATA_REQUESTS_V1, not sent).
 
