@@ -1,0 +1,81 @@
+=== A_OFF 19:19:41
+A_OFF: fresh live-v3 CNS/physics initialization
+A_OFF: 4090/20000
+A_OFF: 5105/20000
+A_OFF: 9058/20000
+A_OFF: 13102/20000
+A_OFF: 17307/20000
+{"arm": "A_OFF", "run_status": "COMPLETE", "error": null, "sha256": "2aa48719d335ea3d6411791ee4b86c9a333ee3245e84a968ba8c1b44782b7859"}
+exit=0 19:24:21
+=== A_ON 19:24:21
+A_ON: fresh live-v3 CNS/physics initialization
+A_ON: 4104/20000
+A_ON: 5005/20000
+A_ON: 9286/20000
+A_ON: 13564/20000
+A_ON: 18017/20000
+{"arm": "A_ON", "run_status": "COMPLETE", "error": null, "sha256": "8c2d90e630ae72618e44bca8ee5354fe17b47ca80345558e139fb99f4b2a7745"}
+exit=0 19:28:54
+=== R_OFF 19:28:54
+R_OFF: fresh live-v3 CNS/physics initialization
+R_OFF: 4250/20000
+R_OFF: 5408/20000
+R_OFF: 9075/20000
+R_OFF: 12452/20000
+R_OFF: 15876/20000
+R_OFF: 19413/20000
+{"arm": "R_OFF", "run_status": "COMPLETE", "error": null, "sha256": "f9e15d5817af91ae01a46d955e7d039b8f10cd8b8b6bd2ddca15b57ebda81555"}
+exit=0 19:33:45
+=== R_ON 19:33:45
+R_ON: fresh live-v3 CNS/physics initialization
+R_ON: 4298/20000
+R_ON: 5257/20000
+R_ON: 8723/20000
+R_ON: 12110/20000
+R_ON: 15926/20000
+R_ON: 19207/20000
+{"arm": "R_ON", "run_status": "COMPLETE", "error": null, "sha256": "2805dff63faa8434d189953253845715b998c7dc40489701a1cd31120d381bf4"}
+exit=0 19:38:39
+{
+ "status": "INTEGRITY_ACCEPTED",
+ "checks": {
+  "I1_complete": true,
+  "I2_common_rng": true,
+  "I3_prefix": true,
+  "I4_intervention": true,
+  "I5_delivery": true
+ },
+ "Q1": {
+  "label": "POSTURE_SENSITIVE",
+  "d_off_hz": 0.0,
+  "d_on_hz": 1.0897994768962498
+ },
+ "Q2": {
+  "label": "REFLEX_DIRECTION_CONSISTENT",
+  "d_posterior_hz": 14.001501501501503,
+  "d_anterior_hz": -0.06756756756756765
+ },
+ "posture": {
+  "A_OFF": {
+   "tilt_mean_deg": 3.931112417927075,
+   "tilt_peak_deg": 4.31892641719127,
+   "rollover_samples": 0
+  },
+  "A_ON": {
+   "tilt_mean_deg": 3.884653838250233,
+   "tilt_peak_deg": 4.792356087699202,
+   "rollover_samples": 0
+  },
+  "R_OFF": {
+   "tilt_mean_deg": 150.1829065509052,
+   "tilt_peak_deg": 160.62678627447713,
+   "rollover_samples": 13917
+  },
+  "R_ON": {
+   "tilt_mean_deg": 150.96536369255202,
+   "tilt_peak_deg": 159.93737593531978,
+   "rollover_samples": 14213
+  }
+ }
+}
+evaluate exit=0

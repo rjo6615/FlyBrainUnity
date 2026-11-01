@@ -1,5 +1,18 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-01: hair-plate Step C: coxa MNs now sense posture and respond in the
+published reflex direction; no balance yet (coxa joints unmapped).
+
+```text
+Hair plate A: identity        [MATCH_ALL]
+Hair plate B: encoder         [ENCODER_READY]
+Hair plate C: on/off test     [POSTURE_SENSITIVE, REFLEX_DIRECTION_CONSISTENT]
+Coxa sensory loop             [closed on the sensory side]
+Coxa motor side               [unmapped: 18 coordinates]
+Motor coverage                [##########-----------] 20/42 (proven)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-01: hair-plate Step B ENCODER_READY; standing pose already at the
 encoder's forward limit in four legs.
 
