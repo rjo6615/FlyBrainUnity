@@ -133,3 +133,6 @@ docs/evidence/hair-plate-identity-v1/*.json -text
 docs/evidence/hair-plate-identity-v1/**/*.json -text
 docs/evidence/hair-plate-encoder-v1/*.json -text
 docs/evidence/hair-plate-encoder-v1/**/*.json -text
+docs/evidence/hair-plate-posture-v1/*.json -text
+docs/evidence/hair-plate-posture-v1/**/*.json -text
+docs/evidence/hair-plate-posture-v1/**/*.txt -text -whitespace

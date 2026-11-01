@@ -1,5 +1,17 @@
 # FlyBrainUnity — local Codex handoff
 
+## Hair-plate Step C: posture-sensitive, reflex-consistent — 2026-11-01
+
+Four-arm run (preregistered 4ff134b, once): A/R posture x hair plates ON/OFF.
+INTEGRITY_ACCEPTED. Q1 POSTURE_SENSITIVE: coxa-MN rate held vs released 1.89/1.89 Hz OFF,
+10.41/9.32 Hz ON (per leg up to 22.7 vs 9.8 Hz). Q2 REFLEX_DIRECTION_CONSISTENT:
+posterior coxa MNs 2.67 -> 16.67 Hz, anterior flat. Released arms still roll over (coxa
+joints unmapped). Raw arms local; report committed. See HAIR_PLATE_POSTURE_RESULTS.md.
+
+IMMEDIATE NEXT (user choice): the sensory side of the coxa loop now exists; the motor
+side (18 coxa coordinates) is the gap. Options: a labelled coxa hypothesis track now
+that +joint_<leg>Coxa = posterior is known, or more seeds / a retuned encoder.
+
 ## Hair-plate Step B: encoder ENCODER_READY, rest-pose caveat — 2026-11-01
 
 SNpp45 coxa forward-limit encoder (preregistered 0ddff0f, static run once): forward
