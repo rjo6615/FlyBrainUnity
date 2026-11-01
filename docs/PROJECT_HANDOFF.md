@@ -1,5 +1,18 @@
 # FlyBrainUnity — local Codex handoff
 
+## Hair-plate Step B: encoder ENCODER_READY, rest-pose caveat — 2026-11-01
+
+SNpp45 coxa forward-limit encoder (preregistered 0ddff0f, static run once): forward
+component of the coxa axis in the Thorax frame; tonic one-sided tuning at the 90th
+percentile..max of the recorded FlyGym untethered walking step replayed on our body;
+120 Hz max. All checks pass. Caveat: the B4 standing pose has front/hind coxae beyond
+the recorded walking forward limit, so the encoder fires ~max at rest in LF/RF/LH
+(RH 68.5 Hz) and not in middle legs. Geometry: +joint_<leg>Coxa = posterior in all
+legs. See HAIR_PLATE_ENCODER_RESULTS.md.
+
+IMMEDIATE NEXT: user decision on Step C (A/R x ON/OFF) with this encoder as-is, or a
+separately justified tuning version first. No delivery into the CNS yet.
+
 ## Hair-plate Step A: SNpp45 matches published CxHP8 wiring — 2026-11-01
 
 SNpp45 hair plates = CxHP8 (front legs, VProN) and serial copies (middle/hind):

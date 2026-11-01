@@ -1,5 +1,16 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-01: hair-plate Step B ENCODER_READY; standing pose already at the
+encoder's forward limit in four legs.
+
+```text
+Hair plate A: identity        [MATCH_ALL, 6/6 legs]
+Hair plate B: encoder         [ENCODER_READY; rest-pose saturation caveat]
+Hair plate C: on/off test     [pending decision]
+Motor coverage                [##########-----------] 20/42 (proven)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-01: hair-plate Step A MATCH_ALL: our SNpp45 hair plates show the
 published CxHP8 coxa limit-reflex wiring in all six legs.
 
