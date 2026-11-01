@@ -1,0 +1,29 @@
+C0: fresh CNS/physics initialization
+C0: 4143/20000
+C0: 5005/20000
+C0: 9091/20000
+C0: 13230/20000
+C0: 17389/20000
+{"arm": "C0", "run_status": "COMPLETE", "error": null, "sha256": "93fbf1ffbfee7c2d16f2e4e6da2e69b00dcce2e42c99ccbd3fbdeea9c77c33ab"}
+H1: fresh CNS/physics initialization
+H1: 4210/20000
+H1: 5221/20000
+H1: 9508/20000
+H1: 13689/20000
+H1: 18020/20000
+{"arm": "H1", "run_status": "COMPLETE", "error": null, "sha256": "4203ae6fdd8e9a3744b14c9597bb896bac819d8f23416bf1bc35fe2c8b47644a"}
+H1_FLIP: fresh CNS/physics initialization
+H1_FLIP: 3758/20000
+H1_FLIP: 5005/20000
+H1_FLIP: 8568/20000
+H1_FLIP: 12132/20000
+H1_FLIP: 15824/20000
+H1_FLIP: 19329/20000
+{"arm": "H1_FLIP", "run_status": "COMPLETE", "error": null, "sha256": "ffa9d9ad5a3c3439a1a542c15a5c436fe7e36f62d3c1a43c5f9a78474631cbc0"}
+H2: fresh CNS/physics initialization
+H2: 4295/20000
+H2: 5463/20000
+H2: 9860/20000
+H2: 13975/20000
+H2: 18082/20000
+{"arm": "H2", "run_status": "COMPLETE", "error": null, "sha256": "78215fc11108c8bdf920a178cda1b3a072eabaf2209baa2acf2469a4fd813a04"}

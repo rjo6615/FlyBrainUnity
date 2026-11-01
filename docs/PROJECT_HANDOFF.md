@@ -1,5 +1,30 @@
 # FlyBrainUnity — local Codex handoff
 
+## Coxa hypothesis D3: NOT_CONSISTENT (2/4 legs), H1_FAVOURED — 2026-11-01
+
+Preregistered (f4c06a8), preflight passed, four arms run once (C0/H1/H1_FLIP/H2), CNS +
+physics. INTEGRITY_ACCEPTED (C0 reproduces Step C A_ON exactly). Q3 NOT_CONSISTENT: H1
+moved the coxa back in LF (-0.173) and LH (-0.191), with the flip reversing it (+0.145/+0.206),
+but not in RF (hair plates 120 Hz, coxa MNs 0.55 Hz, channel never moved) or RH (barely
+above threshold, 0.16 Hz). Q4 H1_FAVOURED (2 vs 0; H2 has no fore-aft reflex). H1 tilts the
+assisted body more (10.6 deg vs 3.8). Raw arms local. See COXA_HYPOTHESIS_D3_RESULTS.md.
+
+IMMEDIATE NEXT (user choice): the right-front hair-plate -> coxa MN weakness is the
+identified blocker (anatomy, reconstruction or engine?); a data-only left/right pathway
+comparison is the cheapest next question. Any rerun is a new versioned protocol.
+
+## Coxa hypothesis D3: design — 2026-11-01
+
+PR #308 (D1/D2) merged. D3 designed (no code/run): arms C0 (Step C path, must reproduce
+saved A_ON exactly), H1, H1_FLIP, H2 using D2 channel definitions loaded by hash; a
+hypothesis-labelled derived v3 table/gate/assertion (v3 untouched); preflight P1-P5,
+integrity I1-I5; Q3/Q4 labels and the 0.02 bar unchanged from the track design.
+Predictions recorded (front-leg failure possible; H2 hind adductors posterior-inward).
+See COXA_HYPOTHESIS_D3_V1.md.
+
+IMMEDIATE NEXT (on approval): build adapter/evaluator/tests and hash-lock the protocol,
+commit, then run the four arms once.
+
 ## Coxa hypothesis D1/D2: D1_D2_READY — 2026-11-01
 
 Preregistered (e4f2791), run once, geometry/data only. All checks pass (anterior, 18 nonzero

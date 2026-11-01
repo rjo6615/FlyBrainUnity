@@ -1,0 +1,64 @@
+{
+ "status": "PREFLIGHT_PASSED",
+ "checks": {
+  "P1_d2": true,
+  "P2_resolver": true,
+  "P3_schedule": "ENFORCED_AT_RUN_TIME_BY_STEP_C_TRIAL_ATTACH",
+  "P4_step_c_raw": true,
+  "P5_derivation": true
+ },
+ "detail": {
+  "H1": {
+   "channels": 13,
+   "historical_overlap": [],
+   "changed_rows": [
+    0,
+    2,
+    7,
+    9,
+    14,
+    15,
+    16,
+    21,
+    23,
+    28,
+    30,
+    36,
+    37
+   ]
+  },
+  "H1_FLIP": {
+   "channels": 13,
+   "historical_overlap": [],
+   "changed_rows": [
+    0,
+    2,
+    7,
+    9,
+    14,
+    15,
+    16,
+    21,
+    23,
+    28,
+    30,
+    36,
+    37
+   ]
+  },
+  "H2": {
+   "channels": 8,
+   "historical_overlap": [],
+   "changed_rows": [
+    0,
+    1,
+    7,
+    15,
+    21,
+    22,
+    28,
+    36
+   ]
+  }
+ }
+}
