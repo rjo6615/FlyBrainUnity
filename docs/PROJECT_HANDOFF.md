@@ -1,5 +1,18 @@
 # FlyBrainUnity — local Codex handoff
 
+## Serial motor fingerprint V1: FAIL — 2026-11-01
+
+Local-only attempt to infer motor-neuron identity from connectivity. Preregistered
+blind test (committed 59d7724, run once): presynaptic cell-type fingerprints
+assign annotated leg MNs in another leg at 0.62 type accuracy (null 0.06,
+p=0.001) but miss the bar (needed 0.70; femur_twist joint 0.10; T1-reference
+0.59). Adjacent segments transfer better than T1<->T3. Method not validated for
+Tarsus1 candidates; 22 coordinates stay blocked; nothing admitted. See
+SERIAL_MOTOR_FINGERPRINT_RESULTS.md.
+
+IMMEDIATE NEXT: user choice. Any refinement (e.g. adjacent-segment chaining) is
+a new versioned protocol, not a V1 retune. 20/42; balance/gait unproven.
+
 ## Local-only project; data requests withdrawn — 2026-11-01
 
 The user does not want anyone else involved: no author/team contact, no data

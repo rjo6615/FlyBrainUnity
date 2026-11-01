@@ -1,0 +1,65 @@
+{
+  "schema": "serial-motor-fingerprint-protocol-v1",
+  "date": "2026-11-01",
+  "question": "Can a motor neuron's presynaptic cell-type input fingerprint identify its annotated motor population in another leg, blind to that leg's labels?",
+  "status": "PREREGISTERED_BEFORE_ANY_SIMILARITY_WAS_COMPUTED",
+  "feasibility_inspection_before_registration": [
+    "Data format only: bodymap muscle entries carry 'T<segment> <side>' leg labels; vnc_intrinsic presynaptic types are MANC-style serial names (e.g. IN19A###) shared across segments; 185 vnc_intrinsic neurons are untyped.",
+    "No motor-neuron fingerprint, similarity, assignment or accuracy was computed before this file was committed."
+  ],
+  "data": {
+    "loader": "malecns_backend.cache.load_cache (verifies cache source fingerprints against the tracked canonical files)",
+    "canonical_sources_sha256": {
+      "neurons.flyn": "91630046af02826299834179bb07726d1ed9b7dd1426e90315c011e42011f6e7",
+      "graph.flyg": "ed3df5a7ec8610bdaa7f42b49d0970bca3afa7c9e041ff1c025c6d2f9173fff5",
+      "neuron_size.bin": "06bc9b1e88e8f55c2e630f8f9c9746208377e6d186f0c6a34612faaafe9ae7fa",
+      "ntsign.bin": "fbdfbbeb15c56077a792ff8b49d2d3823843df060d0f5eda8a21fb9eb6dda714",
+      "bodymap.json": "10630cd4c7a6cc2c1dcfcbee4a602d307f06766f316b185f631406813a58da9d",
+      "meta.json": "580c2d5a210469a6ab1184ae2187dcc4ce8217c6f74043bd2e585c7b110ec36a"
+    }
+  },
+  "labels": {
+    "source": "bodymap.json muscles entries whose name matches '^(.+) T([123]) (left|right)$'",
+    "leg": "(segment, side) from the name",
+    "population": "the name's base before ' T<segment> <side>'",
+    "joint_classes": "set of actuator prefixes (actuator with the trailing '_T<segment>_<side>' removed) over all entries of that population and leg",
+    "ambiguous_neuron": "a dense index listed under two different base populations or two legs; excluded from reference and scoring and counted"
+  },
+  "fingerprint": {
+    "input": "all incoming synapses (CSR rows are presynaptic); weight = synapse count, no threshold",
+    "feature": "presynaptic neuron type string; presynaptic neurons with an empty type are excluded",
+    "normalization": "L1 to input fractions; neurons with zero typed input are excluded and counted",
+    "reference_centroid": "mean of member fingerprints per reference-leg population",
+    "assignment": "argmax cosine similarity to reference centroids; ties broken by sorted population name"
+  },
+  "tasks": {
+    "serial_primary": "12 ordered (reference leg, target leg) pairs with the same side and different segment",
+    "contralateral_descriptive": "6 ordered pairs with the same segment and opposite side",
+    "scorable_target": "unambiguous labeled target neuron whose population also exists in the reference leg",
+    "type_correct": "assigned population equals the target neuron's population",
+    "joint_correct": "assigned population's joint classes intersect the target neuron's joint classes"
+  },
+  "null": {
+    "method": "within each reference leg, permute population labels across reference neurons (pool sizes preserved), rebuild centroids, recompute pooled serial type accuracy",
+    "permutations": 1000,
+    "seed": 20261101,
+    "p_value": "(1 + count(null >= observed)) / (permutations + 1)"
+  },
+  "acceptance": {
+    "PASS_requires_all": {
+      "a_pooled_serial_type_accuracy_min": 0.70,
+      "b_permutation_p_max": 0.01,
+      "c_serial_joint_accuracy_min_per_admitted_class": {"classes": ["tibia", "femur", "femur_twist"], "min": 0.60},
+      "d_T1_reference_serial_type_accuracy_min": 0.70
+    },
+    "FAIL": "data integrity holds and any of a-d is false",
+    "INCONCLUSIVE": "source/cache verification fails, or fewer than 10 scorable serial targets for any admitted class"
+  },
+  "interpretation_limits": [
+    "Ground truth is the MaleCNS motor-neuron annotation, not muscle tracing; annotators may themselves have used connectivity, so a PASS can partly reflect annotation method.",
+    "A PASS only licenses using this method as a hypothesis generator for unlabeled middle/hind Tarsus1 candidates under a separate protocol; it admits no coordinate and assigns no sign, gain or mapping.",
+    "Front 'tarsus' (Tarsus1) pools exist only in T1 and cannot be scored serially here; that is the gap a later protocol would address.",
+    "Offline connectome analysis only; no physics, CNS simulation or Unity."
+  ],
+  "single_run": "Executed once after this protocol, the code and its tests are committed; no retries, thresholds or features changed after seeing results."
+}
