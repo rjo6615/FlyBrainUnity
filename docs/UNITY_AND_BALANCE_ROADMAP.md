@@ -1,5 +1,15 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-01: anatomy data requests drafted for the 22 blocked coordinates
+(ANATOMY_DATA_REQUESTS_V1, not sent).
+
+```text
+V1.2 Unity replay             [implemented; watched by user]
+Anatomy data requests         [drafted; not sent]
+Motor coverage                [##########-----------] 20/42 (blocked on anatomy data)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-01: saved V1.2 campaign poses can now be replayed in the existing
 LiveFly scene behind a full re-verification gate (see ASSISTANCE_CAMPAIGN_V1_2_REPLAY).
 
