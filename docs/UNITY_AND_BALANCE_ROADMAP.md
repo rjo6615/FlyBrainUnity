@@ -1,5 +1,14 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-01: blind serial motor-fingerprint test FAILED its preregistered
+bar (real signal, 0.62 vs needed 0.70). See SERIAL_MOTOR_FINGERPRINT_RESULTS.
+
+```text
+Connectivity identity method  [V1 FAIL; signal above chance, below bar]
+Motor coverage                [##########-----------] 20/42 (blocked)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-01: local-only project by user decision; anatomy data requests
 withdrawn, no outside contact.
 
