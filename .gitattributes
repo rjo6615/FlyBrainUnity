@@ -124,3 +124,5 @@ docs/evidence/assistance-campaign-v1_2/**/*.json.gz filter=lfs diff=lfs merge=lf
 
 docs/evidence/serial-motor-fingerprint-v1/**/*.json -text
 docs/evidence/serial-motor-fingerprint-v1/*.json -text
+docs/evidence/dng100-rhythm-v1/*.json -text
+docs/evidence/dng100-rhythm-v1/**/*.json -text
