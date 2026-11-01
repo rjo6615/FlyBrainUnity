@@ -1,0 +1,92 @@
+{
+  "schema": "assistance-campaign-v1.2-raw-not-committed-v1",
+  "note": "Raw per-arm, display and qualification archives retained only on the user desktop; not committed (user choice: reports only). Hashes recorded 2026-10-31 after the run.",
+  "total_bytes": 4668775888,
+  "files": [
+    {
+      "path": "run-desktop-01/A_NC.display.json.gz",
+      "bytes": 7571353,
+      "sha256": "8050feb4821aa5fccec2add6da225f988d125bac90d89c41e19b10a617750c24"
+    },
+    {
+      "path": "run-desktop-01/A_NC.json.gz",
+      "bytes": 560255080,
+      "sha256": "bd8dbeeea59aef9ee45a1b06659fff575dee327a6679dbb8950f6cf950eed145"
+    },
+    {
+      "path": "run-desktop-01/A_NC.qualification.json.gz",
+      "bytes": 174735229,
+      "sha256": "3c30c6f139c4e028adc53c398721740d1038d35b7b11fcc28ae10080e379370f"
+    },
+    {
+      "path": "run-desktop-01/A_NP.display.json.gz",
+      "bytes": 9428404,
+      "sha256": "368e770e0ebd9f2f0ba333bc68f1ed4fd5964bdb6c01c22f06d6dc1a29a94f28"
+    },
+    {
+      "path": "run-desktop-01/A_NP.json.gz",
+      "bytes": 560337339,
+      "sha256": "2f56c1e921ad55840606d0b33297cc8b25f17c6ed6244fa37a5dffde946d27b2"
+    },
+    {
+      "path": "run-desktop-01/A_WC.display.json.gz",
+      "bytes": 8189481,
+      "sha256": "c24f003cc2461dcdf74cfef2913a84724649a46c6c75c28708aeffb76539b51e"
+    },
+    {
+      "path": "run-desktop-01/A_WC.json.gz",
+      "bytes": 557686037,
+      "sha256": "48ef737f5d4973caee8c2d491dfb8b98272ee72f6145bcbbb5475b649bb4435d"
+    },
+    {
+      "path": "run-desktop-01/A_WP.display.json.gz",
+      "bytes": 7773967,
+      "sha256": "8755e50db17e96d2d643c68d86b13bb541a792c136c53a25326e5fdeec36ed79"
+    },
+    {
+      "path": "run-desktop-01/A_WP.json.gz",
+      "bytes": 556460174,
+      "sha256": "8b2890896a27eef9165dcc52cb6c4dc7a5f576574fdfa18a589fe7e092897a1e"
+    },
+    {
+      "path": "run-desktop-01/R_NC.display.json.gz",
+      "bytes": 9096255,
+      "sha256": "1d0f6d0eeb5f8d9c887f177cc63bfabbef805324b3350c0c22a96bf2c6ee53af"
+    },
+    {
+      "path": "run-desktop-01/R_NC.json.gz",
+      "bytes": 547539563,
+      "sha256": "6922fde23904b2156850149f87054fe2641e5e32c8617a71319955c71cdfc7b0"
+    },
+    {
+      "path": "run-desktop-01/R_NP.display.json.gz",
+      "bytes": 8284381,
+      "sha256": "697067201e84f8fd5339564c4ce015f7bc630dee7ce4d5c96bc29d90db2171a4"
+    },
+    {
+      "path": "run-desktop-01/R_NP.json.gz",
+      "bytes": 546592414,
+      "sha256": "3e366c16b7e9af8dde15e45edb12f7e24fe374219ff7a98754d3f31bbfcbae0d"
+    },
+    {
+      "path": "run-desktop-01/R_WC.display.json.gz",
+      "bytes": 9139834,
+      "sha256": "6bd4e0cf920ab7dc6778cab62a439ab8902cad0a76b72f2ff5dd5e0f184f9708"
+    },
+    {
+      "path": "run-desktop-01/R_WC.json.gz",
+      "bytes": 548255303,
+      "sha256": "c61beb648e532a3c3316cbdaff55eb3f6851c3074a9e916ad76dca2527e11915"
+    },
+    {
+      "path": "run-desktop-01/R_WP.display.json.gz",
+      "bytes": 9341794,
+      "sha256": "34935aa08bcfb6e82c5e5705c2a0822f036643c8b6014f7d4f03d9fb4ff61989"
+    },
+    {
+      "path": "run-desktop-01/R_WP.json.gz",
+      "bytes": 548089280,
+      "sha256": "e62c0c743a2b446771707f0b5bc9135fc6de7f57b969994caa895b9511d0a361"
+    }
+  ]
+}

@@ -1,5 +1,21 @@
 # FlyBrainUnity — local Codex handoff
 
+## V1.2 eight-arm assistance campaign COMPLETE — 2026-10-31
+
+User-approved ONE V1.2 attempt at 61cafca, 18:20-23:07 UTC: COMPLETE /
+INTEGRITY_ACCEPTED (all 8 arms, qualification transferred, piecewise/frozen/
+mechanical audits, prefixes and RNG pass). A arms upright (3.9-4.3 deg); all R
+arms roll over (~150 deg mean) with or without push or neural input. N vs W
+MIXED_OR_UNRESOLVED at both levels; A pushed arms recover (613.5/520.1 ms), R
+pushed arms confounded by control posture loss. One seed; display UNCONFIRMED;
+reference EXACT_MISMATCH 'initial' (diagnostic, uninvestigated). Reports and
+receipts committed; 4.67 GB raw kept local, hashes in raw-not-committed.json.
+See ASSISTANCE_CAMPAIGN_V1_2_RUN_RESULTS.md.
+
+IMMEDIATE NEXT: the 20 neural channels cannot replace the 22 baseline-only
+servos, so expand neural motor coverage (coxa / roll / yaw) under a new
+preregistered protocol before reducing assistance further. 20/42; balance/gait unproven.
+
 ## V1.1 attempt: A_NC complete, transfer read-back failed; V1.2 — 2026-10-31
 
 User-approved ONE V1.1 attempt at 92652b5: ERROR/INCONCLUSIVE_INTEGRITY. A_NC
