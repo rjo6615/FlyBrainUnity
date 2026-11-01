@@ -1,5 +1,29 @@
 # FlyBrainUnity — local Codex handoff
 
+## Coxa hypothesis D1/D2: D1_D2_READY — 2026-11-01
+
+Preregistered (e4f2791), run once, geometry/data only. All checks pass (anterior, 18 nonzero
+action vectors, +Coxa posterior in all legs, audit identities, kernel resolver accepts
+H1/H2/H1_FLIP). +Coxa is the fore-aft DoF in every leg; front-leg roll and yaw are near
+degenerate at rest. H1: 13 channels, posterior rotators -> Coxa+ (RH: Coxa_roll), front
+remotor/abductor -> yaw (near-tie). H2: 8 channels, all rotators unassigned (cos 0 on yaw).
+D1c walking cross-check 3/6. Near-ties recorded, not acted on. See COXA_HYPOTHESIS_D1_D2_RESULTS.md.
+
+IMMEDIATE NEXT: user decision on D3 (closed-loop C0/H1/H1_FLIP/H2), which needs its own
+hash-locked protocol and a hypothesis-labelled session path (v3 refuses coxa admission).
+
+## Coxa motor hypothesis track V1: design — 2026-11-01
+
+User chose the labelled coxa hypothesis track after Step C. Design only (no code/run):
+D1 geometry action table for the 18 coxa DoFs plus a recorded-walking-range cross-check;
+D2 two rule-generated bindings (H1 name-geometry, H2 bodymap-label) resolving the shared
+remotor/abductor IDs by max |cos|; D3 closed-loop test on Step C A_ON (C0, H1, H1_FLIP,
+H2) with preregistered integrity and Q3 resistance-reflex / Q4 H1-vs-H2 labels.
+Hypothesis channels are not admissions; coverage stays 20/42. See COXA_HYPOTHESIS_TRACK_V1.md.
+
+IMMEDIATE NEXT (on approval): build and hash-lock D1/D2, run once, commit tables
+before any D3 code runs.
+
 ## Hair-plate Step C: posture-sensitive, reflex-consistent — 2026-11-01
 
 Four-arm run (preregistered 4ff134b, once): A/R posture x hair plates ON/OFF.

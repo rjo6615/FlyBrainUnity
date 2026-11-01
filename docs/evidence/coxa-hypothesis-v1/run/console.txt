@@ -1,0 +1,63 @@
+{
+ "status": "D1_D2_READY",
+ "checks": {
+  "anterior": true,
+  "D1a_nonzero": true,
+  "D1b_step_b_sign": true,
+  "D2a_identity": true
+ },
+ "h2_identical_to_h1": false,
+ "D1c_swing_cross_check": {
+  "LF": {
+   "swing_pool_counts": {
+    "Coxa_yaw": 1,
+    "Coxa": 3
+   },
+   "h1_swing_joint": "Coxa",
+   "largest_walking_range": "Coxa_roll",
+   "match": false
+  },
+  "LM": {
+   "swing_pool_counts": {
+    "Coxa": 3
+   },
+   "h1_swing_joint": "Coxa",
+   "largest_walking_range": "Coxa",
+   "match": true
+  },
+  "LH": {
+   "swing_pool_counts": {
+    "Coxa_yaw": 1,
+    "Coxa": 2
+   },
+   "h1_swing_joint": "Coxa",
+   "largest_walking_range": "Coxa",
+   "match": true
+  },
+  "RF": {
+   "swing_pool_counts": {
+    "Coxa_yaw": 1,
+    "Coxa": 3
+   },
+   "h1_swing_joint": "Coxa",
+   "largest_walking_range": "Coxa_roll",
+   "match": false
+  },
+  "RM": {
+   "swing_pool_counts": {
+    "Coxa": 3
+   },
+   "h1_swing_joint": "Coxa",
+   "largest_walking_range": "Coxa",
+   "match": true
+  },
+  "RH": {
+   "swing_pool_counts": {
+    "Coxa_roll": 2
+   },
+   "h1_swing_joint": "Coxa_roll",
+   "largest_walking_range": "Coxa",
+   "match": false
+  }
+ }
+}

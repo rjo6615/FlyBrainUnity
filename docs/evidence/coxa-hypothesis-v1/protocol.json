@@ -1,0 +1,59 @@
+{
+  "schema": "coxa-hypothesis-protocol-v1",
+  "date": "2026-11-01",
+  "design": "docs/COXA_HYPOTHESIS_TRACK_V1.md",
+  "scope": "Steps D1 (coxa action table, geometry only) and D2 (rule-generated H1/H2 hypothesis bindings). No CNS, no physics stepping, no admission. D3 is a separate later protocol.",
+  "status": "PREREGISTERED_BEFORE_D1_D2_RUN",
+  "sources": {
+    "bodymap": "malecns-v1 cache bodymap (same object as Step A motor_sets); coxa labels coxa_T<s>_<side>, coxa_abduct_T<s>_<side>, coxa_twist_T<s>_<side>",
+    "audit": {"path": "docs/evidence/remaining-leg-admission-audit-v1_1/audit.json", "sha256": "a75eaa753dec96b66db478bb5b7dbf1f1a1cb3023c7dc219524a6ac00a8d7aa2"},
+    "kinematics": {"file": "flygym 1.2.1 data/behavior/single_steps_untethered.pkl", "sha256": "1e5b28bb6b3f50ac95a04773ea37af28d05e26d03bd90fdba57fa1b3eacfaf8c"},
+    "body": "FlyGym body from _windows_m7d_corrected_spontaneous_adapter._runtime, initial (Step B rest) pose"
+  },
+  "feasibility_inspection_before_registration": [
+    "Leg bodies per leg: Coxa, Femur, Tibia, Tarsus1-5; coxa joints are hinges (type 3) named joint_<leg>Coxa, _roll, _yaw.",
+    "Coxa actuators have ctrlrange +/-1e6 and joints are unlimited, so the existing safe_contribution_bound gives DECODER_MAX_RAD 0.25 rad.",
+    "Bodymap coxa pool names and sizes were listed for left legs; no action vector, cosine or walking range was computed."
+  ],
+  "D1": {
+    "tip": "origin of body <leg>Tarsus5 (the most distal leg body frame)",
+    "frame": "Thorax body frame; anterior = +x (Step B anterior check: Head x > 0.99 of its norm, else INCONCLUSIVE); outward = +y for a leg whose Coxa origin has y > 0 in the Thorax frame, else -y; dorsal = +z",
+    "action_vector": "(tip(q+0.01) - tip(q-0.01)) / 0.02 rad, one coxa DoF perturbed, all other qpos at rest, mj_kinematics; reported as (anterior, outward, dorsal)",
+    "walking_range": "peak-to-peak of recorded joint_<leg><DoF> over the 45 recorded samples",
+    "checks": {
+      "D1a_nonzero": "every one of the 18 action vectors is finite with norm > 1e-6 model length units per rad",
+      "D1b_step_b_sign": "anterior component of +joint_<leg>Coxa is < 0 in all six legs"
+    },
+    "D1c_cross_check": "reported, not a gate: per leg, the H1 swing joint (the DoF receiving the most swing pools: promotor, remotor/abductor, anterior rotator, posterior rotator; ties -> SPLIT) equals the DoF with the largest recorded walking range"
+  },
+  "D2": {
+    "named_actions": {
+      "Tergopleural/Pleural promotor": [1, 0, 0],
+      "Pleural remotor/abductor": [-0.7071067811865476, 0.7071067811865476, 0],
+      "Sternal adductor": [0, -1, 0],
+      "Sternal anterior rotator": [1, 0, 0],
+      "Sternal posterior rotator": [-1, 0, 0]
+    },
+    "pool_identity": "bodymap muscle name '<pool> MN T<s> <side>' with a coxa label; dense indices deduplicated per pool; body IDs from cache body_ids; must equal the audit candidate body IDs for that pool",
+    "rule": "cos(named action, action vector) for each candidate joint; assign to max |cos|; sign = sign(cos); |cos| < 0.5 -> UNASSIGNED; every pool to exactly one joint",
+    "H1_candidates": "the leg's three coxa DoFs",
+    "H2_candidates": "only the joints of the pool's bodymap labels: coxa -> Coxa, coxa_abduct -> Coxa_roll, coxa_twist -> Coxa_yaw",
+    "channels": "per joint with >=1 pool: both signs -> antagonist_pair (coordinate_sign +1, positive = cos>0 pools); one sign only -> unidirectional_positive with coordinate_sign = that sign; several same-sign pools on such a joint are merged under the population name '<pool A> + <pool B>' (sorted)",
+    "H1_FLIP": "H1 with every coordinate_sign negated",
+    "identical": "if H1 and H2 channel sets are equal, H2_IDENTICAL_TO_H1 is recorded and D3 skips H2",
+    "checks": {
+      "D2a_identity": "every pool's body IDs equal the audit candidate body IDs; the kernel's supplemental resolver accepts H1, H2 and H1_FLIP definitions (no reused body ID, correct action indices)"
+    }
+  },
+  "acceptance": {
+    "D1_D2_READY": "D1a, D1b and D2a pass",
+    "NOT_READY": "any of D1a, D1b, D2a fails",
+    "INCONCLUSIVE": "kinematics/audit hash, anterior check or exact body identity fails"
+  },
+  "interpretation_limits": [
+    "Named actions are literature-name readings, not measured muscle actions; rotator = swing is a stated choice with H2 as the competing twist reading.",
+    "Action vectors are local derivatives at one standing pose; muscle moment arms and attachment geometry are not modeled.",
+    "H1/H2 are labelled hypotheses, not admissions; motor coverage remains 20/42 proven."
+  ],
+  "single_run": "Executed once after protocol, code and tests are committed."
+}
