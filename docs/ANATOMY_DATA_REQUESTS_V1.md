@@ -1,7 +1,10 @@
 # Anatomy data requests V1 — drafts for the remaining 22 motor coordinates
 
-2026-11-01. Status: **DRAFTS, NOT SENT.** The user decides whether, when and to
-whom to send them; the agent contacts no one. No code, mapping, admission flag,
+**WITHDRAWN 2026-11-01 by the user: do not send.** This is a local personal
+project; no one outside it is to be contacted and no project information is to
+be sent. The drafts below are kept only as a record of the exact blockers.
+
+2026-11-01. Original status: drafts, not sent; the agent contacts no one. No code, mapping, admission flag,
 sign, gain or evidence changes. Coverage remains 20/42.
 
 ## Why requests are the next roadmap step

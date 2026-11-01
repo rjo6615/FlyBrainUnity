@@ -1,5 +1,16 @@
 # FlyBrainUnity — local Codex handoff
 
+## Local-only project; data requests withdrawn — 2026-11-01
+
+The user does not want anyone else involved: no author/team contact, no data
+requests, no sending project information. ANATOMY_DATA_REQUESTS_V1 is withdrawn
+(kept as a blocker record). Do not propose outreach. Use only local or already
+public, downloadable data. The 22 unadmitted coordinates therefore stay blocked
+unless qualifying evidence turns up in such sources. 20/42.
+
+IMMEDIATE NEXT: pick local-only work with its own protocol, e.g. more V1.2
+seeds or sensory work; independent balance/gait unproven.
+
 ## Anatomy data requests drafted (not sent) — 2026-11-01
 
 User watched the V1.2 replay (fly falls). Motor coverage is the bottleneck, and
