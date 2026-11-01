@@ -1,5 +1,14 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-01: coxa D3 closed-loop test designed (C0/H1/H1_FLIP/H2). Not run.
+
+```text
+Coxa D1/D2                    [D1_D2_READY]
+Coxa D3: closed-loop test     [designed; next: build + preregister]
+Motor coverage                [##########-----------] 20/42 (proven; coxa = hypothesis only)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-01: coxa D1/D2 D1_D2_READY: action table and two rule-built hypothesis
 bindings (H1 13 channels, H2 8). Nothing admitted.
 

@@ -1,5 +1,17 @@
 # FlyBrainUnity — local Codex handoff
 
+## Coxa hypothesis D3: design — 2026-11-01
+
+PR #308 (D1/D2) merged. D3 designed (no code/run): arms C0 (Step C path, must reproduce
+saved A_ON exactly), H1, H1_FLIP, H2 using D2 channel definitions loaded by hash; a
+hypothesis-labelled derived v3 table/gate/assertion (v3 untouched); preflight P1-P5,
+integrity I1-I5; Q3/Q4 labels and the 0.02 bar unchanged from the track design.
+Predictions recorded (front-leg failure possible; H2 hind adductors posterior-inward).
+See COXA_HYPOTHESIS_D3_V1.md.
+
+IMMEDIATE NEXT (on approval): build adapter/evaluator/tests and hash-lock the protocol,
+commit, then run the four arms once.
+
 ## Coxa hypothesis D1/D2: D1_D2_READY — 2026-11-01
 
 Preregistered (e4f2791), run once, geometry/data only. All checks pass (anterior, 18 nonzero
