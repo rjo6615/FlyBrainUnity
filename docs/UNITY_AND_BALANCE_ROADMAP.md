@@ -1,5 +1,15 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-01: saved V1.2 campaign poses can now be replayed in the existing
+LiveFly scene behind a full re-verification gate (see ASSISTANCE_CAMPAIGN_V1_2_REPLAY).
+
+```text
+Eight-arm assistance run      [COMPLETE, INTEGRITY_ACCEPTED]
+V1.2 Unity replay             [implemented; real evidence verified; Editor review pending]
+Motor coverage                [##########-----------] 20/42 (blocked on anatomy data)
+Independent balance / gait    [not established]
+```
+
 Current2026-10-31: V1.2 eight-arm assistance campaign COMPLETE and
 INTEGRITY_ACCEPTED (~4.8 h). Neutralizing the 22 baseline-only servos rolls the
 fly over in every R arm; the 20 neural channels make no resolved difference.

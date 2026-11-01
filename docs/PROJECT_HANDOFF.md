@@ -1,5 +1,17 @@
 # FlyBrainUnity — local Codex handoff
 
+## V1.2 saved-pose Unity replay entry point — 2026-11-01
+
+`assistance_campaign_v1_2_replay` re-runs the unchanged V1.2 evaluator once and
+projects poses from the arms it reads. It displays them only if the rebuilt
+evaluation equals the saved report and integrity is accepted. Verified on the
+real local evidence (905.6 s, all 8 arms x 20,001 states); 42 synthetic replay
+tests pass. Unity Editor visual review not yet done. Raw archives are local
+only. See ASSISTANCE_CAMPAIGN_V1_2_REPLAY.md.
+
+IMMEDIATE NEXT: user Unity review of A_NP vs R_NP. Motor coverage stays blocked
+on external anatomy (coxa binding/axes, coxa-yaw sign, middle/hind Tarsus1). 20/42.
+
 ## V1.2 eight-arm assistance campaign COMPLETE — 2026-10-31
 
 User-approved ONE V1.2 attempt at 61cafca, 18:20-23:07 UTC: COMPLETE /
