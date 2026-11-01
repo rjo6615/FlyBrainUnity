@@ -1,5 +1,19 @@
 # FlyBrainUnity — local Codex handoff
 
+## Hair-plate Step A: SNpp45 matches published CxHP8 wiring — 2026-11-01
+
+SNpp45 hair plates = CxHP8 (front legs, VProN) and serial copies (middle/hind):
+a tonic coxa forward-limit detector (Nature Communications 2026 preprint PMC12139860).
+Preregistered connectivity check (d5e84d0), run once: MATCH_ALL. In all six legs
+SNpp45 directly excites posterior-moving coxa MNs (194-1,056 synapses; front legs
+remotor/abductor, middle/hind sternal posterior rotator), essentially never anterior,
+and the two-hop network inhibits the anterior set. Two-hop drive to the posterior set
+is also negative (not gated). See HAIR_PLATE_IDENTITY_RESULTS.md.
+
+IMMEDIATE NEXT: Step B, a preregistered SNpp45 encoder for all six legs: coxa
+forward component in the thorax frame, tonic one-sided limit tuning with a fixed
+geometric threshold rule, no physics run. Then Step C (A/R x ON/OFF).
+
 ## Posture-sense pivot: inventory V1 — 2026-11-01
 
 Stage 2 (coxa posture) was redesigned: neural joints add offsets to posture-holding

@@ -1,0 +1,229 @@
+{
+ "schema": "hair-plate-identity-result-v1",
+ "protocol_sha256": "d24c76f6b0ef873451a7136dd9698349e464f78b69cafcee52f75259a292f72d",
+ "verdict": "MATCH_ALL",
+ "legs": {
+  "T1 left": {
+   "sensory_neurons": 7,
+   "direct": {
+    "Acc. ti flexor MN": 0,
+    "Acc. tr flexor MN": 0,
+    "Fe reductor MN": 103,
+    "Pleural remotor/abductor MN": 445,
+    "Sternal adductor MN": 7,
+    "Sternal anterior rotator MN": 0,
+    "Sternal posterior rotator MN": 381,
+    "Sternotrochanter MN": 0,
+    "Ta depressor MN": 0,
+    "Ta levator MN": 0,
+    "Tergopleural/Pleural promotor MN": 0,
+    "Tergotr. MN": 0,
+    "Ti extensor MN": 0,
+    "Ti flexor MN": 0,
+    "Tr extensor MN": 0,
+    "Tr flexor MN": 0,
+    "ltm MN": 0,
+    "ltm1-tibia MN": 0,
+    "ltm2-femur MN": 0
+   },
+   "posterior_direct": 826,
+   "anterior_direct": 0,
+   "top_population": "Pleural remotor/abductor MN",
+   "net_two_hop": {
+    "posterior": -68294.0,
+    "anterior": -269742.0
+   },
+   "checks": {
+    "i_posterior_exceeds_anterior": true,
+    "ii_top_population_posterior": true,
+    "iii_net_two_hop_anterior_negative": true
+   },
+   "match": true
+  },
+  "T1 right": {
+   "sensory_neurons": 5,
+   "direct": {
+    "Acc. ti flexor MN": 0,
+    "Acc. tr flexor MN": 0,
+    "Fe reductor MN": 11,
+    "Pleural remotor/abductor MN": 153,
+    "Sternal adductor MN": 0,
+    "Sternal anterior rotator MN": 0,
+    "Sternal posterior rotator MN": 41,
+    "Sternotrochanter MN": 0,
+    "Ta depressor MN": 0,
+    "Ta levator MN": 0,
+    "Tergopleural/Pleural promotor MN": 0,
+    "Tergotr. MN": 0,
+    "Ti extensor MN": 0,
+    "Ti flexor MN": 0,
+    "Tr extensor MN": 0,
+    "Tr flexor MN": 0,
+    "ltm MN": 0,
+    "ltm1-tibia MN": 0,
+    "ltm2-femur MN": 0
+   },
+   "posterior_direct": 194,
+   "anterior_direct": 0,
+   "top_population": "Pleural remotor/abductor MN",
+   "net_two_hop": {
+    "posterior": -9748.0,
+    "anterior": -68461.0
+   },
+   "checks": {
+    "i_posterior_exceeds_anterior": true,
+    "ii_top_population_posterior": true,
+    "iii_net_two_hop_anterior_negative": true
+   },
+   "match": true
+  },
+  "T2 left": {
+   "sensory_neurons": 12,
+   "direct": {
+    "Acc. ti flexor MN": 0,
+    "Acc. tr flexor MN": 0,
+    "Fe reductor MN": 0,
+    "Pleural remotor/abductor MN": 20,
+    "Sternal adductor MN": 0,
+    "Sternal anterior rotator MN": 0,
+    "Sternal posterior rotator MN": 642,
+    "Sternotrochanter MN": 0,
+    "Tergotr. MN": 0,
+    "Ti extensor MN": 0,
+    "Ti flexor MN": 0,
+    "Tr extensor MN": 0,
+    "Tr flexor MN": 0,
+    "ltm MN": 0,
+    "ltm1-tibia MN": 0,
+    "ltm2-femur MN": 0
+   },
+   "posterior_direct": 662,
+   "anterior_direct": 0,
+   "top_population": "Sternal posterior rotator MN",
+   "net_two_hop": {
+    "posterior": -499335.0,
+    "anterior": -283495.0
+   },
+   "checks": {
+    "i_posterior_exceeds_anterior": true,
+    "ii_top_population_posterior": true,
+    "iii_net_two_hop_anterior_negative": true
+   },
+   "match": true
+  },
+  "T2 right": {
+   "sensory_neurons": 11,
+   "direct": {
+    "Acc. ti flexor MN": 0,
+    "Acc. tr flexor MN": 0,
+    "Fe reductor MN": 6,
+    "Pleural remotor/abductor MN": 32,
+    "Sternal adductor MN": 0,
+    "Sternal anterior rotator MN": 0,
+    "Sternal posterior rotator MN": 1024,
+    "Sternotrochanter MN": 0,
+    "Tergotr. MN": 0,
+    "Ti extensor MN": 0,
+    "Ti flexor MN": 0,
+    "Tr extensor MN": 0,
+    "Tr flexor MN": 0,
+    "ltm MN": 0,
+    "ltm1-tibia MN": 0,
+    "ltm2-femur MN": 0
+   },
+   "posterior_direct": 1056,
+   "anterior_direct": 0,
+   "top_population": "Sternal posterior rotator MN",
+   "net_two_hop": {
+    "posterior": -596288.0,
+    "anterior": -368379.0
+   },
+   "checks": {
+    "i_posterior_exceeds_anterior": true,
+    "ii_top_population_posterior": true,
+    "iii_net_two_hop_anterior_negative": true
+   },
+   "match": true
+  },
+  "T3 left": {
+   "sensory_neurons": 8,
+   "direct": {
+    "Acc. ti flexor MN": 0,
+    "Acc. tr flexor MN": 0,
+    "Fe reductor MN": 27,
+    "Pleural remotor/abductor MN": 8,
+    "Sternal adductor MN": 12,
+    "Sternal anterior rotator MN": 22,
+    "Sternal posterior rotator MN": 309,
+    "Sternotrochanter MN": 0,
+    "Tergotr. MN": 0,
+    "Ti extensor MN": 0,
+    "Ti flexor MN": 0,
+    "Tr extensor MN": 0,
+    "Tr flexor MN": 0,
+    "ltm MN": 0,
+    "ltm1-tibia MN": 0,
+    "ltm2-femur MN": 0
+   },
+   "posterior_direct": 317,
+   "anterior_direct": 22,
+   "top_population": "Sternal posterior rotator MN",
+   "net_two_hop": {
+    "posterior": -8084.0,
+    "anterior": -201650.0
+   },
+   "checks": {
+    "i_posterior_exceeds_anterior": true,
+    "ii_top_population_posterior": true,
+    "iii_net_two_hop_anterior_negative": true
+   },
+   "match": true
+  },
+  "T3 right": {
+   "sensory_neurons": 9,
+   "direct": {
+    "Acc. ti flexor MN": 0,
+    "Acc. tr flexor MN": 0,
+    "Fe reductor MN": 9,
+    "Pleural remotor/abductor MN": 0,
+    "Sternal adductor MN": 21,
+    "Sternal anterior rotator MN": 0,
+    "Sternal posterior rotator MN": 213,
+    "Sternotrochanter MN": 0,
+    "Tergotr. MN": 0,
+    "Ti extensor MN": 0,
+    "Ti flexor MN": 0,
+    "Tr extensor MN": 0,
+    "Tr flexor MN": 0,
+    "ltm MN": 0,
+    "ltm1-tibia MN": 0,
+    "ltm2-femur MN": 0
+   },
+   "posterior_direct": 213,
+   "anterior_direct": 0,
+   "top_population": "Sternal posterior rotator MN",
+   "net_two_hop": {
+    "posterior": -35647.0,
+    "anterior": -161376.0
+   },
+   "checks": {
+    "i_posterior_exceeds_anterior": true,
+    "ii_top_population_posterior": true,
+    "iii_net_two_hop_anterior_negative": true
+   },
+   "match": true
+  }
+ },
+ "excluded": [
+  {
+   "body_id": 821165,
+   "entry_nerve": "ProLN",
+   "side": "left",
+   "matched": true
+  }
+ ],
+ "interpretation_limits": [
+  "Structural connectivity only; no simulation. Our dataset is male (MaleCNS), the reference used female FANC.",
+  "Posterior/anterior population sets are a declared mapping of the reference's modules."
+ ]
+}

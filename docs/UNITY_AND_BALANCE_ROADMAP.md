@@ -1,5 +1,17 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-01: hair-plate Step A MATCH_ALL: our SNpp45 hair plates show the
+published CxHP8 coxa limit-reflex wiring in all six legs.
+
+```text
+Posture-sense inventory       [done]
+Hair plate A: identity        [MATCH_ALL, 6/6 legs]
+Hair plate B: encoder         [next]
+Hair plate C: on/off test     [pending]
+Motor coverage                [##########-----------] 20/42 (proven)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-01: pivot to posture senses. Inventory V1: hair plates are the best
 next sense (direct path to coxa MNs, not yet encoded).
 

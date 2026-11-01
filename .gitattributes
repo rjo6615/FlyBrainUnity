@@ -129,3 +129,5 @@ docs/evidence/dng100-rhythm-v1/**/*.json -text
 docs/evidence/dng100-rhythm-v1/**/*.txt -text -whitespace
 docs/evidence/posture-sense-inventory-v1/*.json -text
 docs/evidence/posture-sense-inventory-v1/**/*.json -text
+docs/evidence/hair-plate-identity-v1/*.json -text
+docs/evidence/hair-plate-identity-v1/**/*.json -text
