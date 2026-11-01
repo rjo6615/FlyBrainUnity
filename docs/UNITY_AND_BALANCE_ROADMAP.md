@@ -1,5 +1,18 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-10-31: V1.2 eight-arm assistance campaign COMPLETE and
+INTEGRITY_ACCEPTED (~4.8 h). Neutralizing the 22 baseline-only servos rolls the
+fly over in every R arm; the 20 neural channels make no resolved difference.
+See ASSISTANCE_CAMPAIGN_V1_2_RUN_RESULTS.
+
+```text
+Eight-arm assistance run      [COMPLETE, INTEGRITY_ACCEPTED]
+Finding                       [22 baseline servos hold posture; neural 20 do not replace them]
+Next milestone                [expand neural motor coverage before reducing assistance]
+Motor coverage                [##########-----------] 20/42
+Independent balance / gait    [not established]
+```
+
 Current2026-10-31: V1.1 attempt completed A_NC with native qualification passed,
 then stopped at a saved-JSON read-back defect (preserved). V1.2 read-back and
 journal-clock corrections and a faster exact model-phase check (est. ~1.3-1.6 h
