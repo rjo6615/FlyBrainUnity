@@ -1,0 +1,122 @@
+{
+ "schema": "coxa-admission-protocol-v1",
+ "date": "2026-11-02",
+ "design": "docs/COXA_ADMISSION_QUESTION_V1.md",
+ "status": "PREREGISTERED_BEFORE_ANY_ARM_RAN",
+ "question": "Part B: does the H1 fore-aft resistance effect of joint_LFCoxa and joint_LHCoxa reproduce prospectively, with only those two channels enabled, in CNS seeds 1-3?",
+ "known_before_registration": "D3 per-leg results for seed 1 with all 13 H1 channels (LF -0.173/+0.145, LH -0.191/+0.206; RF and RH failed). Seeds 2 and 3 have never been run in this context. The 100-step smoke is plumbing only and discarded.",
+ "policy_part_a": {
+  "decision": "approved by the user on 2026-11-02 ('Approve, build it' on PR #313)",
+  "ADMITTED": "existing v3 standard, unchanged; 20/42",
+  "CONDITIONAL": "separately counted, never merged into 20/42; requires C1 binding fixed by rule before outcomes, C2 preregistered closed-loop falsification with sign-reversal control, C3 prospective isolated confirmation across new seeds (this test), C4 integrity; enabled only through the labelled hypothesis session path; results using it carry COXA_CONDITIONAL_H1; revocable by any later preregistered failure",
+  "BLOCKED_BY_INPUT": [
+   "joint_RFCoxa",
+   "joint_RHCoxa_roll"
+  ],
+  "UNTESTED": "middle-leg coxa channels; joint_LFCoxa_yaw, joint_LHCoxa_roll, joint_LHCoxa_yaw; all other coxa coordinates",
+  "NOT_SUPPORTED": "a coordinate whose preregistered confirmation fails"
+ },
+ "sources": {
+  "d3_module": "malecns_backend.live.coxa_hypothesis_loop (definitions, create_hypothesis_session, Trial, mean_by_leg, first_command_change; its protocol() hash lock b8d524d5...)",
+  "d2_result": {
+   "path": "docs/evidence/coxa-hypothesis-v1/run/result.json",
+   "sha256": "ef2fbdec3cab6bbe1ae63a6e9a534e5a0566fabab6db18d22a22ecb260d90fce",
+   "status": "D1_D2_READY"
+  },
+  "step_c_a_on": {
+   "path": "docs/evidence/hair-plate-posture-v1/run/A_ON.json.gz (local, uncommitted)",
+   "sha256": "8c2d90e630ae72618e44bca8ee5354fe17b47ca80345558e139fb99f4b2a7745"
+  }
+ },
+ "candidates": {
+  "channels": [
+   "joint_LFCoxa",
+   "joint_LHCoxa"
+  ],
+  "legs": {
+   "joint_LFCoxa": "LF",
+   "joint_LHCoxa": "LH"
+  },
+  "H1": {
+   "sha256": "6bf08be7d7c103cf23e251520b55a02e872ef27edef7138032edea2403e7707b",
+   "action_index": {
+    "joint_LFCoxa": 0,
+    "joint_LHCoxa": 14
+   },
+   "coordinate_sign": {
+    "joint_LFCoxa": 1,
+    "joint_LHCoxa": 1
+   }
+  },
+  "H1_FLIP": {
+   "sha256": "ee4da58b7a655e32a9955e87697b0d8d4a82ccfe6ecadc6cb32246034d4542bf",
+   "action_index": {
+    "joint_LFCoxa": 0,
+    "joint_LHCoxa": 14
+   },
+   "coordinate_sign": {
+    "joint_LFCoxa": -1,
+    "joint_LHCoxa": -1
+   }
+  },
+  "hash_rule": "sha256 of json.dumps(native(defs), sort_keys=True, separators=(',', ':')) of the two channels from coxa_hypothesis_loop.definitions(<D2 arm>, D2 channels)"
+ },
+ "context": "Step C A_ON for every arm (assisted posture, hair plates delivered, schedule, encoder, 20 v3 channels unchanged), 20000 physics steps, 4000 neural ticks; one fresh process per arm, each run once.",
+ "seeds": {
+  "values": [
+   1,
+   2,
+   3
+  ],
+  "mechanism": "input adapter attach: require brain.time_ms == 0, zero spike counts and brain.rng state equal to a fresh default_rng(1) (else run error -> PROTOCOL_NOT_BUILDABLE); then brain.rng = numpy.random.default_rng(seed). Kernel unchanged."
+ },
+ "arms": {
+  "order": [
+   "C0_1",
+   "CAND_1",
+   "FLIP_1",
+   "C0_2",
+   "CAND_2",
+   "FLIP_2",
+   "C0_3",
+   "CAND_3",
+   "FLIP_3"
+  ],
+  "C0_s": "no coxa channel",
+  "CAND_s": "H1 joint_LFCoxa + joint_LHCoxa via coxa_hypothesis_loop.create_hypothesis_session(trial, 'H1', defs)",
+  "FLIP_s": "H1_FLIP definitions, same path"
+ },
+ "window_ms": [
+  520.0,
+  2000.0
+ ],
+ "integrity": {
+  "I1": "all nine arms COMPLETE, 20001 samples, 4000 ticks",
+  "I2": "within each seed, identical external schedule and per-tick uniforms_sha256 across C0/CAND/FLIP",
+  "I3": "C0_1 equals saved Step C A_ON in fired, uniforms_sha256, hair_delivered (every tick) and qpos (every sample)",
+  "I4": "20 v3 channel inventories identical to C0_1 in every arm; C0 has no hypothesis channel and never changes candidate commands; CAND/FLIP channel set = v3 + the two candidates, definitions hash equals the preregistered one; non-v3, non-candidate commands equal C0_s; every candidate offset |c| <= 0.25 rad",
+  "I5": "within each seed, CAND and FLIP equal C0_s in qpos and commanded joints before their first candidate command, and in fired before that time",
+  "I6": "tick-1 uniforms_sha256 of C0_1, C0_2, C0_3 pairwise different; every arm records its cns_seed",
+  "failure": "INCONCLUSIVE_INTEGRITY, no labels"
+ },
+ "measure": "window-mean change vs C0_s of the leg's coxa forward component (hair_forward, Step B encoder geometry), as in D3",
+ "labels": {
+  "seed_pass": "C0_s hair rate of the leg > 0 (firing) AND CAND_s delta_f <= -0.02 AND FLIP_s delta_f >= +0.02; a non-firing leg is a failed seed",
+  "CONFIRMED": "passes in all 3 seeds -> CONDITIONAL",
+  "PARTIAL": "passes in 1-2 seeds -> remains hypothesis, no tier change",
+  "NOT_CONFIRMED": "passes in 0 seeds -> NOT_SUPPORTED"
+ },
+ "flags": {
+  "BOUND_LIMITED": "for any CAND or FLIP arm, the fraction of window samples with |offset| >= 0.24 rad exceeds 0.5",
+  "ROLLOVER": "any sample of any arm with body tilt > 90 deg"
+ },
+ "descriptive": "delta_f in all legs; coxa MN rates per leg; hair rates and deliveries; channel offsets mean/max; first command and first physical divergence; tilt mean/peak; comparison with D3 seed-1 all-channel effects",
+ "predictions": "Recorded in the design doc: both CONFIRMED; risks isolation, seed variation, LH near the cap (BOUND_LIMITED plausible).",
+ "interpretation_limits": [
+  "Consistency with one published reflex (CxHP8 resistance) in one assisted context; not validation of the binding.",
+  "Offset-on-servo actuation: a shift is a servo setpoint shift, not muscle force.",
+  "CONDITIONAL is a project policy, not anatomical validation or admission; 20/42 is unchanged.",
+  "Seeds change only stochastic sensory event timing; connectome, engine and initial state are identical."
+ ],
+ "single_run": "Executed once after protocol, code and tests are committed; no reruns, no rule changes."
+}
