@@ -1,5 +1,32 @@
 # FlyBrainUnity — local Codex handoff
 
+## Right-front coxa drive asymmetry: INTEGRITY_ACCEPTED, REPLAY_EXACT — 2026-11-01
+
+Preregistered (2c1ca42), run once, data only. Replay of Step C A_ON reproduces all 62 coxa
+MNs' window spikes exactly. Q1 RF_DIRECT_SUFFICIENT by the mean-field rule (8.98 vs g* 8.09),
+but that rule assumed 120 Hz delivered; measured delivered hair-plate g on the best RF MN is
+6.0 (< g*). Q2 (RF vs LF) SYNAPSES_PER_SOURCE (RF SNpp45 neurons are small overall: 320-378
+total outputs vs LF mostly 680-1,320); Q2b (vs LH) SOURCE_COUNT; Q3 INHIBITION_NOT_DECISIVE.
+Engine share (floor + size scaling) 0.09. RF coxa MNs also get almost no other excitation
+(0.2 vs LF 8.6, LH 22.1). Anatomy vs reconstruction undecided. See COXA_DRIVE_ASYMMETRY_RESULTS.md.
+
+IMMEDIATE NEXT (user choice): no fix is implied. Options are a versioned question about the
+missing non-hair-plate excitation onto RF coxa MNs, or returning to the coxa track with RF
+recorded as a known limit.
+
+## Right-front coxa drive asymmetry: design — 2026-11-01
+
+PR #309 (D3) merged. Designed a data-only comparison (no code/run) of why RF hair plates
+at 120 Hz leave RF coxa MNs at 0.55 Hz. Part S (cache): SNpp45 inventory, engine-exact
+effective direct weights, hair-plate-only mean-field drive vs threshold, and an exact
+four-factor decomposition (source count, synapses/source, 6-synapse floor, size scaling)
+for RF vs LF and RF vs LH. Part M: exact replay of input conductances onto every coxa MN
+from the recorded Step C A_ON spikes, verified by single-neuron LIF reproduction. Labels
+Q1-Q3 and predictions recorded. Cannot separate anatomy from reconstruction artifact;
+not a fix. See COXA_DRIVE_ASYMMETRY_V1.md.
+
+IMMEDIATE NEXT (on approval): build module/tests, hash-lock protocol, commit, run once.
+
 ## Coxa hypothesis D3: NOT_CONSISTENT (2/4 legs), H1_FAVOURED — 2026-11-01
 
 Preregistered (f4c06a8), preflight passed, four arms run once (C0/H1/H1_FLIP/H2), CNS +

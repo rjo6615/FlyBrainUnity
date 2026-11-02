@@ -1,0 +1,62 @@
+{
+  "schema": "coxa-drive-asymmetry-protocol-v1",
+  "date": "2026-11-01",
+  "design": "docs/COXA_DRIVE_ASYMMETRY_V1.md",
+  "status": "PREREGISTERED_BEFORE_ANY_PER_MN_WEIGHT_OR_REPLAY_WAS_COMPUTED",
+  "question": "Where along the modeled hair plate -> posterior coxa MN pathway does the right-front leg lose drive relative to LF (homolog) and LH (working leg), and how much of that is attributable to engine choices (6-synapse floor, size scaling)?",
+  "known_before_registration": "Step A per-leg sensory counts and floored direct synapses per population; Step C per-leg coxa MN rates (RF 0.55 Hz, LF 22.7, LH 32.3). No per-MN weight, per-neuron output total, raw (unfloored) count, size scale or replayed conductance was computed.",
+  "sources": {
+    "step_a_protocol": {"module": "malecns_backend.embodiment.hair_plate_identity", "check": "its protocol() hash lock"},
+    "step_a_result": {"path": "docs/evidence/hair-plate-identity-v1/run/result.json", "sha256": "e652a0c2f9d24342eeb784b35f4ce7078981bcf684db8e0c53fb9a96d664301b"},
+    "step_c_a_on_raw": {"path": "docs/evidence/hair-plate-posture-v1/run/A_ON.json.gz", "sha256": "8c2d90e630ae72618e44bca8ee5354fe17b47ca80345558e139fb99f4b2a7745", "location": "local, uncommitted"},
+    "connectome_sets": "malecns_backend.cache.load_cache (Step A sets, exactly hair_plate_identity.sensory_sets / motor_sets)",
+    "engine": "malecns_backend.load_malecns + MaleCNSBrain(data) with ModelConfig.calibrated(), as the live kernel constructs it"
+  },
+  "sets": {
+    "sensory": "Step A SNpp45 set per leg",
+    "posterior": ["Pleural remotor/abductor MN", "Sternal posterior rotator MN"],
+    "anterior": ["Tergopleural/Pleural promotor MN", "Sternal anterior rotator MN"],
+    "step_c_coxa": "hair_plate_posture.mn_sets per-leg coxa set (actuator classes coxa, coxa_abduct, coxa_twist)",
+    "replayed": "union over legs of posterior, anterior and Step C coxa sets"
+  },
+  "structural": {
+    "R": "raw synapses from the leg's sensory set onto its posterior pool (all edges, no floor)",
+    "F": "same, edges with count >= min_synapses only",
+    "S": "sum over those edges of count * size scale of the postsynaptic MN (engine weight before sign)",
+    "G": "sum over those edges of engine weight * engine pre_sign",
+    "identity": "G = N_s * (R/N_s) * (F/R) * (S/F) * (G/S); factors SOURCE_COUNT, SYNAPSES_PER_SOURCE, FLOOR_LOSS, SIZE_SCALING, TRANSMITTER_SIGN",
+    "refinement_vs_design": "The design named four factors with sign folded into size scaling; sign is separated (TRANSMITTER_SIGN) so SIZE_SCALING is pure engine scaling. Fixed here before any computation.",
+    "factor_class": {"SOURCE_COUNT": "connectome", "SYNAPSES_PER_SOURCE": "connectome", "FLOOR_LOSS": "engine", "SIZE_SCALING": "engine", "TRANSMITTER_SIGN": "annotation"},
+    "concentration": "max over posterior MNs of W_m divided by G (reported, not in the identity)",
+    "W_m": "sum over sensory s of engine weight(s->m) * pre_sign(s) * psp_scale",
+    "mean_field_g_m": "W_m * r * dt/1000 / (1 - exp(-dt/tau_syn)), r = hair_plate_encoder.MAX_RATE_HZ (120 Hz): discrete steady-state mean conductance of the engine's update",
+    "g_star": "(e_exc - v_rest) * (v_threshold - v_rest) / (e_exc - v_threshold): conductance whose steady COBA potential equals threshold",
+    "audits": ["Step A floored direct counts per leg and population reproduced exactly", "rule weights (floor, sensory mask, size scale, inhibitory gain) and graded/OA sign equal MaleCNSBrain.weights / pre_sign on every edge into the replayed MNs", "cache and load_malecns body_ids identical", "identity sums exactly (|log error| < 1e-9)"]
+  },
+  "measured": {
+    "raw": "Step C A_ON per-tick fired lists (ticks 0..3999, time_ms = (tick+1)*0.5)",
+    "window_ms": [520.0, 2000.0],
+    "window_rule": "ticks with 520 < time_ms <= 2000 (Step C convention)",
+    "M1": "rate of every replayed MN in the window",
+    "M2": "replay from reset state: a spike recorded at tick t is delivered at the start of tick t + delay_steps; per-pre float32 delivery in recorded order with s = float32(pre_sign * psp_scale * 1); then refractory, COBA integration, threshold, reset, decay exactly as MaleCNSBrain.step. Conductances used for integration are split (float64, descriptive) into own-leg hair plates, other excitatory, inhibitory; window means reported",
+    "M3": "predicted vs recorded spike ticks in the window per MN. REPLAY_EXACT: all MNs identical. REPLAY_CLOSE: every MN with >= 5 recorded window spikes has >= 95% of them matched within +-1 tick, and total predicted/recorded counts within 5%. Else INCONCLUSIVE_REPLAY (Q3 withheld; Part S reported)",
+    "precondition": "no replayed MN is in the external schedule or any hair-plate population (MNs receive no forced events)"
+  },
+  "labels": {
+    "integrity": "all hashes match, all structural audits pass and M3 is REPLAY_EXACT or REPLAY_CLOSE -> INTEGRITY_ACCEPTED; a structural audit or hash failure -> INCONCLUSIVE_INTEGRITY with no labels; replay failure alone -> INCONCLUSIVE_REPLAY with Q1/Q2 given and Q3 withheld",
+    "best_driven_mn": "per leg, the posterior MN with the largest W_m (ties: lowest dense index)",
+    "Q1": {"RF_DIRECT_SUBTHRESHOLD": "RF best g_m < g_star and LF or LH best g_m >= g_star", "RF_DIRECT_SUFFICIENT": "RF best g_m >= g_star", "ALL_SUBTHRESHOLD": "RF, LF and LH best g_m all < g_star"},
+    "Q2": "RF vs LF: the factor with the most negative log-ratio; MIXED if the second most negative is negative and >= 0.9 x the most negative in magnitude; NO_DEFICIT if no factor is negative",
+    "Q2b": "same rule, RF vs LH",
+    "Q3": {"INHIBITION_CONTRIBUTES": "measured window-mean |g_inh| / g_exc on RF best-driven MN >= 2 x the same ratio on LF best-driven MN", "INHIBITION_NOT_DECISIVE": "otherwise"},
+    "engine_share": "(FLOOR_LOSS + SIZE_SCALING log-ratios) / log(G_RF / G_LF), reported as a number"
+  },
+  "predictions": "Recorded in the design doc: Q2 SYNAPSES_PER_SOURCE then SOURCE_COUNT; Q2b concentration relevant; Q1 RF_DIRECT_SUBTHRESHOLD plausible; Q3 uncertain.",
+  "interpretation_limits": [
+    "Connectome factors cannot separate real anatomy from reconstruction artifact.",
+    "Mean-field g_m ignores fluctuations and all other inputs; it is a modeled prediction.",
+    "Replay is a passive decomposition of one seed of one assisted-posture run.",
+    "Nothing here changes the engine, weights, encoder or mappings; any fix is a separate versioned intervention."
+  ],
+  "single_run": "Executed once after protocol, code and tests are committed; no reruns, no rule changes."
+}

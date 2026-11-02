@@ -140,3 +140,6 @@ docs/evidence/coxa-hypothesis-v1/*.json -text
 docs/evidence/coxa-hypothesis-v1/**/*.json -text
 docs/evidence/coxa-hypothesis-d3-v1/*.json -text
 docs/evidence/coxa-hypothesis-d3-v1/**/*.json -text
+docs/evidence/coxa-drive-asymmetry-v1/*.json -text
+docs/evidence/coxa-drive-asymmetry-v1/**/*.json -text
+docs/evidence/coxa-drive-asymmetry-v1/**/*.txt -text -whitespace

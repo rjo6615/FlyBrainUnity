@@ -1,0 +1,23 @@
+{
+ "status": "INTEGRITY_ACCEPTED",
+ "replay": "REPLAY_EXACT",
+ "integrity": {
+  "step_a_result_hash": true,
+  "step_c_raw_hash": true,
+  "annotation_hash": true,
+  "body_ids_identical": true,
+  "bodymap_identical": true,
+  "step_a_direct_reproduced": true,
+  "engine_weights_equal": true,
+  "engine_signs_equal": true,
+  "mns_not_forced": true,
+  "raw_complete": true
+ },
+ "labels": {
+  "Q1": "RF_DIRECT_SUFFICIENT",
+  "Q2": "SYNAPSES_PER_SOURCE",
+  "Q2b": "SOURCE_COUNT",
+  "engine_share": 0.09140303562600781,
+  "Q3": "INHIBITION_NOT_DECISIVE"
+ }
+}
