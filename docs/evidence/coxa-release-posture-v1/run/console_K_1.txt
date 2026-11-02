@@ -1,0 +1,9 @@
+K_1: fresh CNS/physics initialization
+K_1: 3939/20000
+K_1: 5005/20000
+K_1: 8315/20000
+K_1: 11283/20000
+K_1: 13790/20000
+K_1: 16117/20000
+K_1: 18601/20000
+{"arm": "K_1", "run_status": "COMPLETE", "error": null, "sha256": "8f93731e479b43a7f24c0663a5d45ea0d1e81b6f9009cbf1c94c2b7135642115"}

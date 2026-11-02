@@ -1,5 +1,15 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-02: released-posture coxa test run. All labels null as predicted; every arm
+rolls over 67-91 ms after release. CONDITIONAL status unchanged.
+
+```text
+Released-posture coxa test    [NO_RESCUE; no consistent assist or loop effect on T_roll (3 seeds)]
+Coxa admission                [LF/LH Coxa CONFIRMED 3/3 -> CONDITIONAL; RF/RH blocked by input; rest untested]
+Motor coverage                [##########-----------] 20/42 admitted (+2 conditional, counted separately)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-02: released-posture test with the conditional coxa channels designed (12 arms). Not run.
 
 ```text

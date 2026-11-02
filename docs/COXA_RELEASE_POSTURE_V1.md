@@ -1,8 +1,11 @@
 # Released-posture test with the conditional coxa channels — design (V1)
 
-Designed 2026-11-02, after the coxa admission confirmation was merged (PR #313). This
-document is the design only: no code has been written and nothing has run. The protocol,
-code and tests will be hash-locked and committed before any arm runs.
+Designed 2026-11-02, after the coxa admission confirmation was merged (PR #313).
+
+**Status:** preregistered in bc38189 (protocol sha 16659830…), run once and evaluated once:
+INTEGRITY_ACCEPTED; NO_CONSISTENT_ASSIST_EFFECT, NO_CONSISTENT_LOOP_EFFECT, Q_SIGN
+NOT_EVALUATED, NO_RESCUE. See `COXA_RELEASE_POSTURE_RESULTS.md`. The design below is
+unchanged.
 
 ## Question
 
