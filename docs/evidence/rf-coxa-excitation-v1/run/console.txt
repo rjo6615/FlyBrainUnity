@@ -1,0 +1,30 @@
+{
+ "status": "INTEGRITY_ACCEPTED",
+ "replay": {
+  "A_OFF": "REPLAY_EXACT",
+  "A_ON": "REPLAY_EXACT"
+ },
+ "integrity": {
+  "v1_result_hash": true,
+  "step_c_report_hash": true,
+  "A_OFF_hash": true,
+  "A_ON_hash": true,
+  "body_ids_identical": true,
+  "engine_weights_equal": true,
+  "engine_signs_equal": true,
+  "A_OFF_targets_not_forced": true,
+  "A_OFF_complete": true,
+  "A_ON_targets_not_forced": true,
+  "A_ON_complete": true,
+  "E1_sum_check": true,
+  "replay_ok": true,
+  "schedule_identical": true,
+  "uniforms_identical": true
+ },
+ "labels": {
+  "Q1": "HAIR_EVOKED",
+  "Q2": "ACTIVITY_GAP",
+  "Q2b": "ACTIVITY_GAP",
+  "Q3": "PRE_EXISTING_ASYMMETRY"
+ }
+}

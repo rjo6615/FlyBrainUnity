@@ -1,5 +1,19 @@
 # FlyBrainUnity — local Codex handoff
 
+## Right-front coxa MN excitation: ACTIVITY_GAP, HAIR_EVOKED — 2026-11-01
+
+Preregistered (a259a83), run once, data only (Step C A_OFF + A_ON replay, both REPLAY_EXACT).
+Q1 HAIR_EVOKED (LF 99.5 %, LH 68 % of other excitation is hair-evoked). Q2/Q2b ACTIVITY_GAP:
+RF has nearly LF's available excitatory weight (397 vs 420) but partners deliver ~46x less.
+LF's extra excitation is mostly a hair-plate relay via left IN03A066/075/080; their right
+copies are wired to RF (IN03A066 60.9 vs 43.9) but silent. Q3 PRE_EXISTING_ASYMMETRY by the
+rule, degenerate (A_OFF RF 0.000 vs LF 0.043; no minimum-baseline clause), recorded not
+reinterpreted. Post-hoc exploratory: RF hair plates give the right relay copies ~1/4 the
+synapses (26/10/12 vs 98/46/37). See RF_COXA_EXCITATION_RESULTS.md.
+
+IMMEDIATE NEXT (user choice): any causal test (driving the right relay or silencing the left)
+is an intervention needing its own versioned protocol; or return to the coxa track.
+
 ## Right-front coxa MN excitation: design — 2026-11-01
 
 PR #310 (drive asymmetry) merged. Designed a data-only follow-up (no code/run): why RF
