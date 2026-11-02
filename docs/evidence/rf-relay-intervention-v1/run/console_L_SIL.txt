@@ -1,0 +1,7 @@
+L_SIL: fresh live-v3 CNS/physics initialization
+L_SIL: 4027/20000
+L_SIL: 5005/20000
+L_SIL: 8744/20000
+L_SIL: 12238/20000
+L_SIL: 16133/20000
+{"arm": "L_SIL", "run_status": "COMPLETE", "error": null, "sha256": "c0d5bb8f01067bb8c3c5abc46ee4f172d2bc80d2975ba81164cc1908c90ee196"}

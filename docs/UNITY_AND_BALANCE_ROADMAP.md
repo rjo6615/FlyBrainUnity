@@ -1,5 +1,15 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-02: relay intervention run. Q_NEC NOT_NECESSARY (0.823), Q_SUF NONSPECIFIC
+(sham recruited the relay); injection raised RF pool 1.5 -> 24.2 Hz.
+
+```text
+Relay causal test             [NOT_NECESSARY (LF hair drive suprathreshold); NONSPECIFIC (sham flaw: reached relay)]
+RF other excitation           [right relay can drive RF when active (exploratory); silent because of weak RF hair input]
+Motor coverage                [##########-----------] 20/42 (proven; coxa = hypothesis only)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-02: hair-plate relay intervention designed (5 arms). Not run.
 
 ```text

@@ -1,6 +1,7 @@
 # Hair-plate relay interneurons — causal intervention design (V1)
 
-Designed 2026-11-02, after the RF excitation result was merged (PR #311). This document
+Designed 2026-11-02, after the RF excitation result was merged (PR #311). **Built and run
+once 2026-11-02; results in `RF_RELAY_INTERVENTION_RESULTS.md`.** This document
 is the design only. No code has been written and nothing has run. The protocol JSON,
 the adapter, the evaluator and the tests are written and hash-locked at build time, and
 committed before any arm runs.

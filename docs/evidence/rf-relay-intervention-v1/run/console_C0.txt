@@ -1,0 +1,7 @@
+C0: fresh live-v3 CNS/physics initialization
+C0: 4199/20000
+C0: 5271/20000
+C0: 9410/20000
+C0: 13491/20000
+C0: 17594/20000
+{"arm": "C0", "run_status": "COMPLETE", "error": null, "sha256": "a338224bb3b0a5ce6c7521030d23504f95766e11641222dcaa955613302e6ca4"}
