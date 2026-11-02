@@ -1,0 +1,44 @@
+{
+  "schema": "rf-coxa-excitation-protocol-v1",
+  "date": "2026-11-01",
+  "design": "docs/RF_COXA_EXCITATION_V1.md",
+  "status": "PREREGISTERED_BEFORE_ANY_PER_PARTNER_ATTRIBUTION_OR_A_OFF_REPLAY_WAS_COMPUTED",
+  "question": "Why do RF coxa MNs receive almost no non-hair-plate excitation: missing wiring, quiet partners, or a consequence of RF's weak hair plates (left-side extra excitation being hair-evoked)?",
+  "known_before_registration": "Drive-asymmetry V1 result: A_ON window-mean other-excitatory g per coxa MN (best posterior MNs RF 0.18, LF 8.59, LH 22.08) and Step C pooled OFF/ON coxa MN rates. No A_OFF replay, partner attribution, W_pot or type table was computed.",
+  "sources": {
+    "v1_module": "malecns_backend.embodiment.coxa_drive_asymmetry (its protocol() hash lock; functions reused unchanged)",
+    "v1_result": {"path": "docs/evidence/coxa-drive-asymmetry-v1/run/result.json", "sha256": "695951fd9a98c5c4b993c4278d739f71e8de7f871e3bc48a46c6aa44d47aee57"},
+    "step_c_report": {"path": "docs/evidence/hair-plate-posture-v1/run/report.json", "sha256": "7d5bb0b20b31941fb215e7744fc0adb17645902976986f67d5d2a0741853f69e"},
+    "arms": {"A_OFF": "2aa48719d335ea3d6411791ee4b86c9a333ee3245e84a968ba8c1b44782b7859", "A_ON": "8c2d90e630ae72618e44bca8ee5354fe17b47ca80345558e139fb99f4b2a7745"},
+    "arm_location": "docs/evidence/hair-plate-posture-v1/run/<arm>.json.gz, local, uncommitted"
+  },
+  "targets": {
+    "best_mn": "V1 result structural[leg].best_mn for every leg (RF 146868, LF 146498, LH 144071 are the label targets)",
+    "pools": "V1 posterior pools of all six legs (coxa_drive_asymmetry.leg_pools)",
+    "window_ms": [520.0, 2000.0]
+  },
+  "measures": {
+    "replay": "coxa_drive_asymmetry.replay on each arm for all pool MNs; compare_spikes status per arm",
+    "E1": "per (target m, presynaptic j with s_j = float32(pre_sign_j * psp_scale) > 0): contribution = float64(float32(w_jm * s_j)) * sum over j's delivered spikes (delivery tick = fired tick + delay_steps, within the run) of K(d) / n_window, K(d) = sum_{t=max(d,lo)}^{hi} decay^(t-d); sum check: hair + other from E1 equals replay float64 hair + other within 1e-6 relative (absolute 1e-9 when zero)",
+    "other": "excitatory partners that are not in the target's own-leg SNpp45 set",
+    "E2": "other split by presynaptic superclass, type, side (hair_plate_identity.side_of on annotations; None reported as 'unknown') and downstream status (floored direct edge, count >= min_synapses, from any own-leg SNpp45)",
+    "E3": "baseline = A_OFF value; hair_evoked = A_ON - A_OFF, per partner and in total",
+    "E4": "W_pot(m) = sum over other excitatory partners of float64(w_jm * s_j) (identical in both arms); rho = g_other / W_pot; log(g_other ratio) = log(W_pot ratio) [WIRING] + log(rho ratio) [ACTIVITY]",
+    "E5": "for each presynaptic type contributing other excitation to RF or LF best MN: weight onto each, and window rate of the type's right-side and left-side neurons in each arm",
+    "pool": "Q1-Q3 quantities recomputed on summed pool g_other and W_pot (descriptive only)"
+  },
+  "labels": {
+    "integrity": "arm, V1 result and Step C report hashes match; V1 protocol hash lock; engine weights/signs equal MaleCNSBrain on every edge into target MNs; replay REPLAY_EXACT or REPLAY_CLOSE in both arms; E1 sum check; A_OFF and A_ON identical external schedule and per-tick uniforms_sha256; no target MN forced. Else INCONCLUSIVE_INTEGRITY, no labels",
+    "Q1": {"HAIR_EVOKED": "hair_evoked >= 0.5 x g_other(A_ON) on both LF and LH best MNs", "BASELINE": "< 0.5 on both", "MIXED_LEGS": "otherwise"},
+    "Q2": {"rule": "A_ON, RF vs LF best MNs, terms WIRING and ACTIVITY", "WIRING_GAP": "WIRING more negative and ACTIVITY not within 10% of it", "ACTIVITY_GAP": "ACTIVITY more negative and WIRING not within 10% of it", "MIXED": "both negative and magnitudes within 10%", "NO_GAP": "neither negative", "zero": "g_other(RF) = 0 gives ACTIVITY = -inf (recorded as null) -> ACTIVITY_GAP unless W_pot(RF) = 0 too, which gives WIRING_GAP"},
+    "Q2b": "same rule, RF vs LH",
+    "Q3": {"CONSEQUENCE_OF_HAIR_PLATES": "g_other A_OFF: RF >= 0.67 x LF, and A_ON: RF < 0.33 x LF", "PRE_EXISTING_ASYMMETRY": "A_OFF: RF < 0.67 x LF", "NOT_DETERMINED": "otherwise"}
+  },
+  "predictions": "Recorded in the design doc: Q1 HAIR_EVOKED for LF (LH less certain); Q2 ACTIVITY_GAP; Q3 CONSEQUENCE_OF_HAIR_PLATES.",
+  "interpretation_limits": [
+    "Passive replay of one seed of one assisted-posture context; attribution is not causal importance.",
+    "Connectome factors cannot separate real anatomy from reconstruction artifact.",
+    "Nothing changes the engine, weights, encoder or mappings."
+  ],
+  "single_run": "Executed once after protocol, code and tests are committed; no reruns, no rule changes."
+}
