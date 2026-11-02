@@ -1,5 +1,24 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-01: RF other excitation is an activity gap: wiring present, relay
+interneurons silent; left-side excitation is hair-evoked.
+
+```text
+Right-side coxa drive         [explained in-model: synapses/source + no other excitation; engine 9%]
+RF other excitation           [ACTIVITY_GAP; relay IN03A066/075/080 silent on right; Q3 rule degenerate]
+Motor coverage                [##########-----------] 20/42 (proven; coxa = hypothesis only)
+Independent balance / gait    [not established]
+```
+
+Current2026-11-01: RF coxa MN excitation question designed (data only). Not run.
+
+```text
+Right-side coxa drive         [explained in-model: synapses/source + no other excitation; engine 9%]
+RF other excitation           [designed: wiring vs activity, hair-evoked vs baseline; next: build]
+Motor coverage                [##########-----------] 20/42 (proven; coxa = hypothesis only)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-01: right-front coxa drive explained within the model: small RF hair-plate
 neurons + no other excitation onto RF coxa MNs; engine choices 9 %.
 
