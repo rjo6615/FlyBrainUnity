@@ -1,0 +1,7 @@
+CAND_2: fresh CNS/physics initialization
+CAND_2: 4435/20000
+CAND_2: 5641/20000
+CAND_2: 10080/20000
+CAND_2: 14516/20000
+CAND_2: 19113/20000
+{"arm": "CAND_2", "run_status": "COMPLETE", "error": null, "sha256": "8563ca54c8726ea60a1f6e8e81caa0ffc5c0f351f8fcdb358731ff0d08cac9b1"}

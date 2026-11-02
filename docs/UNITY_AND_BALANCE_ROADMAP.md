@@ -1,5 +1,14 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-02: coxa confirmation run. joint_LFCoxa and joint_LHCoxa CONFIRMED 3/3 seeds
+(isolated) -> CONDITIONAL tier (counted separately; not admission).
+
+```text
+Coxa admission                [LF/LH Coxa CONFIRMED 3/3 -> CONDITIONAL; RF/RH blocked by input; rest untested]
+Motor coverage                [##########-----------] 20/42 admitted (+2 conditional, counted separately)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-02: coxa admission question designed (policy tier + 9-arm confirmation). Not run.
 
 ```text

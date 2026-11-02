@@ -1,5 +1,20 @@
 # FlyBrainUnity — local Codex handoff
 
+## Coxa admission confirmation: LF/LH Coxa CONFIRMED -> CONDITIONAL — 2026-11-02
+
+Part A tier approved by the user. Preregistered (0c94284, protocol 3b97fbb8), nine arms
+(C0/CAND/FLIP x CNS seeds 1-3) run once, evaluated once; integrity I1-I6 all pass (C0_1
+reproduces Step C A_ON). joint_LFCoxa and joint_LHCoxa CONFIRMED 3/3 seeds with only those
+two channels enabled (LF CAND -0.162..-0.168, FLIP +0.145..+0.161; LH -0.185..-0.189,
++0.211..+0.215); no BOUND_LIMITED, no ROLLOVER. Isolated effects match D3 all-channel ones.
+Limits: LF hair input saturated (direction test, not graded feedback; only LH shows the
+sensor falling, 120 -> 101-109 Hz); seeds vary only sensory event timing; offset-on-servo.
+Status table: COXA_COORDINATE_STATUS.md (20/42 admitted, +2 conditional). See
+COXA_ADMISSION_RESULTS.md.
+
+IMMEDIATE NEXT (user choice): the track design's next question, the released-servo (R)
+posture test using the conditional channels (labelled), vs V1.2 R_NC and Step C R_ON.
+
 ## Coxa admission question: design — 2026-11-02
 
 PR #312 merged. Designed (no code/run). Part A: the existing v3 standard is unchanged and

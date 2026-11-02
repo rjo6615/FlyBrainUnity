@@ -1,0 +1,7 @@
+FLIP_3: fresh CNS/physics initialization
+FLIP_3: 4332/20000
+FLIP_3: 5005/20000
+FLIP_3: 8795/20000
+FLIP_3: 12876/20000
+FLIP_3: 17297/20000
+{"arm": "FLIP_3", "run_status": "COMPLETE", "error": null, "sha256": "b41f148f8e89207ce8566ade131f2861f53621a074ecfc22883d405000fc6354"}

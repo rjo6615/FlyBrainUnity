@@ -1,7 +1,8 @@
 # Coxa admission question V1 — design
 
-Designed 2026-11-02, after the relay intervention was merged (PR #312). This document is
-design only: no code has been written, nothing has run, and nothing is admitted. Every rule
+Designed 2026-11-02, after the relay intervention was merged (PR #312). **Part A approved;
+Part B built and run once 2026-11-02; results in `COXA_ADMISSION_RESULTS.md`.** As written,
+this document is design only: no code has been written, nothing has run, and nothing is admitted. Every rule
 below is fixed before any new outcome is seen. The protocol, code and tests will be
 hash-locked and committed before any arm runs.
 
