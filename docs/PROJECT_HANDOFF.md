@@ -1,5 +1,20 @@
 # FlyBrainUnity — local Codex handoff
 
+## Released-posture coxa test: design — 2026-11-02
+
+PR #313 merged. Designed (no code/run). Constraint found: the Step C release zeroes all 22
+baseline-only actuators, including joint_LFCoxa and joint_LHCoxa, so the conditional
+channels would act on zero-gain servos. Arms per CNS seed 1-3: R22 (Step C release), K
+(release 20, keep the two coxa servos, no neural channel: assistance control), KC (K + H1
+conditional channels), KF (K + H1_FLIP); 12 arms. Integrity I1-I7 (R22_1 reproduces Step C
+R_ON; release records exact). Primary measure T_roll (first tilt > 90 deg after release).
+Labels Q_ASSIST (K vs R22), Q_NEURAL (KC vs K), Q_SIGN (KF), Q_RESCUE; 20 ms bar, all 3
+seeds. Predictions: NO_RESCUE, likely no consistent effects (exploratory).
+See COXA_RELEASE_POSTURE_V1.md.
+
+IMMEDIATE NEXT (on approval): build protocol/adapter/evaluator/tests, smoke past the
+release, commit, run 12 arms once, evaluate once.
+
 ## Coxa admission confirmation: LF/LH Coxa CONFIRMED -> CONDITIONAL — 2026-11-02
 
 Part A tier approved by the user. Preregistered (0c94284, protocol 3b97fbb8), nine arms
