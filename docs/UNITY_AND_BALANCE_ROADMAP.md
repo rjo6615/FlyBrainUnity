@@ -1,5 +1,14 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-01: right-front coxa drive asymmetry designed (data only). Not run.
+
+```text
+Coxa D3: closed-loop test     [NOT_CONSISTENT 2/4; LF+LH resist and reverse; H1_FAVOURED]
+Right-side coxa drive         [designed: data-only pathway + replay comparison; next: build]
+Motor coverage                [##########-----------] 20/42 (proven; coxa = hypothesis only)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-01: coxa D3 run: NOT_CONSISTENT by the 3-leg rule; a working
 resistance loop in LF and LH only; right front blocked by weak hair-plate -> MN drive.
 

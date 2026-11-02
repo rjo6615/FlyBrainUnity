@@ -1,5 +1,18 @@
 # FlyBrainUnity — local Codex handoff
 
+## Right-front coxa drive asymmetry: design — 2026-11-01
+
+PR #309 (D3) merged. Designed a data-only comparison (no code/run) of why RF hair plates
+at 120 Hz leave RF coxa MNs at 0.55 Hz. Part S (cache): SNpp45 inventory, engine-exact
+effective direct weights, hair-plate-only mean-field drive vs threshold, and an exact
+four-factor decomposition (source count, synapses/source, 6-synapse floor, size scaling)
+for RF vs LF and RF vs LH. Part M: exact replay of input conductances onto every coxa MN
+from the recorded Step C A_ON spikes, verified by single-neuron LIF reproduction. Labels
+Q1-Q3 and predictions recorded. Cannot separate anatomy from reconstruction artifact;
+not a fix. See COXA_DRIVE_ASYMMETRY_V1.md.
+
+IMMEDIATE NEXT (on approval): build module/tests, hash-lock protocol, commit, run once.
+
 ## Coxa hypothesis D3: NOT_CONSISTENT (2/4 legs), H1_FAVOURED — 2026-11-01
 
 Preregistered (f4c06a8), preflight passed, four arms run once (C0/H1/H1_FLIP/H2), CNS +
