@@ -1,5 +1,21 @@
 # FlyBrainUnity — local Codex handoff
 
+## Coxa admission question: design — 2026-11-02
+
+PR #312 merged. Designed (no code/run). Part A: the existing v3 standard is unchanged and
+cannot admit coxa (anatomical reference gate blocked; local-only). Proposed, for user
+decision, a separately counted CONDITIONAL tier (C1 rule-fixed binding, C2 falsification
+with sign reversal, C3 prospective isolated confirmation across new seeds, C4 integrity),
+never merged into 20/42; plus BLOCKED_BY_INPUT (RFCoxa, RHCoxa_roll), UNTESTED, NOT_SUPPORTED.
+Part B: confirm joint_LFCoxa and joint_LHCoxa (H1, D2 definitions by hash) isolated, seeds
+1-3, arms C0/CAND/FLIP per seed (9). Per seed pass: firing leg, CAND df <= -0.02, FLIP df >=
++0.02; CONFIRMED = 3/3, PARTIAL 1-2, NOT_CONFIRMED 0. Flags BOUND_LIMITED, ROLLOVER.
+Seeds 2/3 via adapter replacing brain.rng at attach (no kernel change; else
+PROTOCOL_NOT_BUILDABLE). See COXA_ADMISSION_QUESTION_V1.md.
+
+IMMEDIATE NEXT (on approval of Part A and Part B): build protocol/adapter/evaluator/tests,
+smoke, commit, run nine arms once, evaluate once.
+
 ## Hair-plate relay intervention: NOT_NECESSARY, NONSPECIFIC — 2026-11-02
 
 Preregistered (80433ba, protocol 29b756b7), five arms run once, evaluated once; integrity
