@@ -1,5 +1,16 @@
 # FlyBrainUnity — local Codex handoff
 
+## Right-front coxa MN excitation: design — 2026-11-01
+
+PR #310 (drive asymmetry) merged. Designed a data-only follow-up (no code/run): why RF
+coxa MNs get almost no non-hair-plate excitation (0.2 vs LF 8.6, LH 22.1). Replays Step C
+A_OFF and A_ON with per-partner attribution; splits the RF gap into WIRING (available
+excitatory weight) vs ACTIVITY (delivery rate), and asks whether LF/LH extra excitation is
+hair-evoked (A_ON - A_OFF), which would make RF's gap a consequence of its weak hair plates.
+Labels Q1-Q3 and predictions recorded. See RF_COXA_EXCITATION_V1.md.
+
+IMMEDIATE NEXT (on approval): build module/tests, hash-lock protocol, commit, run once.
+
 ## Right-front coxa drive asymmetry: INTEGRITY_ACCEPTED, REPLAY_EXACT — 2026-11-01
 
 Preregistered (2c1ca42), run once, data only. Replay of Step C A_ON reproduces all 62 coxa
