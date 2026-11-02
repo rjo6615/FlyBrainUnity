@@ -1,5 +1,14 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-02: hair-plate relay intervention designed (5 arms). Not run.
+
+```text
+RF other excitation           [ACTIVITY_GAP; relay IN03A066/075/080 silent on right; Q3 rule degenerate]
+Relay causal test             [designed: silence left / inject right, with shams; next: build]
+Motor coverage                [##########-----------] 20/42 (proven; coxa = hypothesis only)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-01: RF other excitation is an activity gap: wiring present, relay
 interneurons silent; left-side excitation is hair-evoked.
 

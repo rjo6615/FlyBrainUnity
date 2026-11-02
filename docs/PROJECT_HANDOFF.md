@@ -1,5 +1,19 @@
 # FlyBrainUnity — local Codex handoff
 
+## Hair-plate relay intervention: design — 2026-11-02
+
+PR #311 merged. Designed (no code/run) the first causal test of the post-hoc relay
+hypothesis: five fresh-process arms in the Step C A_ON context (C0 must reproduce A_ON;
+L_SIL/L_SHAM withhold transmission of left relay IN03A066/075/080 or a rate-matched IN03A
+sham; R_INJ/R_SHAM inject left-matched Poisson trains from an independent seeded generator
+into the right relay or a sham, OR-ed into the forced mask so CNS RNG is untouched).
+Integrity I1-I5, labels Q_NEC (NECESSARY/CONTRIBUTES/NOT_NECESSARY/NONSPECIFIC) and Q_SUF
+(RESCUED/PARTIAL/NO_EFFECT/NONSPECIFIC), sensory-confound flag, predictions recorded.
+Engineering interventions in the model only. See RF_RELAY_INTERVENTION_V1.md.
+
+IMMEDIATE NEXT (on approval): resolve and freeze sets/trains into the protocol, build
+adapter/evaluator/tests, smoke, commit, run five arms once, evaluate once.
+
 ## Right-front coxa MN excitation: ACTIVITY_GAP, HAIR_EVOKED — 2026-11-01
 
 Preregistered (a259a83), run once, data only (Step C A_OFF + A_ON replay, both REPLAY_EXACT).
