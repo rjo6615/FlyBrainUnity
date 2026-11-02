@@ -146,3 +146,12 @@ docs/evidence/coxa-drive-asymmetry-v1/**/*.txt -text -whitespace
 docs/evidence/rf-coxa-excitation-v1/*.json -text
 docs/evidence/rf-coxa-excitation-v1/**/*.json -text
 docs/evidence/rf-coxa-excitation-v1/**/*.txt -text -whitespace
+docs/evidence/rf-relay-intervention-v1/*.json -text
+docs/evidence/rf-relay-intervention-v1/**/*.json -text
+docs/evidence/rf-relay-intervention-v1/**/*.txt -text -whitespace
+docs/evidence/coxa-admission-v1/*.json -text
+docs/evidence/coxa-admission-v1/**/*.json -text
+docs/evidence/coxa-admission-v1/**/*.txt -text -whitespace
+docs/evidence/coxa-release-posture-v1/*.json -text
+docs/evidence/coxa-release-posture-v1/**/*.json -text
+docs/evidence/coxa-release-posture-v1/**/*.txt -text -whitespace
