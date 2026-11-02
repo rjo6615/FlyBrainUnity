@@ -1,5 +1,19 @@
 # FlyBrainUnity — local Codex handoff
 
+## Right-front coxa drive asymmetry: INTEGRITY_ACCEPTED, REPLAY_EXACT — 2026-11-01
+
+Preregistered (2c1ca42), run once, data only. Replay of Step C A_ON reproduces all 62 coxa
+MNs' window spikes exactly. Q1 RF_DIRECT_SUFFICIENT by the mean-field rule (8.98 vs g* 8.09),
+but that rule assumed 120 Hz delivered; measured delivered hair-plate g on the best RF MN is
+6.0 (< g*). Q2 (RF vs LF) SYNAPSES_PER_SOURCE (RF SNpp45 neurons are small overall: 320-378
+total outputs vs LF mostly 680-1,320); Q2b (vs LH) SOURCE_COUNT; Q3 INHIBITION_NOT_DECISIVE.
+Engine share (floor + size scaling) 0.09. RF coxa MNs also get almost no other excitation
+(0.2 vs LF 8.6, LH 22.1). Anatomy vs reconstruction undecided. See COXA_DRIVE_ASYMMETRY_RESULTS.md.
+
+IMMEDIATE NEXT (user choice): no fix is implied. Options are a versioned question about the
+missing non-hair-plate excitation onto RF coxa MNs, or returning to the coxa track with RF
+recorded as a known limit.
+
 ## Right-front coxa drive asymmetry: design — 2026-11-01
 
 PR #309 (D3) merged. Designed a data-only comparison (no code/run) of why RF hair plates

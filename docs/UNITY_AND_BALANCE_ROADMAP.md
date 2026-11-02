@@ -1,5 +1,15 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-01: right-front coxa drive explained within the model: small RF hair-plate
+neurons + no other excitation onto RF coxa MNs; engine choices 9 %.
+
+```text
+Coxa D3: closed-loop test     [NOT_CONSISTENT 2/4; LF+LH resist and reverse; H1_FAVOURED]
+Right-side coxa drive         [explained in-model: synapses/source + no other excitation; engine 9%]
+Motor coverage                [##########-----------] 20/42 (proven; coxa = hypothesis only)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-01: right-front coxa drive asymmetry designed (data only). Not run.
 
 ```text
