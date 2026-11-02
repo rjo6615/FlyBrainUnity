@@ -1,0 +1,7 @@
+R_INJ: fresh live-v3 CNS/physics initialization
+R_INJ: 4193/20000
+R_INJ: 5373/20000
+R_INJ: 9511/20000
+R_INJ: 13825/20000
+R_INJ: 17761/20000
+{"arm": "R_INJ", "run_status": "COMPLETE", "error": null, "sha256": "b2376c87c595da8542137274256b38e330ff9a2cab9e0302d61ab27528620388"}

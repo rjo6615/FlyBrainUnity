@@ -1,5 +1,34 @@
 # FlyBrainUnity — local Codex handoff
 
+## Hair-plate relay intervention: NOT_NECESSARY, NONSPECIFIC — 2026-11-02
+
+Preregistered (80433ba, protocol 29b756b7), five arms run once, evaluated once; integrity
+I1-I5 all pass (C0 reproduces Step C A_ON exactly). Sets: LEFT_RELAY 4, RIGHT_RELAY 8,
+matched IN03A shams. Q_NEC NOT_NECESSARY: silencing the left relay removed ~82 % of the LF
+best MN's other excitation but LF pool fell only 18 % (ratio 0.823; hair drive 19.6 >> g*).
+Q_SUF NONSPECIFIC: R_INJ raised RF pool 1.5 -> 24.2 Hz (best MN 4 -> 47), but R_SHAM raised it
+5.9 Hz. Flaws recorded, labels not reinterpreted: (1) sham rule did not exclude edges onto
+the relay; sham injection recruited the right relay (1.94 Hz, 2.09 of 2.57 g_other);
+(2) hair-rate confound check saturated at the 120 Hz cap; (3) R_INJ landed exactly on the
+RESCUED threshold (coincidence). Both predictions failed. See RF_RELAY_INTERVENTION_RESULTS.md.
+
+IMMEDIATE NEXT (user choice): a V2 with a sham that has no path into the relay (new
+versioned protocol), or return to the coxa track. No coordinate admitted; 20/42.
+
+## Hair-plate relay intervention: design — 2026-11-02
+
+PR #311 merged. Designed (no code/run) the first causal test of the post-hoc relay
+hypothesis: five fresh-process arms in the Step C A_ON context (C0 must reproduce A_ON;
+L_SIL/L_SHAM withhold transmission of left relay IN03A066/075/080 or a rate-matched IN03A
+sham; R_INJ/R_SHAM inject left-matched Poisson trains from an independent seeded generator
+into the right relay or a sham, OR-ed into the forced mask so CNS RNG is untouched).
+Integrity I1-I5, labels Q_NEC (NECESSARY/CONTRIBUTES/NOT_NECESSARY/NONSPECIFIC) and Q_SUF
+(RESCUED/PARTIAL/NO_EFFECT/NONSPECIFIC), sensory-confound flag, predictions recorded.
+Engineering interventions in the model only. See RF_RELAY_INTERVENTION_V1.md.
+
+IMMEDIATE NEXT (on approval): resolve and freeze sets/trains into the protocol, build
+adapter/evaluator/tests, smoke, commit, run five arms once, evaluate once.
+
 ## Right-front coxa MN excitation: ACTIVITY_GAP, HAIR_EVOKED — 2026-11-01
 
 Preregistered (a259a83), run once, data only (Step C A_OFF + A_ON replay, both REPLAY_EXACT).

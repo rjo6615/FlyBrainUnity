@@ -1,0 +1,293 @@
+{
+ "schema": "rf-relay-intervention-protocol-v1",
+ "date": "2026-11-02",
+ "design": "docs/RF_RELAY_INTERVENTION_V1.md",
+ "status": "PREREGISTERED_BEFORE_ANY_INTERVENTION_ARM_RAN",
+ "question": "Is the left hair-plate relay (IN03A066/075/080) necessary for LF posterior coxa MN firing, and is activity in the right copies sufficient to raise RF posterior coxa MN firing, in the Step C A_ON context?",
+ "known_before_registration": "Step C A_ON saved run (pool and per-neuron window rates, including relay and sham candidate rates used for set resolution), RF excitation V1 result (type weights, right relay silent). No intervention arm has run; the 100-step smoke test is plumbing only and its output is discarded.",
+ "sources": {
+  "step_c_module": "malecns_backend.live.hair_plate_posture (Trial, mn_sets, tilt_deg, save/load; its protocol() hash lock)",
+  "step_c_a_on": {
+   "path": "docs/evidence/hair-plate-posture-v1/run/A_ON.json.gz (local, uncommitted)",
+   "sha256": "8c2d90e630ae72618e44bca8ee5354fe17b47ca80345558e139fb99f4b2a7745"
+  },
+  "v1_result": {
+   "path": "docs/evidence/coxa-drive-asymmetry-v1/run/result.json",
+   "sha256": "695951fd9a98c5c4b993c4278d739f71e8de7f871e3bc48a46c6aa44d47aee57"
+  },
+  "v1_module": "malecns_backend.embodiment.coxa_drive_asymmetry (leg_pools, replay, compare_spikes, unchanged)",
+  "v2_module": "malecns_backend.embodiment.rf_coxa_excitation (attribute, unchanged)",
+  "sensory_sets": "hair_plate_identity.sensory_sets on its preregistered annotations"
+ },
+ "engine": {
+  "config": "ModelConfig.calibrated()",
+  "dt_ms": 0.5,
+  "min_synapses": 6,
+  "kernel": "live-v3 session via tactile_boundary.create_session; unchanged"
+ },
+ "context": "Step C A_ON for every arm: assisted posture, hair plates delivered, same seed, schedule and encoder, 20 channels, no coxa channel, 20000 physics steps, 4000 neural ticks. One fresh process per arm, each run once.",
+ "window_ms": [
+  520.0,
+  2000.0
+ ],
+ "set_rules": {
+  "edge": "floored edge: synapse count >= min_synapses (6); excitatory: MaleCNSBrain.pre_sign > 0",
+  "side": "hair_plate_identity.side_of on the annotations row of the body id",
+  "LEFT_RELAY": "type in {IN03A066, IN03A075, IN03A080}; left; floored edge from any LF SNpp45; excitatory floored edge onto a V1 LF posterior coxa MN",
+  "RIGHT_RELAY": "same types; right; excitatory floored edge onto a V1 RF posterior coxa MN",
+  "SHAM": "same size; type starts with IN03A; same side; not in either relay set and not in the external schedule; no floored edge (any sign) onto any replayed coxa MN (V1 posterior and anterior pools of all legs plus Step C coxa MNs, 62 neurons); for each relay neuron in dense order, the unused candidate with the closest saved A_ON window rate, ties to lowest dense index",
+  "injection_rate": "each RIGHT_RELAY neuron: mean A_ON window rate of LEFT_RELAY neurons of its own type; RIGHT_SHAM neuron i receives exactly the train of RIGHT_RELAY neuron i",
+  "train": "numpy.random.default_rng(20261102).random((4000, n)); event at tick t for neuron j when u[t, j] < rate_j * dt / 1000; covers all 4000 ticks (tick = index into the neural record)"
+ },
+ "resolved": {
+  "status": "BUILDABLE",
+  "sets": {
+   "LEFT_RELAY": [
+    {
+     "dense": 146755,
+     "body_id": 805174,
+     "type": "IN03A066",
+     "side": "left",
+     "a_on_window_rate_hz": 18.243243243243242
+    },
+    {
+     "dense": 147924,
+     "body_id": 806584,
+     "type": "IN03A075",
+     "side": "left",
+     "a_on_window_rate_hz": 12.162162162162163
+    },
+    {
+     "dense": 148040,
+     "body_id": 806715,
+     "type": "IN03A066",
+     "side": "left",
+     "a_on_window_rate_hz": 31.08108108108108
+    },
+    {
+     "dense": 161283,
+     "body_id": 909324,
+     "type": "IN03A080",
+     "side": "left",
+     "a_on_window_rate_hz": 16.216216216216218
+    }
+   ],
+   "RIGHT_RELAY": [
+    {
+     "dense": 144540,
+     "body_id": 802363,
+     "type": "IN03A075",
+     "side": "right",
+     "a_on_window_rate_hz": 0.0
+    },
+    {
+     "dense": 144603,
+     "body_id": 802434,
+     "type": "IN03A080",
+     "side": "right",
+     "a_on_window_rate_hz": 0.0
+    },
+    {
+     "dense": 147338,
+     "body_id": 805873,
+     "type": "IN03A066",
+     "side": "right",
+     "a_on_window_rate_hz": 0.0
+    },
+    {
+     "dense": 149199,
+     "body_id": 808086,
+     "type": "IN03A066",
+     "side": "right",
+     "a_on_window_rate_hz": 0.0
+    },
+    {
+     "dense": 149474,
+     "body_id": 808430,
+     "type": "IN03A075",
+     "side": "right",
+     "a_on_window_rate_hz": 0.0
+    },
+    {
+     "dense": 153843,
+     "body_id": 813823,
+     "type": "IN03A066",
+     "side": "right",
+     "a_on_window_rate_hz": 0.0
+    },
+    {
+     "dense": 156251,
+     "body_id": 817270,
+     "type": "IN03A080",
+     "side": "right",
+     "a_on_window_rate_hz": 0.0
+    },
+    {
+     "dense": 162922,
+     "body_id": 935352,
+     "type": "IN03A066",
+     "side": "right",
+     "a_on_window_rate_hz": 0.0
+    }
+   ],
+   "LEFT_SHAM": [
+    {
+     "dense": 159457,
+     "body_id": 903587,
+     "type": "IN03A019",
+     "side": "left",
+     "a_on_window_rate_hz": 8.108108108108109
+    },
+    {
+     "dense": 144799,
+     "body_id": 802702,
+     "type": "IN03A019",
+     "side": "left",
+     "a_on_window_rate_hz": 6.081081081081082
+    },
+    {
+     "dense": 143867,
+     "body_id": 801447,
+     "type": "IN03A014",
+     "side": "left",
+     "a_on_window_rate_hz": 30.405405405405407
+    },
+    {
+     "dense": 144108,
+     "body_id": 801762,
+     "type": "IN03A014",
+     "side": "left",
+     "a_on_window_rate_hz": 3.3783783783783785
+    }
+   ],
+   "RIGHT_SHAM": [
+    {
+     "dense": 142905,
+     "body_id": 800151,
+     "type": "IN03A020",
+     "side": "right",
+     "a_on_window_rate_hz": 0.0
+    },
+    {
+     "dense": 143001,
+     "body_id": 800294,
+     "type": "IN03A073",
+     "side": "right",
+     "a_on_window_rate_hz": 0.0
+    },
+    {
+     "dense": 143735,
+     "body_id": 801274,
+     "type": "IN03A089",
+     "side": "right",
+     "a_on_window_rate_hz": 0.0
+    },
+    {
+     "dense": 143982,
+     "body_id": 801592,
+     "type": "IN03A014",
+     "side": "right",
+     "a_on_window_rate_hz": 0.0
+    },
+    {
+     "dense": 144039,
+     "body_id": 801674,
+     "type": "IN03A005",
+     "side": "right",
+     "a_on_window_rate_hz": 0.0
+    },
+    {
+     "dense": 144140,
+     "body_id": 801802,
+     "type": "IN03A020",
+     "side": "right",
+     "a_on_window_rate_hz": 0.0
+    },
+    {
+     "dense": 144311,
+     "body_id": 802026,
+     "type": "IN03A035",
+     "side": "right",
+     "a_on_window_rate_hz": 0.0
+    },
+    {
+     "dense": 144358,
+     "body_id": 802102,
+     "type": "IN03A015",
+     "side": "right",
+     "a_on_window_rate_hz": 0.0
+    }
+   ]
+  },
+  "n_replayed_coxa_mns": 62,
+  "injection_rates_hz": [
+   12.162162162162163,
+   16.216216216216218,
+   24.66216216216216,
+   24.66216216216216,
+   12.162162162162163,
+   24.66216216216216,
+   16.216216216216218,
+   24.66216216216216
+  ],
+  "train_seed": 20261102,
+  "train_ticks": 4000,
+  "train_events": [
+   22,
+   32,
+   38,
+   46,
+   21,
+   52,
+   23,
+   45
+  ],
+  "train_sha256": "257b86e6019fc9f999a9b1e9e93234661f6ec0dfaa25ef146bd300b1c5208b00"
+ },
+ "arms": {
+  "C0": "no intervention; must reproduce saved A_ON",
+  "L_SIL": "brain.transmission_withheld_indices = LEFT_RELAY for the whole run",
+  "L_SHAM": "brain.transmission_withheld_indices = LEFT_SHAM for the whole run",
+  "R_INJ": "trains OR-ed into the Step C Trial event_trials forced mask for RIGHT_RELAY, only when the neuron is available (not refractory); engine forced-event semantics",
+  "R_SHAM": "the same trains into RIGHT_SHAM"
+ },
+ "integrity": {
+  "I1": "every arm COMPLETE, 20001 samples, 4000 ticks",
+  "I2": "per-tick uniforms_sha256 and external schedule identical to C0 in every arm",
+  "I3": "C0 equals saved A_ON in fired, uniforms_sha256, hair_delivered at every tick and qpos at every sample",
+  "I4": "per tick: recorded transmission_withheld equals fired intersected with the silenced set (empty in other arms); injected and blocked partition the scheduled train events, injected events are in fired; every intervention arm has at least one intervention event",
+  "I5": "every intervention arm equals C0 in fired for ticks before its first intervention event and in qpos for samples 0..5*t0",
+  "failure": "INCONCLUSIVE_INTEGRITY, no labels; evaluation also refuses if set resolution does not reproduce 'resolved' or the A_ON hash differs"
+ },
+ "measures": {
+  "pool_rate": "V1 posterior coxa MN pool rate per leg in the window",
+  "best_mn_rate": "V1 structural best_mn per leg",
+  "spillover": "other legs' pools and the MNs of the 20 admitted channels (session observer.used)",
+  "sensory_confound": "window-mean hair_rate_hz of the primary leg (LF for L arms, RF for R arms) vs C0; |relative change| > 0.10 sets SENSORY_CONFOUNDED (reported with the label, not instead of it)",
+  "descriptive": "V1 replay and V2 attribution of primary best MNs (withheld spikes removed from delivery), contribution from each set; first physical/neural divergence from C0; tilt mean/peak over samples 5201..; injection events blocked by refractoriness"
+ },
+ "labels": {
+  "Q_NEC": {
+   "ratio": "LF pool rate arm / C0",
+   "NONSPECIFIC": "L_SHAM ratio < 0.8 (precedence)",
+   "NECESSARY": "L_SIL ratio <= 0.5",
+   "CONTRIBUTES": "0.5 < L_SIL ratio <= 0.8",
+   "NOT_NECESSARY": "L_SIL ratio > 0.8"
+  },
+  "Q_SUF": {
+   "increase": "RF pool rate arm - C0 (Hz)",
+   "NONSPECIFIC": "R_SHAM increase >= 2 Hz (precedence)",
+   "RESCUED": "R_INJ RF pool rate >= 0.5 x C0 LF pool rate",
+   "PARTIAL": "R_INJ increase >= 5 Hz, not RESCUED",
+   "NO_EFFECT": "otherwise"
+  }
+ },
+ "predictions": "Recorded in the design doc: Q_NEC CONTRIBUTES; Q_SUF PARTIAL.",
+ "interpretation_limits": [
+  "One seed, assisted posture, open-loop coxa (no coxa channel admitted).",
+  "Withheld transmission and forced-event injection are engineering manipulations of the model, not models of biological manipulations.",
+  "The relay types were chosen after the passive RF excitation result; this is a prospective test of that post-hoc hypothesis.",
+  "A causal role in the model does not separate real anatomy from reconstruction artifact and admits no motor coordinate."
+ ],
+ "single_run": "Executed once after protocol, code and tests are committed; no reruns, no rule changes."
+}

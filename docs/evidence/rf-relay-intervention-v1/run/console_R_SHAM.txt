@@ -1,0 +1,7 @@
+R_SHAM: fresh live-v3 CNS/physics initialization
+R_SHAM: 3601/20000
+R_SHAM: 5005/20000
+R_SHAM: 9279/20000
+R_SHAM: 13524/20000
+R_SHAM: 17826/20000
+{"arm": "R_SHAM", "run_status": "COMPLETE", "error": null, "sha256": "c9e478094a936576f78d9c590950ca6de695902c0ccf4d715b563e5d549224c7"}

@@ -1,0 +1,486 @@
+{
+ "schema": "rf-relay-intervention-report-v1",
+ "protocol_sha256": "29b756b70380ddfae471ac4f2d93e8db36f0744664746e18307c1014ea6b4d42",
+ "arm_sha256": {
+  "C0": "a338224bb3b0a5ce6c7521030d23504f95766e11641222dcaa955613302e6ca4",
+  "L_SIL": "c0d5bb8f01067bb8c3c5abc46ee4f172d2bc80d2975ba81164cc1908c90ee196",
+  "L_SHAM": "a57af08102cf5db50327aa038599ae7b9eb11f8e52470fd46f1dfd0e057e2792",
+  "R_INJ": "b2376c87c595da8542137274256b38e330ff9a2cab9e0302d61ab27528620388",
+  "R_SHAM": "c9e478094a936576f78d9c590950ca6de695902c0ccf4d715b563e5d549224c7"
+ },
+ "evaluation": {
+  "status": "INTEGRITY_ACCEPTED",
+  "checks": {
+   "I1_complete": true,
+   "I2_common_rng": true,
+   "I3_c0_reproduces_a_on": true,
+   "I4_intervention_verified": true,
+   "I5_prefix_identity": true
+  },
+  "first_intervention_tick": {
+   "C0": null,
+   "L_SIL": 89,
+   "L_SHAM": 51,
+   "R_INJ": 21,
+   "R_SHAM": 21
+  },
+  "injection_blocked_events": {
+   "C0": 0,
+   "L_SIL": 0,
+   "L_SHAM": 0,
+   "R_INJ": 18,
+   "R_SHAM": 18
+  },
+  "labels": {
+   "Q_NEC": {
+    "label": "NOT_NECESSARY",
+    "ratio": {
+     "L_SIL": 0.8228438228438228,
+     "L_SHAM": 0.9766899766899766
+    },
+    "SENSORY_CONFOUNDED": false
+   },
+   "Q_SUF": {
+    "label": "NONSPECIFIC",
+    "increase_hz": {
+     "R_INJ": 22.635135135135137,
+     "R_SHAM": 5.912162162162162
+    },
+    "r_inj_rf_hz": 24.155405405405407,
+    "rescue_threshold_hz": 24.155405405405407,
+    "SENSORY_CONFOUNDED": false
+   }
+  },
+  "pool_rate_hz": {
+   "C0": {
+    "LF": 48.310810810810814,
+    "LM": 0.28957528957528955,
+    "LH": 44.70720720720721,
+    "RF": 1.5202702702702704,
+    "RM": 1.9305019305019306,
+    "RH": 3.3783783783783785
+   },
+   "L_SIL": {
+    "LF": 39.752252252252255,
+    "LM": 0.6756756756756757,
+    "LH": 48.87387387387387,
+    "RF": 1.1824324324324325,
+    "RM": 3.2818532818532815,
+    "RH": 3.8288288288288292
+   },
+   "L_SHAM": {
+    "LF": 47.18468468468468,
+    "LM": 0.48262548262548266,
+    "LH": 45.608108108108105,
+    "RF": 1.3513513513513513,
+    "RM": 1.0617760617760619,
+    "RH": 3.6036036036036037
+   },
+   "R_INJ": {
+    "LF": 46.62162162162162,
+    "LM": 0.3861003861003861,
+    "LH": 46.17117117117117,
+    "RF": 24.155405405405407,
+    "RM": 1.5444015444015444,
+    "RH": 3.040540540540541
+   },
+   "R_SHAM": {
+    "LF": 44.932432432432435,
+    "LM": 0.9652509652509653,
+    "LH": 48.08558558558559,
+    "RF": 7.4324324324324325,
+    "RM": 1.833976833976834,
+    "RH": 3.9414414414414414
+   }
+  },
+  "best_mn_rate_hz": {
+   "C0": {
+    "LF": 81.08108108108108,
+    "LM": 0.0,
+    "LH": 83.10810810810811,
+    "RF": 4.054054054054054,
+    "RM": 2.027027027027027,
+    "RH": 0.0
+   },
+   "L_SIL": {
+    "LF": 68.24324324324324,
+    "LM": 0.0,
+    "LH": 85.13513513513513,
+    "RF": 2.7027027027027026,
+    "RM": 5.405405405405405,
+    "RH": 0.6756756756756757
+   },
+   "L_SHAM": {
+    "LF": 79.72972972972973,
+    "LM": 0.0,
+    "LH": 81.08108108108108,
+    "RF": 3.3783783783783785,
+    "RM": 1.3513513513513513,
+    "RH": 0.0
+   },
+   "R_INJ": {
+    "LF": 77.70270270270271,
+    "LM": 0.0,
+    "LH": 83.10810810810811,
+    "RF": 47.2972972972973,
+    "RM": 2.027027027027027,
+    "RH": 0.0
+   },
+   "R_SHAM": {
+    "LF": 77.02702702702703,
+    "LM": 0.0,
+    "LH": 83.78378378378379,
+    "RF": 14.864864864864865,
+    "RM": 2.7027027027027026,
+    "RH": 1.3513513513513513
+   }
+  },
+  "channel_rate_hz": {
+   "C0": {
+    "joint_LFTibia": 0.27821939586645467,
+    "joint_LMTibia": 0.0,
+    "joint_LHTibia": 0.14224751066856328,
+    "joint_RFTibia": 0.0,
+    "joint_RMTibia": 0.10395010395010396,
+    "joint_RHTibia": 1.1261261261261262,
+    "joint_LFFemur": 0.10668563300142248,
+    "joint_LMFemur": 1.6409266409266408,
+    "joint_LHFemur": 0.0,
+    "joint_RMFemur": 0.6756756756756757,
+    "joint_RHFemur": 0.4954954954954955,
+    "joint_LFFemur_roll": 2.027027027027027,
+    "joint_LMFemur_roll": 0.0,
+    "joint_LHFemur_roll": 27.7027027027027,
+    "joint_RFFemur_roll": 0.0,
+    "joint_RMFemur_roll": 0.0,
+    "joint_RHFemur_roll": 7.4324324324324325,
+    "joint_RFFemur": 0.22522522522522523,
+    "joint_LFTarsus1": 0.0,
+    "joint_RFTarsus1": 0.0
+   },
+   "L_SIL": {
+    "joint_LFTibia": 0.3577106518282989,
+    "joint_LMTibia": 0.0,
+    "joint_LHTibia": 0.28449502133712656,
+    "joint_RFTibia": 0.0,
+    "joint_RMTibia": 0.5717255717255717,
+    "joint_RHTibia": 0.975975975975976,
+    "joint_LFFemur": 0.0,
+    "joint_LMFemur": 0.8687258687258688,
+    "joint_LHFemur": 0.0,
+    "joint_RMFemur": 0.5308880308880309,
+    "joint_RHFemur": 0.5855855855855856,
+    "joint_LFFemur_roll": 1.1824324324324325,
+    "joint_LMFemur_roll": 0.0,
+    "joint_LHFemur_roll": 33.445945945945944,
+    "joint_RFFemur_roll": 0.0,
+    "joint_RMFemur_roll": 0.0,
+    "joint_RHFemur_roll": 8.445945945945946,
+    "joint_RFFemur": 0.11261261261261261,
+    "joint_LFTarsus1": 0.0,
+    "joint_RFTarsus1": 0.0
+   },
+   "L_SHAM": {
+    "joint_LFTibia": 0.397456279809221,
+    "joint_LMTibia": 0.0,
+    "joint_LHTibia": 0.14224751066856328,
+    "joint_RFTibia": 0.0,
+    "joint_RMTibia": 0.31185031185031187,
+    "joint_RHTibia": 1.0885885885885886,
+    "joint_LFFemur": 0.03556187766714082,
+    "joint_LMFemur": 0.19305019305019305,
+    "joint_LHFemur": 0.0,
+    "joint_RMFemur": 0.5308880308880309,
+    "joint_RHFemur": 0.7657657657657657,
+    "joint_LFFemur_roll": 1.0135135135135136,
+    "joint_LMFemur_roll": 0.0,
+    "joint_LHFemur_roll": 33.445945945945944,
+    "joint_RFFemur_roll": 0.0,
+    "joint_RMFemur_roll": 0.0,
+    "joint_RHFemur_roll": 7.77027027027027,
+    "joint_RFFemur": 0.11261261261261261,
+    "joint_LFTarsus1": 0.0,
+    "joint_RFTarsus1": 0.0
+   },
+   "R_INJ": {
+    "joint_LFTibia": 0.11923688394276631,
+    "joint_LMTibia": 0.0,
+    "joint_LHTibia": 0.17780938833570412,
+    "joint_RFTibia": 0.0,
+    "joint_RMTibia": 0.4158004158004158,
+    "joint_RHTibia": 1.0510510510510511,
+    "joint_LFFemur": 0.07112375533428164,
+    "joint_LMFemur": 1.6891891891891893,
+    "joint_LHFemur": 0.0,
+    "joint_RMFemur": 0.28957528957528955,
+    "joint_RHFemur": 0.6756756756756757,
+    "joint_LFFemur_roll": 1.1824324324324325,
+    "joint_LMFemur_roll": 0.0,
+    "joint_LHFemur_roll": 30.06756756756757,
+    "joint_RFFemur_roll": 0.0,
+    "joint_RMFemur_roll": 0.0,
+    "joint_RHFemur_roll": 7.094594594594595,
+    "joint_RFFemur": 0.2627627627627628,
+    "joint_LFTarsus1": 0.0,
+    "joint_RFTarsus1": 0.0
+   },
+   "R_SHAM": {
+    "joint_LFTibia": 0.0397456279809221,
+    "joint_LMTibia": 0.0,
+    "joint_LHTibia": 0.24893314366998576,
+    "joint_RFTibia": 0.0,
+    "joint_RMTibia": 0.4158004158004158,
+    "joint_RHTibia": 0.9009009009009009,
+    "joint_LFFemur": 0.10668563300142248,
+    "joint_LMFemur": 1.0617760617760619,
+    "joint_LHFemur": 0.0,
+    "joint_RMFemur": 0.6274131274131275,
+    "joint_RHFemur": 0.990990990990991,
+    "joint_LFFemur_roll": 1.1824324324324325,
+    "joint_LMFemur_roll": 0.0,
+    "joint_LHFemur_roll": 32.432432432432435,
+    "joint_RFFemur_roll": 0.0,
+    "joint_RMFemur_roll": 0.0,
+    "joint_RHFemur_roll": 8.445945945945946,
+    "joint_RFFemur": 0.11261261261261261,
+    "joint_LFTarsus1": 0.0,
+    "joint_RFTarsus1": 0.0
+   }
+  },
+  "hair_rate_hz": {
+   "C0": {
+    "LF": 120.0,
+    "LM": 0.0,
+    "LH": 120.0,
+    "RF": 120.0,
+    "RM": 0.0,
+    "RH": 0.1623463951839309
+   },
+   "L_SIL": {
+    "LF": 120.0,
+    "LM": 0.0,
+    "LH": 120.0,
+    "RF": 120.0,
+    "RM": 0.0,
+    "RH": 0.35772209533055305
+   },
+   "L_SHAM": {
+    "LF": 120.0,
+    "LM": 0.0,
+    "LH": 120.0,
+    "RF": 120.0,
+    "RM": 0.0,
+    "RH": 0.0031169315569131153
+   },
+   "R_INJ": {
+    "LF": 120.0,
+    "LM": 0.0,
+    "LH": 120.0,
+    "RF": 120.0,
+    "RM": 0.0,
+    "RH": 0.2776309387002456
+   },
+   "R_SHAM": {
+    "LF": 120.0,
+    "LM": 0.0,
+    "LH": 120.0,
+    "RF": 120.0,
+    "RM": 0.0,
+    "RH": 0.22547286311925216
+   }
+  },
+  "sensory_confound": {
+   "L_SIL": {
+    "leg": "LF",
+    "c0_hz": 120.0,
+    "arm_hz": 120.0,
+    "relative_change": 0.0
+   },
+   "L_SHAM": {
+    "leg": "LF",
+    "c0_hz": 120.0,
+    "arm_hz": 120.0,
+    "relative_change": 0.0
+   },
+   "R_INJ": {
+    "leg": "RF",
+    "c0_hz": 120.0,
+    "arm_hz": 120.0,
+    "relative_change": 0.0
+   },
+   "R_SHAM": {
+    "leg": "RF",
+    "c0_hz": 120.0,
+    "arm_hz": 120.0,
+    "relative_change": 0.0
+   }
+  },
+  "set_rate_hz": {
+   "C0": {
+    "LEFT_RELAY": 19.425675675675677,
+    "RIGHT_RELAY": 0.0,
+    "LEFT_SHAM": 11.993243243243244,
+    "RIGHT_SHAM": 0.0
+   },
+   "L_SIL": {
+    "LEFT_RELAY": 13.682432432432433,
+    "RIGHT_RELAY": 0.0,
+    "LEFT_SHAM": 10.472972972972974,
+    "RIGHT_SHAM": 0.0
+   },
+   "L_SHAM": {
+    "LEFT_RELAY": 18.91891891891892,
+    "RIGHT_RELAY": 0.0,
+    "LEFT_SHAM": 12.837837837837839,
+    "RIGHT_SHAM": 0.0
+   },
+   "R_INJ": {
+    "LEFT_RELAY": 18.58108108108108,
+    "RIGHT_RELAY": 16.469594594594597,
+    "LEFT_SHAM": 11.486486486486486,
+    "RIGHT_SHAM": 0.0
+   },
+   "R_SHAM": {
+    "LEFT_RELAY": 18.243243243243242,
+    "RIGHT_RELAY": 1.9425675675675675,
+    "LEFT_SHAM": 11.824324324324325,
+    "RIGHT_SHAM": 16.469594594594597
+   }
+  },
+  "posture": {
+   "C0": {
+    "tilt_mean_deg": 3.884653838250233,
+    "tilt_peak_deg": 4.792356087699202,
+    "rollover_samples": 0
+   },
+   "L_SIL": {
+    "tilt_mean_deg": 4.4537923006687,
+    "tilt_peak_deg": 5.031705738436034,
+    "rollover_samples": 0
+   },
+   "L_SHAM": {
+    "tilt_mean_deg": 4.085426300075982,
+    "tilt_peak_deg": 4.852193276943249,
+    "rollover_samples": 0
+   },
+   "R_INJ": {
+    "tilt_mean_deg": 3.9280926184103864,
+    "tilt_peak_deg": 4.696727096278259,
+    "rollover_samples": 0
+   },
+   "R_SHAM": {
+    "tilt_mean_deg": 3.979835619484906,
+    "tilt_peak_deg": 4.755993591909372,
+    "rollover_samples": 0
+   }
+  },
+  "divergence_from_c0": {
+   "C0": {
+    "first_qpos_sample": null,
+    "first_fired_tick": null
+   },
+   "L_SIL": {
+    "first_qpos_sample": 796,
+    "first_fired_tick": 93
+   },
+   "L_SHAM": {
+    "first_qpos_sample": 716,
+    "first_fired_tick": 57
+   },
+   "R_INJ": {
+    "first_qpos_sample": 8851,
+    "first_fired_tick": 21
+   },
+   "R_SHAM": {
+    "first_qpos_sample": 1051,
+    "first_fired_tick": 21
+   }
+  },
+  "decomposition": {
+   "C0_LF": {
+    "best_mn": 146498,
+    "replay_status": "REPLAY_EXACT",
+    "g_hair": 19.55842535943733,
+    "g_other": 8.587218066580412,
+    "g_inh": -2.1794013865579966,
+    "g_from_set": {
+     "LEFT_RELAY": 6.516176364815396,
+     "RIGHT_RELAY": 0,
+     "LEFT_SHAM": 0,
+     "RIGHT_SHAM": 0
+    }
+   },
+   "C0_RF": {
+    "best_mn": 146868,
+    "replay_status": "REPLAY_EXACT",
+    "g_hair": 6.0169506286604255,
+    "g_other": 0.17585713394195493,
+    "g_inh": 0.0,
+    "g_from_set": {
+     "LEFT_RELAY": 0,
+     "RIGHT_RELAY": 0.0,
+     "LEFT_SHAM": 0,
+     "RIGHT_SHAM": 0
+    }
+   },
+   "L_SIL_LF": {
+    "best_mn": 146498,
+    "replay_status": "REPLAY_EXACT",
+    "g_hair": 19.55842535943733,
+    "g_other": 1.5110502393882546,
+    "g_inh": -0.9248561916717333,
+    "g_from_set": {
+     "LEFT_RELAY": 0.0,
+     "RIGHT_RELAY": 0,
+     "LEFT_SHAM": 0,
+     "RIGHT_SHAM": 0
+    }
+   },
+   "L_SHAM_LF": {
+    "best_mn": 146498,
+    "replay_status": "REPLAY_EXACT",
+    "g_hair": 19.55842535943733,
+    "g_other": 7.7921537283841715,
+    "g_inh": -2.418113819218527,
+    "g_from_set": {
+     "LEFT_RELAY": 6.408150646995669,
+     "RIGHT_RELAY": 0,
+     "LEFT_SHAM": 0,
+     "RIGHT_SHAM": 0
+    }
+   },
+   "R_INJ_RF": {
+    "best_mn": 146868,
+    "replay_status": "REPLAY_EXACT",
+    "g_hair": 6.0169506286604255,
+    "g_other": 8.983598000747834,
+    "g_inh": 0.0,
+    "g_from_set": {
+     "LEFT_RELAY": 0,
+     "RIGHT_RELAY": 8.843074849665907,
+     "LEFT_SHAM": 0,
+     "RIGHT_SHAM": 0
+    }
+   },
+   "R_SHAM_RF": {
+    "best_mn": 146868,
+    "replay_status": "REPLAY_EXACT",
+    "g_hair": 6.0169506286604255,
+    "g_other": 2.568989788769608,
+    "g_inh": -0.028969709965625482,
+    "g_from_set": {
+     "LEFT_RELAY": 0,
+     "RIGHT_RELAY": 2.08955487973479,
+     "LEFT_SHAM": 0,
+     "RIGHT_SHAM": 0
+    }
+   }
+  }
+ },
+ "interpretation_limits": [
+  "One seed, assisted posture, open-loop coxa (no coxa channel admitted).",
+  "Withheld transmission and forced-event injection are engineering manipulations of the model, not models of biological manipulations.",
+  "The relay types were chosen after the passive RF excitation result; this is a prospective test of that post-hoc hypothesis.",
+  "A causal role in the model does not separate real anatomy from reconstruction artifact and admits no motor coordinate."
+ ]
+}
