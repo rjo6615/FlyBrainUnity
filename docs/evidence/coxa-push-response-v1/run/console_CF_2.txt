@@ -1,0 +1,6 @@
+CF_2: fresh CNS/physics initialization
+CF_2: 4373/20000
+CF_2: 7275/20000
+CF_2: 11793/20000
+CF_2: 16458/20000
+{"arm": "CF_2", "run_status": "COMPLETE", "error": null, "sha256": "23ad4252c15a497a4e62994d00acd22c7328ccbe56d38a352a9d592705791e1a"}

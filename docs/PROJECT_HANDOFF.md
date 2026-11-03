@@ -1,5 +1,23 @@
 # FlyBrainUnity — local Codex handoff
 
+## Fore-aft push response: LOOP_AMPLIFIES both directions (no status change) — 2026-11-03
+
+Preregistered (b31435a, protocol ec3f0de1), 27 arms run once, evaluated once (report
+4c03a59e); I1-I7 pass (N0_s equal coxa-admission C0_s exactly), pulse resolved in all six
+seed-direction cases. R = D(C)/D(N): F 1.24/2.04/1.33, B 1.30/1.37/1.24 -> LOOP_AMPLIFIES
+both. Flip R': F 1.40/1.57/0.87 -> SIGN_INDEPENDENT; B 1.21/1.03/0.85 -> SIGN_SPECIFIC by
+rule. Reported measures: the loops did not respond to the push (pushed hair rates and coxa
+offsets equal own control; LF/LH tonic ~+-0.17-0.22 rad; LM/RM hair 0 Hz, offsets ~0,
+never recruited by the 20 ms pulse). C mean tilt 9.1-10.2 deg vs N 3.8-4.3, X 0.86-1.05:
+amplification most likely via the static posture the LF/LH offsets set, not a reflex
+(post hoc reading, untested). No arm, including N, recovered into the inherited band.
+Coverage unchanged: 20/42 admitted, +4 conditional. See COXA_PUSH_RESPONSE_RESULTS.md.
+
+IMMEDIATE NEXT (user choice): either test the posture explanation directly (a
+preregistered tonic-offset control that replays the C arms' fixed setpoint offsets without
+the neural loop), or a disturbance that actually recruits the middle hair plates, each as
+its own versioned protocol.
+
 ## Fore-aft push response with the four conditional coxa channels: design — 2026-11-03
 
 PR #317 merged. Remaining coxa coordinates are locally blocked (RF input, RH H1 on

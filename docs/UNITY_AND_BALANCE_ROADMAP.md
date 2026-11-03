@@ -1,5 +1,15 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-03: fore-aft push response run. With the four conditional coxa channels the body is
+displaced more (LOOP_AMPLIFIES, both directions); the loops act as tonic posture offsets, not push reflexes.
+
+```text
+Coxa push response            [run: LOOP_AMPLIFIES F (SIGN_INDEPENDENT) / B (SIGN_SPECIFIC); loops not push-recruited]
+Coxa conditional tier         [LF/LH/LM/RM CONDITIONAL (fore-aft Coxa); RF/RH blocked by input]
+Motor coverage                [##########-----------] 20/42 admitted (+4 conditional, counted separately)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-03: fore-aft push response with the four conditional coxa channels designed (27 arms). Not run.
 
 ```text

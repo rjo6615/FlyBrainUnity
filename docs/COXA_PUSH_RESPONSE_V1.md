@@ -1,8 +1,10 @@
 # Fore-aft push response with the four conditional coxa channels — design (V1)
 
-Designed 2026-11-03, after the middle-leg C3 confirmation was merged (PR #317). This is
-the design only. No code has been written and nothing has run. The protocol, code and
-tests will be hash-locked and committed before any arm runs.
+Designed 2026-11-03, after the middle-leg C3 confirmation was merged (PR #317).
+
+**Status (2026-11-03): run once after preregistration b31435a (protocol ec3f0de1…).**
+INTEGRITY_ACCEPTED. Both directions LOOP_AMPLIFIES (F SIGN_INDEPENDENT, B SIGN_SPECIFIC).
+See `COXA_PUSH_RESPONSE_RESULTS.md`.
 
 ## Why this question
 

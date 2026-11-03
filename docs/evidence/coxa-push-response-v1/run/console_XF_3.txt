@@ -1,0 +1,7 @@
+XF_3: fresh CNS/physics initialization
+XF_3: 4121/20000
+XF_3: 6656/20000
+XF_3: 10732/20000
+XF_3: 14885/20000
+XF_3: 19084/20000
+{"arm": "XF_3", "run_status": "COMPLETE", "error": null, "sha256": "cb1d190bcb3a819a78d4477633f901d77f05004a704b44b62b9f6ed0dcb00950"}
