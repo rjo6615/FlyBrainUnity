@@ -1,0 +1,9 @@
+XB_3: fresh CNS/physics initialization
+XB_3: 3477/20000
+XB_3: 5162/20000
+XB_3: 7185/20000
+XB_3: 9430/20000
+XB_3: 11706/20000
+XB_3: 14603/20000
+XB_3: 17893/20000
+{"arm": "XB_3", "run_status": "COMPLETE", "error": null, "sha256": "6304c7f7448cf8a0d2240819864b41e945213c2f2646e81a1c5dd1c71eed2e33"}

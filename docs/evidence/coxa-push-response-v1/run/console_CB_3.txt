@@ -1,0 +1,7 @@
+CB_3: fresh CNS/physics initialization
+CB_3: 3647/20000
+CB_3: 6062/20000
+CB_3: 9881/20000
+CB_3: 13684/20000
+CB_3: 17759/20000
+{"arm": "CB_3", "run_status": "COMPLETE", "error": null, "sha256": "bb3bfc8f5ed6316dc152392008f9c7e911e34ec151fff59dd053a8fe6d255a42"}

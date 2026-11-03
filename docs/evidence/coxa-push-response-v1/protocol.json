@@ -1,0 +1,63 @@
+{
+  "schema": "coxa-push-response-protocol-v1",
+  "date": "2026-11-03",
+  "design": "docs/COXA_PUSH_RESPONSE_V1.md",
+  "question": "In the assisted standing posture, does enabling the four CONDITIONAL coxa channels (joint_LFCoxa, joint_LHCoxa, joint_LMCoxa, joint_RMCoxa; H1) change how far a brief fore-aft thorax push displaces the body root, relative to the same push without coxa channels, with H1_FLIP as the specificity control?",
+  "status": "PREREGISTERED_BEFORE_ANY_ARM_RAN",
+  "not_an_admission_test": "No coordinate status changes from any outcome.",
+  "sources": {
+    "pulse_origin": "malecns_backend/embodiment/m9b_external_perturbation.py and docs/TACTILE_DISTURBANCE_RECOVERY_V1.md (world force 1.024 native units, Thorax COM, zero torque, outgoing transitions 5000-5199, impulse 0.02048)",
+    "metrics": "malecns_backend/live/tactile_recovery_metrics.py (trace, response, BANDS, RESOLUTION) unchanged",
+    "d2_result": "via coxa_hypothesis_loop.d2_channels (sha ef2fbdec...)",
+    "c0": {"1": "8fdcd56109acb9197a93385ee41b29e22313b55bd7bc30072c1cd3c37b46b03d", "2": "5461e77c98a13971e7ef909d63ffa8c0514c1027774b3df93d510410e90a1cf5", "3": "f201be76be2d82311238a9ec807be825945d3d3ac21163e82ea238b055c8ee1e"},
+    "c0_note": "coxa-admission-v1 raw arms C0_1..3 (local, uncommitted); hashes from docs/evidence/coxa-admission-v1/run/report.json (sha 088a642c...)"
+  },
+  "disturbance": {
+    "magnitude_native": 1.024,
+    "transitions": [5000, 5199],
+    "body": "unique exact Thorax body, world frame, body COM, zero torque, via the kernel's external_force_by_transition",
+    "directions": {"F": [1.024, 0.0, 0.0], "B": [-1.024, 0.0, 0.0], "0": "no force (callback installed, always zero)"},
+    "declared_change": "direction fore-aft (+/-x, anterior = +x per Step B) instead of the inherited lateral +y; magnitude, duration and point unchanged and never adjusted"
+  },
+  "arms": {
+    "seeds": [1, 2, 3],
+    "seed_mechanism": "brain.rng = default_rng(seed) at attach, before the first neural transition",
+    "sets": {"N": "Step C A_ON, no coxa channel", "C": "+ four CONDITIONAL channels H1 (hypothesis-labelled session path)", "X": "+ the same four, H1_FLIP"},
+    "order": ["N0_1", "NF_1", "NB_1", "C0_1", "CF_1", "CB_1", "X0_1", "XF_1", "XB_1", "N0_2", "NF_2", "NB_2", "C0_2", "CF_2", "CB_2", "X0_2", "XF_2", "XB_2", "N0_3", "NF_3", "NB_3", "C0_3", "CF_3", "CB_3", "X0_3", "XF_3", "XB_3"]
+  },
+  "candidates": {
+    "label": "COXA_CONDITIONAL_H1",
+    "H1": {"sha256": "dd337259c21aa9b3368f38cf3b9e28c724f6a14b901bedcc610afa3ae7daa12b", "action_index": {"joint_LFCoxa": 0, "joint_LMCoxa": 7, "joint_LHCoxa": 14, "joint_RMCoxa": 28}, "coordinate_sign": {"joint_LFCoxa": 1, "joint_LMCoxa": 1, "joint_LHCoxa": 1, "joint_RMCoxa": 1}},
+    "H1_FLIP": {"sha256": "a080c1bfeb81530469d13c7c26d071a9709b6dbb83988effdce381514d76de8e"}
+  },
+  "integrity": {
+    "I1_complete": "27 arms COMPLETE, 20001 samples, 4000 ticks",
+    "I2_common_rng_within_seed": "identical per-tick uniforms and schedule within each seed",
+    "I3_reproduces_c0": "N0_s equals coxa-admission C0_s over the whole run (qpos every sample; fired, uniforms, hair deliveries every tick)",
+    "I4_exact_force": "every sample i records exactly the planned Thorax wrench of transition i-1 (zero torque, no other body, generalized applied force zero); _0 arms record no force",
+    "I5_channels_bounds": "v3 inventories identical; N arms no hypothesis channel and constant coxa commands; C/X exactly the four channels with the declared hashes and label; |offset| <= 0.25 rad; other non-v3 commands equal the matching N arm",
+    "I6_prefixes": "pushed arms equal their _0 arm through physics index 5000 (qpos, commands; fired for ticks at or before 500 ms); C/X equal the matching N arm until their first coxa command",
+    "I7_seeds_applied": "tick-1 uniforms differ between seeds; every arm records its seed",
+    "failure": "INCONCLUSIVE_INTEGRITY with no labels"
+  },
+  "pulse_precondition": "metrics.response(N{F,B}_s, N0_s).resolved_perturbation in every seed and direction (peak orientation error > 0.25 deg or peak root deviation > 0.005 model mm from 500 ms); else INCONCLUSIVE_PULSE with no labels",
+  "measures": {
+    "control": "each pushed arm vs the _0 arm of the same set and seed",
+    "D_primary": "trapezoidal integral of ||root position(pushed) - root position(control)|| over stored states 5201..20000 (520.1-2000 ms), model mm * s",
+    "reported": ["metrics.response output (orientation peak/mean/integral, peak position/height/velocity errors, recovery status, support, tilt)", "signed fore-aft root deviation along the push", "hair-plate rates per leg", "window coxa offsets", "coxa MN rates per leg", "tilt"]
+  },
+  "labels": {
+    "ratio": "R_s = D(C{p}_s) / D(N{p}_s); flip ratio R'_s = D(X{p}_s) / D(N{p}_s); per push direction p in {F, B}",
+    "Q_LOOP": {"LOOP_ATTENUATES": "R_s <= 0.90 in all 3 seeds", "LOOP_AMPLIFIES": "R_s >= 1.10 in all 3 seeds", "NO_CONSISTENT_LOOP_EFFECT": "otherwise"},
+    "Q_SIGN": {"evaluated_only_if": "Q_LOOP is not NO_CONSISTENT_LOOP_EFFECT", "SIGN_SPECIFIC": "R' fails Q_LOOP's own bar in Q_LOOP's direction in >= 2 of 3 seeds", "SIGN_INDEPENDENT": "otherwise", "otherwise": "NOT_EVALUATED"},
+    "bar_note": "10 % is an engineering resolution fixed before any run; no noise estimate exists"
+  },
+  "consequence_declared_in_advance": "LOOP_ATTENUATES + SIGN_SPECIFIC: first evidence that the conditional coxa loops contribute to postural resistance in this model (servo-assisted; not independent balance). SIGN_INDEPENDENT: the channels change the response but not through the reflex direction. NO_CONSISTENT_LOOP_EFFECT or LOOP_AMPLIFIES: recorded as is. No channel, weight, threshold, gain, magnitude or seed changes; no coordinate status changes; coverage stays 20/42 admitted, +4 conditional.",
+  "interpretation_limits": [
+    "Position-assisted posture; the loops only modulate servo setpoints; not independent balance.",
+    "One engineering pulse (magnitude from M9B), fore-aft direction declared; not a biological disturbance scale.",
+    "Three seeds that vary only stochastic sensory timing.",
+    "Only the four fore-aft CONDITIONAL coxa channels are added.",
+    "Root deviation is relative to a moving control, not absolute stability."
+  ]
+}
