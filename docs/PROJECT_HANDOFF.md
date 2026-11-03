@@ -1,5 +1,19 @@
 # FlyBrainUnity — local Codex handoff
 
+## Fore-aft push response with the four conditional coxa channels: design — 2026-11-03
+
+PR #317 merged. Remaining coxa coordinates are locally blocked (RF input, RH H1 on
+Coxa_roll invisible to the fore-aft encoder, distal Tarsus1 sources), so the next question
+integrates the four CONDITIONAL channels (LF/LH/LM/RM Coxa). Designed (no code/run): Step C
+A_ON, reused M9B/tactile thorax pulse (1.024 x 200 transitions, impulse 0.02048) with a
+declared fore-aft direction (F +x, B -x). Arms {N none, C H1 x4, X H1_FLIP x4} x {no push, F,
+B} x CNS seeds 1-3 = 27. Primary D = integral of root-position deviation vs own unpushed
+control (520.1-2000 ms). Q_LOOP per direction: R = D(C)/D(N) <= 0.90 all seeds attenuates,
+>= 1.10 amplifies; Q_SIGN via X. Not an admission test. See COXA_PUSH_RESPONSE_V1.md.
+
+IMMEDIATE NEXT (on approval): build protocol/adapter/evaluator/tests, smoke past the pulse,
+commit, run 27 arms once (~2.3 h), evaluate once.
+
 ## Middle-leg coxa C3: LM/RM Coxa CONFIRMED -> CONDITIONAL (+4 conditional) — 2026-11-03
 
 Preregistered (3c677c2, protocol dd268b80), ten arms (REPRO_1 + P0/PC/PF x CNS seeds 4-6)
