@@ -1,5 +1,19 @@
 # FlyBrainUnity — local Codex handoff
 
+## Middle-leg coxa displacement test: LM/RM Coxa C2_PASSED 3/3 — 2026-11-03
+
+Preregistered (f91fd74, protocol 9854e0af), nine arms (P0/PC/PF x CNS seeds 1-3) run once,
+evaluated once; I1-I7 pass (P0 reproduces coxa-admission C0 through 5005), context met
+(P0 middle hair LM ~120, RM 94-113 Hz). joint_LMCoxa and joint_RMCoxa both C2_PASSED, no
+flags: LM PC df -0.030..-0.058 / PF +0.067..+0.087; RM -0.032..-0.038 / +0.186..+0.189.
+Descriptive: graded negative feedback (PC drives hair 120 -> 7-59 Hz; PF keeps ~120),
+PF offsets 2-4x PC (positive vs negative feedback), middle coxa MNs fall in PC; no cross-leg
+or tilt effect. Caveat: channels issue commands from 46-158 ms, before the displacement.
+Status: "C2 passed, awaiting C3" (counted nowhere). See MIDDLE_COXA_DISPLACEMENT_RESULTS.md.
+
+IMMEDIATE NEXT (on approval): the C3 confirmation for LM/RM Coxa on CNS seeds 4-6
+(separately preregistered); would make the first bilateral CONDITIONAL pair.
+
 ## Middle-leg coxa resistance reflex (imposed displacement): design — 2026-11-03
 
 PR #315 merged (RF thread closed). Middle-leg Tarsus1 remains source-blocked

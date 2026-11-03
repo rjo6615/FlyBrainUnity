@@ -1,0 +1,7 @@
+PC_3: fresh CNS/physics initialization
+PC_3: 4118/20000
+PC_3: 5130/20000
+PC_3: 9388/20000
+PC_3: 13466/20000
+PC_3: 17835/20000
+{"arm": "PC_3", "run_status": "COMPLETE", "error": null, "sha256": "8b291ff84f295fc6c9a2e17b4f8d2eebd36780f1fc56889784ac276ced4c1e84"}

@@ -1,8 +1,11 @@
 # Middle-leg coxa resistance reflex under an imposed forward displacement — design (V1)
 
-Designed 2026-11-03, after the RF hair-plate thread was closed (PR #315). This is the
-design only. No code has been written and nothing has run. The protocol, code and tests
-will be hash-locked and committed before any arm runs.
+Designed 2026-11-03, after the RF hair-plate thread was closed (PR #315).
+
+**Status:** preregistered in f91fd74 (protocol sha 9854e0af…), run once and evaluated once:
+INTEGRITY_ACCEPTED, context met. `joint_LMCoxa` and `joint_RMCoxa` are both **C2_PASSED**
+(3/3), with no flags. See `MIDDLE_COXA_DISPLACEMENT_RESULTS.md`. Apart from the sign
+correction noted below, the design is unchanged.
 
 ## Why this question
 

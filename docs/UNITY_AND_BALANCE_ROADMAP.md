@@ -1,5 +1,15 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-03: middle-leg coxa displacement test run. joint_LMCoxa and joint_RMCoxa C2_PASSED
+3/3 (first bilateral pair); graded hair-plate feedback seen. Awaiting C3.
+
+```text
+Middle-leg coxa (LM/RM)       [C2_PASSED 3/3 both (imposed displacement); next: C3 on seeds 4-6]
+Coxa conditional tier         [LF/LH CONDITIONAL; LM/RM C2 passed; RF/RH blocked by input]
+Motor coverage                [##########-----------] 20/42 admitted (+2 conditional, counted separately)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-03: middle-leg coxa resistance-reflex test designed (imposed displacement, 9 arms). Not run.
 
 ```text
