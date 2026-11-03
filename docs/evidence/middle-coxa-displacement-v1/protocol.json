@@ -1,0 +1,71 @@
+{
+  "schema": "middle-coxa-displacement-protocol-v1",
+  "date": "2026-11-03",
+  "design": "docs/MIDDLE_COXA_DISPLACEMENT_V1.md",
+  "question": "With the middle-leg coxae held at the forward edge of their recorded walking range by a declared servo-equilibrium shift, does the closed hair-plate -> CNS -> coxa loop on joint_LMCoxa / joint_RMCoxa (H1) push each coxa back, and the sign-flipped binding push it further forward?",
+  "status": "PREREGISTERED_BEFORE_ANY_ARM_RAN",
+  "policy": "C2 (falsification with sign reversal) step of the Part A CONDITIONAL tier only; a C2 pass makes the coordinate eligible for a separate C3 confirmation on CNS seeds 4-6; nothing becomes CONDITIONAL from this test.",
+  "design_correction_before_registration": "The design text gave the bias change as biasprm[0] -= kp*Delta. For a MuJoCo position servo (force = kp*ctrl + biasprm[0] - kp*q) the equilibrium is ctrl + biasprm[0]/kp, so a shift of Delta requires biasprm[0] += kp*Delta; the declared quantity (equilibrium shift Delta, negative = forward) is unchanged. Corrected before any code ran.",
+  "sources": {
+    "d2_result": "via coxa_hypothesis_loop.d2_channels (sha ef2fbdec...)",
+    "step_b_result": {"path": "docs/evidence/hair-plate-encoder-v1/run/result.json", "sha256": "04ccced226cdc3f13daeae1f00fefa29fe4c3e92b11be522e9bfce8ded957894"},
+    "c0": {"1": "8fdcd56109acb9197a93385ee41b29e22313b55bd7bc30072c1cd3c37b46b03d", "2": "5461e77c98a13971e7ef909d63ffa8c0514c1027774b3df93d510410e90a1cf5", "3": "f201be76be2d82311238a9ec807be825945d3d3ac21163e82ea238b055c8ee1e"},
+    "c0_note": "coxa-admission-v1 raw arms C0_1..3 (local, uncommitted; hashes from docs/evidence/coxa-admission-v1/run/report.json)"
+  },
+  "displacement": {
+    "operation": "SHIFT_SERVO_EQUILIBRIUM at state 5005 (500.5 ms)",
+    "rows": "baseline position servos of joint_LMCoxa and joint_RMCoxa only (actuator IDs resolved from the bound inventory)",
+    "write": "actuator_biasprm[aid, 0] = biasprm0 + kp*Delta with kp = actuator_gainprm[aid, 0]; refused unless kp > 0, biasprm[aid,0] == 0 and biasprm[aid,1] == -kp",
+    "expected_after_record": "the original model record with exactly those two biasprm[aid, 0] entries replaced; compared exactly",
+    "rule": "f* = f_max + (f_max - theta) = 0.20741358913376884 (Step B middle-leg tuning); Delta = (f* - f_rest) / (df/dCoxa), Step B rest_forward and axis_direction_per_0p1rad*10",
+    "delta_rad": {"joint_LMCoxa": -0.24496486703405715, "joint_RMCoxa": -0.21994650976688868}
+  },
+  "arms": {
+    "seeds": [1, 2, 3],
+    "seed_mechanism": "brain.rng = default_rng(seed) at attach, before the first neural transition (as coxa-admission-v1)",
+    "order": ["P0_1", "PC_1", "PF_1", "P0_2", "PC_2", "PF_2", "P0_3", "PC_3", "PF_3"],
+    "P0": "Step C A_ON + displacement; no hypothesis channel",
+    "PC": "P0 + H1 joint_LMCoxa, joint_RMCoxa only (hypothesis session path)",
+    "PF": "P0 + H1_FLIP of the same two channels"
+  },
+  "candidates": {
+    "H1": {"sha256": "bffaae7f53d18240272b84fbdd0f95d4f072661eeae30e1327afa3d68c0d8643", "action_index": {"joint_LMCoxa": 7, "joint_RMCoxa": 28}, "coordinate_sign": {"joint_LMCoxa": 1, "joint_RMCoxa": 1}},
+    "H1_FLIP": {"sha256": "f80ffaf74fa50b3976c4c3d4e1dbddfa7e307868b71ad7289ba22a872772dc1f", "coordinate_sign": {"joint_LMCoxa": -1, "joint_RMCoxa": -1}}
+  },
+  "integrity": {
+    "I1_complete": "9 arms COMPLETE, 20001 samples, 4000 ticks",
+    "I2_common_rng_within_seed": "identical per-tick uniforms and schedule within each seed",
+    "I3_reproduces_c0_prefix": "P0_s equals coxa-admission C0_s in qpos through state 5005 and in fired, uniforms and hair deliveries for ticks at or before the event time",
+    "I4_displacement_verified": "event at 5005, operation SHIFT_SERVO_EQUILIBRIUM, after sha == expected sha, declared Delta values, one expected sha across arms; model unchanged before the event (run-time check)",
+    "I5_channels_bounds": "v3 inventories identical; P0 no hypothesis channel and LM/RM Coxa commands constant; PC/PF exactly the two channels with the declared hashes; |offset| <= 0.25 rad; other non-v3 commands equal P0",
+    "I6_prefix_within_seed": "PC/PF equal P0 until their first coxa command",
+    "I7_seeds_applied": "tick-1 uniforms differ between seeds; every arm records its seed",
+    "failure": "INCONCLUSIVE_INTEGRITY with no labels"
+  },
+  "context_precondition": "every P0_s has mean window hair-plate rate >= 30 Hz in both LM and RM; else INCONCLUSIVE_CONTEXT with no labels; the displacement is not changed",
+  "measures": {
+    "window_ms": [520, 2000],
+    "df": "mean coxa forward component (hair_forward, Step B geometry) in the window: arm minus P0_s, per middle leg",
+    "reported": ["hair-plate rate per leg", "coxa MN rates per leg", "commanded offsets and near-bound fraction", "first coxa command", "first physical divergence", "tilt", "all legs' forward components"]
+  },
+  "labels": {
+    "seed_pass": "df(PC_s) <= -0.02 and df(PF_s) >= +0.02 for that leg",
+    "C2_PASSED": "3 of 3 seeds pass",
+    "C2_PARTIAL": "1 or 2 seeds pass",
+    "C2_NOT_SUPPORTED": "0 seeds pass",
+    "flags": {
+      "BOUND_LIMITED": "offset within 0.01 rad of 0.25 in more than half of window samples in any PC/PF arm",
+      "ROLLOVER": "any sample with tilt > 90 deg in any arm",
+      "NO_DRIVE": "the PC command of the coordinate never changes in any seed"
+    },
+    "reported_not_labelled": "graded feedback: hair-plate rate PC vs P0 vs PF"
+  },
+  "consequence_declared_in_advance": "C2_PASSED -> 'C2 passed, awaiting C3' in COXA_COORDINATE_STATUS.md, next a separately preregistered C3 on seeds 4-6 (on approval). C2_PARTIAL -> recorded, no status change. C2_NOT_SUPPORTED -> NOT_SUPPORTED for H1 in this context. NO_DRIVE -> recorded as an input limit. INCONCLUSIVE -> no status change. No weights, thresholds, gains, mappings or seeds change; coverage stays 20/42 admitted, +2 conditional.",
+  "interpretation_limits": [
+    "Engineering perturbation: the displacement is imposed through the servo equilibrium; a probe stimulus, not a biological input or behaviour.",
+    "Assisted context; offset-on-servo actuation: a 'push back' is a setpoint shift.",
+    "Walking-derived modeled encoder threshold, unchanged.",
+    "One body model, three seeds that vary only stochastic sensory timing.",
+    "C2 step only; nothing becomes CONDITIONAL; not balance or gait."
+  ]
+}

@@ -1,0 +1,7 @@
+PF_3: fresh CNS/physics initialization
+PF_3: 4157/20000
+PF_3: 5191/20000
+PF_3: 9487/20000
+PF_3: 13674/20000
+PF_3: 18051/20000
+{"arm": "PF_3", "run_status": "COMPLETE", "error": null, "sha256": "32e678d2e7ab5f0e464384f8a863734fcbca0c1facd15b50cf2f6713b76422a0"}

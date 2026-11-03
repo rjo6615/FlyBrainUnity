@@ -1,0 +1,112 @@
+{
+ "status": "INTEGRITY_ACCEPTED",
+ "checks": {
+  "I1_complete": true,
+  "I2_common_rng_within_seed": true,
+  "I3_reproduces_c0_prefix": true,
+  "I4_displacement_verified": true,
+  "I5_channels_bounds": true,
+  "I6_prefix_within_seed": true,
+  "I7_seeds_applied": true
+ },
+ "p0_hair_rate_hz": {
+  "1": {
+   "LM": 119.85665448606592,
+   "RM": 93.50538648631482
+  },
+  "2": {
+   "LM": 119.9703352988205,
+   "RM": 97.63648734096924
+  },
+  "3": {
+   "LM": 120.0,
+   "RM": 113.37892511454558
+  }
+ },
+ "labels": {
+  "joint_LMCoxa": "C2_PASSED",
+  "joint_RMCoxa": "C2_PASSED"
+ },
+ "per_seed": {
+  "joint_LMCoxa": {
+   "1": {
+    "d_pc": -0.04451367816488938,
+    "d_pf": 0.07577094972275294,
+    "passed": true,
+    "hair_p0": 119.85665448606592,
+    "hair_pc": 32.48254827202515,
+    "hair_pf": 102.41567057511622
+   },
+   "2": {
+    "d_pc": -0.02994700197471925,
+    "d_pf": 0.08662318723296072,
+    "passed": true,
+    "hair_p0": 119.9703352988205,
+    "hair_pc": 58.71590599774966,
+    "hair_pf": 119.05941324472286
+   },
+   "3": {
+    "d_pc": -0.05771767857507934,
+    "d_pf": 0.06656680961640077,
+    "passed": true,
+    "hair_p0": 120.0,
+    "hair_pc": 33.24046175768683,
+    "hair_pf": 119.72075427971639
+   }
+  },
+  "joint_RMCoxa": {
+   "1": {
+    "d_pc": -0.032160060940442686,
+    "d_pf": 0.18823165146319076,
+    "passed": true,
+    "hair_p0": 93.50538648631482,
+    "hair_pc": 12.974913276034084,
+    "hair_pf": 119.94361058600053
+   },
+   "2": {
+    "d_pc": -0.03750649219216606,
+    "d_pf": 0.18572149859486017,
+    "passed": true,
+    "hair_p0": 97.63648734096924,
+    "hair_pc": 7.5011091151114915,
+    "hair_pf": 118.8359433828786
+   },
+   "3": {
+    "d_pc": -0.037067241410141616,
+    "d_pf": 0.1890078208579722,
+    "passed": true,
+    "hair_p0": 113.37892511454558,
+    "hair_pc": 17.16280921482874,
+    "hair_pf": 118.77118719309125
+   }
+  }
+ },
+ "flags": {
+  "joint_LMCoxa": {
+   "BOUND_LIMITED": false,
+   "near_bound_fraction": {
+    "PC_1": 0.0,
+    "PF_1": 0.0,
+    "PC_2": 0.0,
+    "PF_2": 0.0,
+    "PC_3": 0.0,
+    "PF_3": 0.0
+   },
+   "ROLLOVER": false,
+   "NO_DRIVE": false
+  },
+  "joint_RMCoxa": {
+   "BOUND_LIMITED": false,
+   "near_bound_fraction": {
+    "PC_1": 0.0,
+    "PF_1": 0.0,
+    "PC_2": 0.0,
+    "PF_2": 0.0006756756756756757,
+    "PC_3": 0.0,
+    "PF_3": 0.0
+   },
+   "ROLLOVER": false,
+   "NO_DRIVE": false
+  }
+ }
+}
