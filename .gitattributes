@@ -155,3 +155,6 @@ docs/evidence/coxa-admission-v1/**/*.txt -text -whitespace
 docs/evidence/coxa-release-posture-v1/*.json -text
 docs/evidence/coxa-release-posture-v1/**/*.json -text
 docs/evidence/coxa-release-posture-v1/**/*.txt -text -whitespace
+docs/evidence/rf-hair-plate-banc-v1/*.json -text
+docs/evidence/rf-hair-plate-banc-v1/**/*.json -text
+docs/evidence/rf-hair-plate-banc-v1/**/*.txt -text -whitespace
