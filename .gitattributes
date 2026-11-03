@@ -164,3 +164,6 @@ docs/evidence/rf-hair-plate-banc-v2/**/*.txt -text -whitespace
 docs/evidence/middle-coxa-displacement-v1/*.json -text
 docs/evidence/middle-coxa-displacement-v1/**/*.json -text
 docs/evidence/middle-coxa-displacement-v1/**/*.txt -text -whitespace
+docs/evidence/middle-coxa-c3-v1/*.json -text
+docs/evidence/middle-coxa-c3-v1/**/*.json -text
+docs/evidence/middle-coxa-c3-v1/**/*.txt -text -whitespace
