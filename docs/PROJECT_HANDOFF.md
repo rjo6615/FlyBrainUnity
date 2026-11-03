@@ -1,5 +1,19 @@
 # FlyBrainUnity — local Codex handoff
 
+## Middle-leg coxa resistance reflex (imposed displacement): design — 2026-11-03
+
+PR #315 merged (RF thread closed). Middle-leg Tarsus1 remains source-blocked
+(DISTAL_ANATOMICAL_QUALIFICATION_RESULTS.md), so the next coordinates are the middle coxae.
+Designed (no code/run): at state 5005 shift the LM/RM Coxa servo equilibrium (biasprm[0]
+-= kp*Delta; Delta LM -0.2450, RM -0.2199 rad, by rule from Step B to one encoder band past
+the walking forward limit). Arms P0/PC/PF x CNS seeds 1-3 (9). PC/PF = H1/H1_FLIP
+joint_LMCoxa + joint_RMCoxa only. Precondition: P0 middle hair >= 30 Hz. Seed pass: PC df <=
+-0.02 and PF df >= +0.02; C2_PASSED 3/3. This is the C2 step only; CONDITIONAL needs a later
+C3 on seeds 4-6. See MIDDLE_COXA_DISPLACEMENT_V1.md.
+
+IMMEDIATE NEXT (on approval): build protocol/adapter/evaluator/tests, smoke, commit, run 9
+arms once (~45 min), evaluate once.
+
 ## RF hair-plate cross-connectome check V2: INCONCLUSIVE_INTEGRITY — 2026-11-03
 
 Preregistered (8ea584a, protocol 9b1ec930), run once (data only). I1, I2 (100 %), I4

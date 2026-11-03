@@ -1,5 +1,14 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-03: middle-leg coxa resistance-reflex test designed (imposed displacement, 9 arms). Not run.
+
+```text
+Middle-leg coxa (LM/RM)       [designed: imposed forward displacement, H1 vs FLIP x 3 seeds (C2 step); next: build]
+RF input deficit              [V1 + V2 INCONCLUSIVE; no local neuron-level identity; RF stays BLOCKED_BY_INPUT]
+Motor coverage                [##########-----------] 20/42 admitted (+2 conditional, counted separately)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-03: RF hair-plate BANC check V2 run: INCONCLUSIVE_INTEGRITY (coverage LF 5/7,
 RF 3/5; BANC matches are group-level or non-sensory). Thread recommended closed.
 
