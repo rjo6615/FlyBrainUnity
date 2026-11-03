@@ -1,5 +1,24 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-03: middle-leg coxa C3 run. joint_LMCoxa and joint_RMCoxa CONFIRMED 3/3 new seeds
+-> CONDITIONAL. First bilateral conditional pair; +4 conditional in total.
+
+```text
+Middle-leg coxa (LM/RM)       [CONFIRMED 3/3 new seeds -> CONDITIONAL (C1-C4 met)]
+Coxa conditional tier         [LF/LH/LM/RM CONDITIONAL (fore-aft Coxa); RF/RH blocked by input]
+Motor coverage                [##########-----------] 20/42 admitted (+4 conditional, counted separately)
+Independent balance / gait    [not established]
+```
+
+Current2026-11-03: middle-leg coxa C3 confirmation designed (seeds 4-6 + REPRO). Not run.
+
+```text
+Middle-leg coxa (LM/RM)       [C2_PASSED 3/3; C3 designed: seeds 4-6, CONFIRMED -> CONDITIONAL; next: build]
+Coxa conditional tier         [LF/LH CONDITIONAL; LM/RM C2 passed; RF/RH blocked by input]
+Motor coverage                [##########-----------] 20/42 admitted (+2 conditional, counted separately)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-03: middle-leg coxa displacement test run. joint_LMCoxa and joint_RMCoxa C2_PASSED
 3/3 (first bilateral pair); graded hair-plate feedback seen. Awaiting C3.
 

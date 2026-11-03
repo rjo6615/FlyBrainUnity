@@ -1,0 +1,7 @@
+P0_5: fresh CNS/physics initialization
+P0_5: 3667/20000
+P0_5: 5005/20000
+P0_5: 9099/20000
+P0_5: 13074/20000
+P0_5: 17236/20000
+{"arm": "P0_5", "run_status": "COMPLETE", "error": null, "sha256": "099c3326c3c98d1d88f53cac797f3a07795913b5a001442465b2ffeda1641819"}

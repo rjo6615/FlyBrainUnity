@@ -1,0 +1,7 @@
+PF_4: fresh CNS/physics initialization
+PF_4: 4183/20000
+PF_4: 5050/20000
+PF_4: 9077/20000
+PF_4: 13025/20000
+PF_4: 17219/20000
+{"arm": "PF_4", "run_status": "COMPLETE", "error": null, "sha256": "71a70ec861c7bfd5bc46eef3c09734cee84c3bef95f4b50f5800ca6b9a61ae7a"}

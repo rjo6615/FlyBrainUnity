@@ -1,0 +1,71 @@
+{
+  "schema": "middle-coxa-c3-protocol-v1",
+  "date": "2026-11-03",
+  "design": "docs/MIDDLE_COXA_C3_CONFIRMATION_V1.md",
+  "question": "Does the C2 result (joint_LMCoxa / joint_RMCoxa resist an imposed forward displacement under H1 and H1_FLIP reverses it) reproduce on never-run CNS seeds 4, 5 and 6?",
+  "status": "PREREGISTERED_BEFORE_ANY_ARM_RAN",
+  "policy": "Part A C3: separately preregistered; only the two candidates enabled; new seeds. CONFIRMED -> CONDITIONAL (COXA_CONDITIONAL_H1, counted separately); PARTIAL -> stays 'C2 passed'; NOT_CONFIRMED -> NOT_SUPPORTED.",
+  "sources": {
+    "c2_protocol": {"path": "docs/evidence/middle-coxa-displacement-v1/protocol.json", "sha256": "9854e0af9f7b0829cbd21b3544db1edcfcb841150990a97dd81da38cf63f4fab"},
+    "c2_report": {"path": "docs/evidence/middle-coxa-displacement-v1/run/report.json", "sha256": "7c988f2f3149a7bd3185cf90447788818bbf148a66000a58ac9ae3e4db83c5e4"},
+    "c2_p0_raw": {"1": "59d29c6f87ad64bb375c492bc419eab6918d36601adb16749d081af4783e0ae3", "2": "7a79a115686996c4a241080dbe61b6a2fe1ac21419b0a7975d5eab83d7c01ba7", "3": "30fadd3e67b798c45e6048f442335348e676b6a1b2ddc2127d6a897650ecb1d5"},
+    "c2_p0_raw_note": "local, uncommitted C2 raw arms; hashes from the C2 report"
+  },
+  "context": {
+    "identical_to": "middle-coxa-displacement-v1 (C2)",
+    "displacement": "SHIFT_SERVO_EQUILIBRIUM at state 5005; biasprm[aid,0] += kp*Delta on the joint_LMCoxa / joint_RMCoxa baseline position servos",
+    "delta_rad": {"joint_LMCoxa": -0.24496486703405715, "joint_RMCoxa": -0.21994650976688868},
+    "seed_mechanism": "brain.rng = default_rng(seed) at attach, before the first neural transition"
+  },
+  "candidates": {
+    "H1": {"sha256": "bffaae7f53d18240272b84fbdd0f95d4f072661eeae30e1327afa3d68c0d8643", "action_index": {"joint_LMCoxa": 7, "joint_RMCoxa": 28}},
+    "H1_FLIP": {"sha256": "f80ffaf74fa50b3976c4c3d4e1dbddfa7e307868b71ad7289ba22a872772dc1f"}
+  },
+  "arms": {
+    "seeds": [4, 5, 6],
+    "order": ["REPRO_1", "P0_4", "PC_4", "PF_4", "P0_5", "PC_5", "PF_5", "P0_6", "PC_6", "PF_6"],
+    "REPRO_1": "C2 arm P0_1 rerun by this module (seed 1, displacement, no hypothesis channel)",
+    "P0": "Step C A_ON + displacement; no hypothesis channel",
+    "PC": "P0 + H1 joint_LMCoxa, joint_RMCoxa only",
+    "PF": "P0 + H1_FLIP of the same two channels"
+  },
+  "integrity": {
+    "I1_complete": "10 arms COMPLETE, 20001 samples, 4000 ticks",
+    "I2_common_rng_within_seed": "identical per-tick uniforms and schedule within each new seed",
+    "I3_reproduction": "REPRO_1 equals C2 P0_1 in every sample's qpos and commanded_joints, every tick's fired, uniforms_sha256 and hair_delivered, and the event after_sha256",
+    "I4_displacement_verified": "event at 5005, SHIFT_SERVO_EQUILIBRIUM, after sha == expected sha, declared Delta values, one expected sha across all 10 arms",
+    "I5_channels_bounds": "v3 inventories identical; P0 and REPRO no hypothesis channel and constant LM/RM Coxa commands; PC/PF exactly the two channels with the declared hashes; |offset| <= 0.25 rad; other non-v3 commands equal P0",
+    "I6_prefix_within_seed": "PC/PF equal P0 until their first coxa command",
+    "I7_seeds_applied": "tick-1 uniforms of seeds 4, 5, 6 differ from each other and from C2 P0_1..3; every arm records its seed",
+    "failure": "INCONCLUSIVE_INTEGRITY with no labels"
+  },
+  "context_precondition": "every P0_s (s = 4..6) has mean window hair-plate rate >= 30 Hz in both LM and RM; else INCONCLUSIVE_CONTEXT with no labels",
+  "measures": {
+    "window_ms": [520, 2000],
+    "df": "mean coxa forward component in the window: arm minus P0_s, per middle leg",
+    "reported_not_labelled": {
+      "pre_displacement_offsets": "per PC/PF arm, mean channel offset over samples 1-5005 and over the window",
+      "pre_displacement_df": "mean forward component over 400-500 ms: PC/PF minus P0_s, per middle leg",
+      "other": ["hair-plate rates per leg", "coxa MN rates per leg", "cross-leg df", "tilt", "first coxa command", "first physical divergence"]
+    }
+  },
+  "labels": {
+    "seed_pass": "df(PC_s) <= -0.02 and df(PF_s) >= +0.02 for that leg",
+    "CONFIRMED": "3 of 3 new seeds pass -> CONDITIONAL",
+    "PARTIAL": "1 or 2 pass -> stays 'C2 passed'",
+    "NOT_CONFIRMED": "0 pass -> NOT_SUPPORTED",
+    "flags": {
+      "BOUND_LIMITED": "offset within 0.01 rad of 0.25 in more than half of window samples in any PC/PF arm",
+      "ROLLOVER": "any sample with tilt > 90 deg in any arm",
+      "NO_DRIVE": "the PC command of the coordinate never changes in any new seed (reported as input-limited)"
+    }
+  },
+  "consequence_declared_in_advance": "CONFIRMED coordinates become CONDITIONAL with evidence C1 (D2 H1), C2 (PR #316), C3 (this test), C4 (integrity); if both, 20/42 admitted +4 conditional (counted separately). PARTIAL/NOT_CONFIRMED recorded as above, nothing retried. No weights, thresholds, gains, mappings or Delta change; balance and gait not established.",
+  "interpretation_limits": [
+    "Engineering perturbation imposed through the servo equilibrium; a probe stimulus, not a biological input.",
+    "Assisted context; offset-on-servo actuation.",
+    "Walking-derived modeled encoder threshold, unchanged.",
+    "Seeds vary only stochastic sensory timing.",
+    "CONDITIONAL is not admission; a later preregistered failure revokes it."
+  ]
+}

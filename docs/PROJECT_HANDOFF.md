@@ -1,5 +1,33 @@
 # FlyBrainUnity — local Codex handoff
 
+## Middle-leg coxa C3: LM/RM Coxa CONFIRMED -> CONDITIONAL (+4 conditional) — 2026-11-03
+
+Preregistered (3c677c2, protocol dd268b80), ten arms (REPRO_1 + P0/PC/PF x CNS seeds 4-6)
+run once, evaluated once; I1-I7 pass (REPRO_1 equals C2 P0_1 exactly), context met.
+joint_LMCoxa and joint_RMCoxa CONFIRMED 3/3 new seeds, no flags (LM PC -0.031..-0.041 / PF
++0.089..+0.096; RM -0.032..-0.046 / +0.174..+0.193) -> CONDITIONAL (COXA_CONDITIONAL_H1).
+Totals 20/42 admitted, +4 conditional (LF/LH/LM/RM); first bilateral conditional pair.
+Pre-displacement offsets ~0 (|<=0.013|); pre-stimulus position df mostly <= 0.026 but LM
+seed 4 PC +0.046 (opposite sign; recorded as a bar-noise limit). Graded feedback and MN
+tracking as in C2. See MIDDLE_COXA_C3_CONFIRMATION_RESULTS.md.
+
+IMMEDIATE NEXT (user choice): with four conditional fore-aft coxa channels (two bilateral
+in the middle legs), a preregistered question that uses them together (e.g. a matched
+released/perturbed posture comparison) or extending the displacement method to the hind
+legs' remaining untested channels.
+
+## Middle-leg coxa C3 confirmation: design — 2026-11-03
+
+PR #316 merged. Designed (no code/run). C3 for joint_LMCoxa / joint_RMCoxa under Part A:
+identical C2 context (A_ON, SHIFT_SERVO_EQUILIBRIUM at 5005, same Delta, H1/H1_FLIP by
+hash), never-run CNS seeds 4-6: P0/PC/PF x 3 + REPRO_1 (must equal C2 P0_1 exactly) = 10
+arms. Same rule (PC df <= -0.02 and PF df >= +0.02). CONFIRMED 3/3 -> CONDITIONAL;
+PARTIAL -> stays C2 passed; NOT_CONFIRMED -> NOT_SUPPORTED. Reports pre-displacement
+offsets and df (400-500 ms) for the C2 timing caveat. See MIDDLE_COXA_C3_CONFIRMATION_V1.md.
+
+IMMEDIATE NEXT (on approval): build protocol/adapter/evaluator/tests, smoke, commit, run 10
+arms once (~50 min), evaluate once.
+
 ## Middle-leg coxa displacement test: LM/RM Coxa C2_PASSED 3/3 — 2026-11-03
 
 Preregistered (f91fd74, protocol 9854e0af), nine arms (P0/PC/PF x CNS seeds 1-3) run once,
