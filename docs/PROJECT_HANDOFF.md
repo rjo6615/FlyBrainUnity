@@ -1,5 +1,20 @@
 # FlyBrainUnity — local Codex handoff
 
+## RF hair-plate cross-connectome check V2: INCONCLUSIVE_INTEGRITY — 2026-11-03
+
+Preregistered (8ea584a, protocol 9b1ec930), run once (data only). I1, I2 (100 %), I4
+(100 %), I5 pass; I3 fails: anchors with a BANC counterpart LF 5/7, RF 3/5 (bar 75 %). No
+labels. Post hoc: B1 (malecns_match) is group-level (9 BANC LF SNpp45 -> one MaleCNS body);
+B2 (mancBodyid -> manc_match) reaches interneurons and a motor neuron (design had no
+sensory check: flaw recorded). B1-only numbers repeat V1 (ratio ~0.74), not independent.
+Conclusion: local metadata cannot give neuron-level identity; resolving this needs BANC
+synapse tables (not local; would require a download, excluded by the local-only rule).
+Recommendation: close the RF anatomy-vs-reconstruction thread; joint_RFCoxa stays
+BLOCKED_BY_INPUT. See RF_HAIR_PLATE_CROSS_CONNECTOME_V2_RESULTS.md.
+
+IMMEDIATE NEXT (user choice): move to other unmapped coordinates (e.g. the four
+middle/hind Tarsus1 target mappings or the LF/LH coxa roll/yaw components).
+
 ## RF hair-plate cross-connectome check V2 (neuron match): design — 2026-11-03
 
 Designed (no code/run; no anchor looked up). Anchors: the model's own MaleCNS T1 SNpp45

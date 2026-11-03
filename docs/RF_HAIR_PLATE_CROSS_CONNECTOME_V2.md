@@ -1,8 +1,12 @@
 # Right-front hair-plate deficit: cross-connectome check by neuron-level match — design (V2)
 
-Designed 2026-11-03. This is the design only. No code has been written, and no match
-between any MaleCNS hair-plate neuron and BANC has been looked up. The protocol, code and
-tests will be hash-locked and committed before the single run.
+Designed 2026-11-03.
+
+**Status:** preregistered in 8ea584a (protocol sha 9b1ec930…) and run once:
+INCONCLUSIVE_INTEGRITY (I3 coverage: LF 5/7, RF 3/5). No labels were assigned. Neither
+bridge provides one-to-one identity: B1 is group-level, and B2 reaches non-sensory
+neurons. See `RF_HAIR_PLATE_CROSS_CONNECTOME_V2_RESULTS.md`. The design below is
+unchanged.
 
 ## Why a V2
 
