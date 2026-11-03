@@ -1,5 +1,14 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-03: RF hair-plate cross-connectome check designed (BANC, data only). Not run.
+
+```text
+RF input deficit              [designed: BANC v888 count/size check vs MaleCNS; next: build]
+Released-posture coxa test    [NO_RESCUE; no consistent assist or loop effect on T_roll (3 seeds)]
+Motor coverage                [##########-----------] 20/42 admitted (+2 conditional, counted separately)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-02: released-posture coxa test run. All labels null as predicted; every arm
 rolls over 67-91 ms after release. CONDITIONAL status unchanged.
 

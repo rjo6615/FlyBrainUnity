@@ -1,5 +1,17 @@
 # FlyBrainUnity — local Codex handoff
 
+## RF hair-plate cross-connectome check: design — 2026-11-03
+
+PR #314 merged. Designed (no code/run; no BANC per-leg tally inspected). joint_RFCoxa is
+BLOCKED_BY_INPUT because MaleCNS RF SNpp45 neurons are fewer (5 vs 7) and much smaller;
+anatomy vs reconstruction was left open twice. The committed BANC v888 metadata (86ccf5df,
+distal-tarsus provenance) types SNpp45 with nerve, side and cable length: local only, no
+download. Same nerve rule as Step A. Labels Q_COUNT (d = n_RF - n_LF; <= -2 replicated,
+|d| <= 1 symmetric), Q_SIZE (median cable ratio; <= 0.67 replicated, 0.85-1.18 symmetric),
+Q_RF overall. No weights change from any outcome. See RF_HAIR_PLATE_CROSS_CONNECTOME_V1.md.
+
+IMMEDIATE NEXT (on approval): build protocol/code/tests, commit, run once (seconds).
+
 ## Released-posture coxa test: all nulls, NO_RESCUE — 2026-11-02
 
 Preregistered (bc38189, protocol 16659830), 12 arms (R22/K/KC/KF x CNS seeds 1-3) run once,
