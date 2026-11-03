@@ -1,5 +1,18 @@
 # FlyBrainUnity — local Codex handoff
 
+## RF hair-plate cross-connectome check V2 (neuron match): design — 2026-11-03
+
+Designed (no code/run; no anchor looked up). Anchors: the model's own MaleCNS T1 SNpp45
+neurons (7 L, 5 R; 821165 reported). Bridges: BANC malecns_match == anchor body ID (B1);
+BANC manc_match contains the anchor's mancBodyid (B2); union, distinct root_id. Integrity:
+sources + Step A counts, >= 90 % BANC malecns_match IDs exist in v1.0 annotations, >= 75 %
+anchors matched per side, >= 80 % side-consistent counterparts, cable present. Labels and
+bars copied unchanged from V1 (Q_COUNT, Q_SIZE, Q_RF); Q_SIZE is the informative one
+(count is matching-bounded). V1 diagnostics seen beforehand are disclosed.
+See RF_HAIR_PLATE_CROSS_CONNECTOME_V2.md.
+
+IMMEDIATE NEXT (on approval): build protocol/code/tests, commit, run once (seconds).
+
 ## RF hair-plate cross-connectome check: INCONCLUSIVE_INTEGRITY — 2026-11-03
 
 Preregistered (f1a147e, protocol 856fe70b), run once (data only, seconds). I1, I2, I4, I5
