@@ -1,0 +1,56 @@
+{
+  "schema": "rf-hair-plate-banc-protocol-v2",
+  "date": "2026-11-03",
+  "design": "docs/RF_HAIR_PLATE_CROSS_CONNECTOME_V2.md",
+  "supersedes_method_of": "docs/evidence/rf-hair-plate-banc-v1/protocol.json (V1 INCONCLUSIVE_INTEGRITY; V1 record unchanged)",
+  "question": "Do the BANC counterparts (by neuron-level match) of the model's own MaleCNS T1 SNpp45 neurons show the MaleCNS right-front vs left-front deficit in count and size?",
+  "status": "PREREGISTERED_BEFORE_ANY_ANCHOR_WAS_LOOKED_UP",
+  "seen_before_registration": [
+    "V1 post-hoc diagnostics (type-name rule): BANC T1 primary 8 L / 4 R, median cable 1346 / 1027 um; all single prothoracic nerves 22 L / 26 R.",
+    "Whole-table formats only: BANC malecns_match single body-ID strings; manc_match body-ID strings, occasionally comma-separated; annotations mancBodyid float."
+  ],
+  "sources": {
+    "banc_meta": {"path": "docs/evidence/distal-tarsus-reference-v1/banc_888_meta.feather", "sha256": "86ccf5df0c67419f8c5f43e93a7ed38d23a080e9f7fde26737290252f3780098", "provenance": "docs/evidence/distal-tarsus-reference-v1/source-provenance.json"},
+    "malecns_annotations": {"path": "docs/evidence/lf-anatomical-crosswalk-v1/annotations.feather", "sha256": "2177e246113e4cfbf1e7772ec37c6da1955ff22e8063d0b1f833101f99a9a3b2"},
+    "step_a_result": {"path": "docs/evidence/hair-plate-identity-v1/run/result.json", "sha256": "e652a0c2f9d24342eeb784b35f4ce7078981bcf684db8e0c53fb9a96d664301b"}
+  },
+  "anchors": {
+    "rule": "hair_plate_identity.sensory_sets on the annotations (type SNpp45; VProN/MesoLN/MetaLN; rootSide else somaSide); body IDs, no connectome needed",
+    "labelled": "T1 left (7) and T1 right (5)",
+    "reported": "Step A excluded body 821165 (ProLN, left); T2 and T3 anchors as context"
+  },
+  "bridges": {
+    "B1": "BANC rows with malecns_match (as integer) == anchor bodyId",
+    "B2": "BANC rows whose manc_match, split on commas, contains int(anchor mancBodyid) (anchors without mancBodyid have no B2)",
+    "counterparts": "union of B1 and B2 rows, distinct by root_id",
+    "side": "BANC side column if left/right, else side prefix of the nerve name, else unusable (reported)"
+  },
+  "measures": {
+    "n_side": "distinct T1 counterparts with side == s whose anchor (any one) is on side s",
+    "size": "median and sum of BANC l2_cable_length_um over those counterparts",
+    "reported_only": ["per-anchor counterparts and bridges", "B1/B2 agreement", "counterpart cell_type, nerve, proofread", "unmatched anchors", "cross-side counterparts", "821165 counterparts", "T2/T3 same measures"]
+  },
+  "integrity": {
+    "I1_sources": "BANC sha = 86ccf5df... = provenance; annotations sha 2177e246...; Step A sha e652a0c2...; anchors reproduce Step A counts 7/5/12/11/8/9",
+    "I2_bridge_version": ">= 0.90 of distinct non-null integer BANC malecns_match IDs exist as annotations bodyId",
+    "I3_coverage": ">= 0.75 of T1 anchors on each side have >= 1 counterpart",
+    "I4_side_consistency": ">= 0.80 of distinct T1 counterparts (usable side) have the side of their anchor (a counterpart is consistent if any of its anchors is on its side)",
+    "I5_size_field": "every counted T1 counterpart has finite positive l2_cable_length_um",
+    "failure": "INCONCLUSIVE_INTEGRITY with no labels"
+  },
+  "labels": {
+    "note": "bars copied unchanged from V1",
+    "Q_COUNT": {"d": "n(R) - n(L)", "COUNT_DEFICIT_REPLICATED": "d <= -2", "COUNT_SYMMETRIC": "|d| <= 1", "COUNT_REVERSED": "d >= +2"},
+    "Q_SIZE": {"r": "median cable(R counterparts) / median cable(L counterparts)", "SIZE_DEFICIT_REPLICATED": "r <= 0.67", "SIZE_SYMMETRIC": "0.85 <= r <= 1/0.85", "SIZE_REVERSED": "r >= 1.5", "SIZE_INDETERMINATE": "otherwise"},
+    "Q_RF": {"RF_DEFICIT_REPLICATED": "COUNT_DEFICIT_REPLICATED and SIZE_DEFICIT_REPLICATED", "RF_DEFICIT_NOT_REPLICATED": "Q_COUNT in {COUNT_SYMMETRIC, COUNT_REVERSED} and Q_SIZE in {SIZE_SYMMETRIC, SIZE_REVERSED}", "RF_PARTIAL": "otherwise"},
+    "primary": "Q_SIZE is the more informative label; counts are bounded by matching"
+  },
+  "consequence_declared_in_advance": "No weights, thresholds or mappings change. REPLICATED: joint_RFCoxa stays BLOCKED_BY_INPUT, documented as a likely property of the fly (or a shared reconstruction bias). NOT_REPLICATED: MaleCNS-specific (individual variation or under-tracing); any input substitution is a separately designed labelled engineering question, only on the user's decision. PARTIAL: recorded as is. COXA_COORDINATE_STATUS.md gets one evidence line; coverage stays 20/42 admitted, +2 conditional.",
+  "interpretation_limits": [
+    "Two animals; replication or not, not population anatomy.",
+    "Size proxies differ; sizes compared only within BANC.",
+    "Matches are BANC's curated annotations, not audited here; an unmatched anchor is ambiguous.",
+    "Counts are matching-bounded: BANC-only neurons are invisible.",
+    "Structural only."
+  ]
+}
