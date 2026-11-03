@@ -5,7 +5,7 @@
 PR #315 merged (RF thread closed). Middle-leg Tarsus1 remains source-blocked
 (DISTAL_ANATOMICAL_QUALIFICATION_RESULTS.md), so the next coordinates are the middle coxae.
 Designed (no code/run): at state 5005 shift the LM/RM Coxa servo equilibrium (biasprm[0]
--= kp*Delta; Delta LM -0.2450, RM -0.2199 rad, by rule from Step B to one encoder band past
++= kp*Delta, corrected from the design's -=; Delta LM -0.2450, RM -0.2199 rad, by rule from Step B to one encoder band past
 the walking forward limit). Arms P0/PC/PF x CNS seeds 1-3 (9). PC/PF = H1/H1_FLIP
 joint_LMCoxa + joint_RMCoxa only. Precondition: P0 middle hair >= 30 Hz. Seed pass: PC df <=
 -0.02 and PF df >= +0.02; C2_PASSED 3/3. This is the C2 step only; CONDITIONAL needs a later

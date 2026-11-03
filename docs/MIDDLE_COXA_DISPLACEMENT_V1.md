@@ -51,7 +51,9 @@ CONDITIONAL by itself.
 as the Step C release.
 
 - For the baseline position servos of `joint_LMCoxa` and `joint_RMCoxa` only,
-  `actuator_biasprm[0]` gains −kp·Δ, where kp is the actuator's own `gainprm[0]`.
+  `actuator_biasprm[0]` gains +kp·Δ, where kp is the actuator's own `gainprm[0]`. (Corrected before
+  registration: the design first said −kp·Δ, which would shift the equilibrium backward. For
+  a position servo the equilibrium is ctrl + biasprm[0]/kp.)
 - This moves the servo equilibrium by Δ. Gain, damping, every other row and the neural
   command path are unchanged.
 - The neural channel's offset, sent through `ctrl`, adds on top as before.
