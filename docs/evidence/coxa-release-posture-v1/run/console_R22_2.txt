@@ -1,0 +1,8 @@
+R22_2: fresh CNS/physics initialization
+R22_2: 4276/20000
+R22_2: 5388/20000
+R22_2: 9155/20000
+R22_2: 12697/20000
+R22_2: 16068/20000
+R22_2: 19656/20000
+{"arm": "R22_2", "run_status": "COMPLETE", "error": null, "sha256": "b7e3a233a572b49fc880990a269299fb19d27019f520b237fb67db935440402e"}

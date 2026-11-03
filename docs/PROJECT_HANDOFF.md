@@ -1,5 +1,37 @@
 # FlyBrainUnity — local Codex handoff
 
+## Released-posture coxa test: all nulls, NO_RESCUE — 2026-11-02
+
+Preregistered (bc38189, protocol 16659830), 12 arms (R22/K/KC/KF x CNS seeds 1-3) run once,
+evaluated once; integrity I1-I7 all pass (R22_1 reproduces Step C R_ON). T_roll 567-592 ms
+(67-91 ms after release) in every arm; all differences < 20 ms with mixed signs:
+NO_CONSISTENT_ASSIST_EFFECT, NO_CONSISTENT_LOOP_EFFECT, Q_SIGN NOT_EVALUATED, NO_RESCUE
+(all as predicted). Descriptive only: loop active and sign-opposed through the fall (LH
+near bound 2-9 %), rollover direction differs by arm type (body-z y component R22 0.06-0.12,
+KC 0.17-0.20, K/KF 0.30-0.38), KF cross-leg LM hair/MN rise. CONDITIONAL status unchanged.
+Process: a chained test command let a failing lock test pass silently; cause was missing
+-text rules (fixed 117d1ac). See COXA_RELEASE_POSTURE_RESULTS.md.
+
+IMMEDIATE NEXT (user choice): the coxa coordinates cannot affect whole-body rollover with
+20 other servos released. Options: (a) a preregistered question on the descriptive
+rollover-direction difference; (b) widen the conditional set (RF/RH input gap); (c) return
+to admission coverage of other unmapped coordinates.
+
+## Released-posture coxa test: design — 2026-11-02
+
+PR #313 merged. Designed (no code/run). Constraint found: the Step C release zeroes all 22
+baseline-only actuators, including joint_LFCoxa and joint_LHCoxa, so the conditional
+channels would act on zero-gain servos. Arms per CNS seed 1-3: R22 (Step C release), K
+(release 20, keep the two coxa servos, no neural channel: assistance control), KC (K + H1
+conditional channels), KF (K + H1_FLIP); 12 arms. Integrity I1-I7 (R22_1 reproduces Step C
+R_ON; release records exact). Primary measure T_roll (first tilt > 90 deg after release).
+Labels Q_ASSIST (K vs R22), Q_NEURAL (KC vs K), Q_SIGN (KF), Q_RESCUE; 20 ms bar, all 3
+seeds. Predictions: NO_RESCUE, likely no consistent effects (exploratory).
+See COXA_RELEASE_POSTURE_V1.md.
+
+IMMEDIATE NEXT (on approval): build protocol/adapter/evaluator/tests, smoke past the
+release, commit, run 12 arms once, evaluate once.
+
 ## Coxa admission confirmation: LF/LH Coxa CONFIRMED -> CONDITIONAL — 2026-11-02
 
 Part A tier approved by the user. Preregistered (0c94284, protocol 3b97fbb8), nine arms

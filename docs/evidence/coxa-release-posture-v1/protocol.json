@@ -1,0 +1,191 @@
+{
+ "schema": "coxa-release-posture-protocol-v1",
+ "date": "2026-11-02",
+ "design": "docs/COXA_RELEASE_POSTURE_V1.md",
+ "status": "PREREGISTERED_BEFORE_ANY_ARM_RAN",
+ "question": "After the posture servos are released, does the closed hair-plate -> CNS -> coxa loop on the CONDITIONAL channels joint_LFCoxa and joint_LHCoxa change how or how fast the body rolls over, compared with a matched control that keeps the same two servos without neural input?",
+ "known_before_registration": "Step C R_OFF/R_ON and V1.2 R arms all roll over (~150 deg mean). Coxa admission V1 (CONFIRMED in held posture). A 5100-step plumbing smoke (R22_2, K_2, KC_2) verified the release events and inventories only; its output is discarded. No arm of this protocol has run past the smoke.",
+ "sources": {
+  "step_c_module": "malecns_backend.live.hair_plate_posture (Trial R_ON; release operation)",
+  "step_c_r_on": {
+   "path": "docs/evidence/hair-plate-posture-v1/run/R_ON.json.gz (local, uncommitted)",
+   "sha256": "2805dff63faa8434d189953253845715b998c7dc40489701a1cd31120d381bf4"
+  },
+  "assistance_native": "partition/model_record/neutral_record/write_rows unchanged; the 20-row variant lives in the new module",
+  "admission_protocol": {
+   "path": "docs/evidence/coxa-admission-v1/protocol.json",
+   "sha256": "3b97fbb85f160b20dbeb43e3a6a650576961437432baa7dfbb0b469a26bc1ed7"
+  },
+  "status_table": "docs/COXA_COORDINATE_STATUS.md (joint_LFCoxa, joint_LHCoxa CONDITIONAL)"
+ },
+ "candidates": {
+  "channels": [
+   "joint_LFCoxa",
+   "joint_LHCoxa"
+  ],
+  "label": "COXA_CONDITIONAL_H1",
+  "H1": {
+   "sha256": "6bf08be7d7c103cf23e251520b55a02e872ef27edef7138032edea2403e7707b",
+   "action_index": {
+    "joint_LFCoxa": 0,
+    "joint_LHCoxa": 14
+   },
+   "coordinate_sign": {
+    "joint_LFCoxa": 1,
+    "joint_LHCoxa": 1
+   }
+  },
+  "H1_FLIP": {
+   "sha256": "ee4da58b7a655e32a9955e87697b0d8d4a82ccfe6ecadc6cb32246034d4542bf",
+   "action_index": {
+    "joint_LFCoxa": 0,
+    "joint_LHCoxa": 14
+   },
+   "coordinate_sign": {
+    "joint_LFCoxa": -1,
+    "joint_LHCoxa": -1
+   }
+  },
+  "hash_rule": "sha256 of json.dumps(native(defs), sort_keys=True, separators=(',', ':')) of the two channels from coxa_hypothesis_loop.definitions(<D2 arm>, D2 channels)"
+ },
+ "release": {
+  "state_index": 5005,
+  "R22": {
+   "operation": "ZERO_FULL_SELECTED_ROWS",
+   "actuator_ids": [
+    0,
+    1,
+    2,
+    7,
+    8,
+    9,
+    13,
+    14,
+    15,
+    16,
+    20,
+    21,
+    22,
+    23,
+    28,
+    29,
+    30,
+    34,
+    35,
+    36,
+    37,
+    41
+   ],
+   "rule": "assistance authority selected rows (22), gain and bias zeroed (Step C)"
+  },
+  "K": {
+   "operation": "ZERO_SELECTED_ROWS_EXCEPT_2",
+   "actuator_ids": [
+    1,
+    2,
+    7,
+    8,
+    9,
+    13,
+    15,
+    16,
+    20,
+    21,
+    22,
+    23,
+    28,
+    29,
+    30,
+    34,
+    35,
+    36,
+    37,
+    41
+   ],
+   "kept": [
+    "joint_LFCoxa",
+    "joint_LHCoxa"
+   ],
+   "rule": "the same 22 rows minus the kept coordinates; kept rows keep their original gain and bias; after-record must equal the expected neutral record exactly"
+  }
+ },
+ "seeds": {
+  "values": [
+   1,
+   2,
+   3
+  ],
+  "mechanism": "as coxa admission V1: attach requires time 0, zero spikes and a fresh default_rng(1) state, then brain.rng = default_rng(seed)"
+ },
+ "arms": {
+  "order": [
+   "R22_1",
+   "K_1",
+   "KC_1",
+   "KF_1",
+   "R22_2",
+   "K_2",
+   "KC_2",
+   "KF_2",
+   "R22_3",
+   "K_3",
+   "KC_3",
+   "KF_3"
+  ],
+  "R22_s": "Step C R_ON release, no coxa channel",
+  "K_s": "20-row release, no coxa channel",
+  "KC_s": "20-row release + H1 candidates (create_hypothesis_session 'H1')",
+  "KF_s": "20-row release + H1_FLIP candidates"
+ },
+ "window_ms": [
+  520.0,
+  2000.0
+ ],
+ "integrity": {
+  "I1": "all 12 arms COMPLETE, 20001 samples, 4000 ticks",
+  "I2": "within each seed identical schedule and per-tick uniforms_sha256 across the four arms",
+  "I3": "R22_1 equals saved Step C R_ON in fired, uniforms_sha256, hair_delivered and qpos",
+  "I4": "every event at state 5005 with its declared operation; after_sha256 == neutral_sha256; released ids equal the declared list; kept coordinates as declared; one neutral sha per group (R22 vs K-type), and the two differ",
+  "I5": "v3 channel inventories identical to K_1 in every arm; R22/K have no hypothesis channel and never change commands 0 or 14; KC/KF have exactly the two candidates with the preregistered definition hash and label; other non-v3 commands equal K_s; |offset| <= 0.25 rad",
+  "I6": "within each seed R22 equals K in qpos and commands for samples 0..5005 and in fired up to the event time; KC/KF equal K before their first candidate command",
+  "I7": "tick-1 uniforms of K_1..K_3 pairwise different; every arm records its seed",
+  "failure": "INCONCLUSIVE_INTEGRITY, no labels"
+ },
+ "measures": {
+  "T_roll": "time (ms) of the first sample after state 5005 with world tilt (hair_plate_posture.tilt_deg) > 90 deg; none -> 2000 ms, reported censored",
+  "tilt": "window mean/peak tilt and rollover samples",
+  "descriptive": "body z axis at T_roll; candidate offsets after release (mean, max, near-bound fraction); LF/LH forward component; hair rates; coxa MN rates per leg; first physical divergence from K_s"
+ },
+ "labels": {
+  "Q_ASSIST": {
+   "diff": "T_roll(K_s) - T_roll(R22_s)",
+   "ASSIST_DELAYS": ">= +20 ms in all 3 seeds",
+   "ASSIST_HASTENS": "<= -20 ms in all 3 seeds",
+   "NO_CONSISTENT_ASSIST_EFFECT": "otherwise"
+  },
+  "Q_NEURAL": {
+   "diff": "T_roll(KC_s) - T_roll(K_s)",
+   "LOOP_DELAYS": ">= +20 ms in all 3 seeds",
+   "LOOP_HASTENS": "<= -20 ms in all 3 seeds",
+   "NO_CONSISTENT_LOOP_EFFECT": "otherwise"
+  },
+  "Q_SIGN": {
+   "evaluated": "only if Q_NEURAL is LOOP_DELAYS or LOOP_HASTENS; else NOT_EVALUATED",
+   "SIGN_SPECIFIC": "T_roll(KF_s) - T_roll(K_s) fails the same >= 20 ms same-direction test in at least 2 of 3 seeds",
+   "SIGN_INDEPENDENT": "otherwise"
+  },
+  "Q_RESCUE": {
+   "RESCUE": "KC has no post-release sample with tilt > 90 deg in any seed and K has one in every seed",
+   "NO_RESCUE": "otherwise"
+  },
+  "bar": "20 ms = 200 physics samples = 40 neural ticks; not tied to an expected outcome"
+ },
+ "predictions": "Recorded in the design doc: NO_RESCUE; NO_CONSISTENT_ASSIST_EFFECT likely; NO_CONSISTENT_LOOP_EFFECT (low confidence, exploratory).",
+ "interpretation_limits": [
+  "Partial release: the 20 v3 position servos remain; not independent balance or gait.",
+  "Offset-on-servo actuation; K adds position assistance at two joints by design and is the matched control.",
+  "Three seeds vary only stochastic sensory timing.",
+  "Channels are CONDITIONAL (COXA_CONDITIONAL_H1), not admitted; 20/42 admitted, +2 conditional."
+ ],
+ "single_run": "Executed once after protocol, code and tests are committed; no reruns, no rule changes."
+}
