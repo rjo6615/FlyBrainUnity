@@ -1,0 +1,128 @@
+{
+ "status": "INTEGRITY_ACCEPTED",
+ "checks": {
+  "I1_complete": true,
+  "I2_common_rng_within_seed": true,
+  "I3_reproduction": true,
+  "I4_displacement_verified": true,
+  "I5_channels_bounds": true,
+  "I6_prefix_within_seed": true,
+  "I7_seeds_applied": true
+ },
+ "p0_hair_rate_hz": {
+  "4": {
+   "LM": 117.7588873501479,
+   "RM": 105.21834945426245
+  },
+  "5": {
+   "LM": 119.64020373205882,
+   "RM": 110.35901505014543
+  },
+  "6": {
+   "LM": 119.87255840360699,
+   "RM": 99.20584507047347
+  }
+ },
+ "labels": {
+  "joint_LMCoxa": "CONFIRMED",
+  "joint_RMCoxa": "CONFIRMED"
+ },
+ "coordinate_status": {
+  "joint_LMCoxa": "CONDITIONAL",
+  "joint_RMCoxa": "CONDITIONAL"
+ },
+ "per_seed": {
+  "joint_LMCoxa": {
+   "4": {
+    "d_pc": -0.032615561970457646,
+    "d_pf": 0.0888518502002319,
+    "passed": true,
+    "hair_p0": 117.7588873501479,
+    "hair_pc": 56.01094440024562,
+    "hair_pf": 119.71331971537084,
+    "pre_d_pc": 0.046321090152566045,
+    "pre_d_pf": 0.009846205238207693
+   },
+   "5": {
+    "d_pc": -0.03084981365182271,
+    "d_pf": 0.09599331274736159,
+    "passed": true,
+    "hair_p0": 119.64020373205882,
+    "hair_pc": 63.69431603132109,
+    "hair_pf": 120.0,
+    "pre_d_pc": -0.0013074905022424574,
+    "pre_d_pf": -0.0056324996295062935
+   },
+   "6": {
+    "d_pc": -0.04129130351928895,
+    "d_pf": 0.09268487780176873,
+    "passed": true,
+    "hair_p0": 119.87255840360699,
+    "hair_pc": 47.8083033677209,
+    "hair_pf": 120.0,
+    "pre_d_pc": 0.0034492670660778713,
+    "pre_d_pf": -0.0011818458706294131
+   }
+  },
+  "joint_RMCoxa": {
+   "4": {
+    "d_pc": -0.04567656605898271,
+    "d_pf": 0.17362002471741728,
+    "passed": true,
+    "hair_p0": 105.21834945426245,
+    "hair_pc": 8.60290797966618,
+    "hair_pf": 116.10977996222192,
+    "pre_d_pc": 0.017795475252516978,
+    "pre_d_pf": -0.001386126680887667
+   },
+   "5": {
+    "d_pc": -0.03919998391509186,
+    "d_pf": 0.18533769553822838,
+    "passed": true,
+    "hair_p0": 110.35901505014543,
+    "hair_pc": 14.063298769674553,
+    "hair_pf": 120.0,
+    "pre_d_pc": -0.001270609791728411,
+    "pre_d_pf": 0.0255082198722187
+   },
+   "6": {
+    "d_pc": -0.03190966003010259,
+    "d_pf": 0.1925205435348995,
+    "passed": true,
+    "hair_p0": 99.20584507047347,
+    "hair_pc": 12.529869437582457,
+    "hair_pf": 120.0,
+    "pre_d_pc": -0.006504698910561053,
+    "pre_d_pf": 0.0032627550677571254
+   }
+  }
+ },
+ "flags": {
+  "joint_LMCoxa": {
+   "BOUND_LIMITED": false,
+   "near_bound_fraction": {
+    "PC_4": 0.0,
+    "PF_4": 0.0,
+    "PC_5": 0.0,
+    "PF_5": 0.0,
+    "PC_6": 0.0,
+    "PF_6": 0.0
+   },
+   "ROLLOVER": false,
+   "NO_DRIVE": false
+  },
+  "joint_RMCoxa": {
+   "BOUND_LIMITED": false,
+   "near_bound_fraction": {
+    "PC_4": 0.0,
+    "PF_4": 0.00033783783783783786,
+    "PC_5": 0.0,
+    "PF_5": 0.0,
+    "PC_6": 0.0,
+    "PF_6": 0.0
+   },
+   "ROLLOVER": false,
+   "NO_DRIVE": false
+  }
+ }
+}

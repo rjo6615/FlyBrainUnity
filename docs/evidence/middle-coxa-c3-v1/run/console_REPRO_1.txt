@@ -1,0 +1,7 @@
+REPRO_1: fresh CNS/physics initialization
+REPRO_1: 4416/20000
+REPRO_1: 5661/20000
+REPRO_1: 10175/20000
+REPRO_1: 14545/20000
+REPRO_1: 19026/20000
+{"arm": "REPRO_1", "run_status": "COMPLETE", "error": null, "sha256": "a3ac3abfc795f7e439105ec65cc964949dbbbd0ce735bca0d47ef0534346c216"}

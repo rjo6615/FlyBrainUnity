@@ -1,8 +1,11 @@
 # Middle-leg coxa C3 confirmation on new seeds — design (V1)
 
-Designed 2026-11-03, after the C2 step was merged (PR #316). This is the design only. No
-code has been written and nothing has run. The protocol, code and tests will be
-hash-locked and committed before any arm runs.
+Designed 2026-11-03, after the C2 step was merged (PR #316).
+
+**Status:** preregistered in 3c677c2 (protocol sha dd268b80…), run once and evaluated once:
+INTEGRITY_ACCEPTED, and REPRO_1 matched C2 exactly. `joint_LMCoxa` and `joint_RMCoxa` are
+both **CONFIRMED** and now **CONDITIONAL**. See `MIDDLE_COXA_C3_CONFIRMATION_RESULTS.md`.
+The design below is unchanged.
 
 ## Question
 
