@@ -1,5 +1,17 @@
 # FlyBrainUnity — local Codex handoff
 
+## Middle-leg coxa C3 confirmation: design — 2026-11-03
+
+PR #316 merged. Designed (no code/run). C3 for joint_LMCoxa / joint_RMCoxa under Part A:
+identical C2 context (A_ON, SHIFT_SERVO_EQUILIBRIUM at 5005, same Delta, H1/H1_FLIP by
+hash), never-run CNS seeds 4-6: P0/PC/PF x 3 + REPRO_1 (must equal C2 P0_1 exactly) = 10
+arms. Same rule (PC df <= -0.02 and PF df >= +0.02). CONFIRMED 3/3 -> CONDITIONAL;
+PARTIAL -> stays C2 passed; NOT_CONFIRMED -> NOT_SUPPORTED. Reports pre-displacement
+offsets and df (400-500 ms) for the C2 timing caveat. See MIDDLE_COXA_C3_CONFIRMATION_V1.md.
+
+IMMEDIATE NEXT (on approval): build protocol/adapter/evaluator/tests, smoke, commit, run 10
+arms once (~50 min), evaluate once.
+
 ## Middle-leg coxa displacement test: LM/RM Coxa C2_PASSED 3/3 — 2026-11-03
 
 Preregistered (f91fd74, protocol 9854e0af), nine arms (P0/PC/PF x CNS seeds 1-3) run once,
