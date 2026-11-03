@@ -1,5 +1,20 @@
 # FlyBrainUnity — local Codex handoff
 
+## RF hair-plate cross-connectome check: INCONCLUSIVE_INTEGRITY — 2026-11-03
+
+Preregistered (f1a147e, protocol 856fe70b), run once (data only, seconds). I1, I2, I4, I5
+pass (MaleCNS reproduces Step A 7/5/12/11/8/9); I3 fails: 36/166 BANC SNpp45 rows (21.7 %)
+outside the nerve rule (32 on the prothoracic leg nerve, 22 right / 10 left). No labels.
+Diagnosis (post hoc): BANC `SNpp45` is a broader type than MaleCNS (T2 48/37 vs 12/11) and
+its T1 nerve split decides the sign of any count difference (primary 8 L/4 R; all
+prothoracic 22 L/26 R). Type-name counting across connectomes is invalid here; a V2 would
+need neuron-level identity (BANC malecns_match/manc_match or connectivity). joint_RFCoxa
+stays BLOCKED_BY_INPUT; anatomy vs reconstruction still open.
+See RF_HAIR_PLATE_CROSS_CONNECTOME_RESULTS.md.
+
+IMMEDIATE NEXT (user choice): (a) design a V2 using neuron-level matches; (b) leave RF and
+move to other unmapped coordinates.
+
 ## RF hair-plate cross-connectome check: design — 2026-11-03
 
 PR #314 merged. Designed (no code/run; no BANC per-leg tally inspected). joint_RFCoxa is

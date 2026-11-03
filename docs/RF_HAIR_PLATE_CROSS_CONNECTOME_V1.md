@@ -1,9 +1,12 @@
 # Right-front hair-plate deficit: cross-connectome check against BANC — design (V1)
 
-Designed 2026-11-03, after the released-posture test was merged (PR #314). This document
-is the design only. No code has been written, and no per-leg tally of BANC hair plates has
-been made or looked at. The protocol, code and tests will be hash-locked and committed
-before the single run.
+Designed 2026-11-03, after the released-posture test was merged (PR #314).
+
+**Status:** preregistered in f1a147e (protocol sha 856fe70b…) and run once:
+INCONCLUSIVE_INTEGRITY (I3: 21.7 % of BANC SNpp45 rows were excluded). No labels were
+assigned. The run also showed that the assumption that BANC `SNpp45` equals MaleCNS
+`SNpp45` does not hold. See `RF_HAIR_PLATE_CROSS_CONNECTOME_RESULTS.md`. The design below
+is unchanged.
 
 ## Why this question
 

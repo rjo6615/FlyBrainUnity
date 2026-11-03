@@ -1,5 +1,15 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-03: RF hair-plate BANC check run: INCONCLUSIVE_INTEGRITY (21.7 % excluded;
+BANC SNpp45 type broader than MaleCNS). No labels; anatomy vs reconstruction still open.
+
+```text
+RF input deficit              [BANC check INCONCLUSIVE (type names not equivalent); V2 needs neuron-level matches]
+Released-posture coxa test    [NO_RESCUE; no consistent assist or loop effect on T_roll (3 seeds)]
+Motor coverage                [##########-----------] 20/42 admitted (+2 conditional, counted separately)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-03: RF hair-plate cross-connectome check designed (BANC, data only). Not run.
 
 ```text

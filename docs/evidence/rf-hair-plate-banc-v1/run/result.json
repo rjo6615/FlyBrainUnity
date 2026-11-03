@@ -1,0 +1,816 @@
+{
+ "schema": "rf-hair-plate-banc-result-v1",
+ "protocol_sha256": "856fe70bdf0f87eb12d6c0d7cea8c755c44562237e413a6ae57c63fbeac770a5",
+ "banc_sha256": "86ccf5df0c67419f8c5f43e93a7ed38d23a080e9f7fde26737290252f3780098",
+ "evaluation": {
+  "status": "INCONCLUSIVE_INTEGRITY",
+  "checks": {
+   "I1_sources": true,
+   "I2_typing": true,
+   "I3_exclusions_bounded": false,
+   "I4_malecns_reproduction": true,
+   "I5_size_fields": true
+  },
+  "banc": {
+   "per_leg": {
+    "T1 left": {
+     "n": 8,
+     "median": 1346.35,
+     "sum": 10630.32,
+     "values": [
+      1081.48,
+      1120.12,
+      1153.89,
+      1290.89,
+      1401.81,
+      1413.11,
+      1580.79,
+      1588.23
+     ]
+    },
+    "T1 right": {
+     "n": 4,
+     "median": 1027.3,
+     "sum": 4396.28,
+     "values": [
+      1001.76,
+      1006.49,
+      1048.11,
+      1339.92
+     ]
+    },
+    "T2 left": {
+     "n": 48,
+     "median": 568.065,
+     "sum": 29862.989999999998,
+     "values": [
+      80.98,
+      205.27,
+      268.39,
+      287.55,
+      318.53,
+      362.63,
+      363.24,
+      369.17,
+      375.32,
+      407.35,
+      420.82,
+      428.91,
+      431.81,
+      433.01,
+      439.19,
+      445.29,
+      463.72,
+      486.64,
+      486.82,
+      523.52,
+      533.2,
+      545.27,
+      555.05,
+      558.68,
+      577.45,
+      590.2,
+      606.87,
+      625.35,
+      652.89,
+      665.76,
+      696.9,
+      720.79,
+      728.73,
+      742.72,
+      766.85,
+      815.4,
+      840.45,
+      850.81,
+      892.59,
+      924.03,
+      953.7,
+      960.74,
+      987.68,
+      988.87,
+      1061.6,
+      1071.83,
+      1136.62,
+      1213.8
+     ]
+    },
+    "T2 right": {
+     "n": 37,
+     "median": 768.14,
+     "sum": 28474.58,
+     "values": [
+      303.58,
+      364.3,
+      395.89,
+      421.52,
+      447.9,
+      479.37,
+      502.76,
+      510.13,
+      570.32,
+      601.58,
+      640.54,
+      644.35,
+      656.83,
+      672.69,
+      683.34,
+      719.06,
+      744.12,
+      751.66,
+      768.14,
+      801.41,
+      805.41,
+      828.5,
+      834.95,
+      845.68,
+      862.32,
+      870.44,
+      902.34,
+      991.65,
+      996.08,
+      997.27,
+      1040.44,
+      1047.8,
+      1068.46,
+      1109.13,
+      1159.27,
+      1177.24,
+      1258.11
+     ]
+    },
+    "T3 left": {
+     "n": 24,
+     "median": 903.56,
+     "sum": 22632.8,
+     "values": [
+      573.54,
+      757.35,
+      761.57,
+      773.91,
+      785.76,
+      836.05,
+      868.14,
+      868.2,
+      868.5,
+      887.9,
+      889.27,
+      903.3,
+      903.82,
+      911.07,
+      919.31,
+      983.57,
+      997.05,
+      1054.35,
+      1055.3,
+      1057.0,
+      1098.71,
+      1186.39,
+      1213.95,
+      1478.79
+     ]
+    },
+    "T3 right": {
+     "n": 9,
+     "median": 974.4,
+     "sum": 7308.12,
+     "values": [
+      359.4,
+      380.05,
+      458.97,
+      462.05,
+      974.4,
+      1134.8,
+      1152.38,
+      1181.73,
+      1204.34
+     ]
+    }
+   },
+   "segments": {
+    "T1": {
+     "count_diff": -4,
+     "median_ratio": 0.7630259590745349,
+     "sum_ratio": 0.413560457258107
+    },
+    "T2": {
+     "count_diff": -11,
+     "median_ratio": 1.3522044132273594,
+     "sum_ratio": 0.9535073346640777
+    },
+    "T3": {
+     "count_diff": -15,
+     "median_ratio": 1.0784009916330959,
+     "sum_ratio": 0.32289950867767137
+    }
+   },
+   "total_snpp45": 166,
+   "volume_median_nm3": {
+    "T1 left": 19867814656.0,
+    "T1 right": 14794874880.0,
+    "T2 left": 9375434496.0,
+    "T2 right": 12948249344.0,
+    "T3 left": 24886317056.0,
+    "T3 right": 17979537152.0
+   },
+   "t1_rows": [
+    {
+     "root_id": "720575941577076072",
+     "nerve": "left_ventral_prothoracic_nerve",
+     "side": "left",
+     "proofread": "TRUE",
+     "status": "FANC_ALT_MATCH,HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE,SENSORY_WITH_NUCLEUS_REAL",
+     "cable_um": 1580.79,
+     "volume_nm3": 26041831168.0
+    },
+    {
+     "root_id": "720575941432016009",
+     "nerve": "left_ventral_prothoracic_nerve",
+     "side": "left",
+     "proofread": "TRUE",
+     "status": "HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE,SENSORY_WITH_NUCLEUS_REAL",
+     "cable_um": 1413.11,
+     "volume_nm3": 21549317888.0
+    },
+    {
+     "root_id": "720575941442197595",
+     "nerve": "left_ventral_prothoracic_nerve",
+     "side": "left",
+     "proofread": "TRUE",
+     "status": "HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE,SENSORY_WITH_NUCLEUS_REAL",
+     "cable_um": 1588.23,
+     "volume_nm3": 13829341952.0
+    },
+    {
+     "root_id": "720575941563170984",
+     "nerve": "left_ventral_prothoracic_nerve",
+     "side": "left",
+     "proofread": "TRUE",
+     "status": "HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE",
+     "cable_um": 1153.89,
+     "volume_nm3": 14762887680.0
+    },
+    {
+     "root_id": "720575941618732757",
+     "nerve": "left_ventral_prothoracic_nerve",
+     "side": "left",
+     "proofread": "TRUE",
+     "status": "HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE,SENSORY_WITH_NUCLEUS_REAL",
+     "cable_um": 1290.89,
+     "volume_nm3": 20318983424.0
+    },
+    {
+     "root_id": "720575941705127898",
+     "nerve": "left_ventral_prothoracic_nerve",
+     "side": "left",
+     "proofread": "TRUE",
+     "status": "FANC_ALT_MATCH,HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE,SENSORY_WITH_NUCLEUS_REAL",
+     "cable_um": 1081.48,
+     "volume_nm3": 19416645888.0
+    },
+    {
+     "root_id": "720575941691438299",
+     "nerve": "left_ventral_prothoracic_nerve",
+     "side": "left",
+     "proofread": "TRUE",
+     "status": "FANC_ALT_MATCH,HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE",
+     "cable_um": 1120.12,
+     "volume_nm3": 20489537792.0
+    },
+    {
+     "root_id": "720575941532268747",
+     "nerve": "left_ventral_prothoracic_nerve",
+     "side": "left",
+     "proofread": "TRUE",
+     "status": "HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE,SENSORY_WITH_NUCLEUS_REAL",
+     "cable_um": 1401.81,
+     "volume_nm3": 10268809216.0
+    },
+    {
+     "root_id": "720575941605475774",
+     "nerve": "right_ventral_prothoracic_nerve",
+     "side": "right",
+     "proofread": "TRUE",
+     "status": "HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE",
+     "cable_um": 1006.49,
+     "volume_nm3": 6408597760.0
+    },
+    {
+     "root_id": "720575941525329410",
+     "nerve": "right_ventral_prothoracic_nerve",
+     "side": "right",
+     "proofread": "TRUE",
+     "status": "HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE",
+     "cable_um": 1001.76,
+     "volume_nm3": 9532177664.0
+    },
+    {
+     "root_id": "720575941487662989",
+     "nerve": "right_ventral_prothoracic_nerve",
+     "side": "right",
+     "proofread": "TRUE",
+     "status": "HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE",
+     "cable_um": 1048.11,
+     "volume_nm3": 20057572096.0
+    },
+    {
+     "root_id": "720575941556634625",
+     "nerve": "right_ventral_prothoracic_nerve",
+     "side": "right",
+     "proofread": "TRUE",
+     "status": "HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE",
+     "cable_um": 1339.92,
+     "volume_nm3": 27799054080.0
+    }
+   ],
+   "excluded": [
+    {
+     "root_id": "720575941438416172",
+     "nerve": "left_dorsal_prothoracic_nerve",
+     "side": "left",
+     "proofread": "TRUE",
+     "status": "HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE,SENSORY_WITH_NUCLEUS_REAL",
+     "cable_um": 1704.85,
+     "volume_nm3": 11236122880.0
+    },
+    {
+     "root_id": "720575941550009889",
+     "nerve": "left_prothoracic_accessory_nerve",
+     "side": "left",
+     "proofread": "TRUE",
+     "status": "HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE",
+     "cable_um": 1235.69,
+     "volume_nm3": 23532952064.0
+    },
+    {
+     "root_id": "720575941567062375",
+     "nerve": "left_prothoracic_accessory_nerve",
+     "side": "left",
+     "proofread": "TRUE",
+     "status": "HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE",
+     "cable_um": 1157.44,
+     "volume_nm3": 13054102016.0
+    },
+    {
+     "root_id": "720575941444841130",
+     "nerve": "right_prothoracic_leg_nerve",
+     "side": "right",
+     "proofread": "TRUE",
+     "status": "fanc_ALT_MATCH,FANC_ALT_MATCH,HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE",
+     "cable_um": 982.9,
+     "volume_nm3": 5450387200.0
+    },
+    {
+     "root_id": "720575941431833519",
+     "nerve": "right_prothoracic_leg_nerve",
+     "side": "right",
+     "proofread": "TRUE",
+     "status": "FANC_ALT_MATCH,HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE",
+     "cable_um": 919.03,
+     "volume_nm3": 22452465408.0
+    },
+    {
+     "root_id": "720575941662116732",
+     "nerve": "left_prothoracic_leg_nerve",
+     "side": "left",
+     "proofread": "TRUE",
+     "status": null,
+     "cable_um": 766.08,
+     "volume_nm3": 7076493056.0
+    },
+    {
+     "root_id": "720575941663849596",
+     "nerve": "right_prothoracic_leg_nerve",
+     "side": "right",
+     "proofread": "TRUE",
+     "status": "HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,TRACING_ISSUE_SENSORY",
+     "cable_um": 705.91,
+     "volume_nm3": 8246771712.0
+    },
+    {
+     "root_id": "720575941461950163",
+     "nerve": "right_prothoracic_leg_nerve",
+     "side": "right",
+     "proofread": "TRUE",
+     "status": "SENT_TO_AELYSIA_TRACING,IN_NERVE,IN_VIGNETTE",
+     "cable_um": 1190.51,
+     "volume_nm3": 20600069888.0
+    },
+    {
+     "root_id": "720575941557956772",
+     "nerve": "right_prothoracic_leg_nerve",
+     "side": "right",
+     "proofread": "TRUE",
+     "status": "FANC_ALT_MATCH,HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE",
+     "cable_um": 984.04,
+     "volume_nm3": 22440152064.0
+    },
+    {
+     "root_id": "720575941538267107",
+     "nerve": "right_prothoracic_leg_nerve",
+     "side": "right",
+     "proofread": "TRUE",
+     "status": "HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE",
+     "cable_um": 948.11,
+     "volume_nm3": 21348907008.0
+    },
+    {
+     "root_id": "720575941478415681",
+     "nerve": "right_prothoracic_leg_nerve",
+     "side": "right",
+     "proofread": "TRUE",
+     "status": "HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE",
+     "cable_um": 1061.9,
+     "volume_nm3": 16933221888.0
+    },
+    {
+     "root_id": "720575941463174544",
+     "nerve": "right_prothoracic_leg_nerve",
+     "side": "right",
+     "proofread": "TRUE",
+     "status": "FANC_ALT_MATCH,HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE",
+     "cable_um": 991.49,
+     "volume_nm3": 37234375424.0
+    },
+    {
+     "root_id": "720575941598954908",
+     "nerve": "right_prothoracic_leg_nerve",
+     "side": "right",
+     "proofread": "TRUE",
+     "status": "FANC_ALT_MATCH,HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE",
+     "cable_um": 860.6,
+     "volume_nm3": 30276366080.0
+    },
+    {
+     "root_id": "720575941546902633",
+     "nerve": "right_prothoracic_leg_nerve",
+     "side": "right",
+     "proofread": "TRUE",
+     "status": "HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,TRACING_ISSUE_SENSORY",
+     "cable_um": 476.29,
+     "volume_nm3": 10005877760.0
+    },
+    {
+     "root_id": "720575941506672956",
+     "nerve": "left_prothoracic_leg_nerve",
+     "side": "left",
+     "proofread": "TRUE",
+     "status": "HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,TRACING_ISSUE_SENSORY",
+     "cable_um": 894.52,
+     "volume_nm3": 17932345856.0
+    },
+    {
+     "root_id": "720575941550652415",
+     "nerve": "left_prothoracic_leg_nerve",
+     "side": "left",
+     "proofread": "TRUE",
+     "status": null,
+     "cable_um": 438.46,
+     "volume_nm3": 3080919552.0
+    },
+    {
+     "root_id": "720575941402626595",
+     "nerve": "left_prothoracic_leg_nerve",
+     "side": "left",
+     "proofread": "TRUE",
+     "status": "IN_NERVE",
+     "cable_um": 702.03,
+     "volume_nm3": 2101719808.0
+    },
+    {
+     "root_id": "720575941545205253",
+     "nerve": "right_prothoracic_leg_nerve",
+     "side": "right",
+     "proofread": "TRUE",
+     "status": "HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,TRACING_ISSUE_SENSORY",
+     "cable_um": 611.62,
+     "volume_nm3": 22845573376.0
+    },
+    {
+     "root_id": "720575941509287553",
+     "nerve": "left_prothoracic_leg_nerve",
+     "side": "left",
+     "proofread": "TRUE",
+     "status": "FANC_ALT_MATCH,HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE",
+     "cable_um": 1351.84,
+     "volume_nm3": 15926257408.0
+    },
+    {
+     "root_id": "720575941499419977",
+     "nerve": "right_prothoracic_leg_nerve",
+     "side": "right",
+     "proofread": "TRUE",
+     "status": "HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,TRACING_ISSUE_SENSORY",
+     "cable_um": 437.02,
+     "volume_nm3": 11296291072.0
+    },
+    {
+     "root_id": "720575941542848604",
+     "nerve": "right_prothoracic_leg_nerve",
+     "side": "right",
+     "proofread": "TRUE",
+     "status": "HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,TRACING_ISSUE_SENSORY",
+     "cable_um": 506.98,
+     "volume_nm3": 6451865088.0
+    },
+    {
+     "root_id": "720575941689339510",
+     "nerve": "right_prothoracic_leg_nerve",
+     "side": "right",
+     "proofread": "TRUE",
+     "status": "FANC_ALT_MATCH,HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE",
+     "cable_um": 1060.53,
+     "volume_nm3": 22607226112.0
+    },
+    {
+     "root_id": "720575941495678846",
+     "nerve": "left_prothoracic_leg_nerve",
+     "side": "left",
+     "proofread": "TRUE",
+     "status": "HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE",
+     "cable_um": 885.06,
+     "volume_nm3": 32855148544.0
+    },
+    {
+     "root_id": "720575941557736356",
+     "nerve": "left_prothoracic_leg_nerve",
+     "side": "left",
+     "proofread": "TRUE",
+     "status": "FANC_ALT_MATCH,HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,TRACING_ISSUE_SENSORY",
+     "cable_um": 829.7,
+     "volume_nm3": 11252705792.0
+    },
+    {
+     "root_id": "720575941593424424",
+     "nerve": "right_prothoracic_leg_nerve",
+     "side": "right",
+     "proofread": "TRUE",
+     "status": "HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,TRACING_ISSUE_SENSORY",
+     "cable_um": 646.4,
+     "volume_nm3": 33913381632.0
+    },
+    {
+     "root_id": "720575941414263953",
+     "nerve": "left_prothoracic_accessory_nerve",
+     "side": "left",
+     "proofread": "TRUE",
+     "status": "fanc_ALT_MATCH,FANC_ALT_MATCH,HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE",
+     "cable_um": 1107.99,
+     "volume_nm3": 9944584960.0
+    },
+    {
+     "root_id": "720575941628366649",
+     "nerve": "right_prothoracic_leg_nerve",
+     "side": "right",
+     "proofread": "TRUE",
+     "status": "HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,TRACING_ISSUE_SENSORY",
+     "cable_um": 493.33,
+     "volume_nm3": 16756611072.0
+    },
+    {
+     "root_id": "720575941732907819",
+     "nerve": "right_prothoracic_leg_nerve",
+     "side": "right",
+     "proofread": "TRUE",
+     "status": "HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,TRACING_ISSUE_SENSORY",
+     "cable_um": 841.33,
+     "volume_nm3": 25463610880.0
+    },
+    {
+     "root_id": "720575941626613817",
+     "nerve": "right_prothoracic_leg_nerve",
+     "side": "right",
+     "proofread": "TRUE",
+     "status": "fanc_ALT_MATCH,FANC_ALT_MATCH,HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE",
+     "cable_um": 906.42,
+     "volume_nm3": 10752733440.0
+    },
+    {
+     "root_id": "720575941592005160",
+     "nerve": "left_prothoracic_leg_nerve",
+     "side": "left",
+     "proofread": "TRUE",
+     "status": "FANC_ALT_MATCH,HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE",
+     "cable_um": 792.65,
+     "volume_nm3": 11562621184.0
+    },
+    {
+     "root_id": "720575941480240352",
+     "nerve": "left_prothoracic_leg_nerve",
+     "side": "left",
+     "proofread": "TRUE",
+     "status": "TRACING_ISSUE",
+     "cable_um": 481.73,
+     "volume_nm3": 5107654912.0
+    },
+    {
+     "root_id": "720575941673566703",
+     "nerve": "left_prothoracic_leg_nerve",
+     "side": "left",
+     "proofread": "TRUE",
+     "status": null,
+     "cable_um": 412.02,
+     "volume_nm3": 2038117632.0
+    },
+    {
+     "root_id": "720575941540973773",
+     "nerve": "right_prothoracic_leg_nerve",
+     "side": "right",
+     "proofread": "TRUE",
+     "status": "HAS_MANUAL_ANNOTATION,IN_NERVE",
+     "cable_um": 1193.04,
+     "volume_nm3": 14673184512.0
+    },
+    {
+     "root_id": "720575941514695756",
+     "nerve": "right_prothoracic_leg_nerve",
+     "side": "right",
+     "proofread": "TRUE",
+     "status": "IN_VIGNETTE,SENT_TO_AELYSIA_TRACING",
+     "cable_um": 675.86,
+     "volume_nm3": 5463562240.0
+    },
+    {
+     "root_id": "720575941654716177",
+     "nerve": "right_prothoracic_leg_nerve",
+     "side": "right",
+     "proofread": "TRUE",
+     "status": "IN_VIGNETTE,SENT_TO_AELYSIA_TRACING",
+     "cable_um": 968.02,
+     "volume_nm3": 16984060928.0
+    },
+    {
+     "root_id": "720575941645019986",
+     "nerve": "right_prothoracic_leg_nerve",
+     "side": "right",
+     "proofread": "TRUE",
+     "status": "IN_VIGNETTE,SENT_TO_AELYSIA_TRACING",
+     "cable_um": 671.14,
+     "volume_nm3": 16366299392.0
+    }
+   ],
+   "side_disagreements": [
+    {
+     "root_id": "720575941417249308",
+     "nerve": "left_metathoracic_leg_nerve",
+     "side": null,
+     "proofread": "TRUE",
+     "status": "HAS_MANUAL_ANNOTATION,SENT_TO_AELYSIA_TRACING,IN_VIGNETTE,UNROOTED",
+     "cable_um": 919.31,
+     "volume_nm3": 19970708736.0
+    },
+    {
+     "root_id": "720575941489292240",
+     "nerve": "right_mesothoracic_leg_nerve",
+     "side": null,
+     "proofread": "TRUE",
+     "status": "IN_NERVE,UNROOTED",
+     "cable_um": 845.68,
+     "volume_nm3": 12320895232.0
+    },
+    {
+     "root_id": "720575941646167969",
+     "nerve": "right_mesothoracic_leg_nerve",
+     "side": null,
+     "proofread": "TRUE",
+     "status": "MANC_ALT_MATCH,IN_NERVE,UNROOTED",
+     "cable_um": 1068.46,
+     "volume_nm3": 12303345408.0
+    },
+    {
+     "root_id": "720575941493293488",
+     "nerve": "right_mesothoracic_leg_nerve",
+     "side": null,
+     "proofread": "TRUE",
+     "status": "IN_NERVE,UNROOTED",
+     "cable_um": 303.58,
+     "volume_nm3": 7448483072.0
+    }
+   ],
+   "t1_sensitivity_counts": {
+    "T1 left": 22,
+    "T1 right": 26
+   }
+  },
+  "malecns": {
+   "per_leg": {
+    "T1 left": {
+     "n": 7,
+     "median": 918.0,
+     "sum": 6157.0,
+     "values": [
+      10.0,
+      683.0,
+      877.0,
+      918.0,
+      1162.0,
+      1186.0,
+      1321.0
+     ]
+    },
+    "T1 right": {
+     "n": 5,
+     "median": 358.0,
+     "sum": 1771.0,
+     "values": [
+      320.0,
+      340.0,
+      358.0,
+      375.0,
+      378.0
+     ]
+    },
+    "T2 left": {
+     "n": 12,
+     "median": 526.5,
+     "sum": 7214.0,
+     "values": [
+      3.0,
+      61.0,
+      272.0,
+      343.0,
+      467.0,
+      489.0,
+      564.0,
+      676.0,
+      783.0,
+      1016.0,
+      1209.0,
+      1331.0
+     ]
+    },
+    "T2 right": {
+     "n": 11,
+     "median": 955.0,
+     "sum": 9354.0,
+     "values": [
+      115.0,
+      157.0,
+      470.0,
+      689.0,
+      818.0,
+      955.0,
+      1104.0,
+      1156.0,
+      1176.0,
+      1301.0,
+      1413.0
+     ]
+    },
+    "T3 left": {
+     "n": 8,
+     "median": 803.0,
+     "sum": 5899.0,
+     "values": [
+      211.0,
+      296.0,
+      451.0,
+      759.0,
+      847.0,
+      1012.0,
+      1034.0,
+      1289.0
+     ]
+    },
+    "T3 right": {
+     "n": 9,
+     "median": 541.0,
+     "sum": 5277.0,
+     "values": [
+      53.0,
+      80.0,
+      331.0,
+      415.0,
+      541.0,
+      672.0,
+      874.0,
+      1028.0,
+      1283.0
+     ]
+    }
+   },
+   "segments": {
+    "T1": {
+     "count_diff": -2,
+     "median_ratio": 0.3899782135076253,
+     "sum_ratio": 0.2876400844567159
+    },
+    "T2": {
+     "count_diff": -1,
+     "median_ratio": 1.8138651471984806,
+     "sum_ratio": 1.2966454116994732
+    },
+    "T3": {
+     "count_diff": 1,
+     "median_ratio": 0.6737235367372354,
+     "sum_ratio": 0.8945583997287676
+    }
+   }
+  }
+ },
+ "interpretation_limits": [
+  "Two animals only (male MaleCNS, female BANC); replication or non-replication, not population anatomy.",
+  "Size proxies differ by dataset (BANC cable length, MaleCNS output synapses); compared only as within-dataset right/left ratios.",
+  "SNpp45 neurons BANC failed to type are invisible; the sensitivity count bounds only the nerve-rule part.",
+  "Structural only; no simulation and no functional claim."
+ ]
+}
