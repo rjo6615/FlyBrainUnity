@@ -1,0 +1,11 @@
+{
+ "status": "INCONCLUSIVE_INTEGRITY",
+ "checks": {
+  "I1_sources": true,
+  "I2_typing": true,
+  "I3_exclusions_bounded": false,
+  "I4_malecns_reproduction": true,
+  "I5_size_fields": true
+ },
+ "labels": null
+}

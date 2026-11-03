@@ -1,0 +1,11 @@
+{
+ "status": "INCONCLUSIVE_INTEGRITY",
+ "checks": {
+  "I1_sources": true,
+  "I2_bridge_version": true,
+  "I3_coverage": false,
+  "I4_side_consistency": true,
+  "I5_size_field": true
+ },
+ "labels": null
+}

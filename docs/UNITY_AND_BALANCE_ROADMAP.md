@@ -1,5 +1,41 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-03: RF hair-plate BANC check V2 run: INCONCLUSIVE_INTEGRITY (coverage LF 5/7,
+RF 3/5; BANC matches are group-level or non-sensory). Thread recommended closed.
+
+```text
+RF input deficit              [V1 + V2 INCONCLUSIVE; no local neuron-level identity; RF stays BLOCKED_BY_INPUT]
+Motor coverage                [##########-----------] 20/42 admitted (+2 conditional, counted separately)
+Independent balance / gait    [not established]
+```
+
+Current2026-11-03: RF hair-plate BANC check V2 designed (neuron-level matches). Not run.
+
+```text
+RF input deficit              [V1 INCONCLUSIVE; V2 designed: follow the model's own RF/LF neurons into BANC by match]
+Motor coverage                [##########-----------] 20/42 admitted (+2 conditional, counted separately)
+Independent balance / gait    [not established]
+```
+
+Current2026-11-03: RF hair-plate BANC check run: INCONCLUSIVE_INTEGRITY (21.7 % excluded;
+BANC SNpp45 type broader than MaleCNS). No labels; anatomy vs reconstruction still open.
+
+```text
+RF input deficit              [BANC check INCONCLUSIVE (type names not equivalent); V2 needs neuron-level matches]
+Released-posture coxa test    [NO_RESCUE; no consistent assist or loop effect on T_roll (3 seeds)]
+Motor coverage                [##########-----------] 20/42 admitted (+2 conditional, counted separately)
+Independent balance / gait    [not established]
+```
+
+Current2026-11-03: RF hair-plate cross-connectome check designed (BANC, data only). Not run.
+
+```text
+RF input deficit              [designed: BANC v888 count/size check vs MaleCNS; next: build]
+Released-posture coxa test    [NO_RESCUE; no consistent assist or loop effect on T_roll (3 seeds)]
+Motor coverage                [##########-----------] 20/42 admitted (+2 conditional, counted separately)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-02: released-posture coxa test run. All labels null as predicted; every arm
 rolls over 67-91 ms after release. CONDITIONAL status unchanged.
 

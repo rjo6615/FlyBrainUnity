@@ -1,5 +1,60 @@
 # FlyBrainUnity — local Codex handoff
 
+## RF hair-plate cross-connectome check V2: INCONCLUSIVE_INTEGRITY — 2026-11-03
+
+Preregistered (8ea584a, protocol 9b1ec930), run once (data only). I1, I2 (100 %), I4
+(100 %), I5 pass; I3 fails: anchors with a BANC counterpart LF 5/7, RF 3/5 (bar 75 %). No
+labels. Post hoc: B1 (malecns_match) is group-level (9 BANC LF SNpp45 -> one MaleCNS body);
+B2 (mancBodyid -> manc_match) reaches interneurons and a motor neuron (design had no
+sensory check: flaw recorded). B1-only numbers repeat V1 (ratio ~0.74), not independent.
+Conclusion: local metadata cannot give neuron-level identity; resolving this needs BANC
+synapse tables (not local; would require a download, excluded by the local-only rule).
+Recommendation: close the RF anatomy-vs-reconstruction thread; joint_RFCoxa stays
+BLOCKED_BY_INPUT. See RF_HAIR_PLATE_CROSS_CONNECTOME_V2_RESULTS.md.
+
+IMMEDIATE NEXT (user choice): move to other unmapped coordinates (e.g. the four
+middle/hind Tarsus1 target mappings or the LF/LH coxa roll/yaw components).
+
+## RF hair-plate cross-connectome check V2 (neuron match): design — 2026-11-03
+
+Designed (no code/run; no anchor looked up). Anchors: the model's own MaleCNS T1 SNpp45
+neurons (7 L, 5 R; 821165 reported). Bridges: BANC malecns_match == anchor body ID (B1);
+BANC manc_match contains the anchor's mancBodyid (B2); union, distinct root_id. Integrity:
+sources + Step A counts, >= 90 % BANC malecns_match IDs exist in v1.0 annotations, >= 75 %
+anchors matched per side, >= 80 % side-consistent counterparts, cable present. Labels and
+bars copied unchanged from V1 (Q_COUNT, Q_SIZE, Q_RF); Q_SIZE is the informative one
+(count is matching-bounded). V1 diagnostics seen beforehand are disclosed.
+See RF_HAIR_PLATE_CROSS_CONNECTOME_V2.md.
+
+IMMEDIATE NEXT (on approval): build protocol/code/tests, commit, run once (seconds).
+
+## RF hair-plate cross-connectome check: INCONCLUSIVE_INTEGRITY — 2026-11-03
+
+Preregistered (f1a147e, protocol 856fe70b), run once (data only, seconds). I1, I2, I4, I5
+pass (MaleCNS reproduces Step A 7/5/12/11/8/9); I3 fails: 36/166 BANC SNpp45 rows (21.7 %)
+outside the nerve rule (32 on the prothoracic leg nerve, 22 right / 10 left). No labels.
+Diagnosis (post hoc): BANC `SNpp45` is a broader type than MaleCNS (T2 48/37 vs 12/11) and
+its T1 nerve split decides the sign of any count difference (primary 8 L/4 R; all
+prothoracic 22 L/26 R). Type-name counting across connectomes is invalid here; a V2 would
+need neuron-level identity (BANC malecns_match/manc_match or connectivity). joint_RFCoxa
+stays BLOCKED_BY_INPUT; anatomy vs reconstruction still open.
+See RF_HAIR_PLATE_CROSS_CONNECTOME_RESULTS.md.
+
+IMMEDIATE NEXT (user choice): (a) design a V2 using neuron-level matches; (b) leave RF and
+move to other unmapped coordinates.
+
+## RF hair-plate cross-connectome check: design — 2026-11-03
+
+PR #314 merged. Designed (no code/run; no BANC per-leg tally inspected). joint_RFCoxa is
+BLOCKED_BY_INPUT because MaleCNS RF SNpp45 neurons are fewer (5 vs 7) and much smaller;
+anatomy vs reconstruction was left open twice. The committed BANC v888 metadata (86ccf5df,
+distal-tarsus provenance) types SNpp45 with nerve, side and cable length: local only, no
+download. Same nerve rule as Step A. Labels Q_COUNT (d = n_RF - n_LF; <= -2 replicated,
+|d| <= 1 symmetric), Q_SIZE (median cable ratio; <= 0.67 replicated, 0.85-1.18 symmetric),
+Q_RF overall. No weights change from any outcome. See RF_HAIR_PLATE_CROSS_CONNECTOME_V1.md.
+
+IMMEDIATE NEXT (on approval): build protocol/code/tests, commit, run once (seconds).
+
 ## Released-posture coxa test: all nulls, NO_RESCUE — 2026-11-02
 
 Preregistered (bc38189, protocol 16659830), 12 arms (R22/K/KC/KF x CNS seeds 1-3) run once,

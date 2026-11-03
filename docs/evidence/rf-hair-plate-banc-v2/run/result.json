@@ -1,0 +1,1287 @@
+{
+ "schema": "rf-hair-plate-banc-result-v2",
+ "protocol_sha256": "9b1ec93055f1a6a6e32461fb6db79b3c1d482703849441e5aed361b2b3dbb302",
+ "banc_sha256": "86ccf5df0c67419f8c5f43e93a7ed38d23a080e9f7fde26737290252f3780098",
+ "evaluation": {
+  "status": "INCONCLUSIVE_INTEGRITY",
+  "checks": {
+   "I1_sources": true,
+   "I2_bridge_version": true,
+   "I3_coverage": false,
+   "I4_side_consistency": true,
+   "I5_size_field": true
+  },
+  "bridge_version_fraction": 1.0,
+  "anchors": {
+   "T3 left": [
+    804317,
+    808380,
+    812908,
+    819326,
+    821064,
+    836247,
+    856036,
+    1074160161
+   ],
+   "T2 left": [
+    804460,
+    806226,
+    806918,
+    809024,
+    811747,
+    812090,
+    828976,
+    842203,
+    857165,
+    909393,
+    1083604933,
+    1387178136
+   ],
+   "T1 left": [
+    804975,
+    813083,
+    816234,
+    860788,
+    904779,
+    908177,
+    1110706007
+   ],
+   "T3 right": [
+    806572,
+    809505,
+    810973,
+    818438,
+    829388,
+    833354,
+    908739,
+    1055052133,
+    1071635070
+   ],
+   "T2 right": [
+    806962,
+    807933,
+    808641,
+    810052,
+    811145,
+    812847,
+    814188,
+    817320,
+    818516,
+    820418,
+    1471062202
+   ],
+   "T1 right": [
+    815705,
+    819536,
+    912106,
+    1310068700,
+    1323625268
+   ]
+  },
+  "per_anchor": {
+   "804317": {
+    "manc_body_id": 21398,
+    "counterparts": [
+     {
+      "root_id": "720575941350471472",
+      "side": "left",
+      "cell_type": "IN13A053",
+      "nerve": null,
+      "proofread": "TRUE",
+      "cable_um": 1298.33,
+      "bridges": [
+       "B2"
+      ]
+     }
+    ]
+   },
+   "804460": {
+    "manc_body_id": 76087,
+    "counterparts": [
+     {
+      "root_id": "720575941457848301",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_mesothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 987.68,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941470392797",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_mesothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 1061.6,
+      "bridges": [
+       "B2"
+      ]
+     },
+     {
+      "root_id": "720575941525943885",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_mesothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 1136.62,
+      "bridges": [
+       "B2"
+      ]
+     }
+    ]
+   },
+   "804975": {
+    "manc_body_id": 26796,
+    "counterparts": [
+     {
+      "root_id": "720575941689867416",
+      "side": "left",
+      "cell_type": "IN20A.22A038",
+      "nerve": null,
+      "proofread": "TRUE",
+      "cable_um": 1474.61,
+      "bridges": [
+       "B2"
+      ]
+     }
+    ]
+   },
+   "806226": {
+    "manc_body_id": null,
+    "counterparts": [
+     {
+      "root_id": "720575941478232350",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_mesothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 696.9,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941590959159",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_mesothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 953.7,
+      "bridges": [
+       "B1"
+      ]
+     }
+    ]
+   },
+   "806572": {
+    "manc_body_id": 17588,
+    "counterparts": []
+   },
+   "806918": {
+    "manc_body_id": 13533,
+    "counterparts": [
+     {
+      "root_id": "720575941483722694",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_mesothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 606.87,
+      "bridges": [
+       "B2"
+      ]
+     },
+     {
+      "root_id": "720575941433052887",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_mesothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 545.27,
+      "bridges": [
+       "B2"
+      ]
+     },
+     {
+      "root_id": "720575941537488616",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_mesothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 420.82,
+      "bridges": [
+       "B2"
+      ]
+     }
+    ]
+   },
+   "806962": {
+    "manc_body_id": 17153,
+    "counterparts": [
+     {
+      "root_id": "720575941481541762",
+      "side": "right",
+      "cell_type": "SNpp45",
+      "nerve": "right_mesothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 997.27,
+      "bridges": [
+       "B1"
+      ]
+     }
+    ]
+   },
+   "807933": {
+    "manc_body_id": 41491,
+    "counterparts": [
+     {
+      "root_id": "720575941634325947",
+      "side": "right",
+      "cell_type": "SNpp45",
+      "nerve": "right_mesothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 1109.13,
+      "bridges": [
+       "B2"
+      ]
+     },
+     {
+      "root_id": "720575941446265770",
+      "side": "right",
+      "cell_type": "SNpp45",
+      "nerve": "right_mesothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 870.44,
+      "bridges": [
+       "B2"
+      ]
+     },
+     {
+      "root_id": "720575941481541762",
+      "side": "right",
+      "cell_type": "SNpp45",
+      "nerve": "right_mesothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 997.27,
+      "bridges": [
+       "B2"
+      ]
+     }
+    ]
+   },
+   "808380": {
+    "manc_body_id": 21302,
+    "counterparts": [
+     {
+      "root_id": "720575941536544995",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_metathoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 868.5,
+      "bridges": [
+       "B2"
+      ]
+     },
+     {
+      "root_id": "720575941484698365",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_metathoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 1057.0,
+      "bridges": [
+       "B2"
+      ]
+     },
+     {
+      "root_id": "720575941561355535",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_metathoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 1098.71,
+      "bridges": [
+       "B2"
+      ]
+     },
+     {
+      "root_id": "720575941417249308",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_metathoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 919.31,
+      "bridges": [
+       "B2"
+      ]
+     },
+     {
+      "root_id": "720575941576560527",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_metathoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 911.07,
+      "bridges": [
+       "B2"
+      ]
+     }
+    ]
+   },
+   "808641": {
+    "manc_body_id": 22794893567,
+    "counterparts": [
+     {
+      "root_id": "720575941446265770",
+      "side": "right",
+      "cell_type": "SNpp45",
+      "nerve": "right_mesothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 870.44,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941415148316",
+      "side": "right",
+      "cell_type": "SNpp45",
+      "nerve": "right_mesothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 1047.8,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941611350505",
+      "side": "right",
+      "cell_type": "SNpp45",
+      "nerve": "right_mesothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 902.34,
+      "bridges": [
+       "B1"
+      ]
+     }
+    ]
+   },
+   "809024": {
+    "manc_body_id": 17691,
+    "counterparts": []
+   },
+   "809505": {
+    "manc_body_id": null,
+    "counterparts": []
+   },
+   "810052": {
+    "manc_body_id": 172429,
+    "counterparts": []
+   },
+   "810973": {
+    "manc_body_id": null,
+    "counterparts": []
+   },
+   "811145": {
+    "manc_body_id": null,
+    "counterparts": []
+   },
+   "811747": {
+    "manc_body_id": null,
+    "counterparts": [
+     {
+      "root_id": "720575941601281065",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_mesothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 431.81,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941562266669",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_mesothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 445.29,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941521749431",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_mesothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 407.35,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941561377039",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_mesothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 533.2,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941613152614",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_mesothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 439.19,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941633200364",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_mesothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 463.72,
+      "bridges": [
+       "B1"
+      ]
+     }
+    ]
+   },
+   "812090": {
+    "manc_body_id": null,
+    "counterparts": [
+     {
+      "root_id": "720575941415240340",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_mesothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 375.32,
+      "bridges": [
+       "B1"
+      ]
+     }
+    ]
+   },
+   "812847": {
+    "manc_body_id": null,
+    "counterparts": []
+   },
+   "812908": {
+    "manc_body_id": 48461,
+    "counterparts": [
+     {
+      "root_id": "720575941536544995",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_metathoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 868.5,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941625442300",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_metathoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 1186.39,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941484698365",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_metathoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 1057.0,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941561355535",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_metathoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 1098.71,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941465428054",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_metathoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 773.91,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941462115795",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_metathoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 887.9,
+      "bridges": [
+       "B1"
+      ]
+     }
+    ]
+   },
+   "813083": {
+    "manc_body_id": 152655,
+    "counterparts": [
+     {
+      "root_id": "720575941504558661",
+      "side": "left",
+      "cell_type": "IN04B101",
+      "nerve": null,
+      "proofread": "TRUE",
+      "cable_um": 1314.93,
+      "bridges": [
+       "B2"
+      ]
+     }
+    ]
+   },
+   "814188": {
+    "manc_body_id": null,
+    "counterparts": []
+   },
+   "815705": {
+    "manc_body_id": null,
+    "counterparts": [
+     {
+      "root_id": "720575941538267107",
+      "side": "right",
+      "cell_type": "SNpp45",
+      "nerve": "right_prothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 948.11,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941487662989",
+      "side": "right",
+      "cell_type": "SNpp45",
+      "nerve": "right_ventral_prothoracic_nerve",
+      "proofread": "TRUE",
+      "cable_um": 1048.11,
+      "bridges": [
+       "B1"
+      ]
+     }
+    ]
+   },
+   "816234": {
+    "manc_body_id": 34520,
+    "counterparts": [
+     {
+      "root_id": "720575941504381463",
+      "side": "left",
+      "cell_type": "IN19A082",
+      "nerve": null,
+      "proofread": "TRUE",
+      "cable_um": 1175.13,
+      "bridges": [
+       "B2"
+      ]
+     }
+    ]
+   },
+   "817320": {
+    "manc_body_id": 21323,
+    "counterparts": [
+     {
+      "root_id": "720575941570949108",
+      "side": "right",
+      "cell_type": "SNpp45",
+      "nerve": "right_mesothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 996.08,
+      "bridges": [
+       "B2"
+      ]
+     },
+     {
+      "root_id": "720575941611350505",
+      "side": "right",
+      "cell_type": "SNpp45",
+      "nerve": "right_mesothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 902.34,
+      "bridges": [
+       "B2"
+      ]
+     },
+     {
+      "root_id": "720575941646167969",
+      "side": "right",
+      "cell_type": "SNpp45",
+      "nerve": "right_mesothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 1068.46,
+      "bridges": [
+       "B2"
+      ]
+     }
+    ]
+   },
+   "818438": {
+    "manc_body_id": 23535,
+    "counterparts": []
+   },
+   "818516": {
+    "manc_body_id": null,
+    "counterparts": []
+   },
+   "819326": {
+    "manc_body_id": 30113,
+    "counterparts": [
+     {
+      "root_id": "720575941554028059",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_metathoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 868.14,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941484176314",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_metathoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 903.3,
+      "bridges": [
+       "B1",
+       "B2"
+      ]
+     },
+     {
+      "root_id": "720575941580572149",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_metathoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 785.76,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941641997855",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_metathoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 1478.79,
+      "bridges": [
+       "B2"
+      ]
+     }
+    ]
+   },
+   "819536": {
+    "manc_body_id": 22215,
+    "counterparts": [
+     {
+      "root_id": "720575941531180261",
+      "side": "right",
+      "cell_type": "sternal_anterior_rotator_miller_31",
+      "nerve": "right_ventral_prothoracic_nerve",
+      "proofread": "TRUE",
+      "cable_um": 7443.64,
+      "bridges": [
+       "B2"
+      ]
+     }
+    ]
+   },
+   "820418": {
+    "manc_body_id": 21167,
+    "counterparts": []
+   },
+   "821064": {
+    "manc_body_id": null,
+    "counterparts": []
+   },
+   "821165": {
+    "manc_body_id": null,
+    "counterparts": []
+   },
+   "828976": {
+    "manc_body_id": null,
+    "counterparts": []
+   },
+   "829388": {
+    "manc_body_id": null,
+    "counterparts": [
+     {
+      "root_id": "720575941615985561",
+      "side": "right",
+      "cell_type": "SNpp45",
+      "nerve": "right_metathoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 359.4,
+      "bridges": [
+       "B1"
+      ]
+     }
+    ]
+   },
+   "833354": {
+    "manc_body_id": null,
+    "counterparts": []
+   },
+   "836247": {
+    "manc_body_id": null,
+    "counterparts": []
+   },
+   "842203": {
+    "manc_body_id": null,
+    "counterparts": [
+     {
+      "root_id": "720575941509108609",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_mesothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 840.45,
+      "bridges": [
+       "B1"
+      ]
+     }
+    ]
+   },
+   "856036": {
+    "manc_body_id": null,
+    "counterparts": [
+     {
+      "root_id": "720575941641997855",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_metathoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 1478.79,
+      "bridges": [
+       "B1"
+      ]
+     }
+    ]
+   },
+   "857165": {
+    "manc_body_id": 24157,
+    "counterparts": [
+     {
+      "root_id": "720575941436729919",
+      "side": "left",
+      "cell_type": "IN16B074",
+      "nerve": null,
+      "proofread": "TRUE",
+      "cable_um": 1435.37,
+      "bridges": [
+       "B2"
+      ]
+     }
+    ]
+   },
+   "860788": {
+    "manc_body_id": null,
+    "counterparts": []
+   },
+   "904779": {
+    "manc_body_id": 19038,
+    "counterparts": []
+   },
+   "908177": {
+    "manc_body_id": null,
+    "counterparts": [
+     {
+      "root_id": "720575941577076072",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_ventral_prothoracic_nerve",
+      "proofread": "TRUE",
+      "cable_um": 1580.79,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941432016009",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_ventral_prothoracic_nerve",
+      "proofread": "TRUE",
+      "cable_um": 1413.11,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941442197595",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_ventral_prothoracic_nerve",
+      "proofread": "TRUE",
+      "cable_um": 1588.23,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941563170984",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_ventral_prothoracic_nerve",
+      "proofread": "TRUE",
+      "cable_um": 1153.89,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941618732757",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_ventral_prothoracic_nerve",
+      "proofread": "TRUE",
+      "cable_um": 1290.89,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941691438299",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_ventral_prothoracic_nerve",
+      "proofread": "TRUE",
+      "cable_um": 1120.12,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941509287553",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_prothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 1351.84,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941532268747",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_ventral_prothoracic_nerve",
+      "proofread": "TRUE",
+      "cable_um": 1401.81,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941414263953",
+      "side": "left",
+      "cell_type": "SNpp45",
+      "nerve": "left_prothoracic_accessory_nerve",
+      "proofread": "TRUE",
+      "cable_um": 1107.99,
+      "bridges": [
+       "B1"
+      ]
+     }
+    ]
+   },
+   "908739": {
+    "manc_body_id": 49220,
+    "counterparts": [
+     {
+      "root_id": "720575941409735215",
+      "side": "right",
+      "cell_type": "SNpp45",
+      "nerve": "right_metathoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 1181.73,
+      "bridges": [
+       "B2"
+      ]
+     },
+     {
+      "root_id": "720575941656126425",
+      "side": "right",
+      "cell_type": "SNpp45",
+      "nerve": "right_metathoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 974.4,
+      "bridges": [
+       "B2"
+      ]
+     }
+    ]
+   },
+   "909393": {
+    "manc_body_id": null,
+    "counterparts": []
+   },
+   "912106": {
+    "manc_body_id": null,
+    "counterparts": []
+   },
+   "1055052133": {
+    "manc_body_id": 25687,
+    "counterparts": []
+   },
+   "1071635070": {
+    "manc_body_id": 18935,
+    "counterparts": []
+   },
+   "1074160161": {
+    "manc_body_id": null,
+    "counterparts": []
+   },
+   "1083604933": {
+    "manc_body_id": null,
+    "counterparts": []
+   },
+   "1110706007": {
+    "manc_body_id": 166421,
+    "counterparts": [
+     {
+      "root_id": "720575941583665630",
+      "side": "left",
+      "cell_type": "IN04B101",
+      "nerve": null,
+      "proofread": "TRUE",
+      "cable_um": 1594.82,
+      "bridges": [
+       "B2"
+      ]
+     }
+    ]
+   },
+   "1310068700": {
+    "manc_body_id": null,
+    "counterparts": []
+   },
+   "1323625268": {
+    "manc_body_id": 17839,
+    "counterparts": [
+     {
+      "root_id": "720575941605475774",
+      "side": "right",
+      "cell_type": "SNpp45",
+      "nerve": "right_ventral_prothoracic_nerve",
+      "proofread": "TRUE",
+      "cable_um": 1006.49,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941525329410",
+      "side": "right",
+      "cell_type": "SNpp45",
+      "nerve": "right_ventral_prothoracic_nerve",
+      "proofread": "TRUE",
+      "cable_um": 1001.76,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941556634625",
+      "side": "right",
+      "cell_type": "SNpp45",
+      "nerve": "right_ventral_prothoracic_nerve",
+      "proofread": "TRUE",
+      "cable_um": 1339.92,
+      "bridges": [
+       "B1"
+      ]
+     },
+     {
+      "root_id": "720575941483612611",
+      "side": "right",
+      "cell_type": "SNpp52",
+      "nerve": "right_dorsal_prothoracic_nerve",
+      "proofread": "TRUE",
+      "cable_um": 1499.12,
+      "bridges": [
+       "B2"
+      ]
+     },
+     {
+      "root_id": "720575941506987554",
+      "side": "right",
+      "cell_type": "SNpp52",
+      "nerve": "right_prothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 914.37,
+      "bridges": [
+       "B2"
+      ]
+     },
+     {
+      "root_id": "720575941615009945",
+      "side": "right",
+      "cell_type": "SNpp52",
+      "nerve": "right_prothoracic_leg_nerve",
+      "proofread": "TRUE",
+      "cable_um": 954.82,
+      "bridges": [
+       "B2"
+      ]
+     }
+    ]
+   },
+   "1387178136": {
+    "manc_body_id": null,
+    "counterparts": []
+   },
+   "1471062202": {
+    "manc_body_id": null,
+    "counterparts": []
+   }
+  },
+  "segments": {
+   "T1": {
+    "n": {
+     "left": 13,
+     "right": 9
+    },
+    "size": {
+     "left": {
+      "n": 13,
+      "median": 1351.84,
+      "sum": 17568.16,
+      "values": [
+       1107.99,
+       1120.12,
+       1153.89,
+       1175.13,
+       1290.89,
+       1314.93,
+       1351.84,
+       1401.81,
+       1413.11,
+       1474.61,
+       1580.79,
+       1588.23,
+       1594.82
+      ]
+     },
+     "right": {
+      "n": 9,
+      "median": 1006.49,
+      "sum": 16156.34,
+      "values": [
+       914.37,
+       948.11,
+       954.82,
+       1001.76,
+       1006.49,
+       1048.11,
+       1339.92,
+       1499.12,
+       7443.64
+      ]
+     }
+    },
+    "count_diff": -4,
+    "median_ratio": 0.7445333767309741,
+    "sum_ratio": 0.919637571606816,
+    "coverage": {
+     "left": 0.7142857142857143,
+     "right": 0.6
+    },
+    "distinct": 22,
+    "usable": 22,
+    "side_consistency": 1.0,
+    "cross_side": [],
+    "unusable_side": [],
+    "unmatched_anchors": [
+     860788,
+     904779,
+     912106,
+     1310068700
+    ]
+   },
+   "T2": {
+    "n": {
+     "left": 17,
+     "right": 7
+    },
+    "size": {
+     "left": {
+      "n": 17,
+      "median": 545.27,
+      "sum": 11781.16,
+      "values": [
+       375.32,
+       407.35,
+       420.82,
+       431.81,
+       439.19,
+       445.29,
+       463.72,
+       533.2,
+       545.27,
+       606.87,
+       696.9,
+       840.45,
+       953.7,
+       987.68,
+       1061.6,
+       1136.62,
+       1435.37
+      ]
+     },
+     "right": {
+      "n": 7,
+      "median": 997.27,
+      "sum": 6991.52,
+      "values": [
+       870.44,
+       902.34,
+       996.08,
+       997.27,
+       1047.8,
+       1068.46,
+       1109.13
+      ]
+     }
+    },
+    "count_diff": -10,
+    "median_ratio": 1.8289471271113393,
+    "sum_ratio": 0.5934492019461581,
+    "coverage": {
+     "left": 0.5833333333333334,
+     "right": 0.36363636363636365
+    },
+    "distinct": 24,
+    "usable": 24,
+    "side_consistency": 1.0,
+    "cross_side": [],
+    "unusable_side": [],
+    "unmatched_anchors": [
+     809024,
+     828976,
+     909393,
+     1083604933,
+     1387178136,
+     810052,
+     811145,
+     812847,
+     814188,
+     818516,
+     820418,
+     1471062202
+    ]
+   },
+   "T3": {
+    "n": {
+     "left": 13,
+     "right": 3
+    },
+    "size": {
+     "left": {
+      "n": 13,
+      "median": 911.07,
+      "sum": 13037.11,
+      "values": [
+       773.91,
+       785.76,
+       868.14,
+       868.5,
+       887.9,
+       903.3,
+       911.07,
+       919.31,
+       1057.0,
+       1098.71,
+       1186.39,
+       1298.33,
+       1478.79
+      ]
+     },
+     "right": {
+      "n": 3,
+      "median": 974.4,
+      "sum": 2515.5299999999997,
+      "values": [
+       359.4,
+       974.4,
+       1181.73
+      ]
+     }
+    },
+    "count_diff": -10,
+    "median_ratio": 1.069511673087688,
+    "sum_ratio": 0.1929515053566319,
+    "coverage": {
+     "left": 0.625,
+     "right": 0.2222222222222222
+    },
+    "distinct": 16,
+    "usable": 16,
+    "side_consistency": 1.0,
+    "cross_side": [],
+    "unusable_side": [],
+    "unmatched_anchors": [
+     821064,
+     836247,
+     1074160161,
+     806572,
+     809505,
+     810973,
+     818438,
+     833354,
+     1055052133,
+     1071635070
+    ]
+   }
+  }
+ },
+ "interpretation_limits": [
+  "Two animals; replication or not, not population anatomy.",
+  "Size proxies differ; sizes compared only within BANC.",
+  "Matches are BANC's curated annotations, not audited here; an unmatched anchor is ambiguous.",
+  "Counts are matching-bounded: BANC-only neurons are invisible.",
+  "Structural only."
+ ]
+}
