@@ -1,5 +1,20 @@
 # FlyBrainUnity — local Codex handoff
 
+## Push response + offset yoke replication on seeds 7-12 (noise estimate): design — 2026-11-04
+
+PR #319 merged. Designed (no code/run). The push-response LOOP_AMPLIFIES and the yoke
+OFFSETS_DO_NOT_REPRODUCE rest on seeds 1-3 with wide spread (R 1.24-2.04, E 0.51-1.11) and
+no noise estimate. Arms {N, C (H1), Y (coxa 0/7/14/28 yoked to own C0_s)} x {0, F, B} x
+never-used CNS seeds 7-12 = 54, plus REPRO_N0_1 (must equal push-response N0_1) = 55 (~4.5 h).
+Per direction on new seeds: Q1 R >= 1.10 all 6 REPLICATES / R > 1 all 6 DIRECTIONAL (sign
+p = 1/64) / NOT_REPLICATED; Q2a the yoke rule unchanged; Q2b E < 1 all 6
+FREE_COMMANDS_INCREASE_D / E > 1 all 6 DECREASE_D / NO_CONSISTENT_SIGN; Q3 pooled 9-seed
+spread reported only. Not an admission test; earlier labels untouched. See
+COXA_PUSH_REPLICATION_V1.md.
+
+IMMEDIATE NEXT (on approval): build protocol/adapter/evaluator/tests, smokes, commit, run
+55 arms once, evaluate once.
+
 ## Open-loop coxa offset yoke: OFFSETS_DO_NOT_REPRODUCE both directions (no status change) — 2026-11-03
 
 Preregistered (532b949, protocol 309cade6), 9 arms run once, evaluated once (report
