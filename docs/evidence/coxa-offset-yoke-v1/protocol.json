@@ -1,0 +1,104 @@
+{
+ "schema": "coxa-offset-yoke-protocol-v1",
+ "date": "2026-11-03",
+ "design": "docs/COXA_OFFSET_YOKE_V1.md",
+ "question": "In the push-response context, does replaying the C arms' unpushed coxa command time series open loop (no neural coxa loop) reproduce the C arms' amplified fore-aft push response?",
+ "status": "PREREGISTERED_BEFORE_ANY_ARM_RAN",
+ "not_an_admission_test": "No coordinate status changes from any outcome.",
+ "sources": {
+  "push_response_protocol_sha256": "ec3f0de12aea92b53cc2aedd2df08c7e4020619ecb8ae088c0b08cbfb098b7c6",
+  "push_response_report": "docs/evidence/coxa-push-response-v1/run/report.json",
+  "push_response_report_sha256": "4c03a59eeda046dc6d984172f410e32e898e911d7a97fac3ff3444fa3cc53e17",
+  "reference_arms": {
+   "N0_1": "849b97cfedbdf5e2be02390da2142bf8e33a934942e0c018acc9289e8219c224",
+   "NF_1": "0911989cab451e8996cd31734fda73bab26a45c7df4e3002b0790cfcaaeef093",
+   "NB_1": "2ca98a3f19a8fc3fa0240a6dace96c7479940afd174c2731d36b16db45a0474e",
+   "C0_1": "f11daca522608cac1d805430ab6481d73ed3af94ed60d9a054f1a9e71fb1fbd6",
+   "CF_1": "bf44eb76cae8ef149295eabdc2fc9958e11b7a984c3eb63703c276ffd4ce75dd",
+   "CB_1": "b00f7d619b96654da409f63aac82b137b8eaf0a90e13b0786c05eb03d1c721ac",
+   "N0_2": "74f9c05707a943ff144eae8aa2a1f66472b1b28e9720d7f2fed8452cb3e0be7b",
+   "NF_2": "2658040065cacbb8ac80831024f2f586ed05a19d1f72f813da669294bf23dfe9",
+   "NB_2": "2ed9546b54777cc615d9938ae9c4b608606cf180b7b6efeb003b11d0b080278e",
+   "C0_2": "361170068be08daa762113481012311ccf188fa4defc2034dfd674726b23af20",
+   "CF_2": "23ad4252c15a497a4e62994d00acd22c7328ccbe56d38a352a9d592705791e1a",
+   "CB_2": "d7e46e8ab3d0571d829a44782953fb611d851e17d17d5e3df6d0ab897e7a8135",
+   "N0_3": "e3b241db39c779a75e0d6a2a1b724c9e965d836b58ad8cb277d397148eb08ac1",
+   "NF_3": "874b22acce181486005aba9bd7a5c0fc3fa98450ed601596d5415d0a1efd9814",
+   "NB_3": "67f264279c577bc05b12846d50af2935a63dde7dac1bb17f6a890668a5e2313a",
+   "C0_3": "39818c867cb22e169c9a8f8c529bd4a2174af5cb42928dfeee67fa55a7c3a26e",
+   "CF_3": "87983f933400daacfdd089abadbe7b90501ef95747fefcaff4fcb4db287be594",
+   "CB_3": "bb3bfc8f5ed6316dc152392008f9c7e911e34ec151fff59dd053a8fe6d255a42"
+  },
+  "reference_note": "push-response raw arms N{0,F,B}_s and C{0,F,B}_s (local, uncommitted); C0_s is the yoke source; none is rerun",
+  "method_origin": "malecns_backend/live/tibia_command_dissection.py selected_action / TibiaTrial.apply (sim.step wrapped at bind; proposed and applied recorded); index set substituted; tibia module unchanged",
+  "context_origin": "malecns_backend/live/coxa_push_response.py Trial, create_session, force_at_transition, deviation_integral, force_ok (unchanged)"
+ },
+ "yoke": {
+  "indices": {
+   "joint_LFCoxa": 0,
+   "joint_LMCoxa": 7,
+   "joint_LHCoxa": 14,
+   "joint_RMCoxa": 28
+  },
+  "source": "push-response C0_s of the same seed",
+  "convention": "outgoing transition n applies source samples[n+1]['commanded_joints'] at the four indices; other 38 coordinates exactly as proposed",
+  "configuration": "N (Step C A_ON, 20 v3 channels, no hypothesis channel, no label)"
+ },
+ "disturbance": "identical to the push-response protocol: Thorax COM, world frame, zero torque, outgoing transitions 5000-5199, F [+1.024,0,0], B [-1.024,0,0], 0 none",
+ "arms": {
+  "seeds": [
+   1,
+   2,
+   3
+  ],
+  "order": [
+   "Y0_1",
+   "YF_1",
+   "YB_1",
+   "Y0_2",
+   "YF_2",
+   "YB_2",
+   "Y0_3",
+   "YF_3",
+   "YB_3"
+  ],
+  "retries": 0
+ },
+ "integrity": {
+  "I1_complete": "9 arms COMPLETE, 20001 samples, 4000 ticks",
+  "I2_sources_verified": "push-response report sha matches; the 18 reference arms hash to the report values",
+  "I3_reproduces_c0": "Y0_s equals push-response C0_s over the whole run: every sample's qpos and applied commands (all 42); every tick's fired, uniforms and hair deliveries",
+  "I4_common_rng": "every Y arm's per-tick uniforms and external schedule equal N0_s",
+  "I5_yoke_audit": "every transition: applied equals proposed with indices 0/7/14/28 replaced by the source's sample n+1 values; other 38 equal proposed; v3 inventory equals N0_s; no hypothesis channel or label",
+  "I6_exact_force": "coxa_push_response.force_ok unchanged; Y0 no force",
+  "I7_prefixes_seeds": "YF_s/YB_s equal Y0_s through physics index 5000 (qpos, applied commands) and ticks at or before 500 ms; every arm records its seed",
+  "failure": "INCONCLUSIVE_INTEGRITY with no labels"
+ },
+ "pulse_precondition": "already established in the push-response run (NF_s, NB_s resolved in every seed and direction); not re-tested",
+ "measures": {
+  "D": "coxa_push_response.deviation_integral of tactile_recovery_metrics.trace, states 5201..20000, model mm * s; Y arms vs Y0_s; N and C references vs N0_s and C0_s, recomputed from raw arms",
+  "R_Y": "D(Yp_s)/D(Np_s)",
+  "E": "D(Yp_s)/D(Cp_s)",
+  "reported": [
+   "metrics.response for Y arms",
+   "signed fore-aft deviation",
+   "tilt",
+   "C-arm loop modulation: mean |c(Cp_s)-c(C0_s)| per coxa index over the cleared window and count of differing transitions",
+   "Y-arm applied-minus-proposed coxa difference"
+  ]
+ },
+ "labels": {
+  "OFFSETS_REPRODUCE": "R_Y >= 1.10 in all 3 seeds and 0.90 <= E <= 1.10 in all 3 seeds",
+  "OFFSETS_PARTLY_REPRODUCE": "R_Y >= 1.10 in all 3 seeds and E outside [0.90, 1.10] in >= 1 seed",
+  "OFFSETS_DO_NOT_REPRODUCE": "R_Y < 1.10 in >= 1 seed",
+  "bar_note": "10 % inherited engineering resolution from the push-response test; no noise estimate for E"
+ },
+ "consequence_declared_in_advance": "OFFSETS_REPRODUCE: amplification explained by the open-loop setpoint schedule; push-time loop response not needed (this pulse and posture). PARTLY: posture amplifies but removing push-time modulation changes D > 10 % in some seed (direction reported). DO_NOT: fixed setpoints alone do not amplify; the push-response mechanism reading was wrong or incomplete. No channel, weight, threshold, gain, magnitude or seed changes; no status changes; coverage stays 20/42 admitted, +4 conditional.",
+ "interpretation_limits": [
+  "Position-assisted posture; not independent balance.",
+  "The archived commands are neural output: the yoke removes only push-time loop response, not the loops' pre-push history.",
+  "One engineering pulse and three seeds, inherited.",
+  "E has no noise estimate; post-push chaotic divergence can move D without a causal role for loop modulation.",
+  "Reference arms are local; evaluation depends on their verified hashes."
+ ]
+}
