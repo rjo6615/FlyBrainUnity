@@ -1,5 +1,15 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-04: desk audit of the remaining coxa coordinates. The forward-limit encoder cannot see roll/yaw; RH Coxa has no H1 channel; RF blocked. No remaining coordinate is testable with current validated components.
+
+```text
+Remaining coxa audit          [none of 14 testable: roll/yaw invisible to encoder (12), RH Coxa unbound, RF blocked]
+Coxa push replication         [run: AMPLIFICATION_DIRECTIONAL F / B (R>1 6/6); yoke DO_NOT_REPRODUCE; FREE_COMMANDS_INCREASE_D F / B]
+Coxa conditional tier         [LF/LH/LM/RM CONDITIONAL (fore-aft Coxa); RF/RH blocked by input]
+Motor coverage                [##########-----------] 20/42 admitted (+4 conditional); ceiling with current components
+Independent balance / gait    [not established]
+```
+
 Current2026-11-04: push response + offset yoke replicated on six new seeds (55 arms). Amplification direction replicates (R > 1 in 6/6, magnitude 1.05-1.97, below the 10 % bar in one seed per direction); fixed offsets do not reproduce it; free post-push coxa commands raise D in 6/6 per direction. Seed scatter about 0.17-0.24 SD in log ratio.
 
 ```text
