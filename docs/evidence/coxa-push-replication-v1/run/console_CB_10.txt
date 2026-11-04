@@ -1,0 +1,6 @@
+CB_10: fresh CNS/physics initialization
+CB_10: 4507/20000
+CB_10: 7436/20000
+CB_10: 11885/20000
+CB_10: 16513/20000
+{"arm": "CB_10", "run_status": "COMPLETE", "error": null, "sha256": "9a62ac50ff39ad791410ded96ee1d0bc8b1e1e8a398ac47735accfd5098aee72"}

@@ -1,5 +1,27 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-04: push response + offset yoke replicated on six new seeds (55 arms). Amplification direction replicates (R > 1 in 6/6, magnitude 1.05-1.97, below the 10 % bar in one seed per direction); fixed offsets do not reproduce it; free post-push coxa commands raise D in 6/6 per direction. Seed scatter about 0.17-0.24 SD in log ratio.
+
+```text
+Coxa push replication         [run: AMPLIFICATION_DIRECTIONAL F / B (R>1 6/6); yoke DO_NOT_REPRODUCE; FREE_COMMANDS_INCREASE_D F / B]
+Coxa offset yoke              [run: OFFSETS_DO_NOT_REPRODUCE F / B; replicated on seeds 7-12]
+Coxa push response            [run: LOOP_AMPLIFIES F (SIGN_INDEPENDENT) / B (SIGN_SPECIFIC); direction replicated, magnitude scatters]
+Coxa conditional tier         [LF/LH/LM/RM CONDITIONAL (fore-aft Coxa); RF/RH blocked by input]
+Motor coverage                [##########-----------] 20/42 admitted (+4 conditional, counted separately)
+Independent balance / gait    [not established]
+```
+
+Current2026-11-04: replication of the push response and offset yoke on six new seeds designed (55 arms). Not run.
+
+```text
+Coxa push replication         [designed: N / C / Y x no-push/F/B x seeds 7-12 + REPRO; next: build]
+Coxa offset yoke              [run: OFFSETS_DO_NOT_REPRODUCE F / B; amplification needs free post-push coxa commands in 2/3 seeds]
+Coxa push response            [run: LOOP_AMPLIFIES F (SIGN_INDEPENDENT) / B (SIGN_SPECIFIC); mechanism: not posture alone]
+Coxa conditional tier         [LF/LH/LM/RM CONDITIONAL (fore-aft Coxa); RF/RH blocked by input]
+Motor coverage                [##########-----------] 20/42 admitted (+4 conditional, counted separately)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-03: open-loop coxa offset yoke run. Replaying the unpushed C coxa commands does not reproduce the push amplification (OFFSETS_DO_NOT_REPRODUCE, both directions); the posture-only reading is not supported.
 
 ```text

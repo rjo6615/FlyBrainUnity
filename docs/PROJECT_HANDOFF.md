@@ -1,5 +1,39 @@
 # FlyBrainUnity — local Codex handoff
 
+## Push response + offset yoke replication on seeds 7-12: DIRECTIONAL / DO_NOT_REPRODUCE / FREE_COMMANDS_INCREASE_D (no status change) — 2026-11-04
+
+Preregistered (80ad349, protocol 01a6ea1c), 55 arms run once, evaluated once (report
+cdb953a1); I1-I7 and pulse pass (REPRO_N0_1 equals push-response N0_1 in content). Per
+direction on seeds 7-12: R = D(C)/D(N) F 1.25/1.05/1.55/1.97/1.44/1.25, B
+1.19/1.36/1.09/1.42/1.92/1.63 -> AMPLIFICATION_DIRECTIONAL both (R > 1 6/6, sign p = 1/64;
+one seed under 1.10 each). E = D(Y)/D(C) F 0.64-0.93, B 0.74-0.99 -> FREE_COMMANDS_INCREASE_D
+both (prediction NO_CONSISTENT_SIGN wrong); yoke rule OFFSETS_DO_NOT_REPRODUCE both
+(replicates). R_Y F median 0.99 (fixed offsets ~ N), B 0.98-1.55. Pooled 9 seeds: SD of log
+ratio 0.17-0.24; D(N) CV ~20-23 %; E < 1 in 8/9 per direction (seed 1 the exception). Reflex
+vs generic closed-loop divergence not separable. Coverage unchanged: 20/42 admitted, +4
+conditional. See COXA_PUSH_REPLICATION_RESULTS.md.
+
+IMMEDIATE NEXT (user choice): the earlier 10 % bars are narrower than the measured seed
+scatter; any further body-level coxa test should set bars from this spread. Options: a
+preregistered test separating a structured coxa response from generic divergence (e.g.
+response to the push timing/sign versus a matched neural-only perturbation), or returning to
+coverage work.
+
+## Push response + offset yoke replication on seeds 7-12 (noise estimate): design — 2026-11-04
+
+PR #319 merged. Designed (no code/run). The push-response LOOP_AMPLIFIES and the yoke
+OFFSETS_DO_NOT_REPRODUCE rest on seeds 1-3 with wide spread (R 1.24-2.04, E 0.51-1.11) and
+no noise estimate. Arms {N, C (H1), Y (coxa 0/7/14/28 yoked to own C0_s)} x {0, F, B} x
+never-used CNS seeds 7-12 = 54, plus REPRO_N0_1 (must equal push-response N0_1) = 55 (~4.5 h).
+Per direction on new seeds: Q1 R >= 1.10 all 6 REPLICATES / R > 1 all 6 DIRECTIONAL (sign
+p = 1/64) / NOT_REPLICATED; Q2a the yoke rule unchanged; Q2b E < 1 all 6
+FREE_COMMANDS_INCREASE_D / E > 1 all 6 DECREASE_D / NO_CONSISTENT_SIGN; Q3 pooled 9-seed
+spread reported only. Not an admission test; earlier labels untouched. See
+COXA_PUSH_REPLICATION_V1.md.
+
+IMMEDIATE NEXT (on approval): build protocol/adapter/evaluator/tests, smokes, commit, run
+55 arms once, evaluate once.
+
 ## Open-loop coxa offset yoke: OFFSETS_DO_NOT_REPRODUCE both directions (no status change) — 2026-11-03
 
 Preregistered (532b949, protocol 309cade6), 9 arms run once, evaluated once (report
