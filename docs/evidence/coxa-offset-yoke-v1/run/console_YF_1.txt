@@ -1,0 +1,8 @@
+YF_1: fresh CNS/physics initialization; coxa 0/7/14/28 yoked to C0_1
+YF_1: 3555/20000
+YF_1: 5567/20000
+YF_1: 9069/20000
+YF_1: 12616/20000
+YF_1: 16225/20000
+YF_1: 19981/20000
+{"arm": "YF_1", "run_status": "COMPLETE", "error": null, "sha256": "7946c12368fbe362dc5ffaf7976588434bb907ffdff99d3b8a56468e23d0c336"}

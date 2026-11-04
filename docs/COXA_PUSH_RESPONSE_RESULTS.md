@@ -158,3 +158,19 @@ PYTHONPATH="$PWD" "$PY" -m malecns_backend.live.coxa_push_response \
 The arms take about 2.3 h in total. The expected result is INTEGRITY_ACCEPTED, with both
 directions LOOP_AMPLIFIES (F SIGN_INDEPENDENT, B SIGN_SPECIFIC) and the arm hashes as in
 the report.
+
+## Addendum (2026-11-03): mechanism reading tested — see COXA_OFFSET_YOKE_RESULTS.md
+
+The text above is unchanged. The open-loop offset yoke (protocol 309cade6…, report
+5afb991f…) tested the posture reading above.
+
+**Result: OFFSETS_DO_NOT_REPRODUCE in both directions.** Replaying the unpushed C coxa
+commands amplified the push only in seed 1. In seeds 2 and 3, D was 0.51–0.74 of the C
+arms'.
+
+**The statement "the loops did not respond to the push" was too strong.** It rested on
+window means.
+- Per transition, the C-arm coxa commands differed from their controls in 12,265–14,605
+  transitions, by 0.009–0.033 rad on average.
+- This modulation includes both reflex correction and chaotic divergence, which the test
+  cannot separate.
