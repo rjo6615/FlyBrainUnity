@@ -1,0 +1,6 @@
+C0_10: fresh CNS/physics initialization
+C0_10: 4475/20000
+C0_10: 7347/20000
+C0_10: 11757/20000
+C0_10: 16419/20000
+{"arm": "C0_10", "run_status": "COMPLETE", "error": null, "sha256": "1c0de2bcf18a665ee527542e2e273869fcc95b02f55fe23fcf2732367b163bd2"}

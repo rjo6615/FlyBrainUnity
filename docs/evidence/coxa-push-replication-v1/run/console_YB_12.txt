@@ -1,0 +1,6 @@
+YB_12: fresh CNS/physics initialization
+YB_12: 4314/20000
+YB_12: 7213/20000
+YB_12: 11750/20000
+YB_12: 16255/20000
+{"arm": "YB_12", "run_status": "COMPLETE", "error": null, "sha256": "114c9f864ee6ec5b522a2095e35281dc3911c5d65394b96bc79d4bad5fa810ee"}

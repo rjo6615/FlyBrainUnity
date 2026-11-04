@@ -1,0 +1,7 @@
+YB_10: fresh CNS/physics initialization
+YB_10: 3792/20000
+YB_10: 6139/20000
+YB_10: 10058/20000
+YB_10: 14093/20000
+YB_10: 17997/20000
+{"arm": "YB_10", "run_status": "COMPLETE", "error": null, "sha256": "c2498dcaf53c6f350403c1f055440cecffd30670a0f60f1000dd0b22d32a768f"}

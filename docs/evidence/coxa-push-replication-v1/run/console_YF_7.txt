@@ -1,0 +1,6 @@
+YF_7: fresh CNS/physics initialization
+YF_7: 4575/20000
+YF_7: 7479/20000
+YF_7: 12015/20000
+YF_7: 16713/20000
+{"arm": "YF_7", "run_status": "COMPLETE", "error": null, "sha256": "8649db99ad043e57b1371bd50ac8450627ff4ccb5d946175126dd4be54b26bd0"}

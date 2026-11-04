@@ -4,6 +4,10 @@ Designed 2026-11-04, after the offset-yoke results were merged (PR #319). This i
 only. No code has been written and nothing has run. The protocol, code and tests will be
 hash-locked and committed before any arm runs.
 
+**Status 2026-11-04:** preregistered (80ad349, protocol 01a6ea1c…), 55 arms run once, evaluated
+once: `INTEGRITY_ACCEPTED`; F and B both `AMPLIFICATION_DIRECTIONAL`, `OFFSETS_DO_NOT_REPRODUCE`,
+`FREE_COMMANDS_INCREASE_D`. See `COXA_PUSH_REPLICATION_RESULTS.md`. The text below is unchanged.
+
 ## Why this question
 
 Two whole-body coxa results rest on three CNS seeds that disagree strongly.
