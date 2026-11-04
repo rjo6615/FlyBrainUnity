@@ -173,3 +173,6 @@ docs/evidence/coxa-push-response-v1/**/*.txt -text -whitespace
 docs/evidence/coxa-offset-yoke-v1/*.json -text
 docs/evidence/coxa-offset-yoke-v1/**/*.json -text
 docs/evidence/coxa-offset-yoke-v1/**/*.txt -text -whitespace
+docs/evidence/coxa-push-replication-v1/*.json -text
+docs/evidence/coxa-push-replication-v1/**/*.json -text
+docs/evidence/coxa-push-replication-v1/**/*.txt -text -whitespace

@@ -1,0 +1,145 @@
+{
+ "schema": "coxa-push-replication-protocol-v1",
+ "date": "2026-11-04",
+ "design": "docs/COXA_PUSH_REPLICATION_V1.md",
+ "question": "On six never-used CNS seeds, do the push-response LOOP_AMPLIFIES and the offset-yoke OFFSETS_DO_NOT_REPRODUCE replicate, and how large is the seed-to-seed spread of R, E and R_Y?",
+ "status": "PREREGISTERED_BEFORE_ANY_ARM_RAN",
+ "not_an_admission_test": "No coordinate status changes from any outcome; earlier reports, labels and texts are not edited.",
+ "sources": {
+  "push_response_protocol_sha256": "ec3f0de12aea92b53cc2aedd2df08c7e4020619ecb8ae088c0b08cbfb098b7c6",
+  "push_response_report": "docs/evidence/coxa-push-response-v1/run/report.json",
+  "push_response_report_sha256": "4c03a59eeda046dc6d984172f410e32e898e911d7a97fac3ff3444fa3cc53e17",
+  "offset_yoke_protocol_sha256": "309cade6d121d83e470ff2227e6036c6f6f06ef9332c74955325171d76de2609",
+  "offset_yoke_report": "docs/evidence/coxa-offset-yoke-v1/run/report.json",
+  "offset_yoke_report_sha256": "5afb991ff99f0d4facfa5e6b959d53ea50bc24274e4eec58ff9a761d9d3e036b",
+  "repro_reference": {
+   "arm": "push-response N0_1 (local raw)",
+   "sha256": "849b97cfedbdf5e2be02390da2142bf8e33a934942e0c018acc9289e8219c224"
+  },
+  "old_seed_tick1_uniforms": {
+   "1": "cd302ed4083336d941e803f3e9e02eef57049422b60ea1ad14159eb9f760d5da",
+   "2": "56e653df9738a06c2760c9f47b9fb5d2720e027809f92a77f5eadd58dce16c85",
+   "3": "a828dd71385c5d20f6f52f96feea79c06c9a2f92c325c247f6827df77cd4eb8d"
+  },
+  "reused_code": "coxa_push_response (Trial behaviour, create_session, candidate_defs, force_ok, deviation_integral, prefix_equal) and coxa_offset_yoke (Trial apply/capture, selected_action, schedule, yoke_audit, reproduces, label) by import; neither edited"
+ },
+ "context": "push-response context unchanged: Step C A_ON, 20 v3 channels, Thorax pulse +-1.024 on outgoing transitions 5000-5199 zero torque via external_force_by_transition, 20000 physics / 4000 neural transitions, brain.rng = default_rng(seed) at attach",
+ "sets": {
+  "N": "no coxa channel",
+  "C": "four CONDITIONAL channels H1 (COXA_CONDITIONAL_H1), definitions sha256 dd337259c21aa9b3368f38cf3b9e28c724f6a14b901bedcc610afa3ae7daa12b",
+  "Y": "N configuration with actions joint_LFCoxa 0, joint_LMCoxa 7, joint_LHCoxa 14, joint_RMCoxa 28 yoked to this run's C0_s (sample n+1)"
+ },
+ "arms": {
+  "seeds": [
+   7,
+   8,
+   9,
+   10,
+   11,
+   12
+  ],
+  "order": [
+   "REPRO_N0_1",
+   "N0_7",
+   "NF_7",
+   "NB_7",
+   "C0_7",
+   "CF_7",
+   "CB_7",
+   "Y0_7",
+   "YF_7",
+   "YB_7",
+   "N0_8",
+   "NF_8",
+   "NB_8",
+   "C0_8",
+   "CF_8",
+   "CB_8",
+   "Y0_8",
+   "YF_8",
+   "YB_8",
+   "N0_9",
+   "NF_9",
+   "NB_9",
+   "C0_9",
+   "CF_9",
+   "CB_9",
+   "Y0_9",
+   "YF_9",
+   "YB_9",
+   "N0_10",
+   "NF_10",
+   "NB_10",
+   "C0_10",
+   "CF_10",
+   "CB_10",
+   "Y0_10",
+   "YF_10",
+   "YB_10",
+   "N0_11",
+   "NF_11",
+   "NB_11",
+   "C0_11",
+   "CF_11",
+   "CB_11",
+   "Y0_11",
+   "YF_11",
+   "YB_11",
+   "N0_12",
+   "NF_12",
+   "NB_12",
+   "C0_12",
+   "CF_12",
+   "CB_12",
+   "Y0_12",
+   "YF_12",
+   "YB_12"
+  ],
+  "retries": 0
+ },
+ "integrity": {
+  "I1_complete": "55 arms COMPLETE, 20001 samples, 4000 ticks",
+  "I2_reproduction": "REPRO_N0_1 equals push-response N0_1 (hash-verified) over the whole run: qpos and commands every sample; fired, uniforms, hair deliveries every tick",
+  "I3_common_rng": "within each seed, all 9 arms have identical per-tick uniforms and external schedule",
+  "I4_exact_force": "coxa_push_response.force_ok for every arm with its push",
+  "I5_channels_bounds": "push-response I5 rules for N and C arms",
+  "I6_yoke": "Y source_sha256 equals this run's C0_s file hash; Y0_s equals C0_s over the whole run; yoke_audit passes; v3 inventory equals N0_s; no hypothesis channel or label",
+  "I7_prefixes_seeds": "pushed arms equal own _0 arm through physics index 5000 (qpos, commands) and ticks <= 500 ms; C arms equal N until their first coxa command; tick-1 uniforms of seeds 7-12 distinct from each other and from seeds 1-3; every arm records its seed",
+  "failure": "INCONCLUSIVE_INTEGRITY with no labels"
+ },
+ "pulse_precondition": "metrics.response(N{F,B}_s, N0_s).resolved_perturbation for every new seed and direction; else INCONCLUSIVE_PULSE with no labels",
+ "measures": {
+  "D": "coxa_push_response.deviation_integral vs own _0 control, states 5201..20000, model mm * s",
+  "R": "D(Cp_s)/D(Np_s)",
+  "E": "D(Yp_s)/D(Cp_s)",
+  "R_Y": "D(Yp_s)/D(Np_s)",
+  "pooled_reported": "per direction over seeds 1-3 (from the two hash-verified committed reports) plus 7-12: median, min, max, mean and sample SD of log R, log E, log R_Y; SD of D(N); labelled as pooled, never relabelling earlier tests",
+  "reported": [
+   "metrics.response for every pushed arm",
+   "tilt mean/peak",
+   "C-arm loop modulation: mean |c(Cp)-c(C0)| per coxa index over the cleared window, differing transitions"
+  ]
+ },
+ "labels": {
+  "Q1": {
+   "AMPLIFICATION_REPLICATES": "R >= 1.10 in all 6 new seeds",
+   "AMPLIFICATION_DIRECTIONAL": "not REPLICATES and R > 1 in all 6 (exact one-sided sign test p = 1/64)",
+   "AMPLIFICATION_NOT_REPLICATED": "otherwise"
+  },
+  "Q2a": "coxa_offset_yoke.label unchanged on the 6 new seeds (OFFSETS_REPRODUCE / OFFSETS_PARTLY_REPRODUCE / OFFSETS_DO_NOT_REPRODUCE); the earlier label replicates if OFFSETS_DO_NOT_REPRODUCE",
+  "Q2b": {
+   "FREE_COMMANDS_INCREASE_D": "E < 1 in all 6 new seeds",
+   "FREE_COMMANDS_DECREASE_D": "E > 1 in all 6",
+   "NO_CONSISTENT_SIGN": "otherwise"
+  },
+  "Q3": "reported only"
+ },
+ "consequence_declared_in_advance": "Q1 REPLICATES or DIRECTIONAL: the conditional coxa channels reliably make the assisted body easier to displace fore-aft for this pulse (a robust body-level property, not a balance contribution). NOT_REPLICATED: the earlier label was not robust beyond seeds 1-3 and stays recorded for them. Q2a DO_NOT with Q2b INCREASE_D: the amplification consistently depends on free post-push coxa commands. Q2b NO_CONSISTENT_SIGN: the yoke contrast is dominated by seed-level divergence; the earlier mechanism finding stays a three-seed result. No channel, weight, threshold, gain, magnitude or seed changes; no status changes; coverage stays 20/42 admitted, +4 conditional.",
+ "interpretation_limits": [
+  "Position-assisted posture; not independent balance.",
+  "Seeds vary only stochastic sensory timing.",
+  "With 6 seeds only unanimity reaches one-sided p < 0.05 in the sign rule; a moderate effect cannot be distinguished from none.",
+  "One engineering pulse; only the four fore-aft conditional channels.",
+  "The reproduction arm checks the environment, not biological validity."
+ ]
+}
