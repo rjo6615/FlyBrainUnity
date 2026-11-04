@@ -1,5 +1,22 @@
 # FlyBrainUnity — local Codex handoff
 
+## Open-loop coxa offset yoke: OFFSETS_DO_NOT_REPRODUCE both directions (no status change) — 2026-11-03
+
+Preregistered (532b949, protocol 309cade6), 9 arms run once, evaluated once (report
+5afb991f); I1-I7 pass (Y0_s equals push-response C0_s exactly; 18 reference hashes match).
+R_Y = D(Y)/D(N): F 1.37/1.33/0.94, B 1.43/0.70/0.91; E = D(Y)/D(C): F 1.11/0.65/0.71, B
+1.10/0.51/0.74 -> OFFSETS_DO_NOT_REPRODUCE both. Prediction (REPRODUCE) wrong. Fixed
+setpoints alone amplify only in seed 1; seeds 2-3 need free post-push coxa commands. Correction
+to the push-response reading (addendum there): C-arm coxa commands differ from control in
+12,265-14,605 transitions by 0.009-0.033 rad mean (window means hid it); reflex vs chaotic
+divergence not separable. Y arms tilt like C (8.7-10.4 deg) yet do not amplify in seeds
+2-3, weakening the tilt explanation. Coverage unchanged: 20/42 admitted, +4 conditional. See
+COXA_OFFSET_YOKE_RESULTS.md.
+
+IMMEDIATE NEXT (user choice): the seed variability (E 0.51-1.11) is now the main limit on
+body-level coxa questions; options are a preregistered variance estimate (more seeds of the
+existing N/C push arms) before any further mechanism test, or returning to coverage work.
+
 ## Open-loop coxa offset yoke (reflex or posture?): design — 2026-11-03
 
 PR #318 merged. Designed (no code/run): tests the push-response post hoc reading. Reuses the

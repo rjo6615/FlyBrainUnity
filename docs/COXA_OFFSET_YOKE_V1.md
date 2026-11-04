@@ -1,8 +1,9 @@
 # Open-loop coxa offset yoke: is the push amplification reflex or posture? — design (V1)
 
-Designed 2026-11-03, after the push-response results were merged (PR #318). This is the
-design only. No code has been written and nothing has run. The protocol, code and tests
-will be hash-locked and committed before any arm runs.
+Designed 2026-11-03, after the push-response results were merged (PR #318).
+
+**Status (2026-11-03): run once after preregistration 532b949 (protocol 309cade6…).**
+INTEGRITY_ACCEPTED. Both directions OFFSETS_DO_NOT_REPRODUCE. See `COXA_OFFSET_YOKE_RESULTS.md`.
 
 ## Why this question
 

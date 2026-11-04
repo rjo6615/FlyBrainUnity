@@ -1,5 +1,15 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-03: open-loop coxa offset yoke run. Replaying the unpushed C coxa commands does not reproduce the push amplification (OFFSETS_DO_NOT_REPRODUCE, both directions); the posture-only reading is not supported.
+
+```text
+Coxa offset yoke              [run: OFFSETS_DO_NOT_REPRODUCE F / B; amplification needs free post-push coxa commands in 2/3 seeds]
+Coxa push response            [run: LOOP_AMPLIFIES F (SIGN_INDEPENDENT) / B (SIGN_SPECIFIC); mechanism: not posture alone]
+Coxa conditional tier         [LF/LH/LM/RM CONDITIONAL (fore-aft Coxa); RF/RH blocked by input]
+Motor coverage                [##########-----------] 20/42 admitted (+4 conditional, counted separately)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-03: open-loop coxa offset yoke designed (9 arms): does replaying the unpushed C coxa commands reproduce the push amplification? Not run.
 
 ```text
