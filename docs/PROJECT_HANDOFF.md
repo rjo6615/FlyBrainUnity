@@ -1,5 +1,18 @@
 # FlyBrainUnity — local Codex handoff
 
+## Open-loop coxa offset yoke (reflex or posture?): design — 2026-11-03
+
+PR #318 merged. Designed (no code/run): tests the push-response post hoc reading. Reuses the
+tibia dissection's selected-index yoke on coxa actions 0/7/14/28 (H1), source = push-response
+C0_s (unpushed, local; hashes in report 4c03a59e), sample n+1 convention, N configuration.
+Arms Y0/YF/YB x seeds 1-3 = 9 (~45 min); references N/C push-response arms, not rerun.
+I3: Y0_s must equal C0_s exactly. R_Y = D(Y)/D(N), E = D(Y)/D(C) per direction:
+OFFSETS_REPRODUCE (R_Y >= 1.10 and 0.90 <= E <= 1.10 all seeds) / PARTLY / DO_NOT.
+Not an admission test. See COXA_OFFSET_YOKE_V1.md.
+
+IMMEDIATE NEXT (on approval): build protocol/adapter/evaluator/tests, smoke (Y0_2 prefix
+vs C0_2; YF_2 past the pulse), commit, run 9 arms once, evaluate once.
+
 ## Fore-aft push response: LOOP_AMPLIFIES both directions (no status change) — 2026-11-03
 
 Preregistered (b31435a, protocol ec3f0de1), 27 arms run once, evaluated once (report
