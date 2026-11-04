@@ -1,5 +1,15 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-04: antennal gravity sense (Johnston's organ C/E) track designed; Step A (identity and wiring, data only) specified. Not run.
+
+```text
+Antennal gravity sense        [designed: A identity (A1-A4) -> B kinematic encoder -> C live on/off; next: build A]
+Coxa push replication         [run: AMPLIFICATION_DIRECTIONAL F / B (R>1 6/6); yoke DO_NOT_REPRODUCE; FREE_COMMANDS_INCREASE_D F / B]
+Coxa conditional tier         [LF/LH/LM/RM CONDITIONAL (fore-aft Coxa); RF/RH blocked by input]
+Motor coverage                [##########-----------] 20/42 admitted (+4 conditional)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-04: push response + offset yoke replicated on six new seeds (55 arms). Amplification direction replicates (R > 1 in 6/6, magnitude 1.05-1.97, below the 10 % bar in one seed per direction); fixed offsets do not reproduce it; free post-push coxa commands raise D in 6/6 per direction. Seed scatter about 0.17-0.24 SD in log ratio.
 
 ```text

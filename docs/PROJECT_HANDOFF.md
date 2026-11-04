@@ -1,5 +1,19 @@
 # FlyBrainUnity — local Codex handoff
 
+## Antennal gravity sense (JO zones C/E) track: design — 2026-11-04
+
+User chose "richer senses" (coxa coverage at ceiling; desk audit in PR #321). Designed (no
+code/run). Johnston's organ wind/gravity neurons: 475 exact identities, unencoded, 178 reach
+leg MNs in 2 hops; the body has no gravity-referenced sense today. Typed C/E: C 31 L / 22 R,
+E 157 L / 110 R; 92/98 JO-unclear are right-side (annotation asymmetry; all statusLabel "RT
+Hard to trace"). Step A (data only, specified): A1 identity, A2 bilateral >= 10 per set,
+A3 C vs E weighted direct-target overlap < 0.5 per side, A4 C and E reach a descending neuron
+within 2 hops per side -> IDENTITY_READY / PARTIAL / NOT_READY. Steps B (kinematic encoder:
+gravity projected on funiculus rotation tangent; G1 vs G1_FLIP zone sign) and C (live
+JO_OFF/G1/FLIP) outlined only. Not an admission or balance test. See ANTENNAL_GRAVITY_SENSE_V1.md.
+
+IMMEDIATE NEXT (on approval): build Step A protocol/module/tests, commit, run once, evaluate.
+
 ## Push response + offset yoke replication on seeds 7-12: DIRECTIONAL / DO_NOT_REPRODUCE / FREE_COMMANDS_INCREASE_D (no status change) — 2026-11-04
 
 Preregistered (80ad349, protocol 01a6ea1c), 55 arms run once, evaluated once (report
