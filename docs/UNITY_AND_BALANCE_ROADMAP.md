@@ -1,13 +1,15 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
-Current 2026-11-05: antennal gravity Step C designed (live 10 deg pitch tilt, OFF/G1/FLIP x UP/DOWN x 6 new seeds; not run).
+Current 2026-11-05: antennal gravity Step C run: G1 JO_TILT_PATTERN_CONSISTENT (rho 0.70, p 1/32), FLIP WEAK (rho 0.06); the tilt kept d <= 0, so this compares the E route (strong, via DNp73/DNbe001) with the C route (weak); not balance.
+
+Previous 2026-11-05: antennal gravity Step C designed (live 10 deg pitch tilt, OFF/G1/FLIP x UP/DOWN x 6 new seeds).
 
 Previous 2026-11-05: antennal gravity Step B run: ENCODER_READY (pitch-dominated drive, rest E 17.2 Hz under G1, small antisymmetric roll component kept descriptive).
 
 Previous 2026-11-04: antennal gravity Step A run: IDENTITY_READY (C/E exact, segregated, direct DN edges); right side far less connected (synapses L/R C 5.3, E 2.5).
 
 ```text
-Antennal gravity sense        [A: IDENTITY_READY; B: ENCODER_READY (pitch slope 0.97/rad, roll +-0.22/rad descriptive); C: designed (JO tilt -> leg MN pattern, 37 arms); next: build C]
+Antennal gravity sense        [A: IDENTITY_READY; B: ENCODER_READY (pitch slope 0.97/rad, roll +-0.22/rad descriptive); C: G1 CONSISTENT / FLIP WEAK (E route reaches leg MNs, C route weak; d <= 0 both tilts)]
 Coxa push replication         [run: AMPLIFICATION_DIRECTIONAL F / B (R>1 6/6); yoke DO_NOT_REPRODUCE; FREE_COMMANDS_INCREASE_D F / B]
 Coxa conditional tier         [LF/LH/LM/RM CONDITIONAL (fore-aft Coxa); RF/RH blocked by input]
 Motor coverage                [##########-----------] 20/42 admitted (+4 conditional)

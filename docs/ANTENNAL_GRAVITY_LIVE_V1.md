@@ -1,5 +1,9 @@
 # Antennal gravity sense, Step C: does JO tilt information reach leg motor neurons? (design, V1)
 
+**Status (2026-11-05):** preregistered (0ef9dbe, protocol 05655b40), run once, evaluated
+once: `INTEGRITY_ACCEPTED`; G1 `JO_TILT_PATTERN_CONSISTENT` (ρ 0.70, p 1/32), FLIP
+`JO_TILT_PATTERN_WEAK` (ρ 0.06, p 0.22), r_GF +0.39. See `ANTENNAL_GRAVITY_LIVE_RESULTS.md`.
+
 Designed 2026-11-05. This is the design only. No code exists, nothing has run, and no
 protocol is locked. On approval, the rules below are copied into
 `docs/evidence/antennal-gravity-live-v1/protocol.json`, hash-locked in code, and committed
