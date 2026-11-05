@@ -1,5 +1,20 @@
 # FlyBrainUnity — local Codex handoff
 
+## Antennal gravity Step D (JO zone-crossing tilt): design — 2026-11-05
+
+Designed only (no protocol, code or run). Why: Step C kept d <= 0, so it compared the E route
+with the C route instead of opposite zones for opposite tilts. Step D places the tilt so d
+crosses zero: LEVEL (no gravity change, expected window d ~ -0.18 from C2) vs DOWN20 (gravity
+R_y(-20 deg) at state 5005, expected ~ +0.17 from Step B geometry + C2 posture terms). Arms
+{OFF, G1, FLIP} x {LEVEL, DOWN20} x new seeds 19-24 + REPRO_N0_7 = 37 (~3 h); Step C context,
+measures, statistics, labels and I1-I7 unchanged except the tilt set. New O1 operating-point
+condition on OFF arms (window d > +0.05 DOWN20, < -0.05 LEVEL, else
+INCONCLUSIVE_OPERATING_POINT). Predictions recorded: P1 G1 CONSISTENT, P2 FLIP CONSISTENT,
+P3 r_GF < 0 (E drive goes off under G1, on under FLIP), P4 DNp73/DNbe001 opposite signs in
+G1 vs FLIP in all seeds. No zone-sign, balance or corrective claim. See JO_ZONE_CROSSING_V1.md.
+
+IMMEDIATE NEXT (on approval): lock protocol, build module/tests, smoke, commit, run 37 arms.
+
 ## Antennal gravity Step C2 (JO operating-point attribution): ROOT / GRAVITY — 2026-11-05
 
 Preregistered (d3d76db, protocol 1527f2fc), run once (geometry replay of the 36 Step C arms,
