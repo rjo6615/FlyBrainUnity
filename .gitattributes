@@ -183,3 +183,6 @@ docs/evidence/antennal-gravity-encoder-v1/**/*.json -text
 docs/evidence/antennal-gravity-live-v1/*.json -text
 docs/evidence/antennal-gravity-live-v1/**/*.json -text
 docs/evidence/antennal-gravity-live-v1/**/*.txt -text -whitespace
+docs/evidence/jo-operating-point-v1/*.json -text
+docs/evidence/jo-operating-point-v1/**/*.json -text
+docs/evidence/jo-operating-point-v1/**/*.txt -text -whitespace
