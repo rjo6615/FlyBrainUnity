@@ -189,3 +189,6 @@ docs/evidence/jo-operating-point-v1/**/*.txt -text -whitespace
 docs/evidence/jo-zone-crossing-v1/*.json -text
 docs/evidence/jo-zone-crossing-v1/**/*.json -text
 docs/evidence/jo-zone-crossing-v1/**/*.txt -text -whitespace
+docs/evidence/jo-rollover-timing-v1/*.json -text
+docs/evidence/jo-rollover-timing-v1/**/*.json -text
+docs/evidence/jo-rollover-timing-v1/**/*.txt -text -whitespace
