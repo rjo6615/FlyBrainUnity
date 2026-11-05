@@ -1,5 +1,34 @@
 # FlyBrainUnity — local Codex handoff
 
+## Antennal gravity Step A (JO C/E identity): IDENTITY_READY — 2026-11-04
+
+Preregistered (a0a1777, protocol dcbe4e5c), run once (data only, result 5b735be5). A1-A4
+pass: C 31 L / 22 R, E 157 L / 110 R exact; C-vs-E weighted direct-target overlap 0.071 L /
+0.039 R (segregated zones); all four sets synapse directly onto DNs (DNp73, DNp18, DNg29,
+DNp33/DNg99 for C; pIP1, DNbe001 for E). A4 weak (2 hops reach 437-795 DNs). Leg MN 2-hop
+reach mostly ipsilateral, E >> C. Key limit: left/right output-synapse ratio C 5.31, E 2.54
+(counts 1.41/1.43) -> right reconstruction far less connected; a symmetric encoder would
+inject a built-in roll-like bias. Design note corrected: JO-mz counted as "other" (untyped
+4 L / 92 R). See ANTENNAL_GRAVITY_IDENTITY_RESULTS.md.
+
+IMMEDIATE NEXT: Step B design (kinematic encoder, G1 vs G1_FLIP) must declare the left/right
+handling rule before any output is inspected (e.g. as-reconstructed with label, a non-L/R
+quantity such as pitch, or per-side arms).
+
+## Antennal gravity sense (JO zones C/E) track: design — 2026-11-04
+
+User chose "richer senses" (coxa coverage at ceiling; desk audit in PR #321). Designed (no
+code/run). Johnston's organ wind/gravity neurons: 475 exact identities, unencoded, 178 reach
+leg MNs in 2 hops; the body has no gravity-referenced sense today. Typed C/E: C 31 L / 22 R,
+E 157 L / 110 R; 92/98 JO-unclear are right-side (annotation asymmetry; all statusLabel "RT
+Hard to trace"). Step A (data only, specified): A1 identity, A2 bilateral >= 10 per set,
+A3 C vs E weighted direct-target overlap < 0.5 per side, A4 C and E reach a descending neuron
+within 2 hops per side -> IDENTITY_READY / PARTIAL / NOT_READY. Steps B (kinematic encoder:
+gravity projected on funiculus rotation tangent; G1 vs G1_FLIP zone sign) and C (live
+JO_OFF/G1/FLIP) outlined only. Not an admission or balance test. See ANTENNAL_GRAVITY_SENSE_V1.md.
+
+IMMEDIATE NEXT (on approval): build Step A protocol/module/tests, commit, run once, evaluate.
+
 ## Remaining coxa coordinates desk audit: none testable with the existing method (no status change) — 2026-11-04
 
 PR #320 merged. User chose to return to motor coverage. Desk audit of committed results only

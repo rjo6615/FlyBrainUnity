@@ -1,0 +1,49 @@
+{
+  "schema": "antennal-gravity-identity-protocol-v1",
+  "date": "2026-11-04",
+  "design": "docs/ANTENNAL_GRAVITY_SENSE_V1.md (Step A)",
+  "question": "In the simulated MaleCNS connectome, are Johnston's organ zone C and zone E neurons present with exact identities on both sides, and does their wiring match the published structure (segregated direct targets, reach to descending neurons)?",
+  "status": "PREREGISTERED_BEFORE_IDENTITY_RUN",
+  "feasibility_inspection_before_registration": [
+    "Annotation counts only: subclass wind_gravity 475, entryNerve AN; zone x rootSide counts (C 31 L / 22 R, E 157 L / 110 R, other B/D/F/A 34 L / 23 R, JO-unclear 6 L / 92 R); statusLabel 'RT Hard to trace' for all 475; superclass value counts (descending_neuron 1314). The earlier posture-sense inventory reported 2-hop reach of 178 wind_gravity neurons to leg MN pools (all zones pooled). No zone-specific connectivity was computed before registration."
+  ],
+  "sources": {
+    "annotations": {"path": "docs/evidence/lf-anatomical-crosswalk-v1/annotations.feather", "sha256": "2177e246113e4cfbf1e7772ec37c6da1955ff22e8063d0b1f833101f99a9a3b2"},
+    "connectome": "malecns_backend.cache.load_cache (source fingerprints verified)",
+    "graph_and_reach_code": "malecns_backend.embodiment.posture_sense_inventory (adjacency, reach, motor_pools), reused unchanged"
+  },
+  "populations": {
+    "base": "subclass == 'wind_gravity'",
+    "C": "type starts with 'JO-C'",
+    "E": "type starts with 'JO-E'",
+    "side": "rootSide 'L' -> left, 'R' -> right; else excluded",
+    "excluded_reported": "JO-unclear and all other JO types are not in C or E; JO-unclear is reported per side"
+  },
+  "graph": "simulated CSR, presynaptic rows, edges with synapse count >= 6 (engine min_synapses floor)",
+  "descending_targets": "bodyIds with superclass == 'descending_neuron' present in the simulated index",
+  "checks": {
+    "A1_identity": "every C and E bodyId maps to exactly one dense index of the simulated connectome",
+    "A2_bilateral": "each of C-left, C-right, E-left, E-right has >= 10 matched neurons",
+    "A3_zone_segregation": "per side, weighted direct-target overlap between C and E, sum_t min(wC_t, wE_t) / sum_t max(wC_t, wE_t), with w_t the summed synapses (edges >= 6) from the set onto target t (all targets), is < 0.5 on both sides",
+    "A4_descending_reach": "per side, at least one C neuron and at least one E neuron reach a descending neuron by a direct edge or a two-hop path (all edges >= 6)"
+  },
+  "verdict": {
+    "IDENTITY_READY": "A1-A4 all pass",
+    "IDENTITY_PARTIAL": "A1 and A2 pass, A3 or A4 fails",
+    "NOT_READY": "A1 or A2 fails"
+  },
+  "reported_not_gated": [
+    "per zone x side: neurons reaching each leg's MN pools (all joint classes pooled) within two hops",
+    "descending neurons reached within two hops per zone x side: exact bodyIds and types, direct synapses",
+    "left/right ratio of C and E neuron counts and of total output synapses (edges >= 6)",
+    "weighted direct-target overlap of right JO-unclear with right C and with right E (descriptive; never used to assign)",
+    "overlap values themselves, per side"
+  ],
+  "interpretation_limits": [
+    "Data only: structural consistency, not function or transduction.",
+    "Zone sign (which zone prefers which deflection) is not addressed here; Step B tests G1 against G1_FLIP.",
+    "All JO neurons carry statusLabel 'RT Hard to trace'; right-side typing is incomplete (92 JO-unclear).",
+    "Published structure is cited from memory (Kamikouchi et al. 2009) and used as a hypothesis."
+  ],
+  "single_run": "Executed once after protocol, code and tests are committed."
+}
