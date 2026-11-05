@@ -1,5 +1,15 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
+Current2026-11-04: antennal gravity Step A run: IDENTITY_READY (C/E exact, segregated, direct DN edges); right side far less connected (synapses L/R C 5.3, E 2.5).
+
+```text
+Antennal gravity sense        [A: IDENTITY_READY (L/R synapse asymmetry 2.5-5.3x); next: design B kinematic encoder]
+Coxa push replication         [run: AMPLIFICATION_DIRECTIONAL F / B (R>1 6/6); yoke DO_NOT_REPRODUCE; FREE_COMMANDS_INCREASE_D F / B]
+Coxa conditional tier         [LF/LH/LM/RM CONDITIONAL (fore-aft Coxa); RF/RH blocked by input]
+Motor coverage                [##########-----------] 20/42 admitted (+4 conditional)
+Independent balance / gait    [not established]
+```
+
 Current2026-11-04: push response + offset yoke replicated on six new seeds (55 arms). Amplification direction replicates (R > 1 in 6/6, magnitude 1.05-1.97, below the 10 % bar in one seed per direction); fixed offsets do not reproduce it; free post-push coxa commands raise D in 6/6 per direction. Seed scatter about 0.17-0.24 SD in log ratio.
 
 ```text

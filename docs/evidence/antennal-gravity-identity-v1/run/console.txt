@@ -1,0 +1,19 @@
+{
+ "verdict": "IDENTITY_READY",
+ "checks": {
+  "A1_identity": true,
+  "A2_bilateral": true,
+  "A3_zone_segregation": true,
+  "A4_descending_reach": true
+ },
+ "counts": {
+  "C_left": 31,
+  "C_right": 22,
+  "E_left": 157,
+  "E_right": 110
+ },
+ "overlap_C_vs_E": {
+  "left": 0.07145343881679252,
+  "right": 0.03913979837073567
+ }
+}
