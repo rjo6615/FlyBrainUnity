@@ -180,3 +180,6 @@ docs/evidence/antennal-gravity-identity-v1/*.json -text
 docs/evidence/antennal-gravity-identity-v1/**/*.json -text
 docs/evidence/antennal-gravity-encoder-v1/*.json -text
 docs/evidence/antennal-gravity-encoder-v1/**/*.json -text
+docs/evidence/antennal-gravity-live-v1/*.json -text
+docs/evidence/antennal-gravity-live-v1/**/*.json -text
+docs/evidence/antennal-gravity-live-v1/**/*.txt -text -whitespace

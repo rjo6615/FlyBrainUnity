@@ -1,0 +1,91 @@
+{
+  "schema": "antennal-gravity-live-protocol-v1",
+  "date": "2026-11-05",
+  "design": "docs/ANTENNAL_GRAVITY_LIVE_V1.md",
+  "question": "Under a sustained 10 deg pitch tilt (nose-down vs nose-up), with the Step B JO encoder feeding the exact JO C/E sets, does the leg-MN DOWN-minus-UP rate contrast contain a JO-attributable part (beyond the matched JO-withheld contrast) whose pattern is consistent across CNS seeds?",
+  "status": "PREREGISTERED_BEFORE_LIVE_RUN",
+  "not_claimed": ["balance", "corrective reflex", "coordinate admission", "true zone sign"],
+  "sources": {
+    "encoder_result": {"path": "docs/evidence/antennal-gravity-encoder-v1/run/result.json", "sha256": "35ff3da49662c4e417149078d85e928ecab4fdb7bbb753a13919ef8a11ad710f", "required_status": "ENCODER_READY"},
+    "encoder_code": "malecns_backend.embodiment.antennal_gravity_encoder (AntennaFrames, AntennalGravityEncoder, zone_rates), unchanged",
+    "context": "malecns_backend.live.coxa_push_response Trial/create_session with kind N, push 0 (hair-plate Step C A_ON, 20 live-v3 channels, tibia proprioception, no coxa channel, zero force)",
+    "repro_reference": {"arm": "coxa-push-replication-v1 N0_7 (local raw)", "sha256": "1a94e5add3a828ba37c86840efda450fcff9cc36d5f52bceeceb53a2977fb9dd", "producer": "malecns_backend.live.coxa_push_replication --arm N0_7, unchanged"},
+    "step_a_result": {"path": "docs/evidence/antennal-gravity-identity-v1/run/result.json", "sha256": "5b735be5682361f4c708254bb7e65772ef08998fb1365329e3e64b3861104f8d"},
+    "bodymap": "fly-brain-main/public/data/bodymap.json"
+  },
+  "jo_input": {
+    "populations": "Step B result dense_indices (C_left 31, C_right 22, E_left 157, E_right 110; 320 neurons)",
+    "rule": "every neural tick: d per side from the live state (gravity = current model.opt.gravity); rates by Step B zone_rates under the arm's assignment; set as external drive on the four sets; same Bernoulli equation and instance-local boundary as the hair plates",
+    "schedule": "proprioception (392) + hair plates (52) + JO (320), identical in every arm; uniforms drawn over the whole schedule every tick",
+    "OFF": "JO computed and recorded with the G1 assignment but withheld at the CNS boundary (external_drive_withheld_indices = JO)"
+  },
+  "tilt": {
+    "event_state": 5005,
+    "operation": "after stored state 5005 is captured (model record verified unchanged), set model.opt.gravity = R_y(phi) @ (0, 0, -9810), held to the end",
+    "phi_deg": {"DOWN": -10.0, "UP": 10.0},
+    "meaning": "DOWN equals pitching floor and fly 10 deg nose-down (gravity gains +x); UP equals 10 deg nose-up",
+    "rationale": "inside Step B's validated +-30 deg grid; friction 1.0 >> tan 10 deg; comparable to the assisted-posture tilt (4-10 deg); declared, not tuned"
+  },
+  "arms": {
+    "per_seed_order": ["OFF_UP", "OFF_DOWN", "G1_UP", "G1_DOWN", "FLIP_UP", "FLIP_DOWN"],
+    "seeds": [13, 14, 15, 16, 17, 18],
+    "assignments": {"OFF": "withheld", "G1": "C=+d, E=-d", "FLIP": "E=+d, C=-d"},
+    "reproduction_first": "REPRO_N0_7",
+    "total": 37,
+    "duration": "20000 physics / 4000 neural transitions each; fresh process each; run once"
+  },
+  "integrity": {
+    "I1_complete": "all 37 arms COMPLETE with 20001 samples and 4000 ticks",
+    "I2_reproduction": "REPRO_N0_7 equals the local N0_7 raw arm (sha above) by coxa_offset_yoke.reproduces",
+    "I3_common_rng": "within each seed, all six arms have identical external schedule and per-tick uniforms digests",
+    "I4_prefixes": "within each seed and assignment, UP and DOWN have equal qpos and commands for stored states 0-5005 and equal fired lists for ticks with time_ms <= 500.0; within each seed, all six arms have equal state-0 qpos",
+    "I5_tilt_record": "recorded gravity is (0,0,-9810) for states 0-5005 and exactly the declared rotated vector from 5006 on; event recorded with the unchanged model record; no applied body wrench and zero external/generalized applied maxima at every state",
+    "I6_jo_delivery": "JO delivered only in G1/FLIP arms and only to the four sets; OFF arms deliver no JO event; each tick's recorded JO rates equal zone_rates(recorded d, assignment); at the first tick with time_ms > 500.5, d(DOWN) > d(UP) on both sides for each seed and each assignment (incl. OFF, recorded under G1)",
+    "I7_seeds": "every arm records its seed; tick-1 uniforms of seeds 13-18 are pairwise different",
+    "failure": "INCONCLUSIVE_INTEGRITY, no labels"
+  },
+  "physical_precondition": {
+    "rule": "in every OFF arm, the angle between the Thorax body z axis and -gravity_hat stays < 45 deg for every stored state in the window",
+    "failure": "INCONCLUSIVE_PHYSICS, no labels",
+    "on_arms": "tilt reported, not gated"
+  },
+  "measures": {
+    "window_ms": [520.0, 2000.0],
+    "pools": "bodymap muscles matching '^(.+) (T[123]) (left|right)$'; pool key '<T> <side> <class>' with class = actuator minus '_<T>_<side>'; pool ids = union of idx",
+    "pool_inclusion": "pool has >= 1 spike in the window in any of the 36 seed arms (sign-blind; fixed before the run)",
+    "rate": "spikes in window / pool size / 1.48 s (hair_plate_posture.rate)",
+    "delta": "Delta_a,s = rate(a_DOWN_s) - rate(a_UP_s) per included pool, a in {OFF, G1, FLIP}",
+    "S": "S_a,s = Delta_a,s - Delta_OFF,s for a in {G1, FLIP}",
+    "rho": "mean Pearson correlation of S_a,s over the 15 seed pairs; a pair with a zero-variance vector contributes 0",
+    "sign_flip_test": "for all 64 sign vectors sigma in {+-1}^6, rho_sigma = mean over pairs of sigma_i sigma_j corr_ij; p_a = #{rho_sigma >= rho_obs - 1e-12} / 64 (minimum 2/64)"
+  },
+  "labels": {
+    "per_assignment": ["G1", "FLIP"],
+    "JO_TILT_PATTERN_CONSISTENT": "rho_a > 0 and p_a <= 1/32",
+    "JO_TILT_PATTERN_WEAK": "rho_a > 0 and 1/32 < p_a <= 0.25",
+    "NO_CONSISTENT_JO_TILT_PATTERN": "otherwise"
+  },
+  "reported_not_labelled": [
+    "r_GF: Pearson correlation of seed-mean S_G1 and seed-mean S_FLIP (linearity check; additive responses give about -1; cannot identify zone sign)",
+    "mean |Delta_a,s| per arm type and seed; L2 norm of S_a,s",
+    "per-pool seed median of S and the count of seeds with positive S",
+    "descending neurons of types DNp73, DNp18, DNg29, pIP1, DNbe001 among Step A's descending_reached body_ids: DOWN-UP rate contrast per arm type and seed",
+    "tonic effect: mean leg-MN rate over included pools in G1_UP and FLIP_UP vs OFF_UP over 0-500 ms",
+    "body: mean and peak tilt relative to gravity, mean pitch and roll relative to gravity in the window, first stored state where G1_UP and OFF_UP qpos differ",
+    "per-side (left/right) MN contrasts, labelled with the reconstruction asymmetry; no left-minus-right difference is read as roll sensing"
+  ],
+  "declared_interpretation": {
+    "CONSISTENT": "JO-encoded sustained pitch passes through the connectome to a reproducible leg-MN change beyond the other senses: an information path that balance would need; not corrective, not balance",
+    "WEAK_or_NO": "a 10 deg tilt through this encoder does not give a reproducible leg-MN pattern over 1.5 s beyond the other senses; causes (chaotic divergence, small drive, indirect route) not distinguished; no rerun with larger tilt or more seeds without a new versioned protocol",
+    "assignments_disagree": "reported as is; neither assignment is promoted"
+  },
+  "interpretation_limits": [
+    "Modelled kinematic JO transduction; 120 Hz engineering scale; G1 label arbitrary.",
+    "Idealised step tilt by gravity rotation (floor and fly together, no rotational transient).",
+    "ON arms carry tonic JO input from t=0, so the OFF subtraction removes the other-senses tilt response only to first order.",
+    "Coxa MNs drive no joint (unmapped or CONDITIONAL); MN patterns are read out, acting only through the 20 admitted channels.",
+    "Right-side JO reconstruction far less connected; sets used as reconstructed.",
+    "No motor coordinate status change (20/42 admitted, +4 conditional)."
+  ],
+  "single_run": "All 37 arms run once after protocol, code and tests are committed and pushed; evaluated once."
+}
