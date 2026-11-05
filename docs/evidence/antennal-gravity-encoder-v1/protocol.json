@@ -1,0 +1,79 @@
+{
+  "schema": "antennal-gravity-encoder-protocol-v1",
+  "date": "2026-11-05",
+  "design": "docs/ANTENNAL_GRAVITY_ENCODER_V1.md",
+  "question": "Does a defined, mirror-consistent, pitch-sensitive gravity drive exist for the exact JO zone C/E sets, computed kinematically from the body state of the exact B4 runtime, before any CNS exposure?",
+  "status": "PREREGISTERED_BEFORE_ENCODER_RUN",
+  "feasibility_inspection_before_registration": [
+    "Zero-pose raw-MJCF positions only (funiculus inertial centre, arista origin and inertial centre, compiled masses); hand arithmetic of the zero-pose tangent recorded as predictions in the design. No runtime (B4) state, no imposed rotation, no rate computed."
+  ],
+  "sources": {
+    "populations": "malecns_backend.embodiment.antennal_gravity_identity.populations over its hash-locked annotations; must equal docs/evidence/antennal-gravity-identity-v1/run/result.json body_ids",
+    "step_a_result_sha256": "5b735be5682361f4c708254bb7e65772ef08998fb1365329e3e64b3861104f8d",
+    "runtime": "malecns_backend.embodiment._windows_m7d_corrected_spontaneous_adapter._runtime (exact B4 initialisation, FlyGym 1.2.1)"
+  },
+  "signal": {
+    "anchor": "a = world position of body <side>Funiculus (all funiculus hinges at its origin)",
+    "axis": "n = unit(xipos[<side>Funiculus] - a), distal a3 long axis",
+    "lever": "p = xipos[<side>Arista]; r_perp = (p - a) - ((p - a).n) n",
+    "tangent": "t = unit(n x r_perp), sign chosen so that t . x_head >= 0 (x_head = Head body x axis, world)",
+    "drive": "d = g_hat . t, g_hat = unit(model.opt.gravity); +d = gravity pulls the arista anteriorly",
+    "masses_used": false
+  },
+  "tuning": {
+    "max_rate_hz": 120.0,
+    "plus_zone_rate": "120 * max(d, 0)",
+    "minus_zone_rate": "120 * max(-d, 0)",
+    "uniform_within_set": true,
+    "G1": {"plus": "C", "minus": "E"},
+    "G1_FLIP": {"plus": "E", "minus": "C"},
+    "zone_sign_label": "arbitrary; tested in Step C"
+  },
+  "left_right_rule": [
+    "Populations are Step A's four sets as reconstructed; identical per-neuron rule on both sides; no per-side gain, normalisation or synapse-count correction.",
+    "Primary quantities (Step B checks and Step C primary contrasts) are pitch-driven, within-side, or bilateral sums; no left-minus-right difference in CNS or motor output is interpreted as roll sensing.",
+    "Roll response is reported descriptively only. The left/right synapse asymmetry (C 5.31x, E 2.54x) is labelled in all outputs."
+  ],
+  "stimuli": {
+    "base": "exact B4 initial state; neck and antenna joints at their initial values",
+    "rotation": "root free-joint quaternion pre-multiplied by a world rotation; mj_forward only; qpos restored afterwards",
+    "pitch_deg": [-30, -25, -20, -15, -10, -5, 0, 5, 10, 15, 20, 25, 30],
+    "pitch_axis": "world +y, at zero roll",
+    "roll_deg": [-30, -25, -20, -15, -10, -5, 0, 5, 10, 15, 20, 25, 30],
+    "roll_axis": "world +x, at zero pitch"
+  },
+  "checks": {
+    "B0_frame": "at the rest pose, per side: Thorax->Head direction has Thorax-frame x fraction > 0.99; |r_perp| > 0; |t . x_head| >= 0.7; |gravity| > 0",
+    "B1_identity": "the four bodyId sets equal Step A result body_ids exactly (C 31 L / 22 R, E 157 L / 110 R) and all map to dense indices",
+    "B2_bounded": "d finite and |d| <= 1 in every grid pose and the rest pose",
+    "B3_mirror": "|d_L - d_R| <= 0.05 in every pitch-grid pose (zero roll)",
+    "B4_pitch_response": "per side, d strictly monotonic (all successive differences of one sign, none zero) over the pitch grid"
+  },
+  "verdict": {
+    "INCONCLUSIVE": "B0 fails",
+    "ENCODER_READY": "B0-B4 all pass",
+    "NOT_READY": "B0 passes and any of B1-B4 fails"
+  },
+  "reported_not_gated": [
+    "rest-pose d per side and per-set rates under G1 and G1_FLIP (labelled: left/right synapse asymmetry, as reconstructed)",
+    "d over the pitch and roll grids per side; slopes at 0 by central difference (+-5 deg), per radian",
+    "d_L - d_R over the roll grid",
+    "n and t in the Head frame at rest, per side",
+    "direction of rotation sign: d at pitch +10 deg vs -10 deg (whether +pitch about world y is nose-down is reported from the Head x axis z-component)"
+  ],
+  "predictions_not_checks": [
+    "Level stance (zero pose arithmetic): d about -0.1 to -0.2; under G1, E low tonic, C silent; runtime head pose may shift this.",
+    "Nose-down pitch makes d rise steeply (slope near 1 per radian).",
+    "Roll slope magnitude about 0.2 per radian, opposite sign on the two sides."
+  ],
+  "interpretation_limits": [
+    "Static geometry only: no CNS, no physics stepping, no function shown.",
+    "Modelled kinematic transduction: true antennal stiffness and deflection magnitude are not modelled; 120 Hz is an engineering scale.",
+    "a3 axis from the mesh inertial centre and arista centre as lever are modelling assumptions; the textbook a3-rotation arrangement is recalled, not validated here.",
+    "Zone sign label G1 is arbitrary; Step C tests G1 against G1_FLIP.",
+    "Right-side JO reconstruction is far less connected; sets are used as reconstructed.",
+    "Runtime antenna joints are FlyGym default springs (stiffness 1.0) and the neck is passive (stiffness 10); the encoder reads pose, not joint angles.",
+    "No motor coordinate status changes (20/42 admitted, +4 conditional)."
+  ],
+  "single_run": "Executed once after protocol, code and tests are committed and pushed."
+}

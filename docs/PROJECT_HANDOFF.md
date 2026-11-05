@@ -1,5 +1,39 @@
 # FlyBrainUnity — local Codex handoff
 
+## Antennal gravity Step B (kinematic JO C/E encoder): ENCODER_READY — 2026-11-05
+
+Preregistered (2e2def7, protocol 0e97fe33), one discarded-unread smoke, run once (geometry
+only, B4 runtime, imposed whole-body rotations, mj_forward; result 35ff3da4). B0-B4 pass:
+t.x_head 0.966, sets = Step A, |d| <= 1 (-0.61..0.36), mirror max diff 3.5e-9, monotonic in
+pitch. Rest (level head) d = -0.144 both sides -> G1: E 17.2 Hz, C 0 (FLIP: C 17.2 Hz).
+Pitch slope 0.965/rad (nose-down raises d; zero crossing +5..+10 deg nose-down); roll slope
++-0.215/rad opposite per side (small roll channel, descriptive only under the L/R rule).
+All three recorded predictions held (same geometry, so an implementation check, not fly
+evidence). Step C must separate the tonic rest drive (~17 Hz in one zone per side) from the
+tilt-dependent part, e.g. tilt-direction contrasts within an arm. See
+ANTENNAL_GRAVITY_ENCODER_RESULTS.md.
+
+IMMEDIATE NEXT: Step C design (live JO_OFF / G1 / G1_FLIP in the assisted-posture context;
+preregistered pitch-driven, within-side contrast; no balance claim, no admission).
+
+## Antennal gravity Step B (kinematic JO C/E encoder): design — 2026-11-05
+
+Designed only (no protocol locked, no code, no run). Signal: d = gravity . t, where t is the
+arista's motion tangent for a3 rotation about its geometric long axis (funiculus anchor ->
+funiculus inertial centre), signed so +d = arista pulled anteriorly (mirror-consistent).
+Replaces the outline's joint_<side>Funiculus (y) axis, which is a generic Euler axis, not
+the a3 axis. Tonic one-sided 120 Hz x max(+-d, 0); G1: C = +d, E = -d (arbitrary label);
+G1_FLIP swaps. L/R rule declared before any output: Step A sets as reconstructed, identical
+per-neuron rule both sides, no per-side gain; primary quantities pitch-driven / within-side
+/ bilateral sums; no L-R difference read as roll sensing. Static checks B0 frame, B1
+identity = Step A, B2 |d|<=1, B3 mirror |dL-dR|<=0.05 at zero roll, B4 monotonic in pitch
+(-30..30 deg imposed whole-body rotations, mj_forward only). Corrections recorded: runtime
+antenna joints have stiffness 1.0 (FlyGym default), not 0; head is not fixed (neck spring
+10, no stabilisation). Predictions (hand arithmetic, zero pose): rest d ~ -0.1..-0.2,
+pitch slope ~1/rad, roll slope ~0.2/rad opposite per side. See ANTENNAL_GRAVITY_ENCODER_V1.md.
+
+IMMEDIATE NEXT (on approval): lock protocol, build module/tests, smokes, commit, run once.
+
 ## Antennal gravity Step A (JO C/E identity): IDENTITY_READY — 2026-11-04
 
 Preregistered (a0a1777, protocol dcbe4e5c), run once (data only, result 5b735be5). A1-A4

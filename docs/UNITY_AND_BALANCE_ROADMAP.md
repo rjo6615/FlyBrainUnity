@@ -1,9 +1,11 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
-Current2026-11-04: antennal gravity Step A run: IDENTITY_READY (C/E exact, segregated, direct DN edges); right side far less connected (synapses L/R C 5.3, E 2.5).
+Current 2026-11-05: antennal gravity Step B run: ENCODER_READY (pitch-dominated drive, rest E 17.2 Hz under G1, small antisymmetric roll component kept descriptive).
+
+Previous 2026-11-04: antennal gravity Step A run: IDENTITY_READY (C/E exact, segregated, direct DN edges); right side far less connected (synapses L/R C 5.3, E 2.5).
 
 ```text
-Antennal gravity sense        [A: IDENTITY_READY (L/R synapse asymmetry 2.5-5.3x); next: design B kinematic encoder]
+Antennal gravity sense        [A: IDENTITY_READY; B: ENCODER_READY (pitch slope 0.97/rad, roll +-0.22/rad descriptive); next: design C live]
 Coxa push replication         [run: AMPLIFICATION_DIRECTIONAL F / B (R>1 6/6); yoke DO_NOT_REPRODUCE; FREE_COMMANDS_INCREASE_D F / B]
 Coxa conditional tier         [LF/LH/LM/RM CONDITIONAL (fore-aft Coxa); RF/RH blocked by input]
 Motor coverage                [##########-----------] 20/42 admitted (+4 conditional)
