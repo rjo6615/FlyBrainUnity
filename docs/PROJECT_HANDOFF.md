@@ -1,5 +1,22 @@
 # FlyBrainUnity — local Codex handoff
 
+## Antennal gravity Step D2 (rollover timing replay): design — 2026-11-05
+
+Designed only (no protocol, code or replay). Why: 5/12 ON DOWN20 arms in Step D turned over,
+no OFF or LEVEL arm did; matched ON/OFF arms differ only by JO input. D2 replays the 37
+local Step D arms (no new simulation) to order events before each fall: t_JO (E switch),
+t_cmd (any of 20 admitted commands, baselined ON-OFF > 0.05 = 20% of bound), t_body
+(baselined ON-OFF tilt > 5 deg sustained to the fall), t_support (ON supports < 3 while OFF
+>= 3), t_fall (tilt >= 45 deg). Per FELL arm COMMAND_FIRST / BODY_FIRST / CONCURRENT (10 ms
+margin) / UNRESOLVED; summary ORDER_COMMAND_FIRST or ORDER_BODY_FIRST if >= 4/5, else
+ORDER_MIXED. Q2: FELL (5) vs UPRIGHT (7) early-window features F1 command, F2 per-leg MN,
+F3 supports, F4 d, each SEPARATES or OVERLAPS. Integrity R1-R4 (arm hashes, peak tilt
+recomputation, FELL set, pre-tilt identity). Expectation recorded: ORDER_COMMAND_FIRST,
+F1 SEPARATES. Descriptive; order is not cause. Already-seen report summaries disclosed. See
+JO_ROLLOVER_TIMING_V1.md.
+
+IMMEDIATE NEXT (on approval): lock protocol, build module/tests, smoke, commit, replay once.
+
 ## Antennal gravity Step D (JO zone-crossing tilt): FLIP CONSISTENT / G1 WEAK — 2026-11-05
 
 Preregistered (7564a78, protocol b002e1c8), 37 arms run once, evaluated once (report
@@ -15,9 +32,7 @@ Not distinguished: E-offset smallness vs adaptation vs rollover; cause of ON rol
 No zone-sign, balance or corrective claim. Raw arms local only. See
 JO_ZONE_CROSSING_RESULTS.md.
 
-IMMEDIATE NEXT: user decision. Candidates: (a) a versioned descriptive replay of the 37 local
-arms to time the ON rollovers against JO/MN events (no new simulation); (b) a separately
-versioned E-onset vs E-offset protocol that removes the tonic history confound.
+NEXT: taken up as Step D2 above; the E-onset vs E-offset protocol is still open.
 
 ## Antennal gravity Step C2 (JO operating-point attribution): ROOT / GRAVITY — 2026-11-05
 
