@@ -29,6 +29,24 @@ JO_OFF/G1/FLIP) outlined only. Not an admission or balance test. See ANTENNAL_GR
 
 IMMEDIATE NEXT (on approval): build Step A protocol/module/tests, commit, run once, evaluate.
 
+## Remaining coxa coordinates desk audit: none testable with the existing method (no status change) — 2026-11-04
+
+PR #320 merged. User chose to return to motor coverage. Desk audit of committed results only
+(no run, no protocol). The forward-limit hair-plate encoder is blind to coxa roll and yaw in
+all six legs (|df| <= 0.0005 per 0.1 rad vs ~0.1 for Coxa; hair-plate-encoder-v1
+axis_direction_per_0p1rad), so no roll/yaw coordinate can change the C2 measure. RH Coxa is
+visible but has no H1 channel (near-tie 0.76/0.74 fixed in advance); RF Coxa blocked by input.
+Result: none of the 14 non-CONDITIONAL coxa coordinates is testable by the existing
+encoder/binding/C2 measure; with Tarsus1 source-blocked, all 22 unadmitted coordinates are
+untestable with current validated components (ceiling 20/42 +4 conditional). A tip-based
+measure would be circular; a multi-axis encoder is not defensible from local metadata
+(M5B-2). Noted: COXA_COORDINATE_STATUS.md "Other middle-leg coxa (7)" is inconsistent (4).
+See COXA_REMAINING_COORDINATES_AUDIT.md.
+
+IMMEDIATE NEXT (user choice): coverage needs new evidence, not a new test. Candidate
+directions: richer senses (e.g. unused campaniform/load, labelled PROXY_ONLY in M5D-1),
+using the 24 channels toward balance, or reconciling the coxa status file.
+
 ## Push response + offset yoke replication on seeds 7-12: DIRECTIONAL / DO_NOT_REPRODUCE / FREE_COMMANDS_INCREASE_D (no status change) — 2026-11-04
 
 Preregistered (80ad349, protocol 01a6ea1c), 55 arms run once, evaluated once (report
