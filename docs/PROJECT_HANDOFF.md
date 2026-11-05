@@ -1,5 +1,24 @@
 # FlyBrainUnity — local Codex handoff
 
+## Antennal gravity Step D2 (rollover timing replay): COMMAND_FIRST, not diagnostic — 2026-11-05
+
+Preregistered (d25245d, protocol 12ca7a70), replayed once (37 Step D arms, no simulation),
+evaluated once (result dd372b92). INTEGRITY_ACCEPTED (R1-R4). Q1 ORDER_COMMAND_FIRST (5/5),
+but controls show admitted commands cross the 0.05 threshold early in arms that do not fall
+(G1 LEVEL 0.1-19.6 ms with no tilt; upright DOWN20 0.1-93 ms), so the label only says ON/OFF
+commands differ long before any fall. Q2 F1-F4 all OVERLAPS (expectation F1 NOT_HELD).
+Falls are late (583-1415 ms after tilt) and abrupt (sustained >5 deg divergence 27-34 ms
+before 45 deg). Tripod-support loss is common, not fall-specific (all fallen, all 7 upright
+DOWN20, 4/6 G1 LEVEL; never FLIP LEVEL). Descriptive pre-fall: FLIP falls show front-leg
+commands at/near the 0.25 bound (LFTarsus1, femur rolls) and front-leg MN +18-20 Hz; G1
+falls show RH MN +6-10 Hz. Not fall-specific (no matched upright window). Reading
+(hypothesis): JO-driven posture puts the body in a less stable regime and it tips at
+variable times; not a timed tilt response. See JO_ROLLOVER_TIMING_RESULTS.md.
+
+IMMEDIATE NEXT: user decision. Candidates: (a) a causal yoke: replay ON admitted commands
+into OFF arms (and OFF into ON) to test whether the commands alone produce falls, new
+versioned protocol; (b) the E-onset vs E-offset protocol from Step D.
+
 ## Antennal gravity Step D (JO zone-crossing tilt): FLIP CONSISTENT / G1 WEAK — 2026-11-05
 
 Preregistered (7564a78, protocol b002e1c8), 37 arms run once, evaluated once (report
@@ -15,9 +34,7 @@ Not distinguished: E-offset smallness vs adaptation vs rollover; cause of ON rol
 No zone-sign, balance or corrective claim. Raw arms local only. See
 JO_ZONE_CROSSING_RESULTS.md.
 
-IMMEDIATE NEXT: user decision. Candidates: (a) a versioned descriptive replay of the 37 local
-arms to time the ON rollovers against JO/MN events (no new simulation); (b) a separately
-versioned E-onset vs E-offset protocol that removes the tonic history confound.
+NEXT: taken up as Step D2 above; the E-onset vs E-offset protocol is still open.
 
 ## Antennal gravity Step C2 (JO operating-point attribution): ROOT / GRAVITY — 2026-11-05
 

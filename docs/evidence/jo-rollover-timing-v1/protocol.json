@@ -1,0 +1,80 @@
+{
+  "schema": "jo-rollover-timing-protocol-v1",
+  "date": "2026-11-05",
+  "design": "docs/JO_ROLLOVER_TIMING_V1.md",
+  "question": "In the Step D ON DOWN20 arms that turned over, which diverges first from the matched OFF arm after the tilt: admitted motor commands or body tilt? And which early post-tilt features separate the arms that fell from those that stayed upright?",
+  "status": "PREREGISTERED_BEFORE_REPLAY",
+  "kind": "descriptive replay of recorded Step D arms; no simulation, no CNS, no physics stepping",
+  "not_claimed": ["cause of the falls", "balance", "corrective response", "zone sign", "coordinate admission"],
+  "already_seen": "Step D report summaries only: per-arm peak/mean tilt, mean pitch/roll, window d, DN contrasts. No time course, onset time, support count or command trace of any arm was inspected before this protocol.",
+  "sources": {
+    "step_d_report": {"path": "docs/evidence/jo-zone-crossing-v1/run/report.json", "sha256": "e64811f7253478b0f2d91031d5b63d9acc8ea2c86ed4878959c49d9e3a80f571"},
+    "step_d_protocol": {"path": "docs/evidence/jo-zone-crossing-v1/protocol.json", "sha256": "b002e1c86b629ac559e9f509b2d25e004a0ab63bcfb2256c3fa66f2aeca01449"},
+    "raw_arms": "the 37 local Step D raw arms (untracked), each equal to report.arm_sha256",
+    "code_reused": "malecns_backend.live.antennal_gravity_live (body_angles, pools, counts, sha), jo_zone_crossing (split, SEEDS), hair_plate_posture.load; unchanged",
+    "bodymap": "fly-brain-main/public/data/bodymap.json"
+  },
+  "pairs": {
+    "on_arms": "G1/FLIP x LEVEL/DOWN20 x seeds 19-24 (24)",
+    "reference": "matched OFF arm with the same seed and tilt",
+    "analysed": "12 ON DOWN20 pairs; 12 ON LEVEL pairs are controls (reported, not labelled)"
+  },
+  "time": "stored state i is at i x 0.1 ms; neural tick k has its recorded time_ms; the tilt is applied after state 5005 (500.5 ms); the run ends at state 20000 (2000 ms)",
+  "definitions": {
+    "tilt": "angle between Thorax z and -gravity_hat using the recorded gravity (antennal_gravity_live.body_angles)[0], degrees",
+    "FELL": "tilt >= 45 deg at any stored state 5006-20000; otherwise UPRIGHT",
+    "t_fall": "first stored state >= 5006 with tilt >= 45 deg",
+    "baseline": "for any ON - OFF difference x(state), the mean of x over stored states 4005-5005 inclusive; baselined x = x - baseline",
+    "t_body": "with e(i) = baselined ON - OFF tilt (signed), the first state i >= 5006 such that e(j) > 5 deg for every j from i to the end point (t_fall for FELL, 20000 for UPRIGHT); none if e(end point) <= 5",
+    "t_cmd": "first state >= 5006 where |baselined ON - OFF commanded joint| > 0.05 for any of the 20 admitted channels (indices from initial.channels; 0.05 = 20 % of the 0.25 bound); also the channel name and the sign of that difference",
+    "t_support": "first state >= 5006 where ON supports < 3 and OFF supports >= 3; none if never",
+    "t_JO": "first neural tick with time_ms > 500.5 whose recorded jo_d is > 0 on either side, i.e. the zone switch (E off under G1, E on under FLIP); none if never",
+    "reporting_unit": "times reported in ms after the tilt (state i -> (i - 5005) x 0.1 ms; tick -> time_ms - 500.5)"
+  },
+  "Q1": {
+    "per_FELL_arm": {
+      "COMMAND_FIRST": "t_cmd exists and t_cmd < t_body - 10 ms (100 states)",
+      "BODY_FIRST": "t_body exists and (no t_cmd, or t_cmd > t_body + 10 ms)",
+      "CONCURRENT": "both exist and |t_cmd - t_body| <= 10 ms",
+      "UNRESOLVED": "no t_body"
+    },
+    "summary": "ORDER_COMMAND_FIRST if >= 4 of 5 FELL arms are COMMAND_FIRST; ORDER_BODY_FIRST if >= 4 are BODY_FIRST; otherwise ORDER_MIXED"
+  },
+  "Q2": {
+    "groups": "FELL vs UPRIGHT among the 12 ON DOWN20 arms",
+    "window": "stored states 5006 to min(5500, t_body) inclusive (t_body absent -> 5500); neural ticks with 500.5 < time_ms <= the same end in ms",
+    "F1": "per admitted channel, mean over the window of |baselined ON - OFF commanded joint|; feature = max over the 20 channels",
+    "F2": "per leg (T1/T2/T3 x left/right -> LF/LM/LH/RF/RM/RH), baselined ON - OFF leg-MN rate over that leg's pools (Step C pools; rate = spikes / neurons / seconds; baseline = same difference over ticks 400.5 < time_ms <= 500.5); feature = max over legs of |value|; per-leg values reported",
+    "F3": "minimum ON supports over the window states",
+    "F4": "mean recorded jo_d over the window ticks, averaged over L and R (per side reported)",
+    "label": "SEPARATES if every FELL value > every UPRIGHT value or every FELL value < every UPRIGHT value; OVERLAPS otherwise; NOT_EVALUABLE if any arm's feature is undefined (empty window)",
+    "note": "for 5 vs 7, complete separation by chance under random labelling has probability 2/792; descriptive, no significance claim, no multiplicity correction"
+  },
+  "controls_reported": [
+    "the same timings and features for the 12 ON LEVEL pairs",
+    "per FELL arm: per-channel baselined ON - OFF command mean and per-leg baselined MN rate difference over the 50 ms before t_body (ticks/states in (t_body - 50 ms, t_body])"
+  ],
+  "integrity": {
+    "R1": "all 37 raw arm sha256 equal the Step D report arm_sha256; the report sha256 equals the value above",
+    "R2": "per arm, max tilt over stored states with 520 < time_s x 1000 <= 2000 equals the report body tilt_max_deg within 1e-9",
+    "R3": "the FELL set is exactly {G1_DOWN20_19, G1_DOWN20_21, G1_DOWN20_24, FLIP_DOWN20_23, FLIP_DOWN20_24}; every OFF arm and every LEVEL arm is UPRIGHT (a check that the right arms are read, not an outcome)",
+    "R4": "for every pair, ON and OFF qpos at state 0 are equal",
+    "failure": "INCONCLUSIVE_INPUT, no labels"
+  },
+  "design_expectation": "ORDER_COMMAND_FIRST and F1 SEPARATES (larger in FELL); recorded before any time course was seen; reported as held or not",
+  "declared_interpretation": {
+    "ORDER_COMMAND_FIRST": "falls follow a JO-driven change in admitted commands after the tilt; a causal yoke test is a later, separate protocol",
+    "ORDER_BODY_FIRST": "falls start from posture or mechanics in place before the tilt (tonic JO posture is the candidate) or from command differences below 0.05",
+    "ORDER_MIXED": "no single route; reported per arm",
+    "SEPARATES": "an early marker of falling, not a cause"
+  },
+  "interpretation_limits": [
+    "Descriptive replay; temporal order is not causation; 5 FELL arms.",
+    "10 ms margin cannot resolve faster sequences; commands are sampled per stored state, MN activity per 0.5 ms tick.",
+    "Only the 20 admitted channels carry neural commands to the body; other joints are not driven by the brain in this context.",
+    "Thresholds (5 deg, 0.05, supports < 3) are engineering choices fixed before inspection.",
+    "Step D limits apply: idealised gravity-step tilt, modelled JO transduction, sparser right-side JO reconstruction.",
+    "No motor coordinate status change (20/42 admitted, +4 conditional)."
+  ],
+  "single_run": "Replay run once after protocol, code and tests are committed and pushed; evaluated once."
+}
