@@ -1,5 +1,24 @@
 # FlyBrainUnity — local Codex handoff
 
+## Antennal gravity Step D (JO zone-crossing tilt): FLIP CONSISTENT / G1 WEAK — 2026-11-05
+
+Preregistered (7564a78, protocol b002e1c8), 37 arms run once, evaluated once (report
+e64811f7). INTEGRITY_ACCEPTED; O1 passed (OFF window d LEVEL -0.17..-0.18, DOWN20
++0.17..+0.19); OFF arms upright. FLIP (E comes on at DOWN20) CONSISTENT rho 0.995 p 1/32,
+mean |Delta| 13-15 Hz; G1 (E goes off) WEAK rho 0.17 p 0.16, mean |Delta| 0.7-1.9 Hz;
+r_GF -0.035. P1 NOT_HELD, P2 HELD, P3 HELD by rule only (~0), P4 NOT_HELD (DNp73 opposite
+in 5/6 seeds, DNbe001 not). C route (~21 Hz) leaves leg MNs at the OFF rate (FLIP tonic =
+OFF in 5/6 seeds). 5 of 12 ON DOWN20 arms rolled over (G1 19/21/24, FLIP 23/24; peak
+150-156 deg); no OFF or LEVEL arm did; recorded as an outcome, not gated, no exclusion.
+Reading: the leg-MN readout acts as a one-sided E-onset detector, not a signed tilt channel.
+Not distinguished: E-offset smallness vs adaptation vs rollover; cause of ON rollovers.
+No zone-sign, balance or corrective claim. Raw arms local only. See
+JO_ZONE_CROSSING_RESULTS.md.
+
+IMMEDIATE NEXT: user decision. Candidates: (a) a versioned descriptive replay of the 37 local
+arms to time the ON rollovers against JO/MN events (no new simulation); (b) a separately
+versioned E-onset vs E-offset protocol that removes the tonic history confound.
+
 ## Antennal gravity Step C2 (JO operating-point attribution): ROOT / GRAVITY — 2026-11-05
 
 Preregistered (d3d76db, protocol 1527f2fc), run once (geometry replay of the 36 Step C arms,

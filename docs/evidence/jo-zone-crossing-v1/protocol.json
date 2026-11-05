@@ -1,0 +1,101 @@
+{
+  "schema": "jo-zone-crossing-protocol-v1",
+  "date": "2026-11-05",
+  "design": "docs/JO_ZONE_CROSSING_V1.md",
+  "question": "With a tilt that makes the live JO drive cross zero (LEVEL d < 0 vs 20 deg nose-down d > 0), does the DOWN20-minus-LEVEL leg-MN rate contrast contain a JO-attributable part (beyond the matched JO-withheld contrast) that is seed-consistent under each assignment, and do the assignments differ as predicted?",
+  "status": "PREREGISTERED_BEFORE_LIVE_RUN",
+  "not_claimed": ["balance", "corrective reflex", "coordinate admission", "true zone sign"],
+  "sources": {
+    "step_c_protocol": {"path": "docs/evidence/antennal-gravity-live-v1/protocol.json", "sha256": "05655b4005a48d27f4c8c29adf9baa012322582794d40c9d9172ab749cb8d7ea"},
+    "step_c_code": "malecns_backend.live.antennal_gravity_live (Trial.bind/step, pools, counts, pool_rates, body_angles, summarize, corr_matrix, sign_flip, label, complete, first_after, dn_groups), unchanged",
+    "step_c2_result": {"path": "docs/evidence/jo-operating-point-v1/run/result.json", "sha256": "981ee47c9e93290a62b4c9efd85bb0c3b01930dc15055b75303e431ab0690a05"},
+    "encoder_result": {"path": "docs/evidence/antennal-gravity-encoder-v1/run/result.json", "sha256": "35ff3da49662c4e417149078d85e928ecab4fdb7bbb753a13919ef8a11ad710f"},
+    "repro_reference": {"arm": "coxa-push-replication-v1 N0_7 (local raw)", "sha256": "1a94e5add3a828ba37c86840efda450fcff9cc36d5f52bceeceb53a2977fb9dd", "producer": "malecns_backend.live.coxa_push_replication --arm N0_7, unchanged"},
+    "bodymap": "fly-brain-main/public/data/bodymap.json"
+  },
+  "context": "identical to Step C: push-response N (hair-plate Step C A_ON, 20 live-v3 channels, tibia proprioception, no coxa channel, zero force); JO encoder on the four Step A sets; schedule proprioception 392 + hair plates 52 + JO 320 in every arm; JO withheld at the CNS boundary in OFF",
+  "tilt": {
+    "event_state": 5005,
+    "LEVEL": "model.opt.gravity left at (0, 0, -9810) for the whole run; recorded at every state; a tilt event with phi 0 and the unchanged vector is recorded at state 5005",
+    "DOWN20": "after stored state 5005 is captured, model.opt.gravity = R_y(-20 deg) @ (0, 0, -9810) (gravity gains +x = 20 deg nose-down), held to the end",
+    "expected_operating_point": {"LEVEL": "window d about -0.18 (Step C2 pre-tilt OFF d -0.161..-0.225; not measured after 500 ms without tilt)", "DOWN20": "window d about +0.17 (Step B geometry +0.195 at 20 deg nose-down; Step C2 10 deg DOWN posture terms ROOT -0.057, NECK +0.032)"},
+    "rationale": "smallest step expected to make d clearly positive given Step C2; inside Step B's +-30 deg grid; friction 1.0 >> tan 20 deg = 0.36; declared, not tuned"
+  },
+  "arms": {
+    "per_seed_order": ["OFF_LEVEL", "OFF_DOWN20", "G1_LEVEL", "G1_DOWN20", "FLIP_LEVEL", "FLIP_DOWN20"],
+    "seeds": [19, 20, 21, 22, 23, 24],
+    "assignments": {"OFF": "withheld (computed and recorded under G1)", "G1": "C=+d, E=-d", "FLIP": "E=+d, C=-d"},
+    "reproduction_first": "REPRO_N0_7",
+    "total": 37,
+    "duration": "20000 physics / 4000 neural transitions each; fresh process each; run once"
+  },
+  "integrity": {
+    "I1_complete": "all 37 arms COMPLETE with 20001 samples and 4000 ticks",
+    "I2_reproduction": "REPRO_N0_7 equals the local N0_7 raw arm (sha above) by coxa_offset_yoke.reproduces",
+    "I3_common_rng": "within each seed, all six arms have identical external schedule and per-tick uniforms digests",
+    "I4_prefixes": "within each seed and assignment, LEVEL and DOWN20 have equal qpos and commands for stored states 0-5005 and equal fired lists for ticks with time_ms <= 500.0; within each seed, all six arms have equal state-0 qpos",
+    "I5_tilt_record": "LEVEL: recorded gravity (0,0,-9810) at every state and tilt event vector (0,0,-9810); DOWN20: (0,0,-9810) for states 0-5005 and exactly R_y(-20 deg) @ (0,0,-9810) from 5006 on, tilt event with that vector; event OBSERVE_ONLY with the unchanged model record at 5005; no applied body wrench and zero external/generalized applied maxima at every state",
+    "I6_jo_delivery": "JO delivered only in G1/FLIP arms and only to the four sets; OFF arms deliver no JO event; each tick's recorded JO rates equal zone_rates(recorded d, assignment); at the first tick with time_ms > 500.5, d(DOWN20) > d(LEVEL) on both sides for each seed and arm type",
+    "I7_seeds": "every arm records its seed; tick-1 uniforms of seeds 19-24 are pairwise different",
+    "failure": "INCONCLUSIVE_INTEGRITY, no labels"
+  },
+  "operating_point": {
+    "O1": "in every OFF arm, the mean of recorded jo_d over ticks with 520 < time_ms <= 2000, per side, is > +0.05 in OFF_DOWN20 and < -0.05 in OFF_LEVEL",
+    "failure": "INCONCLUSIVE_OPERATING_POINT, no labels; measured d reported; no rerun under this protocol",
+    "on_arms": "window d reported, not gated"
+  },
+  "physical_precondition": {
+    "rule": "in every OFF arm, the angle between the Thorax body z axis and -gravity_hat stays < 45 deg for every stored state in the window",
+    "failure": "INCONCLUSIVE_PHYSICS, no labels"
+  },
+  "check_order": "integrity, then O1, then the physical precondition",
+  "measures": {
+    "window_ms": [520.0, 2000.0],
+    "pools": "as Step C (bodymap leg muscles, '<T> <side> <class>')",
+    "pool_inclusion": "pool has >= 1 spike in the window in any of the 36 seed arms",
+    "rate": "spikes in window / pool size / 1.48 s",
+    "delta": "Delta_a,s = rate(a_DOWN20_s) - rate(a_LEVEL_s) per included pool, a in {OFF, G1, FLIP}",
+    "S": "S_a,s = Delta_a,s - Delta_OFF,s for a in {G1, FLIP}",
+    "rho": "mean Pearson correlation of S_a,s over the 15 seed pairs; a zero-variance pair contributes 0",
+    "sign_flip_test": "exact over 64 sign vectors; p_a = #{rho_sigma >= rho_obs - 1e-12} / 64"
+  },
+  "labels": {
+    "per_assignment": ["G1", "FLIP"],
+    "JO_TILT_PATTERN_CONSISTENT": "rho_a > 0 and p_a <= 1/32",
+    "JO_TILT_PATTERN_WEAK": "rho_a > 0 and 1/32 < p_a <= 0.25",
+    "NO_CONSISTENT_JO_TILT_PATTERN": "otherwise"
+  },
+  "predictions": {
+    "P1": "G1 label is JO_TILT_PATTERN_CONSISTENT",
+    "P2": "FLIP label is JO_TILT_PATTERN_CONSISTENT",
+    "P3": "r_GF (Pearson of seed-mean S_G1 and S_FLIP) < 0",
+    "P4": "for DNp73 and DNbe001, in each of the 6 seeds, the DOWN20-LEVEL rate contrast under G1 and under FLIP are both nonzero and of opposite sign",
+    "recording": "each HELD or NOT_HELD by these rules; evaluated only when the status is INTEGRITY_ACCEPTED"
+  },
+  "reported_not_labelled": [
+    "window-mean recorded d per arm and side",
+    "body: mean and peak tilt, mean pitch and roll relative to gravity in the window; first stored state where G1_LEVEL and OFF_LEVEL qpos differ",
+    "mean |Delta_a,s| per arm type and seed; L2 norm of S_a,s",
+    "per-pool seed median of S and the count of seeds with positive S",
+    "DOWN20-LEVEL rate contrast for DNp73, DNp18, DNg29, pIP1, DNbe001 per arm type and seed",
+    "tonic mean leg-MN rate over included pools, 0-500 ms, per arm type (LEVEL arms)",
+    "per-side (left/right) mean S, labelled with the reconstruction asymmetry; no roll claim"
+  ],
+  "declared_interpretation": {
+    "both_CONSISTENT_and_r_GF_negative": "switching the active JO zone with tilt direction gives reproducible, assignment-dependent leg-MN patterns: the E/C routes act as a signed tilt-direction channel in this reconstruction; information structure a balance response would need; not shown corrective",
+    "one_CONSISTENT_or_r_GF_nonnegative": "zone switching is not a simple sign flip (tonic history or the C route shapes it); reported as is",
+    "neither_CONSISTENT": "a 20 deg zone-crossing tilt through this encoder gives no reproducible leg-MN pattern beyond the other senses over 1.5 s; causes not distinguished",
+    "INCONCLUSIVE_OPERATING_POINT": "the C2-based estimate did not hold at 20 deg; recorded with measured d; another tilt needs a new versioned protocol"
+  },
+  "interpretation_limits": [
+    "Modelled kinematic JO transduction; 120 Hz engineering scale; G1 label arbitrary.",
+    "Idealised step tilt by gravity rotation (floor and fly together, no rotational transient).",
+    "ON arms carry tonic JO input from t=0, so the OFF subtraction removes the other-senses tilt response only to first order.",
+    "LEVEL vs DOWN20 is no-tilt vs tilt; a generic response to tilting is removed only to first order by the OFF subtraction.",
+    "Passive neck sag (+0.033 in d, Step C2) is present in all arms.",
+    "Coxa MNs drive no joint; MN patterns are read out, acting only through the 20 admitted channels.",
+    "Right-side JO reconstruction far less connected; sets used as reconstructed.",
+    "No motor coordinate status change (20/42 admitted, +4 conditional)."
+  ],
+  "single_run": "All 37 arms run once after protocol, code and tests are committed and pushed; evaluated once."
+}
