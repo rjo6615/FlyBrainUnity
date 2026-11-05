@@ -1,5 +1,22 @@
 # FlyBrainUnity — local Codex handoff
 
+## Antennal gravity Step D3 (command yoke of the falls): design — 2026-11-05
+
+Designed only (no protocol, code or run). Adhesion off, no external force: the body is
+determined by the 42 commanded positions + the declared gravity step, so the ON falls are
+fully set by the ON command stream. D3 asks which part is sufficient/necessary, per fallen
+arm (G1_DOWN20 19/21/24, FLIP_DOWN20 23/24), via the validated coxa_offset_yoke sim.step
+path in the Step D OFF_DOWN20 context (CNS runs, output does not reach the body). 9
+conditions x 5 = 45 arms (~3.7 h): FULL_ON (integrity: must reproduce source qpos exactly),
+ONLY_/NO_ FRONT/MIDDLE/HIND (admitted channels by leg group; unadmitted from OFF), PRE_ONLY
+(ON up to the tilt), POST_ONLY (ON from the tilt). Labels per group SUFFICIENT_AND_NECESSARY /
+SUFFICIENT_NOT_NECESSARY / NECESSARY_NOT_SUFFICIENT / NEITHER; PRE/POST_TILT_SUFFICIENT;
+CONSISTENT within G1 or FLIP if all arms agree. Integrity Y1-Y5. Expectations: FLIP FRONT
+S&N + POST falls; G1 PRE falls (group not predicted, HIND weak guess). Open loop; not
+closed-loop or balance claims. See JO_COMMAND_YOKE_V1.md.
+
+IMMEDIATE NEXT (on approval): lock protocol, build module/tests, smoke, commit, run 45 arms.
+
 ## Antennal gravity Step D2 (rollover timing replay): COMMAND_FIRST, not diagnostic — 2026-11-05
 
 Preregistered (d25245d, protocol 12ca7a70), replayed once (37 Step D arms, no simulation),
@@ -15,9 +32,8 @@ falls show RH MN +6-10 Hz. Not fall-specific (no matched upright window). Readin
 (hypothesis): JO-driven posture puts the body in a less stable regime and it tips at
 variable times; not a timed tilt response. See JO_ROLLOVER_TIMING_RESULTS.md.
 
-IMMEDIATE NEXT: user decision. Candidates: (a) a causal yoke: replay ON admitted commands
-into OFF arms (and OFF into ON) to test whether the commands alone produce falls, new
-versioned protocol; (b) the E-onset vs E-offset protocol from Step D.
+NEXT: taken up as Step D3 (a full replay would only reproduce the fall, so D3 yokes command
+subsets by leg group and time); the E-onset vs E-offset protocol is still open.
 
 ## Antennal gravity Step D (JO zone-crossing tilt): FLIP CONSISTENT / G1 WEAK — 2026-11-05
 

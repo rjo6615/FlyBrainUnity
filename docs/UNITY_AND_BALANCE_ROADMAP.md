@@ -1,6 +1,8 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
-Current 2026-11-05: antennal gravity Step D2 run: ORDER_COMMAND_FIRST 5/5 but not diagnostic (controls cross the command threshold without falling); no early marker separates fallen arms; falls late (583-1415 ms) and abrupt (~30 ms).
+Current 2026-11-05: antennal gravity Step D3 designed (open-loop command yoke of the 5 falls: which leg group and which period - before or after the tilt - is sufficient/necessary; 45 arms).
+
+Previous 2026-11-05: antennal gravity Step D2 run: ORDER_COMMAND_FIRST 5/5 but not diagnostic (controls cross the command threshold without falling); no early marker separates fallen arms; falls late (583-1415 ms) and abrupt (~30 ms).
 
 Previous 2026-11-05: antennal gravity Step D2 designed (descriptive replay of the 37 Step D arms: what diverges first - commands, body or support - before the 5 ON rollovers).
 
@@ -21,7 +23,7 @@ Previous 2026-11-05: antennal gravity Step B run: ENCODER_READY (pitch-dominated
 Previous 2026-11-04: antennal gravity Step A run: IDENTITY_READY (C/E exact, segregated, direct DN edges); right side far less connected (synapses L/R C 5.3, E 2.5).
 
 ```text
-Antennal gravity sense        [A: IDENTITY_READY; B: ENCODER_READY (pitch slope 0.97/rad, roll +-0.22/rad descriptive); C: G1 CONSISTENT / FLIP WEAK (E route reaches leg MNs, C route weak; d <= 0 both tilts); C2: drift = body posture (ROOT), neck sag opposes, antenna joints ~0; D: zone crossing -> FLIP/E-onset CONSISTENT, G1/E-offset WEAK, r_GF ~0, C route silent at MNs, 5/12 ON tilted arms rolled; D2: falls late and abrupt, COMMAND_FIRST not diagnostic, no early marker; next: user decision (command yoke or E-onset/offset)]
+Antennal gravity sense        [A: IDENTITY_READY; B: ENCODER_READY (pitch slope 0.97/rad, roll +-0.22/rad descriptive); C: G1 CONSISTENT / FLIP WEAK (E route reaches leg MNs, C route weak; d <= 0 both tilts); C2: drift = body posture (ROOT), neck sag opposes, antenna joints ~0; D: zone crossing -> FLIP/E-onset CONSISTENT, G1/E-offset WEAK, r_GF ~0, C route silent at MNs, 5/12 ON tilted arms rolled; D2: falls late and abrupt, COMMAND_FIRST not diagnostic, no early marker; D3: designed (command yoke by leg group and time); next: build D3]
 Coxa push replication         [run: AMPLIFICATION_DIRECTIONAL F / B (R>1 6/6); yoke DO_NOT_REPRODUCE; FREE_COMMANDS_INCREASE_D F / B]
 Coxa conditional tier         [LF/LH/LM/RM CONDITIONAL (fore-aft Coxa); RF/RH blocked by input]
 Motor coverage                [##########-----------] 20/42 admitted (+4 conditional)
