@@ -1,9 +1,12 @@
 # Antennal gravity sense, Step D: does a zone-crossing tilt give direction-specific leg-MN responses? (design, V1)
 
-Designed 2026-11-05. This is the design only. No code exists, nothing has run, and no
-protocol is locked. On approval, the rules below are copied into
-`docs/evidence/jo-zone-crossing-v1/protocol.json`, hash-locked in code, and committed
-before any arm runs.
+Designed 2026-11-05.
+
+**Status 2026-11-05:** preregistered (7564a78, protocol b002e1c8), run once and evaluated
+once. `INTEGRITY_ACCEPTED`, O1 passed. G1 `JO_TILT_PATTERN_WEAK`, FLIP
+`JO_TILT_PATTERN_CONSISTENT`, r_GF −0.035. Predictions: P1 NOT_HELD, P2 HELD, P3 HELD (by
+the rule; about zero), P4 NOT_HELD. Five ON DOWN20 arms rolled over. See
+`JO_ZONE_CROSSING_RESULTS.md`.
 
 Related documents:
 - Step B, `ANTENNAL_GRAVITY_ENCODER_RESULTS.md` (`ENCODER_READY`);
