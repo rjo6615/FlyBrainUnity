@@ -1,5 +1,21 @@
 # FlyBrainUnity — local Codex handoff
 
+## Antennal gravity Step C2 (JO operating-point attribution): design — 2026-11-05
+
+Designed only (no protocol, code or run). Why: in Step C the live JO drive drifted from
+Step B's rest value (-0.144 at t=0) to about -0.17 before the tilt and about -0.38 after the
+nose-up tilt, so the nose-down tilt only reached d ~ 0 and each assignment modulated one zone.
+Method: replay recorded qpos of the 36 Step C seed arms through mj_forward in the Step B
+runtime; exact 6-factor Shapley attribution of d(target) - d(state 0) over ROOT orientation,
+NECK (Head joints, passive k=10), A2 (Pedicel), A3 (Funiculus, the a2-a3 JO joint), ARISTA
+(all passive k=1.0, FlyGym defaults) and GRAVITY. Targets: state 5005 (Q1, pre-tilt) and
+the window mean (Q2, UP/DOWN separately). Integrity J1-J4 (hashes, replay equals recorded
+jo_d to 1e-9, state-0 d = Step B rest, additivity). Labels DOMINANT_<factor> (median share
+>= 0.5 and sign in >= 90% arms) / MIXED / NO_MATERIAL_DRIFT. No CNS, no physics stepping, no
+encoder or Step C label change. See JO_OPERATING_POINT_V1.md.
+
+IMMEDIATE NEXT (on approval): lock protocol, build module/tests, smoke, commit, run once.
+
 ## Antennal gravity Step C (live JO tilt routing): G1 CONSISTENT, FLIP WEAK — 2026-11-05
 
 Preregistered (0ef9dbe, protocol 05655b40), two plumbing smokes deleted unread, 37 arms run
