@@ -1,5 +1,25 @@
 # FlyBrainUnity — local Codex handoff
 
+## Antennal gravity Step C2 (JO operating-point attribution): ROOT / GRAVITY — 2026-11-05
+
+Preregistered (d3d76db, protocol 1527f2fc), run once (geometry replay of the 36 Step C arms,
+1.18M mj_forward, ~8 min), evaluated once (result 981ee47c). INTEGRITY_ACCEPTED: replay of
+recorded jo_d bit-exact (max diff 0.0 over 144k ticks), state-0 d = Step B rest, Shapley
+additivity 2e-16. Q1 (pre-tilt drift, -0.030 L / -0.025 R): DOMINANT_ROOT both sides -- body
+pitches 3.4-6.2 deg nose-up relative to gravity (ROOT -0.06), passive neck sags ~2.0 deg
+nose-down (NECK +0.033, opposes), antenna joints negligible (A2+A3+ARISTA < 0.001; a2-a3
+deflection ~0.01-0.03 deg). Q2 (window): DOMINANT_GRAVITY for UP and DOWN; beside the tilt,
+ROOT lowers d in both directions (-0.096 UP, -0.057 DOWN), which is why Step C's nose-down d
+sat at ~0. Tilt contrast DOWN-UP 0.34-0.38 = gravity 0.335 + ROOT 0.04 (OFF/FLIP; only
+0.008-0.030 in G1). Encoder and Step C labels unchanged. Observation (not tested): the
+model's a2-a3 joint barely deflects, so a joint-angle JO encoder would carry almost no
+signal without a mechanics change. See JO_OPERATING_POINT_RESULTS.md.
+
+IMMEDIATE NEXT: user's choice. Candidates (each its own versioned design): a JO live step
+whose tilts are placed around the measured live operating point (pre-tilt d ~ -0.18,
+posture response included) so both zones engage, with expected d verified as integrity;
+or neck stabilisation (connectome-driven neck motor output) as its own track.
+
 ## Antennal gravity Step C2 (JO operating-point attribution): design — 2026-11-05
 
 Designed only (no protocol, code or run). Why: in Step C the live JO drive drifted from
@@ -14,7 +34,7 @@ jo_d to 1e-9, state-0 d = Step B rest, additivity). Labels DOMINANT_<factor> (me
 >= 0.5 and sign in >= 90% arms) / MIXED / NO_MATERIAL_DRIFT. No CNS, no physics stepping, no
 encoder or Step C label change. See JO_OPERATING_POINT_V1.md.
 
-IMMEDIATE NEXT (on approval): lock protocol, build module/tests, smoke, commit, run once.
+Superseded by the run above.
 
 ## Antennal gravity Step C (live JO tilt routing): G1 CONSISTENT, FLIP WEAK — 2026-11-05
 

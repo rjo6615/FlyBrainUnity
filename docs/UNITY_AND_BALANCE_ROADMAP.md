@@ -1,6 +1,8 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
-Current 2026-11-05: antennal gravity Step C2 designed (attribute the live JO operating-point drift to body, neck, antenna joints and tilt by exact Shapley replay of the Step C arms; geometry only).
+Current 2026-11-05: antennal gravity Step C2 run: pre-tilt JO drift DOMINANT_ROOT (body ~4 deg nose-up; passive neck sag ~2 deg opposes; antenna joints negligible); window DOMINANT_GRAVITY with body posture lowering d in both tilts.
+
+Previous 2026-11-05: antennal gravity Step C2 designed (exact Shapley replay of the Step C arms; geometry only).
 
 Previous 2026-11-05: antennal gravity Step C run: G1 JO_TILT_PATTERN_CONSISTENT (rho 0.70, p 1/32), FLIP WEAK (rho 0.06); the tilt kept d <= 0, so this compares the E route (strong, via DNp73/DNbe001) with the C route (weak); not balance.
 
@@ -11,7 +13,7 @@ Previous 2026-11-05: antennal gravity Step B run: ENCODER_READY (pitch-dominated
 Previous 2026-11-04: antennal gravity Step A run: IDENTITY_READY (C/E exact, segregated, direct DN edges); right side far less connected (synapses L/R C 5.3, E 2.5).
 
 ```text
-Antennal gravity sense        [A: IDENTITY_READY; B: ENCODER_READY (pitch slope 0.97/rad, roll +-0.22/rad descriptive); C: G1 CONSISTENT / FLIP WEAK (E route reaches leg MNs, C route weak; d <= 0 both tilts); C2: designed (operating-point attribution); next: build C2]
+Antennal gravity sense        [A: IDENTITY_READY; B: ENCODER_READY (pitch slope 0.97/rad, roll +-0.22/rad descriptive); C: G1 CONSISTENT / FLIP WEAK (E route reaches leg MNs, C route weak; d <= 0 both tilts); C2: drift = body posture (ROOT), neck sag opposes, antenna joints ~0]
 Coxa push replication         [run: AMPLIFICATION_DIRECTIONAL F / B (R>1 6/6); yoke DO_NOT_REPRODUCE; FREE_COMMANDS_INCREASE_D F / B]
 Coxa conditional tier         [LF/LH/LM/RM CONDITIONAL (fore-aft Coxa); RF/RH blocked by input]
 Motor coverage                [##########-----------] 20/42 admitted (+4 conditional)

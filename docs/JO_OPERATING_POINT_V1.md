@@ -1,5 +1,9 @@
 # Antennal gravity sense, Step C2: where does the live JO operating point come from? (design, V1)
 
+**Status (2026-11-05):** preregistered (d3d76db, protocol 1527f2fc), run once, evaluated
+once: `INTEGRITY_ACCEPTED` (replay bit-exact); Q1 `DOMINANT_ROOT` (both sides), Q2
+`DOMINANT_GRAVITY` (UP and DOWN, both sides). See `JO_OPERATING_POINT_RESULTS.md`.
+
 Designed 2026-11-05. This is the design only. No code exists, nothing has run, and no
 protocol is locked. On approval, the rules below are copied into
 `docs/evidence/jo-operating-point-v1/protocol.json`, hash-locked in code, and committed
