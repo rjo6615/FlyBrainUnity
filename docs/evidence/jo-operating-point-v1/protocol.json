@@ -1,0 +1,75 @@
+{
+  "schema": "jo-operating-point-protocol-v1",
+  "date": "2026-11-05",
+  "design": "docs/JO_OPERATING_POINT_V1.md",
+  "question": "Which factors (root orientation, passive neck, passive antenna joints a2 / a3 / arista, gravity tilt) account for the change of the live JO drive d from stored state 0 to (Q1) the last pre-tilt state 5005 and (Q2) the 520-2000 ms window mean, in the 36 Step C seed arms?",
+  "status": "PREREGISTERED_BEFORE_ANALYSIS",
+  "not_claimed": ["fly physiology of the antenna or neck stiffness", "any change to the encoder or Step C labels", "behavioural effect of the operating point"],
+  "sources": {
+    "step_c_report": {"path": "docs/evidence/antennal-gravity-live-v1/run/report.json", "sha256": "515f66ddf5deb218b8d324dd71d21ac5058d0d640761b93395ae8960db716982"},
+    "step_c_arms": "the 36 seed arms (OFF/G1/FLIP x UP/DOWN x seeds 13-18), local raw .json.gz, each verified against report.json arm_sha256; REPRO_N0_7 not used",
+    "step_b_result": {"path": "docs/evidence/antennal-gravity-encoder-v1/run/result.json", "sha256": "35ff3da49662c4e417149078d85e928ecab4fdb7bbb753a13919ef8a11ad710f"},
+    "model": "malecns_backend.embodiment._windows_m7d_corrected_spontaneous_adapter._runtime (the Step B runtime); AntennaFrames.drive unchanged; a separate MjData, mj_forward per evaluation"
+  },
+  "tick_state_mapping": {
+    "rule": "neural tick k (1-based, time 0.5k ms) encoded d from the qpos of stored state 5k, with the gravity in force at that moment: the rotated vector if 5k >= the arm's tilt_state (5005), else (0, 0, -9810). The recorded gravity of state 5005 itself is (0, 0, -9810) because it is captured before the rotation.",
+    "how_fixed": "from two discarded plumbing smokes of the unchanged Step C module (60 steps tilt 22; 40 steps tilt 20; scratch output, not evidence): qpos(5k) reproduced recorded d with difference 0 on every tick (5k-1 and 5k+1 did not); gravity switched exactly at 5k >= tilt_state. No evidence arm was inspected for this."
+  },
+  "factors": {
+    "ROOT": "root free-joint orientation quaternion, qpos 3-6",
+    "NECK": "joint_Head_yaw, joint_Head, joint_Head_roll (qpos 73-75)",
+    "A2": "joint_{L,R}Pedicel_yaw, joint_{L,R}Pedicel, joint_{L,R}Pedicel_roll (qpos 76-78, 85-87)",
+    "A3": "joint_{L,R}Funiculus_yaw, joint_{L,R}Funiculus, joint_{L,R}Funiculus_roll (qpos 79-81, 88-90); the a2-a3 joint",
+    "ARISTA": "joint_{L,R}Arista_yaw, joint_{L,R}Arista, joint_{L,R}Arista_roll (qpos 82-84, 91-93)",
+    "GRAVITY": "model.opt.gravity",
+    "resolution": "addresses resolved from exact joint names in the model and asserted equal to the listed qpos addresses; all other qpos (root position, legs) held at the target value (they do not enter d)",
+    "side_note": "each antenna factor covers both sides; d_L does not depend on right antenna joints and vice versa"
+  },
+  "attribution": {
+    "reference": "stored state 0 of the same arm: its qpos and gravity (0, 0, -9810)",
+    "method": "exact Shapley values over the 6 factors: v(S) = d with factors in S at target and the rest at reference; all 64 subsets evaluated; phi_i = sum over S not containing i of |S|!(5-|S|)!/6! (v(S+i) - v(S))",
+    "targets": {
+      "T_pre": "stored state 5005 with its recorded gravity (0, 0, -9810); GRAVITY contributes 0",
+      "T_win": "stored states 5200, 5250, ..., 20000 (297 states) with their recorded gravity; contributions and total averaged over the states"
+    }
+  },
+  "integrity": {
+    "J1_inputs": "report sha equals the above; all 36 arm files present and their sha256 equal report arm_sha256",
+    "J2_replay": "for every neural tick of every arm, d recomputed by the tick_state_mapping equals recorded jo_d on both sides within 1e-9",
+    "J3_reference": "d at state 0 with gravity (0, 0, -9810) equals the Step B rest d per side within 1e-4, in every arm",
+    "J4_additivity": "for every decomposition, |sum(phi) - (v(all) - v(none))| <= 1e-9",
+    "factor_addresses": "joint-name resolution equals the declared qpos addresses (else INCONCLUSIVE_INTEGRITY)",
+    "failure": "INCONCLUSIVE_INTEGRITY, no labels"
+  },
+  "labels": {
+    "groups": {"Q1": "all 36 arms", "Q2_UP": "the 18 UP arms", "Q2_DOWN": "the 18 DOWN arms"},
+    "per_side": ["L", "R"],
+    "NO_MATERIAL_DRIFT": "|median over arms of the total change| < 0.01",
+    "DOMINANT_<factor>": "otherwise, the factor's median over arms of phi/total >= 0.5 and sign(phi) == sign(total) in >= 90% of the arms of the group; if several factors qualify (possible when other shares are negative), the one with the largest median share",
+    "MIXED": "otherwise"
+  },
+  "reported_not_labelled": [
+    "per factor: median and range of phi and of phi/total per group and side",
+    "A3 (a2-a3) and A2 joint angles (deg) at state 0, T_pre and window mean",
+    "neck joint angles (deg) at state 0, T_pre and window mean",
+    "thorax pitch and roll relative to gravity (Step C body_angles) at state 0, T_pre and window mean",
+    "tilt contrast decomposition: for each seed and arm type, the Shapley decomposition of d(DOWN state) - d(UP state) with the UP state as reference, averaged over the T_win states",
+    "by arm type (OFF, G1, FLIP): Q1 and Q2 factor medians"
+  ],
+  "declared_interpretation": {
+    "ROOT": "offset is a postural state of the assisted-posture context; a later design sets its tilt range around the live operating point; encoder unchanged",
+    "NECK": "offset comes from the uncontrolled passive neck (model limitation; real flies stabilise the head); recorded as a confound for JO steps; any fix needs its own design",
+    "A2_A3_ARISTA": "offset is passive sag of antenna joints with uncalibrated FlyGym default stiffness; the a2-a3 joint is the JO site, so a follow-up compares the a3-orientation encoder with an a2-a3 joint reading, stating no stiffness is calibrated",
+    "GRAVITY_in_Q2": "expected to be large in Q2 (it is the tilt); reported, and the posture share beside it is the quantity of interest",
+    "MIXED": "reported as is; any follow-up must handle all factors",
+    "all": "no encoder, threshold or Step C label change"
+  },
+  "interpretation_limits": [
+    "Geometric attribution of a recorded state; no causal neural claim.",
+    "Shapley attribution of a nonlinear function depends on the declared reference (state 0 of each arm).",
+    "One context (assisted posture, Step C arms).",
+    "Joint stiffnesses are FlyGym defaults; nothing is calibrated.",
+    "No motor coordinate status change (20/42 admitted, +4 conditional)."
+  ],
+  "single_run": "Analysis run once after protocol, code and tests are committed and pushed; evaluated once."
+}
