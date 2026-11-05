@@ -1,5 +1,22 @@
 # FlyBrainUnity — local Codex handoff
 
+## Antennal gravity Step C (live JO tilt routing): design — 2026-11-05
+
+Designed only (no protocol, code or run). Question: does a sustained 10 deg pitch tilt,
+encoded by the Step B JO encoder, change leg-MN activity in a seed-consistent pattern beyond
+the other senses? Context: push-response N (A_ON assisted posture, hair plates, 20 v3
+channels, no coxa channel, no push). Tilt = model.opt.gravity rotated -10 (DOWN) / +10 (UP)
+deg about world y at state 5005, held. Arms OFF/G1/FLIP x UP/DOWN on new seeds 13-18 + REPRO_N0_7
+= 37 arms (~3 h); schedule proprio+hair+JO common to all arms (CRN), JO withheld in OFF.
+Measure: window 520-2000 ms, leg MN pools; Delta = DOWN-UP; S = Delta_ON - Delta_OFF;
+rho = mean pairwise seed correlation of S; exact sign-flip p (min 1/32). Labels per
+assignment: JO_TILT_PATTERN_CONSISTENT (rho>0, p<=1/32) / WEAK (p<=0.25) / NO_CONSISTENT.
+r_GF (G1 vs FLIP) reported as a linearity check; it cannot identify zone sign. Integrity
+I1-I7 + OFF no-rollover precondition. No balance claim, no admission. See
+ANTENNAL_GRAVITY_LIVE_V1.md.
+
+IMMEDIATE NEXT (on approval): lock protocol, build module/tests, smoke, commit, run 37 arms.
+
 ## Antennal gravity Step B (kinematic JO C/E encoder): ENCODER_READY — 2026-11-05
 
 Preregistered (2e2def7, protocol 0e97fe33), one discarded-unread smoke, run once (geometry
