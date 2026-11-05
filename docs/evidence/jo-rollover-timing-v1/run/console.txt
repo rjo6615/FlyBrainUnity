@@ -1,0 +1,38 @@
+start 2026-11-05T23:27:11Z at d25245d
+{
+ "status": "INTEGRITY_ACCEPTED",
+ "checks": {
+  "R1_hashes": true,
+  "R2_peak_tilt": true,
+  "R3_fell_set": true,
+  "R4_state0": true
+ },
+ "fell": [
+  "G1_DOWN20_19",
+  "G1_DOWN20_21",
+  "G1_DOWN20_24",
+  "FLIP_DOWN20_23",
+  "FLIP_DOWN20_24"
+ ],
+ "Q1": {
+  "per_arm": {
+   "G1_DOWN20_19": "COMMAND_FIRST",
+   "G1_DOWN20_21": "COMMAND_FIRST",
+   "G1_DOWN20_24": "COMMAND_FIRST",
+   "FLIP_DOWN20_23": "COMMAND_FIRST",
+   "FLIP_DOWN20_24": "COMMAND_FIRST"
+  },
+  "summary": "ORDER_COMMAND_FIRST"
+ },
+ "expectation": {
+  "order": "HELD",
+  "F1": "NOT_HELD"
+ }
+}
+{
+ "F1": "OVERLAPS",
+ "F2": "OVERLAPS",
+ "F3": "OVERLAPS",
+ "F4": "OVERLAPS"
+}
+exit 0 end 2026-11-05T23:28:10Z

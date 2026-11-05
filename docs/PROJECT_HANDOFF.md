@@ -1,21 +1,23 @@
 # FlyBrainUnity — local Codex handoff
 
-## Antennal gravity Step D2 (rollover timing replay): design — 2026-11-05
+## Antennal gravity Step D2 (rollover timing replay): COMMAND_FIRST, not diagnostic — 2026-11-05
 
-Designed only (no protocol, code or replay). Why: 5/12 ON DOWN20 arms in Step D turned over,
-no OFF or LEVEL arm did; matched ON/OFF arms differ only by JO input. D2 replays the 37
-local Step D arms (no new simulation) to order events before each fall: t_JO (E switch),
-t_cmd (any of 20 admitted commands, baselined ON-OFF > 0.05 = 20% of bound), t_body
-(baselined ON-OFF tilt > 5 deg sustained to the fall), t_support (ON supports < 3 while OFF
->= 3), t_fall (tilt >= 45 deg). Per FELL arm COMMAND_FIRST / BODY_FIRST / CONCURRENT (10 ms
-margin) / UNRESOLVED; summary ORDER_COMMAND_FIRST or ORDER_BODY_FIRST if >= 4/5, else
-ORDER_MIXED. Q2: FELL (5) vs UPRIGHT (7) early-window features F1 command, F2 per-leg MN,
-F3 supports, F4 d, each SEPARATES or OVERLAPS. Integrity R1-R4 (arm hashes, peak tilt
-recomputation, FELL set, pre-tilt identity). Expectation recorded: ORDER_COMMAND_FIRST,
-F1 SEPARATES. Descriptive; order is not cause. Already-seen report summaries disclosed. See
-JO_ROLLOVER_TIMING_V1.md.
+Preregistered (d25245d, protocol 12ca7a70), replayed once (37 Step D arms, no simulation),
+evaluated once (result dd372b92). INTEGRITY_ACCEPTED (R1-R4). Q1 ORDER_COMMAND_FIRST (5/5),
+but controls show admitted commands cross the 0.05 threshold early in arms that do not fall
+(G1 LEVEL 0.1-19.6 ms with no tilt; upright DOWN20 0.1-93 ms), so the label only says ON/OFF
+commands differ long before any fall. Q2 F1-F4 all OVERLAPS (expectation F1 NOT_HELD).
+Falls are late (583-1415 ms after tilt) and abrupt (sustained >5 deg divergence 27-34 ms
+before 45 deg). Tripod-support loss is common, not fall-specific (all fallen, all 7 upright
+DOWN20, 4/6 G1 LEVEL; never FLIP LEVEL). Descriptive pre-fall: FLIP falls show front-leg
+commands at/near the 0.25 bound (LFTarsus1, femur rolls) and front-leg MN +18-20 Hz; G1
+falls show RH MN +6-10 Hz. Not fall-specific (no matched upright window). Reading
+(hypothesis): JO-driven posture puts the body in a less stable regime and it tips at
+variable times; not a timed tilt response. See JO_ROLLOVER_TIMING_RESULTS.md.
 
-IMMEDIATE NEXT (on approval): lock protocol, build module/tests, smoke, commit, replay once.
+IMMEDIATE NEXT: user decision. Candidates: (a) a causal yoke: replay ON admitted commands
+into OFF arms (and OFF into ON) to test whether the commands alone produce falls, new
+versioned protocol; (b) the E-onset vs E-offset protocol from Step D.
 
 ## Antennal gravity Step D (JO zone-crossing tilt): FLIP CONSISTENT / G1 WEAK — 2026-11-05
 

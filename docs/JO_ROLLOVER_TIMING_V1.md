@@ -1,9 +1,12 @@
 # Antennal gravity sense, Step D2: what comes first when ON arms fall? (design, V1)
 
-Designed 2026-11-05. This is the design only. No code exists and nothing has been computed.
-On approval, the rules below are copied into
-`docs/evidence/jo-rollover-timing-v1/protocol.json`, hash-locked in code, and committed before
-any replay runs.
+Designed 2026-11-05.
+
+**Status 2026-11-05:** preregistered (d25245d, protocol 12ca7a70), replayed once and
+evaluated once. `INTEGRITY_ACCEPTED`. `ORDER_COMMAND_FIRST` (5/5), but the controls show the
+command threshold is crossed in arms that do not fall, so the label is not diagnostic.
+F1–F4 all `OVERLAPS`. The falls are abrupt (about 30 ms) and late (583–1415 ms after the
+tilt). See `JO_ROLLOVER_TIMING_RESULTS.md`.
 
 Related document: Step D, `JO_ZONE_CROSSING_RESULTS.md` (`INTEGRITY_ACCEPTED`).
 
