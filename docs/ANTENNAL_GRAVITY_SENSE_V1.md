@@ -6,6 +6,11 @@ nothing has run, no encoder exists, and no coordinate status changes. **Step A**
 specified in full here, and its protocol will be hash-locked before it runs. **Steps B
 and C** are outlined only. Each will get its own design and preregistration later.
 
+**Status 2026-11-04:** Step A was preregistered (a0a1777, protocol dcbe4e5c…), run once and
+evaluated once: `IDENTITY_READY`. C-vs-E overlap was 0.071 on the left and 0.039 on the right.
+Output synapses are much higher on the left than the right (C 5.3×, E 2.5×). See
+`ANTENNAL_GRAVITY_IDENTITY_RESULTS.md`. The text below is unchanged.
+
 ## Why this sense
 
 The body tilts. In the assisted posture with the conditional coxa channels, mean tilt is

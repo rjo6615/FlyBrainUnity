@@ -1,5 +1,20 @@
 # FlyBrainUnity — local Codex handoff
 
+## Antennal gravity Step A (JO C/E identity): IDENTITY_READY — 2026-11-04
+
+Preregistered (a0a1777, protocol dcbe4e5c), run once (data only, result 5b735be5). A1-A4
+pass: C 31 L / 22 R, E 157 L / 110 R exact; C-vs-E weighted direct-target overlap 0.071 L /
+0.039 R (segregated zones); all four sets synapse directly onto DNs (DNp73, DNp18, DNg29,
+DNp33/DNg99 for C; pIP1, DNbe001 for E). A4 weak (2 hops reach 437-795 DNs). Leg MN 2-hop
+reach mostly ipsilateral, E >> C. Key limit: left/right output-synapse ratio C 5.31, E 2.54
+(counts 1.41/1.43) -> right reconstruction far less connected; a symmetric encoder would
+inject a built-in roll-like bias. Design note corrected: JO-mz counted as "other" (untyped
+4 L / 92 R). See ANTENNAL_GRAVITY_IDENTITY_RESULTS.md.
+
+IMMEDIATE NEXT: Step B design (kinematic encoder, G1 vs G1_FLIP) must declare the left/right
+handling rule before any output is inspected (e.g. as-reconstructed with label, a non-L/R
+quantity such as pitch, or per-side arms).
+
 ## Antennal gravity sense (JO zones C/E) track: design — 2026-11-04
 
 User chose "richer senses" (coxa coverage at ceiling; desk audit in PR #321). Designed (no

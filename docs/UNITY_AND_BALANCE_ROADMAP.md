@@ -1,9 +1,9 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
-Current2026-11-04: antennal gravity sense (Johnston's organ C/E) track designed; Step A (identity and wiring, data only) specified. Not run.
+Current2026-11-04: antennal gravity Step A run: IDENTITY_READY (C/E exact, segregated, direct DN edges); right side far less connected (synapses L/R C 5.3, E 2.5).
 
 ```text
-Antennal gravity sense        [designed: A identity (A1-A4) -> B kinematic encoder -> C live on/off; next: build A]
+Antennal gravity sense        [A: IDENTITY_READY (L/R synapse asymmetry 2.5-5.3x); next: design B kinematic encoder]
 Coxa push replication         [run: AMPLIFICATION_DIRECTIONAL F / B (R>1 6/6); yoke DO_NOT_REPRODUCE; FREE_COMMANDS_INCREASE_D F / B]
 Coxa conditional tier         [LF/LH/LM/RM CONDITIONAL (fore-aft Coxa); RF/RH blocked by input]
 Motor coverage                [##########-----------] 20/42 admitted (+4 conditional)
