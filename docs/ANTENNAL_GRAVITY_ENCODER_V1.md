@@ -6,6 +6,11 @@ protocol is locked yet. On approval, the rules below are copied into
 Step B is geometry only. It uses no CNS and does no physics stepping. It mirrors the
 hair-plate Step B (`HAIR_PLATE_ENCODER_V1.md`).
 
+**Status 2026-11-05:** Step B was preregistered (2e2def7, protocol 0e97fe33…), run once and
+evaluated once: `ENCODER_READY`. Rest d is −0.144 on both sides, so E fires at 17.2 Hz under G1.
+The pitch slope is 0.965 per rad and the roll slope ±0.215 per rad; all three predictions held.
+See `ANTENNAL_GRAVITY_ENCODER_RESULTS.md`. The text below is unchanged.
+
 The parent track design is `ANTENNAL_GRAVITY_SENSE_V1.md`. Step A (`IDENTITY_READY`) is
 reported in `ANTENNAL_GRAVITY_IDENTITY_RESULTS.md`.
 

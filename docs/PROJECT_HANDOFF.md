@@ -1,5 +1,21 @@
 # FlyBrainUnity — local Codex handoff
 
+## Antennal gravity Step B (kinematic JO C/E encoder): ENCODER_READY — 2026-11-05
+
+Preregistered (2e2def7, protocol 0e97fe33), one discarded-unread smoke, run once (geometry
+only, B4 runtime, imposed whole-body rotations, mj_forward; result 35ff3da4). B0-B4 pass:
+t.x_head 0.966, sets = Step A, |d| <= 1 (-0.61..0.36), mirror max diff 3.5e-9, monotonic in
+pitch. Rest (level head) d = -0.144 both sides -> G1: E 17.2 Hz, C 0 (FLIP: C 17.2 Hz).
+Pitch slope 0.965/rad (nose-down raises d; zero crossing +5..+10 deg nose-down); roll slope
++-0.215/rad opposite per side (small roll channel, descriptive only under the L/R rule).
+All three recorded predictions held (same geometry, so an implementation check, not fly
+evidence). Step C must separate the tonic rest drive (~17 Hz in one zone per side) from the
+tilt-dependent part, e.g. tilt-direction contrasts within an arm. See
+ANTENNAL_GRAVITY_ENCODER_RESULTS.md.
+
+IMMEDIATE NEXT: Step C design (live JO_OFF / G1 / G1_FLIP in the assisted-posture context;
+preregistered pitch-driven, within-side contrast; no balance claim, no admission).
+
 ## Antennal gravity Step B (kinematic JO C/E encoder): design — 2026-11-05
 
 Designed only (no protocol locked, no code, no run). Signal: d = gravity . t, where t is the

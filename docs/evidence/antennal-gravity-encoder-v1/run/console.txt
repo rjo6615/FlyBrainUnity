@@ -1,0 +1,40 @@
+{
+ "status": "ENCODER_READY",
+ "checks": {
+  "B0_frame": true,
+  "B1_identity": true,
+  "B2_bounded": true,
+  "B3_mirror": true,
+  "B4_pitch_response": true
+ },
+ "counts": {
+  "C_left": 31,
+  "C_right": 22,
+  "E_left": 157,
+  "E_right": 110
+ },
+ "rest_rates_hz": {
+  "G1": {
+   "C_left": 0.0,
+   "E_left": 17.229559249263303,
+   "C_right": 0.0,
+   "E_right": 17.22955967239814
+  },
+  "G1_FLIP": {
+   "E_left": 0.0,
+   "C_left": 17.229559249263303,
+   "E_right": 0.0,
+   "C_right": 17.22955967239814
+  }
+ },
+ "slope_per_rad": {
+  "pitch": {
+   "L": 0.9646821364669309,
+   "R": 0.9646821362353302
+  },
+  "roll": {
+   "L": 0.21515025511450522,
+   "R": -0.21515025380579245
+  }
+ }
+}
