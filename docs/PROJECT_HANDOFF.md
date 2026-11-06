@@ -1,5 +1,23 @@
 # FlyBrainUnity — local Codex handoff
 
+## Antennal gravity Step D4 v2 (direction, live joint ranges): design — 2026-11-06
+
+Designed only (no protocol, code or run). Re-asks D4's direction/pattern/dose question with the
+clip rule corrected. Evidence: the live decoders build MotorSafety(joint_min, joint_max, bound,
+4 rad/s) from resolve_joint_metadata; the leg joints are jnt_limited=false with actuator
+ctrlrange [-1e6, 1e6] (m6b preflight/limit diagnostic, m10b manifest for 11 of 20 admitted),
+so the live joint clamp is a no-op. v2 declares [-1e6, 1e6] per coordinate, records the live
+range of every admitted channel at run time (Z6; mismatch -> INCONCLUSIVE) and requires zero
+clipped values (Z7). Unclipped transforms reach 2.03 rad and up to 0.26 rad beyond the ON/OFF
+span; step at the tilt = POST_ONLY's (v1's 0.45-0.49 rad steps were clip artifacts). v1
+transformed arms equal v1 POST_ONLY qpos through state 5005, so Z2 = that pre-tilt anchor.
+15 arms (5 fallen sources x NEG/HALF/SCRAMBLE, same v1 sign vector), ~65 min; POST_ONLY and
+the 7 upright controls are reused from v1 (unaffected, sha-checked), E3 not re-asked. E1/E2
+carried over verbatim from v1; disclosed as not blind (v1's confounded outcomes were seen).
+Branch stacked on codex/jo-direction-v1 (PR #329). See JO_COMMAND_DIRECTION_V2.md.
+
+NEXT (needs approval): build and run D4 v2. After that: rhythm.
+
 ## Antennal gravity Step D4 (direction of the post-tilt commands): confounded by a clip defect — 2026-11-06
 
 Preregistered (6d10635, protocol a7e804f2), 27 open-loop arms run once (~1.9 h), evaluated once
