@@ -1,5 +1,22 @@
 # FlyBrainUnity — local Codex handoff
 
+## Antennal gravity Step D4 v2 (direction, live joint ranges): run — 2026-11-06
+
+Preregistered (658c6a4, protocol 5b77fd9e), 15 open-loop arms run once (~70 min), evaluated
+once (report 262950cd). INTEGRITY_ACCEPTED: Z1-Z7 all pass, incl. Z6 (every admitted live
+channel recorded at (-1e6, 1e6), as declared) and Z7 (0 clipped values). All 15 transformed arms
+STAYED UP (peak tilt NEG 22.6-25.8, HALF 16.7-17.7, SCRAMBLE 23.5-25.9 deg) while v1 POST_ONLY
+fell 5/5. Labels: DIRECTION_SPECIFIC, PATTERN_SPECIFIC, HALF_DOSE_STAYS_UP in every source,
+CONSISTENT in G1 and FLIP; E1/E2 HELD (not blind). Declared reading: the fallen arms' post-tilt
+change has a specific destabilising direction in this open loop, and the falls also need the
+full dose. v1<->v2: SCRAMBLE fell 5/5 in v1 and stays up 5/5 in v2, so v1's SCRAMBLE falls
+came with the middle-leg pinning (descriptive). Limits: NEG/SCRAMBLE exceed the live slew limit
+at nearly every post-tilt update and reach 0.26 rad beyond the ON/OFF span; the same slew count
+was not computed for POST_ONLY; one scramble vector; 5 sources. See
+JO_COMMAND_DIRECTION_V2_RESULTS.md.
+
+NEXT (needs approval): rhythm. Optional later: a POST_ONLY slew/excursion-matched control.
+
 ## Antennal gravity Step D4 v2 (direction, live joint ranges): design — 2026-11-06
 
 Designed only (no protocol, code or run). Re-asks D4's direction/pattern/dose question with the

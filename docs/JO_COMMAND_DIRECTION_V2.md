@@ -1,6 +1,8 @@
 # Antennal gravity sense, Step D4 v2: direction of the post-tilt commands, with the live joint ranges (design)
 
-Designed 2026-11-06. Design only: no protocol, code or run yet.
+Designed 2026-11-06. **Status: run 2026-11-06, INTEGRITY_ACCEPTED** (protocol 5b77fd9e, report 262950cd):
+all 15 arms stayed up; DIRECTION_SPECIFIC, PATTERN_SPECIFIC and HALF_DOSE_STAYS_UP, CONSISTENT in G1
+and FLIP; E1 and E2 HELD. See `JO_COMMAND_DIRECTION_V2_RESULTS.md`.
 
 Related documents:
 - D4 v1 design `JO_COMMAND_DIRECTION_V1.md` and results `JO_COMMAND_DIRECTION_RESULTS.md`
