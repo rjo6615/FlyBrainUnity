@@ -1,5 +1,22 @@
 # FlyBrainUnity — local Codex handoff
 
+## Antennal gravity Step D3 (command yoke of the falls): all groups needed, post-tilt sufficient — 2026-11-06
+
+Preregistered (27e253b, protocol 3fbb281d), 45 open-loop arms run once (~3.5 h), evaluated
+once (report 5abd8a9a). INTEGRITY_ACCEPTED (Y1-Y5; FULL_ON reproduces every source qpos
+exactly; unadmitted coordinates identical ON/OFF). FRONT, MIDDLE and HIND are each
+NECESSARY_NOT_SUFFICIENT in all 5 sources (CONSISTENT in G1 and FLIP): no single group's ON
+commands make the body fall, removing any one prevents it. POST_ONLY falls 5/5 (G1 611/878/
+1178 ms vs FULL_ON 583/898/1162), PRE_ONLY 0/5. G1 pre-tilt posture differs (bodies diverge
+from ~45 ms) but is neither sufficient nor needed. FLIP time test degenerate: ON = OFF body
+until after the tilt (states 5411/5556), so POST_ONLY = FULL_ON. E1 (FLIP FRONT S&N) and E2
+(G1 PRE falls) NOT_HELD. Contradicts D2's posture-regime hypothesis for G1: falls are a
+delayed consequence of the post-tilt commands on all six legs together. Open loop; no
+closed-loop, balance or cause claim. Raw arms local only. See JO_COMMAND_YOKE_RESULTS.md.
+
+NEXT: open. Candidates: which channels within the post-tilt command change carry the fall
+(finer yoke), or the still-open E-onset vs E-offset protocol.
+
 ## Antennal gravity Step D3 (command yoke of the falls): design — 2026-11-05
 
 Designed only (no protocol, code or run). Adhesion off, no external force: the body is
@@ -15,7 +32,7 @@ CONSISTENT within G1 or FLIP if all arms agree. Integrity Y1-Y5. Expectations: F
 S&N + POST falls; G1 PRE falls (group not predicted, HIND weak guess). Open loop; not
 closed-loop or balance claims. See JO_COMMAND_YOKE_V1.md.
 
-IMMEDIATE NEXT (on approval): lock protocol, build module/tests, smoke, commit, run 45 arms.
+NEXT: built and run, see above.
 
 ## Antennal gravity Step D2 (rollover timing replay): COMMAND_FIRST, not diagnostic — 2026-11-05
 

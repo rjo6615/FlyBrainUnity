@@ -1,8 +1,12 @@
 # Antennal gravity sense, Step D3: which commands make the ON arms fall? (design, V1)
 
-Designed 2026-11-05. This is the design only. No code exists and nothing has run. On
-approval, the rules below are copied into `docs/evidence/jo-command-yoke-v1/protocol.json`,
-hash-locked in code, and committed before any arm runs.
+Designed 2026-11-05.
+
+**Status 2026-11-06:** preregistered (27e253b, protocol 3fbb281d), 45 arms run once and
+evaluated once. `INTEGRITY_ACCEPTED`. Every leg group is `NECESSARY_NOT_SUFFICIENT` in all 5
+sources (CONSISTENT in G1 and FLIP). POST_ONLY falls in 5/5, PRE_ONLY in 0/5; the FLIP time
+test is degenerate (ON and OFF bodies identical until after the tilt). E1 and E2 NOT_HELD.
+See `JO_COMMAND_YOKE_RESULTS.md`. The design text below is unchanged.
 
 Related documents:
 - Step D, `JO_ZONE_CROSSING_RESULTS.md`: 5 of 12 ON DOWN20 arms fell; no OFF arm fell.
