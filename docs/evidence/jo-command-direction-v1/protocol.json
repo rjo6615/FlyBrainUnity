@@ -1,0 +1,116 @@
+{
+  "schema": "jo-command-direction-protocol-v1",
+  "date": "2026-11-06",
+  "design": "docs/JO_COMMAND_DIRECTION_V1.md",
+  "question": "In the D3 open-loop setting, is the post-tilt ON command change that topples an OFF-posture body effective through its direction (sign and pattern) or only through its size, and do the post-tilt commands of ON arms that stayed up also topple it?",
+  "status": "PREREGISTERED_BEFORE_LIVE_RUN",
+  "not_claimed": ["closed-loop behaviour", "balance", "corrective response", "zone sign", "coordinate admission", "biological cause", "physiological validity of POST_NEG or POST_SCRAMBLE"],
+  "sources": {
+    "step_d_report": {"path": "docs/evidence/jo-zone-crossing-v1/run/report.json", "sha256": "e64811f7253478b0f2d91031d5b63d9acc8ea2c86ed4878959c49d9e3a80f571"},
+    "step_d3_report": {"path": "docs/evidence/jo-command-yoke-v1/run/report.json", "sha256": "5abd8a9aaa8b5f81097460fbe0ef44d0068bbea98fe0006febaec102926b5c0e"},
+    "archives": {
+      "G1_DOWN20_19": "7392cc15d3e3e1139090924090c07cdcdc4e1465eb18262a22bbd2fcfa5a3be4",
+      "G1_DOWN20_20": "5b6bf3e3f1e85a80ea80c982b3d878c64a4a032283d7769a3eb8bb809993aebf",
+      "G1_DOWN20_21": "b5c69624735cf46fb3653d6677a29b6fbc13d55bd821116c96fb0790d6545d8f",
+      "G1_DOWN20_22": "4e1aaf654484da3fc33a09cf184e26222bf08979f160e18d2b059c5c68b09e7d",
+      "G1_DOWN20_23": "ee5eed61a478cfc5e45520a5c365155534ca3783150e79f7bd34d3fe23332beb",
+      "G1_DOWN20_24": "41a99e1b288fda81944de0e747e00e068b11a79defd680d5d30bc9624c9999a6",
+      "FLIP_DOWN20_19": "35e3e795b1fa82315e2ff5c159531c91bb31bf7158e28cfff7945c274a9e9f2c",
+      "FLIP_DOWN20_20": "1aa2ce009fd136aa63650e6419779d104017afd145563bf415e8fb40e551cdc2",
+      "FLIP_DOWN20_21": "e4328e5703f0bb4bd983665b6d9f5172d749369946cedf3d18478a6f0b54acc9",
+      "FLIP_DOWN20_22": "e4e0a73dc5f8f72e709f0b0478e78ecbcacbf781248e43d983839af3eb7b4883",
+      "FLIP_DOWN20_23": "4264798828e9555f08df206ca82ea9db5e8ed6fd9d13f9b8400e112b5941887a",
+      "FLIP_DOWN20_24": "3fa58de084601ffa3288450e9a3cdf7bb26a5ac6097fb6643630a41c49993d39",
+      "OFF_DOWN20_19": "213a035afbefc3902ea1b5b8a5e041858cfff936ec302fd20cf514649daf86e4",
+      "OFF_DOWN20_20": "507af2e2c29d479df8790f143c8a81cc5033b55cba782ce08de753db6a6b532e",
+      "OFF_DOWN20_21": "74c80cabd90e0279c013719b00d0284fe7355fe3d6449ae5b756c5884feab894",
+      "OFF_DOWN20_22": "05f46f9e03318b18459722293450f8f717a8b173136feb2c9f2a8a6eb70fa233",
+      "OFF_DOWN20_23": "27a8acf4855d440290974dd73f3aae0f4fae01cec2efc01d8c59459258c56256",
+      "OFF_DOWN20_24": "09fe93057a03b888d6b9dfb6cb37eff0c5965592640e7c50c996e4d94341a528"
+    },
+    "d3_post_only_arms": {
+      "POST_ONLY__G1_DOWN20_19": "4a564381fbfe92c5c9e1cd2d0a8848436bfe2f79815e2dc7c2b5b031668c712b",
+      "POST_ONLY__G1_DOWN20_21": "67ab2334c684173b7679f3c05c710a4cba42129015cca2baf574cd8849a9bc2e",
+      "POST_ONLY__G1_DOWN20_24": "961f8172e0feb3dc354676b8512fbed605247f7e4f85167b285fea91e2a64348",
+      "POST_ONLY__FLIP_DOWN20_23": "fb37e0e71ea7f27d00c26abc1b89a362acfe67daf2249dbeb6503ff09994c6f5",
+      "POST_ONLY__FLIP_DOWN20_24": "4228534e80fc0d843abc9179676fcf49ce11b786d723e1bbdd7798e98010177c"
+    },
+    "code_reused": "jo_command_yoke Trial (apply/capture/detach), yoke_audit, gravity_ok, outcome (45 deg rule), first_qpos_difference; coxa_offset_yoke.schedule; jo_zone_crossing.Trial context; unchanged"
+  },
+  "context": "As D3: Step D trial OFF_DOWN20_s (JO withheld; gravity R_y(-20 deg) after stored state 5005), CNS seed s of the source; all 42 applied coordinates from the declared schedule; adhesion all zero (the run errors otherwise)",
+  "admitted": [3, 4, 5, 6, 10, 11, 12, 17, 18, 19, 24, 25, 26, 27, 31, 32, 33, 38, 39, 40],
+  "joint_range_rad": [-1.35, 1.30],
+  "scramble": {
+    "draw": "numpy.random.default_rng(20261106).permutation(20)[:10] -> admitted positions with sign -1",
+    "flipped_positions": [0, 1, 7, 8, 9, 10, 12, 14, 15, 17],
+    "flipped_coordinates": [3, 4, 17, 18, 19, 24, 26, 31, 32, 38],
+    "sign_by_admitted_order": [-1, -1, 1, 1, 1, 1, 1, -1, -1, -1, -1, 1, -1, 1, -1, -1, 1, -1, 1, 1]
+  },
+  "schedule": {
+    "transitions_0_5004": "all 42 coordinates from the OFF archive",
+    "transitions_5005_19999_unadmitted": "OFF archive",
+    "transitions_5005_19999_admitted": {
+      "POST_ONLY": "ON archive values directly (no arithmetic, no clip)",
+      "POST_NEG": "clip(OFF - (ON - OFF))",
+      "POST_HALF": "clip(OFF + 0.5 (ON - OFF))",
+      "POST_SCRAMBLE": "sign +1: ON archive values directly; sign -1: clip(OFF - (ON - OFF))"
+    },
+    "clip": "to joint_range_rad; clipped value count reported per arm, not a gate"
+  },
+  "arms": {
+    "fallen_sources": ["G1_DOWN20_19", "G1_DOWN20_21", "G1_DOWN20_24", "FLIP_DOWN20_23", "FLIP_DOWN20_24"],
+    "fallen_conditions": ["POST_ONLY", "POST_NEG", "POST_HALF", "POST_SCRAMBLE"],
+    "upright_sources": ["G1_DOWN20_20", "G1_DOWN20_22", "G1_DOWN20_23", "FLIP_DOWN20_19", "FLIP_DOWN20_20", "FLIP_DOWN20_21", "FLIP_DOWN20_22"],
+    "upright_conditions": ["POST_ONLY"],
+    "name": "<CONDITION>__<SOURCE>",
+    "order": "fallen sources in the order above with conditions in the order above, then upright sources in the order above",
+    "total": 27,
+    "duration": "20000 physics / 4000 neural transitions each; fresh process each; run once"
+  },
+  "measures": {
+    "fall": "D3 rule: tilt (antennal_gravity_live.body_angles[0]) >= 45 deg at any stored state 5006-20000 -> FALLS, else STAYS_UP",
+    "t_fall_ms": "(first such state - 5005) x 0.1",
+    "also_reported": "peak tilt after state 5005; clipped value count; largest per-transition change of any applied coordinate (including the step at the tilt); mean |ON - OFF| over admitted coordinates and transitions 5005-19999 per source"
+  },
+  "labels": {
+    "fallen_per_source": {
+      "DIRECTION_SPECIFIC": "POST_NEG STAYS_UP",
+      "DIRECTION_NONSPECIFIC": "POST_NEG FALLS",
+      "PATTERN_SPECIFIC": "POST_SCRAMBLE STAYS_UP",
+      "PATTERN_NONSPECIFIC": "POST_SCRAMBLE FALLS",
+      "HALF_DOSE_FALLS / HALF_DOSE_STAYS_UP": "POST_HALF outcome"
+    },
+    "consistency": "within G1 (3 fallen sources) and within FLIP (2) separately: CONSISTENT if identical for every source, else MIXED; no pooling",
+    "upright": "DEGENERATE if the ON and OFF archives' qpos are equal at every stored state 0-5005 (first difference None or > 5005); else the POST_ONLY outcome counts; report per assignment the number of non-degenerate upright arms that fall, with each arm listed"
+  },
+  "integrity": {
+    "Z1_complete": "all 27 arms COMPLETE with 20001 samples and 4000 ticks",
+    "Z2_reproduction": "each fallen-source POST_ONLY arm's qpos equals the D3 POST_ONLY arm's qpos at every stored state exactly",
+    "Z3_yoke_audit": "every arm's recorded commanded_joints at state n+1 equals the declared schedule row n exactly for n = 0..19999; adhesion recorded all zero",
+    "Z4_gravity": "recorded gravity (0,0,-9810) for states 0-5005 and exactly R_y(-20 deg) @ (0,0,-9810) from 5006; no applied body wrench; zero external and generalized applied maxima",
+    "Z5_sources": "the Step D and D3 reports, the 18 archives and the 5 D3 POST_ONLY arms equal the sha256 values above; each arm records its source and cns_seed",
+    "failure": "INCONCLUSIVE_INTEGRITY, no labels"
+  },
+  "design_expectations": {
+    "E1": "POST_NEG STAYS_UP in at least 4 of 5 fallen sources",
+    "E2": "POST_HALF STAYS_UP in all 5 fallen sources",
+    "E3": "no non-degenerate upright POST_ONLY arm falls",
+    "recording": "each HELD or NOT_HELD; evaluated only when INTEGRITY_ACCEPTED"
+  },
+  "declared_interpretation": {
+    "DIRECTION_SPECIFIC_and_PATTERN_SPECIFIC_with_upright_up": "the fallen arms' JO-driven post-tilt change has a specific destabilising direction in this open loop",
+    "DIRECTION_NONSPECIFIC": "a change of that size topples the body in either direction; the falls say nothing about the sign of the JO response",
+    "upright_controls_fall": "post-tilt commands of arms that stayed up also topple an OFF-posture body; in closed loop something else kept those arms up",
+    "mixed": "reported per source"
+  },
+  "interpretation_limits": [
+    "Open loop: the mixed streams never occurred in a closed loop.",
+    "POST_NEG and POST_SCRAMBLE are not physiological; they probe the body's response to the size and direction of a command change.",
+    "One scramble vector: a single sample of another direction.",
+    "Clipping can shrink a reversed change; every POST condition steps the commands at the gravity step; reversed changes can exceed the decoder slew limit. Both are reported.",
+    "Five fallen and seven upright sources; labels per source, no statistics.",
+    "Step D limits apply (idealised gravity step, modelled JO transduction).",
+    "No motor coordinate status change (20/42 admitted, +4 conditional)."
+  ],
+  "single_run": "All 27 arms run once after protocol, code and tests are committed and pushed; evaluated once."
+}

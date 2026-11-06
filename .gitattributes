@@ -195,3 +195,6 @@ docs/evidence/jo-rollover-timing-v1/**/*.txt -text -whitespace
 docs/evidence/jo-command-yoke-v1/*.json -text
 docs/evidence/jo-command-yoke-v1/**/*.json -text
 docs/evidence/jo-command-yoke-v1/**/*.txt -text -whitespace
+docs/evidence/jo-command-direction-v1/*.json -text
+docs/evidence/jo-command-direction-v1/**/*.json -text
+docs/evidence/jo-command-direction-v1/**/*.txt -text -whitespace

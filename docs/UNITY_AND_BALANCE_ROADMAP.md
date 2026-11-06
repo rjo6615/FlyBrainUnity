@@ -1,6 +1,10 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
-Current 2026-11-06: antennal gravity Step D3 run: every leg group NECESSARY_NOT_SUFFICIENT (5/5 sources); post-tilt commands sufficient (5/5), pre-tilt not (0/5; FLIP time test degenerate); E1/E2 NOT_HELD; contradicts the D2 posture-regime hypothesis for G1.
+Current 2026-11-06: antennal gravity Step D4 run: direction/pattern/dose arms confounded by a wrong clip range (default MotorSafety, not per-joint; middle legs pinned), labels not interpretable; unaffected: POST_ONLY reproduces D3, all 3 G1 upright controls fall (E3 NOT_HELD).
+
+Previous 2026-11-06: antennal gravity Step D4 designed (does the direction of the post-tilt command change matter, or only its size? sign-reversed, half-dose and scrambled replays of the 5 falls plus 7 upright controls; 27 arms).
+
+Previous 2026-11-06: antennal gravity Step D3 run: every leg group NECESSARY_NOT_SUFFICIENT (5/5 sources); post-tilt commands sufficient (5/5), pre-tilt not (0/5; FLIP time test degenerate); E1/E2 NOT_HELD; contradicts the D2 posture-regime hypothesis for G1.
 
 Previous 2026-11-05: antennal gravity Step D3 designed (open-loop command yoke of the 5 falls: which leg group and which period - before or after the tilt - is sufficient/necessary; 45 arms).
 
@@ -25,7 +29,7 @@ Previous 2026-11-05: antennal gravity Step B run: ENCODER_READY (pitch-dominated
 Previous 2026-11-04: antennal gravity Step A run: IDENTITY_READY (C/E exact, segregated, direct DN edges); right side far less connected (synapses L/R C 5.3, E 2.5).
 
 ```text
-Antennal gravity sense        [A: IDENTITY_READY; B: ENCODER_READY (pitch slope 0.97/rad, roll +-0.22/rad descriptive); C: G1 CONSISTENT / FLIP WEAK (E route reaches leg MNs, C route weak; d <= 0 both tilts); C2: drift = body posture (ROOT), neck sag opposes, antenna joints ~0; D: zone crossing -> FLIP/E-onset CONSISTENT, G1/E-offset WEAK, r_GF ~0, C route silent at MNs, 5/12 ON tilted arms rolled; D2: falls late and abrupt, COMMAND_FIRST not diagnostic, no early marker; D3: open-loop yoke -> all three leg groups needed, none sufficient; post-tilt commands suffice, pre-tilt posture does not; next: open]
+Antennal gravity sense        [A: IDENTITY_READY; B: ENCODER_READY (pitch slope 0.97/rad, roll +-0.22/rad descriptive); C: G1 CONSISTENT / FLIP WEAK (E route reaches leg MNs, C route weak; d <= 0 both tilts); C2: drift = body posture (ROOT), neck sag opposes, antenna joints ~0; D: zone crossing -> FLIP/E-onset CONSISTENT, G1/E-offset WEAK, r_GF ~0, C route silent at MNs, 5/12 ON tilted arms rolled; D2: falls late and abrupt, COMMAND_FIRST not diagnostic, no early marker; D3: open-loop yoke -> all three leg groups needed, none sufficient; post-tilt commands suffice, pre-tilt posture does not; D4: direction test confounded by a clip-range defect (not interpretable); G1 upright arms' post-tilt commands also topple an OFF-posture body; next: D4 v2 with per-joint ranges, then rhythm]
 Coxa push replication         [run: AMPLIFICATION_DIRECTIONAL F / B (R>1 6/6); yoke DO_NOT_REPRODUCE; FREE_COMMANDS_INCREASE_D F / B]
 Coxa conditional tier         [LF/LH/LM/RM CONDITIONAL (fore-aft Coxa); RF/RH blocked by input]
 Motor coverage                [##########-----------] 20/42 admitted (+4 conditional)
