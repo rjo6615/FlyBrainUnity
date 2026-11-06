@@ -1,5 +1,24 @@
 # FlyBrainUnity — local Codex handoff
 
+## Antennal gravity Step D4 (direction of the post-tilt commands): confounded by a clip defect — 2026-11-06
+
+Preregistered (6d10635, protocol a7e804f2), 27 open-loop arms run once (~1.9 h), evaluated once
+(report 8dc55e70). INTEGRITY_ACCEPTED (Z1-Z5). DEFECT found after evaluation from the declared
+clip-count diagnostic: the protocol clipped transformed values to the default MotorSafety range
+[-1.35, 1.30], but the live decoders use per-joint ranges; coordinates 10, 12, 17, 31, 33
+(LM/RM femur and tibia, LH femur) sit outside it in both archives at all times, so POST_NEG,
+POST_HALF and POST_SCRAMBLE pinned the middle legs at the bound (~75k clipped values per HALF
+arm; 0.45-0.49 rad step at the tilt). Their labels (DIRECTION_SPECIFIC, PATTERN_NONSPECIFIC,
+HALF_DOSE_STAYS_UP, all CONSISTENT; E1/E2 HELD by rule) are recorded but NOT interpretable.
+Unaffected (no arithmetic, no clip): POST_ONLY reproduces D3 exactly (Z2); all 3 G1 upright
+controls fall under POST_ONLY (1245-1430 ms; E3 NOT_HELD), so in G1 the post-tilt commands do
+not separate fallen from upright arms; the closed-loop pre-tilt posture appears to have kept
+the upright ones up. FLIP upright: 1 non-degenerate (up), 3 degenerate. Mean |ON-OFF| post-tilt
+similar fallen vs upright (0.10-0.11 rad). See JO_COMMAND_DIRECTION_RESULTS.md.
+
+NEXT (needs approval): D4 v2, a new versioned protocol clipping to the live per-joint decoder
+ranges (or not clipping inside them), to re-ask direction/pattern/dose. After that: rhythm.
+
 ## Antennal gravity Step D4 (direction of the post-tilt commands): design — 2026-11-06
 
 Designed only (no protocol, code or run). D3 showed the post-tilt ON commands alone topple an
@@ -14,7 +33,7 @@ FLIP. Integrity Z1-Z5. Expectations: NEG stays up >= 4/5; HALF stays up 5/5; no 
 control falls. Open loop; NEG/SCRAMBLE are probes, not physiology. See
 JO_COMMAND_DIRECTION_V1.md. Planned after D4: switch to the rhythm blocker for walking.
 
-IMMEDIATE NEXT (on approval): lock protocol, build module/tests, smoke, commit, run 27 arms.
+NEXT: built and run, see above.
 
 ## Antennal gravity Step D3 (command yoke of the falls): all groups needed, post-tilt sufficient — 2026-11-06
 

@@ -1,8 +1,15 @@
 # Antennal gravity sense, Step D4: does the direction of the post-tilt commands matter? (design, V1)
 
-Designed 2026-11-06. This is the design only. No code exists and nothing has run. On
-approval, the rules below are copied into `docs/evidence/jo-command-direction-v1/protocol.json`,
-hash-locked in code, and committed before any arm runs.
+Designed 2026-11-06.
+
+**Status 2026-11-06:** preregistered (6d10635, protocol a7e804f2), 27 arms run once and
+evaluated once. `INTEGRITY_ACCEPTED`, but **the declared clip range [−1.35, 1.30] was wrong**:
+it is the default `MotorSafety`, not the live per-joint ranges, and five admitted coordinates
+(middle-leg femur and tibia, LH femur) lie outside it at all times. POST_NEG, POST_HALF and
+POST_SCRAMBLE are therefore confounded by a clipping-induced middle-leg posture change; their
+labels are recorded but not interpretable. Unaffected: POST_ONLY reproduces D3 exactly, and all
+3 G1 upright controls fall (E3 NOT_HELD). See `JO_COMMAND_DIRECTION_RESULTS.md`. The design
+text below is unchanged.
 
 Related documents:
 - Step D, `JO_ZONE_CROSSING_RESULTS.md`: 5 of 12 ON DOWN20 arms fell; no OFF arm fell.
