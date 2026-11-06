@@ -1,6 +1,9 @@
 # Rhythm, Step R1: the preprint's DNg100 rate model on our connectome (design)
 
-Designed 2026-11-06. Design only: no protocol, code or run yet.
+Designed 2026-11-06. **Status: run 2026-11-06, RATE_RHYTHM_NOT_REPRODUCED** (protocol 3785bbeb, result
+24062901), but uninformative: the preprint drive rule settled at drives that barely recruit the
+network (58/64 replicates with no active MN; E1, E2, I1 never active, so silencing was
+vacuous). See `DNG100_RATE_MODEL_RESULTS.md`.
 
 ## Why this step
 
