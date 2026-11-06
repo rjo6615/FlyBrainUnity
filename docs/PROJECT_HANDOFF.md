@@ -1,5 +1,40 @@
 # FlyBrainUnity — local Codex handoff
 
+## Antennal gravity Step D4 v2 (direction, live joint ranges): run — 2026-11-06
+
+Preregistered (658c6a4, protocol 5b77fd9e), 15 open-loop arms run once (~70 min), evaluated
+once (report 262950cd). INTEGRITY_ACCEPTED: Z1-Z7 all pass, incl. Z6 (every admitted live
+channel recorded at (-1e6, 1e6), as declared) and Z7 (0 clipped values). All 15 transformed arms
+STAYED UP (peak tilt NEG 22.6-25.8, HALF 16.7-17.7, SCRAMBLE 23.5-25.9 deg) while v1 POST_ONLY
+fell 5/5. Labels: DIRECTION_SPECIFIC, PATTERN_SPECIFIC, HALF_DOSE_STAYS_UP in every source,
+CONSISTENT in G1 and FLIP; E1/E2 HELD (not blind). Declared reading: the fallen arms' post-tilt
+change has a specific destabilising direction in this open loop, and the falls also need the
+full dose. v1<->v2: SCRAMBLE fell 5/5 in v1 and stays up 5/5 in v2, so v1's SCRAMBLE falls
+came with the middle-leg pinning (descriptive). Limits: NEG/SCRAMBLE exceed the live slew limit
+at nearly every post-tilt update and reach 0.26 rad beyond the ON/OFF span; the same slew count
+was not computed for POST_ONLY; one scramble vector; 5 sources. See
+JO_COMMAND_DIRECTION_V2_RESULTS.md.
+
+NEXT (needs approval): rhythm. Optional later: a POST_ONLY slew/excursion-matched control.
+
+## Antennal gravity Step D4 v2 (direction, live joint ranges): design — 2026-11-06
+
+Designed only (no protocol, code or run). Re-asks D4's direction/pattern/dose question with the
+clip rule corrected. Evidence: the live decoders build MotorSafety(joint_min, joint_max, bound,
+4 rad/s) from resolve_joint_metadata; the leg joints are jnt_limited=false with actuator
+ctrlrange [-1e6, 1e6] (m6b preflight/limit diagnostic, m10b manifest for 11 of 20 admitted),
+so the live joint clamp is a no-op. v2 declares [-1e6, 1e6] per coordinate, records the live
+range of every admitted channel at run time (Z6; mismatch -> INCONCLUSIVE) and requires zero
+clipped values (Z7). Unclipped transforms reach 2.03 rad and up to 0.26 rad beyond the ON/OFF
+span; step at the tilt = POST_ONLY's (v1's 0.45-0.49 rad steps were clip artifacts). v1
+transformed arms equal v1 POST_ONLY qpos through state 5005, so Z2 = that pre-tilt anchor.
+15 arms (5 fallen sources x NEG/HALF/SCRAMBLE, same v1 sign vector), ~65 min; POST_ONLY and
+the 7 upright controls are reused from v1 (unaffected, sha-checked), E3 not re-asked. E1/E2
+carried over verbatim from v1; disclosed as not blind (v1's confounded outcomes were seen).
+Branch stacked on codex/jo-direction-v1 (PR #329). See JO_COMMAND_DIRECTION_V2.md.
+
+NEXT (needs approval): build and run D4 v2. After that: rhythm.
+
 ## Antennal gravity Step D4 (direction of the post-tilt commands): confounded by a clip defect — 2026-11-06
 
 Preregistered (6d10635, protocol a7e804f2), 27 open-loop arms run once (~1.9 h), evaluated once

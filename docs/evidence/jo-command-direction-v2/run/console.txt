@@ -1,0 +1,47 @@
+start 2026-11-06T15:24:53Z at 658c6a4
+[10:24:54] POST_NEG__G1_DOWN20_19
+POST_NEG__G1_DOWN20_19: fresh CNS/physics initialization; all 42 coordinates yoked (POST_NEG, live ranges)
+{"arm": "POST_NEG__G1_DOWN20_19", "run_status": "COMPLETE", "error": null, "sha256": "ccdf995d0208dad1687a23442d00487f8135b4b8c400cb1b98602f007f3ece5e"}
+[10:29:21] POST_HALF__G1_DOWN20_19
+POST_HALF__G1_DOWN20_19: fresh CNS/physics initialization; all 42 coordinates yoked (POST_HALF, live ranges)
+{"arm": "POST_HALF__G1_DOWN20_19", "run_status": "COMPLETE", "error": null, "sha256": "8cc81414b81c6c238528c7077837051f94a26171a8203e4d8197cd2fc3315e78"}
+[10:33:38] POST_SCRAMBLE__G1_DOWN20_19
+POST_SCRAMBLE__G1_DOWN20_19: fresh CNS/physics initialization; all 42 coordinates yoked (POST_SCRAMBLE, live ranges)
+{"arm": "POST_SCRAMBLE__G1_DOWN20_19", "run_status": "COMPLETE", "error": null, "sha256": "41b19119f18af68f4d0745fe8dfd8c9b1ad07a01ebd0db575aae48e7328e0939"}
+[10:37:57] POST_NEG__G1_DOWN20_21
+POST_NEG__G1_DOWN20_21: fresh CNS/physics initialization; all 42 coordinates yoked (POST_NEG, live ranges)
+{"arm": "POST_NEG__G1_DOWN20_21", "run_status": "COMPLETE", "error": null, "sha256": "d012a341d306d8f98d151d1105f77882b29d21aeb80d52e293449bc310af4103"}
+[10:42:18] POST_HALF__G1_DOWN20_21
+POST_HALF__G1_DOWN20_21: fresh CNS/physics initialization; all 42 coordinates yoked (POST_HALF, live ranges)
+{"arm": "POST_HALF__G1_DOWN20_21", "run_status": "COMPLETE", "error": null, "sha256": "93cf74eacc7cc58765cefd6f45c287239b1b471ef8b325a0af709a0ac6025ec4"}
+[10:46:37] POST_SCRAMBLE__G1_DOWN20_21
+POST_SCRAMBLE__G1_DOWN20_21: fresh CNS/physics initialization; all 42 coordinates yoked (POST_SCRAMBLE, live ranges)
+{"arm": "POST_SCRAMBLE__G1_DOWN20_21", "run_status": "COMPLETE", "error": null, "sha256": "9f5c3e8e1dce75cbed4b322fff42d7c2dcef32eb0fbe047c9c32d1fe982c2a67"}
+[10:51:01] POST_NEG__G1_DOWN20_24
+POST_NEG__G1_DOWN20_24: fresh CNS/physics initialization; all 42 coordinates yoked (POST_NEG, live ranges)
+{"arm": "POST_NEG__G1_DOWN20_24", "run_status": "COMPLETE", "error": null, "sha256": "33894889ec5f76fb51da6af3513855eecd89b198184ffb24bfe59015c0997afb"}
+[10:55:48] POST_HALF__G1_DOWN20_24
+POST_HALF__G1_DOWN20_24: fresh CNS/physics initialization; all 42 coordinates yoked (POST_HALF, live ranges)
+{"arm": "POST_HALF__G1_DOWN20_24", "run_status": "COMPLETE", "error": null, "sha256": "f86ee2d5471ac22d701f68e312b3ba26bdf70cceaf48f6473489418260f0da81"}
+[11:00:45] POST_SCRAMBLE__G1_DOWN20_24
+POST_SCRAMBLE__G1_DOWN20_24: fresh CNS/physics initialization; all 42 coordinates yoked (POST_SCRAMBLE, live ranges)
+{"arm": "POST_SCRAMBLE__G1_DOWN20_24", "run_status": "COMPLETE", "error": null, "sha256": "aa4639d739deab50d4e86145f85007edc08baf8e7ed6fccc994ab0e9f8c033ea"}
+[11:05:49] POST_NEG__FLIP_DOWN20_23
+POST_NEG__FLIP_DOWN20_23: fresh CNS/physics initialization; all 42 coordinates yoked (POST_NEG, live ranges)
+{"arm": "POST_NEG__FLIP_DOWN20_23", "run_status": "COMPLETE", "error": null, "sha256": "a0d9cd8e7132daa6443a95d83d1bc8212d27268335fa7a184d6ef192b273f3e4"}
+[11:10:52] POST_HALF__FLIP_DOWN20_23
+POST_HALF__FLIP_DOWN20_23: fresh CNS/physics initialization; all 42 coordinates yoked (POST_HALF, live ranges)
+{"arm": "POST_HALF__FLIP_DOWN20_23", "run_status": "COMPLETE", "error": null, "sha256": "37477a95d9dd44108f00512e47527f5c78ec033a18c567ef789ac98419d67142"}
+[11:15:50] POST_SCRAMBLE__FLIP_DOWN20_23
+POST_SCRAMBLE__FLIP_DOWN20_23: fresh CNS/physics initialization; all 42 coordinates yoked (POST_SCRAMBLE, live ranges)
+{"arm": "POST_SCRAMBLE__FLIP_DOWN20_23", "run_status": "COMPLETE", "error": null, "sha256": "3ec4845cbdcf96fc50f7c9a8facbb578a92d3882720fc5bef995d362f4a6d871"}
+[11:20:52] POST_NEG__FLIP_DOWN20_24
+POST_NEG__FLIP_DOWN20_24: fresh CNS/physics initialization; all 42 coordinates yoked (POST_NEG, live ranges)
+{"arm": "POST_NEG__FLIP_DOWN20_24", "run_status": "COMPLETE", "error": null, "sha256": "814823d68af2b1a34a6cc6d27e47d93cd87dad9bbed8a56e33f005221bd558b7"}
+[11:25:55] POST_HALF__FLIP_DOWN20_24
+POST_HALF__FLIP_DOWN20_24: fresh CNS/physics initialization; all 42 coordinates yoked (POST_HALF, live ranges)
+{"arm": "POST_HALF__FLIP_DOWN20_24", "run_status": "COMPLETE", "error": null, "sha256": "75392ab518aacfaa2ea0cd5108ce1ef5777ac1b17fb318fdb004fe8c9246df44"}
+[11:30:43] POST_SCRAMBLE__FLIP_DOWN20_24
+POST_SCRAMBLE__FLIP_DOWN20_24: fresh CNS/physics initialization; all 42 coordinates yoked (POST_SCRAMBLE, live ranges)
+{"arm": "POST_SCRAMBLE__FLIP_DOWN20_24", "run_status": "COMPLETE", "error": null, "sha256": "65f588a23cb20b8f6de41c5cec7301ff6019aeabef1ac184166c2d71d1b9b2c5"}
+end 2026-11-06T16:35:08Z

@@ -1,0 +1,118 @@
+{
+  "schema": "jo-command-direction-protocol-v2",
+  "date": "2026-11-06",
+  "design": "docs/JO_COMMAND_DIRECTION_V2.md",
+  "supersedes_for_transformed_arms": "jo-command-direction-protocol-v1 (a7e804f2); v1 evidence stays as recorded",
+  "question": "In the D3 open-loop setting, with each admitted coordinate limited only by its own live decoder range, is the post-tilt ON command change that topples an OFF-posture body effective through its direction (sign and pattern) or only through its size?",
+  "status": "PREREGISTERED_BEFORE_LIVE_RUN",
+  "not_claimed": ["closed-loop behaviour", "balance", "corrective response", "zone sign", "coordinate admission", "biological cause", "physiological validity of POST_NEG or POST_SCRAMBLE"],
+  "sources": {
+    "step_d_report": {"path": "docs/evidence/jo-zone-crossing-v1/run/report.json", "sha256": "e64811f7253478b0f2d91031d5b63d9acc8ea2c86ed4878959c49d9e3a80f571"},
+    "step_d3_report": {"path": "docs/evidence/jo-command-yoke-v1/run/report.json", "sha256": "5abd8a9aaa8b5f81097460fbe0ef44d0068bbea98fe0006febaec102926b5c0e"},
+    "d4_v1_report": {"path": "docs/evidence/jo-command-direction-v1/run/report.json", "sha256": "8dc55e706dc5f6f16f569fa8fac211d3f4bfc03d9a989bec7f142698cbf54918"},
+    "archives": {
+      "G1_DOWN20_19": "7392cc15d3e3e1139090924090c07cdcdc4e1465eb18262a22bbd2fcfa5a3be4",
+      "G1_DOWN20_21": "b5c69624735cf46fb3653d6677a29b6fbc13d55bd821116c96fb0790d6545d8f",
+      "G1_DOWN20_24": "41a99e1b288fda81944de0e747e00e068b11a79defd680d5d30bc9624c9999a6",
+      "FLIP_DOWN20_23": "4264798828e9555f08df206ca82ea9db5e8ed6fd9d13f9b8400e112b5941887a",
+      "FLIP_DOWN20_24": "3fa58de084601ffa3288450e9a3cdf7bb26a5ac6097fb6643630a41c49993d39",
+      "OFF_DOWN20_19": "213a035afbefc3902ea1b5b8a5e041858cfff936ec302fd20cf514649daf86e4",
+      "OFF_DOWN20_21": "74c80cabd90e0279c013719b00d0284fe7355fe3d6449ae5b756c5884feab894",
+      "OFF_DOWN20_23": "27a8acf4855d440290974dd73f3aae0f4fae01cec2efc01d8c59459258c56256",
+      "OFF_DOWN20_24": "09fe93057a03b888d6b9dfb6cb37eff0c5965592640e7c50c996e4d94341a528"
+    },
+    "v1_post_only_arms": {
+      "POST_ONLY__G1_DOWN20_19": "d15abffda355be4841f87fce422893c207b5a436c6b256174130a735fbb7439d",
+      "POST_ONLY__G1_DOWN20_21": "4f16b74f7a72f15b9e23218e57f791517cf675cb89da0881b627114dd9dda9d1",
+      "POST_ONLY__G1_DOWN20_24": "91aaa37fbfc2c89cfc93194bf174f3b4422c65525f2aab96108f9d159fafddf9",
+      "POST_ONLY__FLIP_DOWN20_23": "ccc80c6b9d0df87d2e5286ba5546b7e5f59820d13ef22f7734ddb7cfa36ba853",
+      "POST_ONLY__FLIP_DOWN20_24": "572ad2004bbdf7164ca7e172c325d76ee42dc5504a544f9d39f5624c9f895751"
+    },
+    "live_range_evidence": "malecns_backend/embodiment/_windows_m8_live_condition.py builds MotorSafety(joint_min, joint_max, bound, 4 rad/s) per channel from resolve_joint_metadata (joint range if jnt_limited, intersected with actuator ctrlrange if ctrllimited); interface_output m6b_final_preflight.json and m6b_live_limit_diagnostic.json: jnt_limited false, ctrlrange [-1e6, 1e6], JOINT_RANGE_UNAVAILABLE; m10b_manifest.json: joint_min_rad -1e6, joint_max_rad 1e6 for coordinates 3, 5, 10, 12, 17, 19, 26, 31, 33, 38, 40",
+    "code_reused": "jo_command_direction (v1) split-style names, SIGN, Trial, load rules, source_labels, consistency; jo_command_yoke yoke_audit, gravity_ok, outcome; coxa_offset_yoke.schedule; unchanged"
+  },
+  "context": "As D3 and D4 v1: Step D trial OFF_DOWN20_s (JO withheld; gravity R_y(-20 deg) after stored state 5005), CNS seed s of the source; all 42 applied coordinates from the declared schedule; adhesion all zero (the run errors otherwise)",
+  "admitted": [3, 4, 5, 6, 10, 11, 12, 17, 18, 19, 24, 25, 26, 27, 31, 32, 33, 38, 39, 40],
+  "declared_live_range_rad": [-1000000.0, 1000000.0],
+  "declared_live_range_applies_to": "every admitted coordinate",
+  "scramble": {
+    "source": "reused unchanged from v1 (not redrawn)",
+    "draw": "numpy.random.default_rng(20261106).permutation(20)[:10] -> admitted positions with sign -1",
+    "flipped_positions": [0, 1, 7, 8, 9, 10, 12, 14, 15, 17],
+    "flipped_coordinates": [3, 4, 17, 18, 19, 24, 26, 31, 32, 38],
+    "sign_by_admitted_order": [-1, -1, 1, 1, 1, 1, 1, -1, -1, -1, -1, 1, -1, 1, -1, -1, 1, -1, 1, 1]
+  },
+  "schedule": {
+    "transitions_0_5004": "all 42 coordinates from the OFF archive",
+    "transitions_5005_19999_unadmitted": "OFF archive",
+    "transitions_5005_19999_admitted": {
+      "POST_NEG": "clip_live(OFF - (ON - OFF))",
+      "POST_HALF": "clip_live(OFF + 0.5 (ON - OFF))",
+      "POST_SCRAMBLE": "sign +1: ON archive values directly; sign -1: clip_live(OFF - (ON - OFF))"
+    },
+    "clip_live": "to declared_live_range_rad per coordinate; expected clipped count 0 (gate Z7)"
+  },
+  "arms": {
+    "fallen_sources": ["G1_DOWN20_19", "G1_DOWN20_21", "G1_DOWN20_24", "FLIP_DOWN20_23", "FLIP_DOWN20_24"],
+    "conditions": ["POST_NEG", "POST_HALF", "POST_SCRAMBLE"],
+    "name": "<CONDITION>__<SOURCE>",
+    "order": "fallen sources in the order above with conditions in the order above",
+    "total": 15,
+    "duration": "20000 physics / 4000 neural transitions each; fresh process each; run once",
+    "reused_not_rerun": "POST_ONLY of the 5 fallen sources and the 7 upright controls from v1 (no arithmetic, no clip; unaffected by the v1 defect)"
+  },
+  "measures": {
+    "fall": "D3 rule: tilt (antennal_gravity_live.body_angles[0]) >= 45 deg at any stored state 5006-20000 -> FALLS, else STAYS_UP",
+    "t_fall_ms": "(first such state - 5005) x 0.1",
+    "also_reported": "peak tilt after state 5005; largest commanded step at the tilt; per admitted coordinate the largest excursion beyond [min(ON, OFF), max(ON, OFF)] at the same transition; per arm the number of transitions with a commanded change > 0.002 rad (the largest change the live pipeline can make between consecutive neural updates, 4 rad/s x 0.5 ms); v1 vs v2 outcome per arm from the v1 report (descriptive)"
+  },
+  "labels": {
+    "fallen_per_source": {
+      "DIRECTION_SPECIFIC": "POST_NEG STAYS_UP",
+      "DIRECTION_NONSPECIFIC": "POST_NEG FALLS",
+      "PATTERN_SPECIFIC": "POST_SCRAMBLE STAYS_UP",
+      "PATTERN_NONSPECIFIC": "POST_SCRAMBLE FALLS",
+      "HALF_DOSE_FALLS / HALF_DOSE_STAYS_UP": "POST_HALF outcome"
+    },
+    "prerequisite": "the source's v1 POST_ONLY outcome (from the v1 report) is FALLS",
+    "consistency": "within G1 (3 sources) and within FLIP (2) separately: CONSISTENT if identical for every source, else MIXED; no pooling"
+  },
+  "integrity": {
+    "Z1_complete": "all 15 arms COMPLETE with 20001 samples and 4000 ticks",
+    "Z2_pretilt_anchor": "each arm's qpos equals the v1 POST_ONLY arm of its source at every stored state 0-5005 exactly",
+    "Z3_yoke_audit": "every arm's recorded commanded_joints at state n+1 equals the declared schedule row n exactly for n = 0..19999; adhesion recorded all zero",
+    "Z4_gravity": "recorded gravity (0,0,-9810) for states 0-5005 and exactly R_y(-20 deg) @ (0,0,-9810) from 5006; no applied body wrench; zero external and generalized applied maxima",
+    "Z5_sources": "the Step D, D3 and D4 v1 reports, the 9 archives and the 5 v1 POST_ONLY arms equal the sha256 values above; each arm records its source and cns_seed",
+    "Z6_live_range": "each arm records at attach the MotorSafety joint range of every live channel and at bind the compiled jnt_limited, jnt_range, actuator_ctrllimited and actuator_ctrlrange of actuators 0-41; required: exactly one live channel per admitted coordinate, its recorded range equals declared_live_range_rad, and every applied value of that coordinate lies inside it and inside the actuator ctrlrange where ctrllimited",
+    "Z7_no_clip": "zero clipped values in every arm",
+    "failure": "INCONCLUSIVE_INTEGRITY, no labels"
+  },
+  "preflight": {
+    "smoke": "one 50-step POST_NEG__G1_DOWN20_19 arm, discarded; read only for exit status, the yoke audit and the Z6 range records",
+    "failure": "if the recorded live ranges differ from declared_live_range_rad, no arm runs; the preflight failure is recorded"
+  },
+  "design_expectations": {
+    "disclosure": "written after seeing v1's confounded outcomes (NEG and HALF stayed up, SCRAMBLE fell, all with pinned middle legs); carried over verbatim from v1, not revised; not blind",
+    "E1": "POST_NEG STAYS_UP in at least 4 of 5 fallen sources",
+    "E2": "POST_HALF STAYS_UP in all 5 fallen sources",
+    "recording": "each HELD or NOT_HELD; evaluated only when INTEGRITY_ACCEPTED"
+  },
+  "declared_interpretation": {
+    "DIRECTION_SPECIFIC_and_PATTERN_SPECIFIC": "the fallen arms' JO-driven post-tilt change has a specific destabilising direction in this open loop",
+    "DIRECTION_NONSPECIFIC": "a change of that size topples the body in either direction; the falls say nothing about the sign of the JO response",
+    "DIRECTION_SPECIFIC_with_PATTERN_NONSPECIFIC": "reversing the change prevents the fall but another direction of the same size does not; the reversed direction is special, rather than the original being uniquely destabilising",
+    "v1_vs_v2": "descriptive only: what pinning the middle legs did; nothing about the JO route",
+    "mixed": "reported per source"
+  },
+  "interpretation_limits": [
+    "Open loop: the mixed streams never occurred in a closed loop.",
+    "POST_NEG and POST_SCRAMBLE are probes, not physiology: values up to about 0.26 rad outside anything the live session produced at that transition, the same step at the tilt as POST_ONLY, and changes that can exceed the live slew limit; all reported.",
+    "No clip means no joint-limit protection: the leg joints are compiled unlimited; ON commands already reach 1.99 rad.",
+    "One scramble vector, reused from v1: a single sample of another direction.",
+    "The expectations are not blind (see disclosure).",
+    "Five fallen sources; labels per source, no statistics.",
+    "Step D limits apply (idealised gravity step, modelled JO transduction).",
+    "No motor coordinate status change (20/42 admitted, +4 conditional)."
+  ],
+  "single_run": "All 15 arms run once after protocol, code and tests are committed and pushed; evaluated once."
+}
