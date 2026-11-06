@@ -1,5 +1,20 @@
 # FlyBrainUnity — local Codex handoff
 
+## Rhythm Step R1b (size-scaling fidelity audit): design — 2026-11-06
+
+Designed only (no protocol, code or run). R1 never engaged the E1/E2/I1 core; the preprint's
+rate model scales gain/threshold by s = size / dataset median, and DNg100_L had s = 30.7. The
+preprint used MANC (nerve cord only: DN/AN volumes are their cord portion); our neuron_size.bin
+is whole-CNS volume. R1b estimates each neuron's nerve-cord fraction f from the local display
+skeletons (skeletons.flys via skel.js decodeSkel; cable length beyond a neck plane z*, chosen
+by minimum brain/cord vertex misclassification, gate G1 < 1 %), size_VNC = size x f, and
+rho = s_R1 / s_VNC. SIZE_MISMATCH_MATERIAL if rho >= 2 for DNg100_L or median rho over R1's
+network DNs >= 2; else MINOR. Expectation X1: MATERIAL via DNg100_L. Structure only; cable as
+a volume proxy is a declared approximation. See DNG100_SIZE_AUDIT_V1.md.
+
+NEXT (needs approval): build and run R1b. MATERIAL -> R1 v2 with cord-portion sizes;
+MINOR -> descriptive recruitment map.
+
 ## Rhythm Step R1 (preprint DNg100 rate model on our connectome): NOT_REPRODUCED, uninformative — 2026-11-06
 
 Preregistered (2ba19bd, protocol 3785bbeb; amendment before any simulation: scored MNs kept

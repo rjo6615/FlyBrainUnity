@@ -204,3 +204,6 @@ docs/evidence/jo-command-direction-v2/**/*.txt -text -whitespace
 docs/evidence/dng100-rate-model-v1/*.json -text
 docs/evidence/dng100-rate-model-v1/**/*.json -text
 docs/evidence/dng100-rate-model-v1/**/*.txt -text -whitespace
+docs/evidence/dng100-size-audit-v1/*.json -text
+docs/evidence/dng100-size-audit-v1/**/*.json -text
+docs/evidence/dng100-size-audit-v1/**/*.txt -text -whitespace
