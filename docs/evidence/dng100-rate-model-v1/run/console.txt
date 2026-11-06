@@ -1,0 +1,42 @@
+start 2026-11-06T18:01:56Z at 2ba19bd
+[      8s] DNG100: score 0.0 freq nan feasible 6/64
+[     17s] SIL_E1: score 0.0 freq nan feasible 6/64
+[     26s] SIL_E2: score 0.0 freq nan feasible 6/64
+[     34s] SIL_I1: score 0.0 freq nan feasible 6/64
+[     36s] CONTROL DNp11_R: score nan freq nan feasible 0/16
+[     38s] CONTROL DNge050_L: score nan freq nan feasible 0/16
+[     39s] CONTROL DNp43(CL332)_R: score nan freq nan feasible 0/16
+[     41s] CONTROL DNp48(SMP462)_R: score nan freq nan feasible 0/16
+[     43s] CONTROL DNg88_L: score nan freq nan feasible 0/16
+[     44s] CONTROL DNp04_R: score nan freq nan feasible 0/16
+[     46s] CONTROL DNp09_R: score nan freq nan feasible 0/16
+[     46s] CONTROL DNg101_R: score 0.0 freq nan feasible 1/16
+[     48s] CONTROL DNpe049_R: score nan freq nan feasible 0/16
+[     49s] CONTROL DNp28_R: score nan freq nan feasible 0/16
+[     50s] CONTROL DNpe004_L: score nan freq nan feasible 0/16
+[     58s] CONTROL DNg12_e_R: score 0.06740954660691484 freq 9.904873982543885 feasible 16/16
+[     60s] CONTROL DNp16_b_R: score nan freq nan feasible 0/16
+[     69s] CONTROL DNg12_e_L: score 0.07047319197056202 freq 9.70873786407767 feasible 16/16
+[     75s] CONTROL DNpe014_L: score nan freq nan feasible 0/16
+[     76s] CONTROL DNge126_R: score nan freq nan feasible 0/16
+[     83s] CONTROL DNg12_e_L: score 0.05277937311813634 freq 4.830917874396135 feasible 16/16
+[     84s] CONTROL DNpe007(hb1343489608)_R: score nan freq nan feasible 0/16
+[     86s] CONTROL DNg75(hb1874217622)_R: score 0.0 freq nan feasible 1/16
+[     87s] CONTROL DNa02_L: score 0.01651798156165062 freq 18.51851851851852 feasible 6/16
+[     87s] BASELINE: score nan freq nan feasible 0/16
+{
+ "verdict": "RATE_RHYTHM_NOT_REPRODUCED",
+ "checks": {
+  "C1_rhythm": false,
+  "C2_frequency": false,
+  "C3_necessity": true
+ },
+ "control_p80": 0.06740954660691484,
+ "expectations": {
+  "P1": false,
+  "P2": true,
+  "P3": false
+ },
+ "runtime_s": 87.2
+}
+exit 0 end 2026-11-06T18:03:24Z

@@ -1,5 +1,39 @@
 # FlyBrainUnity — local Codex handoff
 
+## Rhythm Step R1 (preprint DNg100 rate model on our connectome): NOT_REPRODUCED, uninformative — 2026-11-06
+
+Preregistered (2ba19bd, protocol 3785bbeb; amendment before any simulation: scored MNs kept
+regardless of transmitter, 21/68 are 'unknown'), 592 replicates run once (87 s), scored in
+process (result 24062901). Integrity all pass (I2 ratenet.js fidelity via node, I3 closed-form
+solver). Verdict RATE_RHYTHM_NOT_REPRODUCED: DNG100 score 0.0 (control p80 0.067), no
+frequency; C3 held vacuously; P1, P3 wrong. Diagnostics: the preprint's >=5-recruited rule
+stopped at I_stim 1000-2000 with median 7 recruited neurons; 58/64 replicates had no active
+front-left MN (others 1-3 MNs, <= 3.3 Hz, tonic); E1/E2/I1 never active (SIL arms bit-identical
+to DNG100). Only DNg12_e controls recruited ~20 MNs (tonic, 0.07). Size scaling likely
+contributes (s: DNg100 30.7, E1 8.8, E2 5.1, I1 2.5; 49 cells > 20; median units unverified).
+So R1 did not probe the core and does not separate wiring from engine. See
+DNG100_RATE_MODEL_RESULTS.md.
+
+NEXT (needs approval): options, each a new versioned design, not drive tuning: size-
+normalisation fidelity check (local data) and/or a descriptive recruitment map of where the
+DNg100 signal stops.
+
+## Rhythm Step R1 (preprint DNg100 rate model on our connectome): design — 2026-11-06
+
+Designed only (no protocol, code or run). Stage 1 V1 (LIF, whole CNS) was NOT_REPRODUCED:
+tonic DNg100 output. R1 separates wiring from engine: the preprint's own rate model (tanh
+units, sampled a/theta/tau/rmax, size scaling, 5-synapse floor, I_stim 250 with its
+doubling/halving rule, RK45 rtol 2e-6 atol 5e-9, 1 s) on the maleCNS front-left network built
+by its rule (68 V1 MNs + 1,280 premotor + 924 DNs = 2,136 neurons before the unknown-NT
+filter; one copy each of E1 800173, E2 800863, I1 801884 in it). b = 0.03 and the functional
+form come from the checked-in fly-brain-main/src/ratenet.js (preprint equation is an image);
+ratenet.js deviations (whole CNS, Euler, snap, size cap) are not copied; I2 tests the new RHS
+against ratenet.js via node. Conditions: DNG100, SIL_E1/E2/I1 (64 seeds each), 20 network ACh
+control DNs (rng 20261107, 16 each), baseline (16). V1 score and C1-C3 criteria (C3 adds I1).
+P1 C1 holds, P2 SIL_I1 abolishes, P3 5-20 Hz. Neural only. See DNG100_RATE_MODEL_V1.md.
+
+NEXT (needs approval): build and run R1.
+
 ## Antennal gravity Step D4 v2 (direction, live joint ranges): run — 2026-11-06
 
 Preregistered (658c6a4, protocol 5b77fd9e), 15 open-loop arms run once (~70 min), evaluated

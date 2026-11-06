@@ -1,0 +1,85 @@
+{
+  "schema": "dng100-rate-model-protocol-v1",
+  "date": "2026-11-06",
+  "design": "docs/DNG100_RATE_MODEL_V1.md",
+  "question": "Does the preprint's DNg100 rate model, built by the preprint's rules from our maleCNS wiring, produce the DNg100 front-left motor rhythm?",
+  "status": "PREREGISTERED_BEFORE_ANY_PROTOCOL_RUN",
+  "reference": "Pugliese, Tuthill, Brunton et al. 2025, bioRxiv 10.1101/2025.09.12.675944 (preprint); Methods text read 2026-11-06. b and the functional form from fly-brain-main/src/ratenet.js (the preprint's equation is an image).",
+  "not_claimed": ["walking", "other legs", "body or balance", "that our LIF engine is wrong", "that the preprint is right", "any change to the live engine, calibration or mappings"],
+  "sources": {
+    "cache": "maleCNS cache (load_cache verifies the canonical source fingerprints)",
+    "files": {
+      "ratenet_js_lf_sha256": "641ca1950a35b30dab3ed48b51e5e076931c56519006a10e58112647a45636b6",
+      "bodymap_lf_sha256": "10630cd4c7a6cc2c1dcfcbee4a602d307f06766f316b185f631406813a58da9d",
+      "dng100_rhythm_py_lf_sha256": "f6603d8fdb0cb85a6ef51758b3ee14d3aed813b4aa37bf40c9bc5f3e27b73448",
+      "neural_py_lf_sha256": "8acebd58cdc221cc815646474bb337c3dc7bd05cccde685ac713f23ca51c7e0c"
+    }
+  },
+  "network": {
+    "rule": "68 V1 front-left MNs (bodymap ' T1 left'); every non-MN neuron with >= 5 synapses onto them; every descending neuron with >= 5 synapses onto a non-DN premotor neuron; non-MN neurons with transmitter 'unknown' removed; edges >= 5 synapses within the network",
+    "amendment_before_any_simulation": "The design removed every unknown-transmitter neuron. Running the network description (structure only) showed this would drop 21 of the 68 scored MNs. MNs are therefore kept as readout regardless of transmitter; an unknown-transmitter MN sends no input (sign 0). 25 non-MN unknown neurons are removed.",
+    "counts": {"mns": 68, "premotor": 1280, "premotor_dns": 137, "dns_onto_premotor": 924, "before_filter": 2136, "unknown_removed": 25, "network": 2111, "edges_including_zero_sign": 63837},
+    "body_ids_sha256": "cdcfcd231484a46c2a668d17932d95b2147ab16e7dd5c7f87857490590b12eed",
+    "body_ids_hash_rule": "sha256 of json.dumps(sorted body IDs)",
+    "signs": "acetylcholine +1; gaba, glutamate, histamine -1; dopamine, serotonin, octopamine +1 (ratenet.js modulatorySign 1); unknown 0"
+  },
+  "cells": {"DNg100_L": 10045, "DNg100_R": 10056, "E1": 800173, "E2": 800863, "I1": 801884},
+  "model": {
+    "equation": "tau_i dr_i/dt = max(rmax_i tanh((a_i/rmax_i)(I_i + b sum_j W_ij r_j - theta_i)), 0) - r_i",
+    "b": 0.03,
+    "draws": "numpy.random.default_rng(seed): a* ~ N(1, 0.1), theta* ~ N(7.5, 0.6), tau ~ N(20, 2) ms, rmax ~ N(200, 10) Hz, in that order, each for all network neurons; non-positive values redrawn",
+    "size": "a = a*/s, theta = theta*.s, s = size/542747200 (VNC-region median, region_scales); no cap",
+    "solver": "scipy solve_ivp RK45, rtol 2e-6, atol 5e-9; r(0)=0; segments 0-20 ms (I=0) and 20-1000 ms (I_stim on the stimulated neuron); samples every 1 ms, t = 0..999",
+    "silencing": "the silenced neuron's activation is held at 0 (its rate stays 0)",
+    "not_copied_from_ratenet": ["whole CNS", "Euler 1 ms", "snap 0.05", "size cap 20"]
+  },
+  "drive_adjustment": "start I_stim 250; recruited = network neurons with r > 0.01 at any sample t = 250..999; < 5 -> double, > 500 -> halve, re-running the same draw; at most 10 adjustments (11 simulations); still outside [5, 500] -> INFEASIBLE (score NaN). BASELINE has no stimulus and no adjustment.",
+  "readout": {
+    "trace": "each front-left MN's rate at t = 250..999 ms, unsmoothed",
+    "active_mn": "max rate in that window > 0.01 Hz",
+    "score": "dng100_rhythm.rhythmicity per active MN (V1, unchanged); replicate score = mean over active MNs, NaN if none; replicate frequency = median 1000/period over active MNs with score > 0",
+    "condition": "score = mean over feasible replicates with a score; frequency = median over them"
+  },
+  "conditions": {
+    "dng100_seeds": 64,
+    "silenced": "SIL_E1, SIL_E2, SIL_I1: DNg100_L stimulated, one core cell silenced, seeds 1-64 each, own adjustment",
+    "control_seeds": 16,
+    "baseline_seeds": 16,
+    "total_replicates": 592
+  },
+  "controls": {
+    "rule": "20 acetylcholine descending neurons in the network other than DNg100_L/R, drawn without replacement by numpy.random.default_rng(20261107).choice from the sorted dense indices",
+    "dense_indices": [92, 278, 754, 763, 820, 1052, 1087, 1599, 2659, 4164, 4685, 9205, 9762, 11053, 21341, 26520, 39896, 128032, 129181, 130496]
+  },
+  "acceptance": {
+    "C1_rhythm": "DNG100 score >= 0.5 AND > 80th percentile of the feasible control scores",
+    "C2_frequency": "DNG100 frequency in [5, 20] Hz",
+    "C3_necessity": "SIL_E1, SIL_E2 and SIL_I1 each score < 0.5 (no feasible replicate counts as abolished)",
+    "RATE_RHYTHM_REPRODUCED": "C1 and C2 and C3",
+    "RATE_RHYTHM_PARTIAL": "C1 and (not C2 or not C3)",
+    "RATE_RHYTHM_NOT_REPRODUCED": "not C1",
+    "INCONCLUSIVE": "source, network or control mismatch; I2/I3 test failure; or no feasible DNG100 replicate"
+  },
+  "integrity": {
+    "I1_sources": "file hashes, network body-ID hash and control draw checked at run start",
+    "I2_reference_fidelity": "tests/test_dng100_rate_model.py::test_ratenet_fidelity_one_euler_step (node, actual ratenet.js RateNetwork.step) passes",
+    "I3_solver": "tests/test_dng100_rate_model.py::test_solver_matches_closed_form passes",
+    "I4_completeness": "592 replicates, each with seed, status and drive history"
+  },
+  "reported_not_gated": ["fraction of DNG100 replicates scoring >= 0.5", "final I_stim and recruited counts", "per-MN score, period and rates with muscle names", "Ti flexor vs Ti extensor cross-correlation lag", "control and baseline results", "neurons with size ratio > 20"],
+  "expectations": {
+    "P1": "C1 holds",
+    "P2": "SIL_I1 score < 0.5",
+    "P3": "DNG100 frequency in [5, 20] Hz",
+    "note": "recorded before any protocol simulation; wrong ones are recorded as wrong"
+  },
+  "plumbing_disclosure": "One timing replicate (DNg100_L, seed 0, not a protocol seed) was run before registration and read only for wall time; its output also printed the number of simulations used by the adjustment rule (3). Cost: about 0.1 s per replicate. The design's no-drive timing replicate was not informative (all rates stay 0), so a driven one was used.",
+  "execution": "one command (--run equivalent: --output) runs all 592 replicates and computes the verdict in the same process, as Stage 1 V1 did; output opened exclusively; run once.",
+  "interpretation_limits": [
+    "Reconstruction, not the authors' code: b and the nonlinearity from ratenet.js; 'recruited' read as active network neurons; 64 replicates instead of 1,024.",
+    "Different connectome and MN set: 68 bodymap MNs (21 with unknown transmitter, kept as readout) versus 144 MANC fl MNs.",
+    "Rate model: no spikes, delays or adaptation. Isolated network: no brain, other legs or sensory feedback.",
+    "Neural only: no body, physics, gait or balance; no motor coordinate status change (20/42 admitted, +4 conditional)."
+  ],
+  "single_run": "Run once after protocol, code and tests are committed and pushed; no seeds, thresholds, windows or parameters changed after seeing results."
+}
