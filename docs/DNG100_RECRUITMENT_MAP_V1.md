@@ -1,7 +1,8 @@
 # Rhythm, Step R2: where does DNg100's signal stop? A recruitment map (design)
 
-Designed 2026-11-06. Design only: no protocol, code or run yet. Neural-only rate-model
-simulation of R1's isolated network; descriptive, no rhythm verdict.
+Designed 2026-11-06. Preregistered 2026-11-06 in
+`docs/evidence/dng100-recruitment-map-v1/protocol.json` (sha256 4b26c10a…); not yet run. Neural-only
+rate-model simulation of R1's isolated network; descriptive, no rhythm verdict.
 
 ## Why this step
 
@@ -162,3 +163,12 @@ Wrong expectations are recorded as wrong.
    seed), discarded and disclosed.
 4. Commit and push the preregistration. Run once, evaluate in the same process, and record the
    results, handoff and roadmap.
+
+## Build-time amendments (before any protocol simulation)
+
+- **Intermediates.** AN19B009_R (E2's only route) and AN08B031_L (I1's only route) are among
+  E1's 11 intermediates, so 11 unique intermediates are tracked.
+- **VNCSIZE size check.** It depends on decoding the full skeleton file, so instead of a unit test
+  it is checked at run time (I1: R1b's z* and m_VNC reproduced, sizes finite).
+- **Plumbing.** `--describe` (structure only) and one timing simulation (seed 0, not a protocol
+  seed, I = 64,000; 0.72 s; rates not printed).
