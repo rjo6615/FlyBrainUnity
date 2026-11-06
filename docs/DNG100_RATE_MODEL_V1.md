@@ -269,3 +269,18 @@ These are guesses, not adjusted to anything seen; wrong ones are recorded as wro
    - verdict logic on synthetic scores.
 4. Time one no-drive replicate (discarded). Then commit and push the preregistration, run
    once in the background, evaluate once, and record the results, handoff and roadmap.
+
+## Amendments at build time (before any protocol simulation)
+
+Recorded in `docs/evidence/dng100-rate-model-v1/protocol.json` (sha 3785bbeb…):
+- **Scored MNs are kept regardless of transmitter.** The structure-only network description
+  showed that removing every `unknown` neuron would drop 21 of the 68 scored MNs. An unknown
+  MN sends no input (sign 0). After this rule, 25 non-MN unknowns are removed, leaving
+  2,111 neurons and 63,837 edges (zero-sign MN edges included).
+- **Timing used a driven replicate**, DNg100_L with seed 0, which is not a protocol seed. A
+  no-drive replicate is trivial (all rates stay 0).
+  - Only the wall time (about 0.1 s) was read.
+  - The output also showed that it used 3 simulations in the drive adjustment.
+  - Because the cost is negligible, the replicate counts are unchanged.
+- **One command runs and scores everything**, computing the verdict in-process as Stage 1 V1
+  did. There are no separate run and evaluate steps.
