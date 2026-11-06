@@ -1,6 +1,8 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
-Current 2026-11-06: antennal gravity Step D4 v2 run: INTEGRITY_ACCEPTED (no clipping, live ranges verified); all 15 NEG/HALF/SCRAMBLE arms stay up while POST_ONLY falls 5/5 -> DIRECTION_SPECIFIC, PATTERN_SPECIFIC, HALF_DOSE_STAYS_UP, consistent; E1/E2 HELD; v1 SCRAMBLE falls were a clip artifact.
+Current 2026-11-06: rhythm Step R1 designed (the preprint's DNg100 rate model, unchanged, on our maleCNS front-left network: does our wiring support the rhythm that our LIF engine did not produce?). Not run.
+
+Previous 2026-11-06: antennal gravity Step D4 v2 run: INTEGRITY_ACCEPTED (no clipping, live ranges verified); all 15 NEG/HALF/SCRAMBLE arms stay up while POST_ONLY falls 5/5 -> DIRECTION_SPECIFIC, PATTERN_SPECIFIC, HALF_DOSE_STAYS_UP, consistent; E1/E2 HELD; v1 SCRAMBLE falls were a clip artifact.
 
 Previous 2026-11-06: antennal gravity Step D4 v2 designed (same direction/pattern/dose question; clip to the live per-joint decoder range, which is [-1e6, 1e6] for these unlimited joints, so no clipping; verified at run time; 15 arms, POST_ONLY and upright controls reused from v1). Not run.
 
@@ -31,6 +33,7 @@ Previous 2026-11-05: antennal gravity Step B run: ENCODER_READY (pitch-dominated
 Previous 2026-11-04: antennal gravity Step A run: IDENTITY_READY (C/E exact, segregated, direct DN edges); right side far less connected (synapses L/R C 5.3, E 2.5).
 
 ```text
+Rhythm (DNg100 front-left)    [V1 LIF whole-CNS: NOT_REPRODUCED (tonic); R1 preprint rate model on our wiring: designed, not run]
 Antennal gravity sense        [A: IDENTITY_READY; B: ENCODER_READY (pitch slope 0.97/rad, roll +-0.22/rad descriptive); C: G1 CONSISTENT / FLIP WEAK (E route reaches leg MNs, C route weak; d <= 0 both tilts); C2: drift = body posture (ROOT), neck sag opposes, antenna joints ~0; D: zone crossing -> FLIP/E-onset CONSISTENT, G1/E-offset WEAK, r_GF ~0, C route silent at MNs, 5/12 ON tilted arms rolled; D2: falls late and abrupt, COMMAND_FIRST not diagnostic, no early marker; D3: open-loop yoke -> all three leg groups needed, none sufficient; post-tilt commands suffice, pre-tilt posture does not; D4: direction test confounded by a clip-range defect (not interpretable); G1 upright arms' post-tilt commands also topple an OFF-posture body; D4 v2 (live ranges, no clip): post-tilt change has a specific destabilising direction and needs full dose (NEG/SCRAMBLE/HALF all stay up); then rhythm]
 Coxa push replication         [run: AMPLIFICATION_DIRECTIONAL F / B (R>1 6/6); yoke DO_NOT_REPRODUCE; FREE_COMMANDS_INCREASE_D F / B]
 Coxa conditional tier         [LF/LH/LM/RM CONDITIONAL (fore-aft Coxa); RF/RH blocked by input]

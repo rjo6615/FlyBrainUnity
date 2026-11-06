@@ -1,5 +1,21 @@
 # FlyBrainUnity — local Codex handoff
 
+## Rhythm Step R1 (preprint DNg100 rate model on our connectome): design — 2026-11-06
+
+Designed only (no protocol, code or run). Stage 1 V1 (LIF, whole CNS) was NOT_REPRODUCED:
+tonic DNg100 output. R1 separates wiring from engine: the preprint's own rate model (tanh
+units, sampled a/theta/tau/rmax, size scaling, 5-synapse floor, I_stim 250 with its
+doubling/halving rule, RK45 rtol 2e-6 atol 5e-9, 1 s) on the maleCNS front-left network built
+by its rule (68 V1 MNs + 1,280 premotor + 924 DNs = 2,136 neurons before the unknown-NT
+filter; one copy each of E1 800173, E2 800863, I1 801884 in it). b = 0.03 and the functional
+form come from the checked-in fly-brain-main/src/ratenet.js (preprint equation is an image);
+ratenet.js deviations (whole CNS, Euler, snap, size cap) are not copied; I2 tests the new RHS
+against ratenet.js via node. Conditions: DNG100, SIL_E1/E2/I1 (64 seeds each), 20 network ACh
+control DNs (rng 20261107, 16 each), baseline (16). V1 score and C1-C3 criteria (C3 adds I1).
+P1 C1 holds, P2 SIL_I1 abolishes, P3 5-20 Hz. Neural only. See DNG100_RATE_MODEL_V1.md.
+
+NEXT (needs approval): build and run R1.
+
 ## Antennal gravity Step D4 v2 (direction, live joint ranges): run — 2026-11-06
 
 Preregistered (658c6a4, protocol 5b77fd9e), 15 open-loop arms run once (~70 min), evaluated
