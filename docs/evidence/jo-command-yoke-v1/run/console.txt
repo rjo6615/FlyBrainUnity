@@ -1,0 +1,137 @@
+start 2026-11-06T00:06:11Z at 27e253b
+[19:06:11] FULL_ON__G1_DOWN20_19
+FULL_ON__G1_DOWN20_19: fresh CNS/physics initialization; all 42 coordinates yoked (FULL_ON)
+{"arm": "FULL_ON__G1_DOWN20_19", "run_status": "COMPLETE", "error": null, "sha256": "cc74bff8d20f928ba4b800c5fe16b404bc23e8566c427e1725af0df26e63527f"}
+[19:10:40] ONLY_FRONT__G1_DOWN20_19
+ONLY_FRONT__G1_DOWN20_19: fresh CNS/physics initialization; all 42 coordinates yoked (ONLY_FRONT)
+{"arm": "ONLY_FRONT__G1_DOWN20_19", "run_status": "COMPLETE", "error": null, "sha256": "0ab8c1c4ede3c9c4811b4596d5f64d89f1070f66de9cedf062a27beab4911da0"}
+[19:15:01] ONLY_MIDDLE__G1_DOWN20_19
+ONLY_MIDDLE__G1_DOWN20_19: fresh CNS/physics initialization; all 42 coordinates yoked (ONLY_MIDDLE)
+{"arm": "ONLY_MIDDLE__G1_DOWN20_19", "run_status": "COMPLETE", "error": null, "sha256": "17e5fcca0e6d13348dac3d91a0ddaa79ca242e9d16eb13e2fe6b099e3de78bcc"}
+[19:19:31] ONLY_HIND__G1_DOWN20_19
+ONLY_HIND__G1_DOWN20_19: fresh CNS/physics initialization; all 42 coordinates yoked (ONLY_HIND)
+{"arm": "ONLY_HIND__G1_DOWN20_19", "run_status": "COMPLETE", "error": null, "sha256": "7a27769bcc3529cf62516810eea22831c549e9b00e492bff0a7e993c75727b25"}
+[19:23:56] NO_FRONT__G1_DOWN20_19
+NO_FRONT__G1_DOWN20_19: fresh CNS/physics initialization; all 42 coordinates yoked (NO_FRONT)
+{"arm": "NO_FRONT__G1_DOWN20_19", "run_status": "COMPLETE", "error": null, "sha256": "5fa30e58cb32877f7af00f8360607be6e9f370b45b66534bdc8d9992df77188e"}
+[19:28:12] NO_MIDDLE__G1_DOWN20_19
+NO_MIDDLE__G1_DOWN20_19: fresh CNS/physics initialization; all 42 coordinates yoked (NO_MIDDLE)
+{"arm": "NO_MIDDLE__G1_DOWN20_19", "run_status": "COMPLETE", "error": null, "sha256": "e64f6bff7bad2ef6601f1098ffc34dda02cc0a3ac53b02cb6c8c2daf6f27b0fb"}
+[19:32:45] NO_HIND__G1_DOWN20_19
+NO_HIND__G1_DOWN20_19: fresh CNS/physics initialization; all 42 coordinates yoked (NO_HIND)
+{"arm": "NO_HIND__G1_DOWN20_19", "run_status": "COMPLETE", "error": null, "sha256": "a97878c93a282eeb617ad355ba4b596d745415d93d11ccbe14e89cc223a122ca"}
+[19:37:14] PRE_ONLY__G1_DOWN20_19
+PRE_ONLY__G1_DOWN20_19: fresh CNS/physics initialization; all 42 coordinates yoked (PRE_ONLY)
+{"arm": "PRE_ONLY__G1_DOWN20_19", "run_status": "COMPLETE", "error": null, "sha256": "329aaec76f7e80742849d7f56471deb7d6cf6197b83e0b45c6dca18c058745f3"}
+[19:41:27] POST_ONLY__G1_DOWN20_19
+POST_ONLY__G1_DOWN20_19: fresh CNS/physics initialization; all 42 coordinates yoked (POST_ONLY)
+{"arm": "POST_ONLY__G1_DOWN20_19", "run_status": "COMPLETE", "error": null, "sha256": "4a564381fbfe92c5c9e1cd2d0a8848436bfe2f79815e2dc7c2b5b031668c712b"}
+[19:46:37] FULL_ON__G1_DOWN20_21
+FULL_ON__G1_DOWN20_21: fresh CNS/physics initialization; all 42 coordinates yoked (FULL_ON)
+{"arm": "FULL_ON__G1_DOWN20_21", "run_status": "COMPLETE", "error": null, "sha256": "7f70880e7390ff241a3de5b4497a5cff190f461e89f5dfe88cd4af569cf3a145"}
+[19:52:06] ONLY_FRONT__G1_DOWN20_21
+ONLY_FRONT__G1_DOWN20_21: fresh CNS/physics initialization; all 42 coordinates yoked (ONLY_FRONT)
+{"arm": "ONLY_FRONT__G1_DOWN20_21", "run_status": "COMPLETE", "error": null, "sha256": "dd596ef43d7ea1a17b0e0389fb0ddf66ea470c49e9552d869d7a0410b4d9444b"}
+[19:57:31] ONLY_MIDDLE__G1_DOWN20_21
+ONLY_MIDDLE__G1_DOWN20_21: fresh CNS/physics initialization; all 42 coordinates yoked (ONLY_MIDDLE)
+{"arm": "ONLY_MIDDLE__G1_DOWN20_21", "run_status": "COMPLETE", "error": null, "sha256": "5955ba7a9d7ed9eb410d9b7c9891ddca746d786ebb8ffa62449d4bff1821f898"}
+[20:03:01] ONLY_HIND__G1_DOWN20_21
+ONLY_HIND__G1_DOWN20_21: fresh CNS/physics initialization; all 42 coordinates yoked (ONLY_HIND)
+{"arm": "ONLY_HIND__G1_DOWN20_21", "run_status": "COMPLETE", "error": null, "sha256": "d9d013dc4fb65c9638546762b36c38d9f037c4a1dbfdcc07d69f536df89d3516"}
+[20:08:05] NO_FRONT__G1_DOWN20_21
+NO_FRONT__G1_DOWN20_21: fresh CNS/physics initialization; all 42 coordinates yoked (NO_FRONT)
+{"arm": "NO_FRONT__G1_DOWN20_21", "run_status": "COMPLETE", "error": null, "sha256": "d1449d52ae5032ab64b51149e5bef6bd81d2c96a53e4e832c585b509e710741a"}
+[20:12:38] NO_MIDDLE__G1_DOWN20_21
+NO_MIDDLE__G1_DOWN20_21: fresh CNS/physics initialization; all 42 coordinates yoked (NO_MIDDLE)
+{"arm": "NO_MIDDLE__G1_DOWN20_21", "run_status": "COMPLETE", "error": null, "sha256": "6a0b2ea723f4ffca61ccbaa0776043bffcd8797d5125783c0c5a1df495f713a5"}
+[20:17:35] NO_HIND__G1_DOWN20_21
+NO_HIND__G1_DOWN20_21: fresh CNS/physics initialization; all 42 coordinates yoked (NO_HIND)
+{"arm": "NO_HIND__G1_DOWN20_21", "run_status": "COMPLETE", "error": null, "sha256": "0593b44cb36ca780283c07b28f04ddb0094b8edfc13170341cf99ad6a012d7b9"}
+[20:22:50] PRE_ONLY__G1_DOWN20_21
+PRE_ONLY__G1_DOWN20_21: fresh CNS/physics initialization; all 42 coordinates yoked (PRE_ONLY)
+{"arm": "PRE_ONLY__G1_DOWN20_21", "run_status": "COMPLETE", "error": null, "sha256": "db17ab8ac56dceaedd2c147685179f20521283ae05ede3b31508d00fbefa7694"}
+[20:27:58] POST_ONLY__G1_DOWN20_21
+POST_ONLY__G1_DOWN20_21: fresh CNS/physics initialization; all 42 coordinates yoked (POST_ONLY)
+{"arm": "POST_ONLY__G1_DOWN20_21", "run_status": "COMPLETE", "error": null, "sha256": "67ab2334c684173b7679f3c05c710a4cba42129015cca2baf574cd8849a9bc2e"}
+[20:32:51] FULL_ON__G1_DOWN20_24
+FULL_ON__G1_DOWN20_24: fresh CNS/physics initialization; all 42 coordinates yoked (FULL_ON)
+{"arm": "FULL_ON__G1_DOWN20_24", "run_status": "COMPLETE", "error": null, "sha256": "61008cdc8b3f14c5fcb7c6b7520fc506706f38b15a08f201d2430b3381c546c3"}
+[20:37:37] ONLY_FRONT__G1_DOWN20_24
+ONLY_FRONT__G1_DOWN20_24: fresh CNS/physics initialization; all 42 coordinates yoked (ONLY_FRONT)
+{"arm": "ONLY_FRONT__G1_DOWN20_24", "run_status": "COMPLETE", "error": null, "sha256": "058516091d2a53e1bb34561b353997923a7e9743cbb6522c2b92b8fd6260bc92"}
+[20:42:25] ONLY_MIDDLE__G1_DOWN20_24
+ONLY_MIDDLE__G1_DOWN20_24: fresh CNS/physics initialization; all 42 coordinates yoked (ONLY_MIDDLE)
+{"arm": "ONLY_MIDDLE__G1_DOWN20_24", "run_status": "COMPLETE", "error": null, "sha256": "99aeec79ead3d1399aa66716dea2f771c7170b025271316457e426da124d220e"}
+[20:47:20] ONLY_HIND__G1_DOWN20_24
+ONLY_HIND__G1_DOWN20_24: fresh CNS/physics initialization; all 42 coordinates yoked (ONLY_HIND)
+{"arm": "ONLY_HIND__G1_DOWN20_24", "run_status": "COMPLETE", "error": null, "sha256": "ea1af31e59c3b107ed27646ae54b81a2799721242f753dd38f9a97b783bc5cb0"}
+[20:51:48] NO_FRONT__G1_DOWN20_24
+NO_FRONT__G1_DOWN20_24: fresh CNS/physics initialization; all 42 coordinates yoked (NO_FRONT)
+{"arm": "NO_FRONT__G1_DOWN20_24", "run_status": "COMPLETE", "error": null, "sha256": "c1ca3f4fa95933a247b0248d435ce0be109f030fd645b9a5e5bfa1aeae6a30b9"}
+[20:56:13] NO_MIDDLE__G1_DOWN20_24
+NO_MIDDLE__G1_DOWN20_24: fresh CNS/physics initialization; all 42 coordinates yoked (NO_MIDDLE)
+{"arm": "NO_MIDDLE__G1_DOWN20_24", "run_status": "COMPLETE", "error": null, "sha256": "30a962ca76eb614f0aab22878f5b95cff1d38afe683eff6cf62d9b5b992be001"}
+[21:00:34] NO_HIND__G1_DOWN20_24
+NO_HIND__G1_DOWN20_24: fresh CNS/physics initialization; all 42 coordinates yoked (NO_HIND)
+{"arm": "NO_HIND__G1_DOWN20_24", "run_status": "COMPLETE", "error": null, "sha256": "65e27901422ba09b92b0e54b103b19872bbe512899968927b90fe76461c47b95"}
+[21:05:01] PRE_ONLY__G1_DOWN20_24
+PRE_ONLY__G1_DOWN20_24: fresh CNS/physics initialization; all 42 coordinates yoked (PRE_ONLY)
+{"arm": "PRE_ONLY__G1_DOWN20_24", "run_status": "COMPLETE", "error": null, "sha256": "114125d5dd0806e361c7fb4a7896957a2e0c04ab1486578743e6c073a284751a"}
+[21:09:18] POST_ONLY__G1_DOWN20_24
+POST_ONLY__G1_DOWN20_24: fresh CNS/physics initialization; all 42 coordinates yoked (POST_ONLY)
+{"arm": "POST_ONLY__G1_DOWN20_24", "run_status": "COMPLETE", "error": null, "sha256": "961f8172e0feb3dc354676b8512fbed605247f7e4f85167b285fea91e2a64348"}
+[21:13:45] FULL_ON__FLIP_DOWN20_23
+FULL_ON__FLIP_DOWN20_23: fresh CNS/physics initialization; all 42 coordinates yoked (FULL_ON)
+{"arm": "FULL_ON__FLIP_DOWN20_23", "run_status": "COMPLETE", "error": null, "sha256": "8393b087206e9703db3cb4cec4007e9f58650e96c840d2ec4f32b146990f7a5d"}
+[21:18:19] ONLY_FRONT__FLIP_DOWN20_23
+ONLY_FRONT__FLIP_DOWN20_23: fresh CNS/physics initialization; all 42 coordinates yoked (ONLY_FRONT)
+{"arm": "ONLY_FRONT__FLIP_DOWN20_23", "run_status": "COMPLETE", "error": null, "sha256": "20243e32928d6ab78de478c708ea6f87ebe621037e6944b6e9f02739dc0cb2e5"}
+[21:22:57] ONLY_MIDDLE__FLIP_DOWN20_23
+ONLY_MIDDLE__FLIP_DOWN20_23: fresh CNS/physics initialization; all 42 coordinates yoked (ONLY_MIDDLE)
+{"arm": "ONLY_MIDDLE__FLIP_DOWN20_23", "run_status": "COMPLETE", "error": null, "sha256": "23b97f6144f6d734d16eab0149408c062c3f236c9c5758b3b50a30666af0eabc"}
+[21:27:45] ONLY_HIND__FLIP_DOWN20_23
+ONLY_HIND__FLIP_DOWN20_23: fresh CNS/physics initialization; all 42 coordinates yoked (ONLY_HIND)
+{"arm": "ONLY_HIND__FLIP_DOWN20_23", "run_status": "COMPLETE", "error": null, "sha256": "6a9005f32ea3b4cb2885cdefb8c4b3cb53194310c3e10a59a00aa05e995e8d86"}
+[21:32:19] NO_FRONT__FLIP_DOWN20_23
+NO_FRONT__FLIP_DOWN20_23: fresh CNS/physics initialization; all 42 coordinates yoked (NO_FRONT)
+{"arm": "NO_FRONT__FLIP_DOWN20_23", "run_status": "COMPLETE", "error": null, "sha256": "40cf67ea3a49b1c27a17ea72145795459be1ccfe6a6b4ce790915e47cad587f3"}
+[21:36:47] NO_MIDDLE__FLIP_DOWN20_23
+NO_MIDDLE__FLIP_DOWN20_23: fresh CNS/physics initialization; all 42 coordinates yoked (NO_MIDDLE)
+{"arm": "NO_MIDDLE__FLIP_DOWN20_23", "run_status": "COMPLETE", "error": null, "sha256": "3525bb89e46408676f9dd5c971894cdb07b94fc6fe718b0c540972483f90fd99"}
+[21:41:06] NO_HIND__FLIP_DOWN20_23
+NO_HIND__FLIP_DOWN20_23: fresh CNS/physics initialization; all 42 coordinates yoked (NO_HIND)
+{"arm": "NO_HIND__FLIP_DOWN20_23", "run_status": "COMPLETE", "error": null, "sha256": "70ef66b1f6d2f5e823af7267898f9de4b574f5981f7e347777a550943a6efa24"}
+[21:45:15] PRE_ONLY__FLIP_DOWN20_23
+PRE_ONLY__FLIP_DOWN20_23: fresh CNS/physics initialization; all 42 coordinates yoked (PRE_ONLY)
+{"arm": "PRE_ONLY__FLIP_DOWN20_23", "run_status": "COMPLETE", "error": null, "sha256": "34df13727d333c022a49adb38edabbac19f523f231d8ae9b5fd2daa53b23fac0"}
+[21:50:05] POST_ONLY__FLIP_DOWN20_23
+POST_ONLY__FLIP_DOWN20_23: fresh CNS/physics initialization; all 42 coordinates yoked (POST_ONLY)
+{"arm": "POST_ONLY__FLIP_DOWN20_23", "run_status": "COMPLETE", "error": null, "sha256": "fb37e0e71ea7f27d00c26abc1b89a362acfe67daf2249dbeb6503ff09994c6f5"}
+[21:55:10] FULL_ON__FLIP_DOWN20_24
+FULL_ON__FLIP_DOWN20_24: fresh CNS/physics initialization; all 42 coordinates yoked (FULL_ON)
+{"arm": "FULL_ON__FLIP_DOWN20_24", "run_status": "COMPLETE", "error": null, "sha256": "05bbac69fda041f28b0b42a46049c0deae2089c20fc87856f407e4ab34f6b5b6"}
+[22:00:23] ONLY_FRONT__FLIP_DOWN20_24
+ONLY_FRONT__FLIP_DOWN20_24: fresh CNS/physics initialization; all 42 coordinates yoked (ONLY_FRONT)
+{"arm": "ONLY_FRONT__FLIP_DOWN20_24", "run_status": "COMPLETE", "error": null, "sha256": "6c1d95750e3e6e5861a01169a16d692e579e244b0d02312a6926fa15c3baefa4"}
+[22:05:03] ONLY_MIDDLE__FLIP_DOWN20_24
+ONLY_MIDDLE__FLIP_DOWN20_24: fresh CNS/physics initialization; all 42 coordinates yoked (ONLY_MIDDLE)
+{"arm": "ONLY_MIDDLE__FLIP_DOWN20_24", "run_status": "COMPLETE", "error": null, "sha256": "70a5578296941860f7deb4a1af22e6dfc7429644ff5d50f0ce38a1eba503f45a"}
+[22:09:17] ONLY_HIND__FLIP_DOWN20_24
+ONLY_HIND__FLIP_DOWN20_24: fresh CNS/physics initialization; all 42 coordinates yoked (ONLY_HIND)
+{"arm": "ONLY_HIND__FLIP_DOWN20_24", "run_status": "COMPLETE", "error": null, "sha256": "74c221bbbece0a1f208a4b07863c90b27e6b7075703df3d7411306a545efc0de"}
+[22:13:40] NO_FRONT__FLIP_DOWN20_24
+NO_FRONT__FLIP_DOWN20_24: fresh CNS/physics initialization; all 42 coordinates yoked (NO_FRONT)
+{"arm": "NO_FRONT__FLIP_DOWN20_24", "run_status": "COMPLETE", "error": null, "sha256": "cfcd7efcda5e51de0879af6e7ecc620b2aef66352adecb94130f63e003d40e3a"}
+[22:18:01] NO_MIDDLE__FLIP_DOWN20_24
+NO_MIDDLE__FLIP_DOWN20_24: fresh CNS/physics initialization; all 42 coordinates yoked (NO_MIDDLE)
+{"arm": "NO_MIDDLE__FLIP_DOWN20_24", "run_status": "COMPLETE", "error": null, "sha256": "8c87f2184503680a18d3062aa7784fa9bf39cda746f65d422ee84ca809a71c02"}
+[22:22:52] NO_HIND__FLIP_DOWN20_24
+NO_HIND__FLIP_DOWN20_24: fresh CNS/physics initialization; all 42 coordinates yoked (NO_HIND)
+{"arm": "NO_HIND__FLIP_DOWN20_24", "run_status": "COMPLETE", "error": null, "sha256": "80032a24d9837117f8c57c71c3a0b51d74edca1e8e21ad5ec7c2bfefbf586bfc"}
+[22:27:47] PRE_ONLY__FLIP_DOWN20_24
+PRE_ONLY__FLIP_DOWN20_24: fresh CNS/physics initialization; all 42 coordinates yoked (PRE_ONLY)
+{"arm": "PRE_ONLY__FLIP_DOWN20_24", "run_status": "COMPLETE", "error": null, "sha256": "076a05bfbc46fb9d74631f05e830999a062df0452291f164bee8a1f5c34d77f5"}
+[22:32:55] POST_ONLY__FLIP_DOWN20_24
+POST_ONLY__FLIP_DOWN20_24: fresh CNS/physics initialization; all 42 coordinates yoked (POST_ONLY)
+{"arm": "POST_ONLY__FLIP_DOWN20_24", "run_status": "COMPLETE", "error": null, "sha256": "4228534e80fc0d843abc9179676fcf49ce11b786d723e1bbdd7798e98010177c"}
+end 2026-11-06T03:38:03Z

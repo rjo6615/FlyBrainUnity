@@ -1,5 +1,39 @@
 # FlyBrainUnity — local Codex handoff
 
+## Antennal gravity Step D3 (command yoke of the falls): all groups needed, post-tilt sufficient — 2026-11-06
+
+Preregistered (27e253b, protocol 3fbb281d), 45 open-loop arms run once (~3.5 h), evaluated
+once (report 5abd8a9a). INTEGRITY_ACCEPTED (Y1-Y5; FULL_ON reproduces every source qpos
+exactly; unadmitted coordinates identical ON/OFF). FRONT, MIDDLE and HIND are each
+NECESSARY_NOT_SUFFICIENT in all 5 sources (CONSISTENT in G1 and FLIP): no single group's ON
+commands make the body fall, removing any one prevents it. POST_ONLY falls 5/5 (G1 611/878/
+1178 ms vs FULL_ON 583/898/1162), PRE_ONLY 0/5. G1 pre-tilt posture differs (bodies diverge
+from ~45 ms) but is neither sufficient nor needed. FLIP time test degenerate: ON = OFF body
+until after the tilt (states 5411/5556), so POST_ONLY = FULL_ON. E1 (FLIP FRONT S&N) and E2
+(G1 PRE falls) NOT_HELD. Contradicts D2's posture-regime hypothesis for G1: falls are a
+delayed consequence of the post-tilt commands on all six legs together. Open loop; no
+closed-loop, balance or cause claim. Raw arms local only. See JO_COMMAND_YOKE_RESULTS.md.
+
+NEXT: open. Candidates: which channels within the post-tilt command change carry the fall
+(finer yoke), or the still-open E-onset vs E-offset protocol.
+
+## Antennal gravity Step D3 (command yoke of the falls): design — 2026-11-05
+
+Designed only (no protocol, code or run). Adhesion off, no external force: the body is
+determined by the 42 commanded positions + the declared gravity step, so the ON falls are
+fully set by the ON command stream. D3 asks which part is sufficient/necessary, per fallen
+arm (G1_DOWN20 19/21/24, FLIP_DOWN20 23/24), via the validated coxa_offset_yoke sim.step
+path in the Step D OFF_DOWN20 context (CNS runs, output does not reach the body). 9
+conditions x 5 = 45 arms (~3.7 h): FULL_ON (integrity: must reproduce source qpos exactly),
+ONLY_/NO_ FRONT/MIDDLE/HIND (admitted channels by leg group; unadmitted from OFF), PRE_ONLY
+(ON up to the tilt), POST_ONLY (ON from the tilt). Labels per group SUFFICIENT_AND_NECESSARY /
+SUFFICIENT_NOT_NECESSARY / NECESSARY_NOT_SUFFICIENT / NEITHER; PRE/POST_TILT_SUFFICIENT;
+CONSISTENT within G1 or FLIP if all arms agree. Integrity Y1-Y5. Expectations: FLIP FRONT
+S&N + POST falls; G1 PRE falls (group not predicted, HIND weak guess). Open loop; not
+closed-loop or balance claims. See JO_COMMAND_YOKE_V1.md.
+
+NEXT: built and run, see above.
+
 ## Antennal gravity Step D2 (rollover timing replay): COMMAND_FIRST, not diagnostic — 2026-11-05
 
 Preregistered (d25245d, protocol 12ca7a70), replayed once (37 Step D arms, no simulation),
@@ -15,9 +49,8 @@ falls show RH MN +6-10 Hz. Not fall-specific (no matched upright window). Readin
 (hypothesis): JO-driven posture puts the body in a less stable regime and it tips at
 variable times; not a timed tilt response. See JO_ROLLOVER_TIMING_RESULTS.md.
 
-IMMEDIATE NEXT: user decision. Candidates: (a) a causal yoke: replay ON admitted commands
-into OFF arms (and OFF into ON) to test whether the commands alone produce falls, new
-versioned protocol; (b) the E-onset vs E-offset protocol from Step D.
+NEXT: taken up as Step D3 (a full replay would only reproduce the fall, so D3 yokes command
+subsets by leg group and time); the E-onset vs E-offset protocol is still open.
 
 ## Antennal gravity Step D (JO zone-crossing tilt): FLIP CONSISTENT / G1 WEAK — 2026-11-05
 
