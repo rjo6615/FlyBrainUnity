@@ -1,0 +1,93 @@
+{
+  "schema": "jo-command-yoke-protocol-v1",
+  "date": "2026-11-05",
+  "design": "docs/JO_COMMAND_YOKE_V1.md",
+  "question": "For each Step D ON DOWN20 arm that fell, which leg group of admitted commands and which period (before or after the tilt) of its command stream is sufficient and/or necessary for a fall, when replayed open loop into the matched body?",
+  "status": "PREREGISTERED_BEFORE_LIVE_RUN",
+  "not_claimed": ["closed-loop behaviour", "balance", "corrective response", "zone sign", "coordinate admission", "biological cause"],
+  "sources": {
+    "step_d_report": {"path": "docs/evidence/jo-zone-crossing-v1/run/report.json", "sha256": "e64811f7253478b0f2d91031d5b63d9acc8ea2c86ed4878959c49d9e3a80f571"},
+    "step_d2_result": {"path": "docs/evidence/jo-rollover-timing-v1/run/result.json", "sha256": "dd372b92f6ba0ab6d3e329362fa18aba15639d62ef72f06d596acabeaceb16b8"},
+    "archives": {
+      "G1_DOWN20_19": "7392cc15d3e3e1139090924090c07cdcdc4e1465eb18262a22bbd2fcfa5a3be4",
+      "G1_DOWN20_21": "b5c69624735cf46fb3653d6677a29b6fbc13d55bd821116c96fb0790d6545d8f",
+      "G1_DOWN20_24": "41a99e1b288fda81944de0e747e00e068b11a79defd680d5d30bc9624c9999a6",
+      "FLIP_DOWN20_23": "4264798828e9555f08df206ca82ea9db5e8ed6fd9d13f9b8400e112b5941887a",
+      "FLIP_DOWN20_24": "3fa58de084601ffa3288450e9a3cdf7bb26a5ac6097fb6643630a41c49993d39",
+      "OFF_DOWN20_19": "213a035afbefc3902ea1b5b8a5e041858cfff936ec302fd20cf514649daf86e4",
+      "OFF_DOWN20_21": "74c80cabd90e0279c013719b00d0284fe7355fe3d6449ae5b756c5884feab894",
+      "OFF_DOWN20_23": "27a8acf4855d440290974dd73f3aae0f4fae01cec2efc01d8c59459258c56256",
+      "OFF_DOWN20_24": "09fe93057a03b888d6b9dfb6cb37eff0c5965592640e7c50c996e4d94341a528"
+    },
+    "archive_count_note": "9 archives (5 ON, 4 distinct OFF); the design text's '10' was a miscount, the archive set is unchanged",
+    "code_reused": "jo_zone_crossing.Trial (Step D context, OFF_DOWN20 tilt), coxa_offset_yoke sim.step override pattern and schedule() rule (transition n applies source samples[n+1]['commanded_joints']), antennal_gravity_live.body_angles, jo_rollover_timing FALL_DEG; unchanged"
+  },
+  "context": "Step D trial OFF_DOWN20_s (JO withheld; gravity R_y(-20 deg) after stored state 5005), CNS seed s of the source; the CNS runs and is read out only: all 42 commanded coordinates applied at every transition come from the declared archive mix; adhesion must be all zero at every transition (the run errors otherwise)",
+  "groups": {
+    "FRONT": [3, 4, 5, 6, 24, 25, 26, 27],
+    "MIDDLE": [10, 11, 12, 31, 32, 33],
+    "HIND": [17, 18, 19, 38, 39, 40],
+    "unadmitted": "the other 22 coordinates always come from the OFF archive; whether they differ between ON and OFF archives is reported"
+  },
+  "conditions": {
+    "FULL_ON": "all 20 admitted from ON, every transition (integrity Y2)",
+    "ONLY_FRONT": "FRONT from ON, MIDDLE and HIND from OFF",
+    "ONLY_MIDDLE": "MIDDLE from ON, others from OFF",
+    "ONLY_HIND": "HIND from ON, others from OFF",
+    "NO_FRONT": "FRONT from OFF, MIDDLE and HIND from ON",
+    "NO_MIDDLE": "MIDDLE from OFF, others from ON",
+    "NO_HIND": "HIND from OFF, others from ON",
+    "PRE_ONLY": "all 20 admitted from ON for transitions 0-5004, from OFF for transitions 5005-19999",
+    "POST_ONLY": "all 20 admitted from OFF for transitions 0-5004, from ON for transitions 5005-19999"
+  },
+  "arms": {
+    "sources": ["G1_DOWN20_19", "G1_DOWN20_21", "G1_DOWN20_24", "FLIP_DOWN20_23", "FLIP_DOWN20_24"],
+    "name": "<CONDITION>__<SOURCE>",
+    "order": "per source in the order above, conditions in the order above",
+    "total": 45,
+    "duration": "20000 physics / 4000 neural transitions each; fresh process each; run once"
+  },
+  "measures": {
+    "fall": "tilt (antennal_gravity_live.body_angles[0]) >= 45 deg at any stored state 5006-20000 -> FALLS, else STAYS_UP",
+    "t_fall_ms": "(first such state - 5005) x 0.1",
+    "also_reported": "peak tilt after state 5005; first stored state where qpos differs from the OFF archive and from the ON archive"
+  },
+  "labels": {
+    "group_per_source": {
+      "SUFFICIENT_AND_NECESSARY": "ONLY_X FALLS and NO_X STAYS_UP",
+      "SUFFICIENT_NOT_NECESSARY": "ONLY_X FALLS and NO_X FALLS",
+      "NECESSARY_NOT_SUFFICIENT": "ONLY_X STAYS_UP and NO_X STAYS_UP",
+      "NEITHER": "ONLY_X STAYS_UP and NO_X FALLS"
+    },
+    "time_per_source": {"PRE_TILT_SUFFICIENT": "PRE_ONLY FALLS", "POST_TILT_SUFFICIENT": "POST_ONLY FALLS"},
+    "consistency": "within G1 (3 sources) and within FLIP (2 sources) separately: a group label, or a time label's presence/absence, is CONSISTENT if identical for every source of that assignment; otherwise MIXED; no pooling across assignments"
+  },
+  "integrity": {
+    "Y1_complete": "all 45 arms COMPLETE with 20001 samples and 4000 ticks",
+    "Y2_reproduction": "each FULL_ON arm's qpos equals its ON archive's qpos at every stored state exactly",
+    "Y3_yoke_audit": "every arm's recorded commanded_joints at state n+1 equals the declared mix row n exactly for n = 0..19999; adhesion recorded all zero",
+    "Y4_gravity": "recorded gravity (0,0,-9810) for states 0-5005 and exactly R_y(-20 deg) @ (0,0,-9810) from 5006; no applied body wrench; zero external and generalized applied maxima",
+    "Y5_sources": "the Step D report and the 9 archives equal the sha256 values above; each arm records its source and cns_seed",
+    "failure": "INCONCLUSIVE_INTEGRITY, no labels"
+  },
+  "design_expectations": {
+    "E1_FLIP": "FRONT SUFFICIENT_AND_NECESSARY in both FLIP sources and POST_ONLY FALLS in both",
+    "E2_G1": "PRE_ONLY FALLS in all three G1 sources (group not predicted; HIND a weak guess, not scored)",
+    "recording": "each HELD or NOT_HELD; evaluated only when INTEGRITY_ACCEPTED"
+  },
+  "declared_interpretation": {
+    "group_SUFFICIENT_AND_NECESSARY": "that leg group's JO-driven commands carry the fall in this open-loop setting",
+    "PRE_TILT_SUFFICIENT_only": "the tonic pre-tilt JO posture suffices: a less stable posture regime",
+    "POST_TILT_SUFFICIENT_only": "the post-tilt command change suffices: delayed consequence of the tilt response",
+    "mixed_or_none": "the fall needs a combination of groups or periods; reported per source"
+  },
+  "interpretation_limits": [
+    "Open loop: mixed command streams never occurred in a closed loop; sufficiency here does not mean the closed-loop brain would produce the same fall.",
+    "PRE_ONLY / POST_ONLY switch archives at the tilt, putting a commanded-position step at the gravity step.",
+    "Five fallen sources; labels per source, no statistics.",
+    "The CNS runs because the session requires it; its output does not reach the body.",
+    "Step D limits apply (idealised gravity step, modelled JO transduction).",
+    "No motor coordinate status change (20/42 admitted, +4 conditional)."
+  ],
+  "single_run": "All 45 arms run once after protocol, code and tests are committed and pushed; evaluated once."
+}
