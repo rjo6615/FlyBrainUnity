@@ -1,5 +1,23 @@
 # FlyBrainUnity — local Codex handoff
 
+## Rhythm Step R2 (DNg100 recruitment map): CORE_REACHED_BEYOND_RANGE — 2026-11-06
+
+Preregistered (32a86de, protocol 4b26c10a; amendments: 11 unique intermediates, VNCSIZE sizes
+checked at run time), 288 simulations run once (131 s, result 974d72f4). Integrity all pass,
+incl. I2: all 56 of R1's recorded recruited counts reproduced exactly. Both arms
+CORE_REACHED_BEYOND_RANGE; X1-X3 held. E1/E2/I1 never stop at a missing link: they switch on
+together, all-or-none, when the whole network jumps from <= 167 to ~600+ active neurons
+(R1SIZE between 8,000 and 16,000, 7/16 seeds at 8,000; VNCSIZE between 1,000 and 2,000, i.e.
+R1b's correction lowers the jump ~8x). No engaged state lies inside the preprint's 5-500
+recruitment band, which explains R1. VNCSIZE: DNg100 falls to 2.8 Hz after the jump
+(recurrent inhibition suspected, not traced); engaged states differ (R1SIZE E1/E2 high, I1
+low; VNCSIZE I1 dominant, E2 ~silent). Reported only (not a test): MN rhythm score 0.01-0.03
+in every engaged condition -> tonic-looking. See DNG100_RECRUITMENT_MAP_RESULTS.md.
+
+NEXT (needs approval): declared consequence is a preregistered rhythm test in the engaged
+regime (declared drives, controls, silencing); R2's reported scores suggest it would likely
+come out tonic. Alternatively trace why the network ignites all-or-none.
+
 ## Rhythm Step R2 (DNg100 recruitment map): design — 2026-11-06
 
 Designed only (no protocol, code or run). Branch stacked on R1b (PR #332) because #332 was

@@ -1,7 +1,8 @@
 # Rhythm, Step R2: where does DNg100's signal stop? A recruitment map (design)
 
-Designed 2026-11-06. Preregistered 2026-11-06 in
-`docs/evidence/dng100-recruitment-map-v1/protocol.json` (sha256 4b26c10a…); not yet run. Neural-only
+Designed 2026-11-06. **Status: run 2026-11-06, MAP_RECORDED; CORE_REACHED_BEYOND_RANGE in both
+arms** (protocol 4b26c10a, result 974d72f4; core engages all-or-none at 16,000 (R1SIZE) / 2,000
+(VNCSIZE) with > 590 recruited; X1-X3 held). See `DNG100_RECRUITMENT_MAP_RESULTS.md`. Neural-only
 rate-model simulation of R1's isolated network; descriptive, no rhythm verdict.
 
 ## Why this step
