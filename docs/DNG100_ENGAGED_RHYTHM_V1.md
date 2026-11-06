@@ -1,7 +1,8 @@
 # Rhythm, Step R3: does the engaged network produce the DNg100 rhythm? (design)
 
-Designed 2026-11-06. Design only: no protocol, code or run yet. Neural-only rate-model
-simulation of R1's isolated network.
+Designed 2026-11-06. Preregistered 2026-11-06 in
+`docs/evidence/dng100-engaged-rhythm-v1/protocol.json` (sha256 51bec0c2…); not yet run. Neural-only
+rate-model simulation of R1's isolated network.
 
 ## Why this step
 
@@ -171,3 +172,10 @@ Wrong expectations are recorded as wrong.
    disclosed.
 4. Commit and push the preregistration. Run once in the background (about 15–20 min), evaluate
    in the same process, and record the results, handoff and roadmap.
+
+## Build-time notes (before any protocol simulation)
+
+- No amendments to the design's conditions, criteria or expectations.
+- **Plumbing.** One VNCSIZE DNG100 simulation at seed 0 (not a protocol seed) was timed
+  (0.74 s). It also printed z* = 462 and m_VNC = 507,457,760; its score and rates were not
+  printed.
