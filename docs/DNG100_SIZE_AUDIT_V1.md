@@ -1,7 +1,7 @@
 # Rhythm, Step R1b: does our neuron-size scaling match the preprint's? (design)
 
-Designed 2026-11-06. Design only: no protocol, code or run yet. Structure-only audit: no neural
-simulation.
+Designed 2026-11-06. Preregistered 2026-11-06 in `docs/evidence/dng100-size-audit-v1/protocol.json`
+(sha256 3813e577…); not yet run. Structure-only audit: no neural simulation.
 
 ## Why this step
 
@@ -151,3 +151,20 @@ reported but does not drive the label.
 3. Synthetic tests for the plane search, crossing-segment split, ρ and label rules.
 4. Commit and push the preregistration; run once (seconds); record the results, handoff and
    roadmap.
+
+## Build-time amendments (before any plane, cable fraction or size ratio was computed)
+
+- **Brain superclasses, stated exactly.** Names starting `cb_`, `ol_` or `visual_`, excluding names
+  containing `sensory` or `efferent`. `ENS` and `unknown` are not named central-brain or optic-lobe
+  superclasses and are left out.
+- **I2 tolerance and soma unit.** The soma must lie within the skeleton's bounding box ± 10 µm (the
+  design gave no tolerance; display skeletons can stop short of the soma). Soma values are 8 nm
+  units (× 0.008 = µm), found by comparing the first 100 neurons' somas with their skeleton
+  extents. The I2 draw is `default_rng(20261108)`, 15 neurons with skeleton vertices and a finite
+  soma; `--describe` showed all 20 checks inside before registration.
+- **Edge cases declared.** f = 0 gives ρ = ∞ (counted in the DN median); no cable gives NaN
+  (excluded and counted). The plane tie rule is the lower-middle minimising candidate.
+- **Pipeline.** `skeleton_dump.mjs` runs the checked-in `decodeSkel` and writes a temporary flat
+  binary; all computation is in `dng100_size_audit.py`.
+- **Tests.** Two synthetic tests first failed from arithmetic errors in their own expected values
+  (tie range and an upper-middle median), not in the module; corrected.
