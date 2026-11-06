@@ -1,5 +1,21 @@
 # FlyBrainUnity — local Codex handoff
 
+## Antennal gravity Step D4 (direction of the post-tilt commands): design — 2026-11-06
+
+Designed only (no protocol, code or run). D3 showed the post-tilt ON commands alone topple an
+OFF-posture body (open loop, all six legs together). D4 asks whether that is the direction of
+the change or only its size. Same yoke path and context as D3 (pre-tilt OFF, Δ = ON − OFF
+on the 20 admitted coordinates after the tilt, clipped to the decoder joint range). Per fallen
+source (5): POST_ONLY (integrity: equals D3 exactly), POST_NEG (OFF − Δ), POST_HALF
+(OFF + 0.5Δ), POST_SCRAMBLE (fixed ±1 vector, 10 of 20 flipped, rng 20261106). Plus POST_ONLY
+for the 7 upright ON DOWN20 arms (DEGENERATE if ON = OFF body until the tilt). 27 arms
+(~2.1 h). Labels DIRECTION_/PATTERN_ SPECIFIC/NONSPECIFIC, HALF_DOSE; CONSISTENT within G1 or
+FLIP. Integrity Z1-Z5. Expectations: NEG stays up >= 4/5; HALF stays up 5/5; no upright
+control falls. Open loop; NEG/SCRAMBLE are probes, not physiology. See
+JO_COMMAND_DIRECTION_V1.md. Planned after D4: switch to the rhythm blocker for walking.
+
+IMMEDIATE NEXT (on approval): lock protocol, build module/tests, smoke, commit, run 27 arms.
+
 ## Antennal gravity Step D3 (command yoke of the falls): all groups needed, post-tilt sufficient — 2026-11-06
 
 Preregistered (27e253b, protocol 3fbb281d), 45 open-loop arms run once (~3.5 h), evaluated
@@ -14,8 +30,7 @@ until after the tilt (states 5411/5556), so POST_ONLY = FULL_ON. E1 (FLIP FRONT 
 delayed consequence of the post-tilt commands on all six legs together. Open loop; no
 closed-loop, balance or cause claim. Raw arms local only. See JO_COMMAND_YOKE_RESULTS.md.
 
-NEXT: open. Candidates: which channels within the post-tilt command change carry the fall
-(finer yoke), or the still-open E-onset vs E-offset protocol.
+NEXT: taken up as Step D4 above (direction vs size of the post-tilt change).
 
 ## Antennal gravity Step D3 (command yoke of the falls): design — 2026-11-05
 
