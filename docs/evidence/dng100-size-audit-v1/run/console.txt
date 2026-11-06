@@ -1,0 +1,29 @@
+{
+ "verdict": "SIZE_MISMATCH_MATERIAL",
+ "checks": {
+  "a_dng100_L": false,
+  "b_network_dn_median": true
+ },
+ "network_dn_median_rho": 2.359043408036505,
+ "plane": {
+  "z_star": 462.0,
+  "misclassified": 78,
+  "vertices": 4619435,
+  "rate": 1.6885181845831794e-05,
+  "minimiser_range": [
+   459.0,
+   465.0
+  ],
+  "brain_above": 51,
+  "cord_below": 27
+ },
+ "medians": {
+  "m_r1": 542747200.0,
+  "m_vnc": 507457760.0,
+  "ratio_m_vnc_over_m_r1": 0.9349799685746881
+ },
+ "expectations": {
+  "X1": false
+ },
+ "reason": null
+}

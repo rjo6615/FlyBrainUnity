@@ -1,7 +1,8 @@
 # Rhythm, Step R1b: does our neuron-size scaling match the preprint's? (design)
 
-Designed 2026-11-06. Preregistered 2026-11-06 in `docs/evidence/dng100-size-audit-v1/protocol.json`
-(sha256 3813e577…); not yet run. Structure-only audit: no neural simulation.
+Designed 2026-11-06. **Status: run 2026-11-06, SIZE_MISMATCH_MATERIAL through (b) only** (protocol
+3813e577, result c9c2424a; DNg100_L ρ 1.35, network DN median ρ 2.36; X1 wrong). See
+`DNG100_SIZE_AUDIT_RESULTS.md`. Structure-only audit: no neural simulation.
 
 ## Why this step
 

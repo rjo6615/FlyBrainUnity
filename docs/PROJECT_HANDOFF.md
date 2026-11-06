@@ -1,5 +1,22 @@
 # FlyBrainUnity — local Codex handoff
 
+## Rhythm Step R1b (size-scaling fidelity audit): SIZE_MISMATCH_MATERIAL via network DNs, not DNg100 — 2026-11-06
+
+Preregistered (d85e4ac, protocol 3813e577; build-time amendments: exact brain superclass set,
+I2 soma tolerance +/-10 um with 8 nm soma units, inf/NaN rules), run once (seconds, result
+c9c2424a). Integrity all pass (hashes, R1 network hash cdcfcd23, I2 20/20 somas inside, 7
+synthetic tests). Neck plane z* = 462 um, 0.0017 % misclassified (G1 pass). m_VNC/m_R1 = 0.935
+(cord-intrinsic cells rho 0.93). DNg100_L f 0.69, rho 1.35, cord-only s 22.7 (still > 20) -> (a)
+fails, X1 wrong. R1's 904 network DNs: f median 0.40, rho median 2.36 -> (b) holds -> MATERIAL.
+ANs rho 1.19. Cells with s > 20: 49 (R1) vs 20 (cord-only). Reading: R1 over-scaled the other DNs
+but not, materially, the stimulated DNg100, and R1's drive rule already raised I_stim 4-8x; so
+the size definition does not explain DNg100's non-engagement. Structure only. See
+DNG100_SIZE_AUDIT_RESULTS.md.
+
+NEXT (needs the user's choice): the declared consequence is a preregistered R1 v2 with
+cord-only sizes for DNs/ANs; the descriptive recruitment map (where DNg100's signal stops) is
+the more direct question given DNg100's own rho 1.35.
+
 ## Rhythm Step R1b (size-scaling fidelity audit): design — 2026-11-06
 
 Designed only (no protocol, code or run). R1 never engaged the E1/E2/I1 core; the preprint's
