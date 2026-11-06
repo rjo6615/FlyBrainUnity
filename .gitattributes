@@ -210,3 +210,6 @@ docs/evidence/dng100-size-audit-v1/**/*.txt -text -whitespace
 docs/evidence/dng100-recruitment-map-v1/*.json -text
 docs/evidence/dng100-recruitment-map-v1/**/*.json -text
 docs/evidence/dng100-recruitment-map-v1/**/*.txt -text -whitespace
+docs/evidence/dng100-engaged-rhythm-v1/*.json -text
+docs/evidence/dng100-engaged-rhythm-v1/**/*.json -text
+docs/evidence/dng100-engaged-rhythm-v1/**/*.txt -text -whitespace
