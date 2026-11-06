@@ -1,8 +1,9 @@
 # Rhythm, Step R3: does the engaged network produce the DNg100 rhythm? (design)
 
-Designed 2026-11-06. Preregistered 2026-11-06 in
-`docs/evidence/dng100-engaged-rhythm-v1/protocol.json` (sha256 51bec0c2…); not yet run. Neural-only
-rate-model simulation of R1's isolated network.
+Designed 2026-11-06. **Status: run 2026-11-06, RATE_RHYTHM_NOT_REPRODUCED in both arms** (protocol
+51bec0c2, result 099e42a7; DNG100 score 0.055 VNCSIZE / 0.023 R1SIZE; X1-X3 held; unplanned: three
+control DNs drove a core oscillation in R1SIZE). See `DNG100_ENGAGED_RHYTHM_RESULTS.md`.
+Neural-only rate-model simulation of R1's isolated network.
 
 ## Why this step
 

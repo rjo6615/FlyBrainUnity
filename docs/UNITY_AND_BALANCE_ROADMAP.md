@@ -1,6 +1,8 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
-Current 2026-11-06: rhythm Step R3 designed (R1's rhythm criteria with controls and core silencing in the engaged regime R2 found: VNCSIZE at 2,000 primary, R1SIZE at 16,000; fresh seeds). Not run.
+Current 2026-11-06: rhythm Step R3 run: RATE_RHYTHM_NOT_REPRODUCED in both size arms with the core engaged (DNG100 score 0.055 / 0.023; steady core states); unplanned: control DNs DNg75_R and DNa02_L drove a ~14 Hz MN and core oscillation in R1SIZE (scores 0.97/0.95), untested for core necessity.
+
+Previous 2026-11-06: rhythm Step R3 designed (R1's rhythm criteria with controls and core silencing in the engaged regime R2 found: VNCSIZE at 2,000 primary, R1SIZE at 16,000; fresh seeds). Not run.
 
 Previous 2026-11-06: rhythm Step R2 run: CORE_REACHED_BEYOND_RANGE in both size arms - the core switches on all-or-none with a network-wide jump to ~600+ active neurons (R1SIZE at 16,000, VNCSIZE at 2,000), never inside the preprint's 5-500 band, which explains R1; engaged MN output looks tonic (score 0.01-0.03, reported only).
 
@@ -45,7 +47,7 @@ Previous 2026-11-05: antennal gravity Step B run: ENCODER_READY (pitch-dominated
 Previous 2026-11-04: antennal gravity Step A run: IDENTITY_READY (C/E exact, segregated, direct DN edges); right side far less connected (synapses L/R C 5.3, E 2.5).
 
 ```text
-Rhythm (DNg100 front-left)    [V1 LIF whole-CNS: NOT_REPRODUCED (tonic); R1 preprint rate model on our wiring: NOT_REPRODUCED, uninformative (core never engaged; size scaling suspected); R1b size audit: MATERIAL for network DNs (rho 2.4) but not DNg100 (1.35); R2 recruitment map: core reachable only via all-or-none network ignition (>590 active), outside the preprint's band; engaged output tonic-looking; R3 engaged-regime rhythm test designed, not run]
+Rhythm (DNg100 front-left)    [V1 LIF whole-CNS: NOT_REPRODUCED (tonic); R1 preprint rate model on our wiring: NOT_REPRODUCED, uninformative (core never engaged; size scaling suspected); R1b size audit: MATERIAL for network DNs (rho 2.4) but not DNg100 (1.35); R2 recruitment map: core reachable only via all-or-none network ignition (>590 active), outside the preprint's band; engaged output tonic-looking; R3 engaged-regime test: NOT_REPRODUCED (steady core); unplanned control-DN core oscillation (DNg75_R, DNa02_L; R1 sizes only, untested)]
 Antennal gravity sense        [A: IDENTITY_READY; B: ENCODER_READY (pitch slope 0.97/rad, roll +-0.22/rad descriptive); C: G1 CONSISTENT / FLIP WEAK (E route reaches leg MNs, C route weak; d <= 0 both tilts); C2: drift = body posture (ROOT), neck sag opposes, antenna joints ~0; D: zone crossing -> FLIP/E-onset CONSISTENT, G1/E-offset WEAK, r_GF ~0, C route silent at MNs, 5/12 ON tilted arms rolled; D2: falls late and abrupt, COMMAND_FIRST not diagnostic, no early marker; D3: open-loop yoke -> all three leg groups needed, none sufficient; post-tilt commands suffice, pre-tilt posture does not; D4: direction test confounded by a clip-range defect (not interpretable); G1 upright arms' post-tilt commands also topple an OFF-posture body; D4 v2 (live ranges, no clip): post-tilt change has a specific destabilising direction and needs full dose (NEG/SCRAMBLE/HALF all stay up); then rhythm]
 Coxa push replication         [run: AMPLIFICATION_DIRECTIONAL F / B (R>1 6/6); yoke DO_NOT_REPRODUCE; FREE_COMMANDS_INCREASE_D F / B]
 Coxa conditional tier         [LF/LH/LM/RM CONDITIONAL (fore-aft Coxa); RF/RH blocked by input]

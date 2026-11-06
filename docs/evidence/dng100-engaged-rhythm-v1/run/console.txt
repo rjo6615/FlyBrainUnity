@@ -1,0 +1,110 @@
+[     6s] I2 R2 reproduction: True (8 checked)
+[    54s] VNCSIZE DNG100: score 0.055 freq 8.928571428571429 engaged 1.00 recruited 646.5
+[   103s] VNCSIZE SIL_E1: score 0.008 freq 6.7114093959731544 engaged 0.00 recruited 616.5
+[   156s] VNCSIZE SIL_E2: score 0.003 freq 8.19672131147541 engaged 0.00 recruited 641.5
+[   212s] VNCSIZE SIL_I1: score 0.004 freq 9.260053159564436 engaged 0.00 recruited 641.5
+[   213s] VNCSIZE CONTROL_92: score nan freq nan engaged 0.00 recruited 14.0
+[   225s] VNCSIZE CONTROL_278: score 0.086 freq 9.345794392523365 engaged 1.00 recruited 620.5
+[   236s] VNCSIZE CONTROL_754: score 0.226 freq 11.594493450948944 engaged 1.00 recruited 629.5
+[   247s] VNCSIZE CONTROL_763: score 0.052 freq 7.874015748031496 engaged 1.00 recruited 624.5
+[   270s] VNCSIZE CONTROL_820: score 0.108 freq 2.63235432347816 engaged 1.00 recruited 981.5
+[   293s] VNCSIZE CONTROL_1052: score 0.070 freq 1.9120458891013383 engaged 0.62 recruited 752.5
+[   310s] VNCSIZE CONTROL_1087: score 0.069 freq 9.527266128300518 engaged 1.00 recruited 818.5
+[   325s] VNCSIZE CONTROL_1599: score 0.050 freq 8.761904761904763 engaged 1.00 recruited 631.5
+[   346s] VNCSIZE CONTROL_2659: score 0.113 freq 10.531305481453309 engaged 1.00 recruited 836.5
+[   375s] VNCSIZE CONTROL_4164: score 0.030 freq 8.547632963179428 engaged 1.00 recruited 737.5
+[   396s] VNCSIZE CONTROL_4685: score 0.051 freq 8.457036825578076 engaged 1.00 recruited 664.0
+[   411s] VNCSIZE CONTROL_9205: score 0.088 freq 9.709653092006032 engaged 1.00 recruited 588.0
+[   427s] VNCSIZE CONTROL_9762: score 0.070 freq 9.372647580194752 engaged 1.00 recruited 615.0
+[   443s] VNCSIZE CONTROL_11053: score 0.088 freq 9.713897213897212 engaged 1.00 recruited 588.5
+[   444s] VNCSIZE CONTROL_21341: score nan freq nan engaged 0.00 recruited 11.0
+[   458s] VNCSIZE CONTROL_26520: score 0.013 freq 2.040519177968217 engaged 0.56 recruited 931.5
+[   473s] VNCSIZE CONTROL_39896: score 0.090 freq 9.56959706959707 engaged 1.00 recruited 590.0
+[   495s] VNCSIZE CONTROL_128032: score 0.018 freq 2.578150741144155 engaged 0.94 recruited 856.0
+[   521s] VNCSIZE CONTROL_129181: score 0.050 freq 9.858197358197359 engaged 1.00 recruited 655.5
+[   563s] VNCSIZE CONTROL_130496: score 0.121 freq 2.1589347398135423 engaged 1.00 recruited 1018.5
+[   628s] R1SIZE DNG100: score 0.023 freq 7.968253968253968 engaged 0.94 recruited 619.0
+[   694s] R1SIZE SIL_E1: score 0.003 freq 1.8433947005375577 engaged 0.00 recruited 578.0
+[   741s] R1SIZE SIL_E2: score 0.004 freq 1.7761989342806395 engaged 0.00 recruited 609.5
+[   788s] R1SIZE SIL_I1: score 0.010 freq 3.7254510473009765 engaged 0.00 recruited 625.0
+[   790s] R1SIZE CONTROL_92: score 0.000 freq nan engaged 0.00 recruited 37.5
+[   801s] R1SIZE CONTROL_278: score 0.045 freq 7.354058984493767 engaged 1.00 recruited 532.0
+[   811s] R1SIZE CONTROL_754: score 0.108 freq 8.231707317073171 engaged 1.00 recruited 511.5
+[   817s] R1SIZE CONTROL_763: score 0.024 freq 1.7889087656529516 engaged 0.00 recruited 26.5
+[   825s] R1SIZE CONTROL_820: score 0.153 freq 11.272156961812133 engaged 0.75 recruited 201.0
+[   828s] R1SIZE CONTROL_1052: score 0.000 freq nan engaged 0.00 recruited 58.5
+[   835s] R1SIZE CONTROL_1087: score 0.521 freq 13.072453861927546 engaged 0.25 recruited 157.0
+[   840s] R1SIZE CONTROL_1599: score 0.121 freq 15.268065268065268 engaged 0.81 recruited 162.5
+[   842s] R1SIZE CONTROL_2659: score 0.000 freq nan engaged 0.00 recruited 52.0
+[   843s] R1SIZE CONTROL_4164: score 0.000 freq nan engaged 0.00 recruited 18.0
+[   844s] R1SIZE CONTROL_4685: score nan freq nan engaged 0.00 recruited 7.0
+[   852s] R1SIZE CONTROL_9205: score 0.081 freq 8.41118516372066 engaged 1.00 recruited 458.0
+[   853s] R1SIZE CONTROL_9762: score nan freq nan engaged 0.00 recruited 6.0
+[   862s] R1SIZE CONTROL_11053: score 0.059 freq 9.666975023126735 engaged 1.00 recruited 456.5
+[   863s] R1SIZE CONTROL_21341: score nan freq nan engaged 0.00 recruited 2.0
+[   863s] R1SIZE CONTROL_26520: score nan freq nan engaged 0.00 recruited 7.0
+[   873s] R1SIZE CONTROL_39896: score 0.063 freq 10.638297872340425 engaged 1.00 recruited 477.5
+[   874s] R1SIZE CONTROL_128032: score nan freq nan engaged 0.00 recruited 13.5
+[   884s] R1SIZE CONTROL_129181: score 0.974 freq 13.606071825249908 engaged 1.00 recruited 184.0
+[   892s] R1SIZE CONTROL_130496: score 0.950 freq 14.084507042253522 engaged 1.00 recruited 127.0
+{
+ "verdict": "RATE_RHYTHM_NOT_REPRODUCED",
+ "primary_arm": "VNCSIZE",
+ "qualifier": null,
+ "secondary": {
+  "arm": "R1SIZE",
+  "verdict": "RATE_RHYTHM_NOT_REPRODUCED",
+  "qualifier": null
+ },
+ "expectations": {
+  "X1": true,
+  "X2": true,
+  "X3": true
+ },
+ "reason": null,
+ "runtime_s": 892.3,
+ "VNCSIZE": {
+  "verdict": "RATE_RHYTHM_NOT_REPRODUCED",
+  "checks": {
+   "C1_rhythm": false,
+   "C2_frequency": true,
+   "C3_necessity": true
+  },
+  "control_p80": 0.10070124209969235,
+  "dng100": {
+   "score": 0.055498082541741156,
+   "frequency_hz": 8.928571428571429,
+   "engaged_fraction": 1.0,
+   "E1_trace_score_median": 0.17769581304053095,
+   "E2_trace_score_median": 0.0,
+   "I1_trace_score_median": 0.13440656609304935
+  },
+  "silenced": {
+   "E1": 0.007940058144188827,
+   "E2": 0.0029245034429770454,
+   "I1": 0.004273683111001315
+  }
+ },
+ "R1SIZE": {
+  "verdict": "RATE_RHYTHM_NOT_REPRODUCED",
+  "checks": {
+   "C1_rhythm": false,
+   "C2_frequency": true,
+   "C3_necessity": true
+  },
+  "control_p80": 0.22693807860091345,
+  "dng100": {
+   "score": 0.023119263624645184,
+   "frequency_hz": 7.968253968253968,
+   "engaged_fraction": 0.9375,
+   "E1_trace_score_median": 0.0,
+   "E2_trace_score_median": 0.02539043572889769,
+   "I1_trace_score_median": 0.0
+  },
+  "silenced": {
+   "E1": 0.0028535166535267713,
+   "E2": 0.003829323244999162,
+   "I1": 0.01025469164420233
+  }
+ }
+}
