@@ -147,3 +147,18 @@ Wrong expectations are recorded as wrong.
    disclosed.
 4. Commit and push the preregistration. Run once, evaluate in the same process, and record the
    results, handoff and roadmap.
+
+## Build-time notes (before any protocol simulation)
+
+- No amendments to the design's levels, conditions, criteria or expectations. The protocol is
+  `protocol.json` (sha f7d6ec97…).
+- **Scaling.** The protocol defines the scaling as multiplying the stored CSR entries of S's
+  columns, so g = 1 is bit-for-bit identical to the unmodified network.
+- **Equivalence correction.** The design says g = 0 is "equivalent to silencing all 32 cells".
+  The toy test shows this holds only to the ODE solver's tolerance (about 1e-5 relative), not
+  bit for bit, because the solver's adaptive step control also sees S's own rates. The test
+  tolerance was set to 1e-4.
+- **Plumbing bug fixed.** The first timing attempt failed because 10045 is DNg100_L's body ID,
+  not its dense index. The code now resolves the dense index from the body ID.
+- **Timing.** One unscaled R1SIZE DNg100_L simulation at seed 0 (not a protocol seed) was then
+  timed (0.74 s); its score and rates were not printed.
