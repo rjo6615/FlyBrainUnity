@@ -1,5 +1,20 @@
 # FlyBrainUnity — local Codex handoff
 
+## Rhythm Step R7 (excitation/inhibition balance test): design — 2026-11-06
+
+Designed only (no protocol, code or run). Fresh branch from newBrain (R1b-R6 merged as
+#332-#337). Tests R6's balance hypothesis in R1SIZE at drive 16,000: scale all outgoing weights
+of S = I1 + R6's 31 T1 inhibitory candidates by g in {0, 0.25, 0.5, 0.75, 1, 1.5, 2, 3}, while
+stimulating DNg75_R, DNa02_L or DNg100_L (seeds 4001-4032; 768 simulations). IGNITED = median
+recruited >= 500 (R2's RANGE_MAX). (a) both rhythm-driving DNs lose rhythm by ignition as g
+falls (scan 0.75 -> 0); (b) DNg100_L scores >= 0.5 without ignition at some g in {1.5, 2, 3}
+(three chances, disclosed). Verdict BALANCE_SUPPORTED / REMOVAL_ONLY / BOOST_ONLY /
+NOT_SUPPORTED. Weight scaling is a declared model probe, not a live-engine change. I2: g = 1 path
+reproduces R6 STIM seeds 3001-3004 exactly. X1 DNg75_R LOST_BY_IGNITION, X2 DNa02_L too, X3 (b)
+fails. See DNG100_BALANCE_TEST_V1.md.
+
+NEXT (needs approval): build and run R7.
+
 ## Rhythm Step R6 (inhibition search): REDUNDANT_INHIBITION — 2026-11-06
 
 Preregistered (2172e7f, protocol 2d82fcd1, no amendments; candidates listed first inside the
