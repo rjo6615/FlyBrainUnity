@@ -1,6 +1,8 @@
 # Rhythm, Step R4: how do DNg100's routes into the core differ from the rhythm-driving DNs'? (design)
 
-Designed 2026-11-06. **Status: designed only (no protocol, code or run).** Structure only: no
+Designed 2026-11-06. **Status: run 2026-11-06, SIGNATURE_DNG100_LIKE_RHYTHMIC** (protocol
+7c173a35, result f2184542; only `twohop_E1` separates, and DNg100_L exceeds all three rhythmic DNs
+on it; X1-X3 all wrong). See `DNG100_ROUTE_COMPARISON_RESULTS.md`. Structure only: no
 simulation, no body or physics.
 
 ## Why this step

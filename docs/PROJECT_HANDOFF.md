@@ -1,5 +1,21 @@
 # FlyBrainUnity — local Codex handoff
 
+## Rhythm Step R4 (structural route comparison): SIGNATURE_DNG100_LIKE_RHYTHMIC — 2026-11-06
+
+Preregistered (7a5a8ac, protocol 7c173a35, no amendments), run once (2.5 s, result f2184542).
+Integrity all pass (group rule gave exactly 1087 DNp09_R, 129181 DNg75_R, 130496 DNa02_L; I2:
+DNg100_L's 13 intermediates equal R2's). Only twohop_E1 separates the three rhythm-driving
+controls from the other 17 (they are the top three; p 2/1140 <= 0.0042); DNg100_L's twohop_E1
+(25,309) exceeds all of them, so it sits on the rhythmic side. Other metrics p >= 0.012 (not
+claimed). X1-X3 all wrong (a signature exists; DNg75_R has higher out-degree; DNg100's I1 share
+0.0011 is below DNg75_R's and DNa02_L's). Reported only: DNg100's two-hop core drive is almost
+all onto E1 (I1 30 vs 217/688 for DNg75_R/DNa02_L); DNa02_L shares no intermediates with
+DNg100. Reading (declared): these two-hop route features do not explain DNg100's steady output;
+points to dynamics (ignition). See DNG100_ROUTE_COMPARISON_RESULTS.md.
+
+NEXT (needs approval): the preregistered control-DN rhythm test (core silencing, both size
+versions). No tuning.
+
 ## Rhythm Step R4 (route comparison): design — 2026-11-06
 
 Designed only (no protocol, code or run). Branch stacked on R3 (PR #334, on #333 and #332; all

@@ -1,0 +1,1060 @@
+{
+ "schema": "dng100-route-comparison-result-v1",
+ "protocol_sha256": "7c173a3550eb8c851c9cdd9e0d8b0337eb5a29c9749ceef8ebe2a695689f79a8",
+ "verdict": "SIGNATURE_DNG100_LIKE_RHYTHMIC",
+ "separating_metrics": [
+  "twohop_E1"
+ ],
+ "alpha": 0.004166666666666667,
+ "per_metric": {
+  "direct_E1": {
+   "p": 0.15,
+   "n": 20,
+   "assignments": 1140,
+   "rank_sum": 39.0,
+   "separates": false,
+   "rhythmic": [
+    0.0,
+    6.0,
+    0.0
+   ],
+   "nonrhythmic_median": 0.0,
+   "rhythmic_median": 0.0,
+   "dng100": 0.0,
+   "placement": null
+  },
+  "direct_E2": {
+   "p": 1.0,
+   "n": 20,
+   "assignments": 1140,
+   "rank_sum": 31.5,
+   "separates": false,
+   "rhythmic": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonrhythmic_median": 0.0,
+   "rhythmic_median": 0.0,
+   "dng100": 0.0,
+   "placement": null
+  },
+  "direct_I1": {
+   "p": 1.0,
+   "n": 20,
+   "assignments": 1140,
+   "rank_sum": 31.5,
+   "separates": false,
+   "rhythmic": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "nonrhythmic_median": 0.0,
+   "rhythmic_median": 0.0,
+   "dng100": 0.0,
+   "placement": null
+  },
+  "twohop_E1": {
+   "p": 0.0017543859649122807,
+   "n": 20,
+   "assignments": 1140,
+   "rank_sum": 57.0,
+   "separates": true,
+   "rhythmic": [
+    17756.0,
+    18180.0,
+    6726.0
+   ],
+   "nonrhythmic_median": 0.0,
+   "rhythmic_median": 17756.0,
+   "dng100": 25309.0,
+   "placement": "not_nonrhythmic_side"
+  },
+  "twohop_E2": {
+   "p": 0.49736842105263157,
+   "n": 20,
+   "assignments": 1140,
+   "rank_sum": 38.0,
+   "separates": false,
+   "rhythmic": [
+    35.0,
+    3749.0,
+    -801.0
+   ],
+   "nonrhythmic_median": 0.0,
+   "rhythmic_median": 35.0,
+   "dng100": 1112.0,
+   "placement": null
+  },
+  "twohop_I1": {
+   "p": 0.15263157894736842,
+   "n": 20,
+   "assignments": 1140,
+   "rank_sum": 44.5,
+   "separates": false,
+   "rhythmic": [
+    0.0,
+    217.0,
+    688.0
+   ],
+   "nonrhythmic_median": 0.0,
+   "rhythmic_median": 217.0,
+   "dng100": 30.0,
+   "placement": null
+  },
+  "i1_share": {
+   "p": 0.22527472527472528,
+   "n": 14,
+   "assignments": 364,
+   "rank_sum": 14.5,
+   "separates": false,
+   "rhythmic": [
+    0.0,
+    0.008893442622950819,
+    0.04504681464021476
+   ],
+   "nonrhythmic_median": 0.2064516129032258,
+   "rhythmic_median": 0.008893442622950819,
+   "dng100": 0.0011322463768115942,
+   "placement": null
+  },
+  "core_focus": {
+   "p": 0.031578947368421054,
+   "n": 20,
+   "assignments": 1140,
+   "rank_sum": 52.0,
+   "separates": false,
+   "rhythmic": [
+    0.013806290923925194,
+    0.0151532559316613,
+    0.02456220479279007
+   ],
+   "nonrhythmic_median": 0.0021001638127773965,
+   "rhythmic_median": 0.0151532559316613,
+   "dng100": 0.01566949292371235,
+   "placement": null
+  },
+  "out_degree": {
+   "p": 0.01929824561403509,
+   "n": 20,
+   "assignments": 1140,
+   "rank_sum": 53.0,
+   "separates": false,
+   "rhythmic": [
+    37,
+    108,
+    66
+   ],
+   "nonrhythmic_median": 20.0,
+   "rhythmic_median": 66.0,
+   "dng100": 70,
+   "placement": null
+  },
+  "out_weight": {
+   "p": 0.012280701754385965,
+   "n": 20,
+   "assignments": 1140,
+   "rank_sum": 54.0,
+   "separates": false,
+   "rhythmic": [
+    901.0,
+    2731.0,
+    1927.0
+   ],
+   "nonrhythmic_median": 407.0,
+   "rhythmic_median": 1927.0,
+   "dng100": 1641.0,
+   "placement": null
+  },
+  "direct_mn": {
+   "p": 0.02982456140350877,
+   "n": 20,
+   "assignments": 1140,
+   "rank_sum": 46.5,
+   "separates": false,
+   "rhythmic": [
+    0.0,
+    163.0,
+    211.0
+   ],
+   "nonrhythmic_median": 0.0,
+   "rhythmic_median": 163.0,
+   "dng100": 0.0,
+   "placement": null
+  },
+  "core_hops": {
+   "p": 0.12456140350877193,
+   "n": 20,
+   "assignments": 1140,
+   "rank_sum": 16.0,
+   "separates": false,
+   "rhythmic": [
+    2.3333333333333335,
+    1.6666666666666667,
+    2.0
+   ],
+   "nonrhythmic_median": 2.3333333333333335,
+   "rhythmic_median": 2.0,
+   "dng100": 2.0,
+   "placement": null
+  }
+ },
+ "expectations": {
+  "X1": false,
+  "X2": false,
+  "X3": false
+ },
+ "table": {
+  "DNG100": {
+   "direct_E1": 0.0,
+   "direct_E2": 0.0,
+   "direct_I1": 0.0,
+   "twohop_E1": 25309.0,
+   "twohop_E2": 1112.0,
+   "twohop_I1": 30.0,
+   "i1_share": 0.0011322463768115942,
+   "core_focus": 0.01566949292371235,
+   "out_degree": 70,
+   "out_weight": 1641.0,
+   "direct_mn": 0.0,
+   "core_hops": 2.0
+  },
+  "92": {
+   "direct_E1": 0.0,
+   "direct_E2": 0.0,
+   "direct_I1": 0.0,
+   "twohop_E1": -1954.0,
+   "twohop_E2": -5763.0,
+   "twohop_I1": 0.0,
+   "i1_share": 0.0,
+   "core_focus": 0.0021001638127773965,
+   "out_degree": 36,
+   "out_weight": 1052.0,
+   "direct_mn": 11.0,
+   "core_hops": 2.3333333333333335
+  },
+  "278": {
+   "direct_E1": 0.0,
+   "direct_E2": 0.0,
+   "direct_I1": 0.0,
+   "twohop_E1": 6368.0,
+   "twohop_E2": 0.0,
+   "twohop_I1": 152.0,
+   "i1_share": 0.023312883435582823,
+   "core_focus": 0.010943049149731795,
+   "out_degree": 37,
+   "out_weight": 831.0,
+   "direct_mn": 0.0,
+   "core_hops": 2.3333333333333335
+  },
+  "754": {
+   "direct_E1": 0.0,
+   "direct_E2": 0.0,
+   "direct_I1": 0.0,
+   "twohop_E1": 246.0,
+   "twohop_E2": 0.0,
+   "twohop_I1": 0.0,
+   "i1_share": 0.0,
+   "core_focus": 0.0008590945283361505,
+   "out_degree": 28,
+   "out_weight": 407.0,
+   "direct_mn": 0.0,
+   "core_hops": 2.6666666666666665
+  },
+  "763": {
+   "direct_E1": 0.0,
+   "direct_E2": 0.0,
+   "direct_I1": 0.0,
+   "twohop_E1": 0.0,
+   "twohop_E2": 0.0,
+   "twohop_I1": 0.0,
+   "i1_share": null,
+   "core_focus": 0.0,
+   "out_degree": 20,
+   "out_weight": 269.0,
+   "direct_mn": 0.0,
+   "core_hops": 3.0
+  },
+  "820": {
+   "direct_E1": 0.0,
+   "direct_E2": 0.0,
+   "direct_I1": 0.0,
+   "twohop_E1": 1701.0,
+   "twohop_E2": 171.0,
+   "twohop_I1": 0.0,
+   "i1_share": 0.0,
+   "core_focus": 0.003938902586200514,
+   "out_degree": 63,
+   "out_weight": 1600.0,
+   "direct_mn": 28.0,
+   "core_hops": 2.3333333333333335
+  },
+  "1052": {
+   "direct_E1": 0.0,
+   "direct_E2": 0.0,
+   "direct_I1": 0.0,
+   "twohop_E1": -3313.0,
+   "twohop_E2": -8574.0,
+   "twohop_I1": 0.0,
+   "i1_share": null,
+   "core_focus": 0.0,
+   "out_degree": 32,
+   "out_weight": 972.0,
+   "direct_mn": 0.0,
+   "core_hops": 2.3333333333333335
+  },
+  "1087": {
+   "direct_E1": 0.0,
+   "direct_E2": 0.0,
+   "direct_I1": 0.0,
+   "twohop_E1": 17756.0,
+   "twohop_E2": 35.0,
+   "twohop_I1": 0.0,
+   "i1_share": 0.0,
+   "core_focus": 0.013806290923925194,
+   "out_degree": 37,
+   "out_weight": 901.0,
+   "direct_mn": 0.0,
+   "core_hops": 2.3333333333333335
+  },
+  "1599": {
+   "direct_E1": 0.0,
+   "direct_E2": 0.0,
+   "direct_I1": 0.0,
+   "twohop_E1": 51.0,
+   "twohop_E2": 973.0,
+   "twohop_I1": 305.0,
+   "i1_share": 0.21092669432918396,
+   "core_focus": 0.0044828869047619044,
+   "out_degree": 37,
+   "out_weight": 734.0,
+   "direct_mn": 0.0,
+   "core_hops": 2.0
+  },
+  "2659": {
+   "direct_E1": 0.0,
+   "direct_E2": 0.0,
+   "direct_I1": 0.0,
+   "twohop_E1": -1557.0,
+   "twohop_E2": -675.0,
+   "twohop_I1": -465.0,
+   "i1_share": 0.48034934497816595,
+   "core_focus": 0.0021242254461801046,
+   "out_degree": 20,
+   "out_weight": 285.0,
+   "direct_mn": 0.0,
+   "core_hops": 2.0
+  },
+  "4164": {
+   "direct_E1": 0.0,
+   "direct_E2": 0.0,
+   "direct_I1": 0.0,
+   "twohop_E1": 0.0,
+   "twohop_E2": 0.0,
+   "twohop_I1": 0.0,
+   "i1_share": null,
+   "core_focus": 0.0,
+   "out_degree": 15,
+   "out_weight": 431.0,
+   "direct_mn": 0.0,
+   "core_hops": 3.0
+  },
+  "4685": {
+   "direct_E1": 0.0,
+   "direct_E2": 0.0,
+   "direct_I1": 0.0,
+   "twohop_E1": 0.0,
+   "twohop_E2": 0.0,
+   "twohop_I1": 0.0,
+   "i1_share": null,
+   "core_focus": 0.0,
+   "out_degree": 9,
+   "out_weight": 201.0,
+   "direct_mn": 0.0,
+   "core_hops": 3.0
+  },
+  "9205": {
+   "direct_E1": 0.0,
+   "direct_E2": 0.0,
+   "direct_I1": 0.0,
+   "twohop_E1": 4620.0,
+   "twohop_E2": 0.0,
+   "twohop_I1": 1399.0,
+   "i1_share": 0.2324306363183253,
+   "core_focus": 0.014316601692113382,
+   "out_degree": 12,
+   "out_weight": 290.0,
+   "direct_mn": 0.0,
+   "core_hops": 2.3333333333333335
+  },
+  "9762": {
+   "direct_E1": 0.0,
+   "direct_E2": 0.0,
+   "direct_I1": 0.0,
+   "twohop_E1": 0.0,
+   "twohop_E2": 0.0,
+   "twohop_I1": 0.0,
+   "i1_share": null,
+   "core_focus": 0.0,
+   "out_degree": 7,
+   "out_weight": 67.0,
+   "direct_mn": 0.0,
+   "core_hops": 3.0
+  },
+  "11053": {
+   "direct_E1": 5.0,
+   "direct_E2": 0.0,
+   "direct_I1": 0.0,
+   "twohop_E1": 3607.0,
+   "twohop_E2": 2965.0,
+   "twohop_I1": -6174.0,
+   "i1_share": 0.13645673323092677,
+   "core_focus": 0.017324926648496046,
+   "out_degree": 49,
+   "out_weight": 757.0,
+   "direct_mn": 129.0,
+   "core_hops": 1.6666666666666667
+  },
+  "21341": {
+   "direct_E1": 0.0,
+   "direct_E2": 0.0,
+   "direct_I1": 0.0,
+   "twohop_E1": 0.0,
+   "twohop_E2": 0.0,
+   "twohop_I1": 0.0,
+   "i1_share": null,
+   "core_focus": 0.0,
+   "out_degree": 4,
+   "out_weight": 36.0,
+   "direct_mn": 0.0,
+   "core_hops": 4.0
+  },
+  "26520": {
+   "direct_E1": 0.0,
+   "direct_E2": 0.0,
+   "direct_I1": 0.0,
+   "twohop_E1": 0.0,
+   "twohop_E2": 0.0,
+   "twohop_I1": 35.0,
+   "i1_share": 1.0,
+   "core_focus": 0.001206605302168442,
+   "out_degree": 9,
+   "out_weight": 77.0,
+   "direct_mn": 0.0,
+   "core_hops": 2.6666666666666665
+  },
+  "39896": {
+   "direct_E1": 0.0,
+   "direct_E2": 0.0,
+   "direct_I1": 0.0,
+   "twohop_E1": 2338.0,
+   "twohop_E2": 305.0,
+   "twohop_I1": -13402.0,
+   "i1_share": 0.3732511263931705,
+   "core_focus": 0.006699755014886579,
+   "out_degree": 39,
+   "out_weight": 810.0,
+   "direct_mn": 131.0,
+   "core_hops": 2.0
+  },
+  "128032": {
+   "direct_E1": 0.0,
+   "direct_E2": 0.0,
+   "direct_I1": 0.0,
+   "twohop_E1": 615.0,
+   "twohop_E2": 0.0,
+   "twohop_I1": 160.0,
+   "i1_share": 0.2064516129032258,
+   "core_focus": 0.015445939212755356,
+   "out_degree": 12,
+   "out_weight": 341.0,
+   "direct_mn": 0.0,
+   "core_hops": 2.3333333333333335
+  },
+  "129181": {
+   "direct_E1": 6.0,
+   "direct_E2": 0.0,
+   "direct_I1": 0.0,
+   "twohop_E1": 18180.0,
+   "twohop_E2": 3749.0,
+   "twohop_I1": 217.0,
+   "i1_share": 0.008893442622950819,
+   "core_focus": 0.0151532559316613,
+   "out_degree": 108,
+   "out_weight": 2731.0,
+   "direct_mn": 163.0,
+   "core_hops": 1.6666666666666667
+  },
+  "130496": {
+   "direct_E1": 0.0,
+   "direct_E2": 0.0,
+   "direct_I1": 0.0,
+   "twohop_E1": 6726.0,
+   "twohop_E2": -801.0,
+   "twohop_I1": 688.0,
+   "i1_share": 0.04504681464021476,
+   "core_focus": 0.02456220479279007,
+   "out_degree": 66,
+   "out_weight": 1927.0,
+   "direct_mn": 211.0,
+   "core_hops": 2.0
+  }
+ },
+ "dns": {
+  "DNG100": {
+   "dense": 36,
+   "body_id": 10045,
+   "name": "DNg100_L",
+   "transmitter": "acetylcholine",
+   "group": "DNG100",
+   "intermediates": {
+    "E1": [
+     46,
+     3694,
+     4559,
+     57007,
+     117729,
+     122053,
+     129181,
+     144604,
+     145002,
+     145337,
+     146901
+    ],
+    "E2": [
+     57007
+    ],
+    "I1": [
+     117729
+    ]
+   },
+   "s_R1": 30.749077787964637,
+   "s_VNC": 22.74252328749016,
+   "rho": 1.352052162342012
+  },
+  "92": {
+   "dense": 92,
+   "body_id": 10106,
+   "name": "DNp11_R",
+   "transmitter": "acetylcholine",
+   "group": "NONRHYTHMIC",
+   "intermediates": {
+    "E1": [
+     259,
+     6047,
+     121193,
+     144982
+    ],
+    "E2": [
+     259,
+     6047,
+     128892
+    ],
+    "I1": []
+   },
+   "s_R1": 36.18814481585534,
+   "s_VNC": 22.36753672617499,
+   "rho": 1.6178869072116986
+  },
+  "278": {
+   "dense": 278,
+   "body_id": 10301,
+   "name": "DNge050_L",
+   "transmitter": "acetylcholine",
+   "group": "NONRHYTHMIC",
+   "intermediates": {
+    "E1": [
+     46,
+     1957,
+     3694,
+     145002,
+     145337
+    ],
+    "E2": [],
+    "I1": [
+     1957
+    ]
+   },
+   "s_R1": 21.081750973565594,
+   "s_VNC": 14.022921401759938,
+   "rho": 1.5033779602387092
+  },
+  "754": {
+   "dense": 754,
+   "body_id": 10813,
+   "name": "DNp43(CL332)_R",
+   "transmitter": "acetylcholine",
+   "group": "NONRHYTHMIC",
+   "intermediates": {
+    "E1": [
+     548
+    ],
+    "E2": [],
+    "I1": []
+   },
+   "s_R1": 11.517404847044812,
+   "s_VNC": 5.720745764184085,
+   "rho": 2.013269829110728
+  },
+  "763": {
+   "dense": 763,
+   "body_id": 10823,
+   "name": "DNp48(SMP462)_R",
+   "transmitter": "acetylcholine",
+   "group": "NONRHYTHMIC",
+   "intermediates": {
+    "E1": [],
+    "E2": [],
+    "I1": []
+   },
+   "s_R1": 8.458810024261755,
+   "s_VNC": 4.337110105973558,
+   "rho": 1.9503332443903894
+  },
+  "820": {
+   "dense": 820,
+   "body_id": 10885,
+   "name": "DNg88_L",
+   "transmitter": "acetylcholine",
+   "group": "NONRHYTHMIC",
+   "intermediates": {
+    "E1": [
+     1905,
+     2529,
+     17208,
+     143095,
+     146260,
+     159868
+    ],
+    "E2": [
+     159868
+    ],
+    "I1": []
+   },
+   "s_R1": 12.566380576445166,
+   "s_VNC": 8.470528155275638,
+   "rho": 1.4835415627086415
+  },
+  "1052": {
+   "dense": 1052,
+   "body_id": 11137,
+   "name": "DNp04_R",
+   "transmitter": "acetylcholine",
+   "group": "NONRHYTHMIC",
+   "intermediates": {
+    "E1": [
+     117,
+     259,
+     6047,
+     131365
+    ],
+    "E2": [
+     117,
+     259,
+     2930,
+     6047,
+     128892,
+     131365
+    ],
+    "I1": []
+   },
+   "s_R1": 15.339029352892101,
+   "s_VNC": 6.971121918339302,
+   "rho": 2.2003673917305764
+  },
+  "1087": {
+   "dense": 1087,
+   "body_id": 11177,
+   "name": "DNp09_R",
+   "transmitter": "acetylcholine",
+   "group": "RHYTHMIC",
+   "intermediates": {
+    "E1": [
+     46,
+     6047,
+     122053,
+     129181,
+     142848,
+     145002,
+     147066
+    ],
+    "E2": [
+     1621,
+     6047,
+     142848
+    ],
+    "I1": []
+   },
+   "s_R1": 9.185567940286012,
+   "s_VNC": 3.6846045127767293,
+   "rho": 2.49295898879626
+  },
+  "1599": {
+   "dense": 1599,
+   "body_id": 11713,
+   "name": "DNg101_R",
+   "transmitter": "acetylcholine",
+   "group": "NONRHYTHMIC",
+   "intermediates": {
+    "E1": [
+     2529,
+     57007
+    ],
+    "E2": [
+     57007
+    ],
+    "I1": [
+     13294
+    ]
+   },
+   "s_R1": 8.785650247481701,
+   "s_VNC": 3.10057209075797,
+   "rho": 2.8335578049191397
+  },
+  "2659": {
+   "dense": 2659,
+   "body_id": 12843,
+   "name": "DNpe049_R",
+   "transmitter": "acetylcholine",
+   "group": "NONRHYTHMIC",
+   "intermediates": {
+    "E1": [
+     129771,
+     142910,
+     143302,
+     159389
+    ],
+    "E2": [
+     142910
+    ],
+    "I1": [
+     142910,
+     142926
+    ]
+   },
+   "s_R1": 4.880858683379666,
+   "s_VNC": 2.563446047777906,
+   "rho": 1.9040223950141577
+  },
+  "4164": {
+   "dense": 4164,
+   "body_id": 14501,
+   "name": "DNp28_R",
+   "transmitter": "acetylcholine",
+   "group": "NONRHYTHMIC",
+   "intermediates": {
+    "E1": [],
+    "E2": [],
+    "I1": []
+   },
+   "s_R1": 7.465222084978053,
+   "s_VNC": 3.757449651496161,
+   "rho": 1.9867790063415784
+  },
+  "4685": {
+   "dense": 4685,
+   "body_id": 15072,
+   "name": "DNpe004_L",
+   "transmitter": "acetylcholine",
+   "group": "NONRHYTHMIC",
+   "intermediates": {
+    "E1": [],
+    "E2": [],
+    "I1": []
+   },
+   "s_R1": 3.2396142881989993,
+   "s_VNC": 1.3838817267095187,
+   "rho": 2.340961821861678
+  },
+  "9205": {
+   "dense": 9205,
+   "body_id": 20129,
+   "name": "DNg12_e_R",
+   "transmitter": "acetylcholine",
+   "group": "NONRHYTHMIC",
+   "intermediates": {
+    "E1": [
+     91311,
+     130257
+    ],
+    "E2": [],
+    "I1": [
+     27516,
+     91311,
+     130257
+    ]
+   },
+   "s_R1": 1.8624454552690461,
+   "s_VNC": 0.6772987866439877,
+   "rho": 2.749813659784413
+  },
+  "9762": {
+   "dense": 9762,
+   "body_id": 20753,
+   "name": "DNp16_b_R",
+   "transmitter": "acetylcholine",
+   "group": "NONRHYTHMIC",
+   "intermediates": {
+    "E1": [],
+    "E2": [],
+    "I1": []
+   },
+   "s_R1": 1.9573139317899753,
+   "s_VNC": 0.7042361117792588,
+   "rho": 2.7793433183152225
+  },
+  "11053": {
+   "dense": 11053,
+   "body_id": 22190,
+   "name": "DNg12_e_L",
+   "transmitter": "acetylcholine",
+   "group": "NONRHYTHMIC",
+   "intermediates": {
+    "E1": [
+     11566,
+     142908,
+     144217,
+     145502,
+     145755,
+     145917,
+     159979
+    ],
+    "E2": [
+     142908,
+     142920
+    ],
+    "I1": [
+     11725,
+     27516,
+     142908,
+     142915,
+     142920,
+     159979
+    ]
+   },
+   "s_R1": 1.7044960600441605,
+   "s_VNC": 0.7424442547374851,
+   "rho": 2.295789952131611
+  },
+  "21341": {
+   "dense": 21341,
+   "body_id": 33788,
+   "name": "DNpe014_L",
+   "transmitter": "acetylcholine",
+   "group": "NONRHYTHMIC",
+   "intermediates": {
+    "E1": [],
+    "E2": [],
+    "I1": []
+   },
+   "s_R1": 2.78671764681605,
+   "s_VNC": 1.0495593480175067,
+   "rho": 2.655131081515142
+  },
+  "26520": {
+   "dense": 26520,
+   "body_id": 39640,
+   "name": "DNge126_R",
+   "transmitter": "acetylcholine",
+   "group": "NONRHYTHMIC",
+   "intermediates": {
+    "E1": [],
+    "E2": [],
+    "I1": [
+     146131
+    ]
+   },
+   "s_R1": 0.6872693290725406,
+   "s_VNC": 0.20279013236489596,
+   "rho": 3.389066918876919
+  },
+  "39896": {
+   "dense": 39896,
+   "body_id": 55021,
+   "name": "DNg12_e_L",
+   "transmitter": "acetylcholine",
+   "group": "NONRHYTHMIC",
+   "intermediates": {
+    "E1": [
+     548,
+     2976,
+     91311,
+     142908,
+     146479
+    ],
+    "E2": [
+     142908,
+     146479
+    ],
+    "I1": [
+     11725,
+     27516,
+     91311,
+     142908,
+     142915
+    ]
+   },
+   "s_R1": 1.3375681053720774,
+   "s_VNC": 0.5724315729697207,
+   "rho": 2.3366427858493215
+  },
+  "128032": {
+   "dense": 128032,
+   "body_id": 518309,
+   "name": "DNpe007(hb1343489608)_R",
+   "transmitter": "acetylcholine",
+   "group": "NONRHYTHMIC",
+   "intermediates": {
+    "E1": [
+     50334
+    ],
+    "E2": [],
+    "I1": [
+     142926
+    ]
+   },
+   "s_R1": 4.669380131302382,
+   "s_VNC": 2.2826000950405763,
+   "rho": 2.045640908123846
+  },
+  "129181": {
+   "dense": 129181,
+   "body_id": 520300,
+   "name": "DNg75(hb1874217622)_R",
+   "transmitter": "acetylcholine",
+   "group": "RHYTHMIC",
+   "intermediates": {
+    "E1": [
+     46,
+     2529,
+     4559,
+     6587,
+     121193,
+     122053,
+     143499,
+     143597,
+     144832,
+     146338,
+     156921,
+     159351,
+     159842,
+     162766
+    ],
+    "E2": [
+     2930,
+     6587,
+     128892,
+     142920,
+     143499
+    ],
+    "I1": [
+     142920,
+     144755,
+     146338
+    ]
+   },
+   "s_R1": 17.16622268341504,
+   "s_VNC": 9.646913221720295,
+   "rho": 1.7794523791055576
+  },
+  "130496": {
+   "dense": 130496,
+   "body_id": 523769,
+   "name": "DNa02_L",
+   "transmitter": "acetylcholine",
+   "group": "RHYTHMIC",
+   "intermediates": {
+    "E1": [
+     142857,
+     143028,
+     143095,
+     143607,
+     143619,
+     151917,
+     159447,
+     159868
+    ],
+    "E2": [
+     143028,
+     143619,
+     159868
+    ],
+    "I1": [
+     143607
+    ]
+   },
+   "s_R1": 28.886463591152566,
+   "s_VNC": 16.709820509701064,
+   "rho": 1.7287117820554818
+  }
+ },
+ "overlap": {
+  "shared_by_all_rhythmic": [],
+  "rhythmic_vs_dng100": {
+   "1087": [
+    46,
+    122053,
+    129181,
+    145002
+   ],
+   "129181": [
+    46,
+    4559,
+    122053
+   ],
+   "130496": []
+  },
+  "rhythmic_that_are_dng100_intermediates": [
+   129181
+  ]
+ },
+ "integrity": {
+  "I1": {
+   "r1_network_body_ids_sha256": "cdcfcd231484a46c2a668d17932d95b2147ab16e7dd5c7f87857490590b12eed",
+   "rhythmic": [
+    1087,
+    129181,
+    130496
+   ],
+   "controls_in_network": true,
+   "passed": true
+  },
+  "I2": {
+   "passed": true,
+   "checked": 13
+  },
+  "I4": {
+   "passed": true,
+   "rows": 21,
+   "problems": []
+  }
+ },
+ "sources": {
+  "dng100_rate_model_py_lf_sha256": "6c3afeeb9f4b0425d54592a9380e0bca8d403e75207b45a6be773cebed9ca8ff",
+  "dng100_size_audit_py_lf_sha256": "bfb46968e0dd6e7c903afae09681d8d7252e332c2b3956ff7e83fdedaaff2839",
+  "skeleton_dump_mjs_lf_sha256": "31d2aba130ce9c60c60265669d837aef66629830be202d5f5ddc2dac16237f5b",
+  "dng100_rhythm_py_lf_sha256": "f6603d8fdb0cb85a6ef51758b3ee14d3aed813b4aa37bf40c9bc5f3e27b73448",
+  "neural_py_lf_sha256": "8acebd58cdc221cc815646474bb337c3dc7bd05cccde685ac713f23ca51c7e0c",
+  "skel_js_lf_sha256": "b07415a1291023158df854323668a7b8a169b5e1e4523be9c870848ac5b1d969",
+  "rc_js_lf_sha256": "b8873baa68c0513fc6d8bde2f0e3cdb2e8607741acdd8ddc0200b78aef785c7b",
+  "bodymap_lf_sha256": "10630cd4c7a6cc2c1dcfcbee4a602d307f06766f316b185f631406813a58da9d",
+  "dng100_recruitment_map_py_lf_sha256": "e8a2e243cc446c9ebffab3887eba7103092e99eb7d241d357f537ea69d3638db",
+  "dng100_engaged_rhythm_py_lf_sha256": "17cfc87ddb456f5e432c7977a07cf46fdb1f0fc3044d75552c69366f4c5e8d83",
+  "skeletons_flys_sha256": "3e5a411218ed9b6bb979e92b91d9c3eac13a12cf099e7c138d1daec71a9f61d7",
+  "neuron_size_bin_sha256": "06bc9b1e88e8f55c2e630f8f9c9746208377e6d186f0c6a34612faaafe9ae7fa",
+  "r1_result_json_sha256": "24062901eeab8b24941c8ba8940659a93776015effa58b83373e25f5d7a9b719",
+  "r1b_result_json_sha256": "c9c2424ac4e909b2d2ce36a119e6de50d71089eca07ab8e800d02cffa8d676fd",
+  "r2_result_json_sha256": "974d72f439fea8aeef43a237675e30b069b77cf5a85ab3efa5392ca1951ccaf5",
+  "r3_result_json_sha256": "099e42a78ccfc1e04c22a04116d1adfb1121d0331d4d59e0462370814391e339"
+ },
+ "runtime_s": 2.5,
+ "interpretation_limits": [
+  "Three RHYTHMIC DNs, from an unplanned R1SIZE-only R3 observation without core silencing.",
+  "Structure only: two-hop routes in R1's isolated network; longer routes and recurrent dynamics not captured.",
+  "Weights are signed synapse counts with R1's transmitter signs; no physiology.",
+  "Twelve chosen metrics; others could separate where these do not.",
+  "Wiring is identical in both size versions, so R4 cannot explain why the oscillation appeared only with R1's sizes.",
+  "No body or physics; motor coordinates unchanged (20/42 admitted, +4 conditional)."
+ ]
+}

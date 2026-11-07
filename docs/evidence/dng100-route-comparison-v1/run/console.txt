@@ -1,0 +1,26 @@
+{
+ "verdict": "SIGNATURE_DNG100_LIKE_RHYTHMIC",
+ "separating_metrics": [
+  "twohop_E1"
+ ],
+ "expectations": {
+  "X1": false,
+  "X2": false,
+  "X3": false
+ },
+ "runtime_s": 2.5,
+ "p": {
+  "direct_E1": 0.15,
+  "direct_E2": 1.0,
+  "direct_I1": 1.0,
+  "twohop_E1": 0.0017543859649122807,
+  "twohop_E2": 0.49736842105263157,
+  "twohop_I1": 0.15263157894736842,
+  "i1_share": 0.22527472527472528,
+  "core_focus": 0.031578947368421054,
+  "out_degree": 0.01929824561403509,
+  "out_weight": 0.012280701754385965,
+  "direct_mn": 0.02982456140350877,
+  "core_hops": 0.12456140350877193
+ }
+}
