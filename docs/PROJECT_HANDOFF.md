@@ -1,5 +1,21 @@
 # FlyBrainUnity — local Codex handoff
 
+## Rhythm Step R6 (inhibition search): design — 2026-11-06
+
+Designed only (no protocol, code or run). Branch stacked on R5 (PR #336, on #335-#332; all open).
+Question: which inhibitory cells (other than I1) does R5's E1-E2 rhythm need? E1/E2 are ACh
+(IN17A001_L, INXXX466_L), I1 glutamate (IN16B036_L). Stage A (declared rule, not yet listed):
+T1 inhibitory cells in a direct loop with E1/E2 (E excites k, k inhibits E); T2 one-relay loops
+only if T1 < 5; excludes DNs/ANs/MNs/core/I1; cap 40 by loop strength. Stage B: R1SIZE drive
+16,000, targets DNg75_R and DNa02_L, fresh seeds 3001-3032: STIM, SIL_SHAM (R5 rule), SIL_GROUP,
+SIL_k per candidate; <= 2,752 simulations. Classes NEEDED_OSCILLATION (score < 0.5, E1 on but
+tonic) / NEEDED_CORE_OFF / NEEDED_OTHER / NOT_NEEDED; verdict SHARED_INHIBITORY_PARTNER /
+TARGET_SPECIFIC_PARTNER / REDUNDANT_INHIBITION / GROUP_SILENCES_CORE / NO_PARTNER_IN_SET. I2:
+R5 STIM seeds 2001-2004 exact. X1 T1 >= 5, X2 SHARED_INHIBITORY_PARTNER, X3 GROUP
+NEEDED_OSCILLATION for both. See DNG100_INHIBITION_SEARCH_V1.md.
+
+NEXT (needs approval): build and run R6.
+
 ## Rhythm Step R5 (control-DN rhythm test): OBSERVATION_NOT_CONFIRMED; rhythm real but I1 not needed — 2026-11-06
 
 Preregistered (a500af8, protocol 0fabdb48, no amendments), run once in the background (1,637 s,
