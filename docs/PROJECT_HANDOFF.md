@@ -1,5 +1,37 @@
 # FlyBrainUnity — local Codex handoff
 
+## Rhythm Step R7 (excitation/inhibition balance test): REMOVAL_ONLY — 2026-11-07
+
+Preregistered (8ac3895, protocol f7d6ec97, no amendments; build notes disclose that g = 0 equals
+silencing S only to solver tolerance, and a fixed body-ID/dense-index bug), run once (569 s,
+result 7d8575c7). Integrity all pass, incl. I2 (8/8 R6 simulations exact via the g = 1 path).
+Scaling the output of S (I1 + R6's 31 inhibitory partners) by g in {0..3}, R1SIZE drive 16,000:
+DNg75_R loses its rhythm by ignition at g = 0.25 (666 recruited), DNa02_L at g = 0 (696); (a)
+holds. DNg100_L stays ignited (610-740 recruited) and non-rhythmic (score <= 0.035) at every g;
+boosting S only moves its ignited core from E1/E2-saturated to I1-dominated; (b) fails. X1-X3
+held. Also: the drivers' rhythm lives in a window of inhibition (frequency rises 10 -> 21 Hz
+with g; too much inhibition weakens it without ignition). Reading (hypothesis): DNg100's
+ignition arises in the wider network it drives, not in the core's inhibitory balance. See
+DNG100_BALANCE_TEST_RESULTS.md.
+
+NEXT (needs approval): find what DNg100 drives that ignites the network (structural or
+dynamical, separately designed; no tuning).
+
+## Rhythm Step R7 (excitation/inhibition balance test): design — 2026-11-06
+
+Designed only (no protocol, code or run). Fresh branch from newBrain (R1b-R6 merged as
+#332-#337). Tests R6's balance hypothesis in R1SIZE at drive 16,000: scale all outgoing weights
+of S = I1 + R6's 31 T1 inhibitory candidates by g in {0, 0.25, 0.5, 0.75, 1, 1.5, 2, 3}, while
+stimulating DNg75_R, DNa02_L or DNg100_L (seeds 4001-4032; 768 simulations). IGNITED = median
+recruited >= 500 (R2's RANGE_MAX). (a) both rhythm-driving DNs lose rhythm by ignition as g
+falls (scan 0.75 -> 0); (b) DNg100_L scores >= 0.5 without ignition at some g in {1.5, 2, 3}
+(three chances, disclosed). Verdict BALANCE_SUPPORTED / REMOVAL_ONLY / BOOST_ONLY /
+NOT_SUPPORTED. Weight scaling is a declared model probe, not a live-engine change. I2: g = 1 path
+reproduces R6 STIM seeds 3001-3004 exactly. X1 DNg75_R LOST_BY_IGNITION, X2 DNa02_L too, X3 (b)
+fails. See DNG100_BALANCE_TEST_V1.md.
+
+NEXT (needs approval): build and run R7.
+
 ## Rhythm Step R6 (inhibition search): REDUNDANT_INHIBITION — 2026-11-06
 
 Preregistered (2172e7f, protocol 2d82fcd1, no amendments; candidates listed first inside the
