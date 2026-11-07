@@ -1,0 +1,123 @@
+{
+ "schema": "dng100-route-comparison-protocol-v1",
+ "date": "2026-11-06",
+ "design": "docs/DNG100_ROUTE_COMPARISON_V1.md",
+ "question": "On R1's network wiring, do the DNs that drove a core oscillation in R3 reach E1, E2 and I1 differently from the DNs that did not, and on which side of that difference does DNg100_L fall?",
+ "status": "PREREGISTERED_BEFORE_ANY_PROTOCOL_COMPUTATION",
+ "not_claimed": [
+  "that the control-DN oscillation is real or needs the core",
+  "a causal route",
+  "rhythm or walking",
+  "anything about the live LIF engine",
+  "a change to motor admission or mappings"
+ ],
+ "known_before": "R2 listed DNg100_L's two-hop intermediates per core cell (129181 is one of E1's); DNg100_L reaches E1 in two hops. No control DN's routes, weights or degrees were computed or inspected.",
+ "sources": {
+  "cache": "maleCNS cache (load_cache verifies the canonical source fingerprints)",
+  "files": {
+   "dng100_rate_model_py_lf_sha256": "6c3afeeb9f4b0425d54592a9380e0bca8d403e75207b45a6be773cebed9ca8ff",
+   "dng100_size_audit_py_lf_sha256": "bfb46968e0dd6e7c903afae09681d8d7252e332c2b3956ff7e83fdedaaff2839",
+   "skeleton_dump_mjs_lf_sha256": "31d2aba130ce9c60c60265669d837aef66629830be202d5f5ddc2dac16237f5b",
+   "dng100_rhythm_py_lf_sha256": "f6603d8fdb0cb85a6ef51758b3ee14d3aed813b4aa37bf40c9bc5f3e27b73448",
+   "neural_py_lf_sha256": "8acebd58cdc221cc815646474bb337c3dc7bd05cccde685ac713f23ca51c7e0c",
+   "skel_js_lf_sha256": "b07415a1291023158df854323668a7b8a169b5e1e4523be9c870848ac5b1d969",
+   "rc_js_lf_sha256": "b8873baa68c0513fc6d8bde2f0e3cdb2e8607741acdd8ddc0200b78aef785c7b",
+   "bodymap_lf_sha256": "10630cd4c7a6cc2c1dcfcbee4a602d307f06766f316b185f631406813a58da9d",
+   "dng100_recruitment_map_py_lf_sha256": "e8a2e243cc446c9ebffab3887eba7103092e99eb7d241d357f537ea69d3638db",
+   "dng100_engaged_rhythm_py_lf_sha256": "17cfc87ddb456f5e432c7977a07cf46fdb1f0fc3044d75552c69366f4c5e8d83",
+   "skeletons_flys_sha256": "3e5a411218ed9b6bb979e92b91d9c3eac13a12cf099e7c138d1daec71a9f61d7",
+   "neuron_size_bin_sha256": "06bc9b1e88e8f55c2e630f8f9c9746208377e6d186f0c6a34612faaafe9ae7fa",
+   "r1_result_json_sha256": "24062901eeab8b24941c8ba8940659a93776015effa58b83373e25f5d7a9b719",
+   "r1b_result_json_sha256": "c9c2424ac4e909b2d2ce36a119e6de50d71089eca07ab8e800d02cffa8d676fd",
+   "r2_result_json_sha256": "974d72f439fea8aeef43a237675e30b069b77cf5a85ab3efa5392ca1951ccaf5",
+   "r3_result_json_sha256": "099e42a78ccfc1e04c22a04116d1adfb1121d0331d4d59e0462370814391e339"
+  },
+  "hash_rule": "text files: sha256 after CRLF -> LF; .bin/.flys and evidence result.json: sha256 of raw bytes"
+ },
+ "cells": {
+  "DNg100_L": 10045,
+  "E1": 800173,
+  "E2": 800863,
+  "I1": 801884
+ },
+ "network": "R1's 2,111-neuron front-left network and signed matrix W[post, pre] = transmitter sign x synapse count (count >= 5), dng100_rate_model.Model unchanged",
+ "groups": {
+  "rule": "RHYTHMIC = R1's control DNs with R3 result arms.R1SIZE.controls[k].score >= 0.5 (R3's C1 threshold; NaN is not >= 0.5); NONRHYTHMIC = the other controls; DNG100 = DNg100_L",
+  "controls_dense_indices": [
+   92,
+   278,
+   754,
+   763,
+   820,
+   1052,
+   1087,
+   1599,
+   2659,
+   4164,
+   4685,
+   9205,
+   9762,
+   11053,
+   21341,
+   26520,
+   39896,
+   128032,
+   129181,
+   130496
+  ],
+  "expected_rhythmic": [
+   1087,
+   129181,
+   130496
+  ],
+  "mismatch": "if the rule does not return exactly expected_rhythmic, the run stops as INCONCLUSIVE"
+ },
+ "metrics": {
+  "direct_c": "W[c, s] for c in E1, E2, I1",
+  "twohop_c": "sum_k W[c, k] W[k, s] over network k != s, c (net signed)",
+  "i1_share": "excitatory two-hop drive into I1 / sum over E1, E2, I1; excitatory = both edges positive; k != s, k != target; NaN if 0",
+  "core_focus": "excitatory two-hop drive into E1+E2+I1 / excitatory two-hop drive into all network cells except s; NaN if 0",
+  "out_degree": "count of network cells j != s with W[j, s] != 0",
+  "out_weight": "sum_j != s |W[j, s]|",
+  "direct_mn": "sum W[m, s] over the 68 front-left MNs",
+  "core_hops": "mean unweighted hop distance s -> E1, E2, I1 (R2 hops); inf if any unreachable",
+  "gated_count": 12
+ },
+ "reported_not_gated": [
+  "two-hop intermediates per core cell with body IDs and names; overlap among RHYTHMIC DNs and with DNg100_L",
+  "RHYTHMIC DNs that are DNg100_L intermediates",
+  "s_R1, s_VNC (R1b cord-only, as R2) and rho",
+  "body ID, name, transmitter"
+ ],
+ "acceptance": {
+  "separation": "exact two-sided permutation test of the RHYTHMIC mid-rank sum over all C(n, 3) assignments among the n non-NaN control values (n = 20 -> 1,140); separates if p <= 0.05/12; a metric with a NaN RHYTHMIC value does not separate",
+  "placement": "for a separating metric: nonrhythmic_side if DNg100_L's value is strictly outside the RHYTHMIC range toward the NONRHYTHMIC median; otherwise not; NaN -> not",
+  "SIGNATURE_DNG100_DIFFERS": ">= 1 separating metric with DNg100_L on the nonrhythmic side",
+  "SIGNATURE_DNG100_LIKE_RHYTHMIC": ">= 1 separating metric, DNg100_L not on the nonrhythmic side of any",
+  "NO_SIGNATURE": "no separating metric",
+  "INCONCLUSIVE": "I1, I2 or I4 failure"
+ },
+ "integrity": {
+  "I1": "source hashes; R1 network body-ID hash; control list unchanged and in the network; group rule returns expected_rhythmic",
+  "r1_network_body_ids_sha256": "cdcfcd231484a46c2a668d17932d95b2147ab16e7dd5c7f87857490590b12eed",
+  "I2": "hard gate: DNg100_L's two-hop intermediates per core cell equal R2 result.json structure.intermediates_by_cell exactly",
+  "I3": "tests/test_dng100_route_comparison.py passes (toy metrics, exact permutation test incl. ties and NaN, placement, verdict, group rule, expectations, completeness)",
+  "I4": "21 DNs x 12 metrics present; NaN only for i1_share/core_focus, inf only for core_hops"
+ },
+ "expectations": {
+  "X1": "NO_SIGNATURE",
+  "X2": "DNg100_L out_degree > every RHYTHMIC DN's",
+  "X3": "DNg100_L i1_share > every RHYTHMIC DN's (None if any NaN)",
+  "note": "recorded in the design before any R4 computation; wrong ones are recorded as wrong"
+ },
+ "plumbing_disclosure": "Before registration one load check (--load-check) printed network size 2,111, 68 MNs, instances per neuron, controls in network and source hashes; no metric value was computed or printed. Unit tests use toy matrices only. One test expectation was corrected before any run (placement(0, [5,6,7], [1,1,2]) is nonrhythmic_side by the design's rule; the test had wrongly expected the opposite).",
+ "execution": "one command (--output) computes and evaluates in the same process; output opened exclusively; run once.",
+ "interpretation_limits": [
+  "Three RHYTHMIC DNs, from an unplanned R1SIZE-only R3 observation without core silencing.",
+  "Structure only: two-hop routes in R1's isolated network; longer routes and recurrent dynamics not captured.",
+  "Weights are signed synapse counts with R1's transmitter signs; no physiology.",
+  "Twelve chosen metrics; others could separate where these do not.",
+  "Wiring is identical in both size versions, so R4 cannot explain why the oscillation appeared only with R1's sizes.",
+  "No body or physics; motor coordinates unchanged (20/42 admitted, +4 conditional)."
+ ]
+}
