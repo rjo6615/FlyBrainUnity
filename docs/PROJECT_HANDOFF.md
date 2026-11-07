@@ -1,5 +1,40 @@
 # FlyBrainUnity — local Codex handoff
 
+## Rhythm Step R5 (control-DN rhythm test): OBSERVATION_NOT_CONFIRMED; rhythm real but I1 not needed — 2026-11-06
+
+Preregistered (a500af8, protocol 0fabdb48, no amendments), run once in the background (1,637 s,
+result c4318d93). Integrity all pass, incl. I2 (16/16 R3 simulations reproduced exactly).
+R1SIZE (16,000), 64 fresh seeds: STIM DNg75_R 0.983 (64/64), DNa02_L 0.926 (63/64), DNp09_R
+0.509, all ~13-14 Hz, above the new independent controls' p80 0.192 (best new control 0.43).
+SIL_E1 and SIL_E2 abolish the rhythm (E1 goes tonic without E2); SIL_SHAM unchanged; SIL_I1 does
+NOT abolish it (DNg75_R 0.929, DNa02_L 0.542, DNp09_R 0.508) -> all RHYTHM_CORE_INDEPENDENT (I1 not
+needed); headline OBSERVATION_NOT_CONFIRMED by the declared rule. VNCSIZE (2,000): all
+NOT_CONFIRMED (0.05-0.10); these DNs ignite the network (650-1,000 recruited, I1 110-130 Hz) like
+DNg100 in R3. X1 wrong, X2 and X3 held. Reading (hypothesis): E1 and E2 are both excitatory, so
+the shaping inhibition must come from other network cells than I1. See
+DNG100_CONTROL_RHYTHM_RESULTS.md.
+
+NEXT (needs approval): options are a structural search for the inhibitory partners of E1/E2 that
+the rhythm needs (no tuning), or a VNCSIZE drive map for the rhythm-driving DNs (separately
+versioned). Merge the stacked PRs #332-#336 in order when ready.
+
+## Rhythm Step R5 (control-DN rhythm test): design — 2026-11-06
+
+Designed only (no protocol, code or run). Branch stacked on R4 (PR #335, on #334, #333, #332;
+all open). Tests R3's unplanned observation: targets DNg75_R (129181) and DNa02_L (130496)
+primary, DNp09_R (1087) secondary; R3's drives unchanged (R1SIZE 16,000 primary for this
+question, VNCSIZE 2,000 secondary; no drive search). Per target and arm: STIM, SIL_E1/E2/I1,
+SIL_SHAM (one random non-DN/AN/MN/core/intermediate cell per replicate), seeds 2001-2064; plus a
+new independent control set (20 ACh DNs, rng 20261108, R1's controls removed), seeds 2001-2016.
+2,560 simulations. Criteria: C1 score >= 0.5 and > new-control p80; C2 5-20 Hz; C3 each core
+silencing < 0.5; C4 sham >= 0.5. Verdicts NOT_CONFIRMED / OUT_OF_BAND / SILENCING_NONSPECIFIC /
+CORE_INDEPENDENT / CORE_RHYTHM_CONFIRMED; headline confirmed if both primaries are
+CORE_RHYTHM_CONFIRMED in R1SIZE. I2: re-run R3's CONTROL_129181/130496 seeds 1001-1004 in both
+arms, exact match. X1 headline confirmed, X2 all VNCSIZE NOT_CONFIRMED, X3 new-control R1SIZE
+p80 < 0.5. Selection of the targets from R3 disclosed. See DNG100_CONTROL_RHYTHM_V1.md.
+
+NEXT (needs approval): build and run R5.
+
 ## Rhythm Step R4 (structural route comparison): SIGNATURE_DNG100_LIKE_RHYTHMIC — 2026-11-06
 
 Preregistered (7a5a8ac, protocol 7c173a35, no amendments), run once (2.5 s, result f2184542).

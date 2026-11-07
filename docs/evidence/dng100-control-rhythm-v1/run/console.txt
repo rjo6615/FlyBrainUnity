@@ -1,0 +1,137 @@
+[    12s] I2 R3 reproduction: True (16 checked)
+[    90s] R1SIZE new controls done
+[   234s] R1SIZE DNg75_R done
+[   344s] R1SIZE DNa02_L done
+[   458s] R1SIZE DNp09_R done
+[   679s] VNCSIZE new controls done
+[   943s] VNCSIZE DNg75_R done
+[  1341s] VNCSIZE DNa02_L done
+[  1637s] VNCSIZE DNp09_R done
+{
+ "verdict": "OBSERVATION_NOT_CONFIRMED",
+ "verdicts": {
+  "R1SIZE": {
+   "DNg75_R": "RHYTHM_CORE_INDEPENDENT",
+   "DNa02_L": "RHYTHM_CORE_INDEPENDENT",
+   "DNp09_R": "RHYTHM_CORE_INDEPENDENT"
+  },
+  "VNCSIZE": {
+   "DNg75_R": "RHYTHM_NOT_CONFIRMED",
+   "DNa02_L": "RHYTHM_NOT_CONFIRMED",
+   "DNp09_R": "RHYTHM_NOT_CONFIRMED"
+  }
+ },
+ "expectations": {
+  "X1": false,
+  "X2": true,
+  "X3": true
+ },
+ "reason": null,
+ "runtime_s": 1637.1,
+ "R1SIZE": {
+  "control_p80": 0.19236586230493774,
+  "targets": {
+   "DNg75_R": {
+    "checks": {
+     "C1_rhythm": true,
+     "C2_frequency": true,
+     "C3_core_necessity": false,
+     "C4_sham_preserved": true
+    },
+    "scores": {
+     "STIM": 0.9834855697442828,
+     "SIL_E1": 0.006239599330611194,
+     "SIL_E2": 0.0,
+     "SIL_I1": 0.9290571060378767,
+     "SIL_SHAM": 0.9835014105458668
+    },
+    "freq": 13.423423423423424
+   },
+   "DNa02_L": {
+    "checks": {
+     "C1_rhythm": true,
+     "C2_frequency": true,
+     "C3_core_necessity": false,
+     "C4_sham_preserved": true
+    },
+    "scores": {
+     "STIM": 0.9257562775249777,
+     "SIL_E1": 0.0,
+     "SIL_E2": 0.0,
+     "SIL_I1": 0.5416243050684579,
+     "SIL_SHAM": 0.9241955036335876
+    },
+    "freq": 13.698630136986301
+   },
+   "DNp09_R": {
+    "checks": {
+     "C1_rhythm": true,
+     "C2_frequency": true,
+     "C3_core_necessity": false,
+     "C4_sham_preserved": true
+    },
+    "scores": {
+     "STIM": 0.5094215858942979,
+     "SIL_E1": 0.0005178613401314312,
+     "SIL_E2": 0.0,
+     "SIL_I1": 0.5082448322073875,
+     "SIL_SHAM": 0.512007303484407
+    },
+    "freq": 13.115174299384826
+   }
+  }
+ },
+ "VNCSIZE": {
+  "control_p80": 0.08457540112116893,
+  "targets": {
+   "DNg75_R": {
+    "checks": {
+     "C1_rhythm": false,
+     "C2_frequency": true,
+     "C3_core_necessity": true,
+     "C4_sham_preserved": false
+    },
+    "scores": {
+     "STIM": 0.05065399048824949,
+     "SIL_E1": 0.004752340079610076,
+     "SIL_E2": 0.0013865590679773474,
+     "SIL_I1": 0.004383584451179827,
+     "SIL_SHAM": 0.05448711620662035
+    },
+    "freq": 8.620689655172415
+   },
+   "DNa02_L": {
+    "checks": {
+     "C1_rhythm": false,
+     "C2_frequency": false,
+     "C3_core_necessity": true,
+     "C4_sham_preserved": false
+    },
+    "scores": {
+     "STIM": 0.08738320714386592,
+     "SIL_E1": 0.08272947928335228,
+     "SIL_E2": 0.05317257290843465,
+     "SIL_I1": 0.08398881135552927,
+     "SIL_SHAM": 0.08827326903373547
+    },
+    "freq": 2.028430949001214
+   },
+   "DNp09_R": {
+    "checks": {
+     "C1_rhythm": false,
+     "C2_frequency": true,
+     "C3_core_necessity": true,
+     "C4_sham_preserved": false
+    },
+    "scores": {
+     "STIM": 0.09496455211500247,
+     "SIL_E1": 0.02311443375542513,
+     "SIL_E2": 0.005357069976933499,
+     "SIL_I1": 0.010438327580215071,
+     "SIL_SHAM": 0.10181270226316869
+    },
+    "freq": 7.194244604316546
+   }
+  }
+ }
+}

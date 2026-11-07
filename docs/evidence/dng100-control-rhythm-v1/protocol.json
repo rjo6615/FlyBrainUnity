@@ -1,0 +1,125 @@
+{
+ "schema": "dng100-control-rhythm-protocol-v1",
+ "date": "2026-11-06",
+ "design": "docs/DNG100_CONTROL_RHYTHM_V1.md",
+ "question": "In R1's rate model on our wiring, do DNg75_R, DNa02_L and DNp09_R each drive a front-left MN rhythm that is reproducible on fresh seeds, specific against an independent set of DNs, and abolished by silencing E1, E2 or I1 (but not by silencing an unrelated cell)? Does it hold with cord-only sizes?",
+ "status": "PREREGISTERED_BEFORE_ANY_PROTOCOL_RUN",
+ "not_claimed": [
+  "walking",
+  "validation of the preprint's biology",
+  "biological roles of these DNs",
+  "anything about the live LIF engine",
+  "a change to motor admission or mappings",
+  "that the drives are physiological"
+ ],
+ "selection_disclosure": "Targets were chosen because they scored high in R3 (unplanned observation). Fresh seeds and a newly drawn control set reduce, but do not remove, that selection.",
+ "sources": {
+  "cache": "maleCNS cache (load_cache verifies the canonical source fingerprints)",
+  "files": {
+   "dng100_rate_model_py_lf_sha256": "6c3afeeb9f4b0425d54592a9380e0bca8d403e75207b45a6be773cebed9ca8ff",
+   "dng100_size_audit_py_lf_sha256": "bfb46968e0dd6e7c903afae09681d8d7252e332c2b3956ff7e83fdedaaff2839",
+   "skeleton_dump_mjs_lf_sha256": "31d2aba130ce9c60c60265669d837aef66629830be202d5f5ddc2dac16237f5b",
+   "dng100_rhythm_py_lf_sha256": "f6603d8fdb0cb85a6ef51758b3ee14d3aed813b4aa37bf40c9bc5f3e27b73448",
+   "neural_py_lf_sha256": "8acebd58cdc221cc815646474bb337c3dc7bd05cccde685ac713f23ca51c7e0c",
+   "skel_js_lf_sha256": "b07415a1291023158df854323668a7b8a169b5e1e4523be9c870848ac5b1d969",
+   "rc_js_lf_sha256": "b8873baa68c0513fc6d8bde2f0e3cdb2e8607741acdd8ddc0200b78aef785c7b",
+   "bodymap_lf_sha256": "10630cd4c7a6cc2c1dcfcbee4a602d307f06766f316b185f631406813a58da9d",
+   "dng100_recruitment_map_py_lf_sha256": "e8a2e243cc446c9ebffab3887eba7103092e99eb7d241d357f537ea69d3638db",
+   "dng100_engaged_rhythm_py_lf_sha256": "17cfc87ddb456f5e432c7977a07cf46fdb1f0fc3044d75552c69366f4c5e8d83",
+   "dng100_route_comparison_py_lf_sha256": "2a75973caf602d1beb5fd671aad6d52f14a3f68752584a9291161311f8ce042c",
+   "skeletons_flys_sha256": "3e5a411218ed9b6bb979e92b91d9c3eac13a12cf099e7c138d1daec71a9f61d7",
+   "neuron_size_bin_sha256": "06bc9b1e88e8f55c2e630f8f9c9746208377e6d186f0c6a34612faaafe9ae7fa",
+   "r1_result_json_sha256": "24062901eeab8b24941c8ba8940659a93776015effa58b83373e25f5d7a9b719",
+   "r1b_result_json_sha256": "c9c2424ac4e909b2d2ce36a119e6de50d71089eca07ab8e800d02cffa8d676fd",
+   "r2_result_json_sha256": "974d72f439fea8aeef43a237675e30b069b77cf5a85ab3efa5392ca1951ccaf5",
+   "r3_result_json_sha256": "099e42a78ccfc1e04c22a04116d1adfb1121d0331d4d59e0462370814391e339",
+   "r4_result_json_sha256": "f218454224d6afdd122ffc71db36d48465533f9e79572d3134989c01d315a492"
+  },
+  "hash_rule": "text files: sha256 after CRLF -> LF; .bin/.flys and evidence result.json: sha256 of raw bytes"
+ },
+ "cells": {
+  "DNg100_L": 10045,
+  "DNg100_R": 10056,
+  "E1": 800173,
+  "E2": 800863,
+  "I1": 801884
+ },
+ "model": "R1's model and R3's replicate function unchanged (network, W, draw, scale, simulate; b 0.03; 1 s; onset 20 ms; window 250..999 ms); silencing holds the cell's activation at 0. No drive adjustment.",
+ "conditions": {
+  "arms": {
+   "R1SIZE": {
+    "role": "primary for this question",
+    "sizes": "R1's",
+    "drive": 16000
+   },
+   "VNCSIZE": {
+    "role": "secondary",
+    "sizes": "R1b cord-only, as R2/R3 (r3.setup)",
+    "drive": 2000
+   }
+  },
+  "targets": {
+   "DNg75_R": 129181,
+   "DNa02_L": 130496,
+   "DNp09_R": 1087
+  },
+  "primary_targets": [
+   "DNg75_R",
+   "DNa02_L"
+  ],
+  "per_target": "STIM, SIL_E1, SIL_E2, SIL_I1, SIL_SHAM; seeds 2001-2064 each",
+  "sham": "per replicate, one local cell drawn uniformly with numpy default_rng(seed + 7,000,000).integers(len(candidates)) from sorted network local indices that are not DNs, ANs, front-left MNs, E1, E2, I1, or the target's two-hop intermediates to E1/E2/I1",
+  "new_controls": "20 DNs drawn with numpy default_rng(20261108).choice(rest, 20, replace=False), sorted, where rest = R1's control pool (network acetylcholine DNs except DNg100_L/R; 640 at load) minus R1's 20 controls (sorted dense indices); all if <= 20 remain; each stimulated at the arm's drive, seeds 2001-2016, no silencing",
+  "order": "I2 first; then R1SIZE, then VNCSIZE; within an arm new controls (drawn order), then targets DNg75_R, DNa02_L, DNp09_R, each in STIM, SIL_E1, SIL_E2, SIL_I1, SIL_SHAM order",
+  "total_simulations": 2560
+ },
+ "readout": {
+  "replicate": "R3's replicate (R1's score_rates; core trace rhythmicity; engagement; recruited)",
+  "condition": "R3's condition_summary (R1's summarize: mean score over replicates with a score; median frequency)",
+  "storage": "every run is stored; per-MN detail is kept only for runs with score >= 0.5 (size)"
+ },
+ "acceptance": {
+  "C1_rhythm": "STIM score >= 0.5 AND (new-control p80 NaN OR STIM score > p80), p80 = numpy 80th percentile of the new controls' non-NaN condition scores in that arm (R1's rule)",
+  "C2_frequency": "STIM frequency in [5, 20] Hz",
+  "C3_core_necessity": "SIL_E1, SIL_E2 and SIL_I1 each not >= 0.5 (NaN = abolished, R1's rule)",
+  "C4_sham_preserved": "SIL_SHAM score >= 0.5",
+  "verdict_order": [
+   "INCONCLUSIVE if no STIM replicate with a score",
+   "RHYTHM_NOT_CONFIRMED if not C1",
+   "RHYTHM_OUT_OF_BAND if not C2",
+   "SILENCING_NONSPECIFIC if not C4",
+   "RHYTHM_CORE_INDEPENDENT if not C3 (list cells not needed)",
+   "CORE_RHYTHM_CONFIRMED otherwise"
+  ],
+  "headline": "OBSERVATION_CONFIRMED if DNg75_R and DNa02_L are both CORE_RHYTHM_CONFIRMED in R1SIZE; else OBSERVATION_NOT_CONFIRMED; INCONCLUSIVE on integrity failure"
+ },
+ "reported_not_gated": [
+  "E1/E2/I1 trace rhythmicity and period in STIM vs MN period",
+  "engagement fraction, recruited counts, target rate, per-MN scores with muscle names",
+  "Ti flexor/extensor lag (tibia_phase)",
+  "new control scores, names and body IDs"
+ ],
+ "integrity": {
+  "I1": "source hashes; R1 network body-ID hash; R1b z* 462 and m_VNC reproduced; targets equal R4's RHYTHMIC group and are in the network; new controls disjoint from R1's and of the declared count",
+  "r1_network_body_ids_sha256": "cdcfcd231484a46c2a668d17932d95b2147ab16e7dd5c7f87857490590b12eed",
+  "I2_r3_reproduction": "hard gate before any protocol condition: R3's CONTROL_129181 and CONTROL_130496 in both arms, seeds 1001-1004 (16 simulations), must equal R3's stored runs exactly (score, recruited, core activity)",
+  "I3_tests": "tests/test_dng100_control_rhythm.py passes (conditions, sham and control draws, verdict order, headline, expectations, I2 check)",
+  "I4": "2,560 protocol simulations (plus 16 reproduction simulations)"
+ },
+ "expectations": {
+  "X1": "headline OBSERVATION_CONFIRMED",
+  "X2": "all three targets RHYTHM_NOT_CONFIRMED in VNCSIZE",
+  "X3": "new-control p80 in R1SIZE < 0.5",
+  "note": "recorded in the design before any R5 simulation, informed by R3's observation; wrong ones are recorded as wrong"
+ },
+ "plumbing_disclosure": "Before registration one R1SIZE DNg75_R simulation at seed 0 (not a protocol seed) was timed (0.58 s); it also printed the control pool size (640) and source hashes; its score and rates were not printed. Unit tests use synthetic inputs only.",
+ "execution": "one command (--output) runs I2 and all 2,560 simulations and evaluates in the same process; output opened exclusively; run once in the background.",
+ "interpretation_limits": [
+  "Targets selected from R3 because they scored high.",
+  "R3's drives only; no drive search; VNCSIZE tested at a single drive.",
+  "Isolated 2,111-neuron network (R1's); no other brain or cord input.",
+  "Reconstructed rate model; 64 replicates; 68 bodymap MNs.",
+  "The V1 rhythmicity score is our measure, not the preprint's analysis.",
+  "Neural only: no body or physics; motor coordinates unchanged (20/42 admitted, +4 conditional)."
+ ]
+}
