@@ -1,7 +1,10 @@
 # Rhythm, Step R7: does the E1–E2 rhythm sit on an excitation/inhibition balance? (design)
 
-Designed 2026-11-06. **Status: designed only (no protocol, code or run).** Neural-only
-rate-model simulation of R1's isolated network, with R1's sizes.
+Designed 2026-11-06. **Status: run 2026-11-07, REMOVAL_ONLY** (protocol f7d6ec97, result
+7d8575c7): both rhythm-driving DNs lose their rhythm by ignition as S's output falls; DNg100_L
+stays ignited at every g and never becomes rhythmic; X1-X3 held. See
+`DNG100_BALANCE_TEST_RESULTS.md`. Neural-only rate-model simulation of R1's isolated network,
+with R1's sizes.
 
 ## Why this step
 

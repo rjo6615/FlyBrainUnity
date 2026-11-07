@@ -1,5 +1,22 @@
 # FlyBrainUnity — local Codex handoff
 
+## Rhythm Step R7 (excitation/inhibition balance test): REMOVAL_ONLY — 2026-11-07
+
+Preregistered (8ac3895, protocol f7d6ec97, no amendments; build notes disclose that g = 0 equals
+silencing S only to solver tolerance, and a fixed body-ID/dense-index bug), run once (569 s,
+result 7d8575c7). Integrity all pass, incl. I2 (8/8 R6 simulations exact via the g = 1 path).
+Scaling the output of S (I1 + R6's 31 inhibitory partners) by g in {0..3}, R1SIZE drive 16,000:
+DNg75_R loses its rhythm by ignition at g = 0.25 (666 recruited), DNa02_L at g = 0 (696); (a)
+holds. DNg100_L stays ignited (610-740 recruited) and non-rhythmic (score <= 0.035) at every g;
+boosting S only moves its ignited core from E1/E2-saturated to I1-dominated; (b) fails. X1-X3
+held. Also: the drivers' rhythm lives in a window of inhibition (frequency rises 10 -> 21 Hz
+with g; too much inhibition weakens it without ignition). Reading (hypothesis): DNg100's
+ignition arises in the wider network it drives, not in the core's inhibitory balance. See
+DNG100_BALANCE_TEST_RESULTS.md.
+
+NEXT (needs approval): find what DNg100 drives that ignites the network (structural or
+dynamical, separately designed; no tuning).
+
 ## Rhythm Step R7 (excitation/inhibition balance test): design — 2026-11-06
 
 Designed only (no protocol, code or run). Fresh branch from newBrain (R1b-R6 merged as

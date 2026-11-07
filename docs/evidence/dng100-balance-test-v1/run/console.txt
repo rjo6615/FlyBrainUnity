@@ -1,0 +1,154 @@
+[     4s] I2 R6 reproduction via g = 1: True (8 checked)
+[    37s] DNg75_R g=0.0: score 0.002 recruited 711.5
+[    76s] DNg75_R g=0.25: score 0.047 recruited 665.5
+[   107s] DNg75_R g=0.5: score 0.909 recruited 233.5
+[   132s] DNg75_R g=0.75: score 0.989 recruited 203.5
+[   155s] DNg75_R g=1.0: score 0.987 recruited 186.0
+[   174s] DNg75_R g=1.5: score 0.893 recruited 169.5
+[   191s] DNg75_R g=2.0: score 0.639 recruited 162.5
+[   205s] DNg75_R g=3.0: score 0.429 recruited 157.0
+[   243s] DNa02_L g=0.0: score 0.012 recruited 696.0
+[   269s] DNa02_L g=0.25: score 0.843 recruited 230.5
+[   290s] DNa02_L g=0.5: score 0.907 recruited 153.5
+[   309s] DNa02_L g=0.75: score 0.942 recruited 134.5
+[   326s] DNa02_L g=1.0: score 0.940 recruited 127.5
+[   342s] DNa02_L g=1.5: score 0.873 recruited 125.0
+[   357s] DNa02_L g=2.0: score 0.781 recruited 123.0
+[   366s] DNa02_L g=3.0: score 0.183 recruited 111.5
+[   396s] DNg100_L g=0.0: score 0.004 recruited 735.5
+[   420s] DNg100_L g=0.25: score 0.004 recruited 634.0
+[   443s] DNg100_L g=0.5: score 0.001 recruited 623.5
+[   466s] DNg100_L g=0.75: score 0.004 recruited 620.5
+[   491s] DNg100_L g=1.0: score 0.035 recruited 626.0
+[   517s] DNg100_L g=1.5: score 0.015 recruited 612.0
+[   542s] DNg100_L g=2.0: score 0.005 recruited 609.5
+[   569s] DNg100_L g=3.0: score 0.004 recruited 612.0
+{
+ "verdict": "REMOVAL_ONLY",
+ "details": {
+  "removal": {
+   "DNg75_R": {
+    "cls": "LOST_BY_IGNITION",
+    "loss_level": 0.25
+   },
+   "DNa02_L": {
+    "cls": "LOST_BY_IGNITION",
+    "loss_level": 0.0
+   }
+  },
+  "a_holds": true,
+  "b_holds": false,
+  "boost_levels_with_rhythm": []
+ },
+ "expectations": {
+  "X1": true,
+  "X2": true,
+  "X3": true
+ },
+ "reason": null,
+ "runtime_s": 568.9,
+ "curves": {
+  "DNg75_R": {
+   "0.0": [
+    0.002,
+    711.5
+   ],
+   "0.25": [
+    0.047,
+    665.5
+   ],
+   "0.5": [
+    0.909,
+    233.5
+   ],
+   "0.75": [
+    0.989,
+    203.5
+   ],
+   "1.0": [
+    0.987,
+    186.0
+   ],
+   "1.5": [
+    0.893,
+    169.5
+   ],
+   "2.0": [
+    0.639,
+    162.5
+   ],
+   "3.0": [
+    0.429,
+    157.0
+   ]
+  },
+  "DNa02_L": {
+   "0.0": [
+    0.012,
+    696.0
+   ],
+   "0.25": [
+    0.843,
+    230.5
+   ],
+   "0.5": [
+    0.907,
+    153.5
+   ],
+   "0.75": [
+    0.942,
+    134.5
+   ],
+   "1.0": [
+    0.94,
+    127.5
+   ],
+   "1.5": [
+    0.873,
+    125.0
+   ],
+   "2.0": [
+    0.781,
+    123.0
+   ],
+   "3.0": [
+    0.183,
+    111.5
+   ]
+  },
+  "DNg100_L": {
+   "0.0": [
+    0.004,
+    735.5
+   ],
+   "0.25": [
+    0.004,
+    634.0
+   ],
+   "0.5": [
+    0.001,
+    623.5
+   ],
+   "0.75": [
+    0.004,
+    620.5
+   ],
+   "1.0": [
+    0.035,
+    626.0
+   ],
+   "1.5": [
+    0.015,
+    612.0
+   ],
+   "2.0": [
+    0.005,
+    609.5
+   ],
+   "3.0": [
+    0.004,
+    612.0
+   ]
+  }
+ }
+}
