@@ -1,5 +1,22 @@
 # FlyBrainUnity — local Codex handoff
 
+## Rhythm Step R5 (control-DN rhythm test): design — 2026-11-06
+
+Designed only (no protocol, code or run). Branch stacked on R4 (PR #335, on #334, #333, #332;
+all open). Tests R3's unplanned observation: targets DNg75_R (129181) and DNa02_L (130496)
+primary, DNp09_R (1087) secondary; R3's drives unchanged (R1SIZE 16,000 primary for this
+question, VNCSIZE 2,000 secondary; no drive search). Per target and arm: STIM, SIL_E1/E2/I1,
+SIL_SHAM (one random non-DN/AN/MN/core/intermediate cell per replicate), seeds 2001-2064; plus a
+new independent control set (20 ACh DNs, rng 20261108, R1's controls removed), seeds 2001-2016.
+2,560 simulations. Criteria: C1 score >= 0.5 and > new-control p80; C2 5-20 Hz; C3 each core
+silencing < 0.5; C4 sham >= 0.5. Verdicts NOT_CONFIRMED / OUT_OF_BAND / SILENCING_NONSPECIFIC /
+CORE_INDEPENDENT / CORE_RHYTHM_CONFIRMED; headline confirmed if both primaries are
+CORE_RHYTHM_CONFIRMED in R1SIZE. I2: re-run R3's CONTROL_129181/130496 seeds 1001-1004 in both
+arms, exact match. X1 headline confirmed, X2 all VNCSIZE NOT_CONFIRMED, X3 new-control R1SIZE
+p80 < 0.5. Selection of the targets from R3 disclosed. See DNG100_CONTROL_RHYTHM_V1.md.
+
+NEXT (needs approval): build and run R5.
+
 ## Rhythm Step R4 (structural route comparison): SIGNATURE_DNG100_LIKE_RHYTHMIC — 2026-11-06
 
 Preregistered (7a5a8ac, protocol 7c173a35, no amendments), run once (2.5 s, result f2184542).
