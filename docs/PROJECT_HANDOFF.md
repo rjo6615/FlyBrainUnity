@@ -1,5 +1,20 @@
 # FlyBrainUnity — local Codex handoff
 
+## Rhythm Step R8 (ignition source search): design — 2026-11-07
+
+Designed only (no protocol, code or run). Branch stacked on R7 (PR #338, open). Question: is
+DNg100_L's network ignition carried by one of its direct partners (R4: 70), and does silencing
+it unmask a rhythm? Arms R1SIZE 16,000 (primary) and VNCSIZE 2,000; per arm STIM, SIL_SHAM (R5
+rule, excluding partners), SIL_GROUP (all partners; sanity anchor), SIL_j per partner; seeds
+5001-5016; ~2,336 simulations. IGNITED = median recruited >= 500. Validity: STIM and SHAM
+ignited. Verdict SINGLE_IGNITION_SOURCE / DISTRIBUTED_IGNITION / IGNITION_NOT_VIA_PARTNERS;
+secondary RHYTHM_UNMASKED if an ignition-preventing silencing gives score >= 0.5 with E1 trace
+>= 0.5. I2: R7 DNg100 g = 1 seeds 4001-4004 and R3 VNCSIZE DNG100 seeds 1001-1004 exact. X1
+R1SIZE DISTRIBUTED, X2 VNCSIZE DISTRIBUTED, X3 no rhythm unmasked. See
+DNG100_IGNITION_SOURCE_V1.md.
+
+NEXT (needs approval): build and run R8.
+
 ## Rhythm Step R7 (excitation/inhibition balance test): REMOVAL_ONLY — 2026-11-07
 
 Preregistered (8ac3895, protocol f7d6ec97, no amendments; build notes disclose that g = 0 equals
