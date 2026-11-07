@@ -1,5 +1,39 @@
 # FlyBrainUnity — local Codex handoff
 
+## Rhythm Step R3 (rhythm test in the engaged regime): NOT_REPRODUCED; unplanned control-DN oscillation — 2026-11-06
+
+Preregistered (1e3e38a, protocol 51bec0c2, no amendments), run once in the background (892 s,
+result 099e42a7). Integrity all pass, incl. I2 (8/8 R2 simulations reproduced exactly).
+Primary VNCSIZE (drive 2,000): DNG100 score 0.055 (control p80 0.101; no replicate >= 0.5),
+core engaged 64/64 but steady (I1 ~114 Hz, E2 ~1 Hz, DNg100 suppressed to ~4 Hz). R1SIZE
+(16,000): 0.023 (p80 0.227), E1/E2 high, I1 low, steady. C3 held vacuously; X1-X3 held.
+UNPLANNED (not preregistered, no silencing, R1SIZE only): control DNs DNg75_R (129181, also an
+E1 intermediate) and DNa02_L (130496) gave MN scores 0.97/0.95 at 13.6/14.1 Hz with E1/E2/I1
+traces all oscillating (period 74 ms, low core rates, 127-184 recruited, inside the preprint
+band); DNp09_R 0.52. Not seen with cord-only sizes. Reading (hypothesis): the core can oscillate
+in our wiring under moderate drive; DNg100 only engages it via the all-or-none jump into
+saturated steady states. See DNG100_ENGAGED_RHYTHM_RESULTS.md.
+
+NEXT (needs approval): structural comparison of DNg100's vs DNg75_R's/DNa02_L's routes into
+E1/E2/I1, and/or a preregistered test of the control-DN oscillation (core silencing, both size
+versions). No tuning.
+
+## Rhythm Step R3 (rhythm test in the engaged regime): design — 2026-11-06
+
+Designed only (no protocol, code or run). Branch stacked on R2 (PR #333, itself on #332;
+both open). R2 showed the core engages only with an all-or-none jump to ~600 active neurons
+(VNCSIZE 2,000, R1SIZE 16,000). R3 applies R1's criteria (C1 score >= 0.5 and > control p80;
+C2 5-20 Hz; C3 SIL_E1/E2/I1 each < 0.5) at those drives (declared rule: R2's lowest drive with
+all three core cells engaged in >= 8/16 seeds), no drive adjustment, fresh seeds 1001-1064
+(controls 1001-1016, R1's 20 control DNs at the same drive). Arms: VNCSIZE primary (R1b's
+cord-only sizes), R1SIZE secondary; 1,152 simulations. Qualifier CORE_NOT_RELIABLY_ENGAGED if
+< half of DNG100 replicates engage the core. Reported only: E1/E2/I1 trace rhythmicity, Ti
+phase. I2 hard gate: re-run R2 seeds 1-4 at each drive and match R2 exactly. X1 VNCSIZE
+NOT_REPRODUCED (score < 0.1), X2 R1SIZE NOT_REPRODUCED, X3 E1 trace not rhythmic (informed by
+R2's reported scores 0.01-0.03, disclosed). See DNG100_ENGAGED_RHYTHM_V1.md.
+
+NEXT (needs approval): build and run R3.
+
 ## Rhythm Step R2 (DNg100 recruitment map): CORE_REACHED_BEYOND_RANGE — 2026-11-06
 
 Preregistered (32a86de, protocol 4b26c10a; amendments: 11 unique intermediates, VNCSIZE sizes

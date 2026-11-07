@@ -1,0 +1,83 @@
+{
+  "schema": "dng100-engaged-rhythm-protocol-v1",
+  "date": "2026-11-06",
+  "design": "docs/DNG100_ENGAGED_RHYTHM_V1.md",
+  "question": "With the core engaged, does DNg100_L stimulation produce a front-left motor rhythm that is specific to DNg100 (versus control DNs) and needs E1, E2 and I1?",
+  "status": "PREREGISTERED_BEFORE_ANY_PROTOCOL_RUN",
+  "not_claimed": ["walking", "validation of the preprint's biology", "anything about the live LIF engine", "a change to motor admission or mappings", "that the drives are physiological"],
+  "anticipated": "R2 reported (untested) MN rhythm scores 0.01-0.03 in every engaged condition; R3's DNG100 outcome is partly anticipated. R3 adds controls, silencing, fresh seeds, criteria and core-trace rhythmicity.",
+  "sources": {
+    "cache": "maleCNS cache (load_cache verifies the canonical source fingerprints)",
+    "files": {
+      "dng100_rate_model_py_lf_sha256": "6c3afeeb9f4b0425d54592a9380e0bca8d403e75207b45a6be773cebed9ca8ff",
+      "dng100_size_audit_py_lf_sha256": "bfb46968e0dd6e7c903afae09681d8d7252e332c2b3956ff7e83fdedaaff2839",
+      "skeleton_dump_mjs_lf_sha256": "31d2aba130ce9c60c60265669d837aef66629830be202d5f5ddc2dac16237f5b",
+      "dng100_rhythm_py_lf_sha256": "f6603d8fdb0cb85a6ef51758b3ee14d3aed813b4aa37bf40c9bc5f3e27b73448",
+      "neural_py_lf_sha256": "8acebd58cdc221cc815646474bb337c3dc7bd05cccde685ac713f23ca51c7e0c",
+      "skel_js_lf_sha256": "b07415a1291023158df854323668a7b8a169b5e1e4523be9c870848ac5b1d969",
+      "rc_js_lf_sha256": "b8873baa68c0513fc6d8bde2f0e3cdb2e8607741acdd8ddc0200b78aef785c7b",
+      "bodymap_lf_sha256": "10630cd4c7a6cc2c1dcfcbee4a602d307f06766f316b185f631406813a58da9d",
+      "dng100_recruitment_map_py_lf_sha256": "e8a2e243cc446c9ebffab3887eba7103092e99eb7d241d357f537ea69d3638db",
+      "skeletons_flys_sha256": "3e5a411218ed9b6bb979e92b91d9c3eac13a12cf099e7c138d1daec71a9f61d7",
+      "neuron_size_bin_sha256": "06bc9b1e88e8f55c2e630f8f9c9746208377e6d186f0c6a34612faaafe9ae7fa",
+      "r1_result_json_sha256": "24062901eeab8b24941c8ba8940659a93776015effa58b83373e25f5d7a9b719",
+      "r1b_result_json_sha256": "c9c2424ac4e909b2d2ce36a119e6de50d71089eca07ab8e800d02cffa8d676fd",
+      "r2_result_json_sha256": "974d72f439fea8aeef43a237675e30b069b77cf5a85ab3efa5392ca1951ccaf5"
+    },
+    "hash_rule": "text files: sha256 after CRLF -> LF; .bin/.flys and evidence result.json: sha256 of raw bytes"
+  },
+  "cells": {"DNg100_L": 10045, "DNg100_R": 10056, "E1": 800173, "E2": 800863, "I1": 801884},
+  "model": "R1's model unchanged (dng100_rate_model: network, W, draw, scale, simulate; b 0.03; RK45 rtol 2e-6 atol 5e-9; 1 s; onset 20 ms; window t = 250..999 ms); silencing holds the cell's activation at 0 (as R1). No drive adjustment.",
+  "conditions": {
+    "drive_rule": "per arm, R2's lowest ladder drive at which all three core cells were engaged in >= 8 of 16 seeds (chosen from R2's engagement data, not its rhythm scores)",
+    "arms": {
+      "VNCSIZE": {"role": "primary", "sizes": "R1b cord-only, computed as in R2 (dng100_recruitment_map.cord_only_sizes)", "drive": 2000},
+      "R1SIZE": {"role": "secondary", "sizes": "R1's (size / 542,747,200)", "drive": 16000}
+    },
+    "per_arm": "DNG100 (DNg100_L stimulated) seeds 1001-1064; SIL_E1, SIL_E2, SIL_I1 (DNg100_L stimulated, one core cell silenced) seeds 1001-1064 each; CONTROL x 20 (each control DN stimulated at the arm's drive) seeds 1001-1016 each",
+    "controls_dense_indices": [92, 278, 754, 763, 820, 1052, 1087, 1599, 2659, 4164, 4685, 9205, 9762, 11053, 21341, 26520, 39896, 128032, 129181, 130496],
+    "controls_note": "R1's 20 acetylcholine control DNs (rng 20261107), unchanged; 129181 is also one of E1's two-hop intermediates (reported, not changed)",
+    "order": "I2 reproduction first; then VNCSIZE, then R1SIZE; within an arm DNG100, SIL_E1, SIL_E2, SIL_I1, then controls in the listed order",
+    "total_simulations": 1152
+  },
+  "readout": {
+    "replicate": "R1's score_rates: V1 rhythmicity per active front-left MN (max > 0.01 Hz), mean over active MNs (NaN if none); frequency = median 1000/period over active MNs with score > 0",
+    "condition": "R1's summarize: mean score over replicates with a score; median frequency",
+    "engaged": "all three of E1, E2, I1 active (max > 0.01 Hz) in the window"
+  },
+  "acceptance": {
+    "C1_rhythm": "DNG100 score >= 0.5 AND > 80th percentile of the 20 control scores",
+    "C2_frequency": "DNG100 frequency in [5, 20] Hz",
+    "C3_necessity": "SIL_E1, SIL_E2 and SIL_I1 each score < 0.5",
+    "RATE_RHYTHM_REPRODUCED": "C1 and C2 and C3",
+    "RATE_RHYTHM_PARTIAL": "C1 and (not C2 or not C3)",
+    "RATE_RHYTHM_NOT_REPRODUCED": "not C1",
+    "INCONCLUSIVE": "I1, I2 or I4 failure, or no DNG100 replicate with a score",
+    "primary_verdict": "VNCSIZE's; R1SIZE reported alongside",
+    "qualifier": "CORE_NOT_RELIABLY_ENGAGED if fewer than half of the arm's DNG100 replicates are engaged"
+  },
+  "reported_not_gated": ["rhythmicity of the E1, E2 and I1 rate traces themselves (when active)", "Ti flexor vs Ti extensor cross-correlation lag (tibia_phase)", "recruited counts, stimulated-neuron rate, per-MN score and period with muscle names", "engagement and core activity fractions per condition"],
+  "integrity": {
+    "I1": "source hashes; R1 network body-ID hash; control list equal and in the network; R1b z* = 462 and m_VNC = 507,457,760 reproduced",
+    "r1_network_body_ids_sha256": "cdcfcd231484a46c2a668d17932d95b2147ab16e7dd5c7f87857490590b12eed",
+    "I2_r2_reproduction": "hard gate before any protocol condition: DNg100_L at each arm's drive, seeds 1-4, must match R2's result.json exactly (recruited count, E1/E2/I1 active, MN score); failure stops the run as INCONCLUSIVE",
+    "I3_tests": "tests/test_dng100_engaged_rhythm.py passes (condition builder, summary, verdict and qualifier, expectations, I2 check)",
+    "I4": "1,152 protocol simulations (plus 8 reproduction simulations)"
+  },
+  "expectations": {
+    "X1": "VNCSIZE RATE_RHYTHM_NOT_REPRODUCED with DNG100 score < 0.1",
+    "X2": "R1SIZE RATE_RHYTHM_NOT_REPRODUCED",
+    "X3": "median E1 trace rhythmicity in VNCSIZE DNG100 < 0.5",
+    "note": "recorded in the design before any R3 simulation, informed by R2's reported scores (disclosed); wrong ones are recorded as wrong"
+  },
+  "plumbing_disclosure": "Before registration one VNCSIZE DNG100 simulation at seed 0 (not a protocol seed) was run for wall time only (0.74 s; also printed z* 462, m_VNC and source hashes); its score and rates were not printed.",
+  "execution": "one command (--output) runs I2 and all 1,152 simulations and evaluates in the same process; output opened exclusively; run once in the background.",
+  "interpretation_limits": [
+    "Isolated 2,111-neuron network (R1's); no other brain or cord input.",
+    "Drives chosen by a declared engagement rule, outside the preprint's 5-500 recruitment rule; the engaged state has ~600+ active neurons.",
+    "Reconstructed rate model (b from ratenet.js); 64 replicates, not 1,024; 68 bodymap MNs, not MANC's 144.",
+    "The V1 rhythmicity score is our measure, not the preprint's analysis.",
+    "Outcome partly anticipated by R2's reported scores.",
+    "Neural only: no body or physics; motor coordinates unchanged (20/42 admitted, +4 conditional)."
+  ]
+}
