@@ -1,0 +1,64 @@
+{
+  "schema": "dng100-size-audit-protocol-v1",
+  "date": "2026-11-06",
+  "design": "docs/DNG100_SIZE_AUDIT_V1.md",
+  "question": "How much does using whole-CNS volumes, instead of nerve-cord-only volumes, change the size scaling of DNg100 and the other neurons in R1's network? Is the difference large enough to count as a material fidelity defect in R1?",
+  "status": "PREREGISTERED_BEFORE_ANY_PROTOCOL_RUN",
+  "not_claimed": ["a rhythm", "that R1 v2 would engage the core", "anything about the LIF engine", "a measured nerve-cord volume", "agreement with MANC absolute volumes (MANC is not used; local-only project)"],
+  "sources": {
+    "cache": "maleCNS cache (load_cache verifies the canonical source fingerprints)",
+    "files": {
+      "skel_js_lf_sha256": "b07415a1291023158df854323668a7b8a169b5e1e4523be9c870848ac5b1d969",
+      "rc_js_lf_sha256": "b8873baa68c0513fc6d8bde2f0e3cdb2e8607741acdd8ddc0200b78aef785c7b",
+      "skeleton_dump_mjs_lf_sha256": "31d2aba130ce9c60c60265669d837aef66629830be202d5f5ddc2dac16237f5b",
+      "meta_json_lf_sha256": "580c2d5a210469a6ab1184ae2187dcc4ce8217c6f74043bd2e585c7b110ec36a",
+      "dng100_rate_model_py_lf_sha256": "6c3afeeb9f4b0425d54592a9380e0bca8d403e75207b45a6be773cebed9ca8ff",
+      "neural_py_lf_sha256": "8acebd58cdc221cc815646474bb337c3dc7bd05cccde685ac713f23ca51c7e0c",
+      "skeletons_flys_sha256": "3e5a411218ed9b6bb979e92b91d9c3eac13a12cf099e7c138d1daec71a9f61d7",
+      "neuron_size_bin_sha256": "06bc9b1e88e8f55c2e630f8f9c9746208377e6d186f0c6a34612faaafe9ae7fa",
+      "neurons_bin_sha256": "c406acba63d75acd258bb42b4ba8d02cc6b64ebc5e2cf3e86fc750ff0da99046"
+    },
+    "hash_rule": "text files: sha256 after CRLF -> LF; .bin/.flys: sha256 of raw bytes"
+  },
+  "cells": {"DNg100_L": 10045, "DNg100_R": 10056, "E1": 800173, "E2": 800863, "I1": 801884},
+  "method": {
+    "skeletons": "fly-brain-main/public/data/skeletons.flys decoded by fly-brain-main/src/codec/skel.js decodeSkel (through malecns_backend/embodiment/skeleton_dump.mjs); positions in um; skeleton index = dense index",
+    "neck_plane": {
+      "brain_superclasses": "names starting cb_, ol_ or visual_, excluding names containing 'sensory' or 'efferent' (cb_endocrine, cb_intrinsic, cb_motor, ol_intrinsic, visual_centrifugal, visual_projection, visual_projection_tbc)",
+      "brain_superclasses_note": "precise reading of the design's 'central-brain and optic-lobe superclasses (REGION_OF 0 and 1, excluding DN/AN/sensory_*/efferent)'; ENS and unknown are not named central-brain or optic-lobe superclasses and are excluded. Declared before any plane was computed.",
+      "cord_superclasses": "names starting vnc_",
+      "rule": "over all vertices of those neurons, axis 3 (z); candidates are integers from floor(min z) to ceil(max z); error(c) = brain vertices with z > c + cord vertices with z < c; z* = lower-middle element of the sorted minimising candidates",
+      "G1": "error(z*) / vertices < 0.01"
+    },
+    "cord_fraction": "f_i = (cable with z > z*) / (total cable); cable = sum of Euclidean segment lengths over decodeSkel seg pairs; a segment crossing z* contributes the part above z* in proportion to its z span; f undefined (NaN) if total cable is 0",
+    "size_vnc": "size_VNC,i = neuron_size_i * f_i (declared volume-along-cable approximation)",
+    "scaling": "s_R1 = size / m_R1, m_R1 = region_scales VNC-region median (542,747,200); s_VNC = size_VNC / m_VNC, m_VNC = upper-middle element of positive finite size_VNC over the same region-2 neurons (vnc_, descending, ascending, sensory_ascending, sensory_descending, efferent_ superclasses); rho = s_R1 / s_VNC (= (m_VNC/m_R1)/f); f = 0 -> rho infinite; f NaN -> rho NaN",
+    "r1_network": "dng100_rate_model.build_network (unchanged); classes: mn (V1 front-left MNs), dn (descending_neuron), an (ascending_neuron), cord_premotor (vnc_* non-MN), other"
+  },
+  "labels": {
+    "SIZE_MISMATCH_MATERIAL": "G1 passes and either (a) rho(DNg100_L) >= 2 or (b) median rho over R1's network DNs (NaN excluded, infinite included) >= 2",
+    "SIZE_MISMATCH_MINOR": "G1 passes and neither (a) nor (b)",
+    "INCONCLUSIVE": "G1 fails; or DNg100_L, E1, E2 or I1 has zero cable; or a source hash mismatch; or I2 fails; or R1 network body-ID hash mismatch"
+  },
+  "integrity": {
+    "I1_sources": "file hashes above, cache fingerprints (load_cache), R1 network body-ID hash",
+    "r1_network_body_ids_sha256": "cdcfcd231484a46c2a668d17932d95b2147ab16e7dd5c7f87857490590b12eed",
+    "I2_index_identity": "skeleton N == meta N; for the five cells and 15 neurons drawn by numpy.random.default_rng(20261108).choice(15, no replacement) from neurons with skeleton vertices and a finite soma, the soma (cache units x 0.008 um) lies within the skeleton's bounding box +/- 10 um; at least 15 checked and all pass",
+    "I2_draw_dense_indices": [4436, 12412, 19808, 20155, 22166, 34656, 50604, 59811, 60218, 62454, 68682, 104931, 127982, 129217, 146904],
+    "I3_synthetic": "tests/test_dng100_size_audit.py passes (plane search and tie rule, crossing-segment split, median rule, rho closed form, label rules, superclass sets)"
+  },
+  "reported_not_gated": ["z*, its minimiser range and misclassification counts", "m_R1, m_VNC", "f, s_R1, s_VNC, rho for the five cells and the 68 MNs", "rho and f quantiles per network class; infinite and no-cable counts", "network neurons with s > 20 under each definition", "whole-dataset f quantiles for descending and ascending neurons"],
+  "expectations": {
+    "X1": "SIZE_MISMATCH_MATERIAL through (a)",
+    "note": "recorded before any plane, cable or size was computed; a wrong guess is recorded as wrong"
+  },
+  "plumbing_disclosure": "Before registration: (1) the skeleton dump was run once and the first 100 neurons' somas were compared with their skeleton extents to establish the soma unit (8 nm: cache value x 0.008 = um); (2) --describe printed source hashes, N and the I2 draw and soma checks (all 20 inside). No plane, cable fraction or size ratio was computed. Two synthetic tests initially failed from arithmetic errors in the tests' expected values (not the module) and were corrected.",
+  "execution": "one command (--output) computes everything; output opened exclusively; run once.",
+  "interpretation_limits": [
+    "Cable length stands in for volume; thick axons in the neck connective could make the true cord fraction differ.",
+    "Display skeletons are coarse (DNg100_L 484 vertices), so cable lengths are approximate.",
+    "A single z plane approximates the neck; G1 reports how cleanly it separates intrinsic brain and cord vertices.",
+    "neuron_size.bin has no documented source or units; only the relative (whole-CNS versus cord-portion) definition is audited, not absolute agreement with MANC.",
+    "Structure only: no simulation, no rhythm claim, no change to R1's recorded evidence, the live engine or motor coordinate status (20/42 admitted, +4 conditional)."
+  ]
+}

@@ -1,5 +1,37 @@
 # FlyBrainUnity — local Codex handoff
 
+## Rhythm Step R1b (size-scaling fidelity audit): SIZE_MISMATCH_MATERIAL via network DNs, not DNg100 — 2026-11-06
+
+Preregistered (d85e4ac, protocol 3813e577; build-time amendments: exact brain superclass set,
+I2 soma tolerance +/-10 um with 8 nm soma units, inf/NaN rules), run once (seconds, result
+c9c2424a). Integrity all pass (hashes, R1 network hash cdcfcd23, I2 20/20 somas inside, 7
+synthetic tests). Neck plane z* = 462 um, 0.0017 % misclassified (G1 pass). m_VNC/m_R1 = 0.935
+(cord-intrinsic cells rho 0.93). DNg100_L f 0.69, rho 1.35, cord-only s 22.7 (still > 20) -> (a)
+fails, X1 wrong. R1's 904 network DNs: f median 0.40, rho median 2.36 -> (b) holds -> MATERIAL.
+ANs rho 1.19. Cells with s > 20: 49 (R1) vs 20 (cord-only). Reading: R1 over-scaled the other DNs
+but not, materially, the stimulated DNg100, and R1's drive rule already raised I_stim 4-8x; so
+the size definition does not explain DNg100's non-engagement. Structure only. See
+DNG100_SIZE_AUDIT_RESULTS.md.
+
+NEXT (needs the user's choice): the declared consequence is a preregistered R1 v2 with
+cord-only sizes for DNs/ANs; the descriptive recruitment map (where DNg100's signal stops) is
+the more direct question given DNg100's own rho 1.35.
+
+## Rhythm Step R1b (size-scaling fidelity audit): design — 2026-11-06
+
+Designed only (no protocol, code or run). R1 never engaged the E1/E2/I1 core; the preprint's
+rate model scales gain/threshold by s = size / dataset median, and DNg100_L had s = 30.7. The
+preprint used MANC (nerve cord only: DN/AN volumes are their cord portion); our neuron_size.bin
+is whole-CNS volume. R1b estimates each neuron's nerve-cord fraction f from the local display
+skeletons (skeletons.flys via skel.js decodeSkel; cable length beyond a neck plane z*, chosen
+by minimum brain/cord vertex misclassification, gate G1 < 1 %), size_VNC = size x f, and
+rho = s_R1 / s_VNC. SIZE_MISMATCH_MATERIAL if rho >= 2 for DNg100_L or median rho over R1's
+network DNs >= 2; else MINOR. Expectation X1: MATERIAL via DNg100_L. Structure only; cable as
+a volume proxy is a declared approximation. See DNG100_SIZE_AUDIT_V1.md.
+
+NEXT (needs approval): build and run R1b. MATERIAL -> R1 v2 with cord-portion sizes;
+MINOR -> descriptive recruitment map.
+
 ## Rhythm Step R1 (preprint DNg100 rate model on our connectome): NOT_REPRODUCED, uninformative — 2026-11-06
 
 Preregistered (2ba19bd, protocol 3785bbeb; amendment before any simulation: scored MNs kept
