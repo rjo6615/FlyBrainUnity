@@ -1,5 +1,37 @@
 # FlyBrainUnity — local Codex handoff
 
+## Rhythm Step R6 (inhibition search): REDUNDANT_INHIBITION — 2026-11-06
+
+Preregistered (2172e7f, protocol 2d82fcd1, no amendments; candidates listed first inside the
+run), run once in the background (1,354 s, result 3d0d800c). Integrity all pass, incl. I2 (8/8
+R5 simulations exact). 31 T1 inhibitory loop partners of E1/E2 (21 GABA, 10 glutamate; T2 not
+used). No single candidate needed (lowest single scores 0.82 DNg75_R, 0.76 DNa02_L). Silencing
+all 31: DNg75_R rhythm abolished (0.052) because the network ignites (689 recruited, E1/E2
+~150 Hz, tonic, like DNg100 in R3); DNa02_L rhythm survives (0.993) at 7.5 Hz instead of 13.4,
+with I1 now strongly active (54 Hz) and oscillating. Verdict REDUNDANT_INHIBITION via DNg75_R.
+X1 held, X2 and X3 wrong. Reading (hypothesis): the E1-E2 rhythm rests on distributed
+inhibition holding the core at low rates; DNg100's steady state and these DNs' rhythm look like
+two sides of one excitation/inhibition balance. See DNG100_INHIBITION_SEARCH_RESULTS.md.
+
+NEXT (needs approval): a preregistered test of that balance (e.g. I1 plus the group, or graded
+removal of inhibition), no tuning; or merge the stacked PRs #332-#337 in order.
+
+## Rhythm Step R6 (inhibition search): design — 2026-11-06
+
+Designed only (no protocol, code or run). Branch stacked on R5 (PR #336, on #335-#332; all open).
+Question: which inhibitory cells (other than I1) does R5's E1-E2 rhythm need? E1/E2 are ACh
+(IN17A001_L, INXXX466_L), I1 glutamate (IN16B036_L). Stage A (declared rule, not yet listed):
+T1 inhibitory cells in a direct loop with E1/E2 (E excites k, k inhibits E); T2 one-relay loops
+only if T1 < 5; excludes DNs/ANs/MNs/core/I1; cap 40 by loop strength. Stage B: R1SIZE drive
+16,000, targets DNg75_R and DNa02_L, fresh seeds 3001-3032: STIM, SIL_SHAM (R5 rule), SIL_GROUP,
+SIL_k per candidate; <= 2,752 simulations. Classes NEEDED_OSCILLATION (score < 0.5, E1 on but
+tonic) / NEEDED_CORE_OFF / NEEDED_OTHER / NOT_NEEDED; verdict SHARED_INHIBITORY_PARTNER /
+TARGET_SPECIFIC_PARTNER / REDUNDANT_INHIBITION / GROUP_SILENCES_CORE / NO_PARTNER_IN_SET. I2:
+R5 STIM seeds 2001-2004 exact. X1 T1 >= 5, X2 SHARED_INHIBITORY_PARTNER, X3 GROUP
+NEEDED_OSCILLATION for both. See DNG100_INHIBITION_SEARCH_V1.md.
+
+NEXT (needs approval): build and run R6.
+
 ## Rhythm Step R5 (control-DN rhythm test): OBSERVATION_NOT_CONFIRMED; rhythm real but I1 not needed — 2026-11-06
 
 Preregistered (a500af8, protocol 0fabdb48, no amendments), run once in the background (1,637 s,

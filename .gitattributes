@@ -219,3 +219,6 @@ docs/evidence/dng100-route-comparison-v1/**/*.txt -text -whitespace
 docs/evidence/dng100-control-rhythm-v1/*.json -text
 docs/evidence/dng100-control-rhythm-v1/**/*.json -text
 docs/evidence/dng100-control-rhythm-v1/**/*.txt -text -whitespace
+docs/evidence/dng100-inhibition-search-v1/*.json -text
+docs/evidence/dng100-inhibition-search-v1/**/*.json -text
+docs/evidence/dng100-inhibition-search-v1/**/*.txt -text -whitespace

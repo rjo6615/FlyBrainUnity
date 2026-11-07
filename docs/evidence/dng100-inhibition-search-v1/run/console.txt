@@ -1,0 +1,35 @@
+[     5s] I2 R5 reproduction: True (8 checked); 31 candidates (T1 31, T2 used False)
+[   762s] DNg75_R done (valid True)
+[  1354s] DNa02_L done (valid True)
+{
+ "verdict": "REDUNDANT_INHIBITION",
+ "partners": [],
+ "expectations": {
+  "X1": true,
+  "X2": false,
+  "X3": false
+ },
+ "candidate_counts": {
+  "t1": 31,
+  "t2": 0,
+  "t2_used": false
+ },
+ "reason": null,
+ "runtime_s": 1354.4,
+ "targets": {
+  "DNg75_R": {
+   "valid": true,
+   "stim": 0.9878398457111737,
+   "sham": 0.9878672502485488,
+   "group": "NEEDED_OSCILLATION",
+   "needed": {}
+  },
+  "DNa02_L": {
+   "valid": true,
+   "stim": 0.9278391553175804,
+   "sham": 0.9257361570135965,
+   "group": "NOT_NEEDED",
+   "needed": {}
+  }
+ }
+}
