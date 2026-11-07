@@ -1,0 +1,114 @@
+{
+ "schema": "dng100-inhibition-search-protocol-v1",
+ "date": "2026-11-06",
+ "design": "docs/DNG100_INHIBITION_SEARCH_V1.md",
+ "question": "Which inhibitory cells in R1's network, other than I1, does the DNg75_R / DNa02_L rhythm need, and are any of them needed by both?",
+ "status": "PREREGISTERED_BEFORE_ANY_PROTOCOL_RUN",
+ "not_claimed": [
+  "walking",
+  "biological roles of any cell",
+  "validation of the preprint's biology",
+  "anything about the live LIF engine",
+  "a change to motor admission or mappings"
+ ],
+ "known_before": "Transmitters of E1 (IN17A001_L, acetylcholine), E2 (INXXX466_L, acetylcholine), I1 (IN16B036_L, glutamate). No candidate has been counted or listed.",
+ "sources": {
+  "cache": "maleCNS cache (load_cache verifies the canonical source fingerprints)",
+  "files": {
+   "dng100_rate_model_py_lf_sha256": "6c3afeeb9f4b0425d54592a9380e0bca8d403e75207b45a6be773cebed9ca8ff",
+   "dng100_size_audit_py_lf_sha256": "bfb46968e0dd6e7c903afae09681d8d7252e332c2b3956ff7e83fdedaaff2839",
+   "skeleton_dump_mjs_lf_sha256": "31d2aba130ce9c60c60265669d837aef66629830be202d5f5ddc2dac16237f5b",
+   "dng100_rhythm_py_lf_sha256": "f6603d8fdb0cb85a6ef51758b3ee14d3aed813b4aa37bf40c9bc5f3e27b73448",
+   "neural_py_lf_sha256": "8acebd58cdc221cc815646474bb337c3dc7bd05cccde685ac713f23ca51c7e0c",
+   "skel_js_lf_sha256": "b07415a1291023158df854323668a7b8a169b5e1e4523be9c870848ac5b1d969",
+   "rc_js_lf_sha256": "b8873baa68c0513fc6d8bde2f0e3cdb2e8607741acdd8ddc0200b78aef785c7b",
+   "bodymap_lf_sha256": "10630cd4c7a6cc2c1dcfcbee4a602d307f06766f316b185f631406813a58da9d",
+   "dng100_recruitment_map_py_lf_sha256": "e8a2e243cc446c9ebffab3887eba7103092e99eb7d241d357f537ea69d3638db",
+   "dng100_engaged_rhythm_py_lf_sha256": "17cfc87ddb456f5e432c7977a07cf46fdb1f0fc3044d75552c69366f4c5e8d83",
+   "dng100_route_comparison_py_lf_sha256": "2a75973caf602d1beb5fd671aad6d52f14a3f68752584a9291161311f8ce042c",
+   "dng100_control_rhythm_py_lf_sha256": "37755e85f0c78dda8153091eed8d4f0f86a467bc79c7da2a5379f94f5c90e0ab",
+   "skeletons_flys_sha256": "3e5a411218ed9b6bb979e92b91d9c3eac13a12cf099e7c138d1daec71a9f61d7",
+   "neuron_size_bin_sha256": "06bc9b1e88e8f55c2e630f8f9c9746208377e6d186f0c6a34612faaafe9ae7fa",
+   "r1_result_json_sha256": "24062901eeab8b24941c8ba8940659a93776015effa58b83373e25f5d7a9b719",
+   "r1b_result_json_sha256": "c9c2424ac4e909b2d2ce36a119e6de50d71089eca07ab8e800d02cffa8d676fd",
+   "r2_result_json_sha256": "974d72f439fea8aeef43a237675e30b069b77cf5a85ab3efa5392ca1951ccaf5",
+   "r3_result_json_sha256": "099e42a78ccfc1e04c22a04116d1adfb1121d0331d4d59e0462370814391e339",
+   "r4_result_json_sha256": "f218454224d6afdd122ffc71db36d48465533f9e79572d3134989c01d315a492",
+   "r5_result_json_sha256": "c4318d93eb6fb8f8c635b013e495908ef1e00357531681d0b7906f36b7bdc827"
+  },
+  "hash_rule": "text files: sha256 after CRLF -> LF; .bin/.flys and evidence result.json: sha256 of raw bytes"
+ },
+ "cells": {
+  "E1": 800173,
+  "E2": 800863,
+  "I1": 801884
+ },
+ "stage_A": {
+  "matrix": "R1's signed W[post, pre] = sign(pre) x synapse count (count >= 5) within the 2,111-neuron network; inhibitory = R1 sign < 0 (GABA, glutamate)",
+  "excluded": "network DNs and ANs, the 68 front-left MNs, E1, E2, I1",
+  "T1": "inhibitory k with max_e W[k, e] > 0 and max_e' -W[e', k] > 0 (e, e' in {E1, E2}); strength = min of the two",
+  "T2": "only if |T1| < 5: inhibitory k not in T1 with max_e' -W[e', k] > 0 and some network x with max_e W[x, e] > 0 and W[k, x] > 0; strength = max_e' -W[e', k]",
+  "ranking": "strength descending, ties by dense index ascending; T1 first, then T2 fills remaining slots",
+  "cap": 40
+ },
+ "stage_B": {
+  "arm": "R1SIZE (R1's sizes), drive 16,000, no adjustment",
+  "targets": {
+   "DNg75_R": 129181,
+   "DNa02_L": 130496
+  },
+  "seeds": "3001-3032 per condition",
+  "conditions_per_target": "STIM; SIL_SHAM (R5 rule: one cell per replicate, default_rng(seed + 7,000,000), eligible = network cells not DN/AN/MN/E1/E2/I1/target two-hop intermediates/candidates); SIL_GROUP (all candidates); SIL_<dense> per candidate in rank order",
+  "order": "I2 first; then DNg75_R, then DNa02_L; within a target STIM, SIL_SHAM, SIL_GROUP, candidates in rank order",
+  "total_simulations": "2 x (N + 3) x 32 for N candidates (<= 2,752)",
+  "storage": "every run stored; per-MN detail only for runs with score >= 0.5"
+ },
+ "model": "R1's model and R3's replicate function unchanged (b 0.03; 1 s; onset 20 ms; window 250..999 ms); silencing holds activation at 0.",
+ "acceptance": {
+  "validity": "per target: STIM score >= 0.5 and SIL_SHAM score >= 0.5, else INVALID",
+  "classes": {
+   "NOT_NEEDED": "condition score >= 0.5",
+   "NEEDED_CORE_OFF": "score not >= 0.5 (NaN counts as abolished) and E1 active in < half the replicates",
+   "NEEDED_OSCILLATION": "score not >= 0.5, E1 active in >= half, median E1 trace rhythmicity < 0.5",
+   "NEEDED_OTHER": "score not >= 0.5, E1 active in >= half, E1 trace rhythmicity >= 0.5"
+  },
+  "verdict_order": [
+   "INCONCLUSIVE: integrity failure or both targets INVALID",
+   "SHARED_INHIBITORY_PARTNER: >= 1 candidate NEEDED_OSCILLATION for both targets (both valid)",
+   "TARGET_SPECIFIC_PARTNER: >= 1 candidate NEEDED_OSCILLATION for one valid target",
+   "REDUNDANT_INHIBITION: no single candidate, SIL_GROUP NEEDED_OSCILLATION for >= 1 valid target",
+   "GROUP_SILENCES_CORE: no single candidate, SIL_GROUP NEEDED_CORE_OFF for >= 1 valid target",
+   "NO_PARTNER_IN_SET: otherwise"
+  ],
+  "multiplicity": "no correction across candidates; every candidate's class is reported"
+ },
+ "reported_not_gated": [
+  "candidate tier, body ID, name, transmitter, loop weights",
+  "per-condition score and frequency",
+  "E1/E2/I1 trace rhythmicity and mean rates",
+  "whether each candidate is a two-hop intermediate of either target"
+ ],
+ "integrity": {
+  "I1": "source hashes; R1 network body-ID hash; E1/E2 acetylcholine and I1 glutamate; R1b z*/m_VNC reproduced; candidates <= 40 and contain no DN, AN, MN, core cell or I1",
+  "r1_network_body_ids_sha256": "cdcfcd231484a46c2a668d17932d95b2147ab16e7dd5c7f87857490590b12eed",
+  "I2_r5_reproduction": "hard gate: R5 R1SIZE STIM for DNg75_R and DNa02_L, seeds 2001-2004 (8 simulations), must equal R5's stored runs exactly (score, recruited, core activity)",
+  "I3_tests": "tests/test_dng100_inhibition_search.py passes (candidate rule on toy W: tiers, exclusions, cap, ranking; classes; validity; verdict order; expectations; I2 check)",
+  "I4": "2 x (N + 3) x 32 simulations plus 8 reproduction simulations"
+ },
+ "expectations": {
+  "X1": "|T1| >= 5 (T2 not used)",
+  "X2": "SHARED_INHIBITORY_PARTNER",
+  "X3": "SIL_GROUP NEEDED_OSCILLATION for both targets",
+  "note": "recorded in the design before any candidate was listed; wrong ones are recorded as wrong"
+ },
+ "plumbing_disclosure": "Before registration one R1SIZE DNg75_R simulation at seed 0 (not a protocol seed) was timed (0.61 s); no candidate was computed; its score and rates were not printed. Unit tests use toy matrices only.",
+ "execution": "one command (--output) computes the candidates, runs I2 and all conditions, and evaluates in the same process; output opened exclusively; run once in the background.",
+ "interpretation_limits": [
+  "R1's sizes only, at one drive; the rhythm is absent with cord-only sizes at R3's drive.",
+  "Short loops only (T1, T2 if needed), capped at 40 candidates.",
+  "Single-cell and whole-group silencing only; no pairs or subsets.",
+  "32 replicates per condition.",
+  "Reconstructed rate model; R1's transmitter signs; 68 bodymap MNs.",
+  "Neural only: no body or physics; motor coordinates unchanged (20/42 admitted, +4 conditional)."
+ ]
+}

@@ -158,3 +158,14 @@ Wrong expectations are recorded as wrong.
    disclosed. The candidate list is computed for the first time inside the registered run.
 4. Commit and push the preregistration. Run once in the background, evaluate in the same
    process, and record the results, handoff and roadmap.
+
+## Build-time notes (before any protocol simulation)
+
+- No amendments to the design's rule, conditions, classes or expectations. The protocol
+  (`protocol.json`, sha 2d82fcd1…) spells out three details the design left implicit:
+  - For T2, the relay x is any network cell excited by E1 or E2.
+  - A candidate silenced with no scored replicate counts as abolished (R1's rule).
+  - Per-MN detail is stored only for runs scoring ≥ 0.5.
+- **Plumbing.** One R1SIZE DNg75_R simulation at seed 0 (not a protocol seed) was timed
+  (0.61 s). No candidate was computed; its score and rates were not printed.
+- The candidate list is computed for the first time inside the registered run.
