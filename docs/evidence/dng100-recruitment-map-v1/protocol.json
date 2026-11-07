@@ -1,0 +1,86 @@
+{
+  "schema": "dng100-recruitment-map-protocol-v1",
+  "date": "2026-11-06",
+  "design": "docs/DNG100_RECRUITMENT_MAP_V1.md",
+  "question": "In R1's rate model, at a fixed ladder of DNg100_L drives, which neurons become active, along which routes does the signal reach (or fail to reach) E1, E2, I1 and the front-left MNs, and where does it stop?",
+  "status": "PREREGISTERED_BEFORE_ANY_PROTOCOL_RUN",
+  "not_claimed": ["a rhythm or its absence", "a change to R1's verdict", "validation of the preprint", "anything about the LIF engine", "physiological drive levels"],
+  "sources": {
+    "cache": "maleCNS cache (load_cache verifies the canonical source fingerprints)",
+    "files": {
+      "dng100_rate_model_py_lf_sha256": "6c3afeeb9f4b0425d54592a9380e0bca8d403e75207b45a6be773cebed9ca8ff",
+      "dng100_size_audit_py_lf_sha256": "bfb46968e0dd6e7c903afae09681d8d7252e332c2b3956ff7e83fdedaaff2839",
+      "skeleton_dump_mjs_lf_sha256": "31d2aba130ce9c60c60265669d837aef66629830be202d5f5ddc2dac16237f5b",
+      "dng100_rhythm_py_lf_sha256": "f6603d8fdb0cb85a6ef51758b3ee14d3aed813b4aa37bf40c9bc5f3e27b73448",
+      "neural_py_lf_sha256": "8acebd58cdc221cc815646474bb337c3dc7bd05cccde685ac713f23ca51c7e0c",
+      "skel_js_lf_sha256": "b07415a1291023158df854323668a7b8a169b5e1e4523be9c870848ac5b1d969",
+      "rc_js_lf_sha256": "b8873baa68c0513fc6d8bde2f0e3cdb2e8607741acdd8ddc0200b78aef785c7b",
+      "bodymap_lf_sha256": "10630cd4c7a6cc2c1dcfcbee4a602d307f06766f316b185f631406813a58da9d",
+      "skeletons_flys_sha256": "3e5a411218ed9b6bb979e92b91d9c3eac13a12cf099e7c138d1daec71a9f61d7",
+      "neuron_size_bin_sha256": "06bc9b1e88e8f55c2e630f8f9c9746208377e6d186f0c6a34612faaafe9ae7fa",
+      "r1_result_json_sha256": "24062901eeab8b24941c8ba8940659a93776015effa58b83373e25f5d7a9b719",
+      "r1b_result_json_sha256": "c9c2424ac4e909b2d2ce36a119e6de50d71089eca07ab8e800d02cffa8d676fd"
+    },
+    "hash_rule": "text files: sha256 after CRLF -> LF; .bin/.flys and evidence result.json: sha256 of raw bytes"
+  },
+  "cells": {"DNg100_L": 10045, "DNg100_R": 10056, "E1": 800173, "E2": 800863, "I1": 801884},
+  "model": "R1's model unchanged (dng100_rate_model.Model network and W, draw, scale, simulate; b 0.03; RK45 rtol 2e-6 atol 5e-9; 1 s; onset 20 ms; window t = 250..999 ms). No drive adjustment: one fixed I_stim on DNg100_L per simulation; nothing silenced.",
+  "conditions": {
+    "ladder": [250, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000],
+    "seeds": "1-16 (numpy default_rng(seed) draws, as R1)",
+    "arms": {
+      "R1SIZE": "primary: R1's sizes, s = size / 542,747,200",
+      "VNCSIZE": "secondary, descriptive: s = size * f / m_VNC; f from R1b's rule recomputed at run time (decodeSkel, neck plane, cable split) for descending_neuron and ascending_neuron superclasses, f = 1 for all others; m_VNC = R1b's median (must equal 507,457,760)"
+    },
+    "order": "R1SIZE then VNCSIZE; within an arm, drives ascending, seeds ascending",
+    "total_simulations": 288
+  },
+  "readouts": {
+    "active": "R1's definition: max rate in the window > 0.01 Hz",
+    "per_simulation": "recruited count; DNg100_L mean window rate and as a fraction of its rmax; active counts by hop layer from DNg100_L (unweighted, any-sign edges) and by class (dn, an, cord = vnc_* non-MN, mn = V1 front-left MNs, other); active MNs; E1/E2/I1 active, max and mean rate, and at t = 999 ms exc = b*sum(W+ r), inh = b*sum(W- r), theta, margin = exc + inh - theta, active presynaptic count and the 5 largest active contributions; max rate of each two-hop intermediate; V1 rhythmicity score and frequency of active MNs (score_rates), reported only",
+    "intermediates": "neurons k with DNg100_L -> k and k -> E1, E2 or I1 (nonzero W); 11 unique (E2's only route AN19B009_R and I1's only route AN08B031_L are among E1's 11)"
+  },
+  "labels": {
+    "per_core_cell_and_arm": {
+      "ENGAGED_AT_<I>": "lowest ladder drive at which the cell is active in >= 8 of 16 seeds",
+      "NOT_ENGAGED_DNG100_SATURATED": "never engaged and at 64,000 DNg100_L's mean window rate >= 0.9 x its rmax in >= 8 seeds",
+      "NOT_ENGAGED_UNSATURATED": "never engaged otherwise"
+    },
+    "per_arm": {
+      "CORE_REACHED_IN_PREPRINT_RANGE": "E1, E2, I1 all engaged and the median recruited count at the highest of their three engaging drives <= 500",
+      "CORE_REACHED_BEYOND_RANGE": "all engaged and that median > 500",
+      "CORE_PARTIAL": "one or two engaged",
+      "CORE_NOT_REACHED": "none engaged"
+    },
+    "stopping_point": "for each non-engaged core cell at 64,000: median margin; intermediates active (> 0.01 Hz) in >= 8 seeds versus silent; median deepest active hop layer",
+    "run_status": "MAP_RECORDED if I2 and I4 pass, else INCONCLUSIVE (all data still recorded)"
+  },
+  "integrity": {
+    "I1": "source hashes; R1 network body-ID hash; intermediate body IDs; R1b z* = 462 and m_VNC = 507,457,760 reproduced; VNCSIZE sizes finite. Failure stops the run before any simulation.",
+    "r1_network_body_ids_sha256": "cdcfcd231484a46c2a668d17932d95b2147ab16e7dd5c7f87857490590b12eed",
+    "intermediate_body_ids": [10056, 13964, 14936, 75754, 195620, 256420, 520300, 802438, 802975, 803391, 805352],
+    "I2_r1_reproduction": "hard gate: for seeds 1-16, every entry of R1's recorded DNG100 drive history at 250, 500, 1000 or 2000 equals R1SIZE's recruited count at that seed and drive (R1 result.json, sha 24062901)",
+    "I3_tests": "tests/test_dng100_recruitment_map.py passes (input decomposition equals the model RHS input; hops and intermediates; cell, arm and stopping-point labels; I2 check; expectation evaluation)",
+    "I4": "288 simulations, each with arm, drive and seed"
+  },
+  "expectations": {
+    "X1": "R1SIZE: E1 ENGAGED_AT a drive >= 4,000",
+    "X2": "R1SIZE: CORE_REACHED_BEYOND_RANGE",
+    "X3": "VNCSIZE engages each core cell at the same or a lower drive than R1SIZE (not engaged counts as infinite; cells not engaged in both arms are reported as vacuous)",
+    "note": "recorded in the design before any R2 simulation; wrong ones are recorded as wrong"
+  },
+  "amendments_before_any_protocol_simulation": [
+    "The design listed 'the 11 E1 intermediates, AN19B009_R and AN08B031_L'; both are among E1's 11, so 11 unique intermediates are tracked.",
+    "The design's I3 included a unit test of the VNCSIZE size vector. It depends on decoding the full skeleton file, so it is checked at run time instead (I1: z* and m_VNC reproduced, sizes finite)."
+  ],
+  "plumbing_disclosure": "Before registration: --describe printed hashes, the network hash and the intermediates (structure only); --time-one ran one R1SIZE simulation at seed 0 (not a protocol seed), I = 64,000, and was read only for wall time (0.72 s). Its rates were not printed. The structural numbers in the design came from a read-only script over R1's network.",
+  "execution": "one command (--output) runs all 288 simulations and evaluates in the same process; output opened exclusively; run once.",
+  "interpretation_limits": [
+    "Isolated 2,111-neuron network (R1's); no other brain or cord input.",
+    "Reconstructed rate model (b from ratenet.js); 'active' (> 0.01 Hz) is permissive.",
+    "Drives above 2,000 lie outside anything the preprint's drive rule would select; they probe reachability, not physiology.",
+    "VNCSIZE inherits R1b's cable-length proxy for volume.",
+    "Descriptive: no controls, no rhythm verdict; the reported rhythm score is not a test.",
+    "Neural only: no body, physics or engine change; motor coordinates unchanged (20/42 admitted, +4 conditional)."
+  ]
+}

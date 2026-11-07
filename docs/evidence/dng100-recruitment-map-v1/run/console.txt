@@ -1,0 +1,67 @@
+[     0s] R1SIZE I=250: recruited median 1.0, DNg100 0.5 Hz, core active [0, 0, 0]
+[     1s] R1SIZE I=500: recruited median 1.0, DNg100 8.5 Hz, core active [0, 0, 0]
+[     1s] R1SIZE I=1000: recruited median 4.5, DNg100 24.4 Hz, core active [0, 0, 0]
+[     3s] R1SIZE I=2000: recruited median 32.0, DNg100 56.9 Hz, core active [0, 0, 0]
+[     6s] R1SIZE I=4000: recruited median 102.5, DNg100 110.0 Hz, core active [0, 0, 0]
+[    13s] R1SIZE I=8000: recruited median 157.0, DNg100 170.8 Hz, core active [7, 6, 6]
+[    25s] R1SIZE I=16000: recruited median 622.5, DNg100 194.6 Hz, core active [15, 15, 15]
+[    37s] R1SIZE I=32000: recruited median 624.0, DNg100 196.6 Hz, core active [15, 15, 15]
+[    48s] R1SIZE I=64000: recruited median 624.0, DNg100 196.7 Hz, core active [15, 15, 15]
+[    49s] VNCSIZE I=250: recruited median 1.0, DNg100 3.3 Hz, core active [0, 0, 0]
+[    50s] VNCSIZE I=500: recruited median 5.0, DNg100 14.3 Hz, core active [0, 0, 0]
+[    53s] VNCSIZE I=1000: recruited median 38.0, DNg100 37.5 Hz, core active [3, 3, 3]
+[    65s] VNCSIZE I=2000: recruited median 653.0, DNg100 2.8 Hz, core active [16, 16, 16]
+[    78s] VNCSIZE I=4000: recruited median 639.5, DNg100 69.2 Hz, core active [16, 16, 16]
+[    91s] VNCSIZE I=8000: recruited median 758.0, DNg100 169.5 Hz, core active [16, 16, 16]
+[   104s] VNCSIZE I=16000: recruited median 767.5, DNg100 195.6 Hz, core active [16, 16, 16]
+[   118s] VNCSIZE I=32000: recruited median 767.5, DNg100 196.7 Hz, core active [16, 16, 16]
+[   131s] VNCSIZE I=64000: recruited median 767.5, DNg100 196.7 Hz, core active [16, 16, 16]
+{
+ "verdict": "MAP_RECORDED",
+ "labels": {
+  "R1SIZE": {
+   "label": "CORE_REACHED_BEYOND_RANGE",
+   "cells": {
+    "E1": "ENGAGED_AT_16000",
+    "E2": "ENGAGED_AT_16000",
+    "I1": "ENGAGED_AT_16000"
+   },
+   "highest_engaging_drive": 16000.0,
+   "median_recruited_there": 622.5
+  },
+  "VNCSIZE": {
+   "label": "CORE_REACHED_BEYOND_RANGE",
+   "cells": {
+    "E1": "ENGAGED_AT_2000",
+    "E2": "ENGAGED_AT_2000",
+    "I1": "ENGAGED_AT_2000"
+   },
+   "highest_engaging_drive": 2000.0,
+   "median_recruited_there": 653.0
+  }
+ },
+ "expectations": {
+  "X1": true,
+  "X2": true,
+  "X3": true,
+  "X3_per_cell": {
+   "E1": true,
+   "E2": true,
+   "I1": true
+  },
+  "X3_vacuous_cells": []
+ },
+ "stopping_point": {
+  "R1SIZE": {},
+  "VNCSIZE": {}
+ },
+ "reason": null,
+ "runtime_s": 130.9
+}
+{
+ "I2": {
+  "passed": true,
+  "checked": 56,
+  "mismatches": []
+ }
+}

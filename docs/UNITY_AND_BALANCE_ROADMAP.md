@@ -1,6 +1,10 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
-Current 2026-11-06: rhythm Step R1b run: SIZE_MISMATCH_MATERIAL through R1's network DNs (median rho 2.36), not DNg100 (rho 1.35, cord-only s still 22.7; X1 wrong); clean neck plane (0.0017 % misclassified); the size definition does not explain DNg100's non-engagement.
+Current 2026-11-06: rhythm Step R2 run: CORE_REACHED_BEYOND_RANGE in both size arms - the core switches on all-or-none with a network-wide jump to ~600+ active neurons (R1SIZE at 16,000, VNCSIZE at 2,000), never inside the preprint's 5-500 band, which explains R1; engaged MN output looks tonic (score 0.01-0.03, reported only).
+
+Previous 2026-11-06: rhythm Step R2 designed (recruitment map: R1's rate model at a fixed DNg100 drive ladder 250-64,000, R1 and cord-only sizes; where does the signal stop on the 2-hop routes to E1/E2/I1?). Not run.
+
+Previous 2026-11-06: rhythm Step R1b run: SIZE_MISMATCH_MATERIAL through R1's network DNs (median rho 2.36), not DNg100 (rho 1.35, cord-only s still 22.7; X1 wrong); clean neck plane (0.0017 % misclassified); the size definition does not explain DNg100's non-engagement.
 
 Previous 2026-11-06: rhythm Step R1b designed (size-scaling fidelity audit: whole-CNS volumes vs the preprint's nerve-cord-only MANC volumes, from local skeletons; structure only). Not run.
 
@@ -39,7 +43,7 @@ Previous 2026-11-05: antennal gravity Step B run: ENCODER_READY (pitch-dominated
 Previous 2026-11-04: antennal gravity Step A run: IDENTITY_READY (C/E exact, segregated, direct DN edges); right side far less connected (synapses L/R C 5.3, E 2.5).
 
 ```text
-Rhythm (DNg100 front-left)    [V1 LIF whole-CNS: NOT_REPRODUCED (tonic); R1 preprint rate model on our wiring: NOT_REPRODUCED, uninformative (core never engaged; size scaling suspected); R1b size audit: MATERIAL for network DNs (rho 2.4) but not DNg100 (1.35); next R1 v2 or recruitment map (user's choice)]
+Rhythm (DNg100 front-left)    [V1 LIF whole-CNS: NOT_REPRODUCED (tonic); R1 preprint rate model on our wiring: NOT_REPRODUCED, uninformative (core never engaged; size scaling suspected); R1b size audit: MATERIAL for network DNs (rho 2.4) but not DNg100 (1.35); R2 recruitment map: core reachable only via all-or-none network ignition (>590 active), outside the preprint's band; engaged output tonic-looking]
 Antennal gravity sense        [A: IDENTITY_READY; B: ENCODER_READY (pitch slope 0.97/rad, roll +-0.22/rad descriptive); C: G1 CONSISTENT / FLIP WEAK (E route reaches leg MNs, C route weak; d <= 0 both tilts); C2: drift = body posture (ROOT), neck sag opposes, antenna joints ~0; D: zone crossing -> FLIP/E-onset CONSISTENT, G1/E-offset WEAK, r_GF ~0, C route silent at MNs, 5/12 ON tilted arms rolled; D2: falls late and abrupt, COMMAND_FIRST not diagnostic, no early marker; D3: open-loop yoke -> all three leg groups needed, none sufficient; post-tilt commands suffice, pre-tilt posture does not; D4: direction test confounded by a clip-range defect (not interpretable); G1 upright arms' post-tilt commands also topple an OFF-posture body; D4 v2 (live ranges, no clip): post-tilt change has a specific destabilising direction and needs full dose (NEG/SCRAMBLE/HALF all stay up); then rhythm]
 Coxa push replication         [run: AMPLIFICATION_DIRECTIONAL F / B (R>1 6/6); yoke DO_NOT_REPRODUCE; FREE_COMMANDS_INCREASE_D F / B]
 Coxa conditional tier         [LF/LH/LM/RM CONDITIONAL (fore-aft Coxa); RF/RH blocked by input]
