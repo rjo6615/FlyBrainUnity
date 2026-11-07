@@ -1,6 +1,8 @@
 # Rhythm, Step R8: which of DNg100's direct targets does the network ignition need? (design)
 
-Designed 2026-11-07. **Status: designed only (no protocol, code or run).** Neural-only
+Designed 2026-11-07. **Status: run 2026-11-07, SINGLE_IGNITION_SOURCE in R1SIZE** (body 13964;
+no rhythm unmasked, the core goes silent too); VNCSIZE DISTRIBUTED_IGNITION; X1 wrong, X2-X3 held
+(protocol 528d96a2, result e4415e49). See `DNG100_IGNITION_SOURCE_RESULTS.md`. Neural-only
 rate-model simulation of R1's isolated network.
 
 ## Why this step

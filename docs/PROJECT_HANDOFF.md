@@ -1,5 +1,22 @@
 # FlyBrainUnity — local Codex handoff
 
+## Rhythm Step R8 (ignition source search): R1SIZE SINGLE_IGNITION_SOURCE (body 13964), no rhythm unmasked; VNCSIZE DISTRIBUTED — 2026-11-07
+
+Preregistered (017bf1b, protocol 528d96a2, no amendments; partner list computed first inside the
+run), run once in the background (1,897 s, result e4415e49). Integrity all pass, incl. I2 (8/8
+exact). DNg100_L has 70 direct partners; silencing all leaves 1 recruited. R1SIZE (16,000): only
+partner dense 3694 / body 13964 (cholinergic, unnamed, 52 synapses from DNg100_L, 68 targets,
+one of DNg100's two-hop intermediates to E1) prevents ignition (median 160 vs 616; all 16 seeds),
+but the core goes silent too (E1 1/16 active), so NO_RHYTHM_UNMASKED. VNCSIZE (2,000): no single
+partner prevents ignition; silencing 13964 raises recruitment to 806 and lifts DNg100's
+suppression (3.5 -> 20.8 Hz). X1 wrong, X2 and X3 held. Reading (hypothesis): with R1's sizes
+DNg100 drives the core and the ignition through one shared relay; the single source depends on
+the size definition. See DNG100_IGNITION_SOURCE_RESULTS.md.
+
+NEXT (needs approval): merge #338 and #339; options include a preregistered graded reduction of
+13964's drive (a weight intervention) to try to separate its two roles, or returning to the live
+LIF engine with what R1-R8 learned. No tuning.
+
 ## Rhythm Step R8 (ignition source search): design — 2026-11-07
 
 Designed only (no protocol, code or run). Branch stacked on R7 (PR #338, open). Question: is
