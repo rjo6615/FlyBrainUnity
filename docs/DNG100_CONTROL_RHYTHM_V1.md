@@ -1,7 +1,10 @@
 # Rhythm, Step R5: is the control-DN core oscillation real, and does it need E1, E2 and I1? (design)
 
-Designed 2026-11-06. **Status: designed only (no protocol, code or run).** Neural-only
-rate-model simulation of R1's isolated network.
+Designed 2026-11-06. **Status: run 2026-11-06, OBSERVATION_NOT_CONFIRMED by the declared rule**
+(protocol 0fabdb48, result c4318d93): in R1SIZE all three targets are RHYTHM_CORE_INDEPENDENT
+(rhythm reproduced and specific; E1 and E2 needed, I1 not); VNCSIZE NOT_CONFIRMED; X1 wrong,
+X2-X3 held. See `DNG100_CONTROL_RHYTHM_RESULTS.md`. Neural-only rate-model simulation of R1's
+isolated network.
 
 ## Why this step
 

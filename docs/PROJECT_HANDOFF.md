@@ -1,5 +1,23 @@
 # FlyBrainUnity — local Codex handoff
 
+## Rhythm Step R5 (control-DN rhythm test): OBSERVATION_NOT_CONFIRMED; rhythm real but I1 not needed — 2026-11-06
+
+Preregistered (a500af8, protocol 0fabdb48, no amendments), run once in the background (1,637 s,
+result c4318d93). Integrity all pass, incl. I2 (16/16 R3 simulations reproduced exactly).
+R1SIZE (16,000), 64 fresh seeds: STIM DNg75_R 0.983 (64/64), DNa02_L 0.926 (63/64), DNp09_R
+0.509, all ~13-14 Hz, above the new independent controls' p80 0.192 (best new control 0.43).
+SIL_E1 and SIL_E2 abolish the rhythm (E1 goes tonic without E2); SIL_SHAM unchanged; SIL_I1 does
+NOT abolish it (DNg75_R 0.929, DNa02_L 0.542, DNp09_R 0.508) -> all RHYTHM_CORE_INDEPENDENT (I1 not
+needed); headline OBSERVATION_NOT_CONFIRMED by the declared rule. VNCSIZE (2,000): all
+NOT_CONFIRMED (0.05-0.10); these DNs ignite the network (650-1,000 recruited, I1 110-130 Hz) like
+DNg100 in R3. X1 wrong, X2 and X3 held. Reading (hypothesis): E1 and E2 are both excitatory, so
+the shaping inhibition must come from other network cells than I1. See
+DNG100_CONTROL_RHYTHM_RESULTS.md.
+
+NEXT (needs approval): options are a structural search for the inhibitory partners of E1/E2 that
+the rhythm needs (no tuning), or a VNCSIZE drive map for the rhythm-driving DNs (separately
+versioned). Merge the stacked PRs #332-#336 in order when ready.
+
 ## Rhythm Step R5 (control-DN rhythm test): design — 2026-11-06
 
 Designed only (no protocol, code or run). Branch stacked on R4 (PR #335, on #334, #333, #332;
