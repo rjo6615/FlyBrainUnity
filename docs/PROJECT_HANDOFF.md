@@ -1,5 +1,21 @@
 # FlyBrainUnity — local Codex handoff
 
+## Rhythm Step R4 (route comparison): design — 2026-11-06
+
+Designed only (no protocol, code or run). Branch stacked on R3 (PR #334, on #333 and #332; all
+open). Structure only, on R1's signed network W. Groups by a declared rule on R3's result:
+RHYTHMIC = R1's control DNs with R1SIZE score >= 0.5 (expected 1087, 129181, 130496; else
+INCONCLUSIVE), NONRHYTHMIC = the other 17, plus DNg100_L. 12 gated metrics (direct and net
+two-hop weight to E1/E2/I1, I1 share of excitatory two-hop drive, core focus, out-degree,
+out-weight, direct MN weight, mean hops to core). A metric separates if the exact two-sided
+permutation Mann-Whitney p <= 0.05/12; verdict SIGNATURE_DNG100_DIFFERS / _LIKE_RHYTHMIC /
+NO_SIGNATURE by DNg100_L's placement. I2: DNg100_L's intermediates must equal R2's. X1
+NO_SIGNATURE, X2 DNg100 out-degree > every RHYTHMIC DN's, X3 DNg100 i1_share > every RHYTHMIC
+DN's. Premise disclosed: the rhythmic group is an unplanned, untested R1SIZE-only observation.
+See DNG100_ROUTE_COMPARISON_V1.md.
+
+NEXT (needs approval): build and run R4; then the preregistered control-DN rhythm test.
+
 ## Rhythm Step R3 (rhythm test in the engaged regime): NOT_REPRODUCED; unplanned control-DN oscillation — 2026-11-06
 
 Preregistered (1e3e38a, protocol 51bec0c2, no amendments), run once in the background (892 s,
