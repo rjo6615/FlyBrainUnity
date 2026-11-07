@@ -145,3 +145,16 @@ Wrong expectations are recorded as wrong.
    print no metric values and will be disclosed.
 4. Commit and push the preregistration. Run once (seconds), evaluate in the same process, and
    record the results, handoff and roadmap.
+
+## Build-time notes (before any protocol computation)
+
+- No amendments to the design's groups, metrics, criteria or expectations. The protocol
+  (`protocol.json`, sha 7c173a35…) states the metric definitions in full. Two details are made
+  explicit there, without changing the design: two-hop sums exclude self-loops (k ≠ target),
+  and `core_focus`'s denominator excludes s itself.
+- **Plumbing.** One `--load-check` printed the network size (2,111), 68 MNs, whether neuron
+  names are available, controls in the network, and the source hashes. No metric value was
+  computed or printed.
+- **Test correction.** One unit-test expectation was wrong before any run: a DNg100 value
+  below the whole RHYTHMIC range, with the NONRHYTHMIC median also below, is on the
+  nonrhythmic side by the design's rule. The test was corrected; the rule was not changed.
