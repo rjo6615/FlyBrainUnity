@@ -177,3 +177,14 @@ VNCSIZE). Wrong expectations are recorded as wrong.
    disclosed.
 4. Commit and push the preregistration. Run once in the background (about 35 minutes),
    evaluate in the same process, and record the results, handoff and roadmap.
+
+## Build-time notes (before any protocol simulation)
+
+- No amendments to the design's conditions, criteria or expectations. The protocol
+  (`protocol.json`, sha 0fabdb48…) spells out three details the design left implicit:
+  - C1 uses R1's rule (if the control p80 were NaN, only score ≥ 0.5 is required);
+  - C3 uses R1's rule (a silenced condition with no scored replicate counts as abolished);
+  - per-MN detail is stored only for runs scoring ≥ 0.5, to keep the result file small.
+- **Plumbing.** One R1SIZE DNg75_R simulation at seed 0 (not a protocol seed) was timed
+  (0.58 s). It also printed the control pool size (640) and the source hashes; its score and
+  rates were not printed.
