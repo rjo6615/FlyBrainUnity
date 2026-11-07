@@ -1,0 +1,112 @@
+{
+ "schema": "dng100-ignition-source-protocol-v1",
+ "date": "2026-11-07",
+ "design": "docs/DNG100_IGNITION_SOURCE_V1.md",
+ "question": "Is DNg100_L's network ignition carried by one (or a few) of its direct postsynaptic partners? If a single partner's silencing prevents the ignition, does a front-left MN rhythm appear?",
+ "status": "PREREGISTERED_BEFORE_ANY_PROTOCOL_RUN",
+ "not_claimed": [
+  "walking",
+  "biological roles of any cell",
+  "validation of the preprint's biology",
+  "anything about the live LIF engine",
+  "a change to weights, mappings or motor admission"
+ ],
+ "known_before": "R4 reported DNg100_L's network out-degree (70) and two-hop intermediates to the core. No partner has been silenced or its activity under DNg100 drive inspected.",
+ "sources": {
+  "cache": "maleCNS cache (load_cache verifies the canonical source fingerprints)",
+  "files": {
+   "dng100_rate_model_py_lf_sha256": "6c3afeeb9f4b0425d54592a9380e0bca8d403e75207b45a6be773cebed9ca8ff",
+   "dng100_size_audit_py_lf_sha256": "bfb46968e0dd6e7c903afae09681d8d7252e332c2b3956ff7e83fdedaaff2839",
+   "skeleton_dump_mjs_lf_sha256": "31d2aba130ce9c60c60265669d837aef66629830be202d5f5ddc2dac16237f5b",
+   "dng100_rhythm_py_lf_sha256": "f6603d8fdb0cb85a6ef51758b3ee14d3aed813b4aa37bf40c9bc5f3e27b73448",
+   "neural_py_lf_sha256": "8acebd58cdc221cc815646474bb337c3dc7bd05cccde685ac713f23ca51c7e0c",
+   "skel_js_lf_sha256": "b07415a1291023158df854323668a7b8a169b5e1e4523be9c870848ac5b1d969",
+   "rc_js_lf_sha256": "b8873baa68c0513fc6d8bde2f0e3cdb2e8607741acdd8ddc0200b78aef785c7b",
+   "bodymap_lf_sha256": "10630cd4c7a6cc2c1dcfcbee4a602d307f06766f316b185f631406813a58da9d",
+   "dng100_recruitment_map_py_lf_sha256": "e8a2e243cc446c9ebffab3887eba7103092e99eb7d241d357f537ea69d3638db",
+   "dng100_engaged_rhythm_py_lf_sha256": "17cfc87ddb456f5e432c7977a07cf46fdb1f0fc3044d75552c69366f4c5e8d83",
+   "dng100_route_comparison_py_lf_sha256": "2a75973caf602d1beb5fd671aad6d52f14a3f68752584a9291161311f8ce042c",
+   "dng100_control_rhythm_py_lf_sha256": "37755e85f0c78dda8153091eed8d4f0f86a467bc79c7da2a5379f94f5c90e0ab",
+   "dng100_inhibition_search_py_lf_sha256": "e4d5ba91873b3eb3ed80227e90234dcae6bb7bfd108aae6085dbac9f92a3eeb7",
+   "dng100_balance_test_py_lf_sha256": "706d99f14fae52d969f547423768c973865afb40ef409e767097ca36cae52f3d",
+   "skeletons_flys_sha256": "3e5a411218ed9b6bb979e92b91d9c3eac13a12cf099e7c138d1daec71a9f61d7",
+   "neuron_size_bin_sha256": "06bc9b1e88e8f55c2e630f8f9c9746208377e6d186f0c6a34612faaafe9ae7fa",
+   "r1_result_json_sha256": "24062901eeab8b24941c8ba8940659a93776015effa58b83373e25f5d7a9b719",
+   "r1b_result_json_sha256": "c9c2424ac4e909b2d2ce36a119e6de50d71089eca07ab8e800d02cffa8d676fd",
+   "r2_result_json_sha256": "974d72f439fea8aeef43a237675e30b069b77cf5a85ab3efa5392ca1951ccaf5",
+   "r3_result_json_sha256": "099e42a78ccfc1e04c22a04116d1adfb1121d0331d4d59e0462370814391e339",
+   "r4_result_json_sha256": "f218454224d6afdd122ffc71db36d48465533f9e79572d3134989c01d315a492",
+   "r5_result_json_sha256": "c4318d93eb6fb8f8c635b013e495908ef1e00357531681d0b7906f36b7bdc827",
+   "r6_result_json_sha256": "3d0d800cecb827a46e2a27f12c8ebbfd8b965e17b1182a957b85e6a27921ee1f",
+   "r7_result_json_sha256": "7d8575c78b86dd84da4db4b48244f155bd42a1d195dceaf40205389e067acaa4"
+  },
+  "hash_rule": "text files: sha256 after CRLF -> LF; .bin/.flys and evidence result.json: sha256 of raw bytes"
+ },
+ "cells": {
+  "DNg100_L_body_id": 10045,
+  "E1": 800173,
+  "E2": 800863,
+  "I1": 801884
+ },
+ "conditions": {
+  "arms": {
+   "R1SIZE": {
+    "role": "primary",
+    "sizes": "R1's",
+    "drive": 16000
+   },
+   "VNCSIZE": {
+    "role": "secondary",
+    "sizes": "R1b cord-only (r3.setup)",
+    "drive": 2000
+   }
+  },
+  "partners": "P = every network local index j != DNg100_L with W[j, DNg100_L] != 0 (R1's signed matrix), ascending",
+  "per_arm": "all stimulate DNg100_L: STIM; SIL_SHAM (R5 rule: one cell per replicate, default_rng(seed + 7,000,000), eligible = network cells not DN/AN/front-left MN/E1/E2/I1/DNg100_L's two-hop intermediates to the core/P); SIL_GROUP (all of P); SIL_<dense> per partner in ascending order",
+  "seeds": "5001-5016 per condition",
+  "order": "I2 first; then R1SIZE, then VNCSIZE; within an arm STIM, SIL_SHAM, SIL_GROUP, then partners ascending",
+  "total_simulations": "2 x (|P| + 3) x 16",
+  "storage": "every run stored; per-MN detail only for runs with score >= 0.5"
+ },
+ "model": "R1's model and R3's replicate function unchanged; no weight changes; silencing holds activation at 0",
+ "readout": "R3's: median recruited, MN score and frequency, E1/E2/I1 trace rhythmicity, activity, mean rates; IGNITED = median recruited >= 500 (R2 RANGE_MAX)",
+ "acceptance": {
+  "validity": "per arm: STIM and SIL_SHAM IGNITED, else INVALID",
+  "class": "PREVENTS_IGNITION if SIL_j not IGNITED; NOT_NEEDED otherwise",
+  "verdict_order": [
+   "INVALID",
+   "SINGLE_IGNITION_SOURCE: >= 1 partner PREVENTS_IGNITION (listed)",
+   "DISTRIBUTED_IGNITION: none singly, SIL_GROUP not IGNITED",
+   "IGNITION_NOT_VIA_PARTNERS: SIL_GROUP IGNITED"
+  ],
+  "primary_verdict": "R1SIZE's; VNCSIZE reported alongside",
+  "secondary": "per arm among PREVENTS_IGNITION partners: RHYTHM_UNMASKED if any SIL_j has score >= 0.5 and median E1 trace rhythmicity >= 0.5 (NaN fails); NO_RHYTHM_UNMASKED otherwise; NOT_APPLICABLE if none prevents"
+ },
+ "reported_not_gated": [
+  "each partner's body ID, name, transmitter, weight from DNg100_L, network out-degree, two-hop-intermediate flag",
+  "per-partner recruited, score, frequency, E1 trace and activity",
+  "STIM, SHAM and GROUP summaries"
+ ],
+ "integrity": {
+  "I1": "source hashes; R1 network body-ID hash; DNg100_L dense index resolved from body ID 10045; P non-empty; R1b z*/m_VNC reproduced",
+  "r1_network_body_ids_sha256": "cdcfcd231484a46c2a668d17932d95b2147ab16e7dd5c7f87857490590b12eed",
+  "I2": "hard gate: R1SIZE R7 DNg100_L g = 1 runs seeds 4001-4004 and VNCSIZE R3 DNG100 runs seeds 1001-1004 (8 simulations) equal the stored runs exactly (score, recruited, core activity)",
+  "I3_tests": "tests/test_dng100_ignition_source.py passes (partner rule on toy W; validity, classes and verdict order; secondary rule; expectations; I2 check)",
+  "I4": "2 x (|P| + 3) x 16 simulations plus 8 reproduction simulations"
+ },
+ "expectations": {
+  "X1": "R1SIZE DISTRIBUTED_IGNITION",
+  "X2": "VNCSIZE DISTRIBUTED_IGNITION",
+  "X3": "R1SIZE secondary NO_RHYTHM_UNMASKED or NOT_APPLICABLE",
+  "note": "recorded in the design before any R8 simulation; wrong ones are recorded as wrong"
+ },
+ "plumbing_disclosure": "Before registration one R1SIZE DNg100_L simulation at seed 0 (not a protocol seed) was timed (0.80 s); no partner was listed; its score and rates were not printed. Unit tests use toy inputs only.",
+ "execution": "one command (--output) lists the partners, runs I2 and all conditions, and evaluates in the same process; output opened exclusively; run once in the background.",
+ "interpretation_limits": [
+  "Direct partners only, singly and as a whole group; no subsets or two-hop cells.",
+  "16 seeds per condition.",
+  "One drive per size version; R1's isolated 2,111-neuron network.",
+  "Reconstructed rate model; R1's transmitter signs; 68 bodymap MNs.",
+  "Neural only: no body or physics; motor coordinates unchanged (20/42 admitted, +4 conditional)."
+ ]
+}

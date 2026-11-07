@@ -144,3 +144,13 @@ Wrong expectations are recorded as wrong.
    disclosed.
 4. Commit and push the preregistration. Run once in the background, evaluate in the same
    process, and record the results, handoff and roadmap.
+
+## Build-time notes (before any protocol simulation)
+
+- No amendments to the design's partner rule, conditions, criteria or expectations. The
+  protocol is `protocol.json` (sha 528d96a2…).
+- **Sham.** The sham eligibility set also excludes DNg100_L's two-hop intermediates to the core,
+  following R5's rule as declared.
+- **Plumbing.** One R1SIZE DNg100_L simulation at seed 0 (not a protocol seed) was timed
+  (0.80 s). No partner was listed; its score and rates were not printed.
+- The partner list is computed for the first time inside the registered run.
