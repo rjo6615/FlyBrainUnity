@@ -1,7 +1,9 @@
 # Rhythm, Step R6: which inhibitory cells does the E1–E2 rhythm need? (design)
 
-Designed 2026-11-06. **Status: designed only (no protocol, code or run).** A structural
-candidate list followed by a silencing screen. Neural-only rate-model simulation of R1's
+Designed 2026-11-06. **Status: run 2026-11-06, REDUNDANT_INHIBITION** (protocol 2d82fcd1,
+result 3d0d800c; 31 T1 candidates, none needed singly; group silencing abolishes DNg75_R's
+rhythm via network ignition but not DNa02_L's; X1 held, X2-X3 wrong). See
+`DNG100_INHIBITION_SEARCH_RESULTS.md`. A structural candidate list followed by a silencing screen. Neural-only rate-model simulation of R1's
 isolated network.
 
 ## Why this step
