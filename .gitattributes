@@ -225,3 +225,6 @@ docs/evidence/dng100-inhibition-search-v1/**/*.txt -text -whitespace
 docs/evidence/dng100-balance-test-v1/*.json -text
 docs/evidence/dng100-balance-test-v1/**/*.json -text
 docs/evidence/dng100-balance-test-v1/**/*.txt -text -whitespace
+docs/evidence/dng100-ignition-source-v1/*.json -text
+docs/evidence/dng100-ignition-source-v1/**/*.json -text
+docs/evidence/dng100-ignition-source-v1/**/*.txt -text -whitespace

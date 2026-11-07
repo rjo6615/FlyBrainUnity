@@ -1,0 +1,34 @@
+[     7s] I2: True (8 checked); 70 partners
+[   912s] R1SIZE done: SINGLE_IGNITION_SOURCE (1 preventing); NO_RHYTHM_UNMASKED
+[  1897s] VNCSIZE done: DISTRIBUTED_IGNITION (0 preventing); NOT_APPLICABLE
+{
+ "verdict": "SINGLE_IGNITION_SOURCE",
+ "secondary": "NO_RHYTHM_UNMASKED",
+ "vncsize": {
+  "verdict": "DISTRIBUTED_IGNITION",
+  "secondary": "NOT_APPLICABLE"
+ },
+ "expectations": {
+  "X1": false,
+  "X2": true,
+  "X3": true
+ },
+ "reason": null,
+ "runtime_s": 1896.8,
+ "R1SIZE": {
+  "stim": 616.5,
+  "sham": 615.5,
+  "group": 1.0,
+  "preventing": [
+   "SIL_3694"
+  ],
+  "unmasked": []
+ },
+ "VNCSIZE": {
+  "stim": 647.0,
+  "sham": 646.5,
+  "group": 1.0,
+  "preventing": [],
+  "unmasked": []
+ }
+}
