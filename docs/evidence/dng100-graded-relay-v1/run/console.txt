@@ -1,0 +1,190 @@
+[     4s] I2: True (8 checked)
+[    12s] WHOLE g=0.0: score 0.000 recruited 161.5
+[    21s] WHOLE g=0.1: score 0.000 recruited 162.0
+[    29s] WHOLE g=0.2: score 0.000 recruited 162.0
+[    37s] WHOLE g=0.3: score 0.000 recruited 161.0
+[    46s] WHOLE g=0.4: score 0.000 recruited 162.0
+[    54s] WHOLE g=0.5: score 0.000 recruited 163.0
+[    63s] WHOLE g=0.6: score 0.001 recruited 164.0
+[    73s] WHOLE g=0.7: score 0.002 recruited 166.0
+[    87s] WHOLE g=0.8: score 0.005 recruited 169.5
+[   107s] WHOLE g=0.9: score 0.014 recruited 615.0
+[   127s] WHOLE g=1.0: score 0.018 recruited 612.5
+[   136s] SPARE_E1 g=0.0: score 0.000 recruited 161.5
+[   144s] SPARE_E1 g=0.1: score 0.000 recruited 162.0
+[   152s] SPARE_E1 g=0.2: score 0.000 recruited 162.0
+[   161s] SPARE_E1 g=0.3: score 0.000 recruited 161.0
+[   169s] SPARE_E1 g=0.4: score 0.000 recruited 162.0
+[   177s] SPARE_E1 g=0.5: score 0.000 recruited 163.0
+[   186s] SPARE_E1 g=0.6: score 0.003 recruited 164.0
+[   196s] SPARE_E1 g=0.7: score 0.001 recruited 166.0
+[   210s] SPARE_E1 g=0.8: score 0.005 recruited 169.5
+[   229s] SPARE_E1 g=0.9: score 0.014 recruited 615.0
+[   250s] SPARE_E1 g=1.0: score 0.018 recruited 612.5
+{
+ "verdict": "NOT_SEPARABLE",
+ "valid": true,
+ "modes": {
+  "WHOLE": {
+   "cls": "NOT_SEPARABLE",
+   "levels": [],
+   "transition": {
+    "highest_not_ignited": 0.8,
+    "not_ignited_levels": [
+     0.0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8
+    ],
+    "contiguous_from_zero": true
+   }
+  },
+  "SPARE_E1": {
+   "cls": "NOT_SEPARABLE",
+   "levels": [],
+   "transition": {
+    "highest_not_ignited": 0.8,
+    "not_ignited_levels": [
+     0.0,
+     0.1,
+     0.2,
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8
+    ],
+    "contiguous_from_zero": true
+   }
+  }
+ },
+ "expectations": {
+  "X1": true,
+  "X2": true,
+  "X3": true
+ },
+ "reason": null,
+ "runtime_s": 250.4,
+ "curves": {
+  "WHOLE": {
+   "0.0": [
+    0.0,
+    161.5,
+    0.125
+   ],
+   "0.1": [
+    0.0,
+    162.0,
+    0.125
+   ],
+   "0.2": [
+    0.0,
+    162.0,
+    0.125
+   ],
+   "0.3": [
+    0.0,
+    161.0,
+    0.125
+   ],
+   "0.4": [
+    0.0,
+    162.0,
+    0.125
+   ],
+   "0.5": [
+    0.0,
+    163.0,
+    0.125
+   ],
+   "0.6": [
+    0.001,
+    164.0,
+    0.125
+   ],
+   "0.7": [
+    0.002,
+    166.0,
+    0.1875
+   ],
+   "0.8": [
+    0.005,
+    169.5,
+    0.4375
+   ],
+   "0.9": [
+    0.014,
+    615.0,
+    0.75
+   ],
+   "1.0": [
+    0.018,
+    612.5,
+    0.875
+   ]
+  },
+  "SPARE_E1": {
+   "0.0": [
+    0.0,
+    161.5,
+    0.15625
+   ],
+   "0.1": [
+    0.0,
+    162.0,
+    0.15625
+   ],
+   "0.2": [
+    0.0,
+    162.0,
+    0.15625
+   ],
+   "0.3": [
+    0.0,
+    161.0,
+    0.125
+   ],
+   "0.4": [
+    0.0,
+    162.0,
+    0.125
+   ],
+   "0.5": [
+    0.0,
+    163.0,
+    0.125
+   ],
+   "0.6": [
+    0.003,
+    164.0,
+    0.125
+   ],
+   "0.7": [
+    0.001,
+    166.0,
+    0.1875
+   ],
+   "0.8": [
+    0.005,
+    169.5,
+    0.4375
+   ],
+   "0.9": [
+    0.014,
+    615.0,
+    0.75
+   ],
+   "1.0": [
+    0.018,
+    612.5,
+    0.875
+   ]
+  }
+ }
+}

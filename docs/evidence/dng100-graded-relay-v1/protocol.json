@@ -1,0 +1,124 @@
+{
+ "schema": "dng100-graded-relay-protocol-v1",
+ "date": "2026-11-08",
+ "design": "docs/DNG100_GRADED_RELAY_V1.md",
+ "question": "When relay 13964's output strength is graded from 0 to 1 while DNg100_L is stimulated, is there a level where the network does not ignite but the core is still engaged, and is the core then rhythmic? Does keeping 13964's direct synapse onto E1 at full strength change the answer?",
+ "status": "PREREGISTERED_BEFORE_ANY_PROTOCOL_RUN",
+ "not_claimed": [
+  "walking",
+  "biological roles of any cell",
+  "validation of the preprint's biology",
+  "anything about the live LIF engine",
+  "a change to weights, mappings or motor admission"
+ ],
+ "known_before": "R8: silencing 13964 (dense 3694) prevents DNg100_L's ignition in R1SIZE (median 160 vs 616) and the core goes silent (E1 active 1/16). 13964's wiring was read from W before the design (no simulation): 68 targets, all excitatory, 1,086 total; weight 52 from DNg100_L; E1 (weight 8) its only core target; DNg100_L has no direct synapse onto E1, E2 or I1.",
+ "sources": {
+  "cache": "maleCNS cache (load_cache verifies the canonical source fingerprints)",
+  "files": {
+   "dng100_rate_model_py_lf_sha256": "6c3afeeb9f4b0425d54592a9380e0bca8d403e75207b45a6be773cebed9ca8ff",
+   "dng100_size_audit_py_lf_sha256": "bfb46968e0dd6e7c903afae09681d8d7252e332c2b3956ff7e83fdedaaff2839",
+   "skeleton_dump_mjs_lf_sha256": "31d2aba130ce9c60c60265669d837aef66629830be202d5f5ddc2dac16237f5b",
+   "dng100_rhythm_py_lf_sha256": "f6603d8fdb0cb85a6ef51758b3ee14d3aed813b4aa37bf40c9bc5f3e27b73448",
+   "neural_py_lf_sha256": "8acebd58cdc221cc815646474bb337c3dc7bd05cccde685ac713f23ca51c7e0c",
+   "skel_js_lf_sha256": "b07415a1291023158df854323668a7b8a169b5e1e4523be9c870848ac5b1d969",
+   "rc_js_lf_sha256": "b8873baa68c0513fc6d8bde2f0e3cdb2e8607741acdd8ddc0200b78aef785c7b",
+   "bodymap_lf_sha256": "10630cd4c7a6cc2c1dcfcbee4a602d307f06766f316b185f631406813a58da9d",
+   "dng100_recruitment_map_py_lf_sha256": "e8a2e243cc446c9ebffab3887eba7103092e99eb7d241d357f537ea69d3638db",
+   "dng100_engaged_rhythm_py_lf_sha256": "17cfc87ddb456f5e432c7977a07cf46fdb1f0fc3044d75552c69366f4c5e8d83",
+   "dng100_route_comparison_py_lf_sha256": "2a75973caf602d1beb5fd671aad6d52f14a3f68752584a9291161311f8ce042c",
+   "dng100_control_rhythm_py_lf_sha256": "37755e85f0c78dda8153091eed8d4f0f86a467bc79c7da2a5379f94f5c90e0ab",
+   "dng100_inhibition_search_py_lf_sha256": "e4d5ba91873b3eb3ed80227e90234dcae6bb7bfd108aae6085dbac9f92a3eeb7",
+   "dng100_balance_test_py_lf_sha256": "706d99f14fae52d969f547423768c973865afb40ef409e767097ca36cae52f3d",
+   "dng100_ignition_source_py_lf_sha256": "5726d76fc87e8405e8ae4e4c11c132aff9fe9e7ef1d8060af2a4ee7d4c722785",
+   "skeletons_flys_sha256": "3e5a411218ed9b6bb979e92b91d9c3eac13a12cf099e7c138d1daec71a9f61d7",
+   "neuron_size_bin_sha256": "06bc9b1e88e8f55c2e630f8f9c9746208377e6d186f0c6a34612faaafe9ae7fa",
+   "r1_result_json_sha256": "24062901eeab8b24941c8ba8940659a93776015effa58b83373e25f5d7a9b719",
+   "r1b_result_json_sha256": "c9c2424ac4e909b2d2ce36a119e6de50d71089eca07ab8e800d02cffa8d676fd",
+   "r2_result_json_sha256": "974d72f439fea8aeef43a237675e30b069b77cf5a85ab3efa5392ca1951ccaf5",
+   "r3_result_json_sha256": "099e42a78ccfc1e04c22a04116d1adfb1121d0331d4d59e0462370814391e339",
+   "r4_result_json_sha256": "f218454224d6afdd122ffc71db36d48465533f9e79572d3134989c01d315a492",
+   "r5_result_json_sha256": "c4318d93eb6fb8f8c635b013e495908ef1e00357531681d0b7906f36b7bdc827",
+   "r6_result_json_sha256": "3d0d800cecb827a46e2a27f12c8ebbfd8b965e17b1182a957b85e6a27921ee1f",
+   "r7_result_json_sha256": "7d8575c78b86dd84da4db4b48244f155bd42a1d195dceaf40205389e067acaa4",
+   "r8_result_json_sha256": "e4415e49eeb2b5b6a17cc34a9d98471f4464dba26d19dbd3cca5702bfbef8653"
+  },
+  "hash_rule": "text files: sha256 after CRLF -> LF; .bin/.flys and evidence result.json: sha256 of raw bytes"
+ },
+ "cells": {
+  "DNg100_L_body_id": 10045,
+  "relay_body_id": 13964,
+  "relay_dense_expected": 3694,
+  "E1": 800173,
+  "E2": 800863,
+  "I1": 801884
+ },
+ "conditions": {
+  "arm": {
+   "sizes": "R1's",
+   "drive": 16000,
+   "stimulated": "DNg100_L"
+  },
+  "intervention": "copy of W[post, pre]; entries in 13964's column (its outgoing synapses) multiplied by g; WHOLE: all 68; SPARE_E1: the 67 other than W[E1, 13964] (kept at 8). g = 1 is bitwise the unmodified W in both modes",
+  "levels": [
+   0.0,
+   0.1,
+   0.2,
+   0.3,
+   0.4,
+   0.5,
+   0.6,
+   0.7,
+   0.8,
+   0.9,
+   1.0
+  ],
+  "modes": [
+   "WHOLE",
+   "SPARE_E1"
+  ],
+  "seeds": "6001-6032 per condition",
+  "order": "I2 first; then WHOLE g = 0 .. 1, then SPARE_E1 g = 0 .. 1",
+  "total_simulations": "2 x 11 x 32 = 704",
+  "storage": "every run stored (13964's own trace added as core key RELAY, gating nothing); per-MN detail only for runs with score >= 0.5"
+ },
+ "model": "R1's model and R3's replicate function unchanged, on a model copy carrying the scaled W (R7's with_W)",
+ "readout": "R3's: median recruited, MN score and frequency, E1/E2/I1 active fractions, trace rhythmicity, mean rates; 13964's and DNg100_L's mean rates",
+ "acceptance": {
+  "labels": "IGNITED: median recruited >= 500 (R2 RANGE_MAX); CORE_ENGAGED: E1 active fraction >= 0.5; RHYTHMIC: MN score >= 0.5 and median E1 trace rhythmicity >= 0.5 (NaN fails)",
+  "validity": "WHOLE g = 1 and SPARE_E1 g = 1 IGNITED, and WHOLE g = 0 not IGNITED; else INVALID",
+  "class_order": [
+   "RHYTHM_WINDOW: some g not IGNITED and RHYTHMIC (listed)",
+   "SEPARABLE_NO_RHYTHM: some g not IGNITED and CORE_ENGAGED, none RHYTHMIC",
+   "NOT_SEPARABLE: no g both not IGNITED and CORE_ENGAGED"
+  ],
+  "step_verdict": "RHYTHM_WINDOW if either mode has it; else SEPARABLE_NO_RHYTHM if either has it; else NOT_SEPARABLE"
+ },
+ "reported_not_gated": [
+  "ignition transition per mode: highest g not IGNITED; whether the not-IGNITED levels are one contiguous block from 0",
+  "13964's and DNg100_L's mean rates per level",
+  "full curves"
+ ],
+ "integrity": {
+  "I1": "source hashes; R1 network body-ID hash; DNg100_L and 13964 dense indices resolved from body IDs (13964 -> 3694); wiring re-checked from W (52 from DNg100_L, 68 targets all excitatory, 8 onto E1, 1,086 total, E1 the only core target); R1b z*/m_VNC reproduced",
+  "r1_network_body_ids_sha256": "cdcfcd231484a46c2a668d17932d95b2147ab16e7dd5c7f87857490590b12eed",
+  "I2": "hard gate, 8 simulations equal stored runs exactly (score, recruited, core activity): R7 DNg100_L g = 1 seeds 4001-4004 via the WHOLE g = 1 model; R8 R1SIZE SIL_3694 seeds 5001-5004 by silencing 13964 on the unmodified model",
+  "I3_tests": "tests/test_dng100_graded_relay.py passes (SPARE_E1 helper scales exactly the declared entries; both modes unchanged at g = 1; WHOLE g = 0 matches silencing to 1e-4 on a toy; labels, validity, class and verdict order; transition; wiring; I2 check)",
+  "I4": "704 simulations plus 8 reproduction simulations"
+ },
+ "expectations": {
+  "X1": "WHOLE NOT_SEPARABLE",
+  "X2": "SPARE_E1 NOT_SEPARABLE",
+  "X3": "no RHYTHM_WINDOW in either mode",
+  "note": "recorded in the design before any R9 simulation; wrong ones are recorded as wrong"
+ },
+ "plumbing_disclosure": "Before registration one unscaled R1SIZE DNg100_L simulation at seed 0 (not a protocol seed) was timed (0.72 s); its score and rates were not printed. Unit tests use toy inputs only.",
+ "execution": "one command (--output) checks I1, runs I2 and all conditions, and evaluates in the same process; output opened exclusively; run once in the background.",
+ "interpretation_limits": [
+  "One relay, one output column scaled uniformly; only E1's entry can be spared; no other partner or combination graded.",
+  "R1's sizes only, at one drive; R8 found no single ignition source with cord-only sizes.",
+  "11 levels at steps of 0.1; a narrower window could be missed.",
+  "32 seeds per condition; no sham relay (g = 1 is the baseline).",
+  "Reconstructed rate model; R1's transmitter signs; 68 bodymap MNs.",
+  "Neural only: no body or physics; motor coordinates unchanged (20/42 admitted, +4 conditional)."
+ ]
+}
