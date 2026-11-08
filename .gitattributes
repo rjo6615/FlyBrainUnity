@@ -228,3 +228,6 @@ docs/evidence/dng100-balance-test-v1/**/*.txt -text -whitespace
 docs/evidence/dng100-ignition-source-v1/*.json -text
 docs/evidence/dng100-ignition-source-v1/**/*.json -text
 docs/evidence/dng100-ignition-source-v1/**/*.txt -text -whitespace
+docs/evidence/dng100-graded-relay-v1/*.json -text
+docs/evidence/dng100-graded-relay-v1/**/*.json -text
+docs/evidence/dng100-graded-relay-v1/**/*.txt -text -whitespace

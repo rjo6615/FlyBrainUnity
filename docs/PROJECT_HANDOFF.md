@@ -1,5 +1,18 @@
 # FlyBrainUnity — local Codex handoff
 
+## Rhythm Step R9 (graded relay test): design — 2026-11-08
+
+R7 and R8 are merged (#338, #339). Design only: `docs/DNG100_GRADED_RELAY_V1.md`. In R1SIZE
+(16,000), stimulating DNg100_L, scale relay 13964's outgoing weights by g in 0..1 (steps of 0.1)
+in two modes: WHOLE (all 68 outputs) and SPARE_E1 (keep its 8-weight synapse onto E1 at full
+strength). 32 seeds (6001-6032), 704 simulations plus 8 reproductions (R7 g = 1, R8 SIL_3694).
+Per level: IGNITED (recruited >= 500), CORE_ENGAGED (E1 active >= 0.5), RHYTHMIC (score >= 0.5
+and E1 trace >= 0.5). Classes: RHYTHM_WINDOW / SEPARABLE_NO_RHYTHM / NOT_SEPARABLE. Expectations:
+both modes NOT_SEPARABLE, no rhythm window. Wiring was read from W before the design (all output
+excitatory, 1,086 total; E1 its only core target); no simulation.
+
+NEXT (needs approval): build and run R9 as designed. No tuning.
+
 ## Rhythm Step R8 (ignition source search): R1SIZE SINGLE_IGNITION_SOURCE (body 13964), no rhythm unmasked; VNCSIZE DISTRIBUTED — 2026-11-07
 
 Preregistered (017bf1b, protocol 528d96a2, no amendments; partner list computed first inside the
