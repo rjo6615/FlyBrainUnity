@@ -158,3 +158,15 @@ Wrong expectations are recorded as wrong.
    disclosed.
 4. Commit and push the preregistration. Run once in the background, evaluate in the same
    process, and record the results, handoff and roadmap.
+
+## Build-time notes (before any protocol simulation)
+
+- No amendments to the design's modes, levels, seeds, criteria or expectations. The protocol is
+  `protocol.json` (sha de66566b…).
+- **Relay trace.** Each protocol run also records 13964's own trace by adding it as an extra
+  key (`RELAY`) to the cells R3's replicate function reports. It gates nothing, and the
+  simulation is unchanged; I2 uses the plain core set.
+- **Plumbing.** One unscaled R1SIZE DNg100_L simulation at seed 0 (not a protocol seed) was
+  timed (0.72 s). Its score and rates were not printed.
+- **Test fix before registration.** The first test draft built dicts with float keyword keys,
+  which Python rejects. It was a test-code error, fixed before any protocol simulation.
