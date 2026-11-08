@@ -1,5 +1,21 @@
 # FlyBrainUnity — local Codex handoff
 
+## LIF return Step L1 (rate-model rhythm drivers in the live engine): design — 2026-11-08
+
+R9 is merged (#340). Design only: `docs/LIF_DRIVER_RHYTHM_V1.md`. In the live, calibrated
+whole-CNS LIF engine (untuned; neural.py and brain_params.json still equal V1's hashes), stimulate
+DNg75_R (body 520300) and DNa02_L (523769), plus DNp09_R (11177) as secondary - the DNs that gave
+the E1/E2 rhythm in the rate model with R1's sizes (R5) - with V1's harness: Poisson forced
+spikes at 25/50/100/200 Hz, seeds 1-16, 68 front-left MNs, preprint score, best-rate rule. At each
+target's best rate: SIL_E1, SIL_E2, SIL_SHAM (R5 sham rule). 340 simulations incl. I2 (V1 DNg100
+100 Hz seeds 1-4, exact). Classes NO_MN_OUTPUT / NOT_RHYTHMIC (best < 0.5 or <= V1 control p80
+0.216) / LIF_RHYTHM_CORE / LIF_RHYTHM_OTHER; verdict REPRODUCED_IN_LIF / PARTIAL /
+NOT_REPRODUCED_IN_LIF. Expectations: neither primary rhythmic. None of the three was among V1's
+20 controls; identities and synapse counts onto front-left MNs were read before the design (no
+stimulation).
+
+NEXT (needs approval): build and run L1 as designed. No tuning.
+
 ## Rhythm Step R9 (graded relay test): NOT_SEPARABLE in both modes — 2026-11-08
 
 Preregistered (fb6a66a, protocol de66566b, no amendments), run once in the background (250 s,
