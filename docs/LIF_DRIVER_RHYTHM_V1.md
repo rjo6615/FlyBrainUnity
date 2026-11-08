@@ -167,3 +167,18 @@ Wrong expectations are recorded as wrong.
    discarded and disclosed.
 4. Commit and push the preregistration. Run once in the background, evaluate in the same
    process, and record the results, handoff and roadmap.
+
+## Build-time notes (before any protocol simulation)
+
+- No amendments to the design's targets, rates, seeds, criteria or expectations. The protocol is
+  `protocol.json` (sha 47278c7c…).
+- **Aggregation.** V1's `condition` scores every watched cell, so the module reproduces its
+  aggregation as `aggregate` and watches E1, E2 and I1 separately (`split`). I2 checks this
+  against V1's stored runs exactly.
+- **Sham.** R5's eligible set for each target in R1's network has 1,022–1,028 cells; the drawn
+  local index is mapped to its dense index through R1's network.
+- **Plumbing.**
+  - One DNg100_L simulation at 100 Hz, seed 0 (not a protocol seed), was timed at 6.62 s. Its
+    spikes were not inspected.
+  - The I1 identity path (targets, core, MN list, sham sets and two sham draws) was exercised
+    with no simulation.
