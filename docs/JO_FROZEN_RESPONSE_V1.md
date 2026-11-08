@@ -179,3 +179,27 @@ Wrong expectations are recorded as wrong.
    steps. It is discarded and disclosed, and only its exit status and freeze audit are read.
 5. Commit and push the preregistration. Run once in the background, evaluate once, then record
    the results, handoff and roadmap.
+
+## Build-time notes (before any protocol arm)
+
+- No amendments to the design's conditions, seeds, criteria or expectations. The protocol is
+  `docs/evidence/jo-frozen-response-v1/protocol.json` (sha a1ab56a7…).
+- **Freeze rule as built.** `Freeze` wraps the Step B encoder. Every encode while the trial's
+  tilt event is unset is delivered and stored. From the first encode after gravity is rotated,
+  the stored output (rates and recorded d) is delivered instead, and the live d is recorded
+  alongside (`jo_live_d`). Sighted arms pass through the same wrapper, which never holds.
+  REPRO runs `jo_zone_crossing.run_arm('G1_DOWN20_19')` unchanged.
+- **Reproduction check as built.** Z6 uses `coxa_offset_yoke.reproduces` (qpos and commands at
+  every state; fired, RNG uniforms and hair-plate delivery at every tick) plus JO delivery. That
+  is stricter than the design's qpos-and-fired wording.
+- **Raw arms.** They are written to the main checkout's untracked
+  `docs/evidence/jo-frozen-response-v1/run/`, beside Step D's archives. `console.txt` and
+  `report.json` are committed.
+- **Plumbing.**
+  - The smoke ran with the protocol lock stubbed out (it was not yet written): G1F, seed 0
+    (not a protocol seed), 5,055 steps (the tilt plus 50), 139 s. It was discarded.
+  - Only these were read: exit status (SMOKE, no error); 1,000 pre-tilt ticks never held and
+    11 post-tilt ticks all held at the last pre-tilt rates; JO delivery present; seed 0 and
+    type G1F recorded. The body and the fall measure were not inspected.
+  - The Step D reference archive's sha (7392cc15…) was checked.
+  - 6 new tests pass (20 with the Step D and D3 tests).
