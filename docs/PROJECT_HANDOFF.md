@@ -1,5 +1,22 @@
 # FlyBrainUnity — local Codex handoff
 
+## LIF return Step L1 (rate-model rhythm drivers in the live engine): NOT_REPRODUCED_IN_LIF — 2026-11-08
+
+Preregistered (7db80a5, protocol 47278c7c, no amendments), run once in the background (1,845 s,
+result 4d00b72f). Integrity all pass, incl. I2 (V1 DNg100 100 Hz seeds 1-4 exact). Live untuned
+whole-CNS LIF, V1 harness. DNg75_R: no front-left MN at 25-100 Hz; one sternal anterior rotator
+at 200 Hz (12/16 seeds), score 0.328 at 2.1 Hz; core silent; silencing E1/E2/sham leaves the score
+unchanged. DNa02_L: best rate 25 Hz chosen by V1's rule on 1 feasible seed (0.427, 2.8 Hz); 50-200
+Hz all seeds feasible, scores 0.26-0.34 at ~2 Hz; at 200 Hz 9 coxa/trochanter MNs (5 shared with
+DNg100's V1 set) and E1/E2/I1 active at 3.9/7.6/3.6 Hz; its silencing ran at 25 Hz and is
+uninformative. DNp09_R: no MN output. X1-X3 held. Reading (hypothesis): in the live engine these
+DNs barely engage the E1/E2 core; the engine and rate model differ in how descending drive reaches
+the core. Caveat: V1's best-rate rule lets one feasible seed choose the rate; follow-ups should
+declare a minimum. See LIF_DRIVER_RHYTHM_RESULTS.md.
+
+NEXT (needs approval): merge #341. No rhythm source is known in the live engine; any further
+step needs a new question (no tuning until it oscillates).
+
 ## LIF return Step L1 (rate-model rhythm drivers in the live engine): design — 2026-11-08
 
 R9 is merged (#340). Design only: `docs/LIF_DRIVER_RHYTHM_V1.md`. In the live, calibrated

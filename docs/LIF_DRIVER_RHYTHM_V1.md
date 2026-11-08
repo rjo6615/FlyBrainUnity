@@ -1,6 +1,8 @@
 # LIF return, Step L1: do the rate model's rhythm drivers give a front-left rhythm in the live engine? (design)
 
-Designed 2026-11-08. **Status: designed only (no protocol, code or run).** Neural-only
+Designed 2026-11-08. **Status: run 2026-11-08, NOT_REPRODUCED_IN_LIF** (DNg75_R and DNa02_L
+NOT_RHYTHMIC, best 0.328 and 0.427 at ~2-3 Hz; DNp09_R NO_MN_OUTPUT); X1-X3 held (protocol
+47278c7c, result 4d00b72f). See `LIF_DRIVER_RHYTHM_RESULTS.md`. Neural-only
 simulation in the live, calibrated whole-CNS LIF engine (`MaleCNSBrain`), untuned. No body,
 physics, mapping, sign, gain or admission change.
 
