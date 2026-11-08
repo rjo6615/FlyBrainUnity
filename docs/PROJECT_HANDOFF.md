@@ -1,5 +1,23 @@
 # FlyBrainUnity — local Codex handoff
 
+## Rhythm Step R9 (graded relay test): NOT_SEPARABLE in both modes — 2026-11-08
+
+Preregistered (fb6a66a, protocol de66566b, no amendments), run once in the background (250 s,
+result 28e1673c). Integrity all pass, incl. I2 (8/8 exact: R7 g = 1 and R8 SIL_3694) and the
+wiring check. Scaling relay 13964's output by g (WHOLE, or SPARE_E1 keeping its 8-weight synapse
+onto E1) while stimulating DNg100_L in R1SIZE: g 0-0.8 not ignited (median 161-170), 0.9-1.0
+ignited (615, 612.5); no level both not ignited and E1-engaged; E1 tonic whenever active (trace
+0); MN score <= 0.018. SPARE_E1 matched WHOLE. X1-X3 held. Descriptive (not gated): ignition is
+per-seed all-or-none (ignited count 0 at g <= 0.5, then 1, 3, 12, 23, 27 of 32); every ignited run
+had E1 active, non-ignited "active" E1 ran <= 1.2 Hz; 13964 itself falls from 31 to 3.8 Hz as the
+network ignites. Reading (hypothesis): in this rate model DNg100 engages the core only through
+the ignition, and the relay sets its probability, not its size. Closes the relay line. See
+DNG100_GRADED_RELAY_RESULTS.md.
+
+NEXT (needs approval): merge #340. R1-R9 have mapped the rate model's DNg100 behaviour; a natural
+next step is to bring these findings back to the live LIF engine (which drives the body).
+No tuning.
+
 ## Rhythm Step R9 (graded relay test): design — 2026-11-08
 
 R7 and R8 are merged (#338, #339). Design only: `docs/DNG100_GRADED_RELAY_V1.md`. In R1SIZE

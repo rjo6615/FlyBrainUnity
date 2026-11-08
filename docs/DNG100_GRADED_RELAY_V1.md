@@ -1,6 +1,8 @@
 # Rhythm, Step R9: can relay 13964's two roles be separated by grading its output? (design)
 
-Designed 2026-11-08. **Status: designed only (no protocol, code or run).** Neural-only
+Designed 2026-11-08. **Status: run 2026-11-08, NOT_SEPARABLE in both modes** (ignition and E1
+engagement fall together at every g; no rhythm window); X1-X3 held (protocol de66566b, result
+28e1673c). See `DNG100_GRADED_RELAY_RESULTS.md`. Neural-only
 rate-model simulation of R1's isolated network, using a declared weight intervention that is
 confined to the model copy.
 
