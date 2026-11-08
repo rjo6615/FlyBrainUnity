@@ -1,0 +1,129 @@
+[     28s] I2 V1 reproduction: True (4 checked)
+[    108s] DNg75_R 25 Hz: score nan feasible 0
+[    190s] DNg75_R 50 Hz: score nan feasible 0
+[    273s] DNg75_R 100 Hz: score nan feasible 0
+[    372s] DNg75_R 200 Hz: score 0.328 feasible 12
+[    483s] DNg75_R SIL_E1 at 200 Hz: score 0.328
+[    594s] DNg75_R SIL_E2 at 200 Hz: score 0.328
+[    704s] DNg75_R SIL_SHAM at 200 Hz: score 0.327
+[    806s] DNa02_L 25 Hz: score 0.427 feasible 1
+[    908s] DNa02_L 50 Hz: score 0.341 feasible 16
+[   1012s] DNa02_L 100 Hz: score 0.260 feasible 16
+[   1119s] DNa02_L 200 Hz: score 0.286 feasible 16
+[   1224s] DNa02_L SIL_E1 at 25 Hz: score 0.427
+[   1328s] DNa02_L SIL_E2 at 25 Hz: score 0.427
+[   1432s] DNa02_L SIL_SHAM at 25 Hz: score 0.427
+[   1534s] DNp09_R 25 Hz: score nan feasible 0
+[   1637s] DNp09_R 50 Hz: score nan feasible 0
+[   1740s] DNp09_R 100 Hz: score nan feasible 0
+[   1845s] DNp09_R 200 Hz: score nan feasible 0
+{
+ "verdict": "NOT_REPRODUCED_IN_LIF",
+ "classes": {
+  "DNg75_R": "NOT_RHYTHMIC",
+  "DNa02_L": "NOT_RHYTHMIC",
+  "DNp09_R": "NO_MN_OUTPUT"
+ },
+ "expectations": {
+  "X1": true,
+  "X2": true,
+  "X3": true
+ },
+ "reason": null,
+ "runtime_s": 1845.4,
+ "DNg75_R": {
+  "levels": [
+   [
+    25,
+    null,
+    null,
+    0
+   ],
+   [
+    50,
+    null,
+    null,
+    0
+   ],
+   [
+    100,
+    null,
+    null,
+    0
+   ],
+   [
+    200,
+    0.3278980504935071,
+    2.1459706665237506,
+    12
+   ]
+  ],
+  "silencing": {
+   "SIL_E1": 0.3278980504935071,
+   "SIL_E2": 0.3278980504935071,
+   "SIL_SHAM": 0.3273281035486795
+  }
+ },
+ "DNa02_L": {
+  "levels": [
+   [
+    25,
+    0.4270760812719814,
+    2.824858757062147,
+    1
+   ],
+   [
+    50,
+    0.3405720078458824,
+    1.8211042619473718,
+    16
+   ],
+   [
+    100,
+    0.2598078002752391,
+    1.9406496725488842,
+    16
+   ],
+   [
+    200,
+    0.28639678360749943,
+    1.9183338020939775,
+    16
+   ]
+  ],
+  "silencing": {
+   "SIL_E1": 0.4270760812719814,
+   "SIL_E2": 0.4270760812719814,
+   "SIL_SHAM": 0.4270760812719814
+  }
+ },
+ "DNp09_R": {
+  "levels": [
+   [
+    25,
+    null,
+    null,
+    0
+   ],
+   [
+    50,
+    null,
+    null,
+    0
+   ],
+   [
+    100,
+    null,
+    null,
+    0
+   ],
+   [
+    200,
+    null,
+    null,
+    0
+   ]
+  ],
+  "silencing": {}
+ }
+}

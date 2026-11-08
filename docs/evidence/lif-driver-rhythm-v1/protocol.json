@@ -1,0 +1,98 @@
+{
+ "schema": "lif-driver-rhythm-protocol-v1",
+ "date": "2026-11-08",
+ "design": "docs/LIF_DRIVER_RHYTHM_V1.md",
+ "question": "In the live whole-CNS LIF engine, untuned, does stimulating DNg75_R or DNa02_L (and, secondary, DNp09_R) give rhythmic front-left MN activity at 5-20 Hz, and if so does it need E1 and E2?",
+ "status": "PREREGISTERED_BEFORE_ANY_PROTOCOL_RUN",
+ "not_claimed": [
+  "walking",
+  "biological roles of any cell",
+  "validation of the preprint's biology",
+  "a change to the live engine, weights, mappings or motor admission"
+ ],
+ "known_before": "Rate model (R5, R1's sizes): DNg75_R 0.983, DNa02_L 0.926, DNp09_R 0.509 at ~13 Hz, needing E1/E2 not I1; none reached 0.5 with cord-only sizes. Live engine: only DNg100 tested (V1, tonic); V1's 20 control DNs exclude all three targets (best control scores 0.211, 0.217; p80 0.216). Before the design, identities and synapse counts onto front-left MNs were read from the cache (DNg75_R 167, DNa02_L 217, DNp09_R 0) and engine hashes were confirmed equal to V1's. No stimulation run.",
+ "sources": {
+  "cache": "maleCNS cache (load_cache verifies the canonical source fingerprints)",
+  "files": {
+   "neural_py_lf_sha256": "8acebd58cdc221cc815646474bb337c3dc7bd05cccde685ac713f23ca51c7e0c",
+   "brain_params_lf_sha256": "a78e844e583e892aefb9c3a2005e84f5ca278b384fcfbbcd67933d6543696518",
+   "dng100_rhythm_py_lf_sha256": "f6603d8fdb0cb85a6ef51758b3ee14d3aed813b4aa37bf40c9bc5f3e27b73448",
+   "dng100_control_rhythm_py_lf_sha256": "37755e85f0c78dda8153091eed8d4f0f86a467bc79c7da2a5379f94f5c90e0ab",
+   "dng100_engaged_rhythm_py_lf_sha256": "17cfc87ddb456f5e432c7977a07cf46fdb1f0fc3044d75552c69366f4c5e8d83",
+   "dng100_recruitment_map_py_lf_sha256": "e8a2e243cc446c9ebffab3887eba7103092e99eb7d241d357f537ea69d3638db",
+   "dng100_rate_model_py_lf_sha256": "6c3afeeb9f4b0425d54592a9380e0bca8d403e75207b45a6be773cebed9ca8ff",
+   "v1_protocol_json_sha256": "3a65a0cefc2dcf57fb2af4d906aa9d44183b5d221b15e51d64b5dc0b26920068",
+   "v1_result_json_sha256": "7ff0e5902b44ecff96c7ff2b73ab06f35764ce72dfc6173d18f2c001220c2fdc"
+  },
+  "hash_rule": "text files: sha256 after CRLF -> LF; V1 protocol.json and result.json: sha256 of raw bytes"
+ },
+ "engine": "malecns_backend.neural.MaleCNSBrain(data), calibrated config, whole CNS as loaded, untuned (neural.py and brain_params.json hashes equal V1's)",
+ "cells": {
+  "targets_body_ids": {
+   "DNg75_R": 520300,
+   "DNa02_L": 523769,
+   "DNp09_R": 11177
+  },
+  "targets_expected_dense": {
+   "DNg75_R": 129181,
+   "DNa02_L": 130496,
+   "DNp09_R": 1087
+  },
+  "primary": [
+   "DNg75_R",
+   "DNa02_L"
+  ],
+  "core_body_ids": {
+   "E1": 800173,
+   "E2": 800863,
+   "I1": 801884
+  },
+  "DNg100_L": "instance DNg100_L (I2 only)"
+ },
+ "conditions": {
+  "harness": "V1 (dng100_rhythm): simulate (Poisson forced-spike set_external_drive; brain.reset(seed); transmission_withheld_indices for silencing), score_simulation, best, readout and stimulus duration from V1's protocol",
+  "stim": "each target at rates 25, 50, 100, 200 Hz, seeds 1-16",
+  "silencing": "at each target's best rate (V1 rule: highest condition score, ties to lower rate): SIL_E1 (dense 142920), SIL_E2 (dense 143429), SIL_SHAM (R5 rule: R5 eligible local set for that target in R1's network = not DN/AN/front-left MN/E1/E2/I1/target's two-hop intermediates to the core; cell = default_rng(seed + 7,000,000) draw, mapped to dense via R1's net); seeds 1-16; skipped if the target has no feasible rate",
+  "watched": "E1, E2, I1 spikes recorded alongside for reporting only; never enter the MN score",
+  "order": "I2 first; then DNg75_R, DNa02_L, DNp09_R; per target rates ascending, then SIL_E1, SIL_E2, SIL_SHAM",
+  "total_simulations": "192 STIM + 48 per target with a feasible rate (<= 144) + 4 I2"
+ },
+ "readout": "V1's: 68 front-left MNs (bodymap ' T1 left'), window 250-3000 ms, active MN >= 5 spikes, preprint rhythmicity score, condition score = mean over feasible seeds, frequency = median",
+ "acceptance": {
+  "control_p80": 0.21573993442241995,
+  "control_p80_source": "V1 result.json control_p80 (20 random ACh DNs, best-rate rule; engine hash unchanged)",
+  "class_order": [
+   "NO_MN_OUTPUT: no feasible rate",
+   "NOT_RHYTHMIC: best score < 0.5 or <= control_p80",
+   "LIF_RHYTHM_CORE: rhythmic, best-rate frequency in [5, 20] Hz, SIL_E1 and SIL_E2 not >= 0.5 (NaN counts as not), SIL_SHAM >= 0.5",
+   "LIF_RHYTHM_OTHER: rhythmic, any of frequency/core/sham fails (reported)"
+  ],
+  "verdict": "REPRODUCED_IN_LIF if both primaries LIF_RHYTHM_CORE; PARTIAL if any primary LIF_RHYTHM_CORE or LIF_RHYTHM_OTHER; else NOT_REPRODUCED_IN_LIF; DNp09_R reported alongside"
+ },
+ "reported_not_gated": [
+  "per rate score, frequency, feasible seeds, active MNs, per-MN spike counts and scores",
+  "E1/E2/I1 spikes, mean rates and trace rhythmicity",
+  "recruited MNs vs DNg100's in V1"
+ ],
+ "integrity": {
+  "I1": "source hashes; targets resolved from body IDs to the expected dense indices with instance names checked; E1/E2 equal V1's core copies; 68 front-left MNs equal V1's list; control p80 equals V1's stored value; sham eligible sets non-empty",
+  "I2": "hard gate: DNg100_L 100 Hz seeds 1-4 equal V1's stored runs exactly (score and per-MN spike counts); else INCONCLUSIVE and nothing else runs",
+  "I3_tests": "tests/test_lif_driver_rhythm.py passes (watch split; V1 aggregation; class order; verdict and expectations; sham mapping; I2 check)",
+  "I4": "STIM 192 + 48 per feasible target simulations, plus 4 I2"
+ },
+ "expectations": {
+  "X1": "DNg75_R NOT_RHYTHMIC or NO_MN_OUTPUT",
+  "X2": "DNa02_L NOT_RHYTHMIC or NO_MN_OUTPUT",
+  "X3": "NOT_REPRODUCED_IN_LIF",
+  "note": "recorded in the design before any L1 simulation; wrong ones are recorded as wrong"
+ },
+ "plumbing_disclosure": "Before registration: one DNg100_L simulation at 100 Hz, seed 0 (not a protocol seed) was timed (6.62 s), its spikes not inspected; the I1 identity path (targets, core, MN list, sham eligible sets, two sham draws) was exercised without any simulation. Unit tests use toy inputs only.",
+ "execution": "one command (--output) checks I1, runs I2 and all conditions, and evaluates in the same process; output opened exclusively; run once in the background.",
+ "interpretation_limits": [
+  "Three DNs chosen by the reconstructed rate model; other DNs untested.",
+  "Poisson forced-spike drive at four rates; the rate model used a constant input.",
+  "16 seeds per condition; specificity reference is V1's stored control distribution (only 2 of 20 controls feasible); no new controls.",
+  "Front-left MNs only; other legs not read.",
+  "Neural only: no body or physics; motor coordinates unchanged (20/42 admitted, +4 conditional)."
+ ]
+}
