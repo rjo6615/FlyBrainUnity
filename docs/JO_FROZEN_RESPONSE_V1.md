@@ -1,6 +1,7 @@
 # Antennal gravity Step D5: does the fly fall because the JO senses the tilt? (design)
 
-Designed 2026-11-08. **Status: designed only** (no protocol, code or run). Closed-loop physics
+Designed 2026-11-08. **Status: run 2026-11-08: INTEGRITY_ACCEPTED; Q1 JO_FALLS_REPLICATED; Q2 pooled
+INDETERMINATE (FLIP needs the response, G1 does not; reported).** See `JO_FROZEN_RESPONSE_RESULTS.md`. Closed-loop physics
 experiment in the Step D context (live CNS output drives the body), with the existing JO C/E
 encoder. No change to the engine, weights, mappings, signs, gains, encoder or motor admission.
 

@@ -1,5 +1,21 @@
 # FlyBrainUnity — local Codex handoff
 
+## Antennal gravity Step D5 (does the fly fall because the JO senses the tilt?): Q1 REPLICATED, Q2 INDETERMINATE — 2026-11-08
+
+Preregistered (09ae896, protocol a1ab56a7, no amendments), run once (61 arms, ~4.3 h), evaluated
+once. Integrity Z1-Z7 all pass, incl. Z6 (REPRO = Step D's G1_DOWN20_19 exactly; it fell again)
+and Z2 (frozen = sighted exactly through 5005). Falls (seeds 25-36): OFF 0/12, G1 8/12, G1F
+10/12, FLIP 6/12, FLIPF 0/12; every fall a full roll-over (>148 deg) at 590-1447 ms. Q1
+sighted 14/24 vs OFF 0/12, Fisher p = 0.0005: JO_FALLS_REPLICATED. Q2 pooled b = 8, c = 4,
+p = 0.19: INDETERMINATE. Per type (reported): FLIP 6 -> 0 when frozen (b 6, c 0, p 0.016,
+RESPONSE_NEEDED); G1 8 -> 10 (b 2, c 4, RESPONSE_NOT_NEEDED). Post-tilt input: G1 C on/E low,
+G1F E held on, FLIP E on, FLIPF C held on. E1 correct, E2 wrong, E3 correct. Post hoc: arms with
+E driven after the tilt fell often, arms with no E (OFF, FLIPF) never did; not tested. No balance
+or reflex claim. See JO_FROZEN_RESPONSE_RESULTS.md.
+
+NEXT (needs approval): merge #342. A prospective test of whether the E route carries the falls
+(for example, E held on vs C held on in an otherwise matched design) would be a separate design.
+
 ## Antennal gravity Step D5 (does the fly fall because the JO senses the tilt?): design — 2026-11-08
 
 Designed only (no protocol, code or run). Return to balance after the rhythm track (no rhythm
