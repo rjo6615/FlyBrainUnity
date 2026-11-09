@@ -1,0 +1,48 @@
+[      2s] Part A: NO_DEFECT_FOUND
+[      2s] Part C done
+[      3s] S0_LIVE audit: True changed weights 0
+[    168s] S0_LIVE DNg100_L done
+[    307s] S0_LIVE DNg75_R done
+[    434s] S0_LIVE DNa02_L done
+[    434s] S0 gate: True
+[    435s] S1_ISOLATED audit: True changed weights 4961105
+[    580s] S1_ISOLATED DNg100_L done
+[    726s] S1_ISOLATED DNg75_R done
+[    882s] S1_ISOLATED DNa02_L done
+[    882s] S2_MINSYN5 audit: True changed weights 1121805
+[   1056s] S2_MINSYN5 DNg100_L done
+[   1189s] S2_MINSYN5 DNg75_R done
+[   1321s] S2_MINSYN5 DNa02_L done
+[   1321s] S3_INHGAIN1 audit: True changed weights 1860773
+[   1436s] S3_INHGAIN1 DNg100_L done
+[   1550s] S3_INHGAIN1 DNg75_R done
+[   1670s] S3_INHGAIN1 DNa02_L done
+[   1670s] S4_BINARYSIGN audit: True changed weights 20032
+[   1843s] S4_BINARYSIGN DNg100_L done
+[   1985s] S4_BINARYSIGN DNg75_R done
+[   2102s] S4_BINARYSIGN DNa02_L done
+[   2103s] S5_ALL audit: True changed weights 4991697
+[   2228s] S5_ALL DNg100_L done
+[   2359s] S5_ALL DNg75_R done
+[   2484s] S5_ALL DNa02_L done
+{
+ "status": null,
+ "reason": null,
+ "part_a": "NO_DEFECT_FOUND",
+ "part_b": "NOT_THESE_RULES",
+ "part_b_detail": {
+  "already_engaged_in_live": [
+   "DNg100_L"
+  ],
+  "open_dns": [
+   "DNg75_R",
+   "DNa02_L"
+  ],
+  "engaging_single_rules": []
+ },
+ "expectations": {
+  "XA": true,
+  "XB": true
+ },
+ "runtime_s": 2484.4
+}

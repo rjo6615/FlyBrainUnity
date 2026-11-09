@@ -1,6 +1,7 @@
 # Engine fidelity audit, Step F1: why does descending drive not reach the locomotor core? (design)
 
-Designed 2026-11-08. **Status: designed only** (no protocol, code or run). This is a neural-only
+Designed 2026-11-08. **Status: run 2026-11-08: Part A NO_DEFECT_FOUND; Part B NOT_THESE_RULES** (DNg100_L was
+already engaged in LIVE, which the framing below missed). See `ENGINE_FIDELITY_AUDIT_RESULTS.md`. This is a neural-only
 audit (no body, no physics) of the live, calibrated whole-CNS LIF engine. It does not change the
 live engine, its calibration, weights, signs, mappings or motor admission.
 

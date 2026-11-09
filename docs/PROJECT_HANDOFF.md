@@ -1,5 +1,22 @@
 # FlyBrainUnity — local Codex handoff
 
+## Engine fidelity audit Step F1: NO_DEFECT_FOUND, NOT_THESE_RULES — 2026-11-08
+
+Preregistered (5c1819b, protocol ebb68ffc, two pre-run amendments in the build notes), run once
+(288 sims, 2,484 s, result in run/result.json). Neural only; live engine unchanged. Integrity Z1-Z4
+pass, incl. S0 = L1 exactly (32 sims). Part A: A1-A7 all pass, so the engine implements its own
+rules on the real front-left network (this does not validate the rules). Part B: no swap (isolated,
+floor 5, inhibitory gain 1, binary signs, all) engages E1/E2 for DNg75_R or DNa02_L. Reported:
+DNg100_L is already engaged in LIVE (E1 ~26-29 Hz, E2 ~41-43 Hz, 8/8 seeds, ~2.3 % of the CNS active,
+output still tonic), and S1 and S3 abolish it (0 Hz, no MN). The design's framing missed this.
+The pre-run rule "a DN engaged in LIVE cannot count" decided the label: the literal design wording
+would have given SINGLE_RULE_ENGAGES from S2/S4. Part C: nearly all direct core input is inside R1's
+network. XA held, XB held, XB's S1 aside wrong. No fix follows. See ENGINE_FIDELITY_AUDIT_RESULTS.md.
+
+NEXT (needs approval): merge #343. Declared next: desk review of neuron-model evidence for the core
+cells (spiking vs graded). Separate question needing its own design: what in the rest of the CNS
+supports DNg100_L's core engagement.
+
 ## Engine fidelity audit Step F1 (why does descending drive not reach the locomotor core?): design — 2026-11-08
 
 Designed only (no protocol, code or run). Re-scope after D5: the rhythm and balance tracks share
