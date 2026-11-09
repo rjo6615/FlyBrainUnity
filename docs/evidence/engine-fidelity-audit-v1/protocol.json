@@ -1,0 +1,125 @@
+{
+ "design": "docs/ENGINE_FIDELITY_AUDIT_V1.md",
+ "expectations": {
+  "XA": "NO_DEFECT_FOUND",
+  "XB": "NOT_THESE_RULES"
+ },
+ "interpretation_limits": [
+  "One leg network (front-left) and three DNs.",
+  "Part B tests four rules singly and together, not every combination, and its swaps are never adopted.",
+  "The 10 Hz engagement bar is declared, not derived.",
+  "Unit type, size rule and drive form are described, not swapped.",
+  "Neural only: no body or physics. Motor coordinates unchanged (20/42 admitted, +4 conditional)."
+ ],
+ "network": {
+  "body_ids_sha256": "cdcfcd231484a46c2a668d17932d95b2147ab16e7dd5c7f87857490590b12eed",
+  "rule": "R1 build_network"
+ },
+ "part_a": {
+  "checks": [
+   "A1 config equals brain_params.json",
+   "A2 existing lif.js parity test passes",
+   "A3 independent weight rule on every edge into E1/E2/I1 and the 68 front-left MNs, exact float32",
+   "A4 signs vs transmitter (known transmitters; OA-types 0; unknown and other reported)",
+   "A5 size factor, region medians, regions; DN/AN/VNC in region 2",
+   "A6 identities (DNs, core, 68 MNs vs V1 stored list)",
+   "A7 sensory mask removes only edges onto sensory targets"
+  ],
+  "labels": {
+   "DEFECT_FOUND": "any A check fails",
+   "NO_DEFECT_FOUND": "all pass"
+  }
+ },
+ "part_b": {
+  "configs": {
+   "S0_LIVE": {},
+   "S1_ISOLATED": {},
+   "S2_MINSYN5": {
+    "min_synapses": 5
+   },
+   "S3_INHGAIN1": {
+    "inhibitory_gain": 1.0
+   },
+   "S4_BINARYSIGN": {
+    "graded_sign": false
+   },
+   "S5_ALL": {
+    "graded_sign": false,
+    "inhibitory_gain": 1.0,
+    "min_synapses": 5
+   }
+  },
+  "core": {
+   "E1": 800173,
+   "E2": 800863,
+   "I1": 801884
+  },
+  "dns": {
+   "DNa02_L": 523769,
+   "DNg100_L": 10045,
+   "DNg75_R": 520300
+  },
+  "engaged": {
+   "bar_hz": 10.0,
+   "need": 5,
+   "rule": "E1 and E2 both >= bar in the same seed, in at least need of 8 seeds; a config engages a DN at either rate"
+  },
+  "expected_core": {
+   "E1": 142920,
+   "E2": 143429,
+   "I1": 144200
+  },
+  "expected_dense": {
+   "DNa02_L": 130496,
+   "DNg100_L": 36,
+   "DNg75_R": 129181
+  },
+  "harness": "lif_driver_rhythm.one, 3 s, Poisson forced drive",
+  "isolated": [
+   "S1_ISOLATED",
+   "S5_ALL"
+  ],
+  "labels": [
+   "INCONCLUSIVE: S0 does not reproduce L1 exactly (DNg75_R, DNa02_L, 100/200 Hz, seeds 1-8), a swap audit fails, the run is incomplete, or every DN is already engaged in S0",
+   "SINGLE_RULE_ENGAGES: one of S1-S4 engages the core for a DN not engaged in S0",
+   "COMBINATION_ONLY: only S5 does",
+   "NOT_THESE_RULES: none does"
+  ],
+  "never_adopted": true,
+  "rates_hz": [
+   100,
+   200
+  ],
+  "seeds": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8
+  ],
+  "simulations": 288
+ },
+ "part_c": "description only; rate terms at mean parameters a*=1, theta*=7.5, b=0.03",
+ "schema": "engine-fidelity-audit-protocol-v1",
+ "sources": {
+  "cache_source_fingerprints_sha256": "4a57318fb90be932291ac14dd0267ecfdf18361dec9c5759e172957114fc08c8",
+  "files": {
+   "brain_params_lf_sha256": "a78e844e583e892aefb9c3a2005e84f5ca278b384fcfbbcd67933d6543696518",
+   "dng100_rate_model_py_lf_sha256": "6c3afeeb9f4b0425d54592a9380e0bca8d403e75207b45a6be773cebed9ca8ff",
+   "dng100_rhythm_py_lf_sha256": "f6603d8fdb0cb85a6ef51758b3ee14d3aed813b4aa37bf40c9bc5f3e27b73448",
+   "l1_protocol_json_sha256": "47278c7cf08a5f244cbb212a6f8407230ea4e3a0b9ea97ef697e47781ec52d75",
+   "l1_result_json_sha256": "4d00b72f907d22a4154a751a823998ea7ccb892437a9358cbe1a282ed58c36f5",
+   "lif_driver_rhythm_py_lf_sha256": "fe7df133ffcc39c771d1431427fe8d15cbe2f5f9de3940c21e83435c6925512f",
+   "lif_js_lf_sha256": "b6d58a7bbbec780179b825f2daf76685de086fe91778dbbeb47d4eabb216a6bc",
+   "neural_py_lf_sha256": "8acebd58cdc221cc815646474bb337c3dc7bd05cccde685ac713f23ca51c7e0c",
+   "parity_js_lf_sha256": "6c5ee228cc3c65f2f686b4fdcc063544f0530b04ce289115538cb5d3fcf41ef1",
+   "parity_test_lf_sha256": "ece34dd763a2ef220275c19be2dab22e03f9cb21ee25ac2d56797dcd291a3f8c",
+   "ratenet_js_lf_sha256": "641ca1950a35b30dab3ed48b51e5e076931c56519006a10e58112647a45636b6",
+   "v1_protocol_json_sha256": "3a65a0cefc2dcf57fb2af4d906aa9d44183b5d221b15e51d64b5dc0b26920068",
+   "v1_result_json_sha256": "7ff0e5902b44ecff96c7ff2b73ab06f35764ce72dfc6173d18f2c001220c2fdc"
+  }
+ }
+}

@@ -1,5 +1,41 @@
 # FlyBrainUnity — local Codex handoff
 
+## Engine fidelity audit Step F1: NO_DEFECT_FOUND, NOT_THESE_RULES — 2026-11-08
+
+Preregistered (5c1819b, protocol ebb68ffc, two pre-run amendments in the build notes), run once
+(288 sims, 2,484 s, result in run/result.json). Neural only; live engine unchanged. Integrity Z1-Z4
+pass, incl. S0 = L1 exactly (32 sims). Part A: A1-A7 all pass, so the engine implements its own
+rules on the real front-left network (this does not validate the rules). Part B: no swap (isolated,
+floor 5, inhibitory gain 1, binary signs, all) engages E1/E2 for DNg75_R or DNa02_L. Reported:
+DNg100_L is already engaged in LIVE (E1 ~26-29 Hz, E2 ~41-43 Hz, 8/8 seeds, ~2.3 % of the CNS active,
+output still tonic), and S1 and S3 abolish it (0 Hz, no MN). The design's framing missed this.
+The pre-run rule "a DN engaged in LIVE cannot count" decided the label: the literal design wording
+would have given SINGLE_RULE_ENGAGES from S2/S4. Part C: nearly all direct core input is inside R1's
+network. XA held, XB held, XB's S1 aside wrong. No fix follows. See ENGINE_FIDELITY_AUDIT_RESULTS.md.
+
+NEXT (needs approval): merge #343. Declared next: desk review of neuron-model evidence for the core
+cells (spiking vs graded). Separate question needing its own design: what in the rest of the CNS
+supports DNg100_L's core engagement.
+
+## Engine fidelity audit Step F1 (why does descending drive not reach the locomotor core?): design — 2026-11-08
+
+Designed only (no protocol, code or run). Re-scope after D5: the rhythm and balance tracks share
+one symptom (descending/sensory drive gives no or destabilising motor patterns), so the next
+question is engine fidelity, not more behavior. Neural only; the live engine is not changed.
+Part A (gated defect check): A1 config = brain_params.json, A2 existing lif.js parity test,
+A3 independent weight rule on real data for edges into E1/E2/I1 and the 68 front-left MNs,
+A4 signs vs transmitter predictions, A5 sizes/regions, A6 identities, A7 sensory mask ->
+DEFECT_FOUND / NO_DEFECT_FOUND. Part B (diagnostic, never adopted): L1 harness, DNg100_L,
+DNg75_R, DNa02_L at 100/200 Hz, seeds 1-8, configs S0 LIVE (exact L1 reproduction gate),
+S1 ISOLATED (R1 network only), S2 MINSYN5, S3 INHGAIN1, S4 BINARYSIGN, S5 ALL; 288 sims.
+Core engaged = E1 and E2 both >= 10 Hz in >= 5/8 seeds -> SINGLE_RULE_ENGAGES /
+COMBINATION_ONLY / NOT_THESE_RULES. Part C describes the core's input weighting under both
+models. Calibration context: brain_params.json is a CEM fit to mostly brain-level benchmarks.
+Expectations: XA NO_DEFECT_FOUND, XB NOT_THESE_RULES. Only a Part A defect can justify an
+engine change (separately versioned). See ENGINE_FIDELITY_AUDIT_V1.md.
+
+NEXT (needs approval): build and run F1.
+
 ## Antennal gravity Step D5 (does the fly fall because the JO senses the tilt?): Q1 REPLICATED, Q2 INDETERMINATE — 2026-11-08
 
 Preregistered (09ae896, protocol a1ab56a7, no amendments), run once (61 arms, ~4.3 h), evaluated
