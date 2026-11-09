@@ -189,3 +189,30 @@ Wrong expectations are recorded as wrong.
    exit status and swap audit are read.
 5. Commit and push the preregistration. Run once, evaluate once, then record the results,
    handoff and roadmap.
+
+## Build-time notes (before any protocol simulation)
+
+Protocol: `docs/evidence/engine-fidelity-audit-v1/protocol.json` (sha ebb68ffc…).
+
+**Amendments, all made before any protocol simulation and before any Part A outcome was read:**
+- **A DN the live engine already engages cannot count.** A swap counts only for a DN that is not
+  engaged in S0, because a swap cannot be what engages a DN that is already on. If every DN is
+  already engaged in S0, Part B is `INCONCLUSIVE`. The design's rule did not cover this case.
+- **A4 covers known transmitters.** The data documents graded signs for neurons with no consensus
+  transmitter call (`fly-brain-main/docs/05-brain-model.md`), so they have no unambiguous reference.
+  In the network those are the scored MNs labelled `unknown`; they, and any non-OA-type octopamine
+  neuron, are counted and reported, not checked.
+
+**As built:**
+- A5's file comparison is `load_cache`'s fingerprint check of `neuron_size.bin` and `ntsign.bin`. The
+  protocol records a hash of those fingerprints.
+- A6's MN reference is V1's stored `front_left_mns` list (L1 compared with the same list).
+- Part C's rate-model terms use the preprint's mean parameters (a* = 1, θ* = 7.5) and b = 0.03.
+  So the direct term is b · w · a/θ = b · w · a*/(θ* · s²), with s the postsynaptic size ratio.
+- Stored runs drop L1's per-MN `mn_detail`; each keeps score, frequency, per-MN spike counts and core
+  rates. The active fraction is network-only for S1 and S5.
+- **Plumbing.** The smoke used S1, DNg75_R, 100 Hz and seed 0 (not a protocol seed) with the protocol
+  not yet written, and took 8.1 s for the simulation. Only its exit status and swap audit were read
+  (passed; 4,961,105 weights zeroed; no sign changed). It also called the Part A and C functions on
+  the real data, so that a crash would show before the run; their output was discarded unread.
+- New tests: 10 in `tests/test_engine_fidelity_audit.py`, on toy data.
