@@ -1,5 +1,24 @@
 # FlyBrainUnity — local Codex handoff
 
+## Engine fidelity audit Step F1 (why does descending drive not reach the locomotor core?): design — 2026-11-08
+
+Designed only (no protocol, code or run). Re-scope after D5: the rhythm and balance tracks share
+one symptom (descending/sensory drive gives no or destabilising motor patterns), so the next
+question is engine fidelity, not more behavior. Neural only; the live engine is not changed.
+Part A (gated defect check): A1 config = brain_params.json, A2 existing lif.js parity test,
+A3 independent weight rule on real data for edges into E1/E2/I1 and the 68 front-left MNs,
+A4 signs vs transmitter predictions, A5 sizes/regions, A6 identities, A7 sensory mask ->
+DEFECT_FOUND / NO_DEFECT_FOUND. Part B (diagnostic, never adopted): L1 harness, DNg100_L,
+DNg75_R, DNa02_L at 100/200 Hz, seeds 1-8, configs S0 LIVE (exact L1 reproduction gate),
+S1 ISOLATED (R1 network only), S2 MINSYN5, S3 INHGAIN1, S4 BINARYSIGN, S5 ALL; 288 sims.
+Core engaged = E1 and E2 both >= 10 Hz in >= 5/8 seeds -> SINGLE_RULE_ENGAGES /
+COMBINATION_ONLY / NOT_THESE_RULES. Part C describes the core's input weighting under both
+models. Calibration context: brain_params.json is a CEM fit to mostly brain-level benchmarks.
+Expectations: XA NO_DEFECT_FOUND, XB NOT_THESE_RULES. Only a Part A defect can justify an
+engine change (separately versioned). See ENGINE_FIDELITY_AUDIT_V1.md.
+
+NEXT (needs approval): build and run F1.
+
 ## Antennal gravity Step D5 (does the fly fall because the JO senses the tilt?): Q1 REPLICATED, Q2 INDETERMINATE — 2026-11-08
 
 Preregistered (09ae896, protocol a1ab56a7, no amendments), run once (61 arms, ~4.3 h), evaluated
