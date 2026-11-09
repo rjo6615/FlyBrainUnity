@@ -1,0 +1,128 @@
+{
+ "schema": "jo-frozen-response-protocol-v1",
+ "date": "2026-11-08",
+ "design": "docs/JO_FROZEN_RESPONSE_V1.md",
+ "question": [
+  "Q1: on fresh seeds, do JO-on (sighted G1/FLIP) flies roll over after a 20 deg nose-down tilt more often than OFF?",
+  "Q2: with the JO input frozen at its last pre-tilt encoder output, do they still roll over (paired by type and seed)?"
+ ],
+ "status": "preregistered; run once",
+ "not_claimed": [
+  "balance",
+  "corrective reflex",
+  "biological role of JO zones",
+  "coordinate admission",
+  "FROZEN as physiology"
+ ],
+ "sources": {
+  "lf_sha256": {
+   "malecns_backend/live/jo_zone_crossing.py": "06f42ede6ba77bb5248d6f94f291a35bc7f87702d047d04772f071d4f05f098c",
+   "malecns_backend/live/antennal_gravity_live.py": "4901b797c5d5ad69cfbbbc4631a6d5d074e962e6c097e39ef01dda5625800fea",
+   "malecns_backend/live/jo_command_yoke.py": "40892db59557776b8193b58ea36ee84340311e4081346d5692dbaed957205f88",
+   "malecns_backend/embodiment/antennal_gravity_encoder.py": "d20fd90733013645e54aee4680baaf2cced0ae435d71a94d9ebd180770809be2",
+   "malecns_backend/neural.py": "8acebd58cdc221cc815646474bb337c3dc7bd05cccde685ac713f23ca51c7e0c",
+   "fly-brain-main/public/data/brain_params.json": "a78e844e583e892aefb9c3a2005e84f5ca278b384fcfbbcd67933d6543696518",
+   "docs/evidence/jo-zone-crossing-v1/protocol.json": "b002e1c86b629ac559e9f509b2d25e004a0ab63bcfb2256c3fa66f2aeca01449",
+   "docs/evidence/jo-zone-crossing-v1/run/report.json": "e64811f7253478b0f2d91031d5b63d9acc8ea2c86ed4878959c49d9e3a80f571"
+  },
+  "reused": "jo_zone_crossing.Trial/run_arm (REPRO unchanged), antennal_gravity_live (complete, encoder, zone_rates), jo_command_yoke.outcome, coxa_offset_yoke.reproduces, coxa_push_response (create_session, force_ok)",
+  "repro_reference": {
+   "arm": "jo-zone-crossing-v1 G1_DOWN20_19 (local raw, untracked)",
+   "sha256": "7392cc15d3e3e1139090924090c07cdcdc4e1465eb18262a22bbd2fcfa5a3be4"
+  }
+ },
+ "context": "Step D trial unchanged (push-response N context, A_ON assisted posture, hair plates, 20 admitted coordinates); 20,000 physics steps, 4,000 neural ticks; gravity G0 through state 5005, R_y(-20 deg) G0 from 5006",
+ "arms": {
+  "types": [
+   "OFF",
+   "G1",
+   "G1F",
+   "FLIP",
+   "FLIPF"
+  ],
+  "frozen": {
+   "G1F": "G1",
+   "FLIPF": "FLIP"
+  },
+  "seeds": [
+   25,
+   26,
+   27,
+   28,
+   29,
+   30,
+   31,
+   32,
+   33,
+   34,
+   35,
+   36
+  ],
+  "repro": "REPRO_G1_DOWN20_19",
+  "order": "REPRO, then per seed OFF, G1, G1F, FLIP, FLIPF",
+  "total": 61,
+  "one_fresh_process_each": true
+ },
+ "freeze_rule": "FROZEN arms: each JO encode while tilt_event is None is delivered and stored; every later encode delivers the stored output (rates and recorded d); delivery (Poisson forced spikes) unchanged",
+ "measure": {
+  "fall": "jo_command_yoke.outcome: body tilt vs recorded gravity >= 45 deg at any stored state after 5005; t_fall_ms and peak tilt reported; censored at run end"
+ },
+ "labels": {
+  "Q1": {
+   "test": "one-sided Fisher exact, pooled sighted (G1+FLIP, 24) vs OFF (12), sighted greater",
+   "rules": [
+    "JO_FALLS_REPLICATED if p <= 0.05",
+    "JO_FALLS_NOT_REPLICATED if sighted fraction <= OFF fraction",
+    "JO_FALLS_WEAK otherwise"
+   ]
+  },
+  "Q2": {
+   "test": "paired by type+seed, pooled G1+FLIP (24 pairs); b = sighted falls only, c = frozen falls only; exact one-sided binomial at 0.5",
+   "rules_first_match": [
+    "UNDERPOWERED if sighted falls < 5",
+    "RESPONSE_NEEDED if b > c and p(b) <= 0.05",
+    "RESPONSE_PROTECTIVE if c > b and p(c) <= 0.05",
+    "RESPONSE_NOT_NEEDED if c >= b",
+    "INDETERMINATE otherwise"
+   ]
+  }
+ },
+ "reported_not_labelled": [
+  "Q2 per type",
+  "frozen vs OFF (Fisher)",
+  "fall times and peak tilts",
+  "post-tilt JO d (held and live) and rates",
+  "first qpos difference per pair",
+  "REPRO outcome"
+ ],
+ "integrity": {
+  "Z1": "61 arms complete (20,001 states, 4,000 ticks)",
+  "Z2": "per seed: common RNG uniforms, schedule and initial qpos; frozen = sighted partner exactly: qpos and commands through state 5005, fired/JO delivery/rates on every pre-tilt tick; first qpos difference after 5005",
+  "Z3": "freeze audit: frozen pre-tilt ticks = encoder, never held; every post-tilt tick held at the last pre-tilt rates and d; same pre-tilt tick count as partner; sighted rates = encoder at every tick, never held",
+  "Z4": "gravity G0 then R_y(-20) G0 from 5006; tilt/event records; no applied wrench (force_ok)",
+  "Z5": "OFF withheld at every tick; others deliver only to JO sets; d5_type/jo_frozen recorded",
+  "Z6": "hard gate: REPRO equals the Step D archive exactly (coxa_offset_yoke.reproduces plus JO delivery), archive sha checked",
+  "Z7": "source lf-sha256 values equal this protocol; per-arm cns_seed; distinct tick-1 uniforms across seeds",
+  "failure": "any failure -> INCONCLUSIVE, no labels"
+ },
+ "expectations": {
+  "E1": "Q1 JO_FALLS_REPLICATED",
+  "E2": "Q2 RESPONSE_NEEDED (pooled)",
+  "E3": "FLIPF falls < FLIP falls and G1F falls >= G1 falls"
+ },
+ "declared_interpretation": {
+  "RESPONSE_NEEDED": "falls need the JO input to follow the tilt",
+  "RESPONSE_NOT_NEEDED": "falls do not need the JO to sense the tilt; instability belongs to the JO-on operating state",
+  "RESPONSE_PROTECTIVE": "JO tilt response helps keep the fly up; needs replication before any balance claim"
+ },
+ "interpretation_limits": [
+  "One tilt (20 deg nose-down step) in one context (Step D, assisted posture).",
+  "Modelled JO transduction (Step B encoder) and Step D zone assignments.",
+  "12 seeds per condition; binary fall at 45 deg, censored at run end.",
+  "FROZEN holds the rate, not the spike train; it is a probe, not physiology.",
+  "Q1 does not control for pre-tilt state differences between JO types and OFF.",
+  "Closed loop: post-tilt differences compound; divergence is an outcome.",
+  "No motor coordinate status change (20/42 admitted, +4 conditional)."
+ ],
+ "single_run": "run once; no retry, resume or exclusion"
+}

@@ -234,3 +234,6 @@ docs/evidence/dng100-graded-relay-v1/**/*.txt -text -whitespace
 docs/evidence/lif-driver-rhythm-v1/*.json -text
 docs/evidence/lif-driver-rhythm-v1/**/*.json -text
 docs/evidence/lif-driver-rhythm-v1/**/*.txt -text -whitespace
+docs/evidence/jo-frozen-response-v1/*.json -text
+docs/evidence/jo-frozen-response-v1/**/*.json -text
+docs/evidence/jo-frozen-response-v1/**/*.txt -text -whitespace
