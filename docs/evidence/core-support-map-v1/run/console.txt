@@ -1,0 +1,46 @@
+[     53s] LIVE: audit True engaged True (8/8)
+[     53s] LIVE gate: True
+[    121s] LIVE_VIA_WEIGHTS: audit True engaged True (8/8)
+[    121s] LIVE_VIA_WEIGHTS gate: True
+[    178s] ISOLATED: audit True engaged False (0/8)
+[    178s] ISOLATED gate: True
+[    256s] MINUS_OPTIC: audit True engaged True (8/8)
+[    314s] MINUS_BRAIN: audit True engaged False (0/8)
+[    377s] MINUS_VNC: audit True engaged False (0/8)
+[    437s] MINUS_AN: audit True engaged False (0/8)
+[    513s] MINUS_DN: audit True engaged True (8/8)
+[    587s] MINUS_SENSORY: audit True engaged True (8/8)
+[    662s] MINUS_OTHER: audit True engaged True (8/8)
+[    727s] ONLY_OPTIC: audit True engaged False (0/8)
+[    794s] ONLY_BRAIN: audit True engaged False (0/8)
+[    861s] ONLY_VNC: audit True engaged False (0/8)
+[    926s] ONLY_AN: audit True engaged False (0/8)
+[    990s] ONLY_DN: audit True engaged False (0/8)
+[   1056s] ONLY_SENSORY: audit True engaged False (0/8)
+[   1121s] ONLY_OTHER: audit True engaged False (0/8)
+{
+ "status": null,
+ "reason": null,
+ "label": "NEEDED_NOT_SUFFICIENT",
+ "detail": {
+  "needed": [
+   "BRAIN",
+   "VNC",
+   "AN"
+  ],
+  "sufficient": [],
+  "localised": [],
+  "nonmonotonic": []
+ },
+ "expectations": {
+  "X1": true,
+  "X2": false,
+  "X3": true
+ },
+ "sham": {
+  "minus_equals_live": true,
+  "only_equals_isolated": true,
+  "sensory_active_in_live": 0
+ },
+ "runtime_s": 1120.6
+}

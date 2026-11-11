@@ -1,6 +1,7 @@
 # Engine fidelity Step F2: what outside the leg network keeps DNg100_L's core active? (design)
 
-Designed 2026-11-10. **Status: designed only** (no protocol, code or run). This is a neural-only
+Designed 2026-11-10. **Status: run 2026-11-10: NEEDED_NOT_SUFFICIENT** (BRAIN, VNC and AN each needed; no group
+enough alone). See `CORE_SUPPORT_MAP_RESULTS.md`. This is a neural-only
 simulation (no body, no physics) in the live, calibrated whole-CNS LIF engine. It does not change
 the live engine, its calibration, weights, signs, mappings or motor admission. Lesions exist only
 in model copies.

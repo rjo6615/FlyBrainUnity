@@ -1,5 +1,22 @@
 # FlyBrainUnity — local Codex handoff
 
+## Engine fidelity Step F2 (core support map): NEEDED_NOT_SUFFICIENT — 2026-11-10
+
+Preregistered (e0a04ff, protocol 60359bb6, no amendments), run once (136 sims, 1,121 s). Neural only;
+live engine unchanged. Integrity Z1-Z4 pass: LIVE = F1 S0 exactly, LIVE_VIA_WEIGHTS = LIVE exactly,
+ISOLATED = F1 S1 exactly, all 17 lesion audits pass. DNg100_L 100 Hz core engagement (E1 26, E2 41
+Hz, 8/8) is abolished (0/8) by removing the central brain, the rest of the VNC or the ascending
+neurons; removing OPTIC, outside DNs, SENSORY or OTHER leaves it (8/8). No group added alone to the
+network engages it. All conditions all-or-none. LIVE has ~3,700-4,400 active neurons, mostly VNC
+(2,206) and brain (996). Sham held (SENSORY silent; MINUS_SENSORY = LIVE, ONLY_SENSORY = ISOLATED).
+X1 held, X2 wrong (not LOCALISED), X3 held. Reading (hypothesis): a cord -> ascending -> brain ->
+descending -> cord loop, active only with the calibrated weakened inhibition; output tonic. See
+CORE_SUPPORT_MAP_RESULTS.md.
+
+NEXT (needs approval): merge #344. Natural follow-up (separate design): are network + BRAIN + VNC +
+AN together enough, and which neurons in each carry the loop? The spiking-vs-graded desk review stays
+open (no local source).
+
 ## Engine fidelity Step F2 (what outside the leg network keeps DNg100_L's core active?): design — 2026-11-10
 
 Designed only (no protocol, code or run). F1's declared desk review (spiking vs graded core cells)
