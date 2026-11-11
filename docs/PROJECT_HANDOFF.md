@@ -1,5 +1,21 @@
 # FlyBrainUnity — local Codex handoff
 
+## Engine fidelity Step F2 (what outside the leg network keeps DNg100_L's core active?): design — 2026-11-10
+
+Designed only (no protocol, code or run). F1's declared desk review (spiking vs graded core cells)
+cannot be done locally: no local source covers the core cells' physiology, and the project is
+local-only. It stays open. F2 takes F1's unplanned observation instead: DNg100_L engages E1/E2 in the
+live engine, and isolation to R1's network or full inhibition abolishes it. Neural only, F1's
+harness, DNg100_L 100 Hz, seeds 1-8. The rest of the CNS is split by superclass into 7 groups
+(OPTIC 99,156; BRAIN 32,343; VNC 12,941; AN 1,749; DN 414; SENSORY 15,845 as a built-in sham;
+OTHER 563). Conditions: LIVE (= F1 S0 exactly), LIVE_VIA_WEIGHTS (= LIVE exactly), ISOLATED (= F1 S1
+exactly), MINUS_X (outgoing weights zeroed, necessity) and ONLY_X (network + X, sufficiency) for each
+group; 136 sims. Engaged = F1's rule. Labels: LOCALISED / NEEDED_NOT_SUFFICIENT / REDUNDANT /
+DISTRIBUTED / INCONCLUSIVE. Expectations: X1 VNC needed, X2 LOCALISED (VNC), X3 sham holds. No
+engine change. See CORE_SUPPORT_MAP_V1.md.
+
+NEXT (needs approval): build and run F2.
+
 ## Engine fidelity audit Step F1: NO_DEFECT_FOUND, NOT_THESE_RULES — 2026-11-08
 
 Preregistered (5c1819b, protocol ebb68ffc, two pre-run amendments in the build notes), run once
