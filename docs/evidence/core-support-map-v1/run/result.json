@@ -1,0 +1,6744 @@
+{
+ "schema": "core-support-map-result-v1",
+ "protocol_sha256": "60359bb6009cd6a85e211d00b41a26217f42e5ecf00543f01cb3b4a290901c7d",
+ "label": "NEEDED_NOT_SUFFICIENT",
+ "detail": {
+  "needed": [
+   "BRAIN",
+   "VNC",
+   "AN"
+  ],
+  "sufficient": [],
+  "localised": [],
+  "nonmonotonic": []
+ },
+ "expectations": {
+  "X1": true,
+  "X2": false,
+  "X3": true
+ },
+ "sham": {
+  "minus_equals_live": true,
+  "only_equals_isolated": true,
+  "sensory_active_in_live": 0
+ },
+ "cells": {
+  "LIVE": {
+   "engaged": true,
+   "engaged_seeds": 8,
+   "median_hz": {
+    "E1": 26.181818181818183,
+    "E2": 40.90909090909091,
+    "I1": 7.454545454545455
+   },
+   "median_active_mns": 12.0,
+   "median_active_fraction": 0.02275892976102518,
+   "median_active_neurons": {
+    "NETWORK": 365.0,
+    "OPTIC": 22.0,
+    "BRAIN": 996.0,
+    "VNC": 2206.5,
+    "AN": 123.5,
+    "DN": 23.5,
+    "SENSORY": 0.0,
+    "OTHER": 0.0
+   }
+  },
+  "LIVE_VIA_WEIGHTS": {
+   "engaged": true,
+   "engaged_seeds": 8,
+   "median_hz": {
+    "E1": 26.181818181818183,
+    "E2": 40.90909090909091,
+    "I1": 7.454545454545455
+   },
+   "median_active_mns": 12.0,
+   "median_active_fraction": 0.02275892976102518,
+   "median_active_neurons": {
+    "NETWORK": 365.0,
+    "OPTIC": 22.0,
+    "BRAIN": 996.0,
+    "VNC": 2206.5,
+    "AN": 123.5,
+    "DN": 23.5,
+    "SENSORY": 0.0,
+    "OTHER": 0.0
+   }
+  },
+  "ISOLATED": {
+   "engaged": false,
+   "engaged_seeds": 0,
+   "median_hz": {
+    "E1": 0.0,
+    "E2": 0.0,
+    "I1": 0.0
+   },
+   "median_active_mns": 0.0,
+   "median_active_fraction": 5.1477089667034074e-05,
+   "median_active_neurons": {
+    "NETWORK": 8.5,
+    "OPTIC": 0.0,
+    "BRAIN": 0.0,
+    "VNC": 0.0,
+    "AN": 0.0,
+    "DN": 0.0,
+    "SENSORY": 0.0,
+    "OTHER": 0.0
+   }
+  },
+  "MINUS_OPTIC": {
+   "engaged": true,
+   "engaged_seeds": 8,
+   "median_hz": {
+    "E1": 26.727272727272727,
+    "E2": 38.90909090909091,
+    "I1": 4.909090909090909
+   },
+   "median_active_mns": 12.0,
+   "median_active_fraction": 0.023210111311636243,
+   "median_active_neurons": {
+    "NETWORK": 382.0,
+    "OPTIC": 20.0,
+    "BRAIN": 1006.0,
+    "VNC": 2266.5,
+    "AN": 129.5,
+    "DN": 25.5,
+    "SENSORY": 0.0,
+    "OTHER": 0.0
+   }
+  },
+  "MINUS_BRAIN": {
+   "engaged": false,
+   "engaged_seeds": 0,
+   "median_hz": {
+    "E1": 0.0,
+    "E2": 0.0,
+    "I1": 0.0
+   },
+   "median_active_mns": 1.0,
+   "median_active_fraction": 0.00574120952992333,
+   "median_active_neurons": {
+    "NETWORK": 45.0,
+    "OPTIC": 1.0,
+    "BRAIN": 107.0,
+    "VNC": 760.5,
+    "AN": 34.0,
+    "DN": 1.0,
+    "SENSORY": 0.0,
+    "OTHER": 0.0
+   }
+  },
+  "MINUS_VNC": {
+   "engaged": false,
+   "engaged_seeds": 0,
+   "median_hz": {
+    "E1": 0.0,
+    "E2": 0.0,
+    "I1": 0.0
+   },
+   "median_active_mns": 0.0,
+   "median_active_fraction": 0.0018743716766996524,
+   "median_active_neurons": {
+    "NETWORK": 42.5,
+    "OPTIC": 8.0,
+    "BRAIN": 137.5,
+    "VNC": 106.5,
+    "AN": 5.5,
+    "DN": 7.5,
+    "SENSORY": 0.0,
+    "OTHER": 0.0
+   }
+  },
+  "MINUS_AN": {
+   "engaged": false,
+   "engaged_seeds": 0,
+   "median_hz": {
+    "E1": 0.0,
+    "E2": 0.0,
+    "I1": 0.0
+   },
+   "median_active_mns": 0.0,
+   "median_active_fraction": 0.004984193505408122,
+   "median_active_neurons": {
+    "NETWORK": 54.0,
+    "OPTIC": 5.5,
+    "BRAIN": 135.0,
+    "VNC": 623.0,
+    "AN": 24.0,
+    "DN": 7.0,
+    "SENSORY": 0.0,
+    "OTHER": 0.0
+   }
+  },
+  "MINUS_DN": {
+   "engaged": true,
+   "engaged_seeds": 8,
+   "median_hz": {
+    "E1": 26.0,
+    "E2": 38.0,
+    "I1": 6.545454545454545
+   },
+   "median_active_mns": 12.0,
+   "median_active_fraction": 0.025481159385181865,
+   "median_active_neurons": {
+    "NETWORK": 389.5,
+    "OPTIC": 22.5,
+    "BRAIN": 1439.0,
+    "VNC": 2211.0,
+    "AN": 121.5,
+    "DN": 24.0,
+    "SENSORY": 0.0,
+    "OTHER": 1.0
+   }
+  },
+  "MINUS_SENSORY": {
+   "engaged": true,
+   "engaged_seeds": 8,
+   "median_hz": {
+    "E1": 26.181818181818183,
+    "E2": 40.90909090909091,
+    "I1": 7.454545454545455
+   },
+   "median_active_mns": 12.0,
+   "median_active_fraction": 0.02275892976102518,
+   "median_active_neurons": {
+    "NETWORK": 365.0,
+    "OPTIC": 22.0,
+    "BRAIN": 996.0,
+    "VNC": 2206.5,
+    "AN": 123.5,
+    "DN": 23.5,
+    "SENSORY": 0.0,
+    "OTHER": 0.0
+   }
+  },
+  "MINUS_OTHER": {
+   "engaged": true,
+   "engaged_seeds": 8,
+   "median_hz": {
+    "E1": 26.181818181818183,
+    "E2": 40.90909090909091,
+    "I1": 7.454545454545455
+   },
+   "median_active_mns": 12.0,
+   "median_active_fraction": 0.02275892976102518,
+   "median_active_neurons": {
+    "NETWORK": 365.0,
+    "OPTIC": 22.0,
+    "BRAIN": 996.0,
+    "VNC": 2206.5,
+    "AN": 123.5,
+    "DN": 23.5,
+    "SENSORY": 0.0,
+    "OTHER": 0.0
+   }
+  },
+  "ONLY_OPTIC": {
+   "engaged": false,
+   "engaged_seeds": 0,
+   "median_hz": {
+    "E1": 0.0,
+    "E2": 0.0,
+    "I1": 0.0
+   },
+   "median_active_mns": 0.0,
+   "median_active_fraction": 5.753321786315573e-05,
+   "median_active_neurons": {
+    "NETWORK": 8.5,
+    "OPTIC": 1.0,
+    "BRAIN": 0.0,
+    "VNC": 0.0,
+    "AN": 0.0,
+    "DN": 0.0,
+    "SENSORY": 0.0,
+    "OTHER": 0.0
+   }
+  },
+  "ONLY_BRAIN": {
+   "engaged": false,
+   "engaged_seeds": 0,
+   "median_hz": {
+    "E1": 0.0,
+    "E2": 0.0,
+    "I1": 0.0
+   },
+   "median_active_mns": 0.0,
+   "median_active_fraction": 0.0011476362931650537,
+   "median_active_neurons": {
+    "NETWORK": 46.0,
+    "OPTIC": 0.0,
+    "BRAIN": 144.0,
+    "VNC": 0.0,
+    "AN": 0.0,
+    "DN": 0.0,
+    "SENSORY": 0.0,
+    "OTHER": 0.0
+   }
+  },
+  "ONLY_VNC": {
+   "engaged": false,
+   "engaged_seeds": 0,
+   "median_hz": {
+    "E1": 0.0,
+    "E2": 0.0,
+    "I1": 0.0
+   },
+   "median_active_mns": 0.0,
+   "median_active_fraction": 0.003885006237812042,
+   "median_active_neurons": {
+    "NETWORK": 19.5,
+    "OPTIC": 0.0,
+    "BRAIN": 0.0,
+    "VNC": 622.0,
+    "AN": 0.0,
+    "DN": 0.0,
+    "SENSORY": 0.0,
+    "OTHER": 0.0
+   }
+  },
+  "ONLY_AN": {
+   "engaged": false,
+   "engaged_seeds": 0,
+   "median_hz": {
+    "E1": 0.0,
+    "E2": 0.0,
+    "I1": 0.0
+   },
+   "median_active_mns": 0.0,
+   "median_active_fraction": 6.056128196121655e-05,
+   "median_active_neurons": {
+    "NETWORK": 8.5,
+    "OPTIC": 0.0,
+    "BRAIN": 0.0,
+    "VNC": 0.0,
+    "AN": 1.5,
+    "DN": 0.0,
+    "SENSORY": 0.0,
+    "OTHER": 0.0
+   }
+  },
+  "ONLY_DN": {
+   "engaged": false,
+   "engaged_seeds": 0,
+   "median_hz": {
+    "E1": 0.0,
+    "E2": 0.0,
+    "I1": 0.0
+   },
+   "median_active_mns": 0.0,
+   "median_active_fraction": 5.753321786315573e-05,
+   "median_active_neurons": {
+    "NETWORK": 8.5,
+    "OPTIC": 0.0,
+    "BRAIN": 0.0,
+    "VNC": 0.0,
+    "AN": 0.0,
+    "DN": 1.0,
+    "SENSORY": 0.0,
+    "OTHER": 0.0
+   }
+  },
+  "ONLY_SENSORY": {
+   "engaged": false,
+   "engaged_seeds": 0,
+   "median_hz": {
+    "E1": 0.0,
+    "E2": 0.0,
+    "I1": 0.0
+   },
+   "median_active_mns": 0.0,
+   "median_active_fraction": 5.1477089667034074e-05,
+   "median_active_neurons": {
+    "NETWORK": 8.5,
+    "OPTIC": 0.0,
+    "BRAIN": 0.0,
+    "VNC": 0.0,
+    "AN": 0.0,
+    "DN": 0.0,
+    "SENSORY": 0.0,
+    "OTHER": 0.0
+   }
+  },
+  "ONLY_OTHER": {
+   "engaged": false,
+   "engaged_seeds": 0,
+   "median_hz": {
+    "E1": 0.0,
+    "E2": 0.0,
+    "I1": 0.0
+   },
+   "median_active_mns": 0.0,
+   "median_active_fraction": 5.1477089667034074e-05,
+   "median_active_neurons": {
+    "NETWORK": 8.5,
+    "OPTIC": 0.0,
+    "BRAIN": 0.0,
+    "VNC": 0.0,
+    "AN": 0.0,
+    "DN": 0.0,
+    "SENSORY": 0.0,
+    "OTHER": 0.0
+   }
+  }
+ },
+ "runs": {
+  "LIVE": [
+   {
+    "seed": 1,
+    "score": 0.1837086074433295,
+    "frequency_hz": 7.348191214470284,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 325,
+     "143654": 273,
+     "144049": 5,
+     "146571": 103,
+     "147111": 103,
+     "147938": 204,
+     "148512": 67,
+     "151305": 18,
+     "154980": 160,
+     "158475": 9,
+     "159328": 167,
+     "162458": 114
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 68,
+      "mean_hz": 24.727272727272727,
+      "trace_score": 0.29585292501644067,
+      "period_ms": 795.0
+     },
+     "E2": {
+      "spikes_in_window": 105,
+      "mean_hz": 38.18181818181818,
+      "trace_score": 0.2455599999915192,
+      "period_ms": 156.0
+     },
+     "I1": {
+      "spikes_in_window": 17,
+      "mean_hz": 6.181818181818182,
+      "trace_score": 0.27563298749955595,
+      "period_ms": 576.0
+     }
+    },
+    "active_fraction": 0.02213514855682465,
+    "network_active_fraction": 0.17290383704405496,
+    "active_neurons": {
+     "NETWORK": 365,
+     "OPTIC": 19,
+     "BRAIN": 919,
+     "VNC": 2209,
+     "AN": 122,
+     "DN": 21,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 2,
+    "score": 0.20163380447528798,
+    "frequency_hz": 2.861283033696827,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 397,
+     "143654": 330,
+     "144049": 9,
+     "146571": 128,
+     "147111": 131,
+     "147938": 249,
+     "148512": 75,
+     "151305": 24,
+     "154980": 197,
+     "158475": 13,
+     "159328": 206,
+     "162458": 144
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 73,
+      "mean_hz": 26.545454545454547,
+      "trace_score": 0.16964024850309187,
+      "period_ms": 508.0
+     },
+     "E2": {
+      "spikes_in_window": 116,
+      "mean_hz": 42.18181818181818,
+      "trace_score": 0.2279184888375265,
+      "period_ms": 510.0
+     },
+     "I1": {
+      "spikes_in_window": 23,
+      "mean_hz": 8.363636363636363,
+      "trace_score": 0.16042706739391382,
+      "period_ms": 79.0
+     }
+    },
+    "active_fraction": 0.022886108453143737,
+    "network_active_fraction": 0.17574609189957366,
+    "active_neurons": {
+     "NETWORK": 371,
+     "OPTIC": 22,
+     "BRAIN": 1019,
+     "VNC": 2214,
+     "AN": 128,
+     "DN": 25,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 3,
+    "score": 0.1796809925460345,
+    "frequency_hz": 6.451881451881452,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 377,
+     "143654": 316,
+     "144049": 13,
+     "146571": 123,
+     "147111": 125,
+     "147938": 233,
+     "148512": 73,
+     "151228": 2,
+     "151305": 31,
+     "154980": 190,
+     "158475": 15,
+     "159328": 197,
+     "162458": 140
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 72,
+      "mean_hz": 26.181818181818183,
+      "trace_score": 0.14044806104523352,
+      "period_ms": 67.0
+     },
+     "E2": {
+      "spikes_in_window": 121,
+      "mean_hz": 44.0,
+      "trace_score": 0.15232150506019546,
+      "period_ms": 46.0
+     },
+     "I1": {
+      "spikes_in_window": 24,
+      "mean_hz": 8.727272727272727,
+      "trace_score": 0.1407282425684199,
+      "period_ms": 49.0
+     }
+    },
+    "active_fraction": 0.0225409091459648,
+    "network_active_fraction": 0.1695878730459498,
+    "active_neurons": {
+     "NETWORK": 358,
+     "OPTIC": 23,
+     "BRAIN": 973,
+     "VNC": 2220,
+     "AN": 125,
+     "DN": 23,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 4,
+    "score": 0.15813453185239904,
+    "frequency_hz": 2.778893319181894,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 277,
+     "143654": 231,
+     "144049": 11,
+     "146571": 89,
+     "147111": 88,
+     "147938": 171,
+     "148512": 46,
+     "151305": 18,
+     "154980": 140,
+     "158475": 7,
+     "159328": 145,
+     "162458": 89
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 54,
+      "mean_hz": 19.636363636363637,
+      "trace_score": 0.27546342071312435,
+      "period_ms": 55.0
+     },
+     "E2": {
+      "spikes_in_window": 90,
+      "mean_hz": 32.72727272727273,
+      "trace_score": 0.3411041238558027,
+      "period_ms": 54.0
+     },
+     "I1": {
+      "spikes_in_window": 19,
+      "mean_hz": 6.909090909090909,
+      "trace_score": 0.2239351212732624,
+      "period_ms": 227.0
+     }
+    },
+    "active_fraction": 0.02638049442230593,
+    "network_active_fraction": 0.17290383704405496,
+    "active_neurons": {
+     "NETWORK": 365,
+     "OPTIC": 38,
+     "BRAIN": 1604,
+     "VNC": 2204,
+     "AN": 121,
+     "DN": 24,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 5,
+    "score": 0.20677648553856418,
+    "frequency_hz": 1.477051737017075,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 351,
+     "143654": 296,
+     "144049": 13,
+     "146571": 116,
+     "147111": 116,
+     "147938": 221,
+     "148512": 74,
+     "151305": 21,
+     "154980": 174,
+     "158475": 12,
+     "159328": 183,
+     "162458": 127
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 75,
+      "mean_hz": 27.272727272727273,
+      "trace_score": 0.1663224568404778,
+      "period_ms": 70.0
+     },
+     "E2": {
+      "spikes_in_window": 108,
+      "mean_hz": 39.27272727272727,
+      "trace_score": 0.16688451377872424,
+      "period_ms": 74.0
+     },
+     "I1": {
+      "spikes_in_window": 20,
+      "mean_hz": 7.2727272727272725,
+      "trace_score": 0.17412902659308707,
+      "period_ms": 224.0
+     }
+    },
+    "active_fraction": 0.024448589527743123,
+    "network_active_fraction": 0.17100900047370915,
+    "active_neurons": {
+     "NETWORK": 361,
+     "OPTIC": 19,
+     "BRAIN": 1332,
+     "VNC": 2180,
+     "AN": 121,
+     "DN": 24,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 6,
+    "score": 0.2000948543835829,
+    "frequency_hz": 2.2831050228310503,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 351,
+     "143654": 293,
+     "144049": 14,
+     "146571": 110,
+     "147111": 110,
+     "147938": 217,
+     "148512": 62,
+     "151228": 1,
+     "151305": 17,
+     "154980": 174,
+     "158475": 9,
+     "159328": 181,
+     "162458": 115
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 71,
+      "mean_hz": 25.818181818181817,
+      "trace_score": 0.251263663097487,
+      "period_ms": 218.0
+     },
+     "E2": {
+      "spikes_in_window": 109,
+      "mean_hz": 39.63636363636363,
+      "trace_score": 0.23990013993863973,
+      "period_ms": 53.0
+     },
+     "I1": {
+      "spikes_in_window": 20,
+      "mean_hz": 7.2727272727272725,
+      "trace_score": 0.25198274518454,
+      "period_ms": 51.0
+     }
+    },
+    "active_fraction": 0.022280495633531572,
+    "network_active_fraction": 0.17479867361440077,
+    "active_neurons": {
+     "NETWORK": 369,
+     "OPTIC": 24,
+     "BRAIN": 959,
+     "VNC": 2178,
+     "AN": 126,
+     "DN": 23,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 7,
+    "score": 0.19042088572743807,
+    "frequency_hz": 2.566396386107833,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 387,
+     "143654": 326,
+     "144049": 15,
+     "146571": 127,
+     "147111": 128,
+     "147938": 241,
+     "148512": 72,
+     "151305": 26,
+     "154980": 199,
+     "158475": 13,
+     "159328": 201,
+     "162458": 141
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 76,
+      "mean_hz": 27.636363636363637,
+      "trace_score": 0.18215652716035008,
+      "period_ms": 285.0
+     },
+     "E2": {
+      "spikes_in_window": 124,
+      "mean_hz": 45.09090909090909,
+      "trace_score": 0.32295977951582255,
+      "period_ms": 1339.0
+     },
+     "I1": {
+      "spikes_in_window": 21,
+      "mean_hz": 7.636363636363637,
+      "trace_score": 0.1679905324234526,
+      "period_ms": 121.0
+     }
+    },
+    "active_fraction": 0.022631751068906625,
+    "network_active_fraction": 0.1752723827569872,
+    "active_neurons": {
+     "NETWORK": 370,
+     "OPTIC": 22,
+     "BRAIN": 973,
+     "VNC": 2225,
+     "AN": 125,
+     "DN": 22,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 8,
+    "score": 0.2616599767151212,
+    "frequency_hz": 1.767039413814125,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 346,
+     "143654": 292,
+     "144049": 16,
+     "146571": 115,
+     "147111": 117,
+     "147938": 211,
+     "148512": 62,
+     "151228": 2,
+     "151305": 25,
+     "154980": 173,
+     "158475": 12,
+     "159328": 176,
+     "162458": 131
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 72,
+      "mean_hz": 26.181818181818183,
+      "trace_score": 0.23251195513929096,
+      "period_ms": 233.0
+     },
+     "E2": {
+      "spikes_in_window": 117,
+      "mean_hz": 42.54545454545455,
+      "trace_score": 0.2303561388260427,
+      "period_ms": 44.0
+     },
+     "I1": {
+      "spikes_in_window": 24,
+      "mean_hz": 8.727272727272727,
+      "trace_score": 0.3775682662994861,
+      "period_ms": 1057.0
+     }
+    },
+    "active_fraction": 0.02601107060234251,
+    "network_active_fraction": 0.1724301279014685,
+    "active_neurons": {
+     "NETWORK": 364,
+     "OPTIC": 20,
+     "BRAIN": 1575,
+     "VNC": 2191,
+     "AN": 120,
+     "DN": 25,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   }
+  ],
+  "LIVE_VIA_WEIGHTS": [
+   {
+    "seed": 1,
+    "score": 0.1837086074433295,
+    "frequency_hz": 7.348191214470284,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 325,
+     "143654": 273,
+     "144049": 5,
+     "146571": 103,
+     "147111": 103,
+     "147938": 204,
+     "148512": 67,
+     "151305": 18,
+     "154980": 160,
+     "158475": 9,
+     "159328": 167,
+     "162458": 114
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 68,
+      "mean_hz": 24.727272727272727,
+      "trace_score": 0.29585292501644067,
+      "period_ms": 795.0
+     },
+     "E2": {
+      "spikes_in_window": 105,
+      "mean_hz": 38.18181818181818,
+      "trace_score": 0.2455599999915192,
+      "period_ms": 156.0
+     },
+     "I1": {
+      "spikes_in_window": 17,
+      "mean_hz": 6.181818181818182,
+      "trace_score": 0.27563298749955595,
+      "period_ms": 576.0
+     }
+    },
+    "active_fraction": 0.02213514855682465,
+    "network_active_fraction": 0.17290383704405496,
+    "active_neurons": {
+     "NETWORK": 365,
+     "OPTIC": 19,
+     "BRAIN": 919,
+     "VNC": 2209,
+     "AN": 122,
+     "DN": 21,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 2,
+    "score": 0.20163380447528798,
+    "frequency_hz": 2.861283033696827,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 397,
+     "143654": 330,
+     "144049": 9,
+     "146571": 128,
+     "147111": 131,
+     "147938": 249,
+     "148512": 75,
+     "151305": 24,
+     "154980": 197,
+     "158475": 13,
+     "159328": 206,
+     "162458": 144
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 73,
+      "mean_hz": 26.545454545454547,
+      "trace_score": 0.16964024850309187,
+      "period_ms": 508.0
+     },
+     "E2": {
+      "spikes_in_window": 116,
+      "mean_hz": 42.18181818181818,
+      "trace_score": 0.2279184888375265,
+      "period_ms": 510.0
+     },
+     "I1": {
+      "spikes_in_window": 23,
+      "mean_hz": 8.363636363636363,
+      "trace_score": 0.16042706739391382,
+      "period_ms": 79.0
+     }
+    },
+    "active_fraction": 0.022886108453143737,
+    "network_active_fraction": 0.17574609189957366,
+    "active_neurons": {
+     "NETWORK": 371,
+     "OPTIC": 22,
+     "BRAIN": 1019,
+     "VNC": 2214,
+     "AN": 128,
+     "DN": 25,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 3,
+    "score": 0.1796809925460345,
+    "frequency_hz": 6.451881451881452,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 377,
+     "143654": 316,
+     "144049": 13,
+     "146571": 123,
+     "147111": 125,
+     "147938": 233,
+     "148512": 73,
+     "151228": 2,
+     "151305": 31,
+     "154980": 190,
+     "158475": 15,
+     "159328": 197,
+     "162458": 140
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 72,
+      "mean_hz": 26.181818181818183,
+      "trace_score": 0.14044806104523352,
+      "period_ms": 67.0
+     },
+     "E2": {
+      "spikes_in_window": 121,
+      "mean_hz": 44.0,
+      "trace_score": 0.15232150506019546,
+      "period_ms": 46.0
+     },
+     "I1": {
+      "spikes_in_window": 24,
+      "mean_hz": 8.727272727272727,
+      "trace_score": 0.1407282425684199,
+      "period_ms": 49.0
+     }
+    },
+    "active_fraction": 0.0225409091459648,
+    "network_active_fraction": 0.1695878730459498,
+    "active_neurons": {
+     "NETWORK": 358,
+     "OPTIC": 23,
+     "BRAIN": 973,
+     "VNC": 2220,
+     "AN": 125,
+     "DN": 23,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 4,
+    "score": 0.15813453185239904,
+    "frequency_hz": 2.778893319181894,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 277,
+     "143654": 231,
+     "144049": 11,
+     "146571": 89,
+     "147111": 88,
+     "147938": 171,
+     "148512": 46,
+     "151305": 18,
+     "154980": 140,
+     "158475": 7,
+     "159328": 145,
+     "162458": 89
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 54,
+      "mean_hz": 19.636363636363637,
+      "trace_score": 0.27546342071312435,
+      "period_ms": 55.0
+     },
+     "E2": {
+      "spikes_in_window": 90,
+      "mean_hz": 32.72727272727273,
+      "trace_score": 0.3411041238558027,
+      "period_ms": 54.0
+     },
+     "I1": {
+      "spikes_in_window": 19,
+      "mean_hz": 6.909090909090909,
+      "trace_score": 0.2239351212732624,
+      "period_ms": 227.0
+     }
+    },
+    "active_fraction": 0.02638049442230593,
+    "network_active_fraction": 0.17290383704405496,
+    "active_neurons": {
+     "NETWORK": 365,
+     "OPTIC": 38,
+     "BRAIN": 1604,
+     "VNC": 2204,
+     "AN": 121,
+     "DN": 24,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 5,
+    "score": 0.20677648553856418,
+    "frequency_hz": 1.477051737017075,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 351,
+     "143654": 296,
+     "144049": 13,
+     "146571": 116,
+     "147111": 116,
+     "147938": 221,
+     "148512": 74,
+     "151305": 21,
+     "154980": 174,
+     "158475": 12,
+     "159328": 183,
+     "162458": 127
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 75,
+      "mean_hz": 27.272727272727273,
+      "trace_score": 0.1663224568404778,
+      "period_ms": 70.0
+     },
+     "E2": {
+      "spikes_in_window": 108,
+      "mean_hz": 39.27272727272727,
+      "trace_score": 0.16688451377872424,
+      "period_ms": 74.0
+     },
+     "I1": {
+      "spikes_in_window": 20,
+      "mean_hz": 7.2727272727272725,
+      "trace_score": 0.17412902659308707,
+      "period_ms": 224.0
+     }
+    },
+    "active_fraction": 0.024448589527743123,
+    "network_active_fraction": 0.17100900047370915,
+    "active_neurons": {
+     "NETWORK": 361,
+     "OPTIC": 19,
+     "BRAIN": 1332,
+     "VNC": 2180,
+     "AN": 121,
+     "DN": 24,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 6,
+    "score": 0.2000948543835829,
+    "frequency_hz": 2.2831050228310503,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 351,
+     "143654": 293,
+     "144049": 14,
+     "146571": 110,
+     "147111": 110,
+     "147938": 217,
+     "148512": 62,
+     "151228": 1,
+     "151305": 17,
+     "154980": 174,
+     "158475": 9,
+     "159328": 181,
+     "162458": 115
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 71,
+      "mean_hz": 25.818181818181817,
+      "trace_score": 0.251263663097487,
+      "period_ms": 218.0
+     },
+     "E2": {
+      "spikes_in_window": 109,
+      "mean_hz": 39.63636363636363,
+      "trace_score": 0.23990013993863973,
+      "period_ms": 53.0
+     },
+     "I1": {
+      "spikes_in_window": 20,
+      "mean_hz": 7.2727272727272725,
+      "trace_score": 0.25198274518454,
+      "period_ms": 51.0
+     }
+    },
+    "active_fraction": 0.022280495633531572,
+    "network_active_fraction": 0.17479867361440077,
+    "active_neurons": {
+     "NETWORK": 369,
+     "OPTIC": 24,
+     "BRAIN": 959,
+     "VNC": 2178,
+     "AN": 126,
+     "DN": 23,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 7,
+    "score": 0.19042088572743807,
+    "frequency_hz": 2.566396386107833,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 387,
+     "143654": 326,
+     "144049": 15,
+     "146571": 127,
+     "147111": 128,
+     "147938": 241,
+     "148512": 72,
+     "151305": 26,
+     "154980": 199,
+     "158475": 13,
+     "159328": 201,
+     "162458": 141
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 76,
+      "mean_hz": 27.636363636363637,
+      "trace_score": 0.18215652716035008,
+      "period_ms": 285.0
+     },
+     "E2": {
+      "spikes_in_window": 124,
+      "mean_hz": 45.09090909090909,
+      "trace_score": 0.32295977951582255,
+      "period_ms": 1339.0
+     },
+     "I1": {
+      "spikes_in_window": 21,
+      "mean_hz": 7.636363636363637,
+      "trace_score": 0.1679905324234526,
+      "period_ms": 121.0
+     }
+    },
+    "active_fraction": 0.022631751068906625,
+    "network_active_fraction": 0.1752723827569872,
+    "active_neurons": {
+     "NETWORK": 370,
+     "OPTIC": 22,
+     "BRAIN": 973,
+     "VNC": 2225,
+     "AN": 125,
+     "DN": 22,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 8,
+    "score": 0.2616599767151212,
+    "frequency_hz": 1.767039413814125,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 346,
+     "143654": 292,
+     "144049": 16,
+     "146571": 115,
+     "147111": 117,
+     "147938": 211,
+     "148512": 62,
+     "151228": 2,
+     "151305": 25,
+     "154980": 173,
+     "158475": 12,
+     "159328": 176,
+     "162458": 131
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 72,
+      "mean_hz": 26.181818181818183,
+      "trace_score": 0.23251195513929096,
+      "period_ms": 233.0
+     },
+     "E2": {
+      "spikes_in_window": 117,
+      "mean_hz": 42.54545454545455,
+      "trace_score": 0.2303561388260427,
+      "period_ms": 44.0
+     },
+     "I1": {
+      "spikes_in_window": 24,
+      "mean_hz": 8.727272727272727,
+      "trace_score": 0.3775682662994861,
+      "period_ms": 1057.0
+     }
+    },
+    "active_fraction": 0.02601107060234251,
+    "network_active_fraction": 0.1724301279014685,
+    "active_neurons": {
+     "NETWORK": 364,
+     "OPTIC": 20,
+     "BRAIN": 1575,
+     "VNC": 2191,
+     "AN": 120,
+     "DN": 25,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   }
+  ],
+  "ISOLATED": [
+   {
+    "seed": 1,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 4.8449025568973245e-05,
+    "network_active_fraction": 0.0037896731406916154,
+    "active_neurons": {
+     "NETWORK": 8,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 2,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 4.8449025568973245e-05,
+    "network_active_fraction": 0.0037896731406916154,
+    "active_neurons": {
+     "NETWORK": 8,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 3,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 5.45051537650949e-05,
+    "network_active_fraction": 0.004263382283278067,
+    "active_neurons": {
+     "NETWORK": 9,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 4,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 6.056128196121655e-05,
+    "network_active_fraction": 0.0047370914258645196,
+    "active_neurons": {
+     "NETWORK": 10,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 5,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 5.45051537650949e-05,
+    "network_active_fraction": 0.004263382283278067,
+    "active_neurons": {
+     "NETWORK": 9,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 6,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 4.8449025568973245e-05,
+    "network_active_fraction": 0.0037896731406916154,
+    "active_neurons": {
+     "NETWORK": 8,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 7,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 4.8449025568973245e-05,
+    "network_active_fraction": 0.0037896731406916154,
+    "active_neurons": {
+     "NETWORK": 8,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 8,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 7.267353835345986e-05,
+    "network_active_fraction": 0.005684509711037423,
+    "active_neurons": {
+     "NETWORK": 12,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   }
+  ],
+  "MINUS_OPTIC": [
+   {
+    "seed": 1,
+    "score": 0.22478461049353815,
+    "frequency_hz": 3.8044718229523156,
+    "active_mns": 11,
+    "mn_spikes": {
+     "142836": 323,
+     "143654": 269,
+     "144049": 4,
+     "144657": 3,
+     "146571": 106,
+     "147111": 107,
+     "147938": 204,
+     "148512": 51,
+     "151228": 1,
+     "151305": 13,
+     "154980": 166,
+     "158475": 10,
+     "159328": 170,
+     "162458": 69
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 68,
+      "mean_hz": 24.727272727272727,
+      "trace_score": 0.18900886165804953,
+      "period_ms": 208.0
+     },
+     "E2": {
+      "spikes_in_window": 98,
+      "mean_hz": 35.63636363636363,
+      "trace_score": 0.18734861390414356,
+      "period_ms": 329.0
+     },
+     "I1": {
+      "spikes_in_window": 13,
+      "mean_hz": 4.7272727272727275,
+      "trace_score": 0.2743909094400503,
+      "period_ms": 967.0
+     }
+    },
+    "active_fraction": 0.02234711304368891,
+    "network_active_fraction": 0.17764092846991947,
+    "active_neurons": {
+     "NETWORK": 375,
+     "OPTIC": 17,
+     "BRAIN": 932,
+     "VNC": 2217,
+     "AN": 125,
+     "DN": 24,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 2,
+    "score": 0.1858145602383042,
+    "frequency_hz": 2.8827133690355575,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 389,
+     "143654": 327,
+     "144049": 8,
+     "144657": 3,
+     "146571": 130,
+     "147111": 130,
+     "147938": 249,
+     "148512": 64,
+     "151305": 19,
+     "154980": 198,
+     "158475": 9,
+     "159328": 204,
+     "162458": 102
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 80,
+      "mean_hz": 29.09090909090909,
+      "trace_score": 0.15828825435713065,
+      "period_ms": 601.0
+     },
+     "E2": {
+      "spikes_in_window": 117,
+      "mean_hz": 42.54545454545455,
+      "trace_score": 0.1842908893195483,
+      "period_ms": 604.0
+     },
+     "I1": {
+      "spikes_in_window": 10,
+      "mean_hz": 3.6363636363636362,
+      "trace_score": 0.3378658476830993,
+      "period_ms": 536.0
+     }
+    },
+    "active_fraction": 0.02330398129867613,
+    "network_active_fraction": 0.1880625296068214,
+    "active_neurons": {
+     "NETWORK": 397,
+     "OPTIC": 22,
+     "BRAIN": 981,
+     "VNC": 2287,
+     "AN": 134,
+     "DN": 27,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 3,
+    "score": 0.2238952596083954,
+    "frequency_hz": 3.9688164422395467,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 375,
+     "143654": 310,
+     "144049": 7,
+     "144657": 4,
+     "146571": 121,
+     "147111": 122,
+     "147938": 240,
+     "148512": 58,
+     "151228": 1,
+     "151305": 19,
+     "154980": 195,
+     "158475": 14,
+     "159328": 198,
+     "162458": 91
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 74,
+      "mean_hz": 26.90909090909091,
+      "trace_score": 0.13932381615186484,
+      "period_ms": 241.0
+     },
+     "E2": {
+      "spikes_in_window": 112,
+      "mean_hz": 40.72727272727273,
+      "trace_score": 0.20099973930767648,
+      "period_ms": 649.0
+     },
+     "I1": {
+      "spikes_in_window": 18,
+      "mean_hz": 6.545454545454546,
+      "trace_score": 0.17486499160767524,
+      "period_ms": 406.0
+     }
+    },
+    "active_fraction": 0.024279017938251716,
+    "network_active_fraction": 0.18569398389388916,
+    "active_neurons": {
+     "NETWORK": 392,
+     "OPTIC": 21,
+     "BRAIN": 1052,
+     "VNC": 2349,
+     "AN": 163,
+     "DN": 32,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 4,
+    "score": 0.22967879940402627,
+    "frequency_hz": 9.433962264150944,
+    "active_mns": 11,
+    "mn_spikes": {
+     "142836": 275,
+     "143654": 226,
+     "144049": 4,
+     "144657": 1,
+     "146571": 90,
+     "147111": 91,
+     "147938": 175,
+     "148512": 47,
+     "151305": 7,
+     "154980": 139,
+     "158475": 5,
+     "159328": 146,
+     "162458": 64
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 61,
+      "mean_hz": 22.181818181818183,
+      "trace_score": 0.1995479782957522,
+      "period_ms": 160.0
+     },
+     "E2": {
+      "spikes_in_window": 82,
+      "mean_hz": 29.818181818181817,
+      "trace_score": 0.26178915312418,
+      "period_ms": 54.0
+     },
+     "I1": {
+      "spikes_in_window": 8,
+      "mean_hz": 2.909090909090909,
+      "trace_score": 0.44856384979939734,
+      "period_ms": 55.0
+     }
+    },
+    "active_fraction": 0.023503833529148144,
+    "network_active_fraction": 0.1833254381809569,
+    "active_neurons": {
+     "NETWORK": 387,
+     "OPTIC": 21,
+     "BRAIN": 1009,
+     "VNC": 2299,
+     "AN": 135,
+     "DN": 30,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 5,
+    "score": 0.24595040279875668,
+    "frequency_hz": 1.9673106177584097,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 349,
+     "143654": 293,
+     "144049": 5,
+     "144657": 2,
+     "146571": 112,
+     "147111": 113,
+     "147938": 222,
+     "148512": 52,
+     "151305": 16,
+     "154980": 178,
+     "158475": 8,
+     "159328": 186,
+     "162458": 78
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 73,
+      "mean_hz": 26.545454545454547,
+      "trace_score": 0.22002827190171742,
+      "period_ms": 307.0
+     },
+     "E2": {
+      "spikes_in_window": 110,
+      "mean_hz": 40.0,
+      "trace_score": 0.26260426983236473,
+      "period_ms": 791.0
+     },
+     "I1": {
+      "spikes_in_window": 14,
+      "mean_hz": 5.090909090909091,
+      "trace_score": 0.17085440630374615,
+      "period_ms": 320.0
+     }
+    },
+    "active_fraction": 0.02311624132459636,
+    "network_active_fraction": 0.17906205589767882,
+    "active_neurons": {
+     "NETWORK": 378,
+     "OPTIC": 19,
+     "BRAIN": 1030,
+     "VNC": 2242,
+     "AN": 124,
+     "DN": 24,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 6,
+    "score": 0.2226054421543731,
+    "frequency_hz": 1.0090817356205852,
+    "active_mns": 13,
+    "mn_spikes": {
+     "142836": 351,
+     "143654": 287,
+     "144049": 6,
+     "144657": 5,
+     "146571": 118,
+     "147111": 119,
+     "147938": 223,
+     "148512": 61,
+     "151305": 21,
+     "154980": 175,
+     "158475": 9,
+     "159328": 186,
+     "162458": 95
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 74,
+      "mean_hz": 26.90909090909091,
+      "trace_score": 0.21025130444411197,
+      "period_ms": 340.0
+     },
+     "E2": {
+      "spikes_in_window": 104,
+      "mean_hz": 37.81818181818182,
+      "trace_score": 0.17277470036000567,
+      "period_ms": 339.0
+     },
+     "I1": {
+      "spikes_in_window": 16,
+      "mean_hz": 5.818181818181818,
+      "trace_score": 0.2595250437608218,
+      "period_ms": 602.0
+     }
+    },
+    "active_fraction": 0.024266905681859473,
+    "network_active_fraction": 0.18285172903837044,
+    "active_neurons": {
+     "NETWORK": 386,
+     "OPTIC": 24,
+     "BRAIN": 1068,
+     "VNC": 2339,
+     "AN": 161,
+     "DN": 29,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 7,
+    "score": 0.2028612497766685,
+    "frequency_hz": 4.376388569677469,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 377,
+     "143654": 310,
+     "144049": 6,
+     "146571": 125,
+     "147111": 126,
+     "147938": 243,
+     "148512": 62,
+     "151305": 13,
+     "154980": 189,
+     "158106": 1,
+     "158475": 10,
+     "159328": 201,
+     "162458": 109
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 83,
+      "mean_hz": 30.181818181818183,
+      "trace_score": 0.1498231372890733,
+      "period_ms": 475.0
+     },
+     "E2": {
+      "spikes_in_window": 114,
+      "mean_hz": 41.45454545454545,
+      "trace_score": 0.20421637681080654,
+      "period_ms": 712.0
+     },
+     "I1": {
+      "spikes_in_window": 12,
+      "mean_hz": 4.363636363636363,
+      "trace_score": 0.26274620673868,
+      "period_ms": 435.0
+     }
+    },
+    "active_fraction": 0.022946669735104952,
+    "network_active_fraction": 0.17669351018474658,
+    "active_neurons": {
+     "NETWORK": 373,
+     "OPTIC": 19,
+     "BRAIN": 1003,
+     "VNC": 2246,
+     "AN": 124,
+     "DN": 24,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 8,
+    "score": 0.23356361031474193,
+    "frequency_hz": 3.3003300330033003,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 338,
+     "143654": 277,
+     "144049": 8,
+     "144657": 1,
+     "146571": 111,
+     "147111": 111,
+     "147938": 219,
+     "148512": 57,
+     "151305": 10,
+     "154980": 174,
+     "158475": 7,
+     "159328": 182,
+     "162458": 83
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 66,
+      "mean_hz": 24.0,
+      "trace_score": 0.1856992126966042,
+      "period_ms": 119.0
+     },
+     "E2": {
+      "spikes_in_window": 96,
+      "mean_hz": 34.90909090909091,
+      "trace_score": 0.2634323594592116,
+      "period_ms": 118.0
+     },
+     "I1": {
+      "spikes_in_window": 19,
+      "mean_hz": 6.909090909090909,
+      "trace_score": 0.20975081595659129,
+      "period_ms": 54.0
+     }
+    },
+    "active_fraction": 0.02176572473686123,
+    "network_active_fraction": 0.17290383704405496,
+    "active_neurons": {
+     "NETWORK": 365,
+     "OPTIC": 16,
+     "BRAIN": 903,
+     "VNC": 2166,
+     "AN": 123,
+     "DN": 21,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   }
+  ],
+  "MINUS_BRAIN": [
+   {
+    "seed": 1,
+    "score": 0.2510102970726435,
+    "frequency_hz": 3.2051282051282053,
+    "active_mns": 1,
+    "mn_spikes": {
+     "142836": 31,
+     "143654": 1,
+     "151305": 2
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.005765434042707816,
+    "network_active_fraction": 0.021316911416390336,
+    "active_neurons": {
+     "NETWORK": 45,
+     "OPTIC": 1,
+     "BRAIN": 106,
+     "VNC": 763,
+     "AN": 36,
+     "DN": 1,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 2,
+    "score": 0.20244844079164404,
+    "frequency_hz": 5.291005291005291,
+    "active_mns": 1,
+    "mn_spikes": {
+     "142836": 35,
+     "143654": 2,
+     "151305": 1
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.005716985017138842,
+    "network_active_fraction": 0.02179062055897679,
+    "active_neurons": {
+     "NETWORK": 46,
+     "OPTIC": 1,
+     "BRAIN": 109,
+     "VNC": 753,
+     "AN": 34,
+     "DN": 1,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 3,
+    "score": 0.25955078084069944,
+    "frequency_hz": 3.4609286062774434,
+    "active_mns": 2,
+    "mn_spikes": {
+     "142836": 29,
+     "143654": 3,
+     "151305": 5
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.006056128196121655,
+    "network_active_fraction": 0.021316911416390336,
+    "active_neurons": {
+     "NETWORK": 45,
+     "OPTIC": 1,
+     "BRAIN": 107,
+     "VNC": 812,
+     "AN": 34,
+     "DN": 1,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 4,
+    "score": 0.3617883192864528,
+    "frequency_hz": 1.9569471624266144,
+    "active_mns": 1,
+    "mn_spikes": {
+     "142836": 22
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.005474739889293976,
+    "network_active_fraction": 0.019422074846044527,
+    "active_neurons": {
+     "NETWORK": 41,
+     "OPTIC": 1,
+     "BRAIN": 107,
+     "VNC": 720,
+     "AN": 34,
+     "DN": 1,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 5,
+    "score": 0.2830505597514064,
+    "frequency_hz": 3.367003367003367,
+    "active_mns": 1,
+    "mn_spikes": {
+     "142836": 36,
+     "143654": 1,
+     "151305": 1
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.006728358425891159,
+    "network_active_fraction": 0.023685457129322594,
+    "active_neurons": {
+     "NETWORK": 50,
+     "OPTIC": 1,
+     "BRAIN": 107,
+     "VNC": 917,
+     "AN": 35,
+     "DN": 1,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 6,
+    "score": 0.3381518431467029,
+    "frequency_hz": 5.1020408163265305,
+    "active_mns": 1,
+    "mn_spikes": {
+     "142836": 30,
+     "144657": 1
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.005704872760746599,
+    "network_active_fraction": 0.02036949313121743,
+    "active_neurons": {
+     "NETWORK": 43,
+     "OPTIC": 1,
+     "BRAIN": 107,
+     "VNC": 758,
+     "AN": 32,
+     "DN": 1,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 7,
+    "score": 0.324081604647408,
+    "frequency_hz": 9.900990099009901,
+    "active_mns": 1,
+    "mn_spikes": {
+     "142836": 30,
+     "144657": 1,
+     "151305": 4
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.00552318891486295,
+    "network_active_fraction": 0.021316911416390336,
+    "active_neurons": {
+     "NETWORK": 45,
+     "OPTIC": 1,
+     "BRAIN": 107,
+     "VNC": 725,
+     "AN": 33,
+     "DN": 1,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 8,
+    "score": 0.24325779684312412,
+    "frequency_hz": 4.9504950495049505,
+    "active_mns": 1,
+    "mn_spikes": {
+     "142836": 29,
+     "143654": 1,
+     "151305": 1
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.00621964365741694,
+    "network_active_fraction": 0.02179062055897679,
+    "active_neurons": {
+     "NETWORK": 46,
+     "OPTIC": 1,
+     "BRAIN": 107,
+     "VNC": 836,
+     "AN": 36,
+     "DN": 1,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   }
+  ],
+  "MINUS_VNC": [
+   {
+    "seed": 1,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.0018228945870326183,
+    "network_active_fraction": 0.019422074846044527,
+    "active_neurons": {
+     "NETWORK": 41,
+     "OPTIC": 8,
+     "BRAIN": 134,
+     "VNC": 106,
+     "AN": 5,
+     "DN": 7,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 2,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.0014898075362459273,
+    "network_active_fraction": 0.01705352913311227,
+    "active_neurons": {
+     "NETWORK": 36,
+     "OPTIC": 3,
+     "BRAIN": 116,
+     "VNC": 82,
+     "AN": 2,
+     "DN": 7,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 3,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.0013141798185583992,
+    "network_active_fraction": 0.014211274277593557,
+    "active_neurons": {
+     "NETWORK": 30,
+     "OPTIC": 2,
+     "BRAIN": 108,
+     "VNC": 70,
+     "AN": 2,
+     "DN": 5,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 4,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.0017320526640907934,
+    "network_active_fraction": 0.018948365703458078,
+    "active_neurons": {
+     "NETWORK": 40,
+     "OPTIC": 8,
+     "BRAIN": 129,
+     "VNC": 95,
+     "AN": 6,
+     "DN": 8,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 5,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {
+     "144657": 2
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.0024890686886060004,
+    "network_active_fraction": 0.026054002842254856,
+    "active_neurons": {
+     "NETWORK": 55,
+     "OPTIC": 15,
+     "BRAIN": 173,
+     "VNC": 150,
+     "AN": 10,
+     "DN": 8,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 6,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {
+     "144657": 1
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.001931904894562808,
+    "network_active_fraction": 0.020843202273803884,
+    "active_neurons": {
+     "NETWORK": 44,
+     "OPTIC": 12,
+     "BRAIN": 144,
+     "VNC": 107,
+     "AN": 5,
+     "DN": 7,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 7,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {
+     "144657": 1
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.0019258487663666864,
+    "network_active_fraction": 0.020843202273803884,
+    "active_neurons": {
+     "NETWORK": 44,
+     "OPTIC": 4,
+     "BRAIN": 141,
+     "VNC": 115,
+     "AN": 6,
+     "DN": 8,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 8,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {
+     "144657": 1
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.002319497099114594,
+    "network_active_fraction": 0.024159166271909047,
+    "active_neurons": {
+     "NETWORK": 51,
+     "OPTIC": 13,
+     "BRAIN": 165,
+     "VNC": 138,
+     "AN": 8,
+     "DN": 8,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   }
+  ],
+  "MINUS_AN": [
+   {
+    "seed": 1,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.004984193505408122,
+    "network_active_fraction": 0.023685457129322594,
+    "active_neurons": {
+     "NETWORK": 50,
+     "OPTIC": 12,
+     "BRAIN": 132,
+     "VNC": 600,
+     "AN": 23,
+     "DN": 6,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 2,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.004330131660226983,
+    "network_active_fraction": 0.01989578398863098,
+    "active_neurons": {
+     "NETWORK": 42,
+     "OPTIC": 2,
+     "BRAIN": 116,
+     "VNC": 529,
+     "AN": 20,
+     "DN": 6,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 3,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.004984193505408122,
+    "network_active_fraction": 0.02036949313121743,
+    "active_neurons": {
+     "NETWORK": 43,
+     "OPTIC": 2,
+     "BRAIN": 108,
+     "VNC": 646,
+     "AN": 19,
+     "DN": 5,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 4,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {
+     "144657": 1,
+     "151305": 1
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.004875183197877933,
+    "network_active_fraction": 0.02510658455708195,
+    "active_neurons": {
+     "NETWORK": 53,
+     "OPTIC": 3,
+     "BRAIN": 138,
+     "VNC": 579,
+     "AN": 25,
+     "DN": 7,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 5,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {
+     "144222": 1,
+     "144657": 3,
+     "145652": 1,
+     "151305": 2
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.0068313126052252275,
+    "network_active_fraction": 0.043107531975367125,
+    "active_neurons": {
+     "NETWORK": 91,
+     "OPTIC": 8,
+     "BRAIN": 173,
+     "VNC": 819,
+     "AN": 30,
+     "DN": 7,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 6,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {
+     "144222": 1,
+     "144657": 1,
+     "151305": 2
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.005607974709608653,
+    "network_active_fraction": 0.02700142112742776,
+    "active_neurons": {
+     "NETWORK": 57,
+     "OPTIC": 12,
+     "BRAIN": 128,
+     "VNC": 697,
+     "AN": 25,
+     "DN": 7,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 7,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {
+     "144657": 2
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.004899407710662419,
+    "network_active_fraction": 0.026054002842254856,
+    "active_neurons": {
+     "NETWORK": 55,
+     "OPTIC": 3,
+     "BRAIN": 142,
+     "VNC": 579,
+     "AN": 23,
+     "DN": 7,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 8,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {
+     "144222": 2,
+     "144657": 2,
+     "151305": 1
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.005650367606981505,
+    "network_active_fraction": 0.031264803410705824,
+    "active_neurons": {
+     "NETWORK": 66,
+     "OPTIC": 13,
+     "BRAIN": 156,
+     "VNC": 662,
+     "AN": 28,
+     "DN": 8,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   }
+  ],
+  "MINUS_DN": [
+   {
+    "seed": 1,
+    "score": 0.19122389563666323,
+    "frequency_hz": 9.000762776506484,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 322,
+     "143654": 269,
+     "144049": 11,
+     "146571": 103,
+     "147111": 107,
+     "147938": 204,
+     "148512": 51,
+     "151305": 18,
+     "154980": 159,
+     "158475": 12,
+     "159328": 166,
+     "162458": 94
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 72,
+      "mean_hz": 26.181818181818183,
+      "trace_score": 0.20677115589619743,
+      "period_ms": 72.0
+     },
+     "E2": {
+      "spikes_in_window": 103,
+      "mean_hz": 37.45454545454545,
+      "trace_score": 0.22924083734779252,
+      "period_ms": 442.0
+     },
+     "I1": {
+      "spikes_in_window": 17,
+      "mean_hz": 6.181818181818182,
+      "trace_score": 0.36856642667410494,
+      "period_ms": 281.0
+     }
+    },
+    "active_fraction": 0.02889984375189254,
+    "network_active_fraction": 0.18711511132164851,
+    "active_neurons": {
+     "NETWORK": 395,
+     "OPTIC": 29,
+     "BRAIN": 1973,
+     "VNC": 2229,
+     "AN": 119,
+     "DN": 26,
+     "SENSORY": 0,
+     "OTHER": 1
+    }
+   },
+   {
+    "seed": 2,
+    "score": 0.16067687893087315,
+    "frequency_hz": 10.443722943722943,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 384,
+     "143654": 323,
+     "144049": 15,
+     "144657": 1,
+     "146571": 125,
+     "147111": 130,
+     "147938": 245,
+     "148512": 63,
+     "151228": 1,
+     "151305": 26,
+     "154980": 198,
+     "158475": 9,
+     "159328": 199,
+     "162458": 116
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 78,
+      "mean_hz": 28.363636363636363,
+      "trace_score": 0.17769920728217248,
+      "period_ms": 81.0
+     },
+     "E2": {
+      "spikes_in_window": 116,
+      "mean_hz": 42.18181818181818,
+      "trace_score": 0.18795914936536898,
+      "period_ms": 349.0
+     },
+     "I1": {
+      "spikes_in_window": 20,
+      "mean_hz": 7.2727272727272725,
+      "trace_score": 0.14170841505426465,
+      "period_ms": 102.0
+     }
+    },
+    "active_fraction": 0.028112547086396725,
+    "network_active_fraction": 0.19090478446234013,
+    "active_neurons": {
+     "NETWORK": 403,
+     "OPTIC": 23,
+     "BRAIN": 1858,
+     "VNC": 2209,
+     "AN": 116,
+     "DN": 32,
+     "SENSORY": 0,
+     "OTHER": 1
+    }
+   },
+   {
+    "seed": 3,
+    "score": 0.18466882881702892,
+    "frequency_hz": 2.1438222075164752,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 373,
+     "143654": 313,
+     "144049": 12,
+     "144657": 2,
+     "146571": 120,
+     "147111": 126,
+     "147938": 234,
+     "148512": 59,
+     "151305": 25,
+     "154980": 187,
+     "158475": 10,
+     "159328": 193,
+     "162458": 98,
+     "162856": 1
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 77,
+      "mean_hz": 28.0,
+      "trace_score": 0.19360057798276872,
+      "period_ms": 66.0
+     },
+     "E2": {
+      "spikes_in_window": 118,
+      "mean_hz": 42.90909090909091,
+      "trace_score": 0.26047893341805556,
+      "period_ms": 64.0
+     },
+     "I1": {
+      "spikes_in_window": 22,
+      "mean_hz": 8.0,
+      "trace_score": 0.16515727118481438,
+      "period_ms": 59.0
+     }
+    },
+    "active_fraction": 0.029172369520718014,
+    "network_active_fraction": 0.18758882046423497,
+    "active_neurons": {
+     "NETWORK": 396,
+     "OPTIC": 23,
+     "BRAIN": 2047,
+     "VNC": 2201,
+     "AN": 125,
+     "DN": 24,
+     "SENSORY": 0,
+     "OTHER": 1
+    }
+   },
+   {
+    "seed": 4,
+    "score": 0.14920773570774648,
+    "frequency_hz": 2.557544757033248,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 274,
+     "143654": 228,
+     "144049": 11,
+     "146571": 93,
+     "147111": 95,
+     "147938": 175,
+     "148512": 47,
+     "151228": 2,
+     "151305": 19,
+     "154980": 131,
+     "158475": 6,
+     "159328": 143,
+     "162458": 79
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 57,
+      "mean_hz": 20.727272727272727,
+      "trace_score": 0.2769235839604276,
+      "period_ms": 111.0
+     },
+     "E2": {
+      "spikes_in_window": 87,
+      "mean_hz": 31.636363636363637,
+      "trace_score": 0.23204028086276468,
+      "period_ms": 115.0
+     },
+     "I1": {
+      "spikes_in_window": 14,
+      "mean_hz": 5.090909090909091,
+      "trace_score": 0.20227880823679548,
+      "period_ms": 338.0
+     }
+    },
+    "active_fraction": 0.022335000787296666,
+    "network_active_fraction": 0.18379914732354335,
+    "active_neurons": {
+     "NETWORK": 388,
+     "OPTIC": 21,
+     "BRAIN": 975,
+     "VNC": 2163,
+     "AN": 117,
+     "DN": 24,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 5,
+    "score": 0.17140657652643831,
+    "frequency_hz": 1.694915254237288,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 342,
+     "143654": 285,
+     "144049": 14,
+     "144657": 3,
+     "146571": 111,
+     "147111": 113,
+     "147938": 217,
+     "148512": 54,
+     "151228": 1,
+     "151305": 14,
+     "154980": 165,
+     "158475": 8,
+     "159328": 177,
+     "162458": 87
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 69,
+      "mean_hz": 25.09090909090909,
+      "trace_score": 0.12777750308606473,
+      "period_ms": 58.0
+     },
+     "E2": {
+      "spikes_in_window": 98,
+      "mean_hz": 35.63636363636363,
+      "trace_score": 0.1378216215511478,
+      "period_ms": 91.0
+     },
+     "I1": {
+      "spikes_in_window": 15,
+      "mean_hz": 5.454545454545454,
+      "trace_score": 0.1554013428040199,
+      "period_ms": 209.0
+     }
+    },
+    "active_fraction": 0.0291118082387568,
+    "network_active_fraction": 0.18474656560871625,
+    "active_neurons": {
+     "NETWORK": 390,
+     "OPTIC": 23,
+     "BRAIN": 2006,
+     "VNC": 2239,
+     "AN": 124,
+     "DN": 24,
+     "SENSORY": 0,
+     "OTHER": 1
+    }
+   },
+   {
+    "seed": 6,
+    "score": 0.19119655685974798,
+    "frequency_hz": 1.8473996401754709,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 342,
+     "143654": 284,
+     "144049": 14,
+     "144657": 1,
+     "146571": 116,
+     "147111": 119,
+     "147938": 217,
+     "148512": 50,
+     "151305": 28,
+     "154980": 169,
+     "158475": 12,
+     "159328": 179,
+     "162458": 99
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 71,
+      "mean_hz": 25.818181818181817,
+      "trace_score": 0.18838367210556958,
+      "period_ms": 166.0
+     },
+     "E2": {
+      "spikes_in_window": 106,
+      "mean_hz": 38.54545454545455,
+      "trace_score": 0.18775257734180995,
+      "period_ms": 80.0
+     },
+     "I1": {
+      "spikes_in_window": 12,
+      "mean_hz": 4.363636363636363,
+      "trace_score": 0.17394659520794017,
+      "period_ms": 51.0
+     }
+    },
+    "active_fraction": 0.022849771683967006,
+    "network_active_fraction": 0.1833254381809569,
+    "active_neurons": {
+     "NETWORK": 387,
+     "OPTIC": 22,
+     "BRAIN": 1020,
+     "VNC": 2195,
+     "AN": 123,
+     "DN": 25,
+     "SENSORY": 0,
+     "OTHER": 1
+    }
+   },
+   {
+    "seed": 7,
+    "score": 0.1921011612147677,
+    "frequency_hz": 4.5162122804106986,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 379,
+     "143654": 315,
+     "144049": 8,
+     "146571": 122,
+     "147111": 125,
+     "147938": 243,
+     "148512": 65,
+     "151305": 23,
+     "154980": 182,
+     "158475": 10,
+     "159328": 196,
+     "162458": 108,
+     "162856": 1
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 72,
+      "mean_hz": 26.181818181818183,
+      "trace_score": 0.18269364828682835,
+      "period_ms": 134.0
+     },
+     "E2": {
+      "spikes_in_window": 108,
+      "mean_hz": 39.27272727272727,
+      "trace_score": 0.21761042441132764,
+      "period_ms": 44.0
+     },
+     "I1": {
+      "spikes_in_window": 19,
+      "mean_hz": 6.909090909090909,
+      "trace_score": 0.21417339150640433,
+      "period_ms": 138.0
+     }
+    },
+    "active_fraction": 0.022522740761376437,
+    "network_active_fraction": 0.1842728564661298,
+    "active_neurons": {
+     "NETWORK": 389,
+     "OPTIC": 20,
+     "BRAIN": 935,
+     "VNC": 2230,
+     "AN": 122,
+     "DN": 22,
+     "SENSORY": 0,
+     "OTHER": 1
+    }
+   },
+   {
+    "seed": 8,
+    "score": 0.2094229719816616,
+    "frequency_hz": 1.394700139470014,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 331,
+     "143654": 272,
+     "144049": 17,
+     "146571": 111,
+     "147111": 113,
+     "147938": 213,
+     "148512": 55,
+     "151305": 27,
+     "154980": 160,
+     "158475": 9,
+     "159328": 171,
+     "162458": 95
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 65,
+      "mean_hz": 23.636363636363637,
+      "trace_score": 0.2240786643912153,
+      "period_ms": 62.0
+     },
+     "E2": {
+      "spikes_in_window": 95,
+      "mean_hz": 34.54545454545455,
+      "trace_score": 0.2377430708729983,
+      "period_ms": 60.0
+     },
+     "I1": {
+      "spikes_in_window": 19,
+      "mean_hz": 6.909090909090909,
+      "trace_score": 0.22777829716285014,
+      "period_ms": 171.0
+     }
+    },
+    "active_fraction": 0.022764985889221302,
+    "network_active_fraction": 0.18237801989578398,
+    "active_neurons": {
+     "NETWORK": 385,
+     "OPTIC": 21,
+     "BRAIN": 995,
+     "VNC": 2213,
+     "AN": 121,
+     "DN": 23,
+     "SENSORY": 0,
+     "OTHER": 1
+    }
+   }
+  ],
+  "MINUS_SENSORY": [
+   {
+    "seed": 1,
+    "score": 0.1837086074433295,
+    "frequency_hz": 7.348191214470284,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 325,
+     "143654": 273,
+     "144049": 5,
+     "146571": 103,
+     "147111": 103,
+     "147938": 204,
+     "148512": 67,
+     "151305": 18,
+     "154980": 160,
+     "158475": 9,
+     "159328": 167,
+     "162458": 114
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 68,
+      "mean_hz": 24.727272727272727,
+      "trace_score": 0.29585292501644067,
+      "period_ms": 795.0
+     },
+     "E2": {
+      "spikes_in_window": 105,
+      "mean_hz": 38.18181818181818,
+      "trace_score": 0.2455599999915192,
+      "period_ms": 156.0
+     },
+     "I1": {
+      "spikes_in_window": 17,
+      "mean_hz": 6.181818181818182,
+      "trace_score": 0.27563298749955595,
+      "period_ms": 576.0
+     }
+    },
+    "active_fraction": 0.02213514855682465,
+    "network_active_fraction": 0.17290383704405496,
+    "active_neurons": {
+     "NETWORK": 365,
+     "OPTIC": 19,
+     "BRAIN": 919,
+     "VNC": 2209,
+     "AN": 122,
+     "DN": 21,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 2,
+    "score": 0.20163380447528798,
+    "frequency_hz": 2.861283033696827,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 397,
+     "143654": 330,
+     "144049": 9,
+     "146571": 128,
+     "147111": 131,
+     "147938": 249,
+     "148512": 75,
+     "151305": 24,
+     "154980": 197,
+     "158475": 13,
+     "159328": 206,
+     "162458": 144
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 73,
+      "mean_hz": 26.545454545454547,
+      "trace_score": 0.16964024850309187,
+      "period_ms": 508.0
+     },
+     "E2": {
+      "spikes_in_window": 116,
+      "mean_hz": 42.18181818181818,
+      "trace_score": 0.2279184888375265,
+      "period_ms": 510.0
+     },
+     "I1": {
+      "spikes_in_window": 23,
+      "mean_hz": 8.363636363636363,
+      "trace_score": 0.16042706739391382,
+      "period_ms": 79.0
+     }
+    },
+    "active_fraction": 0.022886108453143737,
+    "network_active_fraction": 0.17574609189957366,
+    "active_neurons": {
+     "NETWORK": 371,
+     "OPTIC": 22,
+     "BRAIN": 1019,
+     "VNC": 2214,
+     "AN": 128,
+     "DN": 25,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 3,
+    "score": 0.1796809925460345,
+    "frequency_hz": 6.451881451881452,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 377,
+     "143654": 316,
+     "144049": 13,
+     "146571": 123,
+     "147111": 125,
+     "147938": 233,
+     "148512": 73,
+     "151228": 2,
+     "151305": 31,
+     "154980": 190,
+     "158475": 15,
+     "159328": 197,
+     "162458": 140
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 72,
+      "mean_hz": 26.181818181818183,
+      "trace_score": 0.14044806104523352,
+      "period_ms": 67.0
+     },
+     "E2": {
+      "spikes_in_window": 121,
+      "mean_hz": 44.0,
+      "trace_score": 0.15232150506019546,
+      "period_ms": 46.0
+     },
+     "I1": {
+      "spikes_in_window": 24,
+      "mean_hz": 8.727272727272727,
+      "trace_score": 0.1407282425684199,
+      "period_ms": 49.0
+     }
+    },
+    "active_fraction": 0.0225409091459648,
+    "network_active_fraction": 0.1695878730459498,
+    "active_neurons": {
+     "NETWORK": 358,
+     "OPTIC": 23,
+     "BRAIN": 973,
+     "VNC": 2220,
+     "AN": 125,
+     "DN": 23,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 4,
+    "score": 0.15813453185239904,
+    "frequency_hz": 2.778893319181894,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 277,
+     "143654": 231,
+     "144049": 11,
+     "146571": 89,
+     "147111": 88,
+     "147938": 171,
+     "148512": 46,
+     "151305": 18,
+     "154980": 140,
+     "158475": 7,
+     "159328": 145,
+     "162458": 89
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 54,
+      "mean_hz": 19.636363636363637,
+      "trace_score": 0.27546342071312435,
+      "period_ms": 55.0
+     },
+     "E2": {
+      "spikes_in_window": 90,
+      "mean_hz": 32.72727272727273,
+      "trace_score": 0.3411041238558027,
+      "period_ms": 54.0
+     },
+     "I1": {
+      "spikes_in_window": 19,
+      "mean_hz": 6.909090909090909,
+      "trace_score": 0.2239351212732624,
+      "period_ms": 227.0
+     }
+    },
+    "active_fraction": 0.02638049442230593,
+    "network_active_fraction": 0.17290383704405496,
+    "active_neurons": {
+     "NETWORK": 365,
+     "OPTIC": 38,
+     "BRAIN": 1604,
+     "VNC": 2204,
+     "AN": 121,
+     "DN": 24,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 5,
+    "score": 0.20677648553856418,
+    "frequency_hz": 1.477051737017075,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 351,
+     "143654": 296,
+     "144049": 13,
+     "146571": 116,
+     "147111": 116,
+     "147938": 221,
+     "148512": 74,
+     "151305": 21,
+     "154980": 174,
+     "158475": 12,
+     "159328": 183,
+     "162458": 127
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 75,
+      "mean_hz": 27.272727272727273,
+      "trace_score": 0.1663224568404778,
+      "period_ms": 70.0
+     },
+     "E2": {
+      "spikes_in_window": 108,
+      "mean_hz": 39.27272727272727,
+      "trace_score": 0.16688451377872424,
+      "period_ms": 74.0
+     },
+     "I1": {
+      "spikes_in_window": 20,
+      "mean_hz": 7.2727272727272725,
+      "trace_score": 0.17412902659308707,
+      "period_ms": 224.0
+     }
+    },
+    "active_fraction": 0.024448589527743123,
+    "network_active_fraction": 0.17100900047370915,
+    "active_neurons": {
+     "NETWORK": 361,
+     "OPTIC": 19,
+     "BRAIN": 1332,
+     "VNC": 2180,
+     "AN": 121,
+     "DN": 24,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 6,
+    "score": 0.2000948543835829,
+    "frequency_hz": 2.2831050228310503,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 351,
+     "143654": 293,
+     "144049": 14,
+     "146571": 110,
+     "147111": 110,
+     "147938": 217,
+     "148512": 62,
+     "151228": 1,
+     "151305": 17,
+     "154980": 174,
+     "158475": 9,
+     "159328": 181,
+     "162458": 115
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 71,
+      "mean_hz": 25.818181818181817,
+      "trace_score": 0.251263663097487,
+      "period_ms": 218.0
+     },
+     "E2": {
+      "spikes_in_window": 109,
+      "mean_hz": 39.63636363636363,
+      "trace_score": 0.23990013993863973,
+      "period_ms": 53.0
+     },
+     "I1": {
+      "spikes_in_window": 20,
+      "mean_hz": 7.2727272727272725,
+      "trace_score": 0.25198274518454,
+      "period_ms": 51.0
+     }
+    },
+    "active_fraction": 0.022280495633531572,
+    "network_active_fraction": 0.17479867361440077,
+    "active_neurons": {
+     "NETWORK": 369,
+     "OPTIC": 24,
+     "BRAIN": 959,
+     "VNC": 2178,
+     "AN": 126,
+     "DN": 23,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 7,
+    "score": 0.19042088572743807,
+    "frequency_hz": 2.566396386107833,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 387,
+     "143654": 326,
+     "144049": 15,
+     "146571": 127,
+     "147111": 128,
+     "147938": 241,
+     "148512": 72,
+     "151305": 26,
+     "154980": 199,
+     "158475": 13,
+     "159328": 201,
+     "162458": 141
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 76,
+      "mean_hz": 27.636363636363637,
+      "trace_score": 0.18215652716035008,
+      "period_ms": 285.0
+     },
+     "E2": {
+      "spikes_in_window": 124,
+      "mean_hz": 45.09090909090909,
+      "trace_score": 0.32295977951582255,
+      "period_ms": 1339.0
+     },
+     "I1": {
+      "spikes_in_window": 21,
+      "mean_hz": 7.636363636363637,
+      "trace_score": 0.1679905324234526,
+      "period_ms": 121.0
+     }
+    },
+    "active_fraction": 0.022631751068906625,
+    "network_active_fraction": 0.1752723827569872,
+    "active_neurons": {
+     "NETWORK": 370,
+     "OPTIC": 22,
+     "BRAIN": 973,
+     "VNC": 2225,
+     "AN": 125,
+     "DN": 22,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 8,
+    "score": 0.2616599767151212,
+    "frequency_hz": 1.767039413814125,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 346,
+     "143654": 292,
+     "144049": 16,
+     "146571": 115,
+     "147111": 117,
+     "147938": 211,
+     "148512": 62,
+     "151228": 2,
+     "151305": 25,
+     "154980": 173,
+     "158475": 12,
+     "159328": 176,
+     "162458": 131
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 72,
+      "mean_hz": 26.181818181818183,
+      "trace_score": 0.23251195513929096,
+      "period_ms": 233.0
+     },
+     "E2": {
+      "spikes_in_window": 117,
+      "mean_hz": 42.54545454545455,
+      "trace_score": 0.2303561388260427,
+      "period_ms": 44.0
+     },
+     "I1": {
+      "spikes_in_window": 24,
+      "mean_hz": 8.727272727272727,
+      "trace_score": 0.3775682662994861,
+      "period_ms": 1057.0
+     }
+    },
+    "active_fraction": 0.02601107060234251,
+    "network_active_fraction": 0.1724301279014685,
+    "active_neurons": {
+     "NETWORK": 364,
+     "OPTIC": 20,
+     "BRAIN": 1575,
+     "VNC": 2191,
+     "AN": 120,
+     "DN": 25,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   }
+  ],
+  "MINUS_OTHER": [
+   {
+    "seed": 1,
+    "score": 0.1837086074433295,
+    "frequency_hz": 7.348191214470284,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 325,
+     "143654": 273,
+     "144049": 5,
+     "146571": 103,
+     "147111": 103,
+     "147938": 204,
+     "148512": 67,
+     "151305": 18,
+     "154980": 160,
+     "158475": 9,
+     "159328": 167,
+     "162458": 114
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 68,
+      "mean_hz": 24.727272727272727,
+      "trace_score": 0.29585292501644067,
+      "period_ms": 795.0
+     },
+     "E2": {
+      "spikes_in_window": 105,
+      "mean_hz": 38.18181818181818,
+      "trace_score": 0.2455599999915192,
+      "period_ms": 156.0
+     },
+     "I1": {
+      "spikes_in_window": 17,
+      "mean_hz": 6.181818181818182,
+      "trace_score": 0.27563298749955595,
+      "period_ms": 576.0
+     }
+    },
+    "active_fraction": 0.02213514855682465,
+    "network_active_fraction": 0.17290383704405496,
+    "active_neurons": {
+     "NETWORK": 365,
+     "OPTIC": 19,
+     "BRAIN": 919,
+     "VNC": 2209,
+     "AN": 122,
+     "DN": 21,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 2,
+    "score": 0.20163380447528798,
+    "frequency_hz": 2.861283033696827,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 397,
+     "143654": 330,
+     "144049": 9,
+     "146571": 128,
+     "147111": 131,
+     "147938": 249,
+     "148512": 75,
+     "151305": 24,
+     "154980": 197,
+     "158475": 13,
+     "159328": 206,
+     "162458": 144
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 73,
+      "mean_hz": 26.545454545454547,
+      "trace_score": 0.16964024850309187,
+      "period_ms": 508.0
+     },
+     "E2": {
+      "spikes_in_window": 116,
+      "mean_hz": 42.18181818181818,
+      "trace_score": 0.2279184888375265,
+      "period_ms": 510.0
+     },
+     "I1": {
+      "spikes_in_window": 23,
+      "mean_hz": 8.363636363636363,
+      "trace_score": 0.16042706739391382,
+      "period_ms": 79.0
+     }
+    },
+    "active_fraction": 0.022886108453143737,
+    "network_active_fraction": 0.17574609189957366,
+    "active_neurons": {
+     "NETWORK": 371,
+     "OPTIC": 22,
+     "BRAIN": 1019,
+     "VNC": 2214,
+     "AN": 128,
+     "DN": 25,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 3,
+    "score": 0.1796809925460345,
+    "frequency_hz": 6.451881451881452,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 377,
+     "143654": 316,
+     "144049": 13,
+     "146571": 123,
+     "147111": 125,
+     "147938": 233,
+     "148512": 73,
+     "151228": 2,
+     "151305": 31,
+     "154980": 190,
+     "158475": 15,
+     "159328": 197,
+     "162458": 140
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 72,
+      "mean_hz": 26.181818181818183,
+      "trace_score": 0.14044806104523352,
+      "period_ms": 67.0
+     },
+     "E2": {
+      "spikes_in_window": 121,
+      "mean_hz": 44.0,
+      "trace_score": 0.15232150506019546,
+      "period_ms": 46.0
+     },
+     "I1": {
+      "spikes_in_window": 24,
+      "mean_hz": 8.727272727272727,
+      "trace_score": 0.1407282425684199,
+      "period_ms": 49.0
+     }
+    },
+    "active_fraction": 0.0225409091459648,
+    "network_active_fraction": 0.1695878730459498,
+    "active_neurons": {
+     "NETWORK": 358,
+     "OPTIC": 23,
+     "BRAIN": 973,
+     "VNC": 2220,
+     "AN": 125,
+     "DN": 23,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 4,
+    "score": 0.15813453185239904,
+    "frequency_hz": 2.778893319181894,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 277,
+     "143654": 231,
+     "144049": 11,
+     "146571": 89,
+     "147111": 88,
+     "147938": 171,
+     "148512": 46,
+     "151305": 18,
+     "154980": 140,
+     "158475": 7,
+     "159328": 145,
+     "162458": 89
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 54,
+      "mean_hz": 19.636363636363637,
+      "trace_score": 0.27546342071312435,
+      "period_ms": 55.0
+     },
+     "E2": {
+      "spikes_in_window": 90,
+      "mean_hz": 32.72727272727273,
+      "trace_score": 0.3411041238558027,
+      "period_ms": 54.0
+     },
+     "I1": {
+      "spikes_in_window": 19,
+      "mean_hz": 6.909090909090909,
+      "trace_score": 0.2239351212732624,
+      "period_ms": 227.0
+     }
+    },
+    "active_fraction": 0.02638049442230593,
+    "network_active_fraction": 0.17290383704405496,
+    "active_neurons": {
+     "NETWORK": 365,
+     "OPTIC": 38,
+     "BRAIN": 1604,
+     "VNC": 2204,
+     "AN": 121,
+     "DN": 24,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 5,
+    "score": 0.20677648553856418,
+    "frequency_hz": 1.477051737017075,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 351,
+     "143654": 296,
+     "144049": 13,
+     "146571": 116,
+     "147111": 116,
+     "147938": 221,
+     "148512": 74,
+     "151305": 21,
+     "154980": 174,
+     "158475": 12,
+     "159328": 183,
+     "162458": 127
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 75,
+      "mean_hz": 27.272727272727273,
+      "trace_score": 0.1663224568404778,
+      "period_ms": 70.0
+     },
+     "E2": {
+      "spikes_in_window": 108,
+      "mean_hz": 39.27272727272727,
+      "trace_score": 0.16688451377872424,
+      "period_ms": 74.0
+     },
+     "I1": {
+      "spikes_in_window": 20,
+      "mean_hz": 7.2727272727272725,
+      "trace_score": 0.17412902659308707,
+      "period_ms": 224.0
+     }
+    },
+    "active_fraction": 0.024448589527743123,
+    "network_active_fraction": 0.17100900047370915,
+    "active_neurons": {
+     "NETWORK": 361,
+     "OPTIC": 19,
+     "BRAIN": 1332,
+     "VNC": 2180,
+     "AN": 121,
+     "DN": 24,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 6,
+    "score": 0.2000948543835829,
+    "frequency_hz": 2.2831050228310503,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 351,
+     "143654": 293,
+     "144049": 14,
+     "146571": 110,
+     "147111": 110,
+     "147938": 217,
+     "148512": 62,
+     "151228": 1,
+     "151305": 17,
+     "154980": 174,
+     "158475": 9,
+     "159328": 181,
+     "162458": 115
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 71,
+      "mean_hz": 25.818181818181817,
+      "trace_score": 0.251263663097487,
+      "period_ms": 218.0
+     },
+     "E2": {
+      "spikes_in_window": 109,
+      "mean_hz": 39.63636363636363,
+      "trace_score": 0.23990013993863973,
+      "period_ms": 53.0
+     },
+     "I1": {
+      "spikes_in_window": 20,
+      "mean_hz": 7.2727272727272725,
+      "trace_score": 0.25198274518454,
+      "period_ms": 51.0
+     }
+    },
+    "active_fraction": 0.022280495633531572,
+    "network_active_fraction": 0.17479867361440077,
+    "active_neurons": {
+     "NETWORK": 369,
+     "OPTIC": 24,
+     "BRAIN": 959,
+     "VNC": 2178,
+     "AN": 126,
+     "DN": 23,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 7,
+    "score": 0.19042088572743807,
+    "frequency_hz": 2.566396386107833,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 387,
+     "143654": 326,
+     "144049": 15,
+     "146571": 127,
+     "147111": 128,
+     "147938": 241,
+     "148512": 72,
+     "151305": 26,
+     "154980": 199,
+     "158475": 13,
+     "159328": 201,
+     "162458": 141
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 76,
+      "mean_hz": 27.636363636363637,
+      "trace_score": 0.18215652716035008,
+      "period_ms": 285.0
+     },
+     "E2": {
+      "spikes_in_window": 124,
+      "mean_hz": 45.09090909090909,
+      "trace_score": 0.32295977951582255,
+      "period_ms": 1339.0
+     },
+     "I1": {
+      "spikes_in_window": 21,
+      "mean_hz": 7.636363636363637,
+      "trace_score": 0.1679905324234526,
+      "period_ms": 121.0
+     }
+    },
+    "active_fraction": 0.022631751068906625,
+    "network_active_fraction": 0.1752723827569872,
+    "active_neurons": {
+     "NETWORK": 370,
+     "OPTIC": 22,
+     "BRAIN": 973,
+     "VNC": 2225,
+     "AN": 125,
+     "DN": 22,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 8,
+    "score": 0.2616599767151212,
+    "frequency_hz": 1.767039413814125,
+    "active_mns": 12,
+    "mn_spikes": {
+     "142836": 346,
+     "143654": 292,
+     "144049": 16,
+     "146571": 115,
+     "147111": 117,
+     "147938": 211,
+     "148512": 62,
+     "151228": 2,
+     "151305": 25,
+     "154980": 173,
+     "158475": 12,
+     "159328": 176,
+     "162458": 131
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 72,
+      "mean_hz": 26.181818181818183,
+      "trace_score": 0.23251195513929096,
+      "period_ms": 233.0
+     },
+     "E2": {
+      "spikes_in_window": 117,
+      "mean_hz": 42.54545454545455,
+      "trace_score": 0.2303561388260427,
+      "period_ms": 44.0
+     },
+     "I1": {
+      "spikes_in_window": 24,
+      "mean_hz": 8.727272727272727,
+      "trace_score": 0.3775682662994861,
+      "period_ms": 1057.0
+     }
+    },
+    "active_fraction": 0.02601107060234251,
+    "network_active_fraction": 0.1724301279014685,
+    "active_neurons": {
+     "NETWORK": 364,
+     "OPTIC": 20,
+     "BRAIN": 1575,
+     "VNC": 2191,
+     "AN": 120,
+     "DN": 25,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   }
+  ],
+  "ONLY_OPTIC": [
+   {
+    "seed": 1,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 5.45051537650949e-05,
+    "network_active_fraction": 0.0037896731406916154,
+    "active_neurons": {
+     "NETWORK": 8,
+     "OPTIC": 1,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 2,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 5.45051537650949e-05,
+    "network_active_fraction": 0.0037896731406916154,
+    "active_neurons": {
+     "NETWORK": 8,
+     "OPTIC": 1,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 3,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 6.056128196121655e-05,
+    "network_active_fraction": 0.004263382283278067,
+    "active_neurons": {
+     "NETWORK": 9,
+     "OPTIC": 1,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 4,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 6.66174101573382e-05,
+    "network_active_fraction": 0.0047370914258645196,
+    "active_neurons": {
+     "NETWORK": 10,
+     "OPTIC": 1,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 5,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 6.056128196121655e-05,
+    "network_active_fraction": 0.004263382283278067,
+    "active_neurons": {
+     "NETWORK": 9,
+     "OPTIC": 1,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 6,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 5.45051537650949e-05,
+    "network_active_fraction": 0.0037896731406916154,
+    "active_neurons": {
+     "NETWORK": 8,
+     "OPTIC": 1,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 7,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 5.45051537650949e-05,
+    "network_active_fraction": 0.0037896731406916154,
+    "active_neurons": {
+     "NETWORK": 8,
+     "OPTIC": 1,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 8,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 7.872966654958152e-05,
+    "network_active_fraction": 0.005684509711037423,
+    "active_neurons": {
+     "NETWORK": 12,
+     "OPTIC": 1,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   }
+  ],
+  "ONLY_BRAIN": [
+   {
+    "seed": 1,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {
+     "144657": 1
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.0011567204854592361,
+    "network_active_fraction": 0.02179062055897679,
+    "active_neurons": {
+     "NETWORK": 46,
+     "OPTIC": 0,
+     "BRAIN": 145,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 2,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.0009689805113794649,
+    "network_active_fraction": 0.01705352913311227,
+    "active_neurons": {
+     "NETWORK": 36,
+     "OPTIC": 0,
+     "BRAIN": 124,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 3,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.0011324959726747496,
+    "network_active_fraction": 0.020843202273803884,
+    "active_neurons": {
+     "NETWORK": 44,
+     "OPTIC": 0,
+     "BRAIN": 143,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 4,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {
+     "144657": 1
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.0011991133828320878,
+    "network_active_fraction": 0.02226432970156324,
+    "active_neurons": {
+     "NETWORK": 47,
+     "OPTIC": 0,
+     "BRAIN": 151,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 5,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {
+     "144657": 3
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.0013807972287157376,
+    "network_active_fraction": 0.025580293699668404,
+    "active_neurons": {
+     "NETWORK": 54,
+     "OPTIC": 0,
+     "BRAIN": 174,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 6,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {
+     "144657": 2
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.001090103075301898,
+    "network_active_fraction": 0.020843202273803884,
+    "active_neurons": {
+     "NETWORK": 44,
+     "OPTIC": 0,
+     "BRAIN": 136,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 7,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {
+     "144657": 1
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.0011385521008708713,
+    "network_active_fraction": 0.02179062055897679,
+    "active_neurons": {
+     "NETWORK": 46,
+     "OPTIC": 0,
+     "BRAIN": 142,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 8,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {
+     "144657": 1
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.0011809449982437229,
+    "network_active_fraction": 0.022738038844149693,
+    "active_neurons": {
+     "NETWORK": 48,
+     "OPTIC": 0,
+     "BRAIN": 147,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   }
+  ],
+  "ONLY_VNC": [
+   {
+    "seed": 1,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.003906202686498468,
+    "network_active_fraction": 0.009000473709142587,
+    "active_neurons": {
+     "NETWORK": 19,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 626,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 2,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.003131018277394896,
+    "network_active_fraction": 0.006158218853623875,
+    "active_neurons": {
+     "NETWORK": 13,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 504,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 3,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {
+     "151305": 1
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.00428168263465801,
+    "network_active_fraction": 0.010421601136901942,
+    "active_neurons": {
+     "NETWORK": 22,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 685,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 4,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.00391225881469459,
+    "network_active_fraction": 0.008053055423969682,
+    "active_neurons": {
+     "NETWORK": 17,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 629,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 5,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {
+     "151305": 1
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.004632938070033067,
+    "network_active_fraction": 0.01989578398863098,
+    "active_neurons": {
+     "NETWORK": 42,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 723,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 6,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {
+     "151305": 1
+    },
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.0033187582514746673,
+    "network_active_fraction": 0.0071056371387967785,
+    "active_neurons": {
+     "NETWORK": 15,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 533,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 7,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.003863809789125616,
+    "network_active_fraction": 0.009474182851729039,
+    "active_neurons": {
+     "NETWORK": 20,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 618,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 8,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 0.0038093046353605215,
+    "network_active_fraction": 0.009474182851729039,
+    "active_neurons": {
+     "NETWORK": 20,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 609,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   }
+  ],
+  "ONLY_AN": [
+   {
+    "seed": 1,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 6.056128196121655e-05,
+    "network_active_fraction": 0.0037896731406916154,
+    "active_neurons": {
+     "NETWORK": 8,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 2,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 2,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 5.45051537650949e-05,
+    "network_active_fraction": 0.0037896731406916154,
+    "active_neurons": {
+     "NETWORK": 8,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 1,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 3,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 6.056128196121655e-05,
+    "network_active_fraction": 0.004263382283278067,
+    "active_neurons": {
+     "NETWORK": 9,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 1,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 4,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 6.66174101573382e-05,
+    "network_active_fraction": 0.0047370914258645196,
+    "active_neurons": {
+     "NETWORK": 10,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 1,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 5,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 6.66174101573382e-05,
+    "network_active_fraction": 0.004263382283278067,
+    "active_neurons": {
+     "NETWORK": 9,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 2,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 6,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 5.45051537650949e-05,
+    "network_active_fraction": 0.0037896731406916154,
+    "active_neurons": {
+     "NETWORK": 8,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 1,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 7,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 6.056128196121655e-05,
+    "network_active_fraction": 0.0037896731406916154,
+    "active_neurons": {
+     "NETWORK": 8,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 2,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 8,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 8.478579474570318e-05,
+    "network_active_fraction": 0.005684509711037423,
+    "active_neurons": {
+     "NETWORK": 12,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 2,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   }
+  ],
+  "ONLY_DN": [
+   {
+    "seed": 1,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 5.45051537650949e-05,
+    "network_active_fraction": 0.0037896731406916154,
+    "active_neurons": {
+     "NETWORK": 8,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 1,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 2,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 5.45051537650949e-05,
+    "network_active_fraction": 0.0037896731406916154,
+    "active_neurons": {
+     "NETWORK": 8,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 1,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 3,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 6.056128196121655e-05,
+    "network_active_fraction": 0.004263382283278067,
+    "active_neurons": {
+     "NETWORK": 9,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 1,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 4,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 6.66174101573382e-05,
+    "network_active_fraction": 0.0047370914258645196,
+    "active_neurons": {
+     "NETWORK": 10,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 1,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 5,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 6.056128196121655e-05,
+    "network_active_fraction": 0.004263382283278067,
+    "active_neurons": {
+     "NETWORK": 9,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 1,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 6,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 5.45051537650949e-05,
+    "network_active_fraction": 0.0037896731406916154,
+    "active_neurons": {
+     "NETWORK": 8,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 1,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 7,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 5.45051537650949e-05,
+    "network_active_fraction": 0.0037896731406916154,
+    "active_neurons": {
+     "NETWORK": 8,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 1,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 8,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 7.872966654958152e-05,
+    "network_active_fraction": 0.005684509711037423,
+    "active_neurons": {
+     "NETWORK": 12,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 1,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   }
+  ],
+  "ONLY_SENSORY": [
+   {
+    "seed": 1,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 4.8449025568973245e-05,
+    "network_active_fraction": 0.0037896731406916154,
+    "active_neurons": {
+     "NETWORK": 8,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 2,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 4.8449025568973245e-05,
+    "network_active_fraction": 0.0037896731406916154,
+    "active_neurons": {
+     "NETWORK": 8,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 3,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 5.45051537650949e-05,
+    "network_active_fraction": 0.004263382283278067,
+    "active_neurons": {
+     "NETWORK": 9,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 4,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 6.056128196121655e-05,
+    "network_active_fraction": 0.0047370914258645196,
+    "active_neurons": {
+     "NETWORK": 10,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 5,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 5.45051537650949e-05,
+    "network_active_fraction": 0.004263382283278067,
+    "active_neurons": {
+     "NETWORK": 9,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 6,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 4.8449025568973245e-05,
+    "network_active_fraction": 0.0037896731406916154,
+    "active_neurons": {
+     "NETWORK": 8,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 7,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 4.8449025568973245e-05,
+    "network_active_fraction": 0.0037896731406916154,
+    "active_neurons": {
+     "NETWORK": 8,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 8,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 7.267353835345986e-05,
+    "network_active_fraction": 0.005684509711037423,
+    "active_neurons": {
+     "NETWORK": 12,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   }
+  ],
+  "ONLY_OTHER": [
+   {
+    "seed": 1,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 4.8449025568973245e-05,
+    "network_active_fraction": 0.0037896731406916154,
+    "active_neurons": {
+     "NETWORK": 8,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 2,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 4.8449025568973245e-05,
+    "network_active_fraction": 0.0037896731406916154,
+    "active_neurons": {
+     "NETWORK": 8,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 3,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 5.45051537650949e-05,
+    "network_active_fraction": 0.004263382283278067,
+    "active_neurons": {
+     "NETWORK": 9,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 4,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 6.056128196121655e-05,
+    "network_active_fraction": 0.0047370914258645196,
+    "active_neurons": {
+     "NETWORK": 10,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 5,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 5.45051537650949e-05,
+    "network_active_fraction": 0.004263382283278067,
+    "active_neurons": {
+     "NETWORK": 9,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 6,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 4.8449025568973245e-05,
+    "network_active_fraction": 0.0037896731406916154,
+    "active_neurons": {
+     "NETWORK": 8,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 7,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 4.8449025568973245e-05,
+    "network_active_fraction": 0.0037896731406916154,
+    "active_neurons": {
+     "NETWORK": 8,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   },
+   {
+    "seed": 8,
+    "score": null,
+    "frequency_hz": null,
+    "active_mns": 0,
+    "mn_spikes": {},
+    "silenced": [],
+    "core": {
+     "E1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "E2": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     },
+     "I1": {
+      "spikes_in_window": 0,
+      "mean_hz": 0.0,
+      "trace_score": null,
+      "period_ms": null
+     }
+    },
+    "active_fraction": 7.267353835345986e-05,
+    "network_active_fraction": 0.005684509711037423,
+    "active_neurons": {
+     "NETWORK": 12,
+     "OPTIC": 0,
+     "BRAIN": 0,
+     "VNC": 0,
+     "AN": 0,
+     "DN": 0,
+     "SENSORY": 0,
+     "OTHER": 0
+    }
+   }
+  ]
+ },
+ "integrity": {
+  "Z1": {
+   "passed": true,
+   "network_body_ids_sha256": "cdcfcd231484a46c2a668d17932d95b2147ab16e7dd5c7f87857490590b12eed",
+   "group_sizes": {
+    "NETWORK": 2111,
+    "OPTIC": 99156,
+    "BRAIN": 32343,
+    "VNC": 12941,
+    "AN": 1749,
+    "DN": 414,
+    "SENSORY": 15845,
+    "OTHER": 563
+   },
+   "driver": 36,
+   "core": {
+    "E1": 142920,
+    "E2": 143429,
+    "I1": 144200
+   },
+   "cache_fingerprints_sha256": "4a57318fb90be932291ac14dd0267ecfdf18361dec9c5759e172957114fc08c8"
+  },
+  "Z2": {
+   "passed": true,
+   "gates": {
+    "LIVE": {
+     "passed": true,
+     "checked": 8,
+     "mismatches": []
+    },
+    "LIVE_VIA_WEIGHTS": {
+     "passed": true,
+     "checked": 8,
+     "mismatches": []
+    },
+    "ISOLATED": {
+     "passed": true,
+     "checked": 8,
+     "mismatches": []
+    }
+   }
+  },
+  "Z3": {
+   "passed": true,
+   "audits": {
+    "LIVE": {
+     "passed": true,
+     "removed_edges": 0,
+     "changed_weights": 0
+    },
+    "LIVE_VIA_WEIGHTS": {
+     "passed": true,
+     "removed_edges": 0,
+     "changed_weights": 0
+    },
+    "ISOLATED": {
+     "passed": true,
+     "removed_edges": 10416219,
+     "changed_weights": 4961105
+    },
+    "MINUS_OPTIC": {
+     "passed": true,
+     "removed_edges": 5424119,
+     "changed_weights": 2420551
+    },
+    "MINUS_BRAIN": {
+     "passed": true,
+     "removed_edges": 2885903,
+     "changed_weights": 1448461
+    },
+    "MINUS_VNC": {
+     "passed": true,
+     "removed_edges": 935434,
+     "changed_weights": 501533
+    },
+    "MINUS_AN": {
+     "passed": true,
+     "removed_edges": 315209,
+     "changed_weights": 171260
+    },
+    "MINUS_DN": {
+     "passed": true,
+     "removed_edges": 50341,
+     "changed_weights": 23589
+    },
+    "MINUS_SENSORY": {
+     "passed": true,
+     "removed_edges": 561086,
+     "changed_weights": 258251
+    },
+    "MINUS_OTHER": {
+     "passed": true,
+     "removed_edges": 1059,
+     "changed_weights": 426
+    },
+    "ONLY_OPTIC": {
+     "passed": true,
+     "removed_edges": 5295646,
+     "changed_weights": 2706823
+    },
+    "ONLY_BRAIN": {
+     "passed": true,
+     "removed_edges": 7639673,
+     "changed_weights": 3545877
+    },
+    "ONLY_VNC": {
+     "passed": true,
+     "removed_edges": 9463576,
+     "changed_weights": 4426782
+    },
+    "ONLY_AN": {
+     "passed": true,
+     "removed_edges": 10313684,
+     "changed_weights": 4903661
+    },
+    "ONLY_DN": {
+     "passed": true,
+     "removed_edges": 10405117,
+     "changed_weights": 4955696
+    },
+    "ONLY_SENSORY": {
+     "passed": true,
+     "removed_edges": 10304145,
+     "changed_weights": 4949472
+    },
+    "ONLY_OTHER": {
+     "passed": true,
+     "removed_edges": 10416104,
+     "changed_weights": 4961062
+    }
+   }
+  },
+  "Z4": {
+   "passed": true,
+   "simulations": 136
+  }
+ },
+ "sources": {
+  "neural_py_lf_sha256": "8acebd58cdc221cc815646474bb337c3dc7bd05cccde685ac713f23ca51c7e0c",
+  "brain_params_lf_sha256": "a78e844e583e892aefb9c3a2005e84f5ca278b384fcfbbcd67933d6543696518",
+  "lif_driver_rhythm_py_lf_sha256": "fe7df133ffcc39c771d1431427fe8d15cbe2f5f9de3940c21e83435c6925512f",
+  "dng100_rhythm_py_lf_sha256": "f6603d8fdb0cb85a6ef51758b3ee14d3aed813b4aa37bf40c9bc5f3e27b73448",
+  "dng100_rate_model_py_lf_sha256": "6c3afeeb9f4b0425d54592a9380e0bca8d403e75207b45a6be773cebed9ca8ff",
+  "engine_fidelity_audit_py_lf_sha256": "e9edadc11264bbd368063814b783ff82fc0861f545edc60d2d3707f9b1689df8",
+  "f1_protocol_json_sha256": "ebb68ffc3318e9d1f8fde02a30c981313176cc209e8894cb6900e866672237f0",
+  "f1_result_json_sha256": "8c9dc13126b415efa52a875b078b6d62573957cff57739604c3f1390516260dd",
+  "v1_protocol_json_sha256": "3a65a0cefc2dcf57fb2af4d906aa9d44183b5d221b15e51d64b5dc0b26920068"
+ },
+ "runtime_s": 1120.6,
+ "interpretation_limits": [
+  "One DN (DNg100_L), one rate (100 Hz), the front-left network and 8 seeds.",
+  "Groups are coarse superclass partitions; \"not needed\" does not mean \"no effect\".",
+  "The only lesion type is transmission removal (outgoing weights zeroed).",
+  "The 10 Hz engagement bar is declared, not derived.",
+  "Neural only: no body or physics. Motor coordinates unchanged (20/42 admitted, +4 conditional)."
+ ]
+}

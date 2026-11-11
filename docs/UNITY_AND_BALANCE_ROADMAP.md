@@ -1,8 +1,8 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
-Current 2026-11-08: engine fidelity audit Step F1 run: Part A NO_DEFECT_FOUND (the live engine implements its own rules on the front-left network); Part B NOT_THESE_RULES (no rule swap lets DNg75_R or DNa02_L engage the E1/E2 core). Reported: DNg100_L already engages the core in the live engine, and isolating the network or restoring full inhibition abolishes it.
+Current 2026-11-10: engine fidelity Step F2 run: NEEDED_NOT_SUFFICIENT - DNg100_L's core engagement in the live engine needs the central brain, the rest of the nerve cord and the ascending neurons together (removing any one abolishes it; none is enough alone): a large cord-brain-cord recurrent state, not a local leg circuit.
 
-Previous 2026-11-08: engine fidelity audit Step F1 designed (neural only: Part A defect checks of the live LIF engine against its own references; Part B single-rule swaps toward the rate model - isolation, synapse floor, inhibitory gain, binary signs - to see whether any lets descending drive engage the E1/E2 core; diagnostic, never adopted).
+Previous 2026-11-10: engine fidelity Step F2 designed (neural only: which part of the CNS outside the front-left network does DNg100_L's core engagement need, and is any one part enough? 7 superclass groups, lesion and only-this-group conditions, 136 sims).
 
 Previous 2026-11-08: LIF return Step L1 designed (stimulate the rate model's rhythm-driving DNs, DNg75_R and DNa02_L, plus DNp09_R, in the live untuned whole-CNS LIF engine with V1's harness; is there a front-left MN rhythm, and does it need E1/E2?).
 
@@ -81,7 +81,7 @@ Rhythm (DNg100 front-left)    [V1 LIF whole-CNS: NOT_REPRODUCED (tonic); R1 prep
 Antennal gravity sense        [A: IDENTITY_READY; B: ENCODER_READY (pitch slope 0.97/rad, roll +-0.22/rad descriptive); C: G1 CONSISTENT / FLIP WEAK (E route reaches leg MNs, C route weak; d <= 0 both tilts); C2: drift = body posture (ROOT), neck sag opposes, antenna joints ~0; D: zone crossing -> FLIP/E-onset CONSISTENT, G1/E-offset WEAK, r_GF ~0, C route silent at MNs, 5/12 ON tilted arms rolled; D2: falls late and abrupt, COMMAND_FIRST not diagnostic, no early marker; D3: open-loop yoke -> all three leg groups needed, none sufficient; post-tilt commands suffice, pre-tilt posture does not; D4: direction test confounded by a clip-range defect (not interpretable); G1 upright arms' post-tilt commands also topple an OFF-posture body; D4 v2 (live ranges, no clip): post-tilt change has a specific destabilising direction and needs full dose (NEG/SCRAMBLE/HALF all stay up); then rhythm; D5 (fresh seeds, closed loop): JO-on falls REPLICATED (14/24 vs 0/12); frozen input: pooled INDETERMINATE, FLIP falls need the tilt response (6 -> 0), G1 falls do not (8 -> 10)]
 Coxa push replication         [run: AMPLIFICATION_DIRECTIONAL F / B (R>1 6/6); yoke DO_NOT_REPRODUCE; FREE_COMMANDS_INCREASE_D F / B]
 Coxa conditional tier         [LF/LH/LM/RM CONDITIONAL (fore-aft Coxa); RF/RH blocked by input]
-Engine fidelity audit         [F1: NO_DEFECT_FOUND; rule swaps NOT_THESE_RULES (DNg75_R, DNa02_L); DNg100_L core engagement needs the whole CNS and weakened inhibition (reported)]
+Engine fidelity audit         [F1: NO_DEFECT_FOUND; rule swaps NOT_THESE_RULES (DNg75_R, DNa02_L); DNg100_L core engagement needs the whole CNS and weakened inhibition (reported); F2 core support map: NEEDED_NOT_SUFFICIENT (brain + rest of VNC + ascending neurons each needed, none enough alone)]
 Motor coverage                [##########-----------] 20/42 admitted (+4 conditional)
 Independent balance / gait    [not established]
 ```
