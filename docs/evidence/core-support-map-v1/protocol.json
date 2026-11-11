@@ -1,0 +1,115 @@
+{
+ "conditions": [
+  "LIVE",
+  "LIVE_VIA_WEIGHTS",
+  "ISOLATED",
+  "MINUS_OPTIC",
+  "MINUS_BRAIN",
+  "MINUS_VNC",
+  "MINUS_AN",
+  "MINUS_DN",
+  "MINUS_SENSORY",
+  "MINUS_OTHER",
+  "ONLY_OPTIC",
+  "ONLY_BRAIN",
+  "ONLY_VNC",
+  "ONLY_AN",
+  "ONLY_DN",
+  "ONLY_SENSORY",
+  "ONLY_OTHER"
+ ],
+ "design": "docs/CORE_SUPPORT_MAP_V1.md",
+ "driver": {
+  "body_id": 10045,
+  "dense": 36,
+  "name": "DNg100_L"
+ },
+ "engaged": {
+  "bar_hz": 10.0,
+  "need": 5,
+  "rule": "E1 and E2 both >= 10 Hz in the same seed, in >= 5 of 8 seeds"
+ },
+ "expectations": {
+  "X1": "VNC NEEDED",
+  "X2": "LOCALISED (VNC)",
+  "X3": "MINUS_SENSORY equals LIVE and ONLY_SENSORY equals ISOLATED"
+ },
+ "gates": {
+  "ISOLATED": "equals F1 S1_ISOLATED DNg100_L 100 Hz runs exactly (score, mn_spikes, core, F1's network-only active fraction)",
+  "LIVE": "equals F1 S0_LIVE DNg100_L 100 Hz runs exactly (score, mn_spikes, core, active_fraction)",
+  "LIVE_VIA_WEIGHTS": "equals LIVE exactly (score, mn_spikes, core, active_fraction, active_neurons)"
+ },
+ "groups": {
+  "order": [
+   "OPTIC",
+   "BRAIN",
+   "VNC",
+   "AN",
+   "DN",
+   "SENSORY",
+   "OTHER"
+  ],
+  "rule": "superclass: contains sensory -> SENSORY; ol_/visual_ -> OPTIC; cb_ -> BRAIN; descending_neuron/efferent_descending -> DN; ascending_neuron/efferent_ascending -> AN; vnc_ -> VNC; else OTHER",
+  "sizes": {
+   "AN": 1749,
+   "BRAIN": 32343,
+   "DN": 414,
+   "OPTIC": 99156,
+   "OTHER": 563,
+   "SENSORY": 15845,
+   "VNC": 12941
+  }
+ },
+ "harness": "lif_driver_rhythm.one via engine_fidelity_audit conventions; 3 s; Poisson forced drive",
+ "interpretation_limits": [
+  "One DN (DNg100_L), one rate (100 Hz), the front-left network and 8 seeds.",
+  "Groups are coarse superclass partitions; \"not needed\" does not mean \"no effect\".",
+  "The only lesion type is transmission removal (outgoing weights zeroed).",
+  "The 10 Hz engagement bar is declared, not derived.",
+  "Neural only: no body or physics. Motor coordinates unchanged (20/42 admitted, +4 conditional)."
+ ],
+ "labels": [
+  "INCONCLUSIVE: a gate or lesion audit fails, the run is incomplete, or LIVE is not engaged",
+  "LOCALISED: some group is NEEDED (MINUS not engaged) and SUFFICIENT (ONLY engaged)",
+  "NEEDED_NOT_SUFFICIENT: some group NEEDED, no NEEDED group SUFFICIENT",
+  "REDUNDANT: no group NEEDED, some group SUFFICIENT",
+  "DISTRIBUTED: none NEEDED, none SUFFICIENT"
+ ],
+ "lesions": {
+  "ISOLATED": "only edges inside the network kept",
+  "MINUS": "outgoing edges of the group zeroed",
+  "ONLY": "only edges with both ends in the network or the group kept"
+ },
+ "network": {
+  "body_ids_sha256": "cdcfcd231484a46c2a668d17932d95b2147ab16e7dd5c7f87857490590b12eed",
+  "rule": "R1 build_network",
+  "size": 2111
+ },
+ "rate_hz": 100,
+ "schema": "core-support-map-protocol-v1",
+ "seeds": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8
+ ],
+ "simulations": 136,
+ "sources": {
+  "cache_source_fingerprints_sha256": "4a57318fb90be932291ac14dd0267ecfdf18361dec9c5759e172957114fc08c8",
+  "files": {
+   "brain_params_lf_sha256": "a78e844e583e892aefb9c3a2005e84f5ca278b384fcfbbcd67933d6543696518",
+   "dng100_rate_model_py_lf_sha256": "6c3afeeb9f4b0425d54592a9380e0bca8d403e75207b45a6be773cebed9ca8ff",
+   "dng100_rhythm_py_lf_sha256": "f6603d8fdb0cb85a6ef51758b3ee14d3aed813b4aa37bf40c9bc5f3e27b73448",
+   "engine_fidelity_audit_py_lf_sha256": "e9edadc11264bbd368063814b783ff82fc0861f545edc60d2d3707f9b1689df8",
+   "f1_protocol_json_sha256": "ebb68ffc3318e9d1f8fde02a30c981313176cc209e8894cb6900e866672237f0",
+   "f1_result_json_sha256": "8c9dc13126b415efa52a875b078b6d62573957cff57739604c3f1390516260dd",
+   "lif_driver_rhythm_py_lf_sha256": "fe7df133ffcc39c771d1431427fe8d15cbe2f5f9de3940c21e83435c6925512f",
+   "neural_py_lf_sha256": "8acebd58cdc221cc815646474bb337c3dc7bd05cccde685ac713f23ca51c7e0c",
+   "v1_protocol_json_sha256": "3a65a0cefc2dcf57fb2af4d906aa9d44183b5d221b15e51d64b5dc0b26920068"
+  }
+ }
+}

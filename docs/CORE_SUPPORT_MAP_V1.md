@@ -146,3 +146,29 @@ Wrong expectations are recorded as wrong.
    its exit status and lesion audit are read.
 5. Commit and push the preregistration. Run once, evaluate once, then record the results, handoff
    and roadmap.
+
+## Build-time notes (before any protocol simulation)
+
+Protocol: `docs/evidence/core-support-map-v1/protocol.json` (sha 60359bb6…). No amendments to the
+groups, conditions, seeds, criteria or expectations.
+
+**As built:**
+- **Z1** also checks the group sizes against this design's table, the driver's dense index (36), the
+  core cells and the 68 MNs.
+- **Gates.** The LIVE gate also compares the whole-CNS active fraction with F1's. The ISOLATED gate
+  compares F1's network-only active fraction. Runs are compared after JSON normalisation (NaN as
+  null), as stored.
+- **Construction.** Every condition except LIVE is built through the `effective_weights` path from
+  one pre-gain weight array, using the constructor's own rule. The constructor then applies the
+  inhibitory gain. LIVE_VIA_WEIGHTS checks that this path reproduces LIVE. The lesion audit for LIVE
+  is trivial, because LIVE is the reference.
+- **Active-neuron counts** come from the engine's spike counts over the whole 3 s run, not 250–3,000
+  ms. They are reported only.
+- **"Non-monotonic" is made precise:** a group X is SUFFICIENT while a different group Y is NEEDED.
+  ONLY_X leaves out Y, yet engages the core, while MINUS_Y keeps X and does not. Such pairs are
+  listed.
+- **Plumbing.** The smoke used MINUS_VNC with seed 0 (not a protocol seed), before the protocol was
+  written. Only its exit status and lesion audit were read: passed, 935,434 edges removed, 501,533
+  nonzero weights changed. The simulation took 5.0 s. Its core rates, MNs and activity were not
+  inspected.
+- New tests: 5 in `tests/test_core_support_map.py`, on toy data (15 together with F1's).
