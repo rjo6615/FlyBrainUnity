@@ -172,3 +172,24 @@ Wrong expectations are recorded as wrong.
 4. Run the declared searches once. Extract `evidence.json` and `search_log.json`. Do the second read,
    then compute once.
 5. Record the results, handoff and roadmap.
+
+## Build-time notes (before any search)
+
+Protocol: `docs/evidence/identity-mapping-v1/protocol.json` (sha 9c7919bc...). The whole-dataset type table
+`type_table.json` (11751 named types, sha 3a675064...) is locked inside it. No
+amendments to the targets, questions, queries, levels, rules or expectations.
+
+**As built:**
+- **Targets as code.** T1 to T6 are expanded into 21 named targets: each FeCO subtype and each Chen 2021
+  class is its own target. Agrawal's 10Balpha (T2) and Chen's 10Ba (T5) stay separate unless a source
+  equates them.
+- **Types only.** Mappings are recorded as type names. If a source gives male CNS body IDs, they are
+  converted to our type names during extraction.
+- **Strict conflict rule.** Carried-over M-A type sets must be identical. A subset (one source names
+  {X}, another {X, Y}) counts as CONFLICTING.
+- **MAPPED with a partial carry-over.** A target is MAPPED if at least one counted M-A entry carries
+  over and all carried-over M-A sets agree. An M-A entry that does not carry over is not a conflict.
+- **Each (stimulated, recorded) pair is one D5 target.** Pairs are only counted if the entry has a
+  neural readout and both cells are MAPPED.
+- `malecns_backend/identity_review.py` refuses a changed protocol or type table and writes its result
+  once (exclusive create). There are 5 unit tests on toy tables.

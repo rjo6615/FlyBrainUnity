@@ -1,0 +1,122 @@
+{
+ "carry_over": "a non-maleCNS type counts as present in our data only with a checked type-level crosswalk to maleCNS and the name in our type table",
+ "charter": "AGENTS.md (2026-11-23)",
+ "counting": "an entry counts only if primary and its separate second read was done and agrees (strict P1 rule)",
+ "design": "docs/IDENTITY_MAPPING_REVIEW_V1.md",
+ "expectations": {
+  "X1": "a crosswalk male CNS <-> MANC/FANC/BANC exists",
+  "X2": "13Ba and 10Ba not MAPPED to single types",
+  "X3": "FeCO subtypes identified in some connectome (any status but UNMAPPED)",
+  "X4": "label MAPPING_ONLY"
+ },
+ "follows": "P1 docs/evidence/physiology-review-v1 (result unchanged; P2 restates D1/D2/D5 as a new result)",
+ "graded_targets": [
+  "T1:13Ba",
+  "T2:10Ba"
+ ],
+ "interpretation_limits": [
+  "Public literature and documentation only; authenticated services out of scope.",
+  "Cross-dataset matches are the source authors inferences; recorded, not re-verified.",
+  "AI reviewer using web tools; declared queries, full log and separate strict second read as safeguards.",
+  "A mapping is an identity claim, not a physiological one.",
+  "No engine change; motor coordinates unchanged (20/42 admitted, +4 conditional)."
+ ],
+ "labels": {
+  "INCONCLUSIVE": "invalid entries, duplicate ids, unchecked entries or incomplete log",
+  "INSUFFICIENT": "neither",
+  "MAPPING_ONLY": "< 2 targets but T1 or T2 at type level",
+  "TARGETS_AVAILABLE": ">= 2 D5 targets"
+ },
+ "levels": {
+  "M-A": "explicit match of the recorded cell to connectome type(s)/neurons by a stated method",
+  "M-B": "candidate set of types",
+  "M-C": "weaker; never decisive"
+ },
+ "mn_targets": [
+  "T6:fast",
+  "T6:intermediate",
+  "T6:slow"
+ ],
+ "network": {
+  "body_ids_sha256": "cdcfcd231484a46c2a668d17932d95b2147ab16e7dd5c7f87857490590b12eed",
+  "neurons": 2111
+ },
+ "our_dataset": "male CNS v1.0 (Janelia FlyEM), local cache .cache/malecns-v1",
+ "queries": {
+  "Q1": [
+   "male CNS connectome Drosophila ventral nerve cord cell types matched MANC",
+   "maleCNS connectome cell type annotation",
+   "MANC FANC cell type matching ventral nerve cord",
+   "BANC brain and nerve cord connectome cell types"
+  ],
+  "Q2": [
+   "13B hemilineage leg proprioception connectome cell type",
+   "13Bα neurons femoral chordotonal organ connectome",
+   "10Bα neuron Drosophila connectome",
+   "9Aα interneuron vibration connectome Drosophila"
+  ],
+  "Q3": [
+   "femoral chordotonal organ club claw hook connectome",
+   "FeCO axon types MANC",
+   "Drosophila leg proprioceptor connectome types"
+  ],
+  "Q4": [
+   "tibia flexor motor neuron connectome fast slow Drosophila",
+   "Drosophila leg motor neuron identification FANC"
+  ],
+  "Q5": [
+   "Drosophila ventral nerve cord functional connectivity optogenetics calcium imaging identified neurons",
+   "leg premotor neuron response optogenetic activation Drosophila",
+   "Drosophila ventral nerve cord whole-cell recording optogenetic activation interneuron"
+  ]
+ },
+ "query_tool": "WebSearch (standard mode); each declared query run once as written; extra wording logged",
+ "questions": {
+  "Q1": "crosswalk male CNS <-> MANC/FANC/BANC types",
+  "Q2": "interneuron identities (T1-T3, T5)",
+  "Q3": "FeCO afferent identities (T4)",
+  "Q4": "tibia flexor MN identities (T6)",
+  "Q5": "functional-connectivity experiments: identified stimulus, identified neural readout"
+ },
+ "restatements": {
+  "D1": "T1/T2 at type level if MAPPED or CANDIDATE_SET, with in-network counts",
+  "D2": "T6 per MN type if MAPPED",
+  "D5": "one target per (stimulated, recorded) pair of a counted functional-connectivity entry with a neural readout, both MAPPED"
+ },
+ "rules": {
+  "R1": "MAPPED: >=1 counted M-A entry carries over and all carried-over M-A sets agree",
+  "R2": "CANDIDATE_SET: only M-B, all carry over",
+  "R3": "CONFLICTING: carried-over M-A sets differ",
+  "R4": "SOURCE_ONLY: M-A/M-B exist but do not carry over",
+  "R5": "UNMAPPED"
+ },
+ "schema": "identity-mapping-protocol-v1",
+ "snowball": "one level: references of included sources; citing papers of central sources via Europe PMC citations service",
+ "sources": "public pages read-only; Europe PMC REST preferred for full text; bioRxiv/arXiv HTML; no bot-check, captcha, login or rate-limit bypass; no downloads without the user OK; no accounts or tokens (neuPrint out of scope)",
+ "stop_rule": "per question: declared queries + snowball, or 25 included sources, whichever first",
+ "targets": [
+  "T1:13Ba",
+  "T2:10Ba",
+  "T3:9Aa",
+  "T3:9Aa2",
+  "T4:club",
+  "T4:claw-flexion",
+  "T4:claw-extension",
+  "T4:hook-flexion",
+  "T4:hook-extension",
+  "T5:8Aa",
+  "T5:9Ba",
+  "T5:9Bb",
+  "T5:10Ba",
+  "T5:13Ba",
+  "T5:13Bb",
+  "T5:19Aa",
+  "T5:19Ab",
+  "T5:20/22Ab",
+  "T6:fast",
+  "T6:intermediate",
+  "T6:slow"
+ ],
+ "type_table_sha256": "3a675064615e5fbcb82b061c66aea49c38862def578d2824c6d8988ab8a75825",
+ "types_in_table": 11751
+}
