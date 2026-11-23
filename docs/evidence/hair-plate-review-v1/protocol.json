@@ -1,0 +1,195 @@
+{
+ "C_targets": "each (stim, rec) pair of a counted functional_connectivity entry with neural_readout true and readout presence/sign/relative_size/latency_rank, stim an H1-H3 target MAPPED and rec a D: cell MAPPED",
+ "E_targets": "counted afferent_tuning entry, Drosophila melanogaster, target H1-H3 MAPPED, joint coxa or trochanter, readout tuning_curve / threshold_angle / rate_vs_angle",
+ "annotation_query": {
+  "annotation_identity": "a table annotation that names a target is M-C (names alone) unless a checked source states the method that produced it, then graded as P2",
+  "banc_link": {
+   "carries_over": "the group has a cell_type, reaches exactly one male CNS type and every ID resolves to a typed body",
+   "crosswalk": "BANC joins the crosswalks only if the single annotation entry is counted (primary, second read agrees) and >= 1 hit group carries over",
+   "groups": "BANC hit rows grouped by cell_type",
+   "ids": "malecns_match parsed as comma-separated integer body IDs (rf_hair_plate_banc_v2.id_list), resolved to male CNS type through annotations bodyId",
+   "level": "none if no row of the group has an ID; group if any ID is shared by >= 2 rows of the group; neuron otherwise",
+   "translation": "BANC-sourced identity entries: BANC types replaced by their carried-over male CNS types, all or nothing; otherwise prefixed BANC: so that names alone never match"
+  },
+  "output": "docs/evidence/hair-plate-review-v1/annotation_query.json (written once, exclusive create; evaluate re-runs the query and requires byte-identical output)",
+  "patterns": {
+   "CxHP": "CxHP (case-insensitive)",
+   "HP token": "(?<![A-Za-z])HP(?![A-Za-z]) (case-sensitive)",
+   "TrHP": "TrHP (case-insensitive)",
+   "hair plate": "hair[ _-]?plate (case-insensitive)"
+  },
+  "report": {
+   "banc": [
+    "root_id",
+    "cell_type",
+    "side",
+    "nerve",
+    "region",
+    "hemilineage",
+    "super_class",
+    "cell_class",
+    "cell_sub_class",
+    "body_part_sensory",
+    "peripheral_target_type",
+    "cell_function",
+    "cell_function_detailed",
+    "malecns_cell_type",
+    "manc_cell_type",
+    "fanc_cell_type",
+    "malecns_match",
+    "manc_match",
+    "fanc_match",
+    "malecns_nblast_match"
+   ],
+   "malecns": [
+    "bodyId",
+    "type",
+    "instance",
+    "somaSide",
+    "rootSide",
+    "entryNerve",
+    "exitNerve",
+    "superclass",
+    "class",
+    "subclass",
+    "somaNeuromere",
+    "mancType",
+    "mancBodyid",
+    "synonyms",
+    "matchingNotes",
+    "receptorType"
+   ]
+  },
+  "text_columns": "every string-typed column (string, object or dictionary) of each table",
+  "typed": "rows whose type column (BANC cell_type, male CNS type) equals SNpp45 exactly"
+ },
+ "annotation_sources": {
+  "banc": "docs/evidence/distal-tarsus-reference-v1/banc_888_meta.feather",
+  "malecns": "docs/evidence/lf-anatomical-crosswalk-v1/annotations.feather"
+ },
+ "annotation_sources_sha256": {
+  "banc": "86ccf5df0c67419f8c5f43e93a7ed38d23a080e9f7fde26737290252f3780098",
+  "malecns": "2177e246113e4cfbf1e7772ec37c6da1955ff22e8063d0b1f833101f99a9a3b2"
+ },
+ "charter": "AGENTS.md (2026-11-23)",
+ "consequence_declared_in_advance": "TARGETS_AVAILABLE: design a held-out CNS validation of the hair-plate reflex pathway (live engine v1 first). ENCODER_VALIDATION_AVAILABLE: design a preregistered check of the Step B encoder against the measured tuning. MAPPING_ONLY: identity settled, nothing to validate yet. INSUFFICIENT: the conclusion write-up becomes the natural next step unless the user chooses own cross-dataset matching. No engine or encoder change in any case.",
+ "counting": "an entry counts only if primary and its separate strict second read was done and agrees (P1/P2 rule)",
+ "design": "docs/HAIR_PLATE_REVIEW_V1.md",
+ "expectations": {
+  "X1": "H1 SOURCE_ONLY with counted M-A/M-B sources exactly {FANC}, and verdict UNRESOLVED",
+  "X2": ">= 1 hit BANC group carries over and every hit group with an ID is group-level",
+  "X3": ">= 1 counted Drosophila afferent_tuning entry with a quantitative readout, and zero E-targets",
+  "X4": "zero C-targets",
+  "X5": "label INSUFFICIENT"
+ },
+ "follows": "P2 docs/evidence/identity-mapping-v1 (INSUFFICIENT; unchanged)",
+ "grades": "A/B/C per charter; grade C if and only if the species is not Drosophila melanogaster; grade C recorded, never counted",
+ "interpretation_limits": [
+  "Public literature plus two annotation tables already in the repository; annotations are their authors inferences.",
+  "BANC malecns_match was group-level for SNpp45 in RF V2: at best type-level identity.",
+  "AI reviewer using web tools; declared queries, full log and separate strict second read as safeguards.",
+  "A mapping is an identity claim; afferent tuning is a sensory property; behaviour is reported only.",
+  "No engine or encoder change; motor coordinates unchanged (20/42 admitted, +4 conditional)."
+ ],
+ "kinds": {
+  "Q1": [
+   "identity"
+  ],
+  "Q2": [
+   "crosswalk",
+   "annotation"
+  ],
+  "Q3": [
+   "afferent_tuning"
+  ],
+  "Q4": [
+   "identity",
+   "functional_connectivity"
+  ],
+  "Q5": [
+   "behaviour"
+  ]
+ },
+ "labels": {
+  "ENCODER_VALIDATION_AVAILABLE": ">= 1 E-target and < 2 C-targets",
+  "INCONCLUSIVE": "invalid entries, duplicate ids, unchecked entries, incomplete log, not exactly one annotation entry, or annotation entry not matching the output",
+  "INSUFFICIENT": "none of the above",
+  "MAPPING_ONLY": "any of H1-H3 MAPPED but neither of the above",
+  "TARGETS_AVAILABLE": ">= 2 C-targets"
+ },
+ "our_dataset": "male CNS v1.0 (Janelia FlyEM); our-data type names from P2 type_table.json",
+ "p2": {
+  "evidence_sha256": "7ffb175e305d16725bf0000e0923b57dbeb2c5305b608b7c38381147fdf93ecc",
+  "protocol_sha256": "9c7919bc6fffd968a13447d39214f336928ca69370d134733503ae239e03a0f3",
+  "reused": [
+   "levels M-A/M-B/M-C",
+   "rules R1-R5 (identity_review.mapping)",
+   "crosswalk rule (identity_review.crosswalks)",
+   "counting rule (identity_review.counts)",
+   "crosswalk entry MCNS-crosswalk (male CNS <-> MANC, type level)"
+  ],
+  "type_table_sha256": "3a675064615e5fbcb82b061c66aea49c38862def578d2824c6d8988ab8a75825"
+ },
+ "queries": {
+  "Q1": [
+   "Drosophila hair plate CxHP8 connectome",
+   "Drosophila leg hair plate neurons FANC reconstruction",
+   "hair plate sensory neurons MANC male nerve cord",
+   "SNpp45 Drosophila"
+  ],
+  "Q2": [
+   "BANC malecns_match annotation",
+   "BANC brain and nerve cord connectome cross-dataset matching male CNS"
+  ],
+  "Q3": [
+   "Drosophila hair plate proprioceptor calcium imaging joint angle",
+   "insect hair plate afferent joint angle tuning",
+   "cockroach hair plate receptor response",
+   "stick insect hair plate afferent"
+  ],
+  "Q4": [
+   "hair plate activation motor neuron response Drosophila",
+   "hair plate reflex interneuron recording insect leg"
+  ],
+  "Q5": [
+   "Drosophila coxa hair plate silencing walking",
+   "hair plate proprioception leg posture Drosophila"
+  ]
+ },
+ "query_tool": "WebSearch (standard mode); each declared query run once as written; extra wording logged",
+ "questions": {
+  "Q1": "identity of H1-H3; published identity of SNpp45 (H4)",
+  "Q2": "crosswalk: P2 male CNS<->MANC; BANC annotation query",
+  "Q3": "afferent physiology (joint-angle tuning, threshold, rate, adaptation)",
+  "Q4": "downstream physiology with a neural readout; identities of the downstream cells",
+  "Q5": "behaviour (reported only; never a target)"
+ },
+ "schema": "hair-plate-review-protocol-v1",
+ "seen_before_registration": [
+  "Column names and types of both annotation tables (schema only, no row values).",
+  "RF V2 (2026-11-03): nine BANC LF SNpp45 rows share malecns_match 908177 and three RF rows share 1323625268 (group-level); malecns_match values are body-ID strings.",
+  "Step A (HAIR_PLATE_IDENTITY_RESULTS.md): SNpp45 shows the CxHP8 output pattern in all six legs (our inference).",
+  "P2 entry PR26-fc (Pratt et al. 2026): CxHP8 axon calcium imaging during passive movement; reconstruction in FANC because hair-plate axons could not be identified in MANC; no recording of downstream neurons. This informed X1 and X3."
+ ],
+ "snowball": "one level: references of included primary sources; citing papers of Pratt et al. 2026 via the Europe PMC citations service",
+ "snpp45_verdict": {
+  "CONTRADICTED": "H1 MAPPED without SNpp45 in its types, or a counted M-A/M-B H4 entry that carries over places SNpp45 as anything other than CxHP8 or an unspecified hair plate (takes precedence)",
+  "SUPPORTED": "H1 MAPPED to exactly [SNpp45]",
+  "UNRESOLVED": "otherwise (incl. H1 MAPPED to a set containing SNpp45 and other types)"
+ },
+ "sources": "public pages read-only; Europe PMC REST preferred for full text; bioRxiv/arXiv HTML; no bot-check, captcha, login or rate-limit bypass; no downloads without the user OK; no accounts or tokens; no personal data in queries",
+ "status": "PREREGISTERED_BEFORE_ANY_SEARCH_OR_ANNOTATION_QUERY",
+ "stop_rule": "per question: declared queries + snowball, or 25 included sources, whichever first",
+ "targets": {
+  "afferents": [
+   "H1:CxHP8",
+   "H2:CxHP3",
+   "H2:CxHP4",
+   "H3:TrHP5",
+   "H3:TrHP6",
+   "H3:TrHP7"
+  ],
+  "downstream": "D:<name> for downstream cells named by Q4 sources; mapped by the same R1-R5 (needed so C-target readouts can be MAPPED)",
+  "snpp45": "H4:SNpp45"
+ }
+}

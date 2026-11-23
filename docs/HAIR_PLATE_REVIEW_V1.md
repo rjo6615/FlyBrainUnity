@@ -173,3 +173,40 @@ Wrong expectations are recorded as wrong.
 3. Run the annotation query and the declared searches once. Extract `evidence.json` and
    `search_log.json`. Do the second read, then compute once.
 4. Record the results, handoff and roadmap.
+
+## Build-time notes (before any search or annotation query)
+
+Protocol: `docs/evidence/hair-plate-review-v1/protocol.json` (sha d240f626...). It locks the sha256 of both
+annotation tables (BANC 86ccf5df..., male CNS 2177e246...), P2's evidence (7ffb175e...) and
+P2's type table (3a675064...). No amendments to the targets, questions, queries, rules or expectations.
+
+**Seen before registration (disclosed):** the column names and types of both tables (schema only, no row
+values), RF V2's group-level SNpp45 links, Step A, and P2's reading of Pratt et al. 2026 (CxHP8 imaged
+during passive movement, reconstructed in FANC because the axons could not be found in MANC). The last
+informed X1 and X3.
+
+**As built:**
+- **Reuse.** P2's levels, R1-R5 (`identity_review.mapping`), crosswalk and counting rules are called
+  directly, and P2's checked male CNS <-> MANC entry is read from P2's evidence file. P2's validator is
+  bound to P2's target list, so P3 has its own validator built on P2's field lists and constants.
+  `identity_review.py` is unchanged.
+- **Targets as code.** Six afferent targets (CxHP8, CxHP3, CxHP4, TrHP5-7) plus SNpp45 (H4). Downstream
+  cells named by Q4 sources are written `D:<name>` and mapped by the same rules, so a C-target's readout
+  cell can be MAPPED.
+- **New entry kinds:** `annotation` (Q2, exactly one, tied to the query output by hash),
+  `afferent_tuning` (Q3) and `behaviour` (Q5).
+- **Annotation query.** All string-typed columns are searched. The hair-plate pattern also accepts the
+  spellings `hair_plate` and `hair-plate`. `HP` is case-sensitive and must not touch a letter on either
+  side. SNpp45 rows are matched by exact type. The reported fields add BANC's own `malecns_cell_type`,
+  `manc_cell_type`, `fanc_cell_type` and function fields to the design's list; they are reported only.
+- **BANC link.** Per BANC cell type among the hit rows: `group` if a male CNS body ID is shared by two or
+  more rows, `neuron` if not, `none` without IDs. A type carries over only if it reaches exactly one male
+  CNS type and every ID resolves. BANC-sourced identities are translated all or nothing.
+- **Annotation names.** A table annotation that names a target is M-C (names alone), unless a checked
+  source states the method that produced it.
+- **SNpp45 verdict.** H4 entries state what a source places SNpp45 as (`snpp45_is`). A contradiction takes
+  precedence over support. H1 MAPPED to a set that contains SNpp45 and other types is UNRESOLVED.
+- **Grades.** Grade C if and only if the species is not *D. melanogaster*. E-targets need *D. melanogaster*.
+- **No smoke run on real data.** The annotation query is itself a measurement and runs once. The module
+  has 6 unit tests on toy tables. It refuses a changed protocol, annotation table, P2 evidence or type
+  table, and writes the query output and the result once (exclusive create).
