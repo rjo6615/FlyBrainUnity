@@ -149,3 +149,24 @@ Wrong expectations are recorded as wrong.
 3. Run the declared searches once. Write `search_log.json` and `evidence.json`. Do the second-read
    check, then compute the label once.
 4. Record the results, handoff and roadmap.
+
+## Build-time notes (before any search)
+
+Protocol: `docs/evidence/physiology-review-v1/protocol.json` (sha c28c524a...). The network cell table
+`network_table.json` (sha 1cb258f4...) is locked inside it. No amendments to the
+questions, queries, inclusion rules, decision rules or expectations.
+
+**As built:**
+- **The network cell table** lists the 1084 types, 31 hemilineages and 6 superclasses present in
+  R1's network. Hemilineage is read from MANC-style type names (`IN17A001` gives 17A); that is a
+  naming convention, not a measurement. Grade A needs a type in this table; grade B needs a
+  hemilineage or superclass in it.
+- **Counting.** An entry counts toward D1-D5 only if it is primary, from *Drosophila melanogaster*, at
+  grade A or B, and its second read was done and agrees. Disagreeing entries stay in the table and are
+  listed.
+- **The second read** is done by a separate reader (a fresh web-reading agent that did not do the
+  extraction), which is given the source and the extracted claim.
+- **Search tool:** web search in standard mode, each declared query run once as written.
+- `malecns_backend/evidence_review.py` computes D1-D5 and the label. It refuses a changed protocol or
+  network table, and writes its result file once (exclusive create). There are 6 unit tests on toy
+  tables.
