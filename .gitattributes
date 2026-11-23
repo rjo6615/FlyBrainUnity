@@ -243,3 +243,6 @@ docs/evidence/engine-fidelity-audit-v1/**/*.txt -text -whitespace
 docs/evidence/core-support-map-v1/*.json -text
 docs/evidence/core-support-map-v1/**/*.json -text
 docs/evidence/core-support-map-v1/**/*.txt -text -whitespace
+docs/evidence/physiology-review-v1/*.json -text
+docs/evidence/physiology-review-v1/**/*.json -text
+docs/evidence/physiology-review-v1/**/*.txt -text -whitespace

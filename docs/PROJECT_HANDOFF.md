@@ -1,5 +1,24 @@
 # FlyBrainUnity — local Codex handoff
 
+## Evidence charter + published physiology Step P1 (review protocol) — 2026-11-23
+
+Direction change, decided by the user after the viability assessment: the untuned, local-only route to
+balance is effectively closed (F1 no defect; F2 core activity is a whole-CNS state). Published
+physiology may now be used. AGENTS.md gains an evidence charter: public sources read-only (no contact,
+no project data out, downloads need the user's OK); a provenance tag per parameter (measured /
+derived / assumed / inherited) and identity grades A/B/C; model changes only in separately versioned
+engine variants (v1 and all evidence unchanged); physiology validation on preregistered held-out
+targets before any behavior test; behavior never feeds back into parameters; reviews preregistered.
+P1 is the first such review, designed only (no source read yet): the R1 front-left network (2,111
+neurons, incl. E1/E2/I1). Q1 spiking vs graded, Q2 leg MN intrinsic properties, Q3 nerve-cord
+synaptic sign/kinetics/gap junctions, Q4 held-out validation targets, Q5 model precedent. Declared
+queries, one-level snowball, stop at 25 sources per question, full search log, second-read check.
+Decision rules D1-D5 as code -> EVIDENCE_SUFFICIENT_FOR_VARIANT / EVIDENCE_PARTIAL /
+EVIDENCE_INSUFFICIENT. Expectations X1 no grade A data for E1/E2/I1, X2 grade B graded interneurons
+exist, X3 leg MN data exist, X4 PARTIAL. See PHYSIOLOGY_REVIEW_V1.md.
+
+NEXT (needs approval): build and run P1 (protocol lock, validator, searches, extraction, label).
+
 ## Engine fidelity Step F2 (core support map): NEEDED_NOT_SUFFICIENT — 2026-11-10
 
 Preregistered (e0a04ff, protocol 60359bb6, no amendments), run once (136 sims, 1,121 s). Neural only;

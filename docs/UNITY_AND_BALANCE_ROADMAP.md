@@ -1,8 +1,8 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
-Current 2026-11-10: engine fidelity Step F2 run: NEEDED_NOT_SUFFICIENT - DNg100_L's core engagement in the live engine needs the central brain, the rest of the nerve cord and the ascending neurons together (removing any one abolishes it; none is enough alone): a large cord-brain-cord recurrent state, not a local leg circuit.
+Current 2026-11-23: direction change - evidence charter added (published physiology allowed; model changes only as versioned, provenance-tagged variants validated on held-out physiology before behavior); published physiology Step P1 review protocol designed for the front-left motor network.
 
-Previous 2026-11-10: engine fidelity Step F2 designed (neural only: which part of the CNS outside the front-left network does DNg100_L's core engagement need, and is any one part enough? 7 superclass groups, lesion and only-this-group conditions, 136 sims).
+Previous 2026-11-10: engine fidelity Step F2 run: NEEDED_NOT_SUFFICIENT - DNg100_L's core engagement in the live engine needs the central brain, the rest of the nerve cord and the ascending neurons together (removing any one abolishes it; none is enough alone): a large cord-brain-cord recurrent state, not a local leg circuit.
 
 Previous 2026-11-08: LIF return Step L1 designed (stimulate the rate model's rhythm-driving DNs, DNg75_R and DNa02_L, plus DNp09_R, in the live untuned whole-CNS LIF engine with V1's harness; is there a front-left MN rhythm, and does it need E1/E2?).
 
@@ -82,6 +82,7 @@ Antennal gravity sense        [A: IDENTITY_READY; B: ENCODER_READY (pitch slope 
 Coxa push replication         [run: AMPLIFICATION_DIRECTIONAL F / B (R>1 6/6); yoke DO_NOT_REPRODUCE; FREE_COMMANDS_INCREASE_D F / B]
 Coxa conditional tier         [LF/LH/LM/RM CONDITIONAL (fore-aft Coxa); RF/RH blocked by input]
 Engine fidelity audit         [F1: NO_DEFECT_FOUND; rule swaps NOT_THESE_RULES (DNg75_R, DNa02_L); DNg100_L core engagement needs the whole CNS and weakened inhibition (reported); F2 core support map: NEEDED_NOT_SUFFICIENT (brain + rest of VNC + ascending neurons each needed, none enough alone)]
+Published physiology          [charter added; P1 review of the front-left motor network: protocol designed]
 Motor coverage                [##########-----------] 20/42 admitted (+4 conditional)
 Independent balance / gait    [not established]
 ```
