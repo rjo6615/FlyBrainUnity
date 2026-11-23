@@ -1,0 +1,259 @@
+{
+ "queries": [
+  {
+   "question": "Q1",
+   "query": "Drosophila hair plate CxHP8 connectome",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q1",
+   "query": "Drosophila leg hair plate neurons FANC reconstruction",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q1",
+   "query": "hair plate sensory neurons MANC male nerve cord",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q1",
+   "query": "SNpp45 Drosophila",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q2",
+   "query": "BANC malecns_match annotation",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q2",
+   "query": "BANC brain and nerve cord connectome cross-dataset matching male CNS",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q3",
+   "query": "Drosophila hair plate proprioceptor calcium imaging joint angle",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q3",
+   "query": "insect hair plate afferent joint angle tuning",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q3",
+   "query": "cockroach hair plate receptor response",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q3",
+   "query": "stick insect hair plate afferent",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q4",
+   "query": "hair plate activation motor neuron response Drosophila",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q4",
+   "query": "hair plate reflex interneuron recording insect leg",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q5",
+   "query": "Drosophila coxa hair plate silencing walking",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q5",
+   "query": "hair plate proprioception leg posture Drosophila",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  }
+ ],
+ "extra_wording": [
+  "Europe PMC search \"Proprioceptive limit detectors\" (locate Pratt 2026 full text)",
+  "Europe PMC title searches for the male CNS, MANC annotation and BANC papers (locate full texts)",
+  "Europe PMC DOI search for Marin 2024 eLife RP97766 (0 hits)",
+  "Europe PMC title search hair plate, 1970-2000 (snowball: other-insect references of Pratt 2026)"
+ ],
+ "annotation_query": {
+  "output": "docs/evidence/hair-plate-review-v1/annotation_query.json",
+  "sha256": "a9e0283c6cf817cfb95e40188ee1dae0a16756d7e014a20571e5b0681934f76d",
+  "banc_rows": 350,
+  "malecns_rows": 115,
+  "run": "2026-11-23, once"
+ },
+ "screened": [
+  {
+   "title": "Pratt et al. 2026 Nat Commun (preprint 2025; lab PDFs, supplement, Dryad record, dissertation are versions of it)",
+   "url": "10.1038/s41467-026-69333-z",
+   "decision": "included",
+   "reason": "Q1, Q3, Q4, Q5; full text via Europe PMC"
+  },
+  {
+   "title": "Bates et al. 2026 Nature, BANC",
+   "url": "10.1038/s41586-026-10735-w",
+   "decision": "included",
+   "reason": "Q1, Q2 (annotation method); full text via Europe PMC"
+  },
+  {
+   "title": "Marin et al. 2024 eLife / 2023 bioRxiv, MANC systematic annotation",
+   "url": "10.1101/2023.06.05.543407",
+   "decision": "not read",
+   "reason": "Europe PMC PPR671363 full text HTTP 500; eLife reviewed preprint served a client challenge (not bypassed); not in Europe PMC by eLife DOI"
+  },
+  {
+   "title": "Berg et al. 2025 bioRxiv / 2026 Cell, male CNS",
+   "url": "10.1101/2025.10.09.680999",
+   "decision": "not read",
+   "reason": "Europe PMC PPR1098763 full text HTTP 500; Cell version not open access"
+  },
+  {
+   "title": "Takemura et al. 2024 MANC connectome",
+   "url": "10.1101/2023.06.05.543757",
+   "decision": "excluded",
+   "reason": "no full text in Europe PMC; Pratt 2026 states hair plate axons could not be identified in MANC"
+  },
+  {
+   "title": "Newland et al. 1995 J Exp Biol (locust tibial hair plate)",
+   "url": "10.1242/jeb.198.11.2397",
+   "decision": "recorded (grade C)",
+   "reason": "Q3, abstract: two afferent classes, phasic velocity-sensitive and phasotonic with a tonic component to maintained deflection; locust tibial hair plate (the search summary attributed it to stick insect). Kept in the log: no declared target to attach it to"
+  },
+  {
+   "title": "Wong & Pearson 1976 J Exp Biol (cockroach trochanteral hair plate)",
+   "url": "10.1242/jeb.64.1.233",
+   "decision": "recorded (grade C)",
+   "reason": "Q3/Q5, abstract: type I dynamic and type II dynamic+static long-hair sensilla; removal causes overstepping (exaggerated femur flexion). Kept in the log: no declared target to attach it to"
+  },
+  {
+   "title": "Pearson, Wong & Fourtner 1976 J Exp Biol",
+   "url": "10.1242/jeb.64.1.251",
+   "decision": "included",
+   "reason": "Q4 grade C, abstract"
+  },
+  {
+   "title": "Kuenzi & Burrows 1995 J Exp Biol (locust coxal hair plate)",
+   "url": "10.1242/jeb.198.7.1589",
+   "decision": "included",
+   "reason": "Q4 grade C, abstract"
+  },
+  {
+   "title": "French & Sanders 1979 Cell Tissue Res",
+   "url": "10.1007/bf00234843",
+   "decision": "excluded",
+   "reason": "ultrastructure; physiology only cited"
+  },
+  {
+   "title": "Dean & Schmitz 1992 Physiol Entomol (stick insect ventral coxal hairplate)",
+   "url": "10.1111/j.1365-3032.1992.tb01031.x",
+   "decision": "excluded",
+   "reason": "no abstract available"
+  },
+  {
+   "title": "Vedel 1986 (lobster antennal hair plate); Yack 1992 (moth wing hinge)",
+   "url": "10.1002/neu.480170202; 10.1002/cne.903240404",
+   "decision": "excluded",
+   "reason": "not an insect leg hair plate"
+  },
+  {
+   "title": "Okada & Toh 2001 J Exp Biol (cockroach antennal scapal hair plate); Zool Sci scapal hair plate",
+   "url": "jeb 204:4301; zsj.19.1201",
+   "decision": "excluded",
+   "reason": "antennal, not a leg hair plate"
+  },
+  {
+   "title": "van der Veen, Duerr, Chicca 2025/2026 Biol Cybern (stick insect models)",
+   "url": "10.1007/s00422-025-01029-x; s00422-025-01032-2",
+   "decision": "excluded",
+   "reason": "spiking-network model, not physiology"
+  },
+  {
+   "title": "Pratt 2024 Curr Biol treadmills; Chockley 2022; Lee 2025; Azevedo 2024; Lesser 2024; Sturner 2025; Elabbady 2026",
+   "url": "various",
+   "decision": "excluded",
+   "reason": "no hair-plate identity mapping, afferent tuning or downstream recording beyond what Pratt 2026 reports (Pratt 2024 silenced a mixed subset incl. CxHP8: behaviour only)"
+  },
+  {
+   "title": "Reconstruction differences ... compass connectome (arXiv 2610.29205); Synaptic placement in DNs (arXiv 2610.00690)",
+   "url": "arxiv",
+   "decision": "excluded",
+   "reason": "central complex / DNs, not hair plates"
+  },
+  {
+   "title": "Virtual Fly Brain ontology terms (mechanosensory neuron of coxal hair plate)",
+   "url": "virtualflybrain.org",
+   "decision": "excluded",
+   "reason": "ontology term, no connectome identity or physiology"
+  },
+  {
+   "title": "FlyBase / protein hits for \"SNpp45\"",
+   "url": "flybase.org",
+   "decision": "excluded",
+   "reason": "unrelated gene names (Pbp45); no source names SNpp45"
+  },
+  {
+   "title": "Citing papers of Pratt 2026 (8 records)",
+   "url": "Europe PMC MED/41680191/citations",
+   "decision": "excluded",
+   "reason": "Bates 2026 already included; Pugliese 2026 Nature (walking CPG simulations), Gorostiza 2026, Sapkal 2026, Anand 2026 (hawkmoth), Lesser 2026 (wing), van der Veen 2026 (model), Mills 2026 (flight): no hair-plate identity, tuning or downstream recording"
+  }
+ ],
+ "snowball": {
+  "references": [
+   "Pratt 2026: other-insect hair plate physiology refs 8, 9, 50-56 screened via Europe PMC (4 abstracts included as grade C); Drosophila refs give no hair-plate identity beyond FANC",
+   "Bates 2026: hair plate annotation cites Phelps 2021, Pratt 2026, Lee 2025, Merritt & Murphey 1992, Agrawal 2020 (refs 8, 222, 223, 254, 255)"
+  ],
+  "citing": [
+   "Pratt 2026 (PMID 41680191): 8 citing records in Europe PMC (citedByCount shows 13); all screened by title/abstract"
+  ]
+ },
+ "access": {
+  "failures": [
+   "Europe PMC PPR671363 (Marin 2023) full text HTTP 500",
+   "elifesciences.org reviewed preprint 97766: client challenge, not bypassed",
+   "Europe PMC PPR1098763 (Berg 2025) full text HTTP 500"
+  ],
+  "route": "Europe PMC REST via the built-in browser; no bot check, captcha, login or rate limit bypassed; nothing downloaded"
+ },
+ "stop_rule": "no question reached 25 included sources",
+ "grade_c_log_only_checks": {
+  "Newland 1995 (PMID 7490573)": "N1 confirmed by the abstract reader: locust Schistocerca gregaria tibial hair plate; phasic velocity-sensitive and phasotonic classes (abstract truncated at 250 words)",
+  "Wong & Pearson 1976 (PMID 1270992)": "W1 confirmed: type I dynamic, type II dynamic and static; removal caused overstepping from exaggerated femur flexion"
+ },
+ "second_reads": {
+  "pratt": "9/9 claims agree (caveats on unread Methods tail)",
+  "banc": "B3, B4, B5 agree; B1 agree except ref 222 identity (not found); B2 not found as stated; B6 absence not confirmed",
+  "abstracts": "K1, P1, W1, N1 agree",
+  "local": "A1-A8 and S1 agree"
+ }
+}

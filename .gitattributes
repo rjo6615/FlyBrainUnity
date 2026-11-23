@@ -249,3 +249,6 @@ docs/evidence/physiology-review-v1/**/*.txt -text -whitespace
 docs/evidence/identity-mapping-v1/*.json -text
 docs/evidence/identity-mapping-v1/**/*.json -text
 docs/evidence/identity-mapping-v1/**/*.txt -text -whitespace
+docs/evidence/hair-plate-review-v1/*.json -text
+docs/evidence/hair-plate-review-v1/**/*.json -text
+docs/evidence/hair-plate-review-v1/**/*.txt -text -whitespace
