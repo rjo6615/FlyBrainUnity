@@ -1,0 +1,428 @@
+{
+ "queries": [
+  {
+   "question": "Q1",
+   "query": "Drosophila ventral nerve cord nonspiking interneuron",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q1",
+   "query": "Drosophila premotor interneuron whole-cell recording leg",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q1",
+   "query": "Drosophila leg interneuron graded potential",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q1",
+   "query": "Drosophila VNC interneuron action potential patch clamp",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q1",
+   "query": "locust nonspiking local interneuron leg",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q1",
+   "query": "stick insect nonspiking interneuron",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q2",
+   "query": "Drosophila leg motor neuron patch clamp",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q2",
+   "query": "Drosophila leg motor neuron recruitment size principle",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q2",
+   "query": "Drosophila tibia flexor motor neuron intrinsic properties",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q3",
+   "query": "Drosophila GluCl inhibition central neurons",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q3",
+   "query": "Drosophila ventral nerve cord glutamate inhibitory",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q3",
+   "query": "Drosophila VNC gap junction premotor",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q3",
+   "query": "Drosophila central synapse cholinergic EPSP kinetics",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q4",
+   "query": "Drosophila descending neuron activation leg motor neuron recording",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q4",
+   "query": "DNg100",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q4",
+   "query": "DNa02 Drosophila",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q4",
+   "query": "DNg75 Drosophila",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q4",
+   "query": "Drosophila leg premotor neuron recording walking",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q5",
+   "query": "connectome constrained model Drosophila ventral nerve cord",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q5",
+   "query": "whole brain leaky integrate and fire Drosophila connectome",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q5",
+   "query": "Drosophila connectome neural network model locomotion",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  }
+ ],
+ "screened": [
+  {
+   "title": "Agrawal 2020 eLife, Central processing of leg proprioception",
+   "url": "PMC7752136",
+   "decision": "included",
+   "reason": "Q1/Q4; PMC and eLife pages served bot checks; read via Europe PMC API"
+  },
+  {
+   "title": "Chen 2021 Curr Biol, Functional architecture of leg proprioception circuits",
+   "url": "PMC8665017",
+   "decision": "included",
+   "reason": "Q4; calcium imaging only, no Q1 data; read via Europe PMC"
+  },
+  {
+   "title": "Azevedo 2020 eLife, size principle for leg MN recruitment",
+   "url": "PMC7347388",
+   "decision": "included",
+   "reason": "Q1/Q2/Q4; read via Europe PMC"
+  },
+  {
+   "title": "Yang 2024 Cell, fine-grained descending control of steering",
+   "url": "PMC12778575",
+   "decision": "included",
+   "reason": "Q1/Q4; read via Europe PMC"
+  },
+  {
+   "title": "Zwart 2016 Neuron, selective inhibition and motor pool recruitment (larva)",
+   "url": "PMC4980426",
+   "decision": "included",
+   "reason": "Q1/Q2 grade C"
+  },
+  {
+   "title": "Matsunaga 2017 J Neurosci, gap junction signalling from MNs (larva)",
+   "url": "PMC6705691",
+   "decision": "included",
+   "reason": "Q3 grade C"
+  },
+  {
+   "title": "Liu & Wilson 2013 PNAS, glutamate inhibitory in olfactory system",
+   "url": "PMC3690841",
+   "decision": "included",
+   "reason": "Q3 grade C; abstract level (PMC bot check)"
+  },
+  {
+   "title": "MacNamee 2016 J Comp Neurol, astrocytic glutamate transport (larva)",
+   "url": "PMC4861170",
+   "decision": "included",
+   "reason": "Q3 grade C; abstract level"
+  },
+  {
+   "title": "Fan 2025 Neurosci Bull, GluCl in two pairs of VNC neurons",
+   "url": "10.1007/s12264-025-01397-1",
+   "decision": "included",
+   "reason": "Q3; Springer login redirect; read via Europe PMC PMC12494514"
+  },
+  {
+   "title": "Shiu 2024 Nature, computational brain model",
+   "url": "PMC11446845",
+   "decision": "included",
+   "reason": "Q5; read via Europe PMC"
+  },
+  {
+   "title": "Pugliese 2025 bioRxiv / 2026 Nature, connectome simulations CPG",
+   "url": "10.1101/2025.09.12.675944",
+   "decision": "included",
+   "reason": "Q5; bioRxiv 429 on first attempt, v2 HTML read later; Nature version paywalled (abstract)"
+  },
+  {
+   "title": "FlyGM arXiv 2602.17997 / flyGNN NeurIPS 2025",
+   "url": "arXiv:2602.17997",
+   "decision": "included",
+   "reason": "Q5; abstract level"
+  },
+  {
+   "title": "Zarin 2019 eLife, multilayer larval locomotor circuit model",
+   "url": "PMC6994239",
+   "decision": "included",
+   "reason": "Q5; abstract level"
+  },
+  {
+   "title": "Burrows 1980 J Physiol, locust nonspiking local interneurons",
+   "url": "PMC1279112",
+   "decision": "excluded",
+   "reason": "access failed (PMC bot check; Europe PMC search returned no record); grade C only"
+  },
+  {
+   "title": "Locust metathoracic graded transmission",
+   "url": "PMC1281754",
+   "decision": "excluded",
+   "reason": "access failed (PMC bot check); grade C only"
+  },
+  {
+   "title": "Locust nonspiking interneuron papers (Burrows and colleagues, J Neurosci)",
+   "url": "PMC6569416, PMC6569652, PMC6569675, PMC6569182",
+   "decision": "excluded",
+   "reason": "grade C; not read (one-level reading budget spent on Drosophila sources)"
+  },
+  {
+   "title": "Stick insect nonspiking interneuron E4 and premotor studies",
+   "url": "pub.uni-bielefeld.de records",
+   "decision": "excluded",
+   "reason": "access denied page (Anubis); grade C only"
+  },
+  {
+   "title": "Stick insect dissertations (Cologne)",
+   "url": "kups.ub.uni-koeln.de",
+   "decision": "excluded",
+   "reason": "PDF only (download not approved); grade C"
+  },
+  {
+   "title": "Larval Traffic Jam GABAergic interneurons (Nat Commun 2019)",
+   "url": "s41467-019-12693-6",
+   "decision": "excluded",
+   "reason": "larval; no Q1-Q3 measurement in snippet; PDF"
+  },
+  {
+   "title": "Lesser et al. leg/wing premotor networks (Nature 2024)",
+   "url": "elifesciences reviewed-preprints 96084 / PMID 38926579",
+   "decision": "excluded",
+   "reason": "connectome anatomy only"
+  },
+  {
+   "title": "Syed 2024/2026 eLife, inhibitory circuits in grooming (13A/13B)",
+   "url": "PMID 41591902",
+   "decision": "excluded",
+   "reason": "abstract: connectomics, optogenetics, model; no electrophysiology"
+  },
+  {
+   "title": "Dallmann 2023/2025 Nature, presynaptic inhibition of leg proprioception",
+   "url": "PMID 40963018",
+   "decision": "excluded",
+   "reason": "abstract: calcium imaging only"
+  },
+  {
+   "title": "GABAergic inhibition of leg motoneurons required for walking (bioRxiv 173120)",
+   "url": "biorxiv 173120",
+   "decision": "excluded",
+   "reason": "behavioural; PDF only"
+  },
+  {
+   "title": "Patch-clamping Drosophila brain neurons (CSH protocols)",
+   "url": "cshprotocols",
+   "decision": "excluded",
+   "reason": "methods protocol"
+  },
+  {
+   "title": "MN5 recordings in adult VNC",
+   "url": "escholarship / jneurosci 40/42/7999",
+   "decision": "excluded",
+   "reason": "flight motor neuron, not leg network; not read"
+  },
+  {
+   "title": "Duke dissertation, descending control of limb movements (in vivo whole-cell of DNs)",
+   "url": "dukespace",
+   "decision": "excluded",
+   "reason": "PDF only (download not approved)"
+  },
+  {
+   "title": "Manduca leg motoneuron currents (J Exp Biol)",
+   "url": "jeb 171/1/15",
+   "decision": "excluded",
+   "reason": "non-Drosophila; not read"
+  },
+  {
+   "title": "Molina-Obando 2019 eLife, GluCl in visual ON pathway",
+   "url": "elife 49373",
+   "decision": "excluded",
+   "reason": "brain (visual); duplicate of brain-level GluCl evidence"
+  },
+  {
+   "title": "Cholinergic mEPSC kinetics in cultured embryonic and Kenyon cell neurons",
+   "url": "PMC6782340, PMC6674319 and others",
+   "decision": "excluded",
+   "reason": "cultured or brain neurons; not nerve cord"
+  },
+  {
+   "title": "Simpson review, descending control of motor sequences",
+   "url": "PMID 38096757",
+   "decision": "excluded",
+   "reason": "review"
+  },
+  {
+   "title": "Chen 2020 landing DNs",
+   "url": "PMC7444277",
+   "decision": "excluded",
+   "reason": "behavioural latency only"
+  },
+  {
+   "title": "Aymanns 2022 eLife, DN population dynamics",
+   "url": "elife 81527",
+   "decision": "excluded",
+   "reason": "calcium imaging of DNs during behaviour; no reproducible stimulus to a neural readout"
+  },
+  {
+   "title": "Feng 2020 Nat Commun, backward walking motor circuits",
+   "url": "PMID 33268800",
+   "decision": "excluded",
+   "reason": "abstract does not report neural recordings"
+  },
+  {
+   "title": "Gorko 2024 Nature, pose-targeted movements",
+   "url": "PMID 38509371",
+   "decision": "excluded",
+   "reason": "head motor neurons"
+  },
+  {
+   "title": "Guo 2026 iScience, leg rubbing VNC circuits",
+   "url": "PMID 41756730",
+   "decision": "excluded",
+   "reason": "abstract: anatomy and behaviour"
+  },
+  {
+   "title": "Agudelo 2020 Biol Open, SOD1 leg motor neuron",
+   "url": "PMID 32994185",
+   "decision": "excluded",
+   "reason": "morphology, no electrophysiology"
+  },
+  {
+   "title": "Pratt 2026 Nat Commun, proprioceptive limit detectors",
+   "url": "PMID 41680191",
+   "decision": "excluded",
+   "reason": "abstract: calcium imaging, hair plates"
+  },
+  {
+   "title": "Lee 2025 Nat Commun, proprioceptive vs exteroceptive leg circuits",
+   "url": "PMID 40316553",
+   "decision": "excluded",
+   "reason": "abstract: connectomics"
+  },
+  {
+   "title": "Sapkal 2024 Nature, context-specific halting",
+   "url": "PMID 39358520",
+   "decision": "excluded",
+   "reason": "abstract names no electrophysiology of leg network"
+  },
+  {
+   "title": "Shiu-model follow-up, odour learning (arXiv 2611.09930)",
+   "url": "arXiv 2611.09930",
+   "decision": "excluded",
+   "reason": "brain learning; reuses Shiu parameters"
+  },
+  {
+   "title": "Off-topic hits for \"DNg100\" (dyes, GPUs), \"DNa02\" (Dna2 gene), \"DNg75\" (ND-75 gene)",
+   "url": "various",
+   "decision": "excluded",
+   "reason": "not neuroscience"
+  },
+  {
+   "title": "Virtual Fly Brain entries for DNa02, DNg75",
+   "url": "virtualflybrain.org",
+   "decision": "excluded",
+   "reason": "anatomy catalogue entries"
+  }
+ ],
+ "snowball": {
+  "references": [
+   "Azevedo 2020: no adult VNC interneuron electrophysiology cited",
+   "Agrawal 2020: none cited beyond its own; cross-species Buschges 1990, Burrows 1988, Siegler 1981 (grade C, not read)",
+   "Pugliese 2025 refs 41-44 (cited for nonspiking premotor neurons): Pearson & Fourtner 1975 cockroach, Burrows 1980 locust, Buschges 1995 stick insect (grade C), Agrawal 2020 (included)"
+  ],
+  "citing": [
+   "Agrawal 2020: 57 citing records listed (Europe PMC); 5 screened by abstract; none with adult VNC electrophysiology",
+   "Azevedo 2020: 73 citing records listed (Europe PMC); 4 more screened by abstract; none with adult leg-network electrophysiology"
+  ]
+ },
+ "access": {
+  "blocked": [
+   "pmc.ncbi.nlm.nih.gov (reCAPTCHA interstitial)",
+   "elifesciences.org (client challenge)",
+   "link.springer.com (login redirect)",
+   "pub.uni-bielefeld.de (access denied)",
+   "biorxiv.org (HTTP 429 on first attempt)"
+  ],
+  "route": "Europe PMC public REST API (fullTextXML, search, citations); no bot check was bypassed",
+  "deviation": "Full texts were read by web-reading agents in windows; parts beyond the windows came only from model summaries, which are not used for any counted value"
+ },
+ "stop_rule": "no question reached 25 included sources"
+}

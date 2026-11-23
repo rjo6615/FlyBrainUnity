@@ -1,5 +1,44 @@
 # FlyBrainUnity — local Codex handoff
 
+## Published physiology Step P1 (front-leg motor network review): EVIDENCE_PARTIAL — 2026-11-23
+
+Preregistered (b820615, protocol c28c524a, no amendments); 21 declared queries, one-level snowball (refs
+and citing papers via Europe PMC), 26 entries, all second-read by separate agents, label computed once.
+PMC/eLife served bot checks; open-access texts were read through Europe PMC's public API instead (no
+check bypassed); PDFs not downloaded. D1: hemilineages 13B and 10B are graded-unit CANDIDATES (Agrawal
+2020: 13Balpha no detectable APs; 10Balpha no identifiable APs), 9A, leg MNs, DNa02 and DNg13 SPIKING.
+D2: tibia flexor MNs (Azevedo 2020) rest -68/-60/-48 mV, Rin 150/300/700 MOhm, slow ~30 Hz at rest,
+slow->intermediate->fast recruitment; somata electrically distant from the spike initiation zone in
+fast/intermediate. D3 none at grade A/B (grade C agrees glutamate is inhibitory). D4 larval only, no
+map. D5 = 0 targets (all need FeCO transduction, an unmapped afferent identity, an unmodelled resting
+state, or are behavioural). Q5: Shiu LIF parameters come from earlier models; Pugliese rate model
+chose non-spiking units because insect VNC premotor neurons are nonspiking; no nerve-cord model found
+validated on its core cells' recordings. X1-X4 held. 7 strict-rule disagreements, none counted. See
+PHYSIOLOGY_REVIEW_RESULTS.md.
+
+NEXT (needs approval): merge #345. Recommended: P2 identity-mapping review (connectome types of 13Balpha,
+10Balpha, 9Aalpha and FeCO club/claw/hook afferents), which could raise D1 to type level and make the
+Chen/Agrawal stimuli reproducible as D5 targets.
+
+## Evidence charter + published physiology Step P1 (review protocol) — 2026-11-23
+
+Direction change, decided by the user after the viability assessment: the untuned, local-only route to
+balance is effectively closed (F1 no defect; F2 core activity is a whole-CNS state). Published
+physiology may now be used. AGENTS.md gains an evidence charter: public sources read-only (no contact,
+no project data out, downloads need the user's OK); a provenance tag per parameter (measured /
+derived / assumed / inherited) and identity grades A/B/C; model changes only in separately versioned
+engine variants (v1 and all evidence unchanged); physiology validation on preregistered held-out
+targets before any behavior test; behavior never feeds back into parameters; reviews preregistered.
+P1 is the first such review, designed only (no source read yet): the R1 front-left network (2,111
+neurons, incl. E1/E2/I1). Q1 spiking vs graded, Q2 leg MN intrinsic properties, Q3 nerve-cord
+synaptic sign/kinetics/gap junctions, Q4 held-out validation targets, Q5 model precedent. Declared
+queries, one-level snowball, stop at 25 sources per question, full search log, second-read check.
+Decision rules D1-D5 as code -> EVIDENCE_SUFFICIENT_FOR_VARIANT / EVIDENCE_PARTIAL /
+EVIDENCE_INSUFFICIENT. Expectations X1 no grade A data for E1/E2/I1, X2 grade B graded interneurons
+exist, X3 leg MN data exist, X4 PARTIAL. See PHYSIOLOGY_REVIEW_V1.md.
+
+NEXT (needs approval): build and run P1 (protocol lock, validator, searches, extraction, label).
+
 ## Engine fidelity Step F2 (core support map): NEEDED_NOT_SUFFICIENT — 2026-11-10
 
 Preregistered (e0a04ff, protocol 60359bb6, no amendments), run once (136 sims, 1,121 s). Neural only;

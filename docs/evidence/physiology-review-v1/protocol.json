@@ -1,0 +1,156 @@
+{
+ "charter": "AGENTS.md (2026-11-23)",
+ "counting": "an entry counts only if primary, Drosophila melanogaster, grade A or B, second read done and agrees",
+ "decision_rules": {
+  "D1": "graded-unit candidate: graded evidence and no spiking evidence for the group (both -> CONFLICTING)",
+  "D2": "parameter replacement: measured Dmel value at grade A/B with n >= 1",
+  "D3": "synaptic sign/kinetics/graded release at grade A/B",
+  "D4": "gap junctions recorded; usable only with a connectivity source",
+  "D5": "target: grade A/B, reproducible stimulus, quantitative readout"
+ },
+ "design": "docs/PHYSIOLOGY_REVIEW_V1.md",
+ "expectations": {
+  "X1": "no grade A physiology for E1/E2/I1",
+  "X2": "grade A/B evidence that some nerve-cord interneuron class is graded",
+  "X3": "leg MN intrinsic or recruitment data exist",
+  "X4": "label EVIDENCE_PARTIAL"
+ },
+ "grades": {
+  "A": "published cell matched to a connectome type present in the network",
+  "B": "stated hemilineage or class present in the network",
+  "C": "another insect or an analogy"
+ },
+ "inclusion": {
+  "included": [
+   "primary measurements",
+   "preprints (flagged)",
+   "other insects (grade C, separate)"
+  ],
+  "not_evidence": [
+   "reviews",
+   "textbooks"
+  ],
+  "recorded": [
+   "contradicting, null and failed results"
+  ]
+ },
+ "interpretation_limits": [
+  "Public literature only; paywalled papers at abstract level.",
+  "AI reviewer using web tools; extraction errors mitigated by a separate second read; prior knowledge may bias noticing, guarded by declared queries, stop rule and full log.",
+  "Grade C evidence never decides alone.",
+  "Identity mapping depends on published type names.",
+  "No engine change; motor coordinates unchanged (20/42 admitted, +4 conditional)."
+ ],
+ "labels": {
+  "EVIDENCE_INSUFFICIENT": "neither",
+  "EVIDENCE_PARTIAL": "one of the two",
+  "EVIDENCE_SUFFICIENT_FOR_VARIANT": "a D1 candidate, D2 or D3 entry, and >= 2 D5 targets",
+  "INCONCLUSIVE": "invalid entries, duplicate ids, unchecked entries or an incomplete search log"
+ },
+ "measures": {
+  "Q1": [
+   "spiking",
+   "graded"
+  ],
+  "Q2": [
+   "resting_potential",
+   "input_resistance",
+   "membrane_time_constant",
+   "threshold",
+   "rheobase",
+   "firing_rate_range",
+   "recruitment_order"
+  ],
+  "Q3": [
+   "synaptic_sign",
+   "synaptic_kinetics",
+   "graded_release",
+   "gap_junction"
+  ],
+  "Q4": [
+   "target_candidate"
+  ],
+  "Q5": [
+   "model"
+  ]
+ },
+ "network_table_sha256": "1cb258f4b92a5b3e0e99558d0ed96d6da514b420a2c38f8eb4fd3f2af2d96d93",
+ "queries": {
+  "Q1": [
+   "Drosophila ventral nerve cord nonspiking interneuron",
+   "Drosophila premotor interneuron whole-cell recording leg",
+   "Drosophila leg interneuron graded potential",
+   "Drosophila VNC interneuron action potential patch clamp",
+   "locust nonspiking local interneuron leg",
+   "stick insect nonspiking interneuron"
+  ],
+  "Q2": [
+   "Drosophila leg motor neuron patch clamp",
+   "Drosophila leg motor neuron recruitment size principle",
+   "Drosophila tibia flexor motor neuron intrinsic properties"
+  ],
+  "Q3": [
+   "Drosophila GluCl inhibition central neurons",
+   "Drosophila ventral nerve cord glutamate inhibitory",
+   "Drosophila VNC gap junction premotor",
+   "Drosophila central synapse cholinergic EPSP kinetics"
+  ],
+  "Q4": [
+   "Drosophila descending neuron activation leg motor neuron recording",
+   "DNg100",
+   "DNa02 Drosophila",
+   "DNg75 Drosophila",
+   "Drosophila leg premotor neuron recording walking"
+  ],
+  "Q5": [
+   "connectome constrained model Drosophila ventral nerve cord",
+   "whole brain leaky integrate and fire Drosophila connectome",
+   "Drosophila connectome neural network model locomotion"
+  ]
+ },
+ "query_tool": "WebSearch (standard mode); each declared query run once as written; extra wording logged as such",
+ "questions": {
+  "Q1": "spiking or graded, for types/hemilineages in the network",
+  "Q2": "Drosophila leg MN intrinsic properties",
+  "Q3": "nerve-cord synaptic sign, kinetics, graded release, electrical synapses",
+  "Q4": "held-out validation target candidates",
+  "Q5": "model precedent"
+ },
+ "required_fields": [
+  "id",
+  "question",
+  "citation",
+  "doi_or_url",
+  "preprint",
+  "primary",
+  "species",
+  "stage",
+  "preparation",
+  "method",
+  "published_identity",
+  "mapping",
+  "grade",
+  "measure",
+  "value",
+  "units",
+  "n",
+  "summary",
+  "read_level",
+  "check"
+ ],
+ "schema": "physiology-review-protocol-v1",
+ "scope": {
+  "body_ids_sha256": "cdcfcd231484a46c2a668d17932d95b2147ab16e7dd5c7f87857490590b12eed",
+  "core_types": [
+   "IN17A001",
+   "INXXX466",
+   "IN16B036"
+  ],
+  "network": "R1 front-left network",
+  "neurons": 2111
+ },
+ "second_read": "each included entry is re-read against its source by a separate reader that did not do the extraction",
+ "snowball": "references and citing papers of each included primary source, one level deep",
+ "sources": "public pages only, read-only; abstract-level where only the abstract is public; no downloads without the user OK; no personal data in queries",
+ "stop_rule": "per question: declared queries + one-level snowball, or 25 included sources, whichever first"
+}

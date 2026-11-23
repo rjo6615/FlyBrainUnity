@@ -33,6 +33,36 @@ behavior machinery for neural emergence.
   Matched interventions require the appropriate baseline and measured integrity
   checks; physical divergence after neural intervention can be an outcome.
 
+## Published evidence and model versions (charter, 2026-11-23)
+
+The untuned live engine is faithful to its own rules (F1) and its only observed
+core activity is a whole-CNS state (F2). From this date, published physiology may
+be used to build evidence-based model versions. The rules above still apply.
+
+- **Sources.** Read public, published sources only: papers, preprints (flagged as
+  such), supplements and public datasets. Read-only: never contact authors or
+  teams, never send project data or information out, and keep search queries
+  free of personal data. Each file download needs the user's OK.
+- **Provenance per parameter.** Every model value carries a tag: `measured`
+  (cite DOI, species, preparation, cell identity and n), `derived` (stated
+  calculation from measured values), `assumed` (no source; stated as such) or
+  `inherited` (from the live engine's calibration). Grade cell identity: A, exact
+  cell type matched to our connectome; B, hemilineage or class; C, another insect
+  or an analogy. Names alone never establish identity.
+- **Model changes are new versions.** A change to the neuron model class (for
+  example graded or non-spiking units), region- or class-specific parameters,
+  synaptic dynamics or sensory transduction is made only in a separately
+  versioned engine variant. The live engine (v1) and every earlier result stay
+  unchanged and reproducible.
+- **Physiology before behavior.** A variant is first validated against
+  preregistered, held-out physiological targets (published neural recordings),
+  never against the behavior it is later tested on. Parameters may be fitted to
+  physiological targets that are separate from the held-out ones. Behavioral
+  outcomes (motor activity, balance, gait) never feed back into parameters.
+- **Reviews are preregistered.** A literature review declares its questions,
+  inclusion rules, evidence grades and decision rules before sources are read.
+  Contradicting and null evidence is recorded alongside supporting evidence.
+
 ## Branches and delivery
 
 - Start each update on a fresh branch from the latest `origin/newBrain`.
