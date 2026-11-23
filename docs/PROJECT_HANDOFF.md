@@ -1,5 +1,22 @@
 # FlyBrainUnity — local Codex handoff
 
+## Published physiology Step P2 (identity-mapping review protocol) — 2026-11-23
+
+Designed only (no source read yet). P1 was held back by identity: 13Balpha/10Balpha graded evidence is
+hemilineage-level only (our data has 97 IN13B and 33 IN10B types), and no held-out target exists
+because neither the stimulated FeCO afferents nor the recorded classes of Chen 2021 are mapped to our
+connectome. Targets T1-T6: 13Balpha, 10Balpha, 9Aalpha/9Aalpha2, FeCO club/claw/hook subtypes, Chen
+2021 classes, tibia flexor MNs (fast/intermediate/slow). Q1 crosswalk male CNS v1.0 <-> MANC/FANC/BANC
+types; Q2-Q4 identities; Q5 functional-connectivity experiments (identified stimulus -> identified
+neural readout). Identity levels M-A (explicit EM/light match), M-B (candidate set), M-C (weaker,
+never decisive). Rules R1 MAPPED / R2 CANDIDATE_SET / R3 CONFLICTING / R4 SOURCE_ONLY (no crosswalk)
+/ R5 UNMAPPED; restated D1/D2/D5 as a new versioned result (P1 unchanged). Label TARGETS_AVAILABLE
+(>= 2 targets) / MAPPING_ONLY / INSUFFICIENT. Expectations: X1 crosswalk exists, X2 13Balpha/10Balpha
+not MAPPED to single types, X3 FeCO subtypes identified somewhere (maybe SOURCE_ONLY), X4
+MAPPING_ONLY. See IDENTITY_MAPPING_REVIEW_V1.md.
+
+NEXT (needs approval): build and run P2.
+
 ## Published physiology Step P1 (front-leg motor network review): EVIDENCE_PARTIAL — 2026-11-23
 
 Preregistered (b820615, protocol c28c524a, no amendments); 21 declared queries, one-level snowball (refs
