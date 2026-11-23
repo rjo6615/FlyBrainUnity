@@ -1,0 +1,498 @@
+{
+ "schema": "hair-plate-review-evidence-v1",
+ "protocol_sha256": "d240f6268f281e6b047d7bdd61ee415c2fe46692a01a25873277974041a5a4e3",
+ "entries": [
+  {
+   "id": "PR26-H1",
+   "question": "Q1",
+   "kind": "identity",
+   "citation": "Pratt BG, Dallmann CJ, Chou GM, Siwanowicz I, Walling-Bell S, Cook A, Sustar A, Azevedo A, Tuthill JC (2026) Proprioceptive limit detectors contribute to sensorimotor control of the Drosophila leg. Nat Commun 17:2664",
+   "doi_or_url": "10.1038/s41467-026-69333-z (Europe PMC PMC13009157 fullTextXML; preprint 10.1101/2025.05.15.654260)",
+   "preprint": false,
+   "primary": true,
+   "read_level": "full",
+   "target": "H1:CxHP8",
+   "published_identity": "CxHP8 (front-leg thorax-coxa hair plate)",
+   "source_dataset": "FANC",
+   "level": "M-A",
+   "types": [],
+   "method": "FANC reconstruction; peripheral identity from driver lines, axon morphology, projection pattern and an X-ray nano-tomography leg dataset",
+   "summary": "All 8 CxHP8 axons of the left front-leg neuromere reconstructed and proofread in FANC (Results, Fig. 2A); CxHP8 is identifiable as the only hair plate whose axons enter the VNC through the ventral prothoracic nerve (VProN). Hair plate axons could not be identified in MANC because of poor reconstruction quality. Annotations are in FANC CAVE (FANC access). No MANC, BANC or male CNS type names.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "C1 confirmed: all 8 CxHP8 axons reconstructed in one left front leg neuromere of FANC; the only hair plate axons entering through the VProN; driver lines, projection patterns, X-ray dataset (Results, Fig. 2A). C2 confirmed: hair plate axons could not be identified in MANC due to poor reconstruction quality. Caveat: absence of MANC/BANC/male CNS type names not checked against the unread Methods tail and references.",
+    "by": "separate web-reading agent, 2026-11-23"
+   }
+  },
+  {
+   "id": "PR26-H2-CxHP3",
+   "question": "Q1",
+   "kind": "identity",
+   "citation": "Pratt BG, Dallmann CJ, Chou GM, Siwanowicz I, Walling-Bell S, Cook A, Sustar A, Azevedo A, Tuthill JC (2026) Proprioceptive limit detectors contribute to sensorimotor control of the Drosophila leg. Nat Commun 17:2664",
+   "doi_or_url": "10.1038/s41467-026-69333-z (Europe PMC PMC13009157 fullTextXML; preprint 10.1101/2025.05.15.654260)",
+   "preprint": false,
+   "primary": true,
+   "read_level": "full",
+   "target": "H2:CxHP3",
+   "published_identity": "CxHP3",
+   "source_dataset": "FANC",
+   "level": "M-A",
+   "types": [],
+   "method": "FANC reconstruction; identified by entry through the dorsal prothoracic nerve (Methods, hair plate identification)",
+   "summary": "CxHP3 axons reconstructed in the left front-leg neuromere of FANC and identified by their nerve (dorsal prothoracic). No MANC, BANC or male CNS type names.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "C3 confirmed: CxHP8, CxHP3, CxHP4 identified by ventral prothoracic, dorsal prothoracic and prothoracic accessory nerves respectively (Methods, Hair plate identification).",
+    "by": "separate web-reading agent, 2026-11-23"
+   }
+  },
+  {
+   "id": "PR26-H2-CxHP4",
+   "question": "Q1",
+   "kind": "identity",
+   "citation": "Pratt BG, Dallmann CJ, Chou GM, Siwanowicz I, Walling-Bell S, Cook A, Sustar A, Azevedo A, Tuthill JC (2026) Proprioceptive limit detectors contribute to sensorimotor control of the Drosophila leg. Nat Commun 17:2664",
+   "doi_or_url": "10.1038/s41467-026-69333-z (Europe PMC PMC13009157 fullTextXML; preprint 10.1101/2025.05.15.654260)",
+   "preprint": false,
+   "primary": true,
+   "read_level": "full",
+   "target": "H2:CxHP4",
+   "published_identity": "CxHP4",
+   "source_dataset": "FANC",
+   "level": "M-A",
+   "types": [],
+   "method": "FANC reconstruction; identified by entry through the prothoracic accessory nerve",
+   "summary": "CxHP4 axons reconstructed in FANC and identified by their nerve (prothoracic accessory). No MANC, BANC or male CNS type names.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "C3 confirmed (as PR26-H2-CxHP3).",
+    "by": "separate web-reading agent, 2026-11-23"
+   }
+  },
+  {
+   "id": "PR26-H3-TrHP5",
+   "question": "Q1",
+   "kind": "identity",
+   "citation": "Pratt BG, Dallmann CJ, Chou GM, Siwanowicz I, Walling-Bell S, Cook A, Sustar A, Azevedo A, Tuthill JC (2026) Proprioceptive limit detectors contribute to sensorimotor control of the Drosophila leg. Nat Commun 17:2664",
+   "doi_or_url": "10.1038/s41467-026-69333-z (Europe PMC PMC13009157 fullTextXML; preprint 10.1101/2025.05.15.654260)",
+   "preprint": false,
+   "primary": true,
+   "read_level": "full",
+   "target": "H3:TrHP5",
+   "published_identity": "TrHP5",
+   "source_dataset": "FANC",
+   "level": "M-A",
+   "types": [],
+   "method": "FANC reconstruction; all trochanter hair plates enter via the prothoracic leg nerve (ProLN); identified by position in the nerve bundle, axon morphology and motor-neuron connectivity",
+   "summary": "TrHP5 axons reconstructed in FANC; TrHP6 separated by distinct motor-module connectivity, TrHP5 and TrHP7 by different ProLN entry locations. No MANC, BANC or male CNS type names.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "C4 confirmed: all trochanter hair plate axons project through the ProLN; identified by nerve-bundle location, morphology and motor connectivity; TrHP5/TrHP7 enter the ProLN at different locations.",
+    "by": "separate web-reading agent, 2026-11-23"
+   }
+  },
+  {
+   "id": "PR26-H3-TrHP6",
+   "question": "Q1",
+   "kind": "identity",
+   "citation": "Pratt BG, Dallmann CJ, Chou GM, Siwanowicz I, Walling-Bell S, Cook A, Sustar A, Azevedo A, Tuthill JC (2026) Proprioceptive limit detectors contribute to sensorimotor control of the Drosophila leg. Nat Commun 17:2664",
+   "doi_or_url": "10.1038/s41467-026-69333-z (Europe PMC PMC13009157 fullTextXML; preprint 10.1101/2025.05.15.654260)",
+   "preprint": false,
+   "primary": true,
+   "read_level": "full",
+   "target": "H3:TrHP6",
+   "published_identity": "TrHP6",
+   "source_dataset": "FANC",
+   "level": "M-A",
+   "types": [],
+   "method": "FANC reconstruction; all trochanter hair plates enter via the prothoracic leg nerve (ProLN); identified by position in the nerve bundle, axon morphology and motor-neuron connectivity",
+   "summary": "TrHP6 axons reconstructed in FANC; TrHP6 separated by distinct motor-module connectivity, TrHP5 and TrHP7 by different ProLN entry locations. No MANC, BANC or male CNS type names.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "C4 confirmed: all trochanter hair plate axons project through the ProLN; identified by nerve-bundle location, morphology and motor connectivity; TrHP5/TrHP7 enter the ProLN at different locations.",
+    "by": "separate web-reading agent, 2026-11-23"
+   }
+  },
+  {
+   "id": "PR26-H3-TrHP7",
+   "question": "Q1",
+   "kind": "identity",
+   "citation": "Pratt BG, Dallmann CJ, Chou GM, Siwanowicz I, Walling-Bell S, Cook A, Sustar A, Azevedo A, Tuthill JC (2026) Proprioceptive limit detectors contribute to sensorimotor control of the Drosophila leg. Nat Commun 17:2664",
+   "doi_or_url": "10.1038/s41467-026-69333-z (Europe PMC PMC13009157 fullTextXML; preprint 10.1101/2025.05.15.654260)",
+   "preprint": false,
+   "primary": true,
+   "read_level": "full",
+   "target": "H3:TrHP7",
+   "published_identity": "TrHP7",
+   "source_dataset": "FANC",
+   "level": "M-A",
+   "types": [],
+   "method": "FANC reconstruction; all trochanter hair plates enter via the prothoracic leg nerve (ProLN); identified by position in the nerve bundle, axon morphology and motor-neuron connectivity",
+   "summary": "TrHP7 axons reconstructed in FANC; TrHP6 separated by distinct motor-module connectivity, TrHP5 and TrHP7 by different ProLN entry locations. No MANC, BANC or male CNS type names.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "C4 confirmed: all trochanter hair plate axons project through the ProLN; identified by nerve-bundle location, morphology and motor connectivity; TrHP5/TrHP7 enter the ProLN at different locations.",
+    "by": "separate web-reading agent, 2026-11-23"
+   }
+  },
+  {
+   "id": "BANC-H1",
+   "question": "Q1",
+   "kind": "identity",
+   "citation": "Bates AS, Phelps JS, Kim M, et al., Wilson RI, Lee WA (2026) Distributed control circuits across a brain-and-cord connectome. Nature 656:957-970; with the BANC v888 metadata (banc_888_meta.feather, sha 86ccf5df...)",
+   "doi_or_url": "10.1038/s41586-026-10735-w (Europe PMC PMC13518251 fullTextXML); local docs/evidence/distal-tarsus-reference-v1/banc_888_meta.feather",
+   "preprint": false,
+   "primary": true,
+   "read_level": "full",
+   "target": "H1:CxHP8",
+   "published_identity": "CoHP8 (BANC peripheral_target_type / cell_type)",
+   "source_dataset": "BANC",
+   "level": "M-B",
+   "types": [
+    "CoHP8",
+    "SNpp45",
+    "SNpp52"
+   ],
+   "method": "BANC expert review and annotation of VNC hair plate neurons citing Pratt 2026 (ref. 222) among others; leg sensory neurons identified by morphological comparison to the literature (Lee 2025, ref. 223) (Methods)",
+   "summary": "25 BANC v888 rows name CoHP8 (annotation query): 12 typed SNpp45 and 3 SNpp52 with peripheral_target_type \"CoHP8,hair_plate\", all entering via the ventral prothoracic nerve; 10 typed CoHP8, of which 9 enter via the prothoracic leg nerve and 8 carry seed_10 \"front_leg,trochanter_hair_plate\". The label spans three BANC types and is internally inconsistent, so it is recorded as a candidate set (M-B). The paper does not state that BANC \"CoHP\" equals Pratt \"CxHP\"; the numbers and nerves correspond.",
+   "check": {
+    "second_read": true,
+    "agrees": false,
+    "note": "BANC annotation counts confirmed locally (A3-A6). Bates 2026 method sentence confirmed verbatim (\"additional expert review and annotation of chordotonal, campaniform and hair plate neurons of the VNC\", Methods); refs 222/223 cited there, but that ref 222 is Pratt 2026 was NOT FOUND verbatim (reference list not read), and for sensory neurons the checker read \"comparisons to the literature and the domain expertise of our authors\" (morphological comparison is stated for effectors). Neither CoHP nor CxHP appears in the text read. So the link of the BANC label to the target plate is not confirmed: not counted. Local checker note: fanc_cell_type also carries CoHP labels, with some disagreements between columns.",
+    "by": "separate web-reading agent, 2026-11-23 + separate local-reading agent (read-only), 2026-11-23"
+   }
+  },
+  {
+   "id": "BANC-H2-CxHP3",
+   "question": "Q1",
+   "kind": "identity",
+   "citation": "Bates AS, Phelps JS, Kim M, et al., Wilson RI, Lee WA (2026) Distributed control circuits across a brain-and-cord connectome. Nature 656:957-970; with the BANC v888 metadata (banc_888_meta.feather, sha 86ccf5df...)",
+   "doi_or_url": "10.1038/s41586-026-10735-w (Europe PMC PMC13518251 fullTextXML); local docs/evidence/distal-tarsus-reference-v1/banc_888_meta.feather",
+   "preprint": false,
+   "primary": true,
+   "read_level": "full",
+   "target": "H2:CxHP3",
+   "published_identity": "CoHP3 (BANC peripheral_target_type)",
+   "source_dataset": "BANC",
+   "level": "M-B",
+   "types": [
+    "SNpp45",
+    "SNpp52"
+   ],
+   "method": "as BANC-H1",
+   "summary": "6 BANC rows name CoHP3 (5 SNpp52, 1 SNpp45), all entering via the dorsal prothoracic nerve; none has a malecns_match.",
+   "check": {
+    "second_read": true,
+    "agrees": false,
+    "note": "BANC annotation counts confirmed locally (A3-A6). Bates 2026 method sentence confirmed verbatim (\"additional expert review and annotation of chordotonal, campaniform and hair plate neurons of the VNC\", Methods); refs 222/223 cited there, but that ref 222 is Pratt 2026 was NOT FOUND verbatim (reference list not read), and for sensory neurons the checker read \"comparisons to the literature and the domain expertise of our authors\" (morphological comparison is stated for effectors). Neither CoHP nor CxHP appears in the text read. So the link of the BANC label to the target plate is not confirmed: not counted. Local checker note: fanc_cell_type also carries CoHP labels, with some disagreements between columns. A4 confirmed locally (6 rows, dorsal prothoracic nerve, no malecns_match).",
+    "by": "separate web-reading agent, 2026-11-23 + separate local-reading agent (read-only), 2026-11-23"
+   }
+  },
+  {
+   "id": "BANC-H2-CxHP4",
+   "question": "Q1",
+   "kind": "identity",
+   "citation": "Bates AS, Phelps JS, Kim M, et al., Wilson RI, Lee WA (2026) Distributed control circuits across a brain-and-cord connectome. Nature 656:957-970; with the BANC v888 metadata (banc_888_meta.feather, sha 86ccf5df...)",
+   "doi_or_url": "10.1038/s41586-026-10735-w (Europe PMC PMC13518251 fullTextXML); local docs/evidence/distal-tarsus-reference-v1/banc_888_meta.feather",
+   "preprint": false,
+   "primary": true,
+   "read_level": "full",
+   "target": "H2:CxHP4",
+   "published_identity": "CoHP4 (BANC peripheral_target_type)",
+   "source_dataset": "BANC",
+   "level": "M-B",
+   "types": [
+    "SNpp45",
+    "SNpp52"
+   ],
+   "method": "as BANC-H1",
+   "summary": "4 BANC rows name CoHP4 (3 SNpp45, 1 SNpp52), all entering via the prothoracic accessory nerve; 1 has a malecns_match.",
+   "check": {
+    "second_read": true,
+    "agrees": false,
+    "note": "BANC annotation counts confirmed locally (A3-A6). Bates 2026 method sentence confirmed verbatim (\"additional expert review and annotation of chordotonal, campaniform and hair plate neurons of the VNC\", Methods); refs 222/223 cited there, but that ref 222 is Pratt 2026 was NOT FOUND verbatim (reference list not read), and for sensory neurons the checker read \"comparisons to the literature and the domain expertise of our authors\" (morphological comparison is stated for effectors). Neither CoHP nor CxHP appears in the text read. So the link of the BANC label to the target plate is not confirmed: not counted. Local checker note: fanc_cell_type also carries CoHP labels, with some disagreements between columns. A5 confirmed locally (4 rows, prothoracic accessory nerve, 1 malecns_match).",
+    "by": "separate web-reading agent, 2026-11-23 + separate local-reading agent (read-only), 2026-11-23"
+   }
+  },
+  {
+   "id": "STEPA-H1",
+   "question": "Q1",
+   "kind": "identity",
+   "target": "H1:CxHP8",
+   "citation": "This project, hair-plate Step A (docs/HAIR_PLATE_IDENTITY_RESULTS.md)",
+   "doi_or_url": "docs/HAIR_PLATE_IDENTITY_RESULTS.md; docs/evidence/hair-plate-identity-v1/run/result.json",
+   "preprint": false,
+   "primary": false,
+   "read_level": "full",
+   "published_identity": "CxHP8 output pattern",
+   "source_dataset": "maleCNS",
+   "level": "M-C",
+   "types": [
+    "SNpp45"
+   ],
+   "method": "our wiring-pattern match (posterior coxa MNs excited directly, anterior inhibited in two hops) in all six legs",
+   "summary": "Our own inference: male CNS SNpp45 reproduces the published CxHP8 output pattern in all six legs (MATCH_ALL). Recorded as M-C, never decisive.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "S1 confirmed (MATCH_ALL, project analysis). Caveats from the results file: \"(almost)\" never anterior (T3 left 22 direct synapses onto anterior MNs); two-hop drive onto the posterior set is also negative in every leg; structural evidence; middle/hind identity by serial type plus wiring.",
+    "by": "separate local-reading agent (read-only), 2026-11-23"
+   }
+  },
+  {
+   "id": "MCNS-H4",
+   "question": "Q1",
+   "kind": "identity",
+   "target": "H4:SNpp45",
+   "citation": "Male CNS v1.0 annotations (annotations.feather, sha 2177e246...), via the declared annotation query",
+   "doi_or_url": "docs/evidence/lf-anatomical-crosswalk-v1/annotations.feather; docs/evidence/hair-plate-review-v1/annotation_query.json",
+   "preprint": false,
+   "primary": true,
+   "read_level": "dataset",
+   "published_identity": "subclass \"hair plate\"",
+   "source_dataset": "maleCNS",
+   "level": "M-C",
+   "types": [
+    "SNpp45"
+   ],
+   "snpp45_is": "hair_plate_unspecified",
+   "method": "dataset annotation; the method is not stated in a checked source (male CNS preprint full text HTTP 500; Cell version paywalled)",
+   "summary": "52 of 53 male CNS SNpp45 rows have subclass \"hair plate\" (class mechanosensory_proprioceptive); 1 has subclass \"leg\". mancType SNpp45 for all 53. No hair plate number.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "A8 confirmed: 53 SNpp45 rows, subclass \"hair plate\" in 52 and \"leg\" in 1, mancType SNpp45 in all 53, no hair plate number in any of the 115 male CNS rows.",
+    "by": "separate local-reading agent (read-only), 2026-11-23"
+   }
+  },
+  {
+   "id": "BANC-H4",
+   "question": "Q1",
+   "kind": "identity",
+   "citation": "Bates AS, Phelps JS, Kim M, et al., Wilson RI, Lee WA (2026) Distributed control circuits across a brain-and-cord connectome. Nature 656:957-970; with the BANC v888 metadata (banc_888_meta.feather, sha 86ccf5df...)",
+   "doi_or_url": "10.1038/s41586-026-10735-w (Europe PMC PMC13518251 fullTextXML); local docs/evidence/distal-tarsus-reference-v1/banc_888_meta.feather",
+   "preprint": false,
+   "primary": true,
+   "read_level": "full",
+   "target": "H4:SNpp45",
+   "published_identity": "BANC SNpp45: hair plate neurons, subsets tagged CoHP8 / CoHP4 / CoHP3",
+   "source_dataset": "BANC",
+   "level": "M-B",
+   "types": [
+    "SNpp45"
+   ],
+   "snpp45_is": "hair_plate_unspecified",
+   "method": "as BANC-H1",
+   "summary": "166 BANC SNpp45 rows: 138 cell_class hair_plate_neuron (front 42, middle 54, hind 33 leg sub-classes); peripheral_target_type CoHP8 on 12, CoHP4 on 3, CoHP3 on 1, unspecified hair_plate on 120. BANC places SNpp45 as a mixed hair-plate type that includes CoHP8 neurons, not as one plate; recorded as unspecified. BANC SNpp45 does not carry over to a single male CNS type (reaches SNpp45 and SNppxx).",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "A6 confirmed: 166 SNpp45 rows; peripheral_target_type CoHP8 12, CoHP4 3, CoHP3 1 (rest hair_plate 120, orphan 27, campaniform_sensillum 2, chordotonal_organ 1). B5 confirmed: taxonomy has \"front-leg hair plate neuron\" subclass and a \"peripheral target type\" field. Mixed type recorded as unspecified; does not carry over.",
+    "by": "separate local-reading agent (read-only), 2026-11-23 + separate web-reading agent, 2026-11-23"
+   }
+  },
+  {
+   "id": "ANN-BANC-MCNS",
+   "question": "Q2",
+   "kind": "annotation",
+   "datasets": [
+    "BANC",
+    "maleCNS"
+   ],
+   "citation": "Declared annotation query over BANC v888 metadata and male CNS v1.0 annotations (this review)",
+   "doi_or_url": "docs/evidence/hair-plate-review-v1/annotation_query.json",
+   "preprint": false,
+   "primary": true,
+   "read_level": "dataset",
+   "output_sha256": "a9e0283c6cf817cfb95e40188ee1dae0a16756d7e014a20571e5b0681934f76d",
+   "link_summary": "Hit BANC types: SNpp45 (166 rows, 60 matched, group-level, reaches SNpp45 and SNppxx: no carry-over), SNpp52 (120, 44 matched, group, SNpp52 and SNppxx: no carry-over), SNpp19 (31, 27 matched, group, carries to SNpp19), SNxx26 (11, group, SNxx26), SNxx28 (5, group, SNxx28), CoHP8 (10, 1 matched, neuron-level by rule, carries to SNppxx), CS (2, 1 matched, neuron-level, SNppxx); SNpp50, SNpp51, SNta35, SNvnc12f unmatched. No unresolved IDs.",
+   "summary": "350 BANC rows (322 by hair-plate text, 166 typed SNpp45) and 115 male CNS rows (114 hair-plate text, 53 SNpp45). BANC labels coxa hair plates \"CoHP3/4/8\". BANC joins the crosswalks by the preregistered rule (counted entry and >= 1 carried-over hit type), but none of SNpp45, SNpp52 carries over.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "A1 sha256 a9e0283c... confirmed; A2 350 / 115 rows; A7 link summary confirmed (SNpp45, SNpp52 group-level, two male CNS types each, no carry-over; CoHP8 1 matched row, neuron-level by rule, to SNppxx; SNpp19, SNxx26, SNxx28 carry over at group level; CS to SNppxx; unresolved_ids 0 in all 11 groups).",
+    "by": "separate local-reading agent (read-only), 2026-11-23"
+   }
+  },
+  {
+   "id": "BANC-XW",
+   "question": "Q2",
+   "kind": "crosswalk",
+   "citation": "Bates AS, Phelps JS, Kim M, et al., Wilson RI, Lee WA (2026) Distributed control circuits across a brain-and-cord connectome. Nature 656:957-970; with the BANC v888 metadata (banc_888_meta.feather, sha 86ccf5df...)",
+   "doi_or_url": "10.1038/s41586-026-10735-w (Europe PMC PMC13518251 fullTextXML); local docs/evidence/distal-tarsus-reference-v1/banc_888_meta.feather",
+   "preprint": false,
+   "primary": true,
+   "read_level": "full",
+   "datasets": [
+    "BANC",
+    "maleCNS"
+   ],
+   "crosswalk_level": "partial",
+   "method": "NBLAST to maleCNS v0.9 (mainly sensory neurons) with manual review; maleCNS cross-links described as suggestions",
+   "summary": "Bates 2026: BANC cell types were matched mainly to FAFB v783 and MANC v1.2.1; matching to maleCNS v0.9 (mainly sensory neurons) was also used; the maleCNS project re-typed its neurons, for which BANC suggests some cross-links and provides NBLAST results. Estimated cell-type error rate about 7 %. Not a checked type-level crosswalk.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "B3 confirmed: FAFB v783 and MANC v1.2.1 matching with manual review; \"Matching to maleCNS (v.0.9; mainly sensory neurons)\" (Methods). B4 confirmed: \"we suggest some cross-links and provide NBLAST results\"; error rate about 7%. \"Mainly FAFB/MANC\" is the entry's gloss of \"and/or\".",
+    "by": "separate web-reading agent, 2026-11-23"
+   }
+  },
+  {
+   "id": "PR26-TUNE",
+   "question": "Q3",
+   "kind": "afferent_tuning",
+   "citation": "Pratt BG, Dallmann CJ, Chou GM, Siwanowicz I, Walling-Bell S, Cook A, Sustar A, Azevedo A, Tuthill JC (2026) Proprioceptive limit detectors contribute to sensorimotor control of the Drosophila leg. Nat Commun 17:2664",
+   "doi_or_url": "10.1038/s41467-026-69333-z (Europe PMC PMC13009157 fullTextXML; preprint 10.1101/2025.05.15.654260)",
+   "preprint": false,
+   "primary": true,
+   "read_level": "full",
+   "target": "H1:CxHP8",
+   "species": "Drosophila melanogaster",
+   "grade": "B",
+   "preparation": "adult males; CxHP8 split-GAL4 (R48A07-AD; R20C06-DBD; 6 of 8 front-leg CxHP8 cells); GCaMP7f + tdTomato; two-photon imaging of axons in the VNC; left front leg moved passively by a manual 3-axis platform",
+   "joint": "coxa",
+   "stimulus": "slow passive movement of the front leg; thorax-coxa rotation, adduction and flexion angles from DeepLabCut/Anipose",
+   "readout": "tuning_curve",
+   "values": "normalized calcium (0-1) binned against each thorax-coxa angle per fly and across flies (Fig. 1G); 2D maximum vs rotation and adduction (Fig. 1H); maximal at combined adduction and inward rotation, higher with extension (more variable); tonic, no phasic tuning; numeric data on Dryad 10.5061/dryad.fxpnvx153 (not downloaded)",
+   "n": "per-fly curves; the number of flies is not stated in the text read",
+   "method": "calcium imaging (afferent axons)",
+   "summary": "Quantitative Drosophila hair-plate tuning: CxHP8 detects the anterior limits of thorax-coxa movement. Counts only if CxHP8 is MAPPED.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "C5 confirmed: passive slow movement on a manually controlled 3-axis platform; maximal calcium at combined adduction and inward rotation (Fig. 1G-H); no evidence for phasic tuning (Discussion); genotype from Table 1. Calcium-imaging Methods not read verbatim.",
+    "by": "separate web-reading agent, 2026-11-23"
+   }
+  },
+  {
+   "id": "PR26-FC",
+   "question": "Q4",
+   "kind": "functional_connectivity",
+   "citation": "Pratt BG, Dallmann CJ, Chou GM, Siwanowicz I, Walling-Bell S, Cook A, Sustar A, Azevedo A, Tuthill JC (2026) Proprioceptive limit detectors contribute to sensorimotor control of the Drosophila leg. Nat Commun 17:2664",
+   "doi_or_url": "10.1038/s41467-026-69333-z (Europe PMC PMC13009157 fullTextXML; preprint 10.1101/2025.05.15.654260)",
+   "preprint": false,
+   "primary": true,
+   "read_level": "full",
+   "stimulated": [
+    "CxHP8"
+   ],
+   "recorded": [
+    "none (kinematics only)"
+   ],
+   "neural_readout": false,
+   "readout": "none",
+   "pairs": [],
+   "method": "optogenetic activation/silencing with behavioural readout; downstream circuit from FANC connectivity only",
+   "summary": "No recording of identified downstream neurons; the reflex circuit (coxa posterior module excited, coxa promote inhibited) is a FANC connectome prediction.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "C6 confirmed with caveat: downstream circuit is a connectome-based hypothesis tested by manipulating CxHP8 in behaving flies; absence of downstream recordings inferred from all Results and Discussion text read.",
+    "by": "separate web-reading agent, 2026-11-23"
+   }
+  },
+  {
+   "id": "KB95-FC",
+   "question": "Q4",
+   "kind": "functional_connectivity",
+   "stimulated": [
+    "locust ventral coxal hair plate long hairs"
+   ],
+   "recorded": [
+    "posterior rotator, adductor and anterior rotator coxa motor neurons"
+   ],
+   "neural_readout": true,
+   "readout": "sign",
+   "pairs": [],
+   "citation": "Kuenzi F, Burrows M (1995) Central connections of sensory neurones from a hair plate proprioceptor in the thoraco-coxal joint of the locust. J Exp Biol 198:1589",
+   "doi_or_url": "10.1242/jeb.198.7.1589 (Europe PMC abstract, PMID 7658190)",
+   "preprint": false,
+   "primary": true,
+   "read_level": "abstract",
+   "method": "selective hair stimulation; intracellular motor neuron recording",
+   "summary": "Grade C (locust). Long hairs deflected as the leg swings forward; stimulation evokes a resistance reflex rotating the coxa posteriorly; posterior rotator and adductor MNs excited (partly monosynaptic), anterior rotator inhibited. No pair maps to our targets (other insect).",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "K1 confirmed: long hairs deflected by the trochantin as the leg swings forward; resistance reflex rotating the coxa posteriorly; posterior rotator and adductor MNs excited, anterior rotator inhibited; excitation partly by direct connections.",
+    "by": "separate web-reading agent (Europe PMC abstracts), 2026-11-23"
+   }
+  },
+  {
+   "id": "PWF76-FC",
+   "question": "Q4",
+   "kind": "functional_connectivity",
+   "stimulated": [
+    "cockroach trochanteral hair plate afferents (electrical)"
+   ],
+   "recorded": [
+    "femur motor neurons, interneurons, afferent terminals"
+   ],
+   "neural_readout": true,
+   "readout": "sign",
+   "pairs": [],
+   "citation": "Pearson KG, Wong RK, Fourtner CR (1976) Connexions between hair-plate afferents and motoneurones in the cockroach leg. J Exp Biol 64:251",
+   "doi_or_url": "10.1242/jeb.64.1.251 (Europe PMC abstract, PMID 5571)",
+   "preprint": false,
+   "primary": true,
+   "read_level": "abstract",
+   "method": "electrical afferent stimulation; intracellular recording",
+   "summary": "Grade C (cockroach). Short-latency monosynaptic EPSPs and longer-latency disynaptic IPSPs in femur motor neurons (the abstract text in Europe PMC names flexor motoneurones for the EPSPs). No pair maps to our targets.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "P1 confirmed: short-latency monosynaptic EPSPs, disynaptic IPSPs; the abstract names \"femur flexor motoneurones\" for the EPSPs and no target for the IPSPs; abstract truncated in Europe PMC.",
+    "by": "separate web-reading agent (Europe PMC abstracts), 2026-11-23"
+   }
+  },
+  {
+   "id": "PR26-ACT",
+   "question": "Q5",
+   "kind": "behaviour",
+   "citation": "Pratt BG, Dallmann CJ, Chou GM, Siwanowicz I, Walling-Bell S, Cook A, Sustar A, Azevedo A, Tuthill JC (2026) Proprioceptive limit detectors contribute to sensorimotor control of the Drosophila leg. Nat Commun 17:2664",
+   "doi_or_url": "10.1038/s41467-026-69333-z (Europe PMC PMC13009157 fullTextXML; preprint 10.1101/2025.05.15.654260)",
+   "preprint": false,
+   "primary": true,
+   "read_level": "full",
+   "target": "H1:CxHP8",
+   "species": "Drosophila melanogaster",
+   "manipulation": "activation",
+   "method": "ChrimsonR, laser on the left front thorax-coxa joint, tethered standing flies",
+   "effect": "posterior and lateral movement of the stimulated leg: coxa outward rotation, lateral displacement and flexion; tarsus posterior, lateral and downward; other legs unaffected; controls negligible",
+   "summary": "Prediction for a later embodied test only.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "C7 confirmed: posterior and lateral movement of the stimulated leg without impacting other legs; outward rotation, lateral movement and flexion of the coxa.",
+    "by": "separate web-reading agent, 2026-11-23"
+   }
+  },
+  {
+   "id": "PR26-SIL",
+   "question": "Q5",
+   "kind": "behaviour",
+   "citation": "Pratt BG, Dallmann CJ, Chou GM, Siwanowicz I, Walling-Bell S, Cook A, Sustar A, Azevedo A, Tuthill JC (2026) Proprioceptive limit detectors contribute to sensorimotor control of the Drosophila leg. Nat Commun 17:2664",
+   "doi_or_url": "10.1038/s41467-026-69333-z (Europe PMC PMC13009157 fullTextXML; preprint 10.1101/2025.05.15.654260)",
+   "preprint": false,
+   "primary": true,
+   "read_level": "full",
+   "target": "H1:CxHP8",
+   "species": "Drosophila melanogaster",
+   "manipulation": "silencing",
+   "method": "GtACR1 (tethered, walking) and Kir2.1 (chronic, linear treadmill)",
+   "effect": "GtACR1: more medial coxa adduction and displaced tarsus at the swing-to-stance transition; Kir2.1: AEP and PEP shifted medially and posteriorly, swing distance larger, swing duration and inter-leg coordination unchanged, resting tarsi more splayed",
+   "summary": "Prediction for a later embodied test only.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "C8 confirmed with caveat: GtACR1 more medial adduction; Kir2.1 AEP displaced medially and posteriorly, greater swing distance, swing duration and inter-leg coordination unchanged (those sentences do not say \"left\"). C9: adult male D. melanogaster.",
+    "by": "separate web-reading agent, 2026-11-23"
+   }
+  }
+ ]
+}

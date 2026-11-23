@@ -1,5 +1,25 @@
 # FlyBrainUnity — local Codex handoff
 
+## Published physiology Step P3 (hair plates): INSUFFICIENT, SNpp45 UNRESOLVED — 2026-11-23
+
+Preregistered (bad2314, protocol d240f626, no amendments); annotation query run once (BANC 350 rows,
+male CNS 115), 16 declared queries, snowball (Pratt 2026 refs; 8 citing records), 20 entries, all
+second-read (17 agree), computed once. H1 CxHP8, H2 CxHP3/4, H3 TrHP5-7: SOURCE_ONLY (FANC, Pratt
+2026; hair plates not identifiable in MANC). BANC labels coxa hair plates CoHP3/4/8 across SNpp45,
+SNpp52 and CoHP8 types; those BANC types do not carry over (each reaches two male CNS types) and the
+three BANC identity entries were not confirmed by the strict second read (ref 222 = Pratt not read
+verbatim). E-targets 0 (Pratt's quantitative CxHP8 tuning cannot count while unmapped), C-targets 0.
+X1, X3-X5 held; X2 wrong (CoHP8/CS neuron-level by rule). X1 holds only because the BANC entries did
+not count. Post hoc (not counted): in the male CNS the only VProN hair plates are 12 SNpp45 (Pratt's
+CxHP8 criterion), and all 11 matched BANC CoHP8-labelled SNpp45 rows point to VProN SNpp45. Out of
+scope but notable: Pugliese et al. 2026 Nature (connectome simulations) report a DNg100-driven
+three-interneuron (1 inhibitory, 2 excitatory) walking rhythm circuit. See HAIR_PLATE_REVIEW_RESULTS.md.
+
+NEXT (needs approval): merge #347, then the user's choice: (1) the conclusion write-up, or (2) a
+separately versioned, preregistered neuron-level identity step for CxHP8 (post-hoc motivated, declared
+as such); if CxHP8 mapped to SNpp45, Pratt's tuning (Dryad; download needs the user's OK) would be an
+encoder-validation target.
+
 ## Published physiology Step P3 (hair plates: identities and validation targets): review protocol — 2026-11-23
 
 Designed only (no source read, no annotation table queried). After P2 (FeCO path INSUFFICIENT), the

@@ -1,7 +1,7 @@
 # Published physiology Step P3: hair plates — identities and validation targets (review protocol)
 
-Designed 2026-11-23. **Status: protocol only** (no source has been read and no annotation table has been
-queried for this review). This is a preregistered literature and dataset-annotation review under the
+Designed 2026-11-23. **Status: reviewed 2026-11-23: INSUFFICIENT** (CxHP8 and the other hair plates are
+identified only in FANC; SNpp45 verdict UNRESOLVED; 0 targets). See `HAIR_PLATE_REVIEW_RESULTS.md`. This is a preregistered literature and dataset-annotation review under the
 evidence charter in `AGENTS.md`. No simulation, and no change to the engine, the hair-plate encoder or
 any earlier evidence.
 

@@ -1,8 +1,8 @@
 # Where we are: Unity, neural balance and the LF force-interface milestone
 
-Current 2026-11-23: published physiology Step P3 designed (hair plates: is CxHP8 published as our SNpp45, and is there measured afferent tuning or downstream physiology to validate the hair-plate encoder or reflex pathway?).
+Current 2026-11-23: published physiology Step P3 reviewed: INSUFFICIENT - CxHP8 and the other leg hair plates are identified only in FANC, BANC hair-plate labels span types that do not carry over, so the SNpp45 = CxHP8 inference stays UNRESOLVED and Pratt 2026 tuning cannot yet validate the hair-plate encoder (0 targets).
 
-Previous 2026-11-23: published physiology Step P2 reviewed: INSUFFICIENT - published identity work places the recorded leg cells only in FANC (or nowhere), and FANC has no crosswalk to our male CNS data; graded candidates stay hemilineage-level and no held-out physiology target exists, so no engine variant can be validated yet.
+Previous 2026-11-23: published physiology Step P3 designed (hair plates: is CxHP8 published as our SNpp45, and is there measured afferent tuning or downstream physiology to validate the hair-plate encoder or reflex pathway?).
 
 Previous 2026-11-08: LIF return Step L1 designed (stimulate the rate model's rhythm-driving DNs, DNg75_R and DNa02_L, plus DNp09_R, in the live untuned whole-CNS LIF engine with V1's harness; is there a front-left MN rhythm, and does it need E1/E2?).
 
@@ -82,7 +82,7 @@ Antennal gravity sense        [A: IDENTITY_READY; B: ENCODER_READY (pitch slope 
 Coxa push replication         [run: AMPLIFICATION_DIRECTIONAL F / B (R>1 6/6); yoke DO_NOT_REPRODUCE; FREE_COMMANDS_INCREASE_D F / B]
 Coxa conditional tier         [LF/LH/LM/RM CONDITIONAL (fore-aft Coxa); RF/RH blocked by input]
 Engine fidelity audit         [F1: NO_DEFECT_FOUND; rule swaps NOT_THESE_RULES (DNg75_R, DNa02_L); DNg100_L core engagement needs the whole CNS and weakened inhibition (reported); F2 core support map: NEEDED_NOT_SUFFICIENT (brain + rest of VNC + ascending neurons each needed, none enough alone)]
-Published physiology          [charter added; P1 review: EVIDENCE_PARTIAL (13B/10B graded candidates, leg MN parameters, 0 held-out targets); P2 identity mapping: INSUFFICIENT (FeCO subtypes FANC-only; recorded cells unmapped; 0 targets); P3 hair plate review: designed]
+Published physiology          [charter added; P1 review: EVIDENCE_PARTIAL (13B/10B graded candidates, leg MN parameters, 0 held-out targets); P2 identity mapping: INSUFFICIENT (FeCO subtypes FANC-only; recorded cells unmapped; 0 targets); P3 hair plate review: INSUFFICIENT (CxHP8 FANC-only; SNpp45 UNRESOLVED; 0 targets)]
 Motor coverage                [##########-----------] 20/42 admitted (+4 conditional)
 Independent balance / gait    [not established]
 ```
