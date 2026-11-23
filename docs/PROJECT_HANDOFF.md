@@ -1,5 +1,23 @@
 # FlyBrainUnity — local Codex handoff
 
+## Published physiology Step P3 (hair plates: identities and validation targets): review protocol — 2026-11-23
+
+Designed only (no source read, no annotation table queried). After P2 (FeCO path INSUFFICIENT), the
+user chose hair plates, the sense this project is furthest along with: SNpp45 shows the CxHP8 wiring
+pattern in all legs (Step A, our own inference, M-C), the Step B encoder drives it from coxa forward
+position (tuning derived from walking kinematics), and in the live engine hair-plate input raises
+posterior coxa MNs (+14 Hz) with anterior flat (Step C). Targets H1 CxHP8, H2 CxHP3/4, H3 TrHP5-7, H4
+our SNpp45. Q1 identity, Q2 crosswalk (P2's male CNS<->MANC; new: BANC malecns_match from the BANC v888
+metadata already in the repo, declared annotation query), Q3 afferent tuning, Q4 downstream neural
+responses, Q5 behaviour (reported only). P2's levels and R1-R5 reused; SNpp45 verdict SUPPORTED /
+CONTRADICTED / UNRESOLVED; E-targets (MAPPED afferent, reproducible joint stimulus, quantitative
+tuning) and C-targets (as P2's D5). Labels TARGETS_AVAILABLE / ENCODER_VALIDATION_AVAILABLE /
+MAPPING_ONLY / INSUFFICIENT. Expectations: X1 CxHP8 FANC-only so SNpp45 UNRESOLVED, X2 BANC group-level
+link, X3 a quantitative Drosophila afferent result exists but cannot count, X4 zero C-targets, X5
+INSUFFICIENT. See HAIR_PLATE_REVIEW_V1.md.
+
+NEXT (needs approval): build and run P3.
+
 ## Published physiology Step P2 (identity-mapping review): INSUFFICIENT — 2026-11-23
 
 Preregistered (5b4e526, protocol 9c7919bc, no amendments); 16 declared queries, snowball (refs; 15 and
