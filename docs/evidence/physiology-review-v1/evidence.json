@@ -1,0 +1,796 @@
+{
+ "schema": "physiology-review-evidence-v1",
+ "entries": [
+  {
+   "id": "AG20-13Ba-graded",
+   "question": "Q1",
+   "measure": "graded",
+   "grade": "B",
+   "mapping": {
+    "kind": "hemilineage",
+    "value": "13B"
+   },
+   "published_identity": "13Balpha (GABAergic, hemilineage 13B)",
+   "method": "whole-cell current clamp",
+   "value": "all recorded 13Balpha cells lacked detectable action potentials (Results 2-1; Fig. 2D)",
+   "units": "",
+   "n": null,
+   "summary": "Graded-only signalling in an identified adult leg premotor-region interneuron class; recordings during imposed tibia movement.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "confirmed: Results 2-1, Fig. 2D; 13B hemilineage, GABAergic, in vivo whole-cell",
+    "by": "separate web-reading agent, Europe PMC / bioRxiv / arXiv, 2026-11-23"
+   },
+   "citation": "Agrawal S, Dickinson ES, Sustar A, Gurung P, Shepherd D, Truman JW, Tuthill JC (2020) Central processing of leg proprioception in Drosophila. eLife 9:e60299",
+   "doi_or_url": "10.7554/eLife.60299 (read via Europe PMC PMC7752136 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "species": "Drosophila melanogaster",
+   "stage": "adult",
+   "preparation": "in vivo, prothoracic VNC",
+   "read_level": "full"
+  },
+  {
+   "id": "AG20-10Ba-graded",
+   "question": "Q1",
+   "measure": "graded",
+   "grade": "B",
+   "mapping": {
+    "kind": "hemilineage",
+    "value": "10B"
+   },
+   "published_identity": "10Balpha (cholinergic, hemilineage 10B)",
+   "method": "whole-cell current clamp",
+   "value": "current injection failed to evoke identifiable action potentials; spike-like events in a subset of recordings; analysed as membrane potential (Results 2-5; Fig. 7C)",
+   "units": "",
+   "n": null,
+   "summary": "Weaker than 13Balpha: no identifiable spikes, but spike-like events in some recordings.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "confirmed: Results 2-5, Fig. 7C (no identifiable APs; occasional spike-like events in a subset)",
+    "by": "separate web-reading agent, Europe PMC / bioRxiv / arXiv, 2026-11-23"
+   },
+   "citation": "Agrawal S, Dickinson ES, Sustar A, Gurung P, Shepherd D, Truman JW, Tuthill JC (2020) Central processing of leg proprioception in Drosophila. eLife 9:e60299",
+   "doi_or_url": "10.7554/eLife.60299 (read via Europe PMC PMC7752136 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "species": "Drosophila melanogaster",
+   "stage": "adult",
+   "preparation": "in vivo, prothoracic VNC",
+   "read_level": "full"
+  },
+  {
+   "id": "AG20-9Aa-spiking",
+   "question": "Q1",
+   "measure": "spiking",
+   "grade": "B",
+   "mapping": {
+    "kind": "hemilineage",
+    "value": "09A"
+   },
+   "published_identity": "9Aalpha (GABAergic, hemilineage 9A)",
+   "method": "whole-cell current clamp",
+   "value": "responses carried by membrane potential and action-potential firing rate (Results 2-3; Fig. 4C-D)",
+   "units": "",
+   "n": null,
+   "summary": "Spiking interneuron class in the same circuit.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "confirmed: Results 2-3, Fig. 4C-D",
+    "by": "separate web-reading agent, Europe PMC / bioRxiv / arXiv, 2026-11-23"
+   },
+   "citation": "Agrawal S, Dickinson ES, Sustar A, Gurung P, Shepherd D, Truman JW, Tuthill JC (2020) Central processing of leg proprioception in Drosophila. eLife 9:e60299",
+   "doi_or_url": "10.7554/eLife.60299 (read via Europe PMC PMC7752136 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "species": "Drosophila melanogaster",
+   "stage": "adult",
+   "preparation": "in vivo, prothoracic VNC",
+   "read_level": "full"
+  },
+  {
+   "id": "AG20-9Aa2-spiking",
+   "question": "Q1",
+   "measure": "spiking",
+   "grade": "B",
+   "mapping": {
+    "kind": "hemilineage",
+    "value": "09A"
+   },
+   "published_identity": "9Aalpha2 (distinct 9A cell type)",
+   "method": "whole-cell current clamp",
+   "value": "spikes larger than 9Aalpha spikes (>2 mV) (Results 2-3; Fig. 5-S1A-B)",
+   "units": "",
+   "n": 2,
+   "summary": "Second spiking 9A cell type.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "confirmed: Results 2-3, Fig. 5-S1; recorded twice; \">2 mV\" may be absolute size or difference",
+    "by": "separate web-reading agent, Europe PMC / bioRxiv / arXiv, 2026-11-23"
+   },
+   "citation": "Agrawal S, Dickinson ES, Sustar A, Gurung P, Shepherd D, Truman JW, Tuthill JC (2020) Central processing of leg proprioception in Drosophila. eLife 9:e60299",
+   "doi_or_url": "10.7554/eLife.60299 (read via Europe PMC PMC7752136 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "species": "Drosophila melanogaster",
+   "stage": "adult",
+   "preparation": "in vivo, prothoracic VNC",
+   "read_level": "full"
+  },
+  {
+   "id": "AZ20-MN-spiking",
+   "question": "Q1",
+   "measure": "spiking",
+   "grade": "B",
+   "mapping": {
+    "kind": "class",
+    "value": "vnc_motor"
+   },
+   "published_identity": "tibia flexor motor neurons (fast R81A07, intermediate R22A08, slow R35C09)",
+   "method": "whole-cell current clamp + EMG",
+   "value": "all three fire action potentials; slow fires spontaneously (~30 Hz); fast and intermediate spike with dendritic Chrimson and during movement but not reliably with somatic current injection (soma electrically distant from spike initiation zone) (Results 2-2, 2-3; Fig. 3-5)",
+   "units": "",
+   "n": 40,
+   "summary": "Leg MNs spike; somatic injection is a poor handle on fast/intermediate spike initiation.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "confirmed: Results 2-2, 2-3, 2-4; Fig. 3-5",
+    "by": "separate web-reading agent, Europe PMC / bioRxiv / arXiv, 2026-11-23"
+   },
+   "citation": "Azevedo AW, Dickinson ES, Gurung P, Venkatasubramanian L, Mann RS, Tuthill JC (2020) A size principle for recruitment of Drosophila leg motor neurons. eLife 9:e56754",
+   "doi_or_url": "10.7554/eLife.56754 (read via Europe PMC PMC7347388 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "species": "Drosophila melanogaster",
+   "stage": "adult female 1-4 d",
+   "preparation": "in vivo, tethered, front leg free",
+   "read_level": "full"
+  },
+  {
+   "id": "YA24-DNa02-spiking",
+   "question": "Q1",
+   "measure": "spiking",
+   "grade": "A",
+   "mapping": {
+    "kind": "type",
+    "value": "DNa02"
+   },
+   "published_identity": "DNa02 (split-GAL4 R75C10-AD/R87D07-DBD)",
+   "method": "whole-cell patch, walking fly",
+   "value": "fires action potentials; brief light pulses reliably drove spiking; firing higher during walking (Results; Fig. 5, S5)",
+   "units": "",
+   "n": 4,
+   "summary": "Spiking descending neuron in the network.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "confirmed: Fig. 5B (n=4 cells, 4 flies), S5A, S7A; paper says \"spiking\"; identified in FlyWire/FAFB and FANC by morphological matching to light-microscopy images (MANC not used for identification)",
+    "by": "separate web-reading agent, Europe PMC / bioRxiv / arXiv, 2026-11-23"
+   },
+   "citation": "Yang HH, Brezovec BE, Capdevila LS, Vanderbeck QX, Adachi A, Mann RS, Wilson RI (2024) Fine-grained descending control of steering in walking Drosophila. Cell 187:6290-6308",
+   "doi_or_url": "10.1016/j.cell.2024.08.033 (read via Europe PMC PMC12778575 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "species": "Drosophila melanogaster",
+   "stage": "adult female",
+   "preparation": "in vivo, tethered walking",
+   "read_level": "full"
+  },
+  {
+   "id": "YA24-DNg13-spiking",
+   "question": "Q1",
+   "measure": "spiking",
+   "grade": "A",
+   "mapping": {
+    "kind": "type",
+    "value": "DNg13"
+   },
+   "published_identity": "DNg13 (split-GAL4 VT027166-AD/VT009857-DBD)",
+   "method": "whole-cell patch, walking fly",
+   "value": "fires action potentials; spiking higher during walking (Results; Fig. 5)",
+   "units": "",
+   "n": 9,
+   "summary": "Spiking descending neuron in the network.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "confirmed: Fig. 5B (n=9 cells, 9 flies); Fig. 6A uses 5 cells; identified in FlyWire and FANC by morphology",
+    "by": "separate web-reading agent, Europe PMC / bioRxiv / arXiv, 2026-11-23"
+   },
+   "citation": "Yang HH, Brezovec BE, Capdevila LS, Vanderbeck QX, Adachi A, Mann RS, Wilson RI (2024) Fine-grained descending control of steering in walking Drosophila. Cell 187:6290-6308",
+   "doi_or_url": "10.1016/j.cell.2024.08.033 (read via Europe PMC PMC12778575 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "species": "Drosophila melanogaster",
+   "stage": "adult female",
+   "preparation": "in vivo, tethered walking",
+   "read_level": "full"
+  },
+  {
+   "id": "ZW16-larvalMN-spiking",
+   "question": "Q1",
+   "measure": "spiking",
+   "grade": "C",
+   "mapping": {
+    "kind": "none",
+    "value": null
+   },
+   "published_identity": "larval MN-LT1-4 and MN-LO1",
+   "method": "whole-cell patch",
+   "value": "action potentials on current steps; no plateau potentials or rebound (Results; Fig. 1)",
+   "units": "",
+   "n": 14,
+   "summary": "Larval motor neurons spike (stage differs; grade C).",
+   "check": {
+    "second_read": true,
+    "agrees": false,
+    "note": "qualitative claim confirmed (Results 2.1, Fig. 1L; no plateaus, data not shown) but n = 9 / 5 not found verbatim",
+    "by": "separate web-reading agent, Europe PMC / bioRxiv / arXiv, 2026-11-23"
+   },
+   "citation": "Zwart MF, Pulver SR, Truman JW, Fushiki A, Fetter RD, Cardona A, Landgraf M (2016) Selective inhibition mediates the sequential recruitment of motor pools. Neuron 91:615-628",
+   "doi_or_url": "10.1016/j.neuron.2016.06.031 (PMC4980426)",
+   "preprint": false,
+   "primary": true,
+   "species": "Drosophila melanogaster",
+   "stage": "larva (third instar)",
+   "preparation": "isolated CNS",
+   "read_level": "full"
+  },
+  {
+   "id": "AZ20-RMP",
+   "question": "Q2",
+   "measure": "resting_potential",
+   "grade": "B",
+   "mapping": {
+    "kind": "class",
+    "value": "vnc_motor"
+   },
+   "published_identity": "tibia flexor MNs (fast / intermediate / slow)",
+   "method": "whole-cell current clamp",
+   "value": "fast -68, intermediate -60, slow -48 (liquid junction potential -13 mV corrected) (Results 2-2; Fig. 3C)",
+   "units": "mV",
+   "n": 40,
+   "summary": "A gradient of resting potential across one motor pool; the engine gives every neuron -52 mV.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "confirmed: Results 2-2; Fig. 3C legend n = 15/11/14; LJP -13 mV (Fig. 2D legend)",
+    "by": "separate web-reading agent, Europe PMC / bioRxiv / arXiv, 2026-11-23"
+   },
+   "citation": "Azevedo AW, Dickinson ES, Gurung P, Venkatasubramanian L, Mann RS, Tuthill JC (2020) A size principle for recruitment of Drosophila leg motor neurons. eLife 9:e56754",
+   "doi_or_url": "10.7554/eLife.56754 (read via Europe PMC PMC7347388 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "species": "Drosophila melanogaster",
+   "stage": "adult female 1-4 d",
+   "preparation": "in vivo, tethered, front leg free",
+   "read_level": "full"
+  },
+  {
+   "id": "AZ20-Rin",
+   "question": "Q2",
+   "measure": "input_resistance",
+   "grade": "B",
+   "mapping": {
+    "kind": "class",
+    "value": "vnc_motor"
+   },
+   "published_identity": "tibia flexor MNs (fast / intermediate / slow)",
+   "method": "whole-cell current clamp, -5 pA steps",
+   "value": "fast 150, intermediate 300, slow 700 (Results 2-2; Fig. 3E)",
+   "units": "MOhm",
+   "n": 40,
+   "summary": "Input resistance scales inversely with MN size (size principle).",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "confirmed: Results 2-2; Fig. 3E legend n = 15/11/14; -5 pA steps",
+    "by": "separate web-reading agent, Europe PMC / bioRxiv / arXiv, 2026-11-23"
+   },
+   "citation": "Azevedo AW, Dickinson ES, Gurung P, Venkatasubramanian L, Mann RS, Tuthill JC (2020) A size principle for recruitment of Drosophila leg motor neurons. eLife 9:e56754",
+   "doi_or_url": "10.7554/eLife.56754 (read via Europe PMC PMC7347388 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "species": "Drosophila melanogaster",
+   "stage": "adult female 1-4 d",
+   "preparation": "in vivo, tethered, front leg free",
+   "read_level": "full"
+  },
+  {
+   "id": "AZ20-rate",
+   "question": "Q2",
+   "measure": "firing_rate_range",
+   "grade": "B",
+   "mapping": {
+    "kind": "class",
+    "value": "vnc_motor"
+   },
+   "published_identity": "tibia flexor MNs (fast / intermediate / slow)",
+   "method": "whole-cell current clamp",
+   "value": "at rest: slow about 30 Hz; fast and intermediate silent (Results 2-2; Fig. 3D)",
+   "units": "Hz",
+   "n": 40,
+   "summary": "Resting activity differs by MN class.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "confirmed: Results 2-2, Fig. 3D",
+    "by": "separate web-reading agent, Europe PMC / bioRxiv / arXiv, 2026-11-23"
+   },
+   "citation": "Azevedo AW, Dickinson ES, Gurung P, Venkatasubramanian L, Mann RS, Tuthill JC (2020) A size principle for recruitment of Drosophila leg motor neurons. eLife 9:e56754",
+   "doi_or_url": "10.7554/eLife.56754 (read via Europe PMC PMC7347388 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "species": "Drosophila melanogaster",
+   "stage": "adult female 1-4 d",
+   "preparation": "in vivo, tethered, front leg free",
+   "read_level": "full"
+  },
+  {
+   "id": "AZ20-recruit",
+   "question": "Q2",
+   "measure": "recruitment_order",
+   "grade": "B",
+   "mapping": {
+    "kind": "class",
+    "value": "vnc_motor"
+   },
+   "published_identity": "tibia flexor MNs (fast / intermediate / slow)",
+   "method": "paired whole-cell + EMG",
+   "value": "slow recruited first, then intermediate, then fast during spontaneous movement; about 3.6% of intermediate spikes not preceded by slow spikes (Results 2-4; Fig. 5G, 5-S1C)",
+   "units": "",
+   "n": 9,
+   "summary": "Ordered recruitment; exceptions during rapid unloaded movement.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "confirmed: Results 2-4, Fig. 5G (pairs 4/2/3 in panel order: int>fast, slow>fast, slow>int), Fig. 5-S1C (110/3082); 3.6% is our arithmetic",
+    "by": "separate web-reading agent, Europe PMC / bioRxiv / arXiv, 2026-11-23"
+   },
+   "citation": "Azevedo AW, Dickinson ES, Gurung P, Venkatasubramanian L, Mann RS, Tuthill JC (2020) A size principle for recruitment of Drosophila leg motor neurons. eLife 9:e56754",
+   "doi_or_url": "10.7554/eLife.56754 (read via Europe PMC PMC7347388 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "species": "Drosophila melanogaster",
+   "stage": "adult female 1-4 d",
+   "preparation": "in vivo, tethered, front leg free",
+   "read_level": "full"
+  },
+  {
+   "id": "ZW16-larvalMN-intrinsic",
+   "question": "Q2",
+   "measure": "input_resistance",
+   "grade": "C",
+   "mapping": {
+    "kind": "none",
+    "value": null
+   },
+   "published_identity": "larval MN-LT and MN-LO1",
+   "method": "whole-cell patch",
+   "value": "capacitance, input resistance, AP threshold and resting potential not different between MN-LT (n=9) and MN-LO1 (n=5); values not in text (Fig. 1)",
+   "units": "",
+   "n": 14,
+   "summary": "Larval pools with identical intrinsic properties (grade C).",
+   "check": {
+    "second_read": true,
+    "agrees": false,
+    "note": "no-difference claim confirmed (Results 2.1, Fig. 1H-K, p > 0.05) but n not found verbatim",
+    "by": "separate web-reading agent, Europe PMC / bioRxiv / arXiv, 2026-11-23"
+   },
+   "citation": "Zwart MF, Pulver SR, Truman JW, Fushiki A, Fetter RD, Cardona A, Landgraf M (2016) Selective inhibition mediates the sequential recruitment of motor pools. Neuron 91:615-628",
+   "doi_or_url": "10.1016/j.neuron.2016.06.031 (PMC4980426)",
+   "preprint": false,
+   "primary": true,
+   "species": "Drosophila melanogaster",
+   "stage": "larva (third instar)",
+   "preparation": "isolated CNS",
+   "read_level": "full"
+  },
+  {
+   "id": "LW13-Glu-inhibitory",
+   "question": "Q3",
+   "measure": "synaptic_sign",
+   "grade": "C",
+   "mapping": {
+    "kind": "none",
+    "value": null
+   },
+   "published_identity": "antennal lobe neurons (brain)",
+   "method": "whole-cell patch, glutamate iontophoresis, GluClalpha RNAi",
+   "value": "glutamate hyperpolarises all major antennal lobe cell types; blocked by picrotoxin or GluClalpha knockdown (abstract)",
+   "units": "",
+   "n": null,
+   "summary": "Glutamate is inhibitory via GluClalpha in the brain (not nerve cord; grade C for our network).",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "confirmed verbatim in abstract",
+    "by": "separate web-reading agent, Europe PMC / bioRxiv / arXiv, 2026-11-23"
+   },
+   "citation": "Liu WW, Wilson RI (2013) Glutamate is an inhibitory neurotransmitter in the Drosophila olfactory system. PNAS 110:10294-10299",
+   "doi_or_url": "10.1073/pnas.1220560110",
+   "preprint": false,
+   "primary": true,
+   "species": "Drosophila melanogaster",
+   "stage": "adult",
+   "preparation": "in vivo",
+   "read_level": "abstract"
+  },
+  {
+   "id": "MN16-Glu-IPSC",
+   "question": "Q3",
+   "measure": "synaptic_sign",
+   "grade": "C",
+   "mapping": {
+    "kind": "none",
+    "value": null
+   },
+   "published_identity": "larval glutamatergic premotor interneurons onto motor neurons",
+   "method": "optogenetics + whole-cell IPSC recording",
+   "value": "glutamatergic premotor interneurons evoke inhibitory postsynaptic currents in motor neurons; blocking Eaat1 prolongs them (abstract)",
+   "units": "",
+   "n": null,
+   "summary": "Inhibitory glutamatergic premotor input to MNs, larval (grade C).",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "confirmed verbatim in abstract; \"larval\" only from MeSH metadata",
+    "by": "separate web-reading agent, Europe PMC / bioRxiv / arXiv, 2026-11-23"
+   },
+   "citation": "MacNamee SE, Liu KE, Gerhard S, et al., Oland LA (2016) Astrocytic glutamate transport regulates a Drosophila CNS synapse that lacks astrocyte ensheathment. J Comp Neurol 524:1979-1998",
+   "doi_or_url": "10.1002/cne.24016",
+   "preprint": false,
+   "primary": true,
+   "species": "Drosophila melanogaster",
+   "stage": "larva",
+   "preparation": "CNS",
+   "read_level": "abstract"
+  },
+  {
+   "id": "FA25-Glu-VNC",
+   "question": "Q3",
+   "measure": "synaptic_sign",
+   "grade": "C",
+   "mapping": {
+    "kind": "none",
+    "value": null
+   },
+   "published_identity": "two pairs of adult VNC neurons labelled by 23E10-GAL4 (metathoracic somata; class not stated)",
+   "method": "calcium imaging + GluClalpha RNAi",
+   "value": "glutamate near the soma rapidly reduced calcium in controls; only slowly in GluClalpha-depleted neurons (Fig. 6C; n=6 per genotype)",
+   "units": "",
+   "n": 12,
+   "summary": "Adult nerve-cord glutamate inhibition, but by calcium imaging and in cells whose class is not stated (identity unresolved: grade C).",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "core claim confirmed (Par19, Fig. 6C legend n = 6 per genotype, calcium imaging); sex of imaged flies not stated (3-5 d); two delivery methods named (micropipette, picospritzer)",
+    "by": "separate web-reading agent, Europe PMC / bioRxiv / arXiv, 2026-11-23"
+   },
+   "citation": "Fan Y, Tian Y, Han J (2025) The glutamate-gated chloride channel facilitates sleep by enhancing the excitability of two pairs of neurons in the ventral nerve cord of Drosophila. Neurosci Bull 41:1729-1742",
+   "doi_or_url": "10.1007/s12264-025-01397-1 (read via Europe PMC PMC12494514 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "species": "Drosophila melanogaster",
+   "stage": "adult male",
+   "preparation": "isolated brain and VNC",
+   "read_level": "full"
+  },
+  {
+   "id": "MA17-gap-junction",
+   "question": "Q3",
+   "measure": "gap_junction",
+   "grade": "C",
+   "mapping": {
+    "kind": "none",
+    "value": null
+   },
+   "published_identity": "larval motor neurons and central pattern-generating circuits",
+   "method": "calcium imaging, optogenetics, shakB2/ogre2 mutants, carbenoxolone",
+   "value": "effects of local MN manipulation on motor waves lost in shakB2 or ogre2 mutants or with carbenoxolone; no dye or electrical coupling measured",
+   "units": "",
+   "n": null,
+   "summary": "Gap-junction signalling from MNs to the larval pattern generator (grade C); no connectivity map.",
+   "check": {
+    "second_read": true,
+    "agrees": false,
+    "note": "full text returned HTTP 500 twice; abstract confirms the mutant/carbenoxolone result; \"no dye or electrical coupling measured\" not confirmable from the abstract",
+    "by": "separate web-reading agent, Europe PMC / bioRxiv / arXiv, 2026-11-23"
+   },
+   "citation": "Matsunaga T, Kohsaka H, Nose A (2017) Gap junction-mediated signaling from motor neurons regulates motor generation in the central circuits of larval Drosophila. J Neurosci 37:2045-2060",
+   "doi_or_url": "10.1523/JNEUROSCI.1453-16.2017 (PMC6705691)",
+   "preprint": false,
+   "primary": true,
+   "species": "Drosophila melanogaster",
+   "stage": "larva",
+   "preparation": "isolated VNC",
+   "read_level": "full",
+   "connectivity_source": false
+  },
+  {
+   "id": "AZ20-target-rest",
+   "question": "Q4",
+   "measure": "target_candidate",
+   "grade": "B",
+   "mapping": {
+    "kind": "class",
+    "value": "vnc_motor"
+   },
+   "published_identity": "tibia flexor MNs at rest",
+   "method": "whole-cell current clamp",
+   "value": "at rest slow about 30 Hz; fast and intermediate silent (Fig. 3D)",
+   "units": "Hz",
+   "n": 40,
+   "summary": "Quantitative, but \"rest\" in vivo includes ongoing input the neural-only model does not reproduce.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "confirmed: Results 2-2, Fig. 3D",
+    "by": "separate web-reading agent, Europe PMC / bioRxiv / arXiv, 2026-11-23"
+   },
+   "citation": "Azevedo AW, Dickinson ES, Gurung P, Venkatasubramanian L, Mann RS, Tuthill JC (2020) A size principle for recruitment of Drosophila leg motor neurons. eLife 9:e56754",
+   "doi_or_url": "10.7554/eLife.56754 (read via Europe PMC PMC7347388 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "species": "Drosophila melanogaster",
+   "stage": "adult female 1-4 d",
+   "preparation": "in vivo, tethered, front leg free",
+   "read_level": "full",
+   "stimulus_reproducible": false,
+   "readout_quantitative": true
+  },
+  {
+   "id": "AZ20-target-ramp",
+   "question": "Q4",
+   "measure": "target_candidate",
+   "grade": "B",
+   "mapping": {
+    "kind": "class",
+    "value": "vnc_motor"
+   },
+   "published_identity": "tibia flexor MNs during passive tibia extension",
+   "method": "whole-cell current clamp",
+   "value": "PSP amplitude largest in slow, smallest in fast for 123 deg/s ramps (Fig. 6C; n=9/7/7); values in figure",
+   "units": "",
+   "n": 23,
+   "summary": "Needs femoral chordotonal transduction, which the project has no validated encoder for.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "confirmed: Results 2-5, Fig. 6C legend n = 7 fast, 7 intermediate, 9 slow; values in figure only",
+    "by": "separate web-reading agent, Europe PMC / bioRxiv / arXiv, 2026-11-23"
+   },
+   "citation": "Azevedo AW, Dickinson ES, Gurung P, Venkatasubramanian L, Mann RS, Tuthill JC (2020) A size principle for recruitment of Drosophila leg motor neurons. eLife 9:e56754",
+   "doi_or_url": "10.7554/eLife.56754 (read via Europe PMC PMC7347388 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "species": "Drosophila melanogaster",
+   "stage": "adult female 1-4 d",
+   "preparation": "in vivo, tethered, front leg free",
+   "read_level": "full",
+   "stimulus_reproducible": false,
+   "readout_quantitative": true
+  },
+  {
+   "id": "AG20-target-FeCO",
+   "question": "Q4",
+   "measure": "target_candidate",
+   "grade": "B",
+   "mapping": {
+    "kind": "hemilineage",
+    "value": "13B"
+   },
+   "published_identity": "13Balpha, 9Aalpha, 10Balpha responses to imposed tibia movement and vibration",
+   "method": "whole-cell current clamp",
+   "value": "position, direction and vibration tuning (Figs 2, 4, 5, 7); values mostly in figures",
+   "units": "",
+   "n": null,
+   "summary": "Needs femoral chordotonal transduction (not modelled).",
+   "check": {
+    "second_read": true,
+    "agrees": false,
+    "note": "partly contradicted: 13Balpha vibration data are calcium imaging, not whole-cell; 9Aalpha and 10Balpha confirmed",
+    "by": "separate web-reading agent, Europe PMC / bioRxiv / arXiv, 2026-11-23"
+   },
+   "citation": "Agrawal S, Dickinson ES, Sustar A, Gurung P, Shepherd D, Truman JW, Tuthill JC (2020) Central processing of leg proprioception in Drosophila. eLife 9:e60299",
+   "doi_or_url": "10.7554/eLife.60299 (read via Europe PMC PMC7752136 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "species": "Drosophila melanogaster",
+   "stage": "adult",
+   "preparation": "in vivo, prothoracic VNC",
+   "read_level": "full",
+   "stimulus_reproducible": false,
+   "readout_quantitative": true
+  },
+  {
+   "id": "CH21-target-optoFeCO",
+   "question": "Q4",
+   "measure": "target_candidate",
+   "grade": "B",
+   "mapping": {
+    "kind": "hemilineage",
+    "value": "10B"
+   },
+   "published_identity": "9Balpha, 10Balpha, 13Bbeta and others after optogenetic activation of FeCO club/claw/hook afferents",
+   "method": "calcium imaging",
+   "value": "dF/F responses per class (Figs 2-5); values in figures",
+   "units": "",
+   "n": null,
+   "summary": "Stimulus would be reproducible only once club/claw/hook afferents are mapped to our connectome types (not done).",
+   "check": {
+    "second_read": true,
+    "agrees": false,
+    "note": "design and dF/F confirmed, but class names contradicted: the paper uses 9Ba, 10Ba, 13Ba, 13Bb (no Greek letters); 9Bb/9Agamma label inconsistent within the paper",
+    "by": "separate web-reading agent, Europe PMC / bioRxiv / arXiv, 2026-11-23"
+   },
+   "citation": "Chen C, Agrawal S, Mark B, et al., Tuthill JC (2021) Functional architecture of neural circuits for leg proprioception in Drosophila. Curr Biol 31:5163-5175",
+   "doi_or_url": "10.1016/j.cub.2021.09.035 (read via Europe PMC PMC8665017 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "species": "Drosophila melanogaster",
+   "stage": "adult",
+   "preparation": "in vivo, prothoracic VNC",
+   "read_level": "full",
+   "stimulus_reproducible": false,
+   "readout_quantitative": true
+  },
+  {
+   "id": "YA24-target-DNa02",
+   "question": "Q4",
+   "measure": "target_candidate",
+   "grade": "A",
+   "mapping": {
+    "kind": "type",
+    "value": "DNa02"
+   },
+   "published_identity": "DNa02 optogenetic activation",
+   "method": "optogenetics + leg tracking",
+   "value": "unilateral activation shortens ipsilateral stride length (Fig. 4); behavioural readout, no neural readout in another neuron",
+   "units": "",
+   "n": 8,
+   "summary": "Behavioural, not physiological: not a held-out physiology target.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "confirmed: Results 6, Fig. 4A legend (n = 8 CsChrimson+, 7 controls); behavioural readout; no recording of another neuron in text read",
+    "by": "separate web-reading agent, Europe PMC / bioRxiv / arXiv, 2026-11-23"
+   },
+   "citation": "Yang HH, Brezovec BE, Capdevila LS, Vanderbeck QX, Adachi A, Mann RS, Wilson RI (2024) Fine-grained descending control of steering in walking Drosophila. Cell 187:6290-6308",
+   "doi_or_url": "10.1016/j.cell.2024.08.033 (read via Europe PMC PMC12778575 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "species": "Drosophila melanogaster",
+   "stage": "adult female",
+   "preparation": "in vivo, tethered walking",
+   "read_level": "full",
+   "stimulus_reproducible": true,
+   "readout_quantitative": false
+  },
+  {
+   "id": "SH24-model",
+   "question": "Q5",
+   "measure": "model",
+   "grade": "C",
+   "mapping": {
+    "kind": "none",
+    "value": null
+   },
+   "published_identity": "whole-brain LIF model (FlyWire v630, 127,400 neurons; brain only)",
+   "method": "computational model",
+   "value": "V_rest -52 mV, V_reset -52 mV, V_th -45 mV, tau_m = 10 kOhm cm2 x 2 uF/cm2 (20 ms), t_ref 2.2 ms, tau_syn 5 ms, delay 1.8 ms, W_syn 0.275 mV (the only fitted parameter); glutamate assumed inhibitory; validated on behaviour and calcium imaging, 91% of 164 testable predictions; ignores graded neurons and gap junctions",
+   "units": "",
+   "n": null,
+   "summary": "The model family our engine descends from; its parameters come from earlier models, not nerve-cord measurements.",
+   "check": {
+    "second_read": true,
+    "agrees": false,
+    "note": "confirmed: LIF brainwide model, 127,400 neurons, V_rest -52 mV, W_syn the single free parameter, 91% of 164 predictions, no gap junctions or non-spiking neurons; other parameter values and the glutamate-inhibitory assumption were in a span the checker did not read verbatim",
+    "by": "separate web-reading agent, Europe PMC / bioRxiv / arXiv, 2026-11-23"
+   },
+   "citation": "Shiu PK, Sterne GR, Spiller N, et al. (2024) A Drosophila computational brain model reveals sensorimotor processing. Nature 634:210-219",
+   "doi_or_url": "10.1038/s41586-024-07763-9 (read via Europe PMC PMC11446845 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "species": "Drosophila melanogaster",
+   "stage": "adult",
+   "preparation": "model",
+   "read_level": "full"
+  },
+  {
+   "id": "PU25-model",
+   "question": "Q5",
+   "measure": "model",
+   "grade": "C",
+   "mapping": {
+    "kind": "none",
+    "value": null
+   },
+   "published_identity": "VNC rate model (MANC front leg 4,604 neurons; also FANC, mCNS, BANC)",
+   "method": "computational model",
+   "value": "non-spiking rate model chosen because many insect VNC premotor neurons are nonspiking (refs: cockroach, locust, stick insect, Agrawal 2020); parameters drawn from distributions, not fitted; size scaling of gain and threshold required for oscillations; validation behavioural only (DNg100 activation, n=7 flies; DNb08 activation, n=10 flies); no neural recordings of the core cells",
+   "units": "",
+   "n": null,
+   "summary": "The rate model R1 reconstructed; the core-cell IDs (IN17A001, INXXX466, IN16B036) were not confirmed verbatim in this read.",
+   "check": {
+    "second_read": true,
+    "agrees": false,
+    "note": "confirmed: rate model justified by nonspiking insect VNC premotor neurons; signed synapse counts; tau mean 20 ms; not fine-tuned; size scaling of gain and threshold; DNg100 n = 7 headless flies. Not found verbatim: numeric gain/threshold/r_max distributions, necessity of size scaling, DNb08 n = 10, absence of neural recordings",
+    "by": "separate web-reading agent, Europe PMC / bioRxiv / arXiv, 2026-11-23"
+   },
+   "citation": "Pugliese SM, Chou GM, Abe ETT, Turcu D, Lancaster JK, Tuthill JC, Brunton BW. Connectome simulations identify a central pattern generator (circuit) for fly walking. bioRxiv 2025 (v2 2026); Nature 2026 (paywalled; abstract read)",
+   "doi_or_url": "10.1101/2025.09.12.675944 (bioRxiv v2 HTML, partly verbatim); 10.1038/s41586-026-11195-y",
+   "preprint": true,
+   "primary": true,
+   "species": "Drosophila melanogaster",
+   "stage": "adult",
+   "preparation": "model",
+   "read_level": "full"
+  },
+  {
+   "id": "FG26-model",
+   "question": "Q5",
+   "measure": "model",
+   "grade": "C",
+   "mapping": {
+    "kind": "none",
+    "value": null
+   },
+   "published_identity": "whole-brain connectome graph controller (FlyGM)",
+   "method": "computational model",
+   "value": "connectome sets the controller graph; trained by deep reinforcement learning; evaluated on simulated locomotion tasks against graph and non-graph baselines (abstract)",
+   "units": "",
+   "n": null,
+   "summary": "Trained controller, not emergent dynamics; no neural-recording validation.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "confirmed verbatim in abstract",
+    "by": "separate web-reading agent, Europe PMC / bioRxiv / arXiv, 2026-11-23"
+   },
+   "citation": "Jin Z, Zhu Y, Zhang C, Sui Y (2026) Whole-brain connectomic graph model enables whole-body locomotion control in fruit fly. arXiv:2602.17997",
+   "doi_or_url": "10.48550/arXiv.2602.17997",
+   "preprint": true,
+   "primary": true,
+   "species": "Drosophila melanogaster",
+   "stage": "adult",
+   "preparation": "model",
+   "read_level": "abstract"
+  },
+  {
+   "id": "ZA19-model",
+   "question": "Q5",
+   "measure": "model",
+   "grade": "C",
+   "mapping": {
+    "kind": "none",
+    "value": null
+   },
+   "published_identity": "larval recurrent network model (60 MNs, 236 premotor neurons, one segment)",
+   "method": "computational model",
+   "value": "recurrent network model reproduced forward and backward larval locomotion; selected predictions validated with optogenetics (abstract)",
+   "units": "",
+   "n": null,
+   "summary": "Larval precedent; behavioural validation.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "confirmed verbatim in abstract",
+    "by": "separate web-reading agent, Europe PMC / bioRxiv / arXiv, 2026-11-23"
+   },
+   "citation": "Zarin AA, Mark B, Cardona A, Litwin-Kumar A, Doe CQ (2019) A multilayer circuit architecture for the generation of distinct locomotor behaviors in Drosophila. eLife 8:e51781",
+   "doi_or_url": "10.7554/eLife.51781",
+   "preprint": false,
+   "primary": true,
+   "species": "Drosophila melanogaster",
+   "stage": "larva",
+   "preparation": "model",
+   "read_level": "abstract"
+  }
+ ]
+}

@@ -1,6 +1,7 @@
 # Published physiology Step P1: what does published physiology say about the front-leg motor network? (review protocol)
 
-Designed 2026-11-23. **Status: protocol only** (no source has been read for this review yet). This
+Designed 2026-11-23. **Status: reviewed 2026-11-23: EVIDENCE_PARTIAL** (graded-unit candidates 13B and 10B; leg MN
+parameters; no held-out target). See `PHYSIOLOGY_REVIEW_RESULTS.md`. This
 is a preregistered literature review, the first step under the evidence charter added to
 `AGENTS.md` on the same date. No simulation, and no change to the live engine.
 

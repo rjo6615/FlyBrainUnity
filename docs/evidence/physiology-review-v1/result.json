@@ -1,0 +1,70 @@
+{
+ "D1": {
+  "class:vnc_motor": "SPIKING",
+  "hemilineage:09A": "SPIKING",
+  "hemilineage:10B": "CANDIDATE",
+  "hemilineage:13B": "CANDIDATE",
+  "type:DNa02": "SPIKING",
+  "type:DNg13": "SPIKING"
+ },
+ "D2": {
+  "class:vnc_motor|firing_rate_range": [
+   "AZ20-rate"
+  ],
+  "class:vnc_motor|input_resistance": [
+   "AZ20-Rin"
+  ],
+  "class:vnc_motor|recruitment_order": [
+   "AZ20-recruit"
+  ],
+  "class:vnc_motor|resting_potential": [
+   "AZ20-RMP"
+  ]
+ },
+ "D3": {},
+ "D4": {
+  "recorded": [
+   "MA17-gap-junction"
+  ],
+  "usable": []
+ },
+ "D5": [],
+ "counts": {
+  "by_question": {
+   "Q1": 8,
+   "Q2": 5,
+   "Q3": 4,
+   "Q4": 5,
+   "Q5": 4
+  },
+  "counted": 14,
+  "disagreements": [
+   "ZW16-larvalMN-spiking",
+   "ZW16-larvalMN-intrinsic",
+   "MA17-gap-junction",
+   "AG20-target-FeCO",
+   "CH21-target-optoFeCO",
+   "SH24-model",
+   "PU25-model"
+  ],
+  "entries": 26
+ },
+ "evidence_sha256": "c6edac73c20ddb6f58d40ba3204bef86de345767a490d797037bf7d62382a4f0",
+ "expectations": {
+  "X1": true,
+  "X2": true,
+  "X3": true,
+  "X4": true
+ },
+ "integrity": {
+  "every_entry_checked": true,
+  "invalid": {},
+  "search_log_complete": true,
+  "unique_ids": true,
+  "valid_entries": true
+ },
+ "label": "EVIDENCE_PARTIAL",
+ "log_sha256": "bbd2d6115eebb7c256d493512271c7a8e235a292de16ea42f2380f158ea043e3",
+ "protocol_sha256": "c28c524a0ad466c92b763239c00ef7f109aa04a81ffb57923d8ca00662f0334c",
+ "schema": "physiology-review-result-v1"
+}

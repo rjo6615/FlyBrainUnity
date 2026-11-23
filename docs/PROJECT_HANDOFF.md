@@ -1,5 +1,25 @@
 # FlyBrainUnity — local Codex handoff
 
+## Published physiology Step P1 (front-leg motor network review): EVIDENCE_PARTIAL — 2026-11-23
+
+Preregistered (b820615, protocol c28c524a, no amendments); 21 declared queries, one-level snowball (refs
+and citing papers via Europe PMC), 26 entries, all second-read by separate agents, label computed once.
+PMC/eLife served bot checks; open-access texts were read through Europe PMC's public API instead (no
+check bypassed); PDFs not downloaded. D1: hemilineages 13B and 10B are graded-unit CANDIDATES (Agrawal
+2020: 13Balpha no detectable APs; 10Balpha no identifiable APs), 9A, leg MNs, DNa02 and DNg13 SPIKING.
+D2: tibia flexor MNs (Azevedo 2020) rest -68/-60/-48 mV, Rin 150/300/700 MOhm, slow ~30 Hz at rest,
+slow->intermediate->fast recruitment; somata electrically distant from the spike initiation zone in
+fast/intermediate. D3 none at grade A/B (grade C agrees glutamate is inhibitory). D4 larval only, no
+map. D5 = 0 targets (all need FeCO transduction, an unmapped afferent identity, an unmodelled resting
+state, or are behavioural). Q5: Shiu LIF parameters come from earlier models; Pugliese rate model
+chose non-spiking units because insect VNC premotor neurons are nonspiking; no nerve-cord model found
+validated on its core cells' recordings. X1-X4 held. 7 strict-rule disagreements, none counted. See
+PHYSIOLOGY_REVIEW_RESULTS.md.
+
+NEXT (needs approval): merge #345. Recommended: P2 identity-mapping review (connectome types of 13Balpha,
+10Balpha, 9Aalpha and FeCO club/claw/hook afferents), which could raise D1 to type level and make the
+Chen/Agrawal stimuli reproducible as D5 targets.
+
 ## Evidence charter + published physiology Step P1 (review protocol) — 2026-11-23
 
 Direction change, decided by the user after the viability assessment: the untuned, local-only route to
