@@ -1,0 +1,131 @@
+{
+ "D1_restated": {
+  "T1:13Ba": {
+   "level": "hemilineage",
+   "status": "UNMAPPED"
+  },
+  "T2:10Ba": {
+   "level": "hemilineage",
+   "status": "UNMAPPED"
+  }
+ },
+ "D2_restated": {},
+ "D5_targets": [],
+ "counts": {
+  "counted": 9,
+  "disagreements": [
+   "CH21-id-9Ba",
+   "CH21-id-10Ba",
+   "CH21-id-13Bb"
+  ],
+  "entries": 12
+ },
+ "crosswalks": [
+  "MANC",
+  "maleCNS"
+ ],
+ "evidence_sha256": "7ffb175e305d16725bf0000e0923b57dbeb2c5305b608b7c38381147fdf93ecc",
+ "expectations": {
+  "X1": true,
+  "X2": true,
+  "X3": true,
+  "X4": false
+ },
+ "integrity": {
+  "every_entry_checked": true,
+  "invalid": {},
+  "search_log_complete": true,
+  "unique_ids": true,
+  "valid_entries": true
+ },
+ "label": "INSUFFICIENT",
+ "log_sha256": "1684eec86c2f860360eb45e4749505f881161f47a196f49d64c410062a9e0b2c",
+ "mappings": {
+  "T1:13Ba": {
+   "status": "UNMAPPED",
+   "types": []
+  },
+  "T2:10Ba": {
+   "status": "UNMAPPED",
+   "types": []
+  },
+  "T3:9Aa": {
+   "status": "UNMAPPED",
+   "types": []
+  },
+  "T3:9Aa2": {
+   "status": "UNMAPPED",
+   "types": []
+  },
+  "T4:claw-extension": {
+   "status": "SOURCE_ONLY",
+   "types": []
+  },
+  "T4:claw-flexion": {
+   "status": "SOURCE_ONLY",
+   "types": []
+  },
+  "T4:club": {
+   "status": "SOURCE_ONLY",
+   "types": []
+  },
+  "T4:hook-extension": {
+   "status": "SOURCE_ONLY",
+   "types": []
+  },
+  "T4:hook-flexion": {
+   "status": "SOURCE_ONLY",
+   "types": []
+  },
+  "T5:10Ba": {
+   "status": "UNMAPPED",
+   "types": []
+  },
+  "T5:13Ba": {
+   "status": "UNMAPPED",
+   "types": []
+  },
+  "T5:13Bb": {
+   "status": "UNMAPPED",
+   "types": []
+  },
+  "T5:19Aa": {
+   "status": "UNMAPPED",
+   "types": []
+  },
+  "T5:19Ab": {
+   "status": "UNMAPPED",
+   "types": []
+  },
+  "T5:20/22Ab": {
+   "status": "UNMAPPED",
+   "types": []
+  },
+  "T5:8Aa": {
+   "status": "UNMAPPED",
+   "types": []
+  },
+  "T5:9Ba": {
+   "status": "UNMAPPED",
+   "types": []
+  },
+  "T5:9Bb": {
+   "status": "UNMAPPED",
+   "types": []
+  },
+  "T6:fast": {
+   "status": "UNMAPPED",
+   "types": []
+  },
+  "T6:intermediate": {
+   "status": "UNMAPPED",
+   "types": []
+  },
+  "T6:slow": {
+   "status": "UNMAPPED",
+   "types": []
+  }
+ },
+ "protocol_sha256": "9c7919bc6fffd968a13447d39214f336928ca69370d134733503ae239e03a0f3",
+ "schema": "identity-mapping-result-v1"
+}

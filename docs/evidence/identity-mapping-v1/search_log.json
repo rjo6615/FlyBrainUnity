@@ -1,0 +1,319 @@
+{
+ "queries": [
+  {
+   "question": "Q1",
+   "query": "male CNS connectome Drosophila ventral nerve cord cell types matched MANC",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q1",
+   "query": "maleCNS connectome cell type annotation",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q1",
+   "query": "MANC FANC cell type matching ventral nerve cord",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q1",
+   "query": "BANC brain and nerve cord connectome cell types",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q2",
+   "query": "13B hemilineage leg proprioception connectome cell type",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q2",
+   "query": "13Bα neurons femoral chordotonal organ connectome",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q2",
+   "query": "10Bα neuron Drosophila connectome",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q2",
+   "query": "9Aα interneuron vibration connectome Drosophila",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q3",
+   "query": "femoral chordotonal organ club claw hook connectome",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q3",
+   "query": "FeCO axon types MANC",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q3",
+   "query": "Drosophila leg proprioceptor connectome types",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q4",
+   "query": "tibia flexor motor neuron connectome fast slow Drosophila",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q4",
+   "query": "Drosophila leg motor neuron identification FANC",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q5",
+   "query": "Drosophila ventral nerve cord functional connectivity optogenetics calcium imaging identified neurons",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q5",
+   "query": "leg premotor neuron response optogenetic activation Drosophila",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  },
+  {
+   "question": "Q5",
+   "query": "Drosophila ventral nerve cord whole-cell recording optogenetic activation interneuron",
+   "run": "2026-11-23",
+   "tool": "WebSearch standard",
+   "as_declared": true
+  }
+ ],
+ "screened": [
+  {
+   "title": "Male CNS project page and type pages (male-cns.janelia.org)",
+   "url": "male-cns.janelia.org",
+   "decision": "included",
+   "reason": "Q1 crosswalk"
+  },
+  {
+   "title": "Berg et al. 2026 Cell / bioRxiv 2025, male CNS connectome",
+   "url": "10.1016/j.cell.2026.08.015; 10.1101/2025.10.09.680999",
+   "decision": "included",
+   "reason": "Q1, folded into MCNS-crosswalk; Cell paywalled; preprint read only in part (first window author list; rest as tool summary)"
+  },
+  {
+   "title": "Marin et al. 2023/2024, systematic annotation of MANC",
+   "url": "10.1101/2023.06.05.543407",
+   "decision": "excluded",
+   "reason": "access failed: Europe PMC PPR full text HTTP 500; bioRxiv HTTP 429 twice; abstract only (no FeCO or light-level matching stated)"
+  },
+  {
+   "title": "Cheong et al. 2026 eLife, descending input to motor output in MANC",
+   "url": "PMC13384506",
+   "decision": "read",
+   "reason": "Q4: MANC MNs typed by muscle via LM matching; T1 leg MNs matched to FANC by NBLAST; fast/intermediate/slow tibia flexor MNs not identified; no entry"
+  },
+  {
+   "title": "Sturner et al. 2025, neck connective neurons across FAFB, FANC, MANC",
+   "url": "PMC12222017",
+   "decision": "excluded",
+   "reason": "crosswalk between datasets other than male CNS, DN/AN only"
+  },
+  {
+   "title": "Bates et al. 2026 Nature, BANC",
+   "url": "PMID 42259917",
+   "decision": "excluded",
+   "reason": "abstract states no cross-dataset matching to MANC or male CNS"
+  },
+  {
+   "title": "Lee et al. 2025 Nat Commun, FeCO circuits (and 2024 preprint)",
+   "url": "PMC12048489 / PMC11071415",
+   "decision": "included",
+   "reason": "Q3; FANC only"
+  },
+  {
+   "title": "Agrawal et al. 2020 eLife",
+   "url": "PMC7752136",
+   "decision": "excluded",
+   "reason": "already in P1; no connectome identification (Discussion says EM will enable it)"
+  },
+  {
+   "title": "Chen et al. 2021 Curr Biol",
+   "url": "PMC8665017",
+   "decision": "included",
+   "reason": "Q2/Q5"
+  },
+  {
+   "title": "Syed et al. 2026 eLife, 13A/13B grooming",
+   "url": "PMC12844901",
+   "decision": "included",
+   "reason": "Q2/Q5; behavioural"
+  },
+  {
+   "title": "Pratt et al. 2026 Nat Commun, hair plates",
+   "url": "PMC13009157",
+   "decision": "included",
+   "reason": "Q5 lead (hair plates outside declared targets)"
+  },
+  {
+   "title": "Phelps et al. 2021 Cell, FANC motor circuits (fast tibia flexor MN by EM/LM registration)",
+   "url": "PMC8312698",
+   "decision": "excluded",
+   "reason": "access failed: Europe PMC full text HTTP 500; snippet only"
+  },
+  {
+   "title": "Azevedo et al. 2024 Nature, FANC; appendix and supplement",
+   "url": "PMID 38926570; PDFs",
+   "decision": "excluded",
+   "reason": "PDF only (download not approved); T1 MN atlas in FANC"
+  },
+  {
+   "title": "Virtual Fly Brain FeCO term page",
+   "url": "virtualflybrain.org FBbt_00048051",
+   "decision": "excluded",
+   "reason": "no subtype-to-MANC mapping; images labelled with male CNS and MANC IDs without subtype"
+  },
+  {
+   "title": "Virtual Fly Brain claw neuron blog page",
+   "url": "jupyter.virtualflybrain.org",
+   "decision": "excluded",
+   "reason": "cross-host redirect to site root not followed"
+  },
+  {
+   "title": "Cell Type Explorer (reiserlab.github.io)",
+   "url": "reiserlab.github.io",
+   "decision": "excluded",
+   "reason": "optic-lobe type browser; duplicate of male CNS pages"
+  },
+  {
+   "title": "FlyWire annotations repository",
+   "url": "github.com/flyconnectome",
+   "decision": "excluded",
+   "reason": "brain annotations"
+  },
+  {
+   "title": "Elabbady et al. 2025/2026, somatotopic leg map",
+   "url": "faculty.washington.edu PDF",
+   "decision": "excluded",
+   "reason": "PDF only; optogenetic activation with behavioural readout"
+  },
+  {
+   "title": "Larval patch + optogenetics premotor connectivity (J Neurosci 2022)",
+   "url": "PMC9435966",
+   "decision": "excluded",
+   "reason": "larval, not adult leg network"
+  },
+  {
+   "title": "Matsunaga 2017 (larval)",
+   "url": "PMC6705691",
+   "decision": "excluded",
+   "reason": "larval"
+  },
+  {
+   "title": "Chen 2018 Nat Commun, VNC imaging in behaving flies",
+   "url": "s41467-018-06857-z",
+   "decision": "excluded",
+   "reason": "method; no identified stimulus-response pairs"
+  },
+  {
+   "title": "Aymanns thesis (EPFL), ascending neurons",
+   "url": "infoscience.epfl.ch",
+   "decision": "excluded",
+   "reason": "PDF thesis"
+  },
+  {
+   "title": "Dallmann 2024/2025, presynaptic inhibition",
+   "url": "dallmann24.pdf / PMID 40963018",
+   "decision": "excluded",
+   "reason": "calcium imaging of afferents/interneurons in behaviour; no identified stimulus-to-recorded pairs among targets"
+  },
+  {
+   "title": "Soffers 2025 eLife, lineage driver lines",
+   "url": "PMID 40492493",
+   "decision": "excluded",
+   "reason": "behavioural lineage map"
+  },
+  {
+   "title": "Bidaye 2020 Neuron, walking initiation",
+   "url": "PMC",
+   "decision": "excluded",
+   "reason": "brain neurons, behaviour"
+  },
+  {
+   "title": "Azevedo 2020 eLife (tibia flexor MNs)",
+   "url": "PMC7347388",
+   "decision": "excluded",
+   "reason": "already in P1; no connectome identification"
+  },
+  {
+   "title": "Mamiya 2018/2023 FeCO imaging",
+   "url": "various",
+   "decision": "excluded",
+   "reason": "afferent physiology; no connectome typing found in snippets"
+  },
+  {
+   "title": "Wikipedia / news pages on connectomes",
+   "url": "various",
+   "decision": "excluded",
+   "reason": "not primary"
+  },
+  {
+   "title": "Guo 2026 iScience, leg rubbing VNC circuits",
+   "url": "PMID 41756730",
+   "decision": "excluded",
+   "reason": "abstract: activation of identified interneurons with behavioural readout; no recordings"
+  },
+  {
+   "title": "Gebehart 2022 Curr Biol, stick insect premotor network",
+   "url": "PMID 35896118",
+   "decision": "excluded",
+   "reason": "stick insect, not Drosophila; not a declared target"
+  }
+ ],
+ "snowball": {
+  "references": [
+   "Lee 2025 cites Agrawal 2020 (ref 25) and Chen 2021 (ref 26) only as physiology; MANC mentioned only as unmapped",
+   "Chen 2021 EM volume is \"ref 17\" (female VNC); its identity as FANC/Phelps 2021 only from a tool summary"
+  ],
+  "citing": [
+   "Lee 2025 (PMID 40316553): 15 citing records (Europe PMC, after an HTTP 503 on the first attempt); 6 screened by abstract (Bates 2026, Pratt 2026, Guo 2026, Syed 2026/2024, Dallmann 2025): no target identity mapping, no identified-stimulus/identified-recording pair",
+   "Chen 2021 (PMID 34637749): 34 citing records; 16 screened by abstract (incl. Lee 2025, Marin 2023, Azevedo 2024, Mamiya 2023, Dallmann, Pratt, Syed, Gebehart 2022): no target identity mapping; the only stimulus-plus-recording study is in stick insect (Gebehart 2022, out of scope)"
+  ]
+ },
+ "access": {
+  "failures": [
+   "Europe PMC PPR671363 full text HTTP 500",
+   "bioRxiv Marin 2023 HTTP 429 (twice)",
+   "Europe PMC PMC8312698 HTTP 500",
+   "Europe PMC citations service HTTP 503 (first snowball attempt)",
+   "VFB blog cross-host redirect not followed"
+  ],
+  "route": "Europe PMC REST, male-cns.janelia.org documentation, bioRxiv HTML; no bot check, captcha, login or rate limit bypassed"
+ },
+ "stop_rule": "no question reached 25 included sources"
+}

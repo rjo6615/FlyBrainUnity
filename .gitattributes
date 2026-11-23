@@ -246,3 +246,6 @@ docs/evidence/core-support-map-v1/**/*.txt -text -whitespace
 docs/evidence/physiology-review-v1/*.json -text
 docs/evidence/physiology-review-v1/**/*.json -text
 docs/evidence/physiology-review-v1/**/*.txt -text -whitespace
+docs/evidence/identity-mapping-v1/*.json -text
+docs/evidence/identity-mapping-v1/**/*.json -text
+docs/evidence/identity-mapping-v1/**/*.txt -text -whitespace
