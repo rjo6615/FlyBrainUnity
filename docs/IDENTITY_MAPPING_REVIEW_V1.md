@@ -1,6 +1,7 @@
 # Published physiology Step P2: which connectome types are the recorded cells? (identity-mapping review protocol)
 
-Designed 2026-11-23. **Status: protocol only** (no source has been read for this review yet). This is a
+Designed 2026-11-23. **Status: reviewed 2026-11-23: INSUFFICIENT** (no target maps to our male CNS data; FeCO
+subtypes FANC-only; 0 held-out targets). See `IDENTITY_MAPPING_REVIEW_RESULTS.md`. This is a
 preregistered literature review under the evidence charter in `AGENTS.md`. No simulation, and no change
 to the live engine or to any earlier evidence.
 

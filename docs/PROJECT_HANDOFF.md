@@ -1,5 +1,23 @@
 # FlyBrainUnity — local Codex handoff
 
+## Published physiology Step P2 (identity-mapping review): INSUFFICIENT — 2026-11-23
+
+Preregistered (5b4e526, protocol 9c7919bc, no amendments); 16 declared queries, snowball (refs; 15 and
+34 citing papers of Lee 2025 / Chen 2021), 12 entries, all second-read, computed once. Q1: male CNS
+v1.0 type pages carry a per-type "MANC Type" field (confirmed on ANXXX116; IN13B001 page 404); no FANC
+<-> male CNS crosswalk. 13Balpha, 10Balpha, 9Aalpha, 9Aalpha2: UNMAPPED (no connectome
+identification). FeCO subtypes: SOURCE_ONLY (FANC; Lee 2025, morphology vs driver-line images, no
+type names). Chen 2021 classes: UNMAPPED (EM matches without IDs; method not confirmed in the second
+read). Tibia flexor fast/intermediate/slow: UNMAPPED (Cheong 2026 does not identify them; Phelps 2021
+HTTP 500). D1 stays hemilineage-level, D2 class-level, D5 = 0. Chen 2021 functional-connectivity
+pairs confirmed but unusable while unmapped. X1-X3 held, X4 wrong. Access failures logged (Marin 2023
+HTTP 500/429, Phelps 2021 HTTP 500, Cell paper paywalled). See IDENTITY_MAPPING_REVIEW_RESULTS.md.
+
+NEXT (needs approval): merge #346, then the user's choice: (1) our own preregistered cross-dataset
+identity matching (needs public data downloads and likely an NBLAST dependency), (2) a hair-plate
+identity/targets review (the project already models hair plates), or (3) stop the variant path and
+record the conclusion.
+
 ## Published physiology Step P2 (identity-mapping review protocol) — 2026-11-23
 
 Designed only (no source read yet). P1 was held back by identity: 13Balpha/10Balpha graded evidence is

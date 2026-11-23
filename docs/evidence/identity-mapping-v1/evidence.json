@@ -1,0 +1,333 @@
+{
+ "schema": "identity-mapping-evidence-v1",
+ "entries": [
+  {
+   "id": "MCNS-crosswalk",
+   "question": "Q1",
+   "kind": "crosswalk",
+   "citation": "Male CNS connectome v1.0 type pages (Janelia FlyEM, male-cns.janelia.org), with Berg S et al. (2026) Sexual dimorphism in the complete Drosophila male central nervous system connectome. Cell 189:5504 (bioRxiv 10.1101/2025.10.09.680999)",
+   "doi_or_url": "https://male-cns.janelia.org/build/summary_types/ANXXX116/ ; https://male-cns.janelia.org/",
+   "preprint": false,
+   "primary": true,
+   "read_level": "full",
+   "summary": "Each male CNS type page carries an \"Across-brain Mapping\" label and a \"MANC Type\" field (per type), e.g. ANXXX116 -> MANC Type ANXXX116. The preprint figure legend (read only as a tool summary) describes matching by spatial transforms + NBLAST and connectivity co-clustering. Whether every male CNS VNC name equals its MANC name is not stated; each mapped type would need its own page checked.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "confirmed on the ANXXX116 type page: \"Across-brain Mapping\" field defined as mapping between male CNS and FlyWire or MANC; \"MANC Type: ANXXX116\"; dataset male-cns:v1.0 (root page: v1.0 released 2026-06-08). The IN13B001 type page returned HTTP 404, so the field was confirmed on one page only; the preprint matching method was not part of the check.",
+    "by": "separate web-reading agent, 2026-11-23"
+   },
+   "datasets": [
+    "maleCNS",
+    "MANC"
+   ],
+   "crosswalk_level": "type",
+   "method": "per-type MANC Type field on dataset documentation pages; matching method stated only in a part of the preprint read as summary"
+  },
+  {
+   "id": "CH21-id-9Ba",
+   "question": "Q2",
+   "kind": "identity",
+   "citation": "Chen C, Agrawal S, Mark B, et al., Tuthill JC (2021) Functional architecture of neural circuits for leg proprioception in Drosophila. Curr Biol 31:5163-5175",
+   "doi_or_url": "10.1016/j.cub.2021.09.035 (Europe PMC PMC8665017 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "read_level": "full",
+   "summary": "9Ba reconstructed in an adult female VNC TEM volume (ref 17) and matched to light-level data by primary neurite fasciculation, dendrites and axon projections; no neuron IDs or type names given (STAR Methods EM reconstruction; Fig. 2B).",
+   "check": {
+    "second_read": true,
+    "agrees": false,
+    "note": "EM reconstruction with club input confirmed (Results P19, Fig. 2B); the EM-to-light matching method (STAR Methods) was not in the text the checker read verbatim",
+    "by": "separate web-reading agent, 2026-11-23"
+   },
+   "target": "T5:9Ba",
+   "published_identity": "9Ba (GABAergic, 9B hemilineage)",
+   "source_dataset": "none",
+   "level": "M-A",
+   "types": [],
+   "method": "EM-to-light morphology matching by hemilineage characteristics"
+  },
+  {
+   "id": "CH21-id-10Ba",
+   "question": "Q2",
+   "kind": "identity",
+   "citation": "Chen C, Agrawal S, Mark B, et al., Tuthill JC (2021) Functional architecture of neural circuits for leg proprioception in Drosophila. Curr Biol 31:5163-5175",
+   "doi_or_url": "10.1016/j.cub.2021.09.035 (Europe PMC PMC8665017 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "read_level": "full",
+   "summary": "10Ba reconstructed in the same female VNC TEM volume with dense club input (Fig. 3B); same matching method; no IDs or type names.",
+   "check": {
+    "second_read": true,
+    "agrees": false,
+    "note": "EM reconstruction with club input confirmed (Results P25, Fig. 3B); matching method not read verbatim by the checker",
+    "by": "separate web-reading agent, 2026-11-23"
+   },
+   "target": "T5:10Ba",
+   "published_identity": "10Ba (cholinergic, 10B hemilineage)",
+   "source_dataset": "none",
+   "level": "M-A",
+   "types": [],
+   "method": "EM-to-light morphology matching by hemilineage characteristics"
+  },
+  {
+   "id": "CH21-id-13Bb",
+   "question": "Q2",
+   "kind": "identity",
+   "citation": "Chen C, Agrawal S, Mark B, et al., Tuthill JC (2021) Functional architecture of neural circuits for leg proprioception in Drosophila. Curr Biol 31:5163-5175",
+   "doi_or_url": "10.1016/j.cub.2021.09.035 (Europe PMC PMC8665017 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "read_level": "full",
+   "summary": "13Bb reconstructed with direct hook (extension) input (Fig. 4B); same matching method; no IDs or type names.",
+   "check": {
+    "second_read": true,
+    "agrees": false,
+    "note": "EM reconstruction with hook (extension) input confirmed (Results P31, Fig. 4B); matching method not read verbatim by the checker",
+    "by": "separate web-reading agent, 2026-11-23"
+   },
+   "target": "T5:13Bb",
+   "published_identity": "13Bb (GABAergic, 13B hemilineage)",
+   "source_dataset": "none",
+   "level": "M-A",
+   "types": [],
+   "method": "EM-to-light morphology matching by hemilineage characteristics"
+  },
+  {
+   "id": "LE25-id-club",
+   "question": "Q3",
+   "kind": "identity",
+   "citation": "Lee SJ, Dallmann CJ, Cook A, Tuthill JC, Agrawal S (2025) Divergent neural circuits for proprioceptive and exteroceptive sensing of the Drosophila leg. Nat Commun 16:4105",
+   "doi_or_url": "10.1038/s41467-025-59302-3 (Europe PMC PMC12048489 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "read_level": "full",
+   "summary": "FeCO club axons identified among 80 reconstructed front-left FeCO axons in FANC by axon morphology compared with light-level images of subtype-specific driver lines; no MANC or male CNS type names (MANC mentioned only as having 22 T1L FeCO axons reconstructed).",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "confirmed: 80 T1L FeCO axons in FANC (Results para 8); sorted by axon morphology and light-level images of subtype driver lines (para 9, Methods para 46); subtype names club, claw flexion/extension, hook flexion/extension (para 16); no MANC or male CNS type names. Wording note: MANC is also mentioned in the Discussion (para 41), not only for its 22 T1L axons.",
+    "by": "separate web-reading agent, 2026-11-23"
+   },
+   "target": "T4:club",
+   "published_identity": "FeCO club neurons",
+   "source_dataset": "FANC",
+   "level": "M-A",
+   "types": [],
+   "method": "EM morphology vs light-level split-Gal4 images"
+  },
+  {
+   "id": "LE25-id-claw-flexion",
+   "question": "Q3",
+   "kind": "identity",
+   "citation": "Lee SJ, Dallmann CJ, Cook A, Tuthill JC, Agrawal S (2025) Divergent neural circuits for proprioceptive and exteroceptive sensing of the Drosophila leg. Nat Commun 16:4105",
+   "doi_or_url": "10.1038/s41467-025-59302-3 (Europe PMC PMC12048489 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "read_level": "full",
+   "summary": "FeCO claw-flexion axons identified among 80 reconstructed front-left FeCO axons in FANC by axon morphology compared with light-level images of subtype-specific driver lines; no MANC or male CNS type names (MANC mentioned only as having 22 T1L FeCO axons reconstructed).",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "confirmed: 80 T1L FeCO axons in FANC (Results para 8); sorted by axon morphology and light-level images of subtype driver lines (para 9, Methods para 46); subtype names club, claw flexion/extension, hook flexion/extension (para 16); no MANC or male CNS type names. Wording note: MANC is also mentioned in the Discussion (para 41), not only for its 22 T1L axons.",
+    "by": "separate web-reading agent, 2026-11-23"
+   },
+   "target": "T4:claw-flexion",
+   "published_identity": "FeCO claw-flexion neurons",
+   "source_dataset": "FANC",
+   "level": "M-A",
+   "types": [],
+   "method": "EM morphology vs light-level split-Gal4 images"
+  },
+  {
+   "id": "LE25-id-claw-extension",
+   "question": "Q3",
+   "kind": "identity",
+   "citation": "Lee SJ, Dallmann CJ, Cook A, Tuthill JC, Agrawal S (2025) Divergent neural circuits for proprioceptive and exteroceptive sensing of the Drosophila leg. Nat Commun 16:4105",
+   "doi_or_url": "10.1038/s41467-025-59302-3 (Europe PMC PMC12048489 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "read_level": "full",
+   "summary": "FeCO claw-extension axons identified among 80 reconstructed front-left FeCO axons in FANC by axon morphology compared with light-level images of subtype-specific driver lines; no MANC or male CNS type names (MANC mentioned only as having 22 T1L FeCO axons reconstructed).",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "confirmed: 80 T1L FeCO axons in FANC (Results para 8); sorted by axon morphology and light-level images of subtype driver lines (para 9, Methods para 46); subtype names club, claw flexion/extension, hook flexion/extension (para 16); no MANC or male CNS type names. Wording note: MANC is also mentioned in the Discussion (para 41), not only for its 22 T1L axons.",
+    "by": "separate web-reading agent, 2026-11-23"
+   },
+   "target": "T4:claw-extension",
+   "published_identity": "FeCO claw-extension neurons",
+   "source_dataset": "FANC",
+   "level": "M-A",
+   "types": [],
+   "method": "EM morphology vs light-level split-Gal4 images"
+  },
+  {
+   "id": "LE25-id-hook-flexion",
+   "question": "Q3",
+   "kind": "identity",
+   "citation": "Lee SJ, Dallmann CJ, Cook A, Tuthill JC, Agrawal S (2025) Divergent neural circuits for proprioceptive and exteroceptive sensing of the Drosophila leg. Nat Commun 16:4105",
+   "doi_or_url": "10.1038/s41467-025-59302-3 (Europe PMC PMC12048489 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "read_level": "full",
+   "summary": "FeCO hook-flexion axons identified among 80 reconstructed front-left FeCO axons in FANC by axon morphology compared with light-level images of subtype-specific driver lines; no MANC or male CNS type names (MANC mentioned only as having 22 T1L FeCO axons reconstructed).",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "confirmed: 80 T1L FeCO axons in FANC (Results para 8); sorted by axon morphology and light-level images of subtype driver lines (para 9, Methods para 46); subtype names club, claw flexion/extension, hook flexion/extension (para 16); no MANC or male CNS type names. Wording note: MANC is also mentioned in the Discussion (para 41), not only for its 22 T1L axons.",
+    "by": "separate web-reading agent, 2026-11-23"
+   },
+   "target": "T4:hook-flexion",
+   "published_identity": "FeCO hook-flexion neurons",
+   "source_dataset": "FANC",
+   "level": "M-A",
+   "types": [],
+   "method": "EM morphology vs light-level split-Gal4 images"
+  },
+  {
+   "id": "LE25-id-hook-extension",
+   "question": "Q3",
+   "kind": "identity",
+   "citation": "Lee SJ, Dallmann CJ, Cook A, Tuthill JC, Agrawal S (2025) Divergent neural circuits for proprioceptive and exteroceptive sensing of the Drosophila leg. Nat Commun 16:4105",
+   "doi_or_url": "10.1038/s41467-025-59302-3 (Europe PMC PMC12048489 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "read_level": "full",
+   "summary": "FeCO hook-extension axons identified among 80 reconstructed front-left FeCO axons in FANC by axon morphology compared with light-level images of subtype-specific driver lines; no MANC or male CNS type names (MANC mentioned only as having 22 T1L FeCO axons reconstructed).",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "confirmed: 80 T1L FeCO axons in FANC (Results para 8); sorted by axon morphology and light-level images of subtype driver lines (para 9, Methods para 46); subtype names club, claw flexion/extension, hook flexion/extension (para 16); no MANC or male CNS type names. Wording note: MANC is also mentioned in the Discussion (para 41), not only for its 22 T1L axons.",
+    "by": "separate web-reading agent, 2026-11-23"
+   },
+   "target": "T4:hook-extension",
+   "published_identity": "FeCO hook-extension neurons",
+   "source_dataset": "FANC",
+   "level": "M-A",
+   "types": [],
+   "method": "EM morphology vs light-level split-Gal4 images"
+  },
+  {
+   "id": "CH21-fc",
+   "question": "Q5",
+   "kind": "functional_connectivity",
+   "citation": "Chen C, Agrawal S, Mark B, et al., Tuthill JC (2021) Functional architecture of neural circuits for leg proprioception in Drosophila. Curr Biol 31:5163-5175",
+   "doi_or_url": "10.1016/j.cub.2021.09.035 (Europe PMC PMC8665017 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "read_level": "full",
+   "summary": "Optogenetic activation of FeCO subtypes with two-photon calcium imaging of second-order classes (adult female). Subtype-specific pairs: club -> 9Ba (excitation), club -> 10Ba (excitation), claw (extension) -> 13Bb (excitation), hook (extension) -> 13Bb, hook (flexion) -> 8Aa, club -> 9Bb only with picrotoxin. Pairs reported only for pooled \"claw\" (13Ba, 8Aa, 8Ba, 19Aa, 19Ab, 20/22Ab) are not listed because the protocol targets name claw subtypes.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "confirmed: club -> 9Ba and 10Ba (P14, P20, P26); 13Bb responds to extension-tuned claw, not flexion-tuned (P32, Fig. 4D) and to hook (extension) (P14); 8Aa to claw and hook (flexion) (P14); 9Bb only with picrotoxin (P34, Fig. 5A); 9Bb/9Agamma naming inconsistent within the paper",
+    "by": "separate web-reading agent, 2026-11-23"
+   },
+   "stimulated": [
+    "club",
+    "claw",
+    "hook-flexion",
+    "hook-extension"
+   ],
+   "recorded": [
+    "8Aa",
+    "9Ba",
+    "9Bb",
+    "10Ba",
+    "13Ba",
+    "13Bb",
+    "19Aa",
+    "19Ab",
+    "20/22Ab"
+   ],
+   "neural_readout": true,
+   "readout": "presence",
+   "method": "optogenetics (Chrimson) + GCaMP6 two-photon imaging; MLA and picrotoxin pharmacology",
+   "pairs": [
+    {
+     "stim": "T4:club",
+     "rec": "T5:9Ba",
+     "response": "excitation"
+    },
+    {
+     "stim": "T4:club",
+     "rec": "T5:10Ba",
+     "response": "excitation"
+    },
+    {
+     "stim": "T4:claw-extension",
+     "rec": "T5:13Bb",
+     "response": "excitation"
+    },
+    {
+     "stim": "T4:hook-extension",
+     "rec": "T5:13Bb",
+     "response": "response"
+    },
+    {
+     "stim": "T4:hook-flexion",
+     "rec": "T5:8Aa",
+     "response": "response"
+    },
+    {
+     "stim": "T4:club",
+     "rec": "T5:9Bb",
+     "response": "only with picrotoxin"
+    }
+   ]
+  },
+  {
+   "id": "PR26-fc",
+   "question": "Q5",
+   "kind": "functional_connectivity",
+   "citation": "Pratt BG, Dallmann CJ, Chou GM, et al., Tuthill JC (2026) Proprioceptive limit detectors contribute to sensorimotor control of the Drosophila leg. Nat Commun 17:2664",
+   "doi_or_url": "10.1038/s41467-026-69333-z (Europe PMC PMC13009157 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "read_level": "full",
+   "summary": "Calcium imaging of CxHP8 hair plate axons during passive leg movement; optogenetic activation and silencing read out behaviour; targets identified in FANC by hemilineage and motor module, no MANC or male CNS names (MANC hair plate axons too poorly reconstructed). No paired stimulus/recording of identified cells; hair plates are outside the declared targets.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "confirmed: CxHP8 axon calcium imaging during passive movement; optogenetics read out as kinematics; reconstruction in FANC because hair plate axons could not be identified in MANC; no recording of downstream neurons. Wording note: MANC is named as a dataset; no MANC or male CNS type names for hair plates were seen.",
+    "by": "separate web-reading agent, 2026-11-23"
+   },
+   "stimulated": [
+    "CxHP8"
+   ],
+   "recorded": [
+    "CxHP8 axons"
+   ],
+   "neural_readout": false,
+   "readout": "none",
+   "pairs": [],
+   "method": "calcium imaging (afferent only), optogenetics with behavioural readout, FANC reconstruction"
+  },
+  {
+   "id": "SY26-fc",
+   "question": "Q5",
+   "kind": "functional_connectivity",
+   "citation": "Syed DS, Ravbar P, Simpson JH (2026) Inhibitory circuits control leg movements during Drosophila grooming. eLife 14:RP106446",
+   "doi_or_url": "10.7554/elife.106446 (Europe PMC PMC12844901 fullTextXML)",
+   "preprint": false,
+   "primary": true,
+   "read_level": "full",
+   "summary": "13A/13B neurons of right T1 clustered by NBLAST in an EM dataset (named 13B-1a-h etc.); driver lines named by genotype; experiments are behavioural (optogenetic activation and silencing); no link to 13Balpha or Chen classes; no MANC or male CNS type names in the text read.",
+   "check": {
+    "second_read": true,
+    "agrees": true,
+    "note": "confirmed on the ~30% read verbatim: NBLAST clusters 13B-1(a-h) etc.; driver lines by genotype; no 13Balpha/13Ba/13Bb link; behavioural experiments only. Notes: 13A silencing used Kir (genetic), only 13B used GtACR1; absence of MANC type names not checkable in the unread part.",
+    "by": "separate web-reading agent, 2026-11-23"
+   },
+   "stimulated": [
+    "13A/13B subsets"
+   ],
+   "recorded": [],
+   "neural_readout": false,
+   "readout": "none",
+   "pairs": [],
+   "method": "optogenetics with behavioural readout; EM clustering"
+  }
+ ]
+}
